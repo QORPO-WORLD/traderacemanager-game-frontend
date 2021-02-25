@@ -1,0 +1,38 @@
+
+<div class="main-holder">
+
+  <div class="leaderboard-info"> 
+    <div class="back" [routerLink]="['/race/start-race']">
+      <p>&lt;</p>
+      <p>BACK</p>
+    </div>
+    <div class="text-info">
+      <h1>Leaderboard</h1>
+      <p>{{"leaderboard.page_info"| translate}}</p>
+    </div>
+    <div class="bonus-info">
+      <h5>{{myTeamReward | number:'1.2-2':'fr' }}  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
+      <p>current team bonus</p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="my-cta-btn-back" [ngClass]="{'inactive': leaderboardType!=='players'}" (click)="leaderboardType='players'">{{'leaderboard.racer_button' | translate}}</button>
+    <button class="my-cta-btn-back" [ngClass]="{'inactive': leaderboardType!=='team'}"(click)="leaderboardType='team'">{{'leaderboard.team_button' | translate}}</button>
+    <button class="my-cta-btn-back" [ngClass]="{'inactive': leaderboardType!=='owners'}"(click)="leaderboardType='owners'">{{'leaderboard.owner_button' | translate}}</button>
+  </div>
+  
+  
+  <div class="content" *ngIf="leaderboardType=='team'">
+    <app-my-team-players [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-my-team-players>
+  </div>
+  
+  <div class="content" *ngIf="leaderboardType=='owners'" >
+    <app-all-players></app-all-players>
+  </div>
+
+  <div class="content" *ngIf="leaderboardType=='players'">
+    <app-all-players  [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-all-players>
+  </div>
+</div>
+

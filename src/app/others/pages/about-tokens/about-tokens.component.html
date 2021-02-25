@@ -1,0 +1,328 @@
+<div class="main-holder">
+  <div class="page-info"> 
+    <div class="back" [routerLink]="['/race/start-race']">
+      <p>&lt;</p>
+    <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="text-info">
+    <h1>{{'about_tokens.page_heading' | translate}}</h1>
+    <p>{{'about_tokens.page_info' | translate}}</p>
+    </div>
+    <div class="bonus-info">
+      <div class="divident-pool">
+        <h4>{{ ioioreward | number:'1.2-2':'fr' }} <img src="/assets/base/images/tokens/ioi-logo.png" alt=""></h4>
+        <p>{{'rewards.divident_pool' | translate}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-menu">
+    <div class="menu-desc">
+      <p class="my-team" [routerLink]="['/other/about-tokens']">{{'game-wallet.menu_item2' | translate}}</p>
+      <p class="join-team" [routerLink]="['/other/about-tokens/rewards']">{{'game-wallet.menu_item1' | translate}}</p>
+    </div>
+    <div class="menu-line">
+        <div class="inner-line my-cta-btn-back">&nbsp;</div>
+    </div>
+  </div>
+
+
+  <div class="level-container">
+    <div class="level-image">
+      <p class="fw-bold">Level {{isLevel}}</p>
+      <img src="assets/base/images/avatars/avatar{{isLevel}}.svg" alt="">
+      <div class="stars">
+        <img src="assets/base/images/tokens/star-gold.png" alt="" *ngIf="isLevel > 0">
+        <img src="assets/base/images/tokens/star-gold.png" alt="" *ngIf="isLevel > 1">
+        <img src="assets/base/images/tokens/star-gold.png" alt="" *ngIf="isLevel > 2">
+        <img src="assets/base/images/tokens/star-gold.png" alt="" *ngIf="isLevel > 3">
+
+        <img src="assets/base/images/tokens/star-gray.png" alt="" *ngIf="isLevel < 4">
+        <img src="assets/base/images/tokens/star-gray.png" alt="" *ngIf="isLevel < 3">
+        <img src="assets/base/images/tokens/star-gray.png" alt="" *ngIf="isLevel < 2">
+        <img src="assets/base/images/tokens/star-gray.png" alt="" *ngIf="isLevel < 1">
+      </div>
+    </div>
+    <div class="progress-bar-wrapper">
+      <p class="fw-bold">{{ioioreward}} IOI</p>
+      <div class="my-progress-bar">
+        <div class="my-bar">
+          <div class="inner-bar my-cta-btn-back"  [ngStyle]="{width: rewardLevelMax + '%'}"></div>
+          <!-- [ngStyle]="{width: rewardLevelMax + '%'}" -->
+        </div>
+        <div class="progress-bar-info" *ngIf="rewardLevel < 100">
+          <p class="text-gray">0</p>
+          <p class="text-gray">Level 1</p>
+        </div>
+        <div class="progress-bar-info" *ngIf="rewardLevel > 100 && rewardLevel < 1000">
+          <p class="text-gray">100</p>
+          <p class="text-gray">Level 2</p>
+        </div>
+        <div class="progress-bar-info" *ngIf="rewardLevel > 999 && rewardLevel < 10000">
+          <p class="text-gray">1000</p>
+          <p class="text-gray">Level 3</p>
+        </div>
+        <div class="progress-bar-info" *ngIf="rewardLevel > 10000 && rewardLevel < 100000">
+          <p class="text-gray">10000</p>
+          <p class="text-gray">Level 4</p>
+        </div>
+      </div>
+      <p class="text-gray">{{rewardLevelMax  | number:'1.0-0':'fr'}}% {{'rewards.level_info1' | translate}} {{isLevel}} {{'rewards.level_info2' | translate}}</p>
+    </div>
+  </div>
+
+  <div class="levels-wrapper">
+    <h6 class="levels-wrapper-heading fw-bold">{{'rewards.start_earning_dividends' | translate}}</h6>
+    <div class="middle-line">
+      <h6 class="fw-bold">0 IOI</h6>
+      <div class="line-circle"></div>
+      <div class="line"></div>
+    </div>
+    <div class="level">
+      <div class="level-goal">
+        <div class="dark-container">
+          <div class="goal-number " [ngClass]="rewardLevel > 99 ? 'my-low-gradient' : 'locked'">
+            <span class="border-maker">
+              <h6 class="fw-bold">100 IOI</h6>
+            </span>
+          </div>
+        </div>
+        <div class="stars">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+        </div>
+      </div>
+      <div class="level-info">
+        <div class="level-text">
+          <h6 class="fw-bold">{{'rewards.reach_ioi_heading' | translate}} 100 IOI?</h6>
+          <ul>
+            <li><p>{{'rewards.reach_100ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.reach_100ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.reach_100ioi_item3' | translate}}</p></li>
+            <li><p>{{'rewards.reach_100ioi_item4' | translate}}</p></li>
+          </ul>      
+        </div>
+      </div>
+      <div class="level-video img1">
+      </div>
+    </div>
+
+    <div class="level">
+      <div class="level-goal">
+        <div class="dark-container">
+          <div class="goal-number " [ngClass]="rewardLevel > 999 ? 'my-low-gradient' : 'locked'">
+            <span class="border-maker">
+              <h6 class="fw-bold">1000 IOI</h6>
+            </span>
+          </div>
+        </div>
+        <div class="stars">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+        </div>
+      </div>
+      <div class="level-video img2">
+      </div>
+      <div class="level-info text-left">
+        <div class="level-text">
+          <h6 class="fw-bold">{{'rewards.reach_ioi_heading' | translate}} 1000 IOI?</h6>
+          <ul>
+            <li><p>{{'rewards.reach_1000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.reach_1000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.reach_1000ioi_item3' | translate}}</p></li>
+          </ul>
+          <h6 class="fw-bold">{{'rewards.can_get_heading' | translate}}</h6>
+          <ul>
+            <li><p>{{'rewards.can_get1000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.can_get1000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.can_get1000ioi_item3' | translate}}</p></li>
+          </ul>    
+        </div>
+      </div>
+    </div>
+
+    <div class="level">
+      <div class="level-goal">
+        <div class="dark-container">
+          <div class="goal-number " [ngClass]="rewardLevel > 9999 ? 'my-low-gradient' : 'locked'">
+            <span class="border-maker">
+              <h6 class="fw-bold">10 000 IOI</h6>
+            </span>
+          </div>
+        </div>
+        <div class="stars">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gray.png" alt="">
+        </div>
+      </div>
+      <div class="level-info">
+        <div class="level-text">
+          <h6 class="fw-bold">{{'rewards.reach_ioi_heading' | translate}} 10 000 IOI?</h6>
+          <ul>
+            <li><p>{{'rewards.reach_10000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.reach_10000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.reach_10000ioi_item3' | translate}}</p></li>
+          </ul>
+          <h6 class="fw-bold">{{'rewards.can_get_heading' | translate}}</h6>
+          <ul>
+            <li><p>{{'rewards.can_get10000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.can_get10000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.can_get10000ioi_item3' | translate}}</p></li>
+          </ul>    
+        </div>
+      </div>
+      <div class="level-video img3">
+      </div>
+    </div>
+
+    <div class="level">
+      <div class="level-goal">
+        <div class="dark-container">
+          <div class="goal-number locked" [ngClass]="rewardLevel > 99999 ? 'my-low-gradient' : 'locked'">
+            <span class="border-maker">
+              <h6 class="fw-bold">100 000 IOI</h6>
+            </span>
+          </div>
+        </div>
+        <div class="stars">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+          <img src="assets/base/images/tokens/star-gold.png" alt="">
+        </div>
+      </div>
+      <div class="level-video img4">
+      </div>
+
+      <div class="level-info text-left">
+        <div class="level-text">
+          <h6 class="fw-bold">{{'rewards.reach_ioi_heading' | translate}} 100 000 IOI?</h6>
+          <ul>
+            <li><p>{{'rewards.reach_100000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.reach_10000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.reach_10000ioi_item3' | translate}}</p></li>
+            <li><p>{{'rewards.reach_100000ioi_item4' | translate}}</p></li>
+            <li><p>{{'rewards.reach_100000ioi_item5' | translate}}</p></li>
+          </ul>
+          <h6 class="fw-bold">{{'rewards.can_get_heading' | translate}}</h6>
+          <ul>
+            <li><p>{{'rewards.can_get100000ioi_item1' | translate}}</p></li>
+            <li><p>{{'rewards.can_get100000ioi_item2' | translate}}</p></li>
+            <li><p>{{'rewards.can_get100000ioi_item3' | translate}}</p></li>
+            <li><p>{{'rewards.can_get100000ioi_item4' | translate}}</p></li>
+            <li><p>{{'rewards.can_get100000ioi_item5' | translate}}</p></li>
+          </ul>    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="divident-pool-info">
+    <div class="panel-item">
+      <div class="img-holder">
+        <img src="/assets/base/images/ioi-graph.png" alt="">
+        <div class="inner-circle">
+          <p>10%</p>
+        </div>
+        <p class="desc">{{'game-wallet.ioi_games' | translate}}</p>
+      </div>
+      <div class="text-holder">
+        <h6 class="fw-bold">{{'rewards.about_divident_pool' | translate}}</h6>
+        <p>{{'game-wallet.earn_all_ioi' | translate}}</p>
+      </div>
+    </div>
+
+    <div class="divident-text">
+      <h6 class="fw-bold">{{"rewards.what_is_divident_pool_heading" | translate}}</h6>
+      <p>{{"rewards.what_is_divident_pool_text" | translate}}</p>
+    </div>
+  </div>-->
+
+
+  <section class="util-sec visible" id="utilSec">
+    <h6 class="fw-bold token-heading">{{"rewards.token_utilities" | translate}}</h6>
+          <div class="dummy-holder" id="dummyToken">
+              <img class="token-img static" src="assets/base/images/tokens/ioi-coins.png" alt="">
+
+              <div class="svg1 svg-holder">
+                  <svg width="125" height="70" class="line1">
+                      <defs>
+                          <linearGradient id="gradient" x1="-60%" y1="0%" x2="50%" y2="300%">
+                            <stop offset="0%" stop-color="#23FFFF" />
+                            <stop offset="100%" stop-color="#2B16F7" />
+                          </linearGradient>
+                        </defs>
+                      <path class="line1" d="m2.5,2.5 l91,0 l58,65" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line2" d="m2.5,2.5 l27,0 l29,19" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line3" d="m2.5,2.5 l140,0 l55,35" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line4" d="m2.5,2.5 l70,0 l25,25" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line5" d="m1.5,1.5 l40,0 l15,15" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                  </svg>
+                  <div class="path-text">
+                      <p class="fw-bold">{{"rewards.unlimited_rewards" | translate}}</p>
+                  </div>
+              </div>
+      
+              <div class="svg2 svg-holder">
+                  <svg width="125" height=70 class="line2">
+                      <defs>
+                          <linearGradient id="gradient2" x1="-50%" y1="0%" x2="300%" y2="60%">
+                            <stop offset="0%" stop-color="#FE183F"/>
+                            <stop offset="100%" stop-color="#080745"/>
+                          </linearGradient>
+                        </defs>
+                        <path class="line1" d="m-25.5,68 l86,-56 l201,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                        <path class="line2" d="m55,44 l28,-25 l123,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                        <path class="line3" d="m2.5,85 l100,-77 l95,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                        <path class="line4" d="m2.5,65 l70,-63 l25,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                        <path class="line5" d="m1.5,37 l40,-33 l15,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                  </svg>
+                  <div class="path-text">
+                    <p class="fw-bold">{{"rewards.value_protection" | translate}}</p>
+                  </div>
+              </div>
+      
+              <div class="svg3 svg-holder">
+                  <svg width="125" height=70 class="line3">
+                      <path class="line1" d="m2.5,67 l83,0 l100,-65" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line2" d="m2.5,67 l37,0 l30,-16" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line3" d="m2.5,37 l140,0 l55,-35" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line4" d="m2.5,27 l70,0 l25,-25" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line5" d="m1.5,17 l40,0 l17,-15" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                  </svg>
+                  <div class="path-text">
+                    <p class="fw-bold">{{"rewards.unlock_rare_nfts" | translate}}</p>
+                  </div>
+              </div>
+      
+              <div class="svg4 svg-holder">
+                  <svg width="125" height="70" class="line3">
+                      <path class="line1" d="m1.5,32.5 l29,30 l95,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line2" d="m57.5,38.5 l21,17 l48,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line3" d="m2.5,2.5 l100,85 l95,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line4" d="m2.5,2.5 l70,65 l25,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                      <path class="line5" d="m1.5,1.5 l40,27 l15,0" stroke-width="5" stroke="url(#gradient2)" fill="transparent"/>
+                  </svg>
+                  <div class="path-text">
+                    <p class="fw-bold">{{"rewards.governance" | translate}}</p>
+                  </div>
+              </div>
+
+          </div>
+
+  </section>
+
+
+  <div class="want-more">
+    <h5 class="fw-bold">{{"rewards.want_more_heading"|translate}}</h5>
+    <p>{{"rewards.want_more_text"|translate}}</p>
+  </div>
+
+</div>

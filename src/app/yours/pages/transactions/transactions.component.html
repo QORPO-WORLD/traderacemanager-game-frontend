@@ -1,0 +1,95 @@
+
+<app-main-top-banner [page]="'history'"></app-main-top-banner>
+
+<div class="main-holder">
+<div class="trans-menu">
+    <div class="menu-desc">
+        <p class="join-team active"[routerLink]="['/your-races/transactions']">{{'history.transactions' | translate}}</p>
+        <p class="my-team" [routerLink]="['/your-races/transactions/my-races']">{{'profile.races' | translate}}</p>
+    </div>
+    <div class="menu-line my-cta-btn-back">
+        <div class="inner-line my-cta-btn-back">&nbsp;</div>
+    </div>
+</div>
+
+<!--<div class="ledeboard-team-list-component next2">
+    <div class="sub-header-component">
+        <div class="item"><button>{{'history.date' | translate}}</button></div>
+        <div class="item"><button>{{'history.action' | translate}}</button></div>
+        <div class="item small"><button>{{'history.payment' | translate}}</button></div>
+        <div class="item"><button>{{'modals.amount' | translate}}</button></div>
+    </div>
+
+    <div class="table-body" *ngIf="transactions?.length > 0">
+        <div class="tab-team" *ngFor="let trans of transactions;let indexx = index;">
+            <div class="inner-tab">
+                <div class="position">
+                    <p>{{indexx + 1}}.</p>
+                </div>
+                <div class="item races">
+                    <span>{{trans.created | date:'short'}}</span>
+                </div>
+                <div class="item">
+                    <span>{{trans.action_type}}</span>
+                </div>
+                <div class="item small">
+                    <span class="image trx" *ngIf="trans.currency === 'trx' || trans.currency === 'game_wallet_trx'"><img src="assets/base/images/trx.png"></span>
+                    <span class="image" *ngIf="trans.currency === 'ioi' || trans.currency === 'game_wallet_ioi'"><img src="assets/base/images/token.png"></span>
+                    <span class="image ket" *ngIf="trans.currency === 'ket'"><img src="/assets/base/images/ticket-icon.png" alt=""></span>
+                </div>
+                <div class="item">
+                    <span>{{trans.delta | number:'1.2-2':'fr' }}</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="arrows" *ngIf="transactions?.length > 0">
+    
+        <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"></button>
+        <span class="pager-actual">{{actualPage}}/{{totalPages}}</span>
+        <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"></button>
+    </div>-->
+
+
+    <div class="table">
+        <div class="header table-row">
+            <div>&#8203;</div>
+            <div>{{'history.date' | translate}}</div>
+            <div>{{'history.action' | translate}}</div>
+            <div>{{'history.payment' | translate}}</div>
+            <div>{{'modals.amount' | translate}}</div>
+        </div>
+        <div class="table-row" *ngFor="let trans of transactions;let indexx = index;">
+          <div class="cell">
+            <div class="placement my-border-grad"><span>{{(indexx + 1)+10*(actualPage-1)}}</span></div>
+          </div>
+          <div class="cell"> <p>{{trans.created | date:'short'}}</p></div>
+          <div class="cell"><p>{{trans.action_type}}</p></div>
+          <div class="cell"><p>
+              <img src="assets/base/images/tokens/ioi-logo.png"  *ngIf="trans.currency === 'trx' || trans.currency === 'game_wallet_trx'">
+              <img src="/assets/base/images/tokens/ioi-logo.png"  *ngIf="trans.currency === 'ioi' || trans.currency === 'game_wallet_ioi'">
+              <img src="assets/base/images/ticket-icon.png"  *ngIf="trans.currency === 'ket'">
+
+
+           </p></div>
+          <div class="cell"><p>{{trans.delta | number:'1.2-2':'fr' }}</p></div>
+        </div>
+
+        
+         
+        <div class="arrow-right"  *ngIf="(totalPages > 1) && (actualPage < totalPages)"  (click)="nextPage()">
+            &gt;
+        </div>
+        <div class="arrow-right arrow-unactive"  *ngIf="(totalPages <= 1) || (actualPage >= totalPages)">
+            &gt;
+        </div>
+        <div class="arrow-left"  *ngIf="(totalPages > 1) && (actualPage > 1)" (click)="prevPage()">
+            &lt;
+        </div>
+        <div class="arrow-left arrow-unactive"  *ngIf="(totalPages <= 1) || (actualPage <= 1)">
+            &lt;
+        </div>
+    </div>
+</div>

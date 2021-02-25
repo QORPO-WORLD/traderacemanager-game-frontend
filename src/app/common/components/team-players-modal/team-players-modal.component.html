@@ -1,0 +1,77 @@
+
+
+
+<div class="modal-wrapper" *ngIf="teamModal.visible === true">
+  <div class="modal-backdrop" (click)="changeModalState()"></div>
+  <div class="team-modal-body">
+    <img class="close-button" src="assets/rewards/X-modal.png" alt="" (click)="changeModalState()">
+    <div class="team-modal-content">
+
+      <div class="modal-header">
+        <div class="modal-item">
+          <p>POSITION</p>
+        </div>
+        <div class="modal-item">
+          <p>COUNTRY</p>
+        </div>
+        <div class="modal-item">
+          <p>PLAYER</p>
+        </div>
+        
+      </div>
+
+      <div class="team-modal-row" *ngFor="let player of myTeamPlayers; let i = index">
+        <div class="inner-row" [ngClass]="myStats.player_position === i">
+          <div class="modal-item">
+            <img src="assets/base/images/chat/hexagons/hex1.png" *ngIf="i === 0" />
+            <img src="assets/base/images/chat/hexagons/hex2.png" *ngIf="i === 1" />
+            <img src="assets/base/images/chat/hexagons/hex3.png" *ngIf="i === 2" />
+            <span *ngIf="i > 2" class="next-position">{{i+1}}</span>
+          </div>
+          <div class="modal-item flag">
+            <span *ngFor="let cc of countryList">
+              <span *ngIf="cc.name === player.user_country"><img [src]="'assets/flags/' + cc.code.toLowerCase() + '_32.png'"></span>
+            </span>
+          </div>
+          <div class="modal-item">
+            <p>{{player.user_nickname}}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="team-modal-row" *ngIf="myStats && myStats.team_id === teamModal.teamId ">
+        <div class="inner-row my-row">
+
+          <div class="modal-item flag">
+            <span *ngFor="let cc of countryList">
+              <span *ngIf="cc.name === myStats.user_country"><img [src]="'assets/flags/' + cc.code.toLowerCase() + '_32.png'"></span>
+            </span>
+          </div>
+          <div class="modal-item">
+            <p>{{myStats.user_nickname}}</p>
+          </div>
+          
+        </div>
+      </div>
+      <div class="team-modal-row" *ngIf="moonRider">
+        <div class="inner-row">
+          <div class="modal-item">
+            <img src="/assets/base/images/leaderboard/crown-moonrider-gold.png" alt="">
+          </div>
+          <div class="modal-item flag">
+            <span *ngFor="let cc of countryList">
+              <span *ngIf="cc.name === moonRider.user_country"><img [src]="'assets/flags/' + cc.code.toLowerCase() + '_32.png'"></span>
+            </span>
+          </div>
+          <div class="modal-item">
+            <p>{{moonRider.user_nickname}}</p>
+          </div>
+          
+        </div>
+      </div>
+
+  
+    </div>
+  </div>
+</div>

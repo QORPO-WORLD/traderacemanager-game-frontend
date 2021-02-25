@@ -1,0 +1,56 @@
+<div class="main-holder">
+  <div class="langswitch"><app-lang-switcher></app-lang-switcher></div>
+  <div class="form-holder">
+    <h1 class="top-msg">{{'login.sign_up' | translate}}</h1>
+    <div *ngIf="playedDemo === false" class="register-text"><p>{{'login.login_text' | translate}} <span [routerLink]="['/user/sign-in']">{{'login.login' | translate}}</span></p></div>
+    <div *ngIf="playedDemo === true" class="register-text"><p>Congratulations, you won <span class="no-click">10 IOI</span></p></div>
+  
+      <form class="panel" [formGroup]="registerForm" [hidden]="useMail === false">
+
+      <div class="my-input" [ngClass]="{'filled': username !== '' && username !== undefined}">
+        <input type="text" required
+          formControlName="nickname" autocomplete="off" [(ngModel)]="username"/>
+          <span class="input-placeholder">{{'login.username' | translate}}</span>
+      </div>
+      <div class="my-input" [ngClass]="{'filled': email !== '' && email !== undefined}">
+        <input type="email" required formControlName="email"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"  autocomplete="off" [(ngModel)]="email"/>
+          <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
+      </div>
+            <div class="my-input filled" *ngIf="showMmew === true">
+        <input type="text" readonly [(ngModel)]="mmewa" [ngModelOptions]="{standalone: true}" style="font-size: 14px;"/>
+          <span class="input-placeholder">Wallet address</span>
+      </div>
+      <div class="my-input" [ngClass]="{'filled': password !== '' && password !== undefined}">
+        <input [type]="show" required
+          formControlName="password"  autocomplete="off" [(ngModel)]="password"/>
+          <span class="input-placeholder">{{'login.pass' | translate}}</span>
+          <span (click)="show = 'text'" *ngIf="show === 'password'"><img src="/assets/base/images/pass-hidden.png"></span>
+          <span (click)="show = 'password'" *ngIf="show === 'text'"><img src="/assets/base/images/pass-unhidden.png"></span>
+ 
+      </div>
+
+   <!--   <div class="captcha-cont" *ngIf="disCap === false"> <form class="panel"  [formGroup]="reactiveForm"><re-captcha formControlName="recaptchaReactive" class="speci-captcha"></re-captcha></form></div>
+      <div class="captcha-cont" *ngIf="disCap === true"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
+   -->
+
+      <div class="register-text"><p>
+        <input type="checkbox" [(ngModel)]="agreeChecked"  [ngModelOptions]="{standalone: true}" required id="terms" name="terms">
+        <label for="terms" class="terms">{{'login.agree_to_terms' | translate}} <a style="color:#e41e60;" href="https://ioi-game.com/terms-and-conditions/"
+                  title="Terms & Conditions of service" target="_blank">{{'login.terms_cond' | translate}}</a></label>
+      </p></div>
+
+        </form>
+
+    <button class="cta-button hoverable" [disabled]="agreeChecked === false" *ngIf="useMail === true" (click)="onSubmit()">{{'shared.register_free' | translate}}</button>
+    <button class="cta-button hoverable" *ngIf="useMail === false" (click)="useMail = true">{{'login.mail_sign_up' | translate}}</button>
+    <span  class="or-x" *ngIf=" useMail === false">{{'login.or' | translate}}</span>
+      <button (click)="googleOauth()" class="google-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
+      <button (click)="facebookOauth()" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/facebook.png">{{'login.fb_login' | translate}}</button>
+      <button (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
+  </div>
+</div>
+
+<div class="meta-holder">
+  <app-metamask-signup *ngIf="metaSwitch === true"></app-metamask-signup>
+</div>

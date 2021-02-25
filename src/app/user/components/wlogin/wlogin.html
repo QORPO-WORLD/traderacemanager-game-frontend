@@ -1,0 +1,83 @@
+
+
+
+
+<div class="main-holder">
+  <div class="form-holder">
+
+    <form class="panel"  [formGroup]="reactiveForm">
+      <div class="my-input">
+        <input type="text" required formControlName="username" placeholder="EMAIL"  id="cvewssd943" name="vewf43nivwe" autocomplete="false"/>
+      </div>
+      <div class="my-input">
+        <input type="password"  placeholder="PASSWORD"
+             formControlName="password" id="cvew943" name="vewnivwe" autocomplete="false"/>
+      </div>
+      <div class="my-input" *ngIf="gauthfired === true">
+        <input type="text" required [(ngModel)]="gkey" placeholder="AUTH CODE"
+             [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+            [ngModelOptions]="{standalone: true}"/>
+      </div>
+      <p *ngIf="msg">{{msg.message}}</p>
+   <!--   <div class="captcha-cont" *ngIf="disCap === false"><re-captcha formControlName="recaptchaReactive" class="speci-captcha"></re-captcha></div>
+      <div class="captcha-cont" *ngIf="disCap === true"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
+   -->   <div class="forgot-pass"><a [routerLink]="['/user/forgot-password']">{{'login.forgot_pass' | translate}}</a></div>
+      <div class="register-text"><p>You don't have an account? <span [routerLink]="['/user/sign-up']">register for free here</span></p></div>
+      <button class="cta-button hoverable" (click)="submit()" 
+      *ngIf="loading === false">{{'shared.log_in_btn' | translate}}</button>
+         <button class="cta-button" *ngIf="loading === true" 
+      disabled>Loading..</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- <div class="ioi-modal">
+  <img src="/assets/base/images/logo.png" alt="" class="ioi-logo" [routerLink]="['/user/home']">
+    <div class="content-holder">
+      <div class="left-panel">
+        <button class="cta-button active" [routerLink]="['/user/sign-in']">{{'login.login' | translate}}</button>
+        <button class="cta-button azure" [routerLink]="['/user/sign-up']">{{'login.join' | translate}}</button>
+      </div>
+      <div class="right-panel">
+        <form class="panel"  [formGroup]="reactiveForm">
+          <div class="email-input">
+            <input class="my-input" type="email" required [(ngModel)]="username"
+                matInput [ngClass]="{ 'is-invalid': submitted  && username === ''}"
+                [ngModelOptions]="{standalone: true}" />
+                <img src="/assets/base/images/login/email-icon.png" alt="" class="input-img" [ngClass]="{'hidden': username !== '' && username !== undefined}">
+                <p class="input-text" [ngClass]="{'hidden': username !== '' && username !== undefined}">{{'profile.mail' | translate}}</p>
+          </div>
+          <div class="pass-input">
+            <input class="my-input" type="password" required [(ngModel)]="password"
+                matInput [ngClass]="{ 'is-invalid': submitted  && password === '' }"
+                [ngModelOptions]="{standalone: true}" />
+                <img src="/assets/base/images/login/pass-icon.png" alt="" class="input-img" [ngClass]="{'hidden': password !== '' && password !== undefined}">
+                <p class="input-text" [ngClass]="{'hidden': password !== '' && password !== undefined}">{{'login.pass' | translate}}</p>
+          </div>
+          <div class="pass-input" *ngIf="gauthfired === true">
+            <input class="my-input" type="text" required [(ngModel)]="gkey"
+                matInput [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+                [ngModelOptions]="{standalone: true}"/>
+                <img src="/assets/base/images/login/pass-icon.png" alt="" class="input-img" [ngClass]="{'hidden': gkey !== '' && gkey !== undefined}">
+                <p class="input-text" [ngClass]="{'hidden': gkey !== '' && gkey !== undefined}">{{'login.auth_key' | translate}}</p>
+          </div>
+          <p *ngIf="msg">{{msg.message}}</p>
+          <div class="captcha-cont" *ngIf="disCap === false"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
+          <div class="forgot-pass"><a [routerLink]="['/user/forgot-password']">{{'login.forgot_pass' | translate}}</a></div>
+          <button class="cta-button active" (click)="submit()" 
+          *ngIf="reactiveForm.valid && username !== '' && password !== '' && username !== undefined && password !== undefined">{{'shared.play_btn' | translate}}</button>
+          <button class="cta-button" *ngIf="reactiveForm.invalid || username === '' || password === '' || username === undefined || password === undefined" 
+          disabled>{{'shared.play_btn' | translate}}</button>
+        </form>
+        <div class="bottom-dots">
+          <div [routerLink]="['/user/sign-in']" class="active"></div>
+          <div [routerLink]="['/user/sign-up']"></div>
+        </div>
+      </div>
+    </div>
+  
+  <app-notifiq></app-notifiq>
+
+</div> -->

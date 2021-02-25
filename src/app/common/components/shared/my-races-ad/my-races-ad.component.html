@@ -1,0 +1,114 @@
+<div class="popup-holder" *ngIf="mainClosed === false">
+  <div class="content-holder">
+    <div class="switch-holder">
+      <p (click)="raceFilter = 'next';getAllNextRaces();" [ngClass]="{'active': raceFilter === 'next'}">Next</p>
+      <p (click)="raceFilter = 'upcoming';getMine();" [ngClass]="{'active': raceFilter === 'upcoming'}">My</p>
+      <p (click)="raceFilter = 'live';getLiveRaces();getAllLiveRaces();" [ngClass]="{'active': raceFilter === 'live'}" >{{'start-race.live_races' | translate}}</p>
+      <p [ngClass]="{'active': raceFilter === 'favourite'}" (click)="raceFilter = 'favourite';getmyFavRaces();">{{'start-race.favourite_races' | translate}}</p>
+    </div>
+
+    <ng-container *ngIf="raceFilter === 'next'">
+      <ng-container *ngFor="let mainr of nextRaces; let i = index">
+        <div class="box-item my-border-grad" *ngIf="mainr.race_type !== 'cops1' && mainr.race_type !== 'cops2' && mainr.race_type !== 'cops3'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder">
+            <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+            <p class="watch">Fuel now &#x2192;</p>
+            <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> remaining</p>
+          </div>
+    
+          <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]"></div>
+    
+        </div>
+      </ng-container>
+      
+    </ng-container>
+
+    <ng-container *ngIf="raceFilter === 'favourite'">
+      <div class="box-item my-border-grad" *ngFor="let mainr of myFavRaces; let i = index">
+        <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+        <span class="favis"><img src="/assets/base/images/race-type/star-red.png"></span>
+        <div class="inner-holder">
+          <p class="race-name">{{ 'race.type.' + mainr | translate}}</p>
+          <p class="watch">Fuel now &#x2192;</p>
+           </div>
+  
+        <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr]"></div>
+  
+            </div>
+    </ng-container>
+    
+
+    <ng-container *ngIf="raceFilter === 'live'">
+      <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
+        <div class="box-item my-border-grad" *ngIf="mainr.race_type !== 'cops1' && mainr.race_type !== 'cops2' && mainr.race_type !== 'cops3'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder">
+            <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+            <p class="watch">Watch now &#x2192;</p>
+            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> remaining</p>
+          </div>
+    
+          <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
+          *ngIf="mainr.race_type === 'car_race_24hrs' && mainr.race_type === 'wednesday_party_race_0'"></div>
+    
+          <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
+          *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0'"></div>
+        </div>
+      </ng-container>
+      
+    </ng-container>
+    
+
+    <ng-container *ngIf="raceFilter === 'upcoming'">
+      <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
+        <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+        <div class="inner-holder">
+          <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+          <p class="watch">Watch now &#x2192;</p>
+          <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
+        </div>
+  
+        <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
+        *ngIf="mainr.new_race_type === 'car_race_24hrs' && mainr.new_race_type === 'wednesday_party_race_0'"></div>
+  
+        <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
+        *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0'"></div>
+      </div>
+    </ng-container>
+    
+
+    <!-- <div
+      class="popup-item"
+      *ngFor="let mainr of mnr; let i = index"
+      [hidden]="mainr?.starts_in_seconds < 0">
+      <div class="text-holder" *ngIf="mainr?.starts_in_seconds > 0">
+        <p>
+          <span class="live-type">{{ 'race.type.' + mainr.race_identifier | translate}}</span>
+          <span class="starts-in">{{'start-race.starts_in' | translate}}</span>
+          <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer>
+        </p>
+
+      </div>
+      <div class="button-holder">
+        <button
+          class="button"
+          [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]"
+          *ngIf="mainr.new_race_type === 'car_race_24hrs' && mainr.new_race_type === 'wednesday_party_race_0'"
+        >
+          <img src="/assets/base/images/watch.png" /><span>{{'shared.watch_btn' | translate}}</span>
+        </button>
+        <button
+          class="button"
+          [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]"
+          *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0'"
+        >
+          <img src="/assets/base/images/watch.png" /><span>{{'shared.watch_btn' | translate}}</span>
+        </button>
+        <button (click)="mainr.selected = !mainr.selected;calcSelected()" class="multi-watch" [ngClass]="mainr.selected ? 'selected' : 'not-selected'">&nbsp;</button>
+    
+      </div>
+    </div> -->
+  </div>
+  <button (click)="watchMultiraces()" class="cta-main" *ngIf="selectedSum > 1">Watch multiple</button>
+</div>

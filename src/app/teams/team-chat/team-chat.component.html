@@ -1,0 +1,124 @@
+<div class="main-wrapper">
+
+  <app-main-top-banner [page]="'team'"></app-main-top-banner>
+
+  <div class="get-banner">
+      <p>{{'modals.heading.team_bonus' | translate}} {{teamreward | number:'1.2-2':'fr'}} <img src="/assets/base/images/teams/trx-logo.png" alt=""></p>
+  </div>
+
+  <div class="team-menu">
+      <div class="menu-desc">
+          <p class="join-team" [routerLink]="['/teams/join-teams']">{{'teams.shared.join' | translate}}</p>
+          <p class="my-team" [routerLink]="['/teams/my-team']">{{'teams.shared.my_team' | translate}}</p>
+          <p class="team-chat" [routerLink]="['/teams/team-chat']">{{'teams.shared.chat' | translate}}</p>
+      </div>
+      <div class="menu-line">
+          <div class="inner-line">&nbsp;</div>
+      </div>
+  </div>
+
+  <div class="content-holder">
+    <div class="members-cont">
+      <div class="team-panel">
+        <div class="img-holder">
+          <img src="/assets/base/images/teams/btc-team-icon.png" alt="" *ngIf="myTeam?.me?.team_name === 'BTC'">
+          <img class="ioi-logo" src="/assets/base/images/teams/ioi-team-icon.png" alt="" *ngIf="myTeam?.me?.team_name === 'IOI'">
+          <img src="/assets/base/images/teams/trx-team-icon.png" alt="" *ngIf="myTeam?.me?.team_name === 'TRX'">
+        </div>
+        <div class="team-info">
+          <p class="heading">{{'shared.layout.team' | translate}} {{myTeam?.me?.team_name}} {{'race.chat' | translate}}</p>
+          <p class="desc">{{'teams.my_team.members' | translate}}: {{tmembers?.length}}</p>
+        </div>
+      </div>
+      <div class="main-panel">
+        <p class="members-desc">{{'teams.my_team.online_members' | translate}}</p>
+        <div class="member" *ngFor="let memb of tmembers" [hidden]="memb.is_online === false">
+          <div class="img-holder">
+            <img [src]="'/assets/base/images/avatars/level'+memb.affiliate_level+'-1.png'" alt="">
+          </div>
+          <div class="info-holder">
+            <p class="name">{{memb.nickname}}</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="chat-cont">
+      <div class="msgs-cont">
+        <div class="message-item" *ngFor="let msg of chatList" [ngClass]="msg.user_nickname === myDriver ? 'my-msg' : ''">
+          <div class="img-holder">
+            <img src="/assets/base/images/avatars/level1-1.png" alt="">
+          </div>
+          <div class="message">
+            <p class="name">{{msg.user_nickname}}</p>
+            <p>{{msg.message}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="texting-cont">
+        <form (ngSubmit)="postChat()">
+          <input name="message" cols="1" rows="2" class="chat-input msg" [(ngModel)]="chatInput" [ngModelOptions]="{standalone: true}"
+            maxlength="100" placeholder="Enter your message here">
+          <!-- <div class="smile">
+            <img src="/assets/base/images/teams/smile-icon.png" alt="">
+          </div> -->
+        </form>
+      </div>
+
+    </div>
+    <div class="races-cont">
+      <p class="races-desc">{{'start-race.upcoming_races' | translate}}</p>
+      <div class="main-panel">
+        <div class="game-item trx10" [routerLink]="['/car/fuel-car/car_race_short_10']">
+          <div class="background"></div>
+          <div class="card-content">
+              <h2>10 {{'shared.trx' | translate}}</h2>
+              <div class="race-info">
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1000 {{'shared.trx' | translate}}</p>
+                  </div>
+                  
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 10 {{'shared.entry' | translate}}</p>
+                  </div>
+              </div>
+              <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+          </div>
+        </div>
+        <div class="game-item trx50" [routerLink]="['/car/fuel-car/car_race_short_50']">
+          <div class="background"></div>
+          <div class="card-content">
+              <h2>50 {{'shared.trx' | translate}}</h2>
+              <div class="race-info">
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 5 000 {{'shared.trx' | translate}}</p>
+                  </div>
+
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 50 {{'shared.entry' | translate}}</p>
+                  </div>
+              </div>
+              <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+          </div>
+        </div>
+        <div class="game-item trx100" [routerLink]="['/car/fuel-car/car_race_short_100']">
+          <div class="background"></div>
+          <div class="card-content">
+              <h2>100 {{'shared.trx' | translate}}</h2>
+              <div class="race-info">
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 10 000 {{'shared.trx' | translate}}</p>
+                  </div>
+   
+                  <div class="info-item">
+                      <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 100 entry</p>
+                  </div>
+              </div>
+              <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

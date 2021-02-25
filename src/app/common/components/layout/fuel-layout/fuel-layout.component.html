@@ -1,0 +1,119 @@
+<div class="landscape-view" style="width: 700px;">
+  <div class="use">{{'shared.rotate' | translate}}</div>
+  <div class="soon">{{'shared.os_soon' | translate}}</div>
+  <div class="rotate-it"><img src="./assets/base/images/rotate.gif" alt="rotate your display"></div>
+</div>
+<div class="main hide-on-landscape" #outlet>
+  <div class="top-back"></div>
+  <div class="contents">
+    <div class="top-mobile-menu">
+      <img src="assets/base/images/logo.png" class="mobile-logo" [routerLink]="['/race/start-race']"/>
+      <div class="mobile-menu-switch" (click)="menuOpen = !menuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="right-part-holder" [ngClass]="{'mobile-open': menuOpen === true}">
+      <img class="close-icon" src="/assets/base/images/icons/close.png" alt="" (click)="menuOpen = false">
+      <app-profile-stats></app-profile-stats> 
+    </div>
+    <div class="top-menu">
+      <div class="ticket-ico" [routerLink]="['/car/fuel-car/car_race_24hrs_1000']" *ngIf="myDriverStats?.golden_tickets > 0">
+        <p class="number-ind">{{myDriverStats?.golden_tickets}}</p>
+        <img src="/assets/base/images/ticket-icon.png" alt="">
+        <p class="desc">{{'race.type.golden_ticket_0' | translate}} <img src="/assets/base/images/teams/chat-polygon.png" alt="" class="polygon"></p>
+      </div>
+      <div class="team-chat-btn" [routerLink]="['/teams/team-chat']" title="Team chat">
+        <img src="/assets/base/images/teams/chat-icon.png" alt="">
+      </div>
+      <div class="my-balance">
+        <div class="balance ioi">
+          <span>{{myDriver?.game_wallet_ioi | number:'0.2-2':'fr'}}</span>
+          <img src="/assets/base/images/blue-ioi.png" alt="">
+        </div>
+        <div class="deposit-btn" data-toggle="modal" data-target="#deposit-modal"><p>+</p></div>
+      </div>
+      <div class="profile-button">
+        <div class="profile-info">
+          <div class="profile-img">
+            <img src="assets/base/images/avatars/level1-1.png" alt="" *ngIf="myAffilate.affiliate_level === 1">
+            <img src="assets/base/images/avatars/level2-1.png" alt="" *ngIf="myAffilate.affiliate_level === 2">
+            <img src="assets/base/images/avatars/level3-1.png" alt="" *ngIf="myAffilate.affiliate_level === 3">
+            <img src="assets/base/images/avatars/level4-1.png" alt="" *ngIf="myAffilate.affiliate_level === 4">
+          </div>
+          <div class="profile-stats">
+            <p class="name">{{myDriverStats?.nickname}}</p>
+            <p class="level" [ngClass]="'level' + myAffilate.affiliate_level">Level {{myAffilate.affiliate_level}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="logout-button">
+        <button class="secondary" (click)="logout()">
+          {{'shared.logout' | translate}}
+        </button>
+        <button class="secondary" [routerLink]="['/player/profile']" [routerLinkActive]="'active'">
+          {{'shared.profile' | translate}}
+        </button>
+        <button class="menu-deposit-btn" data-toggle="modal" data-target="#deposit-modal">{{'shared.deposit_btn' | translate}}</button>
+      </div>
+    </div>
+    <div class="side-nav item-list">
+      <div class="menu-holder">
+        <img src="assets/base/images/logo.png" class="logo" [routerLink]="['/race/start-race']"/>
+        <a class="side-nav item" [routerLink]="['/race/start-race']" [routerLinkActive]="'active'">
+          <div class="image start-race-img">
+            <img class="content" src="assets/base/images/sidenav/joystick-white.png" />
+          </div>
+          <span class="label">START RACE</span>
+        </a>
+        <a class="side-nav item" [routerLink]="['/leaderboard']" [routerLinkActive]="'active'">
+          <div class="image lead-img">
+            <img class="content" src="assets/base/images/sidenav/leaderboard-white.png" />
+          </div>
+          <span class="label">LEADERBOARD</span>
+        </a>
+        <button class="side-nav item" [routerLink]="['/teams/join-teams']" [routerLinkActive]="'active'">
+          <div class="image team-img">
+            <img class="content" src="assets/base/images/sidenav/men-white.png" />
+          </div>
+          <p class="label">TEAM</p>
+        </button>
+        <a class="side-nav item" [routerLink]="['/other/affilate']" [routerLinkActive]="'active'">
+          <div class="image aff-img">
+            <img class="content" src="assets/base/images/sidenav/man-money-white.png" />
+          </div>
+          <p class="label">AFFILIATE</p>
+        </a>
+        <a class="side-nav item" [routerLink]="['/other/rewards']" [routerLinkActive]="'active'">
+          <div class="image reward-img">
+            <img class="content" src="assets/base/images/sidenav/reward.png" />
+          </div>
+          <p class="label">REWARD</p>
+        </a>
+        <button class="side-nav item" [routerLink]="['/other/ioi-tokens']" [routerLinkActive]="'active'">
+          <div class="image prom-img">
+            <img class="content" src="assets/base/images/sidenav/white-ioi.png" />
+          </div>
+          <span class="label">TOKEN</span>
+        </button>
+        <button class="side-nav item"  [routerLink]="['/your-races/transactions']" [routerLinkActive]="'active'">
+          <div class="image history-img">
+            <img class="content" src="/assets/base/images/sidenav/his.png" />
+          </div>
+          <span class="label">HISTORY</span>
+        </button>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="sub-content">
+        <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+      </div>
+    </div>
+
+  </div>
+  <app-notifiq></app-notifiq>
+  <!-- <app-my-races-ad></app-my-races-ad> -->
+  <app-quick-deposit></app-quick-deposit>
+
+</div>

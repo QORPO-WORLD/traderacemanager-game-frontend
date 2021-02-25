@@ -1,0 +1,356 @@
+<!--<div class="main-wrapper">
+
+  <app-main-top-banner [page]="'team'"></app-main-top-banner>
+
+  <div class="get-banner">
+      <p>{{'modals.heading.team_bonus' | translate}} {{teamreward | number:'1.2-2':'fr'}} <img src="/assets/base/images/teams/trx-logo.png" alt=""></p>
+  </div>
+
+  <div class="team-menu">
+    <div class="menu-desc">
+        <p class="join-team" [routerLink]="['/teams/join-teams']">{{'teams.shared.join' | translate}}</p>
+        <p class="my-team" [routerLink]="['/teams/my-team']">{{'teams.shared.my_team' | translate}}</p>
+        <p class="team-chat" [routerLink]="['/teams/leaderboard']">{{'teams.shared.leaderboard' | translate}}</p>
+    </div>
+    <div class="menu-line">
+        <div class="inner-line">&nbsp;</div>
+    </div>
+  </div>  
+
+  <section class="top-sec">
+    <div class="top-banner">
+      <div class="banner-holder">
+          <div class="text-holder">
+            <p class="heading">{{'teams.my_team.top_heading' | translate}}</p>
+              <p>
+                {{'teams.my_team.top_text1' | translate}} <span>{{'teams.my_team.top_text2' | translate}}</span> 
+                {{'teams.my_team.top_text3' | translate}} <span>{{'teams.my_team.top_text4' | translate}}</span>
+              </p>
+          </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="my-stats">
+    <h1>{{'teams.my_team.overview' | translate}}</h1>
+    <div class="stats-holder">
+
+      <div class="my-stats-item">
+        <div class="data-holder">
+          <p class="data">{{mydrvr}}</p>
+          <div class="img-holder">
+            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
+          </div>
+        </div>
+        <p class="desc">{{'teams.my_team.you' | translate}}</p>
+      </div>
+
+      <div class="my-stats-item">
+        <div class="data-holder">
+          <p class="data">{{myLdrbrd?.team_name}}</p>
+          <div class="img-holder curr-logo">
+            <img class="btc-logo" src="/assets/base/images/teams/bitcoin-btc-logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'BTC'">
+             <img class="ioi-logo" src="/assets/base/images/logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'IOI'">
+             <img class="trx-logo" src="/assets/base/images/teams/tron-trx-logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'TRX'">
+          </div>
+        </div>
+        <p class="desc">{{'profile.team' | translate}}</p>
+      </div>
+
+      <div class="my-stats-item">
+        <div class="data-holder">
+          <p class="data">{{myLdrbrd?.team_position}}</p>
+          <div class="img-holder">
+            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
+          </div>
+        </div>
+        <p class="desc">{{'profile.t_position' | translate}}</p>
+      </div>
+
+      <div class="my-stats-item">
+        <div class="data-holder">
+          <p class="data">{{myLdrbrd?.player_position_in_team}}</p>
+          <div class="img-holder">
+            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
+          </div>
+        </div>
+        <p class="desc">{{'teams.my_team.your_position' | translate}}</p>
+      </div>
+
+    </div>
+    <img src="/assets/base/images/teams/arrow-down.png" alt="" class="arrow-down">
+  </section>
+
+  <section class="team-stats">
+    <div class="team-stats-holder">
+      
+      
+
+      
+
+      <div class="team-stats-item bonus">
+        <p class="heading">{{'teams.my_team.actual_bonus' | translate}}</p>
+        <div class="team-bonus-holder">
+          <div class="border-maker"></div>
+          <h3>{{myTeam.team_bonus | number:'1.0-0':'fr'}} <img src="/assets/base/images/teams/trx-logo.png" alt=""></h3>
+        </div>
+      </div>
+    </div>
+
+    <p class="heading">{{'teams.my_team.top_team' | translate}}</p>
+    <app-my-team-players [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-my-team-players>
+
+  </section>
+
+  <section class="banner-sec">
+
+    <div class="bottom-banner">
+      <div class="text-holder">
+        <p class="heading"><span>{{'shared.win_up_to' | translate}}</span> 50 000 {{'shared.trx' | translate}}!</p>
+          <p>
+            {{'teams.my_team.enjoy_tournament' | translate}}
+          </p>
+      </div>
+      <button class="play-button" [routerLink]="['/car/fuel-car/classic_tournament_10']">{{'teams.my_team.join_tour' | translate}} <span>></span></button>
+    </div>
+
+  </section>
+
+  <app-exp-bar></app-exp-bar>
+
+</div>-->
+
+
+
+<div class="main-holder" [ngClass]="myTeam.me.team_name">
+
+  <div class="page-info"> 
+      <div class="back" [routerLink]="['/teams/join-teams']">
+        <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+      </div>
+      <div class="text-info">
+      <h1>{{'teams.shared.my_team' | translate}}</h1>
+      <p>{{'teams.my_team.page_info' | translate}}</p>
+      </div>
+      <div class="bonus-info">
+        <div class="premium-members">
+          <h4>102 146 <sup><img src="/assets/base/images/teams/premium-icon.png" alt=""></sup></h4>
+          <p>{{'teams.join.premium_members' | translate}}</p>
+        </div>
+        <div class="free-members">
+          <h4>102 146</h4>
+          <p>{{'teams.join.free_members' | translate}}</p>
+        </div>
+      </div>
+  </div>
+
+  <div class="team-menu">
+      <div class="menu-desc">
+          <p class="join-team" [routerLink]="['/teams/join-teams']">{{'teams.shared.join' | translate}}</p>
+          <p class="owners-managers" [routerLink]="['/teams/owners-managers']">{{'teams.shared.owners_managers' | translate}}</p>
+          <p class="join-team active" [routerLink]="['/teams/my-team']">{{'teams.shared.my_team' | translate}}</p>
+      </div>
+      <div class="menu-line">
+          <div class="inner-line  my-cta-btn-back">&nbsp;</div>
+      </div>
+  </div>
+
+  <div class="box-wrapper">
+    <div class="box box-background">
+      <span class="box-content ">
+        <p class="box-name">{{'teams.join.benefit4_heading' | translate}}</p>
+        <h4>Rasto1424</h4>
+        <p><span>100% {{"teams.my_team.shares_owner"| translate}}</span></p>
+      </span>
+    </div>
+
+    <div class="box box-background">
+      <div class="box-switchers">
+        <div class="left" (click)="manualChange(1)" [ngClass]="{'active-button': TeamManagerSlide===1}"></div>
+        <div class="right" (click)="manualChange(2)" [ngClass]="{'active-button': TeamManagerSlide===2}"></div>
+      </div>
+      <span class="box-content ">
+        <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
+        <h4>Rasto1424</h4>
+        <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+        <ng-container *ngIf="TeamManagerSlide===1">
+        <div class="satisfaction-wrapper">
+          <div class="satisfaction-info">
+            <p>{{'teams.my_team.rate_your_experience' | translate}}</p>
+            <p class="desc">{{'teams.my_team.Best' | translate}}</p>
+          </div>
+          <div class="satisfaction-rate">
+            <div class="rate-icon" [ngClass]="{'active':activeRate==1}" (click)="activeRate=1"><img src="assets/base/images/teams/angry-icon.png" alt=""></div>
+            <div class="rate-icon" [ngClass]="{'active':activeRate==2}" (click)="activeRate=2"><img src="assets/base/images/teams/confused-icon.png" alt=""></div>
+            <div class="rate-icon" [ngClass]="{'active':activeRate==3}" (click)="activeRate=3"><img src="assets/base/images/teams/smirking-icon.png" alt=""></div>
+            <div class="rate-icon" [ngClass]="{'active':activeRate==4}" (click)="activeRate=4"><img src="assets/base/images/teams/love-icon.png" alt=""></div>
+          </div>
+        </div>
+        </ng-container>
+        <ng-container *ngIf="TeamManagerSlide===2">
+          <button class="apply-button border-color">
+            Apply
+          </button>
+        </ng-container>
+      </span>
+    </div>
+
+    <div class="box box-background">
+      <span class="box-content ">
+        <p class="box-name">{{'teams.my_team.best_racer' | translate}}</p>
+        <h4>Rasto1424</h4>
+        <p><span>1280 IOI {{'teams.my_team.player_turnover' | translate}}</span></p>
+      </span>
+    </div>
+
+    <div class="box box-background">
+      <span class="box-content ">
+        <p class="box-name">{{'teams.my_team.team_value' | translate}}</p>
+        <h4>3500 IOI</h4>
+        <p><span>+300% {{'teams.my_team.since_last_week' | translate}}</span></p>
+        <button>
+          {{'teams.my_team.buy_shares' | translate}}
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="leaderboard">
+
+      <div class="ioi-volume box-background box-shadow">
+        <span>
+          <h4>{{myTeam?.team_bonus | number:'1.0-0':'fr'}} IOI</h4>
+        </span>
+      </div>
+
+      <div class="table">
+        <div class="header table-row">
+            <div ><p>{{"leaderboard.place" | translate}}</p></div>
+            <div ><p>{{"shared.nick" | translate}}</p></div>
+            <div ><p>{{"leaderboard.team_leaderboard.turnover" | translate}}</p></div>
+            <div ><p>{{"shared.potential_win" | translate}}</p></div>
+        </div>
+        <div class="table-row" [ngClass]="pl?.user_id === myuser ? 'me' : null"
+        *ngFor="let pl of myTeam?.top10; let yy = index">
+          <div class="cell">
+            <p *ngIf="pl?.user_id === myuser">me</p>
+            <div class="placement my-border-grad box-background"><span>{{pl?.player_position}}</span></div>
+          </div>
+          <div class="cell"> <p> {{pl?.user_nickname}}</p></div>
+          <div class="cell"><p>{{pl?.trx_turnover | number:'1.1-1':'fr'}}</p></div>
+          <div class="cell"><p>{{myTeam?.applicable_team_bonuses[yy]  | number:'1.1-1':'fr'}}</p></div>
+        </div>
+
+        
+      </div>
+      <div class="arrows">
+        <div class="arrow-left">
+          &lt;
+        </div>
+        <div class="arrow-right arrow-active">
+          &gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="graph-wrapper">
+      <div class="graph">
+        <div class="graph-buttons">
+          <button (click)="graphType='Turnover'" [ngClass]="{'active button-gradient': graphType=='Turnover'}" class=" border-color">{{"leaderboard.team_leaderboard.turnover" | translate}}</button>
+          <button (click)="graphType='Profit'" [ngClass]="{'active button-gradient': graphType=='Profit'}"class="border-color">{{"teams.my_team.profit" | translate}}</button>
+        </div>
+        <img src="/assets/base/images/teams/graph.png" alt="">
+      </div>
+      <div class="tip">
+        <h5 class="tip-heading">{{'teams.my_team.tip_of_day' | translate}} <img src="/assets/base/images/teams/fire.png" alt=""></h5>
+        <img class="edit-icon" src="assets/base/images/teams/edit-icon.png" alt="" (click)="showDayTipModal = true">
+        <div class="tip-wrapper box-background">
+          <span class="tip-border ">
+            <div class="tip-item">
+              <div class="tip-stats">
+                <img src="assets/base/images/teams/long.png" alt="">
+                <div>
+                  <h5>BTC</h5>
+                  <p class="up" >&#9650; +34% {{'teams.my_team.in_last' | translate}} 24h</p>
+                </div>
+              </div>
+
+              <div>
+                <h5>70%</h5>
+                <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+              </div>
+
+              <div class="raiting">
+                <img class="active" src="assets/base/images/teams/like.png" alt="">
+                <img src="assets/base/images/teams/dis-like.png" alt="">
+              </div>
+            </div>
+
+            <div class="tip-item">
+              <div class="tip-stats">
+                <img src="assets/base/images/teams/short.png" alt="">
+                <div>
+                  <h5>BTC</h5>
+                  <p class="down">&#9660; -34% {{'teams.my_team.in_last' | translate}} 24h</p>
+                </div>
+              </div>
+
+              <div>
+                <h5>20%</h5>
+                <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+              </div>
+
+              <div class="raiting">
+                <img src="assets/base/images/teams/like.png" alt="">
+                <img class="active" src="assets/base/images/teams/dis-like.png" alt="">
+              </div>
+            </div>
+
+            <div class="tip-item">
+              <div class="tip-stats">
+                <img src="assets/base/images/teams/short.png" alt="">
+                <div>
+                  <h5>BTC</h5>
+                  <p class="down"> &#9660; -34% {{'teams.my_team.in_last' | translate}} 24h</p>
+                </div>
+              </div>
+
+              <div>
+                <h5>100%</h5>
+                <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+              </div>
+
+              <div class="raiting">
+                <img src="assets/base/images/teams/like.png" alt="">
+                <img src="assets/base/images/teams/dis-like.png" alt="">
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="daily-modal-holder" *ngIf="showDayTipModal === true">
+  <div class="daily-modal-back" (click)="showDayTipModal = false"></div>
+  <div class="daily-modal-content" [ngClass]="{'bigger': editTips === true}">
+    <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showDayTipModal = false">
+
+    <div class="header-holder" *ngIf="editTips === false">
+      <p class="heading"><img src="/assets/base/images/start-race/flame-icon.png" alt="Image of flame" class="flame-img"> Tip of the day <img src="assets/base/images/teams/edit-icon.png" alt="Edit tips icon" class="edit-icon" (click)="editTips = true"></p>
+      <p class="text">Check out the tip of the day from your manager and use it in your next race!</p>
+    </div>
+
+    <div class="header-holder" *ngIf="editTips === true">
+      <p class="heading">Add manager tip of the day</p>
+      <p class="text">Choose three coins you want to recommend to your team as a Tip of the day</p>
+    </div>
+    <app-daily-tip-modal [isEditing]="editTips" (editTips)="tipsSaved($event)"></app-daily-tip-modal>
+  </div>
+</div>

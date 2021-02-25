@@ -1,0 +1,45 @@
+<div class="main-content">
+  <div class="sub-content">
+    <div class="buttons-heading-component">
+      <div class="wrap-main-buttons">
+        <button class="cta-button black large" [routerLink]="['/other/affilate']">{{'affiliate.info' | translate}}</button>
+        <button class="cta-button black large" [routerLinkActive]="'active'" [routerLink]="['/other/affilate/referral-players']">{{'start-race.players' | translate}}</button>
+      </div>
+    </div>
+
+    <div class="ledeboard-team-list-component details">
+      <div class="sub-header-component">
+        <button>{{'shared.level' | translate}}</button>
+        <button>{{'affiliate.name' | translate}}</button>
+        <button>{{'profile.mail' | translate}}</button>
+        <button>{{'shared.layout.reward' | translate}}</button>
+      </div>
+
+      <div class="table">
+        <div class="tab-team" *ngFor="let item of affilatesList;let i = index;">
+          <div class="inner-tab">
+            <div class="item team-position">
+              <span class="position {{resolveLevel(item.level)}}">{{ item.level }}</span>
+            </div>
+            <div class="item team-points">
+              <span class="points">{{ item.nickname }}</span>
+            </div>
+            <div class="item team-leader">
+              <span>{{ item.email }}</span>
+            </div>
+            <div class="item team-rider">
+              <span>{{ item.total_rewards_ioi | number:'1.0-0':'fr' }} IOI {{ item.total_rewards_trx  | number:'1.0-0':'fr'}} {{'shared.trx' | translate}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="arrows" *ngIf="totalPages > 1">
+    <span class="pager-actual">{{actualPage}}/{{totalPages}}</span><br>
+    <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"><img src="/assets/base/images/arrow-left.png" alt=""></button>
+    <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"><img src="/assets/base/images/arrow-right.png" alt=""></button>
+  </div>
+</div>

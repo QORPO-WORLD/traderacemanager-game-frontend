@@ -1,0 +1,59 @@
+<div class="ioi-modal">
+  <img src="/assets/base/images/logo.png" alt="" class="ioi-logo" [routerLink]="['/user/sign-in']">
+  <div class="content-holder">
+    <div class="left-panel">
+      <button class="cta-button active" [routerLink]="['/user/sign-in']">{{'login.login' | translate}}</button>
+      <button class="cta-button azure" [routerLink]="['/user/sign-up']">{{'login.join' | translate}}</button>
+    </div>
+    <div class="right-panel">
+      <div class="panel-item slide1" [ngClass]="slideIndicator === 1 ? 'show-slide' : 'hide-slide'" 
+      (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+        <img src="/assets/base/images/login/slide1.png" alt="" class="panel-img">
+        <div class="panel-text">
+          <p><span class="azure">{{'login.hint1_azure' | translate}}</span> <br>
+            {{'login.hint1_text' | translate}}</p>
+        </div>
+      </div>
+      <div class="panel-item slide2" [ngClass]="slideIndicator === 2 ? 'show-slide' : 'hide-slide'" 
+      (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+        <img src="/assets/base/images/login/slide2.png" alt="" class="panel-img">
+        <div class="panel-text">
+          <p><span class="azure">{{'login.hint2_azure' | translate}}</span> <br>
+            {{'login.hint2_text' | translate}}</p>
+        </div>
+      </div>
+      <div class="panel-item slide3" [ngClass]="slideIndicator === 3 ? 'show-slide' : 'hide-slide'" 
+      (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+        <img src="/assets/base/images/login/slide3.png" alt="" class="panel-img">
+        <div class="panel-text">
+          <p><span class="azure">{{'login.hint3_azure' | translate}}</span> {{'login.hint3_text' | translate}}</p>
+        </div>
+      </div>
+      <div class="panel-item slide4" [ngClass]="slideIndicator === 4 ? 'show-slide' : 'hide-slide'" 
+      (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+        <img src="/assets/base/images/login/slide4.png" alt="" class="panel-img">
+        <div class="panel-text">
+          <p><span class="azure">{{'login.hint4_azure' | translate}}</span> {{'login.hint4_text' | translate}}</p>
+        </div>
+      </div>
+      <div class="panel-item slide5" [ngClass]="slideIndicator === 5 ? 'show-slide' : 'hide-slide'" 
+      (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+        <img src="/assets/base/images/login/slide5.png" alt="" class="panel-img">
+        <div class="panel-text">
+            <p><span class="azure">{{'login.hint5_azure' | translate}}</span> <br>
+
+              <span class="refferal-text">{{'login.hint5_text' | translate}}</span></p>
+        </div>
+      </div>
+
+      <div class="dots">
+        <div [ngClass]="slideIndicator === 1 ? 'active' : ''" (click)="manualChange(1)"></div>
+        <div [ngClass]="slideIndicator === 2 ? 'active' : ''" (click)="manualChange(2)"></div>
+        <div [ngClass]="slideIndicator === 3 ? 'active' : ''" (click)="manualChange(3)"></div>
+        <div [ngClass]="slideIndicator === 4 ? 'active' : ''" (click)="manualChange(4)"></div>
+        <div [ngClass]="slideIndicator === 5 ? 'active' : ''" (click)="manualChange(5)"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

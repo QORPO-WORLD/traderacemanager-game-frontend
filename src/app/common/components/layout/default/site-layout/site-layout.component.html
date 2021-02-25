@@ -1,0 +1,416 @@
+<div class="main hide-on-landscape" #outlet>
+
+  <div class="cont-holder main-app-cont-holder" [ngClass]="isManager === true ? 'manager' : 'racer'">
+
+    <nav class="my-nav" [ngClass]="{'high-index': menuOpen === true}">
+      <img class="nav-logo" src="/assets/base/images/logo.png" alt="" [routerLink]="['/race/start-race']">
+
+      <div class="items-holder">
+        <div class="menu-item item1" [routerLink]="['/race/start-race']" [routerLinkActive]="'active'">
+          <p>{{'shared.dashboard' | translate}}</p>
+        </div>
+        <div class="menu-item item2" [routerLink]="['/other/about-tokens']" [routerLinkActive]="'active'">
+          <p>{{'shared.layout.reward' | translate}}</p>
+        </div>
+        <!--
+        <div class="menu-item item3" [routerLink]="['/other/ioi-tokens']" [routerLinkActive]="'active'">
+          <p>{{'shared.layout.game_wallet' | translate}}</p>
+        </div> -->
+        <div class="menu-item item4" [routerLink]="['/your-races/transactions']" [routerLinkActive]="'active'">
+          <p>{{'shared.layout.history' | translate}}</p>
+        </div>
+        <div class="menu-item item5" [routerLink]="['/other/tasks']" [routerLinkActive]="'active'">
+          <p>{{'main_top_banner.heading14' | translate}}</p>
+        </div>
+        <div class="menu-item item6" [routerLink]="['/other/affilate']" [routerLinkActive]="'active'">
+          <p>Affiliate</p>
+        </div>
+        <div class="menu-border"></div>
+      </div>
+
+      <div class="overview">
+        <!-- <div class="mode-switcher" (click)="changeManager()" [ngClass]="isManager === true ? 'manager' : 'racer'">
+          <div class="inner my-cta-btn-back"></div>
+        </div> -->
+        <div class="notifiq-btn">
+          <img src="/assets/base/images/start-race/notifiq-icon.png" alt="" (click)="openNotifiq = !openNotifiq" >
+          <span *ngIf="numOfNotifications > 0" class="noti-count my-cta-btn-back">{{numOfNotifications}}</span>
+          <div class="notifiq-list" *ngIf="openNotifiq === true">
+            <app-notification-list></app-notification-list>
+          </div>
+          <div class="notifiq-back" *ngIf="openNotifiq === true" (click)="openNotifiq = !openNotifiq"></div>
+        </div>
+        <div class="online-box my-layout-online-box my-low-gradient">
+          <img class="user-ico-red" src="/assets/base/images/menu/user-ico-red.svg" alt="">
+          <img class="user-ico-blue" src="/assets/base/images/menu/user-ico-blue.svg" alt="">
+          <p class="num">{{sumUsers | number:'1.0-2':'fr'}}</p>
+          <p class="desc my-text-color">online</p>
+        </div>
+        <!-- <div class="lang-switcher">
+          <app-lang-switcher></app-lang-switcher>
+        </div> -->
+        <div class="profile">
+          <div class="profile-img" [routerLink]="['/other/affilate']">
+            <img src="assets/base/images/avatars/avatar1.svg" alt="" *ngIf="myAffilate?.affiliate_level === 1">
+            <img src="assets/base/images/avatars/avatar2.svg" alt="" *ngIf="myAffilate?.affiliate_level === 2">
+            <img src="assets/base/images/avatars/avatar3.svg" alt="" *ngIf="myAffilate?.affiliate_level === 3">
+            <img src="assets/base/images/avatars/avatar4.svg" alt="" *ngIf="myAffilate?.affiliate_level === 4">
+          </div>
+          <div class="profile-stats">
+            <p class="name">{{myDriverStats?.nickname}}</p>
+            <p class="stats">{{(myDriver.game_wallet_ioi) | number:'1.0-2':'fr' }} IOI - &#36;{{(myDriver.game_wallet_ioi * 0.4) | number:'1.0-2':'fr' }}</p>
+          </div>
+        </div>
+        <button class="deposit-btn my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">{{'shared.deposit_btn' | translate}}</button>
+
+        <div class="my-mobile-button" (click)="menuOpen = !menuOpen" [ngClass]="{'open': menuOpen === true}">
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="waiting-popup-holder" *ngIf="depos === true">
+      <app-waiting-transfer></app-waiting-transfer>
+    </div>
+
+    <div class="mobile-nav">
+      <div class="items-holder">
+        <div class="menu-item item1" [routerLink]="['/race/start-race']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/dash-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/dash-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-item item2" [routerLink]="['/other/about-tokens']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/reward-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/reward-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-item item3" [routerLink]="['/other/ioi-tokens']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/wallet-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/wallet-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-item item4" [routerLink]="['/your-races/transactions']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/history-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/history-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-item item5" [routerLink]="['/other/tasks']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/tasks-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/tasks-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-item item6" [routerLink]="['/other/affilate']" [routerLinkActive]="'active'">
+          <img src="/assets/base/images/menu/affiliate-mobile.svg" alt="">
+          <img class="active" src="/assets/base/images/menu/affiliate-mobile-active.svg" alt="">
+        </div>
+        <div class="menu-border"><div class="border-dot"></div></div>
+      </div>
+    </div>
+    
+    <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+
+    <div class="right-container" [ngClass]="{'open': menuOpen === true}">
+      <div class="right-part-holder">
+        <div class="menu-switchers">
+          <div class="switch-item" (click)="menuType = 'races'">
+            <p>Races</p>
+          </div>
+          <div class="switch-item" (click)="menuType = 'me'">
+            <ng-container *ngIf="myDriverStats?.is_verified === false">
+              <img src="/assets/base/images/icons/verify-warning-red.png" alt="Verify account warning" class="my-warning red">
+              <img src="/assets/base/images/icons/verify-warning-blue.png" alt="Verify account warning" class="my-warning blue">
+            </ng-container>
+            <p>Me</p>
+          </div>
+          <div class="switch-item" (click)="menuType = 'chat'">
+            <p>Chat</p>
+          </div>
+          <div class="item-back my-low-gradient" [ngClass]="menuType"></div>
+        </div>
+        <div class="profile-cont my-holder" *ngIf="menuType === 'me'">
+          <app-profile-stats></app-profile-stats> 
+        </div>
+
+        <div class="chat-holder" *ngIf="menuType === 'chat'">
+          <app-my-chat></app-my-chat>
+        </div>
+
+        <div class="races-holder" *ngIf="menuType === 'races'">
+          <div><app-my-races-ad></app-my-races-ad></div>
+        </div>
+
+        <div class="last-btns">
+          <div class="btn-item" (click)="showMySettings = true">
+            <p><img src="/assets/base/images/menu/settings-icon.svg" alt=""> {{'profile.acc_settings' | translate}}</p>
+          </div>
+          <div class="btn-item" (click)="logout()">
+            <p><img src="/assets/base/images/menu/logout-icon.svg" alt=""> {{'profile.log_out' | translate}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="edit-car-modal small chat" *ngIf="showMySettings === true">
+      <div class="modal-back" (click)="showMySettings = false">&nbsp;</div>
+      <div class="modal-holder">
+        <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" (click)="showMySettings = false">
+        <app-my-settings></app-my-settings>
+      </div>
+    </div>
+  
+    <div class="edit-car-modal small" *ngIf="showAff === true">
+      <div class="modal-back" (click)="showAff = false">&nbsp;</div>
+      <div class="modal-holder">
+        <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" (click)="showAff = false">
+        <app-my-affiliate></app-my-affiliate>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 
+  <div class="contents">
+    <div class="side-nav item-list">
+      <div class="menu-holder">
+        <img src="assets/base/images/logo.png" class="logo" [routerLink]="['/race/start-race']"/>
+        <div class="menu-item-holder">
+          <a class="menu-item" [routerLink]="['/race/start-race']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/play.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/play-active.png" alt="" class="active-img">
+            </div>
+            <span class="text">{{'shared.play_btn' | translate}}</span>
+          </a>
+        </div>
+        <div class="menu-item-holder">
+          <a class="menu-item" [routerLink]="['/teams/join-teams']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/team.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/team-active.png" alt="" class="active-img">
+            </div>
+            <span class="text">{{'shared.layout.team' | translate}}</span>
+          </a>
+        </div>
+        <div class="menu-item-holder">
+          <a class="menu-item" [routerLink]="['/other/rewards']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/reward.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/reward-active.png" alt="" class="active-img">
+            </div>
+            <span class="text">{{'shared.layout.reward' | translate}}</span>
+          </a>
+        </div>
+        <div class="menu-item-holder">
+          <a class="menu-item" [routerLink]="['/other/ioi-tokens']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/game-wallet.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/game-wallet-active.png" alt="" class="active-img">
+            </div>
+            <span class="text">{{'shared.layout.game_wallet' | translate}}</span>
+          </a>
+        </div>
+        <div class="menu-item-holder">
+          <a class="menu-item" [routerLink]="['/your-races/transactions']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/history.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/history-active.png" alt="" class="active-img">
+            </div>
+            <span class="text">{{'shared.layout.history' | translate}}</span>
+          </a>
+        </div>
+        <div class="menu-item-holder" *ngIf="currentExpLevel > 4">
+          <a class="menu-item" [routerLink]="['/car/favourite-cars']" [routerLinkActive]="'active'">
+            <div class="button-holder">
+              <img src="assets/base/images/sidenav/ff-menu.png" class="basic-img"/>
+              <img src="assets/base/images/sidenav/ff-menu.png" alt="" class="active-img">
+            </div>
+            <span class="text" style="color: #e92062;">{{'shared.layout.fast_fuel' | translate}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="sub-content">
+        <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+
+        <div class="profile-top-panel" [ngClass]="{'open': menuOpen === true}">
+          <img src="/assets/base/images/sidenav/toggle-menu-btn.png" alt="" class="toggle-btn" (click)="menuOpen = !menuOpen">
+          <div class="profile-info">
+            <div class="profile-stats">
+              <p class="name">{{myDriverStats?.nickname}}</p>
+              <p class="level" [ngClass]="'level' + myAffilate?.affiliate_level">{{'profile.experiences' | translate}} {{currentExpLevel}}</p>
+            </div>
+            <div class="profile-img">
+              <img src="assets/base/images/avatars/avatar1.svg" alt="" *ngIf="myAffilate?.affiliate_level === 1">
+              <img src="assets/base/images/avatars/avatar2.svg" alt="" *ngIf="myAffilate?.affiliate_level === 2">
+              <img src="assets/base/images/avatars/avatar3.svg" alt="" *ngIf="myAffilate?.affiliate_level === 3">
+              <img src="assets/base/images/avatars/avatar4.svg" alt="" *ngIf="myAffilate?.affiliate_level === 4">
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-btns-holder" [ngClass]="{'visible': menuOpen === true}">
+          <div class="live">
+            <p (click)="liveOpened = !liveOpened"><span>&#8231;</span> {{'shared.live_races' | translate}}</p>
+            <div *ngIf="liveOpened === true"><app-my-races-ad></app-my-races-ad></div>
+          </div>
+          <div class="lang">
+            <app-lang-switcher></app-lang-switcher>
+          </div>
+        </div>
+      
+        <div class="right-container" [ngClass]="{'open': menuOpen === true}">
+          <div class="right-part-holder">
+            <div class="profile-cont">
+              <app-profile-stats></app-profile-stats> 
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+  </div>
+  <div class="ad-popup" *ngIf="nextTour">
+    <div class="backdrop" [ngClass]="{'opened': popupClosed === false}" (click)="popupClosed = !popupClosed"></div>
+    <div class="ticket-holder" [ngClass]="{'opened': popupClosed === false}">
+      <div class="closed-elipse" (click)="popupClosed = !popupClosed">
+        <p *ngIf="nextTour.race_identifier === 'tournament_for_ticket_0'">Win free <br>tickets</p>
+        <p *ngIf="nextTour.race_identifier === 'classic_tournament_10'">Win 1 000<br>TRX</p>
+        <p *ngIf="nextTour.race_identifier === 'classic_tournament_0'">Win 10<br>TRX</p>
+      </div>
+      <div class="content-holder">
+        <div class="close-icon">
+          <img src="/assets/base/images/start-race/popup-close.svg" alt="" (click)="popupClosed = !popupClosed">
+        </div>
+        <p class="heading" *ngIf="nextTour.race_identifier === 'tournament_for_ticket_0'">FREE TOURNAMENT</p>
+        <p class="heading" *ngIf="nextTour.race_identifier === 'classic_tournament_10'">10 TRX TOURNAMENT</p>
+        <p class="heading" *ngIf="nextTour.race_identifier === 'classic_tournament_0'">IOI TOURNAMENT</p>
+        <p class="subheader" *ngIf="nextTour.race_identifier === 'tournament_for_ticket_0'">to get tickets worth 30 TRX</p>
+        <p class="subheader" *ngIf="nextTour.race_identifier === 'classic_tournament_0'">win 10 TRX for free!</p>
+
+        <p class="text" *ngIf="nextTour.race_identifier === 'tournament_for_ticket_0'">Race against the best players to get tickets worth 30 TRX for free!</p>
+        <p class="text" *ngIf="nextTour.race_identifier === 'classic_tournament_10'">Race against the best players and win 1 000 TRX for only 10 bet!</p>
+        <p class="text" *ngIf="nextTour.race_identifier === 'classic_tournament_0'">Race against the best players and win 10 TRX for free! Get free entry by holding 100 or more IOI tokens</p>
+        <img src="/assets/base/images/start-race/popup-tokens.png" alt="" class="back-img">
+        <div class="bottom-cont">
+          <button class="grad-btn" [routerLink]="['/car/fuel-car/' + nextTour?.race_identifier]">Play now</button>
+          <p class="timer">Next race starts in: <app-timer [value]="nextTour?.starts_in_seconds" (onComplete)="getNextraces()"></app-timer></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+  <app-notifiq></app-notifiq>
+  <!-- <app-quick-withdraw></app-quick-withdraw>
+  <app-quick-transfer></app-quick-transfer>
+  <app-quick-deposit></app-quick-deposit> -->
+
+
+  <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog" aria-labelledby="turn-lux-modal"
+  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered my-modal-dialog choose-modal" role="document">
+      <div class="modal-content my-modal-content--tokens">
+        
+        <h1>{{'shared.what_you_do' | translate}}</h1>
+
+        <div class="buttons-holder">
+          <div class="button-item" data-dismiss="modal" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'withdraw' }">{{'shared.withdraw_btn' | translate}}</div>
+          <div class="button-item" data-dismiss="modal" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'transfer' }">{{'shared.transfer_btn' | translate}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div  class="verify-modal" *ngIf="verifyModal === true">
+    <div class="modal-holder">
+  
+      <div class="modal-heading" (click)="verifyModal = false">
+        <h2>Pick your layout</h2>
+        <p class="desc">Pick a preferred platform layout. You can change the layout in the Settings anytime.</p>
+      </div>
+  
+      <div class="panel-holder">
+        <div class="img-holder">
+            <img src="/assets/base/images/welcome/owner-img.png" alt="">
+        </div>
+        <h1 class="main-heading">Become an owner</h1>
+        <div class="list-item">
+            <div class="icon-holder">
+                <img src="/assets/base/images/welcome/nft-rewards.svg" alt="">
+            </div>
+            <p>Limited NFT cars with daily rewards</p>
+        </div>
+        <div class="list-item">
+            <div class="icon-holder">
+                <img src="/assets/base/images/welcome/car.svg" alt="">
+            </div>
+            <p>Unlock Rare car to get 100% extra daily stake rewards</p>
+        </div>
+        <div class="list-item">
+            <div class="icon-holder">
+                <img src="/assets/base/images/welcome/stopwatch.svg" alt="">
+            </div>
+            <p>Limited Track events with rewards after every race platform fee</p>
+        </div>
+        <div class="list-item">
+            <div class="icon-holder">
+                <img src="/assets/base/images/welcome/crown.svg" alt="">
+            </div>
+            <p>Own a racing team and get 20% from each Premium member</p>
+        </div>
+        <div class="list-item">
+            <div class="icon-holder">
+                <img src="/assets/base/images/welcome/imperium.svg" alt="">
+            </div>
+            <p>Build your own imperium</p>
+        </div>
+  
+        <a class="panel-button" (click)="setManager(true);closeTutorial();verifyModal = false">Become owner</a>
+      </div>
+  
+      <div class="panel-holder racer">
+          <div class="img-holder">
+              <img src="/assets/base/images/welcome/racer-img.png" alt="">
+          </div>
+          <h1 class="main-heading">Become a racer</h1>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/user.svg" alt="">
+              </div>
+              <p>Start as a free member and upgrade to premium</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/support.svg" alt="">
+              </div>
+              <p>Choose the team you want to race for</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/trading.svg" alt="">
+              </div>
+              <p>Become a Team manager, invite racers to your team and get 10% commission for each</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/to-do-list.svg" alt="">
+              </div>
+              <p>Play daily tasks to collect IOI Tokens</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/tokens.svg" alt="">
+              </div>
+              <p>Hold IOI Tokens to unlock special IOI events and reward shares</p>
+          </div>
+  
+          <a class="panel-button" (click)="setManager(false);closeTutorial();verifyModal = false">Become racer</a>
+      </div>
+    </div>
+  </div> 
+
+</div> 

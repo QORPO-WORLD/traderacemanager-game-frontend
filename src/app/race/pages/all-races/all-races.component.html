@@ -1,0 +1,578 @@
+
+<!--
+<h1 [routerLink]="['/race/race-type']" [queryParams]="{ raceType: 'fast' }">PSIE HOVNO</h1>
+<div class="intro-modal" *ngIf="selRaceType">
+    <app-fast-fuel [raceId]="selRaceType"></app-fast-fuel>
+  </div>
+  
+<div class="adventures-holder main-holder" *ngIf="raceType === 'adventures' && selRaceType === undefined">
+
+    <div class="top-banner-holder">
+        <app-main-top-banner [page]="'adventure'"></app-main-top-banner>
+    </div>
+
+    <div class="content-holder adventure">
+
+        <div class="cards-holder">
+            <h1>{{'race.pick_game' | translate}}</h1>
+            
+            <div class="game-item tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="myTrxBalance >= 10"></div>
+                <div class="dummy-click" data-toggle="modal" data-target="#deposit-modal" *ngIf="myTrxBalance < 10"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'classic_tournament_10'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.classic_tournament_10' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                      
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 10 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myTrxBalance >= 10">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myTrxBalance < 10">{{'shared.deposit_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item free-tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/tournament_for_ticket_0']"></div>
+  
+                
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.tournament_for_ticket_0' | translate}}</h2>
+                    <div class="race-info"> 
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 3 TICKETS</p>
+                        </div>
+         
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 0 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item ioi-tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/classic_tournament_0']" *ngIf="myIoiBalance >= 100"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myIoiBalance < 100"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'classic_tournament_0'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.classic_tournament_0' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 10 {{'shared.trx' | translate}}</p>
+                        </div>
+ 
+                        <div class="info-item ioi">
+                            <p>{{'teams.join.hold' | translate}} 100 <img src="/assets/base/images/logo.png" alt=""></p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myIoiBalance >= 100">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myIoiBalance < 100">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item wed-race">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/wednesday_party_race_0']" *ngIf="myIoiBalance >= 100"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myIoiBalance < 100"></div>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.wednesday_party_race_0' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 10 000 {{'shared.trx' | translate}}</p>
+                        </div>
+
+                        <div class="info-item ioi">
+                            <p>{{'teams.join.hold' | translate}} 100 <img src="/assets/base/images/logo.png" alt=""></p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myIoiBalance >= 100">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myIoiBalance < 100">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item tournament">
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.adventure_tournament' | translate}}</h2>
+                    <div class="race-info" style="display:none">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 1 / 100</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button button-grey">{{'shared.soon' | translate}}<span>></span></button>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+<div class="adventures-holder main-holder" *ngIf="raceType === 'trx'">
+
+    <div class="top-banner-holder">
+        <app-main-top-banner [page]="'trx-race'"></app-main-top-banner>
+    </div>
+
+    <div class="content-holder adventure">
+
+        <div class="cards-holder">
+            <h1>{{'race.pick_game' | translate}}</h1>
+
+            <div class="game-item ioi1">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/car_race_ioi_1']" *ngIf="myDriverBalances?.game_wallet_ioi >= 1"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myDriverBalances?.game_wallet_ioi < 1"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'car_race_ioi_1'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>1 {{'shared.ioi' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 100 {{'shared.ioi' | translate}}</p>
+                        </div>
+                        
+                        <div class="info-item ioi">
+                            <p><img src="/assets/base/images/logo.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myDriverBalances?.game_wallet_ioi >= 1">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myDriverBalances?.game_wallet_ioi < 1">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            
+
+            <div class="game-item ioi5">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/car_race_ioi_5']" *ngIf="myDriverBalances?.game_wallet_ioi >= 5"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myDriverBalances?.game_wallet_ioi < 5"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'car_race_ioi_5'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>5 {{'shared.ioi' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 500 {{'shared.ioi' | translate}}</p>
+                        </div>
+ 
+                        <div class="info-item ioi">
+                            <p><img src="/assets/base/images/logo.png" alt=""> 5 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myDriverBalances?.game_wallet_ioi >= 5">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myDriverBalances?.game_wallet_ioi < 5">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+            
+            <div class="game-item tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="myTrxBalance >= 10"></div>
+                <div class="dummy-click" data-toggle="modal" data-target="#deposit-modal" *ngIf="myTrxBalance < 10"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'classic_tournament_10'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.classic_tournament_10' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                      
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 10 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myTrxBalance >= 10 || tickets > 0">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myTrxBalance < 10 && tickets === 0">{{'shared.deposit_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+
+            <div class="game-item trx10">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/car_race_short_10']" *ngIf="myTrxBalance >= 10"></div>
+                <div class="dummy-click" data-toggle="modal" data-target="#deposit-modal" *ngIf="myTrxBalance < 10"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'car_race_short_10'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>10 {{'shared.trx' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 10 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myTrxBalance >= 10">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myTrxBalance < 10">{{'shared.deposit_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            
+
+            <div class="game-item trx100">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/car_race_short_100']" *ngIf="myTrxBalance >= 100"></div>
+                <div class="dummy-click" data-toggle="modal" data-target="#deposit-modal" *ngIf="myTrxBalance < 100"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'car_race_short_100'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>100 {{'shared.trx' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 10 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 100 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myTrxBalance >= 100">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myTrxBalance < 100">{{'shared.deposit_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            
+
+
+            
+            
+            <div class="game-item police">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car-adventure/cops1_10']" *ngIf="myTrxBalance >= 10"></div>
+                <div class="dummy-click" data-toggle="modal" data-target="#deposit-modal" *ngIf="myTrxBalance < 10"></div>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.cops1_10' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 30 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 0 / 1</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 10 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myTrxBalance >= 10">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myTrxBalance < 10">{{'shared.deposit_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item ambulance">
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.ambulance_race' | translate}}</h2>
+                    <div class="race-info" style="display:none">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 1 / 100</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button button-grey">{{'shared.soon' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item fire">
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.fire_race' | translate}}</h2>
+                    <div class="race-info" style="display:none">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 1 / 100</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button button-grey">{{'shared.soon' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item bond">
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.james_bond_race' | translate}}</h2>
+                    <div class="race-info" style="display:none">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 1 / 100</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button button-grey">{{'shared.soon' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item score">
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.high_score_race' | translate}}</h2>
+                    <div class="race-info" style="display:none">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.trx' | translate}}</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/players-icon.png" alt=""> 1 / 100</p>
+                        </div>
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 1 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button button-grey">{{'shared.soon' | translate}} <span>></span></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="adventures-holder main-holder" *ngIf="raceType === 'ioi'">
+
+    <div class="top-banner-holder">
+        <app-main-top-banner [page]="'ioi-race'"></app-main-top-banner>
+    </div>
+
+    <div class="content-holder adventure">
+
+        <div class="cards-holder">
+            <h1>{{'race.pick_game' | translate}}</h1>
+
+            <div class="game-item free">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/car_race_short_0']"></div>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.car_race_short_0' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 2 {{'shared.trx' | translate}}</p>
+                        </div>
+
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 0 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+            
+            <div class="game-item free-tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/tournament_for_ticket_0']"></div>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.tournament_for_ticket_0' | translate}}</h2>
+                    <div class="race-info"> 
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 3 TICKETS</p>
+                        </div>
+         
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/trx-icon.png" alt=""> 0 {{'shared.entry' | translate}}</p>
+                        </div>
+                    </div>
+                    <button class="play-button">{{'shared.play_btn' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item ioi-tour">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/classic_tournament_0']" *ngIf="myIoiBalance >= 100"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myIoiBalance < 100"></div>
+                <span *ngIf="fastEnabled === true" (click)="selRaceType = 'classic_tournament_0'" class="tank-fast">&nbsp;</span>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.classic_tournament_0' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 1 000 {{'shared.ioi' | translate}}</p>
+                        </div>
+ 
+                        <div class="info-item ioi">
+                            <p>{{'teams.join.hold' | translate}} 100 <img src="/assets/base/images/logo.png" alt=""></p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myIoiBalance >= 100">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myIoiBalance < 100">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+            <div class="game-item wed-race">
+                <div class="dummy-click" [routerLink]="['/car/fuel-car/wednesday_party_race_0']" *ngIf="myIoiBalance >= 100"></div>
+                <div class="dummy-click" [routerLink]="['/other/ioi-tokens']" *ngIf="myIoiBalance < 100"></div>
+                <div class="background"></div>
+                <div class="card-content">
+                    <h2>{{'race.type.wednesday_party_race_0' | translate}}</h2>
+                    <div class="race-info">
+                        <div class="info-item">
+                            <p><img src="/assets/base/images/start-race/prize-icon.png" alt=""> 10 000 {{'shared.trx' | translate}}</p>
+                        </div>
+
+                        <div class="info-item ioi">
+                            <p>{{'teams.join.hold' | translate}} 100 <img src="/assets/base/images/logo.png" alt=""></p>
+                        </div>
+                    </div>
+                    <button class="play-button" *ngIf="myIoiBalance >= 100">{{'shared.play_btn' | translate}} <span>></span></button>
+                    <button class="play-button" *ngIf="myIoiBalance < 100">{{'rewards.buy_ioi_tokens' | translate}} <span>></span></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+-->
+<div class="main-holder">
+    <div class="page-info"> 
+        <div class="back" [routerLink]="['/race/start-race']">
+          <p>&lt;</p>
+          <p>BACK</p>
+        </div>
+        <div class="text-info">
+          <h1>Races</h1>
+          <p>Manage your car in virtual trading races in real time. Set up your trading strategy, and fight your oponents with the best crypto combination.</p>
+        </div>
+        <div class="info-modal">
+            <h6>Free money every day</h6>
+            <div>
+            <div>
+                <p>1440<sup>IOI</sup></p>
+                <p>free member</p>
+            </div>
+            <div class="my-low-gradient">
+                <p>4320<sup>IOI</sup></p>
+                <p>premium member</p>
+            </div>
+            </div>
+        </div>
+      </div>
+    <!--<div class="race-type-info">
+        
+        <p class="path"> <span [routerLink]="['/race/start-race']">Dashboard</span>  > <strong>Races</strong></p>
+
+        <div class="race-info">
+        <div class="info-text">
+            <h1>Races</h1>
+            <p>Description how to play and what to do to win. Manage your car in virtual trading races in real time, and set up your trading</p>
+        </div>
+
+        <div class="info-modal">
+            <h6>Free money every day</h6>
+            <div>
+            <div>
+                <p>1440<sup>IOI</sup></p>
+                <p>free member</p>
+            </div>
+            <div>
+                <p>4320<sup>IOI</sup></p>
+                <p>premium member</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>-->
+
+    <h6 class="category-heading">Categories</h6>
+
+    <div class="categories">
+        <div class="category" [routerLink]="['/race/race-type']" [queryParams]="{ raceType: 'fast' }">
+            <div class="hover-maker my-cta-category-hover"></div>
+            <div class="race-img"><img src="/assets/base/images/all-races/fast-race.png" alt=""></div>
+            <div class="race-description">
+                <h6>Fast races</h6>
+                <p>30 second duration</p>
+            </div>
+        </div>
+
+       
+        
+        <div class="category" [routerLink]="['/race/race-type/']" [queryParams]="{ raceType: 'tournament' }">
+            <div class="hover-maker my-cta-category-hover"></div>
+            <div class="race-img"><img src="/assets/base/images/all-races/tournament-race.png" alt=""></div>
+            <div class="race-description">
+                <h6>Tournaments</h6>
+                <p>19 Fast races in one Tournament</p>
+            </div>
+        </div>
+
+        <div class="category" [routerLink]="['/race/race-type']" [queryParams]="{ raceType: 'special' }">
+            <div class="hover-maker my-cta-category-hover"></div>
+            <div class="race-img"><img src="/assets/base/images/all-races/special-event.png" alt=""></div>
+            <div class="race-description">
+                <h6>Special events</h6>
+                <p>IOI holder events</p>
+            </div>
+        </div>
+
+        <div class="category coming-soon">
+            <div class="race-img"><img src="/assets/base/images/all-races/enduration-race.png" alt=""></div>
+            <div class="race-description">
+                <h6>Enduration races</h6>
+                <p>Coming soon</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tutorial-wrapper">
+       <div class="tutorial">
+            <h6>Tutorial</h6>
+            <div class="wrapper">
+                <div class="tutorial-text">
+                    <h5>
+                        Want to play like a pro?
+                    </h5>
+                    <p>Watch our newest video, learn everything you need to become the best racer and start making more money today!</p>
+                </div>
+                <div class="button my-cta-btn-back hoverable">
+                    Watch video
+                </div>
+            </div>
+       </div>
+       <div class="next-race-join">
+        <h6>Next race to join</h6>
+            <div class="wrapper">
+                <div class="border-maker my-border-grad"></div>
+                <img class="back-image" src="/assets/base/images/all-races/next-race-car.png" alt="">
+                <div class="next-race-text">
+                    <div>
+                        <h6>Beginner IOI</h6>
+                        <p>1 IOI</p>
+                    </div>
+                    <div class="button my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_ioi_1']">
+                        Join race
+                    </div>
+                </div>
+                <div class="next-race-img"></div>
+            </div>
+       </div>
+    </div>
+</div>
+  
+

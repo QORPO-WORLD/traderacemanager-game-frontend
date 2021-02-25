@@ -1,0 +1,31 @@
+<div class="main hide-on-landscape" #outlet>
+
+  <div class="cont-holder main-app-cont-holder" [ngClass]="isManager === true ? 'manager' : 'racer'">
+    
+    <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+
+  </div>
+
+  <app-notifiq></app-notifiq>
+  <!-- <app-quick-withdraw></app-quick-withdraw>
+  <app-quick-transfer></app-quick-transfer>
+  <app-quick-deposit></app-quick-deposit> -->
+
+
+  <div class="modal fade" id="choose-modal" tabindex="-1" role="dialog" aria-labelledby="turn-lux-modal"
+  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered my-modal-dialog choose-modal" role="document">
+      <div class="modal-content my-modal-content--tokens">
+        
+        <h1>{{'shared.what_you_do' | translate}}</h1>
+
+        <div class="buttons-holder">
+          <div class="button-item" data-dismiss="modal" data-toggle="modal" data-target="#withdrawal-modal">{{'shared.withdraw_btn' | translate}}</div>
+          <div class="button-item" data-dismiss="modal" data-toggle="modal" data-target="#transfer-modal">{{'shared.transfer_btn' | translate}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div> 

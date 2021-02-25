@@ -1,0 +1,24 @@
+
+
+<div class="step-holder" *ngIf="curStep === 0">
+
+  <img class="close-icon" src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+
+  <h1 class="top-heading">Disable Google Authenticator</h1>
+
+  <div class="form-holder">
+    <form action="#" autocomplete="off">
+      <div class="input-holder">
+        <div class="dummy"></div>
+        <input data-bn-type="input" [(ngModel)]="pass"  [ngModelOptions]="{standalone: true}" aria-label="Password" type="password" name="password" placeholder="Enter your IOI Game password" value="">
+      </div>
+      <div class="input-holder">
+        <div class="dummy"></div>
+        <input [(ngModel)]="testinp"  [ngModelOptions]="{standalone: true}" placeholder="Enter Google Authenticator code">
+      </div>
+      <div class="next-btn">
+        <button data-bn-type="button" type="submit" (click)="testKey()">Enable</button>
+      </div>
+    </form>
+  </div>
+</div>

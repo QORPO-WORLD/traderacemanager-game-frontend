@@ -1,0 +1,156 @@
+<div class="main-holder">
+
+  <div class="info-me">
+    <div class="img-holder">
+      <img class="my-avatar" src="assets/base/images/avatars/avatar1.svg" alt="" *ngIf="myAffilate === 1">
+      <img class="my-avatar" src="assets/base/images/avatars/avatar2.svg" alt="" *ngIf="myAffilate === 2">
+      <img class="my-avatar" src="assets/base/images/avatars/avatar3.svg" alt="" *ngIf="myAffilate === 3">
+      <img class="my-avatar" src="assets/base/images/avatars/avatar4.svg" alt="" *ngIf="myAffilate === 4">
+      <img src="/assets/base/images/menu/premium-icon.svg" alt="" class="premium-ind" *ngIf="myDriverOld?.is_paid_membership === false">
+      <img src="/assets/base/images/menu/premium-icon-active.svg" alt="" class="premium-ind" *ngIf="myDriverOld?.is_paid_membership === true">
+    </div>
+    <div class="text-holder">
+      <p class="name">{{myDriverStats?.nickname}}</p>
+      <p class="team">{{'profile.team' | translate}}: <span>{{cachedLdrbrd?.team_name ? cachedLdrbrd?.team_name : '-'}}</span></p>
+    </div>
+  </div>
+
+  <div class="balance-holder">
+    <div class="ticket-holder" *ngIf="tickets && tickets > 0">
+      <img src="/assets/base/images/ticket-icon.png" alt="">
+      <p class="indicator">{{tickets}}</p>
+    </div>
+    <ng-container *ngIf="showVerified === false">
+      <p class="heading">{{'profile.your_balance' | translate}}</p>
+      <div class="items-holder">
+        <div class="balance-item">
+          <p class="value">{{myDriverBalances?.game_wallet_ioi  | number:'1.2-2':'fr'}} 
+            <span class="curr">{{'shared.ioi' | translate}}</span>
+          </p>
+          <p class="dollars">&#36; {{(myDriverBalances?.game_wallet_ioi * 0.4)  | number:'1.2-2':'fr'}}</p>
+          <p class="deposit-btn" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
+            <img class="red-img" src="/assets/base/images/menu/add-icon-red.svg" alt="">
+            <img class="blue-img" src="/assets/base/images/menu/add-icon-blue.svg" alt="">
+             Deposit</p>
+        </div>
+        
+      </div>
+    </ng-container>
+    
+    <div class="non-verified-box my-cta-btn-back" *ngIf="showVerified === true">
+      <img src="/assets/base/images/icons/close-white.svg" alt="Close icon" class="verify-close" (click)="showVerified = false">
+      <img class="info-img" src="/assets/base/images/icons/inner-info-icon.png" alt="Information icon">
+      <p class="heading">Your account isn’t verified</p>
+      <p class="text">Please, verify your account by clicking a link in the e-mail we sent you.</p>
+
+      <p class="link" (click)="resendActivation()" *ngIf="activationSent === false">Resend verification code &gt;</p>
+      <p class="link" *ngIf="activationSent === true">Verification code sent &#x2713;</p>
+    </div>
+
+  </div>
+
+
+  <!-- <div class="stats-holder">
+    <div class="top-cont">
+      <p class="heading">{{'shared.stats' | translate}}</p>
+      <div class="team-panel neum-box"><p>{{'profile.team' | translate}}: <span>{{cachedLdrbrd?.team_name ? cachedLdrbrd?.team_name : '-'}}</span></p></div>
+    </div>
+    <div class="bot-cont neum-box">
+      <div class="desc-holder">
+        <p>{{'profile.p_position' | translate}}</p>
+        <p>{{'profile.t_position' | translate}}</p>
+      </div>
+      <div class="value-holder">
+        <p>
+          <span>
+            <img src="/assets/base/images/player-profile/up-arrow2.png" alt="">
+            {{cachedLdrbrd?.player_position_overall ? cachedLdrbrd?.player_position_overall : '-'}}
+          </span>
+        </p>
+        <p>
+          <span>
+            <img src="/assets/base/images/player-profile/up-arrow.png" alt="">
+            {{cachedLdrbrd?.team_position ? cachedLdrbrd?.team_position : '-'}}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="aff-holder">
+
+    <div class="non-premium-box" *ngIf="myDriverOld?.is_paid_membership === false || !myDriverOld?.is_paid_membership">
+      <img src="/assets/base/images/menu/lock-icon.svg" alt="">
+      <p class="text">Unlock your affiliate link and get 2% from turnover of your partners</p>
+      <button class="my-btn my-cta-btn-back hoverable" [routerLink]="['/teams/join-teams']">Get premium</button>
+    </div>
+
+    <p class="heading" [routerLink]="['/other/affilate']" style="cursor: pointer;">{{'shared.layout.affiliate' | translate}}</p>
+
+    <div class="copy-link" (click)="copyInputMessage(); animateOnClick()">
+      <div class="border-maker my-cta-btn-back"></div>
+      <div class="inner-holder">
+        <p>Copy affiliate link</p>
+      </div>
+      <div class="inner-holder clicked" [ngClass]="myAffClass">
+        <p>Copied</p>
+      </div>
+    </div>
+
+    <p class="sub-heading" [routerLink]="['/other/affilate']" style="cursor: pointer;">{{'shared.level' | translate}} {{myAffilate}} {{'shared.layout.affiliate' | translate}}</p>
+
+    <div class="cont-holder"  [routerLink]="['/other/affilate']" style="cursor: pointer;">
+      <div class="cont-item">
+        <p class="value">{{affMe?.total_affiliates_count}}</p>
+        <p class="desc">partners</p>
+        <div class="line"></div>
+      </div>
+      <div class="cont-item">
+        <p class="value">{{affMe?.active_affiliates_count}}</p>
+        <p class="desc">active</p>
+        <div class="line"></div>
+      </div>
+      <div class="cont-item">
+        <p class="value">{{affMe?.maintenance_level ? affMe?.maintenance_level + ' IOI' : 'No'}}</p>
+        <p class="desc" style="font-size: 12px;">maintenance</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="aff-cont">
+    <div class="go-to-btn neum-box aff-box" (click)="showAff = true">
+      <p>{{'shared.layout.affiliate' | translate}}: {{'shared.level' | translate}} {{myAffilate}}</p>
+    </div>
+    <div class="icon-holder" (click)="copyInputMessage(); animateOnClick()">
+      <img src="/assets/base/images/start-race/copy-icon.png" alt="">
+    </div>
+    <div class="copy-bubble" [ngClass]="myAffClass">
+      <p>Copied</p>
+    </div>
+  </div> -->
+  
+</div>
+
+<!-- <div class="edit-car-modal" *ngIf="showEditModal === true">
+  <div class="modal-back" (click)="showEditModal = false">&nbsp;</div>
+  <div class="modal-holder">
+    <h1>editovanie fav áut</h1>
+  </div>
+</div> -->
+
+<div class="edit-car-modal small" *ngIf="showMyStats === true">
+  <div class="modal-back" (click)="showMyStats = false">&nbsp;</div>
+  <div class="modal-holder">
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" (click)="showMyStats = false">
+    <app-my-stats></app-my-stats>
+  </div>
+</div>
+
+<div class="edit-car-modal small" *ngIf="showAff === true">
+  <div class="modal-back" (click)="showAff = false">&nbsp;</div>
+  <div class="modal-holder">
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" (click)="showAff = false">
+    <app-my-affiliate></app-my-affiliate>
+  </div>
+</div>
+

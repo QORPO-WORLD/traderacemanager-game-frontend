@@ -1,0 +1,143 @@
+<app-main-top-banner [page]="'history'"></app-main-top-banner>
+
+<div class="main-holder">
+    <div class="trans-menu">
+        <div class="menu-desc">
+            <p class="join-team"[routerLink]="['/your-races/transactions']">{{'history.transactions' | translate}}</p>
+            <p class="my-team active" [routerLink]="['/your-races/transactions/my-races']">{{'profile.races' | translate}}</p>
+        </div>
+        <div class="menu-line">
+            <div class="inner-line my-cta-btn-back">&nbsp;</div>
+        </div>
+    </div>
+
+
+    <!--
+    <div class="ledeboard-team-list-component next2">
+        <div class="sub-header-component">
+            <div class="item big"><button>{{'history.game' | translate}}</button></div>
+            <div class="item"><button>{{'modals.amount' | translate}}</button></div>
+            <div class="item"><button>{{'shared.win' | translate}}</button></div>
+            <div class="item big"><button>{{'history.date' | translate}}</button></div>
+            <div class="item"><button>{{'leaderboard.winners' | translate}}</button></div>
+        </div>
+    
+        <div class="table-body" *ngIf="raceTransactions?.length > 0">
+    
+            <div class="tab-team" *ngFor="let trans of raceTransactions;let indexx = index;">
+                <div class="inner-tab">
+                    <div class="position">
+                        <p>{{indexx + 1}}.</p>
+                    </div>
+                    <div class="item big">
+                         <span  class="short-race">{{ 'race.type.' + trans.extras.race_identifier | translate}}</span>
+                      </div>
+                    <div class="item">
+                        <span>{{trans.extras.bet  | number:'1.2-2':'fr' }}</span>
+                    </div>
+                    <div class="item">
+                        <span>{{trans.delta  | number:'1.2-2':'fr' }}</span>
+                    </div>
+                    <div class="item big">
+                        <span>{{trans.created | date:'short'}}</span>
+                    </div>
+                    <div class="item">
+                        <button class="win-btn" (click)="getRaceWinner(trans.extras.race_hash)" *ngIf="trans.extras.game !== 'classic_tournament'">{{'leaderboard.winners' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+    
+        </div>
+    
+        <div class="arrows" *ngIf="totalPages > 1">
+        
+            <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"></button>
+            <span class="pager-actual">{{actualPage}}/{{totalPages}}</span>
+            <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"></button>
+        </div>
+    </div>
+    <div class="winning-modal" *ngIf="showFinalModal === true">
+      <div class="modal-bg">
+          <p class="close-modal" (click)="showFinalModal = false;">x</p>
+    
+          <div class="ledeboard-team-list-component details">
+              <div class="sub-header-component">
+                  <button>{{'leaderboard.position' | translate}}</button>
+                  <button>{{'history.nick' | translate}}</button>
+                  <button>{{'profile.team' | translate}}</button>
+                  <button>{{'shared.prize' | translate}}</button>
+                  <button>{{'shared.points' | translate}}</button>
+              </div>
+    
+    
+              <div class="table">
+                  <div class="tab-team" *ngFor="let item of winnersList;let i = index;">
+                      <div class="inner-tab">
+                        <div class="item team-position">
+                            <span class="position"
+                              [ngClass]="'win-' + (i + 1)">&nbsp;</span>
+                          </div>
+                          <div class="item team-points">
+                            <span class="points">{{ item.nickname }}</span>
+                          </div>
+                          <div class="item team-leader">
+                            <span>{{ item.team ? item.team : 'NO'}}</span>
+                          </div>
+                          <div class="item team-rider">
+                            <span>{{ (item.amount ? item.amount : 0 ) | number:'1.2-2':'fr'}}</span>
+                          </div>
+                          <div class="item team-rider" *ngIf="item.amount">
+                            
+                            <span>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</span>
+                          </div>
+                          <div class="item team-rider" *ngIf="!item.amount">
+                            <span>0</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div> --> 
+    
+    
+    <div class="table">
+        <div class="header table-row">
+            <div>&#8203;</div>
+            <div>{{'history.game' | translate}}</div>
+            <div>{{'modals.amount' | translate}}</div>
+            <div>{{'shared.win' | translate}}</div>
+            <div>{{'history.date' | translate}}</div>
+            <div>{{'leaderboard.winners' | translate}}</div>
+        </div>
+        <div class="table-row"  *ngFor="let trans of raceTransactions;let indexx = index;">
+          <div class="cell">
+            <div class="placement my-border-grad"><span>{{(indexx + 1)+10*(actualPage-1)}}</span></div>
+          </div>
+          <div class="cell"> <p>{{ 'race.type.' + trans.extras.race_identifier | translate}}</p></div>
+          <div class="cell"><p>{{trans.extras.bet  | number:'1.2-2':'fr' }}</p></div>
+          <div class="cell"><p>{{trans.delta  | number:'1.2-2':'fr' }}</p></div>
+          <div class="cell"><p>{{trans.created | date:'short'}}</p></div>
+          <div class="cell"><button class="my-low-gradient" (click)="getRaceWinner(trans.extras.race_hash)" *ngIf="trans.extras.game !== 'classic_tournament'">{{'leaderboard.winners' | translate}}</button></div>
+        </div>
+
+
+         
+        <div class="arrow-right"  *ngIf="(totalPages > 1) && (actualPage < totalPages)"  (click)="nextPage()">
+            &gt;
+        </div>
+        <div class="arrow-right arrow-unactive"  *ngIf="(totalPages <= 1) || (actualPage >= totalPages)">
+            &gt;
+        </div>
+        <div class="arrow-left"  *ngIf="(totalPages > 1) && (actualPage > 1)" (click)="prevPage()">
+            &lt;
+        </div>
+        <div class="arrow-left arrow-unactive"  *ngIf="(totalPages <= 1) || (actualPage <= 1)">
+            &lt;
+        </div>
+    </div>
+
+</div>

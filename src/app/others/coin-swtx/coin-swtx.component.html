@@ -1,0 +1,436 @@
+
+
+<div class="content-flex">
+
+  <div class="curr-table">
+    <div class="table-item header">
+      <div class="stat-item big curr">
+        <p>{{'game-wallet.currency' | translate}}</p>
+      </div>
+      <div class="stat-item">
+        <p>{{'profile.balance' | translate}}</p>
+      </div>
+      <div class="stat-item">
+        <p>{{'game-wallet.value' | translate}}</p>
+      </div>
+      <div class="stat-item big">
+        <p>{{'game-wallet.token_price' | translate}}</p>
+      </div>
+      <div class="stat-item btns">&nbsp;</div>
+    </div>
+
+    <div class="table-item">
+      <div class="stat-item big curr">
+        <p><img src="/assets/base/images/curr-logos/nex/trx-logo.png" alt="">
+        trx</p>
+      </div>
+      <div class="stat-item">
+        <p>{{ myDriver?.game_wallet_trx | number: "1.2-2":"fr" }}</p>
+      </div>
+      <div class="stat-item big">
+        <p>{{ (myDriver?.game_wallet_trx * ticker) | number: "1.2-2":"fr" }}</p>
+      </div> 
+
+      
+      <div class="stat-item">
+        <p>
+          &#36; {{ ticker | number: "1.2-3":"fr" }}
+        </p>
+      </div>
+
+      <div class="stat-item btns">
+        <button class="deposit-btn" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" >+ <span>{{'shared.deposit_btn' | translate}}</span></button>
+        <button class="exchange-btn" data-toggle="modal" data-target="#choose-modal" 
+         [disabled]="myDriver?.game_wallet_trx === 0">
+        <img src="/assets/base/images/exchange-icon.png" alt=""> <span>Withdraw</span></button>
+      </div>
+    </div>
+    <div class="table-item">
+      <div class="stat-item big curr">
+        <p><img src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt="">
+        ioi</p>
+      </div>
+      <div class="stat-item">
+        <p>{{ myDriver?.game_wallet_ioi | number: "1.2-2":"fr" }}</p>
+      </div>
+      <div class="stat-item big">
+        <p>{{ (myDriver?.game_wallet_ioi * ticker * 100) | number: "1.2-2":"fr" }}</p>
+      </div> 
+
+      
+      <div class="stat-item">
+        <p>
+          &#36; {{ ticker * 100 | number: "1.2-3":"fr" }}
+        </p>
+      </div>
+
+      <div class="stat-item btns">
+        <button class="deposit-btn" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">+ <span>{{'shared.deposit_btn' | translate}}</span></button>
+        <button class="exchange-btn" data-toggle="modal" data-target="#choose-modal" 
+         [disabled]="myDriver?.game_wallet_ioi === 0">
+        <img src="/assets/base/images/exchange-icon.png" alt=""> <span>Withdraw</span></button>
+      
+      </div>
+    </div>
+ <div class="table-item" *ngFor="let ass of myAssets; let ix = index">
+      <div class="stat-item big curr">
+        <p><img [src]="'/assets/base/images/curr-logos/nex/' + ass.symbol + '-logo.png'" alt=""> {{ ass.symbol }}</p>
+      </div>
+      <div class="stat-item">
+        <p>{{ (ass.own ? ass.own.balance : 0) | number: "1.2-2":"fr" }}</p>
+      </div>
+      <div class="stat-item big">
+        <p>{{ (ass.own ? ass.own.value : 0) | number: "1.2-2":"fr" }}</p>
+      </div>
+
+      
+      <div class="stat-item">
+        <p *ngIf="ass.name !== 'Dogecoin'">
+          &#36; {{ ass.price | number: "1.2-2":"fr" }}
+        </p>
+        <p *ngIf="ass.name == 'Dogecoin'">
+          &#36; {{ ass.price | number: "1.2-3":"fr" }}
+        </p>
+      </div>
+
+      <div class="stat-item btns">
+        <button class="deposit-btn" data-toggle="modal" data-target="#deposit-asset" (click)="selDep(ass)">+ <span>{{'shared.deposit_btn' | translate}}</span></button>
+        <button class="exchange-btn" data-toggle="modal" data-target="#exchange-asset" 
+        (click)="selectedExchnage = ass.symbol;maxAmount = ass.own.balance; amount = 1; getExchange()" *ngIf="ass?.own?.balance > 0">
+        <img src="/assets/base/images/exchange-icon.png" alt=""> <span>{{'game-wallet.exchange_btn' | translate}}</span></button>
+        <button class="exchange-btn no-ex" data-toggle="modal" data-target="#no-exchange"
+        *ngIf="!ass.own || ass?.own?.balance == 0">
+        <img src="/assets/base/images/exchange-icon.png" alt=""> <span>{{'game-wallet.exchange_btn' | translate}}</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="a-balance">
+    <h2 class="top-heading" *ngIf="cryptoAddress.length === 0"><img src="/assets/base/images/icons/warning-icon.png" alt=""> Set up personal tron wallet</h2>
+    <h2 class="top-heading" *ngIf="cryptoAddress.length !== 0"><img src="/assets/base/images/icons/okey-icon.svg" alt=""> Set up personal tron wallet</h2>
+    <div class="addres-panel empty" *ngIf="cryptoAddress.length === 0 && editingWallet === false" (click)="editingWallet = true">
+      <p>+ Add your crypto sender address</p>
+    </div>
+    <div class="addres-panel" *ngIf="editingWallet === true">
+      <div class="my-input">
+        <input placeholder="Add your address" [(ngModel)]="cryptoAddress" *ngIf="editingWallet === true" [ngModelOptions]="{standalone: true}">
+      </div>
+      <button class="save-btn" (click)="patchWallet()" *ngIf="savingCryptoAddress === false">Save</button>
+      <button class="save-btn" *ngIf="savingCryptoAddress === true">Saving...</button>
+    </div>
+    <div class="addres-panel filled" *ngIf="cryptoAddress.length !== 0 && editingWallet === false">
+      <p class="my-address">{{myDriverIdentity?.my_crypto_address ? myDriverIdentity?.my_crypto_address : '-'}}</p>
+      <p class="edit-btn" (click)="editingWallet = true"><img src="/assets/base/images/icons/edit-pen.svg" alt=""> Edit</p>
+    </div>
+
+
+    <!-- <div class="settings-item">
+      <p class="desc">{{'profile.crypto' | translate}}:</p>
+      <p class="crypto"><span class="info"
+        *ngIf="editingWallet === false">{{myDriver?.my_crypto_address ? myDriver?.my_crypto_address : '-'}}
+      </span>
+      <input [(ngModel)]="cryptoMtfrckr" *ngIf="editingWallet === true" [ngModelOptions]="{standalone: true}">
+      <img class="edit-icon" src="/assets/base/images/edit-adress.png" alt="" *ngIf="editingWallet === false" (click)="editingWallet = true">
+      <img src="/assets/base/images/check-mark-24.png" alt="" class="edit-icon" *ngIf="editingWallet === true" (click)="patchWallet()"></p>
+    </div> -->
+
+    <h2>{{'game-wallet.acc_balance' | translate}}</h2>
+    <div class="right-cont">
+      <div class="grapha">
+        <div class="circle-container">
+          <div>
+            <canvas id="yourCavasId"   width="150"
+            height="150"></canvas>
+            <div class="price-container">
+              <p class="price"><span class="euro">&#36;</span>{{togetherSum | number:'1.2-2':'fr'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="own-coins">
+        
+        <div class="my-item">
+          <img src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt="">
+          <p>{{myDriver?.game_wallet_ioi | number:'1.0-2':'fr'}}</p>
+        </div>
+        <div class="my-item">
+          <img src="/assets/base/images/curr-logos/nex/trx-logo.png" alt="">
+          <p>{{myDriver?.game_wallet_trx | number:'1.0-2':'fr'}}</p>
+        </div>
+  
+      </div>
+    </div>
+
+</div>
+
+
+<div
+  class="modal fade"
+  id="deposit-asset"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deposit-asset"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content--tokens modal-assets-content">
+
+      <div class="modal-close" data-dismiss="modal" aria-label="Close" (click)="amount = 0"><p>x</p></div>
+
+      <div class="deposit-modal-body step1">
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.receive' | translate}}</p>
+            <p>{{'modals.deposit_modal.welcome_here' | translate}}</p>
+          </div>
+        </div>
+
+        <div class="input-box modal-box small-input desc-box">
+          <div class="text">
+            <p class="header">{{'modals.amount' | translate}}</p>
+            <p>{{'modals.deposit_modal.amount_to_send' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input class="transfer-text-input" type="number" [(ngModel)]="amount" 
+            [ngModelOptions]="{standalone: true}" [min]="minAmount" [max]="maxAmount">
+          </div>
+          <p class="disclaim">{{'modals.deposit_modal.max_deposit' | translate}} {{ maxAmount }} {{ selectedDeposit }}</p>
+        </div>
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.fee_text1' | translate}} {{ csfee }}% {{'modals.deposit_modal.fee_text2' | translate}} {{ amount - amount * csfee }}</p>
+            <p>{{'modals.deposit_modal.fee_warning' | translate}}</p>
+          </div>
+        </div>
+
+        <button
+          [disabled]="amount < minAmount || amount > maxAmount"
+          class="next-btn"
+          (click)="depositAsset()"
+          data-dismiss="modal"
+          data-toggle="modal"
+          data-target="#deposit-qr-code-alt"
+          [disabled]="amount === 0"
+          [ngClass]="{'visible': amount > 0}"
+          data-dismiss="modal">
+          {{'shared.confirm' | translate}}
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exchange-asset"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exchange-asset"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document">
+    <div class="modal-content my-modal-content--tokens">
+
+      <div class="modal-close" data-dismiss="modal" aria-label="Close" (click)="amount = 0"><p>x</p></div>
+
+      <div class="deposit-modal-body">
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'game-wallet.exchange_btn' | translate}}</p>
+            <p>{{'modals.exchange_modal.info_text' | translate}}</p>
+          </div>
+        </div>
+
+        <div class="input-box modal-box desc-box">
+          <div class="text">
+            <p class="header">{{'modals.from' | translate}}</p>
+            <p>{{'modals.exchange_modal.from_text' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input [(ngModel)]="selectedExchnage"
+            [ngModelOptions]="{ standalone: true }" readonly>
+          </div>
+        </div>
+
+        <div class="input-box modal-box">
+          <div class="text">
+            <p class="header">{{'modals.to' | translate}}</p>
+            <p>{{'modals.exchange_modal.to_text' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input value="TRX" readonly readonly>
+          </div>
+        </div>
+
+        <div class="input-box modal-box small-input">
+          <div class="text">
+            <p class="header">{{'modals.amount' | translate}}</p>
+            <p>{{'modals.exchange_modal.ex_amount' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input class="transfer-text-input" type="number" 
+            [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" (change)="validateExchange()" [max]="maxAmount" min="0">
+          </div>
+        </div>
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.exchange_modal.rate_per_token' | translate}}: {{ exchangeActual?.rate  | number:'1.2-2':'fr'}}</p>
+            <p style="color: #EB2163;">{{'modals.exchange_modal.your_amount_rate' | translate}}: {{ exchangeActual?.amount  | number:'1.2-2':'fr'}}</p>
+          </div>
+        </div>
+
+        <button
+          class="next-btn"
+          data-dismiss="modal"
+          [disabled]="amount === 0"
+          [ngClass]="{'visible': amount > 0}"
+          (click)="exchangeAsset()">
+          {{'shared.confirm' | translate}}
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="deposit-qr-code-alt"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deposit-qr-code-alt"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document">
+    <div class="modal-content my-modal-content--tokens">
+
+      <div class="modal-close" data-dismiss="modal" aria-label="Close" (click)="amount = 0"><p>x</p></div>
+
+      <div class="deposit-modal-body step2" *ngIf="myOrder?.payment">
+
+        <div class="modal-desc modal-box" *ngIf="myOrder?.payment?.tag">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.add_note' | translate}}:</p>
+            <p>{{ myOrder?.payment?.tag }}</p>
+          </div>
+        </div>
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.time_text1' | translate}}</p>
+            <p>{{'modals.deposit_modal.time_text2' | translate}}</p>
+          </div>
+        </div>
+
+        <div class="input-box modal-box desc-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.sender_address' | translate}}</p>
+            <p>{{'modals.deposit_modal.crypto_from' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input [value]="myOrder?.payment?.address" readonly>
+          </div>
+          <p class="disclaim">{{'modals.deposit_modal.address_warning' | translate}}</p>
+        </div>
+
+        <div class="qr-panel">
+          <h1>{{'shared.deposit_btn' | translate}} {{ myOrder?.payment?.amount }}</h1>
+          <qrcode class="qr-code"
+            [level]="1"
+            [qrvalue]="myOrder?.payment?.address"
+          ></qrcode>
+        </div>
+
+        <button class="next-btn visible" data-dismiss="modal">
+          {{'shared.confirm' | translate}}
+        </button>
+        <button
+          class="back-btn visible"
+          data-dismiss="modal"
+          data-toggle="modal"
+          data-target="#deposit-asset">
+          {{'shared.back' | translate}}
+        </button>
+
+      </div>
+
+      <div class="modal-body processing-message" *ngIf="!myOrder?.payment">
+        <p>{{'modals.processing_msg' | translate}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="no-exchange"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="no-exchange"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content--tokens modal-assets-content">
+
+      <div class="modal-close" data-dismiss="modal" aria-label="Close" (click)="amount = 0"><p>x</p></div>
+
+      <div class="modal-body processing-message">
+        <p>
+          {{'modals.exchange_modal.no_exchange' | translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="no-with"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="no-withdrawal"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content--tokens modal-assets-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img
+              src="../../../../../../assets/base/images/X-modal.png"
+              alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body big-message">
+        <p>
+          {{'modals.with_soon' | translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

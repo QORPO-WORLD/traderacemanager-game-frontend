@@ -1,0 +1,367 @@
+// .ioi-modal{
+//     position: relative;
+//     .content-holder{
+//         width: 100%;
+//         position: absolute;
+//         top: 50%;
+//         left: 0;
+//         transform: translateY(-50%);
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         .left-panel{
+//             align-self: flex-start;
+//             margin-top: 17px;
+//             .cta-button {
+//                 min-width: 270px;
+//                 height: 94px;
+//                 font-size: 43px;
+//                 font-weight: 500;
+//                 text-transform: uppercase;
+//                 margin-bottom: 20px;
+//                 &::before {
+//                   width: 275px;
+//                   height: 131px;
+//                   top: -17px;
+//                   left: -9px;
+//                 }
+//             }
+//         }
+//         .right-panel{
+//             position: relative;
+//             margin-left: 50px;
+//             width: 50%;
+//             max-width: 415px;
+//             .email-input,
+//             .pass-input{
+//                 position: relative;
+//                 .input-img{
+//                     position: absolute;
+//                     top: 50%;
+//                     left: 20px;
+//                     transform: translateY(-50%);
+//                     width: 20px;
+//                     pointer-events: none;
+//                     transition: 0.2s;
+//                     &.hidden{
+//                         opacity: 0;
+//                     }
+//                 }
+//                 .input-text{
+//                     color: #c5c5c5;
+//                     font-size: 21px;
+//                     font-weight: 400;
+//                     text-transform: uppercase;
+//                     position: absolute;
+//                     top: 50%;
+//                     left: 60px;
+//                     transform: translateY(-50%);
+//                     pointer-events: none;
+//                     transition: 0.2s;
+//                     &.hidden{
+//                         opacity: 0;
+//                     }
+//                 }
+//                 .my-input{
+//                     width: 100%;
+//                     margin: 15px auto;
+//                     border-radius: 10px;
+//                     background-color: #f8f8f8;
+//                     padding: 13px 10px;
+//                     border: none;
+//                     font-size: 20px;
+//                     color: black !important;
+//                 }
+//                 .my-input:focus ~ .input-text{
+//                     opacity: 0;
+//                 }
+//                 .my-input:focus ~ .input-img{
+//                     opacity: 0;
+//                 }
+//                 .my-input:valid ~ .input-text{
+//                     opacity: 0;
+//                 }
+//                 .my-input:valid ~ .input-img{
+//                     opacity: 0;
+//                 }
+//             }
+//             .forgot-pass{
+//                 display: block;
+//                 width: 100%;
+//                 font-size: 22px;
+//                 text-align: center;
+//                 margin-top: 10px;
+//                 a{
+//                     color: #ff08fc;
+//                 }
+//             }
+//             .captcha-cont{
+//                 width: 304px;
+//                 margin: 10px auto;
+//             }
+//             .cta-button{
+//                 min-width: 270px;
+//                 height: 94px;
+//                 font-size: 43px;
+//                 font-weight: 500;
+//                 text-transform: uppercase;
+//                 margin-top: 20px;
+//                 transition: 0.2s;
+//                 &::before{
+//                     width: 275px;
+//                     height: 131px;
+//                     top: -17px;
+//                     left: -9px;
+//                     pointer-events: none;
+//                     background-image: url('/assets/base/images/login/big-btn-back.png');
+//                 }
+//                 &.active{
+//                   &::before{
+//                     background-image: url('/assets/base/images/login/big-btn-active.png');
+//                   }
+//                 }
+//             }
+//             .bottom-dots{
+//                 display: none;
+//                 justify-content: center;
+//                 align-items: center;
+//                 margin-top: 20px;
+//                 >div{
+//                     width: 12px;
+//                     height: 12px;
+//                     border-radius: 50%;
+//                     background-color: #f8f8f8;
+//                     margin: 5px 7px;
+//                     cursor: pointer;
+//                     &.active{
+//                         background-color: #ff08fc;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width: 1024px){
+//     .ioi-modal{
+//         .content-holder{
+//             transform: none;
+//             top: 120px;
+//             flex-wrap: wrap;
+//             .right-panel{
+//                 margin: 0;
+//                 width: 80%;
+//                 .bottom-dots{
+//                     display: flex;
+//                 }
+//                 .captcha-cont{
+//                     zoom: 57%;
+//                 }
+//             }
+//             .left-panel{
+//                 display: none;
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width: 640px){
+//     .ioi-modal{
+//         .content-holder{
+//             .right-panel{
+//                 .cta-button{
+//                     min-width: 250px;
+//                     &::before{
+//                         left: -23px;
+//                     }
+//                 }
+//                 .email-input,
+//                 .pass-input{
+//                     .input-img{
+//                         position: absolute;
+//                         top: 50%;
+//                         left: 20px;
+//                         transform: translateY(-50%);
+//                         width: 15px;
+//                         pointer-events: none;
+//                         transition: 0.2s;
+//                         &.hidden{
+//                             opacity: 0;
+//                         }
+//                     }
+//                     .input-text{
+//                         color: #c5c5c5;
+//                         font-size: 20px;
+//                         font-weight: 400;
+//                         text-transform: uppercase;
+//                         position: absolute;
+//                         top: 50%;
+//                         left: 45px;
+//                         transform: translateY(-50%);
+//                         pointer-events: none;
+//                         transition: 0.2s;
+//                         &.hidden{
+//                             opacity: 0;
+//                         }
+//                     }
+//                     .my-input{
+//                         width: 100%;
+//                         margin: 12px auto;
+//                         border-radius: 10px;
+//                         background-color: #f8f8f8;
+//                         padding: 12px 10px;
+//                         border: none;
+//                         font-size: 18px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+.main-holder {
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 67%,
+    rgba(7, 7, 7, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-holder {
+    height: 410px;
+    width: 100%;
+    max-width: 366px;
+    border-radius: 20px;
+    border: 3px solid #c19859;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: relative;
+    padding-top: 30px;
+    .top-sign {
+      display: block;
+      margin: 55px auto 0;
+      width: 80%;
+    }
+    .top-msg {
+      font-family: "Bungee";
+      font-size: 30px;
+      font-weight: 400;
+      text-transform: uppercase;
+      width: 100%;
+      text-align: center;
+      color: white;
+      padding: 0 10px;
+    }
+    .panel {
+      width: 100%;
+      text-align: center;
+      .my-input {
+        width: 84%;
+        margin: 0 auto 20px;
+        input {
+          background-color: transparent !important;
+          background-image: url("/assets/base/images/login/input-border.png");
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          border: none;
+          padding: 10px;
+          font-size: 22px;
+          width: 100%;
+          color: white;
+          &::placeholder {
+            font-family: "Bungee";
+            font-size: 24px;
+            font-weight: 700;
+            opacity: 0.3;
+          }
+          &:focus {
+            background-color: transparent !important;
+          }
+        }
+      }
+      .forgot-pass {
+        a {
+          text-decoration: none;
+          font-size: 12px;
+          font-family: "Bungee";
+          color: white;
+          transition: 0.2s;
+          &:hover {
+            color: #40e3f5;
+          }
+        }
+      }
+      .register-text {
+        margin-top: 10px;
+        padding: 0 10px;
+        p {
+          font-size: 19px;
+          font-family: "Bungee";
+          color: white;
+          span {
+            font-size: 19px;
+            font-family: "Bungee";
+            color: #ff12f1;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+          }
+        }
+      }
+      .cta-button {
+        font-size: 32px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        font-weight: 700;
+        text-shadow: none;
+        white-space: nowrap;
+        &::before {
+          width: 345px;
+          height: 131px;
+          top: -40px;
+          left: -106px;
+          pointer-events: none;
+          background-image: url("/assets/base/images/login/big-btn-back.png");
+        }
+        &.hoverable {
+          &:hover {
+            &::before {
+              background-image: url("/assets/base/images/login/big-btn-active.png");
+            }
+          }
+        }
+      }
+      .captcha-cont {
+        width: 303px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  :host {
+    zoom: 160%;
+  }
+  .main-holder {
+    .form-holder {
+      width: 90%;
+      height: unset;
+      padding-bottom: 40px;
+      .panel {
+        .my-input {
+          width: 80%;
+        }
+      }
+    }
+  }
+  .captcha-cont {
+    zoom: 120%;
+    height: 100px;
+  }
+}

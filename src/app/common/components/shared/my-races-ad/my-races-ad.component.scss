@@ -1,0 +1,294 @@
+.popup-holder {
+  position: relative;
+  z-index: 1000000;
+  background-color: #111111;
+  border-radius: 7px;
+  height: 100%;
+  width: 100%;
+  .content-holder{
+    width: 100%;
+    max-height: 100%;
+    padding-bottom: 50px;
+    position: relative;
+    padding: 0 20px;
+    .switch-holder{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px 0 15px;
+      padding: 0 3px 0 1px;
+      p{
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0;
+        opacity: .6;
+        cursor: pointer;
+        &.active{
+          opacity: 1;
+          font-weight: 500;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.box-item{
+  width: 100%;
+  height: 130px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 1px 0 0 1px;
+  &.mine{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  }
+  &:hover{
+    .inner-holder{
+      background: rgba(17, 17, 17, 0);
+    }
+  }
+  .click-dummy{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+  }
+  .back-img{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .inner-holder{
+    z-index: 2;
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.7);
+    padding: 25px 0 0 30px;
+    transition: .3s;
+    .race-name{
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 3px 0;
+    }
+    .watch{
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0;
+    }
+    .time{
+      font-size: 14px;
+      font-weight: 400;
+      margin: 10px 0 0 0;
+      opacity: .6;
+    }
+  }
+}
+
+
+.popup-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+  background-image: url("/assets/base/images/my-race.png");
+  padding: 10px 20px;
+  background-size: 100%;
+  position: relative;
+  width: 100%;
+  .img-holder {
+    width: 80px;
+    height: 60px;
+    position: relative;
+    transform: rotate(90deg);
+    img {
+      left: 50%;
+      top: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      height: 60px;
+    }
+  }
+  .text-holder {
+    text-align: left;
+    width: 85%;
+    p {
+      font-size: 14px;
+      color: #b8b8b8;
+      margin: 3px;
+      min-width: 130px;
+    }
+  }
+  .button-holder {
+    span {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 21px;
+      text-align: center;
+      color: #ffffff21;
+      display: block;
+    }
+    .button:hover {
+      background: none;
+    }
+    .multi-watch{
+      position: absolute;
+      left: 20px;
+      bottom: 0px;
+    }
+  }
+}
+
+.live-type {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+  color: #ffffff;
+}
+
+.timer {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+span.starts-in {
+  padding: 0 5px;
+}
+
+span.live-pricepool {
+  padding-right: 10px;
+  img {
+    margin-right: 5px;
+  }
+}
+span.live-players {
+  padding-right: 10px;
+  img {
+    margin-right: 5px;
+  }
+}
+
+h3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+  color: #ffffff21;
+  span {
+    color: #d41a5f;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .popup-holder{
+    min-width: 300px;
+    .content-holder{
+      .switch-holder{
+        p{
+          font-size: 16px;
+          margin: 0 11px 0 0;
+        }
+      }
+    }
+  }
+}
+
+.selected {
+  background-color: black;
+  color:white
+}
+.not-selected {
+  background-image: url(/assets/base/images/checkbox.png);
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  cursor: pointer;
+  background-color: transparent;
+    height: 30px;
+}
+
+.selected {
+  background-image: url(/assets/base/images/checkbox-checked.png);
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  cursor: pointer;
+  background-color: transparent;
+    height: 30px;
+}
+
+.cta-main {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  transform: translateX(-50%);
+  color: #ffffff;
+  font-size: 14px;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: 0.3s;
+  background: linear-gradient(250.32deg, #EB2163 22.61%, #950552 85.16%), #333333;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 12px 53px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1550px){
+  .popup-holder{
+    .content-holder{
+      padding: 0 20px;
+    }
+  }
+  .box-item{
+    height: 115px;
+    margin-bottom: 15px;
+    .back-img{
+      top: unset;
+      bottom: 0;
+    }
+    .inner-holder{
+      .race-name{
+        font-size: 17px;
+      }
+      .watch{
+        font-size: 14px;
+      }
+      .time{
+        font-size: 13px;
+        margin: 7px 0 0 0;
+        .timer{
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+span.favis {
+  position: absolute;
+  top: 23px;
+  right: 9px;
+  border: 1px solid #a0a0a0;
+  border-radius: 100%;
+  padding: 5px;
+  opacity: 0.9;
+}

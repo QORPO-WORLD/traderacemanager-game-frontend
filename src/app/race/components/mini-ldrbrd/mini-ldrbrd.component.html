@@ -1,0 +1,69 @@
+<div class="main-content">
+  <div class="sub-content">
+
+    <div class="table-holder">
+      <div class="table-header">
+        <div class="my-col position">
+          <p>Pos<span>ition</span></p>
+        </div>
+        <div class="my-col player">
+          <p>Player</p>
+        </div>
+        <div class="my-col points">
+          <p>Points</p>
+        </div>
+        <div class="my-col roi">
+          <p>ROI%</p>
+        </div>
+        <div class="my-col win">
+          <p>Potential win</p>
+        </div>
+      </div>
+      <ng-container *ngFor="let player of players;let indexx = index;">
+        <div class="table-item" *ngIf="player.position < 11" 
+        [ngClass]="{'not-in-tour': player.still_in_game === false && player.position !== 1, 'my-item': player.user_id === myDriver?.id }">
+          <div class="my-col position">
+            <p>{{player.position}}</p>
+          </div>
+          <div class="my-col username">
+            <p>{{player.user_nickname}}</p>
+          </div>
+          <div class="my-col points">
+            <p>{{player.points}}</p>
+          </div>
+          <div class="my-col roi">
+            <p>{{player.avg_roi | number:'1.4-4':'fr' }}%</p>
+          </div>
+          <div class="my-col win">
+            <p>{{player.applicable_payout | number:'1.2-2':'fr'}}</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="bottom-border my-cta-btn-back" *ngIf="showSeparator === true"></div>
+
+      <ng-container *ngFor="let player of myStats;let indexx = index;">
+        <div class="table-item my-item" *ngIf="player.position > 10" 
+        [ngClass]="{'not-in-tour': player.still_in_game === false && player.position !== 1 }">
+          <div class="my-col position">
+            <p>{{player.position}}</p>
+          </div>
+          <div class="my-col username">
+            <p>{{player.user_nickname}}</p>
+          </div>
+          <div class="my-col points">
+            <p>{{player.points}}</p>
+          </div>
+          <div class="my-col roi">
+            <p>{{player.avg_roi | number:'1.4-4':'fr' }}%</p>
+          </div>
+          <div class="my-col win">
+            <p>{{player.applicable_payout | number:'1.2-2':'fr'}}</p>
+          </div>
+        </div>
+      </ng-container>
+      
+      
+    </div>
+  </div>
+</div>

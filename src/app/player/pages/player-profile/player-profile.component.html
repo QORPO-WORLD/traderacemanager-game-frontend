@@ -1,0 +1,174 @@
+<div class="content-holder" [ngClass]="'back-level' + myAffilate?.affiliate_level">
+  <div class="top-panels">
+    <div class="left-panel panel-item">
+      <img class="level-img" [src]="'/assets/base/images/player-profile/avatar' + myAffilate?.affiliate_level + '-big.png'" alt="" [ngClass]="'level' + myAffilate?.affiliate_level">
+      <h1 class="my-level" [ngClass]="'level' + myAffilate?.affiliate_level">{{'shared.level' | translate}} {{myAffilate.affiliate_level}}</h1>
+    </div>
+    <div class="right-panel panel-item">
+      <h1 class="nickname">{{myDriver?.nickname}}</h1>
+      <div class="left-part">
+        <div class="profile-data">
+          <p class="heading">{{'profile.racer_profile' | translate}}</p>
+          <div class="racer-data">
+            <p>{{'profile.races' | translate}}: {{myDriverOld?.played_races_count}}</p>
+            <p>{{'profile.spent' | translate}}: {{myDriverOld?.total_bet_amount}}</p>
+            <p>{{'profile.maintenance' | translate}}: X</p>
+          </div>
+        </div>
+        <div class="balance-data">
+          <p class="heading">{{'profile.your_balance' | translate}}</p>
+          <div class="balance-info">
+            <p>{{myDriverBalances?.game_wallet_ioi  | number:'1.2-2':'fr'}}</p> <img class="ioi-logo" src="/assets/base/images/blue-ioi.png" alt="">
+            /div>
+        </div>
+      </div>
+      <div class="right-part">
+        <div class="profile-data">
+          <p class="heading">{{'shared.layout.affiliate' | translate}}</p>
+          <div class="racer-data">
+            <p>{{'profile.active' | translate}}: {{myAffilate.active_affiliates_count}}</p>
+            <p>{{'profile.total' | translate}}: {{myAffilate.total_affiliates_count}}</p>
+          </div>
+        </div>
+        <div class="buttons-holder">
+          <button class="cta-button hoverable" data-toggle="modal" data-target="#deposit-modal">{{'shared.deposit_btn' | translate}}</button>
+          <button class="cta-button hoverable" data-toggle="modal" data-target="#withdrawal-modal">{{'shared.withdraw_btn' | translate}}</button>
+          <button class="cta-button hoverable" data-toggle="modal" data-target="#transfer-modal">{{'shared.transfer_btn' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-cars-holder">
+    <h1 class="my-cars-heading">{{'garage.my_cars_btn' | translate}}</h1>
+    <div class="slider-holder">
+      <div class="arrow-left" (click)="prevEdition()"><img src="/assets/base/images/garage/edition-arrow-left.png" alt=""></div>
+      <div class="arrow-right" (click)="nextEdition()"><img src="/assets/base/images/garage/edition-arrow-right.png" alt=""></div>
+      <div class="cars-wrapper">
+        <div class="sliding-item" [ngStyle]="{'left': '-' + editionStylePx + 'px'}">
+          <div class="car-item" *ngFor="let car of myCars;let i = index">
+            <img [src]="'/assets/base/images/cars/car' + car.car_id + '.png'" alt="">
+            <div class="info-button"><img src="/assets/base/images/infomation.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bot-panels">
+    <div class="left-panel panel-item">
+      <h1 class="top-heading">{{'shared.stats' | translate}}</h1>
+      <div class="stats-switchers">
+        <div class="left-switches" >
+          <p [ngClass]="isLastMonth === false ? 'active' : ''" (click)="isLastMonth = false;getMyLeaderboard()">Current month</p>
+          <p [ngClass]="isLastMonth === true ? 'active' : ''" (click)="isLastMonth = true;getMyLeaderboard()">Last month</p>
+        </div>
+      </div>
+      <div class="stats-content">
+        <div class="flex-cont top">
+          <div class="stat-item">
+            <p class="desc">{{'profile.p_position' | translate}}</p>
+            <p>{{myLdrbrd?.player_position_overall ? myLdrbrd?.player_position_overall : '-'}}</p>
+          </div>
+          <div class="stat-item">
+            <p class="desc">{{'profile.t_position' | translate}}</p>
+            <p>{{myLdrbrd?.team_position ? myLdrbrd?.team_position : '-'}}</p>
+          </div>
+          <div class="stat-item">
+            <p class="desc">{{'profile.team' | translate}}</p>
+            <p>{{myLdrbrd.team_name ? myLdrbrd.team_name : '-'}}</p>
+          </div>
+        </div>
+        <div class="flex-cont">
+          <div class="stat-item">
+            <p class="desc">{{'profile.ROI' | translate}}</p>
+            <p>{{myLdrbrd?.roi ? (myLdrbrd?.roi | number:'1.0-4') : '-'}}%</p>
+          </div>
+          <div class="stat-item">
+            <p class="desc">{{'shared.points' | translate}}</p>
+            <p>{{myLdrbrd?.points ? myLdrbrd?.points : '-'}}</p>
+          </div>
+          <div class="stat-item">
+            <p class="desc">{{'shared.wins' | translate}}</p>
+            <p>{{myLdrbrd?.wins ? myLdrbrd?.wins : '-'}}</p>
+          </div>
+          <div class="stat-item">
+            <p class="desc">{{'profile.prizes' | translate}}</p>
+            <p>{{myLdrbrd?.prize ? myLdrbrd?.prize : '-'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel panel-item">
+      <h1 class="top-heading">{{'profile.acc_settings' | translate}}</h1>
+      <button class="cta-button hoverable resend-btn" (click)="resendActivation()" 
+      *ngIf="myDriver?.is_verified === false">{{'profile.resend_activation' | translate}}</button>
+      <div class="settings-item email">
+        <p class="desc">{{'profile.mail' | translate}}:</p>
+        <p>{{myDriver?.email}}</p>
+        <!-- <button class="cta-button hoverable">Change email</button> -->
+      </div>
+      <div class="settings-item country">
+        <p class="desc">{{'profile.country' | translate}}:</p>
+        <p>{{myDriver?.country}}</p>
+
+        <!-- <ion-item class="my-profile-select">
+          <ionic-selectable
+            [(ngModel)]="selectedCountry"
+            [items]="countryCodes"
+            itemValueField="code"
+            itemTextField="name"
+            [canSearch]="true"
+            (onChange)="countryChange($event)">
+            <ng-template ionicSelectableCloseButtonTemplate>
+              <div class="ion-my-close">
+                <img src="/assets/base/images/close-icon-blue.png" alt="">
+              </div>
+            </ng-template>
+            <ng-template ionicSelectableItemIconTemplate let-port="item" let-isPortSelected="isItemSelected">
+              <ion-icon item-left [name]="isPortSelected ? 'checkmark-circle-outline' : 'radio-button-off-outline'" [color]="isPortSelected ? 'null' : null">
+              </ion-icon>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item> -->
+        
+      </div>
+      <div class="settings-item">
+        <p class="desc">{{'profile.tutorial' | translate}}:</p>
+        <p><span class="info">
+          <form action="#">
+            <div class="switch">
+              <input id="switch-2" type="checkbox" class="switch-input" [(ngModel)]="tutorialStarted"  [ngModelOptions]="{standalone: true}" (change)="switchTutorial()"/>
+              <label for="switch-2" class="switch-label">Switch</label>
+              <label for="switch-2" class="on">{{'profile.on' | translate}}</label>
+              <label for="switch-2" class="off-label">{{'profile.off' | translate}}</label>
+            </div>
+          </form>
+        </span></p>
+      </div>
+      <div class="settings-item">
+        <p class="desc">{{'profile.auth' | translate}}:</p>
+        <p><span class="info">
+          <form action="#">
+            <div class="switch">
+              <input id="switch-3" type="checkbox" class="switch-input" [(ngModel)]="authenabled"  [ngModelOptions]="{standalone: true}" (change)="switchAuthenticator($event)"/>
+           <label for="switch-3" class="switch-label">Switch</label>
+              <label for="switch-3" class="on">{{'profile.on' | translate}}</label>
+              <label for="switch-3" class="off-label">{{'profile.off' | translate}}</label>
+            </div>
+          </form>
+        </span></p>
+      </div>
+      <div class="settings-item">
+        <p class="desc">{{'profile.crypto' | translate}}:</p>
+        <p class="crypto"><span class="info"
+          *ngIf="editingWallet === false">{{myDriver?.my_crypto_address ? myDriver?.my_crypto_address : '-'}}
+        </span>
+        <input [(ngModel)]="cryptoMtfrckr" *ngIf="editingWallet === true" [ngModelOptions]="{standalone: true}">
+        <img class="edit-icon" src="/assets/base/images/edit-adress.png" alt="" *ngIf="editingWallet === false" (click)="editingWallet = true">
+        <img src="/assets/base/images/check-mark-24.png" alt="" class="edit-icon" *ngIf="editingWallet === true" (click)="patchWallet()"></p>
+      </div>
+    </div>
+  </div>
+
+</div>

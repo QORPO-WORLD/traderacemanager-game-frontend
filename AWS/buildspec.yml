@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+        nodejs: 10
+    commands:
+        - echo AngularEnv=${ANGULAR_ENV_NAME}
+        - echo PipelineId=${PIPELINE_EXEC_ID}
+        - echo GitCommitId=${GIT_COMMIT_ID}
+        - echo DeployBucketName=${DEPLOY_BUCKET_NAME}
+        - echo CloudfrontId=${CLOUDFRONT_DISTRIBUTION_ID}
+        - echo Installing source NPM dependencies...
+        - npm install
+        - npm install -g @ionic/cli
+  pre_build:
+    commands:
+        - chmod +x AWS/*.sh
+  build:
+    commands:
+        - echo Build started 
+        - ionic build --prod
+        - echo ${GIT_COMMIT_ID} > www/version.txt
+  post_build:
+    commands:
+        - ./AWS/prepare-target-S3.sh ${DEPLOY_BUCKET_NAME}
+        - ./AWS/prepare-cloudfront-distribution.sh ${CLOUDFRONT_DISTRIBUTION_ID}
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'www*'

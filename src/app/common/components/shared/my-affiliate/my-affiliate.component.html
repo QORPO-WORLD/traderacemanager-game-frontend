@@ -1,0 +1,87 @@
+<div class="aff-content">
+  <h1 class="top-heading">Level up, <span>get affiliated.</span><br> Start making more money today.</h1>
+
+  <div class="team-menu">
+    <div class="menu-desc">
+        <p class="join-team" (click)="subpageAff = true">{{'affiliate.info' | translate}}</p>
+        <p class="my-team" (click)="subpageAff = false">{{'start-race.players' | translate}}</p>
+    </div>
+    <div class="menu-line" [ngClass]="{'right': subpageAff === false}">
+        <div class="inner-line">&nbsp;</div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="subpageAff === true">
+    <div class="aff-item">
+      <div class="img-holder">
+        <img src="/assets/base/images/avatars/avatar1.svg" alt="">
+      </div>
+      <div class="text-holder">
+        <p class="heading">The Rookie</p>
+        <p>The easiest way to build your online income by playing crypto games. No maintenance, no fees.<span> You will get 0.5% from turnover of your affiliates.</span></p>
+      </div>
+    </div>
+    <div class="aff-item">
+      <div class="img-holder">
+        <img src="/assets/base/images/avatars/avatar2.svg" alt="">
+      </div>
+      <div class="text-holder">
+        <p class="heading">The Flash</p>
+        <p>To get to this level, turn over at least 1000 IOI tokens. To keep it, attend at least one paid race in a week. <span>You will get 1% from turnover of your affiliates.</span></p>
+      </div>
+    </div>
+    <div class="aff-item">
+      <div class="img-holder">
+        <img src="/assets/base/images/avatars/avatar3.svg" alt="">
+      </div>
+      <div class="text-holder">
+        <p class="heading">The Racer</p>
+        <p>To get to this level, turn over at least 10 000 IOI tokens. To keep it, attend at least two paid races in a week.  <span>You will get 1.5% from turnover of your affiliates.</span></p>
+      </div>
+    </div>
+    <div class="aff-item">
+      <div class="img-holder">
+        <img class="speci-img" src="/assets/base/images/avatars/avatar4.svg" alt="">
+      </div>
+      <div class="text-holder">
+        <p class="heading">The Champion</p>
+        <p>To get to this level, turn over at least 50 000 IOI tokens. To keep it, attend at least three paid races in a week. <span>You will get 2% from turnover of your affiliates.</span></p>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="subpageAff === false">
+
+    <div class="table-holder">
+      <div class="inner-holder">
+        <div class="tab-item header">
+          <p class="small">Level</p>
+          <p>Nickname</p>
+          <p>E-mail</p>
+          <p class="last">Rewards</p>
+        </div>
+        <ng-container *ngIf="affilatesList.length > 0">
+          <div class="tab-item" *ngFor="let item of affilatesList;let i = index;">
+            <p class="small">Level {{ item.level }}</p>
+            <p>{{ item.nickname }}</p>
+            <p>{{ item.email | slice:0:8 }}...</p>
+            <p class="last">{{ item.total_rewards_ioi | number:'1.0-0':'fr' }} {{'shared.ioi' | translate}} <br> {{ item.total_rewards_trx | number:'1.0-0':'fr' }} {{'shared.trx' | translate}}</p>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="affilatesList.length === 0">
+          <h1 class="no-aff-msg">You dont have any affiliate players.</h1>
+        </ng-container>
+        
+        
+      </div>
+      <div class="arrows" *ngIf="totalPages > 1">
+        <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"><img src="/assets/base/images/leaderboard/prev-arrow-trans.png" alt=""></button>
+        <span class="pager-actual">{{actualPage}}/{{totalPages}}</span><br>
+        <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"><img src="/assets/base/images/leaderboard/next-arrow-trans.png" alt=""></button>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

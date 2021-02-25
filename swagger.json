@@ -1,0 +1,6273 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IOI",
+    "version": "v1"
+  },
+  "host": "localhost:8000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/ioi",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "paths": {
+    "/affiliates/": {
+      "get": {
+        "operationId": "affiliates_list",
+        "description": "API endpoint to list user affiliates.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Affiliates"
+              }
+            }
+          }
+        },
+        "tags": [
+          "affiliates"
+        ]
+      },
+      "parameters": []
+    },
+    "/affiliates/me/": {
+      "get": {
+        "operationId": "affiliates_me",
+        "description": "API endpoint to list user affiliates.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Affiliate Details",
+            "schema": {
+              "$ref": "#/definitions/AffiliateDetails"
+            }
+          }
+        },
+        "tags": [
+          "affiliates"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/jwt/create-in-desktop/": {
+      "post": {
+        "operationId": "auth_jwt_create-in-desktop_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MyTokenObtainPairInApp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/JwtData"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/jwt/create/": {
+      "post": {
+        "operationId": "auth_jwt_create_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MyTokenObtainPair"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/JwtData"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/jwt/refresh/": {
+      "post": {
+        "operationId": "auth_jwt_refresh_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "access"
+              ],
+              "type": "object",
+              "properties": {
+                "access": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/jwt/verify/": {
+      "post": {
+        "operationId": "auth_jwt_verify_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenVerify"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/refresh-session/": {
+      "put": {
+        "operationId": "auth_refresh-session_update",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/sign-in/": {
+      "post": {
+        "operationId": "auth_sign-in_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/sign-out/": {
+      "put": {
+        "operationId": "auth_sign-out_update",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/": {
+      "get": {
+        "operationId": "auth_users_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "post": {
+        "operationId": "auth_users_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRegistration"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomAuthCreate"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/activation/": {
+      "post": {
+        "operationId": "auth_users_activation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Activation"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Activation"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/create-desktop/": {
+      "post": {
+        "operationId": "auth_users_create_desktop",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRegistration"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomAuthCreate"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/create-facebook/": {
+      "post": {
+        "operationId": "auth_users_create_facebook",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FacebookLogin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/JwtData"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/create-google/": {
+      "post": {
+        "operationId": "auth_users_create_google",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GoogleLogin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/JwtData"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/me/": {
+      "get": {
+        "operationId": "auth_users_me_read",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "put": {
+        "operationId": "auth_users_me_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "patch": {
+        "operationId": "auth_users_me_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "delete": {
+        "operationId": "auth_users_me_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/resend_activation/": {
+      "post": {
+        "operationId": "auth_users_resend_activation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/reset_email/": {
+      "post": {
+        "operationId": "auth_users_reset_username",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/reset_email_confirm/": {
+      "post": {
+        "operationId": "auth_users_reset_username_confirm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsernameResetConfirm"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UsernameResetConfirm"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/reset_password/": {
+      "post": {
+        "operationId": "auth_users_reset_password",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/reset_password_confirm/": {
+      "post": {
+        "operationId": "auth_users_reset_password_confirm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PasswordResetConfirm"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PasswordResetConfirm"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/set_email/": {
+      "post": {
+        "operationId": "auth_users_set_username",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetUsername"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetUsername"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/set_password/": {
+      "post": {
+        "operationId": "auth_users_set_password",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/users/{id}/": {
+      "get": {
+        "operationId": "auth_users_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "put": {
+        "operationId": "auth_users_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "patch": {
+        "operationId": "auth_users_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "delete": {
+        "operationId": "auth_users_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A UUID string identifying this IOI user.",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      ]
+    },
+    "/auth/verification/": {
+      "post": {
+        "operationId": "auth_verification_create",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Verification email sent."
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/verification/confirm/{uid}/{verification_hash}": {
+      "post": {
+        "operationId": "auth_verification_confirm_create",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Verification done."
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "uid",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "verification_hash",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/blockchain/confirm-withdrawal/{confirmation_hash}": {
+      "post": {
+        "operationId": "blockchain_confirm-withdrawal_create",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Withdrawal processed."
+          }
+        },
+        "tags": [
+          "blockchain"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "confirmation_hash",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/blockchain/deposit/": {
+      "post": {
+        "operationId": "blockchain_deposit_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BlockchainDeposit"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Deposit request created."
+          }
+        },
+        "tags": [
+          "blockchain"
+        ]
+      },
+      "parameters": []
+    },
+    "/blockchain/withdraw/": {
+      "post": {
+        "operationId": "blockchain_withdraw_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BlockchainWithdrawal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Withdrawal prepared."
+          }
+        },
+        "tags": [
+          "blockchain"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/assets": {
+      "get": {
+        "operationId": "cars_mine_list",
+        "description": "API endpoint to list users cars.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Car"
+              }
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/assets/buy": {
+      "get": {
+        "operationId": "cars_showroom_list",
+        "description": "API endpoint for cars showroom to be seen.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CarShowroom"
+              }
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/assets/buy/{car_model}": {
+      "get": {
+        "operationId": "cars_buy_list",
+        "description": "API endpoint to buy cars.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "car_pk": {
+                  "type": "integer"
+                },
+                "delivered_new": {
+                  "type": "bool"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cars"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "car_model",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/me/daily-tasks": {
+      "get": {
+        "operationId": "drivers_daily-tasks_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns daily tasks for current date",
+            "schema": {
+              "$ref": "#/definitions/DailyTasks"
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/fav-coins": {
+      "get": {
+        "operationId": "drivers_fav-coins_list",
+        "description": "API endpoints to get and update favorite coins of the user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Favorite coins retrieved",
+            "schema": {
+              "$ref": "#/definitions/FavCoins"
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "put": {
+        "operationId": "drivers_fav-coins_update",
+        "description": "API endpoints to get and update favorite coins of the user",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FavCoins"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Favorite coins updated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FavCoins"
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/fav-fuel": {
+      "get": {
+        "operationId": "drivers_fav-fuel_list",
+        "description": "API endpoints to get and update favorite fuel of the user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Favorite fuel retrieved",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FavFuel"
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "put": {
+        "operationId": "drivers_fav-fuel_update",
+        "description": "API endpoints to get and update favorite fuel of the user",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FavFuel"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Favorite fuel updated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FavFuel"
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/fav-races": {
+      "get": {
+        "operationId": "drivers_fav-races_list",
+        "description": "API endpoints to get and update favorite coins of the user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Favorite races retrieved",
+            "schema": {
+              "$ref": "#/definitions/FavRaces"
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "put": {
+        "operationId": "drivers_fav-races_update",
+        "description": "API endpoints to get and update favorite coins of the user",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FavRaces"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Favorite races updated",
+            "schema": {
+              "$ref": "#/definitions/FavRaces"
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "races/me/first-login": {
+      "patch": {
+        "operationId": "drivers_first-login_partial_update",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Sets is_first_login property to False"
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/tutorial": {
+      "patch": {
+        "operationId": "drivers_tutorial_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "is_in_tutorial",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sets is_in_tutorial property"
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/initial-data": {
+      "get": {
+        "operationId": "drivers_initial",
+        "description": "API endpoint for profiles to be viewed.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "id",
+                "hash"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "nickname": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "affiliate_slug": {
+                  "type": "string"
+                },
+                "is_using_authenticator": {
+                  "type": "boolean"
+                },
+                "my_crypto_address": {
+                  "type": "string"
+                },
+                "nitro_wallet_ioie": {
+                  "type": "number"
+                },
+                "tournament_tickets": {
+                  "type": "number"
+                },
+                "is_first_login": {
+                  "type": "boolean"
+                },
+                "is_in_tutorial": {
+                  "type": "boolean"
+                },
+                "is_verified": {
+                  "type": "boolean"
+                },
+                "is_paid_membership": {
+                  "type": "boolean"
+                },
+                "team": {
+                  "type": "string"
+                },
+                "affiliate_level": {
+                  "type": "number"
+                },
+                "total_bet_amount": {
+                  "type": "integer"
+                },
+                "total_races": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/notifications": {
+      "get": {
+        "operationId": "drivers_notifications_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get new notifications for user and delete them",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Notification"
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "delete": {
+        "operationId": "drivers_notifications_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Get new notifications for user and delete them"
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/tutorial-mode": {
+      "patch": {
+        "operationId": "drivers_tutorial_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "is_in_tutorial",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sets is_in_tutorial property"
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/game-wallet/buy": {
+      "post": {
+        "operationId": "game-wallet_buy_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BuyWallet"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns updated user wallet",
+            "schema": {
+              "$ref": "#/definitions/Wallet"
+            }
+          }
+        },
+        "tags": [
+          "game-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/leaderboard/list": {
+      "get": {
+        "operationId": "leaderboard_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/PlayerLeaderboard"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "leaderboard"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/leaderboard": {
+      "get": {
+        "operationId": "leaderboard_me",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "last_month",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns players stats from leaderboard",
+            "schema": {
+              "$ref": "#/definitions/PlayerLeaderboardMe"
+            }
+          }
+        },
+        "tags": [
+          "leaderboard"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/leaderboard/players": {
+      "get": {
+        "operationId": "leaderboard_player_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "is_race24",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "last_month",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns player leaderboard",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerLeaderboard"
+              }
+            }
+          }
+        },
+        "tags": [
+          "leaderboard"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/team/leaderboard": {
+      "get": {
+        "operationId": "leaderboard_team_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "last_month",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns player leaderboard",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerLeaderboard"
+              }
+            }
+          }
+        },
+        "tags": [
+          "leaderboard"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/team/leaderboard/internal": {
+      "get": {
+        "operationId": "leaderboard_team_internal_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/InternalTeamLeaderboard"
+            }
+          }
+        },
+        "tags": [
+          "leaderboard"
+        ]
+      },
+      "parameters": []
+    },
+    "/metrics/equity-stats/": {
+      "get": {
+        "operationId": "metrics_equity-stats_list",
+        "description": "API endpoint to get equity stats of user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Equity stats of user",
+            "schema": {
+              "$ref": "#/definitions/EquityStats"
+            }
+          }
+        },
+        "tags": [
+          "metrics"
+        ]
+      },
+      "parameters": []
+    },
+    "/metrics/investor-metrics/": {
+      "get": {
+        "operationId": "metrics_investor_metrics",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns investor metrics",
+            "schema": {
+              "$ref": "#/definitions/InvestorMetrics"
+            }
+          }
+        },
+        "tags": [
+          "metrics"
+        ]
+      },
+      "parameters": []
+    },
+    "/metrics/paid-in-bonuses/": {
+      "get": {
+        "operationId": "metrics_paid-in-bonuses_list",
+        "description": "API endpoint to get amount paid in bonuses",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Amount paid id bonuses",
+            "schema": {
+              "$ref": "#/definitions/PaidInBonuses"
+            }
+          }
+        },
+        "tags": [
+          "metrics"
+        ]
+      },
+      "parameters": []
+    },
+    "/metrics/platform-metrics/": {
+      "get": {
+        "operationId": "metrics_platform_metrics",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns platform metrics",
+            "schema": {
+              "$ref": "#/definitions/PlatformMetrics"
+            }
+          }
+        },
+        "tags": [
+          "metrics"
+        ]
+      },
+      "parameters": []
+    },
+    "/metrics/user-transaction-delta/": {
+      "get": {
+        "operationId": "metrics_user-transaction-delta_list",
+        "description": "API endpoint to get transactions deltas for current month",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UsersTransactionsDelta"
+            }
+          }
+        },
+        "tags": [
+          "metrics"
+        ]
+      },
+      "parameters": []
+    },
+    "/mfa/cancel/": {
+      "post": {
+        "operationId": "mfa_cancel_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MFASecret"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "mfa"
+        ]
+      },
+      "parameters": []
+    },
+    "/mfa/qr-secret/": {
+      "post": {
+        "operationId": "mfa_qr-secret_create",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "examples": {
+              "application/octet-stream": {}
+            }
+          },
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "mfa"
+        ]
+      },
+      "parameters": []
+    },
+    "/me/generate-mfa-secret": {
+      "post": {
+        "operationId": "mfa_secret_create",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GenerateMFASecret"
+            }
+          },
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "mfa"
+        ]
+      },
+      "parameters": []
+    },
+    "/me/validate-mfa-code": {
+      "post": {
+        "operationId": "mfa_test_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MFASecret"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "mfa"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet": {
+      "patch": {
+        "operationId": "nitro-wallet_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MyCryptoAddress"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Update crypto address for wallet",
+            "schema": {
+              "$ref": "#/definitions/MyCryptoAddress"
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/me/balances": {
+      "get": {
+        "operationId": "drivers_balances",
+        "description": "API endpoint for profiles to be viewed.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "game_wallet_trx": {
+                  "type": "number"
+                },
+                "game_wallet_ioi": {
+                  "type": "number"
+                },
+                "nitro_wallet_trx": {
+                  "type": "number"
+                },
+                "nitro_wallet_ioi": {
+                  "type": "number"
+                },
+                "stake_wallet_ioi": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "drivers"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/assets/": {
+      "get": {
+        "operationId": "nitro-wallet_assets_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return list of user wallets",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Assets"
+              }
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/buy": {
+      "post": {
+        "operationId": "nitro-wallet_buy_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BuyWallet"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns updated user wallet",
+            "schema": {
+              "$ref": "#/definitions/Wallet"
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/coins/": {
+      "get": {
+        "operationId": "nitro-wallet_coins_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return list of supported coins",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coin"
+              }
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/deposit": {
+      "post": {
+        "operationId": "nitro-wallet_deposit_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Deposit"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Deposit request created.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            },
+            "type": "object"
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/deposit/callback": {
+      "post": {
+        "operationId": "nitro-wallet_deposit_callback_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DepositCallback"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Deposit request callback."
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/exchange": {
+      "get": {
+        "operationId": "nitro-wallet_exchange_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "from_currency",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "maxLength": 6,
+            "minLength": 1
+          },
+          {
+            "name": "to_currency",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "trx",
+            "maxLength": 6,
+            "minLength": 1
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "decimal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provides conversion rate.",
+            "schema": {
+              "$ref": "#/definitions/ExchangeRate"
+            },
+            "type": "detail"
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "post": {
+        "operationId": "nitro-wallet_exchange_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NitroWalletExchange"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Exchange currency for another currency.",
+            "schema": {
+              "$ref": "#/definitions/WalletBalance"
+            },
+            "type": "object"
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/order": {
+      "get": {
+        "operationId": "nitro-wallet_order_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "invoice_id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provides order status.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            },
+            "type": "list"
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/system": {
+      "get": {
+        "operationId": "nitro-wallet_system_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns system balances",
+            "schema": {
+              "$ref": "#/definitions/SystemNitroWallet"
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/transactions/": {
+      "get": {
+        "operationId": "nitro-wallet_transactions_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Transaction"
+              }
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/transfer": {
+      "post": {
+        "operationId": "nitro-wallet_transfer_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransferWallet"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Returns updated user wallet",
+            "schema": {
+              "$ref": "#/definitions/Wallet"
+            }
+          }
+        },
+        "tags": [
+          "nitro-wallet"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/next/{race_identifier}/detail/": {
+      "get": {
+        "operationId": "races-v2_detail_list",
+        "description": "API endpoint /races-v2/{race_identifier}/detail",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Provides race detail.",
+            "schema": {
+              "$ref": "#/definitions/RaceDetailV2"
+            },
+            "type": "list"
+          }
+        },
+        "tags": [
+          "races-v2"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "race_identifier",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races​/game/current": {
+      "get": {
+        "operationId": "races_current-v2_list",
+        "description": "Provide current races data.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CurrentRace"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/current/mine": {
+      "get": {
+        "operationId": "races_current_mine_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MyCurrentRace"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/available-assets": {
+      "get": {
+        "operationId": "races_multi-can-join-v2_list",
+        "description": "Provide lists of cars of current user, which can join to a race.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MultiCanJoinV2"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/signup": {
+      "post": {
+        "operationId": "races_multi-signup_create",
+        "description": "API endpoint to sign up to a race.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RaceSignupV2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MultiSignup"
+              }
+            }
+          },
+          "500": {
+            "description": "Error."
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/next": {
+      "get": {
+        "operationId": "races_next-v2_list",
+        "description": "Provides next races data.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NextRaceV2"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/next/mine": {
+      "get": {
+        "operationId": "races_next-v2_mine_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MyNextRace"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/game/tournament/{tournament_id}/scoreboard": {
+      "get": {
+        "operationId": "races_tournament_leaderboard_list",
+        "description": "Provides tournament leaderboard data.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TournamentLeaderboard"
+              }
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "tournament_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/game/tournament/{tournament_id}/next-race/": {
+      "get": {
+        "operationId": "races_tournament_next-race_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/NextTournamentRaceHash"
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "tournament_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/game/{race_hash}/detail/": {
+      "get": {
+        "operationId": "races_detail_list",
+        "description": "API endpoint /race/{hash}/detail",
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provides race detail.",
+            "schema": {
+              "$ref": "#/definitions/RaceDetail"
+            },
+            "type": "list"
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "race_hash",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/game/{race_hash}/status": {
+      "get": {
+        "operationId": "races_stats_list",
+        "description": "API endpoint /race/{hash}/stats",
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provides race statistics",
+            "schema": {
+              "$ref": "#/definitions/RaceStat"
+            },
+            "type": "list"
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "race_hash",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/game/{race_hash}/winner/": {
+      "get": {
+        "operationId": "races_winner_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Provides race winners.",
+            "schema": {
+              "$ref": "#/definitions/RaceWinners"
+            }
+          }
+        },
+        "tags": [
+          "races"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "race_hash",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/races/rewards": {
+      "get": {
+        "operationId": "rewards_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Rewards",
+            "schema": {
+              "$ref": "#/definitions/Rewards"
+            }
+          }
+        },
+        "tags": [
+          "rewards"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/rewards/historical": {
+      "get": {
+        "operationId": "rewards_historical_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Cumulative Rewards",
+            "schema": {
+              "$ref": "#/definitions/CumulativeRewards"
+            }
+          }
+        },
+        "tags": [
+          "rewards"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/rewards": {
+      "get": {
+        "operationId": "rewards_me_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Rewards Detail",
+            "schema": {
+              "$ref": "#/definitions/RewardsMe"
+            }
+          }
+        },
+        "tags": [
+          "rewards"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/rewards/stats": {
+      "get": {
+        "operationId": "rewards_stats_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Rewards Detail",
+            "schema": {
+              "$ref": "#/definitions/RewardsStats"
+            }
+          }
+        },
+        "tags": [
+          "rewards"
+        ]
+      },
+      "parameters": []
+    },
+    "/team-chat/": {
+      "get": {
+        "operationId": "team-chat_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns chat messages for a specific race.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ChatMessage"
+              }
+            }
+          }
+        },
+        "tags": [
+          "team-chat"
+        ]
+      },
+      "post": {
+        "operationId": "team-chat_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendChatMessage"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Chat message created."
+          }
+        },
+        "tags": [
+          "team-chat"
+        ]
+      },
+      "parameters": []
+    },
+    "/team-chat/members": {
+      "get": {
+        "operationId": "team-chat_members_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamChatMembers"
+              }
+            }
+          }
+        },
+        "tags": [
+          "team-chat"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/team/list": {
+      "get": {
+        "operationId": "teams_list",
+        "description": "API endpoint for teams to be viewed.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/RacingTeam"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teams"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/me/join-to-team": {
+      "post": {
+        "operationId": "teams_join_create",
+        "description": "API endpoint to join the team.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JoinTeam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the team id you're a member of.",
+            "schema": {
+              "$ref": "#/definitions/TeamMember"
+            }
+          }
+        },
+        "tags": [
+          "teams"
+        ]
+      },
+      "parameters": []
+    },
+    "/other/ticker/{id}": {
+      "get": {
+        "operationId": "ticker-prices_read",
+        "description": "API endpoint to retrieve current prices from Ticker.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Ticker"
+            }
+          }
+        },
+        "tags": [
+          "ticker-prices"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this ticker.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/nitro-wallet/trading-pool/lock": {
+      "post": {
+        "operationId": "trading-pool_lock_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LockTradingPool"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns locked balance in USD",
+            "schema": {
+              "$ref": "#/definitions/LockedTradingPool"
+            }
+          }
+        },
+        "tags": [
+          "trading-pool"
+        ]
+      },
+      "parameters": []
+    },
+    "/nitro-wallet/trading-pool/rewards": {
+      "get": {
+        "operationId": "trading-pool_rewards_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns locked balance in USD and earned amount.",
+            "schema": {
+              "$ref": "#/definitions/TradingPoolRewards"
+            }
+          }
+        },
+        "tags": [
+          "trading-pool"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/transactions/all": {
+      "get": {
+        "operationId": "transactions_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Transaction"
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      },
+      "parameters": []
+    },
+    "/races/transactions/races/": {
+      "get": {
+        "operationId": "transactions_races_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Transaction"
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "definitions": {
+    "Affiliates": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "title": "Level",
+          "type": "string",
+          "readOnly": true
+        },
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "readOnly": true
+        },
+        "total_rewards_ioi": {
+          "title": "Total rewards ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_rewards_trx": {
+          "title": "Total rewards trx",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "AffiliateDetails": {
+      "required": [
+        "affiliate_level"
+      ],
+      "type": "object",
+      "properties": {
+        "active_affiliates_count": {
+          "title": "Active affiliates count",
+          "type": "string",
+          "readOnly": true
+        },
+        "total_affiliates_count": {
+          "title": "Total affiliates count",
+          "type": "string",
+          "readOnly": true
+        },
+        "affiliate_level": {
+          "title": "Affiliate level",
+          "type": "integer"
+        },
+        "maintenance_level": {
+          "title": "Maintenance level",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "AffiliatePremium": {
+      "type": "object",
+      "properties": {
+        "first_line_partners": {
+          "title": "First line partners",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "second_line_partners": {
+          "title": "Second line partners",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "third_line_partners": {
+          "title": "Third line partners",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "fourth_line_partners": {
+          "title": "Fourth line partners",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "profit_last_week": {
+          "title": "Profit last week",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_profit": {
+          "title": "Total profit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_partners": {
+          "title": "Total partners",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        }
+      }
+    },
+    "AffiliateTeam": {
+      "type": "object",
+      "properties": {
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true
+        },
+        "line": {
+          "title": "Line",
+          "type": "integer",
+          "readOnly": true
+        },
+        "premium_ioi_bought": {
+          "title": "Premium ioi bought",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "reward": {
+          "title": "Reward",
+          "type": "string",
+          "readOnly": true
+        },
+        "parent": {
+          "title": "Parent",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "UniversalCount": {
+      "required": [
+        "date",
+        "count"
+      ],
+      "type": "object",
+      "properties": {
+        "date": {
+          "title": "Date",
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer"
+        }
+      }
+    },
+    "UniversalSum": {
+      "required": [
+        "date",
+        "sum"
+      ],
+      "type": "object",
+      "properties": {
+        "date": {
+          "title": "Date",
+          "type": "string",
+          "format": "date"
+        },
+        "sum": {
+          "title": "Sum",
+          "type": "number"
+        }
+      }
+    },
+    "UniversalCountMaxSum": {
+      "required": [
+        "date",
+        "count",
+        "max",
+        "sum"
+      ],
+      "type": "object",
+      "properties": {
+        "date": {
+          "title": "Date",
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer"
+        },
+        "max": {
+          "title": "Max",
+          "type": "number"
+        },
+        "sum": {
+          "title": "Sum",
+          "type": "number"
+        }
+      }
+    },
+    "NewRegistrations": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "MyTokenObtainPairInApp": {
+      "required": [
+        "email",
+        "password",
+        "recaptcha_token"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        },
+        "recaptcha_token": {
+          "title": "Recaptcha token",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "authcode": {
+          "title": "Authcode",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "JwtData": {
+      "required": [
+        "refresh",
+        "access"
+      ],
+      "type": "object",
+      "properties": {
+        "refresh": {
+          "title": "Refresh",
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "title": "Access",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "MyTokenObtainPair": {
+      "required": [
+        "email",
+        "password",
+        "recaptcha_token"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        },
+        "recaptcha_token": {
+          "title": "Recaptcha token",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "authcode": {
+          "title": "Authcode",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TokenRefresh": {
+      "required": [
+        "refresh"
+      ],
+      "type": "object",
+      "properties": {
+        "refresh": {
+          "title": "Refresh",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TokenVerify": {
+      "required": [
+        "token"
+      ],
+      "type": "object",
+      "properties": {
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Login": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "format": "email",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        },
+        "authcode": {
+          "title": "Authcode",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "email": {
+          "title": "Email address",
+          "type": "string",
+          "format": "email",
+          "readOnly": true,
+          "minLength": 1
+        }
+      }
+    },
+    "UserRegistration": {
+      "required": [
+        "email",
+        "password",
+        "recaptcha_token"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "email": {
+          "title": "Email address",
+          "type": "string",
+          "format": "email",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "country": {
+          "title": "Country",
+          "type": "string",
+          "maxLength": 40
+        },
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "maxLength": 128
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        },
+        "affiliate_slug": {
+          "title": "Affiliate slug",
+          "type": "string",
+          "readOnly": true,
+          "maxLength": 200,
+          "minLength": 1,
+          "x-nullable": true
+        },
+        "recaptcha_token": {
+          "title": "Recaptcha token",
+          "type": "string",
+          "maxLength": 2000,
+          "minLength": 1
+        }
+      }
+    },
+    "CustomAuthCreate": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserRegistration"
+        },
+        "jwt": {
+          "$ref": "#/definitions/JwtData"
+        }
+      }
+    },
+    "Activation": {
+      "required": [
+        "uid",
+        "token"
+      ],
+      "type": "object",
+      "properties": {
+        "uid": {
+          "title": "Uid",
+          "type": "string",
+          "minLength": 1
+        },
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "FacebookLogin": {
+      "required": [
+        "fb_token"
+      ],
+      "type": "object",
+      "properties": {
+        "fb_token": {
+          "title": "Fb token",
+          "type": "string",
+          "minLength": 1
+        },
+        "email_if_required": {
+          "title": "Email if required",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "GoogleLogin": {
+      "required": [
+        "google_token"
+      ],
+      "type": "object",
+      "properties": {
+        "google_token": {
+          "title": "Google token",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "SendEmailReset": {
+      "required": [
+        "email"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "minLength": 1
+        }
+      }
+    },
+    "UsernameResetConfirm": {
+      "required": [
+        "new_email"
+      ],
+      "type": "object",
+      "properties": {
+        "new_email": {
+          "title": "Email address",
+          "type": "string",
+          "format": "email",
+          "maxLength": 255,
+          "minLength": 1
+        }
+      }
+    },
+    "PasswordResetConfirm": {
+      "required": [
+        "uid",
+        "token",
+        "new_password"
+      ],
+      "type": "object",
+      "properties": {
+        "uid": {
+          "title": "Uid",
+          "type": "string",
+          "minLength": 1
+        },
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_password": {
+          "title": "New password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "SetUsername": {
+      "required": [
+        "new_email"
+      ],
+      "type": "object",
+      "properties": {
+        "new_email": {
+          "title": "Email address",
+          "type": "string",
+          "format": "email",
+          "maxLength": 255,
+          "minLength": 1
+        }
+      }
+    },
+    "SetPassword": {
+      "required": [
+        "new_password",
+        "current_password"
+      ],
+      "type": "object",
+      "properties": {
+        "new_password": {
+          "title": "New password",
+          "type": "string",
+          "minLength": 1
+        },
+        "current_password": {
+          "title": "Current password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "BlockchainDeposit": {
+      "type": "object",
+      "properties": {
+        "amount_to_deposit": {
+          "title": "Amount to deposit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "wallet_type": {
+          "title": "Wallet type",
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 1
+        }
+      }
+    },
+    "BlockchainWithdrawal": {
+      "required": [
+        "wallet_type"
+      ],
+      "type": "object",
+      "properties": {
+        "amount_to_withdraw": {
+          "title": "Amount to withdraw",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.000000"
+        },
+        "wallet_type": {
+          "title": "Wallet type",
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 1
+        },
+        "authcode": {
+          "title": "Authcode",
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 1
+        }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "pk": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "car_id": {
+          "title": "Car id",
+          "type": "string",
+          "readOnly": true
+        },
+        "car_wins_count": {
+          "title": "Car wins count",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "car_wins_roi_avg": {
+          "title": "Car wins roi avg",
+          "type": "number"
+        },
+        "car_wins_total_points": {
+          "title": "Car wins total points",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "car_wins_total_amount": {
+          "title": "Car wins total amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "bought": {
+          "title": "Bought",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "is_owner": {
+          "title": "Is owner",
+          "type": "boolean"
+        },
+        "rented_until": {
+          "title": "Rented until",
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        }
+      }
+    },
+    "CarShowroom": {
+      "required": [
+        "car_price",
+        "car_rent_price"
+      ],
+      "type": "object",
+      "properties": {
+        "car_model": {
+          "title": "Car model",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "car_extras": {
+          "title": "Car extras",
+          "type": "object"
+        },
+        "car_price": {
+          "title": "Car price",
+          "type": "string",
+          "format": "decimal"
+        },
+        "car_rent_price": {
+          "title": "Car rent price",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "ChatMessage": {
+      "required": [
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Message",
+          "type": "string",
+          "maxLength": 512,
+          "minLength": 1
+        },
+        "user_nickname": {
+          "title": "User nickname",
+          "type": "string",
+          "maxLength": 512,
+          "minLength": 1,
+          "x-nullable": true
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "SendChatMessage": {
+      "required": [
+        "message",
+        "is_admin_message"
+      ],
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Message",
+          "type": "string",
+          "minLength": 1
+        },
+        "is_admin_message": {
+          "title": "Is admin message",
+          "type": "boolean"
+        }
+      }
+    },
+    "Profile": {
+      "required": [
+        "affiliate_slug"
+      ],
+      "type": "object",
+      "properties": {
+        "hash": {
+          "title": "Hash",
+          "description": "This is used for internal reference.",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "affiliate_slug": {
+          "title": "Affiliate slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "likes": {
+          "title": "Likes",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0
+        }
+      }
+    },
+    "DailyTask": {
+      "required": [
+        "task"
+      ],
+      "type": "object",
+      "properties": {
+        "task": {
+          "title": "Task",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "DailyTasks": {
+      "required": [
+        "available_daily_tasks"
+      ],
+      "type": "object",
+      "properties": {
+        "daily_tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DailyTask"
+          },
+          "readOnly": true
+        },
+        "available_daily_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "seconds_to_midnight": {
+          "title": "Seconds to midnight",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "FavCoins": {
+      "required": [
+        "symbols"
+      ],
+      "type": "object",
+      "properties": {
+        "symbols": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "BetCoins": {
+      "required": [
+        "bet",
+        "symbol"
+      ],
+      "type": "object",
+      "properties": {
+        "bet": {
+          "title": "Bet",
+          "type": "number"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "FavFuel": {
+      "required": [
+        "car",
+        "bet_coins"
+      ],
+      "type": "object",
+      "properties": {
+        "car": {
+          "title": "Car",
+          "type": "integer"
+        },
+        "bet_coins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BetCoins"
+          }
+        }
+      }
+    },
+    "FavRaces": {
+      "required": [
+        "race_identifiers"
+      ],
+      "type": "object",
+      "properties": {
+        "race_identifiers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "Notification": {
+      "required": [
+        "event"
+      ],
+      "type": "object",
+      "properties": {
+        "event": {
+          "title": "Event",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "data": {
+          "title": "Notification data",
+          "type": "object",
+          "x-nullable": true
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "BuyWallet": {
+      "required": [
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "Wallet": {
+      "type": "object",
+      "properties": {
+        "my_crypto_address": {
+          "title": "My crypto address",
+          "type": "string",
+          "maxLength": 200
+        },
+        "is_using_authenticator": {
+          "title": "Is using authenticator",
+          "type": "boolean"
+        },
+        "game_wallet_trx": {
+          "title": "Game wallet trx",
+          "type": "string",
+          "format": "decimal"
+        },
+        "game_wallet_ioi": {
+          "title": "Game wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "stake_wallet_ioi": {
+          "title": "Stake wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "is_locked": {
+          "title": "Is locked",
+          "type": "boolean"
+        },
+        "nitro_wallet_trx": {
+          "title": "Nitro wallet trx",
+          "type": "string",
+          "format": "decimal"
+        },
+        "nitro_wallet_ioi": {
+          "title": "Nitro wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "PlayerLeaderboard": {
+      "required": [
+        "user_id"
+      ],
+      "type": "object",
+      "properties": {
+        "player_position": {
+          "title": "Player position",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "user_id": {
+          "title": "User id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "user_nickname": {
+          "title": "User nickname",
+          "type": "string",
+          "maxLength": 128
+        },
+        "user_country": {
+          "title": "User country",
+          "type": "string",
+          "maxLength": 40
+        },
+        "team_id": {
+          "title": "Team id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "x-nullable": true
+        },
+        "trx_turnover": {
+          "title": "Trx turnover",
+          "type": "number"
+        },
+        "team_name": {
+          "title": "Team name",
+          "type": "string",
+          "maxLength": 128,
+          "x-nullable": true
+        }
+      }
+    },
+    "PlayerLeaderboardMe": {
+      "required": [
+        "user_id"
+      ],
+      "type": "object",
+      "properties": {
+        "player_position_overall": {
+          "title": "Player position overall",
+          "type": "integer",
+          "readOnly": true
+        },
+        "user_id": {
+          "title": "User id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "user_nickname": {
+          "title": "User nickname",
+          "type": "string",
+          "maxLength": 128
+        },
+        "user_country": {
+          "title": "User country",
+          "type": "string",
+          "maxLength": 40
+        },
+        "trx_turnover": {
+          "title": "Trx turnover",
+          "type": "number"
+        },
+        "team_id": {
+          "title": "Team id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "x-nullable": true
+        },
+        "team_name": {
+          "title": "Team name",
+          "type": "string",
+          "maxLength": 128,
+          "x-nullable": true
+        }
+      }
+    },
+    "InternalTeamLeaderboard": {
+      "type": "object",
+      "properties": {
+        "top10": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayerLeaderboard"
+          },
+          "readOnly": true
+        },
+        "me": {
+          "$ref": "#/definitions/PlayerLeaderboard"
+        },
+        "team_bonus": {
+          "title": "Team bonus",
+          "type": "number",
+          "readOnly": true
+        },
+        "applicable_team_bonuses": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "EquityStats": {
+      "type": "object",
+      "properties": {
+        "equity_tokens": {
+          "title": "Equity tokens",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "total_betting_turnover": {
+          "title": "Total betting turnover",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "total_profit": {
+          "title": "Total profit",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "monthly_betting_turnover": {
+          "title": "Monthly betting turnover",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "monthly_profit": {
+          "title": "Monthly profit",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "company_shares": {
+          "title": "Company shares",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.000000"
+        }
+      }
+    },
+    "InvestorMetrics": {
+      "required": [
+        "created"
+      ],
+      "type": "object",
+      "properties": {
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "game_trx_turnover_this_week": {
+          "title": "Game trx turnover this week",
+          "type": "string",
+          "format": "decimal"
+        },
+        "game_ioi_turnover_this_week": {
+          "title": "Game ioi turnover this week",
+          "type": "string",
+          "format": "decimal"
+        },
+        "game_betting_turnover_this_month": {
+          "title": "Game betting turnover this month",
+          "type": "string",
+          "format": "decimal"
+        },
+        "game_betting_turnover_historical": {
+          "title": "Game betting turnover historical",
+          "type": "string",
+          "format": "decimal"
+        },
+        "ioi_staked": {
+          "title": "Ioi staked",
+          "type": "string",
+          "format": "decimal"
+        },
+        "trx_deposit": {
+          "title": "Trx deposit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "trx_withdrawal": {
+          "title": "Trx withdrawal",
+          "type": "string",
+          "format": "decimal"
+        },
+        "ioi_deposit": {
+          "title": "Ioi deposit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "ioi_withdrawal": {
+          "title": "Ioi withdrawal",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "PaidInBonuses": {
+      "type": "object",
+      "properties": {
+        "paid_in_trx_bonuses": {
+          "title": "Paid in trx bonuses",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "paid_in_ioi_bonuses": {
+          "title": "Paid in ioi bonuses",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        }
+      }
+    },
+    "PlatformMetrics": {
+      "required": [
+        "created",
+        "new_registrations",
+        "active_players",
+        "total_game_wallet_ioi",
+        "total_nitro_wallet_ioi",
+        "total_stake_wallet_ioi",
+        "players_in_free",
+        "players_in_paid"
+      ],
+      "type": "object",
+      "properties": {
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "new_registrations": {
+          "title": "New registrations",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "active_players": {
+          "title": "Active players",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "total_game_wallet_trx": {
+          "title": "Total game wallet trx",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_game_wallet_ioi": {
+          "title": "Total game wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_nitro_wallet_trx": {
+          "title": "Total nitro wallet trx",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_nitro_wallet_ioi": {
+          "title": "Total nitro wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_stake_wallet_ioi": {
+          "title": "Total stake wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        },
+        "total_nitro_wallet_ioie": {
+          "title": "Total nitro wallet ioie",
+          "type": "string",
+          "format": "decimal"
+        },
+        "players_in_free": {
+          "title": "Players in free",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "players_in_paid": {
+          "title": "Players in paid",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        }
+      }
+    },
+    "UsersTransactionsDelta": {
+      "type": "object",
+      "properties": {
+        "plus_trx": {
+          "title": "Plus trx",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "minus_trx": {
+          "title": "Minus trx",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "plus_ioi": {
+          "title": "Plus ioi",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        },
+        "minus_ioi": {
+          "title": "Minus ioi",
+          "type": "string",
+          "format": "decimal",
+          "default": "0.00"
+        }
+      }
+    },
+    "MFASecret": {
+      "required": [
+        "secret",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "secret": {
+          "title": "Secret",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "GenerateMFASecret": {
+      "type": "object",
+      "properties": {
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "secret": {
+          "title": "Secret",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "qr_string": {
+          "title": "Qr string",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        }
+      }
+    },
+    "MyCryptoAddress": {
+      "type": "object",
+      "properties": {
+        "my_crypto_address": {
+          "title": "My crypto address",
+          "type": "string",
+          "maxLength": 200
+        }
+      }
+    },
+    "Assets": {
+      "required": [
+        "name",
+        "symbol",
+        "price",
+        "market_cap"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "minLength": 1
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "minLength": 1
+        },
+        "price": {
+          "title": "Price",
+          "type": "string",
+          "format": "decimal"
+        },
+        "market_cap": {
+          "title": "Market cap",
+          "type": "string",
+          "format": "decimal"
+        },
+        "balance": {
+          "title": "Balance",
+          "type": "string",
+          "format": "decimal"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        }
+      }
+    },
+    "Coin": {
+      "required": [
+        "name",
+        "symbol"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "price": {
+          "title": "Price",
+          "type": "string",
+          "format": "decimal"
+        },
+        "market_cap": {
+          "title": "Market cap",
+          "type": "string",
+          "format": "decimal"
+        },
+        "min_deposit": {
+          "title": "Min deposit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "max_deposit": {
+          "title": "Max deposit",
+          "type": "string",
+          "format": "decimal"
+        },
+        "fee": {
+          "title": "Fee",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "Deposit": {
+      "required": [
+        "currency",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "currency": {
+          "title": "Currency",
+          "type": "string",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "InvoicePayment": {
+      "title": "Payment",
+      "required": [
+        "coin",
+        "amount",
+        "address",
+        "fee"
+      ],
+      "type": "object",
+      "properties": {
+        "coin": {
+          "title": "Coin",
+          "type": "string",
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "tag": {
+          "title": "Tag",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "fee": {
+          "title": "Fee",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Order": {
+      "required": [
+        "invoice_id",
+        "order_status",
+        "payment"
+      ],
+      "type": "object",
+      "properties": {
+        "invoice_id": {
+          "title": "Invoice id",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "order_status": {
+          "title": "Order status",
+          "type": "string",
+          "minLength": 1
+        },
+        "payment": {
+          "$ref": "#/definitions/InvoicePayment"
+        }
+      }
+    },
+    "Address": {
+      "title": "Address",
+      "required": [
+        "address"
+      ],
+      "type": "object",
+      "properties": {
+        "address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        }
+      }
+    },
+    "InvoicePayout": {
+      "title": "Payout",
+      "required": [
+        "amount",
+        "currency",
+        "address",
+        "transactionHash"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "currency": {
+          "title": "Currency",
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "transactionHash": {
+          "title": "Transactionhash",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "DepositCallback": {
+      "required": [
+        "invoiceId",
+        "status",
+        "payout"
+      ],
+      "type": "object",
+      "properties": {
+        "invoiceId": {
+          "title": "Invoiceid",
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "title": "Status",
+          "type": "string",
+          "minLength": 1
+        },
+        "payout": {
+          "$ref": "#/definitions/InvoicePayout"
+        }
+      }
+    },
+    "ExchangeRate": {
+      "required": [
+        "from_currency",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "from_currency": {
+          "title": "From currency",
+          "type": "string",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "to_currency": {
+          "title": "To currency",
+          "type": "string",
+          "default": "trx",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "NitroWalletExchange": {
+      "required": [
+        "from_currency",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "from_currency": {
+          "title": "From currency",
+          "type": "string",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "to_currency": {
+          "title": "To currency",
+          "type": "string",
+          "default": "trx",
+          "maxLength": 6,
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "to_wallet_type": {
+          "title": "To wallet type",
+          "type": "string",
+          "default": "nitro_wallet_trx",
+          "minLength": 1
+        }
+      }
+    },
+    "WalletBalance": {
+      "type": "object",
+      "properties": {
+        "from_currency_balance": {
+          "title": "From currency balance",
+          "type": "object",
+          "readOnly": true
+        },
+        "to_currency_balance": {
+          "title": "To currency balance",
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "StakeWallet": {
+      "required": [
+        "available",
+        "staked",
+        "reward"
+      ],
+      "type": "object",
+      "properties": {
+        "available": {
+          "title": "Available",
+          "type": "string",
+          "format": "decimal"
+        },
+        "staked": {
+          "title": "Staked",
+          "type": "string",
+          "format": "decimal"
+        },
+        "reward": {
+          "title": "Reward",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "LockWallet": {
+      "required": [
+        "lock_ioi",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "lock_ioi": {
+          "title": "Lock ioi",
+          "type": "boolean"
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "SystemNitroWallet": {
+      "type": "object",
+      "properties": {
+        "reward_balance": {
+          "title": "Reward balance",
+          "type": "string",
+          "readOnly": true
+        },
+        "mining_balance": {
+          "title": "Mining balance",
+          "type": "string",
+          "readOnly": true
+        },
+        "mining_complexity": {
+          "title": "Mining complexity",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "ActionType": {
+      "title": "Action type",
+      "required": [
+        "name",
+        "label"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 120,
+          "minLength": 1
+        },
+        "label": {
+          "title": "Label",
+          "type": "string",
+          "maxLength": 255,
+          "minLength": 1
+        }
+      }
+    },
+    "Transaction": {
+      "required": [
+        "wallet",
+        "action_type"
+      ],
+      "type": "object",
+      "properties": {
+        "wallet": {
+          "$ref": "#/definitions/Wallet"
+        },
+        "action_type": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "wallet_type": {
+          "title": "Wallet type",
+          "type": "string",
+          "maxLength": 40
+        },
+        "currency": {
+          "title": "Currency",
+          "type": "string",
+          "maxLength": 20
+        },
+        "delta": {
+          "title": "Delta",
+          "description": "Balance delta.",
+          "type": "string",
+          "format": "decimal"
+        },
+        "extras": {
+          "title": "Extras",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "TransferWallet": {
+      "required": [
+        "from_wallet_type",
+        "to_wallet_type",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "from_wallet_type": {
+          "title": "From wallet type",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "to_wallet_type": {
+          "title": "To wallet type",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "PremiumWallet": {
+      "type": "object",
+      "properties": {
+        "premium_wallet_trx": {
+          "title": "Premium wallet trx",
+          "type": "string",
+          "format": "decimal"
+        },
+        "premium_wallet_ioi": {
+          "title": "Premium wallet ioi",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "BuyPremiumWallet": {
+      "required": [
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "PremiumWalletCareer": {
+      "type": "object",
+      "properties": {
+        "first_line_turnover": {
+          "title": "First line turnover",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "RaceDetailV2": {
+      "required": [
+        "race_hash",
+        "new_race_type",
+        "bet_amount",
+        "tour_index",
+        "tournament_id",
+        "price_pool",
+        "players",
+        "starts_in"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_race_type": {
+          "title": "New race type",
+          "type": "string",
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer"
+        },
+        "tour_index": {
+          "title": "Tour index",
+          "type": "integer"
+        },
+        "tournament_id": {
+          "title": "Tournament id",
+          "type": "integer"
+        },
+        "price_pool": {
+          "title": "Price pool",
+          "type": "string",
+          "format": "decimal"
+        },
+        "players": {
+          "title": "Players",
+          "type": "integer"
+        },
+        "starts_in": {
+          "title": "Starts in",
+          "type": "number"
+        }
+      }
+    },
+    "Race": {
+      "required": [
+        "race_type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "is_race24": {
+          "title": "Is race24",
+          "type": "boolean"
+        },
+        "players": {
+          "title": "Players",
+          "type": "string",
+          "readOnly": true
+        },
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "start": {
+          "title": "Start",
+          "description": "Time when the race starts. It can be in the future for next races.",
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "start_coins_price": {
+          "title": "Start coins price",
+          "type": "object"
+        },
+        "race_duration_seconds": {
+          "title": "Race duration seconds",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "finish": {
+          "title": "Finish",
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "finish_coins_price": {
+          "title": "Finish coins price",
+          "type": "object"
+        },
+        "coins_performance": {
+          "title": "Coins performance",
+          "type": "object"
+        },
+        "cars_performance_at_finish": {
+          "title": "Cars performance at finish",
+          "type": "object"
+        },
+        "err_prolonged_game": {
+          "title": "Err prolonged game",
+          "type": "boolean"
+        },
+        "err_prolonged_game_time_delta": {
+          "title": "Err prolonged game time delta",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "race_type": {
+          "title": "Race type",
+          "type": "string",
+          "format": "decimal"
+        },
+        "wins_paid": {
+          "title": "Wins paid",
+          "type": "boolean"
+        }
+      }
+    },
+    "CanJoinV2": {
+      "type": "object",
+      "properties": {
+        "available_cars": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CurrentRace": {
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "race_type": {
+          "title": "Race type",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "tour_index": {
+          "title": "Tour index",
+          "type": "integer",
+          "readOnly": true
+        },
+        "tournament_id": {
+          "title": "Tournament id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "number",
+          "readOnly": true
+        },
+        "finishing_in_seconds": {
+          "title": "Finishing in seconds",
+          "type": "number",
+          "readOnly": true
+        },
+        "is_canceled": {
+          "title": "Is canceled",
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "MyCurrentRace": {
+      "required": [
+        "race_hash",
+        "new_race_type",
+        "bet_amount"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_race_type": {
+          "title": "New race type",
+          "type": "string",
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer"
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true
+        },
+        "finishing_in_seconds": {
+          "title": "Finishing in seconds",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "SymbolPercentage": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "percentage": {
+          "title": "Percentage",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "MostPopularAndBestPerformingCoins": {
+      "type": "object",
+      "properties": {
+        "most_fueled_coins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SymbolPercentage"
+          },
+          "readOnly": true
+        },
+        "best_performing_coins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SymbolPercentage"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Winner": {
+      "type": "object",
+      "properties": {
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "is_race24": {
+          "title": "Is race24",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "win_amount": {
+          "title": "Win amount",
+          "type": "number",
+          "readOnly": true
+        },
+        "updated": {
+          "title": "Updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "LatestAndBiggestWinners": {
+      "type": "object",
+      "properties": {
+        "latest": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Winner"
+          },
+          "readOnly": true
+        },
+        "biggest": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Winner"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "AvailableCar": {
+      "type": "object",
+      "properties": {
+        "car_id": {
+          "title": "Car id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "car_model": {
+          "title": "Car model",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "MultiCanJoinV2": {
+      "type": "object",
+      "properties": {
+        "race_type": {
+          "title": "Race type",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer",
+          "readOnly": true
+        },
+        "available_cars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AvailableCar"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "RaceSignupV2": {
+      "required": [
+        "race_hash",
+        "car",
+        "bet_coins"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "car": {
+          "title": "Car",
+          "type": "integer"
+        },
+        "bet_coins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BetCoins"
+          }
+        },
+        "use_ticket": {
+          "title": "Use ticket",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "MultiSignup": {
+      "required": [
+        "race_hash",
+        "car",
+        "is_ok",
+        "errors"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "car": {
+          "title": "Car",
+          "type": "integer"
+        },
+        "is_ok": {
+          "title": "Is ok",
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "NextRaceV2": {
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "race_type": {
+          "title": "Race type",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "tour_index": {
+          "title": "Tour index",
+          "type": "integer",
+          "readOnly": true
+        },
+        "tournament_id": {
+          "title": "Tournament id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer",
+          "readOnly": true
+        },
+        "starts_in_seconds": {
+          "title": "Starts in seconds",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "MyNextRace": {
+      "required": [
+        "race_hash",
+        "new_race_type",
+        "bet_amount"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_race_type": {
+          "title": "New race type",
+          "type": "string",
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer"
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "readOnly": true
+        },
+        "starts_in_seconds": {
+          "title": "Starts in seconds",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "TournamentLeaderboard": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "title": "User id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "car_id": {
+          "title": "Car id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "user_nickname": {
+          "title": "User nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "points": {
+          "title": "Points",
+          "type": "integer",
+          "readOnly": true
+        },
+        "avg_roi": {
+          "title": "Avg roi",
+          "type": "number",
+          "readOnly": true
+        },
+        "still_in_game": {
+          "title": "Still in game",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "finished_at": {
+          "title": "Finished at",
+          "type": "integer",
+          "readOnly": true
+        },
+        "position": {
+          "title": "Position",
+          "type": "integer",
+          "readOnly": true
+        },
+        "applicable_payout": {
+          "title": "Applicable payout",
+          "type": "number",
+          "readOnly": true
+        },
+        "applicable_points": {
+          "title": "Applicable points",
+          "type": "integer",
+          "readOnly": true
+        },
+        "me": {
+          "title": "Me",
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "NextTournamentRaceHash": {
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "tour_index": {
+          "title": "Tour index",
+          "type": "integer",
+          "readOnly": true
+        },
+        "tournament_id": {
+          "title": "Tournament id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "starts_in": {
+          "title": "Starts in",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "Prices": {
+      "required": [
+        "desc",
+        "price",
+        "symbol"
+      ],
+      "type": "object",
+      "properties": {
+        "desc": {
+          "title": "Desc",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "price": {
+          "title": "Price",
+          "type": "number"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 1
+        }
+      }
+    },
+    "MyCars": {
+      "required": [
+        "u",
+        "n",
+        "c",
+        "cid",
+        "b"
+      ],
+      "type": "object",
+      "properties": {
+        "u": {
+          "title": "U",
+          "type": "string",
+          "minLength": 1
+        },
+        "n": {
+          "title": "N",
+          "type": "string",
+          "minLength": 1
+        },
+        "c": {
+          "title": "C",
+          "type": "integer"
+        },
+        "cid": {
+          "title": "Cid",
+          "type": "integer"
+        },
+        "b": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BetCoins"
+          }
+        }
+      }
+    },
+    "InitialCardsExtra": {
+      "required": [
+        "u",
+        "n",
+        "c",
+        "b",
+        "r",
+        "cpr",
+        "p"
+      ],
+      "type": "object",
+      "properties": {
+        "u": {
+          "title": "U",
+          "type": "string",
+          "minLength": 1
+        },
+        "n": {
+          "title": "N",
+          "type": "string",
+          "minLength": 1
+        },
+        "c": {
+          "title": "C",
+          "type": "integer"
+        },
+        "b": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BetCoins"
+          }
+        },
+        "r": {
+          "title": "R",
+          "type": "integer"
+        },
+        "s": {
+          "title": "S",
+          "type": "number",
+          "readOnly": true,
+          "default": 0
+        },
+        "rp": {
+          "title": "Rp",
+          "type": "number",
+          "readOnly": true,
+          "default": 0
+        },
+        "t": {
+          "title": "T",
+          "type": "string",
+          "readOnly": true,
+          "default": "",
+          "minLength": 1
+        },
+        "cpr": {
+          "title": "Cpr",
+          "type": "integer"
+        },
+        "p": {
+          "title": "P",
+          "type": "integer"
+        }
+      }
+    },
+    "RaceDetail": {
+      "required": [
+        "race_hash",
+        "race_type",
+        "new_race_type",
+        "race_identifier",
+        "bet_amount",
+        "tour_index",
+        "tournament_id",
+        "start_coins_price",
+        "price_pool",
+        "players_count",
+        "race_progress",
+        "my_cars",
+        "is_cancelled",
+        "race",
+        "cards",
+        "starts_in",
+        "ends_in",
+        "total_pages",
+        "applicable_payouts",
+        "applicable_points"
+      ],
+      "type": "object",
+      "properties": {
+        "race_hash": {
+          "title": "Race hash",
+          "type": "string",
+          "minLength": 1
+        },
+        "race_type": {
+          "title": "Race type",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_race_type": {
+          "title": "New race type",
+          "type": "string",
+          "minLength": 1
+        },
+        "race_identifier": {
+          "title": "Race identifier",
+          "type": "string",
+          "minLength": 1
+        },
+        "bet_amount": {
+          "title": "Bet amount",
+          "type": "integer"
+        },
+        "tour_index": {
+          "title": "Tour index",
+          "type": "integer"
+        },
+        "tournament_id": {
+          "title": "Tournament id",
+          "type": "integer"
+        },
+        "start_coins_price": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Prices"
+          }
+        },
+        "price_pool": {
+          "title": "Price pool",
+          "type": "string",
+          "format": "decimal"
+        },
+        "players_count": {
+          "title": "Players count",
+          "type": "integer"
+        },
+        "race_progress": {
+          "title": "Race progress",
+          "type": "number"
+        },
+        "my_cars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MyCars"
+          }
+        },
+        "is_cancelled": {
+          "title": "Is cancelled",
+          "type": "boolean"
+        },
+        "race": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InitialCardsExtra"
+          }
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InitialCardsExtra"
+          }
+        },
+        "starts_in": {
+          "title": "Starts in",
+          "type": "number"
+        },
+        "ends_in": {
+          "title": "Ends in",
+          "type": "number"
+        },
+        "total_pages": {
+          "title": "Total pages",
+          "type": "integer"
+        },
+        "applicable_payouts": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "applicable_points": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "RaceStatEntity": {
+      "title": "Me",
+      "type": "object",
+      "properties": {
+        "r": {
+          "title": "R",
+          "type": "integer",
+          "readOnly": true
+        },
+        "u": {
+          "title": "U",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "n": {
+          "title": "N",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "c": {
+          "title": "C",
+          "type": "integer",
+          "readOnly": true
+        },
+        "cpr": {
+          "title": "Cpr",
+          "type": "integer",
+          "readOnly": true
+        },
+        "s": {
+          "title": "S",
+          "type": "number",
+          "readOnly": true
+        },
+        "rp": {
+          "title": "Rp",
+          "type": "number",
+          "readOnly": true
+        },
+        "b": {
+          "$ref": "#/definitions/BetCoins"
+        },
+        "p": {
+          "title": "P",
+          "type": "integer",
+          "readOnly": true
+        },
+        "t": {
+          "title": "T",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        }
+      }
+    },
+    "CoinsPerformance": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "title": "Symbol",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "percent": {
+          "title": "Percent",
+          "type": "number",
+          "readOnly": true
+        },
+        "from_price": {
+          "title": "From price",
+          "type": "number",
+          "readOnly": true
+        },
+        "to_prices": {
+          "title": "To prices",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "RaceStat": {
+      "required": [
+        "race_progress",
+        "me",
+        "race",
+        "cards",
+        "coins_performance"
+      ],
+      "type": "object",
+      "properties": {
+        "race_progress": {
+          "title": "Race progress",
+          "type": "number"
+        },
+        "me": {
+          "$ref": "#/definitions/RaceStatEntity"
+        },
+        "race": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RaceStatEntity"
+          }
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RaceStatEntity"
+          }
+        },
+        "coins_performance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CoinsPerformance"
+          }
+        }
+      }
+    },
+    "CarsPerformanceAtFinish": {
+      "title": "Winners",
+      "type": "object",
+      "properties": {
+        "bet_pk": {
+          "title": "Bet pk",
+          "type": "integer",
+          "readOnly": true
+        },
+        "race_pk": {
+          "title": "Race pk",
+          "type": "integer",
+          "readOnly": true
+        },
+        "car_pk": {
+          "title": "Car pk",
+          "type": "integer",
+          "readOnly": true
+        },
+        "team": {
+          "title": "Team",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "score": {
+          "title": "Score",
+          "type": "number",
+          "readOnly": true
+        },
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "roi": {
+          "title": "Roi",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "relative_position": {
+          "title": "Relative position",
+          "type": "number",
+          "readOnly": true
+        },
+        "time_progression_percent": {
+          "title": "Time progression percent",
+          "type": "number",
+          "readOnly": true
+        },
+        "points": {
+          "title": "Points",
+          "type": "integer",
+          "readOnly": true
+        },
+        "car_position_in_the_race": {
+          "title": "Car position in the race",
+          "type": "integer",
+          "readOnly": true
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "number",
+          "readOnly": true
+        }
+      }
+    },
+    "RaceWinners": {
+      "type": "object",
+      "properties": {
+        "ticker_froze": {
+          "title": "Ticker froze",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "winners": {
+          "$ref": "#/definitions/CarsPerformanceAtFinish"
+        }
+      }
+    },
+    "Rewards": {
+      "required": [
+        "team_bonus",
+        "item_bonus",
+        "equity_bonus"
+      ],
+      "type": "object",
+      "properties": {
+        "mining_reward": {
+          "title": "Mining reward",
+          "type": "string",
+          "readOnly": true
+        },
+        "team_bonus": {
+          "title": "Team bonus",
+          "type": "string",
+          "format": "decimal"
+        },
+        "item_bonus": {
+          "title": "Item bonus",
+          "type": "string",
+          "format": "decimal"
+        },
+        "race_bonus": {
+          "title": "Race bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "turnover_luxury_bonus": {
+          "title": "Turnover luxury bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "equity_bonus": {
+          "title": "Equity bonus",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "CumulativeRewards": {
+      "type": "object",
+      "properties": {
+        "mining_reward": {
+          "title": "Mining reward",
+          "type": "string",
+          "readOnly": true
+        },
+        "team_bonus": {
+          "title": "Team bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "item_bonus": {
+          "title": "Item bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "race_bonus": {
+          "title": "Race bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "turnover_luxury_bonus": {
+          "title": "Turnover luxury bonus",
+          "type": "string",
+          "readOnly": true
+        },
+        "equity_bonus": {
+          "title": "Equity bonus",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "RewardsMe": {
+      "type": "object",
+      "properties": {
+        "team_bonus": {
+          "title": "Team bonus",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "item_bonus": {
+          "title": "Item bonus",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "race_bonus": {
+          "title": "Race bonus",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "turnover_luxury_bonus": {
+          "title": "Turnover luxury bonus",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "equity_bonus": {
+          "title": "Equity bonus",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "bonus_tickets": {
+          "title": "Bonus tickets",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "RewardsStats": {
+      "type": "object",
+      "properties": {
+        "prev_team_bonus": {
+          "title": "Prev team bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "prev_item_bonus": {
+          "title": "Prev item bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "prev_turnover_luxury_bonus": {
+          "title": "Prev turnover luxury bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "prev_equity_bonus": {
+          "title": "Prev equity bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "prev_bonus_tickets": {
+          "title": "Prev bonus tickets",
+          "type": "integer",
+          "readOnly": true
+        },
+        "next_item_bonus": {
+          "title": "Next item bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "next_turnover_luxury_bonus": {
+          "title": "Next turnover luxury bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "next_equity_bonus": {
+          "title": "Next equity bonus",
+          "type": "string",
+          "format": "decimal",
+          "readOnly": true
+        },
+        "next_bonus_tickets": {
+          "title": "Next bonus tickets",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "TeamChatMembers": {
+      "type": "object",
+      "properties": {
+        "nickname": {
+          "title": "Nickname",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "affiliate_level": {
+          "title": "Affiliate level",
+          "type": "integer",
+          "readOnly": true
+        },
+        "is_online": {
+          "title": "Is online",
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "TeamChatSendGift": {
+      "required": [
+        "receiving_user_nickname"
+      ],
+      "type": "object",
+      "properties": {
+        "receiving_user_nickname": {
+          "title": "Receiving user nickname",
+          "type": "string",
+          "minLength": 1
+        },
+        "car_id": {
+          "title": "Car id",
+          "type": "integer"
+        },
+        "trx_amount": {
+          "title": "Trx amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "ioi_amount": {
+          "title": "Ioi amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "RacingTeam": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "base_coins_portfolio": {
+          "title": "Base coins portfolio",
+          "type": "object"
+        },
+        "cost_to_join_in": {
+          "title": "Cost to join in",
+          "type": "string",
+          "format": "decimal"
+        },
+        "active_members": {
+          "title": "Active members",
+          "type": "string",
+          "readOnly": true
+        },
+        "next_month_members": {
+          "title": "Next month members",
+          "type": "string",
+          "readOnly": true
+        },
+        "position": {
+          "title": "Position",
+          "type": "integer",
+          "readOnly": true
+        },
+        "dedicated_team_bonus_pool": {
+          "title": "Dedicated team bonus pool",
+          "type": "number",
+          "readOnly": true
+        },
+        "me_joined": {
+          "title": "Me joined",
+          "type": "object",
+          "readOnly": true
+        },
+        "me_waiting": {
+          "title": "Me waiting",
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "JoinTeam": {
+      "required": [
+        "join_team_id"
+      ],
+      "type": "object",
+      "properties": {
+        "join_team_id": {
+          "title": "Join team id",
+          "type": "integer"
+        },
+        "join_paid_membership": {
+          "title": "Join paid membership",
+          "type": "boolean",
+          "default": true
+        },
+        "month_count": {
+          "title": "Month count",
+          "type": "integer",
+          "default": 1
+        },
+        "join_now": {
+          "title": "Join now",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "TeamMember": {
+      "required": [
+        "team",
+        "joined"
+      ],
+      "type": "object",
+      "properties": {
+        "team": {
+          "title": "Team",
+          "type": "integer"
+        },
+        "joined": {
+          "title": "Joined",
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_paid_membership": {
+          "title": "Is paid membership",
+          "type": "boolean"
+        }
+      }
+    },
+    "Ticker": {
+      "type": "object",
+      "properties": {
+        "prices": {
+          "title": "Prices",
+          "type": "object"
+        },
+        "updated": {
+          "title": "Updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "NewTicker": {
+      "required": [
+        "prices"
+      ],
+      "type": "object",
+      "properties": {
+        "prices": {
+          "title": "Prices",
+          "type": "object"
+        }
+      }
+    },
+    "LockTradingPool": {
+      "required": [
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "from_wallet_type": {
+          "title": "From wallet type",
+          "type": "string",
+          "default": "nitro_wallet_trx",
+          "minLength": 1
+        },
+        "amount": {
+          "title": "Amount",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "LockedTradingPool": {
+      "required": [
+        "amount_in_usd"
+      ],
+      "type": "object",
+      "properties": {
+        "amount_in_usd": {
+          "title": "Amount in usd",
+          "type": "string",
+          "format": "decimal"
+        }
+      }
+    },
+    "TransactionMinimal": {
+      "type": "object",
+      "properties": {
+        "wallet_type": {
+          "title": "Wallet type",
+          "type": "string",
+          "maxLength": 40
+        },
+        "delta": {
+          "title": "Delta",
+          "description": "Balance delta.",
+          "type": "string",
+          "format": "decimal"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "TradingPoolRewards": {
+      "required": [
+        "locked_amount",
+        "earned_amount",
+        "daily_reward",
+        "trading_level_interest",
+        "locked_until",
+        "total_trading_pool",
+        "latest_trading_locks"
+      ],
+      "type": "object",
+      "properties": {
+        "locked_amount": {
+          "title": "Locked amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "earned_amount": {
+          "title": "Earned amount",
+          "type": "string",
+          "format": "decimal"
+        },
+        "daily_reward": {
+          "title": "Daily reward",
+          "type": "string",
+          "format": "decimal"
+        },
+        "trading_level_interest": {
+          "title": "Trading level interest",
+          "type": "number"
+        },
+        "locked_until": {
+          "title": "Locked until",
+          "type": "string",
+          "format": "date-time"
+        },
+        "total_trading_pool": {
+          "title": "Total trading pool",
+          "type": "string",
+          "format": "decimal"
+        },
+        "latest_trading_locks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionMinimal"
+          }
+        }
+      }
+    }
+  }
+}

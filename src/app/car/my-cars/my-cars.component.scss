@@ -1,0 +1,1161 @@
+
+
+.main-holder{
+    width: calc(100% - 457px);
+    padding-left: 40px;
+}
+
+.top-info{
+  margin: 30px 0 0;
+    padding-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 54px;
+    }
+    .back{
+        cursor: pointer;
+        transition: .2s;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        min-height: 132px;
+        background: linear-gradient(0deg, #111111, #111111);
+        box-shadow: 0px 0px 80px #000000;
+        border-radius: 20px;
+        p{
+            line-height: 30px;
+        }
+    }
+    .back:hover{
+        transform: scale(1.1);
+    }
+    .text-info{
+        max-width: 695px;
+        margin: 0 20px;
+    }
+    .info-box{
+      width: 590px;
+      min-width: 590px;
+      background: #111111;
+      box-shadow: 0px 0px 80px #000000;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .box-item{
+        margin: 0 5px;
+        text-align: center;
+        p{
+          white-space: nowrap;
+          font-size: 24px;
+          font-weight: 600;
+          margin: 0;
+          &.desc{
+            font-size: 16px;
+            font-weight: 300;
+            opacity: .4;
+          }
+          &.value.w-ind{
+            position: relative;
+            span{
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: translate(0%, -80%);
+              font-size: 16px;
+              font-weight: 400;
+              margin: 0;
+              &.plus{
+                color: #BBEF64;
+              }
+              &.minus{
+                color: #fa2347;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .my-menu{
+    width: 100%;
+    .menu-desc{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      p{
+        margin: 0;
+        font-size: 18px;
+        text-align: center;
+        color: #FFFFFF;
+        display: block;
+        width: 50%;
+        padding-bottom: 15px;
+        cursor: pointer;
+        text-transform: uppercase;
+        &.soon{
+          font-size: 16px;
+          opacity: .6;
+          cursor: default;
+          font-weight: 400;
+        }
+      }
+      .active{
+        font-weight: 600;
+      }
+      .soon{
+        .mobile{
+          display: none;
+        }
+      }
+    }
+    .menu-line{
+      width: 100%;
+      background: #252525;
+      border: 4px solid #111111;
+      box-sizing: border-box;
+      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      .inner-line{
+        border-radius: 10px;
+        width: 33.333%;
+        height: 4px;
+      }
+    }
+  }
+
+.content-holder{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  position: relative;
+  .switchers-holder{
+    width: 195px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 560px;
+    p{
+      font-size: 34px;
+      font-weight: 900;
+      margin: 0;
+      transition: .2s;
+      cursor: pointer;
+      padding: 15px 0;
+      opacity: 1;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: rgba(255, 255, 255, 0.2);
+      &:hover{
+        color: rgba(255, 255, 255, 0.4);
+      }
+      &.inactive{
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+      }
+    }
+  }
+  .cars-cont{
+    width: calc(100% - 195px);
+    margin-top: 58px;
+    .single-car{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .img-holder{
+        width: 50%;
+        opacity: 0.4;
+        position: relative;
+        &.unlocked{
+          opacity: 1;
+          &::after{
+            content: none;
+          }
+        }
+        &::after{
+          content: '';
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          background: url('/assets/base/images/icons/lock-icon.svg') center no-repeat;
+        }
+        &.rare{
+          .back-img{
+            display: block;
+          }
+        }
+        img{
+          transform: scale(1.17);
+          position: relative;
+          bottom: -40px;
+          z-index: 2;
+        }
+        .back-img{
+          transform: translate(-50%, -50%);
+          position: absolute;
+          top: 50%;
+          z-index: 1;
+          left: 50%;
+          max-width: 90%;
+          display: none;
+        }
+      }
+      .stats-holder{
+        width: 50%;
+        h1{
+          font-size: 46px;
+          font-weight: 600;
+          margin: 0 0 15px 0;
+        }
+        .copy-desc{
+          font-size: 16px;
+          font-weight: 300;
+          opacity: .6;
+          img{
+            display: inline-block;
+            margin-right: 15px;
+          }
+        }
+        .car-stats{
+          margin-top: 50px;
+          .stat-item{
+              width: 100%;
+              position: relative;
+              margin: 0 0 30px 0;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding-right: 60px;
+              .desc{
+                  font-size: 16px;
+                  font-weight: 400;
+                  margin: 0;
+              }
+              .my-progress-bar{
+                width: calc(100% - 110px);
+                  height: 16px;
+                  background: #252525;
+                  border: 4px solid #111111;
+                  box-sizing: border-box;
+                  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
+                  border-radius: 10px;
+                  position: relative;
+                  .inner-bar{
+                      height: 100%;
+                      width: 50%;
+                      background: linear-gradient(100.58deg, #FE173F 48.82%, #240B36 168.17%);
+                      border-radius: 10px;
+                  }
+                  .curr-value{
+                      font-size: 18px;
+                      font-weight: 600;
+                      margin: 0;
+                      position: absolute;
+                      left: 50%;
+                      bottom: -10px;
+                      transform: translate(-50%, 100%);
+                      white-space: nowrap;
+                  }
+                  .max-value{
+                      font-size: 18px;
+                      font-weight: 400;
+                      margin: 0;
+                      position: absolute;
+                      right: -12px;
+                      top: 50%;
+                      transform: translate(100%, -50%);
+                  }
+              }
+          }
+        }
+        .btns-holder{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 50px;
+          .casual{
+            background: linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%);
+            padding: 1px;
+            border-radius: 15px;
+            width: 30%;
+            height: 52px;
+            cursor: default;
+            opacity: .5;
+            .inner{
+              background: #111;
+              border-radius: 15px;
+              padding: 10px;
+              height: 100%;
+              text-align: center;
+              p{
+                background: linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                margin: 0;
+                img{
+                  display: inline-block;
+                  margin-right: 10px;
+                }
+              }
+            }
+          }
+          .cta-btn{
+            background: linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(254, 23, 63, 0.1);
+            font-size: 16px;
+            font-weight: 400;
+            padding: 13px;
+            color: white;
+            width: 30%;
+            height: 52px;
+            opacity: .4;
+            transition: .3s;
+            cursor: default;
+            // &:hover{
+            //   opacity: 1;
+            //   box-shadow: 0px 0px 20px rgba(254, 23, 63, 0.4);
+            // }
+          }
+        }
+      }
+    }
+    .all-cars{
+      width: 100%;
+      height: 132px;
+      box-shadow: 0px 0px 80px #000000;
+      border-radius: 15px;
+      margin-top: 71px;
+      position: relative;
+      .cars-inner{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        &.bronze{
+          .car-item{
+            &::after{
+              background: url('/assets/base/images/icons/lock-bronze.svg') center no-repeat;
+            }
+          }
+        }
+        &.silver{
+          .car-item{
+            &::after{
+              background: url('/assets/base/images/icons/lock-silver.svg') center no-repeat;
+            }
+          }
+        }
+        &.gold{
+          .car-item{
+            &::after{
+              background: url('/assets/base/images/icons/lock-gold.svg') center no-repeat;
+            }
+          }
+        }
+        &.platinum{
+          .car-item{
+            &::after{
+              background: url('/assets/base/images/icons/lock-platinum.svg') center no-repeat;
+            }
+          }
+        }
+        .car-item{
+          width: 14.28%;
+          height: 100%;
+          position: relative;
+          cursor: pointer;
+          z-index: 2;
+          &.unlocked{
+            &::after{
+              content: none;
+            }
+            .car-img{
+              opacity: 1;
+            }
+          }
+          &::after{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+          }
+          .car-img{
+            max-width: 110%;
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: .3;
+            z-index: 1;
+          }
+          &.rare{
+            .desc{
+              background: linear-gradient(180deg, #7F3519 13.02%, #FEA67E 52.08%, #D5805E 90.62%, #F5C7AC 100%), #C4C4C4;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              font-size: 18px;
+              font-weight: 500;
+              text-align: center;
+              margin: 5px 0 0 0;
+            }
+            .back-img{
+              max-width: 85%;
+              position: absolute;
+              top: 53%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 0;
+            }
+          }
+        }
+        .car-high{
+          width: 14.28%;
+          height: 100%;
+          border-radius: 15px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 2px;
+          z-index: 1;
+          transition: .2s;
+          &.bronze{
+            background: linear-gradient(180deg, #7F3519 13.02%, #FEA67E 52.08%, #D5805E 90.62%, #F5C7AC 100%), #C4C4C4;
+          }
+          &.silver{
+            background: linear-gradient(180deg, #5D666A 0%, #FAFAFA 65.1%, #939393 99.99%, #717171 100%), #C4C4C4;
+          }
+          &.gold{
+            background: linear-gradient(180deg, #C19123 0%, #B47E11 10.42%, #FEF2A3 70.83%, #B57F12 100%), #C4C4C4;
+          }
+          &.platinum{
+            background: linear-gradient(180deg, #79A3AC 0%, #E4FCFF 65.1%, #B1CCD1 83.33%, #939393 99.99%), #C4C4C4;
+          }
+          .inner{
+            width: 100%;
+            height: 100%;
+            background: #111;
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+  }
+  .zero-car-holder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.8);
+    text-align: center;
+    z-index: 20;
+    box-shadow: 20px 0px 0px 0px rgba(17, 17, 17, 0.8), -20px 0px 0px 0px rgba(17, 17, 17, 0.8);
+    .inner-holder{
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      .img-holder{
+        width: 100%;
+        img{
+          max-width: 450px;
+        }
+      }
+      .text-holder{
+        position: relative;
+        top: -40px;
+        max-width: 670px;
+        margin: 0 auto;
+        .heading{
+          font-weight: 600;
+          font-size: 24px;
+          margin: 0 0 10px 0;
+        }
+        .text{
+          font-size: 16px;
+          font-weight: 400;
+          margin: 0 0 40px 0;
+          span{
+            font-weight: 600;
+          }
+        }
+        button{
+          font-size: 16px;
+          margin: 0;
+          padding: 11px 55px;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1700px){
+  .main-holder{
+    width: calc(100% - 430px);
+    padding-left: 30px;
+  }
+  .top-info{
+    padding-bottom: 10px;
+    .info-box{
+      width: 490px;
+      min-width: 490px;
+      padding: 30px 20px;
+      .box-item{
+        p{
+          font-size: 20px;
+          &.desc{
+            font-size: 14px;
+          }
+          &.value.w-ind{
+            span{
+              font-size: 12px;
+              img{
+                width: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .text-info{
+      max-width: 555px;
+      margin: 0 15px;
+      h1{
+        font-size: 32px;
+        line-height: unset;
+        margin: 10px 0;
+      }
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+  .content-holder{
+    .switchers-holder{
+      width: 150px;
+      p{
+        font-size: 30px;
+      }
+    }
+    .cars-cont{
+      width: calc(100% - 160px);
+    }
+  }
+}
+
+@media screen and (max-width: 1550px){
+    .main-holder{
+        width: calc(100% - 380px);
+        padding-left: 20px;
+    }
+    .my-menu{
+        .menu-desc{
+          p{
+            font-size: 16px;
+            padding-bottom: 7px;
+          }
+        }
+      }
+  .top-info{
+    margin-top: 20px;
+    .info-box{
+      width: 440px;
+      min-width: 440px;
+      padding: 25px 13px;
+      .box-item{
+        p{
+          font-size: 18px;
+          &.desc{
+            font-size: 13px;
+          }
+          &.value.w-ind{
+            span{
+              font-size: 11px;
+              img{
+                width: 7px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .text-info{
+      max-width: 445px;
+      margin: 0 10px;
+      h1{
+        font-size: 26px;
+        margin: 5px 0 7px;
+      }
+      p{
+        font-size: 13px;
+      }
+    }
+    .back{
+      min-height: 105px;
+      padding: 0 14px;
+      p{
+        line-height: unset;
+        font-size: 14px;
+      }
+    }
+  }
+  .content-holder{
+    .switchers-holder{
+      height: 460px;
+      width: 135px;
+      p{
+        font-size: 26px;
+      }
+    }
+    .cars-cont{
+      margin-top: 25px;
+      width: calc(100% - 145px);
+      .single-car{
+        .stats-holder{
+          h1{
+            font-size: 36px;
+            margin: 0 0 10px 0;
+          }
+          .copy-desc{
+            font-size: 14px;
+            img{
+              margin-right: 12px;
+              width: 15px;
+            }
+          }
+          .car-stats{
+            margin-top: 30px;
+            .stat-item{
+              margin: 0 0 20px 0;
+              .desc{
+                font-size: 14px;
+              }
+              .my-progress-bar{
+                width: calc(100% - 100px);
+                .curr-value{
+                  font-size: 15px;
+                }
+                .max-value{
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+          .btns-holder{
+            .casual{
+              height: 45px;
+              .inner{
+                padding: 9px;
+                p{
+                  font-size: 14px;
+                  img{
+                    width: 25px;
+                  }
+                }
+              }
+            }
+            .cta-btn{
+              height: 45px;
+              font-size: 14px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+      .all-cars{
+        height: 110px;
+        margin-top: 45px;
+        .cars-inner{
+          .car-item{
+            &.rare{
+              .desc{
+                font-size: 15px;
+                margin-top: 3px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .zero-car-holder{
+      .inner-holder{
+        .img-holder{
+          width: 100%;
+          img{
+            max-width: 320px;
+          }
+        }
+        .text-holder{
+          top: -20px;
+          max-width: 600px;
+          .heading{
+            font-size: 20px;
+            margin: 0 0 7px 0;
+          }
+          .text{
+            font-size: 14px;
+            margin: 0 0 25px 0;
+          }
+          button{
+            font-size: 14px;
+            padding: 8px 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1400px){
+  .content-holder{
+    .cars-cont{
+      .single-car{
+        .stats-holder{
+          .btns-holder{
+            .casual{
+              width: 32%;
+              .inner{
+                padding: 11px 5px;
+                p{
+                  img{
+                    width: 20px;
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+            .cta-btn{
+              width: 32%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px){
+    .main-holder{
+        width: calc(100% - 340px);
+        padding-left: 13px;
+      }
+      .my-menu{
+        .menu-desc{
+          p{
+            font-size: 14px;
+            &.soon{
+              font-size: 13px;
+            }
+          }
+        }
+        .menu-line{
+          border-width: 3px;
+        }
+      }
+  .top-info{
+    margin-top: 20px;
+    .info-box{
+      width: 370px;
+      min-width: 370px;
+      padding: 20px 8px;
+      border-radius: 13px;
+      .box-item{
+        p{
+          font-size: 15px;
+          &.desc{
+            font-size: 11px;
+          }
+          &.value.w-ind{
+            span{
+              font-size: 9px;
+              img{
+                width: 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .text-info{
+      max-width: 555px;
+      h1{
+        font-size: 20px;
+      }
+      p{
+        font-size: 12px;
+      }
+    }
+    .back{
+      min-height: 100px;
+      padding: 0 11px;
+      border-radius: 13px;
+      p{
+        font-size: 13px;
+      }
+    }
+  }
+  .content-holder{
+    .switchers-holder{
+      height: 430px;
+      width: 115px;
+      p{
+        font-size: 21px;
+      }
+    }
+    .cars-cont{
+      margin-top: 20px;
+      width: calc(100% - 125px);
+      .single-car{
+        .stats-holder{
+          h1{
+            font-size: 26px;
+            margin: 0 0 7px 0;
+          }
+          .copy-desc{
+            font-size: 13px;
+            img{
+              margin-right: 7px;
+              width: 13px;
+            }
+          }
+          .car-stats{
+            margin-top: 25px;
+            .stat-item{
+              padding-right: 54px;
+              .my-progress-bar{
+                .curr-value{
+                  font-size: 14px;
+                }
+                .max-value{
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+          .btns-holder{
+            .casual{
+              .inner{
+                p{
+                  img{
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .all-cars{
+        height: 100px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+    .main-holder{
+        width: 100%;
+        padding: 0 13px 0px 10px;
+      }
+  .content-holder{
+    flex-wrap: wrap;
+    .switchers-holder{
+      height: unset;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      p{
+        padding: 15px;
+      }
+    }
+    .cars-cont{
+      width: 100%;
+      .single-car{
+        .img-holder{
+          .back-img{
+            max-width: 80%;
+            top: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px){
+  .top-info{
+    flex-wrap: wrap;
+    .back{
+      order: 1;
+      p{
+        font-size: 11px;
+        margin-bottom: 7px;
+      }
+    }
+    .info-box{
+      width: calc(100% - 60px);
+      order: 2;
+      padding: 27px 18px;
+      justify-content: space-evenly;
+      min-width: unset;
+      .box-item{
+        p{
+          font-size: 18px;
+          &.desc{  
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .text-info{
+      order: 3;
+      margin: 15px auto;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 640px){
+    .main-holder{
+      width: 100%;
+      padding: 0 10px 0px 10px;
+    }
+    .my-menu{
+        .menu-desc{
+          p{
+            font-size: 14px;
+            padding-bottom: 6px;
+            &.soon{
+              span{
+                display: none;
+              }
+            }
+          }
+          .soon{
+            .mobile{
+              white-space: nowrap;
+              display: inline;
+            }
+          }
+        }
+      }
+  .top-info{
+    padding-bottom: 0;
+    .back{
+      min-height: 80px;
+      p{
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+    }
+    .info-box{
+      width: calc(100% - 60px);
+      padding: 20px 18px;
+      justify-content: space-around;
+      .box-item{
+        p{
+          font-size: 15px;
+          &.desc{  
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  .my-menu{
+    .menu-desc{
+      p{
+        font-size: 13px;
+        padding-bottom: 4px;
+      }
+    }
+    .menu-line{
+      border-width: 2px;
+      .inner-line{
+        height: 3px;
+      }
+    }
+  }
+  .content-holder{
+    .cars-cont{
+      .single-car{
+        flex-wrap: wrap;
+        .img-holder{
+          width: 100%;
+          max-width: 400px;
+          margin: 0 auto 30px;
+          img{
+            transform: scale(1.1);
+            bottom: -15px;
+          }
+          .back-img{
+            max-width: 68%;
+            top: 51%;
+          }
+        }
+        .stats-holder{
+          width: 80%;
+        }
+      }
+      .all-cars{
+        overflow: auto;
+        .cars-inner{
+          min-width: 900px;
+          .car-item{
+            &::after{
+              background-size: 24px auto;
+            }
+          }
+          .car-high{
+            padding: 1px;
+          }
+        }
+      }
+    }
+    .zero-car-holder{
+      .inner-holder{
+        transform: none;
+        top: 10%;
+        .img-holder{
+          img{
+            max-width: 300px;
+          }
+        }
+        .text-holder{
+          top: -12px;
+          max-width: 600px;
+          .heading{
+            font-size: 17px;
+            margin: 0 0 5px 0;
+          }
+          .text{
+            font-size: 13px;
+            margin: 0 0 20px 0;
+          }
+          button{
+            font-size: 13px;
+            padding: 7px 30px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px){
+    .my-menu{
+        .menu-desc{
+          p{
+            font-size: 12px;
+            padding-bottom: 5px;
+          }
+        }
+      }
+  .top-info{
+    .info-box{
+      padding: 20px 14px;
+      .box-item{
+        p{
+          font-size: 13px;
+          &.desc{  
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .text-info{
+      h1{
+        font-size: 17px;
+      }
+      p{
+        font-size: 11px;
+      }
+    }
+  }
+  .content-holder{
+    .switchers-holder{
+      p{
+        font-size: 17px;
+        padding: 12px 7px;
+      }
+    }
+    .cars-cont{
+      .single-car{
+        .stats-holder{
+          width: 95%;
+          .car-stats{
+            .stat-item{
+              .desc{
+                font-size: 13px;
+              }
+              .my-progress-bar{
+                width: calc(100% - 88px);
+              }
+            }
+          }
+          .btns-holder{
+            .casual{
+              height: 39px;
+              .inner{
+                padding: 9px 5px;
+                p{
+                  font-size: 13px;
+                }
+              }
+            }
+            .cta-btn{
+              height: 39px;
+              font-size: 13px;
+              padding: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 380px){
+  .top-info{
+    .back{
+      font-size: 9px;
+      padding: 0 6px;
+    }
+    .info-box{
+      width: calc(100% - 43px);
+      .box-item{
+        p{
+          &.desc{
+            font-size: 9px;
+          }
+        }
+      }
+    }
+  }
+}

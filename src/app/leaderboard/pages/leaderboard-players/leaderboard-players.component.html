@@ -1,0 +1,96 @@
+<div class="main-content">
+  <div class="sub-content">
+
+    <div class="buttons-heading-component">
+      <div class="wrap-filter-buttons my-position">
+        <p>{{'leaderboard.my_position' | translate}}: <span>{{myLdrbrd?.player_position_overall ? myLdrbrd?.player_position_overall : '-'}}</span></p>
+      </div>
+      <div class="wrap-main-buttons">
+        <button class="cta-button black large" [routerLinkActive]="'active'"
+          [routerLink]="['/leaderboard/players']">{{'start-race.players' | translate}}</button>
+        <button class="cta-button black large" [routerLinkActive]="'active'"
+          [routerLink]="['/leaderboard/teams']" (click)="resetMonth()">{{'leaderboard.teams' | translate}}</button>
+      </div>
+      <div class="wrap-filter-buttons">
+        <div class="month-filter">
+          <button class="cta-button black" [ngClass]="isLastMonth === false ? 'active' : ''"
+            (click)="isLastMonth = false;actualPage = 1;getLeaderboard();getMyLeaderboard()">{{'leaderboard.curr_month' | translate}}</button>
+          <button class="cta-button black" [ngClass]="isLastMonth === true ? 'active' : ''"
+            (click)="isLastMonth = true;actualPage = 1;getLeaderboard();getMyLeaderboard()">{{'leaderboard.last_month' | translate}}</button>
+          <button class="button black" [routerLinkActive]="'active'" [routerLink]="['/leaderboard/players-winners']"
+            style="display: none;">{{'leaderboard.winners' | translate}}</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="ledeboard-team-list-component next">
+      <div class="sub-header-component">
+        <div class="item"><button>{{'leaderboard.position' | translate}}</button></div>
+        <div class="item"><button>{{'profile.country' | translate}}</button></div>
+        <div class="item"><button>{{'start-race.players' | translate}}</button></div>
+        <div class="item"><button>{{'profile.races' | translate}}</button></div>
+        <div class="item"><button>{{'shared.wins' | translate}}</button></div>
+        <div class="item"><button>{{'shared.points' | translate}}</button></div>
+        <div class="item"><button>{{'profile.team' | translate}}</button></div>
+        <div class="item"><button>{{'profile.t_position' | translate}}</button></div>
+        <div class="item"><button>{{'profile.ROI' | translate}}</button></div>
+        <div class="item"><button>{{'shared.prize' | translate}}</button></div>
+      </div>
+
+      <div class="table-body">
+        <div class="tab-team" *ngFor="let player of players;let indexx = index;">
+          <div class="inner-tab" [ngClass]="player.player_position === myLdrbrd?.player_position_overall ? 'my-inner-tab' : ''">
+            <div class="item team-position">
+              <span class="position">
+                <img src="assets/base/images/chat/hexagons/hex1.png" *ngIf="player.player_position === 1" />
+                <img src="assets/base/images/chat/hexagons/hex2.png" *ngIf="player.player_position === 2" />
+                <img src="assets/base/images/chat/hexagons/hex3.png" *ngIf="player.player_position === 3" />
+                <span *ngIf="player.player_position > 3" class="next-position">{{player.player_position}}</span>
+
+              </span>
+            </div>
+            <div class="item country">
+              <span class="image"><span *ngFor="let cc of countryList">
+                <span *ngIf="cc.name === player.user_country"><img [src]="'assets/flags/' + cc.code.toLowerCase() + '_32.png'"></span>
+                <span *ngIf="cc.code === player.user_country"><img [src]="'assets/flags/' + cc.code.toLowerCase() + '_32.png'"></span>
+              </span></span>
+            </div>
+            <div class="item player">
+              <span>{{player.user_nickname}}</span>
+            </div>
+            <div class="item races">
+              <span>{{player.total_races}}</span>
+            </div>
+            <div class="item wins">
+              <span>{{player.win_races}}</span>
+            </div>
+            <div class="item points">
+              <span>{{player.points}}</span>
+            </div>
+            <div class="item position">
+              <span>{{player.team_name}}</span>
+            </div>
+            <div class="item position">
+              <span>{{player.team_position}}</span>
+            </div>
+            <div class="item roi">
+              <span>{{player.roi | number:'1.4-4':'fr' }}%</span>
+            </div>
+            <div class="item price">
+              <span>{{player.prize | number:'1.2-2':'fr'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="bottom-desc">{{'leaderboard.update_hours' | translate}}</h2>
+      <div class="arrows" *ngIf="totalPages > 1">
+        <span class="pager-actual">{{actualPage}}/{{totalPages}}</span>
+    <br>
+        <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"></button>
+        <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"></button>
+      </div>
+    </div>
+  </div>
+</div>

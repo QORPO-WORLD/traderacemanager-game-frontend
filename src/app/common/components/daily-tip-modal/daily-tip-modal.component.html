@@ -1,0 +1,234 @@
+
+
+
+<div class="my-modal-body" *ngIf="isEditing === false">
+
+  <div class="content-wrapper">
+    <div class="tip-wrapper my-cta-btn-back">
+      <div class="tip-border ">
+        <div class="tip-item">
+          <div class="tip-stats">
+            <img src="assets/base/images/teams/long.png" alt="">
+            <div>
+              <h5>BTC</h5>
+              <p class="up" >&#9650; +34% {{'teams.my_team.in_last' | translate}} 24h</p>
+            </div>
+          </div>
+  
+          <div>
+            <h5>70%</h5>
+            <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+          </div>
+  
+          <div class="raiting">
+            <img class="active" src="assets/base/images/teams/like.png" alt="">
+            <img src="assets/base/images/teams/dis-like.png" alt="">
+          </div>
+        </div>
+  
+        <div class="tip-item">
+          <div class="tip-stats">
+            <img src="assets/base/images/teams/short.png" alt="">
+            <div>
+              <h5>BTC</h5>
+              <p class="down">&#9660; -34% {{'teams.my_team.in_last' | translate}} 24h</p>
+            </div>
+          </div>
+  
+          <div>
+            <h5>20%</h5>
+            <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+          </div>
+  
+          <div class="raiting">
+            <img src="assets/base/images/teams/like.png" alt="">
+            <img class="active" src="assets/base/images/teams/dis-like.png" alt="">
+          </div>
+        </div>
+  
+        <div class="tip-item">
+          <div class="tip-stats">
+            <img src="assets/base/images/teams/short.png" alt="">
+            <div>
+              <h5>BTC</h5>
+              <p class="down"> &#9660; -34% {{'teams.my_team.in_last' | translate}} 24h</p>
+            </div>
+          </div>
+  
+          <div>
+            <h5>100%</h5>
+            <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+          </div>
+  
+          <div class="raiting">
+            <img src="assets/base/images/teams/like.png" alt="">
+            <img src="assets/base/images/teams/dis-like.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="my-modal-body" *ngIf="isEditing === true">
+
+  <div class="content-wrapper wrapper2">
+    <div class="carousel-holder">
+      <div class="inner-item-holder">
+
+        <ng-container *ngFor="let majbet of myBet">
+          <div class="item-holder">
+            <div class="item-curr my-low-gradient" (click)="toggleCoin(majbet.customIndex)" [ngClass]="{'not-selected': majbet.selected !== true}">
+              <!-- <div class="marks-holder">
+                <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" class="premium-mark" *ngIf="majbet.symbol === myBetInput[0].symbol || majbet.symbol === myBetInput[1].symbol || majbet.symbol === myBetInput[2].symbol">
+              </div> -->
+              <img [src]="'/assets/base/images/curr-logos/'+ majbet.symbol +'-logo.png'" alt="">
+              <p class="item-symbol">{{majbet.symbol}}</p>
+            </div>
+          </div>
+        </ng-container>
+        
+      </div>
+    </div>
+    <div class="selected-bets-holder">
+
+      <div class="selected-item" *ngIf="selectedTips[0]">
+        <div class="curr-item selected my-cta-btn-back">
+          <div class="inner">
+            <img [src]="'/assets/base/images/curr-logos/'+ myBet[selectedTips[0]].symbol +'-logo.png'" alt="">
+          </div>
+        </div>
+        <div class="top-btns active">
+          <div class="btn-item long" (click)="myBet[selectedTips[0]].short = false" 
+          [ngClass]="myBet[selectedTips[0]].short === false ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/long-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short" (click)="myBet[selectedTips[0]].short = true" 
+          [ngClass]="myBet[selectedTips[0]].short === true ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/short-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selected-item" *ngIf="selectedTips[1]">
+        <div class="curr-item selected my-cta-btn-back">
+          <div class="inner">
+            <img [src]="'/assets/base/images/curr-logos/'+ myBet[selectedTips[1]].symbol +'-logo.png'" alt="">
+          </div>
+        </div>
+        <div class="top-btns active">
+          <div class="btn-item long" (click)="myBet[selectedTips[1]].short = false" 
+          [ngClass]="myBet[selectedTips[1]].short === false ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/long-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short" (click)="myBet[selectedTips[1]].short = true" 
+          [ngClass]="myBet[selectedTips[1]].short === true ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/short-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selected-item" *ngIf="selectedTips[2]">
+        <div class="curr-item selected my-cta-btn-back">
+          <div class="inner">
+            <img [src]="'/assets/base/images/curr-logos/'+ myBet[selectedTips[2]].symbol +'-logo.png'" alt="">
+          </div>
+        </div>
+        <div class="top-btns active">
+          <div class="btn-item long" (click)="myBet[selectedTips[2]].short = false" 
+          [ngClass]="myBet[selectedTips[2]].short === false ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/long-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short" (click)="myBet[selectedTips[2]].short = true" 
+          [ngClass]="myBet[selectedTips[2]].short === true ? 'active' : 'passive'">
+            <div class="inner">
+              <img class="active-img" src="/assets/base/images/icons/short-icon-active.svg" alt="">
+              <img class="passive-img" src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selected-item" *ngIf="!selectedTips[0]">
+        <div class="curr-item empty"></div>
+        <div class="top-btns">
+          <div class="btn-item long">
+            <div class="inner">
+              <img src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short">
+            <div class="inner">
+              <img src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="selected-item" *ngIf="!selectedTips[1]">
+        <div class="curr-item empty"></div>
+        <div class="top-btns">
+          <div class="btn-item long">
+            <div class="inner">
+              <img src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short">
+            <div class="inner">
+              <img src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="selected-item" *ngIf="!selectedTips[2]">
+        <div class="curr-item empty"></div>
+        <div class="top-btns">
+          <div class="btn-item long">
+            <div class="inner">
+              <img src="/assets/base/images/icons/long-icon.svg" alt="">
+              <p>Long</p>
+            </div>
+          </div>
+          <div class="btn-item short">
+            <div class="inner">
+              <img src="/assets/base/images/icons/short-icon.svg" alt="">
+              <p>Short</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="save-btn">
+      <button class="my-cta-btn-back hoverable" (click)="saveTips()">Save</button>
+    </div>
+
+  </div>
+
+</div>

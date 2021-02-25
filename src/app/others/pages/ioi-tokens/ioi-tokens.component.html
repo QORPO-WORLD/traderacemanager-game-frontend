@@ -1,0 +1,107 @@
+
+
+
+<div class="main-holder">
+
+  <app-main-top-banner [page]="'game-wallet'"></app-main-top-banner>
+
+  <div class="cswitch">
+     <!-- <app-coin-swtx></app-coin-swtx> -->
+  </div>
+    
+ <!-- <app-buy-tokens></app-buy-tokens> -->
+  
+</div>
+
+
+
+
+
+
+<!-- MODALS -->
+
+<!-- CHOOSE PAYMANT MODAL -->
+<div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="payment-modal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content my-modal-content--tokens">
+            <div class="modal-header">
+
+                <small>payment</small>
+
+                <button type="button" class="close my-modal-close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="card-holder-modal">
+
+                    <div class="tron-card">
+                        <label for="tron-card"><img src="assets/base/images/tokens/tron-card.png" alt=""></label>
+                        <label class="my-input--tokens" for="tron-card">
+                            <span>Choose your paymant</span>
+                            <input id="tron-card" type="checkbox">
+                            <span class="my-checkmark"></span>
+                        </label>
+
+                        <h6 class="mt-4">
+                            <span>Your payment:</span>
+                            <p>
+                                {{buying * 100 | number:'1.2-2':'fr'}}
+                                <img src="assets/base/images/triangle.png" alt="" >
+                            </p>
+                        </h6>
+                        <h6 class="mb-3">
+                            <span>Your balance:</span>
+                            <p>{{myBalance?.game_wallet_ioi | number:'1.2-2':'fr'}}</p>
+                        </h6>
+
+                    </div>
+                    <div class="visa-card" style="opacity: 0.2;">
+                        <label for="visa-card"><img src="assets/base/images/tokens/visa-card.png" alt=""></label>
+                        <label class="my-input--tokens coming-soon pb-2" for="visa-card"> Coming soon!
+                           <!-- <input id="visa-card" type="checkbox">
+                            <span class="my-checkmark"></span> -->
+                        </label>
+                    </div>
+
+                </div>
+                <a  (click)="buyToken()" data-dismiss="modal"  class="confirm-modal-btn-buy"
+                    href="#"><img src="assets/base/images/tokens/paymant-confirm-btn.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="crypto-modal">
+  <!-- *ngIf="cryptoModal === true" -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content my-modal-content--tokens">
+      <div class="modal-header">
+
+        <h2>What is your crypto wallet address?</h2>
+
+        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="edit-adress-wrap">
+          <input class="transfer-text-input crypto-adress" type="text" placeholder="ENTER YOUR ADRESS HERE" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <a data-dismiss="modal" data-toggle="modal" class="confirm-modal-btn" data-target="#deposit-modal"><img
+            src="/assets/base/images/paymant-confirm-btn.png" alt="" (click)="patchWallet()"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+

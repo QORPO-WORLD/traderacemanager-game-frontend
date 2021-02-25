@@ -1,0 +1,191 @@
+
+
+
+
+
+<div class="main-holder">
+  <div class="page-info"> 
+    <div class="back" [routerLink]="['/race/all-races']">
+      <p>&lt;</p>
+    <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="text-info">
+    <h1>{{'favourite_cars.page_heading' | translate}}</h1>
+    <p>{{'favourite_cars.page_info' | translate}}</p>
+    </div>
+    <div class="bonus-info">
+      <div class="start-race-btn my-cta-btn-back" *ngIf="selectedCarsToRace.length === 0">
+        <div class="inner">
+          <p>Cars not selected</p>
+        </div>
+      </div>
+
+      <div class="start-race-btn active my-cta-btn-back" *ngIf="selectedCarsToRace.length > 0" (click)="signupToRace()">
+        <div class="inner">
+          <p>Start race</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-holder">
+    <div class="switchers-holder">
+      <p class="my-cta-btn-back" (click)="editionIndex = 1" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="editionIndex = 2" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="editionIndex = 3" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="editionIndex = 4" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
+    </div>
+
+    <div class="cars-holder">
+      <div class="edition-holder">
+        <div class="regular-cars">
+          <ng-container *ngFor="let mc of myCars; let x = index">
+            <div class="car-item set" 
+            *ngIf="mc.favourite !== undefined && mc.car_model > ((editionIndex * 6) - 6) && mc.car_model <= (editionIndex * 6) || (mc.favourite !== undefined && mc.car_model === (24 + editionIndex))">
+              <div class="car-info">
+                <div class="name">
+                  <ng-container *ngIf="mc.car_model <= 24">
+                    <p class="value" *ngIf="editionIndex === 1">Bronze {{ mc.car_model }} </p>
+                    <p class="value" *ngIf="editionIndex === 2">Silver {{ mc.car_model - 6 }} </p>
+                    <p class="value" *ngIf="editionIndex === 3">Gold {{ mc.car_model - 12 }} </p>
+                    <p class="value" *ngIf="editionIndex === 4">Platinum {{ mc.car_model - 18 }} </p>
+                  </ng-container>
+                  
+                  <p class="value" *ngIf="mc.car_model === 25">Bronze 7 </p>
+                  <p class="value" *ngIf="mc.car_model === 26">Silver 7 </p>
+                  <p class="value" *ngIf="mc.car_model === 27">Gold 7 </p>
+                  <p class="value" *ngIf="mc.car_model === 28">Platinum 7 </p>
+                </div>
+                <div class="fuel-wrapper">
+                  <div class="fuel-inner">
+                    <div class="fuel" *ngFor="let coin of mc.newbetfast" [hidden]="coin.bet === 0">
+                      <p>
+                        <img [src]="'/assets/base/images/curr-logos/' + coin.symbol + '-logo.png'" alt=""> 
+                        <small>{{ coin.bet }}%</small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + mc.car_model + '.png'" alt="" *ngIf="mc.car_model <= 25 ">
+              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="mc.car_model > 25 ">
+
+              <div class="bottom-info">
+                <div class="buy-now my-cta-btn-back" [ngClass]="{'active': myCars[x]?.selected === true}">
+                  <div class="buy-inner set-up" (click)="selectCarToRace(x)">
+                    <p>Select</p>
+                  </div>              
+                </div>
+              </div>
+
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="main-holder">
+
+    
+  <div class="step-cont step1" [ngClass]="{'visible': stepIndex === 1}">
+
+    <div class="top-banner-holder">
+      <app-main-top-banner [page]="'fuel-car1'"></app-main-top-banner>
+    </div>
+
+    <div class="menu-holder fast-fuel">
+      <ng-container *ngIf=" stepIndex === 1">
+        <button [disabled]="selectedCarsToRace?.length === 0" class="next-button" 
+          [ngClass]="{'active': selectedCarsToRace?.length > 0}" (click)="signupToRace()">
+            <div class="border-maker"></div>
+            <p>{{'race.continue' | translate}} <img src="/assets/base/images/tankovanie/next-icon.png" alt=""></p>
+        </button>
+      </ng-container>
+    </div>
+    
+
+    <div class="content-holder">
+
+      <div class="cars-list">
+        <p class="segment-heading" style="visibility: hidden;">{{'fuel_car.pick_car' | translate}}</p>
+        <div class="cars-holder">
+          <ng-container *ngFor="let car of myCars;let i = index">
+            <div class="car-item" (click)="selectCarToRace(i)" [hidden]="car.favourite === undefined">
+
+              <div class="select-indicator" [ngClass]="{'active': myCars[i]?.selected === true}"></div>
+              <img [src]="'/assets/base/images/nft-cars/car' + car.car_model + '.png'" alt="">
+
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="overview-holder">
+        <div class="left-part">
+
+          <div class="box-item">
+            <p class="desc">{{'fuel_car.cars' | translate}}</p>
+            <div class="box">
+              <p>{{selectedCarsToRace.length}}</p>
+            </div>
+          </div>
+
+          <div class="box-item">
+            <p class="desc">{{'fuel_car.your_bet' | translate}}</p>
+            <div class="box">
+              <p *ngIf="currency === 'TRX'"><img src="/assets/base/images/tankovanie/trx-token.png" alt="">{{actualRaceAmount}} {{'shared.trx' | translate}}</p>
+              <p *ngIf="currency === 'IOI'"><img src="/assets/base/images/tankovanie/trx-token.png" alt="">{{actualRaceAmount}} {{'shared.ioi' | translate}}</p>
+            </div>
+          </div>
+
+          <div class="box-item">
+            <p class="desc">{{'fuel_car.chance_to_win' | translate}}</p>
+            <div class="box">
+              <p class="chance" *ngIf="numOfPlayers && selectedCarsToRace.length > 0">1 : {{(numOfPlayers + selectedCarsToRace.length) / selectedCarsToRace.length | number:'1.0-2':'fr'}}</p>
+              <p class="chance" *ngIf="numOfPlayers && selectedCarsToRace.length === 0">0 : {{numOfPlayers}}</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="right-part">
+          <div class="chances-box">
+            <div class="icon-holder">
+              <img src="/assets/base/images/tankovanie/bulb-icon.png" alt="">
+            </div>
+            <div class="text-holder">
+              <p class="heading">{{'fuel_car.multiply_chances' | translate}}</p>
+              <p>{{'fuel_car.increase_chance' | translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-panels">
+        <div class="hint-panel fast-fuel" style="visibility: hidden;">
+         &nbsp;
+        </div>
+
+        <button [disabled]="selectedCarsToRace?.length === 0" class="next-button fast-fuel" 
+        [ngClass]="{'active': selectedCarsToRace?.length > 0}" (click)="signupToRace()">
+          <div class="border-maker"></div>
+          <p>{{'race.continue' | translate}} <img src="/assets/base/images/tankovanie/next-icon.png" alt=""></p>
+        </button>
+      </div>
+
+    </div>
+
+  </div> -->
+
+  
+
+  
+  
+

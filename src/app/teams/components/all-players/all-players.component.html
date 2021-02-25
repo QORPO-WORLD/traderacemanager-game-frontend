@@ -1,0 +1,37 @@
+<div class="holder">
+
+  <img class="img" src="/assets/base/images/leaderboard/helmet.png" alt="">
+  <div class="table">
+    <div class="header row">
+        <div >Placement</div>
+        <div >Nickname</div>
+        <div >Team</div>
+        <div >Turnover</div>
+        <div>Potentional win</div>
+    </div>
+    <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3}">
+    
+      <div class="cell" *ngIf="pl.player_position < 4">
+        <div class="crown">
+            <span><p>{{pl.player_position}}.</p></span>
+        </div>
+        <div class="cell" *ngIf="pl.player_position > 3">
+          <div class="placement my-border-grad"><span>{{pl.player_position}}.</span></div>
+        </div>
+      </div>
+      <div class="cell"> <p> {{pl.user_nickname}}</p></div>
+      <div class="cell"><p>{{pl.team_name}}</p></div>
+      <div class="cell"><p> {{pl.trx_turnover  | number:'1.1-1':'fr'}}</p></div>
+      <div class="cell"><p>{{payouts[yy]  | number:'1.1-1':'fr'}}</p></div>
+    </div>
+    
+    <div class="arrow-right">
+      >
+     </div>
+     <div class="arrow-left">
+       <
+     </div>
+  </div>
+  
+</div>
+

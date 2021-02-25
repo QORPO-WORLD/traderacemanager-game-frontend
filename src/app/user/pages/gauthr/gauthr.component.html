@@ -1,0 +1,173 @@
+<div class="step-holder" *ngIf="curStep === 0">
+
+  <div class="nav-btns">
+    <p class="back-btn" (click)="cancelKey()"><span>&lt;</span> Back</p>
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+  </div>
+
+  <h1 class="top-heading">Authenticator</h1>
+
+  <div class="auth-steps">
+    <div class="step-desc">
+        <p class="active">1.DOWNLOAD</p>
+        <p>2.SCAN QR</p>
+        <p>3.BACKUP</p>
+        <p>4.ENABLE</p>
+    </div>
+    <div class="step-line">
+        <div class="inner-line">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="top-desc">
+    <h1>Step 1</h1>
+    <p data-bn-type="text">Download and install the Google Authenticator app</p>
+  </div>
+
+  <div class="button-item apple">
+    <div class="dummy"></div>
+    <a id="enableGA_a_appStore" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank" rel="noreferrer noopener" class="inner-link">
+      <p><img src="/assets/base/images/modal/apple-store-logo.png" class="apple-logo"> Available on App Store</p>
+     </a>
+  </div>
+
+  <div class="button-item apple">
+    <div class="dummy"></div>
+    <a id="enableGA_a_googlePlay" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="noreferrer noopener" class="inner-link">
+      <p><img src="/assets/base/images/modal/google-play-logo.png" class="google-logo"> Available on Google Play</p>
+    </a>
+  </div>
+
+  <div class="next-btn">
+    <button data-bn-type="button" (click)="curStep = 1">Next <span>&gt;</span></button>
+  </div>
+</div>
+
+<div class="step-holder" *ngIf="curStep === 1">
+
+  <div class="nav-btns">
+    <p class="back-btn" (click)="curStep = 0"><span>&lt;</span> Back</p>
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+  </div>
+
+  <h1 class="top-heading">Authenticator</h1>
+
+  <div class="auth-steps">
+    <div class="step-desc">
+        <p>1.DOWNLOAD</p>
+        <p class="active">2.SCAN QR</p>
+        <p>3.BACKUP</p>
+        <p>4.ENABLE</p>
+    </div>
+    <div class="step-line">
+        <div class="inner-line state2">&nbsp;</div>
+    </div>
+
+  </div>
+
+  <div class="top-desc">
+    <h1>Step 2</h1>
+    <p data-bn-type="text">Scan this QR code in the Google Authenticator app</p>
+  </div>
+
+  <div class="qr-holder">
+    <img [src]="qrkey" class="qrimg">
+  </div>
+
+  <div class="manual-code">
+    <p>If you're unable to scan the QR code, please enter this code below manually into the app</p>
+    <h2>{{myKey}}</h2>
+  </div>
+  <div class="next-btn">
+    <button data-bn-type="button" (click)="curStep = 2">Next <span>&gt;</span></button>
+  </div>
+</div>
+
+<div class="step-holder" *ngIf="curStep === 2">
+  
+  <div class="nav-btns">
+    <p class="back-btn" (click)="curStep = 1"><span>&lt;</span> Back</p>
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+  </div>
+
+  <h1 class="top-heading">Authenticator</h1>
+
+  <div class="auth-steps">
+    <div class="step-desc">
+        <p>1.DOWNLOAD</p>
+        <p>2.SCAN QR</p>
+        <p class="active">3.BACKUP</p>
+        <p>4.ENABLE</p>
+    </div>
+    <div class="step-line">
+        <div class="inner-line state3">&nbsp;</div>
+    </div>
+
+  </div>
+
+  <div class="top-desc">
+    <h1>Step 3</h1>
+    <p data-bn-type="text">Please save this Key code on a safe place</p>
+  </div>
+
+  <div class="button-item copy-btn">
+    <div class="dummy"></div>
+    <div class="text-holder">
+      <p>{{myKey}}</p>
+      <div class="icon-holder" (click)="copyInputMessage()">
+        <img src="/assets/base/images/start-race/copy-icon.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <p class="desc-text">Resetting your Google Authenticator might take up to 7 days</p>
+
+  <div class="next-btn">
+    <button data-bn-type="button" (click)="curStep = 3">Next <span>&gt;</span></button>
+  </div>
+</div>
+
+<div class="step-holder" *ngIf="curStep === 3">
+  
+  <div class="nav-btns">
+    <p class="back-btn" (click)="curStep = 2"><span>&lt;</span> Back</p>
+    <img src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+  </div>
+
+  <h1 class="top-heading">Authenticator</h1>
+
+  <div class="auth-steps">
+    <div class="step-desc">
+        <p>1.DOWNLOAD</p>
+        <p>2.SCAN QR</p>
+        <p>3.BACKUP</p>
+        <p class="active">4.ENABLE</p>
+    </div>
+    <div class="step-line">
+        <div class="inner-line state4">&nbsp;</div>
+    </div>
+
+  </div>
+
+  <div class="top-desc">
+    <h1>Step 4</h1>
+    <p data-bn-type="text">Enable Google Authenticator</p>
+  </div>
+
+  <div class="form-holder">
+    <form action="#" autocomplete="off">
+      <div class="input-holder">
+        <div class="dummy"></div>
+        <input data-bn-type="input" [(ngModel)]="pass"  [ngModelOptions]="{standalone: true}" aria-label="Password" type="password" name="password" placeholder="Enter your IOI Game password" value="">
+      </div>
+      <div class="input-holder">
+        <div class="dummy"></div>
+        <input [(ngModel)]="testinp"  [ngModelOptions]="{standalone: true}" placeholder="Enter Google Authenticator code">
+      </div>
+      <div class="next-btn">
+        <button data-bn-type="button" type="submit" (click)="testKey()">Enable</button>
+      </div>
+    </form>
+  </div>
+
+</div>

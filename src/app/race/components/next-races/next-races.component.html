@@ -1,0 +1,65 @@
+<div class="main-wrapper">
+
+  <!-- <div class="next-races-table">
+    <div class="table-item" *ngFor="let racing of newNextData;let i = index;" (click)="selectNext(i)" [hidden]="racing.tour_index > 1">
+      <div class="race-img">
+        <img [src]="'/assets/base/images/next-cars/' + racing.race_identifier + '.png'" alt="">
+      </div>
+      <div class="race-stats">
+        <div class="left-part">
+          <p>TIME TO START</p>
+          <p>PRIZEPOOL</p>
+          <p>RACERS</p>
+        </div>
+        <div class="right-part">
+          <p><app-timer [value]="racing.starts_in_seconds" (onComplete)="completeTimer()"></app-timer></p>
+          <p>{{racing.prize_pool}}</p>
+          <p>{{racing.players}}/100</p>
+        </div>
+      </div>
+      <div class="race-type">
+        <h3>{{ 'race.type.' + racing.race_identifier | translate }}</h3> 
+      </div>
+    </div>
+  </div> -->
+  <h1 class="latest-heading">{{'start-race.latest_winners' | translate}}</h1>
+  <div class="next-races-table">
+    <ng-container *ngFor="let player of latestData;let i = index;">
+      <div class="table-item" [ngClass]="newItemStyle" *ngIf="i < 11">
+        <div class="race-img">
+          <img [src]="'/assets/base/images/next-cars/' + player.race_identifier + '.png'" alt="">
+        </div>
+        <div class="race-stats">
+          <div class="left-part">
+            <p>{{'shared.nick' | translate}}</p>
+            <p>{{'shared.game_type' | translate}}</p>
+            <p>{{'history.date' | translate}}</p>
+          </div>
+          <div class="right-part">
+            <p>{{player.nickname}}</p>
+            <p>{{ 'race.type.' + player.race_identifier | translate }}</p>
+            <p>{{player.updated  | date:'short'}}</p>
+          </div>
+        </div>
+        <div class="race-type">
+          <h3>{{player.win_amount}}
+            <span 
+            *ngIf="player.race_identifier === 'car_race_ioi_1' ||
+            player.race_identifier === 'car_race_ioi_3' ||
+            player.race_identifier === 'car_race_ioi_5' ||
+            player.race_identifier === 'wednesday_party_race_0' ||
+            player.race_identifier === 'classic_tournament_0' ||
+            player.race_identifier === 'bonus_race_0'">{{'shared.ioi' | translate}}</span>
+            <span 
+            *ngIf="player.race_identifier !== 'car_race_ioi_1' &&
+            player.race_identifier !== 'car_race_ioi_3' &&
+            player.race_identifier !== 'car_race_ioi_5' &&
+            player.race_identifier !== 'wednesday_party_race_0' &&
+            player.race_identifier !== 'classic_tournament_0' &&
+            player.race_identifier !== 'bonus_race_0'">{{'shared.trx' | translate}}</span>
+          </h3> 
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

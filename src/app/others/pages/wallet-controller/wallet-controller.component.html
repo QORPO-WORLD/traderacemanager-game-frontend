@@ -1,0 +1,43 @@
+
+
+<div class="main-holder">
+  <div class="top-info"> 
+    <div class="back" [routerLink]="['/race/start-race']">
+      <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="text-info" *ngIf="controlType === 'deposit'">
+      <h1>Deposit funds</h1>
+      <p>Welcome {{nickname}}, you can deposit new funds into your account in here. All of the payments are completely secured.</p>
+    </div>
+    <div class="text-info" *ngIf="controlType === 'withdraw'">
+      <h1>Withdraw funds</h1>
+      <p>Welcome {{nickname}}, you can withdraw your funds from your account in here. All of the payments are completely secured.</p>
+    </div>
+    <div class="text-info" *ngIf="controlType === 'transfer'">
+      <h1>Transfer funds</h1>
+      <p>Welcome {{nickname}}, you can transfer your funds from your account in here. All of the payments are completely secured.</p>
+    </div>
+    <div class="info-box">
+      <div class="text-holder">
+        <p class="value">{{accountValue | number:'1.0-2':'fr'}} &#36;</p>
+        <p class="desc">current account value</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="controlType === 'deposit'">
+    <app-quick-deposit></app-quick-deposit>
+  </ng-container>
+
+  <ng-container *ngIf="controlType === 'withdraw'">
+    <app-quick-withdraw></app-quick-withdraw>
+  </ng-container>
+
+  <ng-container *ngIf="controlType === 'transfer'">
+    <app-quick-transfer></app-quick-transfer>
+  </ng-container>
+  
+  
+
+</div>

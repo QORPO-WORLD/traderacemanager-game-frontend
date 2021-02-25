@@ -1,0 +1,24 @@
+<div class="nitro-robot" *ngIf="notifiqs?.length > 0">
+	<div class="buble">
+		<div class="notifications">
+			<div *ngFor="let notification of notifiqs" class="notification" [ngClass]="className(notification)">
+				<ng-container *ngTemplateOutlet="notificationTpl;context:{notification:notification}"></ng-container>
+			</div>
+
+      <div class="nitro-guy"  [ngClass]="notifiqs?.length > 0 ? 'visible' : 'invisible'">&nbsp;</div>
+
+		</div>
+	</div>
+</div>
+<ng-template #notificationTpl let-notification="notification" >
+
+	<div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+		<div>{{'nitro_notifiq.' + notification.title | translate}}</div>
+		<button  (click)="close(notification)" matTooltip="Close the notification">
+			<span>X</span>
+		</button>
+	</div>
+
+	<div class="message">{{'nitro_notifiq.' + notification.message | translate}}</div>
+
+</ng-template>

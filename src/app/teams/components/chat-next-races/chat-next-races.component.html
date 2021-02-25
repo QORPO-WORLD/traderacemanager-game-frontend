@@ -1,0 +1,60 @@
+<div class="main-wrapper">
+
+  <div class="top-holder">
+    <div class="headings">
+      <h1>{{'start-race.top_racer' | translate}}</h1>
+          </div>
+  </div>
+  <!-- <div class="next-races-table">
+    <div class="table-item" *ngFor="let racing of newNextData;let i = index;" (click)="selectNext(i)" [hidden]="racing.tour_index > 1">
+      <div class="race-img">
+        <img [src]="'/assets/base/images/next-cars/' + racing.race_identifier + '.png'" alt="">
+      </div>
+      <div class="race-stats">
+        <div class="left-part">
+          <p>TIME TO START</p>
+          <p>PRIZEPOOL</p>
+          <p>RACERS</p>
+        </div>
+        <div class="right-part">
+          <p><app-timer [value]="racing.starts_in_seconds" (onComplete)="completeTimer()"></app-timer></p>
+          <p>{{racing.prize_pool}}</p>
+          <p>{{racing.players}}/100</p>
+        </div>
+      </div>
+      <div class="race-type">
+        <h3>{{ 'race.type.' + racing.race_identifier | translate }}</h3> 
+      </div>
+    </div>
+  </div> -->
+  <h1 class="latest-heading">{{'start-race.next_races' | translate}}</h1>
+  <div class="next-races-table">
+    <ng-container *ngFor="let game of newNextData;let i = index;">
+      <div class="table-item" [ngClass]="newItemStyle" *ngIf="i < 8">
+        <div class="race-img">
+          <img [src]="'/assets/base/images/next-cars/' + game.race_identifier + '.png'" alt="">
+        </div>
+        <div class="race-stats">
+          <div class="left-part">
+            <p>{{'shared.game_type' | translate}}</p>
+            <p>{{'shared.win_up_to' | translate}}</p>
+            <p>{{'shared.start_time' | translate}}</p>
+          </div>
+          <div class="right-part">
+            <p>{{'race.type.' + game.race_identifier | translate }}</p>
+            <p *ngIf="game.bet_amount > 0">{{ game.bet_amount * 100 | number }} {{'shared.trx' | translate}}</p>
+            <p *ngIf="game.race_identifier === 'car_race_short_0'">2 {{'shared.trx' | translate}}</p>
+            <p *ngIf="game.race_identifier === 'classic_tournament_0'">10 {{'shared.trx' | translate}}</p>
+            <p *ngIf="game.race_identifier === 'wednesday_party_race_0'">10,000 {{'shared.trx' | translate}}</p>
+            <p *ngIf="game.race_type === 'golden_ticket'">{{'race.type.golden_ticket_0' | translate}}</p>
+            <p><app-timer (onComplete)="completeTimer()" [value]="game.starts_in_seconds"></app-timer></p>
+          </div>
+        </div>
+        <div class="race-type">
+          <button class="cta-button hoverable" *ngIf="trxBalance >= game.bet_amount"  [routerLink]="['/car/fuel-car/' + game.race_identifier]">{{'shared.play_btn' | translate}}</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</div>

@@ -1,0 +1,41 @@
+
+
+<div class="chat-cont">
+  <div class="info-panel">
+    <p class="desc">Team chat</p>
+    <p class="players-num my-text-color">
+      <img [src]="'assets/base/images/avatars/avatar' + myDriverStats?.affiliate_level + '.svg'" alt="My affiliate level avatar">
+      online {{chatList?.length}}
+    </p>
+  </div>
+  <div class="msgs-cont">
+    <ng-container *ngFor="let msg of chatList ">
+      <div class="message-item" [ngClass]="msg.user_nickname === myDriver ? 'my-msg' : 'not-my'">
+        <div class="img-holder">
+          <img [src]="'/assets/base/images/avatars/avatar' + msg?.user_affiliate_level + '.svg'" alt="" *ngIf="msg?.user_affiliate_level !== null">
+          <img src="/assets/base/images/avatars/avatar1.svg" alt="" *ngIf="msg?.user_affiliate_level === null">
+        </div>
+        <div class="message">
+          <div class="name">
+            <p class="username">{{msg.user_nickname}}</p>
+            <p class="date">{{msg.created | date: "shortTime"}}</p>
+          </div>
+          <div class="message-text my-border-grad">
+            <div class="inner-msg-text">
+              <p>{{msg.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="texting-cont">
+    <form (ngSubmit)="postChat()">
+      <input name="message" cols="1" rows="2" class="chat-input msg" [(ngModel)]="chatInput" [ngModelOptions]="{standalone: true}"
+        maxlength="100" placeholder="Your message">
+      <div (click)="postChat()" class="send-btn"><img src="/assets/base/images/menu/send-arrow.svg" alt=""></div>
+    </form>
+  </div>
+
+</div>

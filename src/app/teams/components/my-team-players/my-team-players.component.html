@@ -1,0 +1,305 @@
+<!--<div class="team-players">
+  <div class="players-table">
+    <div class="table-header">
+      <div class="small">
+        &nbsp;
+      </div>
+      <div>
+        <p>NICKNAME</p>
+      </div>
+      <div>
+        <p>TURNOVER</p>
+      </div>
+      <div>
+        <p>POTENTIAL WIN</p>
+      </div>
+    </div>
+    <ng-container *ngFor="let pl of players; let yy = index">
+      <div class="player-item" [ngClass]="{'bordered': yy === 0}">
+        <div class="small" *ngIf="yy < 3">
+          <p>&nbsp;</p>
+          <img [src]="'/assets/base/images/teams/pos' + (yy + 1) + '.png'" alt="">
+        </div>
+        <div class="small" *ngIf="yy > 2">
+          <p>&nbsp;</p>
+          <div class="next-pos">
+            <img src="/assets/base/images/teams/pos-universal.png" alt="">
+            <p>{{yy + 1}}</p>
+          </div>
+        </div>
+        <div class="nick">
+          <p>{{pl.user_nickname}}</p>
+        </div>
+        <div>
+          <p>{{pl.trx_turnover}}</p>
+        </div>
+        <div>
+          <p>{{payouts[yy]  | number:'1.1-1':'fr'}}</p>
+        </div>
+      </div>
+    </ng-container>
+  
+    
+    <div class="player-item my-item" *ngIf="myLdrbrd.team_position > 10">
+      <div class="img-holder">
+        <img src="/assets/base/images/teams/place-universal.png" alt="">
+        <span>{{myLdrbrd.team_position}}</span>
+      </div>
+      <div>
+        <p>{{mydrvr}}</p>
+      </div>
+      <div>
+        <p>{{myLdrbrd.wins}}</p>
+      </div>
+      <div>
+        <p>{{myLdrbrd.points}}</p>
+      </div>
+      <div>
+        <p>0</p>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<div class="teams-table">
+
+  <div class="first-team team-row">
+
+    <div class="team-box">
+      <div class="image-holder">
+        <div class="image">
+          <img src="assets/base/images/teams/IOI-team.png" alt="">
+        </div>
+        <h6>{{"shared.layout.team"| translate}} IOI</h6>
+      </div>
+      <div class="team-info">
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p> <p>1 000 000</p>
+        </div>
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>John2154</p>
+        </div>
+        <div class="reward-info">
+          <span class="border-maker">
+            <div class="place-wrapper">
+              <div class="team-place">
+                <img src="assets/base/images/leaderboard/crown-gold.png" alt="">
+                <span class="team-placement gold">1</span>
+              </div>
+              <p>50 000 IOI</p>
+            </div>
+            <p>{{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-leaders-table">
+      <div class="arrow-right">
+        <p>></p>
+      </div>
+      <div class="arrow-left">
+        <p>&lt;<p>
+      </div>
+      <div class="heading table-row">
+        <div class="item-cell"><p>{{"leaderboard.place"| translate}}</p></div>
+        <div class="item-cell"><p>{{"affiliate.name"| translate}}</p></div>
+        <div class="item-cell"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+        <div class="item-cell"><p>{{"shared.potential_win"| translate}}</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>1.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>2.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row me">
+        <div class="item-cell">
+          <div class="placement">
+            <div class="me-text"><p>{{"leaderboard.me" |translate}}</p></div>
+            <span><p>3.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="secound-team team-row">
+
+    <div class="team-box">
+      <div class="image-holder">
+        <div class="image">
+          <img src="assets/base/images/teams/TRX-team.png" alt="">
+        </div>
+        <h6>{{"shared.layout.team"| translate}} ALT</h6>
+      </div>
+      <div class="team-info">
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p> <p>1 000 000</p>
+        </div>
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>John2154</p>
+        </div>
+        <div class="reward-info">
+          <span class="border-maker">
+            <div class="place-wrapper">
+              <div class="team-place">
+                <img src="assets/base/images/leaderboard/crown-silver.png" alt="">
+                <span class="team-placement silver">2</span>
+              </div>
+              <p>30 000 IOI</p>
+            </div>
+            <p>{{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-leaders-table">
+      <div class="arrow-right">
+        <p>></p>
+      </div>
+      <div class="arrow-left">
+        <p>&lt;<p>
+      </div>
+      <div class="heading table-row">
+        <div class="item-cell"><p>{{"leaderboard.place"| translate}}</p></div>
+        <div class="item-cell"><p>{{"affiliate.name"| translate}}</p></div>
+        <div class="item-cell"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+        <div class="item-cell"><p>{{"shared.potential_win"| translate}}</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>1.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>2.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <div class="me-text"><p>{{"leaderboard.me" |translate}}</p></div>
+            <span><p>3.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="third-team team-row">
+
+    <div class="team-box">
+      <div class="image-holder">
+        <div class="image">
+          <img src="assets/base/images/teams/BTC-team.png" alt="">
+        </div>
+        <h6>{{"shared.layout.team"| translate}} BTC</h6>
+      </div>
+      <div class="team-info">
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p> <p>1 000 000</p>
+        </div>
+        <div class="team-info-text">
+          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>John2154</p>
+        </div>
+        <div class="reward-info">
+          <span class="border-maker">
+            <div class="place-wrapper">
+              <div class="team-place">
+                <img src="assets/base/images/leaderboard/crown-bronze.png" alt="">
+                <span class="team-placement bronze">3</span>
+              </div>
+              <p>20 000 IOI</p>
+            </div>
+            <p>{{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-leaders-table">
+      <div class="arrow-right">
+        <p>></p>
+      </div>
+      <div class="arrow-left">
+        <p>&lt;<p>
+      </div>
+      <div class="heading table-row">
+        <div class="item-cell"><p>{{"leaderboard.place"| translate}}</p></div>
+        <div class="item-cell"><p>{{"affiliate.name"| translate}}</p></div>
+        <div class="item-cell"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+        <div class="item-cell"><p>{{"shared.potential_win"| translate}}</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>1.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <span><p>2.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+      <div class="table-row">
+        <div class="item-cell">
+          <div class="placement">
+            <div class="me-text"><p>{{"leaderboard.me" |translate}}</p></div>
+            <span><p>3.</p></span>
+          </div>
+        </div>
+        <div class="item-cell"><p>John4547858</p></div>
+        <div class="item-cell"><p>123 041.00</p></div>
+        <div class="item-cell"><p>145784145</p></div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

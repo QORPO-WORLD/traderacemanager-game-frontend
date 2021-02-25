@@ -1,0 +1,216 @@
+
+
+<div class="content-holder">
+  <div class="left-holder">
+    <div class="curr-holder">
+      <p class="common-heading">Currency</p>
+      <p class="desc-text">Choose a currency you want to receive for deposited funds</p>
+      <div class="boxes-holder">
+        <div class="box-item ioi" [ngClass]="{'active': tokenSelected === 'ioi'}" (click)="tokenSelected = 'ioi'">
+          <div class="inner">
+            <img src="/assets/base/images/tankovanie/ioi-token.png" alt="Logo of ioi token" class="curr-logo">
+            <div class="text-holder">
+              <p class="value">{{myIoiBalance | number:'1.0-2':'fr' }} IOI</p>
+              <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-item trx" [ngClass]="{'active': tokenSelected === 'matic'}" (click)="tokenSelected = 'matic'">
+          <div class="inner">
+            <img src="/assets/base/images/tankovanie/matic-token.png" alt="Logo of matic token" class="curr-logo">
+            <div class="text-holder">
+              <p class="value">{{myMaticBalance | number:'1.0-2':'fr' }} MATIC</p>
+              <p class="dollars">&#36; {{myMaticBalance | number:'1.0-2':'fr'}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="soon-curs">
+          <p class="mid-text">More currencies coming soon</p>
+          <div class="box-item">
+            <div class="inner">
+              <img src="/assets/base/images/tankovanie/btc-token.png" alt="Logo of Bitcoin token" class="curr-logo">
+              <div class="text-holder">
+                <p class="value">Bitcoin</p>
+                <p class="dollars">&#36; 1,235.12</p>
+              </div>
+            </div>
+          </div>
+          <div class="box-item">
+            <div class="inner">
+              <img src="/assets/base/images/tankovanie/eth-token.png" alt="Logo of Ethereum token" class="curr-logo">
+              <div class="text-holder">
+                <p class="value">Ethereum</p>
+                <p class="dollars">&#36; 1,235.12</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="amount-holder">
+      <p class="common-heading">Amount</p>
+      <div class="amount-input my-cta-btn-back">
+        <div class="inner">
+          <input type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the amount you want to deposit">
+          <p class="curr-desc" *ngIf="tokenSelected === 'matic'">MATIC</p>
+          <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
+        </div>
+      </div>
+      <p class="common-heading">Crypto wallet address</p>
+      <div class="crypto-input">
+        <input type="text" placeholder="Enter an address  of crypto wallet you will deposit funds from" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+
+  </div>
+  <div class="right-holder">
+    <p class="common-heading">Your deposit summary</p>
+    <div class="main-panel">
+      <div class="depositing-info">
+        <p class="text">You are depositing</p>
+        <p class="value"><span *ngIf="amount > 0">{{amount}}</span> <span *ngIf="amount < 1">0</span>
+          <span *ngIf="tokenSelected === 'matic'" class="value-desc">MATIC</span>
+          <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
+        </p>
+        <p *ngIf="tokenSelected === 'matic'" class="desc">market value 1 MATIC = 20 USD</p>
+        <p *ngIf="tokenSelected === 'ioi'" class="desc">market value 1 IOI = 0.4 USDT</p>
+      </div>
+      <div class="my-wallet-info">
+        <div class="info-border top my-cta-btn-back"></div>
+        <div class="info-item crypto-adress">
+          <p class="desc">Crypto address</p>
+          <input type="text" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+        </div>
+        <div class="info-item second">
+          <p class="desc">Currency you will receive</p>
+          <p *ngIf="tokenSelected === 'matic'" class="value">Matic</p>
+          <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+        </div>
+        <div class="info-border bottom my-cta-btn-back"></div>
+      </div>
+      <div class="qr-code-holder">
+        <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
+        <img class="qr-code" src="/assets/base/images/qr.jpg" alt="">
+        <p class="our-code">TE6xjUSpFJJvgy7fAFkNxePwsi4AA1s21D</p>
+        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();patchWallet();refresh()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="modal fade" id="deposit-modal" tabindex="-1" role="dialog" aria-labelledby="turn-lux-modal"
+    aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
+    <div class="modal-content my-modal-content--tokens">
+
+      <div class="modal-close" (click)="stepIndex = 1;amount = 0;" ><button data-dismiss="modal" aria-label="Close" style="background: black;
+        border-radius: 100%;
+        color: white;
+        font-size: 10px;
+        width: 20px;
+        height: 20px;">x</button></div>
+
+      <div class="deposit-modal-body step-body step1" [ngClass]="stepIndex === 1 ? 'visible' : 'hidden'">
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.receive' | translate}}</p>
+            <p>{{'modals.deposit_modal.welcome_here' | translate}}</p>
+          </div>
+        </div>
+        <div class="token-option modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.what_receive' | translate}}</p>
+            <p>{{'modals.deposit_modal.choose_receive' | translate}}</p>
+          </div>
+          <div class="tokens-holder">
+            <div class="token-item trx" [ngClass]="{'active': tokenSelected === 'trx'}" (click)="tokenSelected = 'trx'">
+              <img src="/assets/base/images/trx2.png" alt="">
+            </div>
+            <div class="token-item ioi" [ngClass]="{'active': tokenSelected === 'ioi'}" (click)="tokenSelected = 'ioi'">
+              <img src="/assets/base/images/logo.png" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="input-box modal-box desc-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.sender_address' | translate}}</p>
+            <p>{{'modals.deposit_modal.crypto_from' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input [ngModel]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+            <button (click)="stepIndex = 3" class="edit-button">{{'modals.edit' | translate}}</button>
+          </div>
+          <p class="disclaim">{{'modals.deposit_modal.address_warning' | translate}}</p>
+        </div>
+
+        <div class="input-box modal-box small-input desc-box">
+          <div class="text">
+            <p class="header">{{'modals.amount' | translate}}</p>
+            <p>{{'modals.deposit_modal.amount_to_send' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input class="transfer-text-input" type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}">
+          </div>
+          <p class="disclaim">{{'modals.deposit_modal.min_deposit' | translate}} 1 {{'shared.trx' | translate}}</p>
+        </div>
+
+        <span class="stepix">1/2</span>
+        <button class="next-btn visible" (click)="resolveDeposit()" 
+        [disabled]="tokenSelected.length < 1 || amount < 1">{{'shared.next' | translate}}</button>
+
+      </div>
+
+      <div class="deposit-modal-body step-body step2" [ngClass]="stepIndex === 2 ? 'visible' : 'hidden'">
+
+        <div class="modal-desc modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.time_text1' | translate}}</p>
+            <p>{{'modals.deposit_modal.time_text2' | translate}}</p>
+          </div>
+        </div>
+
+        <div class="input-box modal-box">
+          <div class="text">
+            <p class="header">{{'modals.deposit_modal.your_address' | translate}}</p>
+            <p>{{'modals.deposit_modal.copy_address' | translate}}</p>
+          </div>
+          <div class="input-holder">
+            <input readonly value="TE6xjUSpFJJvgy7fAFkNxePwsi4AA1s21D">
+          </div>
+       
+        </div>
+
+        <div class="qr-panel">
+          <h1 *ngIf="tokenSelected === 'trx'">{{'shared.deposit_btn' | translate}} {{amount}} {{'shared.trx' | translate}}</h1>
+          <h1 *ngIf="tokenSelected === 'ioi'">{{'shared.deposit_btn' | translate}} {{amount}} {{'shared.ioi' | translate}}</h1>
+          <img class="qr-code" src="/assets/base/images/qr.jpg" alt="">
+        </div>
+
+        <span class="stepix">2/2</span>
+        <span class="veticka">{{'modals.deposit_modal.click_warning' | translate}}</span>
+        <button class="next-btn visible" (click)="refresh()">{{'shared.confirm' | translate}}</button>
+
+
+      </div>
+
+      <div class="deposit-modal-body step-body step3" [ngClass]="stepIndex === 3 ? 'visible' : 'hidden'">
+
+        <h1 class="main-heading">{{'modals.what_is_crypto' | translate}}</h1>
+
+        <div class="edit-adress-wrap">
+          <input class="transfer-text-input crypto-adress" type="text" placeholder="ENTER YOUR ADRESS HERE" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <button class="next-btn visible" (click)="patchWallet(); stepIndex = 1">{{'shared.confirm' | translate}}</button>
+        <button class="back-btn visible" (click)="stepIndex = 1">{{'shared.back' | translate}}</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->

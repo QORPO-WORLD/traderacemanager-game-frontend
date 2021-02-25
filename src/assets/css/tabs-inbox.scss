@@ -1,0 +1,97 @@
+.inbox__wrapper {
+  margin: 0 -48px;
+  width: calc(100% + 48px + 48px);
+  .mat-tab-group {
+    flex-direction: row;
+    .mat-tab-header {
+      display: flex;
+      height: calc(100vh - 80px);
+      flex-direction: column;
+      flex: 0 0 305px;
+      background-color: #fff;
+      border-bottom: 0 none;
+      overflow-x: visible;
+      overflow-y: auto;
+      position: relative;
+      &:after {
+        content: ' ';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        border-right: 1px solid #D8D8D8;
+      }
+    }
+    .mat-tab-body-wrapper {
+      flex: 0 0 calc(100% - 305px);
+    }
+  }
+  /**/
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none;
+  }
+  .mat-tab-label-container {
+   /* padding-top: 60px; turn on when search will be used*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-tab-labels {
+    flex-direction: column;
+    text-align: left;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+  }
+  .mat-tab-label {
+    padding: 0;
+    opacity: 1;
+    height: auto;
+    flex: 1 0 185px;
+    border-bottom: 1px solid #D8D8D8;
+    &.mat-tab-label-active {
+      background-color: #F7F7F7;
+      position: relative;
+      &:before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background-color: #FF553F;
+      }
+    }
+    .mat-tab-label-content {
+      white-space: normal;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab-body-content {
+    position: relative;
+    padding-bottom: 155px;
+    overflow-y: hidden;
+    max-height: calc(100vh - 80px);
+  }
+}
+@media (max-width: 1400px) {
+  .mat-tab-label-content {
+    .inbox__user {
+      .com {
+        display: inline-flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        strong {
+          width: 215px;
+        }
+        .time:before {
+          display: none!important;
+        }
+      }
+    }
+  }
+}
