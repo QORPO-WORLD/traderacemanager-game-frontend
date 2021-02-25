@@ -84,7 +84,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
         
         this.identityService.updateDriverMe();
         this.getMyTeam();
-        this.notify.success('great', 'team_member', 3000000);
       });
   }
 
@@ -92,7 +91,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false }).
       subscribe(data => {
         this.getMyTeam();
-        this.notify.success('great', 'team_member', 3000000);
       });
   }
 
