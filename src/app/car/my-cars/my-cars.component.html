@@ -39,7 +39,7 @@
 
   <div class="content-holder">
 
-    <div class="zero-car-holder" *ngIf="myCars?.length < 2">
+    <div class="zero-car-holder" *ngIf="myCars.length < 2">
       <div class="inner-holder">
         <div class="img-holder">
           <img *ngIf="myTeam === 'IOI'" src="/assets/base/images/nft-cars/car0b.png" alt="image of default non nft car">
@@ -65,8 +65,7 @@
     <div class="cars-cont">
       <div class="single-car">
         <div class="img-holder" [ngClass]="{'rare': carIndex > 24, 'unlocked': boughtCar === true}">
-          <img [src]="'/assets/base/images/nft-cars/car' + carIndex + '.png'" alt="" *ngIf="carIndex <= 25 ">
-          <img src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="carIndex > 25 ">
+          <img [src]="'/assets/base/images/nft-cars/car' + carIndex + '.png'" alt="Big image of selected car">
           <img *ngIf="carIndex === 25" src="/assets/base/images/garage/bronze-back.png" alt="" class="back-img">
           <img *ngIf="carIndex === 26" src="/assets/base/images/garage/silver-back.png" alt="" class="back-img">
           <img *ngIf="carIndex === 27" src="/assets/base/images/garage/gold-back.png" alt="" class="back-img">
@@ -314,7 +313,7 @@
             <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car26.length > 0}" (click)="selectMyCar(26)">
               <p class="desc">Rare</p>
               <img src="/assets/base/images/garage/silver-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="">
+              <img class="car-img" src="/assets/base/images/nft-cars/car26.png" alt="">
             </div>
             <div class="car-high silver" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
           </div>
@@ -342,7 +341,7 @@
             <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car27.length > 0}" (click)="selectMyCar(27)">
               <p class="desc">Rare</p>
               <img src="/assets/base/images/garage/gold-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="">
+              <img class="car-img" src="/assets/base/images/nft-cars/car27.png" alt="">
             </div>
             <div class="car-high gold" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
           </div>
@@ -370,7 +369,7 @@
             <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car28.length > 0}" (click)="selectMyCar(28)">
               <p class="desc">Rare</p>
               <img src="/assets/base/images/garage/platinum-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="">
+              <img class="car-img" src="/assets/base/images/nft-cars/car28.png" alt="">
             </div>
             <div class="car-high platinum" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
           </div>
@@ -381,57 +380,3 @@
 
 </div>
 
-
-<!-- 
-<div class="main-holder" *ngIf="myCars?.length > 0">
-
-  <app-main-top-banner [page]="'my-cars'"></app-main-top-banner>
-
-  <div class="team-menu">
-    <div class="menu-desc">
-      <p class="join-team" [routerLink]="['/car/garage']">Garage</p>
-      <p class="my-team">My cars</p>
-    </div>
-    <div class="menu-line">
-      <div class="inner-line">&nbsp;</div>
-    </div>
-  </div>
-
-  <div class="cars-list">
-    <p class="segment-heading">Pick a car</p>
-    <div class="cars-holder">
-      <ng-container *ngFor="let car of myCars;let ix = index;">
-        <div class="car-item">
-
-          <img [src]="'/assets/base/images/cars/car' + car.car_id + '.png'" alt="">
-
-        </div>
-      </ng-container>
-    </div>
-  </div>
-
-  <div class="bottom-panels">
-    <div class="left-panel">
-      <p class="desc">{{'garage.garage_value' | translate}}</p>
-      <p class="value">{{myCarsvals}} IOI</p>
-    </div>
-    <div class="right-panel">
-      <p class="desc">Statistics</p>
-      <div class="info-holder">
-        <div class="stats-item">
-          <p>{{'shared.wins' | translate}}</p>
-          <p>{{myCar?.car_wins_count}}</p>
-        </div>
-        <div class="stats-item">
-          <p>{{'shared.prizes' | translate}}</p>
-          <p>{{myCar?.car_wins_total_amount | number:'1.0-4'}}</p>
-        </div>
-        <div class="stats-item">
-          <p>{{'shared.points' | translate}}</p>
-          <p>{{myCar?.car_wins_total_points}}</p>
-        </div>  
-      </div>
-    </div>
-  </div>
-
-</div> -->

@@ -90,8 +90,7 @@
                   </div>
                 </div>
     
-                <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="" *ngIf="car.extras.tier <= 25 ">
-                <img src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="car.extras.tier > 25 ">
+                <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="">
     
               </div>
             </ng-container>
@@ -464,8 +463,7 @@
           <p class="item-heading">{{'fuel_car.your_cars' | translate}}</p>
           <ng-container *ngFor="let kar of selectedCarsToRace; let i = index">
             <div class="car-item" *ngIf="i === summaryCarIndex">
-              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'" alt="" *ngIf="kar.extras.tier <= 24 ">
-              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="kar.extras.tier > 24 ">
+              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'" alt="Image of car">
             </div>
           </ng-container>
           <div class="car-arrows" *ngIf="selectedCarsToRace?.length > 1">
@@ -617,8 +615,7 @@
         <p class="top-desc">Currently picked</p>
         <div class="cars-holder first-step">
           <div class="car-item" *ngFor="let car of selectedCarsToRace">
-            <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="" *ngIf="car.extras.tier <= 24 ">
-            <img src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="car.extras.tier > 24 ">
+            <img [src]="'/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'" alt="">
           </div>
         </div>
       </div>
@@ -635,8 +632,7 @@
         <p class="top-desc">Fuel up every car</p>
         <div class="cars-holder">
           <div class="car-item" *ngFor="let car of selectedCarsToRace;let i = index" [ngClass]="{'fueled': selectedCarsToRace[i]?.fuel === 100}" (click)="selectedCarIndex = i">
-            <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="" *ngIf="car.extras.tier <= 24 ">
-            <img src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="car.extras.tier > 24 ">
+            <img [src]="'/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'" alt="">
             <img src="/assets/base/images/tankovanie/fueled-check.svg" alt="" class="check">
             <div class="dot-ind" *ngIf="selectedCarIndex === i"><div class="dot"></div></div>
           </div>
@@ -671,7 +667,7 @@
     </div>
 
     <div class="start-race-btn with-btns" *ngIf="stepIndex === 5 && introModal === false">
-      <div class="race-mode-holder" style="display: none;">
+      <!-- <div class="race-mode-holder">
         <div class="mode-btn my-cta-btn-back three-d" [ngClass]="{'picked': useUnity === true}" (click)="useUnity = true;changeGameType()">
           <div class="car-check">
             <div class="inner">
@@ -693,7 +689,7 @@
             <p><span>Watch</span> 2D</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="inner-btn my-fuel-btn-back" (click)="signupToRace()">
         <p *ngIf="isLoading === false">Start race &gt;</p>
         <p *ngIf="isLoading === true">Loading.. </p>
