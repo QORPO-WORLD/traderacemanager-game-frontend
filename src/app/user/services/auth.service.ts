@@ -269,6 +269,7 @@ export class AuthService extends AbstractService {
     localStorage.removeItem('ldrbrd-me');
 
     localStorage.removeItem('first-time');
+    localStorage.removeItem('mmea');
     localStorage.clear();
   };
 

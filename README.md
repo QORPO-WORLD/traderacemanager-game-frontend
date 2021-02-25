@@ -1,2 +1,1 @@
-# traderacemanager-game-frontend
-Frontend for play.traderacemanager.com
+# ioi-game-frontend y

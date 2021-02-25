@@ -928,7 +928,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       setTimeout(() => { this.router.navigate(['/car/garage']); }, 1000);
     } else {
       this.myCars = this.myCars.sort((a, b) => {
-        return a.car_model - b.car_model;
+        return a.extras.tier - b.extras.tier;
       });
     }
     this.changeEdition(1);  
@@ -1533,12 +1533,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.carSlideIndex = 0;
     const arrIndex = index - 1;
     this.editionIndex = index;
-    const carsBefore = this.myCars.filter(car => car.car_model <= (arrIndex * 6));
-    this.myCarsInEdition = this.myCars.filter(car => car.car_model > arrIndex * 6 && car.car_model <= (arrIndex * 6) + 6 || car.car_model === 24 + index);
+    const carsBefore = this.myCars.filter(car => car.extras.tier <= (arrIndex * 6));
+    this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
     let multiply = carsBefore.length;
     if(index === 1){
       multiply = 0;
-      this.myCarsInEdition = this.myCars.filter(car => car.car_model >= arrIndex * 6 && car.car_model <= (arrIndex * 6) + 6 || car.car_model === 24 + index);
+      this.myCarsInEdition = this.myCars.filter(car => car.extras.tier >= arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
     }
     if (window.window.innerWidth < 640){
       this.slidePercent = 33.333;

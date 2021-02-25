@@ -17,11 +17,7 @@
           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"  autocomplete="off" [(ngModel)]="email"/>
           <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
       </div>
-            <div class="my-input filled" *ngIf="showMmew === true">
-        <input type="text" readonly [(ngModel)]="mmewa" [ngModelOptions]="{standalone: true}" style="font-size: 14px;"/>
-          <span class="input-placeholder">Wallet address</span>
-      </div>
-      <div class="my-input" [ngClass]="{'filled': password !== '' && password !== undefined}">
+      <div class="my-input" [ngClass]="{'filled': password !== '' && password !== undefined}" *ngIf="showMmew === false">
         <input [type]="show" required
           formControlName="password"  autocomplete="off" [(ngModel)]="password"/>
           <span class="input-placeholder">{{'login.pass' | translate}}</span>
@@ -45,9 +41,9 @@
     <button class="cta-button hoverable" [disabled]="agreeChecked === false" *ngIf="useMail === true" (click)="onSubmit()">{{'shared.register_free' | translate}}</button>
     <button class="cta-button hoverable" *ngIf="useMail === false" (click)="useMail = true">{{'login.mail_sign_up' | translate}}</button>
     <span  class="or-x" *ngIf=" useMail === false">{{'login.or' | translate}}</span>
-      <button (click)="googleOauth()" class="google-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
+    <!--  <button (click)="googleOauth()" class="google-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
       <button (click)="facebookOauth()" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/facebook.png">{{'login.fb_login' | translate}}</button>
-      <button (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
+    --> <button (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_signup' | translate}}</button>
   </div>
 </div>
 

@@ -39,10 +39,12 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   //private invisibleRecaptcha: RecaptchaComponent;
   show = 'password';
 
-
+  mmewa: string;
+  mmewinterval: any;
   token: string = undefined;
   gfbfired = false;
   capInterval: any;
+  metaSwitch = false;
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
@@ -59,7 +61,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     setTimeout(() => {
       this.executeImportantAction();
     }, 500);
-    this.capInterval = setInterval(() => { 
+    this.capInterval = setInterval(() => {
       this.executeImportantAction();
     }, 30000);
 
@@ -71,6 +73,13 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       password: new FormControl('', Validators.required),
       recaptchaReactive: new FormControl(this.myCap, Validators.required)
     });
+    this.mmewinterval = setInterval(() => {
+      const mmew = JSON.parse(localStorage.getItem('mmea'));
+      if (mmew) {
+        this.mmewa = mmew;
+        this.submit();
+      }
+    }, 5000);
   }
 
   ngOnDestroy() {
@@ -81,30 +90,36 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   public submit() {
-
-      if (this.usinggauth === false) {
-        if (this.f.username.value === '' || this.f.password.value === '') {
-          return;
-        }
-        this.loading = true;
-        this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-          next: data => this.getAuthService().login(data.body),
-          error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
-        });
-      } else {
-        if (this.f.username.value === '' || this.f.password.value === '' || this.gkey === '') {
-
-          return;
-        }
-        this.loading = true;
-
-
-
-        this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
-          next: data => this.getAuthService().login(data.body),
-          error: error => this.getErrorService().apiError(error)
-        });
+    if (this.mmewa) {
+      this.signinWithMetamask().subscribe({
+        next: data => this.getAuthService().login(data.body),
+        error: error => error.status === 456 ? this.fireGAuth() : this.clearMetamask(error.body)
+      });
+      return;
+    }
+    if (this.usinggauth === false) {
+      if (this.f.username.value === '' || this.f.password.value === '') {
+        return;
       }
+      this.loading = true;
+      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
+        next: data => this.getAuthService().login(data.body),
+        error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
+      });
+    } else {
+      if (this.f.username.value === '' || this.f.password.value === '' || this.gkey === '') {
+
+        return;
+      }
+      this.loading = true;
+
+
+
+      this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
+        next: data => this.getAuthService().login(data.body),
+        error: error => this.getErrorService().apiError(error)
+      });
+    }
 
     setTimeout(() => {
       this.loading = false;
@@ -185,9 +200,29 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   executeImportantAction(): void {
     this.recaptchaV3Service.execute('signIn')
       .subscribe((token) => {
-        
+
         this.token = token
       });
   }
 
+
+  signinWithMetamask() {
+    return this._http.post('/api/account/metamask-sign-in', {
+      password: this.mmewa,
+      recaptchaToken: this.token
+
+    },
+      { observe: 'response' });
+  }
+
+  tryMetamaskSign() {
+    this.signinWithMetamask();
+  }
+
+  clearMetamask(error) {
+    this.getErrorService().apiError(error);
+    localStorage.removeItem('mmea');
+    this.mmewa = null;
+    this.metaSwitch = false;
+  }
 }
