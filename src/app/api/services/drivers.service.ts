@@ -24,7 +24,7 @@ class DriversService extends __BaseService {
   static readonly driversFavRacesListPath = '/races/me/fav-races';
   static readonly driversFavRacesUpdatePath = '/races/me/fav-races';
   static readonly driversFirstLoginPartialUpdatePath = 'races/me/first-login';
-  static readonly driversTutorialPartialUpdatePath = '/races/me/tutorial';
+  static readonly driversTutorialPartialUpdatePath = '/races/me/tutorial-mode';
   static readonly driversInitialPath = '/races/me/initial-data';
   static readonly driversNotificationsListPath = '/races/me/notifications';
   static readonly driversNotificationsDeletePath = '/races/me/notifications';
@@ -325,7 +325,7 @@ class DriversService extends __BaseService {
     if (isInTutorial != null) __params = __params.set('is_in_tutorial', isInTutorial.toString());
     let req = new HttpRequest<any>(
       'PATCH',
-      this.rootUrl + `/races/me/tutorial`,
+      this.rootUrl + `/races/me/tutorial-mode`,
       __body,
       {
         headers: __headers,

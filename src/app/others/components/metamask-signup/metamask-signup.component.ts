@@ -179,12 +179,9 @@ export class MetamaskSignupComponent implements OnInit {
         from: signer
       },
         (err, result) => {
-          console.log(err);
-          console.log(result);
+          result ? this.finalizeLogin(result) : this.notify.error(err);
         }
       );
-
-
     /*
       .then((result) => {
         this.finalizeLogin(result);
@@ -192,16 +189,14 @@ export class MetamaskSignupComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
-      */
+*/
   }
 
   finalizeLogin(data) {
-    console.log(data);
-    return;
-    if (data.length > 0) {
-      const magic = JSON.stringify(data[0]);
+    if (data.result) {
+      const magic = JSON.stringify(data.result);
       localStorage.setItem('mmea', magic);
-      this.notify.error(magic + ' address associated, finish sign up process now.');
+      //this.notify.error(magic + ' address associated, finish sign up process now.');
       this.overlay = false;
     }
   }

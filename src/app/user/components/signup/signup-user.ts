@@ -97,8 +97,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
         }, 5000);
         if (this.referralId) {
             const cname = 'affiliate_reference';
-            const d  = new Date();
-            const expires = d.setTime(d.getTime() + (100*24*60*60*1000));;
+            const d = new Date();
+            const expires = d.setTime(d.getTime() + (100 * 24 * 60 * 60 * 1000));;
             document.cookie = cname + "=" + this.referralId + "; expires=" + expires + ";domain=.traderacemanager.com;path=/;";
             console.log(document.cookie);
         }
@@ -135,9 +135,14 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
 
         this.loading = true;
 
-
+        if (this.mmewa) {
+            this.signupWithMetamask().subscribe({
+                next: data => this.getAuthService().login(data.body),
+                error: error => this.clearMetamask(error.body)
+              });
+        } else {
             this.api.authUsersCreateDesktop({
-                email: this.f.email.value, password: this.f.password.value, 
+                email: this.f.email.value, password: this.f.password.value,
                 nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token
             }).subscribe(datax => {
                 const xxx: any = datax;
@@ -147,7 +152,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
                 // this.notify.info('info', 'Activation email has been sent to your registration email.', 2000);
 
             });
-        
+        }
         this.executeImportantAction();
     }
 
@@ -173,4 +178,23 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
                 this.token = token
             });
     }
+
+    signupWithMetamask() {
+        return this._http.post('/api/account/metamask-sign-up', {
+            password: this.mmewa,
+            recaptchaToken: this.token,
+            email: this.f.email.value,
+            nick: this.f.nickname.value
+
+        },
+            { observe: 'response' });
+    }
+
+    
+  clearMetamask(error) {
+    this.getErrorService().apiError(error);
+    localStorage.removeItem('mmea');
+    this.mmewa = null;
+    this.metaSwitch = false;
+  }
 }

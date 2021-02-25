@@ -22,13 +22,13 @@
             <span (click)="show = 'password'" *ngIf="show === 'text'"><img src="/assets/base/images/pass-unhidden.png"></span>
    
       </div>
-      <div class="my-input" *ngIf="gauthfired === true">
+      <div class="my-input" *ngIf="gauthfired === true && metaSwitch === false">
         <input type="text" required [(ngModel)]="gkey" [placeholder]="'login.auth_key' | translate"
              [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
             [ngModelOptions]="{standalone: true}"/>
         
                </div>
-      <div class="my-input" *ngIf="gfbfired === true">
+      <div class="my-input" *ngIf="gfbfired === true && metaSwitch === false">
         <input type="text" required [(ngModel)]="gkey" [placeholder]="'login.auth_key' | translate"
              [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
             [ngModelOptions]="{standalone: true}"/>
@@ -49,11 +49,14 @@
 
 
       <span class="or-x">{{'login.or' | translate}}</span>
-      <button (click)="googleOauth()" class="google-login social-button"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
+   <!--   <button (click)="googleOauth()" class="google-login social-button"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
       <button (click)="facebookOauth()" class="fb-login social-button"><img src="/assets/base/images/facebook.png">{{'login.fb_login' | translate}}</button>
-      <button class="fb-login social-button"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
+   -->
+      <button class="fb-login social-button" (click)="metaSwitch = true"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
   </div>
 </div>
 
 
-  
+<div class="meta-holder">
+  <app-metamask-signup *ngIf="metaSwitch === true"></app-metamask-signup>
+</div>
