@@ -25,6 +25,10 @@
           <span (click)="show = 'password'" *ngIf="show === 'text'"><img src="/assets/base/images/pass-unhidden.png"></span>
  
       </div>
+      <div class="my-input" [ngClass]="{'filled': refferal !== '' && refferal !== undefined}">
+        <input type="text" required autocomplete="off" [(ngModel)]="refferal"/>
+          <span class="input-placeholder">Refferal</span>
+      </div>
 
    <!--   <div class="captcha-cont" *ngIf="disCap === false"> <form class="panel"  [formGroup]="reactiveForm"><re-captcha formControlName="recaptchaReactive" class="speci-captcha"></re-captcha></form></div>
       <div class="captcha-cont" *ngIf="disCap === true"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
@@ -43,7 +47,7 @@
     <span  class="or-x" *ngIf=" useMail === false">{{'login.or' | translate}}</span>
     <!--  <button (click)="googleOauth()" class="google-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
       <button (click)="facebookOauth()" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/facebook.png">{{'login.fb_login' | translate}}</button>
-    --> <button (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_signup' | translate}}</button>
+    --> <button (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
   </div>
 </div>
 
