@@ -36,6 +36,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     username: string;
     email: string;
     password: string;
+    refferal: string;
     myDomain: string;
     disCap = false;
     usingCap = true;
