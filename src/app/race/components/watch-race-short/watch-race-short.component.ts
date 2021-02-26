@@ -82,7 +82,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   raceDataildata: RaceDetail;
   myUid = 'not-me';
   myUsername = '';
-  backType = 'default';
+  backType = 1;
   initialCars: any;
   ticker: any = [];
   introModal = false;
@@ -779,7 +779,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
           if (this.cFuelOpen === false) {
-            this.play();
+            // this.play();
           }
 
         }, 60000);
@@ -1075,11 +1075,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   resolveBackType(){
     if(this.raceDataildata.tournament_id !== null && this.raceDataildata.race_identifier !== 'wednesday_party_race_0'){
-      this.backType = 'tour';
+      this.backType = 2;
     } else if(this.raceDataildata.tournament_id !== null && this.raceDataildata.race_identifier === 'wednesday_party_race_0'){
-      this.backType = 'wednesday';
+      this.backType = 3;
     } else {
-      this.backType = 'default';
+      this.backType = 1;
     }
   }
 

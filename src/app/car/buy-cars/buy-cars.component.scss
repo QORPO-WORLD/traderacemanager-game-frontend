@@ -467,7 +467,6 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     h1{
       font-weight: 600;
@@ -499,6 +498,7 @@
       margin: 0 20px;
     }
     .info-box{
+      margin-left: auto;
       width: 482px;
       min-width: 482px;
       background: #111111;
@@ -692,6 +692,7 @@
               }
             }
             .cars-left{
+              display: none;
               border-radius: 15px 0px 0px 15px;
               p{
                 font-size: 14px;
@@ -752,16 +753,8 @@
         height: 100%;
         position: relative;
         cursor: pointer;
-        .locked-cover{
-          width: 100%;
-          height: 100%;
-          border-radius: 15px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 5;
-          text-align: center;
-          &:hover{
+        &:hover{
+          .locked-cover{
             &::before{
               opacity: 1;
             }
@@ -769,6 +762,16 @@
               opacity: 1;
             }
           }
+        }
+        .locked-cover{
+          width: 100%;
+          height: 36%;
+          border-radius: 15px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 5;
+          text-align: center;
           &::before{
             content: '';
             position: absolute;
@@ -846,18 +849,41 @@
             transform: scale(1.17);
           }
           .bonus{
-            background: linear-gradient(180deg, #7F3519 13.02%, #FEA67E 52.08%, #D5805E 90.62%, #F5C7AC 100%), #C4C4C4;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             font-weight: 600;
-            font-size: 24px;
+            font-size: 20px;
+            line-height: 1.2;
             margin: 0;
             text-align: center;
             position: absolute;
             bottom: -25px;
-            left: 0;
-            transform: translateY(100%);
+            max-width: 95%;
+            left: 50%;
+            transform: translate(-50%, 100%);
             width: 100%;
+            &.bronze{
+              background: linear-gradient(180deg, #b35736 0%, #e68e66 52.08%, #D5805E 90.62%, #F5C7AC 100%), #C4C4C4;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-size: cover;
+            }
+            &.silver{
+              background: linear-gradient(180deg, #74838a 0%, #FAFAFA 65.1%, #939393 99.99%, #717171 100%), #C4C4C4;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-size: cover;
+            }
+            &.gold{
+              background: linear-gradient(180deg, #C19123 0%, #c58c1a 10.42%, #FEF2A3 70.83%, #B57F12 100%), #C4C4C4;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-size: cover;
+            }
+            &.platinum{
+              background: linear-gradient(180deg, #79A3AC 0%, #E4FCFF 65.1%, #B1CCD1 83.33%, #939393 99.99%), #C4C4C4;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-size: cover;
+            }
           }
         }
       }
@@ -1346,9 +1372,14 @@
         .rare-car{
           width: 100%;
           height: 170px;
-          margin-top: 10px;
+          margin-top: -2px;
+          margin-bottom: 100px;
           .locked-cover{
-            padding: 0 15px;
+            padding: 0 5px;
+            max-width: 175px;
+            height: 100%;
+            left: unset;
+            right: 0;
             .text-holder{
               max-width: 350px;
               img{
@@ -1493,8 +1524,8 @@
               max-height: 82%;
             }
             .car-img{
-              top: 26%;
-              max-height: 70%;
+              top: 16%;
+              max-height: 90%;
             }
           }
         }

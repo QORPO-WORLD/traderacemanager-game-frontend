@@ -53,12 +53,44 @@
         min-height: 132px;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-align: center;
-        img{
-            width: 64px;
-            height: 64px;
+        .level-img-holder{
+            position: relative;
+            width: 150px;
+            height: 130px;
+            .level-img{
+                margin-bottom: 20px;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 98%;
+                }
+            }
+            .stars-holder{
+                width: 58px;
+                height: 58px;
+                background: #111111;
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: 0;
+                bottom: 3%;
+                img{
+                    width: 10px;
+                    margin-left: 2px;
+                }
+            }
         }
         .top-info{
             text-align: left;
@@ -75,12 +107,11 @@
             color: rgba(255, 255, 255, .4);
         }
     }
-    }
+}
 
     .affiliate-copy{
         width: 50%;
         margin: auto;
-        height: 300px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -88,11 +119,42 @@
         background: #111111;
         box-shadow: 0px 0px 80px #000000;
         border-radius: 15px;
-        padding: 40px;
-        img{
-            width: 120px;
-            height: 120px;
-            margin-bottom: 40px;
+        padding: 33px;
+        .level-img-holder{
+            position: relative;
+            width: 150px;
+            height: 130px;
+            .level-img{
+                margin-bottom: 20px;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 98%;
+                }
+            }
+            .stars-holder{
+                width: 58px;
+                height: 58px;
+                background: #111111;
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: 0;
+                bottom: 3%;
+                img{
+                    width: 10px;
+                    margin-left: 2px;
+                }
+            }
         }
     }
 
@@ -142,11 +204,26 @@
         }
         .table-cell{
             width: 20%;
-            text-align: center;
-            img{
-                width: 40px;
-                height: 40px;
-                margin-right: 40px;
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .avatar-img{
+                position: relative;
+                width: 50px;
+                height: 50px;
+                box-shadow: 0px 0px 20px #000000;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+            &.img-cell{
+                .stars-holder{
+                    margin-left: 20px;
+                    img{
+                        width: 10px;
+                        margin-left: 2px;
+                    }
+                }
             }
         }
         .table-header{
@@ -176,19 +253,38 @@
         height: 314px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        padding: 60px;
+        padding: 50px;
         background: #111111;
         box-shadow: 0px 0px 80px #000000;
         border-radius: 15px;
         margin-bottom: 34px;
+        position: relative;
+        overflow: hidden;
         .rank-text{
-            max-width: 75%;
+            max-width: 360px;
             margin-left: 40px;
+            position: relative;
+            z-index: 2;
+            h5{
+                span{
+                    margin-left: 25px;
+                    img{
+                        margin-left: 5px;
+                        vertical-align: baseline;
+                    }
+                }
+            }
         }
         .rank-img{
-            min-width: 100px;
+            position: absolute;
+            left: -8%;
+            top: 0;
+            z-index: 1;
+            &.rank2{
+                left: -12%;
+            }
         }
         h5{
             margin-bottom: 20px;
@@ -366,7 +462,20 @@
 
 
 
-
+@media screen and (max-width: 1700px){
+    .rank-container{
+        height: 285px;
+        padding: 30px;
+        .rank-text{
+            max-width: 332px;
+        }
+        .rank-img{
+            img{
+                width: 310px;
+            }
+        }
+    }
+}
 
 @media screen and (max-width: 1550px){
   p{
@@ -402,14 +511,28 @@
     .bonus-info{
         min-height: 120px;
         width: 380px;
+        .level-img-holder{
+            width: 130px;
+            height: 114px;
+            align-self: flex-end;
+        }
     }
   }
   .rank-container{
+        height: 245px;
       .rank-img{
-          min-width: 70px;
+        width: 232px;
+        top: unset;
+        bottom: -5%;
+        &.rank2{
+            left: -9%;
+        }
       }
       .rank-text{
           margin-left: 20px;
+          h5,p{
+            text-shadow: 0px 0px 2px rgba(0,0,0, 1);
+          }
       }
   }
 }
@@ -501,7 +624,23 @@
             }
         }
     }
-
+    .affiliate-table{
+        .table-cell{
+            .avatar-img{
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+            }
+            &.img-cell{
+                .stars-holder{
+                    margin-left: 14px;
+                    img{
+                        width: 8px;
+                    }
+                }
+            }
+        }
+    }
     .rank-container{
         height: 250px;
         display: flex;
@@ -537,10 +676,18 @@
         width: 100%;
         .table-cell{
             width: 30%;
-            img{
+            .avatar-img{
                 width: 30px;
                 height: 30px;
-                margin-right: 10px;
+                border-radius: 6px;
+            }
+            &.img-cell{
+                .stars-holder{
+                    margin-left: 10px;
+                    img{
+                        width: 6px;
+                    }
+                }
             }
         }
     }
@@ -563,5 +710,86 @@
             }
         }
         
+    }
+}
+@media screen and (min-width: 2300px) and (min-height: 1300px){
+    p{
+        font-size: 19px;
+    }
+    h1{
+        font-size: 39px;
+    }
+    h5{
+        font-size: 24px;
+    }
+    .page-info{
+        .back{
+            padding: 0 30px;
+            min-height: 160px;
+            p{
+                line-height: 20px;
+                margin-bottom: 32px;
+            }
+        }
+        .back:hover{
+            transform: scale(1.1);
+        }
+        .text-info{
+            max-width: 1200px;
+            margin: 0 35px;
+        }
+        .top-info{
+            margin-left: 35px;
+        }
+        .bonus-info{
+            width: 500px;
+            min-height: 160px;
+            img{
+                width: 76px;
+                height: 76px;
+            }
+        }
+    }
+    .affiliate-copy{
+        height: 400px;
+        img{
+            width: 140px;
+            height: 140px;
+        }
+    }
+    .copy-icon{
+        width: 75px;
+        height: 75px;
+        img{
+            width: 50%;
+            height: 50%;
+        }
+    }
+    .affiliate-table{
+        padding-top: 80px;
+        .table-cell{
+            img{
+                width: 55px;
+                height: 55px;
+            }
+        }
+    }
+    .ranks-heading{
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
+    .rank-container{
+        height: 350px;
+        margin-bottom: 50px;
+    }
+    .referral-box{
+        height: 315px;
+        padding: 2px;
+        .border-maker{
+            img{
+                width: 80px;
+                height: 80px;
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@
       background: #111111;
       border-radius: 20px;
       padding: 13px 25px;
+      box-shadow: 0px 0px 40px #000000;
     }
     .box-heading{
       margin: 0;
@@ -485,20 +486,22 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center top;
-        .car-img{
+        .banner-img{
           position: absolute;
           bottom: -13px;
-          right: -20%;
+          right: 0;
           z-index: 1;
-          animation-name: fadeInCar;
-          animation-duration: .3s;
-          animation-delay: 1s;
-          animation-iteration-count: 1;
-          animation-fill-mode: both;
-        }
-        @keyframes fadeInCar {
-          from {right: -80%;opacity: 0;}
-          to {right: -20%;opacity: 1;}
+          &.tasks{
+            right: 6%;
+          }
+          &.nft{
+            bottom: 0%;
+            right: 1%;
+          }
+          &.collection{
+            bottom: 10%;
+            right: 3%;
+          }
         }
         .text-holder{
           position: absolute;
@@ -516,54 +519,6 @@
             font-size: 24px;
             margin: 0 0 20px 0;
           }
-          .timer-holder{
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            .day{
-              width: 70px;
-              height: 60px;
-              background: linear-gradient(0deg, #FE173F, #FE173F), linear-gradient(20.17deg, #EC266A 4.84%, #F76BC5 100%), linear-gradient(250.32deg, #EB2163 22.61%, #950552 85.16%);
-              box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
-              border-radius: 10px;
-              padding-top: 10px;
-              p{
-                font-size: 24px;
-                font-weight: 600;
-                margin: 0%;
-                text-align: center;
-                line-height: 1;
-                &.month{
-                  font-size: 14px;
-                  font-weight: 400;
-                }
-              }
-            }
-            .time-item{
-              margin-left: 10px;
-              text-align: center;
-              .value{
-                background: rgba(255, 255, 255, 0.03);
-                box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
-                width: 41px;
-                height: 40px;
-                padding-top: 11px;
-                p{
-                  font-size: 18px;
-                  font-weight: 400;
-                  line-height: 1;
-                  margin: 0;
-                }
-              }
-              .desc{
-                font-size: 14px;
-                font-weight: 400;
-                margin: 3px 0 0 0;
-                opacity: .6;
-              }
-            }
-          }
           .register{
             outline: none;
             border: none;
@@ -577,6 +532,7 @@
             padding: 12px 40px 13px;
             opacity: .9;
             transition: .3s;
+            min-width: 175px;
           }
         }
       }
@@ -1351,6 +1307,458 @@
   }
 }
 
+@media screen and (min-width: 2100px) and (min-height: 1081px){
+  .box-heading{
+    font-size: 23px;
+    margin: 0 0 20px 0;
+    &.w-padd{
+      padding-left: 27px;
+    }
+    .info-icon{
+      width: 22px;
+    }
+  }
+  .rewards-box{
+    height: 630px;
+    .top-wrapper{
+      padding: 15px 30px;
+    }
+    .svg-holder{
+      height: 200px;
+      .svg-item{
+        width: 215px;
+        .text-holder{
+          p{
+            font-size: 22px;
+            &.desc{
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    .proggres-holder{
+      .bottom-desc{
+        font-size: 15px;
+        max-width: 270px;
+        min-height: 55px;
+      }
+    }
+    .leader-holder{
+      .value{
+        margin: 17px 0 8px;
+        font-size: 23px;
+      }
+      .leader-cont{
+        height: 164px;
+        .inner{
+          .img-holder{
+            width: 70px;
+            min-width: 70px;
+            margin-right: 27px;
+            &::before{
+              width: 115px;
+              height: 115px;
+            }
+            img{
+              height: 80px;
+            }
+          }
+          .text-holder{
+            p{
+              font-size: 22px;
+              &.desc{
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main-center-box{
+    .top-banner{
+      height: 399px;
+      .banner-item{
+        .text-holder{
+          left: 100px;
+          .top-desc{
+            font-size: 18px;
+            margin: 0 0 15px 0;
+          }
+          .race-name{
+            font-size: 26px;
+            margin: 0 0 25px 0;
+          }
+          .register{
+            font-size: 17px;
+            margin: 52px 0 0 0;
+            padding: 14px 45px 15px;
+          }
+        }
+      }
+    }
+    .categories-holder{
+      margin-top: 19px;
+      .cat-cont{
+        height: 164px;
+        .cat-item{
+          .back-img{
+            max-height: 100%;
+            &.cars{
+              top: 10%;
+              right: -17%;
+            }
+            &.teams{
+              top: 3%;
+            }
+            &.races{
+              bottom: 10%;
+            }
+          }
+          .text-holder{
+            max-width: 200px;
+            bottom: unset;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            p{
+              font-size: 24px;
+              &.text{
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .small-boxes{
+    .next-burn{
+      margin-top: 20px;
+      .burn-box{
+        height: 90px;
+        .inner-holder{
+          p{
+            font-size: 22px;
+            app-timer-long{
+              font-size: 22px;
+            }
+          }
+        }
+      }
+    }
+    .day-tip{
+      margin-top: 20px;
+      .tip-box{
+        height: 115px;
+        .inner-holder{
+          .img-holder{
+            width: 70px;
+            margin-right: 19px;
+            img{
+              width: 100%;
+            }
+            &::before{
+              width: 22px;
+              height: 22px;
+            }
+          }
+          .text-holder{
+            p{
+              font-size: 22px;
+            }
+            .currs-holder{
+              height: 22px;
+              max-height: 22px;
+              .curr-item{
+                margin-right: 20px;
+                &::before{
+                  right: -9px;
+                }
+                .arrow-img{
+                  margin-left: 5px;
+                }
+                &.borderless{
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .center-bottom-box{
+    .stats-holder{
+      margin-top: 26px;
+      margin-bottom: 5px;
+      .stats-cont{
+        height: 202px;
+        .stat-item{
+          .top-part{
+            p{
+              font-size: 26px;
+              &.value{
+                .desc{
+                  font-size: 16px;
+                }
+              }
+              &.bot-desc{
+                font-size: 17px;
+              }
+            }
+          }
+          .bottom-part{
+            .my-item{
+              p{
+                font-size: 20px;
+                &.desc{
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2300px) and (min-height: 1300px){
+  .box-heading{
+    font-size: 26px;
+    margin: 0 0 25px 0;
+    &.w-padd{
+      padding-left: 30px;
+    }
+    .info-icon{
+      width: 26px;
+    }
+  }
+  .rewards-box{
+    height: 730px;
+    .top-wrapper{
+      padding: 16px 33px;
+    }
+    .svg-holder{
+      height: 230px;
+      .svg-item{
+        width: 235px;
+        .text-holder{
+          p{
+            font-size: 23px;
+            &.desc{
+              font-size: 17px;
+            }
+          }
+        }
+      }
+    }
+    .proggres-holder{
+      margin-top: 22px;
+      .value{
+        font-size: 18px;
+      }
+      .desc-holder{
+        p{
+          font-size: 16px;
+        }
+      }
+      .bottom-desc{
+        font-size: 18px;
+        max-width: 280px;
+        min-height: 63px;
+      }
+    }
+    .leader-holder{
+      .value{
+        margin: 21px 0 20px;
+        font-size: 26px;
+      }
+      .leader-cont{
+        height: 180px;
+        .inner{
+          .img-holder{
+            width: 90px;
+            min-width: 90px;
+            margin-right: 30px;
+            &::before{
+              width: 125px;
+              height: 125px;
+            }
+            img{
+              height: 100px;
+            }
+          }
+          .text-holder{
+            p{
+              font-size: 28px;
+              &.desc{
+                font-size: 21px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .main-center-box{
+    .top-banner{
+      height: 462px;
+      .banner-item{
+        
+        .text-holder{
+          left: 130px;
+          .top-desc{
+            font-size: 20px;
+            margin: 0 0 15px 0;
+          }
+          .race-name{
+            font-size: 29px;
+            margin: 0 0 25px 0;
+          }
+          .register{
+            font-size: 18px;
+            margin: 52px 0 0 0;
+            padding: 16px 47px 17px;
+          }
+        }
+      }
+    }
+    .categories-holder{
+      margin-top: 21px;
+      .box-heading{
+        margin-bottom: 20px;
+      }
+      .cat-cont{
+        height: 179px;
+        .cat-item{
+          .back-img{
+            max-height: 100%;
+            &.cars{
+              top: 10%;
+              right: -12%;
+              width: 265px;
+            }
+            &.teams{
+              top: 5%;
+              width: 200px;
+            }
+            &.races{
+              bottom: 10%;
+              width: 180px;
+            }
+          }
+          .text-holder{
+            max-width: 220px;
+            bottom: unset;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            p{
+              font-size: 27px;
+              &.text{
+                font-size: 19px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .small-boxes{
+    .next-burn{
+      margin-top: 27px;
+      .burn-box{
+        height: 105px;
+        .inner-holder{
+          p{
+            font-size: 25px;
+            app-timer-long{
+              font-size: 25px;
+            }
+          }
+        }
+      }
+    }
+    .day-tip{
+      margin-top: 27px;
+      .tip-box{
+        height: 130px;
+        .inner-holder{
+          .img-holder{
+            width: 80px;
+            margin-right: 27px;
+            img{
+              width: 100%;
+            }
+            &::before{
+              width: 30px;
+              height: 30px;
+            }
+          }
+          .text-holder{
+            p{
+              font-size: 25px;
+            }
+            .currs-holder{
+              height: 25px;
+              max-height: 25px;
+              .curr-item{
+                margin-right: 26px;
+                &::before{
+                  right: -12px;
+                }
+                .arrow-img{
+                  margin-left: 7px;
+                }
+                &.borderless{
+                  margin-right: 7px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .center-bottom-box{
+    .stats-holder{
+      margin-top: 27px;
+      margin-bottom: 5px;
+      .stats-cont{
+        height: 221px;
+        .stat-item{
+          .top-part{
+            p{
+              font-size: 28px;
+              &.value{
+                .desc{
+                  font-size: 17px;
+                }
+              }
+              &.bot-desc{
+                font-size: 18px;
+              }
+            }
+          }
+          .bottom-part{
+            .my-item{
+              p{
+                font-size: 22px;
+                &.desc{
+                  font-size: 17px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1700px){
   .main-wrapper{
     width: calc(100% - 410px);
@@ -1358,8 +1766,8 @@
     padding-top: 20px;
   }
   .box-heading{
-    font-size: 18px;
-    margin: 0 0 15px 0;
+    font-size: 17px;
+    margin: 0 0 10px 0;
     &.w-padd{
       padding-left: 22px;
     }
@@ -1368,7 +1776,7 @@
     }
   }
   .rewards-box{
-    height: 514px;
+    height: 497px;
     .top-wrapper{
       padding: 12px 22px;
     }
@@ -1395,8 +1803,8 @@
     }
     .leader-holder{
       .value{
-        margin: 20px 0 6px;
-        font-size: 18px;
+        margin: 15px 0 6px;
+        font-size: 17px;
       }
       .leader-cont{
         height: 124px;
@@ -1429,15 +1837,16 @@
     .top-banner{
       height: 328px;
       .banner-item{
-        .car-img{
-          bottom: unset;
-          top: 60%;
-          max-width: 95%;
-          bottom: unset;
-          transform: translateY(-50%);
+        .banner-img{
+          &.collection{
+            max-width: 561px;
+          }
+          &.nft{
+            max-width: 610px;
+          }
         }
         .text-holder{
-          left: 30px;
+          left: 50px;
           .top-desc{
             font-size: 14px;
             margin: 0 0 5px 0;
@@ -1477,12 +1886,13 @@
             margin: 28px 0 0 0;
             padding: 10px 32px 11px;
             border-radius: 11px;
+            min-width: 150px;
           }
         }
       }
     }
     .categories-holder{
-      margin-top: 20px;
+      margin-top: 14px;
       .cat-cont{
         height: 124px;
         .cat-item{
@@ -1506,7 +1916,6 @@
   }
   .small-boxes{
     .next-burn{
-      margin-top: 20px;
       .burn-box{
         height: 62px;
         .inner-holder{
@@ -1520,7 +1929,6 @@
       }
     }
     .day-tip{
-      margin-top: 20px;
       .tip-box{
         height: 80px;
         .inner-holder{
@@ -1559,9 +1967,10 @@
   }
   .center-bottom-box{
     .stats-holder{
-      margin-top: 20px;
+      margin-top: 14px;
+      margin-bottom: 5px;
       .stats-cont{
-        height: 150px;
+        height: 135px;
         .stat-item{
           .top-part{
             p{
@@ -1596,10 +2005,11 @@
   .main-wrapper{
     width: calc(100% - 380px);
     padding-left: 20px;
+    padding-top: 10px;
   }
   .box-heading{
-    font-size: 16px;
-    margin: 0 0 12px 0;
+    font-size: 15px;
+    margin: 0 0 10px 0;
     &.w-padd{
       padding-left: 18px;
     }
@@ -1608,7 +2018,7 @@
     }
   }
   .rewards-box{
-    height: 444px;
+    height: 432px;
     .top-wrapper{
       padding: 10px 15px;
     }
@@ -1646,8 +2056,8 @@
     }
     .leader-holder{
       .value{
-        margin: 17px 0 6px;
-        font-size: 16px;
+        margin: 13px 0 6px;
+        font-size: 15px;
       }
       .leader-cont{
         height: 104px;
@@ -1679,14 +2089,25 @@
   .main-center-box{
     .top-banner{
       height: 287px;
-      .car-img{
-        bottom: unset;
-        top: 65%;
-        transform: translateY(-50%);
+      .banner-item{
+        .banner-img{
+          &.crown{
+            width: 370px;
+          }
+          &.tasks{
+            width: 310px;
+          }
+          &.collection{
+            max-width: 501px;
+          }
+          &.nft{
+            max-width: 540px;
+          }
+        }
       }
     }
     .categories-holder{
-      margin-top: 17px;
+      margin-top: 13px;
       .cat-cont{
         height: 104px;
         .cat-item{
@@ -1715,7 +2136,7 @@
   }
   .small-boxes{
     .next-burn{
-      margin-top: 17px;
+      margin-top: 10px;
       .burn-box{
         height: 58px;
         .inner-holder{
@@ -1852,6 +2273,28 @@
       }
     }
   }
+  .main-center-box{
+    .top-banner{
+      .banner-item{
+        .banner-img{
+          &.crown{
+            width: 330px;
+          }
+          &.tasks{
+            width: 290px;
+            bottom: 2%;
+          }
+          &.collection{
+            max-width: 431px;
+            bottom: 13%;
+          }
+          &.nft{
+            max-width: 460px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1200px){
@@ -1920,8 +2363,27 @@
         bottom: 26px;
       }
       .banner-item{
+        .banner-img{
+          &.crown{
+            width: 270px;
+            right: 10%;
+          }
+          &.tasks{
+            width: 230px;
+            bottom: 0%;
+            right: 12%;
+          }
+          &.collection{
+            max-width: 371px;
+            bottom: 7%;
+          }
+          &.nft{
+            max-width: 380px;
+          }
+        }
         .text-holder{
-          height: 100%;
+          transform: none;
+          top: 10%;
           .top-desc{
             font-size: 13px;
             margin: 13px 0 5px 0;
@@ -1960,12 +2422,11 @@
             }
           }
           .register{
-            position: absolute;
-            left: 0;
-            bottom: 15px;
-            font-size: 18px;
+            font-size: 16px;
             padding: 7px 25px 9px;
             border-radius: 9px;
+            margin-top: 12px;
+            min-width: 160px;
           }
         }
         .car-img{
