@@ -18,7 +18,7 @@ export class VerifyUserComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put('/api/me/activate-account', {
+    return this._http.put('https://dev-api.traderacemanager.com/me/activate-account', {
       code: this.myCode
     },
       { observe: 'response' });

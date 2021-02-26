@@ -1,3 +1,4 @@
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { NotifyService } from './../../../common/services/notify.service';
 import { Component, Injector, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,12 +20,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     hashId: string;
     uId: string;
     hashObserver: Subscription;
-
-
+    token: string;
+    capInterval: any;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
                 private router: Router, private actv: ActivatedRoute,
                 protected api: AuthService, private notify: NotifyService, 
-                protected translate: TranslateService) {
+                protected translate: TranslateService, private recaptchaV3Service: ReCaptchaV3Service) {
                 this.hashId = this.actv.snapshot.paramMap.get('id');
                 this.uId = this.actv.snapshot.paramMap.get('uid');
     }
@@ -40,6 +41,19 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         if (this.hashObserver) {
             this.hashObserver.unsubscribe();
         }
+        clearInterval(this.capInterval);
+    }
+
+
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.executeImportantAction();
+        }, 500);
+        this.capInterval = setInterval(() => {
+            this.executeImportantAction();
+        }, 30000);
+
     }
 
     get f() {
@@ -57,9 +71,10 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         this.loading = true;
 
         this.hashObserver = this.api.authUsersResetPasswordConfirm({
-            uid: this.hashId,
-            token: this.uId,
-            new_password: this.passonex
+            code: this.hashId,
+            email: this.uId,
+            password: this.passonex,
+            recaptchaToken: this.token
         }).subscribe(data => {
             this.translate.get('nitro_notifiq').subscribe((res) => {
                 this.notify.error(res.sucess_redirect);
@@ -70,4 +85,14 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         });
 
     }
+
+    
+  executeImportantAction(): void {
+    this.recaptchaV3Service.execute('signIn')
+      .subscribe((token) => {
+
+        this.token = token
+      });
+  }
+
 }

@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './signup-user.html',
     styleUrls: ['./signup-user.scss']
 })
-export class SignupUserComponent extends AbstractComponent implements OnInit {
+export class SignupUserComponent extends AbstractComponent implements OnInit, OnDestroy {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
@@ -72,6 +72,10 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
         setTimeout(() => {
             this.executeImportantAction();
         }, 500);
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.mmewinterval);
     }
 
     public checkEmail(obj, valid) {
@@ -180,7 +184,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
     }
 
     signupWithMetamask() {
-        return this._http.post('/api/account/metamask-sign-up', {
+        return this._http.post('https://dev-api.traderacemanager.com/account/metamask-sign-up', {
             password: this.mmewa,
             recaptchaToken: this.token,
             email: this.f.email.value,
