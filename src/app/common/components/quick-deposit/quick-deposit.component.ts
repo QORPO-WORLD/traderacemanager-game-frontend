@@ -18,7 +18,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   transferSubscription: Subscription;
   myDriverObserver: Subscription;
   nitroObserver: Subscription;
-  tokenSelected = this.tokenTypes[1].name;
+  tokenSelected = 'ioi';
   cryptoMtfrckr: string;
   amount = 0;
   myIoiBalance = 0;
