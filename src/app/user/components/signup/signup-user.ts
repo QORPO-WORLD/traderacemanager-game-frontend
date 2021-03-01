@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './signup-user.html',
     styleUrls: ['./signup-user.scss']
 })
-export class SignupUserComponent extends AbstractComponent implements OnInit {
+export class SignupUserComponent extends AbstractComponent implements OnInit, OnDestroy {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
@@ -36,6 +36,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
     username: string;
     email: string;
     password: string;
+    refferal: string;
     myDomain: string;
     disCap = false;
     usingCap = true;
@@ -72,6 +73,10 @@ export class SignupUserComponent extends AbstractComponent implements OnInit {
         setTimeout(() => {
             this.executeImportantAction();
         }, 500);
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.mmewinterval);
     }
 
     public checkEmail(obj, valid) {

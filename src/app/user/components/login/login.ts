@@ -87,6 +87,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       this.subsqription.unsubscribe();
     }
     clearInterval(this.capInterval);
+    clearInterval(this.mmewinterval);
   }
 
   public submit() {
@@ -136,7 +137,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuth(user, pass) {
-    return this._http.post('/api/ioi/auth/jwt/create/', {
+    return this._http.post('/api/auth/jwt/create/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
@@ -145,21 +146,21 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthUsingG(user, pass, gcode) {
-    return this._http.post('/api/ioi/auth/jwt/create/', {
+    return this._http.post('/api/auth/jwt/create/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
       { observe: 'response' });
   }
   loginAuthNoCap(user, pass) {
-    return this._http.post('/api/ioi/auth/jwt/create-in-desktop/', {
+    return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
       { observe: 'response' });
   }
   loginAuthUsingGNoCap(user, pass, gcode) {
-    return this._http.post('/api/ioi/auth/jwt/create-in-desktop/', {
+    return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },

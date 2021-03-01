@@ -24,7 +24,9 @@ export class JwtInterceptor implements HttpInterceptor {
 
 
         const token = JSON.parse(localStorage.getItem('first-time'));
-
+        request = request.clone({
+            withCredentials: true
+        });
 
         if (token) {
             //this.identityService.tokenExpires(token.access);

@@ -1,31 +1,18 @@
 
 
-
-<!-- <div  class="verify-modal" *ngIf="verifyModalTutorial === true">
-  <div class="modal-holder">
-    <img class="close-icon" src="/assets/base/images/icons/close-icon.svg" alt="" (click)="verifyModal = false;realCloseTutorial();">
-    <p class="heading">Tutorial has finished</p>
-    <p class="desc">
-      Do you want to earn more by playing games, or get lifetime dividends for holding IOI tokens?<br>Deposit to play. 
-    </p>
-    <button class="grad-btn" [routerLink]="['/other/ioi-tokens']" (click)="realCloseTutorial()">Continue</button>
-    <p class="info"><a href="https://token.ioi-game.com" target="_blank"><img src="/assets/base/images/teams/question-icon.png" alt=""><span class="opacity">About tokens </span></a></p>
-  </div>
-</div> -->
-
 <div class="main-wrapper">
 
   <div class="rewards-box" [ngClass]="{'tutorial-high': tutorialStep === 3}">
     
     <div class="top-wrapper">
-      <p class="box-heading">Rewards </p>
+      <p class="box-heading">{{'start-race.dividends' | translate}} </p>
       <div class="info-icon">
         <img src="/assets/base/images/menu/info-icon.svg" alt="">
         <div class="info-bubble">
           <div class="img-holder">
             <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
           </div>
-          <p>Complete levels to receive lifetime rewards.</p>
+          <p>{{'start-race.complete_levels' | translate}}</p>
         </div>
       </div>
 
@@ -69,13 +56,13 @@
           </svg>
           <div class="text-holder">
             <p class="value">{{ ioioreward | number:'1.2-2':'fr' }}</p>
-            <p class="desc">actual IOI Reward</p>
+            <p class="desc">{{'start-race.actual_ioi_rewards' | translate}}</p>
           </div>
         </div>
       </div>
 
       <div class="proggres-holder">
-        <p class="value">{{rewardLevel | number:'1.2-2':'fr' }} IOI</p>
+        <p class="value">{{rewardLevel | number:'1.2-2':'fr' }} {{'shared.ioi' | translate}}</p>
         <div class="my-bar">
           <div class="inner-bar my-cta-btn-back" [ngStyle]="{width: rewardLevelMax + '%'}"></div>
         </div>
@@ -91,14 +78,14 @@
           <p class="left">1 000</p>
           <p class="right">10 000</p>
         </div>
-        <p class="bottom-desc" *ngIf="rewardLevel < 100">{{rewardLevelMax | number:'1.2-2':'fr'}}% of 100 IOI target to secure your entry to IOI SPECIALS</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">{{rewardLevelMax | number:'1.2-2':'fr'}}% of 1 000 IOI target to secure your unlimited rewards 10% from the pool</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 999">{{rewardLevelMax | number:'1.2-2':'fr'}}% of 10 000 IOI target to secure your unlimited rewards 90% from the pool</p>
+        <p class="bottom-desc" *ngIf="rewardLevel < 100">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target1' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target2' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 999">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target3' | translate}}</p>
       </div>
     </div>
 
     <div class="leader-holder" [routerLink]="['/teams/leaderboard']">
-      <p class="value">January Top leader <span>&gt;</span></p>
+      <p class="value">January {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
       <div class="leader-cont my-border-grad">
         <div class="inner">
           <div class="img-holder">
@@ -106,7 +93,7 @@
           </div>
           <div class="text-holder">
             <p class="name">John1234</p>
-            <p class="desc">Turnover | 12 156,00 IOI</p>
+            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | 12 156,00 IOI</p>
           </div>
         </div>
       </div>
@@ -114,75 +101,97 @@
   </div>
 
   <div class="main-center-box" [ngClass]="{'tutorial-high': tutorialStep === 4}">
-    <div class="top-banner">
+    <div class="top-banner red-variant">
       <button class="arrow left" (click)="prevBanner()">&lt;</button>
       <button class="arrow right" (click)="nextBanner()">&gt;</button>
       <div class="dots-holder">
         <div class="dot my-low-gradient" (click)="prevBanner()" [ngClass]="{'inactive': topBannerIndex !== 1}"></div>
         <div class="dot my-low-gradient" (click)="nextBanner()" [ngClass]="{'inactive': topBannerIndex !== 2}"></div>
       </div>
-      <div class="banner-item" *ngIf="topBannerIndex === 1">
-        <div class="text-holder">
-          <p class="top-desc my-text-color">Registration opened</p>
-          <p class="race-name" *ngIf="bannerType === 'wednesday'">Wednesday race</p>
-          <p class="race-name" *ngIf="bannerType === 'tournament'">Free tournament</p>
-          <span *ngIf="bannerType === 'wednesday' && hstart">
-            <app-timer-long *ngIf="hstart?.starts_in_seconds > 0" [value]="hstart?.starts_in_seconds" (onComplete)="nextTimers()"></app-timer-long>
-          </span>         
-           <span *ngIf="bannerType === 'tournament' && jstart">
-            <app-timer-long *ngIf="jstart?.starts_in_seconds > 0" [value]="jstart?.starts_in_seconds" (onComplete)="nextTimers()"></app-timer-long>
-          </span>     
-          <button class="register my-cta-btn-back hoverable" *ngIf="bannerType === 'wednesday'"  [routerLink]="['/car/fuel-car/wednesday_party_race_0']">Start now</button>
-          <button class="register my-cta-btn-back hoverable" *ngIf="bannerType === 'tournament'"  [routerLink]="['/car/fuel-car/tournament_for_ticket_0']">Start now</button>
-        </div>
-        <img src="/assets/base/images/start-race/banner-lambo-blue.png" alt="" class="car-img red">
-        <img src="/assets/base/images/start-race/banner-lambo-yellow.png" alt="" class="car-img blue">
-      </div>
-      <div class="banner-item" *ngIf="topBannerIndex === 2">
-        <div class="text-holder">
-          <p class="top-desc my-text-color">Registration opened</p>
-          <p class="race-name">Free race</p> 
-          <span *ngIf="astart">
-            <app-timer-long [value]="astart?.starts_in_seconds" (onComplete)="nextTimers()"></app-timer-long>
-          </span>
 
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_short_0']">Start now</button>
+      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
+        <div class="text-holder">
+          <p class="race-name">Join a premium membership <br>
+            to split up to 5% from races monthly</p>
+          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/teams/join-teams']">Join now</button>
         </div>
-        <img src="/assets/base/images/start-race/banner-lambo-blue.png" alt="" class="car-img red">
-        <img src="/assets/base/images/start-race/banner-lambo-yellow.png" alt="" class="car-img blue">
+        <img src="/assets/base/images/start-race/crown-img.png" alt="" class="banner-img crown">
+      </div>
+      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
+        <div class="text-holder">
+          <p class="race-name">Do a daily task and get <br>
+            premium membership for free</p> 
+
+          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/other/tasks']">Show tasks</button>
+        </div>
+        <img src="/assets/base/images/start-race/tasks-img.png" alt="" class="banner-img tasks">
       </div>
       
     </div>
+
+    <div class="top-banner blue-variant">
+      <button class="arrow left" (click)="prevBanner()">&lt;</button>
+      <button class="arrow right" (click)="nextBanner()">&gt;</button>
+      <div class="dots-holder">
+        <div class="dot my-low-gradient" (click)="prevBanner()" [ngClass]="{'inactive': topBannerIndex !== 1}"></div>
+        <div class="dot my-low-gradient" (click)="nextBanner()" [ngClass]="{'inactive': topBannerIndex !== 2}"></div>
+      </div>
+
+      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
+        <div class="text-holder">
+          <p class="race-name">Buy your first NFTs <br>
+            and start earning</p>
+          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/garage']">Buy</button>
+        </div>
+        <img src="/assets/base/images/start-race/nft-img.png" alt="" class="banner-img nft">
+      </div>
+      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
+        <div class="text-holder">
+          <p class="race-name">Collect 6 cars in collection <br>
+            to double your daily rewards</p> 
+
+          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/garage']">Collect</button>
+        </div>
+        <img src="/assets/base/images/start-race/nft-collection.png" alt="" class="banner-img collection">
+      </div>
+      
+    </div>
+
     <div class="categories-holder">
-      <p class="box-heading w-padd">Categories</p>
+      <p class="box-heading w-padd">{{'start-race.categories' | translate}}</p>
       <div class="cat-cont">
+
         <div class="cat-item cars" [routerLink]="['/car/garage/my-cars']">
           <div class="shiny-dummy my-border-grad"><div class="inner"></div></div>
           <div class="vector-back my-cta-btn-back"></div>
-          <img src="/assets/base/images/start-race/nft-back.png" alt="" class="back-img cars">
+          <img src="/assets/base/images/start-race/nft-back-red.png" alt="" class="back-img cars red">
+          <img src="/assets/base/images/start-race/nft-back-blue.png" alt="" class="back-img cars blue">
           <div class="text-holder">
-            <p class="value">NFT Cars</p>
-            <p class="text">See and buy all our cars in the garage</p>
+            <p class="value">{{'start-race.nft_cars' | translate}}</p>
+            <p class="text">{{'start-race.nft_cars_desc' | translate}}</p>
           </div>
         </div>
+
         <div class="cat-item teams" [routerLink]="['/teams/join-teams']">
           <div class="shiny-dummy my-border-grad"><div class="inner"></div></div>
           <div class="vector-back my-cta-btn-back"></div>
           <img src="/assets/base/images/start-race/team-back.png" alt="" class="back-img teams">
           <div class="text-holder">
-            <p class="value">Teams</p>
-            <p class="text">Join a team and discover all benefits</p>
+            <p class="value">{{'leaderboard.teams' | translate}}</p>
+            <p class="text">{{'start-race.teams_desc' | translate}}</p>
           </div>
         </div>
+
         <div class="cat-item races"  [routerLink]="['/race/all-races']" [queryParams]="{ raceType: 'trx' }">
           <div class="shiny-dummy my-border-grad"><div class="inner"></div></div>
           <div class="vector-back my-cta-btn-back"></div>
           <img src="/assets/base/images/start-race/races-back.png" alt="" class="back-img races">
           <div class="text-holder">
-            <p class="value">Races</p>
-            <p class="text">Play games and use trading strategy to win</p>
+            <p class="value">{{'profile.races' | translate}}</p>
+            <p class="text">{{'start-race.races_desc' | translate}}</p>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -190,7 +199,7 @@
   <div class="small-boxes" [ngClass]="{'tutorial-high': tutorialStep === 3}">
     
     <div class="day-tip" (click)="showDayTipModal = true">
-      <p class="box-heading">Tip of the day</p>
+      <p class="box-heading">{{'teams.my_team.tip_of_day' | translate}}</p>
       <div class="tip-box my-border-grad">
         <div class="border-maker"></div>
         <div class="inner-holder">
@@ -198,7 +207,7 @@
             <img src="/assets/base/images/start-race/flame-icon.png" alt="">
           </div>
           <div class="text-holder">
-            <p class="value">Best racer strategy</p>
+            <p class="value">{{'start-race.best_racer_strategy' | translate}}</p>
             <div class="currs-holder">
               <div class="curr-item">
                 <img src="/assets/base/images/curr-logos/BTCUSDT-logo.png" alt="">
@@ -218,19 +227,19 @@
       </div>
     </div>
     <div class="next-burn">
-      <p class="box-heading">Next burning</p>
+      <p class="box-heading">{{'start-race.next_burning' | translate}}</p>
       <div class="info-icon">
         <img src="/assets/base/images/menu/info-icon.svg" alt="">
         <div class="info-bubble">
           <div class="img-holder">
             <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
           </div>
-          <p>Burning IOI tokens happens on a monthly basis.</p>
+          <p>{{'start-race.burning_desc' | translate}}</p>
         </div>
       </div>
       <div class="burn-box my-border-grad">
         <div class="inner-holder">
-          <p><span>300 000 IOI</span> in <span class="time my-text-color"><app-timer-long class="my-text-color" [value]="hwdays" [type]="1"></app-timer-long></span></p>
+          <p><span>300 000 {{'shared.ioi' | translate}}</span> {{'shared.in' | translate}} <span class="time my-text-color"><app-timer-long class="my-text-color" [value]="hwdays" [type]="1"></app-timer-long></span></p>
         </div>
       </div>
     </div>
@@ -239,69 +248,71 @@
   <div class="center-bottom-box" [ngClass]="{'tutorial-high': tutorialStep === 4}">
     <app-exp-bar></app-exp-bar>
     <div class="stats-holder">
-      <p class="box-heading w-padd">Stats</p>
+      <p class="box-heading w-padd">{{'shared.stats' | translate}}</p>
       <div class="info-icon">
         <img src="/assets/base/images/menu/info-icon.svg" alt="">
         <div class="info-bubble">
           <div class="img-holder">
             <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
           </div>
-          <p>Check out your team performance, your stats and the value of your garage.</p>
+          <p>{{'start-race.stats_desc' | translate}}</p>
         </div>
       </div>
       <div class="stats-cont">
         <div class="shiny-dummy my-border-grad stats-dummy"><div class="inner"></div></div>
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">{{myCarsvals  | number:'1.2-2':'fr'}} <span class="desc">IOI</span></p>
-            <p class="bot-desc">Your garage value</p>
+            <p class="value">{{myCarsvals  | number:'1.2-2':'fr'}} <span class="desc">{{'shared.ioi' | translate}}</span></p>
+            <p class="bot-desc">{{'start-race.your_garage_value' | translate}}</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
               <p class="value" style="
-              margin-bottom: 5px;">Soon</p>
-              <p class="desc">Daily reward</p>
+              margin-bottom: 5px;">{{'shared.soon' | translate}}</p>
+              <p class="desc">{{'start-race.daily_reward' | translate}}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
               <p class="value">{{carBonus}}%</p>
-              <p class="desc">APY</p>
+              <p class="desc">{{'start-race.apy' | translate}}</p>
             </div>
           </div>
         </div>
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">Team {{ myLdrbrd?.team_name }}</p>
-            <p class="bot-desc">Your team</p>
+            <p class="value" *ngIf="myLdrbrd?.team_name !== 'TRX'">{{'profile.team' | translate}} {{ myLdrbrd?.team_name }}</p>
+            <p class="value" *ngIf="myLdrbrd?.team_name === 'TRX'">{{'profile.team' | translate}} ALT</p>
+            <p class="bot-desc">{{'start-race.your_team' | translate}}</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value">{{myDriverOld?.is_paid_membership === true ? 'Premium' : 'Free'}}</p>
-              <p class="desc">Membership</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership === true">{{'teams.join.modals.premium' | translate}}</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership === false">{{'race.type.car_race_short_0' | translate}}</p>
+              <p class="desc">{{'start-race.membership' | translate}}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
               <p class="value">{{myRewards?.team_bonus | number:'1.2-2':'fr'}}</p>
-              <p class="desc">Rewards</p>
+              <p class="desc">{{'start-race.dividends' | translate}}</p>
             </div>
           </div>
         </div>
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">Leaderboard</p>
-            <p class="bot-desc">Leaderboard placement</p>
+            <p class="value">{{'start-race.leaderboard' | translate}}</p>
+            <p class="bot-desc">{{'start-race.leaderboard_placement' | translate}}</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
               <p class="value">{{ myLdrbrd?.team_position }}/3</p>
-              <p class="desc">Team position</p>
+              <p class="desc">{{'profile.t_position' | translate}}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
               <p class="value">{{ myLdrbrd?.player_position_overall }}</p>
-              <p class="desc">My positon</p>
+              <p class="desc">{{'leaderboard.my_position' | translate}}</p>
             </div>
           </div>
         </div>
@@ -309,89 +320,6 @@
     </div>
 
   </div>
-
-  <!-- <div class="left-part">
-
-    <div class="big-banners-holder">
-
-      <div class="top-banner" [ngClass]="{'intro-highlight': introModal === true}">
-        <div class="banner-holder wednesday" *ngIf="bannerType === 'wednesday'" [routerLink]="['/car/fuel-car/wednesday_party_race_0']">
-          <div class="text-holder">
-            <p class="heading">{{'race.type.wednesday_party_race_0' | translate}}</p>
-            <p>{{'start-race.race_against' | translate}} <span>10 000 TRX</span>!</p>
-          </div>
-          <button class="play-button">{{'shared.play_btn' | translate}}</button>
-        </div>
-        <div class="banner-holder tournament" *ngIf="bannerType === 'tournament' && trxBalance < 10" [routerLink]="['/car/fuel-car/tournament_for_ticket_0']">
-          <div class="text-holder tour">
-            <p class="heading">{{'race.type.tournament_for_ticket_0' | translate}}</p>
-            <p>{{'start-race.race_against_for' | translate}} <span>10 TRX</span>!</p>
-          </div>
-          <button class="play-button">{{'shared.play_btn' | translate}}</button>
-        </div>
-        <div class="banner-holder tournament" *ngIf="bannerType === 'tournament' && trxBalance >= 10" [routerLink]="['/car/fuel-car/classic_tournament_10']">
-          <div class="text-holder tour">
-            <p class="heading">{{'race.type.classic_tournament_10' | translate}}</p>
-            <p>{{'start-race.race_against_for' | translate}} <span>10 TRX</span>!</p>
-          </div>
-          <button class="play-button">{{'shared.play_btn' | translate}}</button>
-        </div>
-        <div class="banner-holder trx" *ngIf="bannerType === 'free'" [routerLink]="['/car/fuel-car/car_race_short_0']">
-          <div class="text-holder">
-            <p class="heading">{{'modals.heading.free' | translate}}</p>
-            <p>{{'start-race.race_against_for' | translate}} <span>{{'race.type.car_race_short_0' | translate}}</span>!</p>
-          </div>
-          <button class="play-button">{{'shared.play_btn' | translate}}</button>
-        </div>
-      </div>
-
-      <div class="dividend-panel">
-        <div class="content trx" [ngClass]="{'visible': dividendsIndex === 1}" [routerLink]="['/other/rewards']">
-          <p class="desc">{{'modals.shared.get' | translate}} {{'shared.trx' | translate}} <span>{{'start-race.dividends' | translate}}</span></p>
-          <p class="value">{{myRewards?.turnover_luxury_bonus | number:'1.2-2':'fr'}} {{'shared.trx' | translate}}</p>
-        </div>
-        <div class="content ioi" [ngClass]="{'visible': dividendsIndex === 2}" [routerLink]="['/other/rewards']">
-          <p class="desc">{{'modals.shared.get' | translate}} {{'shared.ioi' | translate}} <span>{{'start-race.dividends' | translate}}</span></p>
-          <p class="value">{{ioioreward | number:'1.2-2':'fr'}} {{'shared.ioi' | translate}}</p>
-        </div>
-        <div class="dots">
-          <div class="dot" [ngClass]="{'active': dividendsIndex === 1}" (click)="dividendsIndex = 1">&nbsp;</div>
-          <div class="dot" [ngClass]="{'active': dividendsIndex === 2}" (click)="dividendsIndex = 2">&nbsp;</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="all-cards">
-      <p class="filters-desc">{{'start-race.categories' | translate}}</p>
-
-      <div class="cards-holder">
-
-        <div class="category-card ioi-race" [routerLink]="['/race/all-races']" [queryParams]="{ raceType: 'ioi' }">
-          <div class="background"></div>
-          <button>Free races</button>
-        </div>
-
-        <div class="category-card trx-race" [routerLink]="['/race/all-races']" [queryParams]="{ raceType: 'trx' }">
-          <div class="background"></div>
-          <button>Paid races</button>
-        </div>
-
-        <div class="category-card adv-race" [routerLink]="['/race/all-races']" [queryParams]="{ raceType: 'adventures' }">
-          <div class="background"></div>
-          <button>Tournaments</button>
-        </div>
-  
-  
-      </div>
-  
-      
-  
-      
-
-      <app-exp-bar></app-exp-bar>
-    </div>
-
-  </div> -->
 
 </div>
 
@@ -682,70 +610,66 @@
 </div>
 
 
-<!-- <div class="intro-modal" *ngIf="introModal === true">
-  <button (click)="skipModal()" class="close"><span>1/6</span> {{'shared.skip' | translate}}</button>
-</div> -->
-
 <div class="tutorial-modal" [ngClass]="'step' + tutorialStep" *ngIf="introModal === true && verifyModal === false">
 
   <div class="box-content only-cta content0">
     <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
     <div class="text-holder centered">
-      <p class="heading">Skip tutorial</p>
-      <p class="text">No worries, you can still turn the tutorial on in the settings anytime.</p>
+      <p class="heading">{{'tutorial.skip_tutorial' | translate}}</p>
+      <p class="text">{{'tutorial.skip_desc' | translate}}</p>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="skipModal()">Let's start</button>
+    <button class="my-cta-btn-back hoverable" (click)="skipModal()">{{'tutorial.lets_start' | translate}}</button>
   </div>
 
   <div class="box-content only-cta content1">
     <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
     <div class="text-holder centered">
-      <p class="heading">Welcome John</p>
-      <p class="text">We prepared a short tutorial for you</p>
+      <p class="heading">{{'modals.welcome' | translate}} {{myDriverOld.nickname}}</p>
+      <p class="text">{{'tutorial.tutorial_msg1' | translate}}</p>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">Let's start</button>
+    <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'tutorial.lets_start' | translate}}</button>
   </div>
 
   <div class="box-content content2">
     <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
     <div class="text-holder">
-      <p class="heading">Right menu</p>
-      <p class="text">See all Races, set up your favourite ones, see chat or your profile details in the menu on the right side.</p>
+      <p class="heading">{{'tutorial.tutorial_msg2' | translate}}</p>
+      <p class="text">{{'tutorial.tutorial_msg3' | translate}}</p>
       <div class="pointing-line to-right"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">Continue</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">{{'tutorial.skip_the_tutorial' | translate}} &gt;</p>
     </div>
   </div>
 
   <div class="box-content content3">
     <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
     <div class="text-holder">
-      <p class="heading">Left menu</p>
-      <p class="text">See your Rewards progress, Leaderboard, Tip of the day from your team manager and next burning date in the left menu.</p>
+      <p class="heading">{{'tutorial.tutorial_msg4' | translate}}</p>
+      <p class="text">{{'tutorial.tutorial_msg5' | translate}}</p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">Continue</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">{{'tutorial.skip_the_tutorial' | translate}} &gt;</p>
     </div>
   </div>
 
   <div class="box-content content4">
     <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
     <div class="text-holder">
-      <p class="heading">Middle panel</p>
-      <p class="text">You can find NFTs, Teams and detailed Stats in the main Middle panel.</p>
+      <p class="heading">{{'tutorial.tutorial_msg6' | translate}}</p>
+      <p class="text">{{'tutorial.tutorial_msg7' | translate}}</p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">Continue</button>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
     </div>
   </div>
 
   <div class="skip-text absolute my-cta-btn-back" *ngIf="tutorialStep !== 2 && tutorialStep !== 3 && tutorialStep !== 0" 
-  (click)="tutorialStep = 0"><p>Skip the tutorial &gt;</p></div>
+  (click)="tutorialStep = 0"><p>{{'tutorial.skip_the_tutorial' | translate}} &gt;</p></div>
 </div>
 
 
@@ -755,13 +679,13 @@
     <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showDayTipModal = false">
 
     <div class="header-holder" *ngIf="editTips === false">
-      <p class="heading"><img src="/assets/base/images/start-race/flame-icon.png" alt="Image of flame" class="flame-img"> Tip of the day <img src="assets/base/images/teams/edit-icon.png" alt="Edit tips icon" class="edit-icon" (click)="editTips = true"></p>
-      <p class="text">Check out the tip of the day from your manager and use it in your next race!</p>
+      <p class="heading"><img src="/assets/base/images/start-race/flame-icon.png" alt="Image of flame" class="flame-img"> {{'teams.my_team.tip_of_day' | translate}} <img src="assets/base/images/teams/edit-icon.png" alt="Edit tips icon" class="edit-icon" (click)="editTips = true"></p>
+      <p class="text">{{'teams.my_team.tip_desc' | translate}}</p>
     </div>
 
     <div class="header-holder" *ngIf="editTips === true">
-      <p class="heading">Add manager tip of the day</p>
-      <p class="text">Choose three coins you want to recommend to your team as a Tip of the day</p>
+      <p class="heading">{{'teams.my_team.add_tip' | translate}}</p>
+      <p class="text">{{'teams.my_team.choose_tip' | translate}}</p>
     </div>
     <app-daily-tip-modal [isEditing]="editTips" (editTips)="tipsSaved($event)"></app-daily-tip-modal>
   </div>

@@ -29,8 +29,7 @@
         <img src="/assets/base/images/leaderboard/prev-arrow-trans.png" alt="">
       </div>
       <div class="my-cars">
-        <img [src]="'/assets/base/images/nft-cars/car' + raceDataildata?.my_cars[selectedMyIndex]?.c + '.png'" alt="" *ngIf="raceDataildata?.my_cars[selectedMyIndex]?.c !== 14 && raceDataildata?.my_cars[selectedMyIndex]?.c !== 21 && raceDataildata?.my_cars[selectedMyIndex]?.c !== 28 ">
-        <img src="/assets/base/images/nft-cars/car1.png" alt="" *ngIf="raceDataildata?.my_cars[selectedMyIndex]?.c === 14 || raceDataildata?.my_cars[selectedMyIndex]?.c === 21 || raceDataildata?.my_cars[selectedMyIndex]?.c === 28 ">
+        <img [src]="'/assets/base/images/nft-cars/car' + raceDataildata?.my_cars[selectedMyIndex]?.c+ '.png'" alt="">
       </div>
       <div class="arrow right" (click)="nextCar()" [ngClass]="{'inactive': raceDataildata?.my_cars?.length < 2}">
         <img src="/assets/base/images/leaderboard/next-arrow-trans.png" alt="">
@@ -417,7 +416,7 @@
     </div>
 
 
-    <div class="car_rc" id="photoMe" *ngIf="unitySelected === false;">
+    <div class="car_rc" id="photoMe" *ngIf="unitySelected === false;" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false}">
      <!-- <div id="transparent-bg">
         <div id="time-wrapper">
 
@@ -476,18 +475,18 @@
 
       <div class="still-road" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
-      [ngClass]="{'tour': backType === 'tour', 'wednesday': backType === 'wednesday', 'speci-back': backType !== 'default'}">&nbsp;</div>
+      [ngClass]="{'tour': backType === 2, 'wednesday': backType === 3, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="still-helperix" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
-      [ngClass]="{'tour': backType === 'tour', 'wednesday': backType === 'wednesday', 'speci-back': backType !== 'default'}">&nbsp;</div>
+      [ngClass]="{'tour': backType === 2, 'wednesday': backType === 3, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="moving-road" 
-      [ngClass]="{'tour': backType === 'tour', 'wednesday': backType === 'wednesday', 'speci-back': backType !== 'default'}"
+      [ngClass]="{'tour': backType === 2, 'wednesday': backType === 3, 'speci-back': backType !== 1}"
       [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
 
       <div class="moving-helperix" 
-      [ngClass]="{'tour': backType === 'tour', 'wednesday': backType === 'wednesday', 'speci-back': backType !== 'default'}"
+      [ngClass]="{'tour': backType === 2, 'wednesday': backType === 3, 'speci-back': backType !== 1}"
       [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
 
       <div class="cr_cars_box" *ngIf="raceStarted === false && unitySelected === false">
@@ -545,14 +544,15 @@
           </div>
         </div>
 
-        <div class="start_line" >
-          <img src="/assets/base/images/new-race/start.png" alt="">
-        </div>
-        <div class="final_line">
-          <img src="/assets/base/images/new-race/finish.png" alt="">
-        </div>
-
+        
       </div>
+      <ng-container *ngIf="raceStarted === false && unitySelected === false">
+        <div class="start_line" [ngClass]="'type' + backType">
+        </div>
+        <div class="final_line" [ngClass]="'type' + backType"> 
+        </div>
+      </ng-container>
+      
 
       <div class="cr_cars_box started" *ngIf="raceStarted === true  && unitySelected === false" [ngClass]="{'with-lines': motiveCurrent === 3}">
         <div class="car_row" [ngStyle]="{'left': raceData?.race[0]?.rp + '%'}" *ngIf="raceData?.race[0]" [ngClass]="{'my-car-high': raceData?.me?.u === raceData?.race[0].u}">
@@ -644,11 +644,10 @@
 
           </div>
         </div>
-        <div class="final_line">
-          <img src="/assets/base/images/new-race/finish.png" alt="">
-        </div>
       </div>
-
+      
+      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  && unitySelected === false">
+      </div>
 
     </div>
 
@@ -715,23 +714,6 @@
         <p>{{'race.best_position' | translate}} <span>{{raceData?.me?.cpr}}/{{raceDataildata?.players_count}}</span></p>
       </div>
     </div> -->
-    <div class="car_rc_time" #myBet [ngClass]="showBet === true ? 'visible' : 'invisible'">
-
-      <button class="no-car-fuel" *ngIf="raceDataildata?.my_cars?.length === 0">
-        <img src="../../../../assets/base/images/icons/nitro-red.png" alt="">
-        <div class="start-race">
-          <img src="/assets/base/images/button-play.png" alt="Lets play" (click)="play()">
-        </div>
-      </button>
-
-      <div class="light_icon">
-
-        <button *ngIf="raceDataildata?.my_cars?.length > 0">
-          <img src="../../../../assets/base/images/zavod/light_icon.png" alt="">
-        </button>
-
-      </div>
-    </div>
 
 
     <div class="tournament" style="display: none;">
