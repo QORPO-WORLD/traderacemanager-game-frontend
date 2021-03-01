@@ -28,6 +28,9 @@ export class AffilateComponent implements OnInit, OnDestroy {
   offObserver: Subscription;
   Affilate: any;
   affMe: AffiliateDetails;
+  rewardLevel = 0;
+  rewardLevelMax = 0;
+  isLevel = 1;
   constructor(protected api: DriversService, private formBuilder: FormBuilder, private notifyq: NotifiqService,
     private identityService: AuthService, protected affService: AffiliatesService, private notify: NotifyService) { }
 
@@ -37,6 +40,8 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getReferralPlayers();
     this.getAffilate();
+    const balance = JSON.parse(localStorage.getItem('user-balance'));
+    this.getrewardLevel(balance.game_wallet_ioi);
   }
 
 
@@ -109,6 +114,35 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.affService.affiliatesMe().subscribe(data => {
       this.affMe = data;
     });
+  }
+
+  getrewardLevel(data: number) {
+    if (data < 100) {
+      this.isLevel = 1;
+      this.rewardLevel = data;
+      this.rewardLevelMax = 100 / (100 / data) ;
+    }
+    if (data > 100 && data < 1000) {
+      this.isLevel = 2;
+      this.rewardLevel = data;
+      this.rewardLevelMax = 100 / (1000 / data);
+    }
+    if (data > 999 && data < 10000) {
+      this.isLevel = 3;
+      this.rewardLevel = data;
+      this.rewardLevelMax = 100 / (10000 / data);
+    }
+    if (data > 9999 && data < 100000) {
+      this.isLevel = 4;
+      this.rewardLevel = data;
+      this.rewardLevelMax = 100 / (100000 / data);
+    }
+    if (data > 99999) {
+      this.isLevel = 4;
+      this.rewardLevel = data;
+      this.rewardLevelMax = 100;
+    }
+
   }
 
 

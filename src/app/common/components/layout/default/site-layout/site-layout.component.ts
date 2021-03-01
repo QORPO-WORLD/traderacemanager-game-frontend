@@ -79,6 +79,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   managerInterval: any;
   depositInterval: any;
   depos = false;
+  isLevel: number;
   deposTime: any;
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
@@ -166,7 +167,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.numOfNotificationsBack = this.numOfNotifications;
     });
 
-
+    console.log(this.myAffilate);
   }
 
   ngOnDestroy() {
@@ -224,7 +225,21 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   getMyLevel() {
-    this.myAffilate = this.identityService.getStorageAff();
+    if (this.myDriver.game_wallet_ioi < 100) {
+      this.isLevel = 1;
+    }
+    if (this.myDriver.game_wallet_ioi > 100 && this.myDriver.game_wallet_ioi < 1000) {
+      this.isLevel = 2;
+    }
+    if (this.myDriver.game_wallet_ioi > 999 && this.myDriver.game_wallet_ioi < 10000) {
+      this.isLevel = 3;
+    }
+    if (this.myDriver.game_wallet_ioi > 9999 && this.myDriver.game_wallet_ioi < 100000) {
+      ithis.sLevel = 4;
+    }
+    if (this.myDriver.game_wallet_ioi > 99999) {
+      this.isLevel = 4;
+    }
   }
   getMydriver() {
     this.myDriverStats = this.identityService.getStorageIdentity();
