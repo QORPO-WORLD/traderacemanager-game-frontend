@@ -21,6 +21,7 @@ import { AboutTokensComponent } from './pages/about-tokens/about-tokens.componen
 import { WalletControllerComponent } from './pages/wallet-controller/wallet-controller.component';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+import { TransferNftComponent } from './pages/transfer-nft/transfer-nft.component';
 
 const routes: Routes = [
 
@@ -62,6 +63,9 @@ const routes: Routes = [
       },
       {
         path: 'wallet-control', component: WalletControllerComponent
+      },
+      {
+        path: 'transfer-nft', component: TransferNftComponent
       }
     ]
   }
@@ -71,7 +75,7 @@ const routes: Routes = [
     ReferralPlayersComponent, IoiTokensComponent,
     PromotionsComponent, ConfirmWithdrawalComponent, PromotionsBannerComponent,
     DailyTasksComponent, BridgeComponent, CoinSwtxComponent,
-    AboutTokensComponent, WalletControllerComponent],
+    AboutTokensComponent, WalletControllerComponent, TransferNftComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
