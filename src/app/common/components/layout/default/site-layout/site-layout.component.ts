@@ -25,6 +25,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   public identity: Identity;
   public menuVisible = false;
+  isUsingMetamask = false;
+  showMetaBalance = false;
   profileObservable: Subscription;
   routeObservable: Subscription;
   myLevelObserver: Subscription;
@@ -73,12 +75,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   tickets = 0;
   myDriverBalances: any;
   menuType = 'races';
+  myAddressClass = '';
   sumUsers = 0;
   trxUsdt = 3;
   tickInterval: any;
   managerInterval: any;
   depositInterval: any;
   depos = false;
+  isLevel: number;
   deposTime: any;
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
@@ -166,7 +170,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.numOfNotificationsBack = this.numOfNotifications;
     });
 
-
+    console.log(this.myAffilate);
   }
 
   ngOnDestroy() {
@@ -224,7 +228,21 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   getMyLevel() {
-    this.myAffilate = this.identityService.getStorageAff();
+    if (this.myDriver.game_wallet_ioi < 100) {
+      this.isLevel = 1;
+    }
+    if (this.myDriver.game_wallet_ioi > 100 && this.myDriver.game_wallet_ioi < 1000) {
+      this.isLevel = 2;
+    }
+    if (this.myDriver.game_wallet_ioi > 999 && this.myDriver.game_wallet_ioi < 10000) {
+      this.isLevel = 3;
+    }
+    if (this.myDriver.game_wallet_ioi > 9999 && this.myDriver.game_wallet_ioi < 100000) {
+      this.isLevel = 4;
+    }
+    if (this.myDriver.game_wallet_ioi > 99999) {
+      this.isLevel = 4;
+    }
   }
   getMydriver() {
     this.myDriverStats = this.identityService.getStorageIdentity();
@@ -386,6 +404,27 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
         localStorage.removeItem('depos');
       }
     }
+  }
+
+  copyMyAddress() {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.myDriverStats.my_crypto_address;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  animateOnClick(){
+    this.myAddressClass = 'animate';
+    setTimeout(() => {
+      this.myAddressClass = '';
+    }, 1000);
   }
 
 }

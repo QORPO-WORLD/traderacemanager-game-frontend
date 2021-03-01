@@ -127,6 +127,7 @@
       align-items: center;
       padding: 15px 20px;
       border-radius: 15px;
+      width: 160px;
       img{
         margin-right: 10px;
       }
@@ -262,7 +263,7 @@
       }
     }
     .profile-stats{
-      width: 200px;
+      width: 165px;
       p{
         margin: 0;
         font-size: 18px;
@@ -271,6 +272,84 @@
           font-size: 16px;
           font-weight: 400;
           opacity: .6;
+        }
+      }
+    }
+  }
+  .balance-switcher{
+    margin-right: 40px;
+    .switch-box{
+      cursor: pointer;
+      &.active{
+        img{
+          display: none;
+          &.active{
+            display: block;
+          }
+        }
+      }
+      img{
+        display: block;
+        &.active{
+          display: none;
+        }
+      }
+    }
+  }
+  .meta-balance-holder{
+    min-width: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ioi-box{
+      margin-right: 20px;
+      padding: 15px 20px;
+      border-radius: 15px;
+      p{
+        margin: 0;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    .address-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #111111;
+      border-radius: 15px;
+      p{
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+      }
+      .my-eth{
+        padding: 15px 20px;
+      }
+      .my-address{
+        padding: 1px 0 0 1px;
+        border-radius: 15px;
+        position: relative;
+        cursor: pointer;
+        .inner{
+          border-radius: 15px;
+          background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #111111;
+          padding: 15px 20px;
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          &.clicked{
+            z-index: 2;
+            opacity: 0;
+            transition: 0.5s;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 100%;
+            &.animate{
+                transition: 0s;
+                opacity: 1;
+            }
+        }
         }
       }
     }
@@ -2169,6 +2248,7 @@ button.xko {
       .online-box{
         padding: 11px 15px;
         border-radius: 11px;
+        width: 135px;
         img{
           width: 17px;
           margin-right: 7px;
@@ -2192,7 +2272,7 @@ button.xko {
         height: 40px;
       }
       .profile-stats{
-        width: 155px;
+        width: 135px;
         p{
           font-size: 16px;
           &.stats{
@@ -2211,6 +2291,35 @@ button.xko {
         p{
           font-size: 13px;
           margin: 0;
+        }
+      }
+    }
+    .meta-balance-holder{
+      min-width: 345px;
+      .ioi-box{
+        padding: 11px 15px;
+        border-radius: 11px;
+        p{
+          font-size: 13px;
+        }
+      }
+      .address-box{
+        border-radius: 11px;
+        .my-eth{
+          padding: 11px 15px;
+          p{
+            font-size: 13px;
+          }
+        }
+        .my-address{
+          border-radius: 11px;
+          .inner{
+            border-radius: 11px;
+            padding: 11px 15px;
+            p{
+              font-size: 13px;
+            }
+          }
         }
       }
     }
@@ -2266,7 +2375,7 @@ button.xko {
         height: 35px;
       }
       .profile-stats{
-        width: 130px;
+        width: 115px;
         p{
           font-size: 15px;
           &.stats{
@@ -2285,6 +2394,35 @@ button.xko {
         p{
           font-size: 12px;
           margin: 0;
+        }
+      }
+    }
+    .meta-balance-holder{
+      min-width: 320px;
+      .ioi-box{
+        padding: 7px 12px;
+        border-radius: 7px;
+        p{
+          font-size: 12px;
+        }
+      }
+      .address-box{
+        border-radius: 7px;
+        .my-eth{
+          padding: 7px 12px;
+          p{
+            font-size: 12px;
+          }
+        }
+        .my-address{
+          border-radius: 7px;
+          .inner{
+            border-radius: 7px;
+            padding: 7px 12px;
+            p{
+              font-size: 12px;
+            }
+          }
         }
       }
     }
@@ -2352,7 +2490,9 @@ button.xko {
   }
   .my-nav{
     z-index: 1000000;
-    .items-holder{
+    .items-holder,
+    .balance-switcher,
+    .meta-balance-holder{
       display: none;
     }
     .overview{
