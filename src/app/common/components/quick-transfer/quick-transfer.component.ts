@@ -29,7 +29,7 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
   nitroObserver: Subscription;
   walletSelected = this.waletsTypes[1].name;
   walletToSelected = this.waletsTypes[0].name;
-  tokenSelected = this.tokenTypes[1].name;
+  tokenSelected = 'ioi';
   cryptoMtfrckr: string;
   amount = 0;
   myIoiBalance = 0;

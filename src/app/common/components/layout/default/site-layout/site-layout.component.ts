@@ -238,7 +238,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.isLevel = 3;
     }
     if (this.myDriver.game_wallet_ioi > 9999 && this.myDriver.game_wallet_ioi < 100000) {
-      ithis.sLevel = 4;
+      this.isLevel = 4;
     }
     if (this.myDriver.game_wallet_ioi > 99999) {
       this.isLevel = 4;
