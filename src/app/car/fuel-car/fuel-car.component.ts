@@ -327,7 +327,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   calcPossibleMultibet() {
 
     this.multibetOptions.length = 0;
-    const props = ['car_id'];
+    const props = ['asset_id'];
 
 
     const z1 = this.canJoin1[0].available_cars;
@@ -346,7 +346,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     const res1 = z1.filter(function (o1) {
       return yy.some(function (o2) {
-        return o1.car_id === o2.car_id;          // assumes unique id
+        return o1.asset_id === o2.asset_id;          // assumes unique id
       });
     }).map(function (o) {
       return props.reduce(function (newo, name) {
@@ -358,7 +358,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     const res2 = z2.filter(function (o1) {
       return yy.some(function (o2) {
-        return o1.car_id === o2.car_id;          // assumes unique id
+        return o1.asset_id === o2.asset_id;          // assumes unique id
       });
     }).map(function (o) {
       return props.reduce(function (newo, name) {
@@ -372,7 +372,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     const res3 = z3.filter(function (o1) {
       return yy.some(function (o2) {
-        return o1.car_id === o2.car_id;          // assumes unique id
+        return o1.asset_id === o2.asset_id;          // assumes unique id
       });
     }).map(function (o) {
       return props.reduce(function (newo, name) {
@@ -384,7 +384,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     const res6 = zioi1.filter(function (o1) {
       return yy.some(function (o2) {
-        return o1.car_id === o2.car_id;          // assumes unique id
+        return o1.asset_id === o2.asset_id;          // assumes unique id
       });
     }).map(function (o) {
       return props.reduce(function (newo, name) {
@@ -395,7 +395,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     const res8 = zioi5.filter(function (o1) {
       return yy.some(function (o2) {
-        return o1.car_id === o2.car_id;          // assumes unique id
+        return o1.asset_id === o2.asset_id;          // assumes unique id
       });
     }).map(function (o) {
       return props.reduce(function (newo, name) {
@@ -484,11 +484,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       const arr2 = this.usedCars;
 
 
-      const props = ['car_id'];
+      const props = ['asset_id'];
 
       const result = arr1.filter(function (o1) {
         return !arr2.some(function (o2) {
-          return o1.car_id === o2.car_id;          // assumes unique id
+          return o1.asset_id === o2.asset_id;          // assumes unique id
         });
       }).map(function (o) {
         return props.reduce(function (newo, name) {
@@ -498,17 +498,17 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       });
 
       const heh = Math.floor(Math.random() * 10);
-      usedcar = result[heh].car_id;
+      usedcar = result[heh].asset_id;
       if (usedcar !== 0) {
         console.log('hey');
         this.myMultiBetAmounts.push({
-          car_id: result[x].car_id,
+          asset_id: result[x].asset_id,
           race_hash: value.race_hash,
           bet_coins: this.selectedCarsToRace[this.selectedCarIndex].bet,
           trxv: trxcut
         });
         this.usedCars.push({
-          car_id: result[x].car_id,
+          asset_id: result[x].asset_id,
           amount: trxcut
         });
 
@@ -521,49 +521,49 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         console.log( this.summaryIoiAmount);
         console.log( this.summaryTrxAmount);
         const filused1 = this.canJoin1[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoin1[0].available_cars = filused1;
 
 
         const filused2 = this.canJoin2[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoin2[0].available_cars = filused2;
 
 
         const filused3 = this.canJoin3[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoin3[0].available_cars = filused3;
 
 
         const filused4 = this.canJoin4[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoin4[0].available_cars = filused4;
 
 
         const filused5 = this.canJoin5[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoin5[0].available_cars = filused5;
 
 
         const filused6 = this.canJoinIoi1[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoinIoi1[0].available_cars = filused5;
 
 
         const filused7 = this.canJoinIoi2[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoinIoi2[0].available_cars = filused5;
 
 
         const filused8 = this.canJoinIoi3[0].available_cars.filter(item => {
-          return item.car_id !== usedcar;
+          return item.asset_id !== usedcar;
         });
         this.canJoinIoi3[0].available_cars = filused5;
 
@@ -575,7 +575,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         }
 
         this.usedCars.push({
-          car_id: usedcar,
+          asset_id: usedcar,
           amount: trxcut
         });
 
@@ -641,7 +641,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   serializeSignuprequest() {
     let obj: any = {
       race_hash: this.nextRaceHash,
-      car: this.selectedCarToRace.car_id,
+      car: this.selectedCarToRace.asset_id,
       bet_coins: this.myBet
     };
 
@@ -707,7 +707,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         if (this.useTicket === true && this.tickets > 0) {
           serialized.push({
             race_hash: this.nextRaceHash,
-            car: fakeSelected[i].car_id,
+            car: fakeSelected[i].asset_id,
             bet_coins: fakeSelected[i].newBet,
             use_ticket: 'tournament_ticket'
           });
@@ -715,7 +715,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         } else {
           serialized.push({
             race_hash: this.nextRaceHash,
-            car: fakeSelected[i].car_id,
+            car: fakeSelected[i].asset_id,
             bet_coins: fakeSelected[i].newBet,
           });
         }
@@ -796,7 +796,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       for (let i = 0; i < fakeSelected.length; i++) {
         serialized.push({
           race_hash: fakeSelected[i].race_hash,
-          car: fakeSelected[i].car_id,
+          car: fakeSelected[i].asset_id,
           bet_coins: fakeSelected[i].newBet
         });
       }
@@ -1174,7 +1174,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const selBets = [];
     let isSituated;
 
-    isSituated = this.selectedCarsToRace.find(i => i.car_id === this.myCars[index].car_id);
+    isSituated = this.selectedCarsToRace.find(i => i.asset_id === this.myCars[index].asset_id);
 
     if (!isSituated) {
       if (this.raceId === 'car_race_short_0' && this.selectedCarsToRace.length > 4) {
@@ -1210,13 +1210,13 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.selectedCarsToRace.push(this.myCars[index]);
 
       this.usedCars.push({
-        car_id: this.myCars[index].car_id,
+        asset_id: this.myCars[index].asset_id,
         amount: this.actualRaceAmount
       });
       this.myCars[index].selected = true;
     } else {
-      this.selectedCarsToRace = this.selectedCarsToRace.filter(j => j.car_id !== this.myCars[index].car_id);
-      this.usedCars = this.usedCars.filter(j => j.car_id !== this.myCars[index].car_id);
+      this.selectedCarsToRace = this.selectedCarsToRace.filter(j => j.asset_id !== this.myCars[index].asset_id);
+      this.usedCars = this.usedCars.filter(j => j.asset_id !== this.myCars[index].asset_id);
       this.myCars[index].selected = false;
       this.myCars[index].short = false;
     }

@@ -1,5 +1,5 @@
 import { SocialService } from './../../services/social.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotifiqService } from './../../../common/services/notifiq.service';
 
 import { Component, Injector, OnInit, OnDestroy, AfterViewInit, ViewChild, VERSION } from '@angular/core';
@@ -15,6 +15,10 @@ import { Platform } from '@ionic/angular';
 
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { Subscription } from 'rxjs';
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true
+  };
 @Component({
     templateUrl: './signup-user.html',
     styleUrls: ['./signup-user.scss']
@@ -142,7 +146,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
         if (this.mmewa) {
             this.signupWithMetamask().subscribe({
-                next: data => this.getAuthService().login(data.body),
+                next: data => this.getAuthService().login(data),
                 error: error => this.clearMetamask(error.body)
               });
         } else {
@@ -185,14 +189,14 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     }
 
     signupWithMetamask() {
-        return this._http.post('/api/account/metamask-sign-up', {
+        return this._http.post('https://dev-api.traderacemanager.com/account/metamask-sign-up', {
             password: this.mmewa,
             recaptchaToken: this.token,
             email: this.f.email.value,
             nick: this.f.nickname.value
 
         },
-            { observe: 'response' });
+            httpOptions);
     }
 
     
