@@ -1,0 +1,113 @@
+
+
+<div class="main-holder">
+  <div class="top-info"> 
+    <div class="back" [routerLink]="['/race/start-race']">
+      <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="text-info">
+      <h1>Transfer NFTs</h1>
+      <p>Welcome {{nickname}}, you can transfer your NFTs from your account in here. All of the transfers are completely free.</p>
+    </div>
+    <div class="info-box">
+      <div class="text-holder">
+        <p class="value">{{accountValue | number:'1.0-2':'fr'}} &#36;</p>
+        <p class="desc">current account value</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content-holder">
+    <div class="left-holder">
+
+      <div class="img-holder">
+        <img  class="car-img" [src]="'assets/base/images/nft-cars/car' + nftId + '.png'" alt="Image of selected car">
+        <div class="car-stats">
+          <div class="name">
+            <p *ngIf="nftEdition === 1 && nftId<=24">Bronzer {{nftId - (nftEdition - 1) * 6}}</p>
+            <p *ngIf="nftEdition === 2 && nftId<=24">Silver {{nftId - (nftEdition - 1) * 6}}</p>
+            <p *ngIf="nftEdition === 3 && nftId<=24">Gold {{nftId - (nftEdition - 1) * 6}}</p>
+            <p *ngIf="nftEdition === 4 && nftId<=24">Platinum {{nftId - (nftEdition - 1) * 6}}</p>
+
+
+            <p *ngIf="nftEdition === 1 && nftId>24">Bronzer 7</p>
+            <p *ngIf="nftEdition === 2 && nftId>24">Silver 7</p>
+            <p *ngIf="nftEdition === 3 && nftId>24">Gold 7</p>
+            <p *ngIf="nftEdition === 4 && nftId>24">Platinum 7</p>
+            <p class="desc" *ngIf="nftId <=24 ">Regular</p>
+            <p class="desc" *ngIf="nftId > 24">Rare</p>
+          </div>
+          <div class="value">
+            <p>{{nftIoiValue}} <img src="assets/base/images/curr-logos/nex/ioi-noshadow.png" alt="ioi logo"></p>
+            <p class="desc">IOI value</p>
+          </div>
+          <div class="value">
+            <p>{{nftIoiValue*.4}} <img src="assets/base/images/curr-logos/nex/dollar-logo.png" alt="ioi logo"></p>
+            <p class="desc">USD value</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="amount-holder">
+        <p class="common-heading">Amount</p>
+        <div class="amount-input my-cta-btn-back">
+          <div class="inner">
+            <input type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the ammount you want to transfer">
+          </div>
+        </div>
+        <p class="common-heading">Internal transfer</p>
+        <div class="transfer-inputs">
+          <div class="input-item left">
+            <div class="my-input bordered my-cta-btn-back">
+              <input type="text" [value]="'modals.transfer_modal.from_game' | translate"
+                readonly>
+            </div>
+            <p class="destination-desc">Send from</p>
+          </div>
+          <div class="input-item">
+            <div class="my-input">
+              <input type="text" [value]="'modals.transfer_modal.from_nitro' | translate"
+                readonly>
+            </div> 
+            <p class="destination-desc">Send to</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <div class="right-holder">
+      <p class="common-heading">Your transfer summary</p>
+      <div class="main-panel">
+        <div class="withdraw-info">
+          <p class="text">You are transferring</p>
+          <p class="value"><span *ngIf="amount > 0">{{amount}}</span> <span *ngIf="amount < 1">0</span>
+            <span class="value-desc">NFTs</span>
+          </p>
+
+          <p class="desc" *ngIf="nftEdition === 1 && nftId<=24">Bronzer {{nftId - (nftEdition - 1) * 6}}</p>
+          <p class="desc" *ngIf="nftEdition === 2 && nftId<=24">Silver {{nftId - (nftEdition - 1) * 6}}</p>
+          <p class="desc" *ngIf="nftEdition === 3 && nftId<=24">Gold {{nftId - (nftEdition - 1) * 6}}</p>
+          <p class="desc" *ngIf="nftEdition === 4 && nftId<=24">Platinum {{nftId - (nftEdition - 1) * 6}}</p>
+          <p class="desc" *ngIf="nftEdition === 1 && nftId>24">Bronzer 7</p>
+          <p class="desc" *ngIf="nftEdition === 2 && nftId>24">Silver 7</p>
+          <p class="desc" *ngIf="nftEdition === 3 && nftId>24">Gold 7</p>
+          <p class="desc" *ngIf="nftEdition === 4 && nftId>24">Platinum 7</p>
+
+        </div>
+        <div class="summary-box">
+          <div class="border-maker my-cta-btn-back"></div>
+          <div class="info-item">
+            <p class="desc">Transfer from | to</p>
+            <p class="value">Game Wallet | IOI Wallet</p>
+          </div>
+        </div>
+        <button class="confirm-btn my-cta-btn-back hoverable" [disabled]=" amount < 1">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  
+
+</div>

@@ -36,27 +36,64 @@
           </div>
           <div class="notifiq-back" *ngIf="openNotifiq === true" (click)="openNotifiq = !openNotifiq"></div>
         </div>
-        <div class="online-box my-layout-online-box my-low-gradient">
-          <img class="user-ico-red" src="/assets/base/images/menu/user-ico-red.svg" alt="">
-          <img class="user-ico-blue" src="/assets/base/images/menu/user-ico-blue.svg" alt="">
-          <p class="num">{{sumUsers | number:'1.0-2':'fr'}}</p>
-          <p class="desc my-text-color">online</p>
-        </div>
-        <!-- <div class="lang-switcher">
-          <app-lang-switcher></app-lang-switcher>
-        </div> -->
-        <div class="profile">
-          <div class="profile-img" [routerLink]="['/other/affilate']">
-            <img src="assets/base/images/avatars/avatar1-small.png" alt="" *ngIf="isLevel === 1">
-            <img src="assets/base/images/avatars/avatar2-small.png" alt="" *ngIf="isLevel === 2">
-            <img src="assets/base/images/avatars/avatar3-small.png" alt="" *ngIf="isLevel === 3">
-            <img src="assets/base/images/avatars/avatar4-small.png" alt="" *ngIf="isLevel === 4">
+
+        <ng-container *ngIf="showMetaBalance === false">
+          <div class="online-box my-layout-online-box my-low-gradient">
+            <img class="user-ico-red" src="/assets/base/images/menu/user-ico-red.svg" alt="">
+            <img class="user-ico-blue" src="/assets/base/images/menu/user-ico-blue.svg" alt="">
+            <p class="num">{{sumUsers | number:'1.0-2':'fr'}}</p>
+            <p class="desc my-text-color">online</p>
           </div>
-          <div class="profile-stats">
-            <p class="name">{{myDriverStats?.nickname}}</p>
-            <p class="stats">{{(myDriver.game_wallet_ioi) | number:'1.0-2':'fr' }} IOI - &#36;{{(myDriver.game_wallet_ioi * 0.4) | number:'1.0-2':'fr' }}</p>
+          <!-- <div class="lang-switcher">
+            <app-lang-switcher></app-lang-switcher>
+          </div> -->
+          <div class="profile">
+            <div class="profile-img" [routerLink]="['/other/affilate']">
+              <img src="assets/base/images/avatars/avatar1-small.png" alt="" *ngIf="isLevel === 1">
+              <img src="assets/base/images/avatars/avatar2-small.png" alt="" *ngIf="isLevel === 2">
+              <img src="assets/base/images/avatars/avatar3-small.png" alt="" *ngIf="isLevel === 3">
+              <img src="assets/base/images/avatars/avatar4-small.png" alt="" *ngIf="isLevel === 4">
+            </div>
+            <div class="profile-stats">
+              <p class="name">{{myDriverStats?.nickname}}</p>
+              <p class="stats">{{(myDriver.game_wallet_ioi) | number:'1.0-2':'fr' }} IOI - &#36;{{(myDriver.game_wallet_ioi * 0.4) | number:'1.0-2':'fr' }}</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="showMetaBalance === true">
+          <div class="meta-balance-holder">
+            <div class="ioi-box my-low-gradient">
+              <p>10 IOI</p>
+            </div>
+            <div class="address-box">
+              <div class="my-eth">
+                <p>0.025952 ETH</p>
+              </div>
+              <div class="my-address my-cta-btn-back" (click)="copyMyAddress(); animateOnClick()">
+                <div class="inner">
+                  <p>{{ myDriverStats.my_crypto_address | slice:0:10}}...</p>
+                </div>
+                <div class="inner clicked" [ngClass]="myAddressClass">
+                  <p>Copied</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="balance-switcher" *ngIf="isUsingMetamask === true">
+          <div class="switch-box" [ngClass]="{'active': showMetaBalance === false}" (click)="showMetaBalance = false">
+            <img src="/assets/base/images/start-race/game-balance.svg" alt="Game balance icon">
+            <img class="active" src="/assets/base/images/start-race/game-balance-active.svg" alt="Game balance icon">
+          </div>
+          <div class="switch-box" [ngClass]="{'active': showMetaBalance === true}" (click)="showMetaBalance = true">
+            <img src="/assets/base/images/start-race/meta-balance.svg" alt="Metamask balance icon">
+            <img class="active" src="/assets/base/images/start-race/meta-balance-active.svg" alt="Metamask balance icon">
           </div>
         </div>
+        
+        
         <button class="deposit-btn my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">{{'shared.deposit_btn' | translate}}</button>
 
         <div class="my-mobile-button" (click)="menuOpen = !menuOpen" [ngClass]="{'open': menuOpen === true}">
