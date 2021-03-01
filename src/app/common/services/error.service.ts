@@ -38,14 +38,12 @@ export class ErrorService extends AbstractService {
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
             
-            if (error.error.error) {
-                console.log('ts');
-                this.notifyService.error(error.error.error);
-            } else {
-                console.log('tsss');
-                this.notifyService.error(error.error);
-                
+            if (error.description) {
+                console.log('bug');
+                this.notifyService.error(error.description);
             }
+            
+           
             if (error.status === 401) {
                 this.authService.logout();
             }

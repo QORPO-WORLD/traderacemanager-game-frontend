@@ -5,12 +5,16 @@ import { Component, Injector, OnInit, OnDestroy, AfterViewInit, ViewChild, VERSI
 import { AbstractComponent } from '../../../common/components/abstract.component';
 
 import { SocialService } from '../../services/social.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformService } from 'src/app/common/services/platform.service';
 import { Platform } from '@ionic/angular';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 //import { ReCaptchaV3Service } from 'ngx-captcha';
 //import { RecaptchaService } from '../../services/recaptcha.service';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 @Component({
   selector: 'app-login',
   styleUrls: ['./login.scss'],
@@ -79,7 +83,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.mmewa = mmew;
         this.submit();
       }
-    }, 5000);
+    }, 1000);
   }
 
   ngOnDestroy() {
@@ -93,7 +97,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   public submit() {
     if (this.mmewa) {
       this.signinWithMetamask().subscribe({
-        next: data => this.getAuthService().login(data.body),
+        next: data => this.getAuthService().login(data),
         error: error => error.status === 456 ? this.fireGAuth() : this.clearMetamask(error.body)
       });
       return;
@@ -104,7 +108,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       }
       this.loading = true;
       this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-        next: data => this.getAuthService().login(data.body),
+        next: data => this.getAuthService().login(data),
         error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
       });
     } else {
@@ -117,7 +121,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
       this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
-        next: data => this.getAuthService().login(data.body),
+        next: data => this.getAuthService().login(data),
         error: error => this.getErrorService().apiError(error)
       });
     }
@@ -141,7 +145,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       email: user, password: pass,
       recaptchaToken: this.token
     },
-      { observe: 'response' });
+      httpOptions);
 
   }
 
@@ -150,21 +154,21 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
-      { observe: 'response' });
+      httpOptions);
   }
   loginAuthNoCap(user, pass) {
     return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
-      { observe: 'response' });
+      httpOptions);
   }
   loginAuthUsingGNoCap(user, pass, gcode) {
     return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
-      { observe: 'response' });
+      httpOptions);
   }
 
   loginAuthNoCapV2(user, pass) {
@@ -172,13 +176,13 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       email: user, password: pass,
       recaptchaToken: this.token
     },
-      { observe: 'response' });
+      httpOptions);
   }
   loginAuthUsingGNoCapV2(gcode) {
     return this._http.post('/api/me/validate-mfa-code', {
       authcode: gcode
     },
-      { observe: 'response' });
+      httpOptions);
   }
 
 
@@ -213,7 +217,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       recaptchaToken: this.token
 
     },
-      { observe: 'response' });
+      httpOptions);
   }
 
   tryMetamaskSign() {

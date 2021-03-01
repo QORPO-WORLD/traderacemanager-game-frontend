@@ -13,8 +13,8 @@ import { AffiliateDetails } from '../models/affiliate-details';
   providedIn: 'root',
 })
 class AffiliatesService extends __BaseService {
-  static readonly affiliatesListPath = '/affiliates/';
-  static readonly affiliatesMePath = '/affiliates/me/';
+  static readonly affiliatesListPath = '/me/list-affiliates';
+  static readonly affiliatesMePath = '/me/affiliate-data';
 
   constructor(
     config: __Configuration,
@@ -31,10 +31,10 @@ class AffiliatesService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (page != null) __params = __params.set('page', page.toString());
+    //if (page != null) __params = __params.set('page', page.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/affiliates/`,
+      this.rootUrl + `/me/list-affiliates`,
       __body,
       {
         headers: __headers,
@@ -68,10 +68,10 @@ class AffiliatesService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (page != null) __params = __params.set('page', page.toString());
+    //if (page != null) __params = __params.set('page', page.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/affiliates/me/`,
+      this.rootUrl + `/`,
       __body,
       {
         headers: __headers,

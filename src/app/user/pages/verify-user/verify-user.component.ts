@@ -1,8 +1,12 @@
 import { Router } from '@angular/router';
 import { NotifyService } from './../../../common/services/notify.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 
 @Component({
   selector: 'app-verify-user',
@@ -18,10 +22,16 @@ export class VerifyUserComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put('/api/me/activate-account', {
+    return this._http.put('https://dev-api.traderacemanager.com/me/activate-account', {
+      code: this.myCode
+    }, httpOptions );
+  }
+
+  resend() {
+    return this._http.put('https://dev-api.traderacemanager.com/me/resend-account-activation-code', {
       code: this.myCode
     },
-      { observe: 'response' });
+      httpOptions);
   }
 
   tryActivation() {
@@ -32,6 +42,15 @@ export class VerifyUserComponent implements OnInit {
   }
 
   resolveActivation(data) {
+    console.log(data);
     this.auth.login(null);
+  }
+
+  resendActivation() {
+    this.resend().subscribe({
+      next: data => console.log(data),
+      error: error => this.notify.error(error.description)
+    });
+    this.myCode = '';
   }
 }

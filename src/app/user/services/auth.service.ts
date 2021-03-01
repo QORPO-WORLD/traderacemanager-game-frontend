@@ -72,9 +72,7 @@ export class AuthService extends AbstractService {
       this.setIdentity(data);
       this.drvrsrvc.driversBalances().subscribe(bal => {
         this.setBalance(bal);
-        this.router.navigate(['/race/start-race']);
-        // todo remove
-        return;
+
         this.ldrbrdSrvc.leaderboardMe({
           page: 1, lastMonth: false
         })
