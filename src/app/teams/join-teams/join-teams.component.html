@@ -1,5 +1,4 @@
-
-<div class="modal fade" id="team1modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team1modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -79,7 +78,7 @@
 </div>
 
 
-<div class="modal fade" id="team2modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team2modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -158,7 +157,7 @@
 </div>
 
 
-<div class="modal fade" id="team3modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team3modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -237,7 +236,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="start-date" tabindex="-1" role="dialog">
+<div class="modal fade" id="start-date" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -273,7 +272,7 @@
 
 <!-- <app-team-players-modal></app-team-players-modal> -->
 
-<div class="main-holder">
+<div class="main-holder" *ngIf="teams?.length > 0">
     <div class="page-info"> 
         <div class="back" [routerLink]="['/race/start-race']">
         <p>&lt;</p>
@@ -301,8 +300,8 @@
     </div>
 
     <div class="team-holder">
-        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined.state === true}">
-            <div class="joined" *ngIf="tt?.me_joined.state === true">
+        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true}">
+            <div class="joined" *ngIf="tt?.me_joined === true">
                 <span>
                     <p> <strong>✓</strong> Currently joined</p>
                 </span>
@@ -310,8 +309,7 @@
             <div class="img-holder">
                 <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
             </div>
-            <p class="heading" *ngIf="tt?.name !== 'TRX'">Team {{tt?.name}}</p>
-            <p class="heading" *ngIf="tt?.name === 'TRX'">Team ALT</p>
+            <p class="heading">Team {{tt?.name}}</p>
             <div class="item-holder">
                 <p class="desc">Total members</p>
                 <p class="value">{{tt?.active_members}}</p>
@@ -352,32 +350,20 @@
                 </span>
             </div> -->
             <a class="join-button" data-toggle="modal" data-target="#team1modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 1 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team2modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 2 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team3modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 3 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
 
             <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 1 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 1 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 2 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 2 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 3 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 3 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
              
-            <a class="join-button wait-btn" *ngIf="tt?.me_waiting.state === true" (click)="showInfoBubble = !showInfoBubble">
-                
-
-                <span *ngIf="tt?.me_waiting.is_paid === true">{{'teams.join.waiting_as' | translate}} <span class="highlith">{{'teams.join.premium_m' | translate}}</span></span>
-                <span *ngIf="tt?.me_waiting.is_paid === false">{{'teams.join.waiting_as' | translate}} {{'teams.join.free_m' | translate}}</span>
-
-                <div class="info-bubble" *ngIf="currMonth && showInfoBubble === true">
-                    <p>{{'teams.join.memb_starts' | translate}} {{allMonths[currMonth]}} {{'teams.join.memb_ends' | translate}} {{allMonths[currMonth]}}.</p>
-                    <img src="/assets/base/images/teams/close-icon.png" alt="" class="close-icon">
-                </div>
-
-            </a>  
-
+            
         </div>
         
     </div>
