@@ -25,6 +25,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   public identity: Identity;
   public menuVisible = false;
+  isUsingMetamask = false;
+  showMetaBalance = false;
   profileObservable: Subscription;
   routeObservable: Subscription;
   myLevelObserver: Subscription;
@@ -73,6 +75,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   tickets = 0;
   myDriverBalances: any;
   menuType = 'races';
+  myAddressClass = '';
   sumUsers = 0;
   trxUsdt = 3;
   tickInterval: any;
@@ -386,6 +389,27 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
         localStorage.removeItem('depos');
       }
     }
+  }
+
+  copyMyAddress() {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.myDriverStats.my_crypto_address;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  animateOnClick(){
+    this.myAddressClass = 'animate';
+    setTimeout(() => {
+      this.myAddressClass = '';
+    }, 1000);
   }
 
 }
