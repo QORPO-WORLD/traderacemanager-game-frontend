@@ -51,6 +51,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   currentExpLevel = 1;
   trnover: number;
   trxUsdt: number;
+  isLevel: number;
   showVerified = false;
   activationSent = false;
   affMe: AffiliateDetails;
@@ -126,10 +127,20 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   }
 
   getMyLevel() {
-    this.myAffilate = this.identityService.getDriverMe().affiliate_level;
-    if (this.myAffilate === undefined) {
-      //this.identityService.logout()();
-      return;
+    if (this.myDriverBalances.game_wallet_ioi < 100) {
+      this.isLevel = 1;
+    }
+    if (this.myDriverBalances.game_wallet_ioi > 100 && this.myDriverBalances.game_wallet_ioi < 1000) {
+      this.isLevel = 2;
+    }
+    if (this.myDriverBalances.game_wallet_ioi > 999 && this.myDriverBalances.game_wallet_ioi < 10000) {
+      this.isLevel = 3;
+    }
+    if (this.myDriverBalances.game_wallet_ioi > 9999 && this.myDriverBalances.game_wallet_ioi < 100000) {
+      this.isLevel = 4;
+    }
+    if (this.myDriverBalances.game_wallet_ioi > 99999) {
+      this.isLevel = 4;
     }
   }
 
