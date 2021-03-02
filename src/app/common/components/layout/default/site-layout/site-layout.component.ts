@@ -11,10 +11,14 @@ import { DriversService, AffiliatesService, AuthService as ninja } from '../../.
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 declare let $: any;
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 
 @Component({
   selector: 'app-site-layout',
@@ -25,17 +29,13 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   public identity: Identity;
   public menuVisible = false;
-  isUsingMetamask = false;
+  isUsingMetamask = true;
   showMetaBalance = false;
   profileObservable: Subscription;
   routeObservable: Subscription;
   myLevelObserver: Subscription;
   myDriverObserver: Subscription;
   raceDriverObserver: Subscription;
-  myCarBoost = 0;
-  myTeamBoost = 0;
-  myTokenBoost = 0;
-  myAffilateBoost = 0;
   showChat = false;
   switchBalance = false;
   showMySettings = false;
@@ -84,11 +84,12 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   depos = false;
   isLevel: number;
   deposTime: any;
+  metaEth = 0;
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
     private identityService: AuthService, private balanceService: BalanceService,
     private uapi: ninja, private notify: NotifiqService, private experience: ExperienceService,
-    private rservice: RacesService) {
+    private rservice: RacesService, private _http: HttpClient) {
     super();
     this.calculateCorrectVh();
     this.balanceChanged = this.balanceService.balanceChanged;
@@ -104,7 +105,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   ngOnInit() {
 
-    const balFirst = JSON.parse(localStorage.getItem('bal-first-time'));
+    const metaBalance = JSON.parse(localStorage.getItem('meta-balance'));
     const tick = JSON.parse(localStorage.getItem('trxusdt'));
     const data = JSON.parse(localStorage.getItem('first-time'));
     if (data) {
@@ -128,7 +129,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.recognizeManager();
     this.managerInterval = setInterval(() => {
       this.recognizeManager();
-    }, 1000);
+    }, 2000);
 
     this.balanceService.balanceChange.subscribe(data => {
       this.getCryptoStats();
@@ -169,8 +170,11 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       }
       this.numOfNotificationsBack = this.numOfNotifications;
     });
-
-    console.log(this.myAffilate);
+    if (metaBalance) {
+      
+    } else {
+      this.getMetamaskBalance();
+    }
   }
 
   ngOnDestroy() {
@@ -425,6 +429,27 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     setTimeout(() => {
       this.myAddressClass = '';
     }, 1000);
+  }
+
+  getMetamaskBalance() {
+    
+    this.getMeta().subscribe({
+      next: data => this.setupMetaBalance(data),
+      error: error =>  this.getErrorService().apiError(error)
+    });
+    localStorage.setItem('meta-balance', JSON.stringify(true));
+  }
+
+  setupMetaBalance(data) {
+    // this.metaEth = data[0].value;
+    this.metaEth = 0;
+    this.isUsingMetamask = true;
+  }
+
+  
+  getMeta() {
+    return this._http.get('/api/me/metamask-balances', 
+      httpOptions);
   }
 
 }
