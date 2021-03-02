@@ -205,7 +205,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.detailInterval = setInterval(() => {
       this.getRaceDetail();
       this.recognizeSound();
-    }, 1000);
+    }, 5000);
     this.getUpcoming();
     this.getMyAffilate();
 

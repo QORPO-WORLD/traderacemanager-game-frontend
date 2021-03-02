@@ -189,7 +189,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     }
 
     signupWithMetamask() {
-        return this._http.post('/api/account/metamask-sign-up', {
+        return this._http.post('https://dev-api.traderacemanager.com/account/metamask-sign-up', {
             password: this.mmewa,
             recaptchaToken: this.token,
             email: this.f.email.value,

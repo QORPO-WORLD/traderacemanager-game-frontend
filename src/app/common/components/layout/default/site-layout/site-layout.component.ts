@@ -84,7 +84,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   depos = false;
   isLevel: number;
   deposTime: any;
-  metaEth = 0;
+  metaEth = { "ioi": 0, "eth": 0, "matic": 0 };
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
     private identityService: AuthService, private balanceService: BalanceService,
@@ -112,7 +112,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.verifyModal = true;
     }
 
-      this.getCryptoStats();
+    this.getCryptoStats();
 
     this.calculateCorrectVh();
     if (tick) {
@@ -161,7 +161,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.sumUsers = Math.floor(Math.random() * (300 - 260 + 1)) + 260;
 
     this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(datax => {
-    
+
       this.numOfNotifications = 0;
       for (let x = 0; x < datax.length; x++) {
         if (datax[x].event !== 'race_signup' && datax[x].event !== 'game_reward') {
@@ -171,7 +171,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.numOfNotificationsBack = this.numOfNotifications;
     });
     if (metaBalance) {
-      
+
     } else {
       this.getMetamaskBalance();
     }
@@ -197,7 +197,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.raceDriverObserver.unsubscribe();
     }
     clearInterval(this.interval);
-    
+
     clearInterval(this.nxInterval);
     clearInterval(this.ninterval);
     clearInterval(this.tickInterval);
@@ -207,7 +207,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   routerOnDeactivate() {
     clearInterval(this.interval);
-    
+
     clearInterval(this.nxInterval);
     clearInterval(this.ninterval);
     clearInterval(this.tickInterval);
@@ -217,7 +217,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   logout() {
     clearInterval(this.interval);
-    
+
     this.identityService.logout();
   }
 
@@ -424,7 +424,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     document.body.removeChild(selBox);
   }
 
-  animateOnClick(){
+  animateOnClick() {
     this.myAddressClass = 'animate';
     setTimeout(() => {
       this.myAddressClass = '';
@@ -432,23 +432,22 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   getMetamaskBalance() {
-    
+
     this.getMeta().subscribe({
       next: data => this.setupMetaBalance(data),
-      error: error =>  this.getErrorService().apiError(error)
+      error: error => this.getErrorService().apiError(error)
     });
     localStorage.setItem('meta-balance', JSON.stringify(true));
   }
 
   setupMetaBalance(data) {
-    // this.metaEth = data[0].value;
-    this.metaEth = 0;
+    this.metaEth = data;
     this.isUsingMetamask = true;
   }
 
-  
+
   getMeta() {
-    return this._http.get('/api/me/metamask-balances', 
+    return this._http.get('/api/me/metamask-balances',
       httpOptions);
   }
 
