@@ -23,14 +23,14 @@
   </div>
   
   
+  <div class="content" *ngIf="leaderboardType=='owners'" >
+    <app-owner-leaderboard [players]="myTeam.top10"></app-owner-leaderboard>
+  </div>
+  
   <div class="content" *ngIf="leaderboardType=='team'">
     <app-my-team-players [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-my-team-players>
   </div>
   
-  <div class="content" *ngIf="leaderboardType=='owners'" >
-    <app-all-players></app-all-players>
-  </div>
-
   <div class="content" *ngIf="leaderboardType=='players'">
     <app-all-players  [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-all-players>
   </div>

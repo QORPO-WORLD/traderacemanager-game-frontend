@@ -28,7 +28,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   monthCount = 1;
   teamOption = 1;
-  startNow = true;
+  startNow = false;
   myTeamReward: any;
   myRewards: any;
   ioioreward: number;
