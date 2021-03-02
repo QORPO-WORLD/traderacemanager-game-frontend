@@ -55,6 +55,7 @@ const routes: Routes = [
     { path: 'email-created', component: EmailCreatedComponent, data: { title: 'Privacy Policy' } },
     { path: 'user-verify', component: UserVerifiedComponent, data: { title: 'Privacy Policy' } },
     { path: 'verify-code', component: VerifyUserComponent, data: { title: 'Verify user' } },
+    { path: 'home', component: HomePageComponent, data: { title: 'Home page' } }
 
 ];
 
