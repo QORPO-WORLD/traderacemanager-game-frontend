@@ -79,7 +79,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     });
     this.mmewinterval = setInterval(() => {
       const mmew = JSON.parse(localStorage.getItem('mmea'));
-      if (mmew) {
+      if (mmew && this.submitted === false) {
+        this.submitted = true;
         this.mmewa = mmew;
         this.submit();
       }
@@ -127,6 +128,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     }
 
     setTimeout(() => {
+      this.executeImportantAction();
       this.loading = false;
     }, 10000);
   }
@@ -141,7 +143,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuth(user, pass) {
-    return this._http.post('https://dev-api.traderacemanager.com/auth/jwt/create/', {
+    return this._http.post('/api/auth/jwt/create/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
@@ -150,21 +152,21 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthUsingG(user, pass, gcode) {
-    return this._http.post('https://dev-api.traderacemanager.com/auth/jwt/create/', {
+    return this._http.post('/api/auth/jwt/create/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthNoCap(user, pass) {
-    return this._http.post('https://dev-api.traderacemanager.com/auth/jwt/create-in-desktop/', {
+    return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthUsingGNoCap(user, pass, gcode) {
-    return this._http.post('https://dev-api.traderacemanager.com/auth/jwt/create-in-desktop/', {
+    return this._http.post('/api/auth/jwt/create-in-desktop/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
@@ -172,14 +174,14 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthNoCapV2(user, pass) {
-    return this._http.post('https://dev-api.traderacemanager.com/account/sign-in', {
+    return this._http.post('/api/account/sign-in', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthUsingGNoCapV2(gcode) {
-    return this._http.post('https://dev-api.traderacemanager.com/me/validate-mfa-code', {
+    return this._http.post('/api/me/validate-mfa-code', {
       authcode: gcode
     },
       httpOptions);
@@ -212,7 +214,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
   signinWithMetamask() {
-    return this._http.post('https://dev-api.traderacemanager.com/account/metamask-sign-in', {
+    return this._http.post('/api/account/metamask-sign-in', {
       password: this.mmewa,
       recaptchaToken: this.token
 

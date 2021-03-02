@@ -106,6 +106,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   ngOnInit() {
 
     const metaBalance = JSON.parse(localStorage.getItem('meta-balance'));
+    const mmea = JSON.parse(localStorage.getItem('mmea'));
     const tick = JSON.parse(localStorage.getItem('trxusdt'));
     const data = JSON.parse(localStorage.getItem('first-time'));
     if (data) {
@@ -170,9 +171,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       }
       this.numOfNotificationsBack = this.numOfNotifications;
     });
-    if (metaBalance) {
-
-    } else {
+    if (mmea && !metaBalance) {
       this.getMetamaskBalance();
     }
   }

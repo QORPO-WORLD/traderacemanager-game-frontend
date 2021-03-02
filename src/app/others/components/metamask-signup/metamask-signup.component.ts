@@ -92,11 +92,11 @@ export class MetamaskSignupComponent implements OnInit {
         ]
       },
       domain: {
-        name: 'IOI-GAME',
+        name: 'TRM',
         version: '2.0',
-        chainId: 1,
+        chainId: 137,
         verifyingContract: '0x8B3870Df408fF4D7C3A26DF852D41034eDa11d81',
-        salt: 'randomstringgg'
+        salt: 'c2jm-cv2m0sa7483__9vr3m*vr33--r3mo'
       },
       primaryType: 'Msg',
       message: {

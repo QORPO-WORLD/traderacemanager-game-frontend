@@ -30,10 +30,10 @@ class RacesService extends __BaseService {
   static readonly racesNextV2ListPath = '/races/game/next';
   static readonly racesNextV2MineListPath = '/races/game/next/mine';
   static readonly racesTournamentLeaderboardListPath = '/races/game/tournament/{tournament_id}/scoreboard';
-  static readonly racesTournamentNextRaceListPath = '/races/game/tournament/{tournament_id}/next-race/';
-  static readonly racesDetailListPath = '/races/game/{race_hash}/detail/';
+  static readonly racesTournamentNextRaceListPath = '/races/game/tournament/{tournament_id}/next-race';
+  static readonly racesDetailListPath = '/races/game/{race_hash}/detail';
   static readonly racesStatsListPath = '/races/game/{race_hash}/status';
-  static readonly racesWinnerListPath = '/races/game/{race_hash}/winner/';
+  static readonly racesWinnerListPath = '/races/game/{race_hash}/winner';
 
   constructor(
     config: __Configuration,
@@ -315,7 +315,7 @@ class RacesService extends __BaseService {
     if (params.pageNumber != null) __params = __params.set('page_number', params.pageNumber.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/game/${params.raceHash}/detail/`,
+      this.rootUrl + `/races/game/${params.raceHash}/detail`,
       __body,
       {
         headers: __headers,
@@ -406,7 +406,7 @@ class RacesService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/game/${raceHash}/winner/`,
+      this.rootUrl + `/races/game/${raceHash}/winner`,
       __body,
       {
         headers: __headers,
