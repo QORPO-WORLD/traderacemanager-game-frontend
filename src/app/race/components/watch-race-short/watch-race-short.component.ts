@@ -163,7 +163,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   startSound: any;
   endSound: any;
   beforeSound: any;
-  active_area: number;
+  active_area = 0.2;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
     private tcksrvc: TickerPricesService, private crsrcvc: CarsService, private identityService: AuthService,
@@ -200,6 +200,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             this.whenStarts();
           }
         }
+        console.log('calc active area');
+
       });
     }, 20);
     setTimeout(() => { this.getRaceData(); }, 50);
@@ -474,13 +476,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             } */
           }
         }
-
-        if (this.raceDataildata.race_progress < 60 && this.raceDataildata.race_progress > 0) {
-          this.active_area = this.active_area * this.raceDataildata.race_progress / 60;
+        console.log('calc active area important part');
+        if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
+          this.active_area = this.active_area * this.raceData.race_progress / 60;
+        } else {
+          this.active_area = 0.2;
         }
-
-
-
       });
   }
 
@@ -1088,6 +1089,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       dummy.push(this.raceData.race[x].s);
     }
     console.log(dummy);
+    console.log(this.active_area);
     const find_min = Math.min(...dummy);
     const find_max = Math.max(...dummy);
     const diff = find_max - find_min;
@@ -1096,6 +1098,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
       this.raceData.race[x].rp = (this.raceDataildata.race_progress * (1 - this.active_area)) + (relative_score * this.active_area);
+      console.log((this.raceDataildata.race_progress * (1 - this.active_area)) + (relative_score * this.active_area));
       console.log(this.raceData.race[x].rp);
     }
 
