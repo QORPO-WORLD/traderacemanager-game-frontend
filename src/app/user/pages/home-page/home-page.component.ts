@@ -1,70 +1,56 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class HomePageComponent implements OnInit {
 
-  slideIndicator = 1;
-  slideInterval: any;
-  numOfSlides = 5;
+  menuOpen = false;
+  windowWidth = 1920;
+  useMobileVideo = false;
 
-  constructor(
-    private platform: Platform) {
-    
-  }
-
-  ngOnInit() {
-    this.nextSlide();
-    this.randomStart();
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.slideInterval);
-  }
-
-  routerOnDeactivate() {
-    clearInterval(this.slideInterval);
-  }
-
-  nextSlide() {
-    this.slideInterval = setInterval(() => {
-      if (this.slideIndicator < this.numOfSlides) {
-        this.slideIndicator++;
-      } else {
-        this.slideIndicator = 1;
-      }
-    }, 9000);
-  }
-
-  randomStart() {
-    this.slideIndicator = Math.floor(Math.random() * (this.numOfSlides) + 1);
-  }
-
-  manualChange(id: number) {
-    this.slideIndicator = id;
-    clearInterval(this.slideInterval);
-    this.nextSlide();
-  }
-
-  swipeLeft() {
-    this.slideIndicator = this.slideIndicator - 1;
-    if (this.slideIndicator < 1) {
-      this.slideIndicator = this.numOfSlides;
+  constructor() {
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth < 640) {
+      this.useMobileVideo = true;
     }
-    clearInterval(this.slideInterval);
-    this.nextSlide();
   }
 
-  swipeRight() {
-    this.slideIndicator++;
-    if (this.slideIndicator > this.numOfSlides) {
-      this.slideIndicator = 1;
+  ngOnInit() {}
+
+  myCars: Array<any> = [
+    { name: 'car1', value: 600, stakes: 0.6 },
+    { name: 'car2', value: 600, stakes: 0.6 },
+    { name: 'car3', value: 600, stakes: 0.6 },
+    { name: 'car4', value: 600, stakes: 0.6 }
+  ];
+  carIndex = 0;
+
+  nextCar(){
+    if (this.carIndex + 1 === this.myCars.length) {
+      this.carIndex = 0;
+    } else {
+      this.carIndex++;
     }
-    clearInterval(this.slideInterval);
-    this.nextSlide();
   }
+
+  prevCar(){
+    if (this.carIndex - 1 < 0) {
+      this.carIndex = this.myCars.length - 1;
+    } else {
+      this.carIndex--;
+    }
+  }
+
+  manualChange(i: number){
+    this.carIndex = i;
+  }
+
+  scrollToView(elem: HTMLElement) {
+    elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
 
 }

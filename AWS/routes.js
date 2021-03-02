@@ -31,6 +31,7 @@ exports.handler = (event, context, callback) => {
         '/user/privacy-policy',
         '/user/email-created',
         '/user/user-verify',
+        '/user/home',
         '/your-races/transactions',
         '/your-races/my-races',
         '/player/setup-auth',
