@@ -13,6 +13,7 @@ import {OwnersManagersComponent} from './owners-managers/owners-managers.compone
 
 import { MyTeamPlayersComponent } from './components/my-team-players/my-team-players.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
+import { OwnerLeaderboardComponent } from './components/owner-leaderboard/owner-leaderboard.component';
 import { ChatNextRacesComponent } from './components/chat-next-races/chat-next-races.component';
 import { ManagerComponent} from './components/manager/manager.component';
 import { OwnerComponent} from './components/owner/owner.component';
@@ -54,7 +55,9 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [JoinTeamsComponent, TeamChatComponent, MyTeamComponent,
-                MyTeamPlayersComponent, ChatNextRacesComponent, LeaderboardComponent, AllPlayersComponent, OwnersManagersComponent,OwnerComponent, ManagerComponent],
+  MyTeamPlayersComponent, ChatNextRacesComponent, LeaderboardComponent,
+  AllPlayersComponent, OwnersManagersComponent,OwnerComponent, ManagerComponent,
+  OwnerLeaderboardComponent],
   imports: [
     CommonModule,
     ninja,
