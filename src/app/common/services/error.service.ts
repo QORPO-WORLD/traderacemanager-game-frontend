@@ -38,9 +38,9 @@ export class ErrorService extends AbstractService {
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
             
-            if (error.description) {
+            if (error.error.description) {
                 console.log('bug');
-                this.notifyService.error(error.description);
+                this.notifyService.error(error.error.description);
             }
             
            

@@ -160,6 +160,7 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     this.trsDate = Date.now();
     this.getFavCars();
     this.getRaceDetails();
+    console.log(this.myCar);
   }
 
   ngOnDestroy() {
@@ -314,8 +315,9 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   }
 
   getRaceDetails() {
-    this.api.carsMineList().subscribe(daya => {
-      this.myCars = daya.filter(item => {
+    this.api.carsMineList().subscribe(retype => {
+      const data: any = retype;
+      this.myCars = data.cars.filter(item => {
         return item.pk === this.myCar;
       });
       if (this.myCars.length === 0) {
