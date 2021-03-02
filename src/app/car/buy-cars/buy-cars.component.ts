@@ -123,90 +123,90 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
         this.getFreeCar();
       } else {
         const objs: any = data;
-        for (let x = 0; x < objs.length; x++) {
-          if (objs[x].car_model === 0) {
-            this.myCarsSorted.car0.push(objs[x]);
+        for (let x = 0; x < objs.cars.length; x++) {
+          if (objs.cars[x].car_id === 0) {
+            this.myCarsSorted.car0.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 1) {
-            this.myCarsSorted.car1.push(objs[x]);
+          if (objs.cars[x].car_id === 1) {
+            this.myCarsSorted.car1.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 2) {
-            this.myCarsSorted.car2.push(objs[x]);
+          if (objs.cars[x].car_id === 2) {
+            this.myCarsSorted.car2.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 3) {
-            this.myCarsSorted.car3.push(objs[x]);
+          if (objs.cars[x].car_id === 3) {
+            this.myCarsSorted.car3.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 4) {
-            this.myCarsSorted.car4.push(objs[x]);
+          if (objs.cars[x].car_id === 4) {
+            this.myCarsSorted.car4.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 5) {
-            this.myCarsSorted.car5.push(objs[x]);
+          if (objs.cars[x].car_id === 5) {
+            this.myCarsSorted.car5.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 6) {
-            this.myCarsSorted.car6.push(objs[x]);
+          if (objs.cars[x].car_id === 6) {
+            this.myCarsSorted.car6.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 7) {
-            this.myCarsSorted.car7.push(objs[x]);
+          if (objs.cars[x].car_id === 7) {
+            this.myCarsSorted.car7.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 8) {
-            this.myCarsSorted.car8.push(objs[x]);
+          if (objs.cars[x].car_id === 8) {
+            this.myCarsSorted.car8.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 9) {
-            this.myCarsSorted.car9.push(objs[x]);
+          if (objs.cars[x].car_id === 9) {
+            this.myCarsSorted.car9.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 10) {
-            this.myCarsSorted.car10.push(objs[x]);
+          if (objs.cars[x].car_id === 10) {
+            this.myCarsSorted.car10.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 11) {
-            this.myCarsSorted.car11.push(objs[x]);
+          if (objs.cars[x].car_id === 11) {
+            this.myCarsSorted.car11.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 12) {
-            this.myCarsSorted.car12.push(objs[x]);
+          if (objs.cars[x].car_id === 12) {
+            this.myCarsSorted.car12.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 13) {
-            this.myCarsSorted.car13.push(objs[x]);
+          if (objs.cars[x].car_id === 13) {
+            this.myCarsSorted.car13.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 14) {
-            this.myCarsSorted.car14.push(objs[x]);
+          if (objs.cars[x].car_id === 14) {
+            this.myCarsSorted.car14.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 15) {
-            this.myCarsSorted.car15.push(objs[x]);
+          if (objs.cars[x].car_id === 15) {
+            this.myCarsSorted.car15.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 16) {
-            this.myCarsSorted.car16.push(objs[x]);
+          if (objs.cars[x].car_id === 16) {
+            this.myCarsSorted.car16.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 17) {
-            this.myCarsSorted.car17.push(objs[x]);
+          if (objs.cars[x].car_id === 17) {
+            this.myCarsSorted.car17.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 18) {
-            this.myCarsSorted.car18.push(objs[x]);
+          if (objs.cars[x].car_id === 18) {
+            this.myCarsSorted.car18.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 19) {
-            this.myCarsSorted.car19.push(objs[x]);
+          if (objs.cars[x].car_id === 19) {
+            this.myCarsSorted.car19.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 20) {
-            this.myCarsSorted.car20.push(objs[x]);
+          if (objs.cars[x].car_id === 20) {
+            this.myCarsSorted.car20.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 21) {
-            this.myCarsSorted.car21.push(objs[x]);
+          if (objs.cars[x].car_id === 21) {
+            this.myCarsSorted.car21.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 23) {
-            this.myCarsSorted.car23.push(objs[x]);
+          if (objs.cars[x].car_id === 23) {
+            this.myCarsSorted.car23.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 24) {
-            this.myCarsSorted.car24.push(objs[x]);
+          if (objs.cars[x].car_id === 24) {
+            this.myCarsSorted.car24.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 25) {
-            this.myCarsSorted.car25.push(objs[x]);
+          if (objs.cars[x].car_id === 25) {
+            this.myCarsSorted.car25.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 26) {
-            this.myCarsSorted.car26.push(objs[x]);
+          if (objs.cars[x].car_id === 26) {
+            this.myCarsSorted.car26.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 27) {
-            this.myCarsSorted.car27.push(objs[x]);
+          if (objs.cars[x].car_id === 27) {
+            this.myCarsSorted.car27.push(objs.cars[x]);
           }
-          if (objs[x].car_id === 28) {
-            this.myCarsSorted.car28.push(objs[x]);
+          if (objs.cars[x].car_id === 28) {
+            this.myCarsSorted.car28.push(objs.cars[x]);
           }
         }
         this.selectCar(objs);
@@ -248,9 +248,8 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   }
 
   selectCar(data) {
-    this.bestIndex = data.length - 1;
-    this.myCars = data;
-    console.log(this.myCars);
+    this.bestIndex = data.cars.length - 1;
+    this.myCars = data.cars;
     this.myCar = this.myCars[this.bestIndex];
     this.dataReady = true;
   }

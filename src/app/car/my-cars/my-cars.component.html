@@ -250,8 +250,12 @@
             </div>
           </ng-container>
           
-          <div class="btns-holder" [routerLink]="['/other/transfer-nft']" [queryParams]="{ nftId: carIndex }">
-            <div class="casual">
+          <div class="btns-holder">
+            <div class="casual" *ngIf="boughtCar === true" [routerLink]="['/other/transfer-nft']" [queryParams]="{ nftId: carIndex }">
+              <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
+            </div>
+
+            <div class="casual inactive" *ngIf="boughtCar === false">
               <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
             </div>
           </div>
