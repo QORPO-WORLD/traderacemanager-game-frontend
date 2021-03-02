@@ -93,7 +93,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     const amx: string = this.amount.toString();
     this.transferSubscription = this.blcksrvc.blockchainDepositCreate(
       {
-        amount: parseFloat(amx),
+        amount: parseFloat(amx + '.00'),
         currency: this.tokenSelected
       }
     ).subscribe(data => {

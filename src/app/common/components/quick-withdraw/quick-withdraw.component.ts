@@ -69,10 +69,11 @@ export class QuickWithdrawComponent implements OnInit {
 
 
   withdrawalIoiToken() {
+    const amx: string = this.amount.toString();
     this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
       {
         currency: this.tokenSelected,
-        amount: this.amount,
+        amount:  parseFloat(amx + '.00'),
         code: this.authcode,
         targetAddress: this.cryptoMtfrckr
       }

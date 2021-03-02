@@ -29,7 +29,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   public identity: Identity;
   public menuVisible = false;
-  isUsingMetamask = true;
+  isUsingMetamask = false;
   showMetaBalance = false;
   profileObservable: Subscription;
   routeObservable: Subscription;
