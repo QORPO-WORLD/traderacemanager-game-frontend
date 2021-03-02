@@ -16,6 +16,16 @@
           </div>
         </div>
 
+        <div class="box-item trx" [ngClass]="{'active': tokenSelected === 'matic'}" (click)="tokenSelected = 'matic'">
+          <div class="inner">
+            <img src="/assets/base/images/tankovanie/matic-token.png" alt="Logo of matic token" class="curr-logo matic">
+            <div class="text-holder">
+              <p class="value">{{myMaticBalance | number:'1.0-2':'fr' }} MATIC</p>
+              <p class="dollars">&#36; {{myMaticBalance | number:'1.0-2':'fr'}}</p>
+            </div>
+          </div>
+        </div>
+
         <div class="soon-curs">
           <p class="mid-text">More currencies coming soon</p>
           <div class="box-item">
@@ -49,10 +59,10 @@
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
       </div>
-      <p class="common-heading">Crypto wallet address</p>
+      <!-- <p class="common-heading">Crypto wallet address</p>
       <div class="crypto-input">
         <input type="text" placeholder="Enter an address  of crypto wallet you will deposit funds from" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -85,7 +95,7 @@
         <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
         <img class="qr-code" src="/assets/base/images/qr.jpg" alt="">
         <p class="our-code">TE6xjUSpFJJvgy7fAFkNxePwsi4AA1s21D</p>
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();patchWallet();refresh()">Confirm</button>
+        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();patchWallet();refresh()">Claim</button>
       </div>
     </div>
   </div>

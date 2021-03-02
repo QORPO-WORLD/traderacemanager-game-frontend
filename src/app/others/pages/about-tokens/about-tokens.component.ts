@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RewardsService } from 'src/app/api/services';
+import { BalanceService } from 'src/app/common/services/balance.service';
 import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({

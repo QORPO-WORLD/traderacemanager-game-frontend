@@ -15,6 +15,16 @@
           </div>
         </div>
 
+        <div class="box-item trx" [ngClass]="{'active': tokenSelected === 'trx'}" (click)="tokenSelected = 'trx'">
+          <div class="inner">
+            <img src="/assets/base/images/tankovanie/matic-token.png" alt="Logo of matic token" class="curr-logo matic">
+            <div class="text-holder">
+              <p class="value">{{myTrxBalance | number:'1.0-2':'fr' }} MATIC</p>
+              <p class="dollars">&#36; {{trxUsdt * myTrxBalance | number:'1.0-2':'fr'}}</p>
+            </div>
+          </div>
+        </div>
+
         <div class="soon-curs">
           <p class="mid-text">More currencies coming soon</p>
           <div class="box-item">
@@ -44,10 +54,10 @@
       <div class="amount-input my-cta-btn-back">
         <div class="inner">
           <input type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the ammount you want to withdraw">
-          <p class="curr-desc" *ngIf="tokenSelected === 'trx'">TRX</p>
+          <p class="curr-desc" *ngIf="tokenSelected === 'trx'">MATIC</p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
-        <p class="input-note">Minimal withdrawal amount is 100 TRX</p>
+        <p class="input-note">Minimal withdrawal amount is 100 MATIC</p>
       </div>
       <p class="common-heading">Crypto wallet address</p>
       <div class="crypto-input">
@@ -62,10 +72,10 @@
       <div class="withdraw-info">
         <p class="text">You are withdrawing</p>
         <p class="value"><span *ngIf="amount > 0">{{amount}}</span> <span *ngIf="amount < 1">0</span>
-          <span *ngIf="tokenSelected === 'trx'" class="value-desc">TRX</span>
+          <span *ngIf="tokenSelected === 'trx'" class="value-desc">MATIC</span>
           <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
         </p>
-        <p *ngIf="tokenSelected === 'trx'" class="desc">market value 1 TRX = {{trxUsdt | number:'1.0-3':'fr'}} USD</p>
+        <p *ngIf="tokenSelected === 'trx'" class="desc">market value 1 MATIC = 20 USD</p>
         <p *ngIf="tokenSelected === 'ioi'" class="desc">market value 1 IOI = 100 TRX</p>
       </div>
       <div class="summary-box">
@@ -76,7 +86,7 @@
         </div>
         <div class="info-item second">
           <p class="desc">Currency you will receive</p>
-          <p *ngIf="tokenSelected === 'trx'" class="value">Tron|TRX</p>
+          <p *ngIf="tokenSelected === 'trx'" class="value">MATIC</p>
           <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
         </div>
       </div>

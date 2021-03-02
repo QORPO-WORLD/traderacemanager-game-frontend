@@ -93,6 +93,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 115px;
+        &:hover{
+            .buttons-holder{
+                transform: translateX(0);
+            }
+        }
         .balance-item{
             width: 50%;
             text-align: center;
@@ -129,12 +137,27 @@
                 font-weight: 400;
                 opacity: .4;
             }
-            .deposit-btn{
+        }
+        .buttons-holder{
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            right: 0;
+            top: 0;
+            transform: translateX(100%);
+            transition: .15s;
+            background: rgba(17, 17, 17, 1);
+            .my-btn{
                 font-size: 16px;
-                margin: 10px 0 0 0;
+                margin: 5px 0 0 0;
                 font-weight: 400;
                 cursor: pointer;
                 padding: 5px;
+                span{
+                    display: inline-block;
+                    min-width: 77px;
+                    margin-left: 5px;
+                }
                 &:active{
                     transform: translateY(2px);
                 }
@@ -383,6 +406,7 @@
             font-size: 17px;
         }
         .items-holder{
+            min-height: 95px;
             .balance-item{
                 .value{
                     font-size: 18px;
@@ -390,6 +414,16 @@
                 .dollars{
                     font-size: 14px;
                     margin: 0;
+                }
+            }
+            .buttons-holder{
+                .my-btn{
+                    font-size: 15px;
+                    padding: 4px;
+                    margin: 3px 0 0 0;
+                    img{
+                        width: 17px;
+                    }
                 }
             }
         }
