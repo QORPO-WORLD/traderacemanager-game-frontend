@@ -14,8 +14,8 @@ import { BlockchainWithdrawal } from '../models/blockchain-withdrawal';
 })
 class BlockchainService extends __BaseService {
   static readonly blockchainConfirmWithdrawalCreatePath = '/blockchain/confirm-withdrawal/{confirmation_hash}';
-  static readonly blockchainDepositCreatePath = '/blockchain/deposit/';
-  static readonly blockchainWithdrawCreatePath = '/blockchain/withdraw/';
+  static readonly blockchainDepositCreatePath = '/blockchain/claim-deposit';
+  static readonly blockchainWithdrawCreatePath = '/blockchain/create-withdrawal';
 
   constructor(
     config: __Configuration,
@@ -68,7 +68,7 @@ class BlockchainService extends __BaseService {
     __body = data;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/blockchain/deposit/`,
+      this.rootUrl + `/blockchain/claim-deposit`,
       __body,
       {
         headers: __headers,
@@ -102,7 +102,7 @@ class BlockchainService extends __BaseService {
     __body = data;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/blockchain/withdraw/`,
+      this.rootUrl + `/blockchain/create-withdrawal`,
       __body,
       {
         headers: __headers,

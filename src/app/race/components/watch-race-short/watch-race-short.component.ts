@@ -379,6 +379,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.api.racesStatsList({ raceHash: this.raceId, pageNumber: this.actualPage })
       .subscribe(data => {
         const firstData = data;
+        console.log(data);
         if (data.me !== null) {
           if (data.me.cpr > 4) {
             firstData.race.splice(3, 0, data.me);

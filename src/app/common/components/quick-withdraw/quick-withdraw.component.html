@@ -57,7 +57,7 @@
           <p class="curr-desc" *ngIf="tokenSelected === 'trx'">MATIC</p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
-        <p class="input-note">Minimal withdrawal amount is 100 MATIC</p>
+        <p class="input-note">Minimal withdrawal amount is 100 {{tokenSelected.toUpperCase()}}</p>
       </div>
       <p class="common-heading">Crypto wallet address</p>
       <div class="crypto-input">
@@ -91,10 +91,10 @@
         </div>
       </div>
 
-      <button class="confirm-btn my-cta-btn-back hoverable" (click)="patchWallet();resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100"
+      <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100"
          *ngIf="myDriver?.is_using_authenticator === false">Confirm</button>
 
-      <button class="confirm-btn my-cta-btn-back hoverable" (click)="patchWallet();resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || authcode.length < 1"
+      <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || authcode.length < 1"
          *ngIf="myDriver?.is_using_authenticator === true">Confirm</button>
     </div>
   </div>

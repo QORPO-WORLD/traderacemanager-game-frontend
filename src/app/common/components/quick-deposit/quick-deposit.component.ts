@@ -44,6 +44,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     this.getMydriver();
     this.getMyBalance();
   }
+
   ngOnDestroy() {
     if (this.transferSubscription) {
       this.transferSubscription.unsubscribe();
@@ -56,17 +57,8 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     }
   }
   resolveDeposit() {
-    if (this.tokenSelected === 'trx') {
-      this.stepIndex = 2;
-      this.depositTrxToken();
-    } else if (this.tokenSelected === 'ioi') {
-      this.stepIndex = 2;
-      this.depositIoiToken();
-    } else {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error(res.valid_error, res.valid_text);
-      });
-    }
+    this.stepIndex = 2;
+    this.depositIoiToken();
   }
 
 
@@ -97,25 +89,12 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   }
 
 
-  depositTrxToken() {
-    this.transferSubscription = this.blcksrvc.blockchainDepositCreate(
-      {
-        amount_to_deposit: this.amount.toString(),
-        wallet_type: 'game_wallet_trx'
-      }
-    ).subscribe(data => {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', res.succ_deposit);
-        this.depositing();
-      });
-    });
-  }
-
   depositIoiToken() {
+    const amx: string = this.amount.toString();
     this.transferSubscription = this.blcksrvc.blockchainDepositCreate(
       {
-        amount_to_deposit: this.amount.toString(),
-        wallet_type: 'game_wallet_ioi'
+        amount: parseFloat(amx),
+        currency: this.tokenSelected
       }
     ).subscribe(data => {
       this.translate.get('nitro_notifiq').subscribe((res) => {
@@ -144,6 +123,6 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   }
 
   depositing() {
-    localStorage.setItem('depos', JSON.stringify(Date.now())); 
+    localStorage.setItem('depos', JSON.stringify(Date.now()));
   }
 }

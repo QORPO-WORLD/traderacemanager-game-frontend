@@ -37,7 +37,7 @@ export class QuickWithdrawComponent implements OnInit {
 
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, private uapi: AuthService, protected translate: TranslateService,
-  private identityService: ninja) { }
+    private identityService: ninja) { }
 
   ngOnInit() {
     const tick = JSON.parse(localStorage.getItem('trxusdt'));
@@ -62,38 +62,19 @@ export class QuickWithdrawComponent implements OnInit {
   }
 
   resolveWithdrawal() {
-    if (this.tokenSelected === 'trx' && this.amount > 0) {
-      this.withdrawalTrxToken();
-    } else if (this.tokenSelected === 'ioi' && this.amount > 0) {
+    if (this.amount > 0) {
       this.withdrawalIoiToken();
-    } else {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error(res.valid_error, res.valid_text);
-      });
     }
   }
 
-  withdrawalTrxToken() {
-    this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
-      {
-        wallet_type: 'game_wallet_trx',
-        amount_to_withdraw: this.amount.toString(),
-        authcode: this.authcode
-      }
-    ).subscribe(data => {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', res.with_confirm);
-        this.amount = 0;
-      });
-    });
-  }
 
   withdrawalIoiToken() {
     this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
       {
-        wallet_type: 'game_wallet_ioi',
-        amount_to_withdraw: this.amount.toString(),
-        authcode: this.authcode
+        currency: this.tokenSelected,
+        amount: this.amount,
+        code: this.authcode,
+        targetAddress: this.cryptoMtfrckr
       }
     ).subscribe(data => {
       this.translate.get('nitro_notifiq').subscribe((res) => {
