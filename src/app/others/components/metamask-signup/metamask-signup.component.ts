@@ -150,9 +150,9 @@ export class MetamaskSignupComponent implements OnInit {
     ];
 
     const domainData = {
-      name: 'IOI-GAME',
+      name: 'TRM',
       version: '2.0',
-      chainId: 1,
+      chainId: 137,
       verifyingContract: '0x8B3870Df408fF4D7C3A26DF852D41034eDa11d81',
       salt: 'randomstringgg'
     };

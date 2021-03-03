@@ -159,6 +159,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getDaysToDividens();
     this.getMyCars();
     this.myDriverOld = this.identityService.getDriverMe();
+    console.log(this.myDriverOld);
     this.getMyTeamReward();
   }
   ngOnDestroy() {
@@ -311,6 +312,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getMyLeaderboard() {
     const data = this.identityService.getLeaderboardMe();
+    console.log(data);
     this.myLdrbrd = data;
 
   }
@@ -329,9 +331,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
   getRewards() {
     this.transObserver = this.rwrdsrvc.rewardsList()
-      .subscribe(data => {
+      .subscribe(datax => {
+        const data: any = datax;
         this.myRewards = data;
-        this.ioioreward = Number(data.item_bonus);
+        this.ioioreward = Number(data.ioi_bonus);
       });
   }
 

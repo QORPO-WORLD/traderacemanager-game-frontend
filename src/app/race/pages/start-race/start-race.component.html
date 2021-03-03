@@ -281,14 +281,13 @@
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value" *ngIf="myLdrbrd?.team_name !== 'TRX'">{{'profile.team' | translate}} {{ myLdrbrd?.team_name }}</p>
-            <p class="value" *ngIf="myLdrbrd?.team_name === 'TRX'">{{'profile.team' | translate}} ALT</p>
+            <p class="value">{{'profile.team' | translate}} {{ myLdrbrd?.team }}</p>
+
             <p class="bot-desc">{{'start-race.your_team' | translate}}</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership === true">{{'teams.join.modals.premium' | translate}}</p>
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership === false">{{'race.type.car_race_short_0' | translate}}</p>
+              <p class="value">{{myDriverOld?.is_paid_membership}}</p>
               <p class="desc">{{'start-race.membership' | translate}}</p>
               <div class="line"></div>
             </div>
