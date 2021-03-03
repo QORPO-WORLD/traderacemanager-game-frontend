@@ -34,9 +34,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     }).
       subscribe(data => {
         const newdata: any = data;
-        this.transactions = newdata;
-        //this.totalPages = newdata.total_pages;
-        this.totalPages = 1;
+        this.transactions = newdata.results;
+        this.totalPages = newdata.total_pages;
       });
   }
 

@@ -78,6 +78,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   }
 
   notifyChangedBalance() {
+    this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();
   }
 

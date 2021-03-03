@@ -37,9 +37,9 @@ export class MyRacesComponent implements OnInit, OnDestroy {
     this.transObserver = this.api.transactionsRacesList(this.actualPage)
       .subscribe(data => {
         const newdata: any = data;
-        this.raceTransactions = newdata;
-        //this.totalPages = newdata.total_pages;
-        this.totalPages = 1;
+        this.raceTransactions = newdata.results;
+        this.totalPages = newdata.total_pages;
+        
       });
   }
 
