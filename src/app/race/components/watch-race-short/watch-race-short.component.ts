@@ -1077,10 +1077,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   resolveBackType() {
-    if (this.raceDataildata.tournament_id !== null && this.raceDataildata.race_identifier !== 'wednesday_party_race_0') {
+    if (this.raceDataildata.race_identifier === 'car_race_ioi_100') {
       this.backType = 2;
-    } else if (this.raceDataildata.tournament_id !== null && this.raceDataildata.race_identifier === 'wednesday_party_race_0') {
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_1') {
       this.backType = 3;
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5') {
+      this.backType = 4;
     } else {
       this.backType = 1;
     }

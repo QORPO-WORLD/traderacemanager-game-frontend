@@ -75,8 +75,6 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     this.raceObser = this.api.racesNextV2MineList().subscribe(data => {
 
       this.mnr = this.getUniqueListBy(data, 'race_hash');
-      console.log(this.mnr);
-      console.log('fdsafa');
 
       this.bestIndex = data.length - 1;
     });
@@ -116,6 +114,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
       const live = nedata.filter(word => word.is_canceled === false);
       this.liveAllRacesData = live;
+      console.log(data);
     });
   }
 
@@ -127,8 +126,6 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
       const live = nedata.filter(word => word.is_canceled === false);
       this.nextRaces = data;
-      console.log(data);
-      console.log('ddjdj');
       this.refreshing = false;
     });
   }
@@ -200,7 +197,6 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
         }
       }
     }
-    console.log(this.baseFavRaces);
   }
 
 
