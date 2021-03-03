@@ -492,7 +492,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
   whenStarts() {
-    const newwhen = this.startsIn + 2;
+    const newwhen = this.startsIn;
 
     const fireSemaforx = (newwhen - 5) * 1000;
     const fireAudience = (newwhen - 11) * 1000;
