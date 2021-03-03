@@ -119,6 +119,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   ioioreward: number;
   actualIoiReward = 1000000;
   displayReward = 0;
+  tutorialInterval: any;
   animationInterval: any;
   hwdays: any;
   ldrbrd: any;
@@ -154,6 +155,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.interval = setInterval(() => {
       this.getCryptoStats();
     }, 15000);
+    this.tutorialInterval = setInterval(() => {
+      this.checkTutorial();
+    }, 3000);
     //this.getRacerOfTheDay();
     this.recognizeBanner();
     this.getDaysToDividens();
@@ -195,11 +199,13 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
     clearInterval(this.interval);
     clearInterval(this.nextInterval);
+    clearInterval(this.tutorialInterval);
   }
 
   routerOnDeactivate() {
     clearInterval(this.interval);
     clearInterval(this.nextInterval);
+    clearInterval(this.tutorialInterval);
   }
 
   ngAfterViewInit(): void {
@@ -424,7 +430,22 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
   }
 
+  checkTutorial(){
+    const data = this.identityService.getStorageIdentity();
+    data.is_in_tutorial === true ? this.tutorialStarted = true : this.tutorialStarted = false;
+
+    if (this.tutorialStarted === true && window.innerWidth > 1024) {
+      this.introModal = true;
+      this.tutorialStep = 1;
+      clearInterval(this.tutorialInterval);
+    } else {
+      this.tutorialStep = -1;
+      this.introModal = false;
+    }
+  }
+
   skipModal() {
+    clearInterval(this.tutorialInterval);
     this.introModal = false;
     this.tutorialStarted = true;
     this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(data => { this.identityService.meUpdate(); });

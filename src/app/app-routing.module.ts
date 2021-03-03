@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'other', loadChildren: () => import('./others/others.module').then(m => m.OthersModule)},
   { path: 'car', loadChildren: () => import('./car/car.module').then(m => m.CarModule)},
-  { path: 'leaderboard', loadChildren: () => import('./leaderboard/leaderboard.module').then(m => m.LeaderboardModule)},
   { path: 'player', loadChildren: () => import('./player/player.module').then(m => m.PlayerModule)},
   { path: 'race', loadChildren: () => import('./race/race.module').then(m => m.RaceModule)},
   { path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule)},

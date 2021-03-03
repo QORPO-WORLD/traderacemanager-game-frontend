@@ -92,7 +92,7 @@
 
   <div class="aff-holder">
 
-    <div class="non-premium-box" *ngIf="myDriverOld?.is_paid_membership === false || !myDriverOld?.is_paid_membership">
+    <div class="non-premium-box" *ngIf="myDriverOld?.is_paid_membership === 'Free' || !myDriverOld?.is_paid_membership">
       <img src="/assets/base/images/menu/lock-icon.svg" alt="">
       <p class="text">Unlock your affiliate link and get 2% from turnover of your partners</p>
       <button class="my-btn my-cta-btn-back hoverable" [routerLink]="['/teams/join-teams']">Get premium</button>
@@ -124,7 +124,7 @@
         <div class="line"></div>
       </div>
       <div class="cont-item">
-        <p class="value">{{affMe?.maintenance_level ? affMe?.maintenance_level + ' IOI' : 'No'}}</p>
+        <p class="value">{{affMe?.maintenance_level ? 'Yes' : 'No'}}</p>
         <p class="desc" style="font-size: 12px;">maintenance</p>
       </div>
     </div>
