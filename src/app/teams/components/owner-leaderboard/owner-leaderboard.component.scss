@@ -1,0 +1,258 @@
+.holder{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+.arrow-right{
+    z-index: 3;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 30px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.arrow-left{
+    z-index: 3;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 30px;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.arrow-right:hover, .arrow-left:hover{
+    font-size: 50px;
+}
+
+.table{
+    position: relative;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: white;
+    width: 81%;
+    background: linear-gradient(0deg, #111111, #111111);
+    box-shadow: 0px 0px 80px #000000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    .row{
+        z-index: 1;
+        width: 85%;
+        margin: 5px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        transition: .2s;
+        border-radius: 15px;
+    }
+    .row:not(.header):hover{
+        background: linear-gradient(149.66deg, rgba(195, 20, 50, 0.4) -24.06%, rgba(36, 11, 54, 0) 125.74%);
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    .placement{
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        height: 35px;
+        border-radius: 10px;
+        display: inline-block;
+        padding: 1px 0 0 1px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+        span{
+            display: block;
+            padding: 16px, 4px;
+            background: #111111;
+            border-radius: 10px;
+            width: 35px;
+            height: 35px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .crown{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        background-image: url('/assets/base/images/leaderboard/crown-gold.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .first, .secound, .third{
+        position: relative;
+        margin-bottom: 10px;
+        height: 50px;
+        p{
+            background: -webkit-linear-gradient(180deg, #C19123 0%, #B47E11 10.42%, #FEF2A3 70.83%, #B57F12 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cell:first-child{
+            width: 45px;
+        }
+    }
+    .secound{
+        p{
+            background: linear-gradient(180deg, #5D666A 0%, #FAFAFA 40.63%, #939393 70.83%, #7B7B7B 100%),
+            linear-gradient(0deg, #FFFFFF, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .crown{
+            background-image: url('/assets/base/images/leaderboard/crown-silver.png');
+        }
+    }
+    .third{
+        p{
+            background: linear-gradient(180deg, #7F3519 13.02%, #FEA67E 52.08%, #D5805E 90.62%, #F5C7AC 100%),
+            linear-gradient(0deg, #FFFFFF, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .crown{
+            background-image: url('/assets/base/images/leaderboard/crown-bronze.png');
+        }
+    }
+    
+    .header{
+        font-weight: 600;
+        div{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            width: 15%;
+        }
+        div:first-child{
+            width: 40px;
+        }
+    }
+    .cell{
+        width: 15%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            margin: auto 0;
+        }
+    }
+    .cell:first-child{
+        width:40px;
+    }
+    .last{
+        background: linear-gradient(187.69deg, #C31432 -16.13%, #240B36 206.14%);
+        box-shadow: 0px 0px 20px rgba(254, 23, 63, 0.2);
+        border-radius: 15px;
+        font-weight: 600;
+        .cell:first-child{
+            position: relative;
+            p{
+                left: -40px;
+                top: 50%;
+                transform: translateY(-50%);
+                position: absolute;
+            }
+        }
+    }
+}
+
+.img{
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    top: 50px;
+    left: -50px;
+}
+
+@media screen and (max-width: 1750px){
+    .img{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 1750px){
+    .table{
+        width: 100%;
+    }
+    .img{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px){
+
+    .table{
+        font-size: 10px;
+        .last{
+            .cell:first-child{
+                position: relative;
+                p{
+                    display: none;
+                }
+            }
+        }
+        .row{
+            width: 88%;
+        }
+        .cell:first-child{
+            height: 30px;
+            width:30px;
+        }
+        .placement{
+            width: 30px;
+            height: 30px;
+            span{
+                width: 30px;
+                height: 30px; 
+            }
+        }
+        .crown{  
+            width: 30px;
+            height: 30px;
+        }
+        .first, .secound, .third{
+            height: 30px;
+            .cell:first-child{
+                width: 30px;
+            }
+        }
+    }
+    .arrow-left{
+        left: 0;
+    }
+    .arrow-right{
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 470px){
+
+    .arrow-left{
+        font-size: 40px;
+        top: 104%;
+        bottom: 0;
+        left: 40px;
+        transform: translateY(0%);
+    }
+    .arrow-right{
+        font-size: 40px;
+        top: 104%;
+        bottom: 0;
+        right: 40px;
+        transform: translateY(0%);
+    }
+    .table{
+        margin-bottom: 60px;
+    }
+}
+  

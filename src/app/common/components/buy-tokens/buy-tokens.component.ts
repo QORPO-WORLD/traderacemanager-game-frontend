@@ -130,31 +130,11 @@ export class BuyTokensComponent implements OnInit, OnDestroy {
 
 
   depositTrxToken() {
-    this.transferSubscription = this.blcknsrvc.blockchainDepositCreate(
-      {
-        amount_to_deposit: this.amount.toString(),
-        wallet_type: 'game_wallet_trx'
-      }
-    )
-      .subscribe(data => {
-        this.getMyBalance();
-        this.getMining();
-        this.notify.error('x', 'Successfull. We are waiting for your deposit now.');
-      });
+
   }
 
   depositIoiToken() {
-    this.transferSubscription = this.blcknsrvc.blockchainDepositCreate(
-      {
-        amount_to_deposit: this.amount.toString(),
-        wallet_type: 'game_wallet_ioi'
-      }
-    )
-      .subscribe(data => {
-        this.getMyBalance();
-        this.getMining();
-        this.notify.error('x', 'Successfull. We are waiting for your deposit now.');
-      });
+   
   }
 
 

@@ -169,7 +169,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
       this.refreshing = true;
       setTimeout(() => {
         this.getAllNextRaces();
-      }), 500;
+      }), 1500;
     }
     else {
       this.refreshing = false;

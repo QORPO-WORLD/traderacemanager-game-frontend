@@ -71,7 +71,7 @@ class AffiliatesService extends __BaseService {
     //if (page != null) __params = __params.set('page', page.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/`,
+      this.rootUrl + `/me/affiliate-data`,
       __body,
       {
         headers: __headers,

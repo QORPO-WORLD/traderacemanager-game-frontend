@@ -318,7 +318,8 @@ export class EditFastFuelCarComponent implements OnInit, OnDestroy {
 
   getRaceDetails() {
     this.api.carsMineList().subscribe(daya => {
-      this.myCars = daya.filter(item => {
+      const data: any = daya;
+      this.myCars = data.cars.filter(item => {
         return item.pk === this.myCar;
       });
       if (this.myCars.length === 0) {

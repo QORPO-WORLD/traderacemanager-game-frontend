@@ -28,7 +28,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   monthCount = 1;
   teamOption = 1;
-  startNow = true;
+  startNow = false;
   myTeamReward: any;
   myRewards: any;
   ioioreward: number;
@@ -36,10 +36,11 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     protected driversApi: DriversService, protected toggle: TeamModalTogglerService,
     private balanceService: BalanceService, private rapi: RewardsService, private identityService: AuthService,
     private lapi: LeaderboardService) {
-    this.getMyTeam();
+
   }
 
   ngOnInit(): void {
+    this.getMyTeam();
     this.getRewards();
     this.getCurrentMonth();
     this.getMyTeamReward();
@@ -66,15 +67,18 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
       });
 
       this.teams = data.results;
+      console.log(this.teams);
+      console.log(data);
     });
   }
 
   getMyTeam() {
     const data = this.identityService.getDriverMe();
     this.myTeam = data.team;
+    this.getTeams();
     this.myTeamData = data;
     console.log(data);
-    this.getTeams();
+
   }
 
   joinTeam(teamId: number) {

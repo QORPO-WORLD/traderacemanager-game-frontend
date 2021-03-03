@@ -1,5 +1,4 @@
-
-<div class="modal fade" id="team1modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team1modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -65,8 +64,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="joinFree === true" class="join-btn" data-dismiss="modal" (click)="resolveJoin(1)">{{'teams.join.modals.join_waitlist' | translate}}</div>
-                <div *ngIf="joinFree === false" class="join-btn" data-dismiss="modal" data-toggle="modal" data-target="#start-date" (click)="teamOption = 1">{{'race.continue' | translate}}</div>
+                <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(1)">{{'teams.join.modals.join_waitlist' | translate}}</div>
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
@@ -79,7 +77,7 @@
 </div>
 
 
-<div class="modal fade" id="team2modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team2modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -145,8 +143,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="joinFree === true" class="join-btn" data-dismiss="modal" (click)="resolveJoin(2)">{{'teams.join.modals.join_waitlist' | translate}}</div>
-                <div *ngIf="joinFree === false" class="join-btn" data-dismiss="modal" data-toggle="modal" data-target="#start-date" (click)="teamOption = 2">{{'race.continue' | translate}}</div>
+                <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(2)">{{'teams.join.modals.join_waitlist' | translate}}</div>
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
@@ -158,7 +155,7 @@
 </div>
 
 
-<div class="modal fade" id="team3modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="team3modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -225,8 +222,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="joinFree === true" class="join-btn" data-dismiss="modal" (click)="resolveJoin(3)">{{'teams.join.modals.join_waitlist' | translate}}</div>
-                <div *ngIf="joinFree === false" class="join-btn" data-dismiss="modal" data-toggle="modal" data-target="#start-date" (click)="teamOption = 3">{{'race.continue' | translate}}</div>
+                <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(3)">{{'teams.join.modals.join_waitlist' | translate}}</div>
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
@@ -237,7 +233,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="start-date" tabindex="-1" role="dialog">
+<div class="modal fade" id="start-date" tabindex="-1" role="dialog" *ngIf="myTeamData">
     <div class="modal-dialog my-modal-dialog" role="document">
         <div class="Mymodal modal-content ">
             <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
@@ -264,7 +260,7 @@
                     <p>In case you choose to start your membership immediately, you will be losing  the membership benefits appliable to the past days of a current month.</p>
                 </div>
 
-                <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(teamOption)">{{'teams.join.modals.join_waitlist' | translate}}</div>
+                <div class="join-btn" >{{'teams.join.modals.join_waitlist' | translate}}</div>
             </div>
         </div>
     </div>
@@ -273,7 +269,7 @@
 
 <!-- <app-team-players-modal></app-team-players-modal> -->
 
-<div class="main-holder">
+<div class="main-holder" *ngIf="teams?.length > 0">
     <div class="page-info"> 
         <div class="back" [routerLink]="['/race/start-race']">
         <p>&lt;</p>
@@ -301,8 +297,8 @@
     </div>
 
     <div class="team-holder">
-        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined.state === true}">
-            <div class="joined" *ngIf="tt?.me_joined.state === true">
+        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true}">
+            <div class="joined" *ngIf="tt?.me_joined === true">
                 <span>
                     <p> <strong>✓</strong> Currently joined</p>
                 </span>
@@ -351,32 +347,20 @@
                 </span>
             </div> -->
             <a class="join-button" data-toggle="modal" data-target="#team1modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 1 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team2modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 2 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team3modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 3 && !tt?.me_joined.state">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
 
             <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 1 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 1 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 2 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 2 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-            *ngIf="!tt?.me_waiting.state  && tt?.id === 3 && tt?.me_joined.state">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 3 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
              
-            <a class="join-button wait-btn" *ngIf="tt?.me_waiting.state === true" (click)="showInfoBubble = !showInfoBubble">
-                
-
-                <span *ngIf="tt?.me_waiting.is_paid === true">{{'teams.join.waiting_as' | translate}} <span class="highlith">{{'teams.join.premium_m' | translate}}</span></span>
-                <span *ngIf="tt?.me_waiting.is_paid === false">{{'teams.join.waiting_as' | translate}} {{'teams.join.free_m' | translate}}</span>
-
-                <div class="info-bubble" *ngIf="currMonth && showInfoBubble === true">
-                    <p>{{'teams.join.memb_starts' | translate}} {{allMonths[currMonth]}} {{'teams.join.memb_ends' | translate}} {{allMonths[currMonth]}}.</p>
-                    <img src="/assets/base/images/teams/close-icon.png" alt="" class="close-icon">
-                </div>
-
-            </a>  
-
+            
         </div>
         
     </div>

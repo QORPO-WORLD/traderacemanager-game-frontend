@@ -76,7 +76,7 @@
           <h1 *ngIf="editionIndex === 2">Silver {{ shiftIndex + 1 }}</h1>
           <h1 *ngIf="editionIndex === 3">Gold {{ shiftIndex + 1 }}</h1>
           <h1 *ngIf="editionIndex === 4">Platinum {{ shiftIndex + 1 }}</h1>
-          <p class="copy-desc"><img src="/assets/base/images/icons/copy-icon.svg" alt=""> Smart contract number</p>
+          <p class="copy-desc"><img src="/assets/base/images/icons/copy-icon.svg" alt=""><a target="_blank" href="https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions">0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019</a></p>
 
           <ng-container *ngIf="editionIndex === 1">
             <div class="car-stats">
@@ -250,8 +250,12 @@
             </div>
           </ng-container>
           
-          <div class="btns-holder" [routerLink]="['/other/transfer-nft']" [queryParams]="{ nftId: carIndex }">
-            <div class="casual">
+          <div class="btns-holder">
+            <div class="casual" *ngIf="boughtCar === true" [routerLink]="['/other/transfer-nft']" [queryParams]="{ nftId: carIndex }">
+              <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
+            </div>
+
+            <div class="casual inactive" *ngIf="boughtCar === false">
               <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
             </div>
           </div>

@@ -64,7 +64,8 @@ export class FavouriteCarsComponent implements OnInit {
   getCars() {
     this.carService.carsMineList().subscribe(
       data => {
-        this.myCars = data;
+        const datax: any = data;
+        this.myCars = datax.cars;
 
         this.getFavCars();
       }

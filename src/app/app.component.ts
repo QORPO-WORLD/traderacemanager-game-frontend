@@ -20,7 +20,7 @@ import { NgxHotjarService } from 'ngx-hotjar';
 export class AppComponent {
   leave = false;
   log: Array<Array<any>>;
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -35,17 +35,7 @@ export class AppComponent {
     translate.setDefaultLang('en');
     this.initializeApp();
   }
- //hotjar
-  @HostListener('click')
-  onClick() {
-    try {
-      console.log((window as any).hj.q);
-      this.log = (window as any).hj.q;
-      this.cdr.detectChanges();
-    } catch (err) {
-      console.error(err);
-    }
-  }
+
 
   initializeApp() {
     const myDomain = window.location.href;
@@ -55,14 +45,14 @@ export class AppComponent {
       setInterval(() => {
         this.balanceService.balanceHasbeenChanged();
       }, 5000);
-/*
-      this.ga.startTrackerWithId('UA-105777953-2')
-        .then(() => {
-          this.ga.trackView('test');
-          // Tracker is ready
-          // You can now track pages or set additional information such as AppVersion or UserId
-        });
-*/
+      /*
+            this.ga.startTrackerWithId('UA-105777953-2')
+              .then(() => {
+                this.ga.trackView('test');
+                // Tracker is ready
+                // You can now track pages or set additional information such as AppVersion or UserId
+              });
+      */
     });
     /* android only
     this.platform.pause.subscribe(e => {
@@ -84,6 +74,9 @@ export class AppComponent {
       document.body.classList.toggle('dark', shouldAdd);
     }
 
+    if (location.href === 'https://www.traderacemanager.com') {
+      location.href = 'https://traderacemanager.com'
+    }
   }
 
   onExit() {
