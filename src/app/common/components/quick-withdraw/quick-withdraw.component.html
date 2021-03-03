@@ -317,9 +317,8 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="withdrawal-modal" tabindex="-1" role="dialog" aria-labelledby="turn-lux-modal"
-  aria-hidden="true" *ngIf="myDriver?.is_verified === false">
+-->
+<div class="modal fade faded-in faded shown visible" *ngIf="confirmed === false && confirming === true">
 
 
   <div class="modal-dialog modal-dialog-centered my-modal-dialog small-dialog" role="document">
@@ -327,13 +326,18 @@
 
       <div class="modal-close" data-dismiss="modal" aria-label="Close"><img src="/assets/base/images/icons/close.png" alt=""></div>
 
-      <div class="deposit-modal-body step-body step1" [ngClass]="stepIndex === 1 ? 'visible' : 'hidden'">
+      <div class="deposit-modal-body ">
 
-        <h1 class="main-heading">{{'profile.why_resend' | translate}}</h1>
-
-        <button class="cta-button hoverable resend-btn" (click)="resendActivation()" data-dismiss="modal">{{'profile.resend_activation' | translate}}</button>
+        <h1 class="main-heading">Enter confirmation code from your email</h1>
+        <div class="input-box modal-box desc-box">
+          <div class="input-holder">
+            <input [ngModel]="confirmCode" [ngModelOptions]="{standalone: true}" type="text">
+          </div>
+          <p class="disclaim"></p>
+        </div>
+        <button class="cta-button hoverable resend-btn" (click)="confirmWithdrawal()">Confirm</button>
         
       </div>
     </div>
   </div>
-</div> -->
+</div> 

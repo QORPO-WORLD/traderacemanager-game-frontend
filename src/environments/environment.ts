@@ -6,7 +6,7 @@
 export const environment = {
   stage: 'development',
   hmr: false,
-  api_url: 'https://dev-backend.ioi-game.com/ioi',
+  api_url: 'https://dev-api.traderacemanager.com/',
   production: false,
   encryptPassphrase: 'ioi-game-cbucrebnu778i37943',
   bugsnag_api: '5e742571214fc41347ff9270518937de',

@@ -1,10 +1,17 @@
+import { environment } from './../../../../environments/environment.prod';
+import { ErrorService } from './../../../user/services/error.service';
 import { AuthService as ninja } from './../../../user/services/auth.service';
 import { NotifiqService } from './../../services/notifiq.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BlockchainService, DriversService, NitroWalletService, AuthService } from 'src/app/api/services';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 @Component({
   selector: 'app-quick-withdraw',
   templateUrl: './quick-withdraw.component.html',
@@ -34,10 +41,12 @@ export class QuickWithdrawComponent implements OnInit {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
   };
-
+  confirmCode: string;
+  confirmed = false;
+  confirming = false;
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, private uapi: AuthService, protected translate: TranslateService,
-    private identityService: ninja) { }
+    private identityService: ninja, private _http: HttpClient, private notifyapi: ErrorService) { }
 
   ngOnInit() {
     const tick = JSON.parse(localStorage.getItem('trxusdt'));
@@ -81,6 +90,7 @@ export class QuickWithdrawComponent implements OnInit {
       this.translate.get('nitro_notifiq').subscribe((res) => {
         this.notify.error('x', res.with_confirm);
         this.amount = 0;
+        this.confirming = true;
       });
     });
   }
@@ -103,6 +113,22 @@ export class QuickWithdrawComponent implements OnInit {
     this.uapi.authVerificationCreate().subscribe(data => {
       this.notify.success('email_sent', 'open_mail');
     });
+  }
+
+  confirmWithdrawal() {
+
+    this.getConfirm().subscribe({
+      next: data => this.confirmed = true,
+      error: error => this.notifyapi.apiError(error)
+    });
+  }
+
+  
+  getConfirm() {
+    return this._http.post(environment.api_url + '/api/blockchain/confirm-withdrawal', {
+      confirmationHash: this.confirmCode
+    },
+      httpOptions);
   }
 
 }

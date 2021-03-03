@@ -44,9 +44,9 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
   ready = false;
   baseFavRaces = [
     { type: 'car_race_short_0', fav: false },
-    { type: 'car_race_short_10', fav: false },
-    { type: 'car_race_short_50', fav: false },
-    { type: 'car_race_short_100', fav: false },
+    { type: 'car_race_ioi_10', fav: false },
+    { type: 'car_race_ioi_50', fav: false },
+    { type: 'car_race_ioi_100', fav: false },
     { type: 'car_race_short_500', fav: false },
     { type: 'car_race_short_1000', fav: false },
     { type: 'car_race_24hrs_1000', fav: false },
@@ -115,9 +115,9 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
         if (nedata[x].race_identifier === 'car_race_ioi_3') { this.ioistartb = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_ioi_5') { this.ioistartc = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_short_0') { this.astart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_10') { this.bstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_50') { this.cstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_100') { this.dstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_ioi_10') { this.bstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_ioi_50') { this.cstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_ioi_100') { this.dstart = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_short_500') { this.estart = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_short_1000') { this.fstart = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_24hrs_1000') { this.gstart = nedata[x]; }

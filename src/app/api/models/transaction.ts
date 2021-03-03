@@ -3,14 +3,14 @@ import { Wallet } from './wallet';
 import { ActionType } from './action-type';
 export interface Transaction {
   wallet: Wallet;
-  action_type: ActionType;
-  wallet_type?: string;
+  history_type: string;
   currency?: string;
 
   /**
    * Balance delta.
    */
   delta?: string;
-  extras?: {};
-  created?: string;
+  extras?: any;
+  created_at?: string;
+  history_id?: number;
 }

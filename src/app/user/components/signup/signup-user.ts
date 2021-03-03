@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment.staging';
 import { SocialService } from './../../services/social.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotifiqService } from './../../../common/services/notifiq.service';
@@ -189,7 +190,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     }
 
     signupWithMetamask() {
-        return this._http.post('https://dev-api.traderacemanager.com/account/metamask-sign-up', {
+        return this._http.post(environment.api_url + '/account/metamask-sign-up', {
             password: this.mmewa,
             recaptchaToken: this.token,
             email: this.f.email.value,

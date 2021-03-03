@@ -36,7 +36,7 @@
          Rookie</div>
       <div class="cell">0.1 IOI</div>
       <div class="cell">FREE</div>
-      <div class="cell">{{ioistarta?.players}}/100</div>
+      <div class="cell">{{astart?.players}}/100</div>
       <div class="cell"><app-timer *ngIf="astart" [value]="astart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_short_0']">Join race</div>
@@ -50,7 +50,7 @@
         Beginner</div>
       <div class="cell">100 IOI</div>
       <div class="cell">1 IOI</div>
-      <div class="cell">{{ioistarta?.players}}/100</div>
+      <div class="cell">?/100</div>
       <div class="cell"><app-timer *ngIf="ioistarta" [value]="ioistarta?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_1']">Join race</div>
@@ -86,7 +86,7 @@
        Semi PRO</div>
       <div class="cell">500 IOI</div>
       <div class="cell">5 IOI</div>
-      <div class="cell">{{ioistartc?.players}}/100</div>
+      <div class="cell">?/100</div>
       <div class="cell" ><app-timer *ngIf="ioistartc" [value]="ioistartc?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_5']">Join race</div>
@@ -104,15 +104,16 @@
        Profesional</div>
       <div class="cell">1 000 IOI</div>
       <div class="cell">10 IOI</div>
-      <div class="cell">0/100</div>
-      <div class="cell" >Soon</div>
+      <div class="cell">?/100</div>
+      <div class="cell"><app-timer *ngIf="bstart" [value]="bstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
+  
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_10']">Join race</div>
         
-        <!-- <div class="fast-race">
+        <div class="fast-race" (click)="selRaceType = 'car_race_ioi_10'" *ngIf="fastEnabled === true">
           <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
           <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -122,15 +123,15 @@
         Expert</div>
       <div class="cell">5 000 IOI</div>
       <div class="cell">50 IOI</div>
-      <div class="cell">0/100</div>
-      <div class="cell" >Soon</div>
+      <div class="cell">?/100</div>
+      <div class="cell"><app-timer *ngIf="bstart" [value]="cstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_ioi_50']">Join race</div>
         
-        <!-- <div class="fast-race">
+        <div class="fast-race" (click)="selRaceType = 'car_race_ioi_50'" *ngIf="fastEnabled === true">
           <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
           <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
-        </div> -->
+        </div>
       </div>
     </div>
     <div class="table-row">
@@ -140,14 +141,15 @@
       <div class="cell">10 000 IOI</div>
       <div class="cell">100 IOI</div>
       <div class="cell">0/100</div>
-      <div class="cell" >Soon</div>
+      <div class="cell"><app-timer *ngIf="cstart" [value]="cstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
+     
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_100']">Join race</div>
         
-        <!-- <div class="fast-race">
+        <div class="fast-race" (click)="selRaceType = 'car_race_ioi_100'" *ngIf="fastEnabled === true">
           <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
           <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
-        </div> -->
+        </div>
       </div>
     </div>
     <!-- <div class="table-row">

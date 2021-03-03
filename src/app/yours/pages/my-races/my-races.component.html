@@ -117,11 +117,11 @@
           <div class="cell">
             <div class="placement my-border-grad"><span>{{(indexx + 1)+10*(actualPage-1)}}</span></div>
           </div>
-          <div class="cell"> <p>{{ 'race.type.' + trans.extras.race_identifier | translate}}</p></div>
-          <div class="cell"><p>{{trans.extras.bet  | number:'1.2-2':'fr' }}</p></div>
+          <div class="cell"> <p>{{ 'race.type.' + trans.extras?.race_identifier | translate}}</p></div>
+          <div class="cell"><p>{{trans.extras?.bet  | number:'1.2-2':'fr' }}</p></div>
           <div class="cell"><p>{{trans.delta  | number:'1.2-2':'fr' }}</p></div>
-          <div class="cell"><p>{{trans.created | date:'short'}}</p></div>
-          <div class="cell"><button class="my-low-gradient" (click)="getRaceWinner(trans.extras.race_hash)" *ngIf="trans.extras.game !== 'classic_tournament'">{{'leaderboard.winners' | translate}}</button></div>
+          <div class="cell"><p>{{trans.created_at | date:'short'}}</p></div>
+          <div class="cell"><button class="my-low-gradient" (click)="getRaceWinner(trans.extras?.race_hash)" *ngIf="trans.extras?.game !== 'classic_tournament'">{{'leaderboard.winners' | translate}}</button></div>
         </div>
 
 

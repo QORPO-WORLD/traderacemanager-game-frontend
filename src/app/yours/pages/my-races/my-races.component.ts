@@ -1,3 +1,4 @@
+import { Transaction } from 'src/app/api/models';
 import { TransactionsService, RacesService } from 'src/app/api/services';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class MyRacesComponent implements OnInit, OnDestroy {
   transObserver: Subscription;
-  raceTransactions = [];
+  raceTransactions: Transaction[];
   winnerObservable: Subscription;
   winnersList = [];
   showFinalModal = false;
@@ -36,8 +37,9 @@ export class MyRacesComponent implements OnInit, OnDestroy {
     this.transObserver = this.api.transactionsRacesList(this.actualPage)
       .subscribe(data => {
         const newdata: any = data;
-        this.raceTransactions = newdata.results;
-        this.totalPages = newdata.total_pages;
+        this.raceTransactions = newdata;
+        //this.totalPages = newdata.total_pages;
+        this.totalPages = 1;
       });
   }
 

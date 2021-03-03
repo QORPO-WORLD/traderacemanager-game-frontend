@@ -10,7 +10,7 @@ import { TransactionsService } from 'src/app/api/services';
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
   transObserver: Subscription;
-  transactions: any[] = [];
+  transactions: Transaction[];
   actualPage = 1;
   totalPages: number;
   constructor(protected api: TransactionsService) {
@@ -34,8 +34,9 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     }).
       subscribe(data => {
         const newdata: any = data;
-        this.transactions = newdata.results;
-        this.totalPages = newdata.total_pages;
+        this.transactions = newdata;
+        //this.totalPages = newdata.total_pages;
+        this.totalPages = 1;
       });
   }
 

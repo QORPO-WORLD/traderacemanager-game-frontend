@@ -13,7 +13,7 @@ import { Transaction } from '../models/transaction';
 })
 class TransactionsService extends __BaseService {
   static readonly transactionsListPath = '/races/transactions/all';
-  static readonly transactionsRacesListPath = '/races/transactions/races/';
+  static readonly transactionsRacesListPath = '/races/transactions/races';
 
   constructor(
     config: __Configuration,
@@ -75,7 +75,7 @@ class TransactionsService extends __BaseService {
     if (page != null) __params = __params.set('page', page.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/transactions/races/`,
+      this.rootUrl + `/races/transactions/races`,
       __body,
       {
         headers: __headers,

@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment.staging';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../api/services/auth.service';
 import { Subscription } from 'rxjs';
@@ -143,7 +144,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuth(user, pass) {
-    return this._http.post('/api/auth/jwt/create/', {
+    return this._http.post(environment.api_url + '/auth/jwt/create/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
@@ -152,21 +153,21 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthUsingG(user, pass, gcode) {
-    return this._http.post('/api/auth/jwt/create/', {
+    return this._http.post(environment.api_url + '/auth/jwt/create/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthNoCap(user, pass) {
-    return this._http.post('/api/auth/jwt/create-in-desktop/', {
+    return this._http.post(environment.api_url + '/auth/jwt/create-in-desktop/', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthUsingGNoCap(user, pass, gcode) {
-    return this._http.post('/api/auth/jwt/create-in-desktop/', {
+    return this._http.post(environment.api_url + '/auth/jwt/create-in-desktop/', {
       email: user, password: pass, authcode: gcode,
       recaptchaToken: this.token
     },
@@ -174,14 +175,14 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthNoCapV2(user, pass) {
-    return this._http.post('/api/account/sign-in', {
+    return this._http.post(environment.api_url + '/account/sign-in', {
       email: user, password: pass,
       recaptchaToken: this.token
     },
       httpOptions);
   }
   loginAuthUsingGNoCapV2(gcode) {
-    return this._http.post('/api/me/validate-mfa-code', {
+    return this._http.post(environment.api_url + '/me/validate-mfa-code', {
       authcode: gcode
     },
       httpOptions);
@@ -214,7 +215,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
   signinWithMetamask() {
-    return this._http.post('/api/account/metamask-sign-in', {
+    return this._http.post(environment.api_url + '/account/metamask-sign-in', {
       password: this.mmewa,
       recaptchaToken: this.token
 
