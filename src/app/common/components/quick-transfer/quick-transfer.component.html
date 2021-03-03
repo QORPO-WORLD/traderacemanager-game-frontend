@@ -11,8 +11,15 @@
           <div class="inner">
             <img src="/assets/base/images/tankovanie/ioi-token.png" alt="Logo of ioi token" class="curr-logo">
             <div class="text-holder">
-              <p class="value">{{myIoiBalance | number:'1.0-2':'fr' }} IOI</p>
-              <p class="dollars">&#36; {{(myIoiBalance * trxUsdt * 100 | number:'1.0-2':'fr')}}</p>
+              <ng-container *ngIf="myIoiBalance > 0">
+                <p class="value">{{myIoiBalance | number:'1.0-2':'fr' }} IOI</p>
+              <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+              </ng-container>
+
+              <ng-container *ngIf="myIoiBalance === 0">
+                <p class="value">0 IOI</p>
+                <p class="dollars">&#36; 0</p>
+              </ng-container>
             </div>
           </div>
         </div>
@@ -21,8 +28,15 @@
           <div class="inner">
             <img src="/assets/base/images/tankovanie/matic-token.png" alt="Logo of matic token" class="curr-logo matic">
             <div class="text-holder">
-              <p class="value">{{myTrxBalance | number:'1.0-2':'fr' }} Matic</p>
-              <p class="dollars">&#36; {{trxUsdt * myTrxBalance | number:'1.0-2':'fr'}}</p>
+              <ng-container *ngIf="myTrxBalance > 0">
+                <p class="value">{{myTrxBalance | number:'1.0-2':'fr' }} MATIC</p>
+                <p class="dollars">&#36; {{trxUsdt * myTrxBalance | number:'1.0-2':'fr'}}</p>
+              </ng-container>
+
+              <ng-container *ngIf="myTrxBalance === 0">
+                <p class="value">0 MATIC</p>
+                <p class="dollars">&#36; 0</p>
+              </ng-container>
             </div>
           </div>
         </div>
