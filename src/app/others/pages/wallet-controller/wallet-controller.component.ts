@@ -28,7 +28,6 @@ export class WalletControllerComponent implements OnInit {
       .subscribe(params => { 
         this.controlType = params['controlType'].toString();
         if (params['controlType'].length <= 0) { this.controlType = 'deposit'; }
-        console.log(this.controlType);
       });
   }
 
