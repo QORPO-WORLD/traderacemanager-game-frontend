@@ -1,5 +1,4 @@
 import { environment } from './../../../../environments/environment.prod';
-import { ErrorService } from './../../../user/services/error.service';
 import { AuthService as ninja } from './../../../user/services/auth.service';
 import { NotifiqService } from './../../services/notifiq.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -7,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { BlockchainService, DriversService, NitroWalletService, AuthService } from 'src/app/api/services';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ErrorService } from '../../services/error.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
