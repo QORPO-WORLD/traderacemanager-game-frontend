@@ -1,11 +1,11 @@
 export const environment = {
-  stage: 'staging',
+  stage: 'production',
   hmr: false,
-  api_url: 'https://dev-backend.ioi-game.com/ioi',
+  api_url_back: '/api/',
+  api_url: 'https://dev-api.traderacemanager.com',
   production: false,
   encryptPassphrase: 'ioi-game-cbucrebnu778i37943',
-  map_api: '',
-  bugsnag_api: '',
+  bugsnag_api: '5e742571214fc41347ff9270518937de',
   title_suffix: 'IOI-GAME',
   ctaEmail: 'mailto',
   ctaEmailShareTeamProfile: 'mailto:',
@@ -22,4 +22,3 @@ export const environment = {
     max_age: 30
   }
 };
-
