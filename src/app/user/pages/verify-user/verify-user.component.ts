@@ -22,13 +22,13 @@ export class VerifyUserComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put('https://dev-api.traderacemanager.com/me/activate-account', {
+    return this._http.put('/api/me/activate-account', {
       code: this.myCode
     }, httpOptions );
   }
 
   resend() {
-    return this._http.put('https://dev-api.traderacemanager.com/me/resend-account-activation-code', {
+    return this._http.put('/api/me/resend-account-activation-code', {
       code: this.myCode
     },
       httpOptions);

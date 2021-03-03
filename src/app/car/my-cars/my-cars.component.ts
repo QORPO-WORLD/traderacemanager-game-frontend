@@ -18,6 +18,7 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   cars: any;
   boughtCar: any;
   owning: boolean;
+  hasNoCars = false;
   myCarsSorted = {
     car0: [],
     car1: [],
@@ -117,6 +118,9 @@ export class MyCarsComponent implements OnInit, OnDestroy {
       } else {
         const objsx: any = data;
         const objs: any = objsx.cars;
+        if(objs.length < 2){
+          this.hasNoCars = true;
+        }
         for (let x = 0; x < objs.length; x++) {
           if (objs[x].car_model === 0) {
             this.myCarsSorted.car0.push(objs[x]);
@@ -272,7 +276,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
         this.myCarsvals += 15600;
       }
     }
-    console.log(this.myCars);
 
     this.getCarBonus();
   }
@@ -316,6 +319,21 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   getTeam() {
     const data = this.identityService.getStorageIdentity();
     this.myTeam = data.team;
+  }
+
+  copyInputMessage() {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = 'https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions';
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    console.log('kopirujem');
   }
 
 }
