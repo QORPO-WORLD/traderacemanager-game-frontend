@@ -18,6 +18,7 @@ export class OwnerLeaderboardComponent implements OnInit {
   mydrvr: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
+  actualPage = 1;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
@@ -35,9 +36,10 @@ export class OwnerLeaderboardComponent implements OnInit {
     }
   }
 
+
   getMyLeaderboard() {
-    this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardMe({
-      page: 1, lastMonth: false
+    this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardOwnersList({
+      page: this.actualPage, lastMonth: false
     })
       .subscribe(data => {
         this.myLdrbrd = data;

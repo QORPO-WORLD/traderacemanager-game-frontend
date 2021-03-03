@@ -4,29 +4,31 @@
   <div class="table">
     <div class="header row">
         <div >Position</div>
-        <div >Nickname</div>
+        <div >Name</div>
         <div >Asset value</div>
         <div >Daily rewards</div>
+        <div >Ranking</div>
     </div>
-    <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3}">
+    <div class="row" *ngFor="let pl of myLdrbrd; let yy = index" [ngClass]="{'first': yy === 0, 'secound': yy === 1, 'third': yy === 2}">
     
-      <div class="cell" *ngIf="pl.player_position < 4">
+      <div class="cell" *ngIf="yy < 4">
         <div class="crown">
-            <span><p>{{pl.player_position}}.</p></span>
-        </div>
-        <div class="cell" *ngIf="pl.player_position > 3">
-          <div class="placement my-border-grad"><span>{{pl.player_position}}.</span></div>
+            <span><p>{{yy + 1}}.</p></span>
         </div>
       </div>
-      <div class="cell"> <p> {{pl.user_nickname}}</p></div>
-      <div class="cell"><p>{{pl.team_name}}</p></div>
-      <div class="cell"><p> {{pl.trx_turnover  | number:'1.1-1':'fr'}}</p></div>
+        <div class="cell" *ngIf="yy > 3">
+          <div class="placement my-border-grad"><span>{{yy + 1}}.</span></div>
+        </div>
+      <div class="cell"> <p> {{pl.user_id}}</p></div>
+      <div class="cell"><p>{{pl.garage_value}}</p></div>
+      <div class="cell"><p> {{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
+      <div class="cell"><p> {{pl.rank  | number:'1.1-1':'fr'}}</p></div>
     </div>
     
-    <div class="arrow-right">
+    <div class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()">
       >
      </div>
-     <div class="arrow-left">
+     <button class="arrow-left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" [disabled]="actualpage === 1">
        <
      </div>
   </div>
