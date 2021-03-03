@@ -96,7 +96,7 @@ export class MetamaskSignupComponent implements OnInit {
         version: '2.0',
         chainId: 137,
         verifyingContract: '0x8B3870Df408fF4D7C3A26DF852D41034eDa11d81',
-        salt: 'c2jm-cv2m0sa7483__9vr3m*vr33--r3mo'
+        salt: 'randomstringgg'
       },
       primaryType: 'Msg',
       message: {
