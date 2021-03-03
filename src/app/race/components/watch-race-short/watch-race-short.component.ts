@@ -444,13 +444,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         }
 
 
-        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
-
-          setTimeout(() => {
-            this.getRaceData();
-          }, 1300);
-
-        }
 
         if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0 && firstData.race_progress < 100) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
@@ -476,19 +469,30 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             } */
           }
         }
-        console.log('calc active area important part');
+        
         if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
           this.active_area = this.active_area * this.raceData.race_progress / 60;
         } else {
           this.active_area = 0.2;
         }
+
+
+
+        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
+
+          setTimeout(() => {
+            this.getRaceData();
+          }, 1500);
+
+        }
+        console.log('calc active area important part');
       });
   }
 
 
 
   whenStarts() {
-    const newwhen = this.startsIn;
+    const newwhen = this.startsIn + 2;
 
     const fireSemaforx = (newwhen - 5) * 1000;
     const fireAudience = (newwhen - 11) * 1000;
@@ -1088,19 +1092,25 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.raceData.race.length; x++) {
       dummy.push(this.raceData.race[x].s);
     }
-    console.log(dummy);
-    console.log(this.active_area);
+
     const find_min = Math.min(...dummy);
     const find_max = Math.max(...dummy);
-    const diff = find_max - find_min;
+    let diff = find_max - find_min;
+    diff === 0 ? diff = 1 : null;
 
 
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
-      this.raceData.race[x].rp = (this.raceDataildata.race_progress * (1 - this.active_area)) + (relative_score * this.active_area);
-      console.log((this.raceDataildata.race_progress * (1 - this.active_area)) + (relative_score * this.active_area));
-      console.log(this.raceData.race[x].rp);
+      this.raceData.race[x].race_position = (this.raceData.race_progress * (1 - this.active_area)) + (relative_score * this.active_area);
+      console.log(this.raceData.race[x].s);
+      console.log(find_min);
+      console.log(diff);
+      console.log(this.raceData.race_progress);
+      console.log(this.active_area);
+      console.log(this.raceData.race[x].race_position);
     }
+
+    console.log(dummy);
 
 
   }

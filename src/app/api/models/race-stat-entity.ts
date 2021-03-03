@@ -12,4 +12,5 @@ export interface RaceStatEntity {
   p?: number;
   t?: string;
   cid?: number;
+  race_position?: number;
 }
