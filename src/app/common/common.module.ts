@@ -38,7 +38,6 @@ import { NotificationResource } from '../notification/resources/notification.res
 import { CommonModule as ninja } from '@angular/common';
 import { RaceLayoutComponent } from './components/layout/race-layout/race-layout.component';
 import { IonicModule } from '@ionic/angular';
-import { PrizeRulesModalComponent } from './components/prize-rules-modal/prize-rules-modal.component';
 
 import { HintTipsModalComponent } from './components/hint-tips-modal/hint-tips-modal.component';
 import { TeamPlayersModalComponent } from './components/team-players-modal/team-players-modal.component';
@@ -88,7 +87,6 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     QuickDepositComponent,
     QuickTransferComponent,
     QuickWithdrawComponent,
-    PrizeRulesModalComponent,
     HintTipsModalComponent,
     TeamPlayersModalComponent,
     TeamGiftsModalComponent,
@@ -137,12 +135,12 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
   ],
   exports: [ CustomCurrencyPipe, CustomDatePipe, NoCommaPipe, SoNumberPipe, OrdinalPipe, ArraySortPipe,
     TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe,
-     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent, PrizeRulesModalComponent,
+     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent,
     HintTipsModalComponent, TeamPlayersModalComponent, QuickTransferComponent,
     QuickWithdrawComponent, TeamGiftsModalComponent, TranslateModule, ProfileStatsComponent, FuelLayoutComponent, FastFuelCarComponent,
     MySettingsComponent, CreateFastFuelCarComponent,
     TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe, 
-    TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent, PrizeRulesModalComponent,
+    TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent,
     HintTipsModalComponent, TeamPlayersModalComponent, QuickTransferComponent,
     QuickWithdrawComponent, TeamGiftsModalComponent, TranslateModule, ProfileStatsComponent, FuelLayoutComponent, MySettingsComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent, BuyTokensComponent,
