@@ -12,6 +12,13 @@ import { Router } from '@angular/router';
 import { Identity } from 'src/app/user/models/identity';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DriversService, AffiliatesService, LeaderboardService } from 'src/app/api/services';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 @Injectable()
 export class AuthService extends AbstractService {
   expirationDate: Date;
@@ -25,7 +32,8 @@ export class AuthService extends AbstractService {
   driverBalance: WalletBalance;
 
   constructor(private injector: Injector, private resource: AuthResource, private router: Router, protected api: Ninja,
-    private drvrsrvc: DriversService, private affisrvc: AffiliatesService, private ldrbrdSrvc: LeaderboardService) {
+    private drvrsrvc: DriversService, private affisrvc: AffiliatesService, private ldrbrdSrvc: LeaderboardService,
+    private _http: HttpClient) {
     super();
   }
 
@@ -179,7 +187,12 @@ export class AuthService extends AbstractService {
   logout(): Observable<any> {
     this.clearToken();
     this.clearIdentity();
-    this.router.navigate(['/user/sign-in']);
+    this.logOutApi().subscribe({
+      next: data => this.router.navigate(['/user/sign-in']),
+      error: error => this.router.navigate(['/user/sign-in'])
+    });
+    
+
 
 
     return Observable.of({
@@ -316,6 +329,13 @@ export class AuthService extends AbstractService {
       const newdate = new Date(this.expirationDate).getTime() / 1000;
       const finalDate = newdate - secondsNow;
     }
+  }
+
+  
+  logOutApi() {
+    return this._http.get(environment.api_url + '/me/sign-out', 
+      httpOptions);
+
   }
 
 }
