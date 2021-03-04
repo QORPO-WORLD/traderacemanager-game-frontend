@@ -28,7 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
             withCredentials: true
         });
 
-        if (token) {
+
             //this.identityService.tokenExpires(token.access);
 
             //request = this.addTokenToRequest(request, token.access);
@@ -51,10 +51,6 @@ export class JwtInterceptor implements HttpInterceptor {
                         }
                     }));
 
-        } else {
-           // this.route.navigate(['/user/sign-in'])
-            return next.handle(request);
-        }
     }
 
 

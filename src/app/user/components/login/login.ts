@@ -109,9 +109,12 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         return;
       }
       this.loading = true;
-      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-        next: data => this.getAuthService().login(data),
-        error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
+      this.api.accountSignin({
+        email: this.f.username.value, password: this.f.password.value,
+        recaptchaToken: this.token
+      }).subscribe(data => {
+        console.log(data);
+        this.getAuthService().login(data)
       });
     } else {
       if (this.f.username.value === '' || this.f.password.value === '' || this.gkey === '') {

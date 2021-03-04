@@ -133,6 +133,39 @@ class AuthService extends __BaseService {
       __map(_r => _r.body as JwtData)
     );
   }
+  /**
+   * @param data undefined
+   */
+  accountSigninResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/account/sign-in`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * @param data undefined
+   */
+  accountSignin(data: any): __Observable<any> {
+    return this.accountSigninResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
 
   /**
    * @param data undefined

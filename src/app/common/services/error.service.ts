@@ -45,7 +45,7 @@ export class ErrorService extends AbstractService {
             
            
             if (error.status === 401) {
-                this.authService.logout();
+                //this.authService.logout();
             }
 
             //this.authService.logout();

@@ -43,7 +43,7 @@ export class AuthService extends AbstractService {
     //this.setToken(token);
     setTimeout(() => {
       this.me();
-     }, 1000);
+     }, 10);
     
     return token;
 
