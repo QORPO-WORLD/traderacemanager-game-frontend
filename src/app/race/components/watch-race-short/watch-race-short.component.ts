@@ -390,7 +390,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         }
         this.raceData = firstData;
         this.getPositionInRace();
-        
+
         if (data.race_progress > 0) {
           this.raceStarted = true;
         }
@@ -469,7 +469,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             } */
           }
         }
-        
+
         if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
           this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
         } else {
@@ -824,7 +824,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                   const loser = this.raceDataildata.tour_index - 10;
                   this.loserIndex = 10 - loser;
                   this.loserCar = this.raceData.cards[this.loserIndex].cid;
-       
+
                   let notLost = 0;
                   for (let xx = 0; xx < this.loserIndex; xx++) {
                     if (this.raceData.cards[xx].u === this.myUid) {
@@ -1103,11 +1103,22 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
-      this.raceData.race[x].race_position = 100 * ( ((this.raceData.race_progress / 100) * (1 - this.active_area)) + (relative_score * this.active_area));
+      this.raceData.race[x].race_position = 100 * (((this.raceData.race_progress / 100) * (1 - this.active_area)) + (relative_score * this.active_area));
+      console.log('relative_score');
+      console.log(relative_score);
+      console.log('position');
+      console.log(this.raceData.race[x].race_position);
+      console.log('score');
+      console.log(this.raceData.race[x].s);
     }
 
 
-
+    console.log('diff');
+    console.log(diff);
+    console.log('progress');
+    console.log(this.raceData.race_progress);
+    console.log('active area');
+    console.log(this.active_area);
 
   }
 
