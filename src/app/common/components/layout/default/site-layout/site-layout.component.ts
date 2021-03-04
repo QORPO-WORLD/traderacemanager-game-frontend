@@ -1,4 +1,4 @@
-import { environment } from './../../../../../../environments/environment.staging';
+import { environment } from './../../../../../../environments/environment.prod';
 import { NextRaceV2 } from './../../../../../api/models/next-race-v2';
 import { RacesService } from 'src/app/api/services';
 import { NotifiqService } from './../../../../services/notifiq.service';
