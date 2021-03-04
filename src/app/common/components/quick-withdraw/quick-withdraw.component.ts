@@ -125,7 +125,7 @@ export class QuickWithdrawComponent implements OnInit {
 
   
   getConfirm() {
-    return this._http.post(environment.api_url + '/api/blockchain/confirm-withdrawal', {
+    return this._http.post(environment.api_url + '/blockchain/confirm-withdrawal', {
       confirmationHash: this.confirmCode
     },
       httpOptions);

@@ -1,4 +1,4 @@
-import { environment } from './../../../../environments/environment.staging';
+import { environment } from './../../../../environments/environment.prod';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../api/services/auth.service';
 import { Subscription } from 'rxjs';

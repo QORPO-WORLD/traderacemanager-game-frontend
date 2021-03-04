@@ -78,6 +78,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   }
 
   notifyChangedBalance() {
+    this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();
   }
 
@@ -107,11 +108,15 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   buyCarFromGarage(index: string) {
     this.api.carsBuyList(index).
       subscribe(data => {
-        this.notifyChangedBalance();
-       // this.notifiq.success('great', 'bought_car');
-        this.notify.error('You have bought a new car!');
-        this.getMyCars();
-        this.getShowroomCars();
+        setTimeout(() => {
+
+          this.notifyChangedBalance();
+          // this.notifiq.success('great', 'bought_car');
+          this.notify.error('You have bought a new car!');
+          this.getMyCars();
+          this.getShowroomCars();
+
+        }, 1000);
       });
   }
 

@@ -32,6 +32,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myTeamReward: any;
   myRewards: any;
   ioioreward: number;
+  myDriverStats: any;
   constructor(protected api: TeamsService, protected notify: NotifiqService,
     protected driversApi: DriversService, protected toggle: TeamModalTogglerService,
     private balanceService: BalanceService, private rapi: RewardsService, private identityService: AuthService,
@@ -45,6 +46,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.getCurrentMonth();
     this.getMyTeamReward();
     this.getAllRewards();
+    this.getMydriver();
   }
 
   ngOnDestroy() {
@@ -85,16 +87,20 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: true, month_count: this.monthCount, join_now: this.startNow }).
       subscribe(data => {
         this.notifyChangedBalance();
-        
-        this.identityService.updateDriverMe();
-        this.getMyTeam();
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.getMyTeam();
+        }, 1000);
       });
   }
 
   joinTeamFree(teamId: number) {
-    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false }).
+    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: this.monthCount, join_now: this.startNow }).
       subscribe(data => {
-        this.getMyTeam();
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.getMyTeam();
+        }, 1000);
       });
   }
 
@@ -155,7 +161,11 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
         this.ioioreward = Number(data.team_bonus);
       });
   }
-  
 
+
+  getMydriver() {
+    this.myDriverStats = this.identityService.getStorageIdentity();
+    console.log(this.myDriverStats.next_month_team_id);
+  }
 
 }

@@ -1,4 +1,4 @@
-import { environment } from './../../../../environments/environment.staging';
+import { environment } from './../../../../environments/environment.prod';
 import { SocialService } from './../../services/social.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotifiqService } from './../../../common/services/notifiq.service';
