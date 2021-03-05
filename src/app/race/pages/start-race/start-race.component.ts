@@ -129,6 +129,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myCars = [];
   rewardLevel = 0;
   rewardLevelMax = 0;
+  rewardLevelSum = 0;
   myDriverOld: any;
   myTeamReward: number;
   ngOnInit() {
@@ -346,22 +347,21 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getrewardLevel(data: number) {
     if (data < 100) {
-      this.rewardLevel = data;
-      this.rewardLevelMax = 100 / (1 / data);
+      this.rewardLevelMax = 100;
     }
     if (data === 0) {
-      this.rewardLevel = data;
       this.rewardLevelMax = 0;
     }
     if (data > 100 && data < 1000) {
-      this.rewardLevel = data;
-      this.rewardLevelMax = 100 / (1000 / data);
+      this.rewardLevelMax = 1000;
+      this.rewardLevelSum
     }
     if (data > 999) {
-      this.rewardLevel = data;
-      //this.rewardLevelMax = 100 / (1000 / data);
-      this.rewardLevelMax = 100;
+      this.rewardLevelMax = 10000;
+
     }
+    this.rewardLevel = data;
+    this.rewardLevelSum = (this.rewardLevel / this.rewardLevelMax) * 100;
   }
 
 
@@ -559,8 +559,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getMyCars() {
 
-    this.myCarsObserver = this.capi.carsMineList().subscribe(data => {
-      const objs: any = data;
+    this.myCarsObserver = this.capi.carsMineList().subscribe(datax => {
+      const data: any = datax;
+      const objs: any = data.cars;
       const haha = objs.sort((a, b) =>
         b.car_id - a.car_id
       );

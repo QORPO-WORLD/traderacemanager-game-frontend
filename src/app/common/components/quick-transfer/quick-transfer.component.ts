@@ -1,7 +1,7 @@
 import { BalanceService } from './../../services/balance.service';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { NotifiqService } from './../../services/notifiq.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BlockchainService, DriversService, NitroWalletService } from 'src/app/api/services';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,7 +46,7 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
   };
-
+  @Input() nftId: number;
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, protected translate: TranslateService,
     private identityService: AuthService, private balanceService: BalanceService) { }
@@ -71,27 +71,13 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     this.myTrxBalance = this.myBalance.game_wallet_trx;
   }
 
-  transferTrxToken() {
-    this.transferSubscription = this.ntrsrvc.nitroWalletTransferCreate({
-      from_wallet_type: this.walletSelected,
-      to_wallet_type: this.walletToSelected,
-      amount: this.amount.toString()
-    })
-      .subscribe(data => {
-        this.translate.get('nitro_notifiq').subscribe((res) => {
-          this.notify.error('x', res.succ_transfer);
-          this.amount = 0;
-          this.balanceService.balanceHasbeenChanged();
-        });
-        this.getMydriverBalances();
-      });
-  }
+
 
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc.nitroWalletTransferCreate({
-      from_wallet_type: this.walletSelected,
-      to_wallet_type: this.walletToSelected,
-      amount: this.amount.toString()
+      currency: this.nftId ? 'car_' + this.nftId.toString() : 'ioi',
+      amount: this.amount,
+      mode: 'races2nitro'
     }).subscribe(data => {
       this.translate.get('nitro_notifiq').subscribe((res) => {
         this.notify.error('x', res.succ_transfer);
@@ -104,26 +90,8 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
   }
 
   resolveTransfer() {
-    if (this.tokenSelected === 'trx' && this.nitroToGame === true) {
-      this.walletSelected = this.waletsTypes[0].type;
-      this.walletToSelected = this.waletsTypes[1].type;
-      this.transferTrxToken();
-    } else if (this.tokenSelected === 'ioi' && this.nitroToGame === true) {
-      this.walletSelected = this.waletsTypes[2].type;
-      this.walletToSelected = this.waletsTypes[3].type;
+    if (this.amount > 0) {
       this.transferIoiToken();
-    } else if (this.tokenSelected === 'trx' && this.nitroToGame === false) {
-      this.walletSelected = this.waletsTypes[1].type;
-      this.walletToSelected = this.waletsTypes[0].type;
-      this.transferTrxToken();
-    } else if (this.tokenSelected === 'ioi' && this.nitroToGame === false) {
-      this.walletSelected = this.waletsTypes[3].type;
-      this.walletToSelected = this.waletsTypes[2].type;
-      this.transferIoiToken();
-    } else {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error(res.valid_error, res.valid_text);
-      });
     }
   }
 
@@ -142,18 +110,6 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
 
   }
 
-  patchWallet() {
-    this.nitroObserver = this.ntrsrvc.nitroWalletPartialUpdate({
-      my_crypto_address: this.cryptoMtfrckr
-    }).subscribe(data => {
-      this.identityService.meUpdate();
-
-      setTimeout(() => {
-        this.getMydriver();
-        this.editingWallet = false;
-      }, 1500);
-
-    });
-  }
+ 
 
 }

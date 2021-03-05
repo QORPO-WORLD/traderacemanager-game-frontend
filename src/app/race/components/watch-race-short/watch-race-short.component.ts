@@ -470,11 +470,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
         }
 
-        if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
-          this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
-        } else {
-          this.active_area = 0.2;
-        }
+
 
 
 
@@ -492,6 +488,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
   whenStarts() {
+    this.startsIn = this.startsIn + 1;
     const newwhen = this.startsIn;
 
     const fireSemaforx = (newwhen - 5) * 1000;
@@ -1089,6 +1086,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getPositionInRace() {
+    if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
+      this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
+    } else {
+      this.active_area = 0.2;
+    }
+
+
     const dummy = [];
 
     for (let x = 0; x < this.raceData.race.length; x++) {
@@ -1104,12 +1108,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
       this.raceData.race[x].race_position = 100 * (((this.raceData.race_progress / 100) * (1 - this.active_area)) + (relative_score * this.active_area));
-      console.log('relative_score');
-      console.log(relative_score);
-      console.log('position');
-      console.log(this.raceData.race[x].race_position);
-      console.log('score');
-      console.log(this.raceData.race[x].s);
+      console.log(this.active_area);
+
     }
 
 
