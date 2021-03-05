@@ -7,16 +7,15 @@
         <div >Name</div>
         <div >Asset value</div>
         <div >Daily rewards</div>
-        <div >Ranking</div>
     </div>
-    <div class="row" *ngFor="let pl of myLdrbrd; let yy = index" [ngClass]="{'first': yy === 0, 'secound': yy === 1, 'third': yy === 2 || yy==3}">
+    <div class="row" *ngFor="let pl of myLdrbrd; let yy = index" [ngClass]="{'first': yy === 0, 'secound': yy === 1, 'third': yy === 2}">
     
-      <div class="cell" *ngIf="yy < 4">
+      <div class="cell" *ngIf="yy < 3">
         <div class="crown">
             <span><p>{{yy + 1}}.</p></span>
         </div>
       </div>
-        <div class="cell" *ngIf="yy > 3">
+        <div class="cell" *ngIf="yy >= 3">
           <div class="placement my-border-grad"><span>{{yy + 1}}.</span></div>
         </div>
       <div class="cell"> <p> {{pl.user_id}}</p></div>
