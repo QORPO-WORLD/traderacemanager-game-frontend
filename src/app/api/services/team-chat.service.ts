@@ -14,9 +14,9 @@ import { TeamChatMembers } from '../models/team-chat-members';
   providedIn: 'root',
 })
 class TeamChatService extends __BaseService {
-  static readonly teamChatListPath = '/team-chat/';
-  static readonly teamChatCreatePath = '/team-chat/';
-  static readonly teamChatMembersListPath = '/team-chat/members';
+  static readonly teamChatListPath = '/chat/team-chat';
+  static readonly teamChatCreatePath = '/chat/team-chat';
+  static readonly teamChatMembersListPath = '/chat/team-chat/members';
 
   constructor(
     config: __Configuration,
@@ -33,10 +33,10 @@ class TeamChatService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (limit != null) __params = __params.set('limit', limit.toString());
+    //if (limit != null) __params = __params.set('limit', limit.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/team-chat/`,
+      this.rootUrl + `/chat/team-chat`,
       __body,
       {
         headers: __headers,
@@ -71,7 +71,7 @@ class TeamChatService extends __BaseService {
     __body = data;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/team-chat/`,
+      this.rootUrl + `/chat/team-chat`,
       __body,
       {
         headers: __headers,
@@ -100,7 +100,7 @@ class TeamChatService extends __BaseService {
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/team-chat/members`,
+      this.rootUrl + `/chat/team-chat/members`,
       __body,
       {
         headers: __headers,

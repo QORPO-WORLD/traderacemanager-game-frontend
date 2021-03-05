@@ -108,14 +108,12 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       if (this.f.username.value === '' || this.f.password.value === '') {
         return;
       }
-      this.loading = true;
-      this.api.accountSignin({
-        email: this.f.username.value, password: this.f.password.value,
-        recaptchaToken: this.token
-      }).subscribe(data => {
-        console.log(data);
-        this.getAuthService().login(data)
+      this.loading = true;      
+      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
+        next: data => this.getAuthService().login(true),
+        error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
       });
+   
     } else {
       if (this.f.username.value === '' || this.f.password.value === '' || this.gkey === '') {
 
@@ -144,37 +142,6 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   public googleOauth() {
     this.authsrvc.oauthSocial(SocialService.LOGIN_METHOD_GOOGLE);
-  }
-
-  loginAuth(user, pass) {
-    return this._http.post(environment.api_url + '/auth/jwt/create/', {
-      email: user, password: pass,
-      recaptchaToken: this.token
-    },
-      httpOptions);
-
-  }
-
-  loginAuthUsingG(user, pass, gcode) {
-    return this._http.post(environment.api_url + '/auth/jwt/create/', {
-      email: user, password: pass, authcode: gcode,
-      recaptchaToken: this.token
-    },
-      httpOptions);
-  }
-  loginAuthNoCap(user, pass) {
-    return this._http.post(environment.api_url + '/auth/jwt/create-in-desktop/', {
-      email: user, password: pass,
-      recaptchaToken: this.token
-    },
-      httpOptions);
-  }
-  loginAuthUsingGNoCap(user, pass, gcode) {
-    return this._http.post(environment.api_url + '/auth/jwt/create-in-desktop/', {
-      email: user, password: pass, authcode: gcode,
-      recaptchaToken: this.token
-    },
-      httpOptions);
   }
 
   loginAuthNoCapV2(user, pass) {

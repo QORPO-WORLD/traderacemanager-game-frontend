@@ -3,6 +3,7 @@ import { NotifyService } from './../../../common/services/notify.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { environment } from 'src/environments/environment.prod';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   withCredentials: true
@@ -22,13 +23,13 @@ export class VerifyUserComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put('/me/activate-account', {
+    return this._http.put(environment.api_url + '/me/activate-account', {
       code: this.myCode
     }, httpOptions );
   }
 
   resend() {
-    return this._http.put('/me/resend-account-activation-code', {
+    return this._http.put(environment.api_url + '/me/resend-account-activation-code', {
       code: this.myCode
     },
       httpOptions);
