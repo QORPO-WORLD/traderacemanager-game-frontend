@@ -514,40 +514,33 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   calcCarsValue() {
     for (let x = 0; x < this.myCars.length; x++) {
-      if (this.myCars[x].car_id === 1) {
-
-        this.myCarsvals += 5;
+      if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
+        this.myCarsvals += 600;
       }
-      if (this.myCars[x].car_id === 2) {
-        this.myCarsvals += 30;
-      }
-      if (this.myCars[x].car_id === 3) {
-        this.myCarsvals += 50;
-      }
-      if (this.myCars[x].car_id === 4) {
-        this.myCarsvals += 100;
-      }
-      if (this.myCars[x].car_id === 5) {
-        this.myCarsvals += 500;
-      }
-      if (this.myCars[x].car_id === 6) {
+      if (this.myCars[x].car_id >= 7 && this.myCars[x].car_id < 13) {
         this.myCarsvals += 1000;
       }
-      if (this.myCars[x].car_id === 7) {
-        this.myCarsvals += 2000;
+      if (this.myCars[x].car_id >= 13 && this.myCars[x].car_id < 19) {
+        this.myCarsvals += 1600;
       }
-      if (this.myCars[x].car_id === 8) {
-        this.myCarsvals += 2000;
+      if (this.myCars[x].car_id >= 19 && this.myCars[x].car_id < 25) {
+        this.myCarsvals += 2600;
       }
-      if (this.myCars[x].car_id === 9) {
-        this.myCarsvals += 2000;
+      if (this.myCars[x].car_id === 25) {
+        this.myCarsvals += 3600;
       }
-      if (this.myCars[x].car_id > 9) {
-        this.myCarsvals += 2200;
+      if (this.myCars[x].car_id === 26) {
+        this.myCarsvals += 6000;
       }
-
-      this.getCarBonus();
+      if (this.myCars[x].car_id === 27) {
+        this.myCarsvals += 9600;
+      }
+      if (this.myCars[x].car_id === 28) {
+        this.myCarsvals += 15600;
+      }
     }
+
+    this.getCarBonus();
   }
 
   getCarBonus() {
