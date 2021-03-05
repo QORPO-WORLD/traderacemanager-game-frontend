@@ -54,6 +54,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   isLevel: number;
   showVerified = false;
   activationSent = false;
+  Affilate: any;
   affMe: AffiliateDetails;
   constructor(private identityService: AuthService, protected api: DriversService,
     protected ldrbrdSrvc: LeaderboardService, protected teamsrvc: TeamsService,
@@ -126,23 +127,6 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     this.getMyOldDriver();
   }
 
-  getMyLevel() {
-    if (this.myDriverBalances.game_wallet_ioi < 100) {
-      this.isLevel = 1;
-    }
-    if (this.myDriverBalances.game_wallet_ioi > 100 && this.myDriverBalances.game_wallet_ioi < 1000) {
-      this.isLevel = 2;
-    }
-    if (this.myDriverBalances.game_wallet_ioi > 999 && this.myDriverBalances.game_wallet_ioi < 10000) {
-      this.isLevel = 3;
-    }
-    if (this.myDriverBalances.game_wallet_ioi > 9999 && this.myDriverBalances.game_wallet_ioi < 100000) {
-      this.isLevel = 4;
-    }
-    if (this.myDriverBalances.game_wallet_ioi > 99999) {
-      this.isLevel = 4;
-    }
-  }
 
   getMyOldDriver() {
     this.myDriverOld = this.identityService.getDriverMe();
@@ -150,6 +134,9 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
       //this.identityService.logout()();
       return;
     }
+  }
+  getMyLevel() {
+    this.Affilate = this.identityService.getStorageAff();
   }
 
   getMydriverBalances() {

@@ -83,7 +83,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   managerInterval: any;
   depositInterval: any;
   depos = false;
-  isLevel: number;
+  Affilate: any;
   deposTime: any;
   metaEth = { "ioi": 0, "eth": 0, "matic": 0 };
   constructor(public router: Router,
@@ -232,21 +232,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   getMyLevel() {
-    if (this.myDriver.game_wallet_ioi < 100) {
-      this.isLevel = 1;
-    }
-    if (this.myDriver.game_wallet_ioi > 100 && this.myDriver.game_wallet_ioi < 1000) {
-      this.isLevel = 2;
-    }
-    if (this.myDriver.game_wallet_ioi > 999 && this.myDriver.game_wallet_ioi < 10000) {
-      this.isLevel = 3;
-    }
-    if (this.myDriver.game_wallet_ioi > 9999 && this.myDriver.game_wallet_ioi < 100000) {
-      this.isLevel = 4;
-    }
-    if (this.myDriver.game_wallet_ioi > 99999) {
-      this.isLevel = 4;
-    }
+    this.Affilate = this.identityService.getStorageAff();
   }
   getMydriver() {
     this.myDriverStats = this.identityService.getStorageIdentity();
