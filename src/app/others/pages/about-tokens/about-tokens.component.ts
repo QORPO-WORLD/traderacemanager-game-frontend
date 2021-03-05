@@ -17,12 +17,14 @@ export class AboutTokensComponent implements OnInit {
   rewardLevel = 0;
   rewardLevelMax = 0;
   isLevel = 1;
+  Affilate: any;
   constructor(private rwrdsrvc: RewardsService, private identityService: AuthService) { }
 
   ngOnInit() {
     this.getRewards();
     const balance = JSON.parse(localStorage.getItem('user-balance'));
     this.getrewardLevel(balance.game_wallet_ioi);
+    this.getMyLevel();
 
   }
 
@@ -32,6 +34,9 @@ export class AboutTokensComponent implements OnInit {
         const datax: any = data;
         this.ioioreward = Number(datax.ioi_bonus);
       });
+  }
+  getMyLevel() {
+    this.Affilate = this.identityService.getStorageAff();
   }
 
   getrewardLevel(data: number) {

@@ -1,8 +1,8 @@
 <div class="popup-holder" *ngIf="mainClosed === false">
   <div class="content-holder">
     <div class="switch-holder">
-      <p (click)="raceFilter = 'next';getAllNextRaces();" [ngClass]="{'active': raceFilter === 'next'}">Next</p>
-      <p (click)="raceFilter = 'upcoming';getMine();" [ngClass]="{'active': raceFilter === 'upcoming'}">My</p>
+      <p (click)="raceFilter = 'next';getAllNextRaces();" [ngClass]="{'active': raceFilter === 'next'}">{{'start-race.next' | translate}}</p>
+      <p (click)="raceFilter = 'upcoming';getMine();" [ngClass]="{'active': raceFilter === 'upcoming'}">{{'start-race.my' | translate}}</p>
       <p (click)="raceFilter = 'live';getLiveRaces();getAllLiveRaces();" [ngClass]="{'active': raceFilter === 'live'}" >{{'start-race.live_races' | translate}}</p>
       <p [ngClass]="{'active': raceFilter === 'favourite'}" (click)="raceFilter = 'favourite';getmyFavRaces();">{{'start-race.favourite_races' | translate}}</p>
     </div>
@@ -12,11 +12,11 @@
         <div class="box-item my-border-grad" *ngIf="mainr.race_type !== 'cops1' && mainr.race_type !== 'cops2' && mainr.race_type !== 'cops3'">
           <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
           <div class="inner-holder">
-            <p class="race-name" *ngIf="mainr.tournament_id === null">Fast race</p>
-            <p class="race-name" *ngIf="mainr.tournament_id !== null">Tournament</p>
+            <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
             <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
-            <p class="watch">Fuel now &#x2192;</p>
-            <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> remaining</p>
+            <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
+            <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> {{'race.remaining' | translate}}</p>
           </div>
     
           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]"></div>
@@ -31,10 +31,10 @@
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png"></span>
         <div class="inner-holder">
-          <p class="race-name" *ngIf="mainr.tournament_id === null">Fast race</p>
-            <p class="race-name" *ngIf="mainr.tournament_id !== null">Tournament</p>
+          <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
           <p class="race-name">{{ 'race.type.' + mainr | translate}}</p>
-          <p class="watch">Fuel now &#x2192;</p>
+          <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
   
         <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr]"></div>
@@ -48,11 +48,11 @@
         <div class="box-item my-border-grad" *ngIf="mainr.race_type !== 'cops1' && mainr.race_type !== 'cops2' && mainr.race_type !== 'cops3'">
           <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
           <div class="inner-holder">
-            <p class="race-name" *ngIf="mainr.tournament_id === null">Fast race</p>
-            <p class="race-name" *ngIf="mainr.tournament_id !== null">Tournament</p>
+            <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
             <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
-            <p class="watch">Watch now &#x2192;</p>
-            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> remaining</p>
+            <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
+            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
           </div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
@@ -73,13 +73,13 @@
           <p class="race-name" *ngIf="mainr.race_identifier !== 'classic_tournament_0' && 
             mainr.race_identifier !== 'classic_tournament_1000' && mainr.race_identifier !== 'classic_tournament_10' && 
             mainr.race_identifier !== 'classic_tournament_100' && mainr.race_identifier !== 'tournament_for_ticket_0' && 
-            mainr.race_identifier !== 'adventure_tournament'">Fast race</p>
+            mainr.race_identifier !== 'adventure_tournament'">{{'start-race.fast_race' | translate}}</p>
           <p class="race-name" *ngIf="mainr.race_identifier === 'classic_tournament_0' || 
             mainr.race_identifier === 'classic_tournament_1000' || mainr.race_identifier === 'classic_tournament_10' || 
             mainr.race_identifier === 'classic_tournament_100' || mainr.race_identifier === 'tournament_for_ticket_0' || 
-            mainr.race_identifier === 'adventure_tournament'">Tournament</p>
+            mainr.race_identifier === 'adventure_tournament'">{{'race.type.classic_tournament' | translate}}</p>
           <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
-          <p class="watch">Watch now &#x2192;</p>
+          <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
           <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
         </div>
   
@@ -120,5 +120,5 @@
       </div>
     </div> -->
   </div>
-  <button (click)="watchMultiraces()" class="cta-main" *ngIf="selectedSum > 1">Watch multiple</button>
+  <button (click)="watchMultiraces()" class="cta-main" *ngIf="selectedSum > 1">{{'race.watch_multiple' | translate}}</button>
 </div>

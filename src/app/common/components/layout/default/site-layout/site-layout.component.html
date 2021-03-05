@@ -19,7 +19,7 @@
           <p>{{'main_top_banner.heading14' | translate}}</p>
         </div>
         <div class="menu-item item5" [routerLink]="['/other/affilate']" [routerLinkActive]="'active'">
-          <p>Affiliate</p>
+          <p>{{"shared.affiliate"}}</p>
         </div>
         <div class="menu-border"></div>
       </div>
@@ -42,17 +42,17 @@
             <img class="user-ico-red" src="/assets/base/images/menu/user-ico-red.svg" alt="">
             <img class="user-ico-blue" src="/assets/base/images/menu/user-ico-blue.svg" alt="">
             <p class="num">{{sumUsers | number:'1.0-2':'fr'}}</p>
-            <p class="desc my-text-color">online</p>
+            <p class="desc my-text-color">{{"shared.online" | translate}}</p>
           </div>
           <!-- <div class="lang-switcher">
             <app-lang-switcher></app-lang-switcher>
           </div> -->
           <div class="profile">
             <div class="profile-img" [routerLink]="['/other/affilate']">
-              <img src="assets/base/images/avatars/avatar1-small.png" alt="" *ngIf="isLevel === 1">
-              <img src="assets/base/images/avatars/avatar2-small.png" alt="" *ngIf="isLevel === 2">
-              <img src="assets/base/images/avatars/avatar3-small.png" alt="" *ngIf="isLevel === 3">
-              <img src="assets/base/images/avatars/avatar4-small.png" alt="" *ngIf="isLevel === 4">
+              <img src="assets/base/images/avatars/avatar1-small.png" alt="" *ngIf="Affilate.affiliate_level === 1">
+              <img src="assets/base/images/avatars/avatar2-small.png" alt="" *ngIf="Affilate.affiliate_level === 2">
+              <img src="assets/base/images/avatars/avatar3-small.png" alt="" *ngIf="Affilate.affiliate_level === 3">
+              <img src="assets/base/images/avatars/avatar4-small.png" alt="" *ngIf="Affilate.affiliate_level === 4">
             </div>
             <div class="profile-stats">
               <p class="name">{{myDriverStats?.nickname}}</p>
@@ -75,7 +75,7 @@
                   <p>{{ myDriverStats.my_crypto_address | slice:0:10}}...</p>
                 </div>
                 <div class="inner clicked" [ngClass]="myAddressClass">
-                  <p>Copied</p>
+                  <p>{{"shared.copied" | translate}}</p>
                 </div>
               </div>
             </div>
@@ -141,17 +141,17 @@
       <div class="right-part-holder">
         <div class="menu-switchers">
           <div class="switch-item" (click)="menuType = 'races'">
-            <p>Races</p>
+            <p>{{'site-layout.races' | translate}}</p>
           </div>
           <div class="switch-item" (click)="menuType = 'me'">
             <ng-container *ngIf="myDriverStats?.is_verified === false">
               <img src="/assets/base/images/icons/verify-warning-red.png" alt="Verify account warning" class="my-warning red">
               <img src="/assets/base/images/icons/verify-warning-blue.png" alt="Verify account warning" class="my-warning blue">
             </ng-container>
-            <p>Me</p>
+            <p>{{'site-layout.me' | translate}}</p>
           </div>
           <div class="switch-item" (click)="menuType = 'chat'">
-            <p>Chat</p>
+            <p>{{'site-layout.chat' | translate}}</p>
           </div>
           <div class="item-back my-low-gradient" [ngClass]="menuType"></div>
         </div>
@@ -220,86 +220,86 @@
     <div class="modal-holder">
   
       <div class="modal-heading" (click)="verifyModal = false">
-        <h2>Pick your layout</h2>
-        <p class="desc">Pick a preferred platform layout. You can change the layout in the Settings anytime.</p>
+        <h2>{{'site-layout.pick_layout1' | translate}}</h2>
+        <p class="desc">{{'site-layout.pick_layout2' | translate}}</p>
       </div>
   
       <div class="panel-holder">
         <div class="img-holder">
             <img src="/assets/base/images/welcome/owner-img.png" alt="">
         </div>
-        <h1 class="main-heading">Become an owner</h1>
+        <h1 class="main-heading">{{"owners_managers.owner-heading" | translate}}</h1>
         <div class="list-item">
             <div class="icon-holder">
                 <img src="/assets/base/images/welcome/nft-rewards.svg" alt="">
             </div>
-            <p>Limited NFT cars with daily rewards</p>
+            <p>{{"site-layout.owner1" | translate}}</p>
         </div>
         <div class="list-item">
             <div class="icon-holder">
                 <img src="/assets/base/images/welcome/car.svg" alt="">
             </div>
-            <p>Unlock Rare car to get 100% extra daily stake rewards</p>
+            <p>{{"site-layout.owner2" | translate}}</p>
         </div>
         <div class="list-item">
             <div class="icon-holder">
                 <img src="/assets/base/images/welcome/stopwatch.svg" alt="">
             </div>
-            <p>Limited Track events with rewards after every race platform fee</p>
+            <p>{{"site-layout.owner3" | translate}}</p>
         </div>
         <div class="list-item">
             <div class="icon-holder">
                 <img src="/assets/base/images/welcome/crown.svg" alt="">
             </div>
-            <p>Own a racing team and get 20% from each Premium member</p>
+            <p>{{"site-layout.owner4" | translate}}</p>
         </div>
         <div class="list-item">
             <div class="icon-holder">
                 <img src="/assets/base/images/welcome/imperium.svg" alt="">
             </div>
-            <p>Build your own imperium</p>
+            <p>{{"site-layout.owner5" | translate}}</p>
         </div>
   
-        <a class="panel-button" (click)="setManager(true);closeTutorial();verifyModal = false">Become owner</a>
+        <a class="panel-button" (click)="setManager(true);closeTutorial();verifyModal = false">{{"owners_managers.owner-heading" | translate}}</a>
       </div>
   
       <div class="panel-holder racer">
           <div class="img-holder">
               <img src="/assets/base/images/welcome/racer-img.png" alt="">
           </div>
-          <h1 class="main-heading">Become a racer</h1>
+          <h1 class="main-heading">{{"site-layout.become_racer" | translate}}</h1>
           <div class="list-item">
               <div class="icon-holder">
                   <img src="/assets/base/images/welcome/user.svg" alt="">
               </div>
-              <p>Start as a free member and upgrade to premium</p>
+              <p>{{"site-layout.racer1" | translate}}</p>
           </div>
           <div class="list-item">
               <div class="icon-holder">
                   <img src="/assets/base/images/welcome/support.svg" alt="">
               </div>
-              <p>Choose the team you want to race for</p>
+              <p>{{"site-layout.racer2" | translate}}</p>
           </div>
           <div class="list-item">
               <div class="icon-holder">
                   <img src="/assets/base/images/welcome/trading.svg" alt="">
               </div>
-              <p>Become a Team manager, invite racers to your team and get 10% commission for each</p>
+              <p>{{"site-layout.racer3" | translate}}</p>
           </div>
           <div class="list-item">
               <div class="icon-holder">
                   <img src="/assets/base/images/welcome/to-do-list.svg" alt="">
               </div>
-              <p>Play daily tasks to collect IOI Tokens</p>
+              <p>{{"site-layout.racer4" | translate}}</p>
           </div>
           <div class="list-item">
               <div class="icon-holder">
                   <img src="/assets/base/images/welcome/tokens.svg" alt="">
               </div>
-              <p>Hold IOI Tokens to unlock special IOI events and reward shares</p>
+              <p>{{"site-layout.racer5" | translate}}</p>
           </div>
   
-          <a class="panel-button" (click)="setManager(false);closeTutorial();verifyModal = false">Become racer</a>
+          <a class="panel-button" (click)="setManager(false);closeTutorial();verifyModal = false">{{"site-layout.become_racer" | translate}}</a>
       </div>
     </div>
   </div> 

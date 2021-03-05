@@ -30,11 +30,14 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   mydrvr: any;
   teamreward: any;
   myAffilate: any;
+  myTeamData: any;
+  myTeamName: any;
   myuser: any;
-  constructor(private api: LeaderboardService, private drvrsrvc: DriversService, private affisrvc: AffiliatesService,
+  constructor(private api: LeaderboardService,private drvrsrvc: DriversService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
   ngOnInit() {
+    this.getMyTeam();
     this.getMyTem();
     this.getMyLdrbrd();
     this.getMyDriver();
@@ -66,11 +69,18 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyTem() {
     this.teamSubscription = this.api.leaderboardTeamInternalList().subscribe(
       data => {
-        this.myTeam = data;
-        this.redirectMe();
+        this.myTeam = data;    
         this.myuser = data.me.user_id;
       }
     );
+  }
+
+ 
+  getMyTeam() {
+    const data = this.identityService.getDriverMe();
+    this.myTeamName = data.team;
+    this.myTeamData = data;
+    this.redirectMe();
   }
 
   getMyLdrbrd() {

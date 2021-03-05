@@ -46,6 +46,7 @@ export class MyChatComponent implements OnInit {
   ioistarta: any;
   ioistartb: any;
   ioistartc: any;
+  Affilate: any;
   signedIntoRace = false;
   chatLength = 0;
   constructor(private api: TeamChatService, private drvrscrv: DriversService,
@@ -56,6 +57,7 @@ export class MyChatComponent implements OnInit {
   ngOnInit() {
     this.getMyTem();
     this.getDriver();
+    this.getMyLevel();
     
     this.tchatObserver = this.api.teamChatList(200).subscribe(
       data => {
@@ -82,6 +84,10 @@ export class MyChatComponent implements OnInit {
         this.recognizeChatSum();
       }
     );
+    console.log(this.chatList[0]);
+  }
+  getMyLevel() {
+    this.Affilate = this.identityService.getStorageAff();
   }
 
 
@@ -156,6 +162,7 @@ export class MyChatComponent implements OnInit {
         this.teamreward = data.team_bonus;
       });
   }
+  
 
   getAllRaces() {
     return;
