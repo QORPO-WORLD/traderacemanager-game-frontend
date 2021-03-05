@@ -38,7 +38,7 @@ export class VerifyUserComponent implements OnInit {
   tryActivation() {
     this.activate().subscribe({
       next: data => this.resolveActivation(data),
-      error: error => this.notify.error(error.description)
+      error: error => this.notify.error(error.message)
     });
   }
 
@@ -50,7 +50,7 @@ export class VerifyUserComponent implements OnInit {
   resendActivation() {
     this.resend().subscribe({
       next: data => console.log(data),
-      error: error => this.notify.error(error.description)
+      error: error => this.notify.error(error.message)
     });
     this.myCode = '';
   }
