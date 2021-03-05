@@ -196,11 +196,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.startRace();
         } else {
           if (this.startsInChecked === false) {
-            this.startsIn = data.starts_in;
+            this.startsIn = data.starts_in + 1;
             this.whenStarts();
           }
         }
-        console.log('calc active area');
+
 
       });
     }, 20);
@@ -353,7 +353,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.raceSound.src = './assets/base/sounds/Race.mp3';
           this.raceSound.volume = 0.5;
           if (this.soundEnabled === true) {
-            console.log('play race');
             this.raceSound.play();
           }
         }, 1500);
@@ -430,7 +429,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
           setTimeout(() => {
             if (this.gotWinner === false) {
-              console.log('get race winner');
               this.getRaceWinner();
             }
           }, 1500);
@@ -481,14 +479,14 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }, 1500);
 
         }
-        console.log('calc active area important part');
+
       });
   }
 
 
 
   whenStarts() {
-    this.startsIn = this.startsIn + 1;
+    //this.startsIn = this.startsIn + 1;
     const newwhen = this.startsIn;
 
     const fireSemaforx = (newwhen - 5) * 1000;
@@ -1106,15 +1104,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       console.log(this.active_area);
 
     }
-
-
-    console.log('diff');
-    console.log(diff);
-    console.log('progress');
-    console.log(this.raceData.race_progress);
-    console.log('active area');
-    console.log(this.active_area);
-
   }
 
 

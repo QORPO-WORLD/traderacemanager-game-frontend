@@ -234,26 +234,26 @@
     </div>
 
 
-    <div class="car_rc" id="photoMe" *ngIf="unitySelected === false;" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false}">
+    <div class="car_rc" id="photoMe" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] }">
 
       <div class="still-road" 
-      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
+      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="still-helperix" 
-      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
+      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="moving-road" 
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
-      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
+      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
 
       <div class="moving-helperix" 
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
-      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
+      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
 
 
-      <div class="cr_cars_box" *ngIf="raceStarted === false && unitySelected === false">
+      <div class="cr_cars_box" *ngIf="raceStarted === false ">
 
         <div class="car_row" [ngStyle]="{'left': raceDataildata?.race[0].race_position + '%'}" [ngClass]="{'my-car-high': myUid === raceDataildata?.race[0]?.u}"
         *ngIf="raceStarted === false && raceDataildata?.race_progress === 0 && raceDataildata?.race[0]">
@@ -310,7 +310,7 @@
 
         
       </div>
-      <ng-container *ngIf="raceStarted === false && unitySelected === false">
+      <ng-container *ngIf="raceStarted === false ">
         <div class="start_line" [ngClass]="'type' + backType">
         </div>
         <div class="final_line" [ngClass]="'type' + backType"> 
@@ -318,7 +318,7 @@
       </ng-container>
       
 
-      <div class="cr_cars_box started" *ngIf="raceStarted === true  && unitySelected === false" [ngClass]="{'with-lines': motiveCurrent === 3}">
+      <div class="cr_cars_box started" *ngIf="raceStarted === true  " [ngClass]="{'with-lines': motiveCurrent === 3}">
         <div class="car_row" [ngStyle]="{'left': raceData?.race[0].race_position + '%'}" *ngIf="raceData?.race[0]" [ngClass]="{'my-car-high': raceData?.me?.u === raceData?.race[0].u}">
 
           <div class="car-user-stats">
@@ -398,18 +398,18 @@
         </div>
       </div>
       
-      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  && unitySelected === false">
+      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  ">
       </div>
 
     </div>
 
-    <div class="" *ngIf="unitySelected === true" style="    width: 100%;">
+    <!--<div class="" *ngIf="unitySelected === true" style="    width: 100%;">
       <app-unityrace style="width: 100%;
         height: 100%;
         position: relative;
         background: black;
         z-index: 1;" [rDetail]="raceDataildata" [rStats]="raceData"></app-unityrace>
-    </div>
+    </div>-->
 
     <div class="tour-positions-modal" *ngIf="showTourPos === true && raceDataildata?.tournament_id !== null && raceDataildata?.tour_index > 1">
       <div class="top-line"></div>
@@ -423,8 +423,8 @@
 
   </div>
 </div>
-<div id="shutter" [ngClass]="shooting === true && unitySelected === false ? 'on' : 'off'">&nbsp;</div>
-<div class="semafor-wrap visible" *ngIf="unitySelected === false && semaforsVisible === true">
+<div id="shutter" [ngClass]="shooting === true  ? 'on' : 'off'">&nbsp;</div>
+<div class="semafor-wrap visible" *ngIf="semaforsVisible === true">
 
   <div class="semafor-inner">
     <span class="semaf-timer" *ngIf="semaforVal > -1">{{semaforVal}}S</span>
