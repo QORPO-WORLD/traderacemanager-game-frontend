@@ -78,9 +78,9 @@
           <p class="left">1 000</p>
           <p class="right">10 000</p>
         </div>
-        <p class="bottom-desc" *ngIf="rewardLevel < 100">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target1' | translate}}</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target2' | translate}}</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 999">{{rewardLevelMax | number:'1.2-2':'fr'}}% {{'start-race.ioi_target3' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel < 100">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target1' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target2' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 999">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target3' | translate}}</p>
       </div>
     </div>
 
@@ -305,7 +305,7 @@
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value">{{ myLdrbrd?.team_position }}/3</p>
+              <p class="value">{{ myLdrbrd?.team_position ?  myLdrbrd?.team_position : '-'}}/3</p>
               <p class="desc">{{'profile.t_position' | translate}}</p>
               <div class="line"></div>
             </div>
