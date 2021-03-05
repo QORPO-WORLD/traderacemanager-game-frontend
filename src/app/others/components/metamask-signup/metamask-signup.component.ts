@@ -197,11 +197,13 @@ export class MetamaskSignupComponent implements OnInit {
       const magic = JSON.stringify(data.result);
       localStorage.setItem('mmea', magic);
       //this.notify.error(magic + ' address associated, finish sign up process now.');
-      this.overlay = false;
+      setTimeout(() => { this.overlay = false; }, 1300);
     }
   }
 
-
+  refresh() {
+    window.location.reload();
+  }
 
 
 }

@@ -22,13 +22,14 @@ export class GauthrComponent implements OnInit, OnDestroy {
   qrkey: any;
   testinp: string;
   pass: string;
+  imgurl: any;
   constructor(private mfsrvc: MfaService, private drvrsrvc: DriversService,
     private route: Router, private notify: NotifiqService, protected translate: TranslateService,
     private identityService: AuthService) { }
 
   ngOnInit() {
     this.getKey();
-    this.getQrKey();
+    //this.getQrKey();
     this.firstLoginCancel();
   }
 
@@ -52,6 +53,7 @@ export class GauthrComponent implements OnInit, OnDestroy {
     this.xObserver = this.mfsrvc.mfaSecretCreate().subscribe(data => {
       const oldata: any = data;
       this.myKey = oldata.secret;
+      this.imgurl = 'https://dev-api.traderacemanager.com' + oldata.qr_url.toString();
     });
   }
 
