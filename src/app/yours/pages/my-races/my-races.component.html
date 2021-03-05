@@ -52,7 +52,55 @@
 </div>
 
 <div class="winning-modal" *ngIf="showFinalModal === true">
-    <div class="modal-bg">
+
+    <div class="winner-back" (click)="showFinalModal = false"></div>
+    
+    <div class="winner-body">
+        <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showFinalModal = false">
+
+        <div class="table-holder">
+            <div class="my-row header">
+                <div>
+                    <p>{{'leaderboard.position' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'history.nick' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'profile.team' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'shared.prize' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'shared.points' | translate}}</p>
+                </div>
+            </div>
+            <div class="my-row" *ngFor="let item of winnersList;let i = index;">
+                <div class="my-position">
+                    <div class="pos-box my-border-grad">
+                        <div class="inner">
+                            <p>{{i + 1}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>{{ item.nickname }}</p>
+                </div>
+                <div>
+                    <p>{{ item.team ? item.team : 'NO'}}</p>
+                </div>
+                <div>
+                    <p>{{ (item.amount ? item.amount : 0 ) | number:'1.2-2':'fr'}}</p>
+                </div>
+                <div>
+                    <p>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal-bg">
         <p class="close-modal" (click)="showFinalModal = false;">x</p>
   
         <div class="ledeboard-team-list-component details">
@@ -92,5 +140,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
   </div>
