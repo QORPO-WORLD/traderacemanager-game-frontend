@@ -808,7 +808,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.previousLevelExp = callback.getPreviousLevelExp();
           this.nextLevelExp = callback.getNextLevelExp();
         });
-        const rid: any = this.raceDataildata.race_type;
         setTimeout(() => {
           this.winnerObservable = this.api.racesWinnerList(this.raceId).subscribe(data => {
             if (data) {
@@ -1079,10 +1078,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getPositionInRace() {
-    if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
-      this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
-    } else {
-      this.active_area = 0.2;
+    if (this.raceStarted === true) {
+      if (this.raceData.race_progress < 60) {
+        this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
+      } else {
+        this.active_area = 0.2;
+      }
     }
 
 
