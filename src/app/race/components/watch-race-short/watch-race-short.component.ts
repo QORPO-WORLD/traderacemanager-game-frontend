@@ -196,11 +196,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.startRace();
         } else {
           if (this.startsInChecked === false) {
-            this.startsIn = data.starts_in;
+            this.startsIn = data.starts_in + 1;
             this.whenStarts();
           }
         }
-        console.log('calc active area');
+
 
       });
     }, 20);
@@ -353,7 +353,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.raceSound.src = './assets/base/sounds/Race.mp3';
           this.raceSound.volume = 0.5;
           if (this.soundEnabled === true) {
-            console.log('play race');
             this.raceSound.play();
           }
         }, 1500);
@@ -430,7 +429,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
           setTimeout(() => {
             if (this.gotWinner === false) {
-              console.log('get race winner');
               this.getRaceWinner();
             }
           }, 1500);
@@ -470,11 +468,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
         }
 
-        if (this.raceData.race_progress < 60 && this.raceData.race_progress > 0) {
-          this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
-        } else {
-          this.active_area = 0.2;
-        }
+
 
 
 
@@ -485,13 +479,14 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }, 1500);
 
         }
-        console.log('calc active area important part');
+
       });
   }
 
 
 
   whenStarts() {
+    //this.startsIn = this.startsIn + 1;
     const newwhen = this.startsIn;
 
     const fireSemaforx = (newwhen - 5) * 1000;
@@ -813,7 +808,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.previousLevelExp = callback.getPreviousLevelExp();
           this.nextLevelExp = callback.getNextLevelExp();
         });
-        const rid: any = this.raceDataildata.race_type;
         setTimeout(() => {
           this.winnerObservable = this.api.racesWinnerList(this.raceId).subscribe(data => {
             if (data) {
@@ -989,12 +983,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   refuel() {
-    if (this.raceDataildata.new_race_type === 'cops1' ||
-      this.raceDataildata.new_race_type === 'cops2' || this.raceDataildata.new_race_type === 'cops3') {
-      this.router.navigate(['/car/fuel-car-adventure/' + this.raceDataildata.race_identifier]);
-    } else {
-      this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_identifier]);
-    }
+    this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_identifier]);
   }
 
   getRandomNum(myNum: number) {
@@ -1089,6 +1078,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getPositionInRace() {
+    if (this.raceStarted === true) {
+      if (this.raceData.race_progress < 60) {
+        this.active_area = this.active_area * (this.raceData.race_progress / 100) / 60;
+      } else {
+        this.active_area = 0.2;
+      }
+    }
+
+
     const dummy = [];
 
     for (let x = 0; x < this.raceData.race.length; x++) {
@@ -1104,22 +1102,9 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
       this.raceData.race[x].race_position = 100 * (((this.raceData.race_progress / 100) * (1 - this.active_area)) + (relative_score * this.active_area));
-      console.log('relative_score');
-      console.log(relative_score);
-      console.log('position');
-      console.log(this.raceData.race[x].race_position);
-      console.log('score');
-      console.log(this.raceData.race[x].s);
+      console.log(this.active_area);
+
     }
-
-
-    console.log('diff');
-    console.log(diff);
-    console.log('progress');
-    console.log(this.raceData.race_progress);
-    console.log('active area');
-    console.log(this.active_area);
-
   }
 
 

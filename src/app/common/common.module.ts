@@ -39,21 +39,16 @@ import { CommonModule as ninja } from '@angular/common';
 import { RaceLayoutComponent } from './components/layout/race-layout/race-layout.component';
 import { IonicModule } from '@ionic/angular';
 
-import { HintTipsModalComponent } from './components/hint-tips-modal/hint-tips-modal.component';
-import { TeamPlayersModalComponent } from './components/team-players-modal/team-players-modal.component';
 import { MyHammerConfig } from './resources/my-hammer.config';
 import { HammerGestureConfig } from '@angular/platform-browser';
-import { TeamGiftsModalComponent } from './components/team-gifts-modal/team-gifts-modal.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProfileStatsComponent } from './components/shared/profile-stats/profile-stats.component';
 import { FastFuelCarComponent } from './components/shared/fast-fuel/fast-fuel.component';
-import { FuelLayoutComponent } from './components/layout/fuel-layout/fuel-layout.component';
 import { MySettingsComponent } from './components/shared/my-settings/my-settings.component';
 import { MainTopBannerComponent } from './components/main-top-banner/main-top-banner.component';
 import { MyStatsComponent } from './components/shared/my-stats/my-stats.component';
 import { ExpBarComponent } from './components/shared/exp-bar/exp-bar.component';
 import { LangSwitcherComponent } from './components/shared/lang-switcher/lang-switcher.component';
-import { BuyTokensComponent } from '../common/components/buy-tokens/buy-tokens.component';
 import { MyAffiliateComponent } from './components/shared/my-affiliate/my-affiliate.component';
 import { MyChatComponent } from './components/my-chat/my-chat.component';
 import { IndicatorComponent } from './components/indicator/indicator.component';
@@ -87,20 +82,15 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     QuickDepositComponent,
     QuickTransferComponent,
     QuickWithdrawComponent,
-    HintTipsModalComponent,
-    TeamPlayersModalComponent,
-    TeamGiftsModalComponent,
     ProfileStatsComponent,
     FastFuelCarComponent,
     CreateFastFuelCarComponent,
-    FuelLayoutComponent,
     MySettingsComponent,
     MainTopBannerComponent,
     MyStatsComponent,
     ExpBarComponent,
     LangSwitcherComponent,
     MyRacesAdComponent,
-    BuyTokensComponent,
     MyAffiliateComponent,
     NotificationListComponent,
     SynergizerComponent,
@@ -135,15 +125,10 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
   ],
   exports: [ CustomCurrencyPipe, CustomDatePipe, NoCommaPipe, SoNumberPipe, OrdinalPipe, ArraySortPipe,
     TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe,
-     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent,
-    HintTipsModalComponent, TeamPlayersModalComponent, QuickTransferComponent,
-    QuickWithdrawComponent, TeamGiftsModalComponent, TranslateModule, ProfileStatsComponent, FuelLayoutComponent, FastFuelCarComponent,
+     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent, QuickTransferComponent,
+    QuickWithdrawComponent, TranslateModule, ProfileStatsComponent, FastFuelCarComponent,
     MySettingsComponent, CreateFastFuelCarComponent,
-    TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe, 
-    TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent,
-    HintTipsModalComponent, TeamPlayersModalComponent, QuickTransferComponent,
-    QuickWithdrawComponent, TeamGiftsModalComponent, TranslateModule, ProfileStatsComponent, FuelLayoutComponent, MySettingsComponent,
-    MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent, BuyTokensComponent,
+    MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
     DailyTipModalComponent],
   entryComponents: []

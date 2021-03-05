@@ -21,7 +21,7 @@ export class QuickWithdrawComponent implements OnInit {
 
   tokenTypes = [
     { type: 'ioi', name: 'ioi' },
-    { type: 'trx', name: 'trx' }
+    { type: 'matic', name: 'matic' }
   ];
   transferSubscription: Subscription;
   myDriverObserver: Subscription;
@@ -78,11 +78,11 @@ export class QuickWithdrawComponent implements OnInit {
 
 
   withdrawalIoiToken() {
-    const amx: string = this.amount.toString();
+    
     this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
       {
         currency: this.tokenSelected,
-        amount:  parseFloat(amx + '.00'),
+        amount:  this.amount,
         code: this.authcode,
         targetAddress: this.cryptoMtfrckr
       }

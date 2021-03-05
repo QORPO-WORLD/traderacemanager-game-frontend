@@ -4,19 +4,6 @@
 
 
 
-
-<!-- <div  class="verify-modal" *ngIf="verifyModal === true">
-  <div class="modal-holder">
-    <img class="close-icon" src="/assets/base/images/icons/close-icon.svg" alt="" (click)="verifyModal = false">
-    <p class="heading">Tutorial has finished</p>
-    <p class="desc">
-      Do you want to earn more by playing games, or get lifetime dividends for holding IOI tokens?<br>Deposit to play. 
-    </p>
-    <button class="grad-btn" [routerLink]="['/other/ioi-tokens']">Continue</button>
-    <p class="info"><a href="https://token.ioi-game.com" target="_blank"><img src="/assets/base/images/teams/question-icon.png" alt=""><span class="opacity">About tokens </span></a></p>
-  </div>
-</div> -->
-
 <div class="main-content zavod" *ngIf="raceData && raceDataildata" #topRoad>
   <div class="chat" *ngIf="showChat === true && raceDataildata?.my_cars[selectedMyIndex]">
 
@@ -65,50 +52,7 @@
         </div>
       </ng-container>
     </div>
-    <!-- <div class="close-my-fuel" (click)="showChat = false"><img src="assets/rewards/X-modal.png" alt=""></div>
-    <div class="top-car-holder" >
-      <div class="arrow" *ngIf="raceDataildata?.my_cars?.length > 1" (click)="prevCar()">
-        <img src="/assets/base/images/leaderboard/prev-arrow-trans.png" alt="">
-      </div>
-      <div class="arrow right" *ngIf="raceDataildata?.my_cars?.length > 1" (click)="nextCar()">
-        <img src="/assets/base/images/leaderboard/next-arrow-trans.png" alt="">
-      </div>
-      <p class="live-crypto">{{'race.live_crypto' | translate}}</p>
-      <div class="car-indicator">{{selectedMyIndex + 1}}/{{raceDataildata?.my_cars?.length}}</div>
-      <div class="car-holder">
-        <img [src]="'/assets/base/images/cars/car' + raceDataildata?.my_cars[selectedMyIndex]?.c + '.png'" alt="">
-      </div>
 
-    </div>
-
-    <div class="new-fuel" *ngIf="raceDataildata?.my_cars[selectedMyIndex]">
-      <div class="text_he">
-        <ul *ngIf="showAllCoins === false" class="show-less-list">
-          
-          <li *ngFor="let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.b | orderBy: 'delta':reverse; let ixx = index; " [ngClass]="myfuels?.bet > 0 || myfuels?.bet < 0 ? 'my-coin' : 'not-my'">
-            <i>{{ixx + 1}}. </i>
-            <span class="cur-logo"><img class="cur-logo" [src]="'/assets/base/images/curr-logos/'+ myfuels?.symbol +'-logo.png'" alt=""></span>
-                 
-             <span class="percentage">{{myfuels?.bet}} % </span>
-            <span class="my_gas-right-part" *ngIf="raceData?.coins_performance?.length > 0" >
-              
-              <small> 
-                <b>
-                  <span class="new-price">&#36;{{myfuels?.from_price | number:'1.2-2':'fr'}} </span>
-                 <img src="/assets/base/images/ticket-arrow-up.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta > 0">
-                 <img src="/assets/base/images/ticket-arrow-down.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta < 0"> 
-                  <img src="/assets/base/images/ticket-arrow-down.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta === 0" style="visibility: hidden;">
-                 <span>{{myfuels?.delta | number:'1.4-4':'fr'}}% </span>
-               </b>
-                 </small>
-            </span>
-
-          </li>
-        
-        </ul>
-      </div>
-    </div>
-    <p class="bottom-desc">{{'race.exchange_data' | translate}}</p> -->
   </div>
 
   <div class="all-positions" *ngIf="showPositions === true">
@@ -180,95 +124,9 @@
       </button>
     </div>
 
-    <!-- <div class="players-table" *ngIf="raceData?.cards?.length === 0">
-      <div class="item_holder before-start" *ngFor="let player of raceDataildata?.cards">
-        <div class="item player">
-          <div class="table-col position">
-            <p>{{player.cpr}}</p>
-          </div>
-          <div class="table-col big">
-            <p>{{player.n}}</p>
-          </div>
-          <div class="table-col">
-            <p>0</p>
-          </div>
-          <div class="table-col big">
-            <p>0 TRX</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="players-table" *ngIf="raceData?.cards?.length > 0">
-      <div class="item_holder" *ngFor="let player of raceData?.cards; let i = index">
-        <div class="item player" [ngClass]="{'my-item': raceData?.me?.u === player.u}">
-          <div class="table-col position">
-            <p>{{player.cpr}}</p>
-          </div>
-          <div class="table-col big">
-            <p>{{player.n}}</p>
-          </div>
-          <div class="table-col">
-            <p>{{raceDataildata?.applicable_points[player.cpr - 1] !== null ? (raceDataildata?.applicable_points[player.cpr - 1] | number:'1.0-2')  : '0'}}</p>
-          </div>
-          <div class="table-col big">
-            <p>{{raceDataildata?.applicable_payouts[player.cpr - 1] ? (raceDataildata?.applicable_payouts[player.cpr - 1] | number:'1.2-2') : '0'}} TRX</p>
-          </div>
-        </div>
-
-        <div class="crypto-item">
-          <ng-container *ngFor="let crypt of player.b">
-            <div class="visible-curr" *ngIf="crypt.bet > 0">
-              <span class="currency-symbol">{{crypt.symbol}}</span>
-              <span class="currency-image"><img src="/assets/base/images/curr-logos/{{crypt.symbol}}-logo.png" alt=""></span>
-              <span class="currency-bet">{{crypt.bet}}%</span>
-            </div>
-          </ng-container>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="pagination_box">
-      <button (click)="prevPage()" *ngIf="actualPage > 0">
-        <img src="/assets/base/images/zavod/arrow-left-small.png" alt="">
-      </button>
-      <span>{{actualPage + 1}}/{{raceDataildata?.total_pages}}</span>
-      <button (click)="nextPage()" *ngIf="(actualPage + 1) < raceDataildata?.total_pages" class="right">
-        <img src="/assets/base/images/zavod/arrow-right-small.png" alt="">
-      </button>
-    </div> -->
   </div>
 
   <div class="sub-content zavod_bg">
-
-    <!-- <div id="time-wrapper" class="mobile" [ngClass]="{'starter': raceStarted === false}">
-
-      <div class="svg-item">
-
-        <div class="timer-value" *ngIf="raceStarted === false">
-          <app-timer [value]="startsIn"></app-timer>
-          <p class="desc">{{'fuel_car.race_starts' | translate}}</p>
-        </div>
-        <div class="timer-value" *ngIf="raceFinished === false && raceStarted === true && endsIn > 0">
-          <app-timer [value]="endsIn"></app-timer>
-        </div>
-        <div class="timer-value" *ngIf="raceFinished === true"><p>{{'race.race_ended' | translate}}</p></div>
-
-        <div class="timer-img"><img src="/assets/base/images/zavod/transparent-timer.png" alt=""></div>
-        <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
-          <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke="transparent"></circle>
-          <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="9" stroke="black"></circle>
-
-          <circle stroke="#acfff5" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-          stroke-width="9" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': raceData?.race_progress + ' ' + (100 - raceData?.race_progress)}"></circle>
-          <g class="donut-text donut-text-1">
-
-          </g>
-        </svg>
-      </div>
-
-    </div> -->
 
 
     <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true">{{'race.become_top1' | translate}}<br> {{'race.become_top2' | translate}}</h1>
@@ -357,42 +215,6 @@
           <p>Close <img src="/assets/base/images/zavod/winner-close.svg" alt="close modal icon"></p>
         </div>
       </div>
-      <!-- <div class="cops-signal" [ngClass]="{'active': raceStarted && !raceFinished}" *ngIf="raceDataildata?.race_identifier == 'cops1_10' || this.raceDataildata?.race_identifier == 'cops2_10' || this.raceDataildata?.race_identifier == 'cops3_10'">
-        
-        <div class="blue"></div>
-        <div class="red"></div>
-      </div>
-
-      
-      <div class="switcher">
-        <button (click)="unitySelected = false" style="background-color: black;margin-right:5px;">2d</button>
-        <button (click)="unitySelected = true;" style="background-color: black;margin-right:5px;">3d</button>
-      </div>
-      <div class="prize-heading" *ngIf="raceDataildata?.race_identifier !== 'tournament_for_ticket_0'">
-        <img src="/assets/base/images/zavod/prize-trophy.png" alt="">
-        <h1>{{ raceDataildata?.price_pool }} 
-          <span *ngIf="raceDataildata?.new_race_type === 'car_race_ioi'">{{'shared.ioi' | translate}}</span>
-          <span *ngIf="raceDataildata?.new_race_type !== 'car_race_ioi'">{{'shared.trx' | translate}}</span>
-        </h1>
-
-      </div>
-      <div class="prize-heading small" *ngIf="raceDataildata?.race_identifier === 'tournament_for_ticket_0'">
-        <img class="trophy-img" src="/assets/base/images/zavod/prize-trophy.png" alt="">
-        <h1 class="tour-tickets">{{ raceDataildata?.price_pool }} {{'race.tour_tickets' | translate}}
-        </h1>
-        <img class="info-btn" src="/assets/base/images/infomation.png" alt="" data-toggle="modal" data-target="#prize-rules-modal">
-      </div>
-
-      <div class="positions-holder" [ngClass]="{'long': positionLength === 2, 'long-long': positionLength === 3}">
-        <div class="positions" *ngIf="raceData?.me?.cpr">
-          <div class="number" [ngClass]="{'round': pos2 === '0', 'round2': pos3 === '0', 'short': positionLength === 1}" *ngIf="raceStarted === true">
-            <img class="pos-img" [src]="'/assets/base/images/zavod/positions/' + pos1 + '.png'" alt="">
-            <img class="pos-img" [ngClass]="{'moved': positionLength > 2}" [src]="'/assets/base/images/zavod/positions/' + pos2 + '.png'" alt="" *ngIf="positionLength > 1">
-            <img class="pos-img" [src]="'/assets/base/images/zavod/positions/' + pos3 + '.png'" alt="" *ngIf="positionLength === 3">
-            <img class="pos-end" [src]="'/assets/base/images/zavod/positions/' + posEnding + '.png'" alt="">
-          </div>
-        </div>
-      </div> -->
 
     </div>
 
@@ -416,81 +238,26 @@
     </div>
 
 
-    <div class="car_rc" id="photoMe" *ngIf="unitySelected === false;" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false}">
-     <!-- <div id="transparent-bg">
-        <div id="time-wrapper">
-
-          <div class="svg-item">
-
-            <div class="timer-value" *ngIf="raceStarted === false">
-              <app-timer [value]="startsIn"></app-timer>
-              <p class="desc">{{'fuel_car.race_starts' | translate}}</p>
-            </div>
-            <div class="timer-value" *ngIf="raceFinished === false && raceStarted === true && endsIn > 0">
-              <app-timer [value]="endsIn"></app-timer>
-            </div>
-            <div class="timer-value" *ngIf="raceFinished === true"><p>{{'race.race_ended' | translate}}</p></div>
-
-            <div class="timer-img"><img src="/assets/base/images/zavod/transparent-timer.png" alt=""></div>
-            <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
-              <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke="transparent"></circle>
-              <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="9" stroke="black"></circle>
-    
-              <circle stroke="#acfff5" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-              stroke-width="9" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': raceData?.race_progress + ' ' + (100 - raceData?.race_progress)}"></circle>
-              <g class="donut-text donut-text-1">
-
-              </g>
-            </svg>
-          </div>
-
-        </div>
-
-        <div id="hub" *ngIf="raceData?.me?.s">
-          <div class="svg-item score-item">
-            <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut">
-              <defs>
-                <linearGradient id="my-grad" x1="5%" y1="0%" x2="90%" y2="0%" x3="20%" y3="0%" spreadMethod="pad">
-                  <stop offset="0%"   stop-color="#950552"/>
-                  <stop offset="50%"   stop-color="#e762c5"/>
-                  <stop offset="100%" stop-color="#1171ff"/>
-                </linearGradient>
-              </defs>
-              <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="black"></circle>
-              <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3.5"></circle>
-    
-              <circle stroke="url(#my-grad)" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-              stroke-width="3" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': scoreOffset + ' ' + (100 - scoreOffset)}"></circle>
-  
-            </svg>
-          </div>
-          <p>{{raceData?.me?.s | number:'1.4-4':'fr'}}%</p>
-        </div>
-
-        <div id="hub" *ngIf="!raceData?.me?.s">
-          <p>0,0000%</p>
-        </div>
-
-      </div> -->
+    <div class="car_rc" id="photoMe" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] }">
 
       <div class="still-road" 
-      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
+      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="still-helperix" 
-      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] && unitySelected === false"
+      [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
 
       <div class="moving-road" 
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
-      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
+      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
 
       <div class="moving-helperix" 
       [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
-      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) && unitySelected === false">&nbsp;</div>
+      [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
 
 
-      <div class="cr_cars_box" *ngIf="raceStarted === false && unitySelected === false">
+      <div class="cr_cars_box" *ngIf="raceStarted === false ">
 
         <div class="car_row" [ngStyle]="{'left': raceDataildata?.race[0].race_position + '%'}" [ngClass]="{'my-car-high': myUid === raceDataildata?.race[0]?.u}"
         *ngIf="raceStarted === false && raceDataildata?.race_progress === 0 && raceDataildata?.race[0]">
@@ -547,7 +314,7 @@
 
         
       </div>
-      <ng-container *ngIf="raceStarted === false && unitySelected === false">
+      <ng-container *ngIf="raceStarted === false ">
         <div class="start_line" [ngClass]="'type' + backType">
         </div>
         <div class="final_line" [ngClass]="'type' + backType"> 
@@ -555,7 +322,7 @@
       </ng-container>
       
 
-      <div class="cr_cars_box started" *ngIf="raceStarted === true  && unitySelected === false" [ngClass]="{'with-lines': motiveCurrent === 3}">
+      <div class="cr_cars_box started" *ngIf="raceStarted === true  " [ngClass]="{'with-lines': motiveCurrent === 3}">
         <div class="car_row" [ngStyle]="{'left': raceData?.race[0].race_position + '%'}" *ngIf="raceData?.race[0]" [ngClass]="{'my-car-high': raceData?.me?.u === raceData?.race[0].u}">
 
           <div class="car-user-stats">
@@ -571,18 +338,6 @@
               </div>
             </div>
           </div>
-
-          <!-- <span class="visible-stats"><b class="position " [ngClass]="'place-' + raceData?.race[0]?.cpr">{{raceData?.race[0]?.cpr}}</b>
-            {{raceData?.race[0].n | slice:0:7}}<br><span
-              [ngClass]="raceData?.race[0].s > 0 ? 'blue-value' : 'red-value'">{{raceData?.race[0].s | number:'1.4-4':'fr'}}
-              %</span>
-            </span>
-            <div class="car-currs hovered-stats" [ngClass]="raceData?.race[0].rp > 15 ? 'position-left' : 'position-right'">
-              <div class="one-curr" *ngFor="let item of raceData?.race[0].b">
-                <span *ngIf="item.bet !== 0"><img class="curr-logo" [src]="'/assets/base/images/curr-logos/'+item.symbol+'-logo.png'" alt=""></span>
-                <span *ngIf="item.bet !== 0"> {{item.bet}}%</span>
-              </div>
-            </div> -->
 
           <div class="car started" [ngClass]="'car' + raceData?.race[0].c +'-moving' + moveNum + ' car-' + raceData?.race[0].c"  >
 
@@ -647,131 +402,18 @@
         </div>
       </div>
       
-      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  && unitySelected === false">
+      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  ">
       </div>
 
     </div>
 
-    <div class="" *ngIf="unitySelected === true" style="    width: 100%;">
+    <!--<div class="" *ngIf="unitySelected === true" style="    width: 100%;">
       <app-unityrace style="width: 100%;
         height: 100%;
         position: relative;
         background: black;
         z-index: 1;" [rDetail]="raceDataildata" [rStats]="raceData"></app-unityrace>
-    </div>
-    <!-- <div class="race-bottom-nav" [ngClass]="{'multi-back': multiUsed === true}">
-      <div class="race-type" *ngIf="raceFinished === false" [ngClass]="{'small': raceDataildata?.tournament_id !== null || raceDataildata?.new_race_type === 'golden_ticket'}">
-        <div class="rules" data-toggle="modal" [attr.data-target]="'#' + raceDataildata?.race_identifier">
-          <img src="/assets/base/images/infomation.png" alt="">
-          <p>{{ 'race.rules' | translate }}</p>
-        </div>
-        <p>{{ 'race.short_race' | translate }} </p>
-        <p class="bet-amount">{{ 'race.type.' + raceDataildata?.race_identifier | translate }}</p>
-      </div>
-
-      <div class="link-btns" [ngClass]="{'small': raceData?.me !== null && raceDataildata?.tournament_id === null && raceFinished === true || 
-        raceFinished === true && raceDataildata?.tournament_id !== null && raceDataildata?.my_cars?.length > 0, 'tour-btns': raceFinished === true && raceDataildata?.tournament_id !== null && raceDataildata?.my_cars?.length > 0}" [hidden]="showFinalModal === true">
-        
-        <button class="new_cta-button" *ngIf="raceFinished !== true && raceDataildata?.my_cars?.length > 0" (click)="showChat = !showChat" [ngClass]="showChat === true ? 'active' : ''">{{'race.my_fuel' | translate}}</button>
-        <button class="new_cta-button active" *ngIf="raceDataildata?.my_cars?.length === 0 && raceDataildata?.tournament_id === null" (click)="refuel()">{{'race.join_next' | translate}}</button>
-
-        <button class="new_cta-button" (click)="showPositions = !showPositions" *ngIf="raceFinished !== true && raceDataildata?.tournament_id === null && raceDataildata?.my_cars?.length > 0"
-        [ngClass]="showPositions === true ? 'active' : ''" >{{'race.positions' | translate}}</button>
-
-        <button class="new_cta-button not-mobile" (click)="showPositions = !showPositions" 
-        [ngClass]="showPositions === true ? 'active' : ''" *ngIf="raceDataildata?.tournament_id !== null">{{'start-race.players' | translate}}</button>
-
-        <button class="new_cta-button active znova" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_identifier]"
-       *ngIf="raceData?.me === null && raceDataildata?.my_cars?.length === 0 && raceDataildata?.tournament_id !== null">{{'race.join_next' | translate}}</button>
-
-        <button class="new_cta-button active znova" (click)="repeatSignup()"  [disabled]="repeatDisabled === true"
-        *ngIf="raceFinished === true && raceData?.me !== null && raceDataildata?.tournament_id === null && raceFinished === true && nextRaceHash"><span *ngIf="repeatDisabled === false">{{'race.repeat' | translate}}</span><span *ngIf="repeatDisabled === true">{{ 'fuel_car.loading' | translate }}</span></button>
-
-        <button class="new_cta-button znova"  (click)="refuel()"
-        *ngIf="raceFinished === true && raceData?.me !== null && raceDataildata?.tournament_id === null && raceFinished === true">{{'race.refuel' | translate}}</button>
-
-        <button class="new_cta-button" (click)="changeFuel = true" 
-        *ngIf="raceFinished === true && finishedtour === false && raceData?.me !== null">{{'race.refuel' | translate}}</button> 
-
-        <button class="new_cta-button" (click)="showTourPos = true" [ngClass]="{'active': showTourPos === true}"
-        *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index > 1">{{'race.leaderboard' | translate}}</button>
-
-       <ng-container *ngIf="raceData?.me !== null">
-        <button class="new_cta-button active"  (click)="continueTour()" 
-        *ngIf="raceFinished === true && finishedtour === false && raceDataildata?.tour_index < 19">{{'race.next_race' | translate}}</button> 
-      
-        <button class="new_cta-button active znova" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_identifier]"
-        *ngIf="raceFinished === true && finishedtour === true || (raceDataildata?.tour_index === 19 && raceFinished === true)">{{'race.join_next' | translate}}</button>
-        
-        <button class="new_cta-button znova" [routerLink]="['/race/start-race/']"
-        *ngIf="raceFinished === true && finishedtour === true || (raceDataildata?.tour_index === 19 && raceFinished === true)">{{'race.finish' | translate}}</button>
-       </ng-container>
-       
-  
-
-      </div>
-      
-      <div class="best-position">
-        <p>{{'race.best_position' | translate}} <span>{{raceData?.me?.cpr}}/{{raceDataildata?.players_count}}</span></p>
-      </div>
-    </div> -->
-
-
-    <div class="tournament" style="display: none;">
-      <!-- *ngIf="raceDataildata?.tournament_id !== null" -->
-      <div class="mini-races-holder">
-        <div class="tour" (click)="setMotive(0)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta0.png'" [ngClass]="motiveCurrent === 0 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour" (click)="setMotive(1)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta1.png'" [ngClass]="motiveCurrent === 1 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour not-on-mobile" (click)="setMotive(2)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta2.png'" [ngClass]="motiveCurrent === 2 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour" (click)="setMotive(3)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta3.png'" [ngClass]="motiveCurrent === 3 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour" (click)="setMotive(4)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta4.png'" [ngClass]="motiveCurrent === 4 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour not-on-mobile" (click)="setMotive(5)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta5.png'" [ngClass]="motiveCurrent === 5 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour" (click)="setMotive(6)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta6.png'" [ngClass]="motiveCurrent === 6 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour" (click)="setMotive(7)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta7.png'" [ngClass]="motiveCurrent === 7 ? 'active' : 'not'">
-          <span class="smx">===</span>
-        </div>
-        <div class="tour not-on-mobile" (click)="setMotive(8)">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta8.png'" [ngClass]="motiveCurrent === 8 ? 'active' : 'not'">
-          <span class="smx" *ngIf="raceDataildata?.tour_index < 11">===</span>
-        </div>
-        <div class="tour last" (click)="setMotive(9)" *ngIf="raceDataildata?.tour_index < 11">
-          <small class="tour-position">&nbsp;</small>
-          <img [src]="'assets/base/images/motive/cesta9.png'" [ngClass]="motiveCurrent === 9 ? 'active' : 'not'">
-          <span class="smx"></span>
-        </div>
-      </div>
-    </div>
+    </div>-->
 
     <div class="tour-positions-modal" *ngIf="showTourPos === true && raceDataildata?.tournament_id !== null && raceDataildata?.tour_index > 1">
       <div class="top-line"></div>
@@ -785,8 +427,8 @@
 
   </div>
 </div>
-<div id="shutter" [ngClass]="shooting === true && unitySelected === false ? 'on' : 'off'">&nbsp;</div>
-<div class="semafor-wrap visible" *ngIf="unitySelected === false && semaforsVisible === true">
+<div id="shutter" [ngClass]="shooting === true  ? 'on' : 'off'">&nbsp;</div>
+<div class="semafor-wrap visible" *ngIf="semaforsVisible === true">
 
   <div class="semafor-inner">
     <span class="semaf-timer" *ngIf="semaforVal > -1">{{semaforVal}}S</span>
@@ -1128,8 +770,6 @@
 
 <!-- MODALS -->
 
-
-<!--<app-hint-tips-modal *ngIf="showHints === true"></app-hint-tips-modal> -->
     
     <div class="modal fade" id="bonus_race_0" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
