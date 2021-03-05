@@ -18,7 +18,7 @@
              [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
             [ngModelOptions]="{standalone: true}"/>
       </div>
-      <p *ngIf="msg">{{msg.message}}</p>
+      <p *ngIf="msg">{{msg.message.content}}</p>
    <!--   <div class="captcha-cont" *ngIf="disCap === false"><re-captcha formControlName="recaptchaReactive" class="speci-captcha"></re-captcha></div>
       <div class="captcha-cont" *ngIf="disCap === true"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
    -->   <div class="forgot-pass"><a [routerLink]="['/user/forgot-password']">{{'login.forgot_pass' | translate}}</a></div>
@@ -63,7 +63,7 @@
                 <img src="/assets/base/images/login/pass-icon.png" alt="" class="input-img" [ngClass]="{'hidden': gkey !== '' && gkey !== undefined}">
                 <p class="input-text" [ngClass]="{'hidden': gkey !== '' && gkey !== undefined}">{{'login.auth_key' | translate}}</p>
           </div>
-          <p *ngIf="msg">{{msg.message}}</p>
+          <p *ngIf="msg">{{msg.message.content}}</p>
           <div class="captcha-cont" *ngIf="disCap === false"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
           <div class="forgot-pass"><a [routerLink]="['/user/forgot-password']">{{'login.forgot_pass' | translate}}</a></div>
           <button class="cta-button active" (click)="submit()" 
