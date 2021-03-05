@@ -39,7 +39,6 @@ import { CommonModule as ninja } from '@angular/common';
 import { RaceLayoutComponent } from './components/layout/race-layout/race-layout.component';
 import { IonicModule } from '@ionic/angular';
 
-import { TeamPlayersModalComponent } from './components/team-players-modal/team-players-modal.component';
 import { MyHammerConfig } from './resources/my-hammer.config';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
@@ -50,7 +49,6 @@ import { MainTopBannerComponent } from './components/main-top-banner/main-top-ba
 import { MyStatsComponent } from './components/shared/my-stats/my-stats.component';
 import { ExpBarComponent } from './components/shared/exp-bar/exp-bar.component';
 import { LangSwitcherComponent } from './components/shared/lang-switcher/lang-switcher.component';
-import { BuyTokensComponent } from '../common/components/buy-tokens/buy-tokens.component';
 import { MyAffiliateComponent } from './components/shared/my-affiliate/my-affiliate.component';
 import { MyChatComponent } from './components/my-chat/my-chat.component';
 import { IndicatorComponent } from './components/indicator/indicator.component';
@@ -84,7 +82,6 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     QuickDepositComponent,
     QuickTransferComponent,
     QuickWithdrawComponent,
-    TeamPlayersModalComponent,
     ProfileStatsComponent,
     FastFuelCarComponent,
     CreateFastFuelCarComponent,
@@ -94,7 +91,6 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     ExpBarComponent,
     LangSwitcherComponent,
     MyRacesAdComponent,
-    BuyTokensComponent,
     MyAffiliateComponent,
     NotificationListComponent,
     SynergizerComponent,
@@ -129,11 +125,10 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
   ],
   exports: [ CustomCurrencyPipe, CustomDatePipe, NoCommaPipe, SoNumberPipe, OrdinalPipe, ArraySortPipe,
     TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe,
-     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent,
-    TeamPlayersModalComponent, QuickTransferComponent,
+     TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent, QuickTransferComponent,
     QuickWithdrawComponent, TranslateModule, ProfileStatsComponent, FastFuelCarComponent,
     MySettingsComponent, CreateFastFuelCarComponent,
-    MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent, BuyTokensComponent,
+    MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
     DailyTipModalComponent],
   entryComponents: []

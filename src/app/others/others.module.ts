@@ -7,11 +7,9 @@ import { RewardsComponent } from './pages/rewards/rewards.component';
 import { AffilateComponent } from './pages/affilate/affilate.component';
 import { routing } from './others.routing';
 import { CommonModule } from '../common/common.module';
-import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { CommonModule as ninja } from '@angular/common';
 import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
 import { SiteLayoutComponent } from '../common/components/layout/default/site-layout/site-layout.component';
-import { PromotionsBannerComponent } from './components/promotions-banner/promotions-banner.component';
 import { DailyTasksComponent } from './components/daily-tasks/daily-tasks.component';
 import { FormsModule } from '@angular/forms';
 import { AnQrcodeModule } from 'an-qrcode';
@@ -42,9 +40,6 @@ const routes: Routes = [
         path: 'about-tokens', component: AboutTokensComponent
       },
       {
-        path: 'promotions', component: PromotionsComponent
-      },
-      {
         path: 'tasks', component: DailyTasksComponent
       },
       {
@@ -64,7 +59,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [RewardsComponent, AffilateComponent,
-    PromotionsComponent, ConfirmWithdrawalComponent, PromotionsBannerComponent,
+    ConfirmWithdrawalComponent,
     DailyTasksComponent, BridgeComponent,
     AboutTokensComponent, WalletControllerComponent, TransferNftComponent],
   imports: [
@@ -77,9 +72,6 @@ const routes: Routes = [
   ],
   providers: [
     SocialSharing
-  ],
-  exports: [
-    PromotionsBannerComponent
   ]
 })
 export class OthersModule { }

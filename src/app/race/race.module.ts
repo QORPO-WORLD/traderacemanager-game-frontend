@@ -16,8 +16,6 @@ import { RaceLayoutComponent } from '../common/components/layout/race-layout/rac
 import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
 import { OthersModule } from '../others/others.module';
 import { StartRaceComponent } from './pages/start-race/start-race.component';
-import { NextRacesComponent } from './components/next-races/next-races.component';
-
 import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
 
@@ -58,7 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AllRacesComponent, WatchRaceShortComponent,
-    StartRaceComponent, NextRacesComponent, MiniLdrbrdComponent,
+    StartRaceComponent, MiniLdrbrdComponent,
     MultiViewComponent, RaceTypeComponent, UnityraceComponent],
   imports: [
     CommonModule,
@@ -70,7 +68,6 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     OrderModule
-  ],
-  exports: [NextRacesComponent]
+  ]
 })
 export class RaceModule { }

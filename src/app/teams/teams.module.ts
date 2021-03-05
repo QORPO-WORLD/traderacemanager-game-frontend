@@ -6,7 +6,6 @@ import { OthersModule } from '../others/others.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { JoinTeamsComponent } from './join-teams/join-teams.component';
-import { TeamChatComponent } from './team-chat/team-chat.component';
 import { MyTeamComponent } from './my-team/my-team.component';
 import { LeaderboardComponent} from './leaderboard/leaderboard.component';
 import {OwnersManagersComponent} from './owners-managers/owners-managers.component';
@@ -14,7 +13,6 @@ import {OwnersManagersComponent} from './owners-managers/owners-managers.compone
 import { MyTeamPlayersComponent } from './components/my-team-players/my-team-players.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { OwnerLeaderboardComponent } from './components/owner-leaderboard/owner-leaderboard.component';
-import { ChatNextRacesComponent } from './components/chat-next-races/chat-next-races.component';
 import { ManagerComponent} from './components/manager/manager.component';
 import { OwnerComponent} from './components/owner/owner.component';
 
@@ -39,9 +37,6 @@ const routes: Routes = [
         path: 'join-teams', component: JoinTeamsComponent
       },
       {
-        path: 'team-chat', component: TeamChatComponent
-      },
-      {
         path: 'my-team', component: MyTeamComponent
       },
       { 
@@ -54,8 +49,8 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [JoinTeamsComponent, TeamChatComponent, MyTeamComponent,
-  MyTeamPlayersComponent, ChatNextRacesComponent, LeaderboardComponent,
+  declarations: [JoinTeamsComponent, MyTeamComponent,
+  MyTeamPlayersComponent, LeaderboardComponent,
   AllPlayersComponent, OwnersManagersComponent,OwnerComponent, ManagerComponent,
   OwnerLeaderboardComponent],
   imports: [
