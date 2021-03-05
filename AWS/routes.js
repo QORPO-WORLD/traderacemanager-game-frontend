@@ -15,7 +15,6 @@ exports.handler = (event, context, callback) => {
         '/other/referral-players',
         '/other/cockpit',
         '/other/healme',
-        '/other/ioi-tokens',
         '/player/profile',
         '/race/all-races',
         '/race/live-races',
@@ -60,7 +59,6 @@ exports.handler = (event, context, callback) => {
         || request.uri.match(/\/user\/activation\/.+/) // '/user/activation/:id/:hash'
         || request.uri.match(/\/other\/confirm\/.+/)
         || request.uri.match(/\/race\/all-races\?raceType=.+/)
-        || request.uri.match(/\/car\/fuel-car-adventure\/.+/)
         || request.uri.match(/\/race\/watch-multiple-races.+/)
     ) {
         request.uri = '/index.html';

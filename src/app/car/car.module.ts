@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BuyCarsComponent } from './buy-cars/buy-cars.component';
 import { FuelCarComponent } from './fuel-car/fuel-car.component';
-import { FuelCarAdventureComponent } from './fuel-car-adventure/fuel-car-adventure.component';
 import { RefuelCarComponent } from './refuel-car/refuel-car.component';
 import { GaragePromBannerComponent } from './garage-prom-banner/garage-prom-banner.component';
 import { CommonModule as ninja } from '../common/common.module';
@@ -26,8 +25,7 @@ const routes: Routes = [
     component: RaceLayoutComponent,
     children: [
       { path: '', redirectTo: 'garage/my-car', pathMatch: 'prefix' },
-      { path: 'fuel-car/:id', component: FuelCarComponent },
-      { path: 'fuel-car-adventure/:id', component: FuelCarAdventureComponent }
+      { path: 'fuel-car/:id', component: FuelCarComponent }
     ]
   },
   {
@@ -42,7 +40,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [BuyCarsComponent, FuelCarComponent, GaragePromBannerComponent, FuelCarAdventureComponent,
+  declarations: [BuyCarsComponent, FuelCarComponent, GaragePromBannerComponent,
     MyCarsComponent, RefuelCarComponent,
     FavouriteCarsComponent, EditFastFuelCarComponent],
   imports: [

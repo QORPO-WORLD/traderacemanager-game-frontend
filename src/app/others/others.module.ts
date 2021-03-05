@@ -1,4 +1,4 @@
-import { CoinSwtxComponent } from './coin-swtx/coin-swtx.component';
+
 import { BridgeComponent } from './../bridge/bridge.component';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +7,6 @@ import { RewardsComponent } from './pages/rewards/rewards.component';
 import { AffilateComponent } from './pages/affilate/affilate.component';
 import { routing } from './others.routing';
 import { CommonModule } from '../common/common.module';
-import { IoiTokensComponent } from './pages/ioi-tokens/ioi-tokens.component';
 import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { CommonModule as ninja } from '@angular/common';
 import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
@@ -40,9 +39,6 @@ const routes: Routes = [
         path: 'affilate', component: AffilateComponent
       },
       {
-        path: 'ioi-tokens', component: IoiTokensComponent
-      },
-      {
         path: 'about-tokens', component: AboutTokensComponent
       },
       {
@@ -67,9 +63,9 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [RewardsComponent, AffilateComponent, IoiTokensComponent,
+  declarations: [RewardsComponent, AffilateComponent,
     PromotionsComponent, ConfirmWithdrawalComponent, PromotionsBannerComponent,
-    DailyTasksComponent, BridgeComponent, CoinSwtxComponent,
+    DailyTasksComponent, BridgeComponent,
     AboutTokensComponent, WalletControllerComponent, TransferNftComponent],
   imports: [
     RouterModule.forChild(routes),
@@ -83,7 +79,7 @@ const routes: Routes = [
     SocialSharing
   ],
   exports: [
-    PromotionsBannerComponent, CoinSwtxComponent
+    PromotionsBannerComponent
   ]
 })
 export class OthersModule { }
