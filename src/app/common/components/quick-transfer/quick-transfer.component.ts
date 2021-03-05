@@ -80,11 +80,17 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
       mode: 'races2nitro'
     }).subscribe(data => {
       this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', res.succ_transfer);
-        this.balanceService.balanceHasbeenChanged();
-        this.amount = 0;
+
+        this.identityService.updateBalance();
+        setTimeout(() => {
+          this.notify.error('x', res.succ_transfer);
+          this.identityService.getBalance();
+          this.balanceService.balanceHasbeenChanged();
+          this.amount = 0;
+          this.getMydriverBalances();
+       })
       });
-      this.getMydriverBalances();
+      
 
     });
   }
