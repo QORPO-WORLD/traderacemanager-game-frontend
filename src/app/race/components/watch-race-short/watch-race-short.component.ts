@@ -986,12 +986,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   refuel() {
-    if (this.raceDataildata.new_race_type === 'cops1' ||
-      this.raceDataildata.new_race_type === 'cops2' || this.raceDataildata.new_race_type === 'cops3') {
-      this.router.navigate(['/car/fuel-car-adventure/' + this.raceDataildata.race_identifier]);
-    } else {
-      this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_identifier]);
-    }
+    this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_identifier]);
   }
 
   getRandomNum(myNum: number) {

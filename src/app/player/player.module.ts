@@ -13,7 +13,6 @@ import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
 import { CommonModule } from '@angular/common';
 import { CommonModule as ninja } from '../common/common.module';
 import { AuthStatusGuard } from '../user/services/guards/auth-status.guard';
-import { PlayerProfileComponent } from './pages/player-profile/player-profile.component';
 import { GauthComponent } from './gauth/gauth.component';
 import { SiteLayoutComponent } from '../common/components/layout/default/site-layout/site-layout.component';
 import { IonicModule } from '@ionic/angular';
@@ -23,17 +22,6 @@ import { DisGauthrComponent } from '../user/pages/disgauthr/disgauthr.component'
 
 
 const routes: Routes = [
-    {
-        path: '',
-        component: SiteLayoutComponent,
-        canActivate: [AuthUserGuard],
-        children: [
-            {
-                path: 'profile',
-                component: PlayerProfileComponent
-            }
-        ]
-    },
     { path: 'setup-auth', component: GauthrComponent },
     { path: 'disable-auth', component: DisGauthrComponent },
 ];
@@ -49,7 +37,6 @@ const routes: Routes = [
         IonicSelectableModule
     ],
     declarations: [
-        PlayerProfileComponent,
         GauthrComponent, DisGauthrComponent, GauthComponent],
     providers: [
         AuthUserGuard,

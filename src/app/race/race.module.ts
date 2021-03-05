@@ -14,11 +14,8 @@ import { CommonModule } from '@angular/common';
 import { SiteLayoutComponent } from '../common/components/layout/default/site-layout/site-layout.component';
 import { RaceLayoutComponent } from '../common/components/layout/race-layout/race-layout.component';
 import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
-import { WatchRaceFullComponent } from './components/watch-race-full/watch-race-full.component';
 import { OthersModule } from '../others/others.module';
 import { StartRaceComponent } from './pages/start-race/start-race.component';
-import { NextRacesComponent } from './components/next-races/next-races.component';
-
 import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
 
@@ -52,7 +49,6 @@ const routes: Routes = [
         path: '', redirectTo: 'start-race', pathMatch: 'full'
       },
       { path: 'watch-race-3min/:id', component: WatchRaceShortComponent },
-      { path: 'watch-race-24hod/:id', component: WatchRaceFullComponent },
       { path: 'watch-multiple-races', component: MultiViewComponent }
     ]
   }
@@ -60,7 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AllRacesComponent, WatchRaceShortComponent,
-    WatchRaceFullComponent, StartRaceComponent, NextRacesComponent, MiniLdrbrdComponent,
+    StartRaceComponent, MiniLdrbrdComponent,
     MultiViewComponent, RaceTypeComponent, UnityraceComponent],
   imports: [
     CommonModule,
@@ -72,7 +68,6 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     OrderModule
-  ],
-  exports: [NextRacesComponent]
+  ]
 })
 export class RaceModule { }

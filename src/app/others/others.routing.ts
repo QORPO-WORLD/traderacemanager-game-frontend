@@ -1,4 +1,4 @@
-import { PromotionsComponent } from './pages/promotions/promotions.component';
+
 
 import { AffilateComponent } from './pages/affilate/affilate.component';
 import { RewardsComponent } from './pages/rewards/rewards.component';
@@ -18,7 +18,6 @@ const routes: Routes = [
       { path: '', redirectTo: 'affilate', pathMatch: 'prefix' },
       { path: 'rewards', component: RewardsComponent },
       { path: 'affilate', component: AffilateComponent },
-      { path: 'promotions', component: PromotionsComponent },
       { path: 'tasks', component: DailyTasksComponent }
     ]
   }

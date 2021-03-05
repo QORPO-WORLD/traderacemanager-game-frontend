@@ -267,8 +267,6 @@
 </div>
 
 
-<!-- <app-team-players-modal></app-team-players-modal> -->
-
 <div class="main-holder" *ngIf="teams?.length > 0">
     <div class="page-info"> 
         <div class="back" [routerLink]="['/race/start-race']">
@@ -297,12 +295,7 @@
     </div>
 
     <div class="team-holder">
-        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id}">
-            <div class="joined" *ngIf="tt?.me_joined === true">
-                <span>
-                    <p> <strong>✓</strong> Currently joined</p>
-                </span>
-            </div>            
+        <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id}">         
             <div class="joined" *ngIf="tt?.id === myDriverStats?.next_month_team_id">
                 <span>
                     <p> <strong>✓</strong> Currently waiting</p>
@@ -352,29 +345,18 @@
                 </span>
             </div> -->
             <a class="join-button" data-toggle="modal" data-target="#team1modal"
-            *ngIf=" tt?.id === 1 && !tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team2modal"
-            *ngIf=" tt?.id === 2 && !tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
             <a class="join-button" data-toggle="modal" data-target="#team3modal"
-            *ngIf=" tt?.id === 3 && !tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.join_team' | translate}}</a>
+            *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
 
             <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-            *ngIf=" tt?.id === 1 && tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 1 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-            *ngIf=" tt?.id === 2 && tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 2 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-            *ngIf=" tt?.id === 3 && tt?.me_joined &&  tt?.id !== myDriverStats?.next_month_team_id">{{'teams.join.joined' | translate}}</a>
-             
-            
-            <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-            *ngIf=" tt?.id === myDriverStats?.next_month_team_id">Waiting</a>
-            
-            <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-            *ngIf=" tt?.id === myDriverStats?.next_month_team_id">Waiting</a>
-            
-            <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-            *ngIf=" tt?.id === myDriverStats?.next_month_team_id">Waiting</a>
-
+            *ngIf=" tt?.id === 3 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
              
             
         </div>

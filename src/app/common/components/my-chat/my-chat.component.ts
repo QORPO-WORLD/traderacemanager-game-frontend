@@ -77,6 +77,8 @@ export class MyChatComponent implements OnInit {
     this.tchatObserver = this.api.teamChatList(200).subscribe(
       data => {
         this.chatList = data;
+        console.log(data);
+        console.log('tututtutu');
         this.recognizeChatSum();
       }
     );
