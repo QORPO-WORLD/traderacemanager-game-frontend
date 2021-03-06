@@ -132,6 +132,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   rewardLevelSum = 0;
   myDriverOld: any;
   myTeamReward: number;
+  dailyReward: number;
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem('first-time'));
     const notFinishedrace = JSON.parse(localStorage.getItem('first-race'));
@@ -555,6 +556,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.myCarsObserver = this.capi.carsMineList().subscribe(datax => {
       const data: any = datax;
       const objs: any = data.cars;
+      this.dailyReward = data.daily_staking_reward;
       const haha = objs.sort((a, b) =>
         b.car_id - a.car_id
       );

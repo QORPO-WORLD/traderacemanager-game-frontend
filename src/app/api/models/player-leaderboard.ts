@@ -5,6 +5,6 @@ export interface PlayerLeaderboard {
   user_nickname?: string;
   user_country?: string;
   team_id?: null | number;
-  trx_turnover?: number;
+  ioi_turnover?: number;
   team_name?: null | string;
 }

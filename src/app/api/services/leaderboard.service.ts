@@ -124,9 +124,7 @@ class LeaderboardService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (params.lastMonth != null) __params = __params.set('last_month', params.lastMonth.toString());
-    if (params.isRace24 != null) __params = __params.set('is_race24', params.isRace24.toString());
-    if (params.page != null) __params = __params.set('page', params.page.toString());
+     // if (params.page != null) __params = __params.set('page', params.page.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/races/leaderboard/players`,
@@ -281,8 +279,8 @@ module LeaderboardService {
    * Parameters for leaderboardPlayerList
    */
   export interface LeaderboardPlayerListParams {
-    lastMonth: boolean;
-    isRace24: boolean;
+    lastMonth?: boolean;
+    isRace24?: boolean;
     page?: number;
   }
 
