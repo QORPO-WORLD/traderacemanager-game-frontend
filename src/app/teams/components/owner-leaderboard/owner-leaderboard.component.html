@@ -23,10 +23,10 @@
       <div class="cell"><p> {{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
     </div>
     
-    <div class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()">
+    <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
       &gt;
-     </div>
-     <button class="arrow-left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" [disabled]="actualPage === 1">
+     </button>
+     <button class="arrow-left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 1">
        &lt;
      </button>
   </div>

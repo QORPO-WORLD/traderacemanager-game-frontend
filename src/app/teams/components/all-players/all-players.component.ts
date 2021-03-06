@@ -15,6 +15,8 @@ export class AllPlayersComponent implements OnInit {
   mydrvr: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
+  actualPage = 1;
+  totalPages: number;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
@@ -34,10 +36,13 @@ export class AllPlayersComponent implements OnInit {
 
   getMyLeaderboard() {
     this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardPlayerList({
-      page: 1, lastMonth: false
+      page: this.actualPage, lastMonth: false
     })
-      .subscribe(data => {
-        this.players = data;
+      .subscribe(datax => {
+        const data: any = datax;
+        this.players = data.results;
+        this.totalPages = data.totalPages;
+      
 
       });
   }
