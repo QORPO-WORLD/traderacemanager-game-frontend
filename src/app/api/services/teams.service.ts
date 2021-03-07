@@ -97,6 +97,38 @@ class TeamsService extends __BaseService {
       __map(_r => _r.body as TeamMember)
     );
   }
+  becomeManagerResponse(url: number, data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/races/team/` + url + '/become-a-team-manager',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+  becomeManager(url: number, data: any): __Observable<any> {
+    return this.becomeManagerResponse(url, data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
 }
 
 module TeamsService {

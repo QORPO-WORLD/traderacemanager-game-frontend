@@ -1,6 +1,8 @@
 import { Subscription } from 'rxjs';
-import { RewardsService, LeaderboardService } from 'src/app/api/services';
+import { RewardsService, LeaderboardService, TeamsService } from 'src/app/api/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from 'src/app/user/services/auth.service';
+import { compileNgModule } from '@angular/compiler';
 
 @Component({
   selector: 'app-owners-managers',
@@ -14,12 +16,17 @@ export class OwnersManagersComponent implements OnInit, OnDestroy {
   transObserver: Subscription;
   isManager = false;
   myRewards: any;
+  myLdrbrd: any;
   ioioreward: number;
-  constructor(private rapi: LeaderboardService, private rapina: RewardsService) { }
+  teamId: number;
+  reason = 'Reason to join the team';
+  constructor(private rapi: LeaderboardService, private rapina: RewardsService, private identityService: AuthService,
+  private tservice: TeamsService) { }
 
   ngOnInit() {
     this.getRewards();
     this.getAllRewards();
+    this.getMyLeaderboard();
   }
 
   ngOnDestroy() {
@@ -45,6 +52,20 @@ export class OwnersManagersComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.myRewards = data;
         this.ioioreward = Number(data.team_bonus);
+      });
+  }
+  
+
+  getMyLeaderboard() {
+    const data = this.identityService.getLeaderboardMe();
+    this.teamId = data.team_id;
+  }
+
+  becomeManager() {
+
+    this.tservice.becomeManager(this.teamId, { reason: this.reason }).subscribe
+      (data => {
+        console.log(data);
       });
   }
 
