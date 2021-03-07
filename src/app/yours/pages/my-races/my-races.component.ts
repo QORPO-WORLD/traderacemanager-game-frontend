@@ -39,7 +39,7 @@ export class MyRacesComponent implements OnInit, OnDestroy {
         const newdata: any = data;
         this.raceTransactions = newdata.results;
         this.totalPages = newdata.total_pages;
-        
+        console.log(this.totalPages);
       });
   }
 
@@ -49,7 +49,6 @@ export class MyRacesComponent implements OnInit, OnDestroy {
       const datax: any = data;
       this.winnersList = datax.winners;
       console.log(this.winnersList);
-      console.log('ajajaj');
       this.showFinalModal = true;
     });
   }

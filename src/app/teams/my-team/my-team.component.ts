@@ -6,6 +6,7 @@ import { NotifiqService } from './../../common/services/notifiq.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { TeamsService } from '../../api/services/teams.service';
 
 @Component({
   selector: 'app-my-team',
@@ -32,8 +33,10 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   myAffilate: any;
   myTeamData: any;
   myTeamName: any;
+  myTeamStats: any;
   myuser: any;
-  constructor(private api: LeaderboardService,private drvrsrvc: DriversService, private affisrvc: AffiliatesService,
+  teams: any;
+  constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getRewards();
     this.changeSlide();
+    this.getTeams();
   }
 
   routerOnDeactivate() {
@@ -81,6 +85,18 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.myTeamName = data.team;
     this.myTeamData = data;
     this.redirectMe();
+
+  }
+
+  getTeams() {
+    this.teams_service.teamsList().subscribe(data => {
+      const newdata = data.results;
+      const resort = newdata.sort((a, b) => {
+        return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
+      });
+      this.teams = data.results;
+      this.myTeamStats = this.teams.find(x => x.name === this.myTeamName);
+    });
   }
 
   getMyLdrbrd() {
