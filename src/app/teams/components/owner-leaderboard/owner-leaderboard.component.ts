@@ -19,6 +19,7 @@ export class OwnerLeaderboardComponent implements OnInit {
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
   actualPage = 1;
+  totalPages: number
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
@@ -41,9 +42,10 @@ export class OwnerLeaderboardComponent implements OnInit {
     this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardOwnersList({
       page: this.actualPage, lastMonth: false
     })
-      .subscribe(data => {
-        this.myLdrbrd = data;
-
+      .subscribe(datax => {
+        const data: any = datax;
+        this.myLdrbrd = data.results;
+        this.totalPages = data.total_pages;
       });
   }
 

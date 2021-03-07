@@ -68,7 +68,9 @@
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
-                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.</p>
+                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                        {{'teams.join.modals.switch_disclaim' | translate}}
+                    </p>
                 </div>
             </div>
 
@@ -147,7 +149,9 @@
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
-                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.</p>
+                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                        {{'teams.join.modals.switch_disclaim' | translate}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -226,7 +230,9 @@
 
                 <div class="info-panel">
                     <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
-                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.</p>
+                    <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                        {{'teams.join.modals.switch_disclaim' | translate}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -352,11 +358,18 @@
             *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
 
             <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-            *ngIf=" tt?.id === 1 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-            *ngIf=" tt?.id === 2 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
             <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-            *ngIf=" tt?.id === 3 && tt?.me_joined">{{'teams.join.joined' | translate}}</a>
+            *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+
+            <a class="join-button active" data-toggle="modal" data-target="#team1modal"
+            *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+            <a class="join-button active" data-toggle="modal" data-target="#team2modal"
+            *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+            <a class="join-button active" data-toggle="modal" data-target="#team3modal"
+            *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
              
             
         </div>

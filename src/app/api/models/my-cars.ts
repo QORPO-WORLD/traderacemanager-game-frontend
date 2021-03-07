@@ -6,4 +6,5 @@ export interface MyCars {
   c: number;
   cid: number;
   b: Array<BetCoins>;
+  betik?: Array<BetCoins>;
 }

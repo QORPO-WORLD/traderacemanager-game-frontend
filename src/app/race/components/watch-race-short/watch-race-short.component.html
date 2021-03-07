@@ -28,7 +28,7 @@
 
     <div class="table-holder">
       <ng-container *ngIf="raceDataildata?.my_cars[selectedMyIndex]">
-        <div class="table-item" *ngFor="let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.b | orderBy: 'delta':reverse; let ixx = index; " [ngClass]="myfuels?.bet > 0 || myfuels?.bet < 0 ? 'my-coin' : 'not-my'">
+        <div class="table-item" *ngFor="let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.betik | orderBy: 'delta':reverse; let ixx = index; " [ngClass]="myfuels?.bet > 0 || myfuels?.bet < 0 ? 'my-coin' : 'not-my'">
           <div class="my-col position">
             <p>{{ixx + 1}}</p>
           </div>
@@ -40,13 +40,13 @@
             <p>{{myfuels?.bet}}%</p>
           </div>
           <div class="my-col prize">
-            <p>&#36;{{myfuels?.from_price | number:'1.2-2':'fr'}}</p>
+            <p>&#36;{{myfuels?.from_price | json}}</p>
           </div>
           <div class="my-col delta">
             <p>
               <img src="/assets/base/images/ticket-arrow-up.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta > 0">
               <img src="/assets/base/images/ticket-arrow-down.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta < 0"> 
-              {{myfuels?.delta | number:'1.4-4':'fr'}}%
+              {{myfuels?.percent | json}}%
             </p>
           </div>
         </div>
@@ -233,6 +233,7 @@
       </div>
       <div class="switch-btn" [ngClass]="showTourPos === true ? 'active' : ''" (click)="showTourPos = !showTourPos"
         *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index > 1">
+          <img src="/assets/base/images/zavod/tour-lead-icon.svg" alt="">
           <img src="/assets/base/images/zavod/tour-lead-icon.svg" alt="">
       </div>
     </div>

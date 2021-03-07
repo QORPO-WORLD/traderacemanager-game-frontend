@@ -1,3 +1,4 @@
+import { NotifiqService } from './../../../common/services/notifiq.service';
 import { NitroWalletService } from 'src/app/api/services';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -18,10 +19,10 @@ export class TransferNftComponent implements OnInit {
   transferSubscription: Subscription;
   nickname: string;
   accountValue: number;
-  amount = 0;
+  amount = 1;
 
 
-  constructor(private route: ActivatedRoute, private identityService: AuthService, private ntrsrvc: NitroWalletService) { }
+  constructor(protected notify: NotifiqService, private route: ActivatedRoute, private identityService: AuthService, private ntrsrvc: NitroWalletService) { }
 
   ngOnInit() {
     this.getNftId();
@@ -87,9 +88,10 @@ export class TransferNftComponent implements OnInit {
 
       this.identityService.updateBalance();
       setTimeout(() => {
+        this.notify.error('x', 'Transfer successful');
         this.identityService.updateBalance();
         this.getAccountValue();
-      }, 100);
+      }, 10);
     });
   }
 

@@ -4,4 +4,5 @@ export interface CoinsPerformance {
   percent?: number;
   from_price?: number;
   to_prices?: number;
+  bet?: number;
 }

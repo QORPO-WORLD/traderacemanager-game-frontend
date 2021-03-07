@@ -196,7 +196,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.startRace();
         } else {
           if (this.startsInChecked === false) {
-            this.startsIn = data.starts_in + 1;
+            this.startsIn = data.starts_in + 2;
             this.whenStarts();
           }
         }
@@ -438,48 +438,38 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             this.getRandomNum(this.raceData.me.s);
           }
 
-          return;
+
         }
 
-
-
-        if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0 && firstData.race_progress < 100) {
+        if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
-
-            for (let y = 0; y < this.raceDataildata.my_cars[x].b.length; y++) {
-              this.raceDataildata.my_cars[x].b[y].from_price = firstData.coins_performance[y].from_price;
-              this.raceDataildata.my_cars[x].b[y].delta = firstData.coins_performance[y].percent;
-
+            const betix: any = [];
+            for (let i = 0; i < 20; i++) {
+              betix.push({
+                symbol: firstData.coins_performance[i].symbol,
+                percent: firstData.coins_performance[i].percent,
+                from_price: firstData.coins_performance[i].from_price,
+                to_prices: firstData.coins_performance[i].to_prices,
+                bet: 0
+              });
             }
-            /*
-            for (let z = 0; z < firstData.coins_performance.length; z++) {
-              if (firstData.coins_performance[z].symbol !== this.raceDataildata.my_cars[x].b[0].symbol &&
-                firstData.coins_performance[z].symbol !== this.raceDataildata.my_cars[x].b[1].symbol &&
-                firstData.coins_performance[z].symbol !== this.raceDataildata.my_cars[x].b[2].symbol) {
-                this.raceDataildata.my_cars[x].b.push({
-                  bet: 0,
-                  symbol: firstData.coins_performance[z].symbol,
-                  price: firstData.coins_performance[z].to_prices,
-                  from_price: firstData.coins_performance[z].from_price,
-                  delta: firstData.coins_performance[z].percent,
-                });
+            this.raceDataildata.my_cars[x].betik = betix;
+            for (let z = 0; z < 3; z++) {
+              for (let y = 0; y < 20; y++) {
+                if (this.raceDataildata.my_cars[x].betik[y].symbol === this.raceDataildata.my_cars[x].b[z].symbol) {
+                   this.raceDataildata.my_cars[x].betik[y].bet = this.raceDataildata.my_cars[x].b[z].bet;
+                }
               }
-            } */
+              
+            }
           }
         }
 
-
-
-
-
         if (firstData.race_progress > 0 && firstData.race_progress < 100) {
-
           setTimeout(() => {
             this.getRaceData();
           }, 1500);
-
         }
-
       });
   }
 
@@ -1104,7 +1094,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
       this.raceData.race[x].race_position = 100 * (((this.raceData.race_progress / 100) *
         (1 - this.active_area)) + (relative_score * this.active_area));
-     
+
 
     }
   }

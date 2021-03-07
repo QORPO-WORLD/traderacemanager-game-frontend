@@ -75,7 +75,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   myTrxBalance = 0;
   tickets = 0;
   myDriverBalances: any;
-  menuType = 'races';
+  menuType = 'me';
   myAddressClass = '';
   sumUsers = 0;
   trxUsdt = 3;
@@ -151,7 +151,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
         this.checkUserAndClear();
       }
     }, 2473);
-
+/*
     this.depositInterval = setInterval(() => {
       const rec = JSON.parse(localStorage.getItem('depos'));
       if (rec) {
@@ -159,7 +159,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
         this.deposTime = rec;
       }
     }, 10000);
-
+*/
     this.sumUsers = Math.floor(Math.random() * (300 - 260 + 1)) + 260;
 
     this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(datax => {

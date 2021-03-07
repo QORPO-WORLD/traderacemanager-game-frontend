@@ -273,7 +273,7 @@ class RacesService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/game/tournament/${tournamentId}/next-race/`,
+      this.rootUrl + `/races/game/tournament/${tournamentId}/next-race`,
       __body,
       {
         headers: __headers,

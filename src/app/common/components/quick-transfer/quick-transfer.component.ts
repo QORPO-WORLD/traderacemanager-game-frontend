@@ -31,7 +31,7 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
   walletToSelected = this.waletsTypes[0].name;
   tokenSelected = 'ioi';
   cryptoMtfrckr: string;
-  amount = 0;
+  amount = 1;
   myIoiBalance = 0;
   myTrxBalance = 0;
   trxUsdt = 3;

@@ -34,10 +34,16 @@ export class ErrorService extends AbstractService {
     apiError(error) {
         if (error) {
             console.log(error);
-            const errorModel: ApiError = new ApiError(error);
+            //const errorModel: ApiError = new ApiError(error);
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
             
+            if (error.error.description) {
+                console.log('bug');
+                this.notifyService.error(error.error.description);
+            }
+            
+           
             if (error.error.message) {
                 console.log('bug');
                 this.notifyService.error(error.error.message);

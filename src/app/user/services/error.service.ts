@@ -4,12 +4,13 @@ import { Injectable, Injector } from '@angular/core';
 
 import { AuthService } from '../../user/services/auth.service';
 import bugsnagClient from 'src/app/common/services/bugsnag.client';
+import { NotifyService } from 'src/app/common/services/notify.service';
 
 
 @Injectable()
 export class ErrorService {
 
-    constructor(private notifyService: NotifiqService, private authService: AuthService) {
+    constructor(private notifyService: NotifyService, private authService: AuthService) {
     }
 
     throwError(errorString) {
@@ -25,11 +26,26 @@ export class ErrorService {
 
     apiError(error) {
         console.log(error);
-        if (error.status !== 401) {
-            this.notifyService.error('api-error', error.detail);
-        }
+        //const errorModel: ApiError = new ApiError(error);
+            // Log the error to the console
+            // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
+            
+            if (error.error.description) {
+                console.log('bug');
+                this.notifyService.error(error.error.description);
+            }
+            
+           
+            if (error.error.message) {
+                console.log('bug');
+                this.notifyService.error(error.error.message);
+            }
+            
+           
+            if (error.status === 401) {
+                //this.authService.logout();
+            }
 
-        //this.notifyBugsnag(error, error);
        // this.authService.logout();
     }
 
