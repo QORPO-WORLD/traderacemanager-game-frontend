@@ -268,7 +268,7 @@
           <div class="bottom-part">
             <div class="my-item">
               <p class="value" style="
-              margin-bottom: 5px;">{{'shared.soon' | translate}}</p>
+              margin-bottom: 5px;">{{dailyReward}} IOI</p>
               <p class="desc">{{'start-race.daily_reward' | translate}}</p>
               <div class="line"></div>
             </div>
@@ -301,16 +301,19 @@
         <div class="stat-item">
           <div class="top-part">
             <p class="value">{{'start-race.leaderboard' | translate}}</p>
-            <p class="bot-desc">{{'start-race.leaderboard_placement' | translate}}</p>
+            <p class="bot-desc" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{'start-race.leaderboard_placement' | translate}}</p>
+            <p class="bot-desc" *ngIf="myDriverOld?.is_paid_membership === 'Free'">Available for premium members</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value">{{ myLdrbrd?.team_position ?  myLdrbrd?.team_position : '-'}}/3</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{ myLdrbrd?.team_position ?  myLdrbrd?.team_position : '-'}}/3</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership === 'Free'">-</p>
               <p class="desc">{{'profile.t_position' | translate}}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
-              <p class="value">{{ myLdrbrd?.player_position_overall }}</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{ myLdrbrd?.player_position_overall ? myLdrbrd?.team_position : '-' }}</p>
+              <p class="value" *ngIf="myDriverOld?.is_paid_membership === 'Free'">-</p>
               <p class="desc">{{'leaderboard.my_position' | translate}}</p>
             </div>
           </div>

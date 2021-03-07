@@ -48,6 +48,8 @@ export class MyRacesComponent implements OnInit, OnDestroy {
     this.winnerObservable = this.rapi.racesWinnerList(rid).subscribe(data => {
       const datax: any = data;
       this.winnersList = datax.winners;
+      console.log(this.winnersList);
+      console.log('ajajaj');
       this.showFinalModal = true;
     });
   }

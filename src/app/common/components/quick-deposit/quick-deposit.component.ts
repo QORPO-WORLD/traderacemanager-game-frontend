@@ -27,6 +27,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   trxUsdt = 3;
   editingWallet = false;
   myBalance: any;
+  claimed = false;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
@@ -100,6 +101,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
       this.translate.get('nitro_notifiq').subscribe((res) => {
         this.notify.error('x', res.succ_deposit);
         this.depositing();
+        this.claimed = true;
       });
     });
   }

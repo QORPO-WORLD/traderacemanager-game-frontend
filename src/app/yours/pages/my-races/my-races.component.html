@@ -44,3 +44,95 @@
     </div>
 
 </div>
+
+<div class="winning-modal" *ngIf="showFinalModal === true">
+
+    <div class="winner-back" (click)="showFinalModal = false"></div>
+    
+    <div class="winner-body">
+        <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showFinalModal = false">
+
+        <div class="table-holder">
+            <div class="my-row header">
+                <div>
+                    <p>{{'leaderboard.position' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'history.nick' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'profile.team' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'shared.prize' | translate}}</p>
+                </div>
+                <div>
+                    <p>{{'shared.points' | translate}}</p>
+                </div>
+            </div>
+            <div class="my-row" *ngFor="let item of winnersList;let i = index;">
+                <div class="my-position">
+                    <div class="pos-box my-border-grad">
+                        <div class="inner">
+                            <p>{{i + 1}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>{{ item.nickname }}</p>
+                </div>
+                <div>
+                    <p>{{ item.team ? item.team : 'NO'}}</p>
+                </div>
+                <div>
+                    <p>{{ (item.amount ? item.amount : 0 ) | number:'1.2-2':'fr'}}</p>
+                </div>
+                <div>
+                    <p>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal-bg">
+        <p class="close-modal" (click)="showFinalModal = false;">x</p>
+  
+        <div class="ledeboard-team-list-component details">
+            <div class="sub-header-component">
+                <button>{{'leaderboard.position' | translate}}</button>
+                <button>{{'history.nick' | translate}}</button>
+                <button>{{'profile.team' | translate}}</button>
+                <button>{{'shared.prize' | translate}}</button>
+                <button>{{'shared.points' | translate}}</button>
+            </div>
+  
+  
+            <div class="table">
+                <div class="tab-team" *ngFor="let item of winnersList;let i = index;">
+                    <div class="inner-tab">
+                      <div class="item team-position">
+                          <span class="position"
+                            [ngClass]="'win-' + (i + 1)">&nbsp;</span>
+                        </div>
+                        <div class="item team-points">
+                          <span class="points">{{ item.nickname }}</span>
+                        </div>
+                        <div class="item team-leader">
+                          <span>{{ item.team ? item.team : 'NO'}}</span>
+                        </div>
+                        <div class="item team-rider">
+                          <span>{{ (item.amount ? item.amount : 0 ) | number:'1.2-2':'fr'}}</span>
+                        </div>
+                        <div class="item team-rider" *ngIf="item.amount">
+                          
+                          <span>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</span>
+                        </div>
+                        <div class="item team-rider" *ngIf="!item.amount">
+                          <span>0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  </div>

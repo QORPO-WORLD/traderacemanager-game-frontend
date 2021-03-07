@@ -69,8 +69,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
       });
 
       this.teams = data.results;
-      console.log(this.teams);
-      console.log(data);
     });
   }
 
@@ -79,7 +77,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.myTeam = data.team;
     this.getTeams();
     this.myTeamData = data;
-    console.log(data);
 
   }
 
@@ -89,8 +86,10 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
         this.notifyChangedBalance();
         setTimeout(() => {
           this.identityService.updateDriverMe();
+          this.getMydriver();
           this.getMyTeam();
-        }, 1000);
+
+        }, 100);
       });
   }
 
@@ -99,8 +98,10 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
       subscribe(data => {
         setTimeout(() => {
           this.identityService.updateDriverMe();
+          this.getMydriver();
           this.getMyTeam();
-        }, 1000);
+
+        }, 100);
       });
   }
 
@@ -148,7 +149,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   getMyTeamReward() {
     this.teamSubscription = this.lapi.leaderboardTeamInternalList().subscribe(
       data => {
-        console.log(data);
+
         this.myTeamReward = data.team_bonus;
       }
     );
@@ -164,8 +165,9 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
 
 
   getMydriver() {
-    this.myDriverStats = this.identityService.getStorageIdentity();
-    console.log(this.myDriverStats.next_month_team_id);
+    setTimeout(() => {
+      this.myDriverStats = this.identityService.getStorageIdentity();
+    }, 500);
   }
 
 }

@@ -10,10 +10,7 @@ import { DriversService, LeaderboardService } from 'src/app/api/services';
   styleUrls: ['./all-players.component.scss'],
 })
 export class AllPlayersComponent implements OnInit {
-  @Input() players: PlayerLeaderboard[];
-  @Input() mr: any;
-  @Input() payouts: any;
-  @Input() mrp: any;
+  players: PlayerLeaderboard[];
   myLdrbrd: any;
   mydrvr: any;
   myLdrbrdObserver: Subscription;
@@ -36,11 +33,11 @@ export class AllPlayersComponent implements OnInit {
   }
 
   getMyLeaderboard() {
-    this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardMe({
+    this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardPlayerList({
       page: 1, lastMonth: false
     })
       .subscribe(data => {
-        this.myLdrbrd = data;
+        this.players = data;
 
       });
   }
