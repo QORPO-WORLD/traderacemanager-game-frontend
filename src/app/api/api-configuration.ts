@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-   rootUrl: string = 'https://dev-api.traderacemanager.com';
+   rootUrl: string = 'http://dev-api.traderacemanager.com';
 }
 
 export interface ApiConfigurationInterface {

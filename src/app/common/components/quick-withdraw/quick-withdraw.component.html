@@ -22,23 +22,6 @@
           </div>
         </div>
 
-        <div class="box-item trx" [ngClass]="{'active': tokenSelected === 'matic'}" (click)="tokenSelected = 'matic'">
-          <div class="inner">
-            <img src="/assets/base/images/tankovanie/matic-token.png" alt="Logo of matic token" class="curr-logo matic">
-            <div class="text-holder">
-              <ng-container *ngIf="myTrxBalance > 0">
-                <p class="value">{{myTrxBalance | number:'1.0-2':'fr' }} MATIC</p>
-                <p class="dollars">&#36; {{trxUsdt * myTrxBalance | number:'1.0-2':'fr'}}</p>
-              </ng-container>
-
-              <ng-container *ngIf="myTrxBalance === 0">
-                <p class="value">0 MATIC</p>
-                <p class="dollars">&#36; 0</p>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-
         <div class="soon-curs">
           <p class="mid-text">More currencies coming soon</p>
           <div class="box-item">
@@ -67,7 +50,7 @@
       <p class="common-heading">Amount</p>
       <div class="amount-input my-cta-btn-back">
         <div class="inner">
-          <input type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the ammount you want to withdraw">
+          <input type="number" min="100" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the ammount you want to withdraw">
           <p class="curr-desc" *ngIf="tokenSelected === 'matic'">MATIC</p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
