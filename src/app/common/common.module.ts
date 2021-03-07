@@ -38,6 +38,7 @@ import { NotificationResource } from '../notification/resources/notification.res
 import { CommonModule as ninja } from '@angular/common';
 import { RaceLayoutComponent } from './components/layout/race-layout/race-layout.component';
 import { IonicModule } from '@ionic/angular';
+import { AnQrcodeModule } from 'an-qrcode';
 
 import { MyHammerConfig } from './resources/my-hammer.config';
 import { HammerGestureConfig } from '@angular/platform-browser';
@@ -64,6 +65,7 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     ninja,
     HttpClientModule,
     IonicModule,
+    AnQrcodeModule,
     TranslateModule
   ],
   declarations: [

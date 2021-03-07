@@ -82,7 +82,12 @@
       </div>
       <div class="qr-code-holder">
         <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
-        <img class="qr-code" src="/assets/base/images/qr.jpg" alt="">
+
+        <qrcode class="qr-code"
+            [level]="1"
+            [qrvalue]="cryptoMtfrckr"
+        ></qrcode>
+
         <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();" *ngIf="claimed === false">Claim</button>
         <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();"  *ngIf="claimed === true">Claimed</button>
       </div>
