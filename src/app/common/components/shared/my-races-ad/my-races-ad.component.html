@@ -27,9 +27,13 @@
     </ng-container>
 
     <ng-container *ngIf="raceFilter === 'favourite'">
+      <div class="empty-fav-race" *ngIf="myFavRaces.length==0">
+        <p>{{"start-race.empty_favourite_fuel" | translate}}</p>
+        <button [routerLink]="['/race/all-races']" class="my-cta-btn-back hoverable">{{"start-race.favourite_fuel_button" |translate}}</button>
+      </div>
       <div class="box-item my-border-grad" *ngFor="let mainr of myFavRaces; let i = index">
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-        <span class="favis"><img src="/assets/base/images/race-type/star-red.png"></span>
+        <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
           <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
             <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
@@ -39,7 +43,7 @@
   
         <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr]"></div>
   
-            </div>
+      </div>
     </ng-container>
     
 
