@@ -121,8 +121,6 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     if(this.myDriverStats && this.myDriverStats.is_verified === false){
       this.showVerified = true;
     }
-    console.log(this.myDriverStats);
-    console.log('rudolf');
     this.tickets = datax.tournament_tickets;
     this.getMyOldDriver();
   }

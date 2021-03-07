@@ -28,7 +28,7 @@ export class QuickWithdrawComponent implements OnInit {
   nitroObserver: Subscription;
   tokenSelected = 'ioi';
   cryptoMtfrckr: string;
-  amount = 0;
+  amount = 100;
   myIoiBalance = 0;
   myTrxBalance = 0;
   trxUsdt = 3;
