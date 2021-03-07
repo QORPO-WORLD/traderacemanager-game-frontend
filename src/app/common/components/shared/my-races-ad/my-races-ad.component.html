@@ -23,7 +23,9 @@
     
         </div>
       </ng-container>
-      
+      <div class="no-other">
+        <p class="desc">{{"start-race.no_other_next" | translate}}</p>
+      </div>
     </ng-container>
 
     <ng-container *ngIf="raceFilter === 'favourite'">
@@ -43,6 +45,10 @@
   
         <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr]"></div>
   
+      </div>
+
+      <div class="no-other">
+        <p class="desc">{{"start-race.no_other_favourite" | translate}}</p>
       </div>
     </ng-container>
     
@@ -66,11 +72,17 @@
           *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0'"></div>
         </div>
       </ng-container>
-      
+      <div class="no-other">
+        <p class="desc">{{"start-race.no_other_live" | translate}}</p>
+      </div>
     </ng-container>
     
 
     <ng-container *ngIf="raceFilter === 'upcoming'">
+      <div class="empty-fav-race" *ngIf="mnr.length==0">
+        <p>{{"start-race.empty_my_race" | translate}}</p>
+        <button [routerLink]="['/race/all-races']" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
+      </div>
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <div class="inner-holder">
@@ -88,6 +100,9 @@
         </div>
   
         <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]"></div>
+      </div>
+      <div class="no-other">
+        <p class="desc">{{"start-race.no_other_my" | translate}}</p>
       </div>
     </ng-container>
     

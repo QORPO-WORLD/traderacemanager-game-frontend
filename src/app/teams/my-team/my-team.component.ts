@@ -34,6 +34,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   myTeamData: any;
   myTeamName: any;
   myTeamStats: any;
+  bestRacer: any;
   myuser: any;
   teams: any;
   constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
@@ -75,6 +76,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       data => {
         this.myTeam = data;    
         this.myuser = data.me.user_id;
+        console.log(this.myTeam.top10);
+        this.bestRacer = this.myTeam.top10[0];
       }
     );
   }

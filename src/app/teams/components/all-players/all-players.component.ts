@@ -42,8 +42,6 @@ export class AllPlayersComponent implements OnInit {
         const data: any = datax;
         this.players = data.results;
         this.totalPages = data.totalPages;
-      
-
       });
   }
 

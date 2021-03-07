@@ -7,6 +7,7 @@
         <div >Nickname</div>
         <div >Team</div>
         <div >Turnover</div>
+        <div>Potentional win</div>
     </div>
     <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3}">
     
@@ -21,7 +22,7 @@
       <div class="cell"> <p> {{pl.user_nickname}}</p></div>
       <div class="cell"><p>{{pl.team_name}}</p></div>
       <div class="cell"><p> {{pl.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
-      
+      <div class="cell"><p> 0</p></div>
     </div>
     
     <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">

@@ -200,15 +200,15 @@
     <div class="box box-background">
       <span class="box-content ">
         <p class="box-name">{{'teams.my_team.best_racer' | translate}}</p>
-        <h4>Rasto1424</h4>
-        <p><span>1280 IOI {{'teams.my_team.player_turnover' | translate}}</span></p>
+        <h4>{{bestRacer?.user_nickname}}</h4>
+        <p><span>{{bestRacer?.total_bet_amount | number:'1.1-1':'fr'}} IOI {{'teams.my_team.player_turnover' | translate}}</span></p>
       </span>
     </div>
 
-    <div class="box box-background">
+    <div class="box box-background soon">
       <span class="box-content ">
         <p class="box-name">{{'teams.my_team.team_value' | translate}}</p>
-        <h4>3500 IOI</h4>
+        <h4>Soon</h4>
         <p><span>+300% {{'teams.my_team.since_last_week' | translate}}</span></p>
         <button>
             <!--{{'teams.my_team.buy_shares' | translate}}-->
@@ -241,7 +241,7 @@
             <div class="placement my-border-grad box-background"><span>{{pl?.player_position}}</span></div>
           </div>
           <div class="cell"> <p> {{pl?.user_nickname}}</p></div>
-          <div class="cell"><p>{{pl?.ioi_turnover | number:'1.1-1':'fr'}}</p></div>
+          <div class="cell"><p>{{pl?.total_bet_amount | number:'1.1-1':'fr'}}</p></div>
           <div class="cell"><p>{{myTeam?.applicable_team_bonuses[yy]  | number:'1.1-1':'fr'}}</p></div>
         </div>
 
@@ -264,7 +264,7 @@
           <button (click)="graphType='Profit'" [ngClass]="{'active button-gradient': graphType=='Profit'}"class="border-color">{{"teams.my_team.profit" | translate}}</button>
         </div>
         <h4>Coming soon</h4>
-        <img src="/assets/base/images/teams/graph.png" alt="">
+        <img class="soon" src="/assets/base/images/teams/graph.png" alt="">
       </div>
       <div class="tip">
         <h5 class="tip-heading">{{'teams.my_team.tip_of_day' | translate}} <img src="/assets/base/images/teams/fire.png" alt=""> Coming soon</h5>

@@ -56,6 +56,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getAllNextRaces();
     this.getmyFavRaces();
+    console.log(this.liveAllRacesData);
   }
 
   ngOnDestroy() {
