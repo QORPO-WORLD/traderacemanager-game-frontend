@@ -16,14 +16,17 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   @Input() mrp: any;
   myLdrbrd: any;
   mydrvr: any;
+  myStatData: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
+  teamId: number;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
   ngOnInit() {
-    this.getMyDriver();
-    this.getMyLeaderboard();
+   // this.getMyDriver();
+    //this.getMyLeaderboard();
+    this.getMyTeam();
   }
 
   ngOnDestroy() {
@@ -49,6 +52,22 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
 
+  }
+  
+
+  getMyTeam() {
+    const data = this.identityService.getLeaderboardMe();
+    this.teamId = data.team_id;
+    this.getteamStats();
+  }
+
+  getteamStats() {
+    this.ldrbrdSrvc.leaderboardTeamOverall(1)
+    .subscribe(data => {
+      console.log(data);
+      this.myStatData = data;
+
+    });
   }
 
 }

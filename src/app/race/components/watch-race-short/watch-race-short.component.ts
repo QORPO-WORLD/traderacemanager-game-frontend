@@ -196,7 +196,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.startRace();
         } else {
           if (this.startsInChecked === false) {
-            this.startsIn = data.starts_in + 2;
+            this.startsIn = data.starts_in;
             this.whenStarts();
           }
         }
@@ -360,6 +360,9 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       }
     }
     this.moveWheels();
+    setTimeout(() => {
+      this.getRaceData();
+    }, 500);
     this.getUpcoming();
   }
 

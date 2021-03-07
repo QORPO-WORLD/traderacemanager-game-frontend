@@ -224,16 +224,54 @@ class LeaderboardService extends __BaseService {
    *
    * @return Returns player leaderboard
    */
+   leaderboardOwnersList(params: any): __Observable<Array<any>> {
+    return this.leaderboardOwnersListResponse(params).pipe(
+      __map(_r => _r.body as Array<any>)
+    );
+  }
+  leaderboardTeamOverallResponse(params: any): __Observable<__StrictHttpResponse<Array<any>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.lastMonth != null) __params = __params.set('last_month', params.lastMonth.toString());
+    if (params.page != null) __params = __params.set('page', params.page.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/leaderboard/overall-teams/` + params,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<any>>;
+      })
+    );
+  }
+  /**
+   * @param params The `LeaderboardService.LeaderboardTeamListParams` containing the following parameters:
+   *
+   * - `last_month`:
+   *
+   * - `page`: A page number within the paginated result set.
+   *
+   * @return Returns player leaderboard
+   */
+   leaderboardTeamOverall(params: any): __Observable<Array<any>> {
+    return this.leaderboardTeamOverallResponse(params).pipe(
+      __map(_r => _r.body as Array<any>)
+    );
+  }
   leaderboardTeamList(params: LeaderboardService.LeaderboardTeamListParams): __Observable<Array<PlayerLeaderboard>> {
     return this.leaderboardTeamListResponse(params).pipe(
       __map(_r => _r.body as Array<PlayerLeaderboard>)
     );
   }
-  leaderboardOwnersList(params: any): __Observable<Array<any>> {
-    return this.leaderboardOwnersListResponse(params).pipe(
-      __map(_r => _r.body as Array<any>)
-    );
-  }
+
   leaderboardTeamInternalListResponse(): __Observable<__StrictHttpResponse<InternalTeamLeaderboard>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
