@@ -91,15 +91,14 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
 
 
   depositIoiToken() {
-    const amx: string = this.amount.toString();
     this.transferSubscription = this.blcksrvc.blockchainDepositCreate(
       {
-        amount: parseFloat(amx + '.00'),
         currency: this.tokenSelected
       }
-    ).subscribe(data => {
+    ).subscribe(datax => {
+      const data: any = datax;
       this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', res.succ_deposit);
+        this.notify.error('x', 'We found ' + data.outstanding_amount + ' new IOI tokens on your wallet.');
         this.depositing();
         this.claimed = true;
       });

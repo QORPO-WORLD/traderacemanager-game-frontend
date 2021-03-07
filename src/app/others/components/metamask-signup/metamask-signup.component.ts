@@ -23,6 +23,7 @@ export class MetamaskSignupComponent implements OnInit {
   email: string;
   agreeChecked = false;
   overlay = true;
+  chainId = 137;
   constructor(private notify: NotifyService) { }
 
   ngOnInit() {
@@ -59,10 +60,17 @@ export class MetamaskSignupComponent implements OnInit {
     this.getWalletAddress();
   }
 
+  setChainId(id: number) {
+    localStorage.setItem('chaind', JSON.stringify(id));
+    this.chainId = id;
+    this.setAddress();
+  }
+
   getWalletAddress() {
+
     ethereum
-      .request({ method: 'eth_requestAccounts' })
-      .then((data) => this.signMessage(data))
+      .request({ method: 'net_version' })
+      .then((data) => this.setChainId(data))
       .catch((error) => {
         if (error.code === 4001) {
           this.notify.error('Please connect to MetaMask.');
@@ -74,10 +82,21 @@ export class MetamaskSignupComponent implements OnInit {
 
   }
 
-  signMessage(data) {
+  setAddress() {
+    ethereum
+    .request({ method: 'eth_requestAccounts' })
+    .then((data) => this.signMessage(data))
+    .catch((error) => {
+      if (error.code === 4001) {
+        this.notify.error('Please connect to MetaMask.');
+      } else {
+        this.notify.error(error);
+      }
+    });
+  }
 
+  signMessage(data) {
     const signer = data[0];
-    console.log(signer);
     const msgParams = {
       types: {
         EIP712Domain: [
@@ -94,7 +113,7 @@ export class MetamaskSignupComponent implements OnInit {
       domain: {
         name: 'TRM',
         version: '2.0',
-        chainId: 137,
+        chainId: this.chainId,
         verifyingContract: '0x8B3870Df408fF4D7C3A26DF852D41034eDa11d81',
         salt: 'randomstringgg'
       },
@@ -152,7 +171,7 @@ export class MetamaskSignupComponent implements OnInit {
     const domainData = {
       name: 'TRM',
       version: '2.0',
-      chainId: 137,
+      chainId: this.chainId,
       verifyingContract: '0x8B3870Df408fF4D7C3A26DF852D41034eDa11d81',
       salt: 'randomstringgg'
     };
@@ -182,14 +201,6 @@ export class MetamaskSignupComponent implements OnInit {
           result ? this.finalizeLogin(result) : this.notify.error(err);
         }
       );
-    /*
-      .then((result) => {
-        this.finalizeLogin(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-*/
   }
 
   finalizeLogin(data) {

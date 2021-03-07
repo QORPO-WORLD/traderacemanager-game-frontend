@@ -50,6 +50,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   gfbfired = false;
   capInterval: any;
   metaSwitch = false;
+  chainId = 137;
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
@@ -84,6 +85,11 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.submitted = true;
         this.mmewa = mmew;
         this.submit();
+      }
+      const chaind = JSON.parse(localStorage.getItem('chaind'));
+      if (chaind) {
+          this.chainId = Number(chaind);
+          this.mmewa = mmew;
       }
     }, 1000);
   }
@@ -187,8 +193,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   signinWithMetamask() {
     return this._http.post(environment.api_url + '/account/metamask-sign-in', {
       password: this.mmewa,
-      recaptchaToken: this.token
-
+      recaptchaToken: this.token,
+      chain_id: this.chainId
     },
       httpOptions);
   }
@@ -199,7 +205,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   clearMetamask(error) {
     this.getErrorService().apiError(error);
-    localStorage.removeItem('mmea');
+   //localStorage.removeItem('mmea');
     this.mmewa = null;
     this.metaSwitch = false;
   }

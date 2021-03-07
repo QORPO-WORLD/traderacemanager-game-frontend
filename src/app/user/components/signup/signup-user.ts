@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true
-  };
+};
 @Component({
     templateUrl: './signup-user.html',
     styleUrls: ['./signup-user.scss']
@@ -61,6 +61,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     mmewa: string;
     mmewinterval: any;
     showMmew = false;
+    chainId = 137;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
         private notify: NotifiqService,
         private router: Router, protected api: AuthService, protected route: ActivatedRoute,
@@ -104,7 +105,12 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.showMmew = true;
                 this.mmewa = mmew;
             }
-        }, 5000);
+            const chaind = JSON.parse(localStorage.getItem('chaind'));
+            if (chaind) {
+                this.chainId = Number(chaind);
+                this.mmewa = mmew;
+            }
+        }, 2000);
         if (this.referralId) {
             const cname = 'affiliate_reference';
             const d = new Date();
@@ -149,7 +155,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.signupWithMetamask().subscribe({
                 next: data => this.getAuthService().login(data),
                 error: error => this.clearMetamask(error.body)
-              });
+            });
         } else {
             this.api.authUsersCreateDesktop({
                 email: this.f.email.value, password: this.f.password.value,
@@ -194,17 +200,16 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             password: this.mmewa,
             recaptchaToken: this.token,
             email: this.f.email.value,
-            nick: this.f.nickname.value
-
+            nick: this.f.nickname.value,
+            chain_id: this.chainId
         },
             httpOptions);
     }
 
-    
-  clearMetamask(error) {
-    this.getErrorService().apiError(error);
-    localStorage.removeItem('mmea');
-    this.mmewa = null;
-    this.metaSwitch = false;
-  }
+
+    clearMetamask(error) {
+        this.getErrorService().apiError(error);
+        this.mmewa = null;
+        this.metaSwitch = false;
+    }
 }
