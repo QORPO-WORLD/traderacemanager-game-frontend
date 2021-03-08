@@ -344,7 +344,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
     clearInterval(this.detailInterval);
 
-    this.getRaceData();
+    //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
       if (this.pageOpen === true) {
         setTimeout(() => {
@@ -359,9 +359,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
       }
     }
-    this.moveWheels();
+    
     setTimeout(() => {
       this.getRaceData();
+      this.moveWheels();
     }, 500);
     this.getUpcoming();
   }
