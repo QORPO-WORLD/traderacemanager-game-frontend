@@ -20,6 +20,18 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
   teamId: number;
+  slice1: number;
+  slice2: number;
+  slice3: number;
+  slice4: number;
+  slice5: number;
+  sliceNums = {
+    0: 3,
+    1: 3,
+    2: 3,
+    3: 3,
+    4: 3
+  }
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 

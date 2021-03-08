@@ -27,7 +27,7 @@
                 <img src="assets/base/images/leaderboard/crown-bronze.png" alt="" *ngIf="tt.team.position > 2">
                 <span class="team-placement gold">{{tt.team.position}}</span>
               </div>
-              <p>{{tt?.team_bonus ? tt?.team_bonus : '-'}} IOI</p>
+              <p>{{(tt?.team_bonus ? tt?.team_bonus : 0)  | number:'1.2-2':'fr'}} IOI</p>
             </div>
             <p>{{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
           </span>
@@ -36,10 +36,10 @@
     </div>
 
     <div class="team-leaders-table">
-      <div class="arrow-right">
+      <div class="arrow-right" (click)="this.sliceNums[ix] = this.sliceNums[ix] + 3" *ngIf="tt.top10.length > this.sliceNums[ix]">
         <p>&gt;</p>
       </div>
-      <div class="arrow-left">
+      <div class="arrow-left" (click)="this.sliceNums[ix] = this.sliceNums[ix] - 3" *ngIf="this.sliceNums[ix] > 3">
         <p>&lt;<p>
       </div>
       <div class="heading table-row">
@@ -48,7 +48,7 @@
         <div class="item-cell"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
         <div class="item-cell"><p>{{"shared.potential_win"| translate}}</p></div>
       </div>
-      <div class="table-row" *ngFor="let toper of tt.top10;let ixx = index;">
+      <div class="table-row" *ngFor="let toper of tt.top10 | slice:this.sliceNums[ix] - 3 :this.sliceNums[ix];">
         <div class="item-cell">
           <div class="placement">
             <span><p>{{toper.position}}.</p></span>
@@ -56,7 +56,7 @@
         </div>
         <div class="item-cell"><p>{{toper.user_nickname}}</p></div>
         <div class="item-cell"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
-        <div class="item-cell"><p>{{tt.applicable_team_bonuses[ixx] | number:'1.2-2':'fr'}}</p></div>
+        <div class="item-cell"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
       </div>
     </div>
   </div>
