@@ -62,7 +62,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   verifyModalTutorial = false;
   isManager = false;
   showDayTipModal = false;
-  editTips = false;
   trxBalance = 0;
   visibleCardIndex = 0;
   theta = 0;
