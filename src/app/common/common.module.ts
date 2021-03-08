@@ -39,6 +39,8 @@ import { CommonModule as ninja } from '@angular/common';
 import { RaceLayoutComponent } from './components/layout/race-layout/race-layout.component';
 import { IonicModule } from '@ionic/angular';
 import { AnQrcodeModule } from 'an-qrcode';
+import { ShowTipsComponent } from './components/show-tips/show-tips.component';
+import { CreateTipsComponent } from './components/create-tips/create-tips.component';
 
 import { MyHammerConfig } from './resources/my-hammer.config';
 import { HammerGestureConfig } from '@angular/platform-browser';
@@ -100,6 +102,8 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     IndicatorComponent,
     TechIndicatorComponent,
     DailyTipModalComponent,
+    ShowTipsComponent,
+    CreateTipsComponent,
     WaitingTransferComponent
   ],
   providers: [
