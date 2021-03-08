@@ -457,6 +457,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                 bet: 0
               });
             }
+            console.log('set betik');
             this.raceDataildata.my_cars[x].betik = betix;
             for (let z = 0; z < 3; z++) {
               for (let y = 0; y < 20; y++) {
