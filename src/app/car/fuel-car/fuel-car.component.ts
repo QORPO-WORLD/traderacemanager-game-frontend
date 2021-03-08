@@ -1167,7 +1167,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
 
   selectCarToRace(index) {
-    console.log(index);
     //this.selectedCarToRace = this.myCars[index];
     this.hideConfirm = false;
     const statBet = [];
@@ -1226,7 +1225,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     } else {
       this.xtrx = this.xtrx - this.actualRaceAmount;
     }
-    console.log(this.selectedCarsToRace);
   }
 
 
@@ -1581,6 +1579,16 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.selectedSlideIndex--;
     }
   }
+
+  manualCarChange(index: number){
+    let adjustNum = 2;
+    if (window.window.innerWidth < 640){
+      adjustNum = 1;
+    }
+    this.carSlideIndex = index - adjustNum;
+    this.selectedSlideIndex = index;
+  }
+
 
   nextTutorialStep(){
     if (this.tutorialStep === 4) {

@@ -78,7 +78,7 @@
         <div class="slider-holder" (swipeleft)="nextSlideCar()" (swiperight)="prevSlideCar()">
           <div class="inner-slider" [ngStyle]="{'left.%': 0 - (slidePercent * carSlideIndex)}">
             <ng-container *ngFor="let car of myCars;let i = index">
-              <div class="car-item" (click)="selectCarToRace(i)" 
+              <div class="car-item" (click)="selectCarToRace(i); manualCarChange(i)" 
               *ngIf="car.extras.tier > ((editionIndex * 6) - 6) && car.extras.tier <= (editionIndex * 6) || (car.extras.tier === 0 && editionIndex === 1) || car.extras.tier === 24 + editionIndex"
               [ngClass]="{'big-center': i === selectedSlideIndex || (car.extras.tier > 24 && carSlideIndex === myCarsInEdition.length - rareAdjustNum), 
               'mid-sides': i === selectedSlideIndex - 1 || i === selectedSlideIndex + 1,

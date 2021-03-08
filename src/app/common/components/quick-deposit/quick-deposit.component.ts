@@ -27,7 +27,6 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   trxUsdt = 3;
   editingWallet = false;
   myBalance: any;
-  claimed = false;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
