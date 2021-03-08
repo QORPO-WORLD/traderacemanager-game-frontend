@@ -48,7 +48,6 @@ export class AllPlayersComponent implements OnInit {
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
-
   }
 
 }

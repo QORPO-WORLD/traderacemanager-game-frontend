@@ -32,6 +32,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     cssClass: 'customSelect profileSelect'
   };
   myMaticBalance = 0;
+  claimed: boolean;
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, protected translate: TranslateService,
     private identityService: AuthService) { }
