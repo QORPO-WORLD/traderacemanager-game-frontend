@@ -9,20 +9,40 @@
         <div >Turnover</div>
         <div>Potentional win</div>
     </div>
-    <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3}">
+    <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3, 'last':pl.user_id===mydrvrData.id}">
     
       <div class="cell" *ngIf="pl.player_position < 4">
         <div class="crown">
             <span><p>{{pl.player_position}}.</p></span>
         </div>
-        <div class="cell" *ngIf="pl.player_position > 3">
-          <div class="placement my-border-grad"><span>{{pl.player_position}}.</span></div>
-        </div>
+      </div>
+      <div class="cell" *ngIf="pl.player_position > 4">
+        <div class="placement my-border-grad"><span>{{pl.player_position}}.</span></div>
       </div>
       <div class="cell"> <p> {{pl.user_nickname}}</p></div>
       <div class="cell"><p>{{pl.team_name}}</p></div>
-      <div class="cell"><p> {{pl.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
-      <div class="cell"><p> 0</p></div>
+      <div class="cell"><p> {{pl.total_bet_amount  | number:'1.1-1':'fr'}}</p></div>
+      <div class="cell" *ngIf="pl.player_position>10"><p> 0</p></div>
+      <ng-container *ngIf="pl.player_position<=10">
+        <div class="cell" *ngIf="pl.player_position===1"><p>{{1000*.3}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===2"><p>{{1000*.2}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===3"><p>{{1000*.1}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===4"><p>{{1000*.08}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===5"><p>{{1000*.07}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===6"><p>{{1000*.06}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===7"><p>{{1000*.05}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===8"><p>{{1000*.04}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===9"><p>{{1000*.03}}</p></div>
+        <div class="cell" *ngIf="pl.player_position===10"><p>{{1000*.02}}</p></div>
+      </ng-container>
+    </div>
+
+    <div class="row last" *ngIf="isPageWithMe===false && cachedLdrbrd?.player_position_overall!=null">
+      <div class="cell placement my-border-grad"><p>me</p><span>{{cachedLdrbrd?.player_position_overall}}</span></div>
+      <div class="cell"> <p>{{mydrvr}}</p></div>
+      <div class="cell"><p>{{cachedLdrbrd?.team_name}}</p></div>
+      <div class="cell"><p> {{cachedLdrbrd?.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
+      <div class="cell"><p>0</p></div>
     </div>
     
     <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">

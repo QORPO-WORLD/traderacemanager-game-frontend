@@ -6,7 +6,7 @@
         <div >Position</div>
         <div >Name</div>
         <div >Asset value</div>
-        <div >Turnover</div>
+        <div >Daily stakes</div>
     </div>
     <div class="row" *ngFor="let pl of myLdrbrd; let yy = index" [ngClass]="{'first': yy === 0, 'secound': yy === 1, 'third': yy === 2}">
     
@@ -18,7 +18,7 @@
         <div class="cell" *ngIf="yy >= 3">
           <div class="placement my-border-grad"><span>{{yy + 1}}.</span></div>
         </div>
-      <div class="cell"> <p> {{pl.user_id}}</p></div>
+      <div class="cell"> <p> {{pl.user_nickname}}</p></div>
       <div class="cell"><p>{{pl.garage_value | number:'1.0-1':'fr'}}</p></div>
       <div class="cell"><p> {{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
     </div>
