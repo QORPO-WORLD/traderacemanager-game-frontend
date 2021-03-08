@@ -6,5 +6,6 @@ export interface PlayerLeaderboard {
   user_country?: string;
   team_id?: null | number;
   ioi_turnover?: number;
+  total_bet_amount?: number;
   team_name?: null | string;
 }

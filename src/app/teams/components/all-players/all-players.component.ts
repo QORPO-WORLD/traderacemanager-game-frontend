@@ -62,8 +62,6 @@ export class AllPlayersComponent implements OnInit {
       //this.identityService.logout()();
       return;
     }
-    console.log("jako");
-    console.log(this.cachedLdrbrd);
   }
 
   nextPage() {
@@ -78,7 +76,7 @@ export class AllPlayersComponent implements OnInit {
   isMePage(){
     this.isPageWithMe=false;
     this.players.forEach(element => {
-      if(element.user_id==this.mydrvrData.id){
+      if(element.user_nickname==this.mydrvrData.nickname){
         this.isPageWithMe=true;
       }
     });
