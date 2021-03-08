@@ -675,23 +675,7 @@
 </div>
 
 
-<div class="daily-modal-holder" *ngIf="showDayTipModal === true">
-  <div class="daily-modal-back" (click)="showDayTipModal = false"></div>
-  <div class="daily-modal-content" [ngClass]="{'bigger': editTips === true}">
-    <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showDayTipModal = false">
-
-    <div class="header-holder" *ngIf="editTips === false">
-      <p class="heading"><img src="/assets/base/images/start-race/flame-icon.png" alt="Image of flame" class="flame-img"> {{'teams.my_team.tip_of_day' | translate}} <img src="assets/base/images/teams/edit-icon.png" alt="Edit tips icon" class="edit-icon" (click)="editTips = true"></p>
-      <p class="text">{{'teams.my_team.tip_desc' | translate}}</p>
-    </div>
-
-    <div class="header-holder" *ngIf="editTips === true">
-      <p class="heading">{{'teams.my_team.add_tip' | translate}}</p>
-      <p class="text">{{'teams.my_team.choose_tip' | translate}}</p>
-    </div>
-    <app-daily-tip-modal [isEditing]="editTips" (editTips)="tipsSaved($event)"></app-daily-tip-modal>
-  </div>
-</div>
+<app-daily-tip-modal (modalClose)="tipsSaved($event)"  *ngIf="showDayTipModal === true"></app-daily-tip-modal>
 
 
 
