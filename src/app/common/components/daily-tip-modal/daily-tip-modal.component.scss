@@ -1,585 +1,144 @@
 
-.my-modal-body{
-    padding: 0 20px 20px;
-}
-.content-wrapper{
-    max-width: 82%;
-    position: relative;
-    margin: 60px auto 10px;
-    .tip-wrapper{
-        width: 80%;
-        padding: 1px 0 0 1px;
-        border-radius:20px ;
-        h5{
-          margin: 0;
-          font-weight: 600;
-        }
-        p{
-          margin: 0;
-        }
-        .tip-border{
-          padding: 25px;
-          width: 100%;
-          height: 100%;
-          display: block;
-          box-shadow: 0px 0px 80px #000000;
-          border-radius: 20px;
-          background: linear-gradient(90deg, rgba(17,17,17,0.85) 0%, rgba(17,17,17,1) 100%);
-          .tip-item:first-child{
-            margin-top: 0px;
+.daily-modal-holder{
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000002;
+  overflow: auto;
+  .daily-modal-back{
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(17,17,17,.9);
+  }
+  .daily-modal-content{
+      padding: 35px 20px 20px;
+      background: #111;
+      border-radius: 15px;
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      max-width: 960px;
+      background: #111111;
+      border-radius: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      &.bigger{
+        max-width: 1146px;
+      }
+      .close-modal{
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          padding: 10px;
+          cursor: pointer;
+          transition: 0.2s;
+          z-index: 10;
+          &:hover{
+              transform: rotate(90deg);
           }
-          .tip-item:last-child{
-            margin-bottom: 0px;
-          }
-        }
-        .tip-item{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 22px 0;
-            .up{
-              color:#84C319;
-            }
-            .down{
-              color: #23FFFF;
-            }
-            span{
-              opacity: .6;
-            }
-            .tip-stats{
-                display: flex;
-                align-items: center;
-                img{
-                  width: 50px;
-                  height: 50px;
-                  margin-right: 30px;
-                }
-            }
-            .raiting{
-                transition: .2s;
-                position: absolute;
-                display: flex;
-                justify-content: space-between;
-                right: 0px;
-                img{
-                  cursor: pointer;
-                  opacity: .6;
-                  margin: 0 10px;
-                }
-                .active{
-                  opacity: 1;
-                }
-                img:hover{
-                  opacity: 1;
-                  transform: scale(1.07);
-                }
-            }
-        }
-    }
-}
-
-.content-wrapper.wrapper2{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    .carousel-holder{
-        margin-bottom: 10px;
-        position: relative;
-        .inner-item-holder{
-          width: 100%;
-          max-width: 612px;
-          margin: 0 auto;
-          display: grid;
-          position: relative;
-          grid-gap: 22px;
-          grid-template-columns: repeat(5, auto);
-          .item-holder{
+      }
+      .header-holder{
+        padding: 0 15px;
+        max-width: 82%;
+        margin: 20px auto 0;
+        text-align: center;
+        .heading{
+            font-weight: 600;
+            font-size: 20px;
+            margin: 0 0 10px 0;
             position: relative;
-            .item-curr{
-              width: 100px;
-              height: 100px;
-              box-shadow: 3px 0px 12px rgba(0, 0, 0, 0.7);
-              border-radius: 15px;
-              margin: 0;
-              text-align: center;
-              padding: 16px 0 5px 0;
-              position: relative;
+            width: 100%;
+            .flame-img{
+                width: 30px;
+            }
+            .edit-icon{
+              position: absolute;
+              right: 10px;
               cursor: pointer;
-              transition: background-color .2s, box-shadow .1s;
-              &.not-selected{
-                background: #111111;
-                .item-symbol{
-                  opacity: .2;
-                }
-              }
-              .marks-holder{
-                position: absolute;
-                top: 0;
-                right: 0;
-                transform: translate(40%, -40%);
-                z-index: 5;
-                img{
-                  display: inline-block;
-                  margin-left: 5px;
-                }
-              }
-              img{
-                max-width: 65px;
-                max-height: 45px;
-                position: relative;
-                top: 0;
-              }
-              .item-symbol{
-                color: #ffffff;
-                font-size: 14px;
-                font-weight: 300;
-                text-transform: uppercase;
-                margin: 0;
-                opacity: 1;
-                margin-top: 5px;
-              }
-            }
-          }
-        }
-    }
-    .selected-bets-holder{
-        .selected-item{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 47px;
-            &:last-child{
-                margin-bottom: 0;
-            }
-            .curr-item{
-                border-radius: 10px;
-                margin: 0 50px;
-                width: 50px;
-                height: 50px;
-                box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-                &.selected{
-                    .inner{
-                        background: linear-gradient(180deg, rgba(17,17,17,0.7) 0%, rgba(17,17,17,1) 100%);
-                        border-radius: 10px;
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                        img{
-                            max-width: 70%;
-                            max-height: 70%;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                        }
-                    }
-                }
-            }
-            .top-btns{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 110px;
-                opacity: .4;
-                &.active{
-                  opacity: 1;
-                }
-                .btn-item{
-                  width: calc(50% - 5px);
-                  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.04), 5px 5px 15px rgba(0, 0, 0, 0.9);
-                  border-radius: 5px;
-                  height: 50px;
-                  position: relative;
-                  cursor: pointer;
-                  padding: 2px;
-                  &:active{
-                    transform: translateY(2px);
-                  }
-                  &.active{
-                    .inner{
-                      .active-img{
-                        display: inline-block;
-                      }
-                      .passive-img{
-                        display: none;
-                      }
-                    }
-                    &.short{
-                      .inner{
-                        background: transparent;
-                        p{
-                          color: white;
-                        }
-                      }
-                    }
-                    &.long{
-                      .inner{
-                        background: transparent;
-                        p{
-                          color: white;
-                        }
-                      }
-                    }
-                  }
-                  &.short{
-                    background: linear-gradient(270deg, #EB2163 3.26%, #950552 100%), #111111;
-                    .inner{
-                      p{
-                        color: #FE183F;
-                      }
-                    }
-                  }
-                  &.long{
-                    background: linear-gradient(270.18deg, #23FFFF 2.49%, #00AEFF 90.85%), #2B16F7;
-                    .inner{
-                      p{
-                        color: #23FFFF;
-                      }
-                    }
-                  }
-                  .inner{
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background: #111;
-                    text-align: center;
-                    .active-img{
-                      display: none;
-                    }
-                    .passive-img{
-                      display: inline-block;
-                    }
-                    p{
-                      margin: 0;
-                      text-align: center;
-                      font-size: 14px;
-                      width: 100%;
-                    }
-                  }
-                }
             }
         }
+        .text{
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+        }
     }
-    .save-btn{
-      width: 100%;
-      margin-top: 40px;
-      text-align: center;
-      button{
-        font-size: 16px;
-        font-weight: 400;
-        padding: 14px 34px;
-        border-radius: 15px;
-      }
-    }
-}
-
-
-@media screen and (max-width: 1550px){
-  .my-modal-body{
-    padding: 0 10px 15px;
   }
-  .content-wrapper{
-    max-width: 87%;
-    margin: 40px auto 10px;
-    .tip-wrapper{
-      h5{
-        font-size: 16px;
+  @media screen and (max-width: 1550px){
+    .daily-modal-content{
+      padding: 30px 16px 16px;
+      max-width: 870px;
+      &.bigger{
+        max-width: 910px;
       }
-      .tip-border{
-        padding: 21px;
+      .close-modal{
+        top: 15px;
+        right: 5px;
       }
-      .tip-item{
-        margin: 17px 0;
-        .tip-stats{
-          img{
-            width: 42px;
-            height: 42px;
-            margin-right: 25px;
+      .header-holder{
+        max-width: 87%;
+        margin: 15px auto 0;
+        .heading{
+          font-size: 18px;
+          .flame-img{
+            width: 26px;
           }
-          p{
-            font-size: 14px;
+          .edit-icon{
+            width: 22px;
           }
         }
-        .raiting{
-          img{
-            margin: 0 8px;
-            width: 32px;
-          }
+        .text{
+          font-size: 14px;
         }
       }
     }
   }
-  .content-wrapper.wrapper2{
-    .carousel-holder{
-      .inner-item-holder{
-        grid-gap: 17px;
-        .item-holder{
-          .item-curr{
-            width: 80px;
-            height: 80px;
-            padding: 13px 0 3px 0;
-            img{
-              max-width: 45px;
-              max-height: 35px;
-            }
-            .item-symbol{
-              font-size: 13px;
-            }
+  @media screen and (max-width: 640px){
+    .daily-modal-content{
+      top: 5%;
+      transform: translateX(-50%);
+      padding: 20px 10px 10px;
+      max-width: 97%;
+      .close-modal{
+        top: 10px;
+        right: 0px;
+        width: 34px;
+      }
+      .header-holder{
+        max-width: 92%;
+        .heading{
+          font-size: 16px;
+          .flame-img{
+            width: 22px;
+          }
+          .edit-icon{
+            width: 19px;
           }
         }
-      }
-    }
-    .selected-bets-holder{
-      .selected-item{
-        margin-bottom: 34px;
-        .curr-item{
-          margin: 0 40px;
-          width: 45px;
-          height: 45px;
+        .text{
+          font-size: 13px;
         }
-        .top-btns{
-          width: 100px;
-          .btn-item{
-            height: 45px;
-            .inner{
-              img{
-                width: 27px;
-              }
-              p{
-                font-size: 12px;
-                line-height: 1.2;
-              }
-            }
-          }
-        }
-      }
-    }
-    .save-btn{
-      margin-top: 20px;
-      button{
-        font-size: 15px;
-        padding: 12px 30px;
       }
     }
   }
-}
-
-@media screen and (max-width: 900px){
-  .content-wrapper.wrapper2{
-    .carousel-holder{
-      width: 69%;
-      .inner-item-holder{
-        grid-gap: unset;
-        grid-row-gap: 17px;
-        .item-holder{
-          .item-curr{
-            width: 67px;
-            height: 67px;
-            padding: 10px 0 3px 0;
-            border-radius: 10px;
-            img{
-              max-width: 40px;
-              max-height: 31px;
-            }
-            .item-symbol{
-              font-size: 11px;
-            }
-          }
+  @media screen and (max-width: 640px){
+    .daily-modal-content{
+      .header-holder{
+        .heading{
+          font-size: 15px;
+          margin: 0 0 2px 0;
         }
-      }
-    }
-    .selected-bets-holder{
-      width: 29%;
-      .selected-item{
-        margin-bottom: 27px;
-        width: 100%;
-        .curr-item{
-          margin: 0;
-          width: 45px;
-          height: 45px;
-        }
-        .top-btns{
-          width: 100px;
-          .btn-item{
-            height: 45px;
-            .inner{
-              img{
-                width: 27px;
-              }
-              p{
-                font-size: 12px;
-                line-height: 1.2;
-              }
-            }
-          }
-        }
-      }
-    }
-    .save-btn{
-      button{
-        font-size: 14px;
-        padding: 10px 27px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 640px){
-  .my-modal-body{
-    padding: 0 8px 12px;
-  }
-  .content-wrapper{
-    max-width: 100%;
-    margin: 30px auto 10px;
-    .tip-wrapper{
-      h5{
-        font-size: 15px;
-      }
-      .tip-border{
-        padding: 15px;
-      }
-      .tip-item{
-        margin: 14px 0;
-        span{
+        .text{
           font-size: 12px;
-        }
-        .tip-stats{
-          img{
-            width: 36px;
-            height: 36px;
-            margin-right: 18px;
-          }
-          p{
-            font-size: 12px;
-          }
-        }
-        .raiting{
-          img{
-            margin: 0 7px;
-            width: 28px;
-          }
-        }
-      }
-    }
-  }
-  .content-wrapper.wrapper2{
-    .carousel-holder{
-      width: 100%;
-      max-width: 440px;
-      margin: 10px auto 25px;
-      .inner-item-holder{
-        grid-gap: unset;
-        grid-row-gap: 17px;
-        justify-items: center;
-        .item-holder{
-          .item-curr{
-            width: 62px;
-            height: 62px;
-            padding: 7px 0 3px 0;
-            img{
-              max-width: 32px;
-              max-height: 25px;
-            }
-            .item-symbol{
-              font-size: 10px;
-            }
-          }
-        }
-      }
-    }
-    .selected-bets-holder{
-      width: 100%;
-      max-width: 210px;
-      margin: 0 auto;
-      .selected-item{
-        margin-bottom: 20px;
-        .curr-item{
-          width: 38px;
-          height: 38px;
-        }
-        .top-btns{
-          width: 86px;
-          .btn-item{
-            padding: 1px;
-            height: 38px;
-            .inner{
-              img{
-                width: 20px;
-              }
-              p{
-                font-size: 10px;
-              }
-            }
-          }
-        }
-      }
-    }
-    .save-btn{
-      button{
-        border-radius: 10px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 400px){
-  .my-modal-body{
-    padding: 0 8px 7px;
-  }
-  .content-wrapper{
-    margin: 20px auto 10px;
-    .tip-wrapper{
-      h5{
-        font-size: 14px;
-      }
-      p{
-        line-height: 1.2;
-      }
-      .tip-border{
-        padding: 10px;
-      }
-      .tip-item{
-        margin: 10px 0;
-        span{
-          font-size: 11px;
-        }
-        .tip-stats{
-          img{
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-          }
-          p{
-            font-size: 11px;
-          }
-        }
-        .raiting{
-          img{
-            margin: 0 5px;
-            width: 21px;
-          }
-        }
-      }
-    }
-  }
-  .content-wrapper.wrapper2{
-    .carousel-holder{
-      .inner-item-holder{
-        grid-row-gap: 11px;
-        .item-holder{
-          .item-curr{
-            width: 55px;
-            height: 55px;
-            padding: 5px 0 3px 0;
-            img{
-              max-width: 28px;
-              max-height: 21px;
-            }
-            .item-symbol{
-              font-size: 9px;
-            }
-          }
+          line-height: 1.2;
         }
       }
     }

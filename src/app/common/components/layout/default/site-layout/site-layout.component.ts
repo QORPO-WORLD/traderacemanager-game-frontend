@@ -85,6 +85,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   depos = false;
   Affilate: any;
   deposTime: any;
+  balanceInterval: any;
   metaEth = { "ioi": 0, "eth": 0, "matic": 0 };
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
@@ -93,8 +94,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     private rservice: RacesService, private _http: HttpClient) {
     super();
     this.calculateCorrectVh();
-    this.balanceChanged = this.balanceService.balanceChanged;
-
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
@@ -113,7 +112,9 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     if (data) {
       this.verifyModal = true;
     }
-
+    this.balanceInterval = setInterval(() => {
+      this.identityService.updateBalance();
+    }, 10000);
     this.getCryptoStats();
 
     this.calculateCorrectVh();
@@ -203,6 +204,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     clearInterval(this.tickInterval);
     clearInterval(this.managerInterval);
     clearInterval(this.depositInterval);
+    clearInterval(this.balanceInterval);
   }
 
   routerOnDeactivate() {
@@ -213,11 +215,18 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     clearInterval(this.tickInterval);
     clearInterval(this.managerInterval);
     clearInterval(this.depositInterval);
+    clearInterval(this.balanceInterval);
   }
 
   logout() {
     clearInterval(this.interval);
 
+    clearInterval(this.nxInterval);
+    clearInterval(this.ninterval);
+    clearInterval(this.tickInterval);
+    clearInterval(this.managerInterval);
+    clearInterval(this.depositInterval);
+    clearInterval(this.balanceInterval);
     this.identityService.logout();
   }
 

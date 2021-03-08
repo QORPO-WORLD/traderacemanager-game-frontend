@@ -62,7 +62,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   verifyModalTutorial = false;
   isManager = false;
   showDayTipModal = false;
-  editTips = false;
   trxBalance = 0;
   visibleCardIndex = 0;
   theta = 0;
@@ -585,7 +584,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   tipsSaved(myBool: boolean){
-    this.editTips = myBool;
+    this.showDayTipModal = myBool;
   }
 
   nextTutorialStep(){

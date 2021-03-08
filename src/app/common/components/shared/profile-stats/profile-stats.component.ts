@@ -138,8 +138,8 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   }
 
   getMydriverBalances() {
-    //this.myDriverBalances = this.identityService.getBalance();
-    this.myDriverBalances = this.identityService.driverBalance;
+    this.myDriverBalances = this.identityService.getBalance();
+    //this.myDriverBalances = this.identityService.driverBalance;
     this.profileReady = true;
   }
 
