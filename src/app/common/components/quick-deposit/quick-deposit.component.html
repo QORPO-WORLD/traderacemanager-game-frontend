@@ -48,10 +48,9 @@
     </div>
 
     <div class="amount-holder">
-      <p class="big-text" *ngIf="claimed === false">If you deposited the funds and the transaction has been confirmed on the blockchain,
+      <p class="big-text">If you deposited the funds and the transaction has been confirmed on the blockchain,
          push the claim button. You can claim anytime after a confirmed transaction on the blockchain.
           Please push the claim button to see your balance in the dashboard.</p>
-      <p class="big-text" *ngIf="claimed === true">Successfully claimed.</p>
     </div>
 
   </div>
@@ -82,123 +81,8 @@
             [qrvalue]="cryptoMtfrckr"
         ></qrcode>
 
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();" *ngIf="claimed === false">Claim</button>
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();"  *ngIf="claimed === true">Claimed</button>
+        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();">Claim</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- 
-<div class="modal fade" id="deposit-modal" tabindex="-1" role="dialog" aria-labelledby="turn-lux-modal"
-    aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content--tokens">
-
-      <div class="modal-close" (click)="stepIndex = 1;amount = 0;" ><button data-dismiss="modal" aria-label="Close" style="background: black;
-        border-radius: 100%;
-        color: white;
-        font-size: 10px;
-        width: 20px;
-        height: 20px;">x</button></div>
-
-      <div class="deposit-modal-body step-body step1" [ngClass]="stepIndex === 1 ? 'visible' : 'hidden'">
-
-        <div class="modal-desc modal-box">
-          <div class="text">
-            <p class="header">{{'modals.deposit_modal.receive' | translate}}</p>
-            <p>{{'modals.deposit_modal.welcome_here' | translate}}</p>
-          </div>
-        </div>
-        <div class="token-option modal-box">
-          <div class="text">
-            <p class="header">{{'modals.deposit_modal.what_receive' | translate}}</p>
-            <p>{{'modals.deposit_modal.choose_receive' | translate}}</p>
-          </div>
-          <div class="tokens-holder">
-            <div class="token-item trx" [ngClass]="{'active': tokenSelected === 'trx'}" (click)="tokenSelected = 'trx'">
-              <img src="/assets/base/images/trx2.png" alt="">
-            </div>
-            <div class="token-item ioi" [ngClass]="{'active': tokenSelected === 'ioi'}" (click)="tokenSelected = 'ioi'">
-              <img src="/assets/base/images/logo.png" alt="">
-            </div>
-          </div>
-        </div>
-
-        <div class="input-box modal-box desc-box">
-          <div class="text">
-            <p class="header">{{'modals.deposit_modal.sender_address' | translate}}</p>
-            <p>{{'modals.deposit_modal.crypto_from' | translate}}</p>
-          </div>
-          <div class="input-holder">
-            <input [ngModel]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
-            <button (click)="stepIndex = 3" class="edit-button">{{'modals.edit' | translate}}</button>
-          </div>
-          <p class="disclaim">{{'modals.deposit_modal.address_warning' | translate}}</p>
-        </div>
-
-        <div class="input-box modal-box small-input desc-box">
-          <div class="text">
-            <p class="header">{{'modals.amount' | translate}}</p>
-            <p>{{'modals.deposit_modal.amount_to_send' | translate}}</p>
-          </div>
-          <div class="input-holder">
-            <input class="transfer-text-input" type="number" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}">
-          </div>
-          <p class="disclaim">{{'modals.deposit_modal.min_deposit' | translate}} 1 {{'shared.trx' | translate}}</p>
-        </div>
-
-        <span class="stepix">1/2</span>
-        <button class="next-btn visible" (click)="resolveDeposit()" 
-        [disabled]="tokenSelected.length < 1 || amount < 1">{{'shared.next' | translate}}</button>
-
-      </div>
-
-      <div class="deposit-modal-body step-body step2" [ngClass]="stepIndex === 2 ? 'visible' : 'hidden'">
-
-        <div class="modal-desc modal-box">
-          <div class="text">
-            <p class="header">{{'modals.deposit_modal.time_text1' | translate}}</p>
-            <p>{{'modals.deposit_modal.time_text2' | translate}}</p>
-          </div>
-        </div>
-
-        <div class="input-box modal-box">
-          <div class="text">
-            <p class="header">{{'modals.deposit_modal.your_address' | translate}}</p>
-            <p>{{'modals.deposit_modal.copy_address' | translate}}</p>
-          </div>
-          <div class="input-holder">
-            <input readonly value="TE6xjUSpFJJvgy7fAFkNxePwsi4AA1s21D">
-          </div>
-       
-        </div>
-
-        <div class="qr-panel">
-          <h1 *ngIf="tokenSelected === 'trx'">{{'shared.deposit_btn' | translate}} {{amount}} {{'shared.trx' | translate}}</h1>
-          <h1 *ngIf="tokenSelected === 'ioi'">{{'shared.deposit_btn' | translate}} {{amount}} {{'shared.ioi' | translate}}</h1>
-          <img class="qr-code" src="/assets/base/images/qr.jpg" alt="">
-        </div>
-
-        <span class="stepix">2/2</span>
-        <span class="veticka">{{'modals.deposit_modal.click_warning' | translate}}</span>
-        <button class="next-btn visible" (click)="refresh()">{{'shared.confirm' | translate}}</button>
-
-
-      </div>
-
-      <div class="deposit-modal-body step-body step3" [ngClass]="stepIndex === 3 ? 'visible' : 'hidden'">
-
-        <h1 class="main-heading">{{'modals.what_is_crypto' | translate}}</h1>
-
-        <div class="edit-adress-wrap">
-          <input class="transfer-text-input crypto-adress" type="text" placeholder="ENTER YOUR ADRESS HERE" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
-        </div>
-
-        <button class="next-btn visible" (click)="patchWallet(); stepIndex = 1">{{'shared.confirm' | translate}}</button>
-        <button class="back-btn visible" (click)="stepIndex = 1">{{'shared.back' | translate}}</button>
-
-      </div>
-    </div>
-  </div>
-</div> -->

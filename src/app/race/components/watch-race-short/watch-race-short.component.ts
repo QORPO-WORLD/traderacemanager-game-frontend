@@ -344,7 +344,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
     clearInterval(this.detailInterval);
 
-    this.getRaceData();
+    //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
       if (this.pageOpen === true) {
         setTimeout(() => {
@@ -359,9 +359,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
       }
     }
-    this.moveWheels();
+    
     setTimeout(() => {
       this.getRaceData();
+      this.moveWheels();
     }, 500);
     this.getUpcoming();
   }
@@ -456,6 +457,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                 bet: 0
               });
             }
+            console.log('set betik');
             this.raceDataildata.my_cars[x].betik = betix;
             for (let z = 0; z < 3; z++) {
               for (let y = 0; y < 20; y++) {
@@ -468,6 +470,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
         }
 
+
+        console.log(firstData.race_progress);
         if (firstData.race_progress > 0 && firstData.race_progress < 100) {
           setTimeout(() => {
             this.getRaceData();
@@ -641,7 +645,9 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   getMyAffilate() {
     const data = this.identityService.getStorageIdentity();
-    this.myUid = data.id;
+    const dataDriver = this.identityService.getDriverMe();
+    this.myUid = dataDriver.id;
+    console.log(this.myUid);
     this.myUsername = data.nickname;
     this.affilateSlug = 'https://play.ioi-game.com/user/referral/' + data.affiliate_slug;
     this.affilateText = 'I play game on play.ioi-game.com every 10mins, so I can win 10 TRX for free ' + this.affilateSlug;

@@ -27,7 +27,7 @@
     </div>
 
     <div class="table-holder">
-      <ng-container *ngIf="raceDataildata?.my_cars[selectedMyIndex]">
+      <ng-container *ngIf="raceData?.race_progress > 0">
         <div class="table-item" *ngFor="let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.betik | orderBy: 'delta':reverse; let ixx = index; " [ngClass]="myfuels?.bet > 0 || myfuels?.bet < 0 ? 'my-coin' : 'not-my'">
           <div class="my-col position">
             <p>{{ixx + 1}}</p>
@@ -47,6 +47,30 @@
               <img src="/assets/base/images/ticket-arrow-up.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta > 0">
               <img src="/assets/base/images/ticket-arrow-down.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta < 0"> 
               {{myfuels?.percent | json}}%
+            </p>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="raceData?.race_progress === 0">
+        <div class="table-item" *ngFor="let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.b | orderBy: 'bet':reverse; let ixx = index; " [ngClass]="myfuels?.bet > 0 || myfuels?.bet < 0 ? 'my-coin' : 'not-my'">
+          <div class="my-col position">
+            <p>{{ixx + 1}}</p>
+          </div>
+          <div class="my-col curr-img" [ngClass]="{'dark-variant': myfuels?.symbol === 'XRPUSDT' || myfuels?.symbol === 'XLMUSDT' || myfuels?.symbol === 'EOSUSDT'}">
+            <img class="cur-logo" [src]="'/assets/base/images/curr-logos/'+ myfuels?.symbol +'-logo.png'" alt="">
+            <img class="cur-logo black" [src]="'/assets/base/images/curr-logos/'+ myfuels?.symbol +'-logo-black.png'" alt="">
+          </div>
+          <div class="my-col percentage">
+            <p>{{myfuels?.bet}}%</p>
+          </div>
+          <div class="my-col prize">
+            <p>-</p>
+          </div>
+          <div class="my-col delta">
+            <p>
+              <img src="/assets/base/images/ticket-arrow-up.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta > 0">
+              <img src="/assets/base/images/ticket-arrow-down.png" alt="" class="ticket-arrow" *ngIf="myfuels?.delta < 0"> 
+              -
             </p>
           </div>
         </div>
@@ -167,7 +191,7 @@
         </div>
         <div class="small-box pos-box">
           <div class="inner">
-            <p><img src="/assets/base/images/zavod/position-icon-active.svg" alt="">{{raceData?.me?.cpr}}
+            <p><img src="/assets/base/images/zavod/position-icon-active.svg" alt="">{{raceData?.me?.cpr}}/{{raceDataildata?.players_count}}
               <span>{{posEnding}}</span>
             </p>
           </div>
@@ -175,11 +199,11 @@
         <div class="small-box timer-box">
           <div class="inner">
             <div class="dots-holder">
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 16.66}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 33.32}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 49.98}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 66.64}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 83.3}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 16}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 33}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 49}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 66}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 80}"></div>
               <div class="dot" [ngClass]="{'active': raceData?.race_progress >= 100}"></div>
             </div>
             <p class="timer-value" *ngIf="raceStarted === false">

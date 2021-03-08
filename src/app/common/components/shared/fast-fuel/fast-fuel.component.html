@@ -41,20 +41,20 @@
         <div class="regular-cars">
           <ng-container *ngFor="let mc of myCars; let x = index">
             <div class="car-item set" 
-            *ngIf="mc.favourite !== undefined && mc.car_model > ((editionIndex * 6) - 6) && mc.car_model <= (editionIndex * 6) || (mc.favourite !== undefined && mc.car_model === (24 + editionIndex))">
+            *ngIf="mc.favourite !== undefined && mc.asset_type_id > ((editionIndex * 6) - 6) && mc.asset_type_id <= (editionIndex * 6) || (mc.favourite !== undefined && mc.asset_type_id === (24 + editionIndex))">
               <div class="car-info">
                 <div class="name">
-                  <ng-container *ngIf="mc.car_model <= 24">
-                    <p class="value" *ngIf="editionIndex === 1">Bronze {{ mc.car_model }} </p>
-                    <p class="value" *ngIf="editionIndex === 2">Silver {{ mc.car_model - 6 }} </p>
-                    <p class="value" *ngIf="editionIndex === 3">Gold {{ mc.car_model - 12 }} </p>
-                    <p class="value" *ngIf="editionIndex === 4">Platinum {{ mc.car_model - 18 }} </p>
+                  <ng-container *ngIf="mc.asset_type_id <= 24">
+                    <p class="value" *ngIf="editionIndex === 1">Bronze {{ mc.asset_type_id }} </p>
+                    <p class="value" *ngIf="editionIndex === 2">Silver {{ mc.asset_type_id - 6 }} </p>
+                    <p class="value" *ngIf="editionIndex === 3">Gold {{ mc.asset_type_id - 12 }} </p>
+                    <p class="value" *ngIf="editionIndex === 4">Platinum {{ mc.asset_type_id - 18 }} </p>
                   </ng-container>
                   
-                  <p class="value" *ngIf="mc.car_model === 25">Bronze 7 </p>
-                  <p class="value" *ngIf="mc.car_model === 26">Silver 7 </p>
-                  <p class="value" *ngIf="mc.car_model === 27">Gold 7 </p>
-                  <p class="value" *ngIf="mc.car_model === 28">Platinum 7 </p>
+                  <p class="value" *ngIf="mc.asset_type_id === 25">Bronze 7 </p>
+                  <p class="value" *ngIf="mc.asset_type_id === 26">Silver 7 </p>
+                  <p class="value" *ngIf="mc.asset_type_id === 27">Gold 7 </p>
+                  <p class="value" *ngIf="mc.asset_type_id === 28">Platinum 7 </p>
                 </div>
                 <div class="fuel-wrapper">
                   <div class="fuel-inner">
@@ -67,7 +67,7 @@
                   </div>
                 </div>
               </div>
-              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + mc.car_model + '.png'" alt="">
+              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + mc.asset_type_id + '.png'" alt="">
 
               <div class="bottom-info">
                 <div class="buy-now my-cta-btn-back" [ngClass]="{'active': myCars[x]?.selected === true}">
@@ -120,7 +120,7 @@
             <div class="car-item" (click)="selectCarToRace(i)" [hidden]="car.favourite === undefined">
 
               <div class="select-indicator" [ngClass]="{'active': myCars[i]?.selected === true}"></div>
-              <img [src]="'/assets/base/images/nft-cars/car' + car.car_model + '.png'" alt="">
+              <img [src]="'/assets/base/images/nft-cars/car' + car.asset_type_id + '.png'" alt="">
 
             </div>
           </ng-container>

@@ -72,7 +72,9 @@ class Experience {
     if (!this.isActiveFastRace()) {
       progressPercentage = this.getPlayedRacesCount() / 5 * 100;
     } else {
+
       progressPercentage = (this.getTotalBetAmount() - this.getPreviousLevelExp()) / (onePercentage);
+      //progressPercentage = (this.getTotalBetAmount() / this.getPreviousLevelExp()) * 100;
     }
 
     if (progressPercentage > 100) {
