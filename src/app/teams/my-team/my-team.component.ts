@@ -3,7 +3,7 @@ import { PlayerLeaderboard } from './../../api/models/player-leaderboard';
 import { InternalTeamLeaderboard } from './../../api/models/internal-team-leaderboard';
 import { AffiliatesService, DriversService, LeaderboardService, RewardsService } from 'src/app/api/services';
 import { NotifiqService } from './../../common/services/notifiq.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TeamsService } from '../../api/services/teams.service';
@@ -37,6 +37,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   bestRacer: any;
   myuser: any;
   teams: any;
+  @ViewChild('showTip', { static: false }) showTip: any;
+
   constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -152,5 +154,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
 
   tipsSaved(myBool: boolean){
     this.showDayTipModal = myBool;
+    this.showTip.getMyLeaderboard();
   }
 }
