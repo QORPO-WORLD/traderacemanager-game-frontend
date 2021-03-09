@@ -233,7 +233,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
 
 
   doMagic() {
-    console.log(this.myCars);
+    console.log(this.myFavFuels);
     let favSum = 0;
     for (let x = 0; x < this.myCars.length; x++) {
       for (let y = 0; y < this.myFavFuels.length; y++) {
@@ -242,8 +242,8 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
           this.myCars[x].favourite = true;
           this.myCars[x].custom_index = this.myFavFuels[y].custom_index;
           
-          this.myCars[x].bet = this.myFavFuels[y].bet_coins;
-          console.log(this.myCars[x]);
+          const coiny: any = this.myFavFuels[y].bet_coins;
+          this.myCars[x].betik = coiny;
           favSum++;
         }
       }
@@ -767,15 +767,14 @@ console.log('got here');
     const serialized = [];
 
     const fakeSelected: any = this.selectedCarsToRace;
-    console.log(fakeSelected);
     for (let i = 0; i < fakeSelected.length; i++) {
       fakeSelected[i].newBet = [];
-      for (let ix = 0; ix < fakeSelected[i].bet.length; ix++) {
-        console.log(fakeSelected[i].bet[ix].bet);
-        if (fakeSelected[i].bet[ix].bet > 0) {
+      for (let ix = 0; ix < fakeSelected[i].betik.length; ix++) {
+        console.log(fakeSelected[i].betik[ix].bet);
+        if (fakeSelected[i].betik[ix].bet > 0) {
           fakeSelected[i].newBet.push({
-            symbol: fakeSelected[i].bet[ix].symbol,
-            bet: fakeSelected[i].bet[ix].bet
+            symbol: fakeSelected[i].betik[ix].symbol,
+            bet: fakeSelected[i].betik[ix].bet
           });
         }
       }
@@ -785,11 +784,10 @@ console.log('got here');
       serialized.push({
         race_hash: this.nextRaceHash,
         car: fakeSelected[i].asset_id,
-        bet_coins: fakeSelected[i].newbetfast,
+        bet_coins: fakeSelected[i].newBet,
       });
 
     }
-    return;
 
     this.raceApi.racesMultiSignupCreate(serialized).subscribe(data => { });
     this.redirectToRace();
