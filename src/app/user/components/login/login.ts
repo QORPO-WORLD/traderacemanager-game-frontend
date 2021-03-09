@@ -88,8 +88,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       }
       const chaind = JSON.parse(localStorage.getItem('chaind'));
       if (chaind) {
-          this.chainId = Number(chaind);
-          this.mmewa = mmew;
+        this.chainId = Number(chaind);
+        this.mmewa = mmew;
       }
     }, 1000);
   }
@@ -103,37 +103,31 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   public submit() {
-    if (this.mmewa) {
-      this.signinWithMetamask().subscribe({
-        next: data => this.getAuthService().login(data),
-        error: error => error.status === 456 ? this.fireGAuth() : this.clearMetamask(error.body)
-      });
+    if (this.f.username.value === '' || this.f.password.value === '') {
       return;
     }
-    if (this.usinggauth === false) {
-      if (this.f.username.value === '' || this.f.password.value === '') {
+    this.loading = true;
+    this.executeImportantAction();
+    setTimeout(() => {
+      if (this.mmewa) {
+        this.signinWithMetamask().subscribe({
+          next: data => this.getAuthService().login(data),
+          error: error => error.status === 456 ? this.fireGAuth() : this.clearMetamask(error.body)
+        });
         return;
       }
-      this.loading = true;      
-      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-        next: data => this.getAuthService().login(true),
-        error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
-      });
-   
-    } else {
-      if (this.f.username.value === '' || this.f.password.value === '' || this.gkey === '') {
-
-        return;
+      if (this.usinggauth === false) {
+        this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
+          next: data => this.getAuthService().login(true),
+          error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
+        });
+      } else {
+        this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
+          next: data => this.getAuthService().login(data),
+          error: error => this.getErrorService().apiError(error)
+        });
       }
-      this.loading = true;
-
-
-
-      this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
-        next: data => this.getAuthService().login(data),
-        error: error => this.getErrorService().apiError(error)
-      });
-    }
+    }, 1000);
 
     setTimeout(() => {
       this.executeImportantAction();
@@ -205,7 +199,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   clearMetamask(error) {
     this.getErrorService().apiError(error);
-   //localStorage.removeItem('mmea');
+    //localStorage.removeItem('mmea');
     this.mmewa = null;
     this.metaSwitch = false;
   }

@@ -131,6 +131,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.getMydriver();
     this.recognizeManager();
     this.managerInterval = setInterval(() => {
+      this.getCryptoStats();
       this.recognizeManager();
     }, 2000);
 

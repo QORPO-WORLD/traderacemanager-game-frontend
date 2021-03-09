@@ -39,7 +39,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   teams: any;
   isOwner = true;
   @ViewChild('showTip', { static: false }) showTip: any;
-
+  teamId: number;
+  managers = [];
   constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -52,6 +53,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.getRewards();
     this.changeSlide();
     this.getTeams();
+    this.getManagerRequests();
   }
 
   routerOnDeactivate() {
@@ -90,6 +92,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     const data = this.identityService.getDriverMe();
     this.myTeamName = data.team;
     this.myTeamData = data;
+    const datax = this.identityService.getLeaderboardMe();
+    this.teamId = datax.team_id;
     this.redirectMe();
   }
 
@@ -156,5 +160,12 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   tipsSaved(myBool: boolean){
     this.showDayTipModal = myBool;
     this.showTip.getMyLeaderboard();
+  }
+
+  getManagerRequests() {
+    this.teams_service.getManagerRequests(this.teamId).subscribe(data => {
+      console.log(data);
+      this.managers = data;
+    });
   }
 }

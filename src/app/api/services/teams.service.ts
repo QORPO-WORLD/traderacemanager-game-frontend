@@ -165,6 +165,7 @@ class TeamsService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/races/team/` + url + '/manager-tips',
@@ -189,6 +190,69 @@ class TeamsService extends __BaseService {
    */
   getTips(url: number): __Observable<any> {
     return this.getTipsResponse(url).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  putManagerRequestsResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + '/races/team/process-team-manager-request',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+  putManagerRequests(data: any): __Observable<any> {
+    return this.putManagerRequestsResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  getManagerRequestsResponse(id: number): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + '/races/team/' + id + '/list-team-manager-requests',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+  getManagerRequests(id: number): __Observable<any> {
+    return this.getManagerRequestsResponse(id).pipe(
       __map(_r => _r.body as any)
     );
   }
