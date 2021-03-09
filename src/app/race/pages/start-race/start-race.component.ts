@@ -130,6 +130,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   rewardLevelMax = 0;
   rewardLevelSum = 0;
   myDriverOld: any;
+  bestRacer: any;
   myTeamReward: number;
   dailyReward: number;
   ngOnInit() {
@@ -166,6 +167,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.myDriverOld = this.identityService.getDriverMe();
     console.log(this.myDriverOld);
     this.getMyTeamReward();
+    this.getbestRacer();
   }
   ngOnDestroy() {
     if (this.raceObserver) {
@@ -600,6 +602,12 @@ export class StartRaceComponent implements OnInit, OnDestroy {
         this.myTeamReward = data.team_bonus;
       }
     );
+  }
+
+  getbestRacer() {
+    this.lapi.bestRider().subscribe(data => {
+      this.bestRacer = data;
+    });
   }
 
 }

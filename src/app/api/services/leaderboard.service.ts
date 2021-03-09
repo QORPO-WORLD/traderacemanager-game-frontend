@@ -229,6 +229,41 @@ class LeaderboardService extends __BaseService {
       __map(_r => _r.body as Array<any>)
     );
   }
+  bestRiderResponse(params?: any): __Observable<__StrictHttpResponse<Array<any>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/leaderboard/last-month-best-player`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<any>>;
+      })
+    );
+  }
+  /**
+   * @param params The `LeaderboardService.LeaderboardTeamListParams` containing the following parameters:
+   *
+   * - `last_month`:
+   *
+   * - `page`: A page number within the paginated result set.
+   *
+   * @return Returns player leaderboard
+   */
+   bestRider(params?: any): __Observable<Array<any>> {
+    return this.bestRiderResponse(params).pipe(
+      __map(_r => _r.body as Array<any>)
+    );
+  }
   leaderboardTeamOverallResponse(params: any): __Observable<__StrictHttpResponse<Array<any>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
