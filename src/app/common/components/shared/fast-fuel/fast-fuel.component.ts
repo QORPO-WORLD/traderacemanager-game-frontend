@@ -780,13 +780,11 @@ console.log('got here');
       }
     }
     for (let i = 0; i < fakeSelected.length; i++) {
-
       serialized.push({
         race_hash: this.nextRaceHash,
         car: fakeSelected[i].asset_id,
         bet_coins: fakeSelected[i].newBet,
       });
-
     }
 
     this.raceApi.racesMultiSignupCreate(serialized).subscribe(data => { });
