@@ -171,30 +171,64 @@
         <div class="left" (click)="manualChange(1)" [ngClass]="{'active-button': TeamManagerSlide===1}"></div>
         <div class="right" (click)="manualChange(2)" [ngClass]="{'active-button': TeamManagerSlide===2}"></div>
       </div>
-      <span class="box-content ">
-        <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
-        <h4>Rasto1424</h4>
-        <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
-        <ng-container *ngIf="TeamManagerSlide===1">
-        <div class="satisfaction-wrapper">
-          <div class="satisfaction-info">
-            <p>{{'teams.my_team.rate_your_experience' | translate}}</p>
-            <p class="desc">{{'teams.my_team.Best' | translate}}</p>
+      <ng-container *ngIf="isOwner===false">
+        <span class="box-content ">
+          <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
+          <h4>Rasto1424</h4>
+          <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+          <ng-container *ngIf="TeamManagerSlide===1">
+          <div class="satisfaction-wrapper">
+            <div class="satisfaction-info">
+              <p>{{'teams.my_team.rate_your_experience' | translate}}</p>
+              <p class="desc">{{'teams.my_team.Best' | translate}}</p>
+            </div>
+            <div class="satisfaction-rate">
+              <div class="rate-icon" [ngClass]="{'active':activeRate==1}" (click)="activeRate=1"><img src="assets/base/images/teams/angry-icon.png" alt=""></div>
+              <div class="rate-icon" [ngClass]="{'active':activeRate==2}" (click)="activeRate=2"><img src="assets/base/images/teams/confused-icon.png" alt=""></div>
+              <div class="rate-icon" [ngClass]="{'active':activeRate==3}" (click)="activeRate=3"><img src="assets/base/images/teams/smirking-icon.png" alt=""></div>
+              <div class="rate-icon" [ngClass]="{'active':activeRate==4}" (click)="activeRate=4"><img src="assets/base/images/teams/love-icon.png" alt=""></div>
+            </div>
           </div>
-          <div class="satisfaction-rate">
-            <div class="rate-icon" [ngClass]="{'active':activeRate==1}" (click)="activeRate=1"><img src="assets/base/images/teams/angry-icon.png" alt=""></div>
-            <div class="rate-icon" [ngClass]="{'active':activeRate==2}" (click)="activeRate=2"><img src="assets/base/images/teams/confused-icon.png" alt=""></div>
-            <div class="rate-icon" [ngClass]="{'active':activeRate==3}" (click)="activeRate=3"><img src="assets/base/images/teams/smirking-icon.png" alt=""></div>
-            <div class="rate-icon" [ngClass]="{'active':activeRate==4}" (click)="activeRate=4"><img src="assets/base/images/teams/love-icon.png" alt=""></div>
-          </div>
-        </div>
-        </ng-container>
-        <ng-container *ngIf="TeamManagerSlide===2">
-          <button class="apply-button border-color">
-            Comming Soon
-          </button>
-        </ng-container>
-      </span>
+          </ng-container>
+          <ng-container *ngIf="TeamManagerSlide===2">
+            <button class="apply-button border-color">
+              {{"teams.my_team.apply"| translate}}
+            </button>
+          </ng-container>
+        </span>
+      </ng-container>
+
+
+
+      <ng-container *ngIf="isOwner===true">
+        <span class="box-content ">
+          <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
+
+          <ng-container *ngIf="TeamManagerSlide===1">
+            <h4>Rasto1424</h4>
+            <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+            <button class="apply-button border-color release">
+              {{"teams.my_team.release_manager"| translate}}
+            </button>
+          </ng-container>
+          
+          <ng-container *ngIf="TeamManagerSlide===2">
+            <h4>John456</h4>
+            <div class="accept-buttons">
+              <button>{{"teams.my_team.accept"| translate}}</button>
+              <button>{{"teams.my_team.reject"| translate}}</button>
+            </div>
+            <div class="manager-arrow-left">
+              &lt;
+            </div>
+            <div class="manager-arrow-right">
+              &gt;
+            </div>
+          </ng-container>
+
+        </span>
+      </ng-container>
+
     </div>
 
     <div class="box box-background">

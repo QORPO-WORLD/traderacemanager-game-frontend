@@ -37,6 +37,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   bestRacer: any;
   myuser: any;
   teams: any;
+  isOwner = true;
   constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
