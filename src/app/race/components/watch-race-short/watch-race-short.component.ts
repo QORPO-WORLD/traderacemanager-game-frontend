@@ -444,6 +444,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         }
+        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
+          setTimeout(() => {
+            this.getRaceData();
+          }, 1500);
+        }
 
         if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
@@ -472,11 +477,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         console.log(firstData.race_progress);
-        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
-          setTimeout(() => {
-            this.getRaceData();
-          }, 1500);
-        }
+
       });
   }
 

@@ -85,15 +85,15 @@
     </div>
 
     <div class="leader-holder" [routerLink]="['/teams/leaderboard']">
-      <p class="value">January {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
+      <p class="value">February {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
       <div class="leader-cont my-border-grad">
         <div class="inner">
           <div class="img-holder">
             <img src="/assets/base/images/start-race/lead-trophy.png" alt="">
           </div>
           <div class="text-holder">
-            <p class="name">John1234</p>
-            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | 12 156,00 IOI</p>
+            <p class="name">{{bestRacer?.user_nickname}}</p>
+            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | {{bestRacer?.total_bet_amount| number:'1.2-2':'fr'}} IOI</p>
           </div>
         </div>
       </div>
@@ -675,7 +675,7 @@
 </div>
 
 
-<app-daily-tip-modal (modalClose)="tipsSaved($event)" [isEditing]="false" *ngIf="showDayTipModal === true"></app-daily-tip-modal>
+<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true"></app-daily-tip-modal>
 
 
 

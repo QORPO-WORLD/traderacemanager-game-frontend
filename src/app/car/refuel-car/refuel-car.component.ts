@@ -360,10 +360,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   }
 
   getRaceDetails() {
-
-    const mynextrace = this.raceData.filter(item => {
-      return item.race_hash === this.raceHashik;
-    });
+ 
 
     this.currAvailableSlides = (this.myBet.length / 3) - 5;
     this.editionAvailableSlides = (this.myCars.length / 2) - 3;
@@ -376,7 +373,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.isSpecial = true;
     this.myCars = this.tourcars;
     this.setupCarousel();
-
+    console.log('dddd');
     let statBet = [];
     let selBets = [];
     for (let y = 0; y < this.myCars.length; y++) {
@@ -477,9 +474,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   getAllV2Races() {
     this.getMyCars();
     this.timerReady = false;
-    const data = this.currentData;
-    const nedata: any = data;
-    this.raceData = nedata;
 
     this.getRaceDetails();
 
