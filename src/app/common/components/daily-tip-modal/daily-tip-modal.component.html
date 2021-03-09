@@ -15,9 +15,9 @@
       <p class="text">{{'teams.my_team.choose_tip' | translate}}</p>
     </div>
     
-    <app-show-tips *ngIf="isEditing === false"></app-show-tips>
+    <div  *ngIf="isEditing === false"><app-show-tips></app-show-tips></div>
 
-    <app-create-tips (editTips)="tipsSaved($event)" *ngIf="isEditing === true"></app-create-tips>
+    <div  *ngIf="isEditing === true"><app-create-tips (editTips)="tipsSaved($event)"></app-create-tips></div>
 
   </div>
 </div>
