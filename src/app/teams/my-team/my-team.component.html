@@ -1,125 +1,3 @@
-<!--<div class="main-wrapper">
-
-  <app-main-top-banner [page]="'team'"></app-main-top-banner>
-
-  <div class="get-banner">
-      <p>{{'modals.heading.team_bonus' | translate}} {{teamreward | number:'1.2-2':'fr'}} <img src="/assets/base/images/teams/trx-logo.png" alt=""></p>
-  </div>
-
-  <div class="team-menu">
-    <div class="menu-desc">
-        <p class="join-team" [routerLink]="['/teams/join-teams']">{{'teams.shared.join' | translate}}</p>
-        <p class="my-team" [routerLink]="['/teams/my-team']">{{'teams.shared.my_team' | translate}}</p>
-        <p class="team-chat" [routerLink]="['/teams/leaderboard']">{{'teams.shared.leaderboard' | translate}}</p>
-    </div>
-    <div class="menu-line">
-        <div class="inner-line">&nbsp;</div>
-    </div>
-  </div>  
-
-  <section class="top-sec">
-    <div class="top-banner">
-      <div class="banner-holder">
-          <div class="text-holder">
-            <p class="heading">{{'teams.my_team.top_heading' | translate}}</p>
-              <p>
-                {{'teams.my_team.top_text1' | translate}} <span>{{'teams.my_team.top_text2' | translate}}</span> 
-                {{'teams.my_team.top_text3' | translate}} <span>{{'teams.my_team.top_text4' | translate}}</span>
-              </p>
-          </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="my-stats">
-    <h1>{{'teams.my_team.overview' | translate}}</h1>
-    <div class="stats-holder">
-
-      <div class="my-stats-item">
-        <div class="data-holder">
-          <p class="data">{{mydrvr}}</p>
-          <div class="img-holder">
-            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
-          </div>
-        </div>
-        <p class="desc">{{'teams.my_team.you' | translate}}</p>
-      </div>
-
-      <div class="my-stats-item">
-        <div class="data-holder">
-          <p class="data">{{myLdrbrd?.team_name}}</p>
-          <div class="img-holder curr-logo">
-            <img class="btc-logo" src="/assets/base/images/teams/bitcoin-btc-logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'BTC'">
-             <img class="ioi-logo" src="/assets/base/images/logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'IOI'">
-             <img class="trx-logo" src="/assets/base/images/teams/tron-trx-logo.png" alt="" *ngIf="myLdrbrd?.team_name === 'TRX'">
-          </div>
-        </div>
-        <p class="desc">{{'profile.team' | translate}}</p>
-      </div>
-
-      <div class="my-stats-item">
-        <div class="data-holder">
-          <p class="data">{{myLdrbrd?.team_position}}</p>
-          <div class="img-holder">
-            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
-          </div>
-        </div>
-        <p class="desc">{{'profile.t_position' | translate}}</p>
-      </div>
-
-      <div class="my-stats-item">
-        <div class="data-holder">
-          <p class="data">{{myLdrbrd?.player_position_in_team}}</p>
-          <div class="img-holder">
-            <img [src]="'/assets/base/images/avatars/avatar' + myAffilate?.affiliate_level + '.svg'" alt="">
-          </div>
-        </div>
-        <p class="desc">{{'teams.my_team.your_position' | translate}}</p>
-      </div>
-
-    </div>
-    <img src="/assets/base/images/teams/arrow-down.png" alt="" class="arrow-down">
-  </section>
-
-  <section class="team-stats">
-    <div class="team-stats-holder">
-      
-      
-
-      
-
-      <div class="team-stats-item bonus">
-        <p class="heading">{{'teams.my_team.actual_bonus' | translate}}</p>
-        <div class="team-bonus-holder">
-          <div class="border-maker"></div>
-          <h3>{{myTeam.team_bonus | number:'1.0-0':'fr'}} <img src="/assets/base/images/teams/trx-logo.png" alt=""></h3>
-        </div>
-      </div>
-    </div>
-
-    <p class="heading">{{'teams.my_team.top_team' | translate}}</p>
-    <app-my-team-players [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-my-team-players>
-
-  </section>
-
-  <section class="banner-sec">
-
-    <div class="bottom-banner">
-      <div class="text-holder">
-        <p class="heading"><span>{{'shared.win_up_to' | translate}}</span> 50 000 {{'shared.trx' | translate}}!</p>
-          <p>
-            {{'teams.my_team.enjoy_tournament' | translate}}
-          </p>
-      </div>
-      <button class="play-button" [routerLink]="['/car/fuel-car/classic_tournament_10']">{{'teams.my_team.join_tour' | translate}} <span>></span></button>
-    </div>
-
-  </section>
-
-  <app-exp-bar></app-exp-bar>
-
-</div>-->
 
 
 
@@ -301,7 +179,10 @@
         <img class="soon" src="/assets/base/images/teams/graph.png" alt="">
       </div>
       <div class="tip">
-        <h5 class="tip-heading">{{'teams.my_team.tip_of_day' | translate}} <img src="/assets/base/images/teams/fire.png" alt=""> Coming soon</h5>
+        <h5 class="tip-heading">{{'teams.my_team.tip_of_day' | translate}} <img src="/assets/base/images/teams/fire.png" alt=""></h5>
+        <img class="edit-icon" src="assets/base/images/teams/edit-icon.png" alt="" (click)="showDayTipModal = true">
+        <app-show-tips #showTip [teamVersion]="true"></app-show-tips>
+        <!-- <h5 class="tip-heading">{{'teams.my_team.tip_of_day' | translate}} <img src="/assets/base/images/teams/fire.png" alt=""> Coming soon</h5>
         <img class="edit-icon" src="assets/base/images/teams/edit-icon.png" alt="" (click)="showDayTipModal = true">
         <div class="tip-wrapper box-background">
           <span class="tip-border ">
@@ -365,7 +246,7 @@
               </div>
             </div>
           </span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -373,4 +254,6 @@
 </div>
 
 
-<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true"></app-daily-tip-modal>
+<div *ngIf="showDayTipModal === true">
+  <app-daily-tip-modal [isEditing]="true" (modalClose)="tipsSaved($event)"></app-daily-tip-modal>
+</div>

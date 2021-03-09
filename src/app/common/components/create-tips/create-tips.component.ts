@@ -1,11 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TeamsService } from 'src/app/api/services';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: 'app-create-tips',
   templateUrl: './create-tips.component.html',
   styleUrls: ['./create-tips.component.scss'],
 })
-export class CreateTipsComponent implements OnInit {
+export class CreateTipsComponent implements OnInit, OnDestroy {
 
   myBet: Array<any> = [
     { symbol: 'BTCUSDT', desc: 'BTC', selected: false, favourite: false, short: false, customIndex: 0 },
@@ -30,11 +33,21 @@ export class CreateTipsComponent implements OnInit {
     { symbol: 'USDT', desc: 'USDT', selected: false, favourite: false, short: false, customIndex: 19 }
   ];
   selectedTips: Array<number> = [];
+  teamId: number;
   @Output() editTips = new EventEmitter<boolean>();
+  eventSubscription: Subscription;
+  constructor(private api: TeamsService, private identityService: AuthService) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.getMyLeaderboard();
+  }
 
-  ngOnInit() {}
+
+  ngOnDestroy() {
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
+    }
+  }
 
   toggleCoin(customIndex: number) {
     const cIndex = customIndex;
@@ -54,8 +67,23 @@ export class CreateTipsComponent implements OnInit {
 
   }
 
-  saveTips(){
-    this.editTips.emit(false);
+  saveTips() {
+    const arr = [];
+    for (let x = 0; x < this.myBet.length; x++) {
+      if (this.myBet[x].selected === true) {
+        arr.push(
+          this.myBet[x]
+        )
+      }
+    }
+
+    this.eventSubscription = this.api.putTips(this.teamId, { tips: arr }).subscribe(data => {
+      this.editTips.emit(false);
+    });
   }
 
+  getMyLeaderboard() {
+    const data = this.identityService.getLeaderboardMe();
+    this.teamId = data.team_id;
+  }
 }

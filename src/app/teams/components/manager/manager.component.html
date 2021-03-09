@@ -16,28 +16,34 @@
         &gt;
       </div>
     </div>
-    <div class="team-item ioi-team">
+    <div class="team-item ioi-team" *ngFor="let team of teams">
+           
+      <div class="joined" *ngIf="team.me_waiting_as_manager === true">
+        <span>
+            <p> <strong>&#x02713;</strong> {{'teams.join.waiting_approval' | translate}}</p>
+        </span>
+    </div>
         <div class="img-holder">
-            <img [src]="'/assets/base/images/teams/' + 'IOI' + '-team.png'" alt="">
+            <img [src]="'/assets/base/images/teams/' + team.name + '-team.png'" alt="">
             <!--<img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">-->
         </div>
         <!--<p class="heading">Team {{tt?.name}}</p>-->
-        <p class="heading">Team IOI</p>
+        <p class="heading">Team {{team.name}}</p>
         <div class="item-holder">
             <p class="desc">{{'teams.join.total_members' | translate}}</p>
             <!--<p class="value">{{tt?.active_members}}</p>-->
-            <p class="value">1000</p>
+            <p class="value">{{team?.active_members}}</p>
         </div>
         <div class="item-holder">
             <p class="desc">{{'teams.join.premium_members' | translate}}</p>
-            <p class="value">-</p>
+            <p class="value">{{team?.premium_membership_count}}</p>
         </div>
         <div class="item-holder">
             <p class="desc">{{'teams.join.free_members' | translate}}</p>
-            <p class="value">-</p>
+            <p class="value">{{team?.free_membership_count}}</p>
         </div>
         <div class="apply-button">
-          <button>
+          <button (click)="becomeManager(team.id)" [disabled]="team.me_waiting_as_manager === true">
             <span>
               {{'teams.join.apply' | translate}}
             </span>
@@ -45,100 +51,7 @@
         </div>    
     </div>
 
-    <div class="team-item ioi-team">
-
-     
-      <div class="joined">
-          <span>
-              <p> <strong>&#x02713;</strong> {{'teams.join.waiting_approval' | translate}}</p>
-          </span>
-      </div>
-
-       
-      <div class="img-holder">
-          <img [src]="'/assets/base/images/teams/' + 'TRX' + '-team.png'" alt="">
-          <!--<img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">-->
-      </div>
-      <!--<p class="heading">Team {{tt?.name}}</p>-->
-      <p class="heading">Team ALT</p>
-      <div class="item-holder">
-          <p class="desc">{{'teams.join.total_members' | translate}}</p>
-          <!--<p class="value">{{tt?.active_members}}</p>-->
-          <p class="value">1000</p>
-      </div>
-      <div class="item-holder">
-          <p class="desc">{{'teams.join.premium_members' | translate}}</p>
-          <p class="value">-</p>
-      </div>
-      <div class="item-holder">
-          <p class="desc">{{'teams.join.free_members' | translate}}</p>
-          <p class="value">-</p>
-      </div>
-      <!--
-      <div class="apply-button applied">
-        <button>
-          <span>
-            {{'teams.join.already_applied' | translate}}
-          </span>
-        </button>
-      </div>
-    -->
-
-      <div class="apply-button">
-        <button>
-          <span>
-            {{'teams.join.apply' | translate}}
-          </span>
-        </button>
-      </div>
-  </div>
-
-  <div class="team-item ioi-team">
-
-      <div class="joined rejected">
-          <span>
-              <p> <strong>&#x02717;</strong> {{'teams.join.rejected' | translate}}</p>
-          </span>
-      </div>
-  
-    <div class="img-holder">
-        <img [src]="'/assets/base/images/teams/' + 'BTC' + '-team.png'" alt="">
-        <!--<img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">-->
-    </div>
-    <!--<p class="heading">Team {{tt?.name}}</p>-->
-    <p class="heading">Team BTC</p>
-    <div class="item-holder">
-        <p class="desc">{{'teams.join.total_members' | translate}}</p>
-        <!--<p class="value">{{tt?.active_members}}</p>-->
-        <p class="value">1000</p>
-    </div>
-    <div class="item-holder">
-        <p class="desc">{{'teams.join.premium_members' | translate}}</p>
-        <p class="value">-</p>
-    </div>
-    <div class="item-holder">
-        <p class="desc">{{'teams.join.free_members' | translate}}</p>
-        <p class="value">-</p>
-    </div>
-
-    <!--
-    <div class="apply-button applied">
-      <button>
-        <span>
-          {{'teams.join.already_applied' | translate}}
-        </span>
-      </button>
-    </div>-->
     
-
-      <div class="apply-button">
-          <button>
-            <span>
-              {{'teams.join.apply' | translate}}
-            </span>
-          </button>
-      </div>
-  </div>
     
 </div>
 

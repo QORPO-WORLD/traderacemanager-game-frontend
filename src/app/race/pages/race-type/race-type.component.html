@@ -36,11 +36,15 @@
          Rookie</div>
       <div class="cell">0.1 IOI</div>
       <div class="cell">FREE</div>
-      <div class="cell">{{astart?.players}}/100</div>
+      <div class="cell">{{astart?.players_count}}/100</div>
       <div class="cell"><app-timer *ngIf="astart" [value]="astart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_short_0']">Join race</div>
-      </div>
+      
+        <div class="fast-race" *ngIf="fastEnabled === true">
+          <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
+        </div>
+            </div>
     </div>
     <div class="table-row">
       <div class="cell">
@@ -50,7 +54,7 @@
         Beginner</div>
       <div class="cell">100 IOI</div>
       <div class="cell">1 IOI</div>
-      <div class="cell">?/100</div>
+      <div class="cell">{{ioistarta?.players_count}}/100</div>
       <div class="cell"><app-timer *ngIf="ioistarta" [value]="ioistarta?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_1']">Join race</div>
@@ -86,7 +90,7 @@
        Semi PRO</div>
       <div class="cell">500 IOI</div>
       <div class="cell">5 IOI</div>
-      <div class="cell">?/100</div>
+      <div class="cell">{{ioistartc?.players_count}}/100</div>
       <div class="cell" ><app-timer *ngIf="ioistartc" [value]="ioistartc?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_5']">Join race</div>
@@ -100,11 +104,12 @@
 
     <div class="table-row">
       <div class="cell">
-        <img src="/assets/base/images/race-type/star-gray.png" alt="">
-       Profesional</div>
+        <img src="/assets/base/images/race-type/star-gray.png" alt="" *ngIf="!this.baseFavRaces[1].fav" (click)="this.baseFavRaces[1].fav = !this.baseFavRaces[1].fav" (click)="updateFavRaces();">
+        <img src="/assets/base/images/race-type/star-red.png" alt="" *ngIf="this.baseFavRaces[1].fav" (click)="this.baseFavRaces[1].fav = !this.baseFavRaces[1].fav" (click)="updateFavRaces();">
+        Profesional</div>
       <div class="cell">1 000 IOI</div>
       <div class="cell">10 IOI</div>
-      <div class="cell">?/100</div>
+      <div class="cell">{{bstart?.players_count}}/100</div>
       <div class="cell"><app-timer *ngIf="bstart" [value]="bstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
   
       <div class="cell">
@@ -119,12 +124,13 @@
 
     <div class="table-row">
       <div class="cell">
-        <img src="/assets/base/images/race-type/star-gray.png" alt="">
-        Expert</div>
+        <img src="/assets/base/images/race-type/star-gray.png" alt="" *ngIf="!this.baseFavRaces[2].fav" (click)="this.baseFavRaces[2].fav = !this.baseFavRaces[2].fav" (click)="updateFavRaces();">
+        <img src="/assets/base/images/race-type/star-red.png" alt="" *ngIf="this.baseFavRaces[2].fav" (click)="this.baseFavRaces[2].fav = !this.baseFavRaces[2].fav" (click)="updateFavRaces();">
+       Expert</div>
       <div class="cell">5 000 IOI</div>
       <div class="cell">50 IOI</div>
-      <div class="cell">?/100</div>
-      <div class="cell"><app-timer *ngIf="bstart" [value]="cstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
+      <div class="cell">{{cstart?.players_count}}/100</div>
+      <div class="cell"><app-timer *ngIf="cstart" [value]="cstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_ioi_50']">Join race</div>
         
@@ -136,12 +142,13 @@
     </div>
     <div class="table-row">
       <div class="cell">
-        <img src="/assets/base/images/race-type/star-gray.png" alt="">
-       Master</div>
+        <img src="/assets/base/images/race-type/star-gray.png" alt="" *ngIf="!this.baseFavRaces[3].fav" (click)="this.baseFavRaces[3].fav = !this.baseFavRaces[3].fav" (click)="updateFavRaces();">
+        <img src="/assets/base/images/race-type/star-red.png" alt="" *ngIf="this.baseFavRaces[3].fav" (click)="this.baseFavRaces[3].fav = !this.baseFavRaces[3].fav" (click)="updateFavRaces();">
+         Master</div>
       <div class="cell">10 000 IOI</div>
       <div class="cell">100 IOI</div>
-      <div class="cell">0/100</div>
-      <div class="cell"><app-timer *ngIf="cstart" [value]="cstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
+      <div class="cell">{{dstart?.players_count}}/100</div>
+      <div class="cell"><app-timer *ngIf="dstart" [value]="dstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
      
       <div class="cell">
         <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_ioi_100']">Join race</div>

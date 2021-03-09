@@ -28,7 +28,7 @@ class TeamsService extends __BaseService {
    * API endpoint for teams to be viewed.
    * @param page A page number within the paginated result set.
    */
-  teamsListResponse(page?: number): __Observable<__StrictHttpResponse<{count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam>}>> {
+  teamsListResponse(page?: number): __Observable<__StrictHttpResponse<{ count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam> }>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -46,7 +46,7 @@ class TeamsService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam>}>;
+        return _r as __StrictHttpResponse<{ count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam> }>;
       })
     );
   }
@@ -54,9 +54,9 @@ class TeamsService extends __BaseService {
    * API endpoint for teams to be viewed.
    * @param page A page number within the paginated result set.
    */
-  teamsList(page?: number): __Observable<{count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam>}> {
+  teamsList(page?: number): __Observable<{ count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam> }> {
     return this.teamsListResponse(page).pipe(
-      __map(_r => _r.body as {count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam>})
+      __map(_r => _r.body as { count: number, next?: null | string, previous?: null | string, results: Array<RacingTeam> })
     );
   }
 
@@ -126,6 +126,69 @@ class TeamsService extends __BaseService {
    */
   becomeManager(url: number, data: any): __Observable<any> {
     return this.becomeManagerResponse(url, data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  putTipsResponse(url: number, data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/races/team/` + url + '/manager-tips',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+  putTips(url: number, data: any): __Observable<any> {
+    return this.putTipsResponse(url, data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  getTipsResponse(url: number): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/team/` + url + '/manager-tips',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+  getTips(url: number): __Observable<any> {
+    return this.getTipsResponse(url).pipe(
       __map(_r => _r.body as any)
     );
   }
