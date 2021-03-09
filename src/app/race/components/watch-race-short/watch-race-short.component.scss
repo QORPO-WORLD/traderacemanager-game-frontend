@@ -434,6 +434,17 @@
     align-items: center;
     height: 40px;
     border-radius: 10px 10px 10px 0px;
+    min-width: 140px;
+    &:hover{
+      .stats-box{
+        .inner-stats{
+          opacity: 0;
+        }
+        .currs-holder{
+          opacity: 1;
+        }
+      }
+    }
     .my-line {
       width: 2px;
       height: 71px;
@@ -466,35 +477,87 @@
       border-radius: 0px 10px 10px 0px;
       padding: 5px 10px;
       height: 100%;
-      .name {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 1.2;
-        margin: 0;
+      position: relative;
+      .inner-stats{
+        opacity: 1;
+        transition: .1s;
+        .name {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 1.2;
+          margin: 0;
+        }
+        .roi-holder {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .my-bar-holder {
+            background: #111111;
+            border-radius: 10px;
+            width: 64px;
+            height: 8px;
+            padding: 2px;
+            margin-right: 5px;
+            .inner-bar {
+              background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
+              height: 100%;
+              border-radius: 10px;
+              transition: 0.2s;
+            }
+          }
+          .percent {
+            color: #989898;
+            font-weight: 500;
+            font-size: 11px;
+            margin: 0;
+          }
+        }
       }
-      .roi-holder {
+      .currs-holder{
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        .my-bar-holder {
-          background: #111111;
-          border-radius: 10px;
-          width: 64px;
-          height: 8px;
-          padding: 2px;
-          margin-right: 5px;
-          .inner-bar {
-            background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
-            height: 100%;
-            border-radius: 10px;
-            transition: 0.2s;
+        opacity: 0;
+        transition: .1s;
+        .curr-item{
+          position: relative;
+          margin-right: 7px;
+          line-height: 1;
+          text-align: center;
+          width: 30%;
+          &::before{
+            content: '';
+            height: 30px;
+            width: 1px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 5px;
           }
-        }
-        .percent {
-          color: #989898;
-          font-weight: 500;
-          font-size: 11px;
-          margin: 0;
+          img{
+            height: 15px;
+            max-height: 15px;
+            width: auto;
+            vertical-align: baseline;
+          }
+          p{
+            font-size: 13px;
+            margin: 0 0 5px 0;
+            display: block;
+          }
+          &.borderless{
+            margin-right: 5px;
+            &::before{
+              content: none;
+            }
+          }
         }
       }
     }
@@ -4077,15 +4140,34 @@ button small {
             }
             .stats-box {
               padding: 3px 7px;
-              .name {
-                font-size: 13px;
-              }
-              .roi-holder {
-                .my-bar-holder {
-                  width: 50px;
+              .inner-stats{
+                .name {
+                  font-size: 13px;
                 }
-                .percent {
-                  font-size: 10px;
+                .roi-holder {
+                  .my-bar-holder {
+                    width: 50px;
+                  }
+                  .percent {
+                    font-size: 10px;
+                  }
+                }
+              }
+              .currs-holder{
+                .curr-item{
+                  margin-right: 5px;
+                  &::before{
+                    height: 26px;
+                    right: -3px;
+                  }
+                  p{
+                    font-size: 12px;
+                    margin: 0 0 3px 0;
+                  }
+                  img{
+                    height: 13px;
+                    max-height: 13px;
+                  }
                 }
               }
             }
@@ -4421,6 +4503,7 @@ button small {
       transform: translateY(-50%) rotate(90deg);
       flex-wrap: wrap;
       text-align: center;
+      min-width: 110px;
       .my-line {
         display: none;
       }
@@ -4433,17 +4516,20 @@ button small {
         }
       }
       .stats-box {
+        width: 100%;
         border-radius: 0px 0px 10px 10px;
-        .name {
-          margin: 3px 0;
-          font-size: 12px;
-        }
-        .roi-holder {
-          flex-wrap: wrap;
-          justify-content: center;
-          .my-bar-holder {
-            width: 100%;
-            margin: 0 0 3px 0;
+        .inner-stats{
+          .name {
+            margin: 3px 0;
+            font-size: 12px;
+          }
+          .roi-holder {
+            flex-wrap: wrap;
+            justify-content: center;
+            .my-bar-holder {
+              width: 100%;
+              margin: 0 0 3px 0;
+            }
           }
         }
       }
@@ -4968,6 +5054,7 @@ button small {
 @media screen and (max-width: 550px) {
   .zavod .car_rc .cr_cars_box .car_row {
     .car-user-stats {
+      min-width: 90px;
       .place {
         height: 15px;
         border-radius: 0 7px 0 0;
@@ -4978,13 +5065,32 @@ button small {
       .stats-box {
         padding: 1px 5px;
         border-radius: 0px 0px 7px 7px;
-        .name {
-          font-size: 10px;
+        .inner-stats{
+          .name {
+            font-size: 10px;
+          }
+          .roi-holder {
+            .my-bar-holder {
+              height: 6px;
+              padding: 1px;
+            }
+          }
         }
-        .roi-holder {
-          .my-bar-holder {
-            height: 6px;
-            padding: 1px;
+        .currs-holder{
+          .curr-item{
+            margin-right: 3px;
+            &::before{
+              height: 22px;
+              right: -2px;
+            }
+            p{
+              font-size: 10px;
+              margin: 0 0 2px 0;
+            }
+            img{
+              height: 11px;
+              max-height: 11px;
+            }
           }
         }
       }
