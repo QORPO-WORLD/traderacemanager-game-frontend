@@ -17,12 +17,16 @@ export class AllPlayersComponent implements OnInit {
   drSubscription: Subscription;
   actualPage = 1;
   totalPages: number;
+  mydrvrData: any;
+  cachedLdrbrd: any;
+  isPageWithMe= false;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
   ngOnInit() {
     this.getMyDriver();
     this.getMyLeaderboard();
+    this.getCachedLeaderboard();
   }
 
   ngOnDestroy() {
@@ -42,12 +46,39 @@ export class AllPlayersComponent implements OnInit {
         const data: any = datax;
         this.players = data.results;
         this.totalPages = data.totalPages;
+        this.isMePage();
       });
   }
 
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
+    this.mydrvrData = data;
   }
 
+  getCachedLeaderboard() {
+    this.cachedLdrbrd = this.identityService.getLeaderboardMe();
+    if (this.cachedLdrbrd === undefined || this.cachedLdrbrd === null) {
+      //this.identityService.logout()();
+      return;
+    }
+  }
+
+  nextPage() {
+    this.actualPage++;
+    this.getMyLeaderboard();
+  }
+  prevPage() {
+    this.actualPage--;
+    this.getMyLeaderboard();
+  }
+
+  isMePage(){
+    this.isPageWithMe=false;
+    this.players.forEach(element => {
+      if(element.user_nickname==this.mydrvrData.nickname){
+        this.isPageWithMe=true;
+      }
+    });
+  }
 }

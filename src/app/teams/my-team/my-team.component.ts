@@ -88,7 +88,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.myTeamName = data.team;
     this.myTeamData = data;
     this.redirectMe();
-
   }
 
   getTeams() {
