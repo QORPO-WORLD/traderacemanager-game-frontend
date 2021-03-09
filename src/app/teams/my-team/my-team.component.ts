@@ -55,7 +55,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.getRewards();
     this.changeSlide();
     this.getTeams();
-    this.getManagerRequests();
   }
 
   routerOnDeactivate() {
@@ -187,7 +186,9 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   suspendManager() {
-
+    this.teams_service.suspendManager(this.teamId).subscribe(data => {
+      this.getMyTem();
+    });
   }
 
   recognizeOwnerMe() {
@@ -203,6 +204,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     console.log(sum);
     if (sum > 0) {
       this.isOwner = true;
+      this.getManagerRequests();
     } else {
       this.isOwner = false;
     }
