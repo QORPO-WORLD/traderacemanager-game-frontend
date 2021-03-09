@@ -4463,7 +4463,7 @@ button small {
   }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) and (orientation: portrait) {
   .tournament {
     margin: 0;
     .mini-races-holder {
@@ -4957,6 +4957,161 @@ button small {
   }
 }
 
+@media only screen and (max-width: 900px) and (orientation: landscape){
+  .car{
+    width: 285px;
+    height: 97px;
+  }
+  .sub-content.zavod_bg {
+    .race-top-nav {
+      height: 50px;
+      padding: 0 0 0 13px;
+      .left-align {
+        .ioi-logo-race {
+          height: 25px;
+        }
+      }
+      .small-box {
+        border-radius: 9px;
+        height: 28px;
+        .inner {
+          border-radius: 9px;
+          p,
+          span {
+            font-size: 12px;
+          }
+        }
+        &.prize-box {
+          margin-left: 13px;
+          .inner {
+            padding: 5px 20px;
+            p {
+              img {
+                width: 13px;
+              }
+            }
+          }
+        }
+        &.pos-box {
+          .inner {
+            padding: 5px 23px;
+            p{
+              img{
+                width: 20px;
+              }
+            }
+          }
+        }
+        &.timer-box{
+          .inner{
+            .dots-holder{
+              display: none;
+            }
+          }
+        }
+      }
+      .right-align {
+        .switch-btn {
+          width: 45px;
+          img {
+            height: 14px;
+          }
+        }
+        .username-holder {
+          .avatar-box {
+            border-radius: 9px;
+            height: 43px;
+            width: 43px;
+            .inner {
+              border-radius: 9px;
+              img {
+                width: 13px;
+              }
+            }
+          }
+        }
+        .winner-close {
+          width: 135px;
+          p {
+            font-size: 12px;
+            img {
+              width: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .zavod {
+    .car_rc {
+      .cr_cars_box {
+        top: 150px;
+        width: calc(100% - 285px);
+        .car_row {
+          margin-bottom: 14px;
+          .car-user-stats {
+            height: 35px;
+            top: -16px;
+            left: 7%;
+            .my-line {
+              height: 31px;
+            }
+            .place {
+              width: 35px;
+              p {
+                font-size: 15px;
+              }
+            }
+            .stats-box {
+              padding: 3px 7px;
+              .inner-stats{
+                .name {
+                  font-size: 13px;
+                }
+                .roi-holder {
+                  .my-bar-holder {
+                    width: 50px;
+                  }
+                  .percent {
+                    font-size: 10px;
+                  }
+                }
+              }
+              .currs-holder{
+                .curr-item{
+                  margin-right: 5px;
+                  &::before{
+                    height: 26px;
+                    right: -3px;
+                  }
+                  p{
+                    font-size: 12px;
+                    margin: 0 0 3px 0;
+                  }
+                  img{
+                    height: 13px;
+                    max-height: 13px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      height: 470px;
+      .still-road,
+      .still-helperix,
+      .moving-road,
+      .moving-helperix{
+        height: 470px;
+      }
+    }
+  }
+  .winning-back{
+    height: calc(100vh - 50px);
+  }
+}
+
 @media screen and (max-width: 640px) {
   .winning-back {
     .winning-modal {
@@ -5295,15 +5450,19 @@ button small {
   //background-image: url("/src/assets/base/images/new-race/city.png");
 }
 
-@media screen and (min-width: 900px) {
-  .zavod .car_rc.city-back {
-    top: 0;
-    background-image: url("/assets/base/images/new-race/city.png");
-    background-repeat: repeat-x;
-    &.moving{
-      -webkit-animation: road-move-city 20s infinite linear;
-      animation: road-move-city 20s infinite linear;
-    }
+.zavod .car_rc.city-back {
+  top: 0;
+  background-image: url("/assets/base/images/new-race/city.png");
+  background-repeat: repeat-x;
+  &.moving{
+    -webkit-animation: road-move-city 20s infinite linear;
+    animation: road-move-city 20s infinite linear;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  .zavod .car_rc.city-back{
+    background: none;
   }
 }
 
