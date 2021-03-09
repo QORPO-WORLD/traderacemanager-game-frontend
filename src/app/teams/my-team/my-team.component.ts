@@ -14,15 +14,15 @@ import { TeamsService } from '../../api/services/teams.service';
   styleUrls: ['./my-team.component.scss'],
 })
 export class MyTeamComponent implements OnInit, OnDestroy {
-  tickInterval:any;
-  TeamManagerSlide=1;
-  activeRate=1;
+  tickInterval: any;
+  TeamManagerSlide = 1;
+  activeRate = 1;
   teamSubscription: Subscription;
   ldbrdSubscription: Subscription;
   drSubscription: Subscription;
   afSubscription: Subscription;
-  graphType='Turnover';
-  myTeam: InternalTeamLeaderboard;
+  graphType = 'Turnover';
+  myTeam: any;
   myLdrbrd: any;
   is24race = false;
   isLastMonth = false;
@@ -41,7 +41,9 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   @ViewChild('showTip', { static: false }) showTip: any;
   teamId: number;
   managers = [];
-  constructor(private api: LeaderboardService,private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
+  selectedmanager = 0;
+  myId: string;
+  constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
   ngOnInit() {
@@ -79,15 +81,15 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyTem() {
     this.teamSubscription = this.api.leaderboardTeamInternalList().subscribe(
       data => {
-        this.myTeam = data;    
+        this.myTeam = data;
         this.myuser = data.me.user_id;
-        console.log(this.myTeam.top10);
         this.bestRacer = this.myTeam.top10[0];
+        this.recognizeOwnerMe();
       }
     );
   }
 
- 
+
   getMyTeam() {
     const data = this.identityService.getDriverMe();
     this.myTeamName = data.team;
@@ -137,16 +139,20 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeSlide(){
-    this.tickInterval = setInterval(() => { 
-      if(this.TeamManagerSlide==1) this.TeamManagerSlide=2;
-      else this.TeamManagerSlide=1;
+  changeSlide() {
+    this.tickInterval = setInterval(() => {
+      if (this.isOwner === true) {
+        if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
+        else { this.TeamManagerSlide = 1; }
+      } else {
+        this.TeamManagerSlide = 1;
+      }
     }, 16000);
   }
 
   manualChange(to_slide: number) {
     clearInterval(this.tickInterval);
-    this.TeamManagerSlide=to_slide;
+    this.TeamManagerSlide = to_slide;
   }
 
 
@@ -157,7 +163,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       });
   }
 
-  tipsSaved(myBool: boolean){
+  tipsSaved(myBool: boolean) {
     this.showDayTipModal = myBool;
     this.showTip.getMyLeaderboard();
   }
@@ -168,4 +174,39 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       this.managers = data;
     });
   }
+
+
+  putManagerRequests(id: number, accept: boolean) {
+    this.teams_service.putManagerRequests({
+      requestId: id,
+      acceptRequest: accept
+    }).subscribe(data => {
+      this.getManagerRequests();
+
+    });
+  }
+
+  suspendManager() {
+
+  }
+
+  recognizeOwnerMe() {
+    let sum = 0;
+    console.log(this.myTeam.owners)
+    for (let x = 0; x < this.myTeam.owners.length; x++) {
+      console.log(this.myTeam.owners[x].user_id);
+      console.log(this.myTeamData.id);
+      if (this.myTeamData.id === this.myTeam.owners[x].user_id) {
+        sum = sum + 1;
+      }
+    }
+    console.log(sum);
+    if (sum > 0) {
+      this.isOwner = true;
+    } else {
+      this.isOwner = false;
+    }
+  }
+
+
 }
