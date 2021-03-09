@@ -63,10 +63,6 @@ export class OwnersManagersComponent implements OnInit, OnDestroy {
 
   becomeManager() {
 
-    this.tservice.becomeManager(this.teamId, { reason: this.reason }).subscribe
-      (data => {
-        console.log(data);
-      });
   }
 
 
