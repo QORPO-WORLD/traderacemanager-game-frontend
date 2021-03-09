@@ -18,9 +18,19 @@
     </div>
     <div class="team-item ioi-team" *ngFor="let team of teams">
            
-      <div class="joined" *ngIf="team.me_waiting_as_manager === true">
+      <div class="joined" *ngIf="team.me_waiting_as_manager === 'WAITING'">
         <span>
             <p> <strong>&#x02713;</strong> {{'teams.join.waiting_approval' | translate}}</p>
+        </span>
+    </div> 
+      <div class="joined" *ngIf="team.me_waiting_as_manager === 'APPROVED'">
+        <span>
+            <p> <strong>&#x02713;</strong> Joined</p>
+        </span>
+    </div>           
+      <div class="rejected" *ngIf="team.me_waiting_as_manager === 'DECLINED'">
+        <span>
+            <p> <strong>&#x02713;</strong> Rejected</p>
         </span>
     </div>
         <div class="img-holder">
@@ -43,7 +53,7 @@
             <p class="value">{{team?.free_membership_count}}</p>
         </div>
         <div class="apply-button">
-          <button (click)="becomeManager(team.id)" [disabled]="team.me_waiting_as_manager === true">
+          <button (click)="becomeManager(team.id)" [disabled]="team.me_waiting_as_manager !== 'NONE'">
             <span>
               {{'teams.join.apply' | translate}}
             </span>

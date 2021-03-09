@@ -2,7 +2,6 @@
 
 
 <div class="main-holder" [ngClass]="myTeamName">
-
   <div class="page-info"> 
       <div class="back" [routerLink]="['/teams/join-teams']">
         <p>&lt;</p>
@@ -39,8 +38,8 @@
     <div class="box box-background">
       <span class="box-content ">
         <p class="box-name">{{'teams.join.benefit4_heading' | translate}}</p>
-        <h4>Rasto1424</h4>
-        <p><span>100% {{"teams.my_team.shares_owner"| translate}}</span></p>
+        <h4 *ngFor="let owner of myTeam?.owners">{{owner.nickname}}</h4>
+        <p><span>?% {{"teams.my_team.shares_owner"| translate}}</span></p>
       </span>
     </div>
 
@@ -52,8 +51,8 @@
       <ng-container *ngIf="isOwner===false">
         <span class="box-content ">
           <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
-          <h4>Rasto1424</h4>
-          <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+          <h4>{{myTeam?.manager_user_nickname}}</h4>
+          <p><span>?% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
           <ng-container *ngIf="TeamManagerSlide===1">
           <div class="satisfaction-wrapper">
             <div class="satisfaction-info">
@@ -78,28 +77,28 @@
 
 
 
-      <ng-container *ngIf="isOwner===true">
+      <ng-container>
         <span class="box-content ">
           <p class="box-name">{{'leaderboard.team_leaderboard.team_manager' | translate}}</p>
 
           <ng-container *ngIf="TeamManagerSlide===1">
-            <h4>Rasto1424</h4>
-            <p><span>100% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
-            <button class="apply-button border-color release">
+            <h4>{{myTeam?.manager_user_nickname}}</h4>
+            <p><span>?% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+            <button class="apply-button border-color release" (click)="suspendManager()" *ngIf="isOwner === true">
               {{"teams.my_team.release_manager"| translate}}
             </button>
           </ng-container>
           
-          <ng-container *ngIf="TeamManagerSlide===2">
-            <h4>John456</h4>
+          <ng-container *ngIf="TeamManagerSlide===2 && isOwner === true">
+            <h4>{{managers[selectedmanager]?.user_nickname}}</h4>
             <div class="accept-buttons">
-              <button>{{"teams.my_team.accept"| translate}}</button>
-              <button>{{"teams.my_team.reject"| translate}}</button>
+              <button (click)="putManagerRequests(managers[selectedmanager]?.team_manager_request_id, true)">{{"teams.my_team.accept"| translate}}</button>
+              <button (click)="putManagerRequests(managers[selectedmanager]?.team_manager_request_id, false)">{{"teams.my_team.reject"| translate}}</button>
             </div>
-            <div class="manager-arrow-left">
+            <div class="manager-arrow-left" (click)="selectedmanager = selectedmanager - 1" *ngIf="selectedmanager > 0">
               &lt;
             </div>
-            <div class="manager-arrow-right">
+            <div class="manager-arrow-right" (click)="selectedmanager = selectedmanager + 1" *ngIf="selectedmanager < managers?.length">
               &gt;
             </div>
           </ng-container>
