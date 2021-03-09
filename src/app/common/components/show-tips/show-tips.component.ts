@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { TeamsService } from 'src/app/api/services';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/user/services/auth.service';
 export class ShowTipsComponent implements OnInit, OnDestroy {
   tips = [];
   teamId: number;
+  @Input() teamVersion = false;
   eventSubscription: Subscription;
   constructor(private api: TeamsService, private identityService: AuthService) { }
 

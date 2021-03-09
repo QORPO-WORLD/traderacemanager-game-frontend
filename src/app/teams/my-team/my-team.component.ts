@@ -151,6 +151,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   tipsSaved(myBool: boolean){
-    this.editTips = myBool;
+    this.showDayTipModal = myBool;
   }
 }

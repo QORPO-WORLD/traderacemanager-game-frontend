@@ -136,7 +136,7 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     MySettingsComponent, CreateFastFuelCarComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
-    DailyTipModalComponent],
+    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent],
   entryComponents: []
 })
 
