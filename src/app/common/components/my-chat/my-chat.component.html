@@ -29,10 +29,13 @@
     </ng-container>
   </div>
 
-  <div class="texting-cont">
+  <div class="texting-cont"><small style="font-size: 9px;
+    padding-right: 5px;
+    position: absolute;
+    top: -13px;">{{chatInput.length}}/140</small>
     <form (ngSubmit)="postChat()">
       <input name="message" cols="1" rows="2" class="chat-input msg" [(ngModel)]="chatInput" [ngModelOptions]="{standalone: true}"
-        maxlength="100" placeholder="Your message">
+        maxlength="140" placeholder="Your message">
       <div (click)="postChat()" class="send-btn"><img src="/assets/base/images/menu/send-arrow.svg" alt=""></div>
     </form>
   </div>

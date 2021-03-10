@@ -116,8 +116,14 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             const d = new Date();
             const expires = d.setTime(d.getTime() + (100 * 24 * 60 * 60 * 1000));;
             document.cookie = cname + "=" + this.referralId + "; expires=" + expires + ";domain=.traderacemanager.com;path=/;";
-            console.log(document.cookie);
+    
         }
+        const cook = this.readCookie('affiliate_reference');
+        if(cook) {
+            this.referralId = cook;
+        }
+        console.log(document.cookie);
+        console.log(this.referralId);
     }
 
     recognizeDemo() {
@@ -212,4 +218,16 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         this.mmewa = null;
         this.metaSwitch = false;
     }
+
+    readCookie(name: string) {  
+    
+        var nameEQ = name + "=";  
+        var ca = document.cookie.split(';');  
+        for (var i = 0; i < ca.length; i++) {  
+            var c = ca[i];  
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);  
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);  
+        }  
+        return null;  
+    } 
 }
