@@ -114,7 +114,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }
     this.balanceInterval = setInterval(() => {
       this.identityService.updateBalance();
-    }, 10000);
+    }, 60000);
     this.getCryptoStats();
 
     this.calculateCorrectVh();

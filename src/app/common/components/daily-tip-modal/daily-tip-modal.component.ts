@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DailyTipModalComponent implements OnInit {
 
+  @Input() meOwner = false;
   @Input() isEditing = false;
   @Output() modalClose = new EventEmitter<boolean>();
 

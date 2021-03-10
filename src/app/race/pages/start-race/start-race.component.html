@@ -85,15 +85,15 @@
     </div>
 
     <div class="leader-holder" [routerLink]="['/teams/leaderboard']">
-      <p class="value">January {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
+      <p class="value">February {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
       <div class="leader-cont my-border-grad">
         <div class="inner">
           <div class="img-holder">
             <img src="/assets/base/images/start-race/lead-trophy.png" alt="">
           </div>
           <div class="text-holder">
-            <p class="name">John1234</p>
-            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | 12 156,00 IOI</p>
+            <p class="name">{{bestRacer?.user_nickname}}</p>
+            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | {{bestRacer?.total_bet_amount| number:'1.2-2':'fr'}} IOI</p>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
 
   <div class="small-boxes" [ngClass]="{'tutorial-high': tutorialStep === 3}">
     
-    <div class="day-tip" (click)="showDayTipModal = true">
+    <div class="day-tip" (click)="recognizeOpenTips()">
       <p class="box-heading">{{'teams.my_team.tip_of_day' | translate}}</p>
       <div class="tip-box my-border-grad">
         <div class="border-maker"></div>
@@ -209,18 +209,12 @@
           <div class="text-holder">
             <p class="value">{{'start-race.best_racer_strategy' | translate}}</p>
             <div class="currs-holder">
-              <div class="curr-item">
-                <img src="/assets/base/images/curr-logos/BTCUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="">
+              <div class="curr-item" *ngFor="let item of tips">
+                <img [src]="'/assets/base/images/curr-logos/' + item.symbol +'-logo.png'" alt="">
+                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="" *ngIf="item.short === false">
+                <img class="arrow-img" src="/assets/base/images/start-race/short-box.svg" alt="" *ngIf="item.short === true">
               </div>
-              <div class="curr-item">
-                <img src="/assets/base/images/curr-logos/ADAUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/short-box.svg" alt="">
-              </div>
-              <div class="curr-item borderless">
-                <img src="/assets/base/images/curr-logos/XTZUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="">
-              </div>
+
             </div>
           </div>
         </div>
@@ -675,7 +669,7 @@
 </div>
 
 
-<app-daily-tip-modal (modalClose)="tipsSaved($event)" [isEditing]="false" *ngIf="showDayTipModal === true"></app-daily-tip-modal>
+<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true" [meOwner]="meManager"></app-daily-tip-modal>
 
 
 

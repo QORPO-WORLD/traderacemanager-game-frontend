@@ -29,7 +29,7 @@ export class VerifyUserComponent implements OnInit {
   }
 
   resend() {
-    return this._http.put(environment.api_url + '/me/resend-account-activation-code', {
+    return this._http.post(environment.api_url + '/me/resend-account-activation-code', {
       code: this.myCode
     },
       httpOptions);

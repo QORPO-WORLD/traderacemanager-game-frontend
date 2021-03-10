@@ -444,18 +444,34 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         }
+        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
+          setTimeout(() => {
+            this.getRaceData();
+          }, 1500);
+        }
 
         if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
             const betix: any = [];
-            for (let i = 0; i < 20; i++) {
-              betix.push({
-                symbol: firstData.coins_performance[i].symbol,
-                percent: firstData.coins_performance[i].percent,
-                from_price: firstData.coins_performance[i].from_price,
-                to_prices: firstData.coins_performance[i].to_prices,
-                bet: 0
-              });
+            if(firstData.coins_performance.length > 0) {
+              for (let i = 0; i < 20; i++) {
+                betix.push({
+                  symbol: firstData.coins_performance[i].symbol ? firstData.coins_performance[i].symbol : '',
+                  percent: firstData.coins_performance[i].percent,
+                  from_price: firstData.coins_performance[i].from_price,
+                  to_prices: firstData.coins_performance[i].to_prices,
+                  bet: 0
+                });
+              
+              }
+            } else {
+              for (let i = 0; i < 3; i++) {
+                betix.push({
+                  symbol: this.raceDataildata.my_cars[x].b[i].symbol,
+                  bet: this.raceDataildata.my_cars[x].b[i].bet
+                });
+              
+              }
             }
             console.log('set betik');
             this.raceDataildata.my_cars[x].betik = betix;
@@ -472,11 +488,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         console.log(firstData.race_progress);
-        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
-          setTimeout(() => {
-            this.getRaceData();
-          }, 1500);
-        }
+
       });
   }
 

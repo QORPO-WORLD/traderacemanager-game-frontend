@@ -12,9 +12,10 @@
       <p *ngIf="leaderboardType==='owners'">{{"leaderboard.owner_leaderboard_info"| translate}}</p>
     </div>
     <div class="bonus-info">
-      <h5 *ngIf="leaderboardType === 'players'">1000,00  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
+      <h5 *ngIf="leaderboardType === 'players'">1 000,00  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
       <h5 *ngIf="leaderboardType !== 'players'">{{myTeamReward | number:'1.2-2':'fr' }}  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
-      <p>current team bonus</p>
+      <p *ngIf="leaderboardType !== 'players'">current team bonus</p>
+      <p *ngIf="leaderboardType === 'players'">current racer bonus</p>
     </div>
   </div>
 
