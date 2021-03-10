@@ -48,6 +48,10 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
     car28: []
   };
   myCar: any;
+  ed1Cars = 0;
+  ed2Cars = 0;
+  ed3Cars = 0;
+  ed4Cars = 0;
   dataReady = false;
   actualCarIndex = 0;
   bestIndex = 0;
@@ -217,6 +221,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
             this.myCarsSorted.car28.push(objs.cars[x]);
           }
         }
+        this.calcEditionNum();
         this.selectCar(objs);
         this.sortingDone = true;
       }
@@ -253,6 +258,81 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
     this.myCarsSorted.car26.length = 0;
     this.myCarsSorted.car27.length = 0;
     this.myCarsSorted.car28.length = 0;
+  }
+
+  calcEditionNum(){
+    if (this.myCarsSorted.car1.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car2.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car3.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car4.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car5.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car6.length > 0) {
+      this.ed1Cars += 1;
+    }
+    if (this.myCarsSorted.car7.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car8.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car9.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car10.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car11.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car12.length > 0) {
+      this.ed2Cars += 1;
+    }
+    if (this.myCarsSorted.car13.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car14.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car15.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car16.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car17.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car18.length > 0) {
+      this.ed3Cars += 1;
+    }
+    if (this.myCarsSorted.car19.length > 0) {
+      this.ed4Cars += 1;
+    }
+    if (this.myCarsSorted.car20.length > 0) {
+      this.ed4Cars += 1;
+    }
+    if (this.myCarsSorted.car21.length > 0) {
+      this.ed4Cars += 1;
+    }
+    if (this.myCarsSorted.car22.length > 0) {
+      this.ed4Cars += 1;
+    }
+    if (this.myCarsSorted.car23.length > 0) {
+      this.ed4Cars += 1;
+    }
+    if (this.myCarsSorted.car24.length > 0) {
+      this.ed4Cars += 1;
+    }
   }
 
   selectCar(data) {
