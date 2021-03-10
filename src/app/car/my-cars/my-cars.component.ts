@@ -113,16 +113,19 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   getMyCars() {
     this.clearSortedCars();
     this.myCarsObserver = this.api.carsMineList().subscribe(data => {
-      if (data.length === 0) {
+      const objsx: any = data;
+      const objs: any = objsx.cars;
+      console.log(objs);
+        console.log('rudko');
+      if (objs.length === 0) {
         this.getFreeCar();
       } else {
-        const objsx: any = data;
-        const objs: any = objsx.cars;
         if(objs.length < 2){
           this.hasNoCars = true;
         }
         for (let x = 0; x < objs.length; x++) {
-          if (objs[x].car_model === 0) {
+          console.log('hohohoho');
+          if (objs[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs[x]);
           }
           if (objs[x].car_id === 1) {
@@ -188,8 +191,8 @@ export class MyCarsComponent implements OnInit, OnDestroy {
           if (objs[x].car_id === 21) {
             this.myCarsSorted.car21.push(objs[x]);
           }
-          if (objs.cars[x].car_id === 22) {
-            this.myCarsSorted.car22.push(objs.cars[x]);
+          if (objs[x].car_id === 22) {
+            this.myCarsSorted.car22.push(objs[x]);
           }
           if (objs[x].car_id === 23) {
             this.myCarsSorted.car23.push(objs[x]);
@@ -212,6 +215,8 @@ export class MyCarsComponent implements OnInit, OnDestroy {
         }
         this.selectCar(objs);
         this.sortingDone = true;
+        console.log(this.myCarsSorted);
+        console.log('rudko');
       }
     });
   }
