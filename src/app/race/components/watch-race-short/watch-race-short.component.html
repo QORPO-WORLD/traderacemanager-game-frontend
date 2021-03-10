@@ -267,19 +267,20 @@
 
       <div class="still-road" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
-      [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
+      [ngClass]="'type' + backType">&nbsp;</div>
 
       <div class="still-helperix" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0] "
-      [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}">&nbsp;</div>
+      [ngClass]="'type' + backType">&nbsp;</div>
 
       <div class="moving-road" 
-      [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
+      [ngClass]="'type' + backType"
       [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
 
       <div class="moving-helperix" 
-      [ngClass]="{'tunel': backType === 2, 'desert': backType === 3, 'forest': backType === 4, 'speci-back': backType !== 1}"
+      [ngClass]="'type' + backType"
       [hidden]="(raceFinished === true || raceStarted === false || !raceData?.race[0]) ">&nbsp;</div>
+
 
 
       <div class="cr_cars_box" *ngIf="raceStarted === false ">

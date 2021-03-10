@@ -146,6 +146,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   newEditionIndex = 0;
   slidePercent = 20;
   rareAdjustNum = 3;
+  multiply = 0;
   myDriverStats: any;
   myAffilate: any;
   players = 0;
@@ -931,6 +932,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         return a.extras.tier - b.extras.tier;
       });
     }
+    console.log(this.myCars);
     this.changeEdition(1);  
 
     const mynextrace = this.newCars;
@@ -1533,27 +1535,27 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.editionIndex = index;
     const carsBefore = this.myCars.filter(car => car.extras.tier <= (arrIndex * 6));
     this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
-    let multiply = carsBefore.length;
+    this.multiply = carsBefore.length;
     if(index === 1){
-      multiply = 0;
+      this.multiply = 0;
       this.myCarsInEdition = this.myCars.filter(car => car.extras.tier >= arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
     }
     if (window.window.innerWidth < 640){
       this.slidePercent = 33.333;
-      this.selectedSlideIndex = 1 + multiply;
+      this.selectedSlideIndex = 1 + this.multiply;
       this.rareAdjustNum = 2;
       if(this.myCarsInEdition.length === 1 || this.myCarsInEdition.length === 2){
-        this.selectedSlideIndex = 0 + multiply;
+        this.selectedSlideIndex = 0 + this.multiply;
         this.carSlideIndex = -1;
       }
     } else {
       if(this.myCarsInEdition.length > 4){
-        this.selectedSlideIndex = 2 + multiply;
+        this.selectedSlideIndex = 2 + this.multiply;
       } else if(this.myCarsInEdition.length === 3 || this.myCarsInEdition.length === 4){
-        this.selectedSlideIndex = 1 + multiply;
+        this.selectedSlideIndex = 1 + this.multiply;
         this.carSlideIndex = -1;
       } else if(this.myCarsInEdition.length === 1 || this.myCarsInEdition.length === 2){
-        this.selectedSlideIndex = 0 + multiply;
+        this.selectedSlideIndex = 0 + this.multiply;
         this.carSlideIndex = -2;
       }
     }
@@ -1585,8 +1587,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     if (window.window.innerWidth < 640){
       adjustNum = 1;
     }
-    this.carSlideIndex = index - adjustNum;
     this.selectedSlideIndex = index;
+    if(index < this.multiply + this.myCarsInEdition.length  + this.editionIndex){
+      this.carSlideIndex = index - this.multiply - adjustNum;
+    } else {
+      this.carSlideIndex = this.myCarsInEdition.length - (adjustNum + 1);
+    }
   }
 
 
