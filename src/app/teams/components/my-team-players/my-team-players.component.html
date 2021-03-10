@@ -16,7 +16,7 @@
           <p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p> <p>{{tt.team.total_sum | number:'1.2-2':'fr'}}</p>
         </div>
         <div class="team-info-text">
-          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>{{tt.team.manager_user_id}}</p>
+          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>{{tt.team.manager_user_id | slice:0:15}}</p>
         </div>
         <div class="reward-info">
           <span class="border-maker">
@@ -25,7 +25,7 @@
                 <img src="assets/base/images/leaderboard/crown-gold.png" alt="" *ngIf="tt.team.position === 1">
                 <img src="assets/base/images/leaderboard/crown-silver.png" alt="" *ngIf="tt.team.position === 2">
                 <img src="assets/base/images/leaderboard/crown-bronze.png" alt="" *ngIf="tt.team.position > 2">
-                <span class="team-placement gold">{{tt.team.position}}</span>
+                <span class="team-placement" [ngClass]="{'gold': tt.team.position === 1, 'silver': tt.team.position === 2, 'bronze': tt.team.position === 3}" >{{tt.team.position}}</span>
               </div>
               <p>{{(tt?.team_bonus ? tt?.team_bonus : 0)  | number:'1.2-2':'fr'}} IOI</p>
             </div>
@@ -54,7 +54,7 @@
             <span><p>{{toper.position}}.</p></span>
           </div>
         </div>
-        <div class="item-cell"><p>{{toper.user_nickname}}</p></div>
+        <div class="item-cell"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
         <div class="item-cell"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
         <div class="item-cell"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
       </div>
