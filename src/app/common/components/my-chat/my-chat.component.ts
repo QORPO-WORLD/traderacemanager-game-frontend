@@ -62,6 +62,8 @@ export class MyChatComponent implements OnInit {
     this.tchatObserver = this.api.teamChatList(200).subscribe(
       data => {
         this.chatList = data;
+        console.log(data);
+        console.log('tututtutu');
         this.chatLength = this.chatList.length;
       }
     );
@@ -84,7 +86,8 @@ export class MyChatComponent implements OnInit {
         this.recognizeChatSum();
       }
     );
-    console.log(this.chatList[0]);
+    console.log(this.chatList);
+    console.log('tututtutu');
   }
   getMyLevel() {
     this.Affilate = this.identityService.getStorageAff();
