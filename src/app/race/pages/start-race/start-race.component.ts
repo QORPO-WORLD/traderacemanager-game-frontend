@@ -1,6 +1,6 @@
 import { AuthService } from './../../../user/services/auth.service';
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
-import { RacesService, DriversService, RewardsService, AuthService as ninja, CarsService, LeaderboardService } from 'src/app/api/services';
+import { RacesService, DriversService, RewardsService, AuthService as ninja, CarsService, LeaderboardService, TeamsService } from 'src/app/api/services';
 import { NotifiqService } from './../../../common/services/notifiq.service';
 import { Subscription } from 'rxjs';
 import { FavRaces, NextRaceV2, RewardsMe } from 'src/app/api/models';
@@ -19,12 +19,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   constructor(protected api: RacesService, private rwrdsrvc: RewardsService,
     private platform: Platform, private drvrsrvc: DriversService, protected notify: NotifiqService, private identityService: AuthService,
-    private uapi: ninja, private experience: ExperienceService, private capi: CarsService, private router: Router, private lapi: LeaderboardService) {
-
-
+    private uapi: ninja, private experience: ExperienceService, private capi: CarsService, private router: Router, private lapi: LeaderboardService,
+    private tsapi: TeamsService) {
     this.getCryptoStats();
-
-
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
@@ -125,6 +122,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myCarsvals = 0;
   carBonus = 0;
   myCarsObserver: Subscription;
+  eventSubscription: Subscription;
   myCars = [];
   rewardLevel = 0;
   rewardLevelMax = 0;
@@ -133,6 +131,12 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   bestRacer: any;
   myTeamReward: number;
   dailyReward: number;
+  isOwner = false;
+  tips = [];
+  teamId: number;
+  myTeam: any;
+  myId: string;
+  meManager = false;
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem('first-time'));
     const notFinishedrace = JSON.parse(localStorage.getItem('first-race'));
@@ -147,10 +151,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.nickname = dataNick.nickname;
     }
     this.getAllRaces();
-    //this.getLiveRaces();
+    this.getMyOwner();
     this.getMyRewards();
     this.getRewards();
-    //this.getmyFavRaces();
     this.launchTutorial();
     this.getMyLevel();
     this.getMyLeaderboard();
@@ -160,14 +163,14 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.tutorialInterval = setInterval(() => {
       this.checkTutorial();
     }, 3000);
-    //this.getRacerOfTheDay();
     this.recognizeBanner();
     this.getDaysToDividens();
     this.getMyCars();
     this.myDriverOld = this.identityService.getDriverMe();
-    console.log(this.myDriverOld);
     this.getMyTeamReward();
     this.getbestRacer();
+    this.getMyLeaderboard();
+
   }
   ngOnDestroy() {
     if (this.raceObserver) {
@@ -199,6 +202,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
     if (this.teamSubscription) {
       this.teamSubscription.unsubscribe();
+    }
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
     }
     clearInterval(this.interval);
     clearInterval(this.nextInterval);
@@ -364,6 +370,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
     this.rewardLevel = data;
     this.rewardLevelSum = (this.rewardLevel / this.rewardLevelMax) * 100;
+    if (this.rewardLevelSum > 100) {
+      this.rewardLevelSum = 100;
+    }
   }
 
 
@@ -598,8 +607,17 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getMyTeamReward() {
     this.teamSubscription = this.lapi.leaderboardTeamInternalList().subscribe(
-      data => {
+      datax => {
+        const data: any = datax;
         this.myTeamReward = data.team_bonus;
+        this.myTeam = data;
+        console.log(this.myId);
+        console.log(data.manager_user_id);
+        if (data.manager_user_id === this.myId) {
+          this.meManager = true;
+        }
+        this.getTips();
+        //this.recognizeOwnerMe();
       }
     );
   }
@@ -609,5 +627,49 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.bestRacer = data;
     });
   }
+
+  recognizeOpenTips() {
+    if (this.meManager === true) {
+      this.showDayTipModal = true;
+    }
+  }
+
+  recognizeOwner() {
+
+  }
+
+  getMyOwner() {
+    const data = this.identityService.getLeaderboardMe();
+    const user = this.identityService.getDriverMe();
+    this.myId = user.id;
+    this.teamId = data.team_id;
+
+  }
+
+  getTips() {
+    this.eventSubscription = this.tsapi.getTips(this.teamId).subscribe(data => {
+      this.tips = data;
+    });
+  }
+
+  recognizeOwnerMe() {
+    console.log('cfsdv');
+    let sum = 0;
+    for (let x = 0; x < this.myTeam.owners.length; x++) {
+      if (this.myId === this.myTeam.owners[x].user_id) {
+        sum = sum + 1;
+      }
+    }
+    if (sum > 0) {
+      this.isOwner = true;
+    } else {
+      this.isOwner = false;
+    }
+    console.log('cfsdv');
+    //this.getTips();
+  }
+
+
+
 
 }

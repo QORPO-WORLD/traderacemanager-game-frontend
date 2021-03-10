@@ -43,6 +43,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   managers = [];
   selectedmanager = 0;
   myId: string;
+  meManager = false;
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -79,10 +80,15 @@ export class MyTeamComponent implements OnInit, OnDestroy {
 
   getMyTem() {
     this.teamSubscription = this.api.leaderboardTeamInternalList().subscribe(
-      data => {
+      datax => {
+        const data: any = datax;
         this.myTeam = data;
         this.myuser = data.me.user_id;
         this.bestRacer = this.myTeam.top10[0];
+        
+        if (data.manager_user_id === this.myTeamData.id) {
+          this.meManager = true;
+        }
         this.recognizeOwnerMe();
       }
     );
@@ -140,7 +146,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
 
   changeSlide() {
     this.tickInterval = setInterval(() => {
-      if (this.isOwner === true) {
+      if (this.isOwner === true && this.managers.length > 0) {
         if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
         else { this.TeamManagerSlide = 1; }
       } else {
@@ -181,6 +187,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       acceptRequest: accept
     }).subscribe(data => {
       this.getManagerRequests();
+      this.getMyTeam();
+      this.getMyTem();
 
     });
   }
@@ -195,13 +203,12 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     let sum = 0;
     console.log(this.myTeam.owners)
     for (let x = 0; x < this.myTeam.owners.length; x++) {
-      console.log(this.myTeam.owners[x].user_id);
-      console.log(this.myTeamData.id);
+
       if (this.myTeamData.id === this.myTeam.owners[x].user_id) {
         sum = sum + 1;
       }
     }
-    console.log(sum);
+
     if (sum > 0) {
       this.isOwner = true;
       this.getManagerRequests();

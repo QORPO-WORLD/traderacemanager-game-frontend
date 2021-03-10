@@ -195,6 +195,9 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
           if (objs.cars[x].car_id === 21) {
             this.myCarsSorted.car21.push(objs.cars[x]);
           }
+          if (objs.cars[x].car_id === 22) {
+            this.myCarsSorted.car22.push(objs.cars[x]);
+          }
           if (objs.cars[x].car_id === 23) {
             this.myCarsSorted.car23.push(objs.cars[x]);
           }

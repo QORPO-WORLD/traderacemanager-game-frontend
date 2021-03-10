@@ -198,7 +198,7 @@
 
   <div class="small-boxes" [ngClass]="{'tutorial-high': tutorialStep === 3}">
     
-    <div class="day-tip" (click)="showDayTipModal = true">
+    <div class="day-tip" (click)="recognizeOpenTips()">
       <p class="box-heading">{{'teams.my_team.tip_of_day' | translate}}</p>
       <div class="tip-box my-border-grad">
         <div class="border-maker"></div>
@@ -209,18 +209,12 @@
           <div class="text-holder">
             <p class="value">{{'start-race.best_racer_strategy' | translate}}</p>
             <div class="currs-holder">
-              <div class="curr-item">
-                <img src="/assets/base/images/curr-logos/BTCUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="">
+              <div class="curr-item" *ngFor="let item of tips">
+                <img [src]="'/assets/base/images/curr-logos/' + item.symbol +'-logo.png'" alt="">
+                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="" *ngIf="item.short === false">
+                <img class="arrow-img" src="/assets/base/images/start-race/short-box.svg" alt="" *ngIf="item.short === true">
               </div>
-              <div class="curr-item">
-                <img src="/assets/base/images/curr-logos/ADAUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/short-box.svg" alt="">
-              </div>
-              <div class="curr-item borderless">
-                <img src="/assets/base/images/curr-logos/XTZUSDT-logo.png" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="">
-              </div>
+
             </div>
           </div>
         </div>
@@ -675,7 +669,7 @@
 </div>
 
 
-<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true"></app-daily-tip-modal>
+<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true" [meOwner]="meManager"></app-daily-tip-modal>
 
 
 

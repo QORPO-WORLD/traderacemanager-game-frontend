@@ -11,9 +11,9 @@ class Experience {
   private driversData: any;
   private readonly MIN_DRIVERS = 5;
   private expLevelStage = [
-    0, 1000, 2000, 4000, 8000, 16000, 32000, 48000, 72000, 108000,
-    162000, 243000, 364000, 436000, 523000, 627000, 752000, 902000,
-    1080000, 1390000, 1530000, 1680000, 1885000, 2030000
+    6000, 12000, 24000, 48000, 96000, 192000, 288000, 432000, 648000,
+    972000, 1458000, 2187000, 3000000, 4320000, 5184000, 6220000, 7465000,
+    8200000, 9000000, 9900000, 10890000, 12000000, 13200000
   ];
 
   constructor(driversData: any) {
@@ -25,7 +25,8 @@ class Experience {
   }
 
   getTotalBetAmount() {
-    return this.getDriversMe().total_bet_amount;
+    const balance = JSON.parse(localStorage.getItem('auth-us'));
+    return balance.total_bet_amount;
   }
 
   getPlayedRacesCount() {
@@ -44,7 +45,7 @@ class Experience {
     if (!this.isActiveFastRace()) {
       return 0;
     } else {
-      return this.expLevelStage[this.getCurrentExpLevel()];
+      return this.expLevelStage[this.getCurrentExpLevel() -1];
     }
   }
 
@@ -60,7 +61,9 @@ class Experience {
     if (!this.isActiveFastRace()) {
       return this.MIN_DRIVERS - this.getPlayedRacesCount();
     } else {
-      return this.getNextLevelExp() - this.getTotalBetAmount();
+      console.log(this.getNextLevelExp());
+      console.log(this.getTotalBetAmount());
+      return (this.getNextLevelExp() + 1) - this.getTotalBetAmount();
     }
   }
 

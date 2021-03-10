@@ -15,13 +15,13 @@ export class AllPlayersComponent implements OnInit {
   mydrvr: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
-  actualPage = 1;
+  actualPage = 0;
   totalPages: number;
   mydrvrData: any;
   cachedLdrbrd: any;
-  isPageWithMe= false;
+  isPageWithMe = false;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
-  private identityService: AuthService) { }
+    private identityService: AuthService) { }
 
   ngOnInit() {
     this.getMyDriver();
@@ -45,7 +45,8 @@ export class AllPlayersComponent implements OnInit {
       .subscribe(datax => {
         const data: any = datax;
         this.players = data.results;
-        this.totalPages = data.totalPages;
+        this.totalPages = data.total_pages - 1;
+
         this.isMePage();
       });
   }
@@ -73,11 +74,11 @@ export class AllPlayersComponent implements OnInit {
     this.getMyLeaderboard();
   }
 
-  isMePage(){
-    this.isPageWithMe=false;
+  isMePage() {
+    this.isPageWithMe = false;
     this.players.forEach(element => {
-      if(element.user_nickname==this.mydrvrData.nickname){
-        this.isPageWithMe=true;
+      if (element.user_nickname === this.mydrvrData.nickname) {
+        this.isPageWithMe = true;
       }
     });
   }

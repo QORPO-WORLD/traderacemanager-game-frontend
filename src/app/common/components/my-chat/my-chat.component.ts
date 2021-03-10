@@ -72,7 +72,7 @@ export class MyChatComponent implements OnInit {
     this.interval = setInterval(() => {
       this.getChat();
       this.getteammembers();
-    }, 1000000);
+    }, 5000);
   }
 
   getChat() {
