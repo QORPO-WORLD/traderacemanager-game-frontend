@@ -33,6 +33,7 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
   showShareModal = false;
   affilateSlug: string;
   affilateText: string;
+  taskSum: number;
   constructor(private api: DriversService, private tchat: TeamChatService, private notify: NotifyService,
     private identityService: AuthService, private social: SocialSharing) { }
 
@@ -54,7 +55,8 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
 
   getDailyTasks() {
     this.dailyObserver = this.api.driversDailyTasksList().
-      subscribe(data => {
+      subscribe(datax => {
+        const data: any = datax;
         this.task = data;
         this.endofday = data.seconds_to_midnight;
         this.resolveTasks();
@@ -68,43 +70,43 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
 
   resolveTasks() {
     const jx = [
-      'play_free_race',
+      'free_race',
       'make_referrals',
       'play_trx10_race',
       'play_trx100_race',
       'play_trx500_race',
       'play_trx1000_race',
-      'deposit_trx100',
+      'deposit',
       'play_golden_race',
-      'play_tournament',
+      'expert_tournament',
     ];
 
     for (let x = 0; x < this.task.daily_tasks.length; x++) {
-      if (this.task.daily_tasks[x].task === jx[0]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[0]) {
         this.task0 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[1]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[1]) {
         this.task1 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[2]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[2]) {
         this.task2 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[3]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[3]) {
         this.task3 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[4]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[4]) {
         this.task4 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[5]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[5]) {
         this.task5 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[6]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[6]) {
         this.task6 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[7]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[7]) {
         this.task7 = this.task.daily_tasks[x];
       }
-      if (this.task.daily_tasks[x].task === jx[8]) {
+      if (this.task.daily_tasks[x].reward_subtype === jx[8]) {
         this.task8 = this.task.daily_tasks[x];
       }
 

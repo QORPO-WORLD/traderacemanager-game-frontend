@@ -49,7 +49,7 @@ class AuthService extends __BaseService {
   static readonly authUsersResetUsernamePath = '/auth/users/reset_email';
   static readonly authUsersResetUsernameConfirmPath = '/auth/users/reset_email';
   static readonly authUsersResetPasswordPath = '/account/send-reset-password-confirmation-code';
-  static readonly authUsersResetPasswordConfirmPath = '/account/send-reset-password-confirmation-code';
+  static readonly authUsersResetPasswordConfirmPath = '/account/reset-password';
   static readonly authUsersSetUsernamePath = '/auth/users/set_email/';
   static readonly authUsersSetPasswordPath = '/auth/users/set_password/';
   static readonly authUsersReadPath = '/auth/users/{id}/';
@@ -761,8 +761,8 @@ class AuthService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/auth/users/reset_password`,
+      'PUT',
+      this.rootUrl + `/account/send-reset-password-confirmation-code`,
       __body,
       {
         headers: __headers,
@@ -795,8 +795,8 @@ class AuthService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/account/send-reset-password-confirmation-code`,
+      'PUT',
+      this.rootUrl + `/account/reset-password`,
       __body,
       {
         headers: __headers,

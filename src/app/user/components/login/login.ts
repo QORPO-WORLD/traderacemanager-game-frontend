@@ -112,19 +112,19 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       if (this.mmewa) {
         this.signinWithMetamask().subscribe({
           next: data => this.getAuthService().login(data),
-          error: error => error.status === 456 ? this.fireGAuth() : this.clearMetamask(error.body)
+          error: error => this.handleError(error)
         });
         return;
       }
       if (this.usinggauth === false) {
         this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
           next: data => this.getAuthService().login(true),
-          error: error => error.status === 456 ? this.fireGAuth() : this.getErrorService().apiError(error)
+          error: error => this.handleError(error)
         });
       } else {
         this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
           next: data => this.getAuthService().login(data),
-          error: error => this.getErrorService().apiError(error)
+          error: error =>  this.handleError(error)
         });
       }
     }, 1000);
@@ -202,5 +202,11 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     //localStorage.removeItem('mmea');
     this.mmewa = null;
     this.metaSwitch = false;
+  }
+
+  handleError(error: any) {
+    console.log(error);
+
+    error.code === 456 ? this.fireGAuth() : this.getErrorService().apiError(error);
   }
 }
