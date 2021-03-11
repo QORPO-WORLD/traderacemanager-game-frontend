@@ -56,6 +56,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   actualCarIndex = 0;
   bestIndex = 0;
   availableCars = [];
+  remainingCars = [];
   pageOpen = true;
   carsSorted = [];
   myCarsObserver: Subscription;
@@ -375,6 +376,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   getShowroomCars() {
     this.api.carsShowroomList().subscribe(data => {
       const objs: any = data;
+      this.remainingCars = objs.remaining_cars_by_tier;
       this.carSum = objs.remaining_cars.toString();
       this.availableCars = objs.cars;
     });

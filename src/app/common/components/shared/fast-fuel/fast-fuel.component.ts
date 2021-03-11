@@ -32,6 +32,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
   pageOpen = true;
   numOfPlayers: number;
   myCarsInGame: any;
+  myCarsInEdition: any;
   walleteOpen = true;
   driverObservable: Subscription;
   myCarsObservable: Subscription;
@@ -181,6 +182,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
     this.getMyBalance();
     this.launchTutorial();
     this.getMyTeam();
+    this.changeEdition(1);
   }
 
   ngOnDestroy() {
@@ -1377,6 +1379,12 @@ console.log('got here');
       this.timerReady = true;
     });
 
+  }
+
+  changeEdition(index: number){
+    const arrIndex = index - 1;
+    this.editionIndex = index;
+    this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 && car.favourite === true || car.extras.tier === 24 + index && car.favourite === true);
   }
 
 

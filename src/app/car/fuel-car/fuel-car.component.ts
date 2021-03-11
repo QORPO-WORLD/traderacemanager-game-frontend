@@ -7,6 +7,7 @@ import { CarsService, RacesService, DriversService, RacesV2Service } from '../..
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import {  FavCoins, MultiCanJoinV2, NextRaceV2 } from 'src/app/api/models';
+import { TeamsService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-fuel-car',
@@ -47,7 +48,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getFavCoinsObserver: Subscription;
   mostFueledObserver: Subscription;
   myteamObserver: Subscription;
-
+  eventSubscription: Subscription;
+  tips = [];
+  teamId: number;
   myBalance = 0;
   actualRaceAmount: any;
   nextRaceHash: string;
@@ -160,21 +163,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     protected driverSrvc: DriversService,
     private identityService: AuthService,
     private balanceService: BalanceService,
-    private racetwoapi: RacesV2Service) {
+    private racetwoapi: RacesV2Service,
+    private teamsServ: TeamsService) {
     this.raceId = this.route.snapshot.paramMap.get('id');
-    if (this.raceId === 'car_race_24hrs_1000') {
-      this.trxneeded = 1000;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else if (this.raceId === 'wednesday_party_race_0') {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need ' + this.raceId + ' TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    }
+    
+    this.trxneeded = 0;
 
     if (this.raceId === 'car_race_ioi_1' || this.raceId === 'car_race_ioi_3' || this.raceId === 'car_race_ioi_5') {
       this.isIoi = true;
@@ -192,7 +185,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getMyBalance();
     this.launchTutorial();
     this.getMyTeam();
-
+    this.getMyLeaderboard();
     this.trDate = Date.now();
     this.trsDate = Date.now();
     this.recognizeGame();
@@ -232,6 +225,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }
     if (this.myteamObserver) {
       this.myteamObserver.unsubscribe();
+    }
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
     }
     this.redirecting = true;
   }
@@ -932,7 +928,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         return a.extras.tier - b.extras.tier;
       });
     }
-    console.log(this.myCars);
     this.changeEdition(1);  
 
     const mynextrace = this.newCars;
@@ -951,7 +946,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.isWnd = true;
     }
 
-
+    this.validerr = 'To fuel you car you need ' + this.actualRaceAmount + ' IOI, must mix 3 different coins with min. ' +
+        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
 
 
     const statBet = [];
@@ -1601,6 +1597,19 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.router.navigate(['/other/tasks']);
     }
     this.tutorialStep++;
+  }
+
+  getMyLeaderboard() {
+    const data = this.identityService.getLeaderboardMe();
+    this.teamId = data.team_id;
+    this.getTips();
+  }
+
+  getTips() {
+    this.eventSubscription = this.teamsServ.getTips(this.teamId).subscribe(data => {
+      this.tips = data;
+      console.log(this.tips);
+    });
   }
 
 }
