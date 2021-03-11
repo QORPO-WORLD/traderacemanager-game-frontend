@@ -1593,9 +1593,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
 
   nextTutorialStep(){
-    if (this.tutorialStep === 4) {
-      this.router.navigate(['/other/tasks']);
-    }
     this.tutorialStep++;
   }
 
