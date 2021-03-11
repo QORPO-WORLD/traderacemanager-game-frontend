@@ -58,6 +58,7 @@ import { IndicatorComponent } from './components/indicator/indicator.component';
 import { TechIndicatorComponent } from './components/tech-indicator/tech-indicator.component';
 import { DailyTipModalComponent } from './components/daily-tip-modal/daily-tip-modal.component';
 import { WaitingTransferComponent } from './components/waiting-transfer/waiting-transfer.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
     HttpClientModule,
     IonicModule,
     AnQrcodeModule,
-    TranslateModule
+    TranslateModule,
+    OrderModule
   ],
   declarations: [
     CustomCurrencyPipe,

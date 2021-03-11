@@ -78,7 +78,8 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
     .subscribe(data => {
       console.log(data);
       this.myStatData = data;
-
+      console.log(data);
+      console.log('manager data');
     });
   }
 

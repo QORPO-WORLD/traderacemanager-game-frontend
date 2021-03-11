@@ -9,24 +9,26 @@
     </p>
   </div>
   <div class="msgs-cont">
-    <ng-container *ngFor="let msg of chatList ">
-      <div class="message-item" [ngClass]="msg.user_nickname === myDriver ? 'my-msg' : 'not-my'">
-        <div class="img-holder">
-          <img [src]="'assets/base/images/avatars/avatar' + msg.message.affiliate_level + '-small.png'" alt="">
-        </div>
-        <div class="message">
-          <div class="name">
-            <p class="username">{{msg.user_nickname}}</p>
-            <p class="date">{{msg.created | date: "shortTime"}}</p>
+    <div class="my-flex">
+      <ng-container *ngFor="let msg of chatList | orderBy: 'created':reverse">
+        <div class="message-item" [ngClass]="msg.message.author_id == myDriver ? 'my-msg' : 'not-my'">
+          <div class="img-holder">
+            <img [src]="'assets/base/images/avatars/avatar' + msg.message.affiliate_level + '-small.png'" alt="">
           </div>
-          <div class="message-text my-border-grad">
-            <div class="inner-msg-text">
-              <p>{{msg.message.content}}</p>
+          <div class="message">
+            <div class="name">
+              <p class="username">{{msg.user_nickname}}</p>
+              <p class="date">{{msg.created | date: "shortTime"}}</p>
+            </div>
+            <div class="message-text my-border-grad">
+              <div class="inner-msg-text">
+                <p>{{msg.message.content}}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
 
   <div class="texting-cont"><small style="font-size: 9px;
