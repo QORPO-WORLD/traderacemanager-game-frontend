@@ -166,19 +166,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     private racetwoapi: RacesV2Service,
     private teamsServ: TeamsService) {
     this.raceId = this.route.snapshot.paramMap.get('id');
-    if (this.raceId === 'car_race_24hrs_1000') {
-      this.trxneeded = 1000;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else if (this.raceId === 'wednesday_party_race_0') {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need ' + this.raceId + ' TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    }
+    
+    this.trxneeded = 0;
 
     if (this.raceId === 'car_race_ioi_1' || this.raceId === 'car_race_ioi_3' || this.raceId === 'car_race_ioi_5') {
       this.isIoi = true;
@@ -939,7 +928,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         return a.extras.tier - b.extras.tier;
       });
     }
-    console.log(this.myCars);
     this.changeEdition(1);  
 
     const mynextrace = this.newCars;
@@ -958,7 +946,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.isWnd = true;
     }
 
-
+    this.validerr = 'To fuel you car you need ' + this.actualRaceAmount + ' IOI, must mix 3 different coins with min. ' +
+        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
 
 
     const statBet = [];

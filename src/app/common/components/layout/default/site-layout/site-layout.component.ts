@@ -237,7 +237,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   getCryptoStats() {
     const data = this.identityService.getBalance();
     this.myDriver = data;
-    console.log(data);
     this.getMydriverBalances();
   }
 
