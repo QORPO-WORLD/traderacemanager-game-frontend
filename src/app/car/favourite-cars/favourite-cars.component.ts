@@ -52,6 +52,7 @@ export class FavouriteCarsComponent implements OnInit {
   favCarId: number;
   favEditCarId: number;
   editCar: any;
+  myCarsInEdition: any;
   teamreward: number;
   rsubsciption: Subscription;
   constructor(private api: DriversService, private carService: CarsService, private rapi: LeaderboardService) { }
@@ -59,6 +60,7 @@ export class FavouriteCarsComponent implements OnInit {
   ngOnInit() {
     this.getCars();
     this.getRewards();
+    this.changeEdition(1);
   }
 
   getCars() {
@@ -113,6 +115,12 @@ export class FavouriteCarsComponent implements OnInit {
       .subscribe(data => {
         this.teamreward = data.team_bonus;
       });
+  }
+
+  changeEdition(index: number){
+    const arrIndex = index - 1;
+    this.editionIndex = index;
+    this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
   }
 
 }
