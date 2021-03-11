@@ -7,6 +7,7 @@ import { CarsService, RacesService, DriversService, RacesV2Service } from '../..
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import {  FavCoins, MultiCanJoinV2, NextRaceV2 } from 'src/app/api/models';
+import { TeamsService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-fuel-car',
@@ -47,7 +48,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getFavCoinsObserver: Subscription;
   mostFueledObserver: Subscription;
   myteamObserver: Subscription;
-
+  eventSubscription: Subscription;
+  tips = [];
+  teamId: number;
   myBalance = 0;
   actualRaceAmount: any;
   nextRaceHash: string;
@@ -160,7 +163,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     protected driverSrvc: DriversService,
     private identityService: AuthService,
     private balanceService: BalanceService,
-    private racetwoapi: RacesV2Service) {
+    private racetwoapi: RacesV2Service,
+    private teamsServ: TeamsService) {
     this.raceId = this.route.snapshot.paramMap.get('id');
     if (this.raceId === 'car_race_24hrs_1000') {
       this.trxneeded = 1000;
@@ -192,7 +196,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getMyBalance();
     this.launchTutorial();
     this.getMyTeam();
-
+    this.getMyLeaderboard();
     this.trDate = Date.now();
     this.trsDate = Date.now();
     this.recognizeGame();
@@ -232,6 +236,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }
     if (this.myteamObserver) {
       this.myteamObserver.unsubscribe();
+    }
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
     }
     this.redirecting = true;
   }
@@ -1601,6 +1608,19 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.router.navigate(['/other/tasks']);
     }
     this.tutorialStep++;
+  }
+
+  getMyLeaderboard() {
+    const data = this.identityService.getLeaderboardMe();
+    this.teamId = data.team_id;
+    this.getTips();
+  }
+
+  getTips() {
+    this.eventSubscription = this.teamsServ.getTips(this.teamId).subscribe(data => {
+      this.tips = data;
+      console.log(this.tips);
+    });
   }
 
 }

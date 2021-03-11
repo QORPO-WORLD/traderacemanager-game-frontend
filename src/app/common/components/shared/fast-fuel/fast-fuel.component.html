@@ -30,10 +30,10 @@
 
   <div class="content-holder">
     <div class="switchers-holder">
-      <p class="my-cta-btn-back" (click)="editionIndex = 1" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 2" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 3" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 4" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="changeEdition(1)" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="changeEdition(2)" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="changeEdition(3)" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
+      <p class="my-cta-btn-back" (click)="changeEdition(4)" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
     </div>
 
     <div class="cars-holder">
@@ -83,6 +83,10 @@
         </div>
       </div>
 
+      <div class="no-cars-box" *ngIf="myCarsInEdition?.length === 0">
+        <p>You dont have any cars in this edition.</p>
+        <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFT cars</button>
+      </div>
       
     </div>
   </div>
