@@ -16,7 +16,7 @@ import { AffiliateDetails } from 'src/app/api/models';
   styleUrls: ['./affilate.component.scss']
 })
 export class AffilateComponent implements OnInit, OnDestroy {
-  myAfiilate = 'https://dev-play.traderacemanager.com/user/referral/';
+  myAfiilate = 'https://play.traderacemanager.com/user/referral/';
   myAfiilateShort = '';
   affilateForm: FormGroup;
   formReady = false;
