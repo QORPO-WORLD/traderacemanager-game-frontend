@@ -62,8 +62,6 @@ export class MyChatComponent implements OnInit {
     this.tchatObserver = this.api.teamChatList(200).subscribe(
       data => {
         this.chatList = data;
-        console.log(data);
-        console.log('tututtutu');
         this.chatLength = this.chatList.length;
       }
     );
@@ -81,13 +79,9 @@ export class MyChatComponent implements OnInit {
     this.tchatObserver = this.api.teamChatList(200).subscribe(
       data => {
         this.chatList = data;
-        console.log(data);
-        console.log('tututtutu');
         this.recognizeChatSum();
       }
     );
-    console.log(this.chatList);
-    console.log('tututtutu');
   }
   getMyLevel() {
     this.Affilate = this.identityService.getStorageAff();
@@ -147,7 +141,7 @@ export class MyChatComponent implements OnInit {
 
   getDriver() {
     const data = this.identityService.getStorageIdentity();
-    this.myDriver = data.nickname;
+    this.myDriver = data.id;
     this.myDriverStats = data;
 
   }

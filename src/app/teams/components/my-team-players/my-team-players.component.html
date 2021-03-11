@@ -43,20 +43,20 @@
         <p>&lt;<p>
       </div>
       <div class="heading table-row">
-        <div class="item-cell"><p>{{"leaderboard.place"| translate}}</p></div>
-        <div class="item-cell"><p>{{"affiliate.name"| translate}}</p></div>
-        <div class="item-cell"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
-        <div class="item-cell"><p>{{"shared.potential_win"| translate}}</p></div>
+        <div class="item-cell small"><p>{{"leaderboard.place"| translate}}</p></div>
+        <div class="item-cell big"><p>{{"affiliate.name"| translate}}</p></div>
+        <div class="item-cell mid"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+        <div class="item-cell mid"><p>{{"shared.potential_win"| translate}}</p></div>
       </div>
       <div class="table-row" *ngFor="let toper of tt.top10 | slice:this.sliceNums[ix] - 3 :this.sliceNums[ix];">
-        <div class="item-cell">
+        <div class="item-cell small">
           <div class="placement">
             <span><p>{{toper.position}}.</p></span>
           </div>
         </div>
-        <div class="item-cell"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
-        <div class="item-cell"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
-        <div class="item-cell"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
+        <div class="item-cell big"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
+        <div class="item-cell mid"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
+        <div class="item-cell mid"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
       </div>
     </div>
   </div>
