@@ -10,11 +10,11 @@ const httpOptions = {
 };
 
 @Component({
-  selector: 'app-verify-user',
-  templateUrl: './verify-user.component.html',
-  styleUrls: ['./verify-user.component.scss'],
+  selector: 'app-verify-authenticator',
+  templateUrl: './verify-authenticator.component.html',
+  styleUrls: ['./verify-authenticator.component.scss'],
 })
-export class VerifyUserComponent implements OnInit {
+export class VerifyauthenticatorComponent implements OnInit {
 
   myCode = '';
   loading = false;
@@ -23,9 +23,9 @@ export class VerifyUserComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put(environment.api_url + '/me/activate-account', {
+    return this._http.put(environment.api_url + '/me/validate-mfa-code', {
       code: this.myCode
-    }, httpOptions );
+    }, httpOptions);
   }
 
   resend() {
@@ -45,8 +45,8 @@ export class VerifyUserComponent implements OnInit {
   }
 
   resolveActivation(data) {
-    console.log(data);
     this.auth.login(null);
+    
   }
 
   resendActivation() {
@@ -56,7 +56,6 @@ export class VerifyUserComponent implements OnInit {
     });
     this.myCode = '';
   }
-
 
   signout() {
     this.auth.logout();

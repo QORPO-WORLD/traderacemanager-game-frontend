@@ -11,7 +11,7 @@ class Experience {
   private driversData: any;
   private readonly MIN_DRIVERS = 5;
   private expLevelStage = [
-    6000, 12000, 24000, 48000, 96000, 192000, 288000, 432000, 648000,
+    0, 6000, 12000, 24000, 48000, 96000, 192000, 288000, 432000, 648000,
     972000, 1458000, 2187000, 3000000, 4320000, 5184000, 6220000, 7465000,
     8200000, 9000000, 9900000, 10890000, 12000000, 13200000
   ];
@@ -34,15 +34,14 @@ class Experience {
   }
 
   getCurrentExpLevel() {
-    if (!this.isActiveFastRace()) {
-      return 0;
-    } else {
+
       return this.findCurrentLevelStage();
-    }
+
   }
 
   getPreviousLevelExp() {
-    if (!this.isActiveFastRace()) {
+    const data = this.getCurrentExpLevel();
+    if (data === 0) {
       return 0;
     } else {
       return this.expLevelStage[this.getCurrentExpLevel() -1];
@@ -50,21 +49,16 @@ class Experience {
   }
 
   getNextLevelExp() {
-    if (!this.isActiveFastRace()) {
-      return this.MIN_DRIVERS;
+    const data = this.getCurrentExpLevel();
+    if (data === 0) {
+      return 0;
     } else {
-      return this.expLevelStage[this.getCurrentExpLevel() + 1];
+      return this.expLevelStage[this.getCurrentExpLevel() + 1 ];
     }
   }
 
   getNeedExpToNextLevel() {
-    if (!this.isActiveFastRace()) {
-      return this.MIN_DRIVERS - this.getPlayedRacesCount();
-    } else {
-      console.log(this.getNextLevelExp());
-      console.log(this.getTotalBetAmount());
       return (this.getNextLevelExp() + 1) - this.getTotalBetAmount();
-    }
   }
 
   getProgressBarPercentage() {

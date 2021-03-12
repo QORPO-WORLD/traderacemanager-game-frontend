@@ -68,6 +68,7 @@ export class ForgotPasswordComponent extends AbstractComponent implements OnInit
             this.translate.get('nitro_notifiq').subscribe((res) => {
                 this.notify.error(res.open_link_follow);
                 this.loading = false;
+                this.router.navigate(['/user/password-reset']);
             });
         });
     }

@@ -74,7 +74,7 @@ export class SocialService extends AbstractService {
     resolveAfterGLogin(user: any) {
         this.loginAuth(user.idToken).subscribe({
             next: data => data.status === 200 ? this.auth.loginGWithNoSignup(data.body) : this.auth.loginGWithSignup(data.body),
-            error: error => error.status === 456 ? this.fireGAuth() : null
+            error: error => error.code === 456 ? this.fireGAuth() : null
           });
     }
     getErrorService() {

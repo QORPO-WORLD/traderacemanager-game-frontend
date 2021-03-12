@@ -29,7 +29,7 @@ export class ManagerComponent implements OnInit {
 
     this.api.becomeManager(id, { reason: 'reason is null' }).subscribe
       (data => {
-        console.log(data);
+        this.getTeams();
       });
   }
 

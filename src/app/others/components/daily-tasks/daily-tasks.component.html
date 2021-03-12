@@ -1,21 +1,18 @@
 
-<div class="main-holder non-premium" >
-  <!-- [ngClass]="{'non-premium': myDriverOld?.is_paid_membership === 'Free' || !myDriverOld?.is_paid_membership}" -->
+<div class="main-holder" [ngClass]="{'non-premium': myDriverOld?.is_paid_membership === false || !myDriverOld?.is_paid_membership}">
   <div class="top-text">
     <p class="heading">Daily tasks</p>
     <p class="text">Finish your daily tasks and earn your bonuses! Become premium member and earn 4x more</p>
   </div>
 
-  <div class="com-soon-box"></div>
-
   <div class="non-premium-box">
     <img src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <p>Daily tasks are coming soon!</p>
+    <p>Unlock more Daily tasks by becoming a Premium member</p>
   </div>
 
   <div class="task-item item1" [ngClass]="{'active': task6}">
     <div class="text-holder" *ngIf="!task6">
-      <p>0<span class="complete-num">/1</span> Deposit 100 IOI <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>0<span class="complete-num">/1</span> Deposit 1 000 IOI <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
     </div>
     <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
     <div class="text-holder" *ngIf="task6">
@@ -47,13 +44,13 @@
   </div>
   <div class="task-item item5">
     <div class="text-holder" >
-      <p>0<span class="complete-num">/1</span> Share IOI on socials. <br> Receive up to 100 IOI weekly<span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p><span class="complete-num"></span> Share IOI on socials. <br> Receive up to 100 IOI weekly<span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
     </div>
     <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
     <img class="task-icon" src="/assets/base/images/tasks/item5.png" alt="" (click)="showShareModal = true">
     <!-- <img class="task-icon" src="/assets/base/images/tasks/item5-active.png" alt=""> -->
   </div>
-  <div class="task-item item6" [ngClass]="{'active': task1}">
+  <div class="task-item item6" [ngClass]="{'active': task1}" style="display: none;">
     <div class="text-holder" *ngIf="task1">
       <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt=""> Invite two active referrals <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
     </div>
@@ -82,7 +79,7 @@
         <p class="heading">Your info</p>
         <div class="item-holder">
           <p class="desc">Your daily challenge</p>
-          <p class="value"><span>{{task?.daily_tasks.length}}</span>/5</p>
+          <p class="value"><span>{{task?.daily_tasks.length}}</span>/4</p>
         </div>
         <div class="item-holder rewards">
           <p class="desc">Your daily rewards</p>

@@ -46,6 +46,8 @@ exports.handler = (event, context, callback) => {
         '/car/favourite-cars',
         '/other/about-tokens',
         '/race/watch-race-3min/demo-preview-race',
+        '/user/verify-code',
+        '/user/verify-authenticator'
     ];
 
     if (

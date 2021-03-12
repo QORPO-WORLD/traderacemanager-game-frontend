@@ -1,3 +1,4 @@
+import { VerifyauthenticatorComponent } from './pages/verify-authenticator/verify-authenticator.component';
 import { VerifyUserComponent } from './pages/verify-user/verify-user.component';
 import { MetamaskSignupComponent } from './../others/components/metamask-signup/metamask-signup.component';
 import { GoogleService } from './services/google.service';
@@ -49,12 +50,13 @@ const routes: Routes = [
     { path: 'sign-in', component: LoginComponent, data: { title: 'Sign In' } },
     { path: 'wsign-in', component: WloginComponent, data: { title: 'Sign In' } },
     { path: 'forgot-password', component: ForgotPasswordComponent, data: { title: 'Forgot Password' } },
-    { path: 'password-reset/:id/:uid', component: ResetPasswordComponent, data: { title: 'Reset Password' } },
+    { path: 'password-reset', component: ResetPasswordComponent, data: { title: 'Reset Password' } },
     { path: 'referral/:id', component: SignupUserComponent, data: { title: 'Privacy Policy' } },
     { path: 'activation/:id/:hash', component: ActivationComponent, data: { title: 'Privacy Policy' } },
     { path: 'email-created', component: EmailCreatedComponent, data: { title: 'Privacy Policy' } },
     { path: 'user-verify', component: UserVerifiedComponent, data: { title: 'Privacy Policy' } },
     { path: 'verify-code', component: VerifyUserComponent, data: { title: 'Verify user' } },
+    { path: 'verify-authenticator', component: VerifyauthenticatorComponent, data: { title: 'Verify user' } },
     { path: 'home', component: HomePageComponent, data: { title: 'Home page' } }
 
 ];
@@ -88,7 +90,8 @@ const routes: Routes = [
         WelcomePageComponent,
         WloginComponent,
         MetamaskSignupComponent,
-        VerifyUserComponent
+        VerifyUserComponent,
+        VerifyauthenticatorComponent
     ],
     providers: [
         AutologinGuard,

@@ -179,8 +179,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getCanJoin();
     this.getfirstraces();
-    this.fuelBest();
-
     this.getMyDriverStats();
     this.getMyBalance();
     this.launchTutorial();

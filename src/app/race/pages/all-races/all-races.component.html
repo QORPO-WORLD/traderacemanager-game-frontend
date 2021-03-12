@@ -120,8 +120,11 @@
                         <h6>Beginner IOI</h6>
                         <p>1 IOI</p>
                     </div>
-                    <div class="button my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_ioi_1']">
+                    <div class="button my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_ioi_1']" *ngIf="myDriverBalances.game_wallet_ioi >= 1">
                         Join race
+                    </div>
+                    <div class="button my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1">
+                        Deposit
                     </div>
                 </div>
                 <div class="next-race-img"></div>
