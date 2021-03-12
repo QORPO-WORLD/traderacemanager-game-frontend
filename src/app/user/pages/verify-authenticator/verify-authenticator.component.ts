@@ -23,7 +23,7 @@ export class VerifyauthenticatorComponent implements OnInit {
   ngOnInit() { }
 
   activate() {
-    return this._http.put(environment.api_url + '/me/validate-mfa-code', {
+    return this._http.post(environment.api_url + '/me/validate-mfa-code', {
       code: this.myCode
     }, httpOptions);
   }
