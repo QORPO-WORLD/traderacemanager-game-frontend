@@ -42,7 +42,7 @@ export class NotifyService extends AbstractService {
 
     error(message: any) {
         if (message) {
-            this.notifiq.error('error', message, 1000000);
+            this.notifiq.error('error', message, 2000);
         }
     }
     errornext(message: any) {

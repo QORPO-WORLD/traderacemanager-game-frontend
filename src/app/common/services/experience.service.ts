@@ -58,7 +58,7 @@ class Experience {
   }
 
   getNeedExpToNextLevel() {
-      return (this.getNextLevelExp() + 1) - this.getTotalBetAmount();
+      return (this.getNextLevelExp()) - this.getTotalBetAmount();
   }
 
   getProgressBarPercentage() {
