@@ -75,7 +75,7 @@ export class MetamaskSignupComponent implements OnInit {
         if (error.code === 4001) {
           this.notify.error('Please connect to MetaMask.');
         } else {
-          this.notify.error(error);
+          //this.notify.error(error);
         }
       });
 
@@ -90,7 +90,7 @@ export class MetamaskSignupComponent implements OnInit {
       if (error.code === 4001) {
         this.notify.error('Please connect to MetaMask.');
       } else {
-        this.notify.error(error);
+        //this.notify.error(error);
       }
     });
   }
@@ -207,8 +207,12 @@ export class MetamaskSignupComponent implements OnInit {
     if (data.result) {
       const magic = JSON.stringify(data.result);
       localStorage.setItem('mmea', magic);
+      localStorage.setItem('mmealq', magic);
       //this.notify.error(magic + ' address associated, finish sign up process now.');
       setTimeout(() => { this.overlay = false; }, 1300);
+      setTimeout(() => {
+        localStorage.removeItem('mmealq');
+       }, 10000);
     }
   }
 

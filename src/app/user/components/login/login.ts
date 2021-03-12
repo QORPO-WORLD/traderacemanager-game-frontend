@@ -80,7 +80,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       recaptchaReactive: new FormControl(this.myCap, Validators.required)
     });
     this.mmewinterval = setInterval(() => {
-      const mmew = JSON.parse(localStorage.getItem('mmea'));
+      const mmew = JSON.parse(localStorage.getItem('mmealq'));
       if (mmew && this.submitted === false) {
         this.submitted = true;
         this.mmewa = mmew;
