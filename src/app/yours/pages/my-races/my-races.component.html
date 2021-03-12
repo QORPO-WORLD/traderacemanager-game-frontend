@@ -33,7 +33,12 @@
           <div class="cell"><button class="my-low-gradient" (click)="getRaceWinner(trans.extras?.race_hash)" *ngIf="trans.extras?.game !== 'classic_tournament'">{{'leaderboard.winners' | translate}}</button></div>
         </div>
 
-
+        <div class="empty" *ngIf="raceTransactions.length===0 && actualPage===1">
+            <h2>{{'history.races_empty' | translate}}</h2>
+            <button [routerLink]="['/race/all-races']" class="my-cta my-cta-btn-back hoverable">
+                {{"start-race.join_race" | translate}}
+            </button>
+        </div>
          
         <div class="arrow-right"  *ngIf="(totalPages > 1) && (actualPage < totalPages)"  (click)="nextPage()">
             &gt;

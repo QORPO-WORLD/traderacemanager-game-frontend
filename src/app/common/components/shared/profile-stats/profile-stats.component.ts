@@ -30,7 +30,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   myDriverBalances: any;
   myLdrbrd: any;
   myTeam: any;
-  myAffSlug = 'https://play.traderacemanager.com/user/referral/';
+  myAffSlug = 'https://traderacemanager.com/user/referral/';
   profileReady = false;
   isLastMonth = false;
   showEditModal = false;

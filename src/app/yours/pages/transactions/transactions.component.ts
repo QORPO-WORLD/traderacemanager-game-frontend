@@ -36,6 +36,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         const newdata: any = data;
         this.transactions = newdata.results;
         this.totalPages = newdata.total_pages;
+        console.log(this.transactions);
       });
   }
 
