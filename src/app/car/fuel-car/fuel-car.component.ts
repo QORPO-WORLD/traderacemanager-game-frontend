@@ -181,6 +181,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getfirstraces();
     this.getMyDriverStats();
     this.getMyBalance();
+    this.fuelBest();
     this.launchTutorial();
     this.getMyTeam();
     this.getMyLeaderboard();
@@ -1275,7 +1276,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const data = this.identityService.getStorageIdentity(); const datax: any = data;
     this.firstLogin = data.is_in_tutorial;
     this.tickets = datax.tournament_tickets;
-    if (this.firstLogin === true) {
+    if (this.firstLogin === true && window.innerWidth > 1024) {
       this.introModal = true;
     } else {
       this.tutorialStep = -1;
@@ -1304,7 +1305,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     
     this.mostFueledObserver = this.raceApi.premiumFuel().subscribe(data => {
       this.mostFueled = data;
-      this.myBetInput = this.mostFueled.best_performing_coins;
+      this.myBetInput = data;
     });
 
   }
