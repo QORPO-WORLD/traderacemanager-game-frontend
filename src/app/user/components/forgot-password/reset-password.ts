@@ -23,11 +23,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     token: string;
     capInterval: any;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
-                private router: Router, private actv: ActivatedRoute,
-                protected api: AuthService, private notify: NotifyService, 
-                protected translate: TranslateService, private recaptchaV3Service: ReCaptchaV3Service) {
-                this.hashId = this.actv.snapshot.paramMap.get('id');
-                this.uId = this.actv.snapshot.paramMap.get('uid');
+        private router: Router, private actv: ActivatedRoute,
+        protected api: AuthService, private notify: NotifyService,
+        protected translate: TranslateService, private recaptchaV3Service: ReCaptchaV3Service) {
+        this.hashId = this.actv.snapshot.paramMap.get('id');
+        this.uId = this.actv.snapshot.paramMap.get('uid');
     }
 
     ngOnInit() {
@@ -69,30 +69,32 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         }
 
         this.loading = true;
-
-        this.hashObserver = this.api.authUsersResetPasswordConfirm({
-            code: this.hashId,
-            email: this.uId,
-            password: this.passonex,
-            recaptchaToken: this.token
-        }).subscribe(data => {
-            this.translate.get('nitro_notifiq').subscribe((res) => {
-                this.notify.error(res.sucess_redirect);
+        this.executeImportantAction();
+        setTimeout(() => {
+            this.hashObserver = this.api.authUsersResetPasswordConfirm({
+                code: this.hashId,
+                email: this.uId,
+                password: this.passonex,
+                recaptchaToken: this.token
+            }).subscribe(data => {
+                this.translate.get('nitro_notifiq').subscribe((res) => {
+                    this.notify.error(res.sucess_redirect);
+                });
+                setTimeout(() => {
+                    this.router.navigate(['/user/sign-in']);
+                }, 2000);
             });
-            setTimeout(() => {
-                this.router.navigate(['/user/sign-in']);
-            }, 2000);
-        });
+        }, 1000);
 
     }
 
-    
-  executeImportantAction(): void {
-    this.recaptchaV3Service.execute('signIn')
-      .subscribe((token) => {
 
-        this.token = token
-      });
-  }
+    executeImportantAction(): void {
+        this.recaptchaV3Service.execute('signIn')
+            .subscribe((token) => {
+
+                this.token = token
+            });
+    }
 
 }
