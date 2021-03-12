@@ -51,7 +51,7 @@ class Experience {
   getNextLevelExp() {
     const data = this.getCurrentExpLevel();
     if (data === 0) {
-      return 0;
+      return 6000;
     } else {
       return this.expLevelStage[this.getCurrentExpLevel() + 1 ];
     }
