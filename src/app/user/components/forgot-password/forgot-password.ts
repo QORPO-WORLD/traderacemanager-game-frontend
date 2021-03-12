@@ -7,11 +7,16 @@ import { first } from 'rxjs/operators';
 import { AbstractComponent } from '../../../common/components/abstract.component';
 import { AuthService } from '../../../api/services';
 import { TranslateService } from '@ngx-translate/core';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true
+};
 @Component({
     templateUrl: './forgot-password.html',
     styleUrls: ['./forgot-password.scss']
 })
+
 export class ForgotPasswordComponent extends AbstractComponent implements OnInit, OnDestroy {
     forgotForm: FormGroup;
     loading = false;
@@ -75,7 +80,7 @@ export class ForgotPasswordComponent extends AbstractComponent implements OnInit
 
 
     executeImportantAction(): void {
-        this.recaptchaV3Service.execute('signIn')
+        this.recaptchaV3Service.execute('sendResetPasswordConfirmationCode')
             .subscribe((token) => {
 
                 this.token = token

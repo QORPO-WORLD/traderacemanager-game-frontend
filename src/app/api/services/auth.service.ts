@@ -24,6 +24,10 @@ import { UsernameResetConfirm } from '../models/username-reset-confirm';
 import { PasswordResetConfirm } from '../models/password-reset-confirm';
 import { SetUsername } from '../models/set-username';
 import { SetPassword } from '../models/set-password';
+const httpOptionsx = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 @Injectable({
   providedIn: 'root',
 })
@@ -755,6 +759,7 @@ class AuthService extends __BaseService {
   /**
    * @param data undefined
    */
+  
   authUsersResetPasswordResponse(data: SendEmailReset): __Observable<__StrictHttpResponse<SendEmailReset>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
@@ -767,7 +772,8 @@ class AuthService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
+        responseType: 'json',
+        withCredentials: true
       });
 
     return this.http.request<any>(req).pipe(

@@ -84,7 +84,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
 
     executeImportantAction(): void {
-        this.recaptchaV3Service.execute('signIn')
+        this.recaptchaV3Service.execute('resetPassword')
             .subscribe((token) => {
 
                 this.token = token

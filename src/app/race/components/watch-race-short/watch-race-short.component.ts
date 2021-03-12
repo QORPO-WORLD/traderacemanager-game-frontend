@@ -181,10 +181,16 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
         //const retypeData: any = data;
-        this.raceDataildata = data;
-        this.endsIn = data.ends_in;
-        this.resolveBackType();
-        this.getMotive();
+        if (data.race_progress > 0) {
+          this.startRace();
+        } else {
+          if (this.startsInChecked === false) {
+            this.startsInChecked = true;
+            this.startsIn = data.starts_in;
+            this.whenStarts();
+          }
+        }
+
         if (data.tournament_id !== null && data.tour_index > 1) {
           this.getLdrv();
         }
@@ -192,14 +198,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           this.notify.error('', 'Not enough players to start, you will be redirected.');
           this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]);
         }
-        if (data.race_progress > 0) {
-          this.startRace();
-        } else {
-          if (this.startsInChecked === false) {
-            this.startsIn = data.starts_in;
-            this.whenStarts();
-          }
-        }
+
+        this.raceDataildata = data;
+        this.endsIn = data.ends_in;
+        this.resolveBackType();
+        this.getMotive();
 
 
       });
@@ -363,7 +366,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.getRaceData();
       this.moveWheels();
-    }, 1000);
+    }, 700);
     this.getUpcoming();
   }
 
@@ -473,7 +476,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
               
               }
             }
-            console.log('set betik');
+
             this.raceDataildata.my_cars[x].betik = betix;
             for (let z = 0; z < 3; z++) {
               for (let y = 0; y < 20; y++) {
@@ -487,7 +490,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         }
 
 
-        console.log(firstData.race_progress);
+
 
       });
   }
@@ -659,7 +662,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     const data = this.identityService.getStorageIdentity();
     const dataDriver = this.identityService.getDriverMe();
     this.myUid = dataDriver.id;
-    console.log(this.myUid);
+
     this.myUsername = data.nickname;
     this.affilateSlug = 'https://play.ioi-game.com/user/referral/' + data.affiliate_slug;
     this.affilateText = 'I play game on play.ioi-game.com every 10mins, so I can win 10 TRX for free ' + this.affilateSlug;
