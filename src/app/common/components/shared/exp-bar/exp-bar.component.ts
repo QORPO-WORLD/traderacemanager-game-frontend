@@ -19,7 +19,7 @@ export class ExpBarComponent implements OnInit, OnDestroy {
       this.previousLevelExp = data.getPreviousLevelExp();
       this.nextLevelExp = data.getNextLevelExp();
       this.progressBarPercentage = data.getProgressBarPercentage();
-      this.needExpToNextLevel = data.getNeedExpToNextLevel();
+      this.needExpToNextLevel = data.getTotalBetAmount();
       this.activeFastRace = data.isActiveFastRace();
     });
   }
