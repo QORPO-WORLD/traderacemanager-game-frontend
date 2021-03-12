@@ -181,6 +181,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getfirstraces();
     this.getMyDriverStats();
     this.getMyBalance();
+    this.fuelBest();
     this.launchTutorial();
     this.getMyTeam();
     this.getMyLeaderboard();
@@ -1304,7 +1305,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     
     this.mostFueledObserver = this.raceApi.premiumFuel().subscribe(data => {
       this.mostFueled = data;
-      this.myBetInput = this.mostFueled.best_performing_coins;
+      this.myBetInput = data;
     });
 
   }
