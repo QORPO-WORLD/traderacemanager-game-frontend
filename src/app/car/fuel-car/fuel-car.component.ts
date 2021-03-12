@@ -1301,12 +1301,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   fuelBest() {
-    /*
-    this.mostFueledObserver = this.raceApi.racesHintsList().subscribe(data => {
+    
+    this.mostFueledObserver = this.raceApi.premiumFuel().subscribe(data => {
       this.mostFueled = data;
       this.myBetInput = this.mostFueled.best_performing_coins;
     });
-*/
+
   }
 
   getMyTeam() {

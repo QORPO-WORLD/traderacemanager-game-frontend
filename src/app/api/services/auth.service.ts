@@ -761,7 +761,7 @@ class AuthService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'PUT',
+      'POST',
       this.rootUrl + `/account/send-reset-password-confirmation-code`,
       __body,
       {

@@ -221,9 +221,36 @@ class RacesService extends __BaseService {
         return _r as __StrictHttpResponse<Array<MyNextRace>>;
       })
     );
-  }  racesNextV2MineList(): __Observable<Array<MyNextRace>> {
+  }
+  racesNextV2MineList(): __Observable<Array<MyNextRace>> {
     return this.racesNextV2MineListResponse().pipe(
       __map(_r => _r.body as Array<MyNextRace>)
+    );
+  }
+  premiumFuelResponse(): __Observable<__StrictHttpResponse<Array<any>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/premium-fuel`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<MyNextRace>>;
+      })
+    );
+  }
+  premiumFuel(): __Observable<Array<any>> {
+    return this.premiumFuelResponse().pipe(
+      __map(_r => _r.body as Array<any>)
     );
   }
 
