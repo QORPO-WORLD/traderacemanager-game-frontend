@@ -82,5 +82,9 @@
         <div class="arrow-left"  *ngIf="(totalPages > 1) && (actualPage > 1)" (click)="prevPage()">
             &lt;
         </div>
+
+        <div class="empty" *ngIf="transactions.length===0 && actualPage===1">
+            <h2>{{'history.transactions_empty' | translate}}</h2>
+        </div>
     </div>
 </div>
