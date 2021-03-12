@@ -363,7 +363,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.getRaceData();
       this.moveWheels();
-    }, 500);
+    }, 1000);
     this.getUpcoming();
   }
 
@@ -1083,8 +1083,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.backType = 3;
     } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5') {
       this.backType = 4;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_10') {
-      this.backType = 5;
     } else {
       this.backType = 1;
     }

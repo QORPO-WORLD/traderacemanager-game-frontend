@@ -917,6 +917,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   getRaceDetails() {
     this.timerReady = false;
+
     this.myCars = this.chosenRace[0].available_cars;
     if (this.myCars.length === 0) {
       this.notify.error('Error', 'You have no available race car for this race');
@@ -1006,9 +1007,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     this.timerReady = false;
     setTimeout(() => {
-      this.getCanJoin();
       this.getfirstraces();
-    }, 1500);
+      this.getCanJoin();
+    }, 800);
+
+
 
   }
 
@@ -1462,7 +1465,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       const tempArray = [];
       tempArray.push(data);
       this.newCars = tempArray;
-
+      this.getRaceDetails();
 
       this.timerReady = true;
     });

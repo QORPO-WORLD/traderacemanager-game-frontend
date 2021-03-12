@@ -2,5 +2,5 @@
 export interface DailyTask {
   task: string;
   created?: string;
-  reward_subtype: string;
+  reward_subtype?: string;
 }
