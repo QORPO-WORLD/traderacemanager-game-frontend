@@ -39,9 +39,7 @@ export class IndicatorComponent implements OnInit, OnDestroy {
           hideideas: true,
           studies: [
             'MASimple@tv-basicstudies'],
-          show_popup_button: false,
-          popup_width: '1000',
-          popup_height: '650'
+          show_popup_button: false
         });
 
 

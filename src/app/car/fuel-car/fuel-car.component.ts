@@ -1275,7 +1275,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const data = this.identityService.getStorageIdentity(); const datax: any = data;
     this.firstLogin = data.is_in_tutorial;
     this.tickets = datax.tournament_tickets;
-    if (this.firstLogin === true) {
+    if (this.firstLogin === true && window.innerWidth > 1024) {
       this.introModal = true;
     } else {
       this.tutorialStep = -1;
