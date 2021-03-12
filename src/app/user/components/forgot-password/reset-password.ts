@@ -47,12 +47,6 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.executeImportantAction();
-        }, 500);
-        this.capInterval = setInterval(() => {
-            this.executeImportantAction();
-        }, 30000);
 
     }
 
@@ -84,7 +78,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/user/sign-in']);
                 }, 2000);
             });
-        }, 1000);
+        }, 1400);
 
     }
 
