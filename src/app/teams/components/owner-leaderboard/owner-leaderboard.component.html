@@ -22,6 +22,10 @@
       <div class="cell"><p>{{pl.garage_value | number:'1.0-1':'fr'}}</p></div>
       <div class="cell"><p> {{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
     </div>
+
+    <div class="leaderboard-empty" *ngIf="myLdrbrd.length===0 && actualPage===1">
+      <h2>{{"leaderboard.empty" | translate}}</h2>
+    </div>
     
     <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
       &gt;
