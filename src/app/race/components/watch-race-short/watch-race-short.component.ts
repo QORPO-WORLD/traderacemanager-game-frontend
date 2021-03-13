@@ -346,7 +346,19 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       return;
     }
     clearInterval(this.detailInterval);
-
+    
+    setTimeout(() => {
+      this.getRaceData();
+    }, 100);    
+    setTimeout(() => {
+      this.getRaceData();
+    }, 700);    
+    setTimeout(() => {
+      this.getRaceData();
+    }, 1300);   
+    setTimeout(() => {
+      this.getRaceData();
+    }, 1800);
     //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
       if (this.pageOpen === true) {
@@ -362,12 +374,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
       }
     }
-    
+    this.moveWheels();
     setTimeout(() => {
-      this.getRaceData();
-      this.moveWheels();
-    }, 700);
-    this.getUpcoming();
+      this.getUpcoming();
+    }, 800);
   }
 
   moveWheels() {
