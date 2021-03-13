@@ -5,27 +5,30 @@
   <div class="content-wrapper">
     <div class="tip-wrapper my-cta-btn-back">
       <div class="tip-border ">
-        <div class="tip-item" *ngFor="let tip of tips">
-          <div class="tip-stats">
-            <img src="assets/base/images/teams/long.png" alt="" *ngIf="tip.short === false">
-            <img src="assets/base/images/teams/short.png" alt="" *ngIf="tip.short === true">
-            <div>
-              <h5>{{tip.symbol}}</h5>
-              <p class="up"  style="display:none">&#9650; ?% {{'teams.my_team.in_last' | translate}} 24h</p>
+        <ng-container *ngIf="tips.length > 0">
+          <div class="tip-item" *ngFor="let tip of tips">
+            <div class="tip-stats">
+              <img src="assets/base/images/teams/long.png" alt="" *ngIf="tip.short === false">
+              <img src="assets/base/images/teams/short.png" alt="" *ngIf="tip.short === true">
+              <div>
+                <h5>{{tip.symbol}}</h5>
+                <p class="up"  style="display:none">&#9650; ?% {{'teams.my_team.in_last' | translate}} 24h</p>
+              </div>
+            </div>
+    
+            <div style="display:none">
+              <h5>?%</h5>
+              <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
+            </div>
+    
+            <div class="raiting" style="display:none">
+              <img class="active" src="assets/base/images/teams/like.png" alt="">
+              <img src="assets/base/images/teams/dis-like.png" alt="">
             </div>
           </div>
-  
-          <div style="display:none">
-            <h5>?%</h5>
-            <p><span>{{'teams.my_team.team_raiting' | translate}}</span></p>
-          </div>
-  
-          <div class="raiting" style="display:none">
-            <img class="active" src="assets/base/images/teams/like.png" alt="">
-            <img src="assets/base/images/teams/dis-like.png" alt="">
-          </div>
-        </div>
-  
+        </ng-container>
+        
+        <p class="no-tips" *ngIf="tips.length === 0">No tips at the moment</p>
         
       </div>
     </div>
