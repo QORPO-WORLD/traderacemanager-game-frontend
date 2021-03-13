@@ -30,18 +30,20 @@ export class ErrorService {
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
             
-            if (error.error.description) {
-                console.log('bug');
-                this.notifyService.error(error.error.description);
-            }
+
             
            
             if (error.error.message) {
                 console.log('bug');
                 this.notifyService.error(error.error.message);
+                return;
             }
             
-           
+            if (error.error.description) {
+                console.log('bug');
+                this.notifyService.error(error.error.description);
+                return;
+            }
             if (error.status === 401) {
                 //this.authService.logout();
             }

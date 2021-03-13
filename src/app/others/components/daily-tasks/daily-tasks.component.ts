@@ -156,12 +156,12 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
   getMyAffilate() {
     const text = "Let's have a look at the TRADE RACE MANAGER presentation. You can look forward to really cool stuff.More to come. https://www.youtube.com/watch?v=isUGa3-AUVk #NFTs #game #playtoearn #Rewards $IOI $MATIC ";
     const data = this.identityService.getStorageAff();
-    this.affilateSlug = 'https://beta.traderacemanager.com/user/referral/' + data.affiliate_slug;
+    this.affilateSlug = 'https://traderacemanager.com/user/referral/' + data.affiliate_slug;
     this.affilateText = text + this.affilateSlug;
   }
 
   share() {
-    this.social.share(this.affilateText, null, 'https://beta.traderacemanager.com/assets/base/images/logo.png', null);
+    this.social.share(this.affilateText, null, 'https://traderacemanager.com/assets/base/images/logo.png', null);
   }
 
 

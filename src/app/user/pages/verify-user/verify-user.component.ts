@@ -36,23 +36,24 @@ export class VerifyUserComponent implements OnInit {
   }
 
   tryActivation() {
-    this.loading = true;
-    this.activate().subscribe({
-      next: data => this.resolveActivation(data),
-      error: error => this.notify.error(error.message)
-    });
-    setTimeout(() => { this.loading = false; }, 5000);
+    if (this.myCode.length > 5) {
+      this.loading = true;
+      this.activate().subscribe({
+        next: data => this.resolveActivation(data),
+        error: error => this.notify.error(error.error.message)
+      });
+      setTimeout(() => { this.loading = false; }, 5000);
+    }
   }
 
   resolveActivation(data) {
-    console.log(data);
     this.auth.login(null);
   }
 
   resendActivation() {
     this.resend().subscribe({
       next: data => console.log(data),
-      error: error => this.notify.error(error.message)
+      error: error => this.notify.error(error.error)
     });
     this.myCode = '';
   }

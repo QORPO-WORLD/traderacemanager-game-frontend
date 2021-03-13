@@ -123,8 +123,6 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         if(cook) {
             this.referralId = cook;
         }
-        console.log(document.cookie);
-        console.log(this.referralId);
     }
 
     recognizeDemo() {
