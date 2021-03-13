@@ -46,6 +46,7 @@ export class OwnerLeaderboardComponent implements OnInit {
         const data: any = datax;
         this.myLdrbrd = data.results;
         this.totalPages = data.total_pages;
+        console.log(this.myLdrbrd);
       });
   }
 
