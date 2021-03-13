@@ -703,7 +703,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.firstLogin = data.is_in_tutorial;
 
 
-    if (this.firstLogin === true) {
+    if (this.firstLogin === true && window.innerWidth > 1024) {
       this.verifyModal = true;
     }
   }
