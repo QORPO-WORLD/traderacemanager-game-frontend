@@ -86,6 +86,7 @@
           <ng-container *ngIf="TeamManagerSlide===1">
             <h4>{{myTeam?.manager_user_nickname ? myTeam?.manager_user_nickname : '-'}}</h4>
             <p  style="display:none"><span>?% {{'teams.my_team.satisfaction_rate' | translate}}</span></p>
+            <p><span>{{"teams.my_team.current_manager" | translate}}</span></p>
             <button class="apply-button border-color release" (click)="suspendManager()" *ngIf="isOwner === true && myTeam?.manager_user_nickname">
               {{"teams.my_team.release_manager"| translate}}
             </button>
@@ -93,7 +94,8 @@
           
           <ng-container *ngIf="TeamManagerSlide===2 && isOwner === true">
             <h4>{{managers[selectedmanager]?.user_nickname}}</h4>
-            <div class="accept-buttons">
+            <p><span>{{"teams.my_team.waiting_manager" | translate}}</span></p>
+            <div class="accept-buttons" *ngIf="selectedmanager">
               <button (click)="putManagerRequests(managers[selectedmanager]?.team_manager_request_id, true)">{{"teams.my_team.accept"| translate}}</button>
               <button (click)="putManagerRequests(managers[selectedmanager]?.team_manager_request_id, false)">{{"teams.my_team.reject"| translate}}</button>
             </div>
