@@ -217,7 +217,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     this.getMyCars();
     const data = this.identityService.getStorageIdentity();
-    if (data.is_in_tutorial === true) {
+    if (data.is_in_tutorial === true && window.innerWidth > 1024) {
       localStorage.setItem('first-race', JSON.stringify({
         first: true
       }));

@@ -27,7 +27,7 @@ export class QuickWithdrawComponent implements OnInit {
   myDriverObserver: Subscription;
   nitroObserver: Subscription;
   tokenSelected = 'ioi';
-  cryptoMtfrckr: string;
+  cryptoMtfrckr = '';
   amount = 100;
   myIoiBalance = 0;
   myTrxBalance = 0;
@@ -60,7 +60,7 @@ export class QuickWithdrawComponent implements OnInit {
 
   getMydriver() {
     this.myDriver = this.identityService.getStorageIdentity();
-    this.cryptoMtfrckr = this.myDriver.my_crypto_address;
+    // this.cryptoMtfrckr = this.myDriver.my_crypto_address;
   }
 
   getMyBalance() {
