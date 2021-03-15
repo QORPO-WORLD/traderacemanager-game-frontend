@@ -74,7 +74,7 @@ export class AppComponent {
       document.body.classList.toggle('dark', shouldAdd);
     }
 
-    if (location.href === 'https://www.traderacemanager.com') {
+    if (location.href === 'https://www.traderacemanager.com' || location.href === 'http://traderacemanager.com' ) {
       location.href = 'https://traderacemanager.com'
     }
   }
