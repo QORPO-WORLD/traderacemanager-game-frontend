@@ -35,6 +35,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   availableCars = [];
   selectedCarToRace: any;
   pageOpen = true;
+  noMultibet = false;
   myCarsInGame: any;
   walleteOpen = true;
   driverObservable: Subscription;
@@ -80,6 +81,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   canJoin3: any;
   canJoin4: any;
   canJoin5: any;
+  canJoin6: any;
   canJoinIoi1: any;
   canJoinIoi2: any;
   canJoinIoi3: any;
@@ -240,62 +242,55 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       });
 
       this.carsCanJoin = mynextrace[0].available_cars;
-
+      
       const step1 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_short_10';
+        return item.race_identifier === 'car_race_ioi_1';
       });
       const uniq1 = [...new Set(step1)];
       this.canJoin1 = uniq1;
 
 
       const step2 = newdata.filter(item => {
-        return item.race_identifier === 'classic_tournament_10';
+        return item.race_identifier === 'car_race_ioi_5';
       });
       const uniq2 = [...new Set(step2)];
       this.canJoin2 = uniq2;
 
 
       const step3 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_short_100';
+        return item.race_identifier === 'car_race_ioi_10';
       });
       const uniq3 = [...new Set(step3)];
       this.canJoin3 = uniq3;
 
 
       const step4 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_short_500';
+        return item.race_identifier === 'car_race_ioi_50';
       });
       const uniq4 = [...new Set(step4)];
       this.canJoin4 = uniq4;
 
 
       const step5 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_short_1000';
+        return item.race_identifier === 'car_race_ioi_100';
       });
 
       const uniq5 = [...new Set(step5)];
       this.canJoin5 = uniq5;
 
 
-      const step6 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_ioi_1';
-      });
-      const uniq6 = [...new Set(step6)];
-      this.canJoinIoi1 = uniq6;
+      // const step7 = newdata.filter(item => {
+      //   return item.race_identifier === 'car_race_ioi_3';
+      // });
+      // const uniq7 = [...new Set(step7)];
+      // this.canJoinIoi2 = uniq7;
 
 
-      const step7 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_ioi_3';
-      });
-      const uniq7 = [...new Set(step7)];
-      this.canJoinIoi2 = uniq7;
-
-
-      const step8 = newdata.filter(item => {
-        return item.race_identifier === 'car_race_ioi_5';
-      });
-      const uniq8 = [...new Set(step8)];
-      this.canJoinIoi3 = uniq8;
+      // const step8 = newdata.filter(item => {
+      //   return item.race_identifier === 'car_race_ioi_5';
+      // });
+      // const uniq8 = [...new Set(step8)];
+      // this.canJoinIoi3 = uniq8;
 
       this.chosenRace = newdata.filter(item => {
         return item.race_identifier === this.raceId;
@@ -325,17 +320,16 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.multibetOptions.length = 0;
     const props = ['asset_id'];
 
-
     const z1 = this.canJoin1[0].available_cars;
     const z2 = this.canJoin2[0].available_cars;
-
     const z3 = this.canJoin3[0].available_cars;
-    //const z4 = this.canJoin4[0].available_cars;
-    //const z5 = this.canJoin5[0].available_cars;
+    const z4 = this.canJoin4[0].available_cars;
+    const z5 = this.canJoin5[0].available_cars;
 
-    const zioi1 = this.canJoinIoi1[0].available_cars;
+    // const zioi1 = this.canJoinIoi1[0].available_cars;
     //const zioi3 = this.canJoinIoi2[0].available_cars;
-    const zioi5 = this.canJoinIoi3[0].available_cars;
+    // const zioi5 = this.canJoinIoi3[0].available_cars;
+
 
     const yy = this.usedCars;
 
@@ -377,8 +371,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       }, {});
     });
 
-
-    const res6 = zioi1.filter(function (o1) {
+    const res4 = z4.filter(function (o1) {
       return yy.some(function (o2) {
         return o1.asset_id === o2.asset_id;          // assumes unique id
       });
@@ -389,7 +382,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       }, {});
     });
 
-    const res8 = zioi5.filter(function (o1) {
+    const res5 = z5.filter(function (o1) {
       return yy.some(function (o2) {
         return o1.asset_id === o2.asset_id;          // assumes unique id
       });
@@ -403,70 +396,74 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
 
     this.calc1 = z1;
-
     this.calc2 = z2;
-
     this.calc3 = z3;
+    this.calc4 = z4;
+    this.calc5 = z5;
 
-    this.calc6 = zioi1;
+    // this.calc6 = zioi1;
     //this.calc7 = zioi3;
-    this.calc8 = zioi5;
+    // this.calc8 = zioi5;
 
     const in1 = this.calc1.length > 0;
-
     const in2 = this.calc2.length > 0;
-
     const in3 = this.calc3.length > 0;
+    const in4 = this.calc4.length > 0;
+    const in5 = this.calc5.length > 0;
 
 
-    const inioi1 = this.calc6.length > 0;
+    // const inioi1 = this.calc6.length > 0;
     //const inioi3 = this.calc7.length > 0;
-    const inioi5 = this.calc8.length > 0;
+    // const inioi5 = this.calc8.length > 0;
 
-    if (this.xtrx >= 10 && in1 === true && this.actualRaceAmount !== 10) {
-      this.multibetOptions.push({
-        val: 10,
-        race_hash: this.canJoin1[0].race_hash,
-        enabled: true,
-        type: 'car_race_short_10'
-      });
-    }
-
-    if (this.xtrx >= 20 && in2 === true && this.raceId !== 'classic_tournament_10') {
-      this.multibetOptions.push({
-        val: 10,
-        race_hash: this.canJoin2[0].race_hash,
-        enabled: true,
-        type: 'classic_tournament_10'
-      });
-    }
-
-
-    if (this.xtrx >= 100 && in3 === true && this.actualRaceAmount !== 100) {
-      this.multibetOptions.push({
-        val: 100,
-        race_hash: this.canJoin3[0].race_hash,
-        enabled: true,
-        type: 'car_race_short_100'
-      });
-    }
-
-    if (this.ioiBalance >= 1 && inioi1 === true && this.actualRaceAmount !== 1) {
+    if (this.ioiBalance >= 1 && in1 === true && this.actualRaceAmount !== 1) {
       this.multibetOptions.push({
         val: 1,
-        race_hash: this.canJoinIoi1[0].race_hash,
+        race_hash: this.canJoin1[0].race_hash,
         enabled: true,
         type: 'car_race_ioi_1'
       });
     }
 
-    if (this.ioiBalance >= 5 && inioi5 === true && this.actualRaceAmount !== 5) {
+    if (this.ioiBalance >= 5 && in2 === true && this.actualRaceAmount !== 5) {
       this.multibetOptions.push({
         val: 5,
-        race_hash: this.canJoinIoi3[0].race_hash,
+        race_hash: this.canJoin2[0].race_hash,
         enabled: true,
         type: 'car_race_ioi_5'
       });
+    }
+
+    if (this.ioiBalance >= 10 && in3 === true && this.actualRaceAmount !== 10) {
+      this.multibetOptions.push({
+        val: 10,
+        race_hash: this.canJoin3[0].race_hash,
+        enabled: true,
+        type: 'car_race_ioi_10'
+      });
+    }
+
+    if (this.ioiBalance >= 50 && in4 === true && this.actualRaceAmount !== 50) {
+      this.multibetOptions.push({
+        val: 50,
+        race_hash: this.canJoin4[0].race_hash,
+        enabled: true,
+        type: 'car_race_ioi_50'
+      });
+    }
+
+    if (this.ioiBalance >= 100 && in5 === true && this.actualRaceAmount !== 100) {
+      this.multibetOptions.push({
+        val: 100,
+        race_hash: this.canJoin5[0].race_hash,
+        enabled: true,
+        type: 'car_race_ioi_100'
+      });
+    }
+
+    if(this.multibetOptions.length === 0){
+      
+      this.noMultibet = true;
     }
 
   }
@@ -493,10 +490,10 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         }, {});
       });
 
-      const heh = Math.floor(Math.random() * 10);
+
+      const heh = Math.floor(Math.random() * (result.length + 1));
       usedcar = result[heh].asset_id;
       if (usedcar !== 0) {
-        console.log('hey');
         this.myMultiBetAmounts.push({
           asset_id: result[x].asset_id,
           race_hash: value.race_hash,
@@ -513,9 +510,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         } else {
           this.summaryTrxAmount = this.summaryTrxAmount + trxcut;
         }
-        console.log(trxcut);
-        console.log( this.summaryIoiAmount);
-        console.log( this.summaryTrxAmount);
+
         const filused1 = this.canJoin1[0].available_cars.filter(item => {
           return item.asset_id !== usedcar;
         });
@@ -544,24 +539,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
           return item.asset_id !== usedcar;
         });
         this.canJoin5[0].available_cars = filused5;
-
-
-        const filused6 = this.canJoinIoi1[0].available_cars.filter(item => {
-          return item.asset_id !== usedcar;
-        });
-        this.canJoinIoi1[0].available_cars = filused5;
-
-
-        const filused7 = this.canJoinIoi2[0].available_cars.filter(item => {
-          return item.asset_id !== usedcar;
-        });
-        this.canJoinIoi2[0].available_cars = filused5;
-
-
-        const filused8 = this.canJoinIoi3[0].available_cars.filter(item => {
-          return item.asset_id !== usedcar;
-        });
-        this.canJoinIoi3[0].available_cars = filused5;
 
 
         if (curr === 'ioi') {
@@ -726,7 +703,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       }, 5000);
 
 
-
+      
       this.raceApi.racesMultiSignupCreate(serialized).subscribe(
         res => console.log('HTTP response', res), // response
         err => console.log(err.error[0].errors[0].race[0] === 'Too late to sign up for this race!' ? this.refireSignup() : null), // error
@@ -734,14 +711,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       );
 
 
-
     }
   }
 
   checkRedirect() {
-
     if (this.myMultiBetAmounts.length > 0) {
-
       this.multibet();
     } else {
       if (this.nextRaceHash !== undefined) {
@@ -1476,32 +1450,22 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   updateMultibetRaceHashes() {
     const source = this.myMultiBetAmounts;
-
     for (let x = 0; x < source.length; x++) {
-      if (source[x].trxv === 10) {
+      if (source[x].trxv === 1) {
 
         source[x].race_hash = this.canJoin1[0].race_hash;
       }
-      if (source[x].trxv === 50) {
+      if (source[x].trxv === 5) {
         source[x].race_hash = this.canJoin2[0].race_hash;
       }
-      if (source[x].trxv === 100) {
+      if (source[x].trxv === 10) {
         source[x].race_hash = this.canJoin3[0].race_hash;
       }
-      if (source[x].trxv === 500) {
+      if (source[x].trxv === 50) {
         source[x].race_hash = this.canJoin4[0].race_hash;
       }
-      if (source[x].trxv === 1000) {
+      if (source[x].trxv === 100) {
         source[x].race_hash = this.canJoin5[0].race_hash;
-      }
-      if (source[x].trxv === 1) {
-        source[x].race_hash = this.canJoinIoi1[0].race_hash;
-      }
-      if (source[x].trxv === 3) {
-        source[x].race_hash = this.canJoinIoi2[0].race_hash;
-      }
-      if (source[x].trxv === 5) {
-        source[x].race_hash = this.canJoinIoi3[0].race_hash;
       }
 
 
@@ -1609,7 +1573,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getTips() {
     this.eventSubscription = this.teamsServ.getTips(this.teamId).subscribe(data => {
       this.tips = data;
-      console.log(this.tips);
     });
   }
 
