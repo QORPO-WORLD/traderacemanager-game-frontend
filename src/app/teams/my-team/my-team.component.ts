@@ -149,10 +149,15 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       if (this.isOwner === true && this.managers.length > 0) {
         if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
         else { this.TeamManagerSlide = 1; }
-      } else {
+      } 
+      else if(this.managers.length < 1 && this.isOwner === true)  {
         this.TeamManagerSlide = 1;
       }
-    }, 16000);
+      else{
+        if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
+        else { this.TeamManagerSlide = 1; }
+      }
+    }, 10000);
   }
 
   manualChange(to_slide: number) {
