@@ -115,12 +115,12 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.mmewa = mmew;
             }
         }, 2000);
-        const cook = JSON.parse(localStorage.getItem('afilate'));
-        if (cook) {
-            this.referralId = cook;
-        }
-        const aff_set = JSON.parse(localStorage.getItem('affilate_set'));
-        if (this.referralId && !aff_set) {
+       // const cook = JSON.parse(localStorage.getItem('afilate'));
+        //if (cook) {
+        //    this.referralId = cook;
+        //}
+        //const aff_set = JSON.parse(localStorage.getItem('affilate_set'));
+        if (this.referralId) {
             this.resolvemeAffilate();
         }
 
@@ -283,7 +283,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     }
 
     affSetDone() {
-        localStorage.setItem('affilate_set', JSON.stringify(true));
-        localStorage.setItem('affilate', JSON.stringify(this.referralId));
+       // localStorage.setItem('affilate_set', JSON.stringify(true));
+      //  localStorage.setItem('affilate', JSON.stringify(this.referralId));
     }
 }
