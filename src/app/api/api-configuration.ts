@@ -14,3 +14,4 @@ export class ApiConfiguration {
 export interface ApiConfigurationInterface {
   rootUrl?: string;
 }
+

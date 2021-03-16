@@ -10,17 +10,17 @@
 
       <div class="my-input" [ngClass]="{'filled': username !== '' && username !== undefined}">
         <input type="text" required
-          formControlName="nickname" autocomplete="off" [(ngModel)]="username"/>
+          formControlName="nickname" autocomplete="off" minlength="5" maxlength="12" [(ngModel)]="username" />
           <span class="input-placeholder">{{'login.username' | translate}}</span>
       </div>
       <div class="my-input" [ngClass]="{'filled': email !== '' && email !== undefined}">
         <input type="email" required formControlName="email"
-          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"  autocomplete="off" [(ngModel)]="email"/>
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"  autocomplete="off" [(ngModel)]="email" />
           <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
       </div>
       <div class="my-input" [ngClass]="{'filled': password !== '' && password !== undefined}" *ngIf="showMmew === false">
         <input [type]="show" required
-          formControlName="password"  autocomplete="off" [(ngModel)]="password"/>
+          formControlName="password"  autocomplete="off" [(ngModel)]="password"  minlength="5" maxlength="20"/>
           <span class="input-placeholder">{{'login.pass' | translate}}</span>
           <span (click)="show = 'text'" *ngIf="show === 'password'"><img src="/assets/base/images/pass-hidden.png"></span>
           <span (click)="show = 'password'" *ngIf="show === 'text'"><img src="/assets/base/images/pass-unhidden.png"></span>
