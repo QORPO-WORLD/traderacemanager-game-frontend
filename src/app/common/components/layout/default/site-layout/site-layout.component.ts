@@ -4,7 +4,7 @@ import { RacesService } from 'src/app/api/services';
 import { NotifiqService } from './../../../../services/notifiq.service';
 import { BalanceService } from './../../../../services/balance.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { TeamsService } from '../../../../../api/services/teams.service';
 import { Router } from '@angular/router';
 import { AbstractComponent } from '../../../abstract.component';
 import { Identity } from '../../../../../user/models/identity';
@@ -46,6 +46,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   isManager = false;
   popupClosed = true;
   verifyModal = false;
+  verifyStep = 1;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: "customSelect profileSelect"
@@ -91,7 +92,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
     private identityService: AuthService, private balanceService: BalanceService,
     private uapi: ninja, private notify: NotifiqService, private experience: ExperienceService,
-    private rservice: RacesService, private _http: HttpClient) {
+    private rservice: RacesService, private _http: HttpClient, protected teamSrv: TeamsService) {
     super();
     this.calculateCorrectVh();
     experience.load((data: Experience) => {
@@ -355,7 +356,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   closeTutorial() {
     localStorage.removeItem('first-time');
-    setTimeout(() => { window.location.reload() }, 500);
   }
 
   changeManager() {
@@ -444,6 +444,16 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   getMeta() {
     return this._http.get(environment.api_url + '/me/metamask-balances',
       httpOptions);
+  }
+
+  joinTeamFree(teamId: number) {
+    this.teamSrv.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: 1, join_now: true }).
+      subscribe(data => {
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.getMydriver();
+        }, 100);
+      });
   }
 
 }
