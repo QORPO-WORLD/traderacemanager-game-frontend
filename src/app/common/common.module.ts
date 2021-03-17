@@ -59,6 +59,7 @@ import { TechIndicatorComponent } from './components/tech-indicator/tech-indicat
 import { DailyTipModalComponent } from './components/daily-tip-modal/daily-tip-modal.component';
 import { WaitingTransferComponent } from './components/waiting-transfer/waiting-transfer.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { TeamsSelectionComponent } from './components/teams-selection/teams-selection.component';
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import { OrderModule } from 'ngx-order-pipe';
     DailyTipModalComponent,
     ShowTipsComponent,
     CreateTipsComponent,
-    WaitingTransferComponent
+    WaitingTransferComponent,
+    TeamsSelectionComponent
   ],
   providers: [
     CurrencyPipe,
@@ -138,7 +140,7 @@ import { OrderModule } from 'ngx-order-pipe';
     MySettingsComponent, CreateFastFuelCarComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
-    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent],
+    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent],
   entryComponents: []
 })
 
