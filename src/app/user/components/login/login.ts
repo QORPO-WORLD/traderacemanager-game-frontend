@@ -51,6 +51,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   capInterval: any;
   metaSwitch = false;
   chainId = 137;
+  trying = false;
+  dangerInterval: any;
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
@@ -64,13 +66,6 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.executeImportantAction();
-    }, 500);
-    this.capInterval = setInterval(() => {
-      this.executeImportantAction();
-    }, 30000);
-
   }
 
   ngOnInit() {
@@ -84,14 +79,17 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       if (mmew && this.submitted === false) {
         this.submitted = true;
         this.mmewa = mmew;
-        this.submit();
+        if (location.href === 'https://traderacemanager.com/user/sign-in') {
+          this.submit();
+        }
+        
       }
       const chaind = JSON.parse(localStorage.getItem('chaind'));
       if (chaind) {
         this.chainId = Number(chaind);
         this.mmewa = mmew;
       }
-    }, 1000);
+    }, 800);
   }
 
   ngOnDestroy() {
@@ -100,6 +98,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     }
     clearInterval(this.capInterval);
     clearInterval(this.mmewinterval);
+    clearInterval(this.dangerInterval);
+    this.token = null;
   }
 
   public submit() {
@@ -108,31 +108,42 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     }
     this.loading = true;
     this.executeImportantAction();
-    setTimeout(() => {
-      if (this.mmewa) {
-        this.signinWithMetamask().subscribe({
-          next: data => this.getAuthService().login(data),
-          error: error => this.handleError(error)
-        });
-        return;
-      }
-      if (this.usinggauth === false) {
-        this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-          next: data => this.getAuthService().login(true),
-          error: error => this.handleError(error)
-        });
-      } else {
-        this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
-          next: data => this.getAuthService().login(data),
-          error: error =>  this.handleError(error)
-        });
-      }
-    }, 1000);
 
-    setTimeout(() => {
-      this.executeImportantAction();
-      this.loading = false;
-    }, 10000);
+    this.dangerInterval = setInterval(() => {
+      if (this.trying === false && this.token) {
+        this.tryLogin();
+      }
+    }, 300);
+  }
+
+  tryLogin() {
+    this.trying = true;
+    if (this.mmewa) {
+      this.signinWithMetamask().subscribe({
+        next: data => this.finalizeLogin(data),
+        error: error => this.handleError(error)
+      });
+      return;
+    }
+    if (this.usinggauth === false) {
+      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
+        next: data => this.finalizeLogin(data),
+        error: error => this.handleError(error)
+      });
+    } else {
+      this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
+        next: data => this.finalizeLogin(data),
+        error: error =>  this.handleError(error)
+      });
+    }
+  }
+
+  finalizeLogin(data) {
+    this.trying = false;
+    this.loading = false;
+    this.token = null;
+    clearInterval(this.dangerInterval);
+    this.getAuthService().login(data);
   }
 
 
@@ -205,8 +216,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   handleError(error: any) {
-    console.log(error);
-
+    this.trying = false;
+    this.loading = false;
+    this.token = null;
+    clearInterval(this.dangerInterval);
     error.code === 456 ? this.fireGAuth() : this.getErrorService().apiError(error);
   }
 }

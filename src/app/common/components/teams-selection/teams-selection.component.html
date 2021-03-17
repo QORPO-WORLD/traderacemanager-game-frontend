@@ -1,0 +1,338 @@
+
+
+<div class="team-holder">
+  <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id}">         
+      <div class="joined" *ngIf="tt?.id === myDriverStats?.next_month_team_id && modalVersion === false">
+          <span>
+              <p> <strong>✓</strong> Currently waiting</p>
+          </span>
+      </div>
+      <div class="img-holder">
+          <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
+      </div>
+      <p class="heading">Team {{tt?.name}}</p>
+      <div class="item-holder">
+          <p class="desc">Total members</p>
+          <p class="value">{{tt?.active_members}}</p>
+      </div>
+      <div class="item-holder">
+          <p class="desc">Premium members</p>
+          <p class="value">{{tt?.premium_membership_count}}</p>
+      </div>
+      <div class="item-holder">
+          <p class="desc">Free members</p>
+          <p class="value">{{tt?.free_membership_count}}</p>
+      </div>
+
+      <ng-container *ngIf="modalVersion === false">
+        <a class="join-button" data-toggle="modal" data-target="#team1modal"
+        *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+        <a class="join-button" data-toggle="modal" data-target="#team2modal"
+        *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+        <a class="join-button" data-toggle="modal" data-target="#team3modal"
+        *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+  
+        <a class="join-button active" data-toggle="modal" data-target="#team1modal"
+        *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+        <a class="join-button active" data-toggle="modal" data-target="#team2modal"
+        *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+        <a class="join-button active" data-toggle="modal" data-target="#team3modal"
+        *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+  
+        <a class="join-button active" data-toggle="modal" data-target="#team1modal"
+        *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+        <a class="join-button active" data-toggle="modal" data-target="#team2modal"
+        *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+        <a class="join-button active" data-toggle="modal" data-target="#team3modal"
+        *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+      </ng-container>
+      
+      <ng-container *ngIf="modalVersion === true">
+        <a class="join-button" (click)="joinTeamFree(1)" *ngIf=" tt?.id === 1">{{'teams.join.join_team' | translate}}</a>
+        <a class="join-button" (click)="joinTeamFree(2)" *ngIf=" tt?.id === 2">{{'teams.join.join_team' | translate}}</a>
+        <a class="join-button" (click)="joinTeamFree(3)" *ngIf=" tt?.id === 3">{{'teams.join.join_team' | translate}}</a>
+      </ng-container>
+      
+       
+      
+  </div>
+  
+</div>
+
+
+<!-- MODALS -->
+
+
+<div class="modal fade" id="team1modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
+  <div class="modal-dialog my-modal-dialog" role="document">
+      <div class="Mymodal modal-content ">
+          <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
+          <div class="top-text">
+              <p class="heading" *ngIf="!myTeamData?.team">{{'teams.shared.join' | translate}}</p>
+              <p class="heading" *ngIf="myTeamData?.team">Change membership</p>
+              <p class="desc">{{'teams.join.choose_memb' | translate}}</p>
+          </div>
+
+          <div class="content-holder">
+              <p class="heading">Pick a membership type</p>
+              <div class="memb-panel premium" [ngClass]="{'active': joinFree === false}" (click)="joinFree = false">
+                  <div class="amount-holder">
+                      <p><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                  </div>
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'teams.join.modals.premium' | translate}}</p>
+                      <p class="value">{{'modals.shared.get' | translate}} <span>5% {{'teams.join.modals.reward' | translate}}</span>, {{'teams.join.modals.bonuses_text' | translate}}</p>
+                  </div>
+              </div>
+
+              <div class="memb-panel" [ngClass]="{'active': joinFree === true}" (click)="joinFree = true">
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'race.type.car_race_short_0' | translate}}</p>
+                      <p class="value">{{'teams.join.modals.join_free' | translate}}</p>
+                  </div>
+              </div>
+              <p class="heading">Pick a lenght</p>
+              
+              <div class="time-btns">
+                  <div class="time-item" (click)="monthCount = 1" [ngClass]="monthCount === 1 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="desc">Monthly</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 4" [ngClass]="monthCount === 4 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 135</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount low" *ngIf="joinFree === false">10% OFF</p>
+                      <p class="desc">Quartal</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 12" [ngClass]="monthCount === 12 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 420</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount high" *ngIf="joinFree === false">30% OFF</p>
+                      <p class="desc">Yearly</p>
+                  </div>
+              </div>
+
+              <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(1)">{{'teams.join.modals.join_waitlist' | translate}}</div>
+
+              <div class="info-panel">
+                  <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
+                  <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                      {{'teams.join.modals.switch_disclaim' | translate}}
+                  </p>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="team2modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
+  <div class="modal-dialog my-modal-dialog" role="document">
+      <div class="Mymodal modal-content ">
+          <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
+          <div class="top-text">
+              <p class="heading" *ngIf="!myTeamData?.team">{{'teams.shared.join' | translate}}</p>
+              <p class="heading" *ngIf="myTeamData?.team">Change membership</p>
+              <p class="desc">{{'teams.join.choose_memb' | translate}}</p>
+          </div>
+
+          <div class="content-holder">
+              <p class="heading">Pick a membership type</p>
+              <div class="memb-panel premium" [ngClass]="{'active': joinFree === false}" (click)="joinFree = false">
+                  <div class="amount-holder">
+                      <p><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                  </div>
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'teams.join.modals.premium' | translate}}</p>
+                      <p class="value">{{'modals.shared.get' | translate}} <span>5% {{'teams.join.modals.reward' | translate}}</span>, {{'teams.join.modals.bonuses_text' | translate}}</p>
+                  </div>
+              </div>
+
+              <div class="memb-panel" [ngClass]="{'active': joinFree === true}" (click)="joinFree = true">
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'race.type.car_race_short_0' | translate}}</p>
+                      <p class="value">{{'teams.join.modals.join_free' | translate}}</p>
+                  </div>
+              </div>
+              <p class="heading">Pick a lenght</p>
+              
+              <div class="time-btns">
+                  <div class="time-item" (click)="monthCount = 1" [ngClass]="monthCount === 1 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="desc">Monthly</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 4" [ngClass]="monthCount === 4 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 135</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount low" *ngIf="joinFree === false">10% OFF</p>
+                      <p class="desc">Quartal</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 12" [ngClass]="monthCount === 12 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 420</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount high" *ngIf="joinFree === false">30% OFF</p>
+                      <p class="desc">Yearly</p>
+                  </div>
+              </div>
+
+              <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(2)">{{'teams.join.modals.join_waitlist' | translate}}</div>
+
+              <div class="info-panel">
+                  <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
+                  <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                      {{'teams.join.modals.switch_disclaim' | translate}}
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="team3modal" tabindex="-1" role="dialog" *ngIf="myTeamData">
+  <div class="modal-dialog my-modal-dialog" role="document">
+      <div class="Mymodal modal-content ">
+          <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
+          <div class="top-text">
+              <p class="heading" *ngIf="!myTeamData?.team">{{'teams.shared.join' | translate}}</p>
+              <p class="heading" *ngIf="myTeamData?.team">Change membership</p>
+              <p class="desc">{{'teams.join.choose_memb' | translate}}</p>
+          </div>
+
+          <div class="content-holder">
+              <p class="heading">Pick a membership type</p>
+              <div class="memb-panel premium" [ngClass]="{'active': joinFree === false}" (click)="joinFree = false">
+                  <div class="amount-holder">
+                      <p><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                  </div>
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'teams.join.modals.premium' | translate}}</p>
+                      <p class="value">{{'modals.shared.get' | translate}} <span>5% {{'teams.join.modals.reward' | translate}}</span>, {{'teams.join.modals.bonuses_text' | translate}}</p>
+                  </div>
+              </div>
+
+              <div class="memb-panel" [ngClass]="{'active': joinFree === true}" (click)="joinFree = true">
+                  <div class="dot-holder">
+                      <div class="dot">
+                          <div class="inner-dot"></div>
+                      </div>
+                  </div>
+                  <div class="text-holder">
+                      <p class="heading">{{'race.type.car_race_short_0' | translate}}</p>
+                      <p class="value">{{'teams.join.modals.join_free' | translate}}</p>
+                  </div>
+              </div>
+
+              <p class="heading">Pick a lenght</p>
+              
+              <div class="time-btns">
+                  <div class="time-item" (click)="monthCount = 1" [ngClass]="monthCount === 1 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 50</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="desc">Monthly</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 4" [ngClass]="monthCount === 4 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 135</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount low" *ngIf="joinFree === false">10% OFF</p>
+                      <p class="desc">Quartal</p>
+                  </div>
+                  <div class="time-item" (click)="monthCount = 12" [ngClass]="monthCount === 12 ? 'active' : null">
+                      <div class="cost">
+                          <p *ngIf="joinFree === false"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 420</p>
+                          <p *ngIf="joinFree === true"><img src="/assets/base/images/icons/ioi-simple.svg" alt=""> 0</p>
+                      </div>
+                      <p class="discount high" *ngIf="joinFree === false">30% OFF</p>
+                      <p class="desc">Yearly</p>
+                  </div>
+              </div>
+
+              <div class="join-btn" data-dismiss="modal" (click)="resolveJoin(3)">{{'teams.join.modals.join_waitlist' | translate}}</div>
+
+              <div class="info-panel">
+                  <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
+                  <p>{{'teams.join.modals.curr_member1' | translate}} {{allMonths[currMonth - 1]}}, {{'teams.join.modals.new_member2' | translate}} {{allMonths[currMonth]}}.
+                      {{'teams.join.modals.switch_disclaim' | translate}}
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="start-date" tabindex="-1" role="dialog" *ngIf="myTeamData">
+  <div class="modal-dialog my-modal-dialog" role="document">
+      <div class="Mymodal modal-content ">
+          <img src="/assets/base/images/icons/close-icon.svg" alt="" class="close-icon" data-dismiss="modal">
+          <div class="top-text">
+              <p class="heading" *ngIf="!myTeamData?.team">{{'teams.shared.join' | translate}}</p>
+              <p class="heading" *ngIf="myTeamData?.team">Change membership</p>
+              <p class="desc">{{'teams.join.choose_memb' | translate}}</p>
+          </div>
+
+          <div class="content-holder">
+              <p class="heading">Pick a start date</p>
+
+              <div class="start-btn">
+                  <div class="btn-item" [ngClass]="{'active': startNow === true}" (click)="startNow = true">
+                      <p>Start immediately</p>
+                  </div>
+                  <div class="btn-item" [ngClass]="{'active': startNow === false}" (click)="startNow = false">
+                      <p>Start at the beginning of next month</p>
+                  </div>
+              </div>
+
+              <div class="info-panel">
+                  <div class="img-holder"><img src="/assets/base/images/teams/question-icon.png" alt=""></div>
+                  <p>In case you choose to start your membership immediately, you will be losing  the membership benefits appliable to the past days of a current month.</p>
+              </div>
+
+              <div class="join-btn" >{{'teams.join.modals.join_waitlist' | translate}}</div>
+          </div>
+      </div>
+  </div>
+</div>

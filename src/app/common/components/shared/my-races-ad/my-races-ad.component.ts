@@ -2,6 +2,7 @@ import { NextRaceV2 } from 'src/app/api/models';
 import { DriversService, RacesService } from 'src/app/api/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/user/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,6 +19,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   liveAllRacesData = [];
   mainClosed = false;
   currentIndex = 0;
+  myGameBalance = 0;
   bestIndex: number;
   routeId: string;
   liveRacesData: any;
@@ -44,7 +46,8 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     { type: 'car_race_ioi_5', fav: false },
   ];
   myFavRaces = [];
-  constructor(private api: RacesService, private actv: Router, private drvrsrvc: DriversService) {
+  constructor(private api: RacesService, private actv: Router, private drvrsrvc: DriversService,
+    private identityService: AuthService) {
 
     this.routeId = this.actv.url;
     const res = this.routeId.substring(0, 14);
@@ -54,9 +57,9 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getCryptoStats();
     this.getAllNextRaces();
     this.getmyFavRaces();
-    console.log(this.liveAllRacesData);
   }
 
   ngOnDestroy() {
@@ -200,7 +203,10 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  getCryptoStats() {
+    const data = this.identityService.getBalance();
+    this.myGameBalance = data.game_wallet_ioi
+  }
 
   updateFavRaces() {
 

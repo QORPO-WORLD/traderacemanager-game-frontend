@@ -53,7 +53,7 @@ export class GauthrComponent implements OnInit, OnDestroy {
     this.xObserver = this.mfsrvc.mfaSecretCreate().subscribe(data => {
       const oldata: any = data;
       this.myKey = oldata.secret;
-      this.imgurl = 'https://dev-api.traderacemanager.com' + oldata.qr_url.toString();
+      this.imgurl = 'https://api.traderacemanager.com' + oldata.qr_url.toString();
     });
   }
 

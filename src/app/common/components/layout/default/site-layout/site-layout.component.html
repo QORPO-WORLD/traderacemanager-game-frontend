@@ -217,9 +217,9 @@
   </div>
 
   <div  class="verify-modal" *ngIf="verifyModal === true">
-    <div class="modal-holder">
+    <div class="modal-holder" *ngIf="verifyStep === 1">
   
-      <div class="modal-heading" (click)="verifyModal = false">
+      <div class="modal-heading">
         <h2>{{'site-layout.pick_layout1' | translate}}</h2>
         <p class="desc">{{'site-layout.pick_layout2' | translate}}</p>
       </div>
@@ -260,7 +260,7 @@
             <p>{{"site-layout.owner5" | translate}}</p>
         </div>
   
-        <a class="panel-button" (click)="setManager(true);closeTutorial();verifyModal = false">{{"owners_managers.owner-heading" | translate}}</a>
+        <a class="panel-button" (click)="setManager(true);verifyStep = 2">{{"owners_managers.owner-heading" | translate}}</a>
       </div>
   
       <div class="panel-holder racer">
@@ -299,9 +299,51 @@
               <p>{{"site-layout.racer5" | translate}}</p>
           </div>
   
-          <a class="panel-button" (click)="setManager(false);closeTutorial();verifyModal = false">{{"site-layout.become_racer" | translate}}</a>
+          <a class="panel-button" (click)="setManager(false);verifyStep = 2">{{"site-layout.become_racer" | translate}}</a>
       </div>
     </div>
+
+    <section class="teams-sec" *ngIf="verifyStep === 2">
+
+      <div class="modal-heading">
+        <h2>{{'site-layout.pick_team1' | translate}}</h2>
+        <p class="desc">{{'site-layout.pick_team2' | translate}}</p>
+      </div>
+
+      <app-teams-selection [modalVersion]="true" (modalOpen)="closeFirstModal($event)"></app-teams-selection>
+    
+      <!-- <div class="content-holder">
+        <div class="team-item btc-team">
+            <div class="img-holder">
+                <img src="/assets/base/images/home-page/btc-team.png" alt="">
+            </div>
+            <p class="heading">Team Bitcoin</p>
+            <button class="reward-box" 
+            (click)="joinTeamFree(1);closeTutorial();verifyModal = false">Join team</button>
+
+        </div>
+          <div class="team-item ioi-team">
+              <div class="img-holder">
+                  <img src="/assets/base/images/home-page/ioi-team.png" alt="">
+              </div>
+              <p class="heading">Team IOI</p>
+              <button class="reward-box" 
+              (click)="joinTeamFree(3);closeTutorial();verifyModal = false">Join team</button>
+
+          </div>
+          <div class="team-item alt-team">
+              <div class="img-holder">
+                  <img src="/assets/base/images/home-page/alt-team.png" alt="">
+              </div>
+              <p class="heading">Team Altcoin</p>
+              <button class="reward-box" 
+              (click)="joinTeamFree(2);closeTutorial();verifyModal = false">Join team</button>
+
+          </div>
+      </div> -->
+    
+    </section>
+
   </div> 
 
 </div> 

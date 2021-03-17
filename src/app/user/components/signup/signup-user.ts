@@ -1,3 +1,4 @@
+
 import { environment } from './../../../../environments/environment.prod';
 import { SocialService } from './../../services/social.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,13 +10,14 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { first } from 'rxjs/operators';
 import { AbstractComponent } from '../../../common/components/abstract.component';
 import { AuthService } from '../../../api/services/auth.service';
-import { AuthService as ninja } from '../../../api/services';
+import { AuthService as ninja } from '../../services/auth.service';
 import { CountryCode, CountryCodes } from '../../components/countries/country-codes';
 import { PlatformService } from 'src/app/common/services/platform.service';
 import { Platform } from '@ionic/angular';
 
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { Subscription } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 declare let fbq:Function;
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -61,7 +63,9 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     token: string;
     mmewa: string;
     mmewinterval: any;
+    dangerInterval: any;
     showMmew = false;
+    trying = false;
     chainId = 137;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
         private notify: NotifiqService,
@@ -77,13 +81,12 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
     }
     ngAfterViewInit() {
-        setTimeout(() => {
-            this.executeImportantAction();
-        }, 500);
+
     }
 
     ngOnDestroy() {
         clearInterval(this.mmewinterval);
+        clearInterval(this.dangerInterval);
     }
 
     public checkEmail(obj, valid) {
@@ -97,8 +100,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
         this.registerForm = this.formBuilder.group({
             email: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('', Validators.required),
-            nickname: new FormControl('', Validators.required)
+            password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), this.isStrong]),
+            nickname: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(12)])
         });
         this.mmewinterval = setInterval(() => {
             const mmew = JSON.parse(localStorage.getItem('mmea'));
@@ -112,17 +115,15 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.mmewa = mmew;
             }
         }, 2000);
+       // const cook = JSON.parse(localStorage.getItem('afilate'));
+        //if (cook) {
+        //    this.referralId = cook;
+        //}
+        //const aff_set = JSON.parse(localStorage.getItem('affilate_set'));
         if (this.referralId) {
-            const cname = 'affiliate_reference';
-            const d = new Date();
-            const expires = d.setTime(d.getTime() + (100 * 24 * 60 * 60 * 1000));;
-            document.cookie = cname + "=" + this.referralId + "; expires=" + expires + ";domain=.traderacemanager.com;path=/;";
-    
+            this.resolvemeAffilate();
         }
-        const cook = this.readCookie('affiliate_reference');
-        if(cook) {
-            this.referralId = cook;
-        }
+
     }
 
     recognizeDemo() {
@@ -138,44 +139,60 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     get f() {
         return this.registerForm.controls;
     }
-    get xf() {
-        return this.reactiveForm.controls;
-    }
+
 
 
 
     onSubmit() {
-
+        if (this.f.nickname.status === 'INVALID') {
+            this.notify.error('validation error', 'Invalid nickname format. Only letters and numbers, min 5 - max 20 digits.');
+            return; 
+        }
+        if (this.f.email.value === '') {
+            this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
+            return; 
+        }
+        if (this.f.password.status === 'INVALID') {
+            this.notify.error('validation error', 'Invalid password format. Min 8 digits, 1 number, 1 small, 1 capital letter are required. (example: ioiGame1)');
+            return; 
+        }
         this.submitted = true;
         this.passone = '';
-
-
         this.passonelength = this.passone.length;
-
-        // stop here if form is invalid
-
         this.loading = true;
         this.executeImportantAction();
-        setTimeout(() => {
-            if (this.mmewa) {
-                this.signupWithMetamask().subscribe({
-                    next: data => this.doLogin(),
-                    error: error => this.clearMetamask(error.body)
-                });
-            } else {
-                this.api.authUsersCreateDesktop({
-                    email: this.f.email.value, password: this.f.password.value,
-                    nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token
-                }).subscribe(datax => {
-                    const xxx: any = datax;
-                    localStorage.setItem('first-time', JSON.stringify('yes'));
-                    fbq('track', 'CompleteRegistration');
-                    this.router.navigate(['/user/verify-code']);
-                    // this.notify.info('info', 'Activation email has been sent to your registration email.', 2000);
 
-                });
+        this.dangerInterval = setInterval(() => {
+            if (this.trying === false && this.token) {
+              this.trySignup();
             }
-        }, 1200);
+        }, 300);
+
+    }
+
+    trySignup() {
+        this.trying = true;
+        if (this.mmewa) {
+            this.signupWithMetamask().subscribe({
+                next: data => this.doLogin(data),
+                error: error => this.clearMetamask(error.body)
+            });
+        } else {
+            this.api.authUsersCreateDesktop({
+                email: this.f.email.value, password: this.f.password.value,
+                nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token
+            }).subscribe(datax => {
+                this.trying = false;
+                this.loading = false;
+                this.token = null;
+                clearInterval(this.dangerInterval);
+               
+                const xxx: any = datax;
+                localStorage.setItem('first-time', JSON.stringify('yes'));
+                fbq('track', 'CompleteRegistration');
+                this.router.navigate(['/user/verify-code']);    
+            });
+        }
     }
 
 
@@ -213,27 +230,60 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     }
 
 
+    setMeAsAffilate() {
+        return this._http.post(environment.api_url + '/set-ref', {
+            nick: this.referralId
+        },
+            httpOptions);
+    }
+
+
     clearMetamask(error) {
         this.getErrorService().apiError(error);
         this.mmewa = null;
         this.metaSwitch = false;
-        this.executeImportantAction();
+        this.trying = false;
+        this.loading = false;
+        this.token = null;
+        clearInterval(this.dangerInterval);
     }
 
-    readCookie(name: string) {  
     
-        var nameEQ = name + "=";  
-        var ca = document.cookie.split(';');  
-        for (var i = 0; i < ca.length; i++) {  
-            var c = ca[i];  
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);  
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);  
-        }  
-        return null;  
-    }
-    
-    doLogin() {
+    doLogin(data) {
+        this.trying = false;
+        this.loading = false;
+        this.token = null;
+        clearInterval(this.dangerInterval);
+       
         localStorage.setItem('first-time', JSON.stringify('yes'));
         fbq('track', 'CompleteRegistration');
+        this.ioiapi.login(data);
+    }
+
+    isStrong(control: FormControl): any {
+        let hasNumber = /\d/.test(control.value);
+        let hasUpper = /[A-Z]/.test(control.value);
+        let hasLower = /[a-z]/.test(control.value);
+        // console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+        const valid = hasNumber && hasUpper && hasLower;
+        if (!valid) {
+            // return what´s not valid
+            return { strong: true };
+        }
+        return null;
+    }
+
+    resolvemeAffilate() {
+        if (this.referralId) {
+            this.setMeAsAffilate().subscribe({
+                next: data => this.affSetDone(),
+                error: error => console.log(error)
+            });
+        } 
+    }
+
+    affSetDone() {
+       // localStorage.setItem('affilate_set', JSON.stringify(true));
+      //  localStorage.setItem('affilate', JSON.stringify(this.referralId));
     }
 }

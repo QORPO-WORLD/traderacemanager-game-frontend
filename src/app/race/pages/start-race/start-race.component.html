@@ -278,7 +278,8 @@
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">{{'profile.team' | translate}} {{ myLdrbrd?.team }}</p>
+            <p class="value" *ngIf="myLdrbrd?.team_name">{{'profile.team' | translate}} {{ myLdrbrd?.team_name }}</p>
+            <p class="value" *ngIf="!myLdrbrd?.team_name">-</p>
 
             <p class="bot-desc">{{'start-race.your_team' | translate}}</p>
           </div>

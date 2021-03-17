@@ -10,11 +10,22 @@ export class HomePageComponent implements OnInit {
   menuOpen = false;
   windowWidth = 1920;
   useMobileVideo = false;
+  reviewSlide = 0;
+  maxRevSlides = 2;
 
   constructor() {
     this.windowWidth = window.innerWidth;
+    if (this.windowWidth < 1300) {
+      this.maxRevSlides = 3;
+    }
+    if (this.windowWidth < 900) {
+      this.maxRevSlides = 5;
+    }
     if (this.windowWidth < 640) {
       this.useMobileVideo = true;
+    }
+    if (this.windowWidth < 450) {
+      this.maxRevSlides = 11;
     }
   }
 
@@ -50,6 +61,18 @@ export class HomePageComponent implements OnInit {
 
   scrollToView(elem: HTMLElement) {
     elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  nextRev(){
+    if(this.reviewSlide !== this.maxRevSlides){
+      this.reviewSlide++;
+    }
+  }
+
+  prevRev(){
+    if(this.reviewSlide !== 0){
+      this.reviewSlide--;
+    }
   }
 
 

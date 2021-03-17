@@ -4,7 +4,6 @@ import { RacesService } from 'src/app/api/services';
 import { NotifiqService } from './../../../../services/notifiq.service';
 import { BalanceService } from './../../../../services/balance.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AbstractComponent } from '../../../abstract.component';
 import { Identity } from '../../../../../user/models/identity';
@@ -46,6 +45,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   isManager = false;
   popupClosed = true;
   verifyModal = false;
+  verifyStep = 1;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: "customSelect profileSelect"
@@ -355,7 +355,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   closeTutorial() {
     localStorage.removeItem('first-time');
-    setTimeout(() => { window.location.reload() }, 500);
   }
 
   changeManager() {
@@ -444,6 +443,12 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   getMeta() {
     return this._http.get(environment.api_url + '/me/metamask-balances',
       httpOptions);
+  }
+
+
+  closeFirstModal(myBool: boolean){
+    this.closeTutorial();
+    this.verifyModal = myBool;
   }
 
 }

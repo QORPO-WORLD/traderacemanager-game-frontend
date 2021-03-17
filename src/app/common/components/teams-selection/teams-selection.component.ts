@@ -1,0 +1,116 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TeamsService } from '../../../api/services/teams.service';
+import { AuthService } from '../../../user/services/auth.service';
+import { BalanceService } from '../../../common/services/balance.service';
+
+@Component({
+  selector: 'app-teams-selection',
+  templateUrl: './teams-selection.component.html',
+  styleUrls: ['./teams-selection.component.scss'],
+})
+export class TeamsSelectionComponent implements OnInit {
+
+  @Input() modalVersion = false;
+  @Output() modalOpen = new EventEmitter<boolean>();
+  teams: any;
+  myTeam: string;
+  myTeamData: any;
+  mySettings = { type: 'team', numOfBanners: 2 };
+  joinFree = false;
+  teamreward: any;
+  currMonth: number;
+  showInfoBubble = false;
+  allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  monthCount = 1;
+  teamOption = 1;
+  startNow = false;
+  myDriverStats: any;
+
+  constructor(protected api: TeamsService, private identityService: AuthService,
+    private balanceService: BalanceService) { }
+
+  ngOnInit() {
+    this.getMyTeam();
+    this.getCurrentMonth();
+    this.getMydriver();
+  }
+
+  getTeams() {
+    this.api.teamsList().subscribe(data => {
+      const newdata = data.results;
+      const resort = newdata.sort((a, b) => {
+        return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
+      });
+
+      this.teams = data.results;
+    });
+  }
+
+  getMyTeam() {
+    const data = this.identityService.getDriverMe();
+    this.myTeam = data.team;
+    this.getTeams();
+    this.myTeamData = data;
+  }
+
+  joinTeam(teamId: number) {
+    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: true, month_count: this.monthCount, join_now: this.startNow }).
+      subscribe(data => {
+        this.notifyChangedBalance();
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.getMydriver();
+          this.getMyTeam();
+
+        }, 100);
+      });
+  }
+
+  joinTeamFree(teamId: number) {
+    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: this.monthCount, join_now: this.startNow }).
+      subscribe(data => {
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.getMydriver();
+          this.getMyTeam();
+          console.log(teamId);
+          if (this.modalVersion === true) {
+            this.closeModal();
+          }
+        }, 100);
+      });
+  }
+
+  notifyChangedBalance() {
+    this.balanceService.balanceHasbeenChanged();
+  }
+
+  resolveJoin(teamId: number) {
+    if (this.joinFree === false) {
+      this.joinTeam(teamId);
+    } else {
+      this.joinTeamFree(teamId);
+    }
+  }
+
+  getCurrentMonth() {
+    let month = new Date().getMonth();
+    month++;
+    if (month === 12) {
+      this.currMonth = 0;
+    } else {
+      this.currMonth = month;
+    }
+  }
+
+  getMydriver() {
+    setTimeout(() => {
+      this.myDriverStats = this.identityService.getStorageIdentity();
+    }, 500);
+  }
+
+  closeModal(){
+    this.modalOpen.emit(false);
+  }
+
+}
