@@ -328,7 +328,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   getMyLeaderboard() {
     const data = this.identityService.getLeaderboardMe();
     this.myLdrbrd = data;
-
   }
 
   filterRace(mtype: string) {
