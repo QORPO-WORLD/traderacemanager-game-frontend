@@ -346,13 +346,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       return;
     }
     clearInterval(this.detailInterval);
-    
+    setTimeout(() => {
+      this.getRaceData();
+    }, 700);   
     setTimeout(() => {
       this.getRaceData();
     }, 100);    
-    setTimeout(() => {
-      this.getRaceData();
-    }, 700);    
+   
     setTimeout(() => {
       this.getRaceData();
     }, 1300);   

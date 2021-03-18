@@ -78,7 +78,6 @@ export class AuthService extends AbstractService {
    */
   me() {
 
-
     this.drvrsrvc.driversInitial().subscribe(data => {
       this.setIdentity(data);
       this.drvrsrvc.driversBalances().subscribe(bal => {
@@ -151,7 +150,6 @@ export class AuthService extends AbstractService {
   }
 
   meUpdate() {
-
     this.drvrsrvc.driversInitial().subscribe(data => {
       this.setIdentity(data);
     });
@@ -196,7 +194,6 @@ export class AuthService extends AbstractService {
     
 
 
-    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
     return Observable.of({
       action: 'signout'
     });
@@ -296,7 +293,7 @@ export class AuthService extends AbstractService {
     if (data) {
       this.identity = JSON.parse(data);
     } else {
-      this.me();
+
       return;
     }
     return this.identity;
