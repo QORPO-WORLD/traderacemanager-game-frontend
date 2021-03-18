@@ -89,7 +89,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.chainId = Number(chaind);
         this.mmewa = mmew;
       }
-    }, 800);
+    }, 1500);
   }
 
   ngOnDestroy() {
@@ -111,9 +111,9 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
     this.dangerInterval = setInterval(() => {
       if (this.trying === false && this.token) {
-        this.tryLogin();
+        setTimeout(() => { this.tryLogin() }, 300);
       }
-    }, 300);
+    }, 500);
   }
 
   tryLogin() {
@@ -140,7 +140,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   finalizeLogin(data) {
     this.trying = false;
-    this.loading = false;
+    setTimeout(() => { this.loading = false }, 2000);
     this.token = null;
     clearInterval(this.dangerInterval);
     this.getAuthService().login(data);
