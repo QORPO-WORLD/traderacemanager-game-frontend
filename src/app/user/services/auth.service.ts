@@ -147,7 +147,6 @@ export class AuthService extends AbstractService {
 
   getLeaderboardMe() {
     const balance = JSON.parse(localStorage.getItem('ldrbrd-me'));
-    console.log(balance);
     return balance;
   }
 

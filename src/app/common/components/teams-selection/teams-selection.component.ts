@@ -58,6 +58,7 @@ export class TeamsSelectionComponent implements OnInit {
       subscribe(data => {
         this.notifyChangedBalance();
         setTimeout(() => {
+          this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
@@ -70,6 +71,7 @@ export class TeamsSelectionComponent implements OnInit {
     this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: this.monthCount, join_now: this.startNow }).
       subscribe(data => {
         setTimeout(() => {
+          this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();

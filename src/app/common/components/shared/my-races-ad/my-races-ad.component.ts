@@ -196,9 +196,13 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.myFavRaces.length; x++) {
 
       for (let y = 0; y < this.baseFavRaces.length; y++) {
+
         if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
+          console.log(this.myFavRaces[x]);
+          console.log(this.baseFavRaces[y].type);
           this.baseFavRaces[y].fav = true;
         }
+        
       }
     }
   }

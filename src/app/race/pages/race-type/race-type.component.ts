@@ -5,7 +5,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/user/services/auth.service';
-
 @Component({
   selector: 'app-race-type',
   templateUrl: './race-type.component.html',
@@ -35,6 +34,11 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
   ioistarta: any;
   ioistartb: any;
   ioistartc: any;
+  enastart: any;
+  enbstart: any;
+  encstart: any;
+  endstart: any;
+  enestart: any;
   signedIntoRace = false;
   newNextData: NextRaceV2[];
   fastEnabled = false;
@@ -60,6 +64,12 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     { type: 'car_race_ioi_3', fav: false },
     { type: 'car_race_ioi_5', fav: false },
     { type: 'tournament_for_ticket_0', fav: false },
+    { type: 'tournament_for_ticket_0', fav: false },
+    { type: 'car_race_enduro_1', fav: false },
+    { type: 'car_race_enduro_5', fav: false },
+    { type: 'car_race_enduro_10', fav: false },
+    { type: 'car_race_enduro_50', fav: false },
+    { type: 'car_race_enduro_0', fav: false },
   ];
   myFavRaces = [];
   myTeam: any;
@@ -131,6 +141,11 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
         if (nedata[x].race_identifier === 'golden_ticket_100') { this.kstart = nedata[x]; }
         if (nedata[x].race_identifier === 'golden_ticket_1000') { this.kstart = nedata[x]; }
         if (nedata[x].race_identifier === 'tournament_for_ticket_0') { this.lstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_enduro_1') { this.enastart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_enduro_5') { this.enbstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_enduro_10') { this.encstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_enduro_50') { this.endstart = nedata[x]; }
+        if (nedata[x].race_identifier === 'car_race_enduro_100') { this.enestart = nedata[x]; }
       }
       this.newNextData = nedata;
       this.ready = true;

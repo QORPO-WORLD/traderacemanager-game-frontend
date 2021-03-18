@@ -78,6 +78,10 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     //this.getCars();
 
     this.balanceInterval = setInterval(() => {
+      this.getCachedLeaderboard();
+      this.getMydriver();
+    }, 2000);
+    this.balanceInterval = setInterval(() => {
       this.getMydriverBalances();
     }, 10000);
 

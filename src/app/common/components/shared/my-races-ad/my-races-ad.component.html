@@ -40,8 +40,7 @@
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
-          <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
+            <p class="race-name">{{ mainr === 'classic_tournament_0' || mainr === 'classic_tournament_10' || mainr === 'classic_tournament_100' || mainr === 'tournament_for_ticket_0' ? 'Tournament' : 'Fast race'}}</p>
           <p class="race-name">{{ 'race.type.' + mainr | translate}}</p>
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>

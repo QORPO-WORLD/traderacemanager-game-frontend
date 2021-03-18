@@ -146,11 +146,15 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.trsDate = Date.now();
 
     this.getAllV2Races();
+    console.log('zdochlo 1');
     this.getMyBalance();
 
+    console.log('zdochlo 2');
     this.getFavCoins();
+    console.log('zdochlo 3');
     this.getMostPopular();
 
+    console.log('zdochlo 4');
     this.getMyTeam();
     // this.useManualFuel();
   }
@@ -369,11 +373,11 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.raceStarts = this.raceStartsIn;
     this.nextRaceHash = this.raceHashik;
 
-    this.actualRaceAmount = '1000 TRX';
+    this.actualRaceAmount = '1 IOI';
     this.isSpecial = true;
     this.myCars = this.tourcars;
     this.setupCarousel();
-    console.log('dddd');
+    console.log(this.myCars);
     let statBet = [];
     let selBets = [];
     for (let y = 0; y < this.myCars.length; y++) {
@@ -390,7 +394,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
         fake.customIndex = this.myBet[x].customIndex;
         fake.selected = this.myBet[x].selected;
         fake.short = this.myBet[x].short;
-
+        console.log(this.tourcars);
         if (this.tourcars[y].b[x].bet >= 5) {
 
          if(this.tourcars[y].b[x].symbol === 'BTCUSDT') {selBets.push(0);}
@@ -412,9 +416,10 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
          if(this.tourcars[y].b[x].symbol === 'WAVESUSDT') {selBets.push(16);}
          if(this.tourcars[y].b[x].symbol === 'ZILUSDT') {selBets.push(17);}
          if(this.tourcars[y].b[x].symbol === 'VETUSDT') {selBets.push(18);}
-         if(this.tourcars[y].b[x].symbol === 'USDT') {selBets.push(19);}
+         if(this.tourcars[y].b[x].symbol === 'USDTUSDT') {selBets.push(19);}
          fake.selected = true; 
         }
+        console.log('tu');
         if (this.tourcars[y].b[x].bet < 0) {
           if(this.tourcars[y].b[x].symbol === 'BTCUSDT') {selBets.push(0);}
           if(this.tourcars[y].b[x].symbol === 'ETHUSDT') {selBets.push(1);}
@@ -435,7 +440,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
           if(this.tourcars[y].b[x].symbol === 'WAVESUSDT') {selBets.push(16);}
           if(this.tourcars[y].b[x].symbol === 'ZILUSDT') {selBets.push(17);}
           if(this.tourcars[y].b[x].symbol === 'VETUSDT') {selBets.push(18);}
-          if(this.tourcars[y].b[x].symbol === 'USDT') {selBets.push(19);}
+          if(this.tourcars[y].b[x].symbol === 'USDTUSDT') {selBets.push(19);}
           fake.selected = true; 
         } 
         // if (x === selBets[counter]) {
@@ -454,19 +459,25 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
         //   fake.bet = 0;
         // }
         statBet.push(fake);
-        
+        console.log('tu');
       }
       //this.myCars[y].short = false;
       this.myCars[y].fuel = 100;
+      console.log('tu');
       this.myCars[y].selected = false;
+      console.log('tu');
       this.myCars[y].bet = statBet;
+      console.log('tu');
       statBet = [];
       this.myCars[y].selectedBets = selBets;
+      console.log('tu');
       selBets = [];
+      console.log('tu');
     }
-
+    console.log('tu');
     this.selectedCarsToRace.push(...this.myCars);
     this.calcSumFuel();
+    console.log('tu');
   }
 
 
