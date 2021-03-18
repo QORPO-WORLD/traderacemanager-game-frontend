@@ -5,6 +5,24 @@
     padding: 0 30px;
 }
 
+.info-bubble{
+    background: #111111;
+    box-shadow: 0px 0px 50px #000000, 0px 0px 70px #000000;
+    border-radius: 20px;
+    padding: 20px 24px 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .img-holder{
+      margin-right: 25px;
+      img{
+        min-width: 30px;
+      }
+    }
+  }
+
+  
+
 
 .neum-box{
     box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
@@ -69,7 +87,7 @@
         img{
             width: 25px;
         }
-        p{
+        .indicator{
             color: white;
             font-size: 19px;
             position: absolute;
@@ -81,6 +99,32 @@
             font-weight: 700;
             text-align: center;
         }
+        .info-icon{
+            width: 18px;
+            position: absolute;
+            top: -30px;
+            right: 0px;
+            z-index: 5;
+            &:hover{
+              .info-bubble{
+                opacity: 1;
+              }
+            }
+            .info-bubble{
+              width: 300px;
+              position: absolute;
+              top: 30px;
+              left: -270px;
+              transition: .2s;
+              pointer-events: none;
+              opacity: 0;
+              p{
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0;
+              }
+            }
+          }
     }
     .heading{
         color: #ffffff;
@@ -593,6 +637,16 @@
         .profile-img{
             width: 44px;
             height: 44px;
+        }
+    }
+    .balance-holder{
+        .ticket-holder{
+            .info-icon{
+                .info-bubble{
+                  width: 250px;
+                  left: -230px;
+                }
+              }
         }
     }
 }
