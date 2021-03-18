@@ -5,13 +5,22 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
   menuOpen = false;
   windowWidth = 1920;
   useMobileVideo = false;
   reviewSlide = 0;
   maxRevSlides = 2;
+  topBackIndex = 1;
+  backInterval: any;
+  myCars: Array<any> = [
+    { name: 'car1', value: 600, stakes: 0.6 },
+    { name: 'car2', value: 600, stakes: 0.6 },
+    { name: 'car3', value: 600, stakes: 0.6 },
+    { name: 'car4', value: 600, stakes: 0.6 }
+  ];
+  carIndex = 0;
 
   constructor() {
     this.windowWidth = window.innerWidth;
@@ -29,15 +38,17 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.nextBackSlide();
+  }
 
-  myCars: Array<any> = [
-    { name: 'car1', value: 600, stakes: 0.6 },
-    { name: 'car2', value: 600, stakes: 0.6 },
-    { name: 'car3', value: 600, stakes: 0.6 },
-    { name: 'car4', value: 600, stakes: 0.6 }
-  ];
-  carIndex = 0;
+  ngOnDestroy() {
+    clearInterval(this.backInterval);
+  }
+
+  routerOnDeactivate() {
+    clearInterval(this.backInterval);
+  }
 
   nextCar(){
     if (this.carIndex + 1 === this.myCars.length) {
@@ -73,6 +84,16 @@ export class HomePageComponent implements OnInit {
     if(this.reviewSlide !== 0){
       this.reviewSlide--;
     }
+  }
+
+  nextBackSlide(){
+    this.backInterval = setInterval(() => {
+      if (this.topBackIndex < 3) {
+        this.topBackIndex++;
+      } else {
+        this.topBackIndex = 1;
+      }
+    }, 9000);
   }
 
 
