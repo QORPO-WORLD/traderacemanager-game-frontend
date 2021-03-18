@@ -23,6 +23,20 @@
           <p class="desc">Free members</p>
           <p class="value">{{tt?.free_membership_count}}</p>
       </div>
+      <div class="item-holder">
+        <p class="desc">Owner</p>
+        <p class="value" *ngIf="tt?.owners.length === 0">-</p>
+        <p class="value" *ngIf="tt?.owners.length > 0">
+            <span class="arrow left" *ngIf="tt?.owners.length > 1 && ownerIndex !== 0" (click)="ownerIndex = ownerIndex - 1">&lt;</span> 
+            {{tt?.owners[ownerIndex].user_nickname}} 
+            <span class="arrow right" *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length" (click)="ownerIndex = ownerIndex + 1">&gt;</span>
+        </p>
+    </div>
+    <div class="item-holder">
+        <p class="desc">Manager</p>
+        <p class="value" *ngIf="tt?.manager_user_nickname">{{tt?.manager_user_nickname}}</p>
+        <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
+    </div>
 
       <ng-container *ngIf="modalVersion === false">
         <a class="join-button" data-toggle="modal" data-target="#team1modal"

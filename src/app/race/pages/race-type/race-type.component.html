@@ -238,17 +238,16 @@
 
     <div class="table-row">
       <div class="cell">
-        <img src="/assets/base/images/race-type/star-gray.png" alt="" *ngIf="!this.baseFavRaces[16].fav" (click)="this.baseFavRaces[16].fav = !this.baseFavRaces[16].fav" (click)="updateFavRaces();">
-        <img src="/assets/base/images/race-type/star-red.png" alt="" *ngIf="this.baseFavRaces[16].fav" (click)="this.baseFavRaces[16].fav = !this.baseFavRaces[16].fav" (click)="updateFavRaces();">
+        <img src="/assets/base/images/race-type/star-gray.png" alt="" *ngIf="!this.baseFavRaces[8].fav" (click)="this.baseFavRaces[8].fav = !this.baseFavRaces[8].fav" (click)="updateFavRaces();">
+        <img src="/assets/base/images/race-type/star-red.png" alt="" *ngIf="this.baseFavRaces[8].fav" (click)="this.baseFavRaces[8].fav = !this.baseFavRaces[8].fav" (click)="updateFavRaces();">
       
          Rookie</div>
       <div class="cell">3 tickets</div>
       <div class="cell">Free</div>
-      <div class="cell">0/100</div>
-      <!-- <div class="cell"><app-timer *ngIf="lstart" [value]="lstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div> -->
-      <div class="cell" >Soon</div>
+      <div class="cell">{{atour?.players_count}}/100</div>
+      <div class="cell"><app-timer *ngIf="atour" [value]="atour?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/classic_tournament_0']">Join race</div>
         <!-- <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/tournament_for_ticket_0']">Join race</div> -->
 
       </div>
@@ -260,10 +259,11 @@
        Semi PRO</div>
       <div class="cell">500 IOI</div>
       <div class="cell">5 IOI</div>
-      <div class="cell">0/100</div>
-      <div class="cell" >Soon</div>
+      <div class="cell">{{btour?.players_count}}/100</div>
+      <div class="cell"><app-timer *ngIf="btour" [value]="btour?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/classic_tournament_5']" *ngIf="myDriverBalances.game_wallet_ioi >= 5">Join race</div>
+        <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 5">Deposit</div>
         
         <!-- <div class="fast-race">
           <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
@@ -279,11 +279,11 @@
       Expert IOI</div>
       <div class="cell">1 000 IOI</div>
       <div class="cell">10 IOI</div>
-      <div class="cell">0/100</div>
-      <!-- <div class="cell"><app-timer *ngIf="istart" [value]="lstart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div> -->
-      <div class="cell" >Soon</div>
+      <div class="cell">{{ctour?.players_count}}/100</div>
+      <div class="cell"><app-timer *ngIf="ctour" [value]="ctour?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable">Soon</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="myDriverBalances.game_wallet_ioi >= 10">Join race</div>
+        <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 10">Deposit</div>
         <!-- <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/classic_tournament_10']">Join race</div>
         
         <div class="fast-race" (click)="selRaceType = 'car_race_ioi_1'" *ngIf="fastEnabled === true">
@@ -300,10 +300,11 @@
      Master</div>
     <div class="cell">10 000 IOI</div>
     <div class="cell">100 IOI</div>
-    <div class="cell">0/100</div>
-    <div class="cell" >Soon</div>
+    <div class="cell">{{dtour?.players_count}}/100</div>
+    <div class="cell"><app-timer *ngIf="dtour" [value]="dtour?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
     <div class="cell">
-      <div class="join-race my-cta-btn-back hoverable">Soon</div>
+      <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/classic_tournament_100']" *ngIf="myDriverBalances.game_wallet_ioi >= 100">Join race</div>
+      <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 100">Deposit</div>
       
       <!-- <div class="fast-race">
         <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
