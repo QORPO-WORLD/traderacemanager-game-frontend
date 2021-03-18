@@ -19,6 +19,7 @@ export class AllPlayersComponent implements OnInit {
   totalPages: number;
   mydrvrData: any;
   cachedLdrbrd: any;
+  Affiliate: any;
   isPageWithMe = false;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
     private identityService: AuthService) { }
@@ -27,6 +28,7 @@ export class AllPlayersComponent implements OnInit {
     this.getMyDriver();
     this.getMyLeaderboard();
     this.getCachedLeaderboard();
+    this.getMyLevel();
   }
 
   ngOnDestroy() {
@@ -81,5 +83,9 @@ export class AllPlayersComponent implements OnInit {
         this.isPageWithMe = true;
       }
     });
+  }
+  getMyLevel() {
+    this.Affiliate = this.identityService.getStorageAff();
+    console.log(this.Affiliate);
   }
 }
