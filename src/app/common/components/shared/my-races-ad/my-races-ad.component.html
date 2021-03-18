@@ -14,7 +14,7 @@
           <div class="inner-holder">
             <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
             <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
-            <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+            <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
             <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
             <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> {{'race.remaining' | translate}}</p>
           </div>
@@ -42,7 +42,7 @@
         <div class="inner-holder">
           <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
             <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
-          <p class="race-name">{{ 'race.type.' + mainr | translate}}</p>
+          <p class="race-name">{{ 'race.type.' + mainr  + '_simple' | translate}}</p>
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
   
@@ -63,7 +63,7 @@
           <div class="inner-holder">
             <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
             <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
-            <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+            <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
             <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
             <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
           </div>
@@ -98,7 +98,7 @@
             mainr.race_identifier === 'classic_tournament_1000' || mainr.race_identifier === 'classic_tournament_10' || 
             mainr.race_identifier === 'classic_tournament_100' || mainr.race_identifier === 'tournament_for_ticket_0' || 
             mainr.race_identifier === 'adventure_tournament'">{{'race.type.classic_tournament' | translate}}</p>
-          <p class="race-name">{{ 'race.type.' + mainr.race_identifier | translate}}</p>
+          <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
           <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
           <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
         </div>
