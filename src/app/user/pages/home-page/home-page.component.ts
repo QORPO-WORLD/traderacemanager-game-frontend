@@ -96,5 +96,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }, 9000);
   }
 
+  manualBackChange(id: number) {
+    this.topBackIndex = id;
+    clearInterval(this.backInterval);
+    this.nextBackSlide();
+  }
+
 
 }

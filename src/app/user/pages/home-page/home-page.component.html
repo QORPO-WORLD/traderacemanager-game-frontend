@@ -18,7 +18,7 @@
 </div>
 
 <div class="menu-holder" [ngClass]="{'active' : menuOpen === true}">
-<a><img src="/assets/base/images/logo.png" alt="" class="my-logo" (click)="nextBackSlide()"></a>
+<a><img src="/assets/base/images/logo.png" alt="" class="my-logo"></a>
     <div class="btns-holder">
         <a class="menu-item" (click)="scrollToView(racerOrOwner)">Gameplan</a>
         <a class="menu-item" (click)="scrollToView(myCarsSec)">NFT cars</a>
@@ -43,7 +43,7 @@
     <img src="/assets/base/images/home-page/heading.png" alt="" class="heading" [ngClass]="{'active': topBackIndex === 1}">
     <img src="/assets/base/images/home-page/heading2.png" alt="" class="heading left-side type2" [ngClass]="{'active': topBackIndex === 2}">
     <img src="/assets/base/images/home-page/heading3.png" alt="" class="heading left-side" [ngClass]="{'active': topBackIndex === 3}">
-  <div class="text-holder" [ngClass]="{'lowered': topBackIndex > 1}">
+  <div class="text-holder">
       <div class="btns-holder">
           <div class="btn-text" [ngClass]="{'active': topBackIndex === 2}">
               <p class="btn-heading">Races every 2 minutes</p>
@@ -51,6 +51,11 @@
           </div>
           <a class="grad-btn hoverable" [routerLink]="['/user/sign-up']" *ngIf="topBackIndex !== 2">Sign up</a>
           <a class="grad-btn hoverable" *ngIf="topBackIndex === 2">Soon</a>
+      </div>
+      <div class="dots-holder">
+          <div class="dot" (click)="manualBackChange(1)" [ngClass]="{'active': topBackIndex === 1}"></div>
+          <div class="dot" (click)="manualBackChange(2)" [ngClass]="{'active': topBackIndex === 2}"></div>
+          <div class="dot" (click)="manualBackChange(3)" [ngClass]="{'active': topBackIndex === 3}"></div>
       </div>
       <div class="rating-holder">
           <a href="https://play.google.com/store/apps/details?id=ioi.game">
@@ -69,24 +74,6 @@
 
   <img src="/assets/base/images/home-page/tracks-img.png" alt="" class="tracks-img" [ngClass]="{'active': topBackIndex === 2}">
 
-  <div class="logos-holder" [ngClass]="{'active': topBackIndex === 1}">
-      <img src="/assets/base/images/home-page/curr-logos/btc.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/trx.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/xrp.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/vechain.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/tether.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/tezos.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/bat.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/bnb.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/eos.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/monero.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/eth.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/stellar.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/ltc.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/zil.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/chain.png" alt="">
-      <img src="/assets/base/images/home-page/curr-logos/gardano.png" alt="">
-  </div>
 
 </section>
 

@@ -157,7 +157,7 @@ a{
     }
     .text-holder{
         position: absolute;
-        top: 75%;
+        top: 87%;
         transform: translateY(-50%);
         width: 100%;
         display: flex;
@@ -165,9 +165,6 @@ a{
         align-items: center;
         z-index: 3;
         transition: .4s;
-        &.lowered{
-            top: 87%;
-        }
         h1{
             font-size: 44px;
             font-weight: 800;
@@ -216,6 +213,23 @@ a{
                     &.btn-heading{
                         font-weight: 600;
                     }
+                }
+            }
+        }
+        .dots-holder{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .dot{
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                cursor: pointer;
+                margin: 0 15px;
+                opacity: .5;
+                background: linear-gradient(100.58deg, #FE173F 48.82%, #240B36 168.17%);
+                &.active{
+                    opacity: 1;
                 }
             }
         }
@@ -1997,6 +2011,13 @@ footer{
                   }
               }
           }
+          .dots-holder{
+              .dot{
+                  width: 16px;
+                  height: 16px;
+                  margin: 0 11px;
+              }
+          }
           .rating-holder{
               margin-top: 35px;
               .play-btn{
@@ -3370,10 +3391,12 @@ footer{
         .text-holder{
             flex-direction: column;
             .rating-holder{
+                order: 2;
                 margin-right: 0;
             }
             .btns-holder{
                 margin-left: 0;
+                order: 1;
                 .btn-text{
                     top: -10px;
                     width: 270px;
@@ -3383,6 +3406,15 @@ footer{
                     p{
                         font-size: 15px;
                     }
+                }
+            }
+            .dots-holder{
+                order: 3;
+                margin-top: 20px;
+                .dot{
+                    width: 12px;
+                    height: 12px;
+                    margin: 0 6px;
                 }
             }
         }
