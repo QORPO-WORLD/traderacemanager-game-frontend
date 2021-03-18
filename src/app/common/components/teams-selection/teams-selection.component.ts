@@ -25,6 +25,7 @@ export class TeamsSelectionComponent implements OnInit {
   teamOption = 1;
   startNow = false;
   myDriverStats: any;
+  ownerIndex = 0;
 
   constructor(protected api: TeamsService, private identityService: AuthService,
     private balanceService: BalanceService) { }
@@ -112,5 +113,6 @@ export class TeamsSelectionComponent implements OnInit {
   closeModal(){
     this.modalOpen.emit(false);
   }
+
 
 }
