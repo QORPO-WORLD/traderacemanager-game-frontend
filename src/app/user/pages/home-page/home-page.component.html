@@ -7,12 +7,18 @@
     <a href="https://blog.ioi-game.com/ioi-announces-public-token-offering/" class="panel-btn">Learn more</a>
 </div> -->
 
-<div class="top-back-img">
-  <div class="gradient-box"></div>
+<div class="top-back-img img1" [ngClass]="{'active': topBackIndex === 1}">
+    <div class="gradient-box"></div>
+</div>
+<div class="top-back-img img2" [ngClass]="{'active': topBackIndex === 2}">
+    <div class="gradient-box"></div>
+</div>
+<div class="top-back-img img3" [ngClass]="{'active': topBackIndex === 3}">
+    <div class="gradient-box"></div>
 </div>
 
 <div class="menu-holder" [ngClass]="{'active' : menuOpen === true}">
-<a><img src="/assets/base/images/logo.png" alt="" class="my-logo"></a>
+<a><img src="/assets/base/images/logo.png" alt="" class="my-logo" (click)="nextBackSlide()"></a>
     <div class="btns-holder">
         <a class="menu-item" (click)="scrollToView(racerOrOwner)">Gameplan</a>
         <a class="menu-item" (click)="scrollToView(myCarsSec)">NFT cars</a>
@@ -34,10 +40,17 @@
 </div>
 
 <section class="top-sec" id="home">
-    <img src="/assets/base/images/home-page/heading.png" alt="" class="heading">
-  <div class="text-holder">
+    <img src="/assets/base/images/home-page/heading.png" alt="" class="heading" [ngClass]="{'active': topBackIndex === 1}">
+    <img src="/assets/base/images/home-page/heading2.png" alt="" class="heading left-side type2" [ngClass]="{'active': topBackIndex === 2}">
+    <img src="/assets/base/images/home-page/heading3.png" alt="" class="heading left-side" [ngClass]="{'active': topBackIndex === 3}">
+  <div class="text-holder" [ngClass]="{'lowered': topBackIndex > 1}">
       <div class="btns-holder">
-          <a class="grad-btn hoverable" [routerLink]="['/user/sign-up']">Sign up</a>
+          <div class="btn-text" [ngClass]="{'active': topBackIndex === 2}">
+              <p class="btn-heading">Races every 2 minutes</p>
+              <p>owner get 3% from every race</p>
+          </div>
+          <a class="grad-btn hoverable" [routerLink]="['/user/sign-up']" *ngIf="topBackIndex !== 2">Sign up</a>
+          <a class="grad-btn hoverable" *ngIf="topBackIndex === 2">Soon</a>
       </div>
       <div class="rating-holder">
           <a href="https://play.google.com/store/apps/details?id=ioi.game">
@@ -54,7 +67,9 @@
       </div>
   </div>
 
-  <div class="logos-holder">
+  <img src="/assets/base/images/home-page/tracks-img.png" alt="" class="tracks-img" [ngClass]="{'active': topBackIndex === 2}">
+
+  <div class="logos-holder" [ngClass]="{'active': topBackIndex === 1}">
       <img src="/assets/base/images/home-page/curr-logos/btc.png" alt="">
       <img src="/assets/base/images/home-page/curr-logos/trx.png" alt="">
       <img src="/assets/base/images/home-page/curr-logos/xrp.png" alt="">

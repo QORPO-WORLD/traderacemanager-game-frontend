@@ -675,6 +675,12 @@
     </div>
 
     <div class="start-race-btn with-btns" *ngIf="stepIndex === 5 && introModal === false">
+      <div class="race-mode-holder" (click)="useTicket = true;signupToRace()" *ngIf="isLoading === false && tickets > 0">
+        <div class="ticket-btn my-fuel-btn-back">
+          <p *ngIf="isLoading === false">Use ticket &gt;</p>
+          <p *ngIf="isLoading === true">Loading.. </p>
+        </div>
+      </div>
       <!-- <div class="race-mode-holder">
         <div class="mode-btn my-cta-btn-back three-d" [ngClass]="{'picked': useUnity === true}" (click)="useUnity = true;changeGameType()">
           <div class="car-check">
