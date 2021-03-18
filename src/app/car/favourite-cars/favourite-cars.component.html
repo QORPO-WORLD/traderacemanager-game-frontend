@@ -44,7 +44,7 @@
 
     <div class="cars-holder">
       <div class="edition-holder">
-        <div class="regular-cars">
+        <div class="regular-cars">       
           <ng-container *ngFor="let mc of myCars; let x = index">
             <div class="car-item set" 
             *ngIf="mc.favourite !== undefined && mc.car_id > ((editionIndex * 6) - 6) && mc.car_id <= (editionIndex * 6) || (mc.favourite !== undefined && mc.car_id === (24 + editionIndex))">
@@ -142,11 +142,10 @@
           </ng-container>
 
         </div>
-      </div>
-
-      <div class="no-cars-box" *ngIf="myCarsInEdition?.length === 0">
-        <p>You dont have any cars in this edition.</p>
-        <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFT cars</button>
+        <div class="no-cars-box">
+          <p>You dont have any cars in this edition.</p>
+          <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFT cars</button>
+        </div>
       </div>
       
     </div>
