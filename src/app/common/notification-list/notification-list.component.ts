@@ -56,8 +56,7 @@ export class NotificationListComponent implements OnInit, OnDestroy, AfterViewIn
   clearNotifications() {
     this.api.driversNotificationsDelete().subscribe(data => {
       this.notifications.length = 0;
-    }
-    );
+    });
   }
 
 }

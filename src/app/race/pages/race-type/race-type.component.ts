@@ -32,6 +32,10 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
   jstart: any;
   kstart: any;
   lstart: any;
+  atour: any;
+  btour: any;
+  ctour: any;
+  dtour: any;
   ioistarta: any;
   ioistartb: any;
   ioistartc: any;
@@ -52,9 +56,9 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     { type: 'car_race_24hrs_1000', fav: false },
     { type: 'wednesday_party_race_0', fav: false },
     { type: 'classic_tournament_0', fav: false },
+    { type: 'classic_tournament_5', fav: false },
     { type: 'classic_tournament_10', fav: false },
     { type: 'classic_tournament_100', fav: false },
-    { type: 'classic_tournament_1000', fav: false },
     { type: 'golden_ticket_0', fav: false },
     { type: 'car_race_ioi_1', fav: false },
     { type: 'car_race_ioi_3', fav: false },
@@ -103,6 +107,10 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     this.hstart = null;
     this.istart = null;
     this.jstart = null;
+    this.atour = null;
+    this.btour = null;
+    this.ctour = null;
+    this.dtour = null;
     this.ioistarta = null;
     this.ioistartb = null;
     this.ioistartc = null;
@@ -122,10 +130,10 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
         if (nedata[x].race_identifier === 'car_race_short_1000') { this.fstart = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_24hrs_1000') { this.gstart = nedata[x]; }
         if (nedata[x].race_identifier === 'wednesday_party_race_0') { this.hstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_0') { this.jstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_10') { this.istart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_100') { this.istart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_1000') { this.istart = nedata[x]; }
+        if (nedata[x].race_identifier === 'classic_tournament_0') { this.atour = nedata[x]; }
+        if (nedata[x].race_identifier === 'classic_tournament_5') { this.btour = nedata[x]; }
+        if (nedata[x].race_identifier === 'classic_tournament_10') { this.ctour = nedata[x]; }
+        if (nedata[x].race_identifier === 'classic_tournament_100') { this.dtour = nedata[x]; }
         if (nedata[x].race_identifier === 'golden_ticket_0') { this.kstart = nedata[x]; }
         if (nedata[x].race_identifier === 'golden_ticket_10') { this.kstart = nedata[x]; }
         if (nedata[x].race_identifier === 'golden_ticket_100') { this.kstart = nedata[x]; }

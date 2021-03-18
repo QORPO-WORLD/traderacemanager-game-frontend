@@ -27,7 +27,6 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
   task8: DailyTask;
   endofday: any;
   myDriverOld: any;
-  rewardsClaimed = false;
   startTutorial = false;
   tutorialStep = 1;
   showShareModal = false;
@@ -114,14 +113,6 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
     }
   }
 
-  claimReward() {
-    this.tchat.teamChatCreate(this.serializeChatMessage()).subscribe(
-      data => {
-        this.rewardsClaimed = true;
-        this.notify.error('Claimed in team chat. Thank you!');
-      }
-    )
-  }
 
 
   serializeChatMessage() {
