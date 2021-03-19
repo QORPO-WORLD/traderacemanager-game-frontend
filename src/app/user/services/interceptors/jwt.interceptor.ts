@@ -23,11 +23,13 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
 
 
-        const token = JSON.parse(localStorage.getItem('first-time'));
+        const token = JSON.parse(localStorage.getItem('auth-token'));
         request = request.clone({
-            withCredentials: true
+            withCredentials: true,
+            setHeaders: {
+                'X-Trm-Auth-Key': token ? token : ''
+            }
         });
-
 
             //this.identityService.tokenExpires(token.access);
 

@@ -40,7 +40,7 @@ export class AuthService extends AbstractService {
 
   public login(token) {
     localStorage.setItem('bal-first-time', 'true');
-    //this.setToken(token);
+    this.setToken(token);
     setTimeout(() => {
       this.me();
      }, 10);

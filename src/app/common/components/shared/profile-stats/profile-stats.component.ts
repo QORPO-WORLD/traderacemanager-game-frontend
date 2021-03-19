@@ -71,7 +71,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getCachedLeaderboard();
     this.getAffilateLink();
-    this.getMyLeaderboard();
+    //this.getMyLeaderboard();
     //this.getTicker();
     this.getAffilate();
 

@@ -143,7 +143,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     setTimeout(() => { this.loading = false }, 2000);
     this.token = null;
     clearInterval(this.dangerInterval);
-    this.getAuthService().login(data);
+    this.getAuthService().login(data.authKey);
   }
 
 
