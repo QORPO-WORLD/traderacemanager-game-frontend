@@ -177,10 +177,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     } else {
       this.raceId = this.actv.snapshot.paramMap.get('id');
     }
-
+    
     setTimeout(() => {
       this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
-        //const retypeData: any = data;
+        //const retypeData: any = data; 
+        
+        console.log(data);
+        
+        this.raceDataildata = data;
+        this.endsIn = data.ends_in;
         if (data.race_progress > 0) {
           this.startRace();
         } else {
@@ -190,23 +195,21 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             this.whenStarts();
           }
         }
-
+        
         if (data.tournament_id !== null && data.tour_index > 1) {
           this.getLdrv();
-        }
+        } 
         if (data.is_cancelled === true) {
           this.notify.error('', 'Not enough players to start, you will be redirected.');
           this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]);
         }
 
-        this.raceDataildata = data;
-        this.endsIn = data.ends_in;
         this.resolveBackType();
         this.getMotive();
 
 
       });
-    }, 20);
+    }, 300);
     setTimeout(() => { this.getRaceData(); }, 50);
     this.detailInterval = setInterval(() => {
       this.getRaceDetail();
@@ -337,28 +340,33 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   startRace() {
+    
     if (this.beforeSound) {
       this.beforeSound.pause();
       this.beforeSound = null;
     }
-    if (this.raceData.race.length < 2 || this.raceDataildata.is_cancelled === true) {
+    console.log(this.raceDataildata);
+    if (this.raceDataildata.is_cancelled === true) {
+      
       this.redirectToNextRace();
+      
       return;
     }
+    
     clearInterval(this.detailInterval);
-    setTimeout(() => {
+    /*
+    if (this.raceData.race_progress < 1) {
+      setTimeout(() => {
+        this.getRaceData();
+      }, 500);
+      setTimeout(() => {
+        this.getRaceData();
+      }, 100);
+    }
+*/      setTimeout(() => {
       this.getRaceData();
-    }, 700);   
-    setTimeout(() => {
-      this.getRaceData();
-    }, 100);    
-   
-    setTimeout(() => {
-      this.getRaceData();
-    }, 1300);   
-    setTimeout(() => {
-      this.getRaceData();
-    }, 1800);
+    }, 500);
+    
     //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
       if (this.pageOpen === true) {
@@ -466,7 +474,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
             const betix: any = [];
-            if(firstData.coins_performance.length > 0) {
+            if (firstData.coins_performance.length > 0) {
               for (let i = 0; i < 20; i++) {
                 betix.push({
                   symbol: firstData.coins_performance[i].symbol ? firstData.coins_performance[i].symbol : '',
@@ -475,7 +483,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                   to_prices: firstData.coins_performance[i].to_prices,
                   bet: 0
                 });
-              
+
               }
             } else {
               for (let i = 0; i < 3; i++) {
@@ -483,7 +491,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                   symbol: this.raceDataildata.my_cars[x].b[i].symbol,
                   bet: this.raceDataildata.my_cars[x].b[i].bet
                 });
-              
+
               }
             }
 
@@ -491,10 +499,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             for (let z = 0; z < 3; z++) {
               for (let y = 0; y < 20; y++) {
                 if (this.raceDataildata.my_cars[x].betik[y].symbol === this.raceDataildata.my_cars[x].b[z].symbol) {
-                   this.raceDataildata.my_cars[x].betik[y].bet = this.raceDataildata.my_cars[x].b[z].bet;
+                  this.raceDataildata.my_cars[x].betik[y].bet = this.raceDataildata.my_cars[x].b[z].bet;
                 }
               }
-              
+
             }
           }
         }

@@ -364,7 +364,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   }
 
   getRaceDetails() {
- 
+    const mainlength = this.tourcars.length;
 
     this.currAvailableSlides = (this.myBet.length / 3) - 5;
     this.editionAvailableSlides = (this.myCars.length / 2) - 3;
@@ -378,106 +378,93 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.myCars = this.tourcars;
     this.setupCarousel();
     console.log(this.myCars);
-    let statBet = [];
-    let selBets = [];
-    for (let y = 0; y < this.myCars.length; y++) {
+    console.log(mainlength);
+
+    
+
+    for (let y = 0; y < mainlength; y++) {
       let counter = 0;
+      const statBet = [];
+      const selBets = [];
+      for (let i = 0; i < 3; i++) {
+      //for (let x = 0; x < 20; x++) {
+        
+          console.log(this.tourcars);
+          const fake: any = {};
+   
+          fake.bet = this.tourcars[y].b[i].bet;
+          console.log(this.tourcars[y].b[i].bet);
+          fake.symbol = this.tourcars[y].b[i].symbol;
+          //fake.favourite = this.myBet[x].favourite;
+          fake.customIndex = this.myBet[i].customIndex;
+          fake.selected = true;
+          fake.short = this.tourcars[y].b[i].bet < 0 ? true : false;
+          console.log(this.tourcars[y].b[i]);
 
-      for (let x = 0; x < this.myBet.length; x++) {
-        const fake: any = {};
-        fake.bet = this.tourcars[y].b[x].bet;
-        if(fake.bet < 0){
-          fake.bet *= -1;
-        }
-        fake.symbol = this.myBet[x].symbol;
-        fake.favourite = this.myBet[x].favourite;
-        fake.customIndex = this.myBet[x].customIndex;
-        fake.selected = this.myBet[x].selected;
-        fake.short = this.myBet[x].short;
-        console.log(this.tourcars);
-        if (this.tourcars[y].b[x].bet >= 5) {
 
-         if(this.tourcars[y].b[x].symbol === 'BTCUSDT') {selBets.push(0);}
-         if(this.tourcars[y].b[x].symbol === 'ETHUSDT') {selBets.push(1);}
-         if(this.tourcars[y].b[x].symbol === 'XRPUSDT') {selBets.push(2);}
-         if(this.tourcars[y].b[x].symbol === 'BCHUSDT') {selBets.push(3);}
-         if(this.tourcars[y].b[x].symbol === 'LTCUSDT') {selBets.push(4);}
-         if(this.tourcars[y].b[x].symbol === 'EOSUSDT') {selBets.push(5);}
-         if(this.tourcars[y].b[x].symbol === 'BNBUSDT') {selBets.push(6);}
-         if(this.tourcars[y].b[x].symbol === 'XMRUSDT') {selBets.push(7);}
-         if(this.tourcars[y].b[x].symbol === 'ADAUSDT') {selBets.push(8);}
-         if(this.tourcars[y].b[x].symbol === 'TRXUSDT') {selBets.push(9);}
-         if(this.tourcars[y].b[x].symbol === 'BATUSDT') {selBets.push(10);}
-         if(this.tourcars[y].b[x].symbol === 'XLMUSDT') {selBets.push(11);}
-         if(this.tourcars[y].b[x].symbol === 'XTZUSDT') {selBets.push(12);}
-         if(this.tourcars[y].b[x].symbol === 'ENJUSDT') {selBets.push(13);}
-         if(this.tourcars[y].b[x].symbol === 'MATICUSDT') {selBets.push(14);}
-         if(this.tourcars[y].b[x].symbol === 'LINKUSDT') {selBets.push(15);}
-         if(this.tourcars[y].b[x].symbol === 'WAVESUSDT') {selBets.push(16);}
-         if(this.tourcars[y].b[x].symbol === 'ZILUSDT') {selBets.push(17);}
-         if(this.tourcars[y].b[x].symbol === 'VETUSDT') {selBets.push(18);}
-         if(this.tourcars[y].b[x].symbol === 'USDTUSDT') {selBets.push(19);}
-         fake.selected = true; 
-        }
-        console.log('tu');
-        if (this.tourcars[y].b[x].bet < 0) {
-          if(this.tourcars[y].b[x].symbol === 'BTCUSDT') {selBets.push(0);}
-          if(this.tourcars[y].b[x].symbol === 'ETHUSDT') {selBets.push(1);}
-          if(this.tourcars[y].b[x].symbol === 'XRPUSDT') {selBets.push(2);}
-          if(this.tourcars[y].b[x].symbol === 'BCHUSDT') {selBets.push(3);}
-          if(this.tourcars[y].b[x].symbol === 'LTCUSDT') {selBets.push(4);}
-          if(this.tourcars[y].b[x].symbol === 'EOSUSDT') {selBets.push(5);}
-          if(this.tourcars[y].b[x].symbol === 'BNBUSDT') {selBets.push(6);}
-          if(this.tourcars[y].b[x].symbol === 'XMRUSDT') {selBets.push(7);}
-          if(this.tourcars[y].b[x].symbol === 'ADAUSDT') {selBets.push(8);}
-          if(this.tourcars[y].b[x].symbol === 'TRXUSDT') {selBets.push(9);}
-          if(this.tourcars[y].b[x].symbol === 'BATUSDT') {selBets.push(10);}
-          if(this.tourcars[y].b[x].symbol === 'XLMUSDT') {selBets.push(11);}
-          if(this.tourcars[y].b[x].symbol === 'XTZUSDT') {selBets.push(12);}
-          if(this.tourcars[y].b[x].symbol === 'ENJUSDT') {selBets.push(13);}
-          if(this.tourcars[y].b[x].symbol === 'MATICUSDT') {selBets.push(14);}
-          if(this.tourcars[y].b[x].symbol === 'LINKUSDT') {selBets.push(15);}
-          if(this.tourcars[y].b[x].symbol === 'WAVESUSDT') {selBets.push(16);}
-          if(this.tourcars[y].b[x].symbol === 'ZILUSDT') {selBets.push(17);}
-          if(this.tourcars[y].b[x].symbol === 'VETUSDT') {selBets.push(18);}
-          if(this.tourcars[y].b[x].symbol === 'USDTUSDT') {selBets.push(19);}
-          fake.selected = true; 
-        } 
-        // if (x === selBets[counter]) {
-        //   fake.bet = this.tourcars[y].b[counter].bet;
-        //   fake.selected = true;
-        //   if (fake.bet < 0) {
-        //     fake.short = true; 
-        //   } else {
-        //     fake.short = false;
-        //   }
-        //   console.log(fake.bet);
-        //   counter++;
-        // } else {
-        //   fake.selected = false;
-        //   fake.short = false;
-        //   fake.bet = 0;
-        // }
-        statBet.push(fake);
-        console.log('tu');
+            if (this.tourcars[y].b[i].symbol === 'BTCUSDT') { selBets.push(0); }
+            if (this.tourcars[y].b[i].symbol === 'ETHUSDT') { selBets.push(1); }
+            if (this.tourcars[y].b[i].symbol === 'XRPUSDT') { selBets.push(2); }
+            if (this.tourcars[y].b[i].symbol === 'BCHUSDT') { selBets.push(3); }
+            if (this.tourcars[y].b[i].symbol === 'LTCUSDT') { selBets.push(4); }
+            if (this.tourcars[y].b[i].symbol === 'EOSUSDT') { selBets.push(5); }
+            if (this.tourcars[y].b[i].symbol === 'BNBUSDT') { selBets.push(6); }
+            if (this.tourcars[y].b[i].symbol === 'XMRUSDT') { selBets.push(7); }
+            if (this.tourcars[y].b[i].symbol === 'ADAUSDT') { selBets.push(8); }
+            if (this.tourcars[y].b[i].symbol === 'TRXUSDT') { selBets.push(9); }
+            if (this.tourcars[y].b[i].symbol === 'BATUSDT') { selBets.push(10); }
+            if (this.tourcars[y].b[i].symbol === 'XLMUSDT') { selBets.push(11); }
+            if (this.tourcars[y].b[i].symbol === 'XTZUSDT') { selBets.push(12); }
+            if (this.tourcars[y].b[i].symbol === 'ENJUSDT') { selBets.push(13); }
+            if (this.tourcars[y].b[i].symbol === 'MATICUSDT') { selBets.push(14); }
+            if (this.tourcars[y].b[i].symbol === 'LINKUSDT') { selBets.push(15); }
+            if (this.tourcars[y].b[i].symbol === 'WAVESUSDT') { selBets.push(16); }
+            if (this.tourcars[y].b[i].symbol === 'ZILUSDT') { selBets.push(17); }
+            if (this.tourcars[y].b[i].symbol === 'VETUSDT') { selBets.push(18); }
+            if (this.tourcars[y].b[i].symbol === 'USDTUSDT') { selBets.push(19); }
+
+          console.log('tu');
+
+          /*
+         
+          */
+          // if (x === selBets[counter]) {
+          //   fake.bet = this.tourcars[y].b[counter].bet;
+          //   fake.selected = true;
+          //   if (fake.bet < 0) {
+          //     fake.short = true; 
+          //   } else {
+          //     fake.short = false;
+          //   }
+          //   console.log(fake.bet);
+          //   counter++;
+          // } else {
+          //   fake.selected = false;
+          //   fake.short = false;
+          //   fake.bet = 0;
+          // }
+          statBet.push(fake);
+
+          console.log(fake);
+          console.log(selBets);
+        
       }
+      console.log('tu nie?');
       //this.myCars[y].short = false;
       this.myCars[y].fuel = 100;
       console.log('tu');
       this.myCars[y].selected = false;
-      console.log('tu');
+ 
       this.myCars[y].bet = statBet;
-      console.log('tu');
-      statBet = [];
+     
       this.myCars[y].selectedBets = selBets;
-      console.log('tu');
-      selBets = [];
-      console.log('tu');
+      
+      console.log('tu jop');
+
+      //mergnut mybet a mycars.bet - customindex + selected
+
     }
-    console.log('tu');
-    this.selectedCarsToRace.push(...this.myCars);
-    this.calcSumFuel();
-    console.log('tu');
+
   }
 
 
@@ -487,6 +474,12 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.timerReady = false;
 
     this.getRaceDetails();
+    console.log(this.selectedCarsToRace);
+    console.log(this.myCars);
+    console.log();
+    this.selectedCarsToRace.push(...this.myCars);
+    this.calcSumFuel();
+    console.log('tu');
 
   }
 
