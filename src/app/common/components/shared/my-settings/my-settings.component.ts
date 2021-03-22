@@ -66,7 +66,9 @@ export class MySettingsComponent implements OnInit {
 
   launchTutorial() {
     const data = this.identityService.getStorageIdentity();
-    data.is_in_tutorial === true ? this.tutorialStarted = false : this.tutorialStarted = true;
+    if (window.innerWidth > 1024){
+      data.is_in_tutorial === true ? this.tutorialStarted = false : this.tutorialStarted = true;
+    }
   }
 
   switchAuthenticator(event) {

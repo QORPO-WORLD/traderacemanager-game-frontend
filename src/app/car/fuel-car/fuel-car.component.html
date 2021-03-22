@@ -527,12 +527,10 @@
               </div>
             </div>
             <ng-container *ngFor="let item of multibetOptions">
-              <div class="bet-btn" [ngClass]="'race-' + item.type" *ngIf="item.enabled === false">
-                <p class="bet-btn-text">{{ 'race.type.' + item.type | translate}}
-               <!--   <span *ngIf="item.val !== 1 && item.val !== 3 && item.val !== 5">{{'shared.trx' | translate}}</span>
-                  <span *ngIf="item.val === 1 || item.val === 3 || item.val === 5">{{'shared.ioi' | translate}}</span>
-               -->
-                </p>
+              <div class="bet-btn my-border-grad" *ngIf="item.enabled === false">
+                <div class="inner-btn">
+                  <p class="bet-btn-text">{{ 'race.type.' + item.type + '_simple' | translate}}</p>
+                </div>
               </div>
             </ng-container>
           </div>
@@ -546,7 +544,72 @@
 
     <div class="bets-holder" *ngIf="multibetOptions?.length > 0">
       <div *ngFor="let mb of multibetOptions; let i = index" class="inner-item-holder">
-        <div class="item-race race10" *ngIf="mb.type === 'car_race_ioi_1'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_1'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
+            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+          </div>
+    
+          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 1, i, 'ioi')" *ngIf="mb.enabled === true"></div>
+          <div class="click-dummy" (click)="removeFromMultibet(i, 1, 1, 'ioi')" *ngIf="mb.enabled === false"></div>
+    
+        </div>
+
+        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_5'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
+            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+          </div>
+    
+          <div class="click-dummy" (click)="addToMultibet(mb, calc2, 5, i, 'ioi')" *ngIf="mb.enabled === true"></div>
+          <div class="click-dummy" (click)="removeFromMultibet(i, 5, 2, 'ioi')" *ngIf="mb.enabled === false"></div>
+    
+        </div>
+
+        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_10'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
+            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+          </div>
+    
+          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 10, i, 'ioi')" *ngIf="mb.enabled === true"></div>
+          <div class="click-dummy" (click)="removeFromMultibet(i, 10, 3, 'ioi')" *ngIf="mb.enabled === false"></div>
+    
+        </div>
+
+        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_50'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
+            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+          </div>
+    
+          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 50, i, 'ioi')" *ngIf="mb.enabled === true"></div>
+          <div class="click-dummy" (click)="removeFromMultibet(i, 50, 4, 'ioi')" *ngIf="mb.enabled === false"></div>
+    
+        </div>
+
+        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_100'">
+          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
+          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
+            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
+            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+          </div>
+    
+          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 100, i, 'ioi')" *ngIf="mb.enabled === true"></div>
+          <div class="click-dummy" (click)="removeFromMultibet(i, 100, 5, 'ioi')" *ngIf="mb.enabled === false"></div>
+    
+        </div>
+
+        <!-- <div class="item-race race10" *ngIf="mb.type === 'car_race_ioi_1'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
           <p class="race-bet">{{mb.val}} {{'shared.ioi' | translate}}</p>
           <button (click)="addToMultibet(mb, calc1, 1, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
           <button (click)="removeFromMultibet(i, 1, 1, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
@@ -570,21 +633,6 @@
           <p class="race-bet">{{mb.val}} {{'shared.ioi' | translate}}</p>
           <button (click)="addToMultibet(mb, calc5, 100, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
           <button (click)="removeFromMultibet(i, 100, 5, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
-        </div>
-        <!-- <div class="item-race raceioi1" *ngIf="mb.type === 'car_race_ioi_1'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-          <p class="race-bet">{{mb.val}} {{'shared.ioi' | translate}}</p>
-          <button (click)="addToMultibet(mb, calc6, 1, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
-          <button (click)="removeFromMultibet(i, 1, 6, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
-        </div>
-        <div class="item-race raceioi3" *ngIf="mb.type === '3ioi'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-          <p class="race-bet">{{mb.val}} {{'shared.ioi' | translate}}</p>
-          <button (click)="addToMultibet(mb, calc5, 3, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
-          <button (click)="removeFromMultibet(i, 3, 7, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
-        </div>
-        <div class="item-race raceioi5" *ngIf="mb.type === 'car_race_ioi_5'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-          <p class="race-bet">{{mb.val}} {{'shared.ioi' | translate}}</p>
-          <button (click)="addToMultibet(mb, calc8, 5, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
-          <button (click)="removeFromMultibet(i, 5, 8, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
         </div> -->
           </div>
     </div>
@@ -675,7 +723,7 @@
     </div>
 
     <div class="start-race-btn with-btns" *ngIf="stepIndex === 5 && introModal === false">
-      <div class="race-mode-holder" (click)="useTicket = true;signupToRace()" *ngIf="isLoading === false && tickets > 0 && raceId === 'car_race_ioi_1'">
+      <div class="race-mode-holder" (click)="useTicket = true;signupToRace()" *ngIf="tickets > 0 && raceId === 'car_race_ioi_1'">
         <div class="ticket-btn my-fuel-btn-back">
           <p *ngIf="isLoading === false">Use ticket &gt;</p>
           <p *ngIf="isLoading === true">Loading.. </p>

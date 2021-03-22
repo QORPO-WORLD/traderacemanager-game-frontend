@@ -424,13 +424,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.myNick = data.nickname;
     data.is_in_tutorial === true ? this.tutorialStarted = true : this.tutorialStarted = false;
 
-    //this.firstLogin = false;
     this.tickets = data.golden_tickets;
-    if (this.firstLogin === true) {
-      if (this.verifyModal === false) {
-        this.introModal = true;
-      }
-    }
     if (this.tutorialStarted === true && window.innerWidth > 1024) {
       this.introModal = true;
     } else {

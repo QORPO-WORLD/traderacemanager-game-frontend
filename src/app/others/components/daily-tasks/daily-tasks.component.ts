@@ -64,7 +64,6 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
 
   getMyOldDriver() {
     this.myDriverOld = this.identityService.getDriverMe();
-    console.log(this.myDriverOld);
   }
 
   resolveTasks() {
