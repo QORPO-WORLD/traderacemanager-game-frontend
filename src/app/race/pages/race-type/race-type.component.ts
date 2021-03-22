@@ -73,7 +73,7 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     { type: 'car_race_enduro_5', fav: false },
     { type: 'car_race_enduro_10', fav: false },
     { type: 'car_race_enduro_50', fav: false },
-    { type: 'car_race_enduro_0', fav: false },
+    { type: 'car_race_enduro_100', fav: false },
   ];
   myFavRaces = [];
   myTeam: any;

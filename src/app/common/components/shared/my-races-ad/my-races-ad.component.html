@@ -41,8 +41,10 @@
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
-               <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.includes('wednesday')">{{'race.type.special' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.includes('tournament')">{{'race.type.classic_tournament' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.includes('enduro')">{{'race.type.enduro' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.includes('ioi') || mainr.includes('short')">{{'start-race.fast_race' | translate}}</p>
           <p class="race-name">{{ 'race.type.' + mainr  + '_simple' | translate}}</p>
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
