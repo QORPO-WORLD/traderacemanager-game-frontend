@@ -177,13 +177,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     } else {
       this.raceId = this.actv.snapshot.paramMap.get('id');
     }
-    
+
     setTimeout(() => {
       this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
         //const retypeData: any = data; 
-        
+
         console.log(data);
-        
+
         this.raceDataildata = data;
         this.endsIn = data.ends_in;
         if (data.race_progress > 0) {
@@ -195,10 +195,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             this.whenStarts();
           }
         }
-        
+
         if (data.tournament_id !== null && data.tour_index > 1) {
           this.getLdrv();
-        } 
+        }
         if (data.is_cancelled === true) {
           this.notify.error('', 'Not enough players to start, you will be redirected.');
           this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]);
@@ -340,36 +340,36 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   startRace() {
-    
-    if (this.beforeSound) {
-      this.beforeSound.pause();
-      this.beforeSound = null;
-    }
-    console.log(this.raceDataildata);
+
+
     if (this.raceDataildata.is_cancelled === true) {
-      
+
       this.redirectToNextRace();
-      
+      clearInterval(this.detailInterval);
       return;
     }
-    
+
     clearInterval(this.detailInterval);
-    /*
-    if (this.raceData.race_progress < 1) {
-      setTimeout(() => {
-        this.getRaceData();
-      }, 500);
-      setTimeout(() => {
-        this.getRaceData();
-      }, 100);
-    }
-*/      setTimeout(() => {
+
+    setTimeout(() => {
       this.getRaceData();
+    }, 10);
+    setTimeout(() => {
+      this.getRaceData();
+    }, 100);
+
+    setTimeout(() => {
+      this.getRaceData();
+    }, 300);
+
+    setTimeout(() => {
+      this.getRaceData(true);
     }, 500);
-    
+
     //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
       if (this.pageOpen === true) {
+        this.moveWheels();
         setTimeout(() => {
           this.semaforsVisible = false;
           this.raceSound = document.createElement('audio');
@@ -381,8 +381,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         }, 1500);
 
       }
+
     }
-    this.moveWheels();
+
+    if (this.beforeSound) {
+      this.beforeSound.pause();
+      this.beforeSound = null;
+    }
+
+
     setTimeout(() => {
       this.getUpcoming();
     }, 800);
@@ -401,7 +408,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
 
-  getRaceData() {
+  getRaceData(repeat?: boolean) {
 
     this.api.racesStatsList({ raceHash: this.raceId, pageNumber: this.actualPage })
       .subscribe(data => {
@@ -465,10 +472,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         }
-        if (firstData.race_progress > 0 && firstData.race_progress < 100) {
+        if (firstData.race_progress > 0 && firstData.race_progress < 100 && repeat === true) {
           setTimeout(() => {
-            this.getRaceData();
-          }, 1500);
+            this.getRaceData(true);
+          }, 1000);
         }
 
         if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
