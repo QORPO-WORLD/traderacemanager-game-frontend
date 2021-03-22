@@ -128,7 +128,7 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
 
     const data = this.identityService.getStorageIdentity();
 
-    if (data.is_in_tutorial === true) {
+    if (data.is_in_tutorial === true && window.innerWidth > 1024) {
       this.startTutorial = true;
     } else {
       this.tutorialStep = -1;
