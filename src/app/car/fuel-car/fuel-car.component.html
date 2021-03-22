@@ -161,8 +161,8 @@
           <p class="heading">Technical analysis</p>
         </div>
 
-        <div class="graphs-holder">
-          <app-indicator [type]="selectedSymbol" *ngIf="selectedSymbol"></app-indicator>
+        <div class="graphs-holder" *ngIf="selectedSymbol">
+          <app-indicator [type]="selectedSymbol"></app-indicator>
         </div>
         
         <div class="bottom-part">
@@ -790,8 +790,10 @@
       <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close" (click)="selectedSymbol = null">
         <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
       </button>
-      <div class="modal-body" *ngIf="selectedSymbol" style="height:500px;">
+      <div class="modal-body" style="height:500px;">
+        <div  *ngIf="selectedSymbol" >
         <app-indicator [type]="selectedSymbol"></app-indicator>
+        </div>
       </div>
     </div>
   </div>
