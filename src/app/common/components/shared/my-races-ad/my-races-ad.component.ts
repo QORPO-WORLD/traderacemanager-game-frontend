@@ -44,6 +44,11 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     { type: 'car_race_ioi_1', fav: false },
     { type: 'car_race_ioi_3', fav: false },
     { type: 'car_race_ioi_5', fav: false },
+    { type: 'car_race_enduro_1', fav: false },
+    { type: 'car_race_enduro_5', fav: false },
+    { type: 'car_race_enduro_10', fav: false },
+    { type: 'car_race_enduro_50', fav: false },
+    { type: 'car_race_enduro_100', fav: false },
   ];
   myFavRaces = [];
   constructor(private api: RacesService, private actv: Router, private drvrsrvc: DriversService,
@@ -186,7 +191,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   getmyFavRaces() {
     this.favObserver = this.drvrsrvc.driversFavRacesList().subscribe(data => {
       const nn: any = data;
-      this.myFavRaces = nn;
+      this.myFavRaces = nn;  
       this.resortFavRaces();
     });
 
