@@ -1090,15 +1090,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   resolveBackType() {
-    if (this.raceDataildata.race_identifier === 'car_race_ioi_100') {
+    if (this.raceDataildata.race_identifier === 'car_race_ioi_100' || this.raceDataildata.race_identifier === 'car_race_enduro_100' || this.raceDataildata.race_identifier === 'classic_tournament_100') {
       this.backType = 2;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_1') {
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_1' || this.raceDataildata.race_identifier === 'car_race_enduro_1') {
       this.backType = 3;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5') {
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5' || this.raceDataildata.race_identifier === 'car_race_enduro_5' || this.raceDataildata.race_identifier === 'classic_tournament_5') {
       this.backType = 4;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_10') {
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_10' || this.raceDataildata.race_identifier === 'car_race_enduro_10' || this.raceDataildata.race_identifier === 'classic_tournament_10') {
       this.backType = 5;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_50') {
+    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_50' || this.raceDataildata.race_identifier === 'car_race_enduro_50') {
       this.backType = 6;
     } else {
       this.backType = 1;
