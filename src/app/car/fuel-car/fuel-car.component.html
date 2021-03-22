@@ -120,7 +120,7 @@
           <div class="inner-item-holder" [ngClass]="{'only-favs': favFilter === true}">
     
             <ng-container *ngFor="let majbet of selectedCarsToRace[selectedCarIndex]?.bet | orderBy: order:reverse">
-              <div class="item-holder" [ngClass]="{'fav': majbet.favourite === true}">
+              <div class="item-holder" [ngClass]="{'fav': majbet.favourite === true, 'animated': majbet.customIndex === animatedCurrIndex && animatedCurrIndex < 20}">
                 <div class="item-curr my-low-gradient" (click)="toggleCoin(majbet.customIndex)" [ngClass]="{'not-selected': majbet.selected !== true}">
                   <div class="marks-holder">
                     <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" class="premium-mark" *ngIf="majbet?.symbol === myBetInput[0] || majbet?.symbol === myBetInput[1] || majbet?.symbol === myBetInput[2]">
@@ -675,7 +675,7 @@
           </div>
         </div>
       </div>
-      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace.length > 0" (click)="stepIndex = 2;selectDefaultCoin(0)">
+      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace.length > 0" (click)="stepIndex = 2;selectDefaultCoin(0);animateFuelSlider()">
         <p>Continue &gt;</p>
       </div>
       <div class="next-btn inactive my-fuel-btn-back" *ngIf="selectedCarsToRace.length === 0">

@@ -85,6 +85,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   canJoinIoi1: any;
   canJoinIoi2: any;
   canJoinIoi3: any;
+  animationInterval: any;
   newCars = [];
   chosenRace: any;
   xtrx: number;
@@ -97,7 +98,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   calc7: any;
   calc8: any;
   usedCars = [];
+  animatedCurrIndex = 20;
   isWnd = false;
+  animatingSlider = false;
   tutorialIndex: number;
   tickets: number;
   selectedSymbol: string;
@@ -1211,6 +1214,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const noBoy = 100.01 - oldFuel;
     const oldVal = this.selectedCarsToRace[this.selectedCarIndex].bet[index].bet;
     const newVal = parseInt(event.target.value, 10);
+    clearInterval(this.animationInterval);
+    this.animatingSlider = true;
     this.calculateExactBidsAmount();
     if (this.selectedCarsToRace[this.selectedCarIndex].fuel > 100) {
 
@@ -1393,6 +1398,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const cIndex = customIndex;
     //this.selectedSymbol = null;
     this.trsDate = Date.now();
+    this.animatedCurrIndex = 100;
 
     const isSituated = this.selectedCarsToRace[this.selectedCarIndex].selectedBets.find(i => i === cIndex);
     if (!isSituated && isSituated !== 0) {
@@ -1422,7 +1428,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.selectedCarsToRace[this.selectedCarIndex].bet[cIndex].selected = false;
       this.selectedCarsToRace[this.selectedCarIndex].bet[cIndex].bet = 0;
     }
-
+    this.animateFuelSlider();
     this.useManualFuel();
 
   }
@@ -1574,6 +1580,45 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.eventSubscription = this.teamsServ.getTips(this.teamId).subscribe(data => {
       this.tips = data;
     });
+  }
+
+  animateFuelSlider(){
+    if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 0) {
+      setTimeout(() => {
+        if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 0){
+          this.animatedCurrIndex = this.randomInteger(0,19);
+        }
+      }, 5000);
+    } else if(this.animatingSlider === false){
+      setTimeout(() => {
+        if (this.selectedCarsToRace[this.selectedCarIndex].fuel < 100 && this.animatingSlider === false) {
+          this.animatingSlider = true;
+          this.animateValue(6);
+        }
+      }, 5000);
+    }
+  }
+
+  animateValue(start) {
+    var end = 100 - this.selectedCarsToRace[this.selectedCarIndex].fuel;
+    var current = start;
+    var increment = 1;
+    var stepTime = 20;
+
+    if (end > 90) {
+      end = 90;
+    }
+
+    this.animationInterval = setInterval(() => {
+      current += increment;
+      this.selectedCarsToRace[this.selectedCarIndex].bet[this.selectedCarsToRace[this.selectedCarIndex].selectedBets[0]].bet = current;
+      if (current > end - 1) {
+        increment = -1;
+      } else if (current < 6) {
+        clearInterval(this.animationInterval);
+        this.animatingSlider = false;
+      }
+    }, stepTime);
   }
 
 }
