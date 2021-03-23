@@ -102,5 +102,4 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.nextBackSlide();
   }
 
-
 }

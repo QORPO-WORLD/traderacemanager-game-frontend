@@ -20,6 +20,7 @@ import { NgxHotjarService } from 'ngx-hotjar';
 export class AppComponent {
   leave = false;
   log: Array<Array<any>>;
+  showCookieBox = false;
 
   constructor(
     private platform: Platform,
@@ -67,7 +68,7 @@ export class AppComponent {
     });
     */
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
+    this.checkCookie();
     toggleDarkTheme(prefersDark.matches);
 
     function toggleDarkTheme(shouldAdd) {
@@ -85,6 +86,20 @@ export class AppComponent {
         this.uapi.logout();
       }
     }, 600000);
+  }
+
+  checkCookie(){
+    var x = this.uapi.getCookie('consentC');
+    if (!x) {
+      this.showCookieBox = true;
+    } else {
+      this.showCookieBox = false;
+    }
+  }
+
+  cookieConsent(){
+    this.uapi.setCookie('consentC','granted',14);
+    this.checkCookie();
   }
 
 }
