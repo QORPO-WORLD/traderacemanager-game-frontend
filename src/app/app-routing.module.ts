@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
+  /*{
     path: '', redirectTo: 'race/start-race', pathMatch: 'full',
     canActivate: [AutologinGuard]
-  },
+  },*/
+  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   { path: 'home', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'other', loadChildren: () => import('./others/others.module').then(m => m.OthersModule)},
