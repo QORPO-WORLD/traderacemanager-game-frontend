@@ -990,7 +990,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.tutorialStep = 2;
       this.stepIndex = 2;
     }, 800);
-
+    clearInterval(this.animationInterval);
+    this.animatingSlider = false;
 
 
   }
@@ -1591,34 +1592,43 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       }, 5000);
     } else if(this.animatingSlider === false){
       setTimeout(() => {
-        if (this.selectedCarsToRace[this.selectedCarIndex].fuel < 100 && this.animatingSlider === false) {
+        if (this.selectedCarsToRace[this.selectedCarIndex].fuel < 16 && this.animatingSlider === false) {
           this.animatingSlider = true;
           this.animateValue(6);
         }
-      }, 5000);
+      }, 7000);
     }
   }
 
   animateValue(start) {
-    var end = 100 - this.selectedCarsToRace[this.selectedCarIndex].fuel;
+    var end = 20;
     var current = start;
     var increment = 1;
-    var stepTime = 20;
+    var stepTime = 30;
+    var counter = 0;
 
-    if (end > 90) {
-      end = 90;
+    if (!this.animationInterval) {
+      this.animationInterval = setInterval(() => {
+        if (current > 5 && current <= end - 1){
+          current += increment;
+          this.selectedCarsToRace[this.selectedCarIndex].bet[this.selectedCarsToRace[this.selectedCarIndex].selectedBets[0]].bet = current;
+        } else if (current > end - 1) {
+          current += increment;
+          if(current > 2000/stepTime){
+            increment = -1;
+          }
+        } else if (current < 6) {
+          increment = 1;
+          counter++;
+          current += increment;
+          this.selectedCarsToRace[this.selectedCarIndex].bet[this.selectedCarsToRace[this.selectedCarIndex].selectedBets[0]].bet = current;
+        }
+        if (current < 6 && counter === 2) {
+          clearInterval(this.animationInterval);
+          this.animatingSlider = false;
+        }
+      }, stepTime); 
     }
-
-    this.animationInterval = setInterval(() => {
-      current += increment;
-      this.selectedCarsToRace[this.selectedCarIndex].bet[this.selectedCarsToRace[this.selectedCarIndex].selectedBets[0]].bet = current;
-      if (current > end - 1) {
-        increment = -1;
-      } else if (current < 6) {
-        clearInterval(this.animationInterval);
-        this.animatingSlider = false;
-      }
-    }, stepTime);
   }
 
 }
