@@ -144,11 +144,12 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
 
     onSubmit() {
+        
         if (this.f.nickname.status === 'INVALID') {
             this.notify.error('validation error', 'Invalid nickname format. Only letters and numbers, min 5 - max 20 digits.');
             return; 
         }
-        if (this.f.email.value === '') {
+        if (this.f.email.value === '' || this.f.email.value == undefined || this.validateEmail(this.f.email.value) === false) {
             this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
             return; 
         }
@@ -196,6 +197,13 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             });
         }
     }
+
+    validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    
 
 
     countryChange(event) {
