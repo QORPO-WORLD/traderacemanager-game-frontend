@@ -98,7 +98,7 @@ export class AppComponent {
   }
 
   cookieConsent(){
-    this.uapi.setCookie('consentC','granted',14);
+    this.uapi.setCookie('consentC','granted',1000);
     this.checkCookie();
   }
 
