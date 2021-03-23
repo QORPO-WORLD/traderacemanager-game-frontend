@@ -182,6 +182,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 email: this.f.email.value, password: this.f.password.value,
                 nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token
             }).subscribe(datax => {
+                const data: any = datax;
                 this.trying = false;
                 this.loading = false;
                 this.token = null;
@@ -190,6 +191,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 const xxx: any = datax;
                 localStorage.setItem('first-time', JSON.stringify('yes'));
                 fbq('track', 'CompleteRegistration');
+                this.ioiapi.setToken(data.authkey)
                 this.router.navigate(['/user/verify-code']);    
             });
         }
@@ -257,7 +259,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
        
         localStorage.setItem('first-time', JSON.stringify('yes'));
         fbq('track', 'CompleteRegistration');
-        this.ioiapi.login(data);
+        this.ioiapi.login(data.authkey);
     }
 
     isStrong(control: FormControl): any {
