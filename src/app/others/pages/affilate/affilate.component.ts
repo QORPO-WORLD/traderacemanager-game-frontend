@@ -96,7 +96,7 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.offObserver = this.affService.affiliatesList(this.actualPage).subscribe(data => {
       const newdata: any = data;
       this.totalPages = newdata.total_pages;
-      this.affilatesList = newdata.results;
+      this.affilatesList = newdata.result;
     });
   }
 
