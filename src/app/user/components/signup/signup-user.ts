@@ -187,11 +187,11 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.loading = false;
                 this.token = null;
                 clearInterval(this.dangerInterval);
-               
-                const xxx: any = datax;
+            
                 localStorage.setItem('first-time', JSON.stringify('yes'));
                 fbq('track', 'CompleteRegistration');
-                this.ioiapi.setToken(data.authkey)
+
+                this.ioiapi.setToken(data.authKey);
                 this.router.navigate(['/user/verify-code']);    
             });
         }
