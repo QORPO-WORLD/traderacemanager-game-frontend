@@ -224,82 +224,86 @@
         <p class="desc">{{'site-layout.pick_layout2' | translate}}</p>
       </div>
   
-      <div class="panel-holder">
+      <div class="panel-holder blue" [ngClass]="{'animate': animateState === 1, 'disanimate': animateState === 2}" (click)="animateManagerMode(true)">
         <div class="img-holder">
+          <p class="picked-text">Owner mode</p>
             <img src="/assets/base/images/welcome/owner-img.png" alt="">
         </div>
-        <h1 class="main-heading">{{"owners_managers.owner-heading" | translate}}</h1>
-        <div class="list-item">
-            <div class="icon-holder">
-                <img src="/assets/base/images/welcome/nft-rewards.svg" alt="">
-            </div>
-            <p>{{"site-layout.owner1" | translate}}</p>
-        </div>
-        <div class="list-item">
-            <div class="icon-holder">
-                <img src="/assets/base/images/welcome/car.svg" alt="">
-            </div>
-            <p>{{"site-layout.owner2" | translate}}</p>
-        </div>
-        <div class="list-item">
-            <div class="icon-holder">
-                <img src="/assets/base/images/welcome/stopwatch.svg" alt="">
-            </div>
-            <p>{{"site-layout.owner3" | translate}}</p>
-        </div>
-        <div class="list-item">
-            <div class="icon-holder">
-                <img src="/assets/base/images/welcome/crown.svg" alt="">
-            </div>
-            <p>{{"site-layout.owner4" | translate}}</p>
-        </div>
-        <div class="list-item">
-            <div class="icon-holder">
-                <img src="/assets/base/images/welcome/imperium.svg" alt="">
-            </div>
-            <p>{{"site-layout.owner5" | translate}}</p>
+        <div class="text-holder">
+          <h1 class="main-heading">{{"owners_managers.owner-heading" | translate}}</h1>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/nft-rewards.svg" alt="">
+              </div>
+              <p>{{"site-layout.owner1" | translate}}</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/car.svg" alt="">
+              </div>
+              <p>{{"site-layout.owner2" | translate}}</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/stopwatch.svg" alt="">
+              </div>
+              <p>{{"site-layout.owner3" | translate}}</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/crown.svg" alt="">
+              </div>
+              <p>{{"site-layout.owner4" | translate}}</p>
+          </div>
+          <div class="list-item">
+              <div class="icon-holder">
+                  <img src="/assets/base/images/welcome/imperium.svg" alt="">
+              </div>
+              <p>{{"site-layout.owner5" | translate}}</p>
+          </div>
         </div>
   
-        <a class="panel-button" (click)="setManager(true);verifyStep = 2">{{"owners_managers.owner-heading" | translate}}</a>
       </div>
   
-      <div class="panel-holder racer">
+      <div class="panel-holder racer" [ngClass]="{'disanimate': animateState === 1, 'animate': animateState === 2}" (click)="animateManagerMode(false)">
           <div class="img-holder">
               <img src="/assets/base/images/welcome/racer-img.png" alt="">
+              <p class="picked-text">Racer mode</p>
           </div>
-          <h1 class="main-heading">{{"site-layout.become_racer" | translate}}</h1>
-          <div class="list-item">
-              <div class="icon-holder">
-                  <img src="/assets/base/images/welcome/user.svg" alt="">
-              </div>
-              <p>{{"site-layout.racer1" | translate}}</p>
-          </div>
-          <div class="list-item">
-              <div class="icon-holder">
-                  <img src="/assets/base/images/welcome/support.svg" alt="">
-              </div>
-              <p>{{"site-layout.racer2" | translate}}</p>
-          </div>
-          <div class="list-item">
-              <div class="icon-holder">
-                  <img src="/assets/base/images/welcome/trading.svg" alt="">
-              </div>
-              <p>{{"site-layout.racer3" | translate}}</p>
-          </div>
-          <div class="list-item">
-              <div class="icon-holder">
-                  <img src="/assets/base/images/welcome/to-do-list.svg" alt="">
-              </div>
-              <p>{{"site-layout.racer4" | translate}}</p>
-          </div>
-          <div class="list-item">
-              <div class="icon-holder">
-                  <img src="/assets/base/images/welcome/tokens.svg" alt="">
-              </div>
-              <p>{{"site-layout.racer5" | translate}}</p>
+          <div class="text-holder">
+            <h1 class="main-heading">{{"site-layout.become_racer" | translate}}</h1>
+            <div class="list-item">
+                <div class="icon-holder">
+                    <img src="/assets/base/images/welcome/user.svg" alt="">
+                </div>
+                <p>{{"site-layout.racer1" | translate}}</p>
+            </div>
+            <div class="list-item">
+                <div class="icon-holder">
+                    <img src="/assets/base/images/welcome/support.svg" alt="">
+                </div>
+                <p>{{"site-layout.racer2" | translate}}</p>
+            </div>
+            <div class="list-item">
+                <div class="icon-holder">
+                    <img src="/assets/base/images/welcome/trading.svg" alt="">
+                </div>
+                <p>{{"site-layout.racer3" | translate}}</p>
+            </div>
+            <div class="list-item">
+                <div class="icon-holder">
+                    <img src="/assets/base/images/welcome/to-do-list.svg" alt="">
+                </div>
+                <p>{{"site-layout.racer4" | translate}}</p>
+            </div>
+            <div class="list-item">
+                <div class="icon-holder">
+                    <img src="/assets/base/images/welcome/tokens.svg" alt="">
+                </div>
+                <p>{{"site-layout.racer5" | translate}}</p>
+            </div>
           </div>
   
-          <a class="panel-button" (click)="setManager(false);verifyStep = 2">{{"site-layout.become_racer" | translate}}</a>
       </div>
     </div>
 

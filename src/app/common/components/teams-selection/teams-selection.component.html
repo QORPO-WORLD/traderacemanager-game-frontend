@@ -1,73 +1,72 @@
 
 
-<div class="team-holder">
-  <div class="team-item ioi-team"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id}">         
-      <div class="joined" *ngIf="tt?.id === myDriverStats?.next_month_team_id && modalVersion === false" style="display:none">
-          <span>
-              <p> <strong>✓</strong> Currently waiting</p>
-          </span>
-      </div>
-      <div class="img-holder">
-          <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
-      </div>
-      <p class="heading">Team {{tt?.name}}</p>
-      <div class="item-holder">
-          <p class="desc">Total members</p>
-          <p class="value">{{tt?.active_members}}</p>
-      </div>
-      <div class="item-holder">
-          <p class="desc">Premium members</p>
-          <p class="value">{{tt?.premium_membership_count}}</p>
-      </div>
-      <div class="item-holder">
-          <p class="desc">Free members</p>
-          <p class="value">{{tt?.free_membership_count}}</p>
-      </div>
-      <div class="item-holder">
-        <p class="desc">Owner</p>
-        <p class="value" *ngIf="tt?.owners.length === 0">-</p>
-        <p class="value" *ngIf="tt?.owners.length > 0">
-            <span class="arrow left" *ngIf="tt?.owners.length > 1 && ownerIndex !== 0" (click)="ownerIndex = ownerIndex - 1">&lt;</span> 
-            {{tt?.owners[ownerIndex].user_nickname}} 
-            <span class="arrow right" *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length" (click)="ownerIndex = ownerIndex + 1">&gt;</span>
-        </p>
-    </div>
-    <div class="item-holder">
-        <p class="desc">Manager</p>
-        <p class="value" *ngIf="tt?.manager_user_nickname">{{tt?.manager_user_nickname}}</p>
-        <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
-    </div>
-
-      <ng-container *ngIf="modalVersion === false">
-        <a class="join-button" data-toggle="modal" data-target="#team1modal"
-        *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
-        <a class="join-button" data-toggle="modal" data-target="#team2modal"
-        *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
-        <a class="join-button" data-toggle="modal" data-target="#team3modal"
-        *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
-  
-        <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-        *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
-        <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-        *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
-        <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-        *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
-  
-        <a class="join-button active" data-toggle="modal" data-target="#team1modal"
-        *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
-        <a class="join-button active" data-toggle="modal" data-target="#team2modal"
-        *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
-        <a class="join-button active" data-toggle="modal" data-target="#team3modal"
-        *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
-      </ng-container>
+<div class="team-holder" [ngClass]="{'first-modal': modalVersion === true}">
+  <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id, 'hide': tt?.id != animationState && animationState > 0}">         
+      <div class="anim-helper" [ngClass]="'state' + animationState">
+        <div class="inner-holder" [ngClass]="'team' + tt?.id">
+            <div class="joined" *ngIf="tt?.id === myDriverStats?.next_month_team_id && modalVersion === false" style="display:none">
+                <span>
+                    <p> <strong>✓</strong> Currently waiting</p>
+                </span>
+            </div>
+            <div class="img-holder">
+                <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
+            </div>
+            <p class="heading">Team {{tt?.name}}</p>
+            <div class="item-holder">
+                <p class="desc">Total members</p>
+                <p class="value">{{tt?.active_members}}</p>
+            </div>
+            <div class="item-holder">
+                <p class="desc">Premium members</p>
+                <p class="value">{{tt?.premium_membership_count}}</p>
+            </div>
+            <div class="item-holder">
+                <p class="desc">Free members</p>
+                <p class="value">{{tt?.free_membership_count}}</p>
+            </div>
+            <div class="item-holder">
+              <p class="desc">Owner</p>
+              <p class="value" *ngIf="tt?.owners.length === 0">-</p>
+              <p class="value" *ngIf="tt?.owners.length > 0">
+                  <span class="arrow left" *ngIf="tt?.owners.length > 1 && ownerIndex !== 0" (click)="ownerIndex = ownerIndex - 1">&lt;</span> 
+                  {{tt?.owners[ownerIndex].user_nickname}} 
+                  <span class="arrow right" *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length" (click)="ownerIndex = ownerIndex + 1">&gt;</span>
+              </p>
+          </div>
+          <div class="item-holder">
+              <p class="desc">Manager</p>
+              <p class="value" *ngIf="tt?.manager_user_nickname">{{tt?.manager_user_nickname}}</p>
+              <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
+          </div>
       
-      <ng-container *ngIf="modalVersion === true">
-        <a class="join-button" (click)="joinTeamFree(1)" *ngIf=" tt?.id === 1">{{'teams.join.join_team' | translate}}</a>
-        <a class="join-button" (click)="joinTeamFree(2)" *ngIf=" tt?.id === 2">{{'teams.join.join_team' | translate}}</a>
-        <a class="join-button" (click)="joinTeamFree(3)" *ngIf=" tt?.id === 3">{{'teams.join.join_team' | translate}}</a>
-      </ng-container>
-      
-       
+            <ng-container *ngIf="modalVersion === false">
+              <a class="join-button" data-toggle="modal" data-target="#team1modal"
+              *ngIf=" tt?.id === 1 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+              <a class="join-button" data-toggle="modal" data-target="#team2modal"
+              *ngIf=" tt?.id === 2 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+              <a class="join-button" data-toggle="modal" data-target="#team3modal"
+              *ngIf=" tt?.id === 3 && !tt?.me_joined">{{'teams.join.join_team' | translate}}</a>
+        
+              <a class="join-button active" data-toggle="modal" data-target="#team1modal"
+              *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+              <a class="join-button active" data-toggle="modal" data-target="#team2modal"
+              *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+              <a class="join-button active" data-toggle="modal" data-target="#team3modal"
+              *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'">{{'teams.join.extend_memb' | translate}}</a>
+        
+              <a class="join-button active" data-toggle="modal" data-target="#team1modal"
+              *ngIf=" tt?.id === 1 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+              <a class="join-button active" data-toggle="modal" data-target="#team2modal"
+              *ngIf=" tt?.id === 2 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+              <a class="join-button active" data-toggle="modal" data-target="#team3modal"
+              *ngIf=" tt?.id === 3 && tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'">{{'teams.join.upgrade_memb' | translate}}</a>
+            </ng-container>
+            
+             
+          </div>
+      </div>
+      <div class="modal-click" (click)="animateTeam(tt?.id)" *ngIf="modalVersion === true"></div>
       
   </div>
   

@@ -77,6 +77,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   myDriverBalances: any;
   menuType = 'me';
   myAddressClass = '';
+  animateState = 0;
+  animateTeamState = 0;
   sumUsers = 0;
   trxUsdt = 3;
   tickInterval: any;
@@ -367,16 +369,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.recognizeManager();
   }
 
-  setManager(wantToBeManager: boolean) {
-    this.isManager = wantToBeManager;
-    if (this.isManager) {
-      localStorage.setItem('manager', JSON.stringify(this.isManager))
-    } else {
-      localStorage.removeItem('manager');
-    }
-    this.recognizeManager();
-  }
-
   recognizeManager() {
     const man = JSON.parse(localStorage.getItem('manager'));
     if (man) {
@@ -449,6 +441,29 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   closeFirstModal(myBool: boolean){
     this.closeTutorial();
     this.verifyModal = myBool;
+  }
+
+  setManager(wantToBeManager: boolean) {
+    this.isManager = wantToBeManager;
+    if (this.isManager) {
+      localStorage.setItem('manager', JSON.stringify(this.isManager))
+    } else {
+      localStorage.removeItem('manager');
+    }
+    this.recognizeManager();
+  }
+
+  animateManagerMode(wantToBeManager: boolean){
+    if (wantToBeManager === true) {
+      this.setManager(true);
+      this.animateState = 1;
+    } else if(wantToBeManager === false){
+      this.setManager(false);
+      this.animateState = 2;
+    }
+    setTimeout(() => {
+      this.verifyStep = 2;
+    }, 2800);
   }
 
 }

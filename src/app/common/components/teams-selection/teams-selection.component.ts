@@ -26,6 +26,7 @@ export class TeamsSelectionComponent implements OnInit {
   startNow = false;
   myDriverStats: any;
   ownerIndex = 0;
+  animationState = 0;
 
   constructor(protected api: TeamsService, private identityService: AuthService,
     private balanceService: BalanceService) { }
@@ -116,5 +117,11 @@ export class TeamsSelectionComponent implements OnInit {
     this.modalOpen.emit(false);
   }
 
+  animateTeam(id: number){
+    this.animationState = id;
+    setTimeout(() => {
+      this.joinTeamFree(id);
+    }, 2200);
+  }
 
 }

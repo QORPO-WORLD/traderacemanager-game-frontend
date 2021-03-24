@@ -1464,15 +1464,77 @@ button.xko {
         box-shadow: 0px 0px 80px #000000;
         border-radius: 10px;
         max-width: 660px;
+        max-height: 950px;
         position: relative;
         padding-bottom: 35px;
+        left: 0;
+        cursor: pointer;
+        &.animate{
+          transition: 1.8s;
+          max-width: 900px;
+          transition-delay: .3s;
+          width: 100%;
+          padding: 0;
+          &.blue{
+            box-shadow: 0px 0px 40px #24e3fe;
+          }
+          &.racer{
+            box-shadow: 0px 0px 40px #fc173f;
+          }
+          .img-holder{
+            .picked-text{
+              opacity: 1;
+            }
+          }
+          .text-holder{
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: 1.6s;
+          }
+          @media screen and (max-width: 1550px) {
+            max-width: 730px;
+          }
+        }
+        &.disanimate{
+          transition: .5s;
+          max-width: 0px;
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          margin: 0;
+        }
         .img-holder{
           border-radius: 10px 10px 0 0;
           overflow: hidden;
+          position: relative;
+          .picked-text{
+            font-size: 60px;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            margin: 0;
+            opacity: 0;
+            z-index: 10;
+            transition: .6s;
+            transition-delay: 1s;
+            text-align: center;
+            @media screen and (max-width: 1550px) {
+              font-size: 50px;
+            }
+            @media screen and (max-width: 640px) {
+              font-size: 35px;
+            }
+          }
           img{
             transition: .2s;
             width: 100%;
           }
+        }
+        .text-holder{
+          max-height: 600px;
         }
         h1{
           text-align: center;
@@ -1521,14 +1583,20 @@ button.xko {
             transform: translate(-50%, 50%);
             cursor: pointer;
         }
-    }
-  }
-  .panel-holder:hover{
-    transform: translateY(-1%);
-    .img-holder{
-      img{
-        transform: scale(1.07);
-      }
+        &.blue:hover{
+          box-shadow: 0px 0px 40px #24e3fe;
+        }
+        &.racer:hover{
+          box-shadow: 0px 0px 40px #fc173f;
+        }
+        &:hover{
+          transform: translateY(-1%);
+          .img-holder{
+            img{
+              transform: scale(1.07);
+            }
+          }
+        }
     }
   }
 

@@ -118,6 +118,7 @@ export class MyChatComponent implements OnInit {
   }
 
   postChat() {
+    this.chatInput = this.chatInput.trim();
     if (this.chatInput.length === 0) {
       return;
     }

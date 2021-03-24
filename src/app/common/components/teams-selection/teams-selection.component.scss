@@ -9,13 +9,31 @@
     margin-bottom: 280px;
     .team-item{
         width: 33%;
-        margin: 0 15px;
         max-width: 420px;
-        background: #111111;
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 10px;
-        padding: 20px 40px 50px;
         position: relative;
+        margin: 0 15px;
+        .modal-click{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          z-index: 10;
+        }
+        .inner-holder{
+          background: #111111;
+          width: 100%;
+          padding: 20px 40px 50px;
+          box-shadow: 0px 0px 80px #000000;
+          border-radius: 10px;
+          transition: .4s;
+          position: relative;
+          left: 0;
+          max-width: 500px;
+          max-height: 500px;
+          opacity: 1;
+        }
         .joined{
           z-index: 2;
           max-width: 190px;
@@ -47,6 +65,7 @@
             height: 200px;
             margin: 0 auto;
             margin-top: -120px;
+            transition: .4s;
             img{
               top: 50%;
               left: 50%;
@@ -211,6 +230,124 @@
         }
     }
   }
+
+.team-holder.first-modal{
+  .team-item{
+    &.hide{
+      transition: .6s;
+      max-width: 0;
+      margin: 0;
+    }
+    &:hover{
+      .inner-holder{
+        &.team1{
+          box-shadow: 0px 0px 40px #10a060;
+        }
+        &.team2{
+          box-shadow: 0px 0px 40px #fc173f;
+        }
+        &.team3{
+          box-shadow: 0px 0px 40px #24e3fe;
+        }
+        .img-holder{
+          transform: translateY(-8px) scale(1.06);
+        }
+      }
+    }
+    .anim-helper{
+      &.state3{
+        .inner-holder{
+         &.team3{
+           transition: 2s;
+           transform: scale(1.08);
+           box-shadow: 0px 0px 40px #24e3fe;
+           .img-holder{
+            transform: translateY(-8px) scale(1.06);
+           }
+         }
+         &.team2{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: -700px;
+          padding: 0;
+          opacity: 0;
+        }
+        &.team1{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: 700px;
+          padding: 0;
+          opacity: 0;
+        }
+        }
+      }
+      &.state2{
+        .inner-holder{
+         &.team2{
+           transition: 2s;
+           transform: scale(1.08);
+           box-shadow: 0px 0px 40px #fc173f;
+           .img-holder{
+            transform: translateY(-8px) scale(1.06);
+           }
+         }
+         &.team3{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: 700px;
+          padding: 0;
+          opacity: 0;
+        }
+        &.team1{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: 700px;
+          padding: 0;
+          opacity: 0;
+        }
+        }
+      }
+      &.state1{
+        .inner-holder{
+         &.team1{
+           transition: 2s;
+           transform: scale(1.08);
+           box-shadow: 0px 0px 40px #10a060;
+           .img-holder{
+            transform: translateY(-8px) scale(1.06);
+           }
+         }
+         &.team3{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: -700px;
+          padding: 0;
+          opacity: 0;
+        }
+        &.team2{
+          transition: .6s;
+          max-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          left: -700px;
+          padding: 0;
+          opacity: 0;
+        }
+        }
+      }
+    }
+  }
+}
 
   .modal-title {
     color: white;
@@ -680,7 +817,7 @@
         flex-direction: column;
         .team-item{
           width: 80%;
-          margin-bottom: 270px;
+          margin-bottom: 170px;
         }
         .team-item:last-child{
           margin-bottom: 0px;
