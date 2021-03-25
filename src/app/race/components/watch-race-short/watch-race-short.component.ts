@@ -340,7 +340,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   startRace() {
-
+    this.getRaceDetail();
 
     if (this.raceDataildata.is_cancelled === true) {
 
