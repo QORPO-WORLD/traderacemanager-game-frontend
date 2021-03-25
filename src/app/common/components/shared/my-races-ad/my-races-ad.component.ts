@@ -17,6 +17,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   updateFavCoinsObserver: Subscription;
   mnr = [];
   liveAllRacesData = [];
+  favsData = [];
   mainClosed = false;
   currentIndex = 0;
   myGameBalance = 0;
@@ -135,6 +136,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
       const live = nedata.filter(word => word.is_canceled === false);
       this.nextRaces = data;
+      this.resortFavRaces();
       this.refreshing = false;
     });
   }
@@ -203,12 +205,12 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
       for (let y = 0; y < this.baseFavRaces.length; y++) {
 
         if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
-          console.log(this.myFavRaces[x]);
-          console.log(this.baseFavRaces[y].type);
           this.baseFavRaces[y].fav = true;
         }
         
       }
+      const oneFav = this.nextRaces.filter(word => word.race_identifier === this.myFavRaces[x]);
+      this.favsData.push(oneFav[0]);
     }
   }
 
