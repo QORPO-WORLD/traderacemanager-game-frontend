@@ -151,7 +151,7 @@
   <div class="sub-content zavod_bg">
 
 
-    <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true">{{'race.become_top1' | translate}}<br> {{'race.become_top2' | translate}}</h1>
+    <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true && raceDataildata?.players_count < 10">Waiting for {{10 - raceDataildata?.players_count}} more racers.</h1>
     <h1 class="tour-message speci" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">Next race starts in <app-timer [value]="redirectNum"></app-timer> <br> You will be redirected automatically</h1>
     <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 11 && showTourMsg === true">{{'race.knock_out1' | translate}} <br> {{'race.knock_out2' | translate}}</h1>
 
@@ -225,8 +225,8 @@
         <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions">
           <img src="/assets/base/images/zavod/position-icon.svg" alt="">
         </div>
-        <div class="switch-btn"
-        *ngIf="raceDataildata?.tournament_id === null">
+        <div class="switch-btn" [ngClass]="showInfoModal === true ? 'active' : ''"
+         (click)="showInfoModal = !showInfoModal">
           <img src="/assets/base/images/zavod/info-icon.svg" alt="">
         </div>
         <div class="switch-btn" [ngClass]="showTourPos === true ? 'active' : ''" (click)="showTourPos = !showTourPos"
@@ -250,7 +250,8 @@
       <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions; showChat = false">
         <img src="/assets/base/images/zavod/position-icon.svg" alt="">
       </div>
-      <div class="switch-btn" *ngIf="raceDataildata?.tournament_id === null">
+      <div class="switch-btn" [ngClass]="showInfoModal === true ? 'active' : ''"
+      (click)="showInfoModal = !showInfoModal">
         <img src="/assets/base/images/zavod/info-icon.svg" alt="">
       </div>
       <div class="switch-btn" [ngClass]="showTourPos === true ? 'active' : ''" (click)="showTourPos = !showTourPos"
@@ -1157,3 +1158,11 @@
       </div>
     
     </div>
+
+<app-race-info-modal 
+  *ngIf="showInfoModal === true" 
+  (modalClose)="closeInfoModal($event)" 
+  [tourId]="raceDataildata?.tournament_id" 
+  [betAmount]="raceDataildata?.bet_amount" 
+  [raceId]="raceDataildata?.race_identifier">
+</app-race-info-modal>
