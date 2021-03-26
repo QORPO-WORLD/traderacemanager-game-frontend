@@ -124,6 +124,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.resolvemeAffilate();
         }
 
+        this.getAuthService().logOutApi();
+
     }
 
     recognizeDemo() {
@@ -296,4 +298,6 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
        // localStorage.setItem('affilate_set', JSON.stringify(true));
       //  localStorage.setItem('affilate', JSON.stringify(this.referralId));
     }
+
+    
 }
