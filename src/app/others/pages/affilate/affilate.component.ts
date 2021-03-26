@@ -31,6 +31,7 @@ export class AffilateComponent implements OnInit, OnDestroy {
   rewardLevel = 0;
   rewardLevelMax = 0;
   isLevel = 1;
+  dumbreferral: string;
   constructor(protected api: DriversService, private formBuilder: FormBuilder, private notifyq: NotifiqService,
     private identityService: AuthService, protected affService: AffiliatesService, private notify: NotifyService) { }
 
@@ -41,8 +42,9 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.getReferralPlayers();
     this.getAffilate();
     const balance = JSON.parse(localStorage.getItem('user-balance'));
-    console.log(this.Affilate.affiliate_level);
+
   }
+
 
 
   ngOnDestroy() {
@@ -90,6 +92,8 @@ export class AffilateComponent implements OnInit, OnDestroy {
 
   getMyLevel() {
     this.Affilate = this.identityService.getStorageAff();
+    const driver = this.identityService.getDriverMe();
+    this.dumbreferral = 'https://traderacemanager.com/user/referral/' + driver.nickname;
   }
 
   getReferralPlayers() {
