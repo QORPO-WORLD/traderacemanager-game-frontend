@@ -466,4 +466,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }, 2800);
   }
 
+  closeMenu(myBool: boolean){
+    this.menuOpen = myBool;
+  }
+
 }

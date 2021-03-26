@@ -89,6 +89,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   firstLogin = true;
   verifyModal = false;
   isPlaying = false;
+  showInfoModal = false;
   canPlay = true;
   sound: any;
   firstTicker: any;
@@ -181,8 +182,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
         //const retypeData: any = data; 
-
-        console.log(data);
 
         this.raceDataildata = data;
         this.endsIn = data.ends_in;
@@ -1150,6 +1149,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
     }
+  }
+
+  closeInfoModal(myBool: boolean){
+    this.showInfoModal = myBool;
   }
 
 

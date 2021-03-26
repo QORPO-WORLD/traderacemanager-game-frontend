@@ -1,5 +1,5 @@
 
-<div class="main-holder" [ngClass]="{'non-premium': myDriverOld?.is_paid_membership === 'Free' || !myDriverOld?.is_paid_membership}">
+<div class="main-holder" [ngClass]="{'non-premium': isPremium === false}">
   <div class="top-text">
     <p class="heading">Daily tasks</p>
     <p class="text">Finish your daily tasks and earn your bonuses! Become premium member and earn 4x more</p>
@@ -18,7 +18,8 @@
     <div class="text-holder" *ngIf="task6">
       <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt=""> Deposit 100 IOI <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
     </div>
-    <img *ngIf="!task6" class="task-icon clickable" src="/assets/base/images/tasks/item1.png" alt="" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
+    <img *ngIf="!task6 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item1.png" alt="" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
+    <img *ngIf="!task6 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item1.png" alt="">
     <img *ngIf="task6" class="task-icon" src="/assets/base/images/tasks/item1-active.png" alt="">
   </div>
   <div class="task-item item2" [ngClass]="{'tutorial-high': tutorialStep === 1}">
@@ -39,7 +40,8 @@
       <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt="">  Join Tournament "Expert IOI" <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
     </div>
     <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img *ngIf="!task8" class="task-icon clickable" src="/assets/base/images/tasks/item4.png" alt="">
+    <img *ngIf="!task8 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item4.png" alt="">
+    <img *ngIf="!task8 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item4.png" alt="">
     <img *ngIf="task8" class="task-icon" src="/assets/base/images/tasks/item4-active.png" alt="">
   </div>
   <div class="task-item item5">
@@ -47,7 +49,8 @@
       <p><span class="complete-num"></span> Share IOI on socials. <br> Receive up to 100 IOI weekly</p>
     </div>
     <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img class="task-icon" src="/assets/base/images/tasks/item5.png" alt="" (click)="showShareModal = true">
+    <img *ngIf="isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item5.png" alt="" (click)="showShareModal = true">
+    <img *ngIf="isPremium === false" class="task-icon" src="/assets/base/images/tasks/item5.png" alt="">
     <!-- <img class="task-icon" src="/assets/base/images/tasks/item5-active.png" alt=""> -->
   </div>
   <div class="task-item item6" [ngClass]="{'active': task1}" style="display: none;">
@@ -58,8 +61,9 @@
     <p>0<span class="complete-num">/1</span> Invite two active referrals <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt="" [routerLink]="['/other/affilate']"></p>
     </div>
     <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img *ngIf="!task1" class="task-icon" src="/assets/base/images/tasks/item6.png" alt="" [routerLink]="['/other/affilate']">
-    <img *ngIf="task1" class="task-icon" src="/assets/base/images/tasks/item6-active.png" alt="" [routerLink]="['/other/affilate']">
+    <img *ngIf="!task1 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item6.png" alt="" [routerLink]="['/other/affilate']">
+    <img *ngIf="!task1 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item6.png" alt="">
+    <img *ngIf="task1" class="task-icon clickable" src="/assets/base/images/tasks/item6-active.png" alt="" [routerLink]="['/other/affilate']">
   </div>
   
 

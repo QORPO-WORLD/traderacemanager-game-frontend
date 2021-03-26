@@ -1,0 +1,38 @@
+
+
+<div class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img src="/assets/base/images/garage/red-close-cross.svg" class="modal-close" alt="Close modal cross" (click)="closeModal()"/>
+    
+    <ng-container *ngIf="tourId !== null">
+      <h2>How the Tournament race system works</h2>
+      <ul>
+        <li>The race has 19 total rounds.</li>
+        <li>It is divided into 2 types. Round where you collect points and elimination rounds.</li>
+        <li>In the first 10 races, everyone needs to collect points to secure 10th position or above.</li>
+        <li>Elimination rounds will be active after the first 10 races and all players below 10th position will be eliminated instantly.</li>
+        <li>In upcoming rounds there will be always one player - placed last - eliminated. After 10 races there will be only one last remaining player declared the winner.</li>
+      </ul>
+    </ng-container>
+
+    <ng-container *ngIf="tourId === null && betAmount > 0">
+      <h2>{{ 'race.type.' + raceId + '_simple' | translate}} race</h2>
+      <p>You can participate in this race for a bet of {{betAmount}} IOI to win up to {{betAmount * 100}} IOI which is 100 times more! Your car speed will depend
+        on the performance of chosen crypto to fuel up with. Either give it a go like a pro, predict market and fuel up yourself or use the
+        automatic function to fuel up with just one click. More cars you have in one race, a better chance to win you get. </p>
+      <p *ngIf="isEnduro === false">Duration is 30 seconds.</p>
+      <p *ngIf="isEnduro === true">Duration is 15 minutes.</p>
+    </ng-container>
+
+    <ng-container *ngIf="tourId === null && betAmount === 0">
+      <h2>{{ 'race.type.' + raceId + '_simple' | translate}} race</h2>
+      <p>Free race starts every 2 minutes and is considered as an onboarding game and a tutorial. It is limited up to 200 players per one
+        round race.
+        The first 10 players split the price pool and you can join with maximum of 4 cars.</p>
+      <p>Duration is 30 seconds.</p>
+    </ng-container>
+    
+
+  </div>
+</div>

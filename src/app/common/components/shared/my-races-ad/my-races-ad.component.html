@@ -21,7 +21,7 @@
           </div>
     
           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount"></div>
-          <div class="click-dummy low-balance" *ngIf="myGameBalance < mainr.bet_amount" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
+          <div class="click-dummy low-balance" *ngIf="myGameBalance < mainr.bet_amount" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
             <button class="deposit-btn my-cta-btn-back">Deposit</button>
           </div>
     
@@ -33,23 +33,26 @@
     </ng-container>
 
     <ng-container *ngIf="raceFilter === 'favourite'">
-      <div class="empty-fav-race" *ngIf="myFavRaces.length==0">
+      <div class="empty-fav-race" *ngIf="favsData.length==0">
         <p>{{"start-race.empty_favourite_fuel" | translate}}</p>
-        <button [routerLink]="['/race/all-races']" class="my-cta-btn-back hoverable">{{"start-race.favourite_fuel_button" |translate}}</button>
+        <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.favourite_fuel_button" |translate}}</button>
       </div>
-      <div class="box-item my-border-grad" *ngFor="let mainr of myFavRaces; let i = index">
+      <div class="box-item my-border-grad" *ngFor="let mainr of favsData; let i = index">
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
-              <p class="race-name" *ngIf="mainr.includes('wednesday')">{{'race.type.special' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.includes('tournament')">{{'race.type.classic_tournament' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.includes('enduro')">{{'race.type.enduro' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.includes('ioi') || mainr.includes('short')">{{'start-race.fast_race' | translate}}</p>
-          <p class="race-name">{{ 'race.type.' + mainr  + '_simple' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.race_identifier.includes('wednesday')">{{'race.type.special' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.race_identifier.includes('tournament')">{{'race.type.classic_tournament' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.race_identifier.includes('enduro')">{{'race.type.enduro' | translate}}</p>
+              <p class="race-name" *ngIf="mainr.race_identifier.includes('ioi') || mainr.race_identifier.includes('short')">{{'start-race.fast_race' | translate}}</p>
+          <p class="race-name">{{ 'race.type.' + mainr.race_identifier  + '_simple' | translate}}</p>
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
   
-           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr]"></div>
+           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount"></div>
+           <div class="click-dummy low-balance" *ngIf="myGameBalance < mainr.bet_amount" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
+            <button class="deposit-btn my-cta-btn-back">Deposit</button>
+          </div>
   
       </div>
 
@@ -88,7 +91,7 @@
     <ng-container *ngIf="raceFilter === 'upcoming'">
       <div class="empty-fav-race" *ngIf="mnr.length==0">
         <p>{{"start-race.empty_my_race" | translate}}</p>
-        <button [routerLink]="['/race/all-races']" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
+        <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
       </div>
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">

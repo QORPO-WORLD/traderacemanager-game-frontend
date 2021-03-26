@@ -115,6 +115,14 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     });
   }
 
+  becomeManager(id: number) {
+
+    this.teams_service.becomeManager(id, { reason: 'reason is null' }).subscribe
+      (data => {
+        this.getTeams();
+      });
+  }
+
   getMyLdrbrd() {
     this.ldbrdSubscription = this.api.leaderboardMe({
       page: 1, lastMonth: this.isLastMonth

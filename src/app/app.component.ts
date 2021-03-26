@@ -11,12 +11,16 @@ import { TranslateService } from '@ngx-translate/core';
 //import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 //import { Network } from '@ionic-native/network/ngx';
 import { NgxHotjarService } from 'ngx-hotjar';
+import{Router, NavigationEnd} from '@angular/router';
+
+declare let gtag: Function;
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
+
 export class AppComponent {
   leave = false;
   log: Array<Array<any>>;
@@ -31,10 +35,22 @@ export class AppComponent {
     private uapi: AuthService,
     public hjService: NgxHotjarService,
     private cdr: ChangeDetectorRef,
-    private balanceService: BalanceService
+    private balanceService: BalanceService,
+    public router: Router
   ) {
     translate.setDefaultLang('en');
     this.initializeApp();
+
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd){
+          gtag('config', 'UA-192445220-1', 
+                {
+                  'page_path': event.urlAfterRedirects
+                }
+               );
+       }
+    });
+    
   }
 
 
