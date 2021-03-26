@@ -1,6 +1,6 @@
 import { NextRaceV2 } from 'src/app/api/models';
 import { DriversService, RacesService } from 'src/app/api/services';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-races-ad.component.scss'],
 })
 export class MyRacesAdComponent implements OnInit, OnDestroy {
+
+  @Output() menuClose = new EventEmitter<boolean>();
+
   raceObser: Subscription;
   liveObserver: Subscription;
   favObserver: Subscription;
@@ -234,6 +237,10 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     ).subscribe(datax => {
       this.getmyFavRaces();
     });
+  }
+
+  closeMenu(){
+    this.menuClose.emit(false);
   }
 
 

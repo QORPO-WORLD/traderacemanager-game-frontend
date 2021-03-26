@@ -76,10 +76,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   getteamStats() {
     this.ldrbrdSrvc.leaderboardTeamOverall(1)
     .subscribe(data => {
-      console.log(data);
       this.myStatData = data;
-      console.log(data);
-      console.log('manager data');
     });
   }
 
