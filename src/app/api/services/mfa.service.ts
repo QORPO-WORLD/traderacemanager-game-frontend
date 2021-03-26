@@ -34,8 +34,8 @@ class MfaService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/mfa/cancel`,
+      'PUT',
+      this.rootUrl + `/me/disable-mfa`,
       __body,
       {
         headers: __headers,

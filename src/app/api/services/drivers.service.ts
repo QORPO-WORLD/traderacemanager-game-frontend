@@ -443,6 +443,32 @@ class DriversService extends __BaseService {
     );
   }
 
+  firstCallResponse(): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + ``,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }  firstCall(): __Observable<null> {
+    return this.firstCallResponse().pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
   /**
    * @param is_in_tutorial undefined
    */
