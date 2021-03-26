@@ -1,7 +1,7 @@
 import { BalanceService } from './../../../services/balance.service';
 import { FavFuel } from './../../../../api/models/fav-fuel';
 import { Car } from './../../../../api/models/car';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/user/services/auth.service';
@@ -17,6 +17,8 @@ import { AffiliateDetails } from 'src/app/api/models';
   styleUrls: ['./profile-stats.component.scss'],
 })
 export class ProfileStatsComponent implements OnInit, OnDestroy {
+
+  @Output() menuClose = new EventEmitter<boolean>();
 
   myDriverObserver: Subscription;
   myDriverOldObserver: Subscription;
@@ -251,6 +253,10 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     this.uapi.authVerificationCreate().subscribe(data => {
       this.activationSent = true;
     });
+  }
+
+  closeMenu(){
+    this.menuClose.emit(false);
   }
 
 }

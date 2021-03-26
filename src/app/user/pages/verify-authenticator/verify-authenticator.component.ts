@@ -45,8 +45,11 @@ export class VerifyauthenticatorComponent implements OnInit {
   }
 
   resolveActivation(data) {
+    if (data.result === false) {
+      this.notify.error('Invalid code');
+      this.loading = false;
+    }
     this.auth.login(null);
-    
   }
 
   resendActivation() {

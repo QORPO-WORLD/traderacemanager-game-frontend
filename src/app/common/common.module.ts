@@ -60,6 +60,7 @@ import { DailyTipModalComponent } from './components/daily-tip-modal/daily-tip-m
 import { WaitingTransferComponent } from './components/waiting-transfer/waiting-transfer.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { TeamsSelectionComponent } from './components/teams-selection/teams-selection.component';
+import { RaceInfoModalComponent } from './components/race-info-modal/race-info-modal.component';
 
 @NgModule({
   imports: [
@@ -108,7 +109,8 @@ import { TeamsSelectionComponent } from './components/teams-selection/teams-sele
     ShowTipsComponent,
     CreateTipsComponent,
     WaitingTransferComponent,
-    TeamsSelectionComponent
+    TeamsSelectionComponent,
+    RaceInfoModalComponent
   ],
   providers: [
     CurrencyPipe,
@@ -140,7 +142,7 @@ import { TeamsSelectionComponent } from './components/teams-selection/teams-sele
     MySettingsComponent, CreateFastFuelCarComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
-    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent],
+    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent],
   entryComponents: []
 })
 

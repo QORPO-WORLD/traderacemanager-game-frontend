@@ -1,3 +1,4 @@
+import { DriversService } from 'src/app/api/services';
 import { environment } from './../../../../environments/environment.prod';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../api/services/auth.service';
@@ -27,6 +28,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   public error: string;
   submitted = false;
   subsqription: Subscription;
+  dobserver: Subscription;
   msg: any;
   reactiveForm: FormGroup;
   cap = '';
@@ -56,7 +58,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
-    private platform: Platform) {
+    private platform: Platform, private dapi: DriversService) {
     super(injector);
 
   }
@@ -79,6 +81,9 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       if (mmew && this.submitted === false) {
         this.submitted = true;
         this.mmewa = mmew;
+        console.log(this.mmewa);
+        console.log(mmew);
+        console.log(location.href);
         if (location.href === 'https://traderacemanager.com/user/sign-in') {
           this.submit();
         }
@@ -90,11 +95,15 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.mmewa = mmew;
       }
     }, 1500);
+    this.dumbCall();
   }
 
   ngOnDestroy() {
     if (this.subsqription) {
       this.subsqription.unsubscribe();
+    }
+    if (this.dobserver) {
+      this.dobserver.unsubscribe();
     }
     clearInterval(this.capInterval);
     clearInterval(this.mmewinterval);
@@ -221,5 +230,13 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     this.token = null;
     clearInterval(this.dangerInterval);
     error.code === 456 ? this.fireGAuth() : this.getErrorService().apiError(error);
+  }
+
+  dumbCall() {
+    this.dobserver = this.dapi.firstCall().subscribe(
+      data => {
+        console.log(data);
+      }
+    )
   }
 }

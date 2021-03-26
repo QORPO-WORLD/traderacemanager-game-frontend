@@ -1,6 +1,6 @@
 import { NextRaceV2 } from 'src/app/api/models';
 import { DriversService, RacesService } from 'src/app/api/services';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,12 +11,16 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-races-ad.component.scss'],
 })
 export class MyRacesAdComponent implements OnInit, OnDestroy {
+
+  @Output() menuClose = new EventEmitter<boolean>();
+
   raceObser: Subscription;
   liveObserver: Subscription;
   favObserver: Subscription;
   updateFavCoinsObserver: Subscription;
   mnr = [];
   liveAllRacesData = [];
+  favsData = [];
   mainClosed = false;
   currentIndex = 0;
   myGameBalance = 0;
@@ -135,6 +139,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
       const live = nedata.filter(word => word.is_canceled === false);
       this.nextRaces = data;
+      this.resortFavRaces();
       this.refreshing = false;
     });
   }
@@ -203,12 +208,12 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
       for (let y = 0; y < this.baseFavRaces.length; y++) {
 
         if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
-          console.log(this.myFavRaces[x]);
-          console.log(this.baseFavRaces[y].type);
           this.baseFavRaces[y].fav = true;
         }
         
       }
+      const oneFav = this.nextRaces.filter(word => word.race_identifier === this.myFavRaces[x]);
+      this.favsData.push(oneFav[0]);
     }
   }
 
@@ -232,6 +237,10 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     ).subscribe(datax => {
       this.getmyFavRaces();
     });
+  }
+
+  closeMenu(){
+    this.menuClose.emit(false);
   }
 
 

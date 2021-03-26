@@ -212,7 +212,7 @@ export class MetamaskSignupComponent implements OnInit {
       setTimeout(() => { this.overlay = false; }, 1300);
       setTimeout(() => {
         localStorage.removeItem('mmealq');
-       }, 10000);
+       }, 1000000);
     }
   }
 

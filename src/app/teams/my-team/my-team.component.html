@@ -70,8 +70,17 @@
           </div>
           </ng-container>
           <ng-container *ngIf="TeamManagerSlide===2">
-            <button class="apply-button border-color">
+            <button class="apply-button border-color" (click)="becomeManager(teamId)" *ngIf="myTeamStats.me_waiting_as_manager === 'NONE'">
               {{"teams.my_team.apply"| translate}}
+            </button>
+            <button class="apply-button border-color" *ngIf="myTeamStats.me_waiting_as_manager === 'WAITING'">
+              Applied
+            </button>
+            <button class="apply-button border-color" *ngIf="myTeamStats.me_waiting_as_manager === 'APPROVED'">
+              Approved
+            </button>
+            <button class="apply-button border-color" *ngIf="myTeamStats.me_waiting_as_manager === 'DECLINED'">
+              Rejected
             </button>
           </ng-container>
         </span>

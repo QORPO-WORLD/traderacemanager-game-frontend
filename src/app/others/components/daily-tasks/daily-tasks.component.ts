@@ -33,6 +33,7 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
   affilateSlug: string;
   affilateText: string;
   taskSum: number;
+  isPremium = false;
   constructor(private api: DriversService, private tchat: TeamChatService, private notify: NotifyService,
     private identityService: AuthService, private social: SocialSharing) { }
 
@@ -64,6 +65,11 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
 
   getMyOldDriver() {
     this.myDriverOld = this.identityService.getDriverMe();
+    if (this.myDriverOld.is_paid_membership === 'Free' || !this.myDriverOld.is_paid_membership) {
+      this.isPremium = false;
+    } else {
+      this.isPremium = true;
+    }
   }
 
   resolveTasks() {

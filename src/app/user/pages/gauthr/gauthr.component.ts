@@ -83,8 +83,7 @@ export class GauthrComponent implements OnInit, OnDestroy {
     this.tObserver = this.mfsrvc.mfaTestCreate({ code: this.testinp }).subscribe(data => {
       if (data) {
         if (data.result === true) {
-          console.log('yeah');
-          this.route.navigate(['/race/start-race']);
+          this.identityService.logout();
         } else {
           this.translate.get('nitro_notifiq').subscribe((res) => {
             this.notify.error('x', res.wrong_code);

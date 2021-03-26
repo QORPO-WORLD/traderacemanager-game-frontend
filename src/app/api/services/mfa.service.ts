@@ -13,7 +13,7 @@ import { GenerateMFASecret } from '../models/generate-mfasecret';
   providedIn: 'root',
 })
 class MfaService extends __BaseService {
-  static readonly mfaCancelCreatePath = '/mfa/cancel';
+  static readonly mfaCancelCreatePath = '/me/disable-mfa';
   static readonly mfaQrSecretCreatePath = '/mfa/qr-secret';
   static readonly mfaSecretCreatePath = '/me/generate-mfa-secret';
   static readonly mfaTestCreatePath = '/me/validate-mfa-code';
@@ -34,8 +34,8 @@ class MfaService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/mfa/cancel`,
+      'PUT',
+      this.rootUrl + `/me/disable-mfa`,
       __body,
       {
         headers: __headers,
