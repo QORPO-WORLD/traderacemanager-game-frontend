@@ -39,7 +39,7 @@ export class VerifyauthenticatorComponent implements OnInit {
     this.loading = true;
     this.activate().subscribe({
       next: data => this.resolveActivation(data),
-      error: error => this.notify.error(error.message)
+      error: error => this.notify.error(error.error.message)
     });
     setTimeout(() => { this.loading = false; }, 5000);
   }

@@ -20,8 +20,8 @@
             <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> {{'race.remaining' | translate}}</p>
           </div>
     
-          <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount"></div>
-          <div class="click-dummy low-balance" *ngIf="myGameBalance < mainr.bet_amount" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
+          <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+          <div class="click-dummy low-balance" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
             <button class="deposit-btn my-cta-btn-back">Deposit</button>
           </div>
     
@@ -49,8 +49,8 @@
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
   
-           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount"></div>
-           <div class="click-dummy low-balance" *ngIf="myGameBalance < mainr.bet_amount" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
+           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+           <div class="click-dummy low-balance" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
             <button class="deposit-btn my-cta-btn-back">Deposit</button>
           </div>
   
@@ -75,10 +75,14 @@
           </div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
-          *ngIf="mainr.race_type === 'car_race_24hrs' && mainr.race_type === 'wednesday_party_race_0'"></div>
+          *ngIf="mainr.race_type === 'car_race_24hrs' && mainr.race_type === 'wednesday_party_race_0' && myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
-          *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0'"></div>
+          *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0' && myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+
+          <div class="click-dummy low-balance" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
+            <button class="deposit-btn my-cta-btn-back">Deposit</button>
+          </div>
 
         </div>
       </ng-container>

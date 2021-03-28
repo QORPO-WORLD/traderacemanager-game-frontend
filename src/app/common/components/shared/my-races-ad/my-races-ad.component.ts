@@ -24,6 +24,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   mainClosed = false;
   currentIndex = 0;
   myGameBalance = 0;
+  tickets = 0;
   bestIndex: number;
   routeId: string;
   liveRacesData: any;
@@ -127,7 +128,6 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
       const live = nedata.filter(word => word.is_canceled === false);
       this.liveAllRacesData = live;
-      console.log(data);
     });
   }
 
@@ -219,7 +219,9 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
 
   getCryptoStats() {
     const data = this.identityService.getBalance();
-    this.myGameBalance = data.game_wallet_ioi
+    const datax = this.identityService.getStorageIdentity();
+    this.myGameBalance = data.game_wallet_ioi;
+    this.tickets = datax.tournament_tickets;
   }
 
   updateFavRaces() {
