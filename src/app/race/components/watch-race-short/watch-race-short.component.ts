@@ -319,6 +319,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       if (data.tournament_id !== null && data.tour_index > 1) {
         this.getLdrv();
       }
+
+    if (this.raceDataildata.is_cancelled === true) {
+
+      this.redirectToNextRace();
+      clearInterval(this.detailInterval);
+      return;
+    }
     });
   }
 
@@ -339,7 +346,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   startRace() {
-    this.getRaceDetail();
+ 
 
     if (this.raceDataildata.is_cancelled === true) {
 
@@ -361,9 +368,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.getRaceData();
+  
     }, 500);
     setTimeout(() => {
       this.getRaceData(true);
+      this.getRaceDetail();
     }, 800);
     //this.getRaceData();
     if (this.raceDataildata.race_progress < 100) {
