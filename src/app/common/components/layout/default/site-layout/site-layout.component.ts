@@ -168,12 +168,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
     this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(datax => {
 
-      this.numOfNotifications = 0;
-      for (let x = 0; x < datax.length; x++) {
-        if (datax[x].event !== 'race_signup' && datax[x].event !== 'game_reward') {
-          this.numOfNotifications = this.numOfNotifications + 1;
-        }
-      }
+      this.numOfNotifications = datax.length;
       this.numOfNotificationsBack = this.numOfNotifications;
     });
     if (mmea && !metaBalance) {
