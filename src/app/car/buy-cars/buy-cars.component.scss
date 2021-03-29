@@ -9,7 +9,71 @@
   width: 100%;
 }
 
-/* modal styles todo move to shared component */
+.new-rare-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  z-index: 10001;
+  .modal-back{
+    background-color: #000000f2;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .rare-modal-cont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 15px;
+    background: #111;
+    padding: 40px 20px;
+    .modal-close{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 7px;
+      cursor: pointer;
+      transition: .2s;
+      &:hover{
+        transform: rotate(90deg);
+      }
+    }
+    .img-holder{
+      position: relative;
+      .back-img{
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .car-img{
+        position: relative;
+        z-index: 2;
+      }
+    }
+    h1{
+      text-align: center;
+      font-size: 26px;
+    }
+    button{
+      padding: 12px 35px;
+      border-radius: 10px;
+      font-size: 17px;
+      display: block;
+      margin: 20px auto;
+    }
+  }
+}
 
 .modal-dialog{
   &.car-modal-dialog{
@@ -429,6 +493,13 @@
         .text{
           font-size: 14px;
         }
+      }
+    }
+  }
+  .new-rare-modal{
+    .rare-modal-cont{
+      h1{
+        font-size: 21px;
       }
     }
   }
