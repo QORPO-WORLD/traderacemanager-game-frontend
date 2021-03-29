@@ -581,7 +581,7 @@
   </div>
 </div>
 
-<div class="winning-back" [hidden]="winnersList?.length === 0 || showFinalModal === false" *ngIf="raceDataildata?.race_identifier !== 'cops1_10' && this.raceDataildata?.race_identifier !== 'cops2_10' && this.raceDataildata?.race_identifier !== 'cops3_10'">
+<div class="winning-back" [hidden]="winnersList?.length === 0 || showFinalModal === false" *ngIf="raceDataildata?.race_identifier !== 'cops1_10' && this.raceDataildata?.race_identifier !== 'cops2_10' && this.raceDataildata?.race_identifier !== 'cops3_10' && frozenTicket === false">
 
   <div class="winning-modal">
     <div class="top-line"></div>
@@ -814,6 +814,27 @@
         *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.finish' | translate}}</button>
       </ng-container>
     </div>
+
+  </div>
+
+</div>
+<div class="winning-back" [hidden]="frozenTicket === false">
+
+  <div class="winning-modal">
+    <div class="top-line"></div>
+    <div class="close-icon" (click)="showFinalModal = false"><img src="/assets/base/images/zavod/white-close.svg" alt=""></div>
+
+    
+
+    
+
+    <p class="frozen-msg" *ngIf="frozenTicket === true">{{'race.ticker_frozen' | translate}}</p>
+    
+    
+      
+
+
+    
 
   </div>
 
