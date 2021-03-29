@@ -53,14 +53,14 @@
             <p class="value">{{team?.free_membership_count}}</p>
         </div>
         <div class="apply-button">
-          <button (click)="becomeManager(team.id)" *ngIf="team.me_waiting_as_manager !== 'WAITING'">
+          <button (click)="becomeManager(team.id)" *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
             <span>
               {{'teams.join.apply' | translate}}
             </span>
           </button>
-          <button (click)="becomeManager(team.id)" *ngIf="team.me_waiting_as_manager === 'WAITING'">
+          <button [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">
             <span>
-              {{'teams.join.apply' | translate}}
+              {{'shared.deposit_btn' | translate}}
             </span>
           </button>
         </div>    

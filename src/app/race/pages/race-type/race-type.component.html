@@ -465,8 +465,8 @@
       <div class="cell">{{enastart?.players_count}}/100</div>
       <div class="cell"><app-timer *ngIf="enastart" [value]="enastart?.starts_in_seconds" (onComplete)="getAllRaces()" ></app-timer></div>
       <div class="cell">
-        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_enduro_1']" *ngIf="myDriverBalances.game_wallet_ioi >= 1">Join race</div>
-        <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1">Deposit</div>
+        <div class="join-race my-cta-btn-back hoverable"  [routerLink]="['/car/fuel-car/car_race_enduro_1']" *ngIf="myDriverBalances.game_wallet_ioi >= 1 || tickets > 0">Join race</div>
+        <div class="join-race my-cta-btn-back hoverable" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1 && tickets === 0">Deposit</div>
        
         
         <div class="fast-race" (click)="selRaceType = 'car_race_enduro_1'" *ngIf="fastEnabled === true && myDriverBalances.game_wallet_ioi >= 1">
