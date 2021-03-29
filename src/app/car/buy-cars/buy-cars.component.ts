@@ -71,6 +71,8 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   luckyCar: any;
   myBalance: any;
   carSum: string;
+  unlocked: number;
+  gotRare = false;
   constructor(protected api: CarsService, private notifiq: NotifiqService, private drvrsrvc: DriversService,
     private balanceService: BalanceService, private identityService: AuthService, private notify: NotifyService) {
     this.getMyCars();
@@ -112,7 +114,8 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
 
   buyCarFromGarage(index: string) {
     this.api.carsBuyList(index).
-      subscribe(data => {
+      subscribe(datax => {
+        const data: any = datax;
         setTimeout(() => {
 
           this.notifyChangedBalance();
@@ -120,7 +123,10 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
           this.notify.error('You have bought a new car!');
           this.getMyCars();
           this.getShowroomCars();
-
+          if (data.unlocked_limited_car > 0) {
+            this.unlocked = data.unlocked_limited_car;
+            this.gotRare = true;
+          }
         }, 1000);
       });
   }
