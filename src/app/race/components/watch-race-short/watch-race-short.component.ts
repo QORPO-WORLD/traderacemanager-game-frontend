@@ -190,7 +190,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         } else {
           if (this.startsInChecked === false) {
             this.startsInChecked = true;
-            this.startsIn = data.starts_in;
+            this.startsIn = this.getWhenStarts();
             this.whenStarts();
           }
         }
@@ -320,12 +320,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.getLdrv();
       }
 
-    if (this.raceDataildata.is_cancelled === true) {
+      if (this.raceDataildata.is_cancelled === true) {
 
-      this.redirectToNextRace();
-      clearInterval(this.detailInterval);
-      return;
-    }
+        this.redirectToNextRace();
+        clearInterval(this.detailInterval);
+        return;
+      }
     });
   }
 
@@ -346,7 +346,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   startRace() {
- 
+
 
     if (this.raceDataildata.is_cancelled === true) {
 
@@ -368,7 +368,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.getRaceData();
-  
+
     }, 500);
     setTimeout(() => {
       this.getRaceData(true);
@@ -531,8 +531,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
   whenStarts() {
-    //this.startsIn = this.startsIn + 1;
-    const newwhen = this.startsIn;
+    const newwhen = this.getWhenStarts();
 
     const fireSemaforx = (newwhen - 5) * 1000;
     const fireAudience = (newwhen - 11) * 1000;
@@ -715,9 +714,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   play() {
+    /*
     if (window.window.innerWidth < 1028) {
       //return;
     }
+    */
     this.router.navigate(['/race/start-race']);
   }
 
@@ -811,11 +812,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  generateRain() {
-    for (let x = 0; x < 250; x++) {
-      this.numbers.push({});
-    }
-  }
 
   getAllv2Races() {
     this.nextObservable = this.api.racesNextV2List().subscribe(xdata => {
@@ -1160,8 +1156,16 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
   }
 
-  closeInfoModal(myBool: boolean){
+  closeInfoModal(myBool: boolean) {
     this.showInfoModal = myBool;
+  }
+
+  getWhenStarts() {
+    const then: any = new Date(this.raceDataildata.starts_at * 1000);
+    const now: any = new Date();
+    const diffTime = Math.abs((then - now) / 1000);
+
+    return diffTime;
   }
 
 

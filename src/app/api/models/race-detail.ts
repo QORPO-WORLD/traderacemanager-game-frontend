@@ -19,6 +19,7 @@ export interface RaceDetail {
   race: Array<InitialCardsExtra>;
   cards: Array<InitialCardsExtra>;
   starts_in: number;
+  starts_at: number;
   ends_in: number;
   total_pages: number;
   applicable_payouts: Array<number>;
