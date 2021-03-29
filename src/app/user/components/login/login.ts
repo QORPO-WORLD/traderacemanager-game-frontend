@@ -110,8 +110,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   public submit() {
-    if (this.f.username.value === '' || this.f.password.value === '') {
-      return;
+    if (!this.mmewa) {
+      if (this.f.username.value === '' || this.f.password.value === '') {
+        return;
+      }
     }
     this.loading = true;
     this.executeImportantAction();
