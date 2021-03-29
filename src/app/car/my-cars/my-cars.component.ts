@@ -115,8 +115,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
     this.myCarsObserver = this.api.carsMineList().subscribe(data => {
       const objsx: any = data;
       const objs: any = objsx.cars;
-      console.log(objs);
-        console.log('rudko');
       if (objs.length === 0) {
         this.getFreeCar();
       } else {
@@ -124,7 +122,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
           this.hasNoCars = true;
         }
         for (let x = 0; x < objs.length; x++) {
-          console.log('hohohoho');
           if (objs[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs[x]);
           }
@@ -215,8 +212,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
         }
         this.selectCar(objs);
         this.sortingDone = true;
-        console.log(this.myCarsSorted);
-        console.log('rudko');
       }
     });
   }
@@ -341,7 +336,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    console.log('kopirujem');
   }
 
 }

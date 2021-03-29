@@ -83,6 +83,19 @@
         </p>
       </div>
     </div>
+    <div class="notifiq-item" *ngIf="item.event === 'game_limited_car'">
+      <div class="top-info">
+        <p class="heading">Garage updated</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+          <span class="opacity">You unlocked </span>
+          <span class="important">RARE Tier {{item.data.tier}}  </span>
+          <span class="opacity">car.</span>
+        </p>
+      </div>
+    </div>
     <div class="notifiq-item" *ngIf="item.event === 'game_team_join'">
       <div class="top-info">
         <p class="heading">Your team join request successful</p>

@@ -2620,3 +2620,28 @@
     </div>
   </div>
 </div>
+
+
+<div class="new-rare-modal" *ngIf="gotRare === true">
+  <div class="modal-back" (click)="gotRare = false"></div>
+  <div class="rare-modal-cont">
+    <img src="/assets/base/images/garage/red-close-cross.svg" class="modal-close" alt="Close modal" (click)="gotRare = false"/>
+    <h1>Congratulations! You have unlocked new 
+      <span *ngIf="unlocked === 25">bronze</span>
+      <span *ngIf="unlocked === 26">silver</span>
+      <span *ngIf="unlocked === 27">gold</span>
+      <span *ngIf="unlocked === 28">platinum</span>
+      RARE car</h1>
+    <div class="img-holder">
+      <img src="/assets/base/images/garage/bronze-back.png" alt="" class="back-img" *ngIf="unlocked === 25">
+      <img src="/assets/base/images/garage/silver-back.png" alt="" class="back-img" *ngIf="unlocked === 26">
+      <img src="/assets/base/images/garage/gold-back.png" alt="" class="back-img" *ngIf="unlocked === 27">
+      <img src="/assets/base/images/garage/platinum-back.png" alt="" class="back-img" *ngIf="unlocked === 28">
+      <img class="car-img" [src]="'assets/base/images/nft-cars/car' + unlocked + '.png'" alt="">
+    </div>
+    <button class="my-cta-btn-back" (click)="gotRare = false">Great!</button>
+  </div>
+</div>
+
+
+

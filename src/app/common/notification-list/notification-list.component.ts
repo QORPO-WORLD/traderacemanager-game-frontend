@@ -38,18 +38,8 @@ export class NotificationListComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   countNotifications(data) {
-    this.countSum = 0;
-    let tempArray = [];
-    console.log(data);
-    for (let x = 0; x < data.length; x++) {
-      if (data[x].event === 'race_end' || data[x].event === 'balance_deposit' || data[x].event === 'balance_withdrawal'
-      || data[x].event === 'game_daily_task' || data[x].event === 'game_buy_car' || data[x].event === 'game_team_join' || data[x].event === 'race_signup' || data[x].event === 'game_buy_car') {
-        this.countSum = this.countSum + 1;
-        tempArray.push(data[x]);
-      }
-    }
-
-    this.notifications = tempArray;
+    this.countSum = data.length;
+    this.notifications = data;
 
   }
 
