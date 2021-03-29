@@ -1,5 +1,6 @@
 import { TeamsService } from 'src/app/api/services';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: 'app-manager',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manager.component.scss'],
 })
 export class ManagerComponent implements OnInit {
+
   teams: any;
-  constructor(private api: TeamsService) { }
+  myDriverBalances: any;
+
+  constructor(private api: TeamsService, private identityService: AuthService) { }
 
   ngOnInit() {
     this.getTeams();
+    this.getBalance();
   }
   
   getTeams() {
@@ -31,6 +36,10 @@ export class ManagerComponent implements OnInit {
       (data => {
         this.getTeams();
       });
+  }
+
+  getBalance(){
+    this.myDriverBalances = this.identityService.getBalance();
   }
 
 }
