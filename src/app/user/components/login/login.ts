@@ -82,7 +82,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.submitted = true;
         this.mmewa = mmew;
 
-        if (location.href === 'https://dev-traderacemanager.com/user/sign-in') {
+        if (location.href === 'https://dev-play.traderacemanager.com/user/sign-in') {
           this.submit();
         }
         
