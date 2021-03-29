@@ -155,7 +155,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
             return; 
         }
-        if (this.f.password.status === 'INVALID') {
+        if (this.f.password.status === 'INVALID' && !this.mmewa) {
             this.notify.error('validation error', 'Invalid password format. Min 8 digits, 1 number, 1 small, 1 capital letter are required. (example: ioiGame1)');
             return; 
         }
