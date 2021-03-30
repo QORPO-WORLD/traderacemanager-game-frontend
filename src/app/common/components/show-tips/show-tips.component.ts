@@ -13,6 +13,7 @@ export class ShowTipsComponent implements OnInit, OnDestroy {
   teamId: number;
   @Input() teamVersion = false;
   eventSubscription: Subscription;
+  isPremium = false;
   constructor(private api: TeamsService, private identityService: AuthService) { }
 
   ngOnInit() {
@@ -28,6 +29,14 @@ export class ShowTipsComponent implements OnInit, OnDestroy {
   getMyLeaderboard() {
     const data = this.identityService.getLeaderboardMe();
     this.teamId = data.team_id;
+    const user = this.identityService.getDriverMe();
+
+    if (user.is_paid_membership === 'Free' || !user.is_paid_membership) {
+      this.isPremium = false;
+    } else {
+      this.isPremium = true;
+    }
+
     this.getTips();
   }
 

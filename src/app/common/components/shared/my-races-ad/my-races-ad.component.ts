@@ -203,6 +203,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   }
 
   resortFavRaces() {
+    this.favsData = [];
     for (let x = 0; x < this.myFavRaces.length; x++) {
 
       for (let y = 0; y < this.baseFavRaces.length; y++) {

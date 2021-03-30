@@ -132,6 +132,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myTeamReward: number;
   dailyReward: number;
   isOwner = false;
+  isPremium = false;
   tips = [];
   teamId: number;
   myTeam: any;
@@ -621,7 +622,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   recognizeOpenTips() {
-    if (this.meManager === true) {
+    if (this.meManager === true && this.isPremium === true) {
       this.showDayTipModal = true;
     }
   }
@@ -635,6 +636,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     const user = this.identityService.getDriverMe();
     this.myId = user.id;
     this.teamId = data.team_id;
+    if (user.is_paid_membership === 'Free' || !user.is_paid_membership) {
+      this.isPremium = false;
+    } else {
+      this.isPremium = true;
+    }
 
   }
 
