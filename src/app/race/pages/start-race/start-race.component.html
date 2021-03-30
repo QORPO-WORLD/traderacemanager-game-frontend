@@ -206,7 +206,7 @@
           <div class="img-holder">
             <img src="/assets/base/images/start-race/flame-icon.png" alt="">
           </div>
-          <div class="text-holder" *ngIf="tips.length > 0">
+          <div class="text-holder" *ngIf="tips.length > 0 && isPremium === true">
             <p class="value">{{'start-race.best_racer_strategy' | translate}}</p>
             <div class="currs-holder">
               <div class="curr-item" *ngFor="let item of tips">
@@ -217,8 +217,11 @@
 
             </div>
           </div>
-          <div class="text-holder" *ngIf="tips.length === 0">
+          <div class="text-holder" *ngIf="tips.length === 0 && isPremium === true">
             <p class="value smaller">No tips at the moment</p>
+          </div>
+          <div class="text-holder" *ngIf="isPremium === false">
+            <p class="value smaller">Available only for premium members</p>
           </div>
         </div>
       </div>
