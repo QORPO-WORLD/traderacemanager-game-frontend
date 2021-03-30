@@ -98,7 +98,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.idioticLogin = 1;
       }
     }, 1500);
-    //this.dumbCall();
+    this.dumbCall();
   }
 
   ngOnDestroy() {
@@ -150,6 +150,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         error: error => this.handleError(error)
       });
     }
+/*
+    return;
     if (this.idioticLogin === 2) {
       this.idioticLogin = 1;
       localStorage.setItem('iditc', 'true');
@@ -158,6 +160,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.tryLogin();
       }, 1000);
     }
+    */
   }
 
   finalizeLogin(data) {
