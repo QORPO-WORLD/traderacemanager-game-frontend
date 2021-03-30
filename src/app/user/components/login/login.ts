@@ -55,6 +55,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   chainId = 137;
   trying = false;
   dangerInterval: any;
+  idioticLogin = 2;
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
@@ -85,15 +86,19 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         if (location.href === 'https://dev-play.traderacemanager.com/user/sign-in') {
           this.submit();
         }
-        
+
       }
       const chaind = JSON.parse(localStorage.getItem('chaind'));
       if (chaind) {
         this.chainId = Number(chaind);
         this.mmewa = mmew;
       }
+      const idiotic = JSON.parse(localStorage.getItem('iditc'));
+      if (idiotic) {
+        this.idioticLogin = 1;
+      }
     }, 1500);
-    this.dumbCall();
+    //this.dumbCall();
   }
 
   ngOnDestroy() {
@@ -142,8 +147,16 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     } else {
       this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
         next: data => this.finalizeLogin(data),
-        error: error =>  this.handleError(error)
+        error: error => this.handleError(error)
       });
+    }
+    if (this.idioticLogin === 2) {
+      this.idioticLogin = 1;
+      localStorage.setItem('iditc', 'true');
+    
+      setTimeout(() => {
+        this.tryLogin();
+      }, 1000);
     }
   }
 
