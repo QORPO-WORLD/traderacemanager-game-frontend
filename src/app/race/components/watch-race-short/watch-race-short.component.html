@@ -151,7 +151,8 @@
   <div class="sub-content zavod_bg">
 
 
-    <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true && raceDataildata?.players_count < 10">Waiting for {{10 - raceDataildata?.players_count}} more {{ 10 - raceDataildata?.players_count > 1 ? 'racers' : 'racer'}}.</h1>
+    
+    <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true && raceDataildata?.players_count < 10 && (10 - raceDataildata?.players_count > 0)">Waiting for minimum of {{10 - raceDataildata?.players_count}} more {{ 10 - raceDataildata?.players_count > 1 ? 'racers' : 'racer'}}, otherwise you will be redirected to the next race.</h1>
     <h1 class="tour-message speci" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">Next race starts in <app-timer [value]="redirectNum"></app-timer> <br> You will be redirected automatically</h1>
     <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 11 && showTourMsg === true">{{'race.knock_out1' | translate}} <br> {{'race.knock_out2' | translate}}</h1>
 
