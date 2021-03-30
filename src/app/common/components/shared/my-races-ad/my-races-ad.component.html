@@ -41,11 +41,10 @@
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
-              <p class="race-name" *ngIf="mainr.race_identifier.includes('wednesday')">{{'race.type.special' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.race_identifier.includes('tournament')">{{'race.type.classic_tournament' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.race_identifier.includes('enduro')">{{'race.type.enduro' | translate}}</p>
-              <p class="race-name" *ngIf="mainr.race_identifier.includes('ioi') || mainr.race_identifier.includes('short')">{{'start-race.fast_race' | translate}}</p>
-          <p class="race-name">{{ 'race.type.' + mainr.race_identifier  + '_simple' | translate}}</p>
+          <p class="race-name" *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</p>
+          <p class="race-name" *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</p>
+          <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
+          <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
           <p class="watch">{{'race.fuel_now' | translate}} &#x2192;</p>
            </div>
   
@@ -64,10 +63,11 @@
 
     <ng-container *ngIf="raceFilter === 'live'">
       <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
-        <div class="box-item my-border-grad" *ngIf="mainr.race_type !== 'cops1' && mainr.race_type !== 'cops2' && mainr.race_type !== 'cops3'">
+        <div class="box-item my-border-grad">
           <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
           <div class="inner-holder">
-            <p class="race-name" *ngIf="mainr.tournament_id === null">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.game_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.tournament_id === null && mainr.game_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</p>
             <p class="race-name" *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</p>
             <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
             <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
@@ -75,14 +75,11 @@
           </div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
-          *ngIf="mainr.race_type === 'car_race_24hrs' && mainr.race_type === 'wednesday_party_race_0' && myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+          *ngIf="mainr.game_type === 'car_race_24hrs' && mainr.game_type === 'wednesday_party_race_0'"></div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
-          *ngIf="mainr.new_race_type !== 'car_race_24hrs' && mainr.new_race_type !== 'wednesday_party_race_0' && myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+          *ngIf="mainr.new_game_type !== 'car_race_24hrs' && mainr.new_game_type !== 'wednesday_party_race_0'"></div>
 
-          <div class="click-dummy low-balance" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()">
-            <button class="deposit-btn my-cta-btn-back">Deposit</button>
-          </div>
 
         </div>
       </ng-container>
@@ -100,15 +97,10 @@
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
         <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
         <div class="inner-holder">
-          <p class="race-name" *ngIf="mainr.race_identifier !== 'classic_tournament_0' && 
-            mainr.race_identifier !== 'classic_tournament_1000' && mainr.race_identifier !== 'classic_tournament_10' && 
-            mainr.race_identifier !== 'classic_tournament_100' && mainr.race_identifier !== 'tournament_for_ticket_0' && 
-            mainr.race_identifier !== 'adventure_tournament'">{{'start-race.fast_race' | translate}}</p>
-          <p class="race-name" *ngIf="mainr.race_identifier === 'classic_tournament_0' || 
-            mainr.race_identifier === 'classic_tournament_1000' || mainr.race_identifier === 'classic_tournament_10' || 
-            mainr.race_identifier === 'classic_tournament_100' || mainr.race_identifier === 'tournament_for_ticket_0' || 
-            mainr.race_identifier === 'adventure_tournament'">{{'race.type.classic_tournament' | translate}}</p>
-          <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
+          <p class="race-name" *ngIf="mainr.new_race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.new_race_type !== 'classic_tournament' && mainr.new_race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</p>
+            <p class="race-name" *ngIf="mainr.new_race_type === 'classic_tournament'">{{'race.type.classic_tournament' | translate}}</p>
+            <p class="race-name">{{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</p>
           <p class="watch">{{'race.watch_now' | translate}} &#x2192;</p>
           <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
         </div>
