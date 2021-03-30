@@ -697,7 +697,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         }
       }
 
-
+/*
       setTimeout(() => {
         if (this.redirecting === false) {
           this.redirecting = true;
@@ -705,16 +705,22 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         }
       }, 5000);
 
-
+*/
       
       this.raceApi.racesMultiSignupCreate(serialized).subscribe(
-        res => console.log('HTTP response', res), // response
-        err => console.log(err.error[0].errors[0].race[0] === 'Too late to sign up for this race!' ? this.refireSignup() : null), // error
-        () => this.checkRedirect() // finished
+        res =>  this.checkRedirect(), // response
+        err => this.resolveSignupError(err), // error
+        () =>  console.log('sending sign to race')
       );
 
 
     }
+  }
+
+  resolveSignupError(err: any) {
+    //console.log(err);
+    this.notify.error('error', err.error.description)
+    //err.error.description === 'Signup to race failed. Race did already start.' ? this.refireSignup() : this.notify.error('error', err.error.description);
   }
 
   checkRedirect() {
