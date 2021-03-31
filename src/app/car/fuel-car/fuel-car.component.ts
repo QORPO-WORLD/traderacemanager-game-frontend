@@ -719,7 +719,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   resolveSignupError(err: any) {
     //console.log(err);
-    this.notify.error('error', err.error.description)
+    this.notify.error('error', err.error.description);
+    this.isLoading = false;
     //err.error.description === 'Signup to race failed. Race did already start.' ? this.refireSignup() : this.notify.error('error', err.error.description);
   }
 

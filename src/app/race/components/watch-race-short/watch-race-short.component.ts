@@ -227,7 +227,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
 
     this.recognizeGame();
-    this.recognizeSound();
+    //this.recognizeSound();
   }
 
 
@@ -321,7 +321,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       }
 
       if (this.raceDataildata.is_cancelled === true) {
-
+        console.log('cancel');
         this.redirectToNextRace();
         clearInterval(this.detailInterval);
         return;
@@ -349,7 +349,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
     if (this.raceDataildata.is_cancelled === true) {
-
+      console.log('cancel');
       this.redirectToNextRace();
       clearInterval(this.detailInterval);
       return;
@@ -965,6 +965,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     this.ntoberver = this.api.racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString()).subscribe(
       data => {
+        console.log(data);
         this.newNext = data.race_hash;
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;

@@ -146,15 +146,14 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.trsDate = Date.now();
 
     this.getAllV2Races();
-    console.log('zdochlo 1');
     this.getMyBalance();
 
-    console.log('zdochlo 2');
+
     this.getFavCoins();
-    console.log('zdochlo 3');
+
     this.getMostPopular();
 
-    console.log('zdochlo 4');
+
     this.getMyTeam();
     // this.useManualFuel();
   }
