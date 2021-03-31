@@ -5,6 +5,7 @@ import { DriversService } from 'src/app/api/services';
 import { Router } from '@angular/router';
 import { NotifiqService } from 'src/app/common/services/notifiq.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: 'app-gauthr',
@@ -22,7 +23,8 @@ export class DisGauthrComponent implements OnInit, OnDestroy {
   testinp: string;
   pass: string;
   constructor(private mfsrvc: MfaService, private drvrsrvc: DriversService,
-              private route: Router, private notify: NotifiqService, protected translate: TranslateService) { }
+              private route: Router, private notify: NotifiqService, protected translate: TranslateService,
+              private identityService: AuthService) { }
 
   ngOnInit() {
     //this.getKey();
@@ -61,7 +63,7 @@ export class DisGauthrComponent implements OnInit, OnDestroy {
     this.tObserver = this.mfsrvc.mfaCancelCreate({ code: this.testinp }).subscribe(data => {
       if (data) {
         if (data.result === true) {
-          this.route.navigate(['/race/start-race']);
+          this.identityService.logout();
         } else {
           this.translate.get('nitro_notifiq').subscribe((res) => {
             this.notify.error('x', res.wrong_code);
@@ -74,6 +76,7 @@ export class DisGauthrComponent implements OnInit, OnDestroy {
   cancelKey() {
     this.route.navigate(['/race/start-race']);
   }
+  
 
   createImageFromBlob(image: Blob) {
     const reader = new FileReader();

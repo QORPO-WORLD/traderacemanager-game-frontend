@@ -11,11 +11,18 @@
       <p *ngIf="leaderboardType!=='owners'">{{"leaderboard.page_info"| translate}}</p>
       <p *ngIf="leaderboardType==='owners'">{{"leaderboard.owner_leaderboard_info"| translate}}</p>
     </div>
-    <div class="bonus-info">
-      <h5 *ngIf="leaderboardType === 'players'">1 000,00  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
-      <h5 *ngIf="leaderboardType !== 'players'">{{myTeamReward | number:'1.2-2':'fr' }}  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
-      <p *ngIf="leaderboardType !== 'players'">current team bonus</p>
-      <p *ngIf="leaderboardType === 'players'">current racer bonus</p>
+    <div class="bonus-info" *ngIf="leaderboardType !== 'players'">
+      <h5>{{myTeamReward | number:'1.2-2':'fr' }}  <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
+      <p>current team bonus</p>
+    </div>
+    <div class="bonus-info racer" *ngIf="leaderboardType === 'players'">
+      <img src="/assets/base/images/leaderboard/ring.png" alt="">
+      <div class="info-holder">
+        <img src="/assets/base/images/menu/info-icon.svg" alt="" class="info-icon">
+        <div class="info-popup">
+          <p>12 rings, one big final Tournament for the twelve ring owners. Compete, win and earn the most unique NFTs in the world!</p>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -994,8 +994,10 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.getfirstraces();
       this.getCanJoin();
-      this.tutorialStep = 2;
-      this.stepIndex = 2;
+      if (this.stepIndex > 1) {
+        this.tutorialStep = 2;
+        this.stepIndex = 2;
+      }
     }, 800);
     clearInterval(this.animationInterval);
     this.animatingSlider = false;
