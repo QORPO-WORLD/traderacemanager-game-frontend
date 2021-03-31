@@ -58,7 +58,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     onSubmit() {
         this.submitted = true;
 
-        if ((this.passone !== this.passonex) || (this.passonex.length < 5 || this.passone.length < 5)) {
+        if ((this.passonex.length < 5 || this.passone.length < 5)) {
+            this.notify.error('Password is too short');
+            return;
+        }
+        if (this.passone !== this.passonex) {
+            this.notify.error('Passwords are not matching');
             return;
         }
 
