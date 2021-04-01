@@ -2715,13 +2715,18 @@ button small {
         }
       }
       &.pos-box {
+        &.progress{
+          margin-right: 5px;
+          .inner{
+            padding: 9px 35px;
+          }
+        }
         .inner {
           padding: 12px 35px;
           p {
             img {
               display: inline-block;
               margin-right: 7px;
-              vertical-align: baseline;
             }
             span {
               font-size: 12px;
@@ -4086,7 +4091,8 @@ button small {
         .inner {
           border-radius: 11px;
           p,
-          span {
+          span,
+          app-timer {
             font-size: 14px;
           }
         }
@@ -4102,8 +4108,18 @@ button small {
           }
         }
         &.pos-box {
+          &.progress{
+            .inner{
+              padding: 7px 20px;
+            }
+          }
           .inner {
-            padding: 8px 28px;
+            padding: 8px 20px;
+            p{
+              img{
+                width: 22px;
+              }
+            }
           }
         }
       }
@@ -4864,6 +4880,15 @@ button small {
         top: 5px;
       }
     }
+    .small-box{
+      &.timer-box{
+        .inner{
+          .dots-holder {
+            display: none;
+          }
+        }
+      }
+    }
     .right-align {
       justify-content: center;
       padding-top: 5px;
@@ -5501,9 +5526,6 @@ button small {
           min-width: 90px;
           .inner {
             padding: 0px 10px;
-            .dots-holder {
-              display: none;
-            }
           }
         }
         &.pos-box {
