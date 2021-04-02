@@ -119,7 +119,7 @@ export class MySettingsComponent implements OnInit {
 
   changeManager() {
     if (this.isManager === false) {
-      this.setMode('manager');
+      this.setMode('racer');
     } else {
       this.setMode('owner')
     }
@@ -128,7 +128,7 @@ export class MySettingsComponent implements OnInit {
 
   recognizeManager() {
     const man = this.identityService.getDriverMe().mode;
-    if (man === 'manager') {
+    if (man === 'owner') {
       this.isManager = true;
     } else {
       this.isManager = false;
