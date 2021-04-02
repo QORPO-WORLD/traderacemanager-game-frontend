@@ -365,8 +365,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   recognizeManager() {
-    const man = JSON.parse(localStorage.getItem('manager'));
-    if (man) {
+    const man = this.identityService.getDriverMe().mode;
+    if (man === 'manager') {
       this.isManager = true;
     } else {
       this.isManager = false;

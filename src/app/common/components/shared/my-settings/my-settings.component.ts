@@ -119,23 +119,30 @@ export class MySettingsComponent implements OnInit {
 
   changeManager() {
     if (this.isManager === false) {
-      localStorage.setItem('manager', JSON.stringify(true))
+      this.setMode('manager');
     } else {
-      localStorage.removeItem('manager');
+      this.setMode('owner')
     }
   }
 
 
   recognizeManager() {
-    const man = JSON.parse(localStorage.getItem('manager'));
-    if (man) {
-      this.isManager = false;
-    } else {
+    const man = this.identityService.getDriverMe().mode;
+    if (man === 'manager') {
       this.isManager = true;
+    } else {
+      this.isManager = false;
     }
   }
 
 
+  setMode(type: string) {
+    this.api.driversSetMode({ mode: type }).subscribe(
+      data => {
+        console.log(data);
+      }
+    )
+  }
 
 
 }
