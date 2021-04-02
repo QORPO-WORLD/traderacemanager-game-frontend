@@ -139,7 +139,9 @@ export class MySettingsComponent implements OnInit {
   setMode(type: string) {
     this.api.driversSetMode({ mode: type }).subscribe(
       data => {
-        console.log(data);
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+         }, 500);
       }
     )
   }
