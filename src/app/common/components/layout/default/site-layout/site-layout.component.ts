@@ -465,4 +465,12 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.menuOpen = myBool;
   }
 
+  setMode(type: string) {
+    this.driverSrvc.driversSetMode({ mode: type }).subscribe(
+      data => {
+        console.log(data);
+      }
+    )
+  }
+
 }
