@@ -508,12 +508,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   getDaysToDividens() {
-    const _initial = '2021-04-01T10:17:28.593Z';
+    const _initial = '2021-07-01T10:17:28.593Z';
     const fromTime = new Date();
     const toTime = new Date(_initial);
 
     this.hwdays = (toTime.getTime() - fromTime.getTime()) / 1000;
-    console.log(this.hwdays);
   }
 
   calcCarsValue() {
