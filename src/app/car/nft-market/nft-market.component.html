@@ -1,0 +1,179 @@
+<div class="main-holder">
+  <div class="top-info"> 
+    <div class="back" [routerLink]="['/race/start-race']" *ngIf="marketState === 1">
+      <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="back" (click)="marketState = 1" *ngIf="marketState === 2">
+      <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="back" (click)="marketState = 2" *ngIf="marketState === 3">
+      <p>&lt;</p>
+      <p>{{'shared.back' | translate}}</p>
+    </div>
+    <div class="text-info">
+      <h1>Limited amount, unlimited rewards</h1>
+      <p>Non-Fungible Tokens are virtual tokens minted on the blockchain for digital scarcity, security, and authenticity. 
+        They are unique, indivisible, and non-interchangeable.</p>
+    </div>
+    <div class="info-box">
+      <div class="nums-holder">
+        <div class="num-box">
+          <p>{{carSum.charAt(0)}}</p>
+        </div>
+        <div class="num-box">
+          <p>{{carSum.charAt(1)}}</p>
+        </div>
+        <div class="num-box">
+          <p>{{carSum.charAt(2)}}</p>
+        </div>
+        <div class="num-box">
+          <p>{{carSum.charAt(3)}}</p>
+        </div>
+        <div class="num-box">
+          <p>{{carSum.charAt(4)}}</p>
+        </div>
+        <div class="num-box">
+          <p>{{carSum.charAt(5)}}</p>
+        </div>
+        <p class="desc">cars left</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-menu">
+    <div class="menu-desc">
+        <p class="join-team" [routerLink]="['/car/garage/my-cars']">{{'garage.my_cars_btn' | translate}}</p>
+        <p class="team-chat" [routerLink]="['/car/garage']">{{'garage.buy_nfts' | translate}}</p>
+        <p class="soon active" [routerLink]="['/car/nft-market']">{{'garage.market' | translate}}</p>
+    </div>
+    <div class="menu-line">
+        <div class="inner-line my-cta-btn-back">&nbsp;</div>
+    </div>
+  </div>
+
+  <div [class.disable-scroll]="isMenuActive" class="shop-pagee" *ngIf="marketState === 1">
+    <div
+      class="navoverlay"
+      (click)="activateMenu()"
+      [class.navoverlay-active]="isMenuActive"
+      [class.nav-active]="isMenuActive"
+    ></div>
+  
+    <div class="shop-section">
+      <div class="shop-header">
+        <div *ngIf="display > 750" class="filter-featured">
+          <div class="filter-title">
+            <p>Filters</p>
+          </div>
+          <div class="filter-boxes">
+            <div (click)="filterRacers()">
+              <div
+                [ngClass]="{
+                  'filter-active': racersActive === true
+                }"
+                class="filter-box"
+              ></div>
+              <p>Racers</p>
+            </div>
+            <div (click)="filterCars()">
+              <div
+                [ngClass]="{
+                  'filter-active': carsActive === true
+                }"
+                class="filter-box"
+              ></div>
+              <p>Cars</p>
+            </div>
+            <div (click)="filterTracks()">
+              <div
+                [ngClass]="{
+                  'filter-active': tracksActive === true
+                }"
+                class="filter-box"
+              ></div>
+              <p>Tracks</p>
+            </div>
+            <div (click)="filterAll()">
+              <div
+                [ngClass]="{
+                  'filter-active': allActive === true
+                }"
+                class="filter-box"
+              ></div>
+              <p>All</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shop-section-center">
+        <div class="boxes">
+          <div
+            *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
+            class="box"
+          >
+            <div class="boximage">
+              <img
+                *ngIf="item['type'] === 'racer'"
+                class="img"
+                [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
+                alt=""
+              />
+              <img
+                *ngIf="item['type'] === 'car'"
+                class="img"
+                [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+                alt=""
+              />
+              <img
+                *ngIf="item['type'] === 'track'"
+                class="img"
+                [src]="'/assets/base/images/' + item['image'] + '.png'"
+                alt=""
+              />
+            </div>
+            <div class="txt">
+              <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
+                {{ item["collection"] }}
+              </p>
+              <p *ngIf="item['type'] != 'racer'" class="name">
+                {{ item["name"] }}
+              </p>
+              <p *ngIf="item['type'] === 'racer'" class="name">
+                Racer
+                <span
+                  [ngClass]="{ racername: item['type'] === 'racer' }"
+                  class="racername"
+                  >{{ item["name"] }}</span
+                >
+              </p>
+              <p class="prize">{{ item["prize"] }} IOI</p>
+              <button
+              (click)="showAsset(item['id'], item['type'])"
+              >
+                Buy now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="newProducts.length > 8">
+        <div class="pages">
+          <p (click)="prevPageCars(); resetPageArrowLeft()" class="page-left my-text-color">
+            &lt;-
+          </p>
+          <br />
+          <p (click)="nextPageCars(); resetPageArrowRight()" class="page-right my-text-color">
+            -&gt;
+          </p>
+        </div>
+      </ng-container>
+    </div>
+  </div>  
+
+  <app-nft-detail *ngIf="marketState === 2" [assetId]="selectedId" [assetType]="selectedType" (marketState)="showAssetBuy($event)"></app-nft-detail>
+
+  <app-buy-nft *ngIf="marketState === 3" [assetId]="selectedId" [assetType]="selectedType"></app-buy-nft>
+
+</div>

@@ -47,7 +47,11 @@ exports.handler = (event, context, callback) => {
         '/other/about-tokens',
         '/race/watch-race-3min/demo-preview-race',
         '/user/verify-code',
-        '/user/verify-authenticator'
+        '/user/verify-authenticator',
+        '/other/wallet-control',
+        '/teams/leaderboard',
+        '/teams/owners-managers',
+        '/race/race-type'
     ];
 
     if (
