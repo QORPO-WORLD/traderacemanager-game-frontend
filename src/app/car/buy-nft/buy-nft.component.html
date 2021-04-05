@@ -1,0 +1,122 @@
+
+
+<div class="content-holder">
+  <h1 class="top-heading">Order details</h1>
+  <div class="flex-holder">
+
+    <div class="asset-preview" *ngIf="assetType === 'racer'">
+      <div class="asset-img">
+        <img class="img" [src]="'/assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'" alt="" />
+      </div>
+      <div class="ability-boxes">
+        <div class="ability-box">
+          <div class="ability-image">
+            <button>10K</button>
+          </div>
+          <div class="ability-type">
+            <h1>10 000 IOI</h1>
+            <p>IOI value</p>
+          </div>
+        </div>
+        <div class="ability-box">
+          <div class="ability-image">
+            <button><img src="/assets/base/images/market/sales-ability.svg" alt=""></button>
+          </div>
+          <div class="ability-type">
+            <h1>30% of NFTs Sales</h1>
+            <p>super skill</p>
+          </div>
+        </div>
+        <div class="ability-box">
+          <div class="ability-image">
+            <button><img src="/assets/base/images/market/heart-ability.svg" alt=""></button>
+          </div>
+          <div class="ability-type">
+            <h1>Loves his Mrs.</h1>
+            <p>weakness</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="asset-preview car-preview" *ngIf="assetType === 'car' || assetType === 'track'">
+      <div class="asset-img">
+        <img class="img" [src]="'/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'car'" />
+        <img class="img" [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'track'" />
+      </div>
+      <div class="car-ability-boxes">
+        <div class="ability-box">
+          <p class="heading">IOI value</p>
+          <div class="slider-holder">
+            <p>{{displayArray[0]['prize']}}</p>
+            <div class="ab-slider">
+              <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['prize'] * 100) / 15600}"></div>
+            </div>
+            <p>15 600</p>
+          </div>
+        </div>
+
+        <div class="ability-box">
+          <p class="heading">IOI daily stake</p>
+          <div class="slider-holder">
+            <p>{{displayArray[0]['extras'].stake}}</p>
+            <div class="ab-slider">
+              <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].stake * 100) / 10.25}"></div>
+            </div>
+            <p>10.25</p>
+          </div>
+        </div>
+
+        <div class="ability-box">
+          <p class="heading">ROI %</p>
+          <div class="slider-holder">
+            <p>{{displayArray[0]['extras'].roi}}%</p>
+            <div class="ab-slider">
+              <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].roi * 100) / 24}"></div>
+            </div>
+            <p>24%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divide-line"></div>
+    <div class="buy-preview">
+      <div class="name">
+        <p *ngIf="assetType === 'racer'">Racer</p>
+        <p *ngIf="assetType === 'car'">Car</p>
+        <p *ngIf="assetType === 'track'">Racer</p>
+        <p class="racer-name">{{ displayArray[0]["name"] }}</p>
+      </div>
+      <div class="summary-table">
+        <div class="summary-item">
+          <p class="desc">Collection</p>
+          <p class="value">{{ displayArray[0]["collection"] }}</p>
+        </div>
+        <div class="summary-item">
+          <p class="desc">Price per piece</p>
+          <p class="value">{{ displayArray[0]["prize"] }} IOI</p>
+        </div>
+        <div class="summary-item amount-item">
+          <p class="desc">Amount</p>
+          <div class="amount-holder">
+            <div class="am-btn minus" (click)="minusAmount()">
+              <p>-</p>
+            </div>
+            <div class="am-btn amount-display">
+              <p>{{ amount }}</p>
+            </div>
+            <div class="am-btn minus" (click)="plusAmount()">
+              <p>+</p>
+            </div>
+          </div>
+        </div>
+        <div class="summary-item">
+          <p class="desc">Subtotal</p>
+          <p class="value big">{{ displayArray[0]["prize"] * amount }} IOI</p>
+        </div>
+      </div>
+      <button class="buy-nft">Buy now &rarr;</button>
+    </div>
+  </div>
+</div>

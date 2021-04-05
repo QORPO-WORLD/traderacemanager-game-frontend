@@ -1,0 +1,498 @@
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-home-nft-detail',
+  templateUrl: './home-nft-detail.component.html',
+  styleUrls: ['./home-nft-detail.component.scss'],
+})
+export class HomeNftDetailComponent implements OnInit {
+
+  typeObserver: Subscription;
+  assetType: any;
+  assetId: number;
+  displayArray = [];
+  menuActive = 1;
+  isMenuActive = false;
+  activeMenu = 0;
+  abilities = false;
+
+  products: Array<object> = [
+    {
+      id: 1,
+      collection: 'Bronze Collection',
+      name: 'Axle',
+      prize: '1152',
+      image: 'white-mn',
+      type: 'racer',
+    },
+    {
+      id: 2,
+      collection: 'Bronze Collection',
+      name: 'Flash',
+      prize: '1152',
+      image: 'red-korpo',
+      type: 'racer',
+    },
+    {
+      id: 3,
+      collection: 'Bronze Collection',
+      name: 'Octane',
+      prize: '1152',
+      image: 'blue-mn',
+      type: 'racer',
+    },
+    {
+      id: 4,
+      collection: 'Bronze Collection',
+      name: 'Punisher',
+      prize: '1152',
+      image: 'black-korpo',
+      type: 'racer',
+    },
+    {
+      id: 5,
+      collection: 'Bronze Collection',
+      name: 'Lady Rich',
+      prize: '1152',
+      image: 'lady-rich',
+      type: 'racer',
+    },
+    {
+      id: 6,
+      collection: 'Bronze Collection',
+      name: 'Rich Jr.',
+      prize: '1152',
+      image: 'bad-boy',
+      type: 'racer',
+    },
+    {
+      id: 7,
+      collection: 'Bronze Collection',
+      name: 'Mr. Rich',
+      prize: '1152',
+      image: 'mr-rich-shop',
+      type: 'racer',
+    },
+    {
+      id: 8,
+      collection: 'Bronze Collection',
+      name: 'Mrs. Rich',
+      prize: '1152',
+      image: 'mrs-rich',
+      type: 'racer',
+    },
+    //bronze
+    {
+      id: 9,
+      collection: 'Bronze Collection',
+      name: 'Bronze 1',
+      prize: '600',
+      image: 'car1',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 10,
+      collection: 'Bronze Collection',
+      name: 'Bronze 2',
+      prize: '600',
+      image: 'car2',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 11,
+      collection: 'Bronze Collection',
+      name: 'Bronze 3',
+      prize: '600',
+      image: 'car3',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 12,
+      collection: 'Bronze Collection',
+      name: 'Bronze 4',
+      prize: '600',
+      image: 'car4',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 13,
+      collection: 'Bronze Collection',
+      name: 'Bronze 5',
+      prize: '600',
+      image: 'car5',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 14,
+      collection: 'Bronze Collection',
+      name: 'Bronze 6',
+      prize: '600',
+      image: 'car6',
+      type: 'car',
+      rank: 'bronze',
+    },
+    {
+      id: 15,
+      collection: 'Bronze Collection Rare',
+      name: 'Bronze 7',
+      prize: '3 600',
+      image: 'car25',
+      type: 'car',
+      rare: true,
+      rank: 'bronze',
+    },
+    //silver
+    {
+      id: 16,
+      collection: 'Silver Collection',
+      name: 'Silver 1',
+      prize: '1000',
+      image: 'car7',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 17,
+      collection: 'Silver Collection',
+      name: 'Silver 2',
+      prize: '1000',
+      image: 'car8',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 18,
+      collection: 'Silver Collection',
+      name: 'Silver 3',
+      prize: '1000',
+      image: 'car9',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 19,
+      collection: 'Silver Collection',
+      name: 'Silver 4',
+      prize: '1000',
+      image: 'car10',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 20,
+      collection: 'Silver Collection',
+      name: 'Silver 5',
+      prize: '1000',
+      image: 'car11',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 21,
+      collection: 'Silver Collection',
+      name: 'Silver 6',
+      prize: '1000',
+      image: 'car12',
+      type: 'car',
+      rank: 'silver',
+    },
+    {
+      id: 22,
+      collection: 'Silver Collection Rare',
+      name: 'Silver 7',
+      prize: '6000',
+      image: 'car26',
+      type: 'car',
+      rare: true,
+      rank: 'silver',
+    },
+    //gold
+    {
+      id: 23,
+      collection: 'Gold Collection',
+      name: 'Gold 1',
+      prize: '1 600',
+      image: 'car13',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 24,
+      collection: 'Gold Collection',
+      name: 'Gold 2',
+      prize: '1 600',
+      image: 'car14',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 25,
+      collection: 'Gold Collection',
+      name: 'Gold 3',
+      prize: '1 600',
+      image: 'car15',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 26,
+      collection: 'Gold Collection',
+      name: 'Gold 4',
+      prize: '1 600',
+      image: 'car16',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 27,
+      collection: 'Gold Collection',
+      name: 'Gold 5',
+      prize: '1 600',
+      image: 'car17',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 28,
+      collection: 'Gold Collection',
+      name: 'Gold 6',
+      prize: '1 600',
+      image: 'car18',
+      type: 'car',
+      rank: 'gold',
+    },
+    {
+      id: 29,
+      collection: 'Gold Collection Rare',
+      name: 'Gold 7',
+      prize: '9 600',
+      image: 'car27',
+      type: 'car',
+      rare: true,
+      rank: 'gold',
+    },
+    //platinum
+    {
+      id: 30,
+      collection: 'Platinum Collection',
+      name: 'Platinum 1',
+      prize: '2 600',
+      image: 'car19',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 31,
+      collection: 'Platinum Collection',
+      name: 'Platinum 2',
+      prize: '2 600',
+      image: 'car20',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 32,
+      collection: 'Platinum Collection',
+      name: 'Platinum 3',
+      prize: '2 600',
+      image: 'car21',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 33,
+      collection: 'Platinum Collection',
+      name: 'Platinum 4',
+      prize: '2 600',
+      image: 'car22',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 34,
+      collection: 'Platinum Collection',
+      name: 'Platinum 5',
+      prize: '2 600',
+      image: 'car23',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 35,
+      collection: 'Platinum Collection',
+      name: 'Platinum 6',
+      prize: '2 600',
+      image: 'car24',
+      type: 'car',
+      rank: 'platinum',
+    },
+    {
+      id: 36,
+      collection: 'Platinum Collection Rare',
+      name: 'Platinum 7',
+      prize: '15 600',
+      image: 'car28',
+      type: 'car',
+      rare: true,
+      rank: 'platinum',
+    },
+    {
+      id: 37,
+      collection: 'Race tracks',
+      name: 'Free track',
+      prize: '1152 IOI',
+      image: 'free-track',
+      type: 'track',
+    },
+    {
+      id: 38,
+      collection: 'Race tracks',
+      name: 'Desert',
+      prize: '1152 IOI',
+      image: 'desert',
+      type: 'track',
+    },
+    {
+      id: 39,
+      collection: 'Race tracks',
+      name: 'Dark forest',
+      prize: '1152 IOI',
+      image: 'dark-forest',
+      type: 'track',
+    },
+    {
+      id: 40,
+      collection: 'Race tracks',
+      name: 'Sea bridge',
+      prize: '1152 IOI',
+      image: 'sea-bridge',
+      type: 'track',
+    },
+    {
+      id: 41,
+      collection: 'Race tracks',
+      name: 'Night City',
+      prize: '1152 IOI',
+      image: 'night-city',
+      type: 'track',
+    },
+    {
+      id: 42,
+      collection: 'Race tracks',
+      name: 'Underground',
+      prize: '1152 IOI',
+      image: 'underground',
+      type: 'track',
+    },
+    {
+      id: 43,
+      collection: '',
+      name: 'BTC',
+      prize: '',
+      image: 'btc-team-small',
+      type: 'team',
+    },
+    {
+      id: 44,
+      collection: '',
+      name: 'IOI',
+      prize: '',
+      image: 'ioi-team-small',
+      type: 'team',
+    },
+    {
+      id: 45,
+      collection: '',
+      name: 'ALT',
+      prize: '',
+      image: 'alt-team-small',
+      type: 'team',
+    },
+  ];
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.getAssetType();
+  }
+
+  filterRacers() {
+    this.products = this.products.filter((item) => item['type'] === 'racer');
+  }
+  filterCars() {
+    this.products = this.products.filter((item) => item['type'] === 'car');
+  }
+  filterTracks() {
+    this.products = this.products.filter((item) => item['type'] === 'track');
+  }
+  filterTeams() {
+    this.products = this.products.filter((item) => item['type'] === 'team');
+  }
+
+  getAssetType() {
+    this.typeObserver = this.route.queryParams.subscribe((params) => {
+      this.assetType = params['type'];
+      this.assetId = +params['id'];
+      if (!this.assetType) {
+        this.assetType = 'racer';
+      }
+      if (!this.assetId) {
+        this.assetId = 1;
+      }
+
+      if (this.assetType === 'racer') {
+        this.filterRacers();
+        this.displayArray = this.products;
+      }
+      if (this.assetType === 'car') {
+        this.filterCars();
+        this.displayArray = this.products;
+      }
+      if (this.assetType === 'track') {
+        this.filterTracks();
+        this.displayArray = this.products;
+      }
+      if (this.assetType === 'team') {
+        this.filterTeams();
+        this.displayArray = this.products;
+      }
+      this.displayArray = this.displayArray.filter(
+        (asset) => asset.id === this.assetId
+      );
+    });
+  }
+  activateMenu() {
+    if (this.activeMenu === 0) {
+      this.isMenuActive = true;
+      this.activeMenu = 1;
+    } else {
+      this.isMenuActive = false;
+      this.activeMenu = 0;
+    }
+  }
+  reset() {
+    let element;
+    element = document.querySelector('.hamburger');
+    element.classList.remove('hamburgerclick');
+    void element.offsetWidth;
+    element.classList.add('hamburgerclick');
+  }
+  resetAbilities() {
+    let element;
+    element = document.querySelector('.plus');
+    element.classList.remove('plus-click');
+    void element.offsetWidth;
+    element.classList.add('plus-click');
+  }
+  showAbilities() {
+    this.abilities = !this.abilities;
+  }
+
+}

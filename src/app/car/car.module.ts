@@ -18,6 +18,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { IonicModule } from '@ionic/angular';
 import { MyCarsComponent } from './my-cars/my-cars.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
+import { NftMarketComponent } from './nft-market/nft-market.component';
+import { NftDetailComponent } from './nft-detail/nft-detail.component';
+import { BuyNftComponent } from './buy-nft/buy-nft.component';
 
 const routes: Routes = [
   {
@@ -35,14 +38,16 @@ const routes: Routes = [
       { path: '', redirectTo: 'garage/my-car', pathMatch: 'prefix' },
       { path: 'garage', component: BuyCarsComponent },
       { path: 'garage/my-cars', component: MyCarsComponent },
-      { path: 'favourite-cars', component: FavouriteCarsComponent }
+      { path: 'favourite-cars', component: FavouriteCarsComponent },
+      { path: 'nft-market', component: NftMarketComponent }
     ]
   }
 ];
 @NgModule({
   declarations: [BuyCarsComponent, FuelCarComponent, GaragePromBannerComponent,
     MyCarsComponent, RefuelCarComponent,
-    FavouriteCarsComponent, EditFastFuelCarComponent],
+    FavouriteCarsComponent, EditFastFuelCarComponent, NftMarketComponent, NftDetailComponent,
+    BuyNftComponent],
   imports: [
     CommonModule,
     ninja,

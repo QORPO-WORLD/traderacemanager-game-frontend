@@ -1,0 +1,483 @@
+<div [class.disable-scroll]="isMenuActive" class="detail-page">
+  <div
+    class="navoverlay"
+    (click)="activateMenu()"
+    [class.navoverlay-active]="isMenuActive"
+    [class.nav-active]="isMenuActive"
+  ></div>
+
+  <div class="navigation">
+    <div
+      data-aos="fade-down"
+      class="hamburger"
+      [class.hamburgerclick]="isMenuActive"
+      (click)="activateMenu(); reset()"
+    >
+      <i class="fa fa-bars"></i>
+    </div>
+    <div class="menu">
+      <div data-aos="fade-down" class="logo">
+        <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+        <p>TRADE RACE <span>MANAGER</span></p>
+      </div>
+
+      <div class="nav" [class.nav-active]="isMenuActive">
+        <div>
+          <p [routerLink]="['/home']" class="p-small">Home</p>
+        </div>
+        <div>
+          <p class="p-small">About</p>
+        </div>
+        <div>
+          <p class="p-small active">Shop</p>
+        </div>
+        <div>
+          <p class="p-small">Categories</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="assetType === 'racer'">
+    <button class="sign-in">
+      <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
+    </button>
+    <div class="detail-racers">
+      <div class="detail-text">
+        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="detail-name">
+          <h1 *ngIf="assetType === 'racer'" class="name-nofont">Racer</h1>
+          <h1 class="name-font">
+            {{ displayArray[0]["name"] }}
+          </h1>
+        </div>
+        <div class="detail-info">
+          <h1>About Racer</h1>
+          <p>
+            With the most unique characters, cars and tracks - all as
+            NFTs.Purchase one, or more of our characters, get amazing and unique
+            NFTs cars and start racing today. More cars and characters means
+            higher earnings!
+          </p>
+        </div>
+        <div class="detail-abilities">
+          <h1>Abilities</h1>
+          <div class="ability-boxes">
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>10K</button>
+              </div>
+              <div class="ability-type">
+                <h1>10 000 IOI</h1>
+                <p>IOI value</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>10K</button>
+              </div>
+              <div class="ability-type">
+                <h1>30% of NFTs Sales</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>10K</button>
+              </div>
+              <div class="ability-type">
+                <h1>Loves his Mrs.</h1>
+                <p>weakness</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div>
+          <img
+            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="assetType === 'car'">
+    <div class="detail-cars">
+      <div class="detail-text">
+        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="detail-name">
+          <h1 class="name-nofont">
+            {{ displayArray[0]["name"] }}
+          </h1>
+        </div>
+        <div class="detail-info">
+          <h1>About Car</h1>
+          <p>
+            With the most unique characters, cars and tracks - all as
+            NFTs.Purchase one, or more of our characters, get amazing and unique
+            NFTs cars and start racing today. More cars and characters means
+            higher earnings!
+          </p>
+        </div>
+        <ng-container *ngIf="displayArray[0]['rank'] === 'bronze'">
+          <div class="detail-abilities">
+            <h1>Abilities</h1>
+            <div class="content">
+              <div class="ability-title"><p>IOI value</p></div>
+              <div class="ability1">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>600</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>3 600</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value1-bronze"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value1-bronze-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>15 600</p></div>
+              </div>
+              <div class="ability-title"><p>IOI daily stake</p></div>
+              <div class="ability2">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>0.1</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>0.6</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value2-bronze"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value2-bronze-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>10.25</p></div>
+              </div>
+              <div class="ability-title"><p>ROI %</p></div>
+              <div class="ability3">
+                <div class="ability-text"><p>6%</p></div>
+                <div class="ability-row">
+                  <div class="value3-bronze"></div>
+                  <div class="value3-bronze-rare"></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>24%</p></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="displayArray[0]['rank'] === 'silver'">
+          <div class="detail-abilities">
+            <h1>Abilities</h1>
+            <div class="content">
+              <div class="ability-title"><p>IOI value</p></div>
+              <div class="ability1">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>1 000</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>6 000</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value1-silver"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value1-silver-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>15 600</p></div>
+              </div>
+              <div class="ability-title"><p>IOI daily stake</p></div>
+              <div class="ability2">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>0.33</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>1.98</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value2-silver"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value2-silver-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>10.25</p></div>
+              </div>
+              <div class="ability-title"><p>ROI %</p></div>
+              <div class="ability3">
+                <div class="ability-text"><p>12%</p></div>
+                <div class="ability-row">
+                  <div class="value3-silver"></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>24%</p></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="displayArray[0]['rank'] === 'gold'">
+          <div class="detail-abilities">
+            <h1>Abilities</h1>
+            <div class="content">
+              <div class="ability-title"><p>IOI value</p></div>
+              <div class="ability1">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>1 600</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>9 600</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value1-gold"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value1-gold-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>15 600</p></div>
+              </div>
+              <div class="ability-title"><p>IOI daily stake</p></div>
+              <div class="ability2">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>0.79</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>4.74</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value2-gold"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value2-gold-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>10.25</p></div>
+              </div>
+              <div class="ability-title"><p>ROI %</p></div>
+              <div class="ability3">
+                <div class="ability-text"><p>18%</p></div>
+                <div class="ability-row">
+                  <div class="value3-gold"></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>24%</p></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="displayArray[0]['rank'] === 'platinum'">
+          <div class="detail-abilities">
+            <h1>Abilities</h1>
+            <div class="content">
+              <div class="ability-title"><p>IOI value</p></div>
+              <div class="ability1">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>2 600</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>15 600</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value1-platinum"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value1-platinum-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>15 600</p></div>
+              </div>
+              <div class="ability-title"><p>IOI daily stake</p></div>
+              <div class="ability2">
+                <div
+                  *ngIf="displayArray[0]['rare'] === undefined"
+                  class="ability-text"
+                >
+                  <p>1.71</p>
+                </div>
+                <div
+                  *ngIf="displayArray[0]['rare'] === true"
+                  class="ability-text"
+                >
+                  <p>10.25</p>
+                </div>
+                <div class="ability-row">
+                  <div
+                    *ngIf="displayArray[0]['rare'] === undefined"
+                    class="value2-platinum"
+                  ></div>
+                  <div
+                    *ngIf="displayArray[0]['rare'] === true"
+                    class="value2-platinum-rare"
+                  ></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>10.25</p></div>
+              </div>
+              <div class="ability-title"><p>ROI %</p></div>
+              <div class="ability3">
+                <div class="ability-text"><p>24%</p></div>
+                <div class="ability-row">
+                  <div class="value3-platinum"></div>
+                  <div class="value"></div>
+                </div>
+                <div class="ability-text"><p>24%</p></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="detail-image">
+        <div class="img">
+          <img
+            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            alt=""
+          />
+          <button class="sign-in-cars">
+            <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="assetType === 'track'">
+    <div class="detail-tracks">
+      <div class="detail-text">
+        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="detail-name">
+          <h1 class="name-nofont">
+            {{ displayArray[0]["name"] }}
+          </h1>
+        </div>
+        <div class="detail-info">
+          <h1>About Track</h1>
+          <p>
+            With the most unique characters, cars and tracks - all as
+            NFTs.Purchase one, or more of our characters, get amazing and unique
+            NFTs cars and start racing today. More cars and characters means
+            higher earnings!
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="img">
+          <img
+            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            alt=""
+          />
+        </div>
+        <button class="sign-in-tracks">
+          <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="assetType === 'team'">
+    <div class="detail-teams">
+      <div class="detail-text">
+        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="detail-name">
+          <h1 class="name-nofont">
+            {{ displayArray[0]["name"] }}
+          </h1>
+        </div>
+        <div class="detail-info">
+          <h1>About Team</h1>
+          <p>
+            With the most unique characters, cars and tracks - all as
+            NFTs.Purchase one, or more of our characters, get amazing and unique
+            NFTs cars and start racing today. More cars and characters means
+            higher earnings!
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="img">
+          <img
+            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            alt=""
+          />
+        </div>
+        <button class="sign-in-teams">
+          <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

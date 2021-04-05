@@ -24,6 +24,8 @@ import { CommonModule } from '@angular/common';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 
+import { HomeNftDetailComponent } from './pages/home-nft-detail/home-nft-detail.component';
+import { HomeShopComponent } from './pages/home-shop/home-shop.component';
 import { ResetPasswordComponent } from './components/forgot-password/reset-password';
 import { SignupUserComponent } from './components/signup/signup-user';
 import { ReferralLoginComponent } from './pages/referral/referral.component';
@@ -57,7 +59,9 @@ const routes: Routes = [
     { path: 'user-verify', component: UserVerifiedComponent, data: { title: 'Privacy Policy' } },
     { path: 'verify-code', component: VerifyUserComponent, data: { title: 'Verify user' } },
     { path: 'verify-authenticator', component: VerifyauthenticatorComponent, data: { title: 'Verify user' } },
-    { path: 'home', component: HomePageComponent, data: { title: 'Home page' } }
+    { path: 'home', component: HomePageComponent, data: { title: 'Home page' } },
+    { path: 'shop', component: HomeShopComponent, data: { title: 'Nft shop' } },
+    { path: 'nft-detail', component: HomeNftDetailComponent, data: { title: 'Nft detail' } }
 
 ];
 
@@ -91,7 +95,9 @@ const routes: Routes = [
         WloginComponent,
         MetamaskSignupComponent,
         VerifyUserComponent,
-        VerifyauthenticatorComponent
+        VerifyauthenticatorComponent,
+        HomeShopComponent,
+        HomeNftDetailComponent
     ],
     providers: [
         AutologinGuard,

@@ -1,0 +1,136 @@
+<ng-container *ngIf="assetType === 'racer'">
+  <button class="sign-in" (click)="showBuyModal()">
+    <img src="/assets/base/images/market/buy-icon.svg" alt=""> <span class="txt-span">Buy</span>
+  </button>
+  <div class="detail-racers">
+    <div class="detail-text">
+      <div class="detail-name">
+        <h1 class="name-nofont">Racer</h1>
+        <h1 class="name-font">
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About Racer</h1>
+        <p>
+          With the most unique characters, cars and tracks - all as
+          NFTs.Purchase one, or more of our characters, get amazing and unique
+          NFTs cars and start racing today. More cars and characters means
+          higher earnings!
+        </p>
+      </div>
+
+      <div class="detail-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div class="ability-box">
+            <div class="ability-image">
+              <button>10K</button>
+            </div>
+            <div class="ability-type">
+              <h1>10 000 IOI</h1>
+              <p>IOI value</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button>10K</button>
+            </div>
+            <div class="ability-type">
+              <h1>30% of NFTs Sales</h1>
+              <p>super skill</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button>10K</button>
+            </div>
+            <div class="ability-type">
+              <h1>Loves his Mrs.</h1>
+              <p>weakness</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="detail-image">
+      <div>
+        <img class="img" [src]="'/assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'" alt="" />
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="assetType === 'car' || assetType === 'track'">
+  <button class="sign-in cars" (click)="showBuyModal()">
+    <img src="/assets/base/images/market/buy-icon.svg" alt=""> <span class="txt-span">Buy</span>
+  </button>
+  <div class="detail-racers cars">
+    <div class="detail-text">
+      <div class="detail-name">
+        <h1 class="name-nofont">
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About Car</h1>
+        <p>
+          With the most unique characters, cars and tracks - all as
+          NFTs.Purchase one, or more of our characters, get amazing and unique
+          NFTs cars and start racing today. More cars and characters means
+          higher earnings!
+        </p>
+      </div>
+
+      <div class="mobile-img">
+        <img class="img" [src]="'/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'car'" />
+        <img class="img" [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'track'" />
+      </div>
+
+      <div class="car-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div class="ability-box">
+            <p class="heading">IOI value</p>
+            <div class="slider-holder">
+              <p>{{displayArray[0]['prize']}}</p>
+              <div class="ab-slider">
+                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['prize'] * 100) / 15600}"></div>
+              </div>
+              <p>15 600</p>
+            </div>
+          </div>
+
+          <div class="ability-box">
+            <p class="heading">IOI daily stake</p>
+            <div class="slider-holder">
+              <p>{{displayArray[0]['extras'].stake}}</p>
+              <div class="ab-slider">
+                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].stake * 100) / 10.25}"></div>
+              </div>
+              <p>10.25</p>
+            </div>
+          </div>
+
+          <div class="ability-box">
+            <p class="heading">ROI %</p>
+            <div class="slider-holder">
+              <p>{{displayArray[0]['extras'].roi}}%</p>
+              <div class="ab-slider">
+                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].roi * 100) / 24}"></div>
+              </div>
+              <p>24%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-image">
+      <div>
+        <img class="img" [src]="'/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'car'" />
+        <img class="img" [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'track'" />
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="assetType === 'track'"></ng-container>
