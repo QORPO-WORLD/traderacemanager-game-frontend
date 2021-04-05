@@ -380,6 +380,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.moveWheels();
         setTimeout(() => {
           this.semaforsVisible = false;
+          return;
           this.raceSound = document.createElement('audio');
           this.raceSound.src = './assets/base/sounds/Race.mp3';
           this.raceSound.volume = 0.5;
@@ -433,24 +434,29 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         if (data.race_progress > 0) {
           this.raceStarted = true;
         }
-
+        
         if (data.race_progress > 97 && data.race_progress < 99.98) {
           this.willShoot = true;
           this.willPlayFinishSound = true;
           this.myInterval = 1000;
         }
-
+        
         if (data.race_progress === 100) {
-          this.raceFinished = true;
+          setTimeout(() => {
+            //if (this.gotWinner === false) {
 
+              this.getRaceWinner();
+            //}
+          }, 2000);
+          this.raceFinished = true;
+       
           clearInterval(this.moveInterval);
           clearInterval(this.detailInterval);
 
-          if (this.raceSound) {
-            this.raceSound.pause();
-          }
 
+/*
           if (this.willPlayFinishSound === true) {
+            return;
             this.endSound = document.createElement('audio');
             this.endSound.src = './assets/base/sounds/End.mp3';
             this.endSound.volume = 0.5;
@@ -459,21 +465,17 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
               this.endSound.play();
             }
           }
-
+*/
           this.moveNum = 0;
 
-          if (this.willShoot === true && this.unitySelected === false) {
+          if (this.willShoot === true) {
             setTimeout(() => { this.shooter(); }, 100);
             setTimeout(() => { this.shooter(); }, 300);
             setTimeout(() => { this.shooter(); this.willShoot = false; }, 450);
           }
-          setTimeout(() => {
-            if (this.gotWinner === false) {
-              this.getRaceWinner();
-            }
-          }, 1500);
+   
 
-          if (this.raceData.me) {
+          if (this.raceData.me !== null) {
             this.resolvePosition(this.raceData.me.cpr);
             this.getRandomNum(this.raceData.me.s);
           }
@@ -560,13 +562,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.showTourMsg = false;
       }
     }, closeHint);
-
+/*
     setTimeout((
     ) => {
       if (this.soundEnabled === true) {
-        this.playBefore();
+        //this.playBefore();
       }
     }, fireAudience);
+
+  */
   }
 
 
@@ -596,14 +600,16 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
   shooter() {
-    const obj = document.createElement('audio');
-    obj.src = './assets/base/images/camera-shutter-click-08.mp3';
-    obj.volume = 0.2;
-    obj.play();
-    this.shooting = true;
-    setTimeout(() => {
-      this.shooting = false;
-    }, 30 * 2 + 45);
+    if (this.pageOpen === true) {
+      const obj = document.createElement('audio');
+      obj.src = './assets/base/images/camera-shutter-click-08.mp3';
+      obj.volume = 0.2;
+      obj.play();
+      this.shooting = true;
+      setTimeout(() => {
+        this.shooting = false;
+      }, 30 * 2 + 45);
+    }
   }
 
 
@@ -663,12 +669,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.playGreen();
         this.semaforVal = -1;
-
-        this.startSound = document.createElement('audio');
-        this.startSound.src = './assets/base/sounds/Start.mp3';
-        if (this.soundEnabled) {
-          this.startSound.play();
-        }
+        /*
+                this.startSound = document.createElement('audio');
+                this.startSound.src = './assets/base/sounds/Start.mp3';
+                if (this.soundEnabled) {
+                  this.startSound.play();
+                } */
       }, 5100);
     }
   }
@@ -814,6 +820,47 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
   getAllv2Races() {
+    setTimeout(() => {
+      this.winnerObservable = this.api.racesWinnerList(this.raceId).subscribe(data => {
+        if (data) {
+          const x: any = data;
+          const dlength = x.length;
+          if (this.raceDataildata.tournament_id !== null) {
+            if (this.raceDataildata.tour_index > 10 && this.raceDataildata.tour_index < 20) {
+              const loser = this.raceDataildata.tour_index - 10;
+              this.loserIndex = 10 - loser;
+              this.loserCar = this.raceData.cards[this.loserIndex].cid;
+
+              let notLost = 0;
+              for (let xx = 0; xx < this.loserIndex; xx++) {
+                if (this.raceData.cards[xx].u === this.myUid) {
+                  notLost = notLost + 1;
+                }
+              }
+
+              if (notLost > 0) {
+                this.finishedtour = false;
+              } else {
+                this.finishedtour = true;
+              }
+            } else {
+              this.finishedtour = false;
+            }
+          }
+
+          this.winnersList = x.winners;
+          this.frozenTicket = x.ticker_froze;
+          if (this.raceData.me) {
+            this.balanceService.balanceHasbeenChanged();
+            this.identityService.updateDriverMe();
+          }
+          this.showFinalModal = true;
+          this.unitySelected = false;
+        }
+      });
+
+    }, 2000);
+    
     this.nextObservable = this.api.racesNextV2List().subscribe(xdata => {
       const nedata: any = xdata;
       const typeNow = this.raceDataildata.race_identifier;
@@ -822,6 +869,34 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       });
       this.nextRaceHash = pekac[0].race_hash;
       this.nextStartsIn = pekac[0].starts_in_seconds;
+    });
+      
+      /*  if (this.gotWinner === false) {
+          this.gotWinner = true;
+          //this.notify.success('info', 'This race is done, win or lose dont miss the next race.');
+  
+  
+          this.experience.load((callback: Experience) => {
+            this.currentExpLevel = callback.getCurrentExpLevel();
+            this.progressBarPercentage = callback.getProgressBarPercentage();
+            this.previousLevelExp = callback.getPreviousLevelExp();
+            this.nextLevelExp = callback.getNextLevelExp();
+          });
+          */
+      
+
+      if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index > 1) {
+        this.getLdrv();
+      }
+      
+
+      const dataf = JSON.parse(localStorage.getItem('first-race'));
+      if (dataf) {
+        this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
+          this.identityService.meUpdate();
+          localStorage.removeItem('first-race');
+        });
+      }
 
       if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index !== 19) {
 
@@ -835,74 +910,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
           if (this.cFuelOpen === false) {
-            // this.play();
+             this.play();
           }
 
         }, 60000);
       }
-      if (this.gotWinner === false) {
-        this.gotWinner = true;
-        //this.notify.success('info', 'This race is done, win or lose dont miss the next race.');
 
-
-        this.experience.load((callback: Experience) => {
-          this.currentExpLevel = callback.getCurrentExpLevel();
-          this.progressBarPercentage = callback.getProgressBarPercentage();
-          this.previousLevelExp = callback.getPreviousLevelExp();
-          this.nextLevelExp = callback.getNextLevelExp();
-        });
-        setTimeout(() => {
-          this.winnerObservable = this.api.racesWinnerList(this.raceId).subscribe(data => {
-            if (data) {
-              const x: any = data;
-              const dlength = x.length;
-              if (this.raceDataildata.tournament_id !== null) {
-                if (this.raceDataildata.tour_index > 10 && this.raceDataildata.tour_index < 20) {
-                  const loser = this.raceDataildata.tour_index - 10;
-                  this.loserIndex = 10 - loser;
-                  this.loserCar = this.raceData.cards[this.loserIndex].cid;
-
-                  let notLost = 0;
-                  for (let xx = 0; xx < this.loserIndex; xx++) {
-                    if (this.raceData.cards[xx].u === this.myUid) {
-                      notLost = notLost + 1;
-                    }
-                  }
-
-                  if (notLost > 0) {
-                    this.finishedtour = false;
-                  } else {
-                    this.finishedtour = true;
-                  }
-                } else {
-                  this.finishedtour = false;
-                }
-              }
-
-              this.winnersList = x.winners;
-              this.frozenTicket = x.ticker_froze;
-              this.balanceService.balanceHasbeenChanged();
-              this.identityService.updateDriverMe();
-
-              this.showFinalModal = true;
-              this.unitySelected = false;
-            }
-          });
-
-        }, 3000);
-
-        this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
-          this.identityService.meUpdate();
-          localStorage.removeItem('first-race');
-        });
-
-        if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index > 1) {
-          this.getLdrv();
-        }
-      }
-
-
-    });
   }
 
   continueTour() {
@@ -1101,12 +1114,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   playBefore() {
+    /*
     this.beforeSound = document.createElement('audio');
     this.beforeSound.src = './assets/base/sounds/Before.wav';
     if (this.soundEnabled) {
       this.beforeSound.play();
     }
-
+*/
   }
 
   resolveBackType() {
