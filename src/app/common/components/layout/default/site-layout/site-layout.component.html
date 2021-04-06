@@ -140,20 +140,20 @@
     <div class="right-container" [ngClass]="{'open': menuOpen === true}">
       <div class="right-part-holder">
         <div class="menu-switchers">
-          <div class="switch-item" (click)="menuType = 'races'">
+          <div class="switch-item" (click)="menuType = 'races'" [ngClass]="{'active': menuType === 'races'}">
             <p>{{'site-layout.races' | translate}}</p>
           </div>
-          <div class="switch-item" (click)="menuType = 'me'">
+          <div class="switch-item" (click)="menuType = 'me'" [ngClass]="{'active': menuType === 'me'}">
             <ng-container *ngIf="myDriverStats?.is_verified === false">
               <img src="/assets/base/images/icons/verify-warning-red.png" alt="Verify account warning" class="my-warning red">
               <img src="/assets/base/images/icons/verify-warning-blue.png" alt="Verify account warning" class="my-warning blue">
             </ng-container>
             <p>{{'site-layout.me' | translate}}</p>
           </div>
-          <div class="switch-item" (click)="menuType = 'chat'">
+          <div class="switch-item" (click)="menuType = 'chat'" [ngClass]="{'active': menuType === 'chat'}">
             <p>{{'site-layout.chat' | translate}}</p>
           </div>
-          <div class="item-back my-low-gradient" [ngClass]="menuType"></div>
+          <div class="item-back my-cta-btn-back" [ngClass]="menuType"></div>
         </div>
         <div class="profile-cont my-holder" *ngIf="menuType === 'me'">
           <app-profile-stats (menuClose)="closeMenu($event)"></app-profile-stats> 

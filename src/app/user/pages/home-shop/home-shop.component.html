@@ -1,4 +1,8 @@
-<div [class.disable-scroll]="isMenuActive" class="shop-pagee">
+<div
+  (window:resize)="width()"
+  [class.disable-scroll]="isMenuActive"
+  class="shop-pagee"
+>
   <div
     class="navoverlay"
     (click)="activateMenu()"
@@ -24,14 +28,9 @@
         <div>
           <p [routerLink]="['/user/home']" class="p-small">Home</p>
         </div>
+
         <div>
-          <p class="p-small">About</p>
-        </div>
-        <div>
-          <p class="p-small active">Shop</p>
-        </div>
-        <div>
-          <p class="p-small">Categories</p>
+          <p class="p-small active">Marketplace</p>
         </div>
       </div>
     </div>
@@ -124,7 +123,9 @@
           <div class="boximage">
             <img
               class="img"
-              [src]="'/assets/base/images/home-page/' + item['image'] + '-small.png'"
+              [src]="
+                '/assets/base/images/home-page/' + item['image'] + '-small.png'
+              "
               alt=""
             />
           </div>
@@ -146,7 +147,13 @@
                 >{{ item["name"] }}</span
               >
             </p>
-            <p *ngIf="item['type'] === 'team'" class="name">
+            <p *ngIf="item['name'] === 'Team You'" class="name">
+              {{ item["name"] }}
+            </p>
+            <p
+              *ngIf="item['type'] === 'team' && item['name'] != 'Team You'"
+              class="name"
+            >
               Team
               <span
                 *ngIf="item['name'] === 'BTC'"
@@ -169,7 +176,21 @@
             </p>
             <p class="prize">{{ item["prize"] }}</p>
             <button
-              [routerLink]="['/user/nft-detail']"
+              *ngIf="item['type'] != 'team'"
+              [routerLink]="['/nft-detail']"
+              [queryParams]="{ type: item['type'], id: item['id'] }"
+            >
+              See details
+            </button>
+            <button
+              [ngStyle]="{ opacity: '0.3' }"
+              *ngIf="item['name'] != 'Team You' && item['type'] === 'team'"
+            >
+              Sold out
+            </button>
+            <button
+              *ngIf="item['name'] === 'Team You' && item['type'] === 'team'"
+              [routerLink]="['/nft-detail']"
               [queryParams]="{ type: item['type'], id: item['id'] }"
             >
               See details
@@ -196,7 +217,8 @@
         <div class="page-middle">
           <p>
             Page
-            <span>{{ currentPage }} / {{ lastPage }}</span>
+            <span class="leftspan">{{ currentPage }} /</span>
+            <span class="rightspan">{{ lastPage }}</span>
           </p>
         </div>
         <div class="page-right">

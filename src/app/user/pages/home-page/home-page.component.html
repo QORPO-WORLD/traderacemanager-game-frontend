@@ -1,738 +1,1070 @@
-<div class="main-holder" [class.disable-scroll]="isMenuActive">
-    <div class="top-section-wrapper">
-      <div class="darkerback"></div>
+<div
+  (window:resize)="width()"
+  class="main-holder"
+  [class.disable-scroll]="isMenuActive"
+>
+  <div class="top-section-wrapper">
+    <div class="darkerback"></div>
+    <div
+      class="navoverlay"
+      (click)="activateMenu()"
+      [class.navoverlay-active]="isMenuActive"
+      [class.nav-active]="isMenuActive"
+    ></div>
+    <div
+      data-aos="fade-down"
+      class="hamburger"
+      [class.hamburgerclick]="isMenuActive"
+      (click)="activateMenu(); reset()"
+    >
+      <i class="fa fa-bars"></i>
+    </div>
+
+    <div class="top-section">
+      <div class="menu">
+        <div data-aos="fade-down" class="logo" [routerLink]="['/user/home']">
+          <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+          <p>TRADE RACE <span>MANAGER</span></p>
+        </div>
+
+        <div class="nav" [class.nav-active]="isMenuActive">
+          <div>
+            <p [routerLink]="['/user/home']" class="p-small active">Home</p>
+          </div>
+
+          <div>
+            <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
+          </div>
+          <button class="my-cta" [routerLink]="['/user/sign-in']">
+            Sign in
+          </button>
+        </div>
+      </div>
+      <div data-aos="fade-right" class="top-text">
+        <h1>Collectible #NFTs Trading game</h1>
+        <p>Pick your racers and become the richest NFTs trader in the world</p>
+        <button class="my-cta" [routerLink]="['/user/sign-up']">Sign up</button>
+      </div>
+
+      <div data-aos="left" class="google-play">
+        <a href="https://play.google.com/store/apps/details?id=ioi.game"
+          ><img
+            src="assets/base/images/home-page/google-play.png"
+            alt="google play"
+        /></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-section">
+    <div class="left">
       <div
-        class="navoverlay"
-        (click)="activateMenu()"
-        [class.navoverlay-active]="isMenuActive"
-        [class.nav-active]="isMenuActive"
-      ></div>
-      <div
-        data-aos="fade-down"
-        class="hamburger"
-        [class.hamburgerclick]="isMenuActive"
-        (click)="activateMenu(); reset()"
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'racer' }"
+        class="sec1"
       >
-        <i class="fa fa-bars"></i>
-      </div>
-  
-      <div class="top-section">
-        <div class="menu">
-          <div data-aos="fade-down" class="logo" [routerLink]="['/user/home']">
-            <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
-            <p>TRADE RACE <span>MANAGER</span></p>
-          </div>
-  
-          <div class="nav" [class.nav-active]="isMenuActive">
-            <div>
-              <p [routerLink]="['/user/home']" class="p-small active">Home</p>
-            </div>
-            <div>
-              <p class="p-small">About</p>
-            </div>
-            <div>
-              <p [routerLink]="['/user/shop']" class="p-small">Shop</p>
-            </div>
-            <div>
-              <p class="p-small">Categories</p>
-            </div>
-            <button class="my-cta" [routerLink]="['/user/sign-in']">Sign in</button>
-          </div>
-        </div>
-        <div data-aos="fade-right" class="top-text">
-          <h1>Collectible #NFTs Trading game</h1>
-          <p>Pick your racers and become the richest NFTs trader in the world</p>
-          <button class="my-cta" [routerLink]="['/user/sign-up']">Sign up</button>
-        </div>
-  
-        <div data-aos="left" class="google-play">
-          <a href="https://play.google.com/store/apps/details?id=ioi.game"
-            ><img src="assets/base/images/home-page/google-play.png" alt="google play"
-          /></a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="second-section">
-      <div class="left">
-        <div class="sec1">
-          <h1 class="h1left">Racers</h1>
-          <div class="s1">
-            <div class="sec1back"></div>
-            <div class="avatar">
-              <img src="assets/base/images/home-page/avatar.png" alt="Blue-avatar" />
-            </div>
-          </div>
-        </div>
-        <div class="sec2">
-          <h1 class="h1right">Cars</h1>
-          <div class="s2">
-            <div class="sec2back"></div>
-          </div>
-        </div>
-        <div class="sec3">
-          <h1 class="h1left">Tracks</h1>
-          <div class="s3">
-            <div class="sec3back"></div>
-          </div>
-        </div>
-        <div class="sec4">
-          <h1 class="h1right">Teams</h1>
-          <div class="s4">
-            <div class="sec4back"></div>
-            <div class="medail">
-              <img src="assets/base/images/home-page/medail.png" alt="Medail" />
-            </div>
+        <h1 class="h1left">Racers</h1>
+        <div class="s1">
+          <div class="sec1back"></div>
+          <div class="avatar">
+            <img
+              src="assets/base/images/home-page/avatar.png"
+              alt="Blue-avatar"
+            />
           </div>
         </div>
       </div>
-      <div class="right">
-        <div class="sec5">
-          <div class="sec5area">
-            <div data-aos="fade-left" class="sec5text">
-              <h1>TradeRace Manager is a new NFTs trading game</h1>
-              <p>
-                With the most unique characters, cars and tracks - all as NFTs.<br /><br />Purchase
-                one, or more of our characters, get amazing and unique NFTs cars
-                and start racing today. More cars and characters means higher
-                earnings!
-              </p>
-              <button>Get your NFT</button>
-            </div>
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'car' }"
+        class="sec2"
+      >
+        <h1 class="h1right">Cars</h1>
+        <div class="s2">
+          <div class="sec2back"></div>
+        </div>
+      </div>
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'track' }"
+        class="sec3"
+      >
+        <h1 class="h1left">Tracks</h1>
+        <div class="s3">
+          <div class="sec3back"></div>
+        </div>
+      </div>
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'team' }"
+        class="sec4"
+      >
+        <h1 class="h1right">Teams</h1>
+        <div class="s4">
+          <div class="sec4back"></div>
+          <div class="medail">
+            <img src="assets/base/images/home-page/medail.png" alt="Medail" />
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="buy-racers-section">
-      <div class="center">
-        <div class="buy-racers-content">
-          <div data-aos="fade-up" class="title">
-            <h2>Buy NFTs</h2>
+    <div class="right">
+      <div class="sec5">
+        <div class="sec5area">
+          <div data-aos="fade-left" class="sec5text">
+            <h1>TradeRace Manager is a new NFTs trading game</h1>
+            <p>
+              With the most unique characters, cars and tracks - all as NFTs.<br /><br />Purchase
+              one, or more of our characters, get amazing and unique NFTs cars
+              and start racing today. More cars and characters means higher
+              earnings!
+            </p>
+            <button [routerLink]="['/shop']">Get your NFT</button>
           </div>
-          <div class="content">
-            <div class="racer-items">
-              <div
-                data-aos="fade-right"
-                data-aos-delay="200"
-                data-aos-duration="1000"
-                class="arrow-left hover"
-              >
-                <img
-                  src="assets/base/images/home-page/arrow-left.png"
-                  alt="arrow left"
-                />
-              </div>
-  
-              <div
-                class="buy-boxes"
-                data-aos="zoom-in"
-                data-aos-delay="120"
-                data-aos-duration="1000"
-              >
-                <div class="racer-box box1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-racers-section">
+    <div class="center">
+      <div class="buy-racers-content">
+        <div data-aos="fade-up" class="title">
+          <h2>Buy NFTs</h2>
+        </div>
+        <div class="content">
+          <div class="racer-items">
+            <div
+              data-aos="fade-right"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+              class="arrow-left hover"
+            >
+              <img
+                [ngClass]="{ opacity: sliceStart === 0 }"
+                (click)="resetArrowL(); pageLeft()"
+                src="assets/base/images/home-page/left-arrow.svg"
+                alt="arrow left"
+              />
+            </div>
+
+            <div
+              class="buy-boxes"
+              data-aos="zoom-in"
+              data-aos-delay="120"
+              data-aos-duration="1000"
+            >
+              <div *ngFor="let item of products | slice: sliceStart:sliceEnd">
+                <div *ngIf="item['type'] === 'racer'" class="racer-box box1">
                   <div class="racer-img">
                     <img
-                      src="assets/base/images/home-page/avatar-white.png"
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
                       alt="white racer"
                     />
                   </div>
                   <div class="racer-info">
-                    <p class="desc">Midnight crew</p>
-                    <p class="racer">Racer <span class="name">RICH</span></p>
-                    <p class="price">1 152 IOI</p>
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">
+                      Racer <span class="name">{{ item["name"] }}</span>
+                    </p>
+                    <p class="price">{{ item["prize"] }}</p>
                   </div>
                 </div>
-  
-                <div class="racer-box box2">
+
+                <div *ngIf="item['type'] === 'car'" class="racer-box box2">
                   <div class="racer-img">
                     <img
-                      src="assets/base/images/home-page/rare-bronze.png"
-                      alt="brnozer car"
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
                     />
                   </div>
                   <div class="racer-info">
-                    <p class="desc">Bronze Collection</p>
-                    <p class="racer">Bronzer 1</p>
-                    <p class="price">1 152 IOI</p>
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="price">{{ item["prize"] }}</p>
                   </div>
                 </div>
-  
-                <div class="racer-box box3">
+
+                <div *ngIf="item['type'] === 'track'" class="racer-box box3">
                   <div class="racer-img">
                     <img
-                      src="assets/base/images/home-page/avatar-black.png"
-                      alt="black racer"
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
                     />
                   </div>
                   <div class="racer-info">
-                    <p class="desc">Midnight crew</p>
-                    <p class="racer">Racer <span class="name">QUINN</span></p>
-                    <p class="price">1 152 IOI</p>
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="price">{{ item["prize"] }}</p>
+                  </div>
+                </div>
+                <div *ngIf="item['type'] === 'team'" class="racer-box box4">
+                  <div class="racer-img">
+                    <img
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
+                    />
+                  </div>
+                  <div class="racer-info">
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">
+                      Team <span class="team">{{ item["name"] }}</span>
+                    </p>
+                    <p class="price">{{ item["prize"] }}</p>
                   </div>
                 </div>
               </div>
-              <div
-                data-aos="fade-left"
-                data-aos-delay="200"
-                data-aos-duration="1000"
-                class="arrow-right hover"
-              >
-                <img
-                  src="assets/base/images/home-page/arrow-right.png"
-                  alt="arrow right"
-                />
-              </div>
             </div>
-          </div>
-          <div
-            data-aos="fade-up"
-            data-aos-delay="150"
-            data-aos-duration="1000"
-            data-aos-offset="20"
-            class="button"
-          >
-            <button>Go to our store</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="category-racers first-racer">
-      <div class="racers-content">
-        <div data-aos="fade-right" class="avatar-info">
-          <div class="info-text">
-            <h2>Category</h2>
-            <h1>Racers</h1>
-  
-            <p class="txt-racer">
-              Good, evil, crazy rich. We gave all our racers a striking storyline,
-              which is one of the many things that make our NFT Racers so special.
-              Get your own racer today!
-            </p>
-            <button class="my-cta"><p>See all racers</p></button>
-          </div>
-        </div>
-  
-        <div data-aos="fade-left" class="avatar-img">
-          <div class="image">
-            <img src="assets/base/images/home-page/racers.png" alt="white avatar" />
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="category-cars secound-racer">
-      <div class="cars-content">
-        <div data-aos="fade-left" class="avatar-info">
-          <div class="info-text">
-            <h2>Category</h2>
-            <h1>Cars</h1>
-  
-            <p class="txt-racer">
-              Four collections full of custom made models of beatiful racer cars
-              ready to compete and make you money! The more cars you own, the
-              higher are the chances of winning.
-            </p>
-            <button class="my-cta"><p>See all Cars</p></button>
-          </div>
-        </div>
-        <div data-aos="fade-right" class="avatar-img">
-          <div class="image">
-            <img
-              class="image"
-              src="assets/base/images/home-page/cars.png"
-              alt="white avatar"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="category-tracks third-racer">
-      <div class="tracks-content">
-        <div data-aos="fade-right" class="avatar-info">
-          <div class="info-text">
-            <h2>Category</h2>
-            <h1>Tracks</h1>
-  
-            <p class="txt-racer">
-              Buy one, or multiple shares in our special Race Tracks and make
-              money passively, simply by Races happening our your track.
-            </p>
-            <button class="my-cta"><p>See all Tracks</p></button>
-          </div>
-        </div>
-  
-        <div data-aos="fade-left" class="avatar-img">
-          <div class="image">
-            <img src="assets/base/images/home-page/tracks.png" alt="white avatar" />
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="category-teams fourth-racer">
-      <div class="teams-content">
-        <div data-aos="fade-left" class="avatar-info">
-          <div class="info-text">
-            <h2>Category</h2>
-            <h1>Teams</h1>
-  
-            <p class="txt-racer">
-              To increase your income even more, either join one of our teams, or
-              create your own team, invite racers and managers in it, and cash!
-              Enjoy premium membership in any of the teams for more bonuses.
-            </p>
-  
-            <button class="my-cta"><p>See all Teams</p></button>
-          </div>
-        </div>
-        <div data-aos="fade-right" class="avatar-img">
-          <div class="image">
-            <img
-              class="image"
-              src="assets/base/images/home-page/teams.png"
-              alt="teams"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="trophy-section">
-      <div data-aos="fade-up" class="textarea">
-        <h1>Winner Trophies</h1>
-        <p>
-          12 rings, one big final Tournament for the twelve ring owners. Compete,
-          win and earn the most unique NFTs in the world1
-        </p>
-      </div>
-      <div class="trophies">
-        <div data-aos="fade-right" class="finaltrophy">
-          <h1>Final Trophy</h1>
-          <img src="assets/base/images/home-page/trophy.png" alt="" />
-        </div>
-        <div data-aos="fade-up" class="months">
-          <div class="leftarrow">
-            <img src="assets/base/images/home-page/arrow.png" alt="" />
-          </div>
-          <div class="rings">
-            <div class="opacity">
-              <h1>January</h1>
-              <p>Already won</p>
-              <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
-            </div>
-            <div>
-              <h1>February</h1>
-  
-              <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
-            </div>
-            <div>
-              <h1>March</h1>
-  
-              <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
-            </div>
-            <div>
-              <h1>April</h1>
-  
-              <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
-            </div>
-          </div>
-          <div class="rightarrow">
-            <img src="assets/base/images/home-page/arrow.png" alt="" />
-          </div>
-        </div>
-      </div>
-      <div data-aos="fade-up" class="start"><button>Start competing</button></div>
-    </div>
-    <div class="review-position">
-      <section data-aos="fade-up" class="reviews-sec">
-        <div class="my-score">
-          <img
-            class="rev-logo"
-            src="/assets/base/images/home-page/review-logo.png"
-            alt=""
-          />
-          <div class="cont-holder">
-            <div class="stars-holder">
-              <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-              <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-              <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-              <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-              <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-            </div>
-            <p class="desc">Trust score 4 | 19 reviews</p>
-          </div>
-        </div>
-  
-        <div class="review-cont">
-          <div class="rev-viewport">
             <div
-              class="rev-container"
-              [ngStyle]="{ 'left.%': -100 * reviewSlide }"
+              data-aos="fade-left"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+              class="arrow-right hover"
             >
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Loving it!</p>
-                  <p class="text">Awesome game, good customer service...</p>
-                  <p class="name">- Alejandro</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Great Game!</p>
-                  <p class="text">Free coins every day</p>
-                  <p class="name">- pokerbjj</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Nicest game</p>
-                  <p class="text">Its really awesome. You can trade and race</p>
-                  <p class="name">- 匿名</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">The new standard</p>
-                  <p class="text">Good game I like this.</p>
-                  <p class="name">- krongpop</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Loving it!</p>
-                  <p class="text">Awesome game, good customer service...</p>
-                  <p class="name">- Alejandro</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Great Game!</p>
-                  <p class="text">Free coins every day</p>
-                  <p class="name">- pokerbjj</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Nicest game</p>
-                  <p class="text">Its really awesome. You can trade and race</p>
-                  <p class="name">- 匿名</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">The new standard</p>
-                  <p class="text">Good game I like this.</p>
-                  <p class="name">- krongpop</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Loving it!</p>
-                  <p class="text">Awesome game, good customer service...</p>
-                  <p class="name">- Alejandro</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Great Game!</p>
-                  <p class="text">Free coins every day</p>
-                  <p class="name">- pokerbjj</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">Nicest game</p>
-                  <p class="text">Its really awesome. You can trade and race</p>
-                  <p class="name">- 匿名</p>
-                </div>
-              </div>
-              <div class="rev-slide">
-                <div class="rev-slide-inner">
-                  <div class="stars">
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                    <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  </div>
-                  <p class="heading">The new standard</p>
-                  <p class="text">Good game I like this.</p>
-                  <p class="name">- krongpop</p>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <!-- Buttons -->
-          <button
-            class="embla__button rev-btn-left"
-            type="button"
-            (click)="prevRev()"
-          >
-            <img src="/assets/base/images/home-page/arrow-left.svg" alt="" />
-          </button>
-          <button
-            class="embla__button rev-btn-right"
-            type="button"
-            (click)="nextRev()"
-          >
-            <img src="/assets/base/images/home-page/arrow-right.svg" alt="" />
-          </button>
-        </div>
-      </section>
-    </div>
-    <footer>
-      <div class="white-footer">
-        <div data-aos="fade-up" class="partners-box">
-          <div class="investors">
-            <p class="heading">A word to our investors</p>
-            <p>
-              It takes a village... And we're proud to have these amazing funds
-              and people by our side as we build out IOI Network.
-            </p>
-            <a
-              class="my-btn"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdOsJbwVERygOb7YRIjF51TD0SvNXnX0jQTiwdfRPVLYwhRfQ/viewform"
-            >
-              Join our next round
-            </a>
-          </div>
-          <div class="imgs-holder">
-            <div class="group">
               <img
-                class="big"
-                src="/assets/base/images/home-page/partners/partner1.png"
-                alt=""
+                [ngClass]="{ opacity: sliceEnd >= products.length }"
+                (click)="resetArrowR(); pageRigth()"
+                src="assets/base/images/home-page/arrow-right.png"
+                alt="arrow right"
               />
-              <img src="/assets/base/images/home-page/partners/partner2.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner3.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner4.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner5.png" alt="" />
-            </div>
-            <div class="group second">
-              <img src="/assets/base/images/home-page/partners/partner6.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner7.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner8.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner9.png" alt="" />
-            </div>
-            <div class="group second">
-              <img src="/assets/base/images/home-page/partners/partner10.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner11.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner12.png" alt="" />
-              <img src="/assets/base/images/home-page/partners/partner13.png" alt="" />
             </div>
           </div>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-duration="1000"
+          data-aos-offset="20"
+          class="button"
+        >
+          <button [routerLink]="['/shop']">Go to our store</button>
         </div>
       </div>
-      <div class="dark-footer">
-        <div data-aos="fade-up" class="follow-box">
-          <h1>Follow <img src="/assets/base/images/home-page/Logo.svg" alt="" /></h1>
-          <div class="my-links">
-            <div class="link-item">
-              <a href="https://twitter.com/ioi_game"
-                ><img
-                  src="/assets/base/images/home-page/icons/twitter.svg"
-                  alt="twitter"
-              /></a>
-            </div>
-            <div class="link-item">
-              <a href="https://t.me/IOIGAME"
-                ><img
-                  src="/assets/base/images/home-page/icons/telegram.svg"
-                  alt="telegram"
-              /></a>
-            </div>
-            <div class="link-item">
-              <a href="https://www.facebook.com/IOI-Game-103864621267922/"
-                ><img
-                  src="/assets/base/images/home-page/icons/facebook.svg"
-                  alt="facebook"
-              /></a>
-            </div>
-            <div class="link-item">
-              <a href="https://www.instagram.com/ioigame/"
-                ><img
-                  src="/assets/base/images/home-page/icons/instagram.svg"
-                  alt="instagram"
-              /></a>
-            </div>
-            <div class="link-item">
-              <a href="https://www.twitch.tv/traderacemanager"
-                ><img src="/assets/base/images/home-page/icons/twitch.svg" alt="twitch"
-              /></a>
-            </div>
-            <div class="link-item">
-              <a href="https://www.youtube.com/channel/UCsTeWAlQBKErsyYYy31WfVQ"
-                ><img
-                  src="/assets/base/images/home-page/icons/youtube.svg"
-                  alt="youtube"
-              /></a>
-            </div>
-            <div class="link-item last">
-              <a href="https://bitcointalk.org/index.php?topic=5238997.0"
-                ><img src="/assets/base/images/home-page/icons/btc.svg" alt="bitcoin"
-              /></a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="generals-holder">
-          <div class="general-item contact-us">
-            <p class="heading">Contact us</p>
-            <p>Do you have any questions?</p>
-            <p class="mail">Send us an e-mail: <a>info@ioi-game.com</a></p>
-            <p>IOI Corporation s.r.o</p>
-            <p>Vajnorská 100/B</p>
-            <p>831 04 Bratislava</p>
-            <p>Slovakia</p>
-          </div>
-          <div class="general-item">
-            <p class="heading">Useful pages</p>
-            <a href="https://blog.ioi-game.com/">IOI Blog</a>
-            <a href="https://www.ioi-token.com/">IOI Token</a>
-            <a href="https://ioi-corporation.com/">IOI Corporation</a>
-            <div class="linked">
-              <a class="linked" href="https://www.ioi-wallet.com/">IOI Wallet</a>
-              <a
-                class="img"
-                href="https://play.google.com/store/apps/details?id=ioi.wallet"
-                ><img
-                  src="/assets/base/images/home-page/icons/google-play.svg"
-                  alt="google play"
-              /></a>
-            </div>
-            <div class="linked">
-              <a class="linked" href="https://play.ioi-game.com/">IOI Game</a>
-              <a
-                class="img"
-                href="https://play.google.com/store/apps/details?id=ioi.game"
-                ><img
-                  src="/assets/base/images/home-page/icons/google-play.svg"
-                  alt="google play"
-              /></a>
-            </div>
-            <div class="linked">
-              <a class="linked" href="https://traderacemanager.com/"
-                >Trade Race Manager</a
-              >
-              <a
-                class="img"
-                href="https://play.google.com/store/apps/details?id=ioi.game"
-                ><img
-                  src="/assets/base/images/home-page/icons/google-play.svg"
-                  alt="google play"
-              /></a>
-            </div>
-          </div>
-          <div class="general-item read-more">
-            <p class="heading">Read more</p>
-            <a href="https://ioi-game.com/docs/Whitepaper-IOI-Final.pdf"
-              >Whitepaper</a
-            >
-            <a href="https://ioi-game.com/docs/Tokenometrics-IOI.pdf"
-              >Tokenometrics</a
-            >
-            <a href="https://ioi-game.com/docs/How-to-play.pdf"
-              >How to play IOI Game</a
-            >
-            <a href="https://ioi-game.com/docs/How-to-earn.pdf">How to earn</a>
-          </div>
-          <div class="general-item">
-            <p class="heading">Want to read more?</p>
-            <p>Check out IOI Corporate website for more information</p>
-            <a href="https://ioi-corporation.com/" class="my-btn"
-              >IOI Corporation</a
-            >
-          </div>
-        </div>
-  
-        <div class="basics">
-          <p>Copyright &copy; 2020 IOI-GAME</p>
-          <a href="https://ioi-game.com/subpages/credit_system.html" target="_blank">Credit system</a>
-          <a href="https://ioi-game.com/subpages/general_terms_and_conditions.html" target="_blank">General terms &amp; conditions</a>
-          <a href="https://ioi-game.com/subpages/privacy_policy.html" target="_blank">Privacy policy</a>
-          <a href="https://ioi-game.com/subpages/statute_of_competition.html" target="_blank">Statute of competition</a>
-        </div>
-      </div>
-    </footer>
+    </div>
   </div>
-  
+  <div class="category-racers first-racer">
+    <div class="racers-content">
+      <div data-aos="fade-right" class="avatar-info">
+        <div class="info-text">
+          <h2>Category</h2>
+          <h1>Racers</h1>
+
+          <p class="txt-racer">
+            Good, evil, crazy rich. We gave all our racers a striking storyline,
+            which is one of the many things that make our NFT Racers so special.
+            Get your own racer today!
+          </p>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'racer' }"
+            class="my-cta"
+          >
+            <p>See all racers</p>
+          </button>
+        </div>
+      </div>
+
+      <div data-aos="fade-left" class="avatar-img">
+        <div class="image">
+          <img
+            src="assets/base/images/home-page/racers.png"
+            alt="white avatar"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-cars secound-racer">
+    <div class="cars-content">
+      <div data-aos="fade-left" class="avatar-info">
+        <div class="info-text">
+          <h2>Category</h2>
+          <h1>Cars</h1>
+
+          <p class="txt-racer">
+            Four collections full of custom made models of beatiful racer cars
+            ready to compete and make you money! The more cars you own, the
+            higher are the chances of winning.
+          </p>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'car' }"
+            class="my-cta"
+          >
+            <p>See all Cars</p>
+          </button>
+        </div>
+      </div>
+      <div data-aos="fade-right" class="avatar-img">
+        <div class="image">
+          <img
+            class="image"
+            src="assets/base/images/home-page/cars.png"
+            alt="white avatar"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-tracks third-racer">
+    <div class="tracks-content">
+      <div data-aos="fade-right" class="avatar-info">
+        <div class="info-text">
+          <h2>Category</h2>
+          <h1>Tracks</h1>
+
+          <p class="txt-racer">
+            Buy one, or multiple shares in our special Race Tracks and make
+            money passively, simply by Races happening our your track.
+          </p>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'track' }"
+            class="my-cta"
+          >
+            <p>See all Tracks</p>
+          </button>
+        </div>
+      </div>
+
+      <div data-aos="fade-left" class="avatar-img">
+        <div class="image">
+          <img
+            src="assets/base/images/home-page/tracks.png"
+            alt="white avatar"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-teams fourth-racer">
+    <div class="teams-content">
+      <div data-aos="fade-left" class="avatar-info">
+        <div class="info-text">
+          <h2>Category</h2>
+          <h1>Teams</h1>
+
+          <p class="txt-racer">
+            To increase your income even more, either join one of our teams, or
+            create your own team, invite racers and managers in it, and cash!
+            Enjoy premium membership in any of the teams for more bonuses.
+          </p>
+
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'team' }"
+            class="my-cta"
+          >
+            <p>See all Teams</p>
+          </button>
+        </div>
+      </div>
+      <div data-aos="fade-right" class="avatar-img">
+        <div class="image">
+          <img
+            class="image"
+            src="assets/base/images/home-page/teams.png"
+            alt="teams"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trophy-section">
+    <div data-aos="fade-up" class="textarea">
+      <h1>Winner Trophies</h1>
+      <p>
+        12 rings, one big final Tournament for the twelve ring owners. Compete,
+        win and earn the most unique NFTs in the world
+      </p>
+    </div>
+    <div class="trophies">
+      <div data-aos="fade-right" class="finaltrophy">
+        <h1>Final Trophy</h1>
+        <img src="assets/base/images/home-page/trophy.png" alt="" />
+      </div>
+      <div data-aos="fade-up" class="months">
+        <div class="leftarrow">
+          <img src="assets/base/images/home-page/arrow.png" alt="" />
+        </div>
+        <div class="rings">
+          <div class="opacity">
+            <h1>January</h1>
+            <p>Already won</p>
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
+          </div>
+          <div>
+            <h1>February</h1>
+
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
+          </div>
+          <div>
+            <h1>March</h1>
+
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
+          </div>
+          <div>
+            <h1>April</h1>
+
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
+          </div>
+        </div>
+        <div class="rightarrow">
+          <img src="assets/base/images/home-page/arrow.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="start"><button>Start competing</button></div>
+  </div>
+  <div class="review-position">
+    <section data-aos="fade-up" class="reviews-sec">
+      <div class="my-score">
+        <img
+          class="rev-logo"
+          src="/assets/base/images/home-page/review-logo.png"
+          alt=""
+        />
+        <div class="cont-holder">
+          <div class="stars-holder">
+            <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+            <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+            <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+            <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+            <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+          </div>
+          <p class="desc">Trust score 4 | 19 reviews</p>
+        </div>
+      </div>
+
+      <div class="review-cont">
+        <div class="rev-viewport">
+          <div
+            class="rev-container"
+            [ngStyle]="{ 'left.%': -100 * reviewSlide }"
+          >
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Loving it!</p>
+                <p class="text">Awesome game, good customer service...</p>
+                <p class="name">- Alejandro</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Great Game!</p>
+                <p class="text">Free coins every day</p>
+                <p class="name">- pokerbjj</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Nicest game</p>
+                <p class="text">Its really awesome. You can trade and race</p>
+                <p class="name">- 匿名</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">The new standard</p>
+                <p class="text">Good game I like this.</p>
+                <p class="name">- krongpop</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Loving it!</p>
+                <p class="text">Awesome game, good customer service...</p>
+                <p class="name">- Alejandro</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Great Game!</p>
+                <p class="text">Free coins every day</p>
+                <p class="name">- pokerbjj</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Nicest game</p>
+                <p class="text">Its really awesome. You can trade and race</p>
+                <p class="name">- 匿名</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">The new standard</p>
+                <p class="text">Good game I like this.</p>
+                <p class="name">- krongpop</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Loving it!</p>
+                <p class="text">Awesome game, good customer service...</p>
+                <p class="name">- Alejandro</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Great Game!</p>
+                <p class="text">Free coins every day</p>
+                <p class="name">- pokerbjj</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">Nicest game</p>
+                <p class="text">Its really awesome. You can trade and race</p>
+                <p class="name">- 匿名</p>
+              </div>
+            </div>
+            <div class="rev-slide">
+              <div class="rev-slide-inner">
+                <div class="stars">
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                </div>
+                <p class="heading">The new standard</p>
+                <p class="text">Good game I like this.</p>
+                <p class="name">- krongpop</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <button
+          class="embla__button rev-btn-left"
+          type="button"
+          (click)="prevRev()"
+        >
+          <img src="/assets/base/images/home-page/arrow-left.svg" alt="" />
+        </button>
+        <button
+          class="embla__button rev-btn-right"
+          type="button"
+          (click)="nextRev()"
+        >
+          <img src="/assets/base/images/home-page/arrow-right.svg" alt="" />
+        </button>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div class="white-footer">
+      <div data-aos="fade-up" class="partners-box">
+        <div class="investors">
+          <p class="heading">A word to our investors</p>
+          <p>
+            It takes a village... And we're proud to have these amazing funds
+            and people by our side as we build out IOI Network.
+          </p>
+          <a
+            class="my-btn"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdOsJbwVERygOb7YRIjF51TD0SvNXnX0jQTiwdfRPVLYwhRfQ/viewform"
+          >
+            Join our next round
+          </a>
+        </div>
+        <div class="imgs-holder">
+          <div class="group">
+            <img
+              class="big"
+              src="/assets/base/images/home-page/partners/partner1.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner2.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner17.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner4.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner21.png"
+              alt=""
+            />
+          </div>
+          <div class="group second">
+            <img
+              src="/assets/base/images/home-page/partners/partner6.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner18.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner8.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner16.png"
+              alt=""
+            />
+          </div>
+          <div class="group second">
+            <img
+              src="/assets/base/images/home-page/partners/partner10.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner11.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner12.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner13.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dark-footer">
+      <div data-aos="fade-up" class="follow-box">
+        <h1>
+          Follow <img src="/assets/base/images/home-page/Logo.svg" alt="" />
+        </h1>
+        <div class="my-links">
+          <div class="link-item">
+            <a href="https://twitter.com/ioi_game"
+              ><img
+                src="/assets/base/images/home-page/icons/twitter.svg"
+                alt="twitter"
+            /></a>
+          </div>
+          <div class="link-item">
+            <a href="https://t.me/IOIGAME"
+              ><img
+                src="/assets/base/images/home-page/icons/telegram.svg"
+                alt="telegram"
+            /></a>
+          </div>
+          <div class="link-item">
+            <a href="https://www.facebook.com/IOI-Game-103864621267922/"
+              ><img
+                src="/assets/base/images/home-page/icons/facebook.svg"
+                alt="facebook"
+            /></a>
+          </div>
+          <div class="link-item">
+            <a href="https://www.instagram.com/ioigame/"
+              ><img
+                src="/assets/base/images/home-page/icons/instagram.svg"
+                alt="instagram"
+            /></a>
+          </div>
+          <div class="link-item">
+            <a href="https://www.twitch.tv/traderacemanager"
+              ><img
+                src="/assets/base/images/home-page/icons/twitch.svg"
+                alt="twitch"
+            /></a>
+          </div>
+          <div class="link-item">
+            <a href="https://www.youtube.com/channel/UCsTeWAlQBKErsyYYy31WfVQ"
+              ><img
+                src="/assets/base/images/home-page/icons/youtube.svg"
+                alt="youtube"
+            /></a>
+          </div>
+          <div class="link-item last">
+            <a href="https://bitcointalk.org/index.php?topic=5238997.0"
+              ><img
+                src="/assets/base/images/home-page/icons/btc.svg"
+                alt="bitcoin"
+            /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="generals-holder">
+        <div class="general-item contact-us">
+          <p class="heading">Contact us</p>
+          <p>Do you have any questions?</p>
+          <p class="mail">Send us an e-mail: <a>info@ioi-game.com</a></p>
+          <p>IOI Corporation s.r.o</p>
+          <p>Vajnorská 100/B</p>
+          <p>831 04 Bratislava</p>
+          <p>Slovakia</p>
+        </div>
+        <div class="general-item">
+          <p class="heading">Useful pages</p>
+          <a href="https://blog.ioi-game.com/">IOI Blog</a>
+          <a href="https://www.ioi-token.com/">IOI Token</a>
+          <a href="https://ioi-corporation.com/">IOI Corporation</a>
+          <div class="linked">
+            <a class="linked" href="https://www.ioi-wallet.com/">IOI Wallet</a>
+            <a
+              class="img"
+              href="https://play.google.com/store/apps/details?id=ioi.wallet"
+              ><img
+                src="/assets/base/images/home-page/icons/google-play.svg"
+                alt="google play"
+            /></a>
+          </div>
+          <div class="linked">
+            <a class="linked" href="https://play.ioi-game.com/">IOI Game</a>
+            <a
+              class="img"
+              href="https://play.google.com/store/apps/details?id=ioi.game"
+              ><img
+                src="/assets/base/images/home-page/icons/google-play.svg"
+                alt="google play"
+            /></a>
+          </div>
+          <div class="linked">
+            <a class="linked" href="https://traderacemanager.com/"
+              >Trade Race Manager</a
+            >
+            <a
+              class="img"
+              href="https://play.google.com/store/apps/details?id=ioi.game"
+              ><img
+                src="/assets/base/images/home-page/icons/google-play.svg"
+                alt="google play"
+            /></a>
+          </div>
+        </div>
+        <div class="general-item read-more">
+          <p class="heading">Read more</p>
+          <a href="https://ioi-game.com/docs/Whitepaper-IOI-Final.pdf"
+            >Whitepaper</a
+          >
+          <a href="https://ioi-game.com/docs/Tokenometrics-IOI.pdf"
+            >Tokenometrics</a
+          >
+          <a href="https://ioi-game.com/docs/How-to-play.pdf"
+            >How to play IOI Game</a
+          >
+          <a href="https://ioi-game.com/docs/How-to-earn.pdf">How to earn</a>
+        </div>
+        <div class="general-item">
+          <p class="heading">Want to read more?</p>
+          <p>Check out IOI Corporate website for more information</p>
+          <a href="https://ioi-corporation.com/" class="my-btn"
+            >IOI Corporation</a
+          >
+        </div>
+      </div>
+
+      <div class="basics">
+        <p>Copyright &copy; 2020 IOI-GAME</p>
+        <a
+          href="https://ioi-game.com/subpages/credit_system.html"
+          target="_blank"
+          >Credit system</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/general_terms_and_conditions.html"
+          target="_blank"
+          >General terms &amp; conditions</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/privacy_policy.html"
+          target="_blank"
+          >Privacy policy</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/statute_of_competition.html"
+          target="_blank"
+          >Statute of competition</a
+        >
+      </div>
+    </div>
+  </footer>
+</div>

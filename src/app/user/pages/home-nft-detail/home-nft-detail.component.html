@@ -25,26 +25,23 @@
         <div>
           <p [routerLink]="['/home']" class="p-small">Home</p>
         </div>
+
         <div>
-          <p class="p-small">About</p>
-        </div>
-        <div>
-          <p class="p-small active">Shop</p>
-        </div>
-        <div>
-          <p class="p-small">Categories</p>
+          <p class="p-small active">Marketplace</p>
         </div>
       </div>
     </div>
   </div>
 
   <ng-container *ngIf="assetType === 'racer'">
-    <button class="sign-in">
+    <button [routerLink]="['/user/sign-up']" class="sign-in">
       <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
     </button>
     <div class="detail-racers">
       <div class="detail-text">
-        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="back">
+          <p [routerLink]="['/user/shop']">< Back to shop</p>
+        </div>
         <div class="detail-name">
           <h1 *ngIf="assetType === 'racer'" class="name-nofont">Racer</h1>
           <h1 class="name-font">
@@ -96,7 +93,11 @@
       <div class="detail-image">
         <div>
           <img
-            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
             alt=""
           />
         </div>
@@ -106,7 +107,9 @@
   <ng-container *ngIf="assetType === 'car'">
     <div class="detail-cars">
       <div class="detail-text">
-        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="back">
+          <p [routerLink]="['/user/shop']">< Back to shop</p>
+        </div>
         <div class="detail-name">
           <h1 class="name-nofont">
             {{ displayArray[0]["name"] }}
@@ -406,10 +409,14 @@
       <div class="detail-image">
         <div class="img">
           <img
-            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
             alt=""
           />
-          <button class="sign-in-cars">
+          <button [routerLink]="['/user/sign-up']" class="sign-in-cars">
             <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
           </button>
         </div>
@@ -419,7 +426,9 @@
   <ng-container *ngIf="assetType === 'track'">
     <div class="detail-tracks">
       <div class="detail-text">
-        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="back">
+          <p [routerLink]="['/user/shop']">< Back to shop</p>
+        </div>
         <div class="detail-name">
           <h1 class="name-nofont">
             {{ displayArray[0]["name"] }}
@@ -438,11 +447,15 @@
       <div class="detail-image">
         <div class="img">
           <img
-            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
             alt=""
           />
         </div>
-        <button class="sign-in-tracks">
+        <button [routerLink]="['/user/sign-up']" class="sign-in-tracks">
           <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
         </button>
       </div>
@@ -451,7 +464,9 @@
   <ng-container *ngIf="assetType === 'team'">
     <div class="detail-teams">
       <div class="detail-text">
-        <div class="back"><p [routerLink]="['/user/shop']">< Back to shop</p></div>
+        <div class="back">
+          <p [routerLink]="['/user/shop']">< Back to shop</p>
+        </div>
         <div class="detail-name">
           <h1 class="name-nofont">
             {{ displayArray[0]["name"] }}
@@ -470,11 +485,15 @@
       <div class="detail-image">
         <div class="img">
           <img
-            [src]="'/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
             alt=""
           />
         </div>
-        <button class="sign-in-teams">
+        <button [routerLink]="['/user/sign-up']" class="sign-in-teams">
           <i class="fa fa-lock txt"></i> <span class="txt-span">Sign up</span>
         </button>
       </div>
