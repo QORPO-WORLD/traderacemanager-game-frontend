@@ -66,7 +66,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   radius = 0;
   selectRaceIndex = 0;
   startingValue = 0;
-  topBannerIndex = 1;
+  topBannerIndex = 3;
   tutorialStep = 1;
   nextInterval: any;
   selectedrace: NextRaceV2;
@@ -570,14 +570,18 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   nextBanner() {
-    if (this.topBannerIndex === 2) {
+    if (this.topBannerIndex === 3) {
       this.topBannerIndex = 1;
     } else this.topBannerIndex++;
   }
   prevBanner() {
     if (this.topBannerIndex === 1) {
-      this.topBannerIndex = 2;
+      this.topBannerIndex = 3;
     } else this.topBannerIndex--;
+  }
+
+  manualBannerChange(index: number){
+    this.topBannerIndex = index;
   }
 
   nextTimers() {

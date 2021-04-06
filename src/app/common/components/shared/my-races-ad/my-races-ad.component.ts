@@ -214,7 +214,9 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
         
       }
       const oneFav = this.nextRaces.filter(word => word.race_identifier === this.myFavRaces[x]);
-      this.favsData.push(oneFav[0]);
+      if (oneFav.length > 0) {
+        this.favsData.push(oneFav[0]);
+      }
     }
   }
 
