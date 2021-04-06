@@ -1,7 +1,7 @@
 <div class="main-holder">
   <div class="page-info">
     <div class="back" [routerLink]="['/race/start-race']">
-      <p>&lt;</p>
+      <p class="arrow">&lt;</p>
       <p>{{ "shared.back" | translate }}</p>
     </div>
     <div class="text-info">
@@ -12,13 +12,62 @@
       <div class="divident-pool">
         <h4>
           {{ ioioreward | number: "1.2-2":"fr" }}
-          <img src="/assets/base/images/tokens/ioi-logo.png" alt="" />
+          <span>IOI</span>
+        </h4>
+        <p>{{ "rewards.divident_pool" | translate }}</p>
+      </div>
+      <div class="divident-pool2">
+        <h4>
+          {{ ioioreward | number: "1.2-2":"fr" }}
+          <span>IOI</span>
         </h4>
         <p>{{ "rewards.divident_pool" | translate }}</p>
       </div>
     </div>
   </div>
+  <div class="content">
+    <div class="level">
+      <div class="level-left">
+        <div class="avatar">
+          <img src="/assets/base/images/home-page/white-mn.png" alt="" />
+        </div>
+        <div class="text">
+          <div class="referal"><p>Referal link</p></div>
 
+          <div class="link">
+            <p>ioi.game/johnnyboy123</p>
+            <img src="/assets/base/images/icons/copy.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="account-level"><p>Level 1</p></div>
+        <div class="title">
+          <p>{{ rewardLevel | number: "1.2-2":"fr" }} IOI</p>
+        </div>
+        <div class="my-progress-bar">
+          <div class="my-bar">
+            <div
+              class="inner-bar my-cta-btn-back"
+              [ngStyle]="{ width: rewardLevelMax + '%' }"
+            ></div>
+            <!-- [ngStyle]="{width: rewardLevelMax + '%'}" -->
+          </div>
+        </div>
+        <div class="level-number">
+          <p class="left">0</p>
+          <p class="right">Level {{ isLevel }}</p>
+        </div>
+        <div class="note">
+          <p>
+            {{ rewardLevelMax | number: "1.0-0":"fr" }}%
+            {{ "rewards.level_info1" | translate }} {{ isLevel }}
+            {{ "rewards.level_info2" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="team-menu">
     <div class="menu-desc">
       <p class="my-team" [routerLink]="['/other/about-tokens']">

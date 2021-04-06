@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
       collection: "Tracks",
       name: "Night City",
       prize: "",
-      image: "night-city",
+      image: "night-city-small",
       type: "track",
     },
     {
