@@ -11,7 +11,7 @@ h1 {
 h2 {
   font-size: 40px;
 }
-.info-text h2{
+.info-text h2 {
   font-weight: 700;
 }
 p {
@@ -214,87 +214,100 @@ h6 {
           }
           .hover {
             img {
-              transition: 0.2s;
+              cursor: pointer;
+              animation: arrowanimation 0.2s;
             }
-            cursor: pointer;
-            img:active {
-              transform: translate(-50%, -40%) scale(1.01);
-            }
+          }
+          .opacity {
+            opacity: 0.3;
           }
           .buy-boxes {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            .racer-box {
-              overflow: hidden;
-              transition: 0.2s;
-              filter: drop-shadow(6px 8px 35px rgba(0, 0, 0, 0.15));
-              background: #ffffff;
-              border-radius: 10px;
-
+            > div {
               width: 31%;
-              height: 100%;
-              .racer-img {
-                position: relative;
-                height: 60%;
-                img {
-                  position: absolute;
-                  left: 50%;
-                  top: 75%;
-                  transform: translate(-50%, -50%);
-                  width: 80%;
-                }
-              }
-              .racer-info {
-                margin-left: 5%;
-                position: relative;
-                height: 40%;
-                .desc {
-                  top: 10%;
-                  position: absolute;
-                  font-family: Poppins;
-                  font-style: normal;
-                  font-weight: normal;
-                  font-size: 16px;
-                  line-height: 150%;
-                  color: #333333;
-                }
-                .racer {
-                  position: absolute;
-                  color: #333333;
-                  font-family: Poppins;
-                  font-style: normal;
-                  font-weight: 800;
-                  font-size: 24px;
-                  line-height: 150%;
-                  top: 30%;
-                }
-                .price {
-                  top: 50%;
-                  position: absolute;
-                  color: #30cece;
-                  font-family: Poppins;
-                  font-style: normal;
-                  font-weight: bold;
-                  font-size: 24px;
-                  line-height: 36px;
-                }
-                .name {
-                  font-family: True-Lies;
-                  font-style: normal;
-                  font-weight: normal;
-                  font-size: 32px;
-                  /* identical to box height, or 48px */
+              .racer-box {
+                overflow: hidden;
+                transition: 0.2s;
+                box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
+                background: #ffffff;
+                border-radius: 10px;
 
-                  color: #fe173f;
+                width: 100%;
+                height: 100%;
+                .racer-img {
+                  position: relative;
+                  height: 60%;
+                  width: 100%;
+                  img {
+                    position: absolute;
+                    left: 50%;
+                    top: 75%;
+                    transform: translate(-50%, -50%);
+                    width: 80%;
+                  }
+                }
+                .racer-info {
+                  margin-left: 5%;
+                  position: relative;
+                  height: 40%;
+                  .desc {
+                    top: 10%;
+                    position: absolute;
+                    font-family: Poppins;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 150%;
+                    color: #333333;
+                  }
+                  .racer {
+                    position: absolute;
+                    color: #333333;
+                    font-family: Poppins;
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 24px;
+                    line-height: 150%;
+                    top: 30%;
+                  }
+                  .price {
+                    top: 50%;
+                    position: absolute;
+                    color: #30cece;
+                    font-family: Poppins;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 36px;
+                  }
+                  .name {
+                    font-family: True-Lies;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 32px;
+                    /* identical to box height, or 48px */
+
+                    color: #fe173f;
+                  }
+                  .team {
+                    font-family: Poppins;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 32px;
+                    /* identical to box height, or 48px */
+
+                    color: #30cece;
+                  }
                 }
               }
-            }
-            .racer-box:hover {
-              box-shadow: (0px 0px 60px rgba(255, 24, 63, 0.5));
-              cursor: pointer;
-              img {
-                animation: scaleanimation 0.5s;
+              .racer-box:hover {
+                box-shadow: (0px 0px 60px rgba(255, 24, 63, 0.5));
+                cursor: pointer;
+                img {
+                  animation: scaleanimation 0.5s;
+                }
               }
             }
             //ANIMATIONS
@@ -310,11 +323,22 @@ h6 {
                 transform: translate(-50%, -50%) scale(1);
               }
             }
+            @keyframes arrowanimation {
+              0% {
+                transform: translate(-50%, -50%);
+              }
+              50% {
+                transform: translate(-50%, -42.5%);
+              }
+              100% {
+                transform: translate(-50%, -50%);
+              }
+            }
           }
         }
         /*.racer-item:hover {
-        box-shadow: (0px 0px 60px rgba(255, 24, 63, 0.5));
-      }*/
+          box-shadow: (0px 0px 60px rgba(255, 24, 63, 0.5));
+        }*/
       }
       .button {
         margin-top: 5%;
@@ -796,7 +820,6 @@ h6 {
         width: 200%;
         height: 90%;
         transition: 0.2s;
-        filter: grayscale(1);
       }
     }
 
@@ -1080,7 +1103,7 @@ h6 {
   }
 }
 .review-position {
-  background: #111111;
+  background: #f0f0f0;
   height: 300px;
   position: relative;
   .reviews-sec {
@@ -1237,8 +1260,8 @@ h6 {
   }
 }
 @media screen and (max-width: 1550px) {
-  .info-text{
-    h2{
+  .info-text {
+    h2 {
       margin: 30px 0 50px !important;
     }
   }
@@ -1302,7 +1325,56 @@ h6 {
       }
     }
   }
+  .buy-racers-section {
+    .center {
+      .buy-racers-content {
+        .title {
+          h2 {
+          }
+        }
+
+        .content {
+          .racer-items {
+            .arrow-left {
+              height: 80%;
+              img {
+              }
+            }
+            .arrow-right {
+              height: 80%;
+              img {
+              }
+            }
+            .hover {
+            }
+            .buy-boxes {
+              > div {
+                .racer-box {
+                  height: 80%;
+                  .racer-img {
+                    img {
+                    }
+                  }
+                }
+                .racer-info {
+                  .desc {
+                  }
+                  .racer {
+                  }
+                  .price {
+                  }
+                  .name {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 @media screen and (max-width: 1150px) {
   .second-section {
     display: block;
@@ -1384,7 +1456,6 @@ h6 {
           bottom: 20%;
           width: 100%;
           height: 100%;
-          filter: none;
         }
       }
 
@@ -1569,48 +1640,6 @@ h6 {
       margin-bottom: 100px;
       height: 100px;
       button {
-      }
-    }
-  }
-  .buy-racers-section {
-    .center {
-      .buy-racers-content {
-        .title {
-          h2 {
-          }
-        }
-
-        .content {
-          .racer-items {
-            .arrow-left {
-              img {
-              }
-            }
-            .arrow-right {
-              img {
-              }
-            }
-            .hover {
-            }
-            .buy-boxes {
-              height: 90%;
-              .racer-box {
-                .racer-img {
-                }
-              }
-              .racer-info {
-                .desc {
-                }
-                .racer {
-                }
-                .price {
-                }
-                .name {
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -1857,7 +1886,6 @@ h6 {
     .left {
       > div:hover {
         > div > div {
-          filter: grayscale(0);
           transform: skew(15deg) scale(0.92);
         }
       }
@@ -1894,6 +1922,59 @@ h6 {
         height: 160px;
         p {
           font-size: 13px;
+        }
+      }
+    }
+  }
+  .buy-racers-section {
+    .center {
+      .buy-racers-content {
+        .title {
+          h2 {
+          }
+        }
+
+        .content {
+          .racer-items {
+            .arrow-left {
+              height: 100%;
+              img {
+              }
+            }
+            .arrow-right {
+              height: 100%;
+              img {
+              }
+            }
+            .hover {
+            }
+            .buy-boxes {
+              > div {
+                width: 45%;
+                .racer-box {
+                  width: 100%;
+                  height: 100%;
+                  .racer-img {
+                    img {
+                      top: 50%;
+
+                      width: 80%;
+                    }
+                  }
+                }
+                .racer-info {
+                  .desc {
+                  }
+                  .racer {
+                  }
+                  .price {
+                  }
+                  .name {
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -2303,52 +2384,7 @@ h6 {
       }
     }
   }
-  .buy-racers-section {
-    .center {
-      .buy-racers-content {
-        .title {
-          h2 {
-          }
-        }
 
-        .content {
-          .racer-items {
-            .arrow-left {
-              img {
-              }
-            }
-            .arrow-right {
-              img {
-              }
-            }
-            .hover {
-            }
-            .buy-boxes {
-              .box3 {
-                display: none;
-              }
-              height: 90%;
-              .racer-box {
-                width: 49%;
-                .racer-img {
-                }
-              }
-              .racer-info {
-                .desc {
-                }
-                .racer {
-                }
-                .price {
-                }
-                .name {
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
   .trophy-section {
     .textarea {
       text-align: center;
@@ -2471,47 +2507,36 @@ h6 {
         .content {
           .racer-items {
             .arrow-left {
+              height: 100%;
               img {
               }
             }
             .arrow-right {
+              height: 100%;
               img {
               }
             }
             .hover {
             }
-
             .buy-boxes {
-              justify-content: center;
-              .box2 {
-                display: none;
-              }
-              .box3 {
-                display: none;
-              }
+              > div {
+                margin-left: 5%;
+                width: 90%;
 
-              height: 85%;
-              .racer-box {
-                filter: none;
-                width: 75%;
-                .racer-img {
-                }
-              }
-              .racer-info {
-                .desc {
-                }
-                .racer {
-                }
-                .price {
-                }
-                .name {
+                .racer-box {
+                  width: 100%;
+                  height: 100%;
+                  .racer-img {
+                    img {
+                      top: 65%;
+
+                      width: 80%;
+                    }
+                  }
                 }
               }
             }
           }
-        }
-        .button {
-          margin-top: 15%;
         }
       }
     }
@@ -3026,7 +3051,6 @@ h6 {
           bottom: 20%;
           width: 100%;
           height: 100%;
-          filter: grayscale(0);
         }
       }
 
@@ -3595,7 +3619,7 @@ footer {
   flex-direction: column;
   .white-footer {
     color: #4f4f4f;
-    background: #111111;
+    background: #f0f0f0;
     width: 100%;
     box-sizing: border-box;
     padding-right: 10%;
@@ -3620,10 +3644,14 @@ footer {
     .investors {
       max-width: 370px;
       margin-right: 60px;
+      p {
+        color: Gray;
+      }
       .heading {
         font-weight: 600;
         font-size: 36px;
         margin: 0 50px 0 0;
+        color: Gray;
       }
       .my-btn {
         background: linear-gradient(104.21deg, #fe173f 106.49%, #240b36 168.64%),

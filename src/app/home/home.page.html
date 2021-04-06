@@ -1,4 +1,8 @@
-<div class="main-holder" [class.disable-scroll]="isMenuActive">
+<div
+  (window:resize)="width()"
+  class="main-holder"
+  [class.disable-scroll]="isMenuActive"
+>
   <div class="top-section-wrapper">
     <div class="darkerback"></div>
     <div
@@ -27,16 +31,13 @@
           <div>
             <p [routerLink]="['/user/home']" class="p-small active">Home</p>
           </div>
+
           <div>
-            <p class="p-small">About</p>
+            <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
           </div>
-          <div>
-            <p [routerLink]="['/user/shop']" class="p-small">Shop</p>
-          </div>
-          <div>
-            <p class="p-small">Categories</p>
-          </div>
-          <button class="my-cta" [routerLink]="['/user/sign-in']">Sign in</button>
+          <button class="my-cta" [routerLink]="['/user/sign-in']">
+            Sign in
+          </button>
         </div>
       </div>
       <div data-aos="fade-right" class="top-text">
@@ -47,7 +48,9 @@
 
       <div data-aos="left" class="google-play">
         <a href="https://play.google.com/store/apps/details?id=ioi.game"
-          ><img src="assets/base/images/home-page/google-play.png" alt="google play"
+          ><img
+            src="assets/base/images/home-page/google-play.png"
+            alt="google play"
         /></a>
       </div>
     </div>
@@ -55,28 +58,47 @@
 
   <div class="second-section">
     <div class="left">
-      <div class="sec1">
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'racer' }"
+        class="sec1"
+      >
         <h1 class="h1left">Racers</h1>
         <div class="s1">
           <div class="sec1back"></div>
           <div class="avatar">
-            <img src="assets/base/images/home-page/avatar.png" alt="Blue-avatar" />
+            <img
+              src="assets/base/images/home-page/avatar.png"
+              alt="Blue-avatar"
+            />
           </div>
         </div>
       </div>
-      <div class="sec2">
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'car' }"
+        class="sec2"
+      >
         <h1 class="h1right">Cars</h1>
         <div class="s2">
           <div class="sec2back"></div>
         </div>
       </div>
-      <div class="sec3">
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'track' }"
+        class="sec3"
+      >
         <h1 class="h1left">Tracks</h1>
         <div class="s3">
           <div class="sec3back"></div>
         </div>
       </div>
-      <div class="sec4">
+      <div
+        [routerLink]="['/shop']"
+        [queryParams]="{ type: 'team' }"
+        class="sec4"
+      >
         <h1 class="h1right">Teams</h1>
         <div class="s4">
           <div class="sec4back"></div>
@@ -97,7 +119,7 @@
               and start racing today. More cars and characters means higher
               earnings!
             </p>
-            <button>Get your NFT</button>
+            <button [routerLink]="['/shop']">Get your NFT</button>
           </div>
         </div>
       </div>
@@ -119,7 +141,9 @@
               class="arrow-left hover"
             >
               <img
-                src="assets/base/images/home-page/arrow-left.png"
+                [ngClass]="{ opacity: sliceStart === 0 }"
+                (click)="resetArrowL(); pageLeft()"
+                src="assets/base/images/home-page/left-arrow.svg"
                 alt="arrow left"
               />
             </div>
@@ -130,45 +154,72 @@
               data-aos-delay="120"
               data-aos-duration="1000"
             >
-              <div class="racer-box box1">
-                <div class="racer-img">
-                  <img
-                    src="assets/base/images/home-page/avatar-white.png"
-                    alt="white racer"
-                  />
+              <div *ngFor="let item of products | slice: sliceStart:sliceEnd">
+                <div *ngIf="item['type'] === 'racer'" class="racer-box box1">
+                  <div class="racer-img">
+                    <img
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
+                    />
+                  </div>
+                  <div class="racer-info">
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">
+                      Racer <span class="name">{{ item["name"] }}</span>
+                    </p>
+                    <p class="price">{{ item["prize"] }}</p>
+                  </div>
                 </div>
-                <div class="racer-info">
-                  <p class="desc">Midnight crew</p>
-                  <p class="racer">Racer <span class="name">RICH</span></p>
-                  <p class="price">1 152 IOI</p>
-                </div>
-              </div>
 
-              <div class="racer-box box2">
-                <div class="racer-img">
-                  <img
-                    src="assets/base/images/home-page/rare-bronze.png"
-                    alt="brnozer car"
-                  />
+                <div *ngIf="item['type'] === 'car'" class="racer-box box2">
+                  <div class="racer-img">
+                    <img
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
+                    />
+                  </div>
+                  <div class="racer-info">
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="price">{{ item["prize"] }}</p>
+                  </div>
                 </div>
-                <div class="racer-info">
-                  <p class="desc">Bronze Collection</p>
-                  <p class="racer">Bronzer 1</p>
-                  <p class="price">1 152 IOI</p>
-                </div>
-              </div>
 
-              <div class="racer-box box3">
-                <div class="racer-img">
-                  <img
-                    src="assets/base/images/home-page/avatar-black.png"
-                    alt="black racer"
-                  />
+                <div *ngIf="item['type'] === 'track'" class="racer-box box3">
+                  <div class="racer-img">
+                    <img
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
+                    />
+                  </div>
+                  <div class="racer-info">
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="price">{{ item["prize"] }}</p>
+                  </div>
                 </div>
-                <div class="racer-info">
-                  <p class="desc">Midnight crew</p>
-                  <p class="racer">Racer <span class="name">QUINN</span></p>
-                  <p class="price">1 152 IOI</p>
+                <div *ngIf="item['type'] === 'team'" class="racer-box box4">
+                  <div class="racer-img">
+                    <img
+                      [src]="
+                        'assets/base/images/home-page/' + item['image'] + '.png'
+                      "
+                      alt="white racer"
+                    />
+                  </div>
+                  <div class="racer-info">
+                    <p class="desc">{{ item["collection"] }}</p>
+                    <p class="racer">
+                      Team <span class="team">{{ item["name"] }}</span>
+                    </p>
+                    <p class="price">{{ item["prize"] }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,6 +230,8 @@
               class="arrow-right hover"
             >
               <img
+                [ngClass]="{ opacity: sliceEnd >= products.length }"
+                (click)="resetArrowR(); pageRigth()"
                 src="assets/base/images/home-page/arrow-right.png"
                 alt="arrow right"
               />
@@ -192,7 +245,7 @@
           data-aos-offset="20"
           class="button"
         >
-          <button>Go to our store</button>
+          <button [routerLink]="['/shop']">Go to our store</button>
         </div>
       </div>
     </div>
@@ -209,13 +262,22 @@
             which is one of the many things that make our NFT Racers so special.
             Get your own racer today!
           </p>
-          <button class="my-cta"><p>See all racers</p></button>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'racer' }"
+            class="my-cta"
+          >
+            <p>See all racers</p>
+          </button>
         </div>
       </div>
 
       <div data-aos="fade-left" class="avatar-img">
         <div class="image">
-          <img src="assets/base/images/home-page/racers.png" alt="white avatar" />
+          <img
+            src="assets/base/images/home-page/racers.png"
+            alt="white avatar"
+          />
         </div>
       </div>
     </div>
@@ -233,7 +295,13 @@
             ready to compete and make you money! The more cars you own, the
             higher are the chances of winning.
           </p>
-          <button class="my-cta"><p>See all Cars</p></button>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'car' }"
+            class="my-cta"
+          >
+            <p>See all Cars</p>
+          </button>
         </div>
       </div>
       <div data-aos="fade-right" class="avatar-img">
@@ -259,13 +327,22 @@
             Buy one, or multiple shares in our special Race Tracks and make
             money passively, simply by Races happening our your track.
           </p>
-          <button class="my-cta"><p>See all Tracks</p></button>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'track' }"
+            class="my-cta"
+          >
+            <p>See all Tracks</p>
+          </button>
         </div>
       </div>
 
       <div data-aos="fade-left" class="avatar-img">
         <div class="image">
-          <img src="assets/base/images/home-page/tracks.png" alt="white avatar" />
+          <img
+            src="assets/base/images/home-page/tracks.png"
+            alt="white avatar"
+          />
         </div>
       </div>
     </div>
@@ -284,7 +361,13 @@
             Enjoy premium membership in any of the teams for more bonuses.
           </p>
 
-          <button class="my-cta"><p>See all Teams</p></button>
+          <button
+            [routerLink]="['/shop']"
+            [queryParams]="{ type: 'team' }"
+            class="my-cta"
+          >
+            <p>See all Teams</p>
+          </button>
         </div>
       </div>
       <div data-aos="fade-right" class="avatar-img">
@@ -304,7 +387,7 @@
       <h1>Winner Trophies</h1>
       <p>
         12 rings, one big final Tournament for the twelve ring owners. Compete,
-        win and earn the most unique NFTs in the world1
+        win and earn the most unique NFTs in the world
       </p>
     </div>
     <div class="trophies">
@@ -320,22 +403,34 @@
           <div class="opacity">
             <h1>January</h1>
             <p>Already won</p>
-            <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
           </div>
           <div>
             <h1>February</h1>
 
-            <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
           </div>
           <div>
             <h1>March</h1>
 
-            <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
           </div>
           <div>
             <h1>April</h1>
 
-            <img src="assets/base/images/home-page/ring.png" alt="Ring February" />
+            <img
+              src="assets/base/images/home-page/ring.png"
+              alt="Ring February"
+            />
           </div>
         </div>
         <div class="rightarrow">
@@ -374,11 +469,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Loving it!</p>
                 <p class="text">Awesome game, good customer service...</p>
@@ -388,11 +498,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Great Game!</p>
                 <p class="text">Free coins every day</p>
@@ -402,11 +527,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Nicest game</p>
                 <p class="text">Its really awesome. You can trade and race</p>
@@ -416,11 +556,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">The new standard</p>
                 <p class="text">Good game I like this.</p>
@@ -430,11 +585,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Loving it!</p>
                 <p class="text">Awesome game, good customer service...</p>
@@ -444,11 +614,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Great Game!</p>
                 <p class="text">Free coins every day</p>
@@ -458,11 +643,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Nicest game</p>
                 <p class="text">Its really awesome. You can trade and race</p>
@@ -472,11 +672,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">The new standard</p>
                 <p class="text">Good game I like this.</p>
@@ -486,11 +701,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Loving it!</p>
                 <p class="text">Awesome game, good customer service...</p>
@@ -500,11 +730,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Great Game!</p>
                 <p class="text">Free coins every day</p>
@@ -514,11 +759,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">Nicest game</p>
                 <p class="text">Its really awesome. You can trade and race</p>
@@ -528,11 +788,26 @@
             <div class="rev-slide">
               <div class="rev-slide-inner">
                 <div class="stars">
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
-                  <img src="/assets/base/images/home-page/star-filled.svg" alt="" />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
+                  <img
+                    src="/assets/base/images/home-page/star-filled.svg"
+                    alt=""
+                  />
                 </div>
                 <p class="heading">The new standard</p>
                 <p class="text">Good game I like this.</p>
@@ -583,29 +858,67 @@
               src="/assets/base/images/home-page/partners/partner1.png"
               alt=""
             />
-            <img src="/assets/base/images/home-page/partners/partner2.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner3.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner4.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner5.png" alt="" />
+            <img
+              src="/assets/base/images/home-page/partners/partner2.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner17.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner4.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner21.png"
+              alt=""
+            />
           </div>
           <div class="group second">
-            <img src="/assets/base/images/home-page/partners/partner6.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner7.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner8.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner9.png" alt="" />
+            <img
+              src="/assets/base/images/home-page/partners/partner6.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner18.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner8.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner16.png"
+              alt=""
+            />
           </div>
           <div class="group second">
-            <img src="/assets/base/images/home-page/partners/partner10.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner11.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner12.png" alt="" />
-            <img src="/assets/base/images/home-page/partners/partner13.png" alt="" />
+            <img
+              src="/assets/base/images/home-page/partners/partner10.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner11.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner12.png"
+              alt=""
+            />
+            <img
+              src="/assets/base/images/home-page/partners/partner13.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
     </div>
     <div class="dark-footer">
       <div data-aos="fade-up" class="follow-box">
-        <h1>Follow <img src="/assets/base/images/home-page/Logo.svg" alt="" /></h1>
+        <h1>
+          Follow <img src="/assets/base/images/home-page/Logo.svg" alt="" />
+        </h1>
         <div class="my-links">
           <div class="link-item">
             <a href="https://twitter.com/ioi_game"
@@ -637,7 +950,9 @@
           </div>
           <div class="link-item">
             <a href="https://www.twitch.tv/traderacemanager"
-              ><img src="/assets/base/images/home-page/icons/twitch.svg" alt="twitch"
+              ><img
+                src="/assets/base/images/home-page/icons/twitch.svg"
+                alt="twitch"
             /></a>
           </div>
           <div class="link-item">
@@ -649,7 +964,9 @@
           </div>
           <div class="link-item last">
             <a href="https://bitcointalk.org/index.php?topic=5238997.0"
-              ><img src="/assets/base/images/home-page/icons/btc.svg" alt="bitcoin"
+              ><img
+                src="/assets/base/images/home-page/icons/btc.svg"
+                alt="bitcoin"
             /></a>
           </div>
         </div>
@@ -727,10 +1044,26 @@
 
       <div class="basics">
         <p>Copyright &copy; 2020 IOI-GAME</p>
-        <a href="https://ioi-game.com/subpages/credit_system.html" target="_blank">Credit system</a>
-        <a href="https://ioi-game.com/subpages/general_terms_and_conditions.html" target="_blank">General terms &amp; conditions</a>
-        <a href="https://ioi-game.com/subpages/privacy_policy.html" target="_blank">Privacy policy</a>
-        <a href="https://ioi-game.com/subpages/statute_of_competition.html" target="_blank">Statute of competition</a>
+        <a
+          href="https://ioi-game.com/subpages/credit_system.html"
+          target="_blank"
+          >Credit system</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/general_terms_and_conditions.html"
+          target="_blank"
+          >General terms &amp; conditions</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/privacy_policy.html"
+          target="_blank"
+          >Privacy policy</a
+        >
+        <a
+          href="https://ioi-game.com/subpages/statute_of_competition.html"
+          target="_blank"
+          >Statute of competition</a
+        >
       </div>
     </div>
   </footer>
