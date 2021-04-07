@@ -1,26 +1,25 @@
-import { BalanceService } from './common/services/balance.service';
-import { AuthService } from 'src/app/user/services/auth.service';
+import { BalanceService } from "./common/services/balance.service";
+import { AuthService } from "src/app/user/services/auth.service";
 //import { Component, ChangeDetectorRef } from '@angular/core';
-import { Component, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, HostListener, ChangeDetectorRef } from "@angular/core";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 //import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 //import { Network } from '@ionic-native/network/ngx';
-import { NgxHotjarService } from 'ngx-hotjar';
-import{Router, NavigationEnd} from '@angular/router';
+import { NgxHotjarService } from "ngx-hotjar";
+import { Router, NavigationEnd } from "@angular/router";
 
 declare let gtag: Function;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
-
 export class AppComponent {
   leave = false;
   log: Array<Array<any>>;
@@ -38,21 +37,17 @@ export class AppComponent {
     private balanceService: BalanceService,
     public router: Router
   ) {
-    translate.setDefaultLang('en');
+    translate.setDefaultLang("en");
     this.initializeApp();
 
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd){
-          gtag('config', 'UA-192445220-1', 
-                {
-                  'page_path': event.urlAfterRedirects
-                }
-               );
-       }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        gtag("config", "UA-192445220-1", {
+          page_path: event.urlAfterRedirects,
+        });
+      }
     });
-    
   }
-
 
   initializeApp() {
     const myDomain = window.location.href;
@@ -83,16 +78,19 @@ export class AppComponent {
       this.onExit();
     });
     */
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     this.checkCookie();
     toggleDarkTheme(prefersDark.matches);
 
     function toggleDarkTheme(shouldAdd) {
-      document.body.classList.toggle('dark', shouldAdd);
+      document.body.classList.toggle("dark", shouldAdd);
     }
 
-    if (location.href === 'https://www.traderacemanager.com' || location.href === 'http://traderacemanager.com' ) {
-      location.href = 'https://traderacemanager.com'
+    if (
+      location.href === "https://www.traderacemanager.com" ||
+      location.href === "http://traderacemanager.com"
+    ) {
+      location.href = "https://traderacemanager.com";
     }
   }
 
@@ -104,8 +102,8 @@ export class AppComponent {
     }, 600000);
   }
 
-  checkCookie(){
-    var x = this.uapi.getCookie('consentC');
+  checkCookie() {
+    var x = this.uapi.getCookie("consentC");
     if (!x) {
       this.showCookieBox = true;
     } else {
@@ -113,9 +111,12 @@ export class AppComponent {
     }
   }
 
-  cookieConsent(){
-    this.uapi.setCookie('consentC','granted',1000);
+  cookieConsent() {
+    this.uapi.setCookie("consentC", "granted", 1000);
     this.checkCookie();
   }
 
+  onActivate(e, elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "auto", block: "start" });
+  }
 }
