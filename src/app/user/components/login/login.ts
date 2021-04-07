@@ -93,10 +93,6 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.chainId = Number(chaind);
         this.mmewa = mmew;
       }
-      const idiotic = JSON.parse(localStorage.getItem('iditc'));
-      if (idiotic) {
-        this.idioticLogin = 1;
-      }
     }, 1500);
     this.dumbCall();
   }
