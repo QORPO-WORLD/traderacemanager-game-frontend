@@ -419,7 +419,7 @@ export class HomeNftDetailComponent implements OnInit {
       collection: "",
       name: "Team You",
       prize: "",
-      image: "ioi-team-small",
+      image: "team-you-small",
       type: "team",
     },
   ];
