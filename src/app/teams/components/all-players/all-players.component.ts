@@ -21,6 +21,7 @@ export class AllPlayersComponent implements OnInit {
   cachedLdrbrd: any;
   Affiliate: any;
   isPageWithMe = false;
+  updateTime: string;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
     private identityService: AuthService) { }
 
@@ -48,6 +49,7 @@ export class AllPlayersComponent implements OnInit {
         const data: any = datax;
         this.players = data.results;
         this.totalPages = data.total_pages - 1;
+        this.updateTime = data.last_update_at;
 
         this.isMePage();
       });
