@@ -216,15 +216,22 @@
               </p>
               <p class="prize">{{ item["prize"] }}</p>
               <button
-                *ngIf="item['type'] != 'team'"
+                *ngIf="item['type'] === 'car'"
                 (click)="showAsset(item['id'], item['type'])"
               >
                 Buy now
               </button>
-              <button [ngStyle]="{ opacity: '0.3' }" *ngIf="item['name'] != 'You' && item['type'] === 'team'">
+              <button
+                *ngIf="item['type'] === 'racer' || item['type'] === 'track' || (item['name'] === 'You' && item['type'] === 'team')"
+                disabled
+                style="cursor: default;"
+              >
+                Coming soon
+              </button>
+              <button [ngStyle]="{ opacity: '0.3' }" *ngIf="item['name'] !== 'You' && item['type'] === 'team'" style="cursor: default;">
                 Sold out
               </button>
-              <button *ngIf="item['name'] === 'You'">Buy now</button>
+
             </div>
           </div>
         </div>
