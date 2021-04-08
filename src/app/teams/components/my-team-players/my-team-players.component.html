@@ -2,6 +2,16 @@
 
 <div class="teams-table">
 
+  <div class="desktop-header">
+    <p class="first">Team</p>
+    <div class="table-header">
+      <div class="table-item small"><p>{{"leaderboard.place"| translate}}</p></div>
+      <div class="table-item big"><p>{{"affiliate.name"| translate}}</p></div>
+      <div class="table-item"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+      <div class="table-item last"><p>{{"shared.potential_win"| translate}}</p></div>
+    </div>
+  </div>
+
   <div class="first-team team-row" *ngFor="let tt of myStatData;let ix = index;">
 
     <div class="team-box">
@@ -18,46 +28,36 @@
         <div class="team-info-text">
           <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>{{tt.team.manager_user_nickname | slice:0:15}}</p>
         </div>
-        <div class="reward-info">
-          <span class="border-maker">
-            <div class="place-wrapper">
-              <div class="team-place">
-                <img src="assets/base/images/leaderboard/crown-gold.png" alt="" *ngIf="tt.team.position === 1">
-                <img src="assets/base/images/leaderboard/crown-silver.png" alt="" *ngIf="tt.team.position === 2">
-                <img src="assets/base/images/leaderboard/crown-bronze.png" alt="" *ngIf="tt.team.position > 2">
-                <span class="team-placement" [ngClass]="{'gold': tt.team.position === 1, 'silver': tt.team.position === 2, 'bronze': tt.team.position === 3}" >{{tt.team.position}}</span>
-              </div>
-              <p>{{(tt?.team_bonus ? tt?.team_bonus : 0)  | number:'1.2-2':'fr'}} IOI</p>
-            </div>
-            <p>{{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
-          </span>
+        <div class="reward-box" [ngClass]="tt.team.team_name.toUpperCase()">
+          <div class="inner-box">
+            <p><i class="fa fa-trophy"></i> <span> {{(tt?.team_bonus ? tt?.team_bonus : 0)  | number:'1.2-2':'fr'}} IOI</span> {{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="team-leaders-table">
+    <div class="team-leaders-table" [ngClass]="tt.team.team_name.toUpperCase()">
       <div class="arrow-right" (click)="this.sliceNums[ix] = this.sliceNums[ix] + 3" *ngIf="tt.top10.length > this.sliceNums[ix]">
         <p>&gt;</p>
       </div>
       <div class="arrow-left" (click)="this.sliceNums[ix] = this.sliceNums[ix] - 3" *ngIf="this.sliceNums[ix] > 3">
         <p>&lt;<p>
       </div>
-      <div class="heading table-row">
-        <div class="item-cell small"><p>{{"leaderboard.place"| translate}}</p></div>
-        <div class="item-cell big"><p>{{"affiliate.name"| translate}}</p></div>
-        <div class="item-cell mid"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
-        <div class="item-cell mid"><p>{{"shared.potential_win"| translate}}</p></div>
+
+      <div class="table-row header">
+        <div class="table-item small"><p>{{"leaderboard.place"| translate}}</p></div>
+        <div class="table-item big"><p>{{"affiliate.name"| translate}}</p></div>
+        <div class="table-item"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
+        <div class="table-item last"><p>{{"shared.potential_win"| translate}}</p></div>
       </div>
+
       <div class="table-row" *ngFor="let toper of tt.top10 | slice:this.sliceNums[ix] - 3 :this.sliceNums[ix];">
-        <div class="item-cell small">
-          <div class="placement">
-            <span><p>{{toper.position}}.</p></span>
-          </div>
-        </div>
-        <div class="item-cell big"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
-        <div class="item-cell mid"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
-        <div class="item-cell mid"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
+        <div class="table-item small"><p>{{toper.position}}.</p></div>
+        <div class="table-item big"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
+        <div class="table-item"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
+        <div class="table-item last"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
       </div>
+
     </div>
   </div>
 
