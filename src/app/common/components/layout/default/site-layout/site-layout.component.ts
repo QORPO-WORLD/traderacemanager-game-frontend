@@ -89,6 +89,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   deposTime: any;
   balanceInterval: any;
   metaEth = { "ioi": 0, "eth": 0, "matic": 0 };
+  shaking = false;
   constructor(public router: Router,
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
     private identityService: AuthService, private balanceService: BalanceService,
@@ -300,6 +301,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       obj.src = './assets/base/sounds/notification.mp3';
       obj.play();
       this.numOfNotificationsBack = this.numOfNotifications;
+      this.shakeBell();
     }
 
   }
@@ -472,6 +474,13 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
         console.log(data);
       }
     )
+  }
+
+  shakeBell() {
+    this.shaking = true;
+    setTimeout(() => {
+      this.shaking = false;
+    }, 1000);
   }
 
 }
