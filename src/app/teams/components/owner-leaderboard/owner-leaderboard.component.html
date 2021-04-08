@@ -1,44 +1,47 @@
+
 <div class="holder">
 
-  <img class="img" src="/assets/base/images/leaderboard/helmet.png" alt="">
   <div class="table">
-    <div class="header row">
-        <div >Position</div>
-        <div >Name</div>
-        <div >Asset value</div>
-        <div >Daily stakes</div>
+
+    <div class="table-row header">
+      <div class="table-item small"><p>Position</p></div>
+      <div class="table-item big"><p>Nickname</p></div>
+      <div class="table-item"><p>Asset value</p></div>
+      <div class="table-item"><p>Daily stakes</p></div>
     </div>
-    <div class="row" *ngFor="let pl of myLdrbrd; let yy = index" [ngClass]="{'first': yy === 0, 'secound': yy === 1, 'third': yy === 2}">
-    
-      <div class="cell" *ngIf="yy < 3">
-        <div class="crown">
-            <span><p>{{yy + 1}}.</p></span>
-        </div>
-      </div>
-        <div class="cell" *ngIf="yy >= 3">
-          <div class="placement my-border-grad"><span>{{yy + 1}}.</span></div>
-        </div>
-      <div class="cell"> <p> {{pl.user_nickname}}</p></div>
-      <div class="cell"><p>{{pl.garage_value | number:'1.0-1':'fr'}}</p></div>
-      <div class="cell"><p> {{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
+
+    <div class="table-row" *ngFor="let pl of myLdrbrd; let yy = index">
+      <div class="table-item small my-cta-btn-back"><p>{{pl.rank}}.</p></div>
+      <div class="table-item big"><p>{{pl.user_nickname}}</p></div>
+      <div class="table-item"><p>{{pl.garage_value | number:'1.0-1':'fr'}}</p></div>
+      <div class="table-item last"><p>{{pl.daily_stakes  | number:'1.1-1':'fr'}}</p></div>
+    </div>
+
+    <div class="arrow right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 1">
+      <p>&lt;</p>
+    </div>
+    <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left inactive" *ngIf="actualPage === 1">
+      <p>&lt;</p>
     </div>
 
     <div class="leaderboard-empty" *ngIf="myLdrbrd.length===0 && actualPage===1">
       <h2>{{"leaderboard.empty" | translate}}</h2>
     </div>
-    
-    <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
-      &gt;
-     </button>
-     <button class="arrow-left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 1">
-       &lt;
-     </button>
+
   </div>
   
 </div>
+
 
 <span class="updated" style="font-size: 10px;
 text-align: center;
 width: 100%;
 display: block;
 margin: 10px auto;">Updated at {{updateTime | date: "short"}}</span>
+
