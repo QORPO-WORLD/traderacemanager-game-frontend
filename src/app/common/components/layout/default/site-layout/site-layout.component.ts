@@ -285,9 +285,9 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   countNotifications(data) {
     this.numOfNotifications = 0;
     for (let x = 0; x < data.length; x++) {
-      if (data[x].event !== 'race_signup' && data[x].event !== 'game_reward') {
+     // if (data[x].event !== 'race_signup' && data[x].event !== 'game_reward') {
         this.numOfNotifications = this.numOfNotifications + 1;
-      }
+     // }
       if (data[x].event === 'balance_deposit') {
         this.checkDeposit(data[x].created);
       }
@@ -422,6 +422,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   setupMetaBalance(data) {
+    console.log(data);
     this.metaEth = data;
     this.isUsingMetamask = true;
   }

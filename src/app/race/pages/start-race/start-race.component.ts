@@ -625,6 +625,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   recognizeOpenTips() {
+    if (this.meManager === false && this.isPremium === false) {
+      this.router.navigate(['/teams/join-teams']);
+      return;
+    }
     if (this.meManager === true && this.isPremium === true) {
       this.showDayTipModal = true;
     }

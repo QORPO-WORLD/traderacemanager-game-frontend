@@ -382,7 +382,7 @@ export class HomeShopComponent implements OnInit {
       collection: "",
       name: "Team You",
       prize: "",
-      image: "ioi-team",
+      image: "team-you",
       type: "team",
     },
   ];
@@ -453,10 +453,6 @@ export class HomeShopComponent implements OnInit {
       this.sliceMiddle = this.inRow;
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     }
-    console.log(this.inRow);
-    console.log(this.maxPage);
-    console.log(this.lastPage);
-    console.log(this.sliceMiddle);
   }
 
   filterMobile() {
@@ -476,11 +472,6 @@ export class HomeShopComponent implements OnInit {
     if (this.sliceMiddle < this.newProducts.length) {
       this.sliceStart = this.sliceStart + this.inRow;
       this.sliceMiddle = this.sliceMiddle + this.inRow;
-    }
-  }
-
-  productFilter(type: string) {
-    if (type === "racers") {
     }
   }
 
@@ -548,6 +539,7 @@ export class HomeShopComponent implements OnInit {
     this.tracksActive = false;
     this.carsActive = false;
     this.racersActive = false;
+    this.teamsActive = false;
     this.allActive = true;
     this.title = "All products";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);

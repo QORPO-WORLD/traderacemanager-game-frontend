@@ -19,7 +19,8 @@ export class OwnerLeaderboardComponent implements OnInit {
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
   actualPage = 1;
-  totalPages: number
+  totalPages: number;
+  updateTime: string;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
@@ -46,7 +47,7 @@ export class OwnerLeaderboardComponent implements OnInit {
         const data: any = datax;
         this.myLdrbrd = data.results;
         this.totalPages = data.total_pages;
-        console.log(this.myLdrbrd);
+        this.updateTime = data.last_update_at;
       });
   }
 

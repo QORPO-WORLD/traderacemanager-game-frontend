@@ -83,7 +83,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.submitted = true;
         this.mmewa = mmew;
 
-        if (location.href === 'https://traderacemanager.com/user/sign-in') {
+        if (location.href === 'https://dev-play.traderacemanager.com/user/sign-in') {
           this.submit();
         }
 
@@ -92,10 +92,6 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       if (chaind) {
         this.chainId = Number(chaind);
         this.mmewa = mmew;
-      }
-      const idiotic = JSON.parse(localStorage.getItem('iditc'));
-      if (idiotic) {
-        this.idioticLogin = 1;
       }
     }, 1500);
     this.dumbCall();
