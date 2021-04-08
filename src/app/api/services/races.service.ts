@@ -426,11 +426,12 @@ class RacesService extends __BaseService {
    * @param race_hash undefined
    * @return Provides race winners.
    */
-  racesWinnerListResponse(raceHash: string): __Observable<__StrictHttpResponse<RaceWinners>> {
+  racesWinnerListResponse(raceHash: string, pageId: number): __Observable<__StrictHttpResponse<RaceWinners>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-
+    if (pageId != null) __params = __params.set('page_number', pageId.toString());
+    
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/races/game/${raceHash}/winner`,
@@ -452,8 +453,8 @@ class RacesService extends __BaseService {
    * @param race_hash undefined
    * @return Provides race winners.
    */
-  racesWinnerList(raceHash: string): __Observable<RaceWinners> {
-    return this.racesWinnerListResponse(raceHash).pipe(
+  racesWinnerList(raceHash: string, pageId: number): __Observable<RaceWinners> {
+    return this.racesWinnerListResponse(raceHash, pageId).pipe(
       __map(_r => _r.body as RaceWinners)
     );
   }
