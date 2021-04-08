@@ -430,7 +430,7 @@ class RacesService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (pageId != null) __params = __params.set('page_number', pageId.toString());
+    if (pageId != null) __params = __params.set('page', pageId.toString());
     
     let req = new HttpRequest<any>(
       'GET',

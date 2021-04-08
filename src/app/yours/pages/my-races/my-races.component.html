@@ -79,7 +79,7 @@
                 <div class="my-position">
                     <div class="pos-box my-border-grad">
                         <div class="inner">
-                            <p>{{i + 1}}</p>
+                            <p>{{item.car_position_in_the_race}}</p>
                         </div>
                     </div>
                 </div>
@@ -96,6 +96,13 @@
                     <p>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</p>
                 </div>
             </div>
+        </div>
+
+        <div class="arrow-right"  *ngIf="(totalPagesWinner > 1) && (actualPageWinner < totalPagesWinner)"  (click)="actualPageWinner = actualPageWinner + 1;getRaceWinner(atualUrl)">
+            &gt;
+        </div>
+        <div class="arrow-left"  *ngIf="(totalPagesWinner > 1) && (actualPageWinner > 1)" (click)="actualPageWinner = actualPageWinner - 1;getRaceWinner(atualUrl)">
+            &lt;
         </div>
     </div>
 

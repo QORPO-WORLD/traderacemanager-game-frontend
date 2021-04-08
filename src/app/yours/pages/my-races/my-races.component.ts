@@ -18,6 +18,7 @@ export class MyRacesComponent implements OnInit, OnDestroy {
   actualPageWinner = 1;
   totalPages: number;
   totalPagesWinner: number;
+  atualUrl: string;
   constructor(protected api: TransactionsService, protected rapi: RacesService) {
 
   }
@@ -52,6 +53,7 @@ export class MyRacesComponent implements OnInit, OnDestroy {
       this.winnersList = datax.winners;
       this.totalPagesWinner = datax.total_pages;
       this.showFinalModal = true;
+      this.atualUrl = rid;
     });
   }
 
