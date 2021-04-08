@@ -77,7 +77,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 9,
       collection: "Bronze Collection",
-      name: "Bronze 1",
+      name: "RHINO",
       prize: "600 IOI",
       image: "car1",
       type: "car",
@@ -85,7 +85,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 10,
       collection: "Bronze Collection",
-      name: "Bronze 2",
+      name: "PANTHER",
       prize: "600 IOI",
       image: "car2",
       type: "car",
@@ -93,7 +93,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 11,
       collection: "Bronze Collection",
-      name: "Bronze 3",
+      name: "ONYX",
       prize: "600 IOI",
       image: "car3",
       type: "car",
@@ -101,7 +101,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 12,
       collection: "Bronze Collection",
-      name: "Bronze 4",
+      name: "ZANDER",
       prize: "600 IOI",
       image: "car4",
       type: "car",
@@ -109,7 +109,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 13,
       collection: "Bronze Collection",
-      name: "Bronze 5",
+      name: "CYBORG",
       prize: "600 IOI",
       image: "car5",
       type: "car",
@@ -117,7 +117,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 14,
       collection: "Bronze Collection",
-      name: "Bronze 6",
+      name: "VULCANIC",
       prize: "600 IOI",
       image: "car6",
       type: "car",
@@ -125,7 +125,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 15,
       collection: "Bronze Collection Rare",
-      name: "Bronze 7",
+      name: "LUNA",
       prize: "3 600 IOI",
       image: "car25",
       type: "car",
@@ -135,7 +135,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 16,
       collection: "Silver Collection",
-      name: "Silver 1",
+      name: "DORIAN",
       prize: "1000 IOI",
       image: "car7",
       type: "car",
@@ -143,7 +143,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 17,
       collection: "Silver Collection",
-      name: "Silver 2",
+      name: "PANTHER",
       prize: "1000 IOI",
       image: "car8",
       type: "car",
@@ -151,7 +151,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 18,
       collection: "Silver Collection",
-      name: "Silver 3",
+      name: "HYPER",
       prize: "1000 IOI",
       image: "car9",
       type: "car",
@@ -159,7 +159,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 19,
       collection: "Silver Collection",
-      name: "Silver 4",
+      name: "ZANDER",
       prize: "1000 IOI",
       image: "car10",
       type: "car",
@@ -167,7 +167,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 20,
       collection: "Silver Collection",
-      name: "Silver 5",
+      name: "PYTHON",
       prize: "1000 IOI",
       image: "car11",
       type: "car",
@@ -175,7 +175,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 21,
       collection: "Silver Collection",
-      name: "Silver 6",
+      name: "VULCANIC",
       prize: "1000 IOI",
       image: "car12",
       type: "car",
@@ -183,7 +183,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 22,
       collection: "Silver Collection Rare",
-      name: "Silver 7",
+      name: "SILVER KNIGHT",
       prize: "6000 IOI",
       image: "car26",
       type: "car",
@@ -193,7 +193,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 23,
       collection: "Gold Collection",
-      name: "Gold 1",
+      name: "CYBORG",
       prize: "1 600 IOI",
       image: "car13",
       type: "car",
@@ -201,7 +201,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 24,
       collection: "Gold Collection",
-      name: "Gold 2",
+      name: "RHINO",
       prize: "1 600 IOI",
       image: "car14",
       type: "car",
@@ -209,7 +209,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 25,
       collection: "Gold Collection",
-      name: "Gold 3",
+      name: "ONYX",
       prize: "1 600 IOI",
       image: "car15",
       type: "car",
@@ -217,7 +217,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 26,
       collection: "Gold Collection",
-      name: "Gold 4",
+      name: "BULL",
       prize: "1 600 IOI",
       image: "car16",
       type: "car",
@@ -225,7 +225,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 27,
       collection: "Gold Collection",
-      name: "Gold 5",
+      name: "PYTHON",
       prize: "1 600 IOI",
       image: "car17",
       type: "car",
@@ -233,7 +233,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 28,
       collection: "Gold Collection",
-      name: "Gold 6",
+      name: "HITMAN",
       prize: "1 600 IOI",
       image: "car18",
       type: "car",
@@ -241,7 +241,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 29,
       collection: "Gold Collection Rare",
-      name: "Gold 7",
+      name: "MIDAS",
       prize: "9 600 IOI",
       image: "car27",
       type: "car",
@@ -251,7 +251,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 30,
       collection: "Platinum Collection",
-      name: "Platinum 1",
+      name: "HYPER",
       prize: "2 600 IOI",
       image: "car19",
       type: "car",
@@ -259,7 +259,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 31,
       collection: "Platinum Collection",
-      name: "Platinum 2",
+      name: "DORIAN",
       prize: "2 600 IOI",
       image: "car20",
       type: "car",
@@ -267,7 +267,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 32,
       collection: "Platinum Collection",
-      name: "Platinum 3",
+      name: "VULCANIC",
       prize: "2 600 IOI",
       image: "car21",
       type: "car",
@@ -275,7 +275,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 33,
       collection: "Platinum Collection",
-      name: "Platinum 4",
+      name: "BULL",
       prize: "2 600 IOI",
       image: "car22",
       type: "car",
@@ -283,7 +283,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 34,
       collection: "Platinum Collection",
-      name: "Platinum 5",
+      name: "KNOCKOUT",
       prize: "2 600 IOI",
       image: "car23",
       type: "car",
@@ -291,7 +291,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 35,
       collection: "Platinum Collection",
-      name: "Platinum 6",
+      name: "LARA",
       prize: "2 600 IOI",
       image: "car24",
       type: "car",
@@ -299,7 +299,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 36,
       collection: "Platinum Collection Rare",
-      name: "Platinum 7",
+      name: "BLUE STORM",
       prize: "15 600 IOI",
       image: "car28",
       type: "car",
