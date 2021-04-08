@@ -1,3 +1,4 @@
+import { NotifiqService } from './../../services/notifiq.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TeamsService } from '../../../api/services/teams.service';
 import { AuthService } from '../../../user/services/auth.service';
@@ -29,7 +30,7 @@ export class TeamsSelectionComponent implements OnInit {
   animationState = 0;
 
   constructor(protected api: TeamsService, private identityService: AuthService,
-    private balanceService: BalanceService) { }
+    private balanceService: BalanceService, protected notify: NotifiqService) { }
 
   ngOnInit() {
     this.getMyTeam();
@@ -45,8 +46,6 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
-      console.log(this.teams);
-      console.log('moje tímy');
     });
   }
 
@@ -66,7 +65,7 @@ export class TeamsSelectionComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-
+          this.notify.error('sucess', 'Thank you for your interest! You will be part of the team from (date?)');
         }, 100);
       });
   }
