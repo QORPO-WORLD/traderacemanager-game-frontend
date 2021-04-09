@@ -65,7 +65,7 @@ export class TeamsSelectionComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          this.notify.error('sucess', 'Thank you for your interest! You will be part of the team from (date?)');
+          this.notify.error('sucess', 'Thank you for your interest! You will be part of the team from');
         }, 100);
       });
   }

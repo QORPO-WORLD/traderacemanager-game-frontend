@@ -91,7 +91,13 @@
           </div>
       </div>
       <div class="modal-click" (click)="animateTeam(tt?.id)" *ngIf="modalVersion === true"></div>
-      
+      <div *ngFor="let mem of tt.memberships">
+          <div *ngIf="mem.date_to" style="text-align: center;">
+              <span style="font-size:12px;margin-right:10px;font-weight: bold;">{{mem.membership_type}}</span>
+              <span style="font-size:12px;margin-right:10px;">from: {{mem.date_from | date:'short'}}</span>
+              <span style="font-size:12px;margin-right:10px;">to: {{mem.date_to | date:'short'}}</span><br>
+          </div>
+      </div>
   </div>
   
 </div>
