@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class BuyNftComponent implements OnInit {
 
+  myIndex: string;
+
   racers: Array<object> = [
     {
       id: 1,
@@ -376,12 +378,12 @@ export class BuyNftComponent implements OnInit {
     }
   }
 
-  buyCarFromGarage(index: string) {
-    this.api.carsBuyList(index).
+  buyCarFromGarage(index: number) {
+    this.myIndex = index.toString();
+    this.api.carsBuyList(this.myIndex).
       subscribe(datax => {
         const data: any = datax;
         setTimeout(() => {
-          console.log(index);
           this.notifyChangedBalance();
           this.router.navigate(['/car/garage/my-cars']);
           this.notify.error('You have bought a new car!');
