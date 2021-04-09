@@ -531,16 +531,31 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     position: relative;
     margin-top: 40px;
-    .ioi-logo{
+    .back{
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 0;
+      left: 0;
       cursor: pointer;
-      width: 80px;
+      width: 83px;
+      transition: .2s;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      text-align: center;
+      min-height: 132px;
+      background: #222222;
+      border-radius: 15px;
+      p{
+          line-height: 20px;
+          margin-bottom: 22px;
+      }
     }
     .mid-text{
       width: 100%;
-      text-align: center;
+      text-align: left;
+      padding-left: 115px;
       &.mb110{
         margin-bottom: 110px;
       }
@@ -554,8 +569,6 @@ input[type=number]::-webkit-outer-spin-button {
         &.text{
           font-size: 16px;
           font-weight: 400;
-          max-width: 660px;
-          margin: 0 auto;
         }
       }
     }
@@ -596,8 +609,7 @@ input[type=number]::-webkit-outer-spin-button {
         justify-content: center;
         align-items: center;
         height: 143px;
-        background: #111111;
-        box-shadow: 0px 0px 80px #000000;
+        background: #222222;
         border-radius: 20px;
         position: relative;
         z-index: 3;
@@ -654,9 +666,9 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: 182px;
+    height: 142px;
     position: fixed;
-    bottom: 0;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
@@ -669,9 +681,8 @@ input[type=number]::-webkit-outer-spin-button {
       width: 927px;
       z-index: 10000;
       height: 100%;
-      background: #111111;
-      box-shadow: 0px 0px 80px #000000;
-      border-radius: 20px 20px 0px 0px;
+      background: #222222;
+      border-radius: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -701,12 +712,18 @@ input[type=number]::-webkit-outer-spin-button {
         padding: 1px;
         cursor: pointer;
         margin-left: 10px;
+        &:hover{
+          .inner{
+            background: rgba(34, 34, 34, 0.6);
+          }
+        }
         .inner{
           width: 100%;
           height: 100%;
           border-radius: 15px;
           position: relative;
-          background: #111111;
+          background: rgba(34, 34, 34, 1);
+          transition: .15s;
           p{
             position: absolute;
             top: 50%;
@@ -731,19 +748,56 @@ input[type=number]::-webkit-outer-spin-button {
       z-index: 10000;
       height: 100%;
       pointer-events: all;
+      border: 2px solid #141414;
+      border-radius: 15px;  
+      .select-car{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        margin: 0;
+        font-size: 17px;
+      }
       .inner{
         width: 100%;
         height: 100%;
         padding: 20px;
         position: relative;
         z-index: 2;
-        background: #111111;
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px 20px 0px 0px; 
+        background: #222222;
+        border-radius: 15px;
+        .arrow{
+          background: #111111;
+          height: 80px;
+          width: 30px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          z-index: 5;
+          &.left{
+            left: 0;
+            border-radius: 0 4px 4px 0;
+          }
+          &.right{
+            right: 0;
+            border-radius: 4px 0px 0px 4px;
+          }
+          p{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            margin: 0;
+            user-select: none;
+          }
+        }
         .top-desc{
           position: absolute;
           top: 20px;
-          left: 0;
+          right: 0;
           width: 100%;
           text-align: center;
           font-size: 16px;
@@ -756,23 +810,25 @@ input[type=number]::-webkit-outer-spin-button {
           align-items: center;
           position: relative;
           height: 100%;
-          overflow: auto;
+          overflow: hidden;
           .car-item{
             max-width: 224px;
             min-width: 224px;
             cursor: pointer;
             position: relative;
-            margin-top: 25px;
+            margin-top: 0;
             height: 100%;
             animation-name: appear;
             animation-iteration-count: 1;
             animation-fill-mode: both;
             animation-duration: .1s;
+            text-align: center;
+            transition: .2s;
             .dot-ind{
               width: 100%;
               height: 10px;
               position: absolute;
-              bottom: 20px;
+              bottom: 0px;
               left: 0;
               .dot{
                 margin: 0 auto;
@@ -793,7 +849,7 @@ input[type=number]::-webkit-outer-spin-button {
             img{
               max-height: 100%;
               position: relative;
-              top: 10px;
+              top: 5px;
             }
             .check{
               position: absolute;
@@ -815,11 +871,10 @@ input[type=number]::-webkit-outer-spin-button {
       position: absolute;
       right: 0;
       top: 0;
-      width: 234px;
+      width: 115px;
       height: 100%;
-      transform: translateX(calc(100% - 25px));
-      box-shadow: 0px 0px 80px #000000;
-      border-radius: 0 20px 0px 0px;
+      transform: translateX(calc(100% + 25px));
+      border-radius: 15px;
       z-index: 1;
       cursor: pointer;
       overflow: hidden;
@@ -827,15 +882,25 @@ input[type=number]::-webkit-outer-spin-button {
         cursor: default;
       }
       p{
-        font-size: 24px;
+        user-select: none;
+        &.arrow{
+          font-size: 24px;
+          position: absolute;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        &.text{
+          font-size: 16px;
+          position: absolute;
+          bottom: 15px;
+          left: 0;
+          transform: translateY(-50%);
+          width: 100%;
+        }
         font-weight: 600;
         margin: 0;
         text-align: center;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(100% - 25px);
       }
     }
     .start-race-btn{
@@ -848,8 +913,7 @@ input[type=number]::-webkit-outer-spin-button {
       .inner-btn{
         width: 76%;
         height: 100%;
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px 20px 0px 0px;
+        border-radius: 20px;
         z-index: 1;
         cursor: pointer;
         margin: 0 auto;
@@ -962,8 +1026,8 @@ input[type=number]::-webkit-outer-spin-button {
       }
     }
     .back-button{
+      display: none;
       pointer-events: all;
-      display: block;
       height: calc(100% - 40px);
       width: 82px;
       background: #111111;
@@ -1060,7 +1124,7 @@ input[type=number]::-webkit-outer-spin-button {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        height: 560px;
+        height: 480px;
         p{
           text-shadow: none;
           font-size: 34px;
@@ -1238,9 +1302,8 @@ input[type=number]::-webkit-outer-spin-button {
       .content-box{
         .box-heading{
           position: relative;
-          margin-bottom: 15px;
           p{
-            margin: 0 0 30px 0;
+            margin: 0 0 20px 0;
             font-size: 24px;
             font-weight: 600;
             color: white;
@@ -1248,14 +1311,14 @@ input[type=number]::-webkit-outer-spin-button {
         }
         &.box1{
           width: 40%;
-          max-width: 612px;
+          max-width: 501px;
           .carousel-holder{
             width: 100%;
             margin-bottom: 30px;
             position: relative;
             .inner-item-holder{
               width: 100%;
-              max-width: 612px;
+              max-width: 501px;
               margin: 0 auto;
               display: grid;
               position: relative;
@@ -1270,9 +1333,8 @@ input[type=number]::-webkit-outer-spin-button {
                     animation-iteration-count: infinite;
                     animation-fill-mode: both;
                   }
-                  width: 100px;
-                  height: 100px;
-                  box-shadow: 3px 0px 12px rgba(0, 0, 0, 0.7);
+                  width: 86px;
+                  height: 93px;
                   border-radius: 15px;
                   margin: 0;
                   text-align: center;
@@ -1281,7 +1343,7 @@ input[type=number]::-webkit-outer-spin-button {
                   cursor: pointer;
                   transition: background-color .2s, box-shadow .1s;
                   &.not-selected{
-                    background: #111111;
+                    background: #222222;
                     .item-symbol{
                       opacity: .2;
                     }
@@ -1305,7 +1367,7 @@ input[type=number]::-webkit-outer-spin-button {
                   }
                   .item-symbol{
                     color: #ffffff;
-                    font-size: 14px;
+                    font-size: 12px;
                     font-weight: 300;
                     text-transform: uppercase;
                     margin: 0;
@@ -1337,47 +1399,58 @@ input[type=number]::-webkit-outer-spin-button {
           }
         }
         &.box2{
-          width: calc(100% - 723px);
+          width: calc(100% - 538px);
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
           .graphs-holder{
-            width: 100%;
-            height: 272px;
+            width: 49%;
+            height: 536px;
             .inner{
               width: 100%;
-              height: 272px;
+              height: 536px;
             }
           }
           .bottom-part{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 49%;
+            .fuel-up-holder{
+              background-color: #222222;
+              border-radius: 15px;
+              padding: 30px;
+              height: 536px;
+            }
             .sliders{
-              width: calc(60% - 55px);
+              width: 100%;
               display: flex;
               justify-content: space-between;
               align-items: flex-start;
-              margin-top: 37px;
+              margin-top: 5px;
               .items-holder{
                 width: 100%;
+                border-bottom: 1px solid #333;
+                padding-bottom: 15px;
                 .curr-item{
                   width: 100%;
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                  margin: 0 0 40px 0;
+                  margin: 0 0 35px 0;
                   height: 50px;
                   .curr-img{
                     width: 50px;
                     height: 50px;
-                    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
                     border-radius: 10px;
                     position: relative;
                     cursor: pointer;
                     padding: 1px 0 0 1px;
+                    &.empty{
+                      background: #333333;
+                    }
                     .inner{
                       width: 100%;
                       height: 100%;
                       border-radius: 10px;
-                      background: linear-gradient(161.21deg, rgba(254, 24, 63, 0.4) -26.85%, rgba(36, 11, 54, 0) 100%), linear-gradient(0deg, #111111, #111111);
+                      background: rgba(34, 34, 34, 0.3);
                       img{
                         max-width: 60%;
                         max-height: 60%;
@@ -1397,19 +1470,16 @@ input[type=number]::-webkit-outer-spin-button {
                       font-size: 16px;
                       font-weight: 400;
                       position: absolute;
-                      bottom: 25px;
+                      bottom: 18px;
                       pointer-events: none;
                       width: 50px;
-                      height: 30px;
-                      line-height: 32px;
+                      height: 24px;
+                      line-height: 24px;
                       text-align: center;
                       z-index: 1;
-                      margin: 0 0 10px -12px;
+                      margin: 0 0 10px -16px;
                       display: block;
                       transform: translateX(4px);
-                      background: #111111;
-                      box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-                      border-radius: 10px;
                     }
                     input[type=range] {
                       width: 100%;
@@ -1421,23 +1491,19 @@ input[type=number]::-webkit-outer-spin-button {
                       outline: none;
                     }
                     input[type=range]::-webkit-slider-runnable-track {
-                      background: linear-gradient(90.08deg, #222222 -29.12%, #111111 89.23%);
-                      border: 4px solid #111111;
+                      background: #111111;
                       box-sizing: border-box;
-                      box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
                       border-radius: 10px;
                       border-radius: 5px;
                       width: 100%;
-                      height: 14px;
+                      height: 6px;
                       cursor: pointer;
                     }
                     input[type=range]::-webkit-slider-thumb {
-                      margin-top: -9px;
-                      width: 26px;
-                      height: 26px;
+                      margin-top: -7px;
+                      width: 20px;
+                      height: 20px;
                       background: linear-gradient(138.36deg, #FE173F 17.54%, #240B36 157.58%), #111111;
-                      border: 5px solid #111111;
-                      box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
                       border-radius: 50%;
                       cursor: pointer;
                       -webkit-appearance: none;
@@ -1451,10 +1517,9 @@ input[type=number]::-webkit-outer-spin-button {
                     }
                     input[type=range]::-moz-range-thumb {
                       margin-top: -9px;
-                      width: 26px;
-                      height: 26px;
+                      width: 20px;
+                      height: 20px;
                       background: #111111;
-                      box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
                       border: none;
                       border-radius: 50%;
                       cursor: pointer;
@@ -1507,8 +1572,7 @@ input[type=number]::-webkit-outer-spin-button {
                     }
                     .btn-item{
                       width: calc(50% - 5px);
-                      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.04), 5px 5px 15px rgba(0, 0, 0, 0.9);
-                      border-radius: 5px;
+                      border-radius: 10px;
                       height: 50px;
                       position: relative;
                       cursor: pointer;
@@ -1561,9 +1625,12 @@ input[type=number]::-webkit-outer-spin-button {
                       .inner{
                         width: 100%;
                         height: 100%;
-                        border-radius: 5px;
-                        background: #111;
+                        border-radius: 9px;
+                        background: #222;
                         text-align: center;
+                        img{
+                          margin-top: 5px;
+                        }
                         .active-img{
                           display: none;
                         }
@@ -1583,8 +1650,12 @@ input[type=number]::-webkit-outer-spin-button {
               }
             }
             .svg-holder{
-              width: 39%;
+              width: 100%;
               position: relative;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              padding-top: 30px;
               .top-heading{
                 font-size: 24px;
                 font-weight: 600;
@@ -1594,7 +1665,7 @@ input[type=number]::-webkit-outer-spin-button {
                 width: 150px;
                 font-size: 16px;
                 position: relative;
-                margin: 0 auto 10px;
+                margin-bottom: 10px;
                 .donut-percent {
                   font-size: 16px;
                   line-height: 1;
@@ -1637,8 +1708,10 @@ input[type=number]::-webkit-outer-spin-button {
                 fill: #000;
                 transform: translateY(0.25em);
               }
+              .desc-text{
+                margin: 0;
+              }
               .lucky-holder{
-                width: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -1649,7 +1722,6 @@ input[type=number]::-webkit-outer-spin-button {
                 }
                 .lucky-btn{
                   width: 158px;
-                  box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
                   border-radius: 15px;
                   padding: 1px;
                   cursor: pointer;
@@ -1657,7 +1729,7 @@ input[type=number]::-webkit-outer-spin-button {
                     border-radius: 15px;
                     width: 100%;
                     height: 100%;
-                    background: #111111;
+                    background: #222222;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -1810,7 +1882,7 @@ input[type=number]::-webkit-outer-spin-button {
                  .inner{
                   width: 100%;
                   height: 100%;
-                  background: #111111;
+                  background: rgba(34, 34, 34, 0.7);
                   border-radius: 20px;
                   p{
                     color: white;
@@ -1858,7 +1930,7 @@ input[type=number]::-webkit-outer-spin-button {
                 position: relative;
                 text-align: center;
                 margin-bottom: 50px;
-                box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.7);
+                background: #222222;
                 border-radius: 20px;
                 .desc{
                   font-size: 18px;
@@ -2761,6 +2833,15 @@ button.g-button {
   .main-holder{
     .main-top-panel{
       margin-top: 15px;
+      .back{
+        width: 73px;
+        min-height: 107px;
+        padding: 0;
+        p{
+          margin-bottom: 14px;
+          font-size: 15px;
+        }
+      }
       .mid-text{
         p{
           font-size: 30px;
@@ -2822,12 +2903,6 @@ button.g-button {
     }
     .bottom-panels{
       height: 140px;
-      .next-btn{
-        width: 190px;
-        p{
-          font-size: 20px;
-        }
-      }
       .start-race-btn{
         .inner-btn{
           p{
@@ -2926,17 +3001,9 @@ button.g-button {
           }
         }
       }
-      .back-button{
-        height: calc(100% - 30px);
-        width: 70px;
-        margin-left: 30px;
-        font-size: 15px;
-        .my-gt{
-          margin-bottom: 10px;
-        }
-      }
     }
     .step2{
+      margin-top: 30px;
       .content-holder{
         padding-left: 40px;
         padding-bottom: 140px;
@@ -2952,12 +3019,12 @@ button.g-button {
             .carousel-holder{
               margin-bottom: 0px;
               .inner-item-holder{
-                grid-row-gap: 10px;
+                grid-row-gap: 20px;
                 .item-holder{
                   .item-curr{
                     width: 80px;
-                    height: 80px;
-                    padding: 11px 0 5px 0;
+                    height: 90px;
+                    padding: 17px 0 5px 0;
                     .marks-holder{
                       .premium-mark{
                         width: 25px;
@@ -2992,14 +3059,17 @@ button.g-button {
           &.box2{
             width: calc(100% - 530px);
             .graphs-holder{
-              height: 260px;
               .inner{
-                height: 260px;
+                height: 460px;
               }
             }
             .bottom-part{
+              .fuel-up-holder{
+                padding: 22px;
+                height: 460px;
+              }
               .sliders{
-                margin-top: 25px;
+                margin-top: 10px;
                 .items-holder{
                   .curr-item{
                     margin: 0 0 26px 0;
@@ -3025,9 +3095,6 @@ button.g-button {
                         width: calc(50% - 3px);
                         padding: 1px;
                         .inner{
-                          img{
-                            width: 25px;
-                          }
                           p{
                             font-size: 12px;
                             line-height: 1.2;
@@ -3039,9 +3106,8 @@ button.g-button {
                 }
               }
               .svg-holder{
-                .top-heading{
-                  font-size: 20px;
-                  margin: 8px 0 10px 0;
+                .desc-text{
+                  font-size: 13px;
                 }
                 .svg-item{
                   width: 135px;
@@ -3256,8 +3322,8 @@ button.g-button {
                 .item-holder{
                   .item-curr{
                     width: 65px;
-                    height: 65px;
-                    padding: 11px 0 5px 0;
+                    height: 73px;
+                    padding: 14px 0 5px 0;
                     .marks-holder{
                       .premium-mark{
                         width: 25px;
@@ -3292,15 +3358,19 @@ button.g-button {
           &.box2{
             width: calc(100% - 417px);
             .graphs-holder{
-              height: 245px;
+              height: 372px;
               .inner{
-                height: 245px;
+                height: 372px;
               }
             }
             .bottom-part{
+              .fuel-up-holder{
+                height: 372px;
+                padding: 12px 18px;
+              }
               .sliders{
-                margin-top: 25px;
                 .items-holder{
+                  padding-bottom: 10px;
                   .curr-item{
                     margin: 0 0 16px 0;
                     height: 45px;
@@ -3325,9 +3395,6 @@ button.g-button {
                         width: calc(50% - 3px);
                         padding: 1px;
                         .inner{
-                          img{
-                            width: 25px;
-                          }
                           p{
                             font-size: 12px;
                             line-height: 1.2;
@@ -3339,6 +3406,7 @@ button.g-button {
                 }
               }
               .svg-holder{
+                padding-top: 15px;
                 .top-heading{
                   font-size: 18px;
                   margin: 8px 0 6px 0;
@@ -3489,6 +3557,14 @@ button.g-button {
     }
     .main-top-panel{
       margin-top: 13px;
+      .back{
+        width: 65px;
+        min-height: 94px;
+        p{
+          margin-bottom: 11px;
+          font-size: 14px;
+        }
+      }
       .mid-text{
         p{
           font-size: 26px;
@@ -3552,9 +3628,14 @@ button.g-button {
     .bottom-panels{
       height: 135px;
       .next-btn{
-        width: 175px;
+        width: 95px;
         p{
-          font-size: 18px;
+          &.arrow{
+            font-size: 22px;
+          }
+          &.text{
+            font-size: 14px;
+          }
         }
       }
       .start-race-btn{
@@ -3607,6 +3688,13 @@ button.g-button {
         max-width: 724px;
         .inner{
           padding: 12px;
+          .arrow{
+            height: 68px;
+            width: 27px;
+            p{
+              font-size: 21px;
+            }
+          }
           .top-desc{
             font-size: 14px;
             top: 13px;
@@ -3720,12 +3808,6 @@ button.g-button {
           }
           &.box2{
             width: calc(100% - 430px);
-            .graphs-holder{
-              height: 220px;
-              .inner{
-                height: 220px;
-              }
-            }
             .bottom-part{
               .sliders{
                 margin-top: 25px;
@@ -3742,7 +3824,7 @@ button.g-button {
                         padding: 1px;
                         .inner{
                           img{
-                            width: 20px;
+                            width: 10px;
                           }
                           p{
                             font-size: 11px;
@@ -3754,12 +3836,15 @@ button.g-button {
                 }
               }
               .svg-holder{
+                .desc-text{
+                  font-size: 11px;
+                }
                 .top-heading{
                   font-size: 18px;
                   margin: 6px 0 8px 0;
                 }
                 .svg-item{
-                  width: 125px;
+                  width: 105px;
                 }
                 .lucky-holder{
                   .text{
@@ -3767,7 +3852,7 @@ button.g-button {
                     margin: 0 12px 0 0;
                   }
                   .lucky-btn{
-                    width: 115px;
+                    width: 105px;
                     .inner{
                       padding: 8px 10px;
                       img{
@@ -3873,6 +3958,7 @@ button.g-button {
         max-width: 415px;
         margin-left: auto;
         margin-right: 300px;
+        text-align: center;
         &.mb110{
           margin-bottom: 120px;
           &.summary{
@@ -3884,8 +3970,8 @@ button.g-button {
     .bottom-panels{
       height: 110px;
       .next-btn{
-        width: 140px;
-        border-radius: 0 10px 0px 0px;
+        width: 125px;
+        border-radius: 0 10px 10px 0px;
         transform: translateX(calc(100% - 15px));
         p{
           font-size: 16px;
@@ -3982,8 +4068,9 @@ button.g-button {
       .selected-cars{
         min-width: 174px;
         max-width: 624px;
+        border: 1px solid #141414;
         .inner{
-          border-radius: 10px 10px 0px 0px;
+          border-radius: 15px;
           .top-desc{
             font-size: 13px;
             top: 9px;
@@ -4095,12 +4182,6 @@ button.g-button {
             width: 100%;
             margin-top: 40px;
             padding-bottom: 150px;
-            .graphs-holder{
-              height: 340px;
-              .inner{
-                height: 340px;
-              }
-            }
             .box-heading{
               max-width: 80%;
               margin: 0 auto 8px;
@@ -4160,6 +4241,9 @@ button.g-button {
 @media screen and (max-width: 870px){
   .main-holder{
     .main-top-panel{
+      .back{
+        height: unset;
+      }
       .ioi-logo{
         top: 0;
         left: 0;
@@ -4269,6 +4353,9 @@ button.g-button {
     padding-left: 20px;
     padding-right: 20px;
     .main-top-panel{
+      .back{
+        display: none;
+      }
       .boxes-holder{
         position: relative;
         width: 80%;
@@ -4279,6 +4366,7 @@ button.g-button {
         width: 90%;
         max-width: 320px;
         margin: 0 auto;
+        padding: 0;
         &.mb110{
           margin-bottom: 0;
         }
@@ -4295,9 +4383,9 @@ button.g-button {
           }
           .cars-holder{
             .car-item{
-              max-width: 135px;
-              min-width: 135px;
-              margin-top: 15px;
+              max-width: 148px;
+              min-width: 148px;
+              margin-top: 0;
               .dot-ind{
                 height: 6px;
                 bottom: 1px;
@@ -4322,11 +4410,15 @@ button.g-button {
         }
       }
       .back-button{
-        height: calc(100% - 15px);
+        display: block;
+        height: 100%;
         width: 50px;
         margin-left: 15px;
         font-size: 11px;
         border-radius: 10px;
+        background: #222222;
+        box-shadow: none;
+        border: 1px solid #141414;
         .my-gt{
           margin-top: 24px;
           margin-bottom: 2px;
@@ -4390,6 +4482,7 @@ button.g-button {
               height: unset;
               order: 3;
               margin-top: 20px;
+              width: 100%;
               .inner{
                 height: unset;
               }
@@ -4476,6 +4569,21 @@ button.g-button {
         min-width: 180px;
         .inner{
           padding: 0 10px;
+          .arrow{
+            height: 52px;
+            width: 24px;
+            &.left{
+              left: 2px;
+              border-radius: 4px;
+            }
+            &.right{
+              right: 2px;
+              border-radius: 4px;
+            }
+            p{
+              font-size: 18px;
+            }
+          }
           .cars-holder{
             .car-item{
               max-width: 160px;
@@ -4502,9 +4610,18 @@ button.g-button {
       .next-btn{
         width: 95px;
         p{
-          width: calc(100% - 15px);
-          font-size: 12px;
-          font-weight: 500;
+          &.arrow{
+            left: unset;
+            right: 2px;
+            top: 43%;
+            transform: translateY(-50%);
+          }
+          &.text{
+            font-size: 12px;
+            bottom: 0px;
+            left: unset;
+            right: -4px;
+          }
         }
       }
       .start-race-btn{
@@ -4522,12 +4639,13 @@ button.g-button {
         width: 75px;
         margin-left: 0;
         font-size: 11px;
-        border-radius: 10px 0 0 0;
+        border-radius: 10px 0 0 10px;
         position: absolute;
         left: 50%;
         transform: translateX(calc(-50% - 110px));
         text-align: left;
         padding-left: 15px;
+        background: #111111;
         .my-gt{
           display: inline-block;
           margin-bottom: 17px;
