@@ -14,61 +14,68 @@
       </div>
   </div>
 
-  <div class="team-menu">
-      <div class="menu-desc">
-          <p class="join-team" [routerLink]="['/teams/join-teams']">{{'teams.shared.join' | translate}}</p>
-          <p class="owners-managers active" [routerLink]="['/teams/owners-managers']">{{'teams.shared.owners_managers' | translate}}</p>
-          <p class="join-team" [routerLink]="['/teams/my-team']">{{'teams.shared.my_team' | translate}}</p>
+  <div class="owners-managers-holder">
+    <div class="my-menu">
+      <div class="menu-item" [routerLink]="['/teams/join-teams']">
+          <p>{{'teams.shared.join' | translate}}</p>
       </div>
-      <div class="menu-line">
-          <div class="inner-line my-cta-btn-back">&nbsp;</div>
+      <div class="menu-item my-cta-btn-back active" [routerLink]="['/teams/owners-managers']">
+          <p>{{'teams.shared.owners_managers' | translate}}</p>
       </div>
-  </div>
-
-  <div class="box-container">
-    <div class="box-owner box">
-      <h3>{{'owners_managers.owner-heading' | translate}}</h3>
-      <p><img src="/assets/base/images/owners-managers/suitcase-red.png" alt="">{{'owners_managers.owner-benefit1' | translate}}</p>
-      <p> <img src="/assets/base/images/owners-managers/premium-red.png" alt="">{{'owners_managers.owner-benefit2' | translate}}</p>
-      <p><img src="/assets/base/images/owners-managers/trophy-red.png" alt="">{{'owners_managers.owner-benefit3' | translate}}</p>
-      <div class="statement">
-        <span>
-          {{'owners_managers.owner-statement' | translate}}
-        </span>
-      </div>
-      <div class="button-holder" (click)="scrollToView(myscroll)">
-        <button class="button" (click)="OwnerManagerType!='owner'?OwnerManagerType='owner':OwnerManagerType='home'">
-          {{'owners_managers.owner-button' | translate}}
-        </button>
+      <div class="menu-item" [routerLink]="['/teams/my-team']">
+          <p>{{'teams.shared.my_team' | translate}}</p>
       </div>
     </div>
     
-    <div class="box-manager box">
-      <h3>{{'owners_managers.manager-heading' | translate}}</h3>
-      <p><img src="/assets/base/images/owners-managers/suitcase-blue.png" alt="">{{'owners_managers.manager-benefit1' | translate}}</p>
-      <p> <img src="/assets/base/images/owners-managers/premium-blue.png" alt="">{{'owners_managers.manager-benefit2' | translate}}</p>
-      <p><img src="/assets/base/images/owners-managers/group-blue.png" alt="">{{'owners_managers.manager-benefit3' | translate}}</p>
-      <div class="statement">
-        <span>
-          {{'owners_managers.manager-statement' | translate}}
-        </span>
+    <div class="box-container">
+      <div class="box-holder">
+        <p class="box-heading">Become an Owner</p>
+        <div class="box-owner box">
+          <p><img src="/assets/base/images/owners-managers/owner-icon1.svg" alt="">{{'owners_managers.owner-benefit1' | translate}}</p>
+          <p> <img src="/assets/base/images/owners-managers/owner-icon2.svg" alt="">{{'owners_managers.owner-benefit2' | translate}}</p>
+          <p class="last"><img src="/assets/base/images/owners-managers/owner-icon3.svg" alt="">{{'owners_managers.owner-benefit3' | translate}}</p>
+          <div class="statement">
+            <span>
+              {{'owners_managers.owner-statement' | translate}}
+            </span>
+          </div>
+          <div class="button-holder" (click)="scrollToView(myscroll)">
+            <button class="button" (click)="OwnerManagerType!='owner'?OwnerManagerType='owner':OwnerManagerType='home'">
+              {{'owners_managers.owner-button' | translate}}
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="button-holder"(click)="scrollToView(myscroll)">
-        <button class="button" (click)="OwnerManagerType!='manager'?OwnerManagerType='manager':OwnerManagerType='home';becomeManager();" >
-          {{'owners_managers.manager-button' | translate}}
-        </button>
+      
+      <div class="box-holder">
+        <p class="box-heading">Become a Manager</p>
+        <div class="box-manager box">
+          <p><img src="/assets/base/images/owners-managers/manager-icon1.svg" alt="">{{'owners_managers.manager-benefit1' | translate}}</p>
+          <p> <img src="/assets/base/images/owners-managers/manager-icon2.svg" alt="">{{'owners_managers.manager-benefit2' | translate}}</p>
+          <p class="last"><img src="/assets/base/images/owners-managers/manager-icon3.svg" alt="">{{'owners_managers.manager-benefit3' | translate}}</p>
+          <div class="statement">
+            <span>
+              {{'owners_managers.manager-statement' | translate}}
+            </span>
+          </div>
+          <div class="button-holder"(click)="scrollToView(myscroll)">
+            <button class="button" (click)="OwnerManagerType!='manager'?OwnerManagerType='manager':OwnerManagerType='home';becomeManager();" >
+              {{'owners_managers.manager-button' | translate}}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div>
-    <div #myscroll></div> 
-    <div *ngIf="OwnerManagerType=='owner'">
-      <app-owner></app-owner>
-    </div>
+    <div>
+      <div #myscroll></div> 
+      <div *ngIf="OwnerManagerType=='owner'">
+        <app-owner></app-owner>
+      </div>
 
-    <div *ngIf="OwnerManagerType=='manager'">
-      <app-manager></app-manager>
+      <div *ngIf="OwnerManagerType=='manager'">
+        <app-manager></app-manager>
+      </div>
     </div>
   </div>
 

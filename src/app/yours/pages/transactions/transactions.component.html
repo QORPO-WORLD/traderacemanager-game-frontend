@@ -66,7 +66,8 @@
             <div class="placement my-border-grad"><span>{{(indexx + 1)+10*(actualPage-1)}}</span></div>
           </div>
           <div class="cell"> <p>{{trans.created_at | date:'short'}}</p></div>
-          <div class="cell"><p>{{'transactions_desc.' + trans.history_type | translate}}</p></div>
+          <div class="cell" *ngIf="trans.history_type !== 'reward'"><p>{{'transactions_desc.' + trans.history_type | translate}}</p></div>
+          <div class="cell" *ngIf="trans.history_type === 'reward'"><p>{{'transactions_desc.' + trans.history_type | translate}} - {{'transactions_desc.' + trans.extras.reward_type  | translate}}</p></div>
           <div class="cell"><p>
               <img src="/assets/base/images/tokens/ioi-logo.png"  *ngIf="trans.currency === 'ioi' || trans.currency === 'game_wallet_ioi'">
               <img src="assets/base/images/ticket-icon.png"  *ngIf="trans.currency === 'ket'">

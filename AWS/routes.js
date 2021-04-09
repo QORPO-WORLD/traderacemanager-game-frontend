@@ -51,7 +51,8 @@ exports.handler = (event, context, callback) => {
         '/other/wallet-control',
         '/teams/leaderboard',
         '/teams/owners-managers',
-        '/race/race-type'
+        '/race/race-type',
+        '/car/nft-market'
     ];
 
     if (

@@ -7,68 +7,76 @@
     </div>
   </div>
 
-<div class="team-holder">
-    <div class="arrows">
-      <div class="arrow-left">
-        &lt;
-      </div>
-      <div class="arrow-right active-arrow">
-        &gt;
-      </div>
-    </div>
-    <div class="team-item ioi-team" *ngFor="let team of teams">
-           
-      <div class="joined" *ngIf="team.me_waiting_as_manager === 'WAITING'">
-        <span>
-            <p> <strong>&#x02713;</strong> {{'teams.join.waiting_approval' | translate}}</p>
-        </span>
-    </div> 
-      <div class="joined" *ngIf="team.me_waiting_as_manager === 'APPROVED'">
-        <span>
-            <p> <strong>&#x02713;</strong> Approved</p>
-        </span>
-    </div>           
-      <div class="rejected joined" *ngIf="team.me_waiting_as_manager === 'DECLINED'">
-        <span>
-            <p> <strong>X</strong> Rejected</p>
-        </span>
-    </div>
-        <div class="img-holder">
-            <img [src]="'/assets/base/images/teams/' + team.name + '-team.png'" alt="">
-            <!--<img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">-->
-        </div>
-        <!--<p class="heading">Team {{tt?.name}}</p>-->
-        <p class="heading">Team {{team.name}}</p>
-        <div class="item-holder">
-            <p class="desc">{{'teams.join.total_members' | translate}}</p>
-            <!--<p class="value">{{tt?.active_members}}</p>-->
-            <p class="value">{{team?.active_members}}</p>
-        </div>
-        <div class="item-holder">
-            <p class="desc">{{'teams.join.premium_members' | translate}}</p>
-            <p class="value">{{team?.premium_membership_count}}</p>
-        </div>
-        <div class="item-holder">
-            <p class="desc">{{'teams.join.free_members' | translate}}</p>
-            <p class="value">{{team?.free_membership_count}}</p>
-        </div>
-        <div class="apply-button">
-          <button (click)="becomeManager(team.id)" *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
-            <span>
-              {{'teams.join.apply' | translate}}
-            </span>
-          </button>
-          <button [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">
-            <span>
-              {{'shared.deposit_btn' | translate}}
-            </span>
-          </button>
-        </div>    
-    </div>
+  <div class="team-holder">
+    <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position'">         
+        <div class="anim-helper">
+          <div class="inner-holder" [ngClass]="'team' + tt?.id">
+              <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'WAITING'">
+                  <span>
+                      <p> <strong>✓</strong> Currently waiting</p>
+                  </span>
+              </div>
+              <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'APPROVED'">
+                <span>
+                    <p> <strong>✓</strong> Approved</p>
+                </span>
+            </div>
+            <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'DECLINED'">
+              <span>
+                  <p> <strong>✓</strong> Rejected</p>
+              </span>
+            </div>
+              <div class="img-holder">
+                  <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
+              </div>
+              <p class="heading">Team {{tt?.name}}</p>
+              <div class="item-holder">
+                  <p class="desc">Total members</p>
+                  <p class="value">{{tt?.active_members}}</p>
+              </div>
+              <div class="item-holder">
+                  <p class="desc">Premium members</p>
+                  <p class="value">{{tt?.premium_membership_count}}</p>
+              </div>
+              <div class="item-holder">
+                  <p class="desc">Free members</p>
+                  <p class="value">{{tt?.free_membership_count}}</p>
+              </div>
+              <div class="item-holder">
+                <p class="desc">Owner</p>
+                <p class="value" *ngIf="tt?.owners.length === 0">-</p>
+                <p class="value" *ngIf="tt?.owners.length > 0">
+                    <span class="arrow left" *ngIf="tt?.owners.length > 1 && ownerIndex !== 0" (click)="ownerIndex = ownerIndex - 1">&lt;</span> 
+                    {{tt?.owners[ownerIndex].user_nickname}} 
+                    <span class="arrow right" *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length" (click)="ownerIndex = ownerIndex + 1">&gt;</span>
+                </p>
+            </div>
+            <div class="item-holder">
+                <p class="desc">Manager</p>
+                <p class="value" *ngIf="tt?.manager_user_nickname">{{tt?.manager_user_nickname}}</p>
+                <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
+            </div>
+  
+            <div class="reward-box" [ngClass]="tt.name">
+                <div class="inner-box">
+                  <p><i class="fa fa-trophy"></i> <span> {{tt.team_value | number:'1.2-2':'fr'}} IOI</span> actual reward</p>
+                </div>
+            </div>
+        
+            <a class="join-button" (click)="becomeManager(tt.id)" *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
+                  <span class="inner">{{'teams.join.apply' | translate}}</span>
+              </a>
 
+              <a class="join-button active" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">
+                  <span class="inner">{{'shared.deposit_btn' | translate}}</span>
+              </a>
+               
+            </div>
+        </div>
+        
+    </div>
     
-    
-</div>
+  </div>
 
   
 </div>
