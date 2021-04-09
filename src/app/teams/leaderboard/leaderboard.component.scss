@@ -25,6 +25,10 @@ h5{
     line-height: 36px;
 }
 
+.lead-content{
+    padding-left: 112px;
+}
+
 .leaderboard-info{
     margin: 8px 0;
     padding-bottom: 20px;
@@ -43,9 +47,8 @@ h5{
         height: 100%;
         text-align: center;
         min-height: 132px;
-        background: linear-gradient(0deg, #111111, #111111);
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px;
+        background: #222222;
+        border-radius: 15px;
         p{
             line-height: 20px;
             margin: 0px;
@@ -61,9 +64,8 @@ h5{
     }
     .bonus-info{
         width: 448px;
-        background: linear-gradient(0deg, #111111, #111111);
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px;
+        background: #222222;
+        border-radius: 15px;
         min-height: 132px;
         display: flex;
         flex-direction: column;
@@ -118,28 +120,37 @@ h5{
     }
 }
 
-  .buttons{
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      margin: 20px 0;
-      button{
-        transition: .2s;
-        padding: 13px 0;
-        width: 190px;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        margin: 0 10px;
-        line-height: 24px;
+.my-menu{
+    margin: 70px 0 25px;
+    border-radius: 10px;
+    background: #222222;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    .menu-item{
+      width: 33.3333%;
+      border-radius: 10px;
+      cursor: pointer;
+      height: 50px;
+      position: relative;
+      &.inactive{
+        background: transparent;
+        p{
+            font-weight: 400;
+        }
+      }
+      p{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        color: white;
-        border-radius: 15px;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
       }
-      .inactive{
-        background: rgba(255, 255, 255, 0.03);
-      }
+    }
   }
 
   .content{
@@ -147,11 +158,29 @@ h5{
   }
 
 
-
+  @media screen and (max-width: 1700px){
+    .lead-content{
+        padding-left: 100px;
+    }
+    .my-menu{
+        .menu-item{
+          height: 45px;
+          p{
+            font-size: 15px;
+          }
+        }
+    }
+  }
 
 
   @media screen and ( max-width: 1550px )
 {
+    .my-menu{
+        margin: 30px 0 20px;
+    }
+    .lead-content{
+        padding-left: 60px;
+    }
     .main-holder{
     width: calc(100% - 380px);
     padding-left: 20px;
@@ -191,8 +220,22 @@ h5{
     
 }
 
+@media screen and (max-width: 1400px){
+    .lead-content{
+        padding-left: 0;
+    }
+}
+
 @media screen and ( max-width: 1200px )
 {
+    .my-menu{
+        .menu-item{
+          height: 40px;
+          p{
+            font-size: 14px;
+          }
+        }
+    }
     .main-holder{
         width: calc(100% - 340px);
         padding-left: 13px;
@@ -214,6 +257,16 @@ h5{
 
 @media screen and ( max-width: 640px )
 {
+    .my-menu{
+        margin: 20px 0 25px;
+        width: 100%;
+        .menu-item{
+          height: 36px;
+          p{
+            font-size: 13px;
+          }
+        }
+    }
     .main-holder{
         width: 100%;
         padding: 20px 10px 0px 10px;
@@ -274,4 +327,16 @@ h5{
           }
         }
       }
+}
+
+@media screen and (max-width: 500px){
+    .my-menu{
+        max-width: 420px;
+        margin: 20px auto 25px;
+        flex-wrap: wrap;
+        width: 80%;
+        .menu-item{
+          width: 100%;
+        }
+    }
 }

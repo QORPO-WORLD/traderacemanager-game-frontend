@@ -15,7 +15,10 @@ export class MyRacesComponent implements OnInit, OnDestroy {
   winnersList = [];
   showFinalModal = false;
   actualPage = 1;
+  actualPageWinner = 1;
   totalPages: number;
+  totalPagesWinner: number;
+  atualUrl: string;
   constructor(protected api: TransactionsService, protected rapi: RacesService) {
 
   }
@@ -45,11 +48,12 @@ export class MyRacesComponent implements OnInit, OnDestroy {
 
 
   getRaceWinner(rid: string) {
-    this.winnerObservable = this.rapi.racesWinnerList(rid).subscribe(data => {
+    this.winnerObservable = this.rapi.racesWinnerList(rid, this.actualPageWinner).subscribe(data => {
       const datax: any = data;
       this.winnersList = datax.winners;
-      console.log(this.winnersList);
+      this.totalPagesWinner = datax.total_pages;
       this.showFinalModal = true;
+      this.atualUrl = rid;
     });
   }
 

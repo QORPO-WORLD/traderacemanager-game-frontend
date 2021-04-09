@@ -626,6 +626,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   recognizeOpenTips() {
     if (this.meManager === false && this.isPremium === false) {
+      this.notify.error('premium needed', 'You need to become a premium team member, to see Tip of the day');
       this.router.navigate(['/teams/join-teams']);
       return;
     }

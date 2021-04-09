@@ -1,64 +1,70 @@
 <div class="holder">
 
-  <div class="img">
-    <img *ngIf="Affiliate.affiliate_level===1" class="img" src="/assets/base/images/leaderboard/avatar-1.png" alt="">
-    <img *ngIf="Affiliate.affiliate_level===2" class="img" src="/assets/base/images/leaderboard/avatar-2.png" alt="">
-    <img *ngIf="Affiliate.affiliate_level===3" class="img" src="/assets/base/images/leaderboard/avatar-3.png" alt="">
-    <img *ngIf="Affiliate.affiliate_level===4" class="img" src="/assets/base/images/leaderboard/avatar-4.png" alt="">
-  </div>
   <div class="table">
-    <div class="header row">
-        <div >Position</div>
-        <div >Nickname</div>
-        <div >Team</div>
-        <div >Turnover</div>
-        <div>Potentional win</div>
-    </div>
-    <div class="row" *ngFor="let pl of players; let yy = index" [ngClass]="{'first': pl.player_position === 1, 'secound': pl.player_position === 2, 'third': pl.player_position === 3, 'last':pl.user_nickname===mydrvrData.nickname}">
-    
-      <div class="cell" *ngIf="pl?.player_position < 4">
-        <div class="crown">
-            <span><p>{{pl.player_position}}.</p></span>
-        </div>
-      </div>
-      <div class="cell" *ngIf="pl.player_position >= 4">
-        <div class="placement my-border-grad"><span>{{pl.player_position}}.</span></div>
-      </div>
-      <div class="cell"> <p> {{pl.user_nickname}}</p></div>
-      <div class="cell"><p>{{pl.team_name}}</p></div>
-      <div class="cell"><p> {{pl.total_bet_amount  | number:'1.1-1':'fr'}}</p></div>
-      <div class="cell" *ngIf="pl.player_position>10"><p> 0</p></div>
-      <ng-container *ngIf="pl.player_position<=10">
-        <div class="cell" *ngIf="pl.player_position===1"><p>{{1000*.3}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===2"><p>{{1000*.2}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===3"><p>{{1000*.1}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===4"><p>{{1000*.08}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===5"><p>{{1000*.07}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===6"><p>{{1000*.06}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===7"><p>{{1000*.05}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===8"><p>{{1000*.04}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===9"><p>{{1000*.03}}</p></div>
-        <div class="cell" *ngIf="pl.player_position===10"><p>{{1000*.02}}</p></div>
-      </ng-container>
+
+    <div class="table-row header">
+      <div class="table-item small"><p>Position</p></div>
+      <div class="table-item big"><p>Nickname</p></div>
+      <div class="table-item"><p>Team</p></div>
+      <div class="table-item"><p>Turnover</p></div>
+      <div class="table-item"><p>Potential win</p></div>
     </div>
 
-    <div class="row last" *ngIf="isPageWithMe === false && cachedLdrbrd?.player_position_overall != null && actualPage < 1">
-      <div class="cell placement my-border-grad"><p class="me">me</p><span>{{cachedLdrbrd?.player_position_overall}}</span></div>
-      <div class="cell"> <p>{{mydrvr}}</p></div>
-      <div class="cell"><p>{{cachedLdrbrd?.team_name}}</p></div>
-      <div class="cell"><p> {{cachedLdrbrd?.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
-      <div class="cell"><p>0</p></div>
+    <div class="table-row" *ngFor="let pl of players; let yy = index" [ngClass]="{'mine': pl.user_nickname === mydrvrData.nickname}">
+      <div class="table-item small my-cta-btn-back"><p>{{pl.player_position}}.</p></div>
+      <div class="table-item big"><p>{{pl.user_nickname}}</p></div>
+      <div class="table-item"><p>
+        <div class="team-badge" [ngClass]="pl.team_name">
+          <p>{{pl.team_name}}</p>
+        </div>
+      </div>
+      <div class="table-item"><p>{{pl.total_bet_amount  | number:'1.1-1':'fr'}}</p></div>
+      <div class="table-item last">
+        <p *ngIf="pl.player_position > 10">0</p>
+        <ng-container *ngIf="pl.player_position <= 10">
+          <p *ngIf="pl.player_position === 1">{{1000*.3}}</p>
+          <p *ngIf="pl.player_position === 2">{{1000*.2}}</p>
+          <p *ngIf="pl.player_position === 3">{{1000*.1}}</p>
+          <p *ngIf="pl.player_position === 4">{{1000*.08}}</p>
+          <p *ngIf="pl.player_position === 5">{{1000*.07}}</p>
+          <p *ngIf="pl.player_position === 6">{{1000*.06}}</p>
+          <p *ngIf="pl.player_position === 7">{{1000*.05}}</p>
+          <p *ngIf="pl.player_position === 8">{{1000*.04}}</p>
+          <p *ngIf="pl.player_position === 9">{{1000*.03}}</p>
+          <p *ngIf="pl.player_position === 10">{{1000*.02}}</p>
+        </ng-container>
+      </div>
     </div>
-    
-    <button class="arrow-right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
-      &gt;
-     </button>
-     <button class="arrow-left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 0">
-       &lt;
-     </button>
-     <div class="leaderboard-empty" *ngIf="players.length === 0">
+
+    <div class="table-row mine" *ngIf="isPageWithMe === false && cachedLdrbrd?.player_position_overall != null && actualPage < 1">
+      <div class="table-item small my-cta-btn-back"><p>{{cachedLdrbrd?.player_position_overall}}.</p></div>
+      <div class="table-item big"><p>{{mydrvr}}</p></div>
+      <div class="table-item"><p>
+        <div class="team-badge" [ngClass]="cachedLdrbrd?.team_name">
+          <p>{{cachedLdrbrd?.team_name}}</p>
+        </div>
+      </div>
+      <div class="table-item"><p>{{cachedLdrbrd?.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
+      <div class="table-item last"><p>0</p></div>
+    </div>
+
+    <div class="arrow right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 0">
+      <p>&lt;</p>
+    </div>
+    <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left inactive" *ngIf="actualPage === 0">
+      <p>&lt;</p>
+    </div>
+
+    <div class="leaderboard-empty" *ngIf="players.length === 0">
       <h2>{{"leaderboard.empty" | translate}}</h2>
     </div>
+
   </div>
   
 </div>

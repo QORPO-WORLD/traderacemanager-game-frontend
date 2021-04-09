@@ -165,6 +165,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   endSound: any;
   beforeSound: any;
   active_area = 0.2;
+  actualPageWinner = 1;
+  totalPagesWinner: number;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
     private tcksrvc: TickerPricesService, private crsrcvc: CarsService, private identityService: AuthService,
@@ -821,7 +823,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   getAllv2Races() {
     setTimeout(() => {
-      this.winnerObservable = this.api.racesWinnerList(this.raceId).subscribe(data => {
+      this.winnerObservable = this.api.racesWinnerList(this.raceId, this.actualPageWinner).subscribe(data => {
         if (data) {
           const x: any = data;
           const dlength = x.length;
@@ -847,7 +849,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
               this.finishedtour = false;
             }
           }
-
+          this.totalPagesWinner = x.total_pages;
           this.winnersList = x.winners;
           this.frozenTicket = x.ticker_froze;
           if (this.raceData.me) {
