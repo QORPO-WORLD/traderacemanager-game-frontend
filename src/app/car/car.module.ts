@@ -21,13 +21,14 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { NftMarketComponent } from './nft-market/nft-market.component';
 import { NftDetailComponent } from './nft-detail/nft-detail.component';
 import { BuyNftComponent } from './buy-nft/buy-nft.component';
+import { FuelLayoutComponent } from '../common/components/layout/fuel-layout/fuel-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RaceLayoutComponent,
+    component: FuelLayoutComponent,
     children: [
-      { path: '', redirectTo: 'garage/my-car', pathMatch: 'prefix' },
+      { path: '', redirectTo: 'garage/my-cars', pathMatch: 'prefix' },
       { path: 'fuel-car/:id', component: FuelCarComponent }
     ]
   },
@@ -35,7 +36,7 @@ const routes: Routes = [
     path: '',
     component: SiteLayoutComponent,
     children: [
-      { path: '', redirectTo: 'garage/my-car', pathMatch: 'prefix' },
+      { path: '', redirectTo: 'garage/my-cars', pathMatch: 'prefix' },
       { path: 'garage', component: BuyCarsComponent },
       { path: 'garage/my-cars', component: MyCarsComponent },
       { path: 'favourite-cars', component: FavouriteCarsComponent },

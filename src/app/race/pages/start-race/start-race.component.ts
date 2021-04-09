@@ -136,6 +136,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   tips = [];
   teamId: number;
   myTeam: any;
+  bannerInterval: any;
   myId: string;
   meManager = false;
   ngOnInit() {
@@ -156,6 +157,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyRewards();
     this.getRewards();
     this.launchTutorial();
+    this.setBannerInterval();
     this.getMyLevel();
     this.getMyLeaderboard();
     this.interval = setInterval(() => {
@@ -210,12 +212,14 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     clearInterval(this.interval);
     clearInterval(this.nextInterval);
     clearInterval(this.tutorialInterval);
+    clearInterval(this.bannerInterval);
   }
 
   routerOnDeactivate() {
     clearInterval(this.interval);
     clearInterval(this.nextInterval);
     clearInterval(this.tutorialInterval);
+    clearInterval(this.bannerInterval);
   }
 
   ngAfterViewInit(): void {
@@ -569,19 +573,35 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     });
   }
 
+  setBannerInterval(){
+    this.bannerInterval = setInterval(() => {
+      if (this.topBannerIndex === 3) {
+        this.topBannerIndex = 1;
+      } else {
+        this.topBannerIndex++;
+      }
+    }, 6000);
+  }
+
   nextBanner() {
     if (this.topBannerIndex === 3) {
       this.topBannerIndex = 1;
     } else this.topBannerIndex++;
+    clearInterval(this.bannerInterval);
+    this.setBannerInterval();
   }
   prevBanner() {
     if (this.topBannerIndex === 1) {
       this.topBannerIndex = 3;
     } else this.topBannerIndex--;
+    clearInterval(this.bannerInterval);
+    this.setBannerInterval();
   }
 
   manualBannerChange(index: number){
     this.topBannerIndex = index;
+    clearInterval(this.bannerInterval);
+    this.setBannerInterval();
   }
 
   nextTimers() {

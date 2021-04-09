@@ -99,6 +99,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   calc8: any;
   usedCars = [];
   animatedCurrIndex = 20;
+  windowSelectCarIndex = 0;
+  windowFuelCarIndex = 0;
   isWnd = false;
   animatingSlider = false;
   tutorialIndex: number;
@@ -152,6 +154,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   summaryTrxAmount = 0;
   summaryIoiAmount = 0;
   newEditionIndex = 0;
+  bottomCarsBalancer = 4;
+  bottomPercentBalancer = 25;
   slidePercent = 20;
   rareAdjustNum = 3;
   multiply = 0;
@@ -1157,6 +1161,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   selectCarToRace(index) {
     //this.selectedCarToRace = this.myCars[index];
+    this.windowFuelCarIndex = this.windowSelectCarIndex = 0;
     this.hideConfirm = false;
     const statBet = [];
     const selBets = [];
@@ -1454,6 +1459,16 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   getfirstraces() {
     this.timerReady = false;
+    if (window.innerWidth > 870) {
+      this.bottomCarsBalancer = 4;
+      this.bottomPercentBalancer = 25;
+    } else if (window.innerWidth <= 870 && window.innerWidth > 500) {
+      this.bottomCarsBalancer = 2;
+      this.bottomPercentBalancer = 50;
+    } else if (window.innerWidth <= 500) {
+      this.bottomCarsBalancer = 1;
+      this.bottomPercentBalancer = 100;
+    }
     this.racesObservable = this.racetwoapi.racesV2DetailList(this.raceId).subscribe(data => {
       const tempArray = [];
       tempArray.push(data);
@@ -1637,6 +1652,38 @@ export class FuelCarComponent implements OnInit, OnDestroy {
           this.animatingSlider = false;
         }
       }, stepTime); 
+    }
+  }
+
+  nextSelectedCar(){
+    if (this.windowSelectCarIndex < this.selectedCarsToRace.length - this.bottomCarsBalancer) {
+      this.windowSelectCarIndex++;
+    } else {
+      this.windowSelectCarIndex = 0;
+    }
+  }
+
+  prevSelectedCar(){
+    if (this.windowSelectCarIndex > 0) {
+      this.windowSelectCarIndex--;
+    } else {
+      this.windowSelectCarIndex = this.selectedCarsToRace.length - this.bottomCarsBalancer;
+    }
+  }
+
+  nextFuelCar(){
+    if (this.windowFuelCarIndex < this.selectedCarsToRace.length - this.bottomCarsBalancer) {
+      this.windowFuelCarIndex++;
+    } else {
+      this.windowFuelCarIndex = 0;
+    }
+  }
+
+  prevFuelCar(){
+    if (this.windowFuelCarIndex > 0) {
+      this.windowFuelCarIndex--;
+    } else {
+      this.windowFuelCarIndex = this.selectedCarsToRace.length - this.bottomCarsBalancer;
     }
   }
 

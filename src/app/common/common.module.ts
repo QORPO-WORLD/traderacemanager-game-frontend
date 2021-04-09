@@ -33,6 +33,7 @@ import { ContactResource } from './resources/contact-resource';
 import { FormsModule } from '@angular/forms';
 import { TwoDigitDecimaNumberDirective } from './utils/twoDigits';
 import { SiteLayoutComponent } from './components/layout/default/site-layout/site-layout.component';
+import { FuelLayoutComponent } from './components/layout/fuel-layout/fuel-layout.component';
 import { NotificationService } from '../notification/services/notification.service';
 import { NotificationResource } from '../notification/resources/notification.resource';
 import { CommonModule as ninja } from '@angular/common';
@@ -110,7 +111,8 @@ import { RaceInfoModalComponent } from './components/race-info-modal/race-info-m
     CreateTipsComponent,
     WaitingTransferComponent,
     TeamsSelectionComponent,
-    RaceInfoModalComponent
+    RaceInfoModalComponent,
+    FuelLayoutComponent
   ],
   providers: [
     CurrencyPipe,
