@@ -11,7 +11,7 @@ export class HomeShopComponent implements OnInit {
   products: Array<object> = [
     {
       id: 1,
-      collection: "Bronze Collection",
+      collection: "Limited rare",
       name: "Axle",
       prize: "100 IOI",
       image: "avatar-white",
@@ -19,7 +19,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 2,
-      collection: "Bronze Collection",
+      collection: "Limited rare",
       name: "Flash",
       prize: "100 IOI",
       image: "avatar-red",
@@ -27,7 +27,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 3,
-      collection: "Bronze Collection",
+      collection: "Limited rare",
       name: "Octane",
       prize: "100 IOI",
       image: "avatar-blue",
@@ -35,7 +35,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 4,
-      collection: "Bronze Collection",
+      collection: "Limited rare",
       name: "Punisher",
       prize: "100 IOI",
       image: "avatar-black",
@@ -43,7 +43,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 5,
-      collection: "Bronze Collection",
+      collection: "Super rare",
       name: "Lady Rich",
       prize: "1000 IOI",
       image: "lady-rich",
@@ -51,7 +51,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 6,
-      collection: "Bronze Collection",
+      collection: "Super rare",
       name: "Rich Jr.",
       prize: "1000 IOI",
       image: "bad-boy",
@@ -59,7 +59,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 7,
-      collection: "Bronze Collection",
+      collection: "Super rare",
       name: "Mrs. Rich",
       prize: "1000 IOI",
       image: "mrs-rich",
@@ -67,7 +67,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 8,
-      collection: "Bronze Collection",
+      collection: "Legendary",
       name: "Mr. Rich",
       prize: "10 000 IOI",
       image: "mr-rich",
@@ -152,7 +152,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 18,
       collection: "Silver Collection",
-      name: "HYPER",
+      name: "ONYX",
       prize: "1000 IOI",
       image: "car9",
       type: "car",
@@ -210,7 +210,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 25,
       collection: "Gold Collection",
-      name: "ONYX",
+      name: "HYPER",
       prize: "1 600 IOI",
       image: "car15",
       type: "car",
@@ -333,19 +333,20 @@ export class HomeShopComponent implements OnInit {
     {
       id: 40,
       collection: "Race tracks",
-      name: "Sea bridge",
+      name: "Night city",
       prize: "1152 IOI",
-      image: "sea-bridge",
+      image: "night-city",
       type: "track",
     },
     {
       id: 41,
       collection: "Race tracks",
-      name: "Night City",
+      name: "Sea bridge",
       prize: "1152 IOI",
-      image: "night-city",
+      image: "sea-bridge",
       type: "track",
     },
+
     {
       id: 42,
       collection: "Race tracks",
@@ -391,6 +392,7 @@ export class HomeShopComponent implements OnInit {
   assetType: any;
   assetPage: number;
   assetStartPage: number;
+  assetFilter: any;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
@@ -408,6 +410,7 @@ export class HomeShopComponent implements OnInit {
   maxPage;
   lastPage;
   isPaged;
+  filter;
 
   constructor(private route: ActivatedRoute) {
     this.getAssetType();
@@ -418,11 +421,10 @@ export class HomeShopComponent implements OnInit {
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
-      this.assetType = params["type"];
       this.assetPage = +params["page"];
       this.assetStartPage = +params["startPage"];
-
-      if (!this.assetType) {
+      this.assetFilter = params["filter"];
+      if (!this.assetFilter) {
         this.filterAll();
       }
       if (!this.assetPage) {
@@ -432,17 +434,20 @@ export class HomeShopComponent implements OnInit {
         this.assetStartPage = 0;
       }
 
-      if (this.assetType === "racer") {
+      if (this.assetFilter === "racer") {
         this.filterRacers();
       }
-      if (this.assetType === "car") {
+      if (this.assetFilter === "car") {
         this.filterCars();
       }
-      if (this.assetType === "track") {
+      if (this.assetFilter === "track") {
         this.filterTracks();
       }
-      if (this.assetType === "team") {
+      if (this.assetFilter === "team") {
         this.filterTeams();
+      }
+      if (this.assetFilter === "all") {
+        this.filterAll();
       }
       this.currentPage = this.assetPage;
       this.isPaged = this.assetStartPage;
@@ -512,6 +517,7 @@ export class HomeShopComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "racer";
   }
 
   filterCars() {
@@ -530,6 +536,7 @@ export class HomeShopComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "car";
   }
   filterTracks() {
     this.newProducts = this.products;
@@ -547,6 +554,7 @@ export class HomeShopComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "track";
   }
   filterTeams() {
     this.newProducts = this.products;
@@ -564,6 +572,7 @@ export class HomeShopComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "team";
   }
   filterAll() {
     this.newProducts = this.products;
@@ -580,6 +589,7 @@ export class HomeShopComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "all";
   }
   //NAVBAR//
   menuActive = 1;

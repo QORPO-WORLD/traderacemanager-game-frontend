@@ -12,7 +12,6 @@
       [class.nav-active]="isMenuActive"
     ></div>
     <div
-      data-aos="fade-down"
       class="hamburger"
       [class.hamburgerclick]="isMenuActive"
       (click)="activateMenu(); reset()"
@@ -22,7 +21,7 @@
 
     <div class="top-section">
       <div class="menu">
-        <div data-aos="fade-down" class="logo" [routerLink]="['/user/home']">
+        <div class="logo" [routerLink]="['/user/home']">
           <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
           <p>TRADE RACE <span>MANAGER</span></p>
         </div>
@@ -40,15 +39,15 @@
           </button>
         </div>
       </div>
-      <div data-aos="fade-right" class="top-text">
-        <h1>Collectible #NFTs Trading game</h1>
-        <p>Pick your racers and become the richest NFTs trader in the world</p>
+      <div class="top-text">
+        <h1>Collectible #NFT Trading game</h1>
+        <p>Pick your racers and become the richest NFT trader in the world</p>
         <button class="my-cta" [routerLink]="['/user/sign-up']">
           Register for free
         </button>
       </div>
 
-      <div data-aos="left" class="google-play">
+      <div class="google-play">
         <a href="https://play.google.com/store/apps/details?id=ioi.game"
           ><img
             src="assets/base/images/home-page/google-play.png"
@@ -62,25 +61,25 @@
     <div *ngIf="display <= 450" class="left-mobile">
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'racer' }"
+        [queryParams]="{ filter: 'racer' }"
         src="assets/base/images/home-page/racers-menu-small.jpg"
         alt="menu racers"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'car' }"
+        [queryParams]="{ filer: 'car' }"
         src="assets/base/images/home-page/cars-menu-small.jpg"
         alt="menu cars"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'track' }"
+        [queryParams]="{ filter: 'track' }"
         src="assets/base/images/home-page/tracks-menu-small.jpg"
         alt="menu tracks"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'team' }"
+        [queryParams]="{ filter: 'team' }"
         src="assets/base/images/home-page/teams-menu-small.jpg"
         alt="menu teams"
       />
@@ -88,25 +87,25 @@
     <div *ngIf="display <= 1024 && display > 450" class="left-mobile">
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'racer' }"
+        [queryParams]="{ filter: 'racer' }"
         src="assets/base/images/home-page/racers-menu.jpg"
         alt="menu racers"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'car' }"
+        [queryParams]="{ filter: 'car' }"
         src="assets/base/images/home-page/cars-menu.jpg"
         alt="menu cars"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'track' }"
+        [queryParams]="{ filter: 'track' }"
         src="assets/base/images/home-page/tracks-menu.jpg"
         alt="menu tracks"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'team' }"
+        [queryParams]="{ filter: 'team' }"
         src="assets/base/images/home-page/teams-menu.jpg"
         alt="menu teams"
       />
@@ -114,7 +113,7 @@
     <div *ngIf="display > 1024" class="left">
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'racer' }"
+        [queryParams]="{ filter: 'racer' }"
         class="sec1"
       >
         <h1 class="h1left">Racers</h1>
@@ -130,7 +129,7 @@
       </div>
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'car' }"
+        [queryParams]="{ filter: 'car' }"
         class="sec2"
       >
         <h1 class="h1right">Cars</h1>
@@ -140,7 +139,7 @@
       </div>
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'track' }"
+        [queryParams]="{ filter: 'track' }"
         class="sec3"
       >
         <h1 class="h1left">Tracks</h1>
@@ -150,7 +149,7 @@
       </div>
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ type: 'team' }"
+        [queryParams]="{ filter: 'team' }"
         class="sec4"
       >
         <h1 class="h1right">Teams</h1>
@@ -165,11 +164,11 @@
     <div class="right">
       <div class="sec5">
         <div class="sec5area">
-          <div data-aos="fade-left" class="sec5text">
-            <h1>TradeRace Manager is a new NFTs trading game</h1>
+          <div class="sec5text">
+            <h1>TradeRace Manager is a new NFT trading game</h1>
             <p>
               With the most unique characters, cars and tracks - all as NFTs.<br /><br />Purchase
-              one, or more of our characters, get amazing and unique NFTs cars
+              one, or more of our characters, get amazing and unique NFT cars
               and start racing today. More cars and characters means higher
               earnings!
             </p>
@@ -183,17 +182,12 @@
   <div class="buy-racers-section">
     <div class="center">
       <div class="buy-racers-content">
-        <div data-aos="fade-up" class="title">
+        <div class="title">
           <h2>Buy NFTs</h2>
         </div>
         <div class="content">
           <div class="racer-items">
-            <div
-              data-aos="fade-right"
-              data-aos-delay="200"
-              data-aos-duration="1000"
-              class="arrow-left hover"
-            >
+            <div class="arrow-left hover">
               <img
                 [ngClass]="{ opacity: sliceStart === 0 }"
                 (click)="resetArrowL(); pageLeft()"
@@ -202,16 +196,15 @@
               />
             </div>
 
-            <div
-              class="buy-boxes"
-              data-aos="zoom-in"
-              data-aos-delay="120"
-              data-aos-duration="1000"
-            >
+            <div class="buy-boxes">
               <div *ngFor="let item of products | slice: sliceStart:sliceEnd">
                 <div
                   [routerLink]="['/nft-detail']"
-                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  [queryParams]="{
+                    type: item['type'],
+                    filter: item['type'],
+                    id: item['shopid']
+                  }"
                   *ngIf="item['type'] === 'racer'"
                   class="racer-box box1"
                 >
@@ -234,7 +227,11 @@
 
                 <div
                   [routerLink]="['/nft-detail']"
-                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  [queryParams]="{
+                    type: item['type'],
+                    filter: item['type'],
+                    id: item['shopid']
+                  }"
                   *ngIf="item['type'] === 'car'"
                   class="racer-box box2"
                 >
@@ -255,7 +252,11 @@
 
                 <div
                   [routerLink]="['/nft-detail']"
-                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  [queryParams]="{
+                    type: item['type'],
+                    filter: item['type'],
+                    id: item['shopid']
+                  }"
                   *ngIf="item['type'] === 'track'"
                   class="racer-box box3"
                 >
@@ -275,7 +276,11 @@
                 </div>
                 <div
                   [routerLink]="['/nft-detail']"
-                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  [queryParams]="{
+                    type: item['type'],
+                    filter: item['type'],
+                    id: item['shopid']
+                  }"
                   *ngIf="item['type'] === 'team'"
                   class="racer-box box4"
                 >
@@ -297,12 +302,7 @@
                 </div>
               </div>
             </div>
-            <div
-              data-aos="fade-left"
-              data-aos-delay="200"
-              data-aos-duration="1000"
-              class="arrow-right hover"
-            >
+            <div class="arrow-right hover">
               <img
                 [ngClass]="{ opacity: sliceEnd >= products.length }"
                 (click)="resetArrowR(); pageRigth()"
@@ -312,13 +312,7 @@
             </div>
           </div>
         </div>
-        <div
-          data-aos="fade-up"
-          data-aos-delay="150"
-          data-aos-duration="1000"
-          data-aos-offset="20"
-          class="button"
-        >
+        <div class="button">
           <button [routerLink]="['/shop']">Go to our store</button>
         </div>
       </div>
@@ -326,7 +320,7 @@
   </div>
   <div class="category-racers first-racer">
     <div class="racers-content">
-      <div data-aos="fade-right" class="avatar-info">
+      <div class="avatar-info">
         <div class="info-text">
           <h2>Category</h2>
           <h1>Racers</h1>
@@ -338,7 +332,7 @@
           </p>
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ type: 'racer' }"
+            [queryParams]="{ filter: 'racer' }"
             class="my-cta"
           >
             <p>See all racers</p>
@@ -346,7 +340,7 @@
         </div>
       </div>
 
-      <div data-aos="fade-left" class="avatar-img">
+      <div class="avatar-img">
         <div class="image">
           <img
             src="assets/base/images/home-page/racers.png"
@@ -359,26 +353,26 @@
 
   <div class="category-cars secound-racer">
     <div class="cars-content">
-      <div data-aos="fade-left" class="avatar-info">
+      <div class="avatar-info">
         <div class="info-text">
           <h2>Category</h2>
           <h1>Cars</h1>
 
           <p class="txt-racer">
-            Four collections full of custom made models of beatiful racer cars
+            Four collections full of custom made models of beautiful race cars
             ready to compete and make you money! The more cars you own, the
             higher are the chances of winning.
           </p>
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ type: 'car' }"
+            [queryParams]="{ filter: 'car' }"
             class="my-cta"
           >
             <p>See all Cars</p>
           </button>
         </div>
       </div>
-      <div data-aos="fade-right" class="avatar-img">
+      <div class="avatar-img">
         <div class="image">
           <img
             class="image"
@@ -392,18 +386,18 @@
 
   <div class="category-tracks third-racer">
     <div class="tracks-content">
-      <div data-aos="fade-right" class="avatar-info">
+      <div class="avatar-info">
         <div class="info-text">
           <h2>Category</h2>
           <h1>Tracks</h1>
 
           <p class="txt-racer">
             Buy one, or multiple shares in our special Race Tracks and make
-            money passively, simply by Races happening our your track.
+            money passively, simply by Races happening on your track.
           </p>
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ type: 'track' }"
+            [queryParams]="{ filter: 'track' }"
             class="my-cta"
           >
             <p>See all Tracks</p>
@@ -411,7 +405,7 @@
         </div>
       </div>
 
-      <div data-aos="fade-left" class="avatar-img">
+      <div class="avatar-img">
         <div class="image">
           <img
             src="assets/base/images/home-page/tracks.png"
@@ -424,27 +418,27 @@
 
   <div class="category-teams fourth-racer">
     <div class="teams-content">
-      <div data-aos="fade-left" class="avatar-info">
+      <div class="avatar-info">
         <div class="info-text">
           <h2>Category</h2>
           <h1>Teams</h1>
 
           <p class="txt-racer">
-            To increase your income even more, either join one of our teams, or
-            create your own team, invite racers and managers in it, and cash!
-            Enjoy premium membership in any of the teams for more bonuses.
+            To increase your income more, join one of the teams and become a
+            premium member. Not enough? Create your own team, invite racers,
+            managers and enjoy your ownership by receiving even more bonuses.
           </p>
 
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ type: 'team' }"
+            [queryParams]="{ filter: 'team' }"
             class="my-cta"
           >
             <p>See all Teams</p>
           </button>
         </div>
       </div>
-      <div data-aos="fade-right" class="avatar-img">
+      <div class="avatar-img">
         <div class="image">
           <img
             class="image"
@@ -460,8 +454,9 @@
     <div class="textarea">
       <h1>Winner Trophies</h1>
       <p>
-        12 rings, one big final Tournament for the twelve ring owners. Compete,
-        win and earn the most unique NFTs in the world
+        Take a challenge and win a ring trophy. 12 rings owners and one final
+        tournament to prove who will become the best of the best. Compete, win
+        and earn the most unique NFT in the world.
       </p>
     </div>
     <div class="trophies">
@@ -507,7 +502,7 @@
     </div>
   </div>
   <div class="review-position">
-    <section data-aos="fade-up" class="reviews-sec">
+    <section class="reviews-sec">
       <div class="my-score">
         <img
           class="rev-logo"
@@ -902,7 +897,7 @@
   </div>
   <footer>
     <div class="white-footer">
-      <div data-aos="fade-up" class="partners-box">
+      <div class="partners-box">
         <div class="investors">
           <p class="heading">A word to our investors</p>
           <p>
@@ -980,7 +975,7 @@
       </div>
     </div>
     <div class="dark-footer">
-      <div data-aos="fade-up" class="follow-box">
+      <div class="follow-box">
         <h1>
           Follow <img src="/assets/base/images/home-page/Logo.svg" alt="" />
         </h1>
@@ -1062,9 +1057,7 @@
           <a href="https://ioi-game.com/docs/Tokenometrics-IOI.pdf"
             >Tokenometrics</a
           >
-          <a href="https://ioi-game.com/docs/How-to-play.pdf"
-            >How to play IOI Game</a
-          >
+
           <a href="https://ioi-game.com/docs/How-to-earn.pdf">How to earn</a>
         </div>
         <div class="general-item">

@@ -13,6 +13,7 @@ export class HomeNftDetailComponent implements OnInit {
   assetId: number;
   assetPage: number;
   assetStartPage: number;
+  assetFilter: any;
   displayArray = [];
   menuActive = 1;
   isMenuActive = false;
@@ -20,6 +21,7 @@ export class HomeNftDetailComponent implements OnInit {
   abilities = false;
   actualPage;
   startPage;
+  filter;
 
   products: Array<object> = [
     {
@@ -31,6 +33,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1%",
       ability2: "10%",
+      rank: "low",
     },
     {
       id: 2,
@@ -41,6 +44,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1%",
       ability2: "10%",
+      rank: "low",
     },
     {
       id: 3,
@@ -51,6 +55,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1%",
       ability2: "10%",
+      rank: "low",
     },
     {
       id: 4,
@@ -61,6 +66,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1%",
       ability2: "10%",
+      rank: "low",
     },
     {
       id: 5,
@@ -71,6 +77,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
+      rank: "normal",
     },
     {
       id: 6,
@@ -81,6 +88,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
+      rank: "normal",
     },
     {
       id: 7,
@@ -91,6 +99,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
+      rank: "normal",
     },
     {
       id: 8,
@@ -101,6 +110,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "2%",
       ability2: "20%",
+      rank: "hight",
     },
 
     //bronze
@@ -255,7 +265,7 @@ export class HomeNftDetailComponent implements OnInit {
     {
       id: 25,
       collection: "Gold Collection",
-      name: "ONYX",
+      name: "HYPER",
       prize: "1 600",
       image: "car15",
       type: "car",
@@ -302,7 +312,7 @@ export class HomeNftDetailComponent implements OnInit {
     {
       id: 30,
       collection: "Platinum Collection",
-      name: "HYPER",
+      name: "ONYX",
       prize: "2 600",
       image: "car19",
       type: "car",
@@ -365,7 +375,7 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 37,
-      collection: "Race tracks",
+      collection: "Free",
       name: "Free track",
       prize: "1152 IOI",
       image: "free-track-small",
@@ -373,7 +383,7 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 38,
-      collection: "Race tracks",
+      collection: "Beginner",
       name: "Desert",
       prize: "1152 IOI",
       image: "desert-small",
@@ -381,7 +391,7 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 39,
-      collection: "Race tracks",
+      collection: "Semi PRO",
       name: "Dark forest",
       prize: "1152 IOI",
       image: "dark-forest-small",
@@ -389,23 +399,24 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 40,
-      collection: "Race tracks",
-      name: "Sea bridge",
-      prize: "1152 IOI",
-      image: "sea-bridge-small",
-      type: "track",
-    },
-    {
-      id: 41,
-      collection: "Race tracks",
+      collection: "Professional",
       name: "Night City",
       prize: "1152 IOI",
       image: "night-city-small",
       type: "track",
     },
     {
+      id: 41,
+      collection: "Expert",
+      name: "Sea bridge",
+      prize: "1152 IOI",
+      image: "sea-bridge-small",
+      type: "track",
+    },
+
+    {
       id: 42,
-      collection: "Race tracks",
+      collection: "Master",
       name: "Underground",
       prize: "1152 IOI",
       image: "underground-small",
@@ -470,6 +481,10 @@ export class HomeNftDetailComponent implements OnInit {
       this.assetId = +params["id"];
       this.assetPage = +params["page"];
       this.assetStartPage = +params["startPage"];
+      this.assetFilter = params["filter"];
+      if (!this.assetFilter) {
+        this.assetType = "all";
+      }
       if (!this.assetType) {
         this.assetType = "racer";
       }
@@ -504,6 +519,7 @@ export class HomeNftDetailComponent implements OnInit {
       );
       this.actualPage = this.assetPage;
       this.startPage = this.assetStartPage;
+      this.filter = this.assetFilter;
     });
   }
   activateMenu() {

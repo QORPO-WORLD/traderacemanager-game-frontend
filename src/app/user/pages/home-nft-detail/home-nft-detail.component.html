@@ -49,6 +49,7 @@
           <p
             [routerLink]="['/user/shop']"
             [queryParams]="{
+              filter: filter,
               page: actualPage,
               startPage: startPage
             }"
@@ -64,11 +65,23 @@
         </div>
         <div class="detail-info">
           <h1>About Racer</h1>
-          <p>
-            With the most unique characters, cars and tracks - all as
-            NFTs.Purchase one, or more of our characters, get amazing and unique
-            NFTs cars and start racing today. More cars and characters means
-            higher earnings!
+          <p *ngIf="displayArray[0]['rank'] === 'low'">
+            {{ displayArray[0]["name"] }} is unique limited rare avatar in form
+            of NFT. Each avatar is unparalleled way of owning IOI tokens. The
+            main benefit is that you can use your NFTs in-game, buy, sell and
+            trade on open markets as well as your NFT vehicles.
+          </p>
+          <p *ngIf="displayArray[0]['rank'] === 'normal'">
+            {{ displayArray[0]["name"] }} is unique limited super rare avatar in
+            form of NFT. Each avatar is unparalleled way of owning IOI tokens.
+            The main benefit is that you can use your NFTs in-game, buy, sell
+            and trade on open markets as well as your NFT vehicles.
+          </p>
+          <p *ngIf="displayArray[0]['rank'] === 'hight'">
+            {{ displayArray[0]["name"] }} is unique limited legendary avatar in
+            form of NFT. Each avatar is unparalleled way of owning IOI tokens.
+            The main benefit is that you can use your NFTs in-game, buy, sell
+            and trade on open markets as well as your NFT vehicles.
           </p>
         </div>
         <div class="detail-abilities">
@@ -140,6 +153,7 @@
           <p
             [routerLink]="['/user/shop']"
             [queryParams]="{
+              filter: filter,
               page: actualPage,
               startPage: startPage
             }"
@@ -475,6 +489,7 @@
           <p
             [routerLink]="['/user/shop']"
             [queryParams]="{
+              filter: filter,
               page: actualPage,
               startPage: startPage
             }"
@@ -490,10 +505,37 @@
         <div class="detail-info">
           <h1>About Track</h1>
           <p>
-            With the most unique characters, cars and tracks - all as
-            NFTs.Purchase one, or more of our characters, get amazing and unique
-            NFTs cars and start racing today. More cars and characters means
-            higher earnings!
+            Track NFTs are introducing investment model for real hardcore
+            owners. You will receive percentage of each game played on your NFT
+            property! Become a track owner - a real NFT whale investor and earn
+            3% from prize pool of each game played on your track. Tracks will be
+            sold exclusively through special event auctions! For more info
+            follow our social media! Good luck.
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Desert'">
+            <br />
+            Beginner - Desert track - 1 IOI Bet race - Every 2 minutes + Special
+            events happening randomly
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Dark forest'">
+            <br />
+            Semi PRO - Dark Forest - 5 IOI Bet race - Race every 2 minutes +
+            Special events happening randomly
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Night city'">
+            <br />
+            Professional - Night City - 10 IOI Bet race - Race every 2 minutes +
+            Special events happening randomly
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Sea bridge'">
+            <br />
+            Expert - Sea Bridge - 50 IOI Bet race - Race every 2 minutes +
+            Special events happening randomly
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Underground'">
+            <br />
+            Master - Underground - 100 IOI Bet race - Race every 2 minutes +
+            Special events happening randomly
           </p>
         </div>
       </div>
@@ -522,6 +564,7 @@
           <p
             [routerLink]="['/user/shop']"
             [queryParams]="{
+              filter: filter,
               page: actualPage,
               startPage: startPage
             }"
