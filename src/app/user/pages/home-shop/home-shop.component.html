@@ -1,5 +1,5 @@
 <div
-  (window:resize)="width()"
+  (window:resize)="widthFilter()"
   [class.disable-scroll]="isMenuActive"
   class="shop-pagee"
 >
@@ -186,7 +186,8 @@
               [queryParams]="{
                 type: item['type'],
                 id: item['id'],
-                page: currentPage
+                page: currentPage,
+                startPage: isPaged
               }"
             >
               See details
@@ -203,7 +204,8 @@
               [queryParams]="{
                 type: item['type'],
                 id: item['id'],
-                page: currentPage
+                page: currentPage,
+                startPage: isPaged
               }"
             >
               See details

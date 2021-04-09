@@ -40,12 +40,21 @@
 
   <ng-container *ngIf="assetType === 'racer'">
     <button [routerLink]="['/user/sign-up']" class="sign-in">
-      <i class="fa fa-lock txt"></i> <span class="txt-span">Buy now</span>
+      <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+      <span class="txt-span">Buy now</span>
     </button>
     <div class="detail-racers">
       <div class="detail-text">
         <div class="back">
-          <p [routerLink]="['/user/shop']">< Back to shop</p>
+          <p
+            [routerLink]="['/user/shop']"
+            [queryParams]="{
+              page: actualPage,
+              startPage: startPage
+            }"
+          >
+            < Back to shop
+          </p>
         </div>
         <div class="detail-name">
           <h1 *ngIf="assetType === 'racer'" class="name-nofont">Racer</h1>
@@ -67,29 +76,44 @@
           <div class="ability-boxes">
             <div class="ability-box">
               <div class="ability-image">
-                <button>10K</button>
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilityvalue.png"
+                    alt=""
+                  />
+                </button>
               </div>
               <div class="ability-type">
-                <h1>10 000 IOI</h1>
+                <h1>{{ displayArray[0]["prize"] }} IOI</h1>
                 <p>IOI value</p>
               </div>
             </div>
             <div class="ability-box">
               <div class="ability-image">
-                <button>10K</button>
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
               </div>
               <div class="ability-type">
-                <h1>30% of NFTs Sales</h1>
+                <h1>{{ displayArray[0]["ability1"] }} from invites</h1>
                 <p>super skill</p>
               </div>
             </div>
             <div class="ability-box">
               <div class="ability-image">
-                <button>10K</button>
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
               </div>
               <div class="ability-type">
-                <h1>Loves his Mrs.</h1>
-                <p>weakness</p>
+                <h1>{{ displayArray[0]["ability2"] }} from NFTS</h1>
+                <p>super skill</p>
               </div>
             </div>
           </div>
@@ -113,7 +137,15 @@
     <div class="detail-cars">
       <div class="detail-text">
         <div class="back">
-          <p [routerLink]="['/user/shop']">< Back to shop</p>
+          <p
+            [routerLink]="['/user/shop']"
+            [queryParams]="{
+              page: actualPage,
+              startPage: startPage
+            }"
+          >
+            < Back to shop
+          </p>
         </div>
         <div class="detail-name">
           <h1 class="name-nofont">
@@ -122,11 +154,18 @@
         </div>
         <div class="detail-info">
           <h1>About Car</h1>
-          <p>
-            With the most unique characters, cars and tracks - all as
-            NFTs.Purchase one, or more of our characters, get amazing and unique
-            NFTs cars and start racing today. More cars and characters means
-            higher earnings!
+          <p *ngIf="displayArray[0]['rare'] === undefined">
+            {{ displayArray[0]["name"] }} is unique limited car. Each car is
+            unparalleled way of owning IOI tokens, staking and APY. The main
+            benefit is that you can use your NFTs in-game, buy, sell and trade
+            on open markets. The new era of NFTs in your pocket.
+          </p>
+          <p *ngIf="displayArray[0]['rare'] === true">
+            {{ displayArray[0]["name"] }} is highly limited with unique
+            abilities. Each car is unparalleled way of owning IOI tokens,
+            staking and APY. The main benefit is that you can use your NFTs
+            in-game, buy, sell and trade on open markets. The new era of NFTs in
+            your pocket.
           </p>
         </div>
         <ng-container *ngIf="displayArray[0]['rank'] === 'bronze'">
@@ -421,10 +460,11 @@
             "
             alt=""
           />
-          <button [routerLink]="['/user/sign-up']" class="sign-in-cars">
-            <i class="fa fa-lock txt"></i> <span class="txt-span">Buy now</span>
-          </button>
         </div>
+        <button [routerLink]="['/user/sign-up']" class="sign-in-cars">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Buy now</span>
+        </button>
       </div>
     </div>
   </ng-container>
@@ -432,7 +472,15 @@
     <div class="detail-tracks">
       <div class="detail-text">
         <div class="back">
-          <p [routerLink]="['/user/shop']">< Back to shop</p>
+          <p
+            [routerLink]="['/user/shop']"
+            [queryParams]="{
+              page: actualPage,
+              startPage: startPage
+            }"
+          >
+            < Back to shop
+          </p>
         </div>
         <div class="detail-name">
           <h1 class="name-nofont">
@@ -461,7 +509,8 @@
           />
         </div>
         <button [routerLink]="['/user/sign-up']" class="sign-in-tracks">
-          <i class="fa fa-lock txt"></i> <span class="txt-span">Buy now</span>
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Buy now</span>
         </button>
       </div>
     </div>
@@ -470,7 +519,15 @@
     <div class="detail-teams">
       <div class="detail-text">
         <div class="back">
-          <p [routerLink]="['/user/shop']">< Back to shop</p>
+          <p
+            [routerLink]="['/user/shop']"
+            [queryParams]="{
+              page: actualPage,
+              startPage: startPage
+            }"
+          >
+            < Back to shop
+          </p>
         </div>
         <div class="detail-name">
           <h1 class="name-nofont">
@@ -499,7 +556,8 @@
           />
         </div>
         <button [routerLink]="['/user/sign-up']" class="sign-in-teams">
-          <i class="fa fa-lock txt"></i> <span class="txt-span">Buy now</span>
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Buy now</span>
         </button>
       </div>
     </div>

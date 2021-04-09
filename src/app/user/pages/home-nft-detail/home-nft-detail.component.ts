@@ -12,77 +12,95 @@ export class HomeNftDetailComponent implements OnInit {
   assetType: any;
   assetId: number;
   assetPage: number;
+  assetStartPage: number;
   displayArray = [];
   menuActive = 1;
   isMenuActive = false;
   activeMenu = 0;
   abilities = false;
   actualPage;
+  startPage;
 
   products: Array<object> = [
     {
       id: 1,
       collection: "Bronze Collection",
       name: "Axle",
-      prize: "100",
+      prize: 100,
       image: "white-mn",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 2,
       collection: "Bronze Collection",
       name: "Flash",
-      prize: "100",
+      prize: 100,
       image: "red-korpo",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 3,
       collection: "Bronze Collection",
       name: "Octane",
-      prize: "100",
+      prize: 100,
       image: "bluetrm",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 4,
       collection: "Bronze Collection",
       name: "Punisher",
-      prize: "100",
+      prize: 100,
       image: "avatar",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 5,
       collection: "Bronze Collection",
       name: "Lady Rich",
-      prize: "1000",
+      prize: 1000,
       image: "lady-rich",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 6,
       collection: "Bronze Collection",
       name: "Rich Jr.",
-      prize: "1000",
+      prize: 1000,
       image: "bad-boy",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 7,
       collection: "Bronze Collection",
       name: "Mrs. Rich",
-      prize: "1000",
+      prize: 1000,
       image: "mrs-rich",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 8,
       collection: "Bronze Collection",
       name: "Mr. Rich",
-      prize: "10 000",
+      prize: 10000,
       image: "mr-rich-shop",
       type: "racer",
+      ability1: "2%",
+      ability2: "20%",
     },
 
     //bronze
@@ -451,6 +469,7 @@ export class HomeNftDetailComponent implements OnInit {
       this.assetType = params["type"];
       this.assetId = +params["id"];
       this.assetPage = +params["page"];
+      this.assetStartPage = +params["startPage"];
       if (!this.assetType) {
         this.assetType = "racer";
       }
@@ -459,6 +478,9 @@ export class HomeNftDetailComponent implements OnInit {
       }
       if (!this.assetPage) {
         this.assetPage = 1;
+      }
+      if (!this.assetStartPage) {
+        this.assetStartPage = 0;
       }
 
       if (this.assetType === "racer") {
@@ -481,13 +503,13 @@ export class HomeNftDetailComponent implements OnInit {
         (asset) => asset.id === this.assetId
       );
       this.actualPage = this.assetPage;
+      this.startPage = this.assetStartPage;
     });
   }
   activateMenu() {
     if (this.activeMenu === 0) {
       this.isMenuActive = true;
       this.activeMenu = 1;
-      console.log(this.actualPage);
     } else {
       this.isMenuActive = false;
       this.activeMenu = 0;

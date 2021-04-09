@@ -390,6 +390,7 @@ export class HomeShopComponent implements OnInit {
   typeObserver: Subscription;
   assetType: any;
   assetPage: number;
+  assetStartPage: number;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
@@ -398,7 +399,7 @@ export class HomeShopComponent implements OnInit {
   display = window.innerWidth;
   mobileFilter = false;
   inRow;
-  sliceStart = 0;
+  sliceStart;
   sliceMiddle;
   newProducts = this.products;
   assetId;
@@ -406,22 +407,29 @@ export class HomeShopComponent implements OnInit {
   currentPage;
   maxPage;
   lastPage;
+  isPaged;
 
   constructor(private route: ActivatedRoute) {
+    this.getAssetType();
     this.width();
   }
 
-  ngOnInit() {
-    this.getAssetType();
-  }
+  ngOnInit() {}
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
       this.assetType = params["type"];
-      this.assetPage = params["page"];
+      this.assetPage = +params["page"];
+      this.assetStartPage = +params["startPage"];
 
       if (!this.assetType) {
         this.filterAll();
+      }
+      if (!this.assetPage) {
+        this.assetPage = 1;
+      }
+      if (!this.assetStartPage) {
+        this.assetStartPage = 0;
       }
 
       if (this.assetType === "racer") {
@@ -436,29 +444,33 @@ export class HomeShopComponent implements OnInit {
       if (this.assetType === "team") {
         this.filterTeams();
       }
+      this.currentPage = this.assetPage;
+      this.isPaged = this.assetStartPage;
     });
   }
 
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-
+  widthFilter() {
+    this.display = window.innerWidth;
+  }
   width() {
     this.display = window.innerWidth;
+
     if (this.display > 750 && this.display < 1300) {
-      this.sliceStart = 0;
       this.inRow = 9;
       this.maxPage = 9;
-      this.sliceMiddle = this.inRow;
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.currentPage = 1;
+      this.sliceStart = this.inRow * this.isPaged;
+      this.sliceMiddle = this.inRow * this.currentPage;
     } else {
-      this.sliceStart = 0;
       this.inRow = 8;
       this.maxPage = 8;
-      this.sliceMiddle = this.inRow;
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.currentPage = 1;
+
+      this.sliceStart = this.inRow * this.isPaged;
+      this.sliceMiddle = this.inRow * this.currentPage;
     }
   }
 
@@ -473,19 +485,21 @@ export class HomeShopComponent implements OnInit {
     if (this.sliceStart > 0) {
       this.sliceStart = this.sliceStart - this.inRow;
       this.sliceMiddle = this.sliceMiddle - this.inRow;
+      this.isPaged = this.isPaged - 1;
     }
   }
   nextPageCars() {
     if (this.sliceMiddle < this.newProducts.length) {
       this.sliceStart = this.sliceStart + this.inRow;
       this.sliceMiddle = this.sliceMiddle + this.inRow;
+      this.isPaged = this.isPaged + 1;
     }
   }
 
   filterRacers() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "racer");
-    this.sliceStart = 0;
+
     this.width();
     this.racersActive = true;
     this.tracksActive = false;
@@ -495,12 +509,15 @@ export class HomeShopComponent implements OnInit {
     this.title = "Racers";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
 
   filterCars() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "car");
-    this.sliceStart = 0;
+
     this.width();
     this.carsActive = true;
     this.tracksActive = false;
@@ -510,11 +527,14 @@ export class HomeShopComponent implements OnInit {
     this.title = "Cars";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
   filterTracks() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "track");
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = true;
     this.carsActive = false;
@@ -524,11 +544,14 @@ export class HomeShopComponent implements OnInit {
     this.title = "Tracks";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
   filterTeams() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "team");
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = false;
     this.carsActive = false;
@@ -538,10 +561,13 @@ export class HomeShopComponent implements OnInit {
     this.title = "Teams";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
   filterAll() {
     this.newProducts = this.products;
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = false;
     this.carsActive = false;
@@ -551,6 +577,9 @@ export class HomeShopComponent implements OnInit {
     this.title = "All products";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
   //NAVBAR//
   menuActive = 1;
