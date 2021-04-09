@@ -316,13 +316,24 @@ h6 {
                     color: #fe173f;
                   }
                   .team {
-                    font-family: Poppins;
+                    font-family: True-Lies;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 32px;
                     /* identical to box height, or 48px */
 
                     color: #30cece;
+                  }
+                  .font {
+                    position: absolute;
+                    top: 30%;
+                    font-family: True-Lies;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 32px;
+                    /* identical to box height, or 48px */
+
+                    color: #fe173f;
                   }
                 }
               }
@@ -481,6 +492,13 @@ h6 {
             margin: 0;
           }
         }
+        .my-cta:hover {
+          transform: scale(1.02);
+          -webkit-transform: scale(1.02);
+          -moz-transform: scale(1.02);
+          -ms-transform: scale(1.02);
+          -o-transform: scale(1.02);
+        }
       }
     }
     .avatar-img {
@@ -570,6 +588,13 @@ h6 {
             color: white;
           }
         }
+        .my-cta:hover {
+          transform: scale(1.02);
+          -webkit-transform: scale(1.02);
+          -moz-transform: scale(1.02);
+          -ms-transform: scale(1.02);
+          -o-transform: scale(1.02);
+        }
       }
     }
     .avatar-img {
@@ -657,6 +682,13 @@ h6 {
             margin: 0;
           }
         }
+        .my-cta:hover {
+          transform: scale(1.02);
+          -webkit-transform: scale(1.02);
+          -moz-transform: scale(1.02);
+          -ms-transform: scale(1.02);
+          -o-transform: scale(1.02);
+        }
       }
     }
     .avatar-img {
@@ -735,6 +767,13 @@ h6 {
             margin: 0;
             color: white;
           }
+        }
+        .my-cta:hover {
+          transform: scale(1.02);
+          -webkit-transform: scale(1.02);
+          -moz-transform: scale(1.02);
+          -ms-transform: scale(1.02);
+          -o-transform: scale(1.02);
         }
       }
     }
@@ -903,17 +942,18 @@ h6 {
       -ms-transform: skew(-15deg);
       -o-transform: skew(-15deg);
       > div > div {
+        filter: grayscale(1);
         position: absolute;
         top: 5%;
         transform: skew(15deg) scale(0.9);
         left: -45%;
         width: 200%;
         height: 90%;
-        transition: 0.2s;
         -webkit-transform: skew(15deg) scale(0.9);
         -moz-transform: skew(15deg) scale(0.9);
         -ms-transform: skew(15deg) scale(0.9);
         -o-transform: skew(15deg) scale(0.9);
+        -webkit-filter: grayscale(1);
       }
     }
 
@@ -1106,7 +1146,7 @@ h6 {
 
 .trophy-section {
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #111111;
   color: white;
   display: flex;
@@ -1115,12 +1155,13 @@ h6 {
   .textarea {
     text-align: center;
     width: 35%;
-    margin-left: 35%;
+    margin-left: 32.5%;
     margin-top: 5%;
     height: 25%;
   }
   .trophies {
     margin: 0 auto;
+    margin-top: 100px;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -1153,9 +1194,9 @@ h6 {
       width: 70%;
       text-align: center;
       display: flex;
-      .rings {
+      .ring-boxes {
         display: flex;
-        h1 {
+        h2 {
           font-size: 24px;
           line-height: 65px;
         }
@@ -1174,19 +1215,18 @@ h6 {
           -ms-transform: translateX(-50%);
           -o-transform: translateX(-50%);
         }
-        > div {
+        .ring-box {
           position: relative;
           img {
-            margin-top: -10%;
             width: 100%;
           }
         }
-        .opacity {
-          h1 {
-            opacity: 0.5;
+        .ring-opacity {
+          h2 {
+            opacity: 0.4;
           }
           img {
-            opacity: 0.5;
+            opacity: 0.4;
           }
         }
       }
@@ -1195,36 +1235,74 @@ h6 {
         width: 5%;
         position: relative;
         img {
-          transform: rotate(180deg);
+          cursor: pointer;
           position: absolute;
-          top: 30%;
-          right: 75%;
-          -webkit-transform: rotate(180deg);
-          -moz-transform: rotate(180deg);
-          -ms-transform: rotate(180deg);
-          -o-transform: rotate(180deg);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
         }
       }
       .rightarrow {
         position: relative;
         width: 5%;
         img {
+          cursor: pointer;
           position: absolute;
-          left: 75%;
-          top: 30%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+        }
+      }
+      .arrow-opacity {
+        opacity: 0.3;
+      }
+      .month-arrow-click {
+        animation: monthclick 0.2s;
+        -webkit-animation: monthclick 0.2s;
+      }
+      @keyframes monthclick {
+        0% {
+          transform: translateY(0px);
+          -webkit-transform: translateY(0px);
+          -moz-transform: translateY(0px);
+          -ms-transform: translateY(0px);
+          -o-transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(5px);
+          -webkit-transform: translateY(5px);
+          -moz-transform: translateY(5px);
+          -ms-transform: translateY(5px);
+          -o-transform: translateY(5px);
+        }
+        100% {
+          transform: translateY(0px);
+          -webkit-transform: translateY(0px);
+          -moz-transform: translateY(0px);
+          -ms-transform: translateY(0px);
+          -o-transform: translateY(0px);
         }
       }
     }
   }
   .start {
+    margin-top: 100px;
     height: 10%;
     text-align: center;
     button {
+      transition: 0.2s;
       color: white;
       border: 0;
       width: 227px;
       height: 50px;
-
       background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
         linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
       border-radius: 12px;
@@ -1233,6 +1311,17 @@ h6 {
       font-weight: normal;
       font-size: 20px;
       line-height: 30px;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      -ms-transition: 0.2s;
+      -o-transition: 0.2s;
+    }
+    button:hover {
+      transform: scale(1.02);
+      -webkit-transform: scale(1.02);
+      -moz-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+      -o-transform: scale(1.02);
     }
   }
 }
@@ -1513,63 +1602,19 @@ h6 {
   }
 }
 
-@media screen and (max-width: 1150px) {
-  // ////////////
-  //TROFEJE
-  //
-  .trophy-section {
-    height: auto;
-    .textarea {
-      text-align: center;
-      width: 50%;
-      margin-top: 1%;
-      height: 200px;
-      margin-left: 25%;
-    }
-    .trophies {
-      height: auto;
-      flex-direction: column;
-
-      .finaltrophy {
-        width: 100%;
-        margin-top: 50px;
-        height: 400px;
-        text-align: center;
-        img {
-          position: absolute;
-
-          width: 400px;
+@media screen and (min-width: 1024px) {
+  .second-section {
+    .left {
+      > div:hover {
+        > div > div {
+          filter: grayscale(0);
+          -webkit-filter: grayscale(0);
         }
-      }
-      .months {
-        height: 200px;
-        margin-top: 0px;
-        margin-left: 15%;
-        transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-        -o-transform: scale(0.9);
-        .leftarrow {
-          img {
-            top: 50%;
-          }
-        }
-        .rightarrow {
-          img {
-            top: 50%;
-          }
-        }
-      }
-    }
-    .start {
-      margin-top: 100px;
-      margin-bottom: 100px;
-      height: 100px;
-      button {
       }
     }
   }
+}
+@media screen and (max-width: 1024px) {
   .navoverlay {
     z-index: 1;
     position: absolute;
@@ -1836,23 +1881,7 @@ h6 {
     background-size: cover;
     z-index: -1;
   }
-}
-@media screen and (min-width: 1150px) {
-  .second-section {
-    .left {
-      > div:hover {
-        > div > div {
-          transform: skew(15deg) scale(0.92);
-          -webkit-transform: skew(15deg) scale(0.92);
-          -moz-transform: skew(15deg) scale(0.92);
-          -ms-transform: skew(15deg) scale(0.92);
-          -o-transform: skew(15deg) scale(0.92);
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 1024px) {
+
   .second-section {
     display: block;
     height: auto;
@@ -2055,6 +2084,13 @@ h6 {
               margin: 0;
             }
           }
+          .my-cta:hover {
+            transform: scale(1.02);
+            -webkit-transform: scale(1.02);
+            -moz-transform: scale(1.02);
+            -ms-transform: scale(1.02);
+            -o-transform: scale(1.02);
+          }
         }
       }
       .avatar-img {
@@ -2146,6 +2182,13 @@ h6 {
             p {
               margin: 0;
             }
+          }
+          .my-cta:hover {
+            transform: scale(1.02);
+            -webkit-transform: scale(1.02);
+            -moz-transform: scale(1.02);
+            -ms-transform: scale(1.02);
+            -o-transform: scale(1.02);
           }
         }
       }
@@ -2355,6 +2398,55 @@ h6 {
             -o-transform: translate(-50%, -50%);
           }
         }
+      }
+    }
+  }
+  .trophy-section {
+    height: auto;
+    .textarea {
+      text-align: center;
+      width: 50%;
+      margin-top: 1%;
+      height: 200px;
+      margin-left: 25%;
+    }
+    .trophies {
+      height: auto;
+      flex-direction: column;
+
+      .finaltrophy {
+        width: 100%;
+        margin-top: 50px;
+        height: 400px;
+        text-align: center;
+        img {
+          position: absolute;
+
+          width: 400px;
+        }
+      }
+      .months {
+        height: 200px;
+        margin-top: 0px;
+        margin-left: 15%;
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        -o-transform: scale(0.9);
+        .leftarrow {
+          width: 20%;
+        }
+        .rightarrow {
+          width: 20%;
+        }
+      }
+    }
+    .start {
+      margin-top: 100px;
+      margin-bottom: 100px;
+      height: 100px;
+      button {
       }
     }
   }
@@ -2978,6 +3070,7 @@ h6 {
       margin-left: 12.5%;
     }
     .trophies {
+      margin-top: 20px;
       .finaltrophy {
         margin-top: 0;
         height: 150px;
@@ -2993,13 +3086,20 @@ h6 {
       }
       .months {
         margin-top: 110px;
-        width: 150%;
-        margin-left: -25%;
-        transform: scale(0.5);
-        -webkit-transform: scale(0.5);
-        -moz-transform: scale(0.5);
-        -ms-transform: scale(0.5);
-        -o-transform: scale(0.5);
+        width: 100%;
+        margin-left: 0;
+        .ring-boxes {
+          .ring-box {
+            h2 {
+              font-size: 15px;
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+            p {
+              font-size: 12px;
+            }
+          }
+        }
       }
     }
     .start {
@@ -3641,60 +3741,6 @@ h6 {
       }
     }
   }
-  .trophy-section {
-    height: auto;
-    .textarea {
-      text-align: center;
-      width: 75%;
-      margin-top: 1%;
-      height: auto;
-      margin-left: 12.5%;
-    }
-    .trophies {
-      .finaltrophy {
-        margin-top: 0;
-        height: 200px;
-        img {
-          margin-top: 40px;
-          width: 60%;
-          transform: translateX(-50%);
-          -webkit-transform: translateX(-50%);
-          -moz-transform: translateX(-50%);
-          -ms-transform: translateX(-50%);
-          -o-transform: translateX(-50%);
-        }
-      }
-      .months {
-        margin-top: 10px;
-        width: 150%;
-        margin-left: -25%;
-        transform: scale(0.5);
-        -webkit-transform: scale(0.5);
-        -moz-transform: scale(0.5);
-        -ms-transform: scale(0.5);
-        -o-transform: scale(0.5);
-      }
-    }
-    .start {
-      margin-top: 0px;
-      height: 100px;
-      button {
-        color: white;
-        border: 0;
-        width: 150px;
-        height: 50px;
-
-        background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
-          linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
-        border-radius: 12px;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 30px;
-      }
-    }
-  }
 }
 @media screen and (max-width: 400px) {
   .category-racers {
@@ -3838,6 +3884,9 @@ footer {
         margin: 0 50px 0 0;
         color: Gray;
       }
+      a {
+        text-decoration: none;
+      }
       .my-btn {
         background: linear-gradient(104.21deg, #fe173f 106.49%, #240b36 168.64%),
           linear-gradient(269.79deg, #2b16f7 -89.87%, #23ffff 99.87%),
@@ -3848,6 +3897,13 @@ footer {
         width: fit-content;
         text-align: center;
         font-size: 20px;
+      }
+      .my-btn:hover {
+        transform: scale(1.02);
+        -webkit-transform: scale(1.02);
+        -moz-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+        -o-transform: scale(1.02);
       }
       p {
         font-weight: normal;

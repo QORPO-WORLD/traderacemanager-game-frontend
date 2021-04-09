@@ -13,39 +13,39 @@ export class HomeShopComponent implements OnInit {
       id: 1,
       collection: "Bronze Collection",
       name: "Axle",
-      prize: "1152 IOI",
-      image: "white-mn",
+      prize: "100 IOI",
+      image: "avatar-white",
       type: "racer",
     },
     {
       id: 2,
       collection: "Bronze Collection",
       name: "Flash",
-      prize: "1152 IOI",
-      image: "red-korpo",
+      prize: "100 IOI",
+      image: "avatar-red",
       type: "racer",
     },
     {
       id: 3,
       collection: "Bronze Collection",
       name: "Octane",
-      prize: "1152 IOI",
-      image: "blue-mn",
+      prize: "100 IOI",
+      image: "avatar-blue",
       type: "racer",
     },
     {
       id: 4,
       collection: "Bronze Collection",
       name: "Punisher",
-      prize: "1152 IOI",
-      image: "black-korpo",
+      prize: "100 IOI",
+      image: "avatar-black",
       type: "racer",
     },
     {
       id: 5,
       collection: "Bronze Collection",
       name: "Lady Rich",
-      prize: "1152 IOI",
+      prize: "1000 IOI",
       image: "lady-rich",
       type: "racer",
     },
@@ -53,26 +53,27 @@ export class HomeShopComponent implements OnInit {
       id: 6,
       collection: "Bronze Collection",
       name: "Rich Jr.",
-      prize: "1152 IOI",
+      prize: "1000 IOI",
       image: "bad-boy",
       type: "racer",
     },
     {
       id: 7,
       collection: "Bronze Collection",
-      name: "Mr. Rich",
-      prize: "1152 IOI",
-      image: "mr-rich",
+      name: "Mrs. Rich",
+      prize: "1000 IOI",
+      image: "mrs-rich",
       type: "racer",
     },
     {
       id: 8,
       collection: "Bronze Collection",
-      name: "Mrs. Rich",
-      prize: "1152 IOI",
-      image: "mrs-rich",
+      name: "Mr. Rich",
+      prize: "10 000 IOI",
+      image: "mr-rich",
       type: "racer",
     },
+
     //bronze
     {
       id: 9,
@@ -381,13 +382,14 @@ export class HomeShopComponent implements OnInit {
       id: 46,
       collection: "",
       name: "Team You",
-      prize: "",
+      prize: "1000 IOI",
       image: "team-you",
       type: "team",
     },
   ];
   typeObserver: Subscription;
   assetType: any;
+  assetPage: number;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
@@ -401,7 +403,7 @@ export class HomeShopComponent implements OnInit {
   newProducts = this.products;
   assetId;
   title = "All products";
-  currentPage = 1;
+  currentPage;
   maxPage;
   lastPage;
 
@@ -416,6 +418,7 @@ export class HomeShopComponent implements OnInit {
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
       this.assetType = params["type"];
+      this.assetPage = params["page"];
 
       if (!this.assetType) {
         this.filterAll();
@@ -443,15 +446,19 @@ export class HomeShopComponent implements OnInit {
   width() {
     this.display = window.innerWidth;
     if (this.display > 750 && this.display < 1300) {
+      this.sliceStart = 0;
       this.inRow = 9;
       this.maxPage = 9;
       this.sliceMiddle = this.inRow;
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+      this.currentPage = 1;
     } else {
+      this.sliceStart = 0;
       this.inRow = 8;
       this.maxPage = 8;
       this.sliceMiddle = this.inRow;
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+      this.currentPage = 1;
     }
   }
 
