@@ -30,8 +30,7 @@ h1{
       height: 100%;
       text-align: center;
       min-height: 132px;
-      background: linear-gradient(0deg, #111111, #111111);
-      box-shadow: 0px 0px 80px #000000;
+      background: #222222;
       border-radius: 20px;
       p{
           line-height: 20px;
@@ -47,8 +46,7 @@ h1{
   }
   .bonus-info{
       width: 448px;
-      background: linear-gradient(0deg, #111111, #111111);
-      box-shadow: 0px 0px 80px #000000;
+      background: #222222;
       border-radius: 20px;
       min-height: 132px;
       display: flex;
@@ -60,42 +58,42 @@ h1{
       }
   }
 }
-  .team-menu{
-    width: 100%;
-    .menu-desc{
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
+
+.my-menu{
+  margin: 70px 0 25px;
+  border-radius: 10px;
+  background: #222222;
+  width: 66%;
+  display: flex;
+  justify-content: space-between;
+  .menu-item{
+    width: 33.3333%;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+    position: relative;
+    &.active{
       p{
-        margin: 0;
-        font-size: 18px;
-        text-align: center;
-        color: #FFFFFF;
-        display: block;
-        width: 50%;
-        padding-bottom: 15px;
-        cursor: pointer;
-        text-transform: uppercase;
-      }
-      .active{
         font-weight: 600;
       }
     }
-    .menu-line{
+    p{
+      position: absolute;
+      top: 50%;
+      left: 50%;
       width: 100%;
-      background: #252525;
-      border: 4px solid #111111;
-      box-sizing: border-box;
-      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      .inner-line{
-        border-radius: 10px;
-        width: 33.333%;
-        height: 4px;
-        margin: auto;
-      }
+      transform: translate(-50%, -50%);
+      text-align: center;
+      margin: 0;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
+}
+
+.owners-managers-holder{
+  padding-left: 112px;
+}
 
   .box-container{
       margin-top: 40px;
@@ -103,41 +101,71 @@ h1{
       width: 100%;
       display: flex;
       justify-content: space-between;
+      .box-heading{
+        font-weight: 600;
+        font-size: 20px;
+        margin: 0 0 24px;
+      }
+      .box-owner{
+        background: linear-gradient(139.48deg, #8C1A2D 2.81%, #222222 72.36%);
+        border-radius: 15px;
+        .statement{
+          border: 1px solid #FE183F;
+          background: transparent;
+        }
+      }
+      .box-manager{
+        background: linear-gradient(139.48deg, #0098D9 2.87%, #222222 56.79%);
+        border-radius: 15px;
+        .statement{
+          border: 1px solid #00D1FF;
+          background: transparent;
+        }
+      }
+      .box-holder{
+        width: 49%;
+      }
       .box{
           padding: 30px 40px 0 40px;
-          width: 49%;
-          background: #111111;
-          box-shadow: 0px 0px 80px #000000;
-          border-radius: 10px;
-          h3{
-            margin-top: 0;
-            margin-bottom: 40px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 36px;
+          width: 100%;
+          > p{
+            position: relative;
+            &::after{
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              background-color: rgba(255, 255, 255, .1);
+            }
+            &.last{
+              &::after{
+                content: none;
+              }
+            }
           }
           p{
             margin-bottom: 0;
+            height: 56px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
             img{
-                margin-right: 20px;
-                margin-top: 15px;
-                margin-bottom: 15px;
+                margin: 12px 20px 12px 0;
             }
           }
           .statement{
               margin-top: 30px;
               text-align: center;
-              background: linear-gradient(to top right,#23FFFF ,#9198e6 );
-              box-shadow: 0px 0px 30px rgba(35, 255, 255, 0.15);
               border-radius: 10px;
               padding: 1px;
               span{
-                  padding: 17px 0;
+                  padding: 13px 0;
                   display: block;
                   width: 100%;
                   height: 100%;
-                  background: #111111;
+                  background: transparent;
                   border-radius: 10px;
                   font-weight: 500;
                   font-size: 16px;
@@ -147,39 +175,35 @@ h1{
           }
           .button-holder{
               width: 100%;
-              display: flex;
-              justify-content: center;
-          }
-          .button{
-            transition: .2s;
-            background: linear-gradient(131.05deg, rgba(35, 255, 255, 0.4) -8.26%, rgba(36, 11, 54, 0) 64.39%), linear-gradient(263.4deg, #2B16F7 -265.56%, #23FFFF 80.48%), #111111;
-            box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            padding: 13px 40px;
-            color: white;
-            margin: auto;
-            font-size: 16px;
-            line-height: 24px;
-            text-align: center;
-            color: #FFFFFF;
-            margin-bottom: -25px;
-            margin-top: 30px
-          }
-          .button:hover{
-              transform: scale(1.1);
+              padding: 20px 0 30px;
+              .button{
+                transition: .2s;
+                background: linear-gradient(131.05deg, rgba(35, 255, 255, 0.4) -8.26%, rgba(36, 11, 54, 0) 64.39%), linear-gradient(263.4deg, #2B16F7 -265.56%, #23FFFF 80.48%), #111111;
+                border-radius: 10px;
+                padding: 13px;
+                color: white;
+                margin: auto;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: center;
+                color: #FFFFFF;
+                width: 100%;
+              }
+              .button:hover{
+                  transform: scale(1.02);
+              }
           }
       }
       .box-owner{
         .statement{
-            background: linear-gradient(to top right,#fe183f ,#831427 );
             span{
                 color: #FE183F;
             }
-            box-shadow: 0px 0px 30px rgba(254, 24, 63, 0.15);
         }
-        .button{
+        .button-holder{
+          .button{
             background: linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%), linear-gradient(131.05deg, rgba(35, 255, 255, 0.4) -8.26%, rgba(36, 11, 54, 0) 64.39%), linear-gradient(263.4deg, #2B16F7 -265.56%, #23FFFF 80.48%), #111111;
-            box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
+          }
         }
       }
   }
@@ -203,8 +227,23 @@ h1{
           }
       }
   }
-  @media screen and (max-width: 1712px){
+  @media screen and (max-width: 1700px){
+    .owners-managers-holder{
+      padding-left: 100px;
+    }
+    .my-menu{
+      .menu-item{
+        height: 45px;
+        p{
+          font-size: 15px;
+        }
+      }
+    }
     .box-container{
+      .box-heading{
+        font-size: 18px;
+        margin: 0 0 17px;
+      }
         .box{
             p{
                 font-size: 12px;
@@ -226,15 +265,14 @@ h1{
     width: calc(100% - 380px);
     padding-left: 20px;
   }
-  .team-menu{
-    .menu-desc{
-      p{
-        font-size: 17px;
-        padding-bottom: 10px;
-      }
-    }
+  .owners-managers-holder{
+    padding-left: 60px;
   }
   .box-container{
+    .box-heading{
+      font-size: 16px;
+      margin: 0 0 13px;
+    }
       .box{
         h3{
             margin-bottom: 10px;
@@ -247,6 +285,17 @@ h1{
         }
         .statement{
             margin-top: 20px;
+            span{
+              font-size: 14px;
+              padding: 10px 0;
+            }
+        }
+        .button-holder{
+          padding: 16px 0 25px;
+          .button{
+            padding: 10px;
+            font-size: 15px;
+          }
         }
       }
   }
@@ -274,14 +323,10 @@ h1{
   }
 }
 
-@media screen and (max-width: 1368px){
-    .box-container{
-        .box-owner{
-            p:first-of-type{
-                margin-bottom: 24px;
-            }
-        }
-    }
+@media screen and (max-width: 1400px){
+  .owners-managers-holder{
+    padding-left: 0;
+  }
 }
 
 @media screen and (max-width: 1200px){
@@ -291,6 +336,14 @@ h1{
     }
     .page-info{
       margin-top: 20px;
+    }
+    .my-menu{
+      .menu-item{
+        height: 40px;
+        p{
+          font-size: 14px;
+        }
+      }
     }
     .text-info{
         max-width: 555px;
@@ -309,13 +362,6 @@ h1{
                 }
             }
         }
-    }
-    .team-menu{
-      .menu-desc{
-        p{
-          font-size: 15px;
-        }
-      }
     }
 }
 
@@ -350,15 +396,6 @@ h1{
   }
 }
 
-@media screen and (max-width: 990px){
-    .box-container{
-        .box-owner{
-            p:first-of-type{
-                margin-bottom: 18px;
-            }
-        }
-    }
-}
 
 @media screen and ( max-width: 800px )
 { 
@@ -374,8 +411,11 @@ h1{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .box-holder{
+          width: 100%;
+        }
         .box{
-            width: 90%;
+            width: 100%;
             margin-bottom: 60px;
             h3{
                 margin-bottom: 20px;
@@ -391,6 +431,17 @@ h1{
 }
 
 @media screen and (max-width: 640px){
+
+  .my-menu{
+    margin: 20px 0 25px;
+    width: 100%;
+    .menu-item{
+      height: 36px;
+      p{
+        font-size: 13px;
+      }
+    }
+  }
 
   .page-info{
     box-sizing: border-box;
@@ -413,18 +464,19 @@ h1{
       flex-basis: 70%;
       order: 2;
   }
-    .team-menu{
-      .menu-desc{
-        p{
-          font-size: 14px;
-          padding-bottom: 6px;
-        }
-      }
-    }
 }  
 
 @media screen and ( max-width: 480px )
 {  
+  .my-menu{
+    max-width: 420px;
+    margin: 20px auto 25px;
+    flex-wrap: wrap;
+    width: 80%;
+    .menu-item{
+      width: 100%;
+    }
+  }
 
     .text-info{
         h1{

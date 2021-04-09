@@ -1,281 +1,384 @@
-.owner-box{
+
+.owner-holder{
+    width: 100%;
     display: flex;
     justify-content: space-between;
-}
-h5{
-    margin: 0;
-}
-h2{
-    margin: 30px 0;
-}
-.create-team{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background: #111111;
-    box-shadow: 0px 0px 80px #000000;
-    border-radius: 10px;
-    width: 45%;
-    border-radius: 10px;
-    padding: 30px 32px;
-    h5{
+    align-items: flex-start;
+    margin-bottom: 20px;
+    .heading{
         font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
-        margin-top: auto;
-    }
-    .team-name{
-        margin-top: auto;
-        margin-bottom: 10px;
-    }
-    .input-name{
-        margin-top: auto;
-        padding: 0;
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        input{
-            padding: 10px 20px;
-            width: 75%;
-            background: rgba(255, 255, 255, .03);
-            box-shadow: 0px 0px 80px #000000;
-            border-radius: 15px;
-            border: none;
-        }
-        p{
-            margin-bottom: 0;
-        }
-        span{
-            color: #84C319;
-        }
-        .taken{
-            span{
-                color: b#FE173F;;
-            }
-        }
-    }
-}
-.logos{
-    transition: .2s;
-    display: flex;
-    flex-wrap: wrap;
-    margin:10px -20px;
-    justify-content: center;
-    .logo{
-        cursor: pointer;
-        width: 94px;
-        height: 94px;
-        padding: 1px;
-        border-radius: 50%;
-        margin: 15px 12.5px;
-        img{
-            width: 100%;
-            height: 100%;
-        }
-    }
-    .logo:hover{
-        transform: scale(1.07);
-    }
-    .logo-active{
-        background: linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%);
-    }
-
-}
-.arrows{
-    transition: .2s;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    right: 60px;
-    top: 30px;
-    font-size: 25px;
-    font-weight: 500;
-    .arrow-right{
-        cursor: pointer;
-        margin-left: 10px;
-    }
-    .arrow-left{
-        cursor: pointer;
-        margin-right: 10px;
-    }
-    .arrow-right:hover, .arrow-left:hover{
-        transform: scale(1.3);
-    }
-    .active-arrow{
-        color: #FE173F;
-    }
-    .unactive-arrow{
-        opacity: .6;
-    }
-}
-
-.manage-team{
-    box-shadow: 0px 0px 80px #000000;
-    border-radius: 10px;
-    width: 52%;
-    background: linear-gradient(152.86deg, #59ECD5 -6.47%, rgba(17, 17, 17, 0) 87.12%);
-    padding: 2px;
-    span{
-        display: flex;
-        flex-direction: column;
-        padding: 40px;
-        border-radius: 10px;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(141.02deg, #B882FA -22.17%, rgba(36, 11, 54, 0) 74.28%),
-                linear-gradient(0deg, #111111, #111111);            
-    }
-    img{
-        width: 180px;
-    }
-    h2{
-        font-weight: 600;
-    }
-    .invite-box{
-        transition: .2s;
-        margin: 20px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        button{
-            border: 1px solid #FE173F;
-            width: 127px;
-            padding: 13px 0;
-            border-radius: 15px;
-            background: none;
-        }
-        button:hover{
-            transform: scale(1.07);
-        }
-    }
-
-    .confirm-create{
-        margin-top: auto;
-        border: 1px solid #FE173F;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #111111;
-        box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-        border-radius: 15px;
-        p{
-            margin-bottom: 0;
-        }
-        p:nth-child(1){
-            margin-left: 30px;
-        }
-        p:nth-child(2){
-            font-weight: 600;
-            img{
-                width: 40px;
-            }
-        }
-        button{
-            transition: .2s;
-            width: 240px;
-            padding: 13px 0;
-            border: none;
-            background: linear-gradient(0deg, rgba(17, 17, 17, 0.2), rgba(17, 17, 17, 0.2)), linear-gradient(103.19deg, #FE173F 48.1%, #240B36 168.51%);
-            box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            text-transform: capitalize;
-        }
-        button:hover{
-            padding-left: 50px;
-            width: 290px;
-        }
-
-    }
-}
-
-@media screen and (max-width: 1550px){
-    p{
-        font-size: 14px;
-    }
-    h2{
         font-size: 20px;
+        margin: 0 0 24px;
     }
-    .create-team{
-        padding: 20px;
-    }
-    .manage-team{
-        span{
-            padding: 20px;
-        }
-        .team-image{
-            width: 100px;
-        }
-        .confirm-create{
-            button{
-                font-size: 14px;
-                width: 160px;
-            }
-        }
-    }
-    .logos{
-        .logo{
-            width: 60px;
-            height: 60px;
-        }
-    }
-    .arrows{
-        top: 20px;
-        right: 20px;
-    }
-}
-@media screen and (max-width: 1550px){
-    .create-team{
-        .input-name{
-            input{
-                width: 65%;
-                font-size: 14px;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 1200px){
-    .manage-team{
-        .confirm-create{
-            button{
-                font-size: 14px;
-                width: 120px;
-            }
-            p:nth-child(1){
-                margin-left: 10px;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 700px){
-    p{
-        font-size: 12px;
-    }
-    h2{
-        font-size: 18px;
-    }
-    .owner-box{
-        flex-direction: column;
-    }
-    .create-team{
-        margin-bottom: 50px;
-        width: 100%;
-    }
-    .manage-team{
-        margin-bottom: 50px;
-        width: 100%;
-        .confirm-create{
-            span{
-                button{
-                    width: 80px;
+    .config-holder{
+        width: 49%;
+        .logos-holder{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 46px;
+            .logo-item{
+                background: #222222;
+                border-radius: 15px;
+                width: 23%;
+                height: 143px;
+                position: relative;
+                img{
+                    position: absolute;
+                    bottom: 0;
+                    max-width: 100%;
+                    max-height: 90%;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
-            p:nth-child(2){
+        }
+        .name-holder{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .name-input{
+                width: 70%;
+                color: white;
+                background: #222222;
+                border-radius: 10px;
+                padding: 13px 30px;
+                border: none;
+                font-size: 16px;
+                line-height: 1.3;
+            }
+            .apply-btn{
+                width: 28%;
+                font-size: 16px;
+                padding: 13px 5px;
+                background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+                border-radius: 10px;
                 font-weight: 600;
-                img{
-                    width: 20px;
+                line-height: 1.3;
+            }
+        }
+    }
+    .summary-holder{
+        width: 49%;
+        .summary-box{
+            background: linear-gradient(139.48deg, #8C1A2D 2.81%, #222222 72.36%);
+            border-radius: 15px;
+            padding: 1px;
+            .inner{
+                border-radius: 15px;
+                background-color: rgba($color: #222222, $alpha: .6);
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                padding: 22px;
+                .img-holder{
+                    background: #111111;
+                    border-radius: 10px;
+                    width: 48.5%;
+                    height: 407px;
+                    position: relative;
+                    img{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        max-width: 350px;
+                        width: 130%;
+                    }
+                }
+                .text-holder{
+                    width: 48.5%;
+                    h2{
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin: 33px 0 40px;
+                    }
+                    .invite-item{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 20px;
+                        .desc{
+                            font-size: 16px;
+                            margin: 0;
+                            width: 49%;
+                        }
+                        .invite-btn{
+                            border: 1px solid #FE183F;
+                            border-radius: 10px;
+                            background-color: transparent;
+                            font-weight: 600;
+                            font-size: 16px;
+                            padding: 14px 0;
+                            width: 49%;
+                        }
+                    }
+                    .total-box{
+                        border: 1px solid #FE183F;
+                        border-radius: 10px; 
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        padding: 14px 20px;
+                        margin-top: 64px;
+                        p{
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FE183F;
+                            margin: 0;
+                        }
+                    }
+                    .confirm-btn{
+                        background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+                        border-radius: 10px;
+                        padding: 14px;
+                        width: 100%;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 1.3;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    .owner-holder{
+        .heading{
+            font-size: 18px;
+            margin: 0 0 17px;
+        }
+        .config-holder{
+            .logos-holder{
+                margin-bottom: 33px;
+                .logo-item{      
+                    height: 113px;
+                }
+            }
+            .name-holder{
+                .name-input{
+                    padding: 11px 26px;
+                }
+                .apply-btn{
+                    padding: 11px 5px;
+                }
+            }
+        }
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    padding: 19px;
+                    .img-holder{
+                        height: 377px;
+                    }
+                    .text-holder{
+                        h2{
+                            font-size: 18px;
+                            margin: 25px 0 30px;
+                        }
+                        .invite-item{
+                            margin-bottom: 18px;
+                            .desc{
+                                font-size: 14px;
+                            }
+                            .invite-btn{
+                                padding: 13px 0;
+                            }
+                        }
+                        .total-box{
+                            padding: 13px 20px;
+                        }
+                        .confirm-btn{
+                            padding: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .owner-holder{
+        .heading{
+            font-size: 16px;
+            margin: 0 0 13px;
+        }
+        .config-holder{
+            .logos-holder{
+                margin-bottom: 27px;
+                .logo-item{      
+                    height: 100px;
+                }
+            }
+            .name-holder{
+                .name-input{
+                    padding: 9px 22px;
+                    font-size: 15px;
+                }
+                .apply-btn{
+                    padding: 9px 5px;
+                    font-size: 15px;
+                }
+            }
+        }
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    padding: 15px;
+                    .img-holder{
+                        height: 330px;
+                    }
+                    .text-holder{
+                        h2{
+                            font-size: 16px;
+                            margin: 22px 0 27px;
+                        }
+                        .invite-item{
+                            margin-bottom: 16px;
+                            .desc{
+                                font-size: 13px;
+                                line-height: 1.3;
+                            }
+                            .invite-btn{
+                                padding: 12px 0;
+                                font-size: 14px;
+                            }
+                        }
+                        .total-box{
+                            padding: 10px 18px;
+                            p{
+                                font-size: 15px;
+                            }
+                        }
+                        .confirm-btn{
+                            padding: 10px;
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .owner-holder{
+        .heading{
+            font-size: 15px;
+            margin: 0 0 10px;
+        }
+        .config-holder{
+            .logos-holder{
+                margin-bottom: 20px;
+                .logo-item{      
+                    height: 85px;
+                }
+            }
+        }
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    padding: 13px;
+                    .img-holder{
+                        height: 310px;
+                    }
+                    .text-holder{
+                        h2{
+                            font-size: 15px;
+                            margin: 20px 0 25px;
+                        }
+                        .invite-item{
+                            margin-bottom: 12px;
+                            .desc{
+                                font-size: 12px;
+                            }
+                            .invite-btn{
+                                padding: 10px 0;
+                                font-size: 13px;
+                            }
+                        }
+                        .total-box{
+                            margin-top: 50px;
+                            padding: 8px 15px;
+                            p{
+                                font-size: 14px;
+                            }
+                        }
+                        .confirm-btn{
+                            padding: 8px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 732px){
+    .owner-holder{
+        flex-wrap: wrap;
+        .config-holder,
+        .summary-holder{
+            width: 100%;
+        }
+        .config-holder{
+            margin-bottom: 20px;
+        }
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    .img-holder{
+                        img{
+                            max-width: 300px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .owner-holder{
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    padding: 10px;
+                    .img-holder{
+                        height: 280px;
+                    }
+                    .text-holder{
+                        h2{
+                            font-size: 14px;
+                        }
+                        .invite-item{
+                            margin-bottom: 10px;
+                            .desc{
+                                font-size: 10px;
+                            }
+                            .invite-btn{
+                                padding: 9px 0;
+                                font-size: 11px;
+                            }
+                        }
+                        .total-box{
+                            margin-top: 40px;
+                            padding: 7px 12px;
+                            p{
+                                font-size: 13px;
+                            }
+                        }
+                        .confirm-btn{
+                            padding: 7px;
+                            font-size: 13px;
+                        }
+                    }
                 }
             }
         }

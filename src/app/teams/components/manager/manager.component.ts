@@ -11,6 +11,7 @@ export class ManagerComponent implements OnInit {
 
   teams: any;
   myDriverBalances: any;
+  ownerIndex = 0;
 
   constructor(private api: TeamsService, private identityService: AuthService) { }
 
@@ -27,6 +28,7 @@ export class ManagerComponent implements OnInit {
       });
 
       this.teams = data.results;
+      console.log(this.teams);
     });
   }
 
