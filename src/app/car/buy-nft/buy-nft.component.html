@@ -116,7 +116,9 @@
           <p class="value big">{{ displayArray[0]["prize"] * amount }} IOI</p>
         </div>
       </div>
-      <button class="buy-nft">Buy now &rarr;</button>
+      <button class="buy-nft" *ngIf="assetType === 'car' && !displayArray[0]['rare']" (click)="buyCarFromGarage(displayArray[0]['id'] - 8)">Buy now &rarr;</button>
+      <button class="buy-nft" *ngIf="assetType !== 'car'">Buy now &rarr;</button>
+      <button class="buy-nft" *ngIf="assetType === 'car' && displayArray[0]['rare']">Not available</button>
     </div>
   </div>
 </div>

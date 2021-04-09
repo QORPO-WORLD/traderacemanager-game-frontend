@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from './../../user/services/auth.service';
+import { BalanceService } from './../../common/services/balance.service';
+import { NotifyService } from './../../common/services/notify.service';
+import { CarsService } from '../../api/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buy-nft',
@@ -339,7 +344,8 @@ export class BuyNftComponent implements OnInit {
   @Input() assetId = 1;
   amount = 1;
 
-  constructor() { }
+  constructor(protected api: CarsService, private balanceService: BalanceService, private identityService: AuthService,
+    private notify: NotifyService, private router: Router) { }
 
   ngOnInit() {
     this.resolveBuyAsset();
@@ -368,6 +374,24 @@ export class BuyNftComponent implements OnInit {
     if (this.amount > 0) {
       this.amount--;
     }
+  }
+
+  buyCarFromGarage(index: string) {
+    this.api.carsBuyList(index).
+      subscribe(datax => {
+        const data: any = datax;
+        setTimeout(() => {
+          console.log(index);
+          this.notifyChangedBalance();
+          this.router.navigate(['/car/garage/my-cars']);
+          this.notify.error('You have bought a new car!');
+        }, 1000);
+      });
+  }
+
+  notifyChangedBalance() {
+    this.identityService.updateBalance();
+    this.balanceService.balanceHasbeenChanged();
   }
 
 }
