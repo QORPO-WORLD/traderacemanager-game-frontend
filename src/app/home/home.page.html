@@ -36,14 +36,16 @@
             <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
           </div>
           <button class="my-cta" [routerLink]="['/user/sign-in']">
-            Sign in
+            Play now
           </button>
         </div>
       </div>
       <div data-aos="fade-right" class="top-text">
         <h1>Collectible #NFTs Trading game</h1>
         <p>Pick your racers and become the richest NFTs trader in the world</p>
-        <button class="my-cta" [routerLink]="['/user/sign-up']">Sign up</button>
+        <button class="my-cta" [routerLink]="['/user/sign-up']">
+          Register for free
+        </button>
       </div>
 
       <div data-aos="left" class="google-play">
@@ -207,7 +209,12 @@
               data-aos-duration="1000"
             >
               <div *ngFor="let item of products | slice: sliceStart:sliceEnd">
-                <div *ngIf="item['type'] === 'racer'" class="racer-box box1">
+                <div
+                  [routerLink]="['/nft-detail']"
+                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  *ngIf="item['type'] === 'racer'"
+                  class="racer-box box1"
+                >
                   <div class="racer-img">
                     <img
                       [src]="
@@ -225,7 +232,12 @@
                   </div>
                 </div>
 
-                <div *ngIf="item['type'] === 'car'" class="racer-box box2">
+                <div
+                  [routerLink]="['/nft-detail']"
+                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  *ngIf="item['type'] === 'car'"
+                  class="racer-box box2"
+                >
                   <div class="racer-img">
                     <img
                       [src]="
@@ -236,12 +248,17 @@
                   </div>
                   <div class="racer-info">
                     <p class="desc">{{ item["collection"] }}</p>
-                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="font">{{ item["name"] }}</p>
                     <p class="price">{{ item["prize"] }}</p>
                   </div>
                 </div>
 
-                <div *ngIf="item['type'] === 'track'" class="racer-box box3">
+                <div
+                  [routerLink]="['/nft-detail']"
+                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  *ngIf="item['type'] === 'track'"
+                  class="racer-box box3"
+                >
                   <div class="racer-img">
                     <img
                       [src]="
@@ -252,11 +269,16 @@
                   </div>
                   <div class="racer-info">
                     <p class="desc">{{ item["collection"] }}</p>
-                    <p class="racer">{{ item["name"] }}</p>
+                    <p class="font">{{ item["name"] }}</p>
                     <p class="price">{{ item["prize"] }}</p>
                   </div>
                 </div>
-                <div *ngIf="item['type'] === 'team'" class="racer-box box4">
+                <div
+                  [routerLink]="['/nft-detail']"
+                  [queryParams]="{ type: item['type'], id: item['shopid'] }"
+                  *ngIf="item['type'] === 'team'"
+                  class="racer-box box4"
+                >
                   <div class="racer-img">
                     <img
                       [src]="
@@ -435,7 +457,7 @@
   </div>
 
   <div class="trophy-section">
-    <div data-aos="fade-up" class="textarea">
+    <div class="textarea">
       <h1>Winner Trophies</h1>
       <p>
         12 rings, one big final Tournament for the twelve ring owners. Compete,
@@ -443,42 +465,27 @@
       </p>
     </div>
     <div class="trophies">
-      <div data-aos="fade-right" class="finaltrophy">
+      <div class="finaltrophy">
         <h1>Final Trophy</h1>
         <img src="assets/base/images/home-page/trophy.png" alt="" />
       </div>
-      <div data-aos="fade-up" class="months">
+      <div class="months">
         <div class="leftarrow">
-          <img src="assets/base/images/home-page/arrow.png" alt="" />
+          <img
+            [ngClass]="{ 'arrow-opacity': monthsStart === 0 }"
+            (click)="prevPageMonths(); resetArrowMonthsL()"
+            src="assets/base/images/home-page/arrow1.png"
+            alt=""
+          />
         </div>
-        <div class="rings">
-          <div class="opacity">
-            <h1>January</h1>
-            <p>Already won</p>
-            <img
-              src="assets/base/images/home-page/ring.png"
-              alt="Ring February"
-            />
-          </div>
-          <div>
-            <h1>February</h1>
-
-            <img
-              src="assets/base/images/home-page/ring.png"
-              alt="Ring February"
-            />
-          </div>
-          <div>
-            <h1>March</h1>
-
-            <img
-              src="assets/base/images/home-page/ring.png"
-              alt="Ring February"
-            />
-          </div>
-          <div>
-            <h1>April</h1>
-
+        <div class="ring-boxes">
+          <div
+            [ngClass]="{ 'ring-opacity': item['id'] < actualMonth }"
+            *ngFor="let item of months | slice: monthsStart:monthsEnd"
+            class="ring-box"
+          >
+            <h2>{{ item["name"] }}</h2>
+            <p *ngIf="item['id'] < actualMonth">Already Won</p>
             <img
               src="assets/base/images/home-page/ring.png"
               alt="Ring February"
@@ -486,11 +493,18 @@
           </div>
         </div>
         <div class="rightarrow">
-          <img src="assets/base/images/home-page/arrow.png" alt="" />
+          <img
+            [ngClass]="{ 'arrow-opacity': monthsEnd >= months.length }"
+            (click)="nextPageMonths(); resetArrowMonthsR()"
+            src="assets/base/images/home-page/arrow.png"
+            alt=""
+          />
         </div>
       </div>
     </div>
-    <div data-aos="fade-up" class="start"><button>Start competing</button></div>
+    <div class="start">
+      <button [routerLink]="['/user/sign-up']">Start competing</button>
+    </div>
   </div>
   <div class="review-position">
     <section data-aos="fade-up" class="reviews-sec">
@@ -511,7 +525,6 @@
           <p class="desc">Trust score 4 | 19 reviews</p>
         </div>
       </div>
-
       <div class="review-cont">
         <div class="rev-viewport">
           <div
@@ -1039,38 +1052,6 @@
           <a href="https://blog.ioi-game.com/">IOI Blog</a>
           <a href="https://www.ioi-token.com/">IOI Token</a>
           <a href="https://ioi-corporation.com/">IOI Corporation</a>
-          <div class="linked">
-            <a class="linked" href="https://www.ioi-wallet.com/">IOI Wallet</a>
-            <a
-              class="img"
-              href="https://play.google.com/store/apps/details?id=ioi.wallet"
-              ><img
-                src="/assets/base/images/home-page/icons/google-play.svg"
-                alt="google play"
-            /></a>
-          </div>
-          <div class="linked">
-            <a class="linked" href="https://play.ioi-game.com/">IOI Game</a>
-            <a
-              class="img"
-              href="https://play.google.com/store/apps/details?id=ioi.game"
-              ><img
-                src="/assets/base/images/home-page/icons/google-play.svg"
-                alt="google play"
-            /></a>
-          </div>
-          <div class="linked">
-            <a class="linked" href="https://traderacemanager.com/"
-              >Trade Race Manager</a
-            >
-            <a
-              class="img"
-              href="https://play.google.com/store/apps/details?id=ioi.game"
-              ><img
-                src="/assets/base/images/home-page/icons/google-play.svg"
-                alt="google play"
-            /></a>
-          </div>
         </div>
         <div class="general-item read-more">
           <p class="heading">Read more</p>
@@ -1086,11 +1067,27 @@
           <a href="https://ioi-game.com/docs/How-to-earn.pdf">How to earn</a>
         </div>
         <div class="general-item">
-          <p class="heading">Want to read more?</p>
-          <p>Check out IOI Corporate website for more information</p>
-          <a href="https://ioi-corporation.com/" class="my-btn"
-            >IOI Corporation</a
-          >
+          <p class="heading">Download apps</p>
+          <div class="linked">
+            <a class="linked" href="https://www.ioi-wallet.com/">IOI Wallet</a>
+            <a
+              class="img"
+              href="https://play.google.com/store/apps/details?id=ioi.wallet"
+              ><img
+                src="/assets/base/images/home-page/icons/google-play.svg"
+                alt="google play"
+            /></a>
+          </div>
+          <div class="linked">
+            <a class="linked" href="https://play.ioi-game.com/">IOI Game</a>
+            <a
+              class="img"
+              href="https://play.google.com/store/apps/details?id=ioi.game&hl=sk&gl=US"
+              ><img
+                src="/assets/base/images/home-page/icons/google-play.svg"
+                alt="google play"
+            /></a>
+          </div>
         </div>
       </div>
 

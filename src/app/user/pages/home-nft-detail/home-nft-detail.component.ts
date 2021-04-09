@@ -11,18 +11,20 @@ export class HomeNftDetailComponent implements OnInit {
   typeObserver: Subscription;
   assetType: any;
   assetId: number;
+  assetPage: number;
   displayArray = [];
   menuActive = 1;
   isMenuActive = false;
   activeMenu = 0;
   abilities = false;
+  actualPage;
 
   products: Array<object> = [
     {
       id: 1,
       collection: "Bronze Collection",
       name: "Axle",
-      prize: "1152",
+      prize: "100",
       image: "white-mn",
       type: "racer",
     },
@@ -30,7 +32,7 @@ export class HomeNftDetailComponent implements OnInit {
       id: 2,
       collection: "Bronze Collection",
       name: "Flash",
-      prize: "1152",
+      prize: "100",
       image: "red-korpo",
       type: "racer",
     },
@@ -38,23 +40,23 @@ export class HomeNftDetailComponent implements OnInit {
       id: 3,
       collection: "Bronze Collection",
       name: "Octane",
-      prize: "1152",
-      image: "blue-mn",
+      prize: "100",
+      image: "bluetrm",
       type: "racer",
     },
     {
       id: 4,
       collection: "Bronze Collection",
       name: "Punisher",
-      prize: "1152",
-      image: "black-korpo",
+      prize: "100",
+      image: "avatar",
       type: "racer",
     },
     {
       id: 5,
       collection: "Bronze Collection",
       name: "Lady Rich",
-      prize: "1152",
+      prize: "1000",
       image: "lady-rich",
       type: "racer",
     },
@@ -62,26 +64,27 @@ export class HomeNftDetailComponent implements OnInit {
       id: 6,
       collection: "Bronze Collection",
       name: "Rich Jr.",
-      prize: "1152",
+      prize: "1000",
       image: "bad-boy",
       type: "racer",
     },
     {
       id: 7,
       collection: "Bronze Collection",
-      name: "Mr. Rich",
-      prize: "1152",
-      image: "mr-rich-shop",
+      name: "Mrs. Rich",
+      prize: "1000",
+      image: "mrs-rich",
       type: "racer",
     },
     {
       id: 8,
       collection: "Bronze Collection",
-      name: "Mrs. Rich",
-      prize: "1152",
-      image: "mrs-rich",
+      name: "Mr. Rich",
+      prize: "10 000",
+      image: "mr-rich-shop",
       type: "racer",
     },
+
     //bronze
     {
       id: 9,
@@ -447,11 +450,15 @@ export class HomeNftDetailComponent implements OnInit {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
       this.assetType = params["type"];
       this.assetId = +params["id"];
+      this.assetPage = +params["page"];
       if (!this.assetType) {
         this.assetType = "racer";
       }
       if (!this.assetId) {
         this.assetId = 1;
+      }
+      if (!this.assetPage) {
+        this.assetPage = 1;
       }
 
       if (this.assetType === "racer") {
@@ -473,12 +480,14 @@ export class HomeNftDetailComponent implements OnInit {
       this.displayArray = this.displayArray.filter(
         (asset) => asset.id === this.assetId
       );
+      this.actualPage = this.assetPage;
     });
   }
   activateMenu() {
     if (this.activeMenu === 0) {
       this.isMenuActive = true;
       this.activeMenu = 1;
+      console.log(this.actualPage);
     } else {
       this.isMenuActive = false;
       this.activeMenu = 0;

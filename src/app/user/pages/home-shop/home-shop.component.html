@@ -19,9 +19,9 @@
       <i class="fa fa-bars"></i>
     </div>
     <div class="menu">
-      <div [routerLink]="['/home']" class="logo">
+      <div data-aos="fade-down" class="logo" [routerLink]="['/user/home']">
         <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
-        <p [routerLink]="['/home']">TRADE RACE <span>MANAGER</span></p>
+        <p>TRADE RACE <span>MANAGER</span></p>
       </div>
 
       <div class="nav" [class.nav-active]="isMenuActive">
@@ -30,8 +30,13 @@
         </div>
 
         <div>
-          <p class="p-small active">Marketplace</p>
+          <p [routerLink]="['/user/shop']" class="p-small active">
+            Marketplace
+          </p>
         </div>
+        <button class="my-cta" [routerLink]="['/user/sign-in']">
+          Play now
+        </button>
       </div>
     </div>
   </div>
@@ -135,7 +140,7 @@
             </p>
             <p
               *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
-              class="name"
+              class="namefont"
             >
               {{ item["name"] }}
             </p>
@@ -147,12 +152,12 @@
                 >{{ item["name"] }}</span
               >
             </p>
-            <p *ngIf="item['name'] === 'Team You'" class="name">
+            <p *ngIf="item['name'] === 'Team You'" class="namefont">
               {{ item["name"] }}
             </p>
             <p
               *ngIf="item['type'] === 'team' && item['name'] != 'Team You'"
-              class="name"
+              class="namefont"
             >
               Team
               <span
@@ -178,7 +183,11 @@
             <button
               *ngIf="item['type'] != 'team'"
               [routerLink]="['/nft-detail']"
-              [queryParams]="{ type: item['type'], id: item['id'] }"
+              [queryParams]="{
+                type: item['type'],
+                id: item['id'],
+                page: currentPage
+              }"
             >
               See details
             </button>
@@ -191,7 +200,11 @@
             <button
               *ngIf="item['name'] === 'Team You' && item['type'] === 'team'"
               [routerLink]="['/nft-detail']"
-              [queryParams]="{ type: item['type'], id: item['id'] }"
+              [queryParams]="{
+                type: item['type'],
+                id: item['id'],
+                page: currentPage
+              }"
             >
               See details
             </button>
