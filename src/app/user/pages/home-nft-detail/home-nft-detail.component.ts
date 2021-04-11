@@ -110,7 +110,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "2%",
       ability2: "20%",
-      rank: "hight",
+      rank: "height",
     },
 
     //bronze

@@ -1,6 +1,7 @@
-<ng-container *ngIf="assetType === 'racer'">
-  <button class="sign-in" (click)="showBuyModal()">
-    <img src="/assets/base/images/market/buy-icon.svg" alt=""> <span class="txt-span">Buy</span>
+<!-- <ng-container *ngIf="assetType === 'racer'">
+  <button class="sign-in">
+    <img src="/assets/base/images/market/buy-icon.svg" alt="" />
+    <span class="txt-span">Coming soon</span>
   </button>
   <div class="detail-racers">
     <div class="detail-text">
@@ -52,23 +53,150 @@
           </div>
         </div>
       </div>
-
     </div>
     <div class="detail-image">
       <div>
-        <img class="img" [src]="'/assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'" alt="" />
+        <img
+          class="img"
+          [src]="
+            '/assets/base/images/nft-racers/' +
+            displayArray[0]['image'] +
+            '.png'
+          "
+          alt=""
+        />
       </div>
     </div>
   </div>
+</ng-container> -->
+<ng-container *ngIf="assetType === 'racer'">
+  <div class="detail-racers">
+    <div class="detail-text">
+      <div class="detail-name">
+        <h1 *ngIf="assetType === 'racer'" class="name-nofont">Racer</h1>
+        <h1 class="name-font red-box-detail">
+          {{ displayArray[0]["name"] }}
+        </h1>
+        <h1 class="name-font blue-box-detail">
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About Racer</h1>
+        <p *ngIf="displayArray[0]['rank'] === 'low'">
+          {{ displayArray[0]["name"] }} is unique limited rare avatar in form of
+          NFT. Each avatar is unparalleled way of owning IOI tokens. The main
+          benefit is that you can use your NFTs in-game, buy, sell and trade on
+          open markets as well as your NFT vehicles.
+        </p>
+        <p *ngIf="displayArray[0]['rank'] === 'normal'">
+          {{ displayArray[0]["name"] }} is unique limited super rare avatar in
+          form of NFT. Each avatar is unparalleled way of owning IOI tokens. The
+          main benefit is that you can use your NFTs in-game, buy, sell and
+          trade on open markets as well as your NFT vehicles.
+        </p>
+        <p *ngIf="displayArray[0]['rank'] === 'height'">
+          {{ displayArray[0]["name"] }} is unique limited legendary avatar in
+          form of NFT. Each avatar is unparalleled way of owning IOI tokens. The
+          main benefit is that you can use your NFTs in-game, buy, sell and
+          trade on open markets as well as your NFT vehicles.
+        </p>
+      </div>
+      <div class="detail-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["prize"] }} IOI</h1>
+              <p>IOI value</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["ability1"] }} from invites</h1>
+              <p>super skill</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["ability2"] }} from NFTS</h1>
+              <p>super skill</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-image">
+      <div>
+        <img
+          [src]="
+            '/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+        />
+      </div>
+      <button class="sign-in red-box-shop">
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Soon</span>
+        </div>
+      </button>
+      <button class="sign-in blue-box-shop">
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Soon</span>
+        </div>
+      </button>
+    </div>
+  </div>
 </ng-container>
-<ng-container *ngIf="assetType === 'car' || assetType === 'track'">
-  <button class="sign-in cars" (click)="showBuyModal()">
-    <img src="/assets/base/images/market/buy-icon.svg" alt=""> <span class="txt-span">Buy</span>
-  </button>
+<ng-container *ngIf="assetType === 'car'">
   <div class="detail-racers cars">
     <div class="detail-text">
       <div class="detail-name">
-        <h1 class="name-nofont">
+        <h1 class="name-carfont">
           {{ displayArray[0]["name"] }}
         </h1>
       </div>
@@ -83,8 +211,14 @@
       </div>
 
       <div class="mobile-img">
-        <img class="img" [src]="'/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'car'" />
-        <img class="img" [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'track'" />
+        <img
+          class="img"
+          [src]="
+            '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+          *ngIf="assetType === 'car'"
+        />
       </div>
 
       <div class="car-abilities">
@@ -93,9 +227,20 @@
           <div class="ability-box">
             <p class="heading">IOI value</p>
             <div class="slider-holder">
-              <p>{{displayArray[0]['prize']}}</p>
+              <p>{{ displayArray[0]["prize"] }}</p>
               <div class="ab-slider">
-                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['prize'] * 100) / 15600}"></div>
+                <div
+                  class="inner-slider red-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['prize'] * 100) / 15600
+                  }"
+                ></div>
+                <div
+                  class="inner-slider blue-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['prize'] * 100) / 15600
+                  }"
+                ></div>
               </div>
               <p>15 600</p>
             </div>
@@ -104,9 +249,20 @@
           <div class="ability-box">
             <p class="heading">IOI daily stake</p>
             <div class="slider-holder">
-              <p>{{displayArray[0]['extras'].stake}}</p>
+              <p>{{ displayArray[0]["extras"].stake }}</p>
               <div class="ab-slider">
-                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].stake * 100) / 10.25}"></div>
+                <div
+                  class="inner-slider red-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
+                  }"
+                ></div>
+                <div
+                  class="inner-slider blue-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
+                  }"
+                ></div>
               </div>
               <p>10.25</p>
             </div>
@@ -115,9 +271,20 @@
           <div class="ability-box">
             <p class="heading">ROI %</p>
             <div class="slider-holder">
-              <p>{{displayArray[0]['extras'].roi}}%</p>
+              <p>{{ displayArray[0]["extras"].roi }}%</p>
               <div class="ab-slider">
-                <div class="inner-slider" [ngStyle]="{'width.%': (displayArray[0]['extras'].roi * 100) / 24}"></div>
+                <div
+                  class="inner-slider red-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['extras'].roi * 100) / 24
+                  }"
+                ></div>
+                <div
+                  class="inner-slider blue-box-shop"
+                  [ngStyle]="{
+                    'width.%': (displayArray[0]['extras'].roi * 100) / 24
+                  }"
+                ></div>
               </div>
               <p>24%</p>
             </div>
@@ -127,10 +294,268 @@
     </div>
     <div class="detail-image">
       <div>
-        <img class="img" [src]="'/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'car'" />
-        <img class="img" [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'" alt="" *ngIf="assetType === 'track'" />
+        <img
+          class="img"
+          [src]="
+            '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+          *ngIf="assetType === 'car'"
+        />
       </div>
+      <button class="sign-in cars red-box-shop" (click)="showBuyModal()">
+        <div class="btn-content">
+          <img src="/assets/base/images/market/buy-icon.svg" alt="" />
+          <span class="txt-span">Buy</span>
+        </div>
+      </button>
+      <button class="sign-in cars blue-box-shop" (click)="showBuyModal()">
+        <div class="btn-content">
+          <img src="/assets/base/images/market/buy-icon.svg" alt="" />
+          <span class="txt-span">Buy</span>
+        </div>
+      </button>
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="assetType === 'track'"></ng-container>
+<ng-container *ngIf="assetType === 'track'">
+  <div class="detail-racers tracks">
+    <div class="detail-text">
+      <div class="back"></div>
+      <div class="detail-name">
+        <h1 class="name-font">
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About Track</h1>
+        <p>
+          Track NFTs are introducing investment model for real hardcore owners.
+          You will receive percentage of each game played on your NFT property!
+          Become a track owner - a real NFT whale investor and earn 3% from
+          prize pool of each game played on your track. Tracks will be sold
+          exclusively through special event auctions! For more info follow our
+          social media! Good luck.
+        </p>
+      </div>
+      <div class="detail-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["prize"] }}</h1>
+              <p>IOI value</p>
+            </div>
+          </div>
+          <div
+            *ngIf="displayArray[0]['collection'] != 'Free'"
+            class="ability-box"
+          >
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["bet"] }}</h1>
+              <p>bet</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["ability1"] }}</h1>
+              <p>race period</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">?</button>
+              <button class="blue-box-shop">?</button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["ability2"] }}</h1>
+              <p>super skill</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-image">
+      <div class="img">
+        <img
+          [src]="
+            '/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+        />
+      </div>
+      <button class="sign-in red-box-shop">
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Soon</span>
+        </div>
+      </button>
+      <button class="sign-in blue-box-shop">
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Soon</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="assetType === 'team'">
+  <div class="detail-racers teams">
+    <div class="detail-text">
+      <div class="back"></div>
+      <div class="detail-name">
+        <h1 class="name-font">
+          Team
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About Team</h1>
+        <p>
+          You buy your team in form of NFT - what means you can buy/sell/trade
+          your team anytime on the open market. We are adding feature in the
+          future where you can sell shares of your team and recuperate costs of
+          team instantly even sell your team for much higher price as you
+          purchased it works just like company in the stock market. Every
+          premium member increase team value by 50 IOI. More premium members
+          your team has the bigger the overal value.
+        </p>
+      </div>
+      <div class="detail-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilityvalue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["prize"] }}</h1>
+              <p>IOI value</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>50 IOI</h1>
+              <p>increase per premium member</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+              <button class="blue-box-shop">
+                <img
+                  src="/assets/base/images/home-page/abilitypercent.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>20% from premium member</h1>
+              <p>super skill</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-image">
+      <div class="img">
+        <img
+          [src]="
+            '/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+        />
+      </div>
+      <button
+        [routerLink]="['/teams/owners-managers']"
+        class="sign-in red-box-shop"
+      >
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Buy</span>
+        </div>
+      </button>
+      <button
+        [routerLink]="['/teams/owners-managers']"
+        class="sign-in blue-box-shop"
+      >
+        <div class="btn-content">
+          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+          <span class="txt-span">Buy</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</ng-container>
