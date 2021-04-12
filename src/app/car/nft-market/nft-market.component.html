@@ -161,7 +161,9 @@
                 *ngIf="item['type'] === 'racer'"
                 class="img"
                 [src]="
-                  '/assets/base/images/nft-racers/' + item['image'] + '.png'
+                  '/assets/base/images/home-page/' +
+                  item['image'] +
+                  '-small.png'
                 "
                 alt=""
               />
@@ -202,36 +204,67 @@
               <p
                 *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
                 class="name"
+                (click)="showAsset(item['id'], item['type'])"
               >
                 {{ item["name"] }}
               </p>
 
               <p *ngIf="item['type'] === 'racer'" class="name">
-                Racer
-                <span
-                  [ngClass]="{ racername: item['type'] === 'racer' }"
-                  class="racername"
-                  >{{ item["name"] }}</span
-                >
+                {{ item["name"] }}
               </p>
               <p class="prize">{{ item["prize"] }}</p>
               <button
+                class="blue-box-shop"
                 *ngIf="item['type'] === 'car'"
                 (click)="showAsset(item['id'], item['type'])"
               >
-                Buy now
+                See details
               </button>
               <button
-                *ngIf="item['type'] === 'racer' || item['type'] === 'track' || (item['name'] === 'You' && item['type'] === 'team')"
-                disabled
-                style="cursor: default;"
+                class="red-box-shop"
+                *ngIf="item['type'] === 'car'"
+                (click)="showAsset(item['id'], item['type'])"
               >
-                Coming soon
+                See details
               </button>
-              <button [ngStyle]="{ opacity: '0.3' }" *ngIf="item['name'] !== 'You' && item['type'] === 'team'" style="cursor: default;">
+              <button
+                class="blue-box-shop"
+                *ngIf="
+                  item['type'] === 'racer' ||
+                  item['type'] === 'track' ||
+                  (item['name'] === 'You' && item['type'] === 'team')
+                "
+                (click)="showAsset(item['id'], item['type'])"
+              >
+                See details
+              </button>
+              <button
+                class="red-box-shop"
+                *ngIf="
+                  item['type'] === 'racer' ||
+                  item['type'] === 'track' ||
+                  (item['name'] === 'You' && item['type'] === 'team')
+                "
+                (click)="showAsset(item['id'], item['type'])"
+              >
+                See details
+              </button>
+              <button
+                class="blue-box-shop"
+                [ngStyle]="{ opacity: '0.3' }"
+                *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
+                style="cursor: default"
+              >
                 Sold out
               </button>
-
+              <button
+                class="red-box-shop"
+                [ngStyle]="{ opacity: '0.3' }"
+                *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
+                style="cursor: default"
+              >
+                Sold out
+              </button>
             </div>
           </div>
         </div>

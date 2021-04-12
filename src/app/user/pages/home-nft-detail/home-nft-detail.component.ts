@@ -22,6 +22,7 @@ export class HomeNftDetailComponent implements OnInit {
   actualPage;
   startPage;
   filter;
+  display = innerWidth;
 
   products: Array<object> = [
     {
@@ -40,7 +41,7 @@ export class HomeNftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Flash",
       prize: 100,
-      image: "red-korpo",
+      image: "red-trm-small",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -62,7 +63,7 @@ export class HomeNftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Punisher",
       prize: 100,
-      image: "avatar",
+      image: "black-trm-small",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -110,7 +111,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "2%",
       ability2: "20%",
-      rank: "hight",
+      rank: "height",
     },
 
     //bronze
@@ -377,50 +378,68 @@ export class HomeNftDetailComponent implements OnInit {
       id: 37,
       collection: "Free",
       name: "Free track",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "free-track-small",
       type: "track",
+
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
     {
       id: 38,
       collection: "Beginner",
       name: "Desert",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "desert-small",
       type: "track",
+      bet: "1 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
     {
       id: 39,
       collection: "Semi PRO",
       name: "Dark forest",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "dark-forest-small",
       type: "track",
+      bet: "5 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
     {
       id: 40,
       collection: "Professional",
       name: "Night City",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "night-city-small",
       type: "track",
+      bet: "10 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
     {
       id: 41,
       collection: "Expert",
       name: "Sea bridge",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "sea-bridge-small",
       type: "track",
+      bet: "50 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
 
     {
       id: 42,
       collection: "Master",
       name: "Underground",
-      prize: "1152 IOI",
+      prize: "Coming soon",
       image: "underground-small",
       type: "track",
+      bet: "100 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
     },
     {
       id: 43,
@@ -456,6 +475,9 @@ export class HomeNftDetailComponent implements OnInit {
     },
   ];
 
+  width() {
+    this.display = innerWidth;
+  }
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {

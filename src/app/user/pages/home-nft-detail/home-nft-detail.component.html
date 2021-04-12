@@ -1,4 +1,8 @@
-<div [class.disable-scroll]="isMenuActive" class="detail-page">
+<div
+  (window:resize)="width()"
+  [class.disable-scroll]="isMenuActive"
+  class="detail-page"
+>
   <div
     class="navoverlay"
     (click)="activateMenu()"
@@ -77,7 +81,7 @@
             The main benefit is that you can use your NFTs in-game, buy, sell
             and trade on open markets as well as your NFT vehicles.
           </p>
-          <p *ngIf="displayArray[0]['rank'] === 'hight'">
+          <p *ngIf="displayArray[0]['rank'] === 'height'">
             {{ displayArray[0]["name"] }} is unique limited legendary avatar in
             form of NFT. Each avatar is unparalleled way of owning IOI tokens.
             The main benefit is that you can use your NFTs in-game, buy, sell
@@ -512,31 +516,65 @@
             sold exclusively through special event auctions! For more info
             follow our social media! Good luck.
           </p>
-          <p *ngIf="displayArray[0]['name'] === 'Desert'">
-            <br />
-            Beginner - Desert track - 1 IOI Bet race - Every 2 minutes + Special
-            events happening randomly
-          </p>
-          <p *ngIf="displayArray[0]['name'] === 'Dark forest'">
-            <br />
-            Semi PRO - Dark Forest - 5 IOI Bet race - Race every 2 minutes +
-            Special events happening randomly
-          </p>
-          <p *ngIf="displayArray[0]['name'] === 'Night city'">
-            <br />
-            Professional - Night City - 10 IOI Bet race - Race every 2 minutes +
-            Special events happening randomly
-          </p>
-          <p *ngIf="displayArray[0]['name'] === 'Sea bridge'">
-            <br />
-            Expert - Sea Bridge - 50 IOI Bet race - Race every 2 minutes +
-            Special events happening randomly
-          </p>
-          <p *ngIf="displayArray[0]['name'] === 'Underground'">
-            <br />
-            Master - Underground - 100 IOI Bet race - Race every 2 minutes +
-            Special events happening randomly
-          </p>
+        </div>
+        <div *ngIf="display > 1024" class="detail-abilities">
+          <h1>Abilities</h1>
+          <div class="ability-boxes">
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilityvalue.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["prize"] }}</h1>
+                <p>IOI value</p>
+              </div>
+            </div>
+            <div
+              *ngIf="displayArray[0]['collection'] != 'Free'"
+              class="ability-box"
+            >
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["bet"] }}</h1>
+                <p>bet</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability1"] }}</h1>
+                <p>race period</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>?</button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability2"] }}</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="detail-image">
@@ -549,6 +587,65 @@
             "
             alt=""
           />
+        </div>
+        <div *ngIf="display <= 1024" class="detail-abilities">
+          <h1>Abilities</h1>
+          <div class="ability-boxes">
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilityvalue.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["prize"] }}</h1>
+                <p>IOI value</p>
+              </div>
+            </div>
+            <div
+              *ngIf="displayArray[0]['collection'] != 'Free'"
+              class="ability-box"
+            >
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["bet"] }}</h1>
+                <p>bet</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability1"] }}</h1>
+                <p>race period</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>?</button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability2"] }}</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+          </div>
         </div>
         <button [routerLink]="['/user/sign-up']" class="sign-in-tracks">
           <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
@@ -580,11 +677,66 @@
         <div class="detail-info">
           <h1>About Team</h1>
           <p>
-            With the most unique characters, cars and tracks - all as
-            NFTs.Purchase one, or more of our characters, get amazing and unique
-            NFTs cars and start racing today. More cars and characters means
-            higher earnings!
+            You buy your team in form of NFT - what means you can buy/sell/trade
+            your team anytime on the open market. We are adding feature in the
+            future where you can sell shares of your team and recuperate costs
+            of team instantly even sell your team for much higher price as you
+            purchased it works just like company in the stock market.
+            <br />
+            This is only game that really incorporates ownership of NFT in much
+            wider spectrum and team ownership can become your main source of
+            income. The name of the game is to build the team, develop strategy,
+            hire manager, engage in community and run your empire - Get paid
+            from your work - You are jumping from game to real asset that can
+            produce value for times to come.
           </p>
+        </div>
+        <div class="detail-abilities">
+          <h1>Abilities</h1>
+          <div class="ability-boxes">
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilityvalue.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["prize"] }} IOI</h1>
+                <p>IOI value</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability1"] }} from invites</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability2"] }} from NFTS</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="detail-image">
