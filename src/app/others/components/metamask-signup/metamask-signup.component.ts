@@ -37,7 +37,7 @@ export class MetamaskSignupComponent implements OnInit {
 
   async enableMetamask() {
     if (!(await provider.isEnabled())) {
-      await provider.enable();
+      //await provider.enable();
       this.getBalance();
     }
   }
@@ -52,7 +52,8 @@ export class MetamaskSignupComponent implements OnInit {
         this.startApp();
       }
     } else {
-      this.notify.error('Please install MetaMask!');
+      this.enableMetamask();
+      this.detectEth();
     }
   }
 
