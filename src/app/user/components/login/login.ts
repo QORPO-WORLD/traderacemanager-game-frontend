@@ -83,7 +83,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         this.submitted = true;
         this.mmewa = mmew;
 
-        if (location.href === 'https://dev-play.traderacemanager.com/user/sign-in') {
+        if (location.href === environment.api_url + '/user/sign-in') {
           this.submit();
         }
 
@@ -146,17 +146,17 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         error: error => this.handleError(error)
       });
     }
-/*
-    return;
-    if (this.idioticLogin === 2) {
-      this.idioticLogin = 1;
-      localStorage.setItem('iditc', 'true');
-    
-      setTimeout(() => {
-        this.tryLogin();
-      }, 1000);
-    }
-    */
+    /*
+        return;
+        if (this.idioticLogin === 2) {
+          this.idioticLogin = 1;
+          localStorage.setItem('iditc', 'true');
+        
+          setTimeout(() => {
+            this.tryLogin();
+          }, 1000);
+        }
+        */
   }
 
   finalizeLogin(data) {
