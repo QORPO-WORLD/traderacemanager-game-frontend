@@ -24,6 +24,7 @@ export class VerifyUserComponent implements OnInit {
 
   ngOnInit() { }
 
+
   tryActivation() {
     if (this.myCode.length > 5) {
       this.loading = true;

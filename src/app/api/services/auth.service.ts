@@ -305,7 +305,7 @@ class AuthService extends __BaseService {
     let __body: any = null;
     __body = data;
     let req = new HttpRequest<any>(
-      'POST',
+      'PUT',
       this.rootUrl + `/me/activate-account`,
       __body,
       {
