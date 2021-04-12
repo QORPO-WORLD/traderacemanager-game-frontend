@@ -14,6 +14,7 @@ export class AboutTokensComponent implements OnInit {
   transObserver: Subscription;
   ioioreward: number;
   myRewards: any;
+  leaderboardType = "about-rewards";
   rewardLevel = 0;
   rewardLevelMax = 0;
   isLevel = 1;

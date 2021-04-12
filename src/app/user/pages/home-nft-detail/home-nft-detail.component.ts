@@ -111,6 +111,7 @@ export class HomeNftDetailComponent implements OnInit {
       type: "racer",
       ability1: "2%",
       ability2: "20%",
+      ability3: "18% APY staking",
       rank: "height",
     },
 

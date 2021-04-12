@@ -44,7 +44,7 @@ exports.handler = (event, context, callback) => {
     "/other/nitro-wallet",
     "/user/sign-up-campaign2020a",
     "/car/favourite-cars",
-    "/other/about-tokens",
+    "/other/about-rewards",
     "/race/watch-race-3min/demo-preview-race",
     "/user/verify-code",
     "/user/verify-authenticator",

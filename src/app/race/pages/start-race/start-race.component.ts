@@ -1,34 +1,60 @@
-import { AuthService } from './../../../user/services/auth.service';
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
-import { RacesService, DriversService, RewardsService, AuthService as ninja, CarsService, LeaderboardService, TeamsService } from 'src/app/api/services';
-import { NotifiqService } from './../../../common/services/notifiq.service';
-import { Subscription } from 'rxjs';
-import { FavRaces, NextRaceV2, RewardsMe } from 'src/app/api/models';
-import { Platform } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { ExperienceService, Experience } from 'src/app/common/services/experience.service';
+import { AuthService } from "./../../../user/services/auth.service";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
+import {
+  RacesService,
+  DriversService,
+  RewardsService,
+  AuthService as ninja,
+  CarsService,
+  LeaderboardService,
+  TeamsService,
+} from "src/app/api/services";
+import { NotifiqService } from "./../../../common/services/notifiq.service";
+import { Subscription } from "rxjs";
+import { FavRaces, NextRaceV2, RewardsMe } from "src/app/api/models";
+import { Platform } from "@ionic/angular";
+import { Router } from "@angular/router";
+import {
+  ExperienceService,
+  Experience,
+} from "src/app/common/services/experience.service";
 
 @Component({
-  selector: 'app-start-race',
-  templateUrl: './start-race.component.html',
-  styleUrls: ['./start-race.component.scss'],
+  selector: "app-start-race",
+  templateUrl: "./start-race.component.html",
+  styleUrls: ["./start-race.component.scss"],
 })
 export class StartRaceComponent implements OnInit, OnDestroy {
+  @ViewChild("carousel", { static: false }) carousel: ElementRef;
 
-  @ViewChild('carousel', { static: false }) carousel: ElementRef;
-
-  constructor(protected api: RacesService, private rwrdsrvc: RewardsService,
-    private platform: Platform, private drvrsrvc: DriversService, protected notify: NotifiqService, private identityService: AuthService,
-    private uapi: ninja, private experience: ExperienceService, private capi: CarsService, private router: Router, private lapi: LeaderboardService,
-    private tsapi: TeamsService) {
+  constructor(
+    protected api: RacesService,
+    private rwrdsrvc: RewardsService,
+    private platform: Platform,
+    private drvrsrvc: DriversService,
+    protected notify: NotifiqService,
+    private identityService: AuthService,
+    private uapi: ninja,
+    private experience: ExperienceService,
+    private capi: CarsService,
+    private router: Router,
+    private lapi: LeaderboardService,
+    private tsapi: TeamsService
+  ) {
     this.getCryptoStats();
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
   }
 
-  filter = 'all';
-  bannerType = 'tournament';
+  filter = "all";
+  bannerType = "tournament";
   raceObserver: Subscription;
   liveObserver: Subscription;
   walletSubscription: Subscription;
@@ -46,7 +72,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   liveRacesData: any;
   myRewards: any;
   myLdrbrd: any;
-  myNick = '';
+  myNick = "";
   timerReady = false;
   dataReady = false;
   bonusTicketOpened = false;
@@ -91,22 +117,22 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myAffilate: any;
   tutorialStarted = false;
   baseFavRaces = [
-    { type: 'car_race_short_0', fav: false },
-    { type: 'car_race_short_10', fav: false },
-    { type: 'car_race_short_50', fav: false },
-    { type: 'car_race_short_100', fav: false },
-    { type: 'car_race_short_500', fav: false },
-    { type: 'car_race_short_1000', fav: false },
-    { type: 'car_race_24hrs_1000', fav: false },
-    { type: 'wednesday_party_race_0', fav: false },
-    { type: 'classic_tournament_0', fav: false },
-    { type: 'classic_tournament_10', fav: false },
-    { type: 'classic_tournament_100', fav: false },
-    { type: 'classic_tournament_1000', fav: false },
-    { type: 'golden_ticket_0', fav: false },
-    { type: 'car_race_ioi_1', fav: false },
-    { type: 'car_race_ioi_3', fav: false },
-    { type: 'car_race_ioi_5', fav: false },
+    { type: "car_race_short_0", fav: false },
+    { type: "car_race_short_10", fav: false },
+    { type: "car_race_short_50", fav: false },
+    { type: "car_race_short_100", fav: false },
+    { type: "car_race_short_500", fav: false },
+    { type: "car_race_short_1000", fav: false },
+    { type: "car_race_24hrs_1000", fav: false },
+    { type: "wednesday_party_race_0", fav: false },
+    { type: "classic_tournament_0", fav: false },
+    { type: "classic_tournament_10", fav: false },
+    { type: "classic_tournament_100", fav: false },
+    { type: "classic_tournament_1000", fav: false },
+    { type: "golden_ticket_0", fav: false },
+    { type: "car_race_ioi_1", fav: false },
+    { type: "car_race_ioi_3", fav: false },
+    { type: "car_race_ioi_5", fav: false },
   ];
   myFavRaces = [];
   tickets = 0;
@@ -140,8 +166,8 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myId: string;
   meManager = false;
   ngOnInit() {
-    const data = JSON.parse(localStorage.getItem('first-time'));
-    const notFinishedrace = JSON.parse(localStorage.getItem('first-race'));
+    const data = JSON.parse(localStorage.getItem("first-time"));
+    const notFinishedrace = JSON.parse(localStorage.getItem("first-race"));
     const dataNick = this.identityService.getStorageIdentity();
     if (data) {
       this.verifyModal = true;
@@ -173,7 +199,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyTeamReward();
     this.getbestRacer();
     this.getMyLeaderboard();
-
   }
   ngOnDestroy() {
     if (this.raceObserver) {
@@ -229,7 +254,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   getAllRaces() {
-
     this.astart = null;
     this.bstart = null;
     this.cstart = null;
@@ -245,29 +269,67 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.ioistartc = null;
 
     this.visibleCardIndex = 0;
-    this.raceObserver = this.api.racesNextV2List().subscribe(data => {
+    this.raceObserver = this.api.racesNextV2List().subscribe((data) => {
       const nedata: any = data;
 
       for (let x = 0; x < nedata.length; x++) {
-        if (nedata[x].race_identifier === 'car_race_ioi_1') { this.ioistarta = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_ioi_3') { this.ioistartb = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_ioi_5') { this.ioistartc = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_0') { this.astart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_10') { this.bstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_50') { this.cstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_100') { this.dstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_500') { this.estart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_short_1000') { this.fstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'car_race_24hrs_1000') { this.gstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'wednesday_party_race_0') { this.hstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_0') { this.jstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_10') { this.istart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_100') { this.istart = nedata[x]; }
-        if (nedata[x].race_identifier === 'classic_tournament_1000') { this.istart = nedata[x]; }
-        if (nedata[x].race_identifier === 'golden_ticket_0') { this.kstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'golden_ticket_10') { this.kstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'golden_ticket_100') { this.kstart = nedata[x]; }
-        if (nedata[x].race_identifier === 'golden_ticket_1000') { this.kstart = nedata[x]; }
+        if (nedata[x].race_identifier === "car_race_ioi_1") {
+          this.ioistarta = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_ioi_3") {
+          this.ioistartb = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_ioi_5") {
+          this.ioistartc = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_0") {
+          this.astart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_10") {
+          this.bstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_50") {
+          this.cstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_100") {
+          this.dstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_500") {
+          this.estart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_short_1000") {
+          this.fstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "car_race_24hrs_1000") {
+          this.gstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "wednesday_party_race_0") {
+          this.hstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "classic_tournament_0") {
+          this.jstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "classic_tournament_10") {
+          this.istart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "classic_tournament_100") {
+          this.istart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "classic_tournament_1000") {
+          this.istart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "golden_ticket_0") {
+          this.kstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "golden_ticket_10") {
+          this.kstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "golden_ticket_100") {
+          this.kstart = nedata[x];
+        }
+        if (nedata[x].race_identifier === "golden_ticket_1000") {
+          this.kstart = nedata[x];
+        }
       }
       this.newNextData = nedata;
 
@@ -278,11 +340,12 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getLiveRaces() {
     this.timerReady = false;
-    this.liveObserver = this.api.racesCurrentV2List().subscribe(data => {
+    this.liveObserver = this.api.racesCurrentV2List().subscribe((data) => {
       const nedata: any = data;
-      nedata.sort((a, b) =>
-        a.bet_amount - b.bet_amount);
-      const live = nedata.filter(word => word.finishing_in_seconds > 0 && word.is_canceled === false);
+      nedata.sort((a, b) => a.bet_amount - b.bet_amount);
+      const live = nedata.filter(
+        (word) => word.finishing_in_seconds > 0 && word.is_canceled === false
+      );
       this.liveRacesData = live;
 
       this.dataReady = true;
@@ -327,7 +390,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.timerReady = false;
 
     this.getAllRaces();
-
   }
 
   getMyLeaderboard() {
@@ -337,23 +399,21 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   filterRace(mtype: string) {
     const filtered = this.newNextData;
-    filtered.filter(race => race.race_identifier === mtype);
+    filtered.filter((race) => race.race_identifier === mtype);
     return filtered;
   }
 
   getMyRewards() {
-    this.merewardObserver = this.rwrdsrvc.rewardsMeList()
-      .subscribe(data => {
-        this.rewardsMe = data;
-      });
+    this.merewardObserver = this.rwrdsrvc.rewardsMeList().subscribe((data) => {
+      this.rewardsMe = data;
+    });
   }
   getRewards() {
-    this.transObserver = this.rwrdsrvc.rewardsList()
-      .subscribe(datax => {
-        const data: any = datax;
-        this.myRewards = data;
-        this.ioioreward = Number(data.ioi_bonus);
-      });
+    this.transObserver = this.rwrdsrvc.rewardsList().subscribe((datax) => {
+      const data: any = datax;
+      this.myRewards = data;
+      this.ioioreward = Number(data.ioi_bonus);
+    });
   }
 
   getrewardLevel(data: number) {
@@ -365,11 +425,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
     if (data > 100 && data < 1000) {
       this.rewardLevelMax = 1000;
-      this.rewardLevelSum
+      this.rewardLevelSum;
     }
     if (data > 999) {
       this.rewardLevelMax = 10000;
-
     }
     this.rewardLevel = data;
     this.rewardLevelSum = (this.rewardLevel / this.rewardLevelMax) * 100;
@@ -378,33 +437,25 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
   }
 
-
   getmyFavRaces() {
-    this.favObserver = this.drvrsrvc.driversFavRacesList().subscribe(data => {
+    this.favObserver = this.drvrsrvc.driversFavRacesList().subscribe((data) => {
       const nn: any = data;
       this.myFavRaces = nn;
       this.resortFavRaces();
     });
-
   }
 
   resortFavRaces() {
     for (let x = 0; x < this.myFavRaces.length; x++) {
-
       for (let y = 0; y < this.baseFavRaces.length; y++) {
         if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
           this.baseFavRaces[y].fav = true;
         }
       }
     }
-
   }
 
-
-
   updateFavRaces() {
-
-
     const data: any = [];
     for (let y = 0; y < this.baseFavRaces.length; y++) {
       if (this.baseFavRaces[y].fav === true) {
@@ -412,11 +463,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.updateFavCoinsObserver = this.drvrsrvc.driversFavRacesUpdate(
-      { race_identifiers: data }
-    ).subscribe(datax => {
-      this.getmyFavRaces();
-    });
+    this.updateFavCoinsObserver = this.drvrsrvc
+      .driversFavRacesUpdate({ race_identifiers: data })
+      .subscribe((datax) => {
+        this.getmyFavRaces();
+      });
   }
 
   getMyLevel() {
@@ -424,10 +475,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   launchTutorial() {
-
     const data = this.identityService.getStorageIdentity();
     this.myNick = data.nickname;
-    data.is_in_tutorial === true ? this.tutorialStarted = true : this.tutorialStarted = false;
+    data.is_in_tutorial === true
+      ? (this.tutorialStarted = true)
+      : (this.tutorialStarted = false);
 
     this.tickets = data.golden_tickets;
     if (this.tutorialStarted === true && window.innerWidth > 1024) {
@@ -438,9 +490,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkTutorial(){
+  checkTutorial() {
     const data = this.identityService.getStorageIdentity();
-    data.is_in_tutorial === true ? this.tutorialStarted = true : this.tutorialStarted = false;
+    data.is_in_tutorial === true
+      ? (this.tutorialStarted = true)
+      : (this.tutorialStarted = false);
 
     if (this.tutorialStarted === true && window.innerWidth > 1024) {
       this.introModal = true;
@@ -456,15 +510,16 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     clearInterval(this.tutorialInterval);
     this.introModal = false;
     this.tutorialStarted = true;
-    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(data => { this.identityService.meUpdate(); });
+    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe((data) => {
+      this.identityService.meUpdate();
+    });
   }
 
-
   resendActivation() {
-    this.uapi.authVerificationCreate().subscribe(data => {
-      this.notify.success('email_sent', 'open_mail');
+    this.uapi.authVerificationCreate().subscribe((data) => {
+      this.notify.success("email_sent", "open_mail");
 
-      localStorage.removeItem('first-time');
+      localStorage.removeItem("first-time");
       this.verifyModal = false;
       this.launchTutorial();
     });
@@ -474,27 +529,27 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     const d = new Date();
     const n = d.getDay();
     if (n === 3) {
-      this.bannerType = 'wednesday';
+      this.bannerType = "wednesday";
     } else if (n !== 3) {
-      this.bannerType = 'tournament';
+      this.bannerType = "tournament";
     }
   }
 
   closeTutorial() {
-    localStorage.removeItem('first-time');
+    localStorage.removeItem("first-time");
   }
 
   realCloseTutorial() {
-    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
+    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe((datax) => {
       this.identityService.meUpdate();
-      localStorage.removeItem('first-race');
+      localStorage.removeItem("first-race");
     });
   }
 
   animateValue(start, end, duration) {
     var range = end - start;
     var current = start;
-    var increment = Math.floor((end / 2) / 100);
+    var increment = Math.floor(end / 2 / 100);
     var stepTime = 10;
     if (increment === 0) {
       increment = 0.5;
@@ -512,7 +567,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   getDaysToDividens() {
-    const _initial = '2021-07-01T10:17:28.593Z';
+    const _initial = "2021-07-01T10:17:28.593Z";
     const fromTime = new Date();
     const toTime = new Date(_initial);
 
@@ -551,29 +606,33 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   getCarBonus() {
-    if (this.myCarsvals > 0 && this.myCarsvals < 1000) { this.carBonus = 6 }
-    if (this.myCarsvals > 1000 && this.myCarsvals < 5000) { this.carBonus = 12 }
-    if (this.myCarsvals > 5000 && this.myCarsvals < 10000) { this.carBonus = 18 }
-    if (this.myCarsvals > 10000) { this.carBonus = 24 }
+    if (this.myCarsvals > 0 && this.myCarsvals < 1000) {
+      this.carBonus = 6;
+    }
+    if (this.myCarsvals > 1000 && this.myCarsvals < 5000) {
+      this.carBonus = 12;
+    }
+    if (this.myCarsvals > 5000 && this.myCarsvals < 10000) {
+      this.carBonus = 18;
+    }
+    if (this.myCarsvals > 10000) {
+      this.carBonus = 24;
+    }
   }
 
   getMyCars() {
-
-    this.myCarsObserver = this.capi.carsMineList().subscribe(datax => {
+    this.myCarsObserver = this.capi.carsMineList().subscribe((datax) => {
       const data: any = datax;
       const objs: any = data.cars;
       this.dailyReward = data.daily_staking_reward;
-      const haha = objs.sort((a, b) =>
-        b.car_id - a.car_id
-      );
+      const haha = objs.sort((a, b) => b.car_id - a.car_id);
       haha.reverse();
       this.myCars = haha;
       this.calcCarsValue();
-
     });
   }
 
-  setBannerInterval(){
+  setBannerInterval() {
     this.bannerInterval = setInterval(() => {
       if (this.topBannerIndex === 3) {
         this.topBannerIndex = 1;
@@ -598,7 +657,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.setBannerInterval();
   }
 
-  manualBannerChange(index: number){
+  manualBannerChange(index: number) {
     this.topBannerIndex = index;
     clearInterval(this.bannerInterval);
     this.setBannerInterval();
@@ -610,20 +669,21 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  tipsSaved(myBool: boolean){
+  tipsSaved(myBool: boolean) {
     this.showDayTipModal = myBool;
   }
 
-  nextTutorialStep(){
+  nextTutorialStep() {
     if (this.tutorialStep === 4) {
-      this.router.navigate(['/other/tasks']);
+      this.router.navigate(["/other/tasks"]);
     }
     this.tutorialStep++;
   }
 
   getMyTeamReward() {
-    this.teamSubscription = this.lapi.leaderboardTeamInternalList().subscribe(
-      datax => {
+    this.teamSubscription = this.lapi
+      .leaderboardTeamInternalList()
+      .subscribe((datax) => {
         const data: any = datax;
         this.myTeamReward = data.team_bonus;
         this.myTeam = data;
@@ -634,20 +694,22 @@ export class StartRaceComponent implements OnInit, OnDestroy {
         }
         this.getTips();
         //this.recognizeOwnerMe();
-      }
-    );
+      });
   }
 
   getbestRacer() {
-    this.lapi.bestRider().subscribe(data => {
+    this.lapi.bestRider().subscribe((data) => {
       this.bestRacer = data;
     });
   }
 
   recognizeOpenTips() {
     if (this.meManager === false && this.isPremium === false) {
-      this.notify.error('premium needed', 'You need to become a premium team member, to see Tip of the day');
-      this.router.navigate(['/teams/join-teams']);
+      this.notify.error(
+        "premium needed",
+        "You need to become a premium team member, to see Tip of the day"
+      );
+      this.router.navigate(["/teams/join-teams"]);
       return;
     }
     if (this.meManager === true && this.isPremium === true) {
@@ -655,31 +717,30 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
   }
 
-  recognizeOwner() {
-
-  }
+  recognizeOwner() {}
 
   getMyOwner() {
     const data = this.identityService.getLeaderboardMe();
     const user = this.identityService.getDriverMe();
     this.myId = user.id;
     this.teamId = data.team_id;
-    if (user.is_paid_membership === 'Free' || !user.is_paid_membership) {
+    if (user.is_paid_membership === "Free" || !user.is_paid_membership) {
       this.isPremium = false;
     } else {
       this.isPremium = true;
     }
-
   }
 
   getTips() {
-    this.eventSubscription = this.tsapi.getTips(this.teamId).subscribe(data => {
-      this.tips = data;
-    });
+    this.eventSubscription = this.tsapi
+      .getTips(this.teamId)
+      .subscribe((data) => {
+        this.tips = data;
+      });
   }
 
   recognizeOwnerMe() {
-    console.log('cfsdv');
+    console.log("cfsdv");
     let sum = 0;
     for (let x = 0; x < this.myTeam.owners.length; x++) {
       if (this.myId === this.myTeam.owners[x].user_id) {
@@ -691,11 +752,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     } else {
       this.isOwner = false;
     }
-    console.log('cfsdv');
+    console.log("cfsdv");
     //this.getTips();
   }
-
-
-
-
 }

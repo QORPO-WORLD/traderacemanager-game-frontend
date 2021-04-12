@@ -23,13 +23,45 @@ body a,
 body p {
   color: #ffffff;
 }
-h1{
+h1 {
   font-weight: 600;
   font-size: 36px;
 }
 
-:host{
+:host {
   width: 100%;
+}
+.my-menu {
+  bottom: 20px;
+  border-radius: 10px;
+  background: #222222;
+  width: 40%;
+  display: flex;
+  position: relative;
+  .menu-item {
+    width: 50%;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+    position: relative;
+    &.inactive {
+      background: transparent;
+      p {
+        font-weight: 400;
+      }
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
 }
 .container--reward {
   width: calc(100% - 457px);
@@ -62,7 +94,7 @@ h1{
   padding: 10px 20px;
   font-size: 1.125rem;
   text-transform: uppercase;
-  a{
+  a {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
@@ -80,17 +112,16 @@ h1{
   text-align: justify;
 }
 
-
-.my-modal-dialog{
+.my-modal-dialog {
   max-width: 1026px;
-  .confirm-modal-btn{
+  .confirm-modal-btn {
     left: unset;
     right: 4%;
     transform: none;
   }
 }
 
-.page-info{
+.page-info {
   margin: 30px 0 0;
   padding-bottom: 20px;
   width: 100%;
@@ -98,32 +129,32 @@ h1{
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  .back{
-      cursor: pointer;
-      transition: .2s;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      height: 100%;
-      text-align: center;
-      min-height: 132px;
-      background: linear-gradient(0deg, #111111, #111111);
-      box-shadow: 0px 0px 80px #000000;
-      border-radius: 20px;
-      p{
-          line-height: 20px;
-          margin-bottom: 22px;
-      }
+  .back {
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    text-align: center;
+    min-height: 132px;
+    background: linear-gradient(0deg, #111111, #111111);
+    box-shadow: 0px 0px 80px #000000;
+    border-radius: 20px;
+    p {
+      line-height: 20px;
+      margin-bottom: 22px;
+    }
   }
-  .back:hover{
-      transform: scale(1.1);
+  .back:hover {
+    transform: scale(1.1);
   }
-  .text-info{
-      max-width: 812px;
-      margin: 0 20px;
+  .text-info {
+    max-width: 812px;
+    margin: 0 20px;
   }
-  .bonus-info{
+  .bonus-info {
     width: 448px;
     background: linear-gradient(0deg, #111111, #111111);
     box-shadow: 0px 0px 80px #000000;
@@ -135,67 +166,34 @@ h1{
     align-items: center;
     text-align: center;
     margin-left: auto;
-    p{
-        color: rgba(255, 255, 255, .4);
+    p {
+      color: rgba(255, 255, 255, 0.4);
     }
-    h5{
+    h5 {
       font-weight: 600;
     }
-    .divident-pool, .nft-pool{
+    .divident-pool,
+    .nft-pool {
       padding: 0 20px;
     }
   }
 }
-.team-menu{
-  width: 100%;
-  margin-top: 20px;
-  .menu-desc{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    p{
-      margin: 0;
-      font-size: 18px;
-      text-align: center;
-      color: #FFFFFF;
-      display: block;
-      width: 50%;
-      padding-bottom: 15px;
-      cursor: pointer;
-    }
-  }
-  .menu-line{
-    width: 100%;
-    background: #252525;
-    border: 4px solid #111111;
-    box-sizing: border-box;
-    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    .inner-line{
-      border-radius: 10px;
-      width: 50%;
-      height: 4px;
-      position: relative;
-      left: 50%;
-    }
-  }
-}
 
-.top-panels{
+.top-panels {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin: 20px 0;
-  .panel-item{
+  .panel-item {
     width: 49%;
-    .desc{
+    .desc {
       font-weight: 600;
       font-size: 18px;
       color: white;
       text-align: left;
     }
-    .inner-box{
+    .inner-box {
       height: 274px;
       background: #111111;
       box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.7);
@@ -203,43 +201,43 @@ h1{
       width: 100%;
       padding: 20px 0;
       position: relative;
-      .box-item{
+      .box-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
         padding: 5px 20px;
-        &:nth-child(even){
-          background-color: rgba(255,255,255, .03);
+        &:nth-child(even) {
+          background-color: rgba(255, 255, 255, 0.03);
         }
-        p{
+        p {
           color: white;
           margin: 0;
           font-size: 18px;
         }
-        .part1{
+        .part1 {
           min-width: 83px;
-          p{
+          p {
             font-weight: 600;
             text-transform: uppercase;
-            img{
+            img {
               width: 40px;
             }
           }
         }
-        .part2{
-          p{
+        .part2 {
+          p {
             font-weight: 600;
           }
         }
-        .sum{
+        .sum {
           padding-right: 4%;
-          p{
+          p {
             font-weight: 400;
           }
         }
       }
-      .info-desc{
+      .info-desc {
         position: absolute;
         color: white;
         left: 20px;
@@ -250,14 +248,14 @@ h1{
   }
 }
 
-.earn-panel{
-  .desc{
+.earn-panel {
+  .desc {
     font-weight: 600;
     font-size: 18px;
     color: white;
     text-align: left;
   }
-  .inner-box{
+  .inner-box {
     background: #111111;
     box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.7);
     border-radius: 20px;
@@ -268,21 +266,21 @@ h1{
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    .box-item{
+    .box-item {
       width: 49%;
       height: 100%;
-      .min-text{
+      .min-text {
         font-weight: 500;
         font-size: 18px;
         color: white;
         margin: 10px 0;
       }
-      .main-text{
+      .main-text {
         font-weight: 300;
         font-size: 36px;
         color: white;
         margin: 25px 0 15px;
-        span{
+        span {
           font-weight: 600;
         }
       }
@@ -290,8 +288,7 @@ h1{
   }
 }
 
-
-.flex-cont{
+.flex-cont {
   display: flex;
   align-items: center;
   padding: 0 15px;
@@ -305,11 +302,12 @@ h1{
     padding: 10px;
     border-radius: 50%;
     background: #111111;
-    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-    svg{
+    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03),
+      2px 3px 10px rgba(0, 0, 0, 0.6);
+    svg {
       overflow: visible;
     }
-    .donut-text{
+    .donut-text {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -317,7 +315,7 @@ h1{
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      p{
+      p {
         margin: 0;
         font-weight: 400;
         font-size: 18px;
@@ -332,16 +330,20 @@ h1{
   .donut-ring {
     stroke: transparent;
   }
-  .donut-hole{
+  .donut-hole {
     fill: transparent;
   }
   .donut-segment {
     transform-origin: center;
     transition: 0.3s;
   }
-  .segment-1{fill:#ccc;}
-  .segment-2{fill:#fff;}
-  
+  .segment-1 {
+    fill: #ccc;
+  }
+  .segment-2 {
+    fill: #fff;
+  }
+
   .donut-text-1 {
     fill: white;
   }
@@ -360,44 +362,44 @@ h1{
     position: relative;
     bottom: -3px;
   }
-  &.top{
+  &.top {
     justify-content: space-around;
     margin: 40px 0 30px;
-    .stat-item{
+    .stat-item {
       width: 36%;
-      &.small{
+      &.small {
         width: 28%;
       }
     }
   }
-  .stat-item{
+  .stat-item {
     text-align: center;
-    p{
-      &.desc{
+    p {
+      &.desc {
         font-size: 18px;
         font-weight: 400;
-        opacity: .2;
+        opacity: 0.2;
       }
       margin: 0;
-      color: #ffffff;              
+      color: #ffffff;
       font-weight: 500;
       font-size: 30px;
       letter-spacing: 1px;
       text-shadow: 0px 0px 50px rgba(255, 212, 60, 0.3);
     }
   }
-  &.wins-percent{
+  &.wins-percent {
     justify-content: center;
     margin: 10px 0;
     padding: 0;
-    .text-holder{
+    .text-holder {
       margin-left: 40px;
-      p{
+      p {
         color: white;
         margin: 0;
         font-size: 18px;
         font-weight: 400;
-        span{
+        span {
           font-weight: 600;
         }
       }
@@ -405,24 +407,32 @@ h1{
   }
 }
 
-@media screen and (max-width: 1700px){
-  .container--reward{
+@media screen and (max-width: 1700px) {
+  .my-menu {
+    .menu-item {
+      height: 45px;
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+  .container--reward {
     width: calc(100% - 410px);
     padding-left: 30px;
   }
-  .flex-cont{
+  .flex-cont {
     width: 95%;
-    .stat-item{
+    .stat-item {
       text-align: center;
-      p{
-        &.desc{
+      p {
+        &.desc {
           font-size: 16px;
         }
       }
     }
-    &.wins-percent{
-      .text-holder{
-        p{
+    &.wins-percent {
+      .text-holder {
+        p {
           font-size: 16px;
         }
       }
@@ -430,97 +440,91 @@ h1{
   }
 }
 
-@media screen and (max-width: 1550px){
-  p{
+@media screen and (max-width: 1550px) {
+  p {
     font-size: 12px;
   }
-  h1{
-      font-size: 25px;
+  h1 {
+    font-size: 25px;
   }
-  .text-info{
+  .text-info {
     max-width: 555px;
     margin: 0 10px;
-    h1{
+    h1 {
       font-size: 26px;
       margin: 5px 0 7px;
     }
-    p{
+    p {
       font-size: 13px;
     }
-   }
+  }
   .container--reward {
     width: calc(100% - 380px);
     padding-left: 20px;
   }
-  .page-info{
+  .page-info {
     margin: 0;
     padding-bottom: 20px;
-    .back{
-        min-height: 120px;
+    .back {
+      min-height: 120px;
     }
-    .bonus-info{
-        min-height: 120px;
-        width: 600px;
-        h4{
-          font-size: 16px;
+    .bonus-info {
+      min-height: 120px;
+      width: 600px;
+      h4 {
+        font-size: 16px;
+      }
+      .divident-pool,
+      .nft-pool {
+        padding: 0 10px;
+        img {
+          width: 30px;
         }
-        .divident-pool, .nft-pool{
-          padding: 0 10px;
-          img{
-            width: 30px;
-          }
-        }
-    }
-  }
-  .team-menu{
-    .menu-desc{
-      p{
-        font-size: 17px;
-        padding-bottom: 10px;
       }
     }
   }
-  .top-panels{
-    .panel-item{
-      .desc{
+
+  .top-panels {
+    .panel-item {
+      .desc {
         font-size: 16px;
         margin-bottom: 10px;
       }
-      .inner-box{
+      .inner-box {
         height: 224px;
-        .box-item{
+        .box-item {
           padding: 4px 15px;
-          p{
+          p {
             font-size: 16px;
           }
-          .part1{
-            p{
-              img{
+          .part1 {
+            p {
+              img {
                 width: 35px;
               }
             }
           }
-          .sum{
+          .sum {
             padding-right: 3%;
           }
         }
       }
     }
   }
-  .earn-panel{
-    .desc{
+  .earn-panel {
+    .desc {
       font-size: 16px;
       margin-bottom: 10px;
     }
-    .inner-box{
+    .inner-box {
       height: unset;
       padding: 17px;
-      .box-item{
-        .min-text{
+      .box-item {
+        .min-text {
           font-size: 16px;
           margin: 6px 0;
         }
-        .main-text{
+        .main-text {
           font-size: 30px;
           margin: 20px 0 15px;
         }
@@ -528,22 +532,22 @@ h1{
     }
   }
 
-  .flex-cont{
-    .svg-item{
+  .flex-cont {
+    .svg-item {
       width: 100px;
       height: 100px;
       min-width: 100px;
     }
-    .stat-item{
-      p{
-        &.desc{
+    .stat-item {
+      p {
+        &.desc {
           font-size: 14px;
         }
       }
     }
-    &.wins-percent{
-      .text-holder{
-        p{
+    &.wins-percent {
+      .text-holder {
+        p {
           font-size: 14px;
         }
       }
@@ -551,13 +555,21 @@ h1{
   }
 }
 
-@media screen and (max-width: 1200px){
-  .text-info{
+@media screen and (max-width: 1200px) {
+  .my-menu {
+    .menu-item {
+      height: 40px;
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  .text-info {
     max-width: 555px;
-    h1{
+    h1 {
       font-size: 20px;
     }
-    p{
+    p {
       font-size: 12px;
     }
   }
@@ -565,60 +577,54 @@ h1{
     width: calc(100% - 340px);
     padding-left: 13px;
   }
-  .page-info{
+  .page-info {
     margin-top: 20px;
   }
-  .team-menu{
-    .menu-desc{
-      p{
-        font-size: 15px;
-      }
-    }
-  }
-  .top-panels{
-    .panel-item{
-      .desc{
+
+  .top-panels {
+    .panel-item {
+      .desc {
         font-size: 14px;
         margin-bottom: 7px;
       }
-      .inner-box{
+      .inner-box {
         height: 200px;
-        .box-item{
+        .box-item {
           padding: 4px 12px;
-          p{
+          p {
             font-size: 14px;
           }
-          .part1{
-            p{
-              img{
+          .part1 {
+            p {
+              img {
                 width: 32px;
               }
             }
           }
-          .sum{
+          .sum {
             padding-right: 2%;
           }
         }
       }
     }
   }
-  .earn-panel{
-    .desc{
+  .earn-panel {
+    .desc {
       font-size: 14px;
       margin-bottom: 7px;
     }
-    .inner-box{
+    .inner-box {
       height: unset;
       padding: 15px;
-      .info-desc{
+      .info-desc {
         font-size: 14px;
       }
-      .box-item{
-        .min-text{
+      .box-item {
+        .min-text {
           font-size: 14px;
           margin: 4px 0;
         }
-        .main-text{
+        .main-text {
           font-size: 26px;
           margin: 15px 0 10px;
         }
@@ -627,91 +633,93 @@ h1{
   }
 }
 
-@media screen and (max-width: 1024px){
-  .container--reward{
+@media screen and (max-width: 1024px) {
+  .container--reward {
     width: 100%;
     padding: 0 20px;
   }
-  .page-info{
+  .page-info {
     margin-top: 0;
     padding-bottom: 10px;
   }
 }
 
-@media screen and ( max-width: 800px )
-{ 
-  .text-info{
-      order: 3;
-      margin: 15px auto;
-      text-align: center;
-    }
+@media screen and (max-width: 800px) {
+  .text-info {
+    order: 3;
+    margin: 15px auto;
+    text-align: center;
+  }
 
-    .earn-panel{
-      width: 100%;
-      margin: 15px auto;
-      .inner-box{
-        flex-wrap: wrap;
-        height: unset;
-        .box-item{
-          width: 100%;
-          text-align: center;
-          margin-bottom: 40px;
-        }
+  .earn-panel {
+    width: 100%;
+    margin: 15px auto;
+    .inner-box {
+      flex-wrap: wrap;
+      height: unset;
+      .box-item {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
       }
     }
-    .flex-cont{
-      &.wins-percent{
-        .text-holder{
-          margin-left: 0;
-        }
-      }    
-    }
-}
-
-@media screen and (max-width: 640px){
-  .page-info{
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    .text-info{
-        box-sizing: border-box;
-        flex-basis: 100%;
-        max-width: 100%;
-        order: 3;
-        margin: 0;
+  }
+  .flex-cont {
+    &.wins-percent {
+      .text-holder {
+        margin-left: 0;
+      }
     }
   }
-  .back{
+}
+
+@media screen and (max-width: 640px) {
+  .my-menu {
+    margin: 20px 0 25px;
+    width: 100%;
+    .menu-item {
+      height: 36px;
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+  .page-info {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    .text-info {
+      box-sizing: border-box;
+      flex-basis: 100%;
+      max-width: 100%;
+      order: 3;
+      margin: 0;
+    }
+  }
+  .back {
     box-sizing: border-box;
     padding: 0 10px;
     flex-basis: 23%;
     order: 1;
   }
-  .bonus-info{
-      flex-basis: 70%;
-      order: 2;
+  .bonus-info {
+    flex-basis: 70%;
+    order: 2;
   }
-  .team-menu{
-    .menu-desc{
-      p{
-        font-size: 14px;
-        padding-bottom: 6px;
-      }
-    }
-  }
-  .top-panels{
+
+  .top-panels {
     flex-wrap: wrap;
-    .panel-item{
+    .panel-item {
       width: 100%;
       margin: 20px auto;
     }
   }
-  .earn-panel{
+  .earn-panel {
     width: 100%;
     margin: 15px auto;
-    .inner-box{
+    .inner-box {
       flex-wrap: wrap;
       height: unset;
-      .box-item{
+      .box-item {
         width: 100%;
         text-align: center;
       }
@@ -719,40 +727,37 @@ h1{
   }
 }
 
-@media screen and (max-width: 550px){
-  .flex-cont{
+@media screen and (max-width: 550px) {
+  .my-menu {
+    flex-wrap: wrap;
+    width: 80%;
+    left: 10%;
+    .menu-item {
+      width: 100%;
+    }
+  }
+  .flex-cont {
     flex-direction: column;
-    .svg-item{
+    .svg-item {
       margin-top: 30px;
       order: 2;
     }
-    .text-holder{
+    .text-holder {
       order: 1;
     }
   }
-
 }
 
-
-@media screen and (max-width: 450px){
-  .top-panels{
-    .panel-item{
+@media screen and (max-width: 450px) {
+  .top-panels {
+    .panel-item {
       margin: 12px auto;
     }
   }
-  .earn-panel{
+  .earn-panel {
     margin: 10px auto;
   }
 }
 
-@media only screen and (max-width: 400px){
-  .team-menu{
-    .menu-desc{
-      p{
-        font-size: 12px;
-        padding-bottom: 5px;
-      }
-    }
-  }
+@media only screen and (max-width: 400px) {
 }
-

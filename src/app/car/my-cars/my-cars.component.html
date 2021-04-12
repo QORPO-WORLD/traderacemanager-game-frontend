@@ -1,121 +1,244 @@
-
-
 <div class="main-holder">
-  <div class="top-info"> 
+  <div class="top-info">
     <div class="back" [routerLink]="['/race/start-race']">
       <p>&lt;</p>
-      <p>{{'shared.back' | translate}}</p>
+      <p>{{ "shared.back" | translate }}</p>
     </div>
     <div class="text-info">
-      <h1>{{'garage.nft_s' | translate}}</h1>
-      <p>{{'garage.nft_desc' | translate}}</p>
+      <h1>{{ "garage.nft_s" | translate }}</h1>
+      <p>{{ "garage.nft_desc" | translate }}</p>
     </div>
     <div class="info-box">
       <div class="box-item">
-        <p class="value">{{myCarsvals  | number:'1.2-2':'fr'}} IOI</p>
+        <p class="value">{{ myCarsvals | number: "1.2-2":"fr" }} IOI</p>
         <p class="desc">asset value</p>
       </div>
       <div class="box-item">
-        <p class="value">&#36;{{(myCarsvals * 0.4) | number:'1.2-2':'fr'}}</p>
+        <p class="value">&#36;{{ myCarsvals * 0.4 | number: "1.2-2":"fr" }}</p>
         <p class="desc">asset value</p>
       </div>
       <div class="box-item">
-        <p class="value">{{carBonus}}%</p>
+        <p class="value">{{ carBonus }}%</p>
         <p class="desc">ROI</p>
       </div>
     </div>
   </div>
 
   <div class="my-menu">
-      <div class="menu-desc">
-          <p class="join-team active" [routerLink]="['/car/garage/my-cars']">{{'garage.my_cars_btn' | translate}}</p>
-          <p class="team-chat" [routerLink]="['/car/garage']">{{'garage.buy_nfts' | translate}}</p>
-          <p class="team-chat" [routerLink]="['/car/nft-market']">{{'garage.market' | translate}}</p>
-      </div>
-      <div class="menu-line">
-          <div class="inner-line my-cta-btn-back">&nbsp;</div>
-      </div>
+    <div class="menu-desc">
+      <p class="join-team active" [routerLink]="['/car/garage/my-cars']">
+        {{ "garage.my_cars_btn" | translate }}
+      </p>
+      <p class="team-chat" [routerLink]="['/car/garage']">
+        {{ "garage.buy_nfts" | translate }}
+      </p>
+      <p class="team-chat" [routerLink]="['/car/nft-market']">
+        {{ "garage.market" | translate }}
+      </p>
+    </div>
+    <div class="menu-line">
+      <div class="inner-line my-cta-btn-back">&nbsp;</div>
+    </div>
   </div>
 
   <div class="content-holder">
-
     <div class="zero-car-holder" *ngIf="hasNoCars === true">
       <div class="inner-holder">
         <div class="img-holder">
-          <img *ngIf="myTeam === 'IOI'" src="/assets/base/images/nft-cars/car0b.png" alt="image of default non nft car">
-          <img *ngIf="myTeam === 'TRX'" src="/assets/base/images/nft-cars/car0g.png" alt="image of default non nft car">
-          <img *ngIf="myTeam === 'BTC'" src="/assets/base/images/nft-cars/car0r.png" alt="image of default non nft car">
+          <img
+            *ngIf="myTeam === 'IOI'"
+            src="/assets/base/images/nft-cars/car0b.png"
+            alt="image of default non nft car"
+          />
+          <img
+            *ngIf="myTeam === 'TRX'"
+            src="/assets/base/images/nft-cars/car0g.png"
+            alt="image of default non nft car"
+          />
+          <img
+            *ngIf="myTeam === 'BTC'"
+            src="/assets/base/images/nft-cars/car0r.png"
+            alt="image of default non nft car"
+          />
         </div>
         <div class="text-holder">
           <p class="heading">Free car</p>
-          <p class="text">This is a free Basic <span>NON NFTs</span> car you received automatically for free. 
-            Buy our NFTs cars to start earning more money in races and also by simply holding them.</p>
-          <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFTs</button>
+          <p class="text">
+            This is a free Basic <span>NON NFTs</span> car you received
+            automatically for free. Buy our NFTs cars to start earning more
+            money in races and also by simply holding them.
+          </p>
+          <button
+            class="my-cta-btn-back hoverable"
+            [routerLink]="['/car/garage']"
+          >
+            Buy NFTs
+          </button>
         </div>
       </div>
     </div>
 
     <div class="switchers-holder">
-      <p class="my-cta-btn-back" (click)="changeEdition(1)" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="changeEdition(2)" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="changeEdition(3)" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="changeEdition(4)" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
+      <p
+        class="my-cta-btn-back"
+        (click)="changeEdition(1)"
+        [ngClass]="{ inactive: editionIndex !== 1 }"
+      >
+        {{ "garage.bronze" | translate }}
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="changeEdition(2)"
+        [ngClass]="{ inactive: editionIndex !== 2 }"
+      >
+        {{ "garage.silver" | translate }}
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="changeEdition(3)"
+        [ngClass]="{ inactive: editionIndex !== 3 }"
+      >
+        {{ "garage.gold" | translate }}
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="changeEdition(4)"
+        [ngClass]="{ inactive: editionIndex !== 4 }"
+      >
+        {{ "garage.platinum" | translate }}
+      </p>
     </div>
 
     <div class="cars-cont">
       <div class="single-car">
-        <div class="img-holder" [ngClass]="{'rare': carIndex > 24, 'unlocked': boughtCar === true}">
-          <img [src]="'/assets/base/images/nft-cars/car' + carIndex + '.png'" alt="Big image of selected car">
-          <img *ngIf="carIndex === 25" src="/assets/base/images/garage/bronze-back.png" alt="" class="back-img">
-          <img *ngIf="carIndex === 26" src="/assets/base/images/garage/silver-back.png" alt="" class="back-img">
-          <img *ngIf="carIndex === 27" src="/assets/base/images/garage/gold-back.png" alt="" class="back-img">
-          <img *ngIf="carIndex === 28" src="/assets/base/images/garage/platinum-back.png" alt="" class="back-img">
+        <div
+          class="img-holder"
+          [ngClass]="{ rare: carIndex > 24, unlocked: boughtCar === true }"
+        >
+          <img
+            [src]="'/assets/base/images/nft-cars/car' + carIndex + '.png'"
+            alt="Big image of selected car"
+          />
+          <img
+            *ngIf="carIndex === 25"
+            src="/assets/base/images/garage/bronze-back.png"
+            alt=""
+            class="back-img"
+          />
+          <img
+            *ngIf="carIndex === 26"
+            src="/assets/base/images/garage/silver-back.png"
+            alt=""
+            class="back-img"
+          />
+          <img
+            *ngIf="carIndex === 27"
+            src="/assets/base/images/garage/gold-back.png"
+            alt=""
+            class="back-img"
+          />
+          <img
+            *ngIf="carIndex === 28"
+            src="/assets/base/images/garage/platinum-back.png"
+            alt=""
+            class="back-img"
+          />
         </div>
         <div class="stats-holder">
-          <h1 *ngIf="editionIndex === 1">Bronze {{ shiftIndex + 1 }}</h1>
-          <h1 *ngIf="editionIndex === 2">Silver {{ shiftIndex + 1 }}</h1>
-          <h1 *ngIf="editionIndex === 3">Gold {{ shiftIndex + 1 }}</h1>
-          <h1 *ngIf="editionIndex === 4">Platinum {{ shiftIndex + 1 }}</h1>
-          <p class="copy-desc"><img src="/assets/base/images/icons/copy-icon.svg" alt="Copy icon" (click)="copyInputMessage()"><a target="_blank" href="https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions" title="Smartcontract address">0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019</a></p>
+          <h1 *ngIf="editionIndex === 1">
+            {{ carsNames[shiftIndex]["name"] }}
+          </h1>
+          <h1 *ngIf="editionIndex === 2">
+            {{ carsNames[shiftIndex + 7]["name"] }}
+          </h1>
+          <h1 *ngIf="editionIndex === 3">
+            {{ carsNames[shiftIndex + 14]["name"] }}
+          </h1>
+          <h1 *ngIf="editionIndex === 4">
+            {{ carsNames[shiftIndex + 21]["name"] }}
+          </h1>
+          <p class="copy-desc">
+            <img
+              src="/assets/base/images/icons/copy-icon.svg"
+              alt="Copy icon"
+              (click)="copyInputMessage()"
+            /><a
+              target="_blank"
+              href="https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions"
+              title="Smartcontract address"
+              >0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019</a
+            >
+          </p>
 
           <ng-container *ngIf="editionIndex === 1">
             <div class="car-stats">
               <div class="stat-item">
-                  <p class="desc">IOI value</p>
-                  <div class="my-progress-bar">
-                      <ng-container *ngIf="carIndex !== 25">
-                        <div class="inner-bar" [ngStyle]="{'width.%': 60000 / 15600}"></div>
-                        <p [ngStyle]="{'left.%': 60000 / 15600}" class="curr-value">600</p>
-                      </ng-container>
-                      <ng-container *ngIf="carIndex === 25">
-                        <div class="inner-bar" [ngStyle]="{'width.%': 360000 / 15600}"></div>
-                        <p [ngStyle]="{'left.%': 360000 / 15600}" class="curr-value">3 600</p>
-                      </ng-container>
-                      <p class="max-value">15 600</p>
-                  </div>
+                <p class="desc">IOI value</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 25">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 60000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 60000 / 15600 }"
+                      class="curr-value"
+                    >
+                      600
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 25">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 360000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 360000 / 15600 }"
+                      class="curr-value"
+                    >
+                      3 600
+                    </p>
+                  </ng-container>
+                  <p class="max-value">15 600</p>
+                </div>
               </div>
               <div class="stat-item">
-                  <p class="desc">IOI daily stake</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 25">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 10 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 10 / 10.25}" class="curr-value">0.1</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 25">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 60 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 60 / 10.25}" class="curr-value">0.6</p>
-                    </ng-container>
-                      <p class="max-value">10.25</p>
-                  </div>
+                <p class="desc">IOI daily stake</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 25">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 10 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 10 / 10.25 }" class="curr-value">
+                      0.1
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 25">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 60 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 60 / 10.25 }" class="curr-value">
+                      0.6
+                    </p>
+                  </ng-container>
+                  <p class="max-value">10.25</p>
+                </div>
               </div>
               <div class="stat-item">
                 <p class="desc">ROI %</p>
                 <div class="my-progress-bar">
                   <ng-container>
-                    <div class="inner-bar" [ngStyle]="{'width.%': 600 / 24}"></div>
-                    <p [ngStyle]="{'left.%': 600 / 24}" class="curr-value">6%</p>
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 600 / 24 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 600 / 24 }" class="curr-value">
+                      6%
+                    </p>
                   </ng-container>
-                    <p class="max-value">24</p>
+                  <p class="max-value">24</p>
                 </div>
               </div>
             </div>
@@ -124,41 +247,72 @@
           <ng-container *ngIf="editionIndex === 2">
             <div class="car-stats">
               <div class="stat-item">
-                  <p class="desc">IOI value</p>
-                  <div class="my-progress-bar">
-                      <ng-container *ngIf="carIndex !== 26">
-                        <div class="inner-bar" [ngStyle]="{'width.%': 100000 / 15600}"></div>
-                        <p [ngStyle]="{'left.%': 100000 / 15600}" class="curr-value">1 000</p>
-                      </ng-container>
-                      <ng-container *ngIf="carIndex === 26">
-                        <div class="inner-bar" [ngStyle]="{'width.%': 600000 / 15600}"></div>
-                        <p [ngStyle]="{'left.%': 600000 / 15600}" class="curr-value">6 000</p>
-                      </ng-container>
-                      <p class="max-value">15 600</p>
-                  </div>
+                <p class="desc">IOI value</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 26">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 100000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 100000 / 15600 }"
+                      class="curr-value"
+                    >
+                      1 000
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 26">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 600000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 600000 / 15600 }"
+                      class="curr-value"
+                    >
+                      6 000
+                    </p>
+                  </ng-container>
+                  <p class="max-value">15 600</p>
+                </div>
               </div>
               <div class="stat-item">
-                  <p class="desc">IOI daily stake</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 26">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 33 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 33 / 10.25}" class="curr-value">0.33</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 26">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 198 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 198 / 10.25}" class="curr-value">1.98</p>
-                    </ng-container>
-                      <p class="max-value">10.25</p>
-                  </div>
+                <p class="desc">IOI daily stake</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 26">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 33 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 33 / 10.25 }" class="curr-value">
+                      0.33
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 26">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 198 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 198 / 10.25 }" class="curr-value">
+                      1.98
+                    </p>
+                  </ng-container>
+                  <p class="max-value">10.25</p>
+                </div>
               </div>
               <div class="stat-item">
                 <p class="desc">ROI %</p>
                 <div class="my-progress-bar">
                   <ng-container>
-                    <div class="inner-bar" [ngStyle]="{'width.%': 1200 / 24}"></div>
-                    <p [ngStyle]="{'left.%': 1200 / 24}" class="curr-value">12%</p>
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 1200 / 24 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 1200 / 24 }" class="curr-value">
+                      12%
+                    </p>
                   </ng-container>
-                    <p class="max-value">24</p>
+                  <p class="max-value">24</p>
                 </div>
               </div>
             </div>
@@ -167,41 +321,72 @@
           <ng-container *ngIf="editionIndex === 3">
             <div class="car-stats">
               <div class="stat-item">
-                  <p class="desc">IOI value</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 27">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 160000 / 15600}"></div>
-                      <p [ngStyle]="{'left.%': 160000 / 15600}" class="curr-value">1 600</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 27">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 960000 / 15600}"></div>
-                      <p [ngStyle]="{'left.%': 960000 / 15600}" class="curr-value">9 600</p>
-                    </ng-container>
-                      <p class="max-value">15 600</p>
-                  </div>
+                <p class="desc">IOI value</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 27">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 160000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 160000 / 15600 }"
+                      class="curr-value"
+                    >
+                      1 600
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 27">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 960000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 960000 / 15600 }"
+                      class="curr-value"
+                    >
+                      9 600
+                    </p>
+                  </ng-container>
+                  <p class="max-value">15 600</p>
+                </div>
               </div>
               <div class="stat-item">
-                  <p class="desc">IOI daily stake</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 27">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 79 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 79 / 10.25}" class="curr-value">0.79</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 27">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 474 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 474 / 10.25}" class="curr-value">4.74</p>
-                    </ng-container>
-                      <p class="max-value">10.25</p>
-                  </div>
+                <p class="desc">IOI daily stake</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 27">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 79 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 79 / 10.25 }" class="curr-value">
+                      0.79
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 27">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 474 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 474 / 10.25 }" class="curr-value">
+                      4.74
+                    </p>
+                  </ng-container>
+                  <p class="max-value">10.25</p>
+                </div>
               </div>
               <div class="stat-item">
                 <p class="desc">ROI %</p>
                 <div class="my-progress-bar">
                   <ng-container>
-                    <div class="inner-bar" [ngStyle]="{'width.%': 1800 / 24}"></div>
-                    <p [ngStyle]="{'left.%': 1800 / 24}" class="curr-value">18%</p>
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 1800 / 24 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 1800 / 24 }" class="curr-value">
+                      18%
+                    </p>
                   </ng-container>
-                    <p class="max-value">24</p>
+                  <p class="max-value">24</p>
                 </div>
               </div>
             </div>
@@ -210,53 +395,89 @@
           <ng-container *ngIf="editionIndex === 4">
             <div class="car-stats">
               <div class="stat-item">
-                  <p class="desc">IOI value</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 28">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 260000 / 15600}"></div>
-                      <p [ngStyle]="{'left.%': 260000 / 15600}" class="curr-value">2 600</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 28">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 100}"></div>
-                      <p [ngStyle]="{'left.%': 100}" class="curr-value">15 600</p>
-                    </ng-container>
-                      <p class="max-value">15 600</p>
-                  </div>
+                <p class="desc">IOI value</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 28">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 260000 / 15600 }"
+                    ></div>
+                    <p
+                      [ngStyle]="{ 'left.%': 260000 / 15600 }"
+                      class="curr-value"
+                    >
+                      2 600
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 28">
+                    <div class="inner-bar" [ngStyle]="{ 'width.%': 100 }"></div>
+                    <p [ngStyle]="{ 'left.%': 100 }" class="curr-value">
+                      15 600
+                    </p>
+                  </ng-container>
+                  <p class="max-value">15 600</p>
+                </div>
               </div>
               <div class="stat-item">
-                  <p class="desc">IOI daily stake</p>
-                  <div class="my-progress-bar">
-                    <ng-container *ngIf="carIndex !== 28">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 171 / 10.25}"></div>
-                      <p [ngStyle]="{'left.%': 171 / 10.25}" class="curr-value">1.71</p>
-                    </ng-container>
-                    <ng-container *ngIf="carIndex === 28">
-                      <div class="inner-bar" [ngStyle]="{'width.%': 100}"></div>
-                      <p [ngStyle]="{'left.%': 100}" class="curr-value">10.25</p>
-                    </ng-container>
-                      <p class="max-value">10.25</p>
-                  </div>
+                <p class="desc">IOI daily stake</p>
+                <div class="my-progress-bar">
+                  <ng-container *ngIf="carIndex !== 28">
+                    <div
+                      class="inner-bar"
+                      [ngStyle]="{ 'width.%': 171 / 10.25 }"
+                    ></div>
+                    <p [ngStyle]="{ 'left.%': 171 / 10.25 }" class="curr-value">
+                      1.71
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="carIndex === 28">
+                    <div class="inner-bar" [ngStyle]="{ 'width.%': 100 }"></div>
+                    <p [ngStyle]="{ 'left.%': 100 }" class="curr-value">
+                      10.25
+                    </p>
+                  </ng-container>
+                  <p class="max-value">10.25</p>
+                </div>
               </div>
               <div class="stat-item">
                 <p class="desc">ROI %</p>
                 <div class="my-progress-bar">
                   <ng-container>
-                    <div class="inner-bar" [ngStyle]="{'width.%': 100}"></div>
-                    <p [ngStyle]="{'left.%': 100}" class="curr-value">24%</p>
+                    <div class="inner-bar" [ngStyle]="{ 'width.%': 100 }"></div>
+                    <p [ngStyle]="{ 'left.%': 100 }" class="curr-value">24%</p>
                   </ng-container>
-                    <p class="max-value">24</p>
+                  <p class="max-value">24</p>
                 </div>
               </div>
             </div>
           </ng-container>
-          
+
           <div class="btns-holder">
-            <div class="casual" *ngIf="boughtCar === true" [routerLink]="['/other/transfer-nft']" [queryParams]="{ nftId: carIndex }">
-              <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
+            <div
+              class="casual"
+              *ngIf="boughtCar === true"
+              [routerLink]="['/other/transfer-nft']"
+              [queryParams]="{ nftId: carIndex }"
+            >
+              <div class="inner">
+                <p>
+                  <img
+                    src="/assets/base/images/icons/withdraw-icon.png"
+                    alt=""
+                  />Transfer
+                </p>
+              </div>
             </div>
 
             <div class="casual inactive" *ngIf="boughtCar === false">
-              <div class="inner"><p><img src="/assets/base/images/icons/withdraw-icon.png" alt="">Transfer</p></div>
+              <div class="inner">
+                <p>
+                  <img
+                    src="/assets/base/images/icons/withdraw-icon.png"
+                    alt=""
+                  />Transfer
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -264,119 +485,377 @@
       <div class="all-cars">
         <ng-container *ngIf="editionIndex === 1">
           <div class="cars-inner bronze">
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car1.length > 0}" (click)="selectMyCar(1)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car1.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car1.length > 0 }"
+              (click)="selectMyCar(1)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car1.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car2.length > 0}" (click)="selectMyCar(2)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car2.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car2.length > 0 }"
+              (click)="selectMyCar(2)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car2.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car3.length > 0}" (click)="selectMyCar(3)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car3.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car3.length > 0 }"
+              (click)="selectMyCar(3)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car3.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car4.length > 0}" (click)="selectMyCar(4)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car4.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car4.length > 0 }"
+              (click)="selectMyCar(4)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car4.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car5.length > 0}" (click)="selectMyCar(5)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car5.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car5.length > 0 }"
+              (click)="selectMyCar(5)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car5.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car6.length > 0}" (click)="selectMyCar(6)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car6.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car6.length > 0 }"
+              (click)="selectMyCar(6)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car6.png"
+                alt=""
+              />
             </div>
-            <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car25.length > 0}" (click)="selectMyCar(25)">
+            <div
+              class="car-item rare"
+              [ngClass]="{ unlocked: myCarsSorted.car25.length > 0 }"
+              (click)="selectMyCar(25)"
+            >
               <p class="desc">Rare</p>
-              <img src="/assets/base/images/garage/bronze-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car25.png" alt="">
+              <img
+                src="/assets/base/images/garage/bronze-back.png"
+                alt=""
+                class="back-img"
+              />
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car25.png"
+                alt=""
+              />
             </div>
-            <div class="car-high bronze" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
+            <div
+              class="car-high bronze"
+              [ngStyle]="{ 'left.%': shiftIndex * 14.28 }"
+            >
+              <div class="inner"></div>
+            </div>
           </div>
         </ng-container>
         <ng-container *ngIf="editionIndex === 2">
           <div class="cars-inner silver">
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car7.length > 0}" (click)="selectMyCar(7)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car7.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car7.length > 0 }"
+              (click)="selectMyCar(7)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car7.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car8.length > 0}" (click)="selectMyCar(8)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car8.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car8.length > 0 }"
+              (click)="selectMyCar(8)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car8.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car9.length > 0}" (click)="selectMyCar(9)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car9.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car9.length > 0 }"
+              (click)="selectMyCar(9)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car9.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car10.length > 0}" (click)="selectMyCar(10)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car10.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car10.length > 0 }"
+              (click)="selectMyCar(10)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car10.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car11.length > 0}" (click)="selectMyCar(11)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car11.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car11.length > 0 }"
+              (click)="selectMyCar(11)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car11.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car12.length > 0}" (click)="selectMyCar(12)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car12.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car12.length > 0 }"
+              (click)="selectMyCar(12)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car12.png"
+                alt=""
+              />
             </div>
-            <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car26.length > 0}" (click)="selectMyCar(26)">
+            <div
+              class="car-item rare"
+              [ngClass]="{ unlocked: myCarsSorted.car26.length > 0 }"
+              (click)="selectMyCar(26)"
+            >
               <p class="desc">Rare</p>
-              <img src="/assets/base/images/garage/silver-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car26.png" alt="">
+              <img
+                src="/assets/base/images/garage/silver-back.png"
+                alt=""
+                class="back-img"
+              />
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car26.png"
+                alt=""
+              />
             </div>
-            <div class="car-high silver" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
+            <div
+              class="car-high silver"
+              [ngStyle]="{ 'left.%': shiftIndex * 14.28 }"
+            >
+              <div class="inner"></div>
+            </div>
           </div>
         </ng-container>
         <ng-container *ngIf="editionIndex === 3">
           <div class="cars-inner gold">
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car13.length > 0}" (click)="selectMyCar(13)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car13.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car13.length > 0 }"
+              (click)="selectMyCar(13)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car13.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car14.length > 0}" (click)="selectMyCar(14)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car14.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car14.length > 0 }"
+              (click)="selectMyCar(14)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car14.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car15.length > 0}" (click)="selectMyCar(15)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car15.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car15.length > 0 }"
+              (click)="selectMyCar(15)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car15.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car16.length > 0}" (click)="selectMyCar(16)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car16.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car16.length > 0 }"
+              (click)="selectMyCar(16)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car16.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car17.length > 0}" (click)="selectMyCar(17)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car17.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car17.length > 0 }"
+              (click)="selectMyCar(17)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car17.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car18.length > 0}" (click)="selectMyCar(18)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car18.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car18.length > 0 }"
+              (click)="selectMyCar(18)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car18.png"
+                alt=""
+              />
             </div>
-            <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car27.length > 0}" (click)="selectMyCar(27)">
+            <div
+              class="car-item rare"
+              [ngClass]="{ unlocked: myCarsSorted.car27.length > 0 }"
+              (click)="selectMyCar(27)"
+            >
               <p class="desc">Rare</p>
-              <img src="/assets/base/images/garage/gold-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car27.png" alt="">
+              <img
+                src="/assets/base/images/garage/gold-back.png"
+                alt=""
+                class="back-img"
+              />
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car27.png"
+                alt=""
+              />
             </div>
-            <div class="car-high gold" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
+            <div
+              class="car-high gold"
+              [ngStyle]="{ 'left.%': shiftIndex * 14.28 }"
+            >
+              <div class="inner"></div>
+            </div>
           </div>
         </ng-container>
         <ng-container *ngIf="editionIndex === 4">
           <div class="cars-inner platinum">
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car19.length > 0}" (click)="selectMyCar(19)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car19.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car19.length > 0 }"
+              (click)="selectMyCar(19)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car19.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car20.length > 0}" (click)="selectMyCar(20)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car20.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car20.length > 0 }"
+              (click)="selectMyCar(20)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car20.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car21.length > 0}" (click)="selectMyCar(21)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car21.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car21.length > 0 }"
+              (click)="selectMyCar(21)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car21.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car22.length > 0}" (click)="selectMyCar(22)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car22.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car22.length > 0 }"
+              (click)="selectMyCar(22)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car22.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car23.length > 0}" (click)="selectMyCar(23)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car23.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car23.length > 0 }"
+              (click)="selectMyCar(23)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car23.png"
+                alt=""
+              />
             </div>
-            <div class="car-item" [ngClass]="{'unlocked': myCarsSorted.car24.length > 0}" (click)="selectMyCar(24)">
-              <img class="car-img" src="/assets/base/images/nft-cars/car24.png" alt="">
+            <div
+              class="car-item"
+              [ngClass]="{ unlocked: myCarsSorted.car24.length > 0 }"
+              (click)="selectMyCar(24)"
+            >
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car24.png"
+                alt=""
+              />
             </div>
-            <div class="car-item rare" [ngClass]="{'unlocked': myCarsSorted.car28.length > 0}" (click)="selectMyCar(28)">
+            <div
+              class="car-item rare"
+              [ngClass]="{ unlocked: myCarsSorted.car28.length > 0 }"
+              (click)="selectMyCar(28)"
+            >
               <p class="desc">Rare</p>
-              <img src="/assets/base/images/garage/platinum-back.png" alt="" class="back-img">
-              <img class="car-img" src="/assets/base/images/nft-cars/car28.png" alt="">
+              <img
+                src="/assets/base/images/garage/platinum-back.png"
+                alt=""
+                class="back-img"
+              />
+              <img
+                class="car-img"
+                src="/assets/base/images/nft-cars/car28.png"
+                alt=""
+              />
             </div>
-            <div class="car-high platinum" [ngStyle]="{'left.%': shiftIndex * 14.28}"><div class="inner"></div></div>
+            <div
+              class="car-high platinum"
+              [ngStyle]="{ 'left.%': shiftIndex * 14.28 }"
+            >
+              <div class="inner"></div>
+            </div>
           </div>
         </ng-container>
       </div>
     </div>
   </div>
-
 </div>
-

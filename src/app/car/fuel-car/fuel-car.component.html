@@ -1,32 +1,50 @@
-
-
-<h2 class="loading" *ngIf="!myCars">{{'fuel_car.loading' | translate}}</h2>
+<h2 class="loading" *ngIf="!myCars">{{ "fuel_car.loading" | translate }}</h2>
 
 <div class="main-holder" *ngIf="myCars?.length > 0">
-
-
-
   <div class="main-top-panel">
-
     <!-- <img src="/assets/base/images/logo.png" alt="ioi logo" class="ioi-logo" [routerLink]="['/race/start-race']" [ngClass]="{'tutorial-hide': tutorialStep === 1 || tutorialStep === 4}"> -->
 
     <ng-container *ngIf="stepIndex === 1 && introModal === false">
-      <div class="back" [routerLink]="['/race/start-race']">
+      <div class="back" [routerLink]="['/race/all-races']">
         <p>&lt;</p>
         <p>BACK</p>
       </div>
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 2">
-      <div class="back" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">
+      <div
+        class="back"
+        (click)="stepIndex = 1"
+        *ngIf="
+          firstLogin === false &&
+          (selectedCarIndex < 1 || sumFuel / sumlength === 100) &&
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3
+        "
+      >
         <p>&lt;</p>
         <p>BACK</p>
       </div>
-      <div class="back" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false">
+      <div
+        class="back"
+        (click)="resetSelected(); calcSumFuel()"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 &&
+          introModal === false
+        "
+      >
         <p>&lt;</p>
         <p>BACK</p>
       </div>
-      <div class="back" *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()">
+      <div
+        class="back"
+        *ngIf="
+          selectedCarIndex > 0 &&
+          sumFuel / sumlength !== 100 &&
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 &&
+          introModal === false
+        "
+        (click)="selectedCarIndex = selectedCarIndex - 1; calcSumFuel()"
+      >
         <p>&lt;</p>
         <p>BACK</p>
       </div>
@@ -44,28 +62,41 @@
         <p>&lt;</p>
         <p>BACK</p>
       </div>
-      <button class="back-button" (click)="stepIndex = 5"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
+      <button class="back-button" (click)="stepIndex = 5">
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 1">
       <div class="mid-text mb110">
         <p class="heading">Pick a car</p>
-        <p class="text">Choose a car for the race or multiple cars for higher winning rates</p>
+        <p class="text">
+          Choose a car for the race or multiple cars for higher winning rates
+        </p>
       </div>
     </ng-container>
-    
 
     <ng-container *ngIf="stepIndex === 2">
       <div class="mid-text mb50">
         <p class="heading">Set up fuel</p>
-        <p class="text">Pick your favourite crypto combination as a fuel, try your luck or use Premium fuel to increase your chances to win!</p>
+        <p class="text">
+          Pick your favourite crypto combination as a fuel, try your luck or use
+          Premium fuel to increase your chances to win!
+        </p>
       </div>
     </ng-container>
 
-    <ng-container *ngIf="stepIndex === 5" [ngClass]="{'tutorial-high': tutorialStep === 4}">
+    <ng-container
+      *ngIf="stepIndex === 5"
+      [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
+    >
       <div class="mid-text mb110 summary">
         <p class="heading">Summary</p>
-        <p class="text">Check up your car and fuel combination, add a multibet to win more money!</p>
+        <p class="text">
+          Check up your car and fuel combination, add a multibet to win more
+          money!
+        </p>
       </div>
     </ng-container>
 
@@ -76,181 +107,373 @@
       </div>
     </ng-container>
 
-    <div class="boxes-holder" [ngClass]="{'tutorial-hide': tutorialStep === 1 || tutorialStep === 4}">
+    <div
+      class="boxes-holder"
+      [ngClass]="{ 'tutorial-hide': tutorialStep === 1 || tutorialStep === 4 }"
+    >
       <div class="timer-box my-border-grad">
         <div class="inner">
           <p class="desc">Race starts in</p>
-          <p class="time" *ngIf="timerReady === true"><app-timer [value]="raceStarts" (onComplete)="timerCompleted()"></app-timer></p>
+          <p class="time" *ngIf="timerReady === true">
+            <app-timer
+              [value]="raceStarts"
+              (onComplete)="timerCompleted()"
+            ></app-timer>
+          </p>
         </div>
       </div>
       <div class="bet-info-box" *ngIf="stepIndex === 1">
         <div class="bet-item bordered">
-          <p class="desc">{{'fuel_car.your_bet' | translate}}</p>
-          <p class="value" *ngIf="currency === 'TRX'">{{actualRaceAmount * selectedCarsToRace?.length}} <img class="ioi" src="/assets/base/images/icons/logo-hollow.svg" alt=""></p>
-          <p class="value" *ngIf="currency === 'IOI'">{{actualRaceAmount * selectedCarsToRace?.length}} <img class="ioi" src="/assets/base/images/icons/logo-hollow.svg" alt=""></p>
+          <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
+          <p class="value" *ngIf="currency === 'TRX'">
+            {{ actualRaceAmount * selectedCarsToRace?.length }}
+            <img
+              class="ioi"
+              src="/assets/base/images/icons/logo-hollow.svg"
+              alt=""
+            />
+          </p>
+          <p class="value" *ngIf="currency === 'IOI'">
+            {{ actualRaceAmount * selectedCarsToRace?.length }}
+            <img
+              class="ioi"
+              src="/assets/base/images/icons/logo-hollow.svg"
+              alt=""
+            />
+          </p>
         </div>
         <div class="bet-item win-chance">
-          <p class="desc">{{'fuel_car.chance_to_win' | translate}}</p>
-          <p class="value my-cta-btn-back" *ngIf="selectedCarsToRace?.length > 0">1 : {{((players + selectedCarsToRace?.length) / selectedCarsToRace?.length) | number:'1.0-2':'fr'}}</p>
-          <p class="value my-cta-btn-back" *ngIf="selectedCarsToRace?.length === 0">0 : {{players}}</p>
+          <p class="desc">{{ "fuel_car.chance_to_win" | translate }}</p>
+          <p
+            class="value my-cta-btn-back"
+            *ngIf="selectedCarsToRace?.length > 0"
+          >
+            1 :
+            {{
+              (players + selectedCarsToRace?.length) /
+                selectedCarsToRace?.length | number: "1.0-2":"fr"
+            }}
+          </p>
+          <p
+            class="value my-cta-btn-back"
+            *ngIf="selectedCarsToRace?.length === 0"
+          >
+            0 : {{ players }}
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="step-cont visible  step1" *ngIf="stepIndex === 1">
-
-
+  <div class="step-cont visible step1" *ngIf="stepIndex === 1">
     <div class="content-holder">
-
       <div class="switchers-holder">
-        <p class="my-cta-btn-back" (click)="changeEdition(1)" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
-        <p class="my-cta-btn-back" (click)="changeEdition(2)" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
-        <p class="my-cta-btn-back" (click)="changeEdition(3)" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
-        <p class="my-cta-btn-back" (click)="changeEdition(4)" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
+        <p
+          class="my-cta-btn-back"
+          (click)="changeEdition(1)"
+          [ngClass]="{ inactive: editionIndex !== 1 }"
+        >
+          {{ "garage.bronze" | translate }}
+        </p>
+        <p
+          class="my-cta-btn-back"
+          (click)="changeEdition(2)"
+          [ngClass]="{ inactive: editionIndex !== 2 }"
+        >
+          {{ "garage.silver" | translate }}
+        </p>
+        <p
+          class="my-cta-btn-back"
+          (click)="changeEdition(3)"
+          [ngClass]="{ inactive: editionIndex !== 3 }"
+        >
+          {{ "garage.gold" | translate }}
+        </p>
+        <p
+          class="my-cta-btn-back"
+          (click)="changeEdition(4)"
+          [ngClass]="{ inactive: editionIndex !== 4 }"
+        >
+          {{ "garage.platinum" | translate }}
+        </p>
       </div>
 
       <div class="cars-list">
         <div class="my-grad left" (click)="prevSlideCar()"></div>
-        <div class="slider-holder" (swipeleft)="nextSlideCar()" (swiperight)="prevSlideCar()">
-          <div class="inner-slider" [ngStyle]="{'left.%': 0 - (slidePercent * carSlideIndex)}">
-            <ng-container *ngFor="let car of myCars;let i = index">
-              <div class="car-item" (click)="selectCarToRace(i); manualCarChange(i)" 
-              *ngIf="car.extras.tier > ((editionIndex * 6) - 6) && car.extras.tier <= (editionIndex * 6) || (car.extras.tier === 0 && editionIndex === 1) || car.extras.tier === 24 + editionIndex"
-              [ngClass]="{'big-center': i === selectedSlideIndex || (car.extras.tier > 24 && carSlideIndex === myCarsInEdition.length - rareAdjustNum), 
-              'mid-sides': i === selectedSlideIndex - 1 || i === selectedSlideIndex + 1,
-              'small-sides': i === selectedSlideIndex - 2 || i === selectedSlideIndex + 2}">
-  
+        <div
+          class="slider-holder"
+          (swipeleft)="nextSlideCar()"
+          (swiperight)="prevSlideCar()"
+        >
+          <div
+            class="inner-slider"
+            [ngStyle]="{ 'left.%': 0 - slidePercent * carSlideIndex }"
+          >
+            <ng-container *ngFor="let car of myCars; let i = index">
+              <div
+                class="car-item"
+                (click)="selectCarToRace(i); manualCarChange(i)"
+                *ngIf="
+                  (car.extras.tier > editionIndex * 6 - 6 &&
+                    car.extras.tier <= editionIndex * 6) ||
+                  (car.extras.tier === 0 && editionIndex === 1) ||
+                  car.extras.tier === 24 + editionIndex
+                "
+                [ngClass]="{
+                  'big-center':
+                    i === selectedSlideIndex ||
+                    (car.extras.tier > 24 &&
+                      carSlideIndex === myCarsInEdition.length - rareAdjustNum),
+                  'mid-sides':
+                    i === selectedSlideIndex - 1 ||
+                    i === selectedSlideIndex + 1,
+                  'small-sides':
+                    i === selectedSlideIndex - 2 || i === selectedSlideIndex + 2
+                }"
+              >
                 <div class="car-check" *ngIf="myCars[i]?.selected === true">
                   <div class="inner">
-                    <p><img src="/assets/base/images/tankovanie/fueled-check.svg" alt="" class="check"> Picked</p>
+                    <p>
+                      <img
+                        src="/assets/base/images/tankovanie/fueled-check.svg"
+                        alt=""
+                        class="check"
+                      />
+                      Picked
+                    </p>
                   </div>
                 </div>
-    
-                <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="">
-    
+
+                <img
+                  [src]="
+                    '/assets/base/images/nft-cars/car' +
+                    car.extras.tier +
+                    '.png'
+                  "
+                  alt=""
+                />
               </div>
             </ng-container>
           </div>
         </div>
         <div class="no-cars-box" *ngIf="myCarsInEdition.length === 0">
           <p>You dont have any cars in this edition.</p>
-          <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFT cars</button>
+          <button
+            class="my-cta-btn-back hoverable"
+            [routerLink]="['/car/garage']"
+          >
+            Buy NFT cars
+          </button>
         </div>
         <div class="my-grad right" (click)="nextSlideCar()"></div>
       </div>
-
     </div>
-
   </div>
 
-  <div class="step-cont visible  step2"  *ngIf=" stepIndex === 2">
-
+  <div class="step-cont visible step2" *ngIf="stepIndex === 2">
     <div class="content-holder">
-      
-      <div class="content-box box1" [ngClass]="{'tutorial-high': tutorialStep === 2}">
+      <div
+        class="content-box box1"
+        [ngClass]="{ 'tutorial-high': tutorialStep === 2 }"
+      >
         <div class="box-heading">
           <p class="heading">Pick 3 different fuels</p>
         </div>
 
         <div class="carousel-holder">
-          <div class="inner-item-holder" [ngClass]="{'only-favs': favFilter === true}">
-    
-            <ng-container *ngFor="let majbet of selectedCarsToRace[selectedCarIndex]?.bet | orderBy: order:reverse">
-              <div class="item-holder" [ngClass]="{'fav': majbet.favourite === true}">
-                <div class="item-curr my-cta-btn-back" (click)="toggleCoin(majbet.customIndex)" [ngClass]="{'not-selected': majbet.selected !== true, 'animated': majbet.customIndex === animatedCurrIndex && animatedCurrIndex < 20}">
+          <div
+            class="inner-item-holder"
+            [ngClass]="{ 'only-favs': favFilter === true }"
+          >
+            <ng-container
+              *ngFor="
+                let majbet of selectedCarsToRace[selectedCarIndex]?.bet
+                  | orderBy: order:reverse
+              "
+            >
+              <div
+                class="item-holder"
+                [ngClass]="{ fav: majbet.favourite === true }"
+              >
+                <div
+                  class="item-curr my-cta-btn-back"
+                  (click)="toggleCoin(majbet.customIndex)"
+                  [ngClass]="{
+                    'not-selected': majbet.selected !== true,
+                    animated:
+                      majbet.customIndex === animatedCurrIndex &&
+                      animatedCurrIndex < 20
+                  }"
+                >
                   <div class="marks-holder">
-                    <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" class="premium-mark" *ngIf="majbet?.symbol === myBetInput[0] || majbet?.symbol === myBetInput[1] || majbet?.symbol === myBetInput[2]">
-                    <img src="/assets/base/images/tankovanie/racer-tip-icon.svg" alt="" class="premium-mark" *ngIf="majbet?.customIndex === tips[0]?.customIndex || majbet?.customIndex === tips[1]?.customIndex || majbet?.customIndex === tips[2]?.customIndex">
+                    <img
+                      src="/assets/base/images/tankovanie/premium-icon.svg"
+                      alt=""
+                      class="premium-mark"
+                      *ngIf="
+                        majbet?.symbol === myBetInput[0] ||
+                        majbet?.symbol === myBetInput[1] ||
+                        majbet?.symbol === myBetInput[2]
+                      "
+                    />
+                    <img
+                      src="/assets/base/images/tankovanie/racer-tip-icon.svg"
+                      alt=""
+                      class="premium-mark"
+                      *ngIf="
+                        majbet?.customIndex === tips[0]?.customIndex ||
+                        majbet?.customIndex === tips[1]?.customIndex ||
+                        majbet?.customIndex === tips[2]?.customIndex
+                      "
+                    />
                   </div>
-                  <img [src]="'/assets/base/images/curr-logos/'+ majbet.symbol +'-logo.png'" alt="">
-                  <p class="item-symbol">{{majbet.symbol}}</p>
+                  <img
+                    [src]="
+                      '/assets/base/images/curr-logos/' +
+                      majbet.symbol +
+                      '-logo.png'
+                    "
+                    alt=""
+                  />
+                  <p class="item-symbol">{{ majbet.symbol }}</p>
                 </div>
               </div>
             </ng-container>
-            
           </div>
         </div>
 
         <div class="legend">
-          <p><img src="/assets/base/images/tankovanie/premium-icon.svg" alt=""> Premium fuel</p>
-          <p class="racer-tip"><img src="/assets/base/images/tankovanie/racer-tip-icon.svg" alt=""> Racer Tip of the day</p>
+          <p>
+            <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" />
+            Premium fuel
+          </p>
+          <p class="racer-tip">
+            <img
+              src="/assets/base/images/tankovanie/racer-tip-icon.svg"
+              alt=""
+            />
+            Racer Tip of the day
+          </p>
         </div>
       </div>
 
-      <div class="content-box box2" id="analysisBox" [ngClass]="{'tutorial-high': tutorialStep === 3}">
-        
+      <div
+        class="content-box box2"
+        id="analysisBox"
+        [ngClass]="{ 'tutorial-high': tutorialStep === 3 }"
+      >
         <div class="bottom-part">
-
           <div class="box-heading">
             <p class="heading">Fuel up to 100%</p>
           </div>
 
           <div class="fuel-up-holder">
-            <div class="sliders" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 0">
-            
-    
+            <div
+              class="sliders"
+              *ngIf="
+                selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 0
+              "
+            >
               <div class="items-holder">
                 <div class="curr-item">
                   <div class="curr-img empty"></div>
                   <div class="input-holder">
                     <p class="percent-info">0%</p>
-                    <input type="range" min="0"  step="1"  max="90" disabled value="0">
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
                   </div>
                   <div class="top-btns">
                     <div class="btn-item long">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
                     <div class="btn-item short">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
                   </div>
                 </div>
-        
+
                 <div class="curr-item">
                   <div class="curr-img empty"></div>
                   <div class="input-holder">
                     <p class="percent-info">0%</p>
-                    <input type="range" min="0"  step="1"  max="90" disabled value="0">
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
                   </div>
                   <div class="top-btns">
                     <div class="btn-item long">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
                     <div class="btn-item short">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
                   </div>
                 </div>
-        
+
                 <div class="curr-item">
                   <div class="curr-img empty"></div>
                   <div class="input-holder">
                     <p class="percent-info">0%</p>
-                    <input type="range" min="0"  step="1"  max="90" disabled value="0">
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
                   </div>
                   <div class="top-btns">
                     <div class="btn-item long">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
                     <div class="btn-item short">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
@@ -258,146 +481,497 @@
                 </div>
               </div>
             </div>
-      
-            <div class="sliders" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 0">
-              
-      
+
+            <div
+              class="sliders"
+              *ngIf="
+                selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 0
+              "
+            >
               <div class="items-holder">
-                
                 <div class="curr-item">
                   <div class="curr-img selected my-cta-btn-back">
                     <div class="inner">
-                      <img [src]="'/assets/base/images/curr-logos/'+ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].symbol +'-logo.png'" alt="">
+                      <img
+                        [src]="
+                          '/assets/base/images/curr-logos/' +
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[0]
+                          ].symbol +
+                          '-logo.png'
+                        "
+                        alt=""
+                      />
                     </div>
                   </div>
                   <div class="input-holder">
-                    <p class="percent-info" [ngStyle]="{'left': 'calc(' + ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].bet * 100) / 90) + '% + ' + (8 - ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].bet * 100) / 90 * 0.3)) + 'px)', 'transform': 'translateX(-4px)'}">{{selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].bet}}%</p>
-                    <input type="range" min="0"  step="1"  max="90" value="0" [(ngModel)]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].bet" 
-                    [ngModelOptions]="{standalone: true}" (change)="changeFuel($event, selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]]?.customIndex)">
+                    <p
+                      class="percent-info"
+                      [ngStyle]="{
+                        left:
+                          'calc(' +
+                          (selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[0]
+                          ].bet *
+                            100) /
+                            90 +
+                          '% + ' +
+                          (8 -
+                            ((selectedCarsToRace[selectedCarIndex]?.bet[
+                              selectedCarsToRace[selectedCarIndex]
+                                ?.selectedBets[0]
+                            ].bet *
+                              100) /
+                              90) *
+                              0.3) +
+                          'px)',
+                        transform: 'translateX(-4px)'
+                      }"
+                    >
+                      {{
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].bet
+                      }}%
+                    </p>
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      value="0"
+                      [(ngModel)]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].bet
+                      "
+                      [ngModelOptions]="{ standalone: true }"
+                      (change)="
+                        changeFuel(
+                          $event,
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[0]
+                          ]?.customIndex
+                        )
+                      "
+                    />
                   </div>
                   <div class="top-btns active">
-                    
-                    <div class="btn-item long" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].short = false"
-                    [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].short === false ? 'active' : 'passive'">
-                    <div class="inner">
-                      <img class="active-img" src="/assets/base/images/tankovanie/long-icon-active.svg" alt="">
-                      <img class="passive-img" src="/assets/base/images/tankovanie/long-icon.svg" alt="">
-                      <p>Long</p>
-                    </div>
-                  </div>
-                  <div class="btn-item short" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].short = true"
-                  [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].short === true ? 'active' : 'passive'">
-                    <div class="inner">
-                      <img class="active-img" src="/assets/base/images/tankovanie/short-icon-active.svg" alt="">
-                      <img class="passive-img" src="/assets/base/images/tankovanie/short-icon.svg" alt="">
-                      <p>Short</p>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-        
-                <div class="curr-item" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 1">
-                  <div class="curr-img selected my-cta-btn-back">
-                    <div class="inner">
-                      <img [src]="'/assets/base/images/curr-logos/'+ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].symbol +'-logo.png'" alt="">
-                    </div>
-                  </div>
-                  <div class="input-holder">
-                      <p class="percent-info" [ngStyle]="{'left': 'calc(' + ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].bet * 100) / 90) + '% + ' + (8 - ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].bet * 100) / 90 * 0.3)) + 'px)', 'transform': 'translateX(-4px)'}">{{selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].bet}}%</p>
-                    <input type="range" min="0"  step="1"  max="90" value="0" [(ngModel)]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].bet" 
-                    [ngModelOptions]="{standalone: true}" (change)="changeFuel($event, selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]]?.customIndex)">
-                  </div>
-                  <div class="top-btns active">
-                    
-                    <div class="btn-item long" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].short = false"
-                    [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].short === false ? 'active' : 'passive'">
+                    <div
+                      class="btn-item long"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].short = false
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].short === false
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
                       <div class="inner">
-                        <img class="active-img" src="/assets/base/images/tankovanie/long-icon-active.svg" alt="">
-                        <img class="passive-img" src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/long-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
-                    <div class="btn-item short" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].short = true"
-                    [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].short === true ? 'active' : 'passive'">
+                    <div
+                      class="btn-item short"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].short = true
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].short === true
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
                       <div class="inner">
-                        <img class="active-img" src="/assets/base/images/tankovanie/short-icon-active.svg" alt="">
-                        <img class="passive-img" src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/short-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
                   </div>
                 </div>
-        
-                <div class="curr-item" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 2">
+
+                <div
+                  class="curr-item"
+                  *ngIf="
+                    selectedCarsToRace[selectedCarIndex]?.selectedBets?.length >
+                    1
+                  "
+                >
                   <div class="curr-img selected my-cta-btn-back">
                     <div class="inner">
-                      <img [src]="'/assets/base/images/curr-logos/'+ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].symbol +'-logo.png'" alt="">
+                      <img
+                        [src]="
+                          '/assets/base/images/curr-logos/' +
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[1]
+                          ].symbol +
+                          '-logo.png'
+                        "
+                        alt=""
+                      />
                     </div>
                   </div>
                   <div class="input-holder">
-                    <p class="percent-info" [ngStyle]="{'left': 'calc(' + ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].bet * 100) / 90) + '% + ' + (8 - ((selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].bet * 100) / 90 * 0.3)) + 'px)', 'transform': 'translateX(-4px)'}">{{selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].bet}}%</p>
-                    <input type="range" min="0"  step="1"  max="90" value="0" [(ngModel)]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].bet"
-                     [ngModelOptions]="{standalone: true}" (change)="changeFuel($event, selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]]?.customIndex)">
-        
+                    <p
+                      class="percent-info"
+                      [ngStyle]="{
+                        left:
+                          'calc(' +
+                          (selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[1]
+                          ].bet *
+                            100) /
+                            90 +
+                          '% + ' +
+                          (8 -
+                            ((selectedCarsToRace[selectedCarIndex]?.bet[
+                              selectedCarsToRace[selectedCarIndex]
+                                ?.selectedBets[1]
+                            ].bet *
+                              100) /
+                              90) *
+                              0.3) +
+                          'px)',
+                        transform: 'translateX(-4px)'
+                      }"
+                    >
+                      {{
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].bet
+                      }}%
+                    </p>
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      value="0"
+                      [(ngModel)]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].bet
+                      "
+                      [ngModelOptions]="{ standalone: true }"
+                      (change)="
+                        changeFuel(
+                          $event,
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[1]
+                          ]?.customIndex
+                        )
+                      "
+                    />
                   </div>
                   <div class="top-btns active">
-                    
-                    <div class="btn-item long" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].short = false"
-                    [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].short === false ? 'active' : 'passive'">
+                    <div
+                      class="btn-item long"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].short = false
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].short === false
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
                       <div class="inner">
-                        <img class="active-img" src="/assets/base/images/tankovanie/long-icon-active.svg" alt="">
-                        <img class="passive-img" src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/long-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
-                    <div class="btn-item short" (click)="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].short = true"
-                    [ngClass]="selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].short === true ? 'active' : 'passive'">
+                    <div
+                      class="btn-item short"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].short = true
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].short === true
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
                       <div class="inner">
-                        <img class="active-img" src="/assets/base/images/tankovanie/short-icon-active.svg" alt="">
-                        <img class="passive-img" src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/short-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
                   </div>
                 </div>
-  
-                <div class="curr-item"  *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length  < 2">
+
+                <div
+                  class="curr-item"
+                  *ngIf="
+                    selectedCarsToRace[selectedCarIndex]?.selectedBets?.length >
+                    2
+                  "
+                >
+                  <div class="curr-img selected my-cta-btn-back">
+                    <div class="inner">
+                      <img
+                        [src]="
+                          '/assets/base/images/curr-logos/' +
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[2]
+                          ].symbol +
+                          '-logo.png'
+                        "
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div class="input-holder">
+                    <p
+                      class="percent-info"
+                      [ngStyle]="{
+                        left:
+                          'calc(' +
+                          (selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[2]
+                          ].bet *
+                            100) /
+                            90 +
+                          '% + ' +
+                          (8 -
+                            ((selectedCarsToRace[selectedCarIndex]?.bet[
+                              selectedCarsToRace[selectedCarIndex]
+                                ?.selectedBets[2]
+                            ].bet *
+                              100) /
+                              90) *
+                              0.3) +
+                          'px)',
+                        transform: 'translateX(-4px)'
+                      }"
+                    >
+                      {{
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].bet
+                      }}%
+                    </p>
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      value="0"
+                      [(ngModel)]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].bet
+                      "
+                      [ngModelOptions]="{ standalone: true }"
+                      (change)="
+                        changeFuel(
+                          $event,
+                          selectedCarsToRace[selectedCarIndex]?.bet[
+                            selectedCarsToRace[selectedCarIndex]
+                              ?.selectedBets[2]
+                          ]?.customIndex
+                        )
+                      "
+                    />
+                  </div>
+                  <div class="top-btns active">
+                    <div
+                      class="btn-item long"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].short = false
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].short === false
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
+                      <div class="inner">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/long-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
+                        <p>Long</p>
+                      </div>
+                    </div>
+                    <div
+                      class="btn-item short"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].short = true
+                      "
+                      [ngClass]="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].short === true
+                          ? 'active'
+                          : 'passive'
+                      "
+                    >
+                      <div class="inner">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/short-icon-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
+                        <p>Short</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="curr-item"
+                  *ngIf="
+                    selectedCarsToRace[selectedCarIndex]?.selectedBets?.length <
+                    2
+                  "
+                >
                   <div class="curr-img empty"></div>
                   <div class="input-holder">
                     <p class="percent-info">0%</p>
-                    <input type="range" min="0"  step="1"  max="90" disabled value="0">
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
                   </div>
                   <div class="top-btns">
                     <div class="btn-item long">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
                     <div class="btn-item short">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="curr-item"  *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">
+                <div
+                  class="curr-item"
+                  *ngIf="
+                    selectedCarsToRace[selectedCarIndex]?.selectedBets?.length <
+                    3
+                  "
+                >
                   <div class="curr-img empty"></div>
                   <div class="input-holder">
                     <p class="percent-info">0%</p>
-                    <input type="range" min="0"  step="1"  max="90" disabled value="0">
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
                   </div>
                   <div class="top-btns">
                     <div class="btn-item long">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/long-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
                         <p>Long</p>
                       </div>
                     </div>
                     <div class="btn-item short">
                       <div class="inner">
-                        <img src="/assets/base/images/tankovanie/short-icon.svg" alt="">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
                         <p>Short</p>
                       </div>
                     </div>
@@ -405,51 +979,139 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="svg-holder">
               <div class="svg-item">
-                <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut donut-red">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 40 40"
+                  class="donut donut-red"
+                >
                   <defs>
-                    <linearGradient id="linear" x1="50%" y1="50%" x2="190%" y2="200%" spreadMethod="pad">
-                      <stop offset="0%"   stop-color="#FE173F"/>
-                      <stop offset="100%" stop-color="#240B36"/>
+                    <linearGradient
+                      id="linear"
+                      x1="50%"
+                      y1="50%"
+                      x2="190%"
+                      y2="200%"
+                      spreadMethod="pad"
+                    >
+                      <stop offset="0%" stop-color="#FE173F" />
+                      <stop offset="100%" stop-color="#240B36" />
                     </linearGradient>
                   </defs>
-                  <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="black"></circle>
-                  <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="2.5"></circle>
-        
-                  <circle *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel > 0" stroke="url(#linear)" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-                  stroke-width="2" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': selectedCarsToRace[selectedCarIndex]?.fuel + ' ' + (100 - selectedCarsToRace[selectedCarIndex]?.fuel)}"></circle>
-        
+                  <circle
+                    class="donut-hole"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="black"
+                  ></circle>
+                  <circle
+                    class="donut-ring"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="transparent"
+                    stroke-width="2.5"
+                  ></circle>
+
+                  <circle
+                    *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel > 0"
+                    stroke="url(#linear)"
+                    class="donut-segment"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="transparent"
+                    stroke-width="2"
+                    stroke-dashoffset="25"
+                    [ngStyle]="{
+                      'stroke-dasharray':
+                        selectedCarsToRace[selectedCarIndex]?.fuel +
+                        ' ' +
+                        (100 - selectedCarsToRace[selectedCarIndex]?.fuel)
+                    }"
+                  ></circle>
                 </svg>
-                <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut donut-blue">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 40 40"
+                  class="donut donut-blue"
+                >
                   <defs>
-                    <linearGradient id="linear2" x1="5%" y1="0%" x2="190%" y2="-100%" spreadMethod="pad">
-                      <stop offset="0%" stop-color="#23FFFF"/>
-                      <stop offset="100%" stop-color="#2B16F7"/>
+                    <linearGradient
+                      id="linear2"
+                      x1="5%"
+                      y1="0%"
+                      x2="190%"
+                      y2="-100%"
+                      spreadMethod="pad"
+                    >
+                      <stop offset="0%" stop-color="#23FFFF" />
+                      <stop offset="100%" stop-color="#2B16F7" />
                     </linearGradient>
                   </defs>
-                  <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="black"></circle>
-                  <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="2.5"></circle>
-        
-                  <circle *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel > 0" stroke="url(#linear2)" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-                  stroke-width="2" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': selectedCarsToRace[selectedCarIndex]?.fuel + ' ' + (100 - selectedCarsToRace[selectedCarIndex]?.fuel)}"></circle>
-        
+                  <circle
+                    class="donut-hole"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="black"
+                  ></circle>
+                  <circle
+                    class="donut-ring"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="transparent"
+                    stroke-width="2.5"
+                  ></circle>
+
+                  <circle
+                    *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel > 0"
+                    stroke="url(#linear2)"
+                    class="donut-segment"
+                    cx="20"
+                    cy="20"
+                    r="15.91549430918954"
+                    fill="transparent"
+                    stroke-width="2"
+                    stroke-dashoffset="25"
+                    [ngStyle]="{
+                      'stroke-dasharray':
+                        selectedCarsToRace[selectedCarIndex]?.fuel +
+                        ' ' +
+                        (100 - selectedCarsToRace[selectedCarIndex]?.fuel)
+                    }"
+                  ></circle>
                 </svg>
-                <p class="donut-percent">{{selectedCarsToRace[selectedCarIndex]?.fuel | number:'1.0-0':'fr'}}%</p>
+                <p class="donut-percent">
+                  {{
+                    selectedCarsToRace[selectedCarIndex]?.fuel
+                      | number: "1.0-0":"fr"
+                  }}%
+                </p>
               </div>
               <p class="desc-text">Fuel up to 100% or try</p>
               <div class="lucky-holder">
-                <div class="lucky-btn my-cta-btn-back" (click)="generateAutomaticBetsOnce()">
+                <div
+                  class="lucky-btn my-cta-btn-back"
+                  (click)="generateAutomaticBetsOnce()"
+                >
                   <div class="inner">
-                    <img src="/assets/base/images/tankovanie/lucky-icon.svg" alt="">
+                    <img
+                      src="/assets/base/images/tankovanie/lucky-icon.svg"
+                      alt=""
+                    />
                     <p>Lucky fuel</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
 
         <div class="graphs-holder">
@@ -460,9 +1122,7 @@
             <app-indicator [type]="selectedSymbol"></app-indicator>
           </div>
         </div>
-
       </div>
-
     </div>
 
     <!-- <button class="back-button" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">GO BACK</button>
@@ -471,87 +1131,138 @@
 
     <button *ngIf="introModal === true && tutorialIndex === 3" (click)="skipModal()" class="close-tutorial"><span>3/6</span> Skip</button>
     <button *ngIf="introModal === true && tutorialIndex === 5" (click)="skipModal()" class="close-tutorial"><span>5/6</span> Skip</button> -->
-  
-  
   </div>
 
-
-  
-  <div class="step-cont visible  step5"  *ngIf="stepIndex === 5">
-    
-    
+  <div class="step-cont visible step5" *ngIf="stepIndex === 5">
     <div class="content-holder">
       <div class="left-part">
         <div class="flex-item car">
-          <p class="item-heading">{{'fuel_car.your_cars' | translate}}</p>
+          <p class="item-heading">{{ "fuel_car.your_cars" | translate }}</p>
           <ng-container *ngFor="let kar of selectedCarsToRace; let i = index">
             <div class="car-item" *ngIf="i === summaryCarIndex">
-              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'" alt="Image of car">
+              <img
+                class="car-img"
+                [src]="
+                  '/assets/base/images/nft-cars/car' + kar.extras.tier + '.png'
+                "
+                alt="Image of car"
+              />
             </div>
           </ng-container>
           <div class="car-arrows" *ngIf="selectedCarsToRace?.length > 1">
             <div class="arrow left"><span (click)="prevCar()">&lt;</span></div>
-            <p><span class="bold">{{summaryCarIndex + 1}}</span> out of {{selectedCarsToRace.length}}</p>
+            <p>
+              <span class="bold">{{ summaryCarIndex + 1 }}</span> out of
+              {{ selectedCarsToRace.length }}
+            </p>
             <div class="arrow right"><span (click)="nextCar()">&gt;</span></div>
           </div>
         </div>
         <div class="flex-item summary">
-          <p class="item-heading">{{'fuel_car.your_bet' | translate}}</p>
+          <p class="item-heading">{{ "fuel_car.your_bet" | translate }}</p>
 
           <div class="info-cont">
-
             <div class="info-item">
               <p class="desc">Prize pool</p>
               <p class="value" *ngIf="raceId !== 'tournament_for_ticket_0'">
-                {{pricePool + (selectedCarsToRace?.length * actualRaceAmount)}}
-                <img class="ioi-logo" src="/assets/base/images/icons/logo-hollow.svg" alt="IOI logo"> </p>
-              <p class="value" *ngIf="raceId === 'tournament_for_ticket_0'" style="    font-size: 18px;">
-                3 Tickets<br>(value 3 IOI)</p>
+                {{ pricePool + selectedCarsToRace?.length * actualRaceAmount }}
+                <img
+                  class="ioi-logo"
+                  src="/assets/base/images/icons/logo-hollow.svg"
+                  alt="IOI logo"
+                />
+              </p>
+              <p
+                class="value"
+                *ngIf="raceId === 'tournament_for_ticket_0'"
+                style="font-size: 18px"
+              >
+                3 Tickets<br />(value 3 IOI)
+              </p>
             </div>
             <div class="info-item">
-              <p class="desc">{{'fuel_car.your_bet' | translate}}</p>
-              <div class="value" [ngClass]="{'small': summaryIoiAmount > 0 || summaryTrxAmount > 0}">
+              <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
+              <div
+                class="value"
+                [ngClass]="{
+                  small: summaryIoiAmount > 0 || summaryTrxAmount > 0
+                }"
+              >
                 <p *ngIf="currency === 'TRX'">
-                  <span>{{(actualRaceAmount  * selectedCarsToRace?.length ) + summaryTrxAmount }} </span> 
-                  <img class="ioi-logo" src="/assets/base/images/icons/logo-hollow.svg" alt="IOI logo"> 
-                </p> 
+                  <span
+                    >{{
+                      actualRaceAmount * selectedCarsToRace?.length +
+                        summaryTrxAmount
+                    }}
+                  </span>
+                  <img
+                    class="ioi-logo"
+                    src="/assets/base/images/icons/logo-hollow.svg"
+                    alt="IOI logo"
+                  />
+                </p>
                 <p *ngIf="currency === 'IOI'">
-                  <span>{{(actualRaceAmount * selectedCarsToRace?.length) + summaryIoiAmount  }} </span>
-                  <img class="ioi-logo" src="/assets/base/images/icons/logo-hollow.svg" alt="IOI logo"> 
-                </p> 
-  
+                  <span
+                    >{{
+                      actualRaceAmount * selectedCarsToRace?.length +
+                        summaryIoiAmount
+                    }}
+                  </span>
+                  <img
+                    class="ioi-logo"
+                    src="/assets/base/images/icons/logo-hollow.svg"
+                    alt="IOI logo"
+                  />
+                </p>
+
                 <p *ngIf="currency === 'IOI' && summaryTrxAmount > 0">
-                  <span>{{ summaryTrxAmount}} </span> 
-                  <img class="ioi-logo" src="/assets/base/images/icons/logo-hollow.svg" alt="IOI logo"> 
-                </p>              
+                  <span>{{ summaryTrxAmount }} </span>
+                  <img
+                    class="ioi-logo"
+                    src="/assets/base/images/icons/logo-hollow.svg"
+                    alt="IOI logo"
+                  />
+                </p>
                 <p *ngIf="currency === 'TRX' && summaryIoiAmount > 0">
-                   <span>{{ summaryIoiAmount }} </span>
-                   <img class="ioi-logo" src="/assets/base/images/icons/logo-hollow.svg" alt="IOI logo">
-                </p> 
+                  <span>{{ summaryIoiAmount }} </span>
+                  <img
+                    class="ioi-logo"
+                    src="/assets/base/images/icons/logo-hollow.svg"
+                    alt="IOI logo"
+                  />
+                </p>
               </div>
             </div>
             <div class="info-item">
-              <p class="desc">{{'start-race.players' | translate}}</p>
-              <p class="value chance my-cta-btn-back">{{players}}</p>
-              
+              <p class="desc">{{ "start-race.players" | translate }}</p>
+              <p class="value chance my-cta-btn-back">{{ players }}</p>
             </div>
-
           </div>
+        </div>
 
-         </div>
-  
-         <div class="flex-item multi-bet">
-          <p class="item-heading speci2">{{'fuel_car.multibet' | translate}}</p>
+        <div class="flex-item multi-bet">
+          <p class="item-heading speci2">
+            {{ "fuel_car.multibet" | translate }}
+          </p>
           <div class="buttons-holder">
-            <div class="bet-btn add-btn my-border-grad" (click)="stepIndex = 6" [ngClass]="{'inclickable': this.introModal === true}">
+            <div
+              class="bet-btn add-btn my-border-grad"
+              (click)="stepIndex = 6"
+              [ngClass]="{ inclickable: this.introModal === true }"
+            >
               <div class="inner">
-                <p>+ {{'fuel_car.add_multibet' | translate}}</p>
+                <p>+ {{ "fuel_car.add_multibet" | translate }}</p>
               </div>
             </div>
             <ng-container *ngFor="let item of multibetOptions">
-              <div class="bet-btn my-border-grad" *ngIf="item.enabled === false">
+              <div
+                class="bet-btn my-border-grad"
+                *ngIf="item.enabled === false"
+              >
                 <div class="inner-btn">
-                  <p class="bet-btn-text">{{ 'race.type.' + item.type + '_simple' | translate}}</p>
+                  <p class="bet-btn-text">
+                    {{ "race.type." + item.type + "_simple" | translate }}
+                  </p>
                 </div>
               </div>
             </ng-container>
@@ -559,76 +1270,182 @@
         </div>
       </div>
     </div>
-
   </div>
 
-  <div class="step-cont visible  step6"  *ngIf="stepIndex === 6">
-
+  <div class="step-cont visible step6" *ngIf="stepIndex === 6">
     <div class="bets-holder" *ngIf="multibetOptions?.length > 0">
-      <div *ngFor="let mb of multibetOptions; let i = index" class="inner-item-holder">
-        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_1'">
-          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
-            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+      <div
+        *ngFor="let mb of multibetOptions; let i = index"
+        class="inner-item-holder"
+      >
+        <div
+          class="box-item my-border-grad"
+          *ngIf="mb.type === 'car_race_ioi_1'"
+        >
+          <img
+            class="back-img"
+            src="/assets/base/images/menu/race-box-back.png"
+            alt=""
+          />
+          <div
+            class="inner-holder"
+            [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'"
+          >
+            <p class="race-name">{{ "start-race.fast_race" | translate }}</p>
+            <p class="race-name type">
+              {{ "race.type." + mb.type + "_simple" | translate }}
+            </p>
+            <p class="watch">
+              {{ "race.fuel_now" | translate }} <span>&#x2192;</span>
+            </p>
           </div>
-    
-          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 1, i, 'ioi')" *ngIf="mb.enabled === true"></div>
-          <div class="click-dummy" (click)="removeFromMultibet(i, 1, 1, 'ioi')" *ngIf="mb.enabled === false"></div>
-    
+
+          <div
+            class="click-dummy"
+            (click)="addToMultibet(mb, calc1, 1, i, 'ioi')"
+            *ngIf="mb.enabled === true"
+          ></div>
+          <div
+            class="click-dummy"
+            (click)="removeFromMultibet(i, 1, 1, 'ioi')"
+            *ngIf="mb.enabled === false"
+          ></div>
         </div>
 
-        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_5'">
-          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
-            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+        <div
+          class="box-item my-border-grad"
+          *ngIf="mb.type === 'car_race_ioi_5'"
+        >
+          <img
+            class="back-img"
+            src="/assets/base/images/menu/race-box-back.png"
+            alt=""
+          />
+          <div
+            class="inner-holder"
+            [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'"
+          >
+            <p class="race-name">{{ "start-race.fast_race" | translate }}</p>
+            <p class="race-name type">
+              {{ "race.type." + mb.type + "_simple" | translate }}
+            </p>
+            <p class="watch">
+              {{ "race.fuel_now" | translate }} <span>&#x2192;</span>
+            </p>
           </div>
-    
-          <div class="click-dummy" (click)="addToMultibet(mb, calc2, 5, i, 'ioi')" *ngIf="mb.enabled === true"></div>
-          <div class="click-dummy" (click)="removeFromMultibet(i, 5, 2, 'ioi')" *ngIf="mb.enabled === false"></div>
-    
+
+          <div
+            class="click-dummy"
+            (click)="addToMultibet(mb, calc2, 5, i, 'ioi')"
+            *ngIf="mb.enabled === true"
+          ></div>
+          <div
+            class="click-dummy"
+            (click)="removeFromMultibet(i, 5, 2, 'ioi')"
+            *ngIf="mb.enabled === false"
+          ></div>
         </div>
 
-        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_10'">
-          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
-            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+        <div
+          class="box-item my-border-grad"
+          *ngIf="mb.type === 'car_race_ioi_10'"
+        >
+          <img
+            class="back-img"
+            src="/assets/base/images/menu/race-box-back.png"
+            alt=""
+          />
+          <div
+            class="inner-holder"
+            [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'"
+          >
+            <p class="race-name">{{ "start-race.fast_race" | translate }}</p>
+            <p class="race-name type">
+              {{ "race.type." + mb.type + "_simple" | translate }}
+            </p>
+            <p class="watch">
+              {{ "race.fuel_now" | translate }} <span>&#x2192;</span>
+            </p>
           </div>
-    
-          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 10, i, 'ioi')" *ngIf="mb.enabled === true"></div>
-          <div class="click-dummy" (click)="removeFromMultibet(i, 10, 3, 'ioi')" *ngIf="mb.enabled === false"></div>
-    
+
+          <div
+            class="click-dummy"
+            (click)="addToMultibet(mb, calc1, 10, i, 'ioi')"
+            *ngIf="mb.enabled === true"
+          ></div>
+          <div
+            class="click-dummy"
+            (click)="removeFromMultibet(i, 10, 3, 'ioi')"
+            *ngIf="mb.enabled === false"
+          ></div>
         </div>
 
-        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_50'">
-          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
-            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+        <div
+          class="box-item my-border-grad"
+          *ngIf="mb.type === 'car_race_ioi_50'"
+        >
+          <img
+            class="back-img"
+            src="/assets/base/images/menu/race-box-back.png"
+            alt=""
+          />
+          <div
+            class="inner-holder"
+            [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'"
+          >
+            <p class="race-name">{{ "start-race.fast_race" | translate }}</p>
+            <p class="race-name type">
+              {{ "race.type." + mb.type + "_simple" | translate }}
+            </p>
+            <p class="watch">
+              {{ "race.fuel_now" | translate }} <span>&#x2192;</span>
+            </p>
           </div>
-    
-          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 50, i, 'ioi')" *ngIf="mb.enabled === true"></div>
-          <div class="click-dummy" (click)="removeFromMultibet(i, 50, 4, 'ioi')" *ngIf="mb.enabled === false"></div>
-    
+
+          <div
+            class="click-dummy"
+            (click)="addToMultibet(mb, calc1, 50, i, 'ioi')"
+            *ngIf="mb.enabled === true"
+          ></div>
+          <div
+            class="click-dummy"
+            (click)="removeFromMultibet(i, 50, 4, 'ioi')"
+            *ngIf="mb.enabled === false"
+          ></div>
         </div>
 
-        <div class="box-item my-border-grad" *ngIf="mb.type === 'car_race_ioi_100'">
-          <img class="back-img" src="/assets/base/images/menu/race-box-back.png" alt="">
-          <div class="inner-holder" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
-            <p class="race-name">{{'start-race.fast_race' | translate}}</p>
-            <p class="race-name type">{{ 'race.type.' + mb.type + '_simple' | translate}}</p>
-            <p class="watch">{{'race.fuel_now' | translate}} <span>&#x2192;</span></p>
+        <div
+          class="box-item my-border-grad"
+          *ngIf="mb.type === 'car_race_ioi_100'"
+        >
+          <img
+            class="back-img"
+            src="/assets/base/images/menu/race-box-back.png"
+            alt=""
+          />
+          <div
+            class="inner-holder"
+            [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'"
+          >
+            <p class="race-name">{{ "start-race.fast_race" | translate }}</p>
+            <p class="race-name type">
+              {{ "race.type." + mb.type + "_simple" | translate }}
+            </p>
+            <p class="watch">
+              {{ "race.fuel_now" | translate }} <span>&#x2192;</span>
+            </p>
           </div>
-    
-          <div class="click-dummy" (click)="addToMultibet(mb, calc1, 100, i, 'ioi')" *ngIf="mb.enabled === true"></div>
-          <div class="click-dummy" (click)="removeFromMultibet(i, 100, 5, 'ioi')" *ngIf="mb.enabled === false"></div>
-    
+
+          <div
+            class="click-dummy"
+            (click)="addToMultibet(mb, calc1, 100, i, 'ioi')"
+            *ngIf="mb.enabled === true"
+          ></div>
+          <div
+            class="click-dummy"
+            (click)="removeFromMultibet(i, 100, 5, 'ioi')"
+            *ngIf="mb.enabled === false"
+          ></div>
         </div>
 
         <!-- <div class="item-race race10" *ngIf="mb.type === 'car_race_ioi_1'" [ngClass]="mb.enabled === true ? 'not-selected' : 'selected'">
@@ -656,82 +1473,213 @@
           <button (click)="addToMultibet(mb, calc5, 100, i, 'ioi')" *ngIf="mb.enabled === true">&nbsp;</button>
           <button (click)="removeFromMultibet(i, 100, 5, 'ioi')" *ngIf="mb.enabled === false">&nbsp;</button>
         </div> -->
-          </div>
+      </div>
     </div>
 
     <div class="no-multi" *ngIf="noMultibet === true">
       <div class="inner-holder">
         <p>You don't have enough IOI to participate in other races.</p>
-        <button class="my-cta-btn-back deposit-btn" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">Deposit</button>
+        <button
+          class="my-cta-btn-back deposit-btn"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Deposit
+        </button>
       </div>
     </div>
-
   </div>
 
   <div class="bottom-panels">
-
     <ng-container *ngIf="stepIndex === 1 && introModal === false">
-      <button class="back-button" [routerLink]="['/race/start-race']"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
+      <button class="back-button" [routerLink]="['/race/start-race']">
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 2">
-      <button class="back-button" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-      <button class="back-button" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-      <button class="back-button" *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
+      <button
+        class="back-button"
+        (click)="stepIndex = 1"
+        *ngIf="
+          firstLogin === false &&
+          (selectedCarIndex < 1 || sumFuel / sumlength === 100) &&
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3
+        "
+      >
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
+      <button
+        class="back-button"
+        (click)="resetSelected(); calcSumFuel()"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 &&
+          introModal === false
+        "
+      >
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
+      <button
+        class="back-button"
+        *ngIf="
+          selectedCarIndex > 0 &&
+          sumFuel / sumlength !== 100 &&
+          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 &&
+          introModal === false
+        "
+        (click)="selectedCarIndex = selectedCarIndex - 1; calcSumFuel()"
+      >
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 5 && introModal === false">
-      <button class="back-button" (click)="stepIndex = 2"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
+      <button class="back-button" (click)="stepIndex = 2">
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 6">
-      <button class="back-button" (click)="stepIndex = 5"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
+      <button class="back-button" (click)="stepIndex = 5">
+        <span class="my-gt">&lt;</span> <br />
+        {{ "shared.back" | translate }}
+      </button>
     </ng-container>
 
     <div class="selected-cars" *ngIf="stepIndex === 1 && introModal === false">
       <div class="inner">
-        <div class="arrow left" (click)="prevSelectedCar()" *ngIf="selectedCarsToRace.length > bottomCarsBalancer"><p>&lt;</p></div>
+        <div
+          class="arrow left"
+          (click)="prevSelectedCar()"
+          *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
+        >
+          <p>&lt;</p>
+        </div>
         <div class="cars-holder first-step">
-          <div class="car-item" *ngFor="let car of selectedCarsToRace" [ngStyle]="{'left.%': windowSelectCarIndex * (-bottomPercentBalancer)}">
-            <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="">
+          <div
+            class="car-item"
+            *ngFor="let car of selectedCarsToRace"
+            [ngStyle]="{
+              'left.%': windowSelectCarIndex * -bottomPercentBalancer
+            }"
+          >
+            <img
+              [src]="
+                '/assets/base/images/nft-cars/car' + car.extras.tier + '.png'
+              "
+              alt=""
+            />
           </div>
         </div>
-        <div class="arrow right" (click)="nextSelectedCar()" *ngIf="selectedCarsToRace.length > bottomCarsBalancer"><p>&gt;</p></div>
+        <div
+          class="arrow right"
+          (click)="nextSelectedCar()"
+          *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
+        >
+          <p>&gt;</p>
+        </div>
       </div>
-      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace.length > 0" (click)="stepIndex = 2;selectDefaultCoin(0);animateFuelSlider()">
+      <div
+        class="next-btn my-fuel-btn-back"
+        *ngIf="selectedCarsToRace.length > 0"
+        (click)="stepIndex = 2; selectDefaultCoin(0); animateFuelSlider()"
+      >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
-      <div class="next-btn inactive my-fuel-btn-back" *ngIf="selectedCarsToRace.length === 0">
+      <div
+        class="next-btn inactive my-fuel-btn-back"
+        *ngIf="selectedCarsToRace.length === 0"
+      >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
-      <p class="select-car" *ngIf="selectedCarsToRace.length === 0">Pick a car</p>
+      <p class="select-car" *ngIf="selectedCarsToRace.length === 0">
+        Pick a car
+      </p>
     </div>
 
     <div class="selected-cars" *ngIf="stepIndex === 2">
       <div class="inner">
-        <div class="arrow left" (click)="prevFuelCar()" *ngIf="selectedCarsToRace.length > bottomCarsBalancer"><p>&lt;</p></div>
+        <div
+          class="arrow left"
+          (click)="prevFuelCar()"
+          *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
+        >
+          <p>&lt;</p>
+        </div>
         <div class="cars-holder">
-          <div class="car-item" *ngFor="let car of selectedCarsToRace;let i = index" [ngClass]="{'fueled': selectedCarsToRace[i]?.fuel === 100}" (click)="selectedCarIndex = i" [ngStyle]="{'left.%': windowFuelCarIndex * (-bottomPercentBalancer)}">
-            <img [src]="'/assets/base/images/nft-cars/car' + car.extras.tier + '.png'" alt="">
-            <img src="/assets/base/images/tankovanie/fueled-check.svg" alt="" class="check">
-            <div class="dot-ind" *ngIf="selectedCarIndex === i"><div class="dot"></div></div>
+          <div
+            class="car-item"
+            *ngFor="let car of selectedCarsToRace; let i = index"
+            [ngClass]="{ fueled: selectedCarsToRace[i]?.fuel === 100 }"
+            (click)="selectedCarIndex = i"
+            [ngStyle]="{
+              'left.%': windowFuelCarIndex * -bottomPercentBalancer
+            }"
+          >
+            <img
+              [src]="
+                '/assets/base/images/nft-cars/car' + car.extras.tier + '.png'
+              "
+              alt=""
+            />
+            <img
+              src="/assets/base/images/tankovanie/fueled-check.svg"
+              alt=""
+              class="check"
+            />
+            <div class="dot-ind" *ngIf="selectedCarIndex === i">
+              <div class="dot"></div>
+            </div>
           </div>
         </div>
-        <div class="arrow right" (click)="nextFuelCar()" *ngIf="selectedCarsToRace.length > bottomCarsBalancer"><p>&gt;</p></div>
+        <div
+          class="arrow right"
+          (click)="nextFuelCar()"
+          *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
+        >
+          <p>&gt;</p>
+        </div>
       </div>
-      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel === 100 && sumFuel / sumlength !== 100 && selectedCarIndex < selectedCarsToRace.length - 1" (click)="selectedCarIndex = selectedCarIndex + 1;calcSumFuel()">
+      <div
+        class="next-btn my-fuel-btn-back"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
+          sumFuel / sumlength !== 100 &&
+          selectedCarIndex < selectedCarsToRace.length - 1
+        "
+        (click)="selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
+      >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
 
-      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel === 100 && sumFuel / sumlength === 100" (click)="stepIndex = 5; calcPossibleMultibet()">
+      <div
+        class="next-btn my-fuel-btn-back"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
+          sumFuel / sumlength === 100
+        "
+        (click)="stepIndex = 5; calcPossibleMultibet()"
+      >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
 
-      <div class="next-btn inactive my-fuel-btn-back" (click)="scrollToView('analysisBox')" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel !== 100 && sumFuel / sumlength !== 100">
+      <div
+        class="next-btn inactive my-fuel-btn-back"
+        (click)="scrollToView('analysisBox')"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.fuel !== 100 &&
+          sumFuel / sumlength !== 100
+        "
+      >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
@@ -739,11 +1687,14 @@
 
     <div class="hint-holder" *ngIf="stepIndex === 5 && introModal === false">
       <div class="img-holder">
-        <img src="/assets/base/images/tankovanie/hint-icon.svg" alt="">
+        <img src="/assets/base/images/tankovanie/hint-icon.svg" alt="" />
       </div>
       <div class="text-holder">
         <p class="heading">Buy more, win more</p>
-        <p class="text">Buy more cars in your Garage, unlock a Rare car and increase your winning chances by playing with more cars in one race!</p>
+        <p class="text">
+          Buy more cars in your Garage, unlock a Rare car and increase your
+          winning chances by playing with more cars in one race!
+        </p>
       </div>
       <div class="garage-btn my-cta-btn-back" [routerLink]="['/car/garage']">
         <div class="inner">
@@ -752,11 +1703,18 @@
       </div>
     </div>
 
-    <div class="start-race-btn with-btns" *ngIf="stepIndex === 5 && introModal === false">
-      <div class="race-mode-holder" (click)="useTicket = true;signupToRace()" *ngIf="tickets > 0 && raceId === 'car_race_ioi_1'">
+    <div
+      class="start-race-btn with-btns"
+      *ngIf="stepIndex === 5 && introModal === false"
+    >
+      <div
+        class="race-mode-holder"
+        (click)="useTicket = true; signupToRace()"
+        *ngIf="tickets > 0 && raceId === 'car_race_ioi_1'"
+      >
         <div class="ticket-btn my-fuel-btn-back">
           <p *ngIf="isLoading === false">Use ticket &gt;</p>
-          <p *ngIf="isLoading === true">Loading.. </p>
+          <p *ngIf="isLoading === true">Loading..</p>
         </div>
       </div>
       <!-- <div class="race-mode-holder">
@@ -784,17 +1742,20 @@
       </div> -->
       <div class="inner-btn my-fuel-btn-back" (click)="signupToRace()">
         <p *ngIf="isLoading === false">Start race &gt;</p>
-        <p *ngIf="isLoading === true">Loading.. </p>
+        <p *ngIf="isLoading === true">Loading..</p>
       </div>
     </div>
 
     <div class="hint-holder" *ngIf="stepIndex === 6">
       <div class="img-holder">
-        <img src="/assets/base/images/tankovanie/hint-icon.svg" alt="">
+        <img src="/assets/base/images/tankovanie/hint-icon.svg" alt="" />
       </div>
       <div class="text-holder">
         <p class="heading">Buy more, win more</p>
-        <p class="text">Buy more cars in your Garage, unlock a Rare car and increase your winning chances by playing with more cars in one race!</p>
+        <p class="text">
+          Buy more cars in your Garage, unlock a Rare car and increase your
+          winning chances by playing with more cars in one race!
+        </p>
       </div>
       <div class="garage-btn my-cta-btn-back" [routerLink]="['/car/garage']">
         <div class="inner">
@@ -808,99 +1769,210 @@
         <p>Continue &gt;</p>
       </div>
     </div>
-    
   </div>
-
 </div>
 
-
-<div class="modal fade" id="indicate" tabindex="-1" role="dialog" aria-labelledby="indicator" aria-hidden="true">
+<div
+  class="modal fade"
+  id="indicate"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="indicator"
+  aria-hidden="true"
+>
   <div class="modal-dialog my-modal-dialog indicator-modal" role="document">
     <div class="modal-content my-modal-content">
-      <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close" (click)="selectedSymbol = null">
-        <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
+      <button
+        type="button"
+        class="close my-modal-close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="selectedSymbol = null"
+      >
+        <span aria-hidden="true"
+          ><img src="assets/rewards/X-modal.png" alt=""
+        /></span>
       </button>
-      <div class="modal-body" style="height:500px;">
-        <div  *ngIf="selectedSymbol" >
-        <app-indicator [type]="selectedSymbol"></app-indicator>
+      <div class="modal-body" style="height: 500px">
+        <div *ngIf="selectedSymbol">
+          <app-indicator [type]="selectedSymbol"></app-indicator>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="tutorial-modal" [ngClass]="'step' + tutorialStep" *ngIf="introModal === true">
-
+<div
+  class="tutorial-modal"
+  [ngClass]="'step' + tutorialStep"
+  *ngIf="introModal === true"
+>
   <div class="box-content only-cta content0">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi big"
+    />
     <div class="text-holder centered">
       <p class="heading">Skip tutorial</p>
-      <p class="text">No worries, you can still turn the tutorial on in the settings anytime.</p>
+      <p class="text">
+        No worries, you can still turn the tutorial on in the settings anytime.
+      </p>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="skipModal()">{{'tutorial.skip_tutorial' | translate}}</button>
+    <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+      {{ "tutorial.skip_tutorial" | translate }}
+    </button>
   </div>
 
   <div class="box-content content1">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
       <p class="heading">Pick a car</p>
-      <p class="text">Choose at least one car from any of the editions to continue. Choose multiple cars to increase your chances to win and get more money!</p>
+      <p class="text">
+        Choose at least one car from any of the editions to continue. Choose
+        multiple cars to increase your chances to win and get more money!
+      </p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back inactive" *ngIf="selectedCarsToRace.length === 0">Continue</button>
-      <button class="my-cta-btn-back hoverable" *ngIf="selectedCarsToRace.length > 0" (click)="stepIndex = 2; selectDefaultCoin(0); nextTutorialStep()">Continue</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button
+        class="my-cta-btn-back inactive"
+        *ngIf="selectedCarsToRace.length === 0"
+      >
+        Continue
+      </button>
+      <button
+        class="my-cta-btn-back hoverable"
+        *ngIf="selectedCarsToRace.length > 0"
+        (click)="stepIndex = 2; selectDefaultCoin(0); nextTutorialStep()"
+      >
+        Continue
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        Skip the tutorial &gt;
+      </p>
     </div>
   </div>
 
   <div class="box-content content2">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
       <p class="heading">Pick a fuel</p>
-      <p class="text">Choose  your portfolio of 3 crypto coins which you think will perform  the best in the upcoming race. If you are a premium member,  you can see the top 3 coins that were performing the best in the last 10 minutes. You can see tips from your team manager as a Manager tip of the day.</p>
+      <p class="text">
+        Choose your portfolio of 3 crypto coins which you think will perform the
+        best in the upcoming race. If you are a premium member, you can see the
+        top 3 coins that were performing the best in the last 10 minutes. You
+        can see tips from your team manager as a Manager tip of the day.
+      </p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back inactive" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">Continue</button>
-      <button class="my-cta-btn-back hoverable" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3" (click)="nextTutorialStep()">Continue</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button
+        class="my-cta-btn-back inactive"
+        *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3"
+      >
+        Continue
+      </button>
+      <button
+        class="my-cta-btn-back hoverable"
+        *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3"
+        (click)="nextTutorialStep()"
+      >
+        Continue
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        Skip the tutorial &gt;
+      </p>
     </div>
   </div>
 
   <div class="box-content content3">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
       <p class="heading">See a Technical analysis</p>
-      <p class="text">Every coin has a chart and an indicator  so you can change your portfolio  according to real-time data anytime. 
-        Now, fuel your cars up to 100% by using a slider below, choose long or shor for each of the coins, and continue to the next step.</p>
+      <p class="text">
+        Every coin has a chart and an indicator so you can change your portfolio
+        according to real-time data anytime. Now, fuel your cars up to 100% by
+        using a slider below, choose long or shor for each of the coins, and
+        continue to the next step.
+      </p>
       <div class="pointing-line to-right"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back inactive" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel !== 100">Continue</button>
+      <button
+        class="my-cta-btn-back inactive"
+        *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel !== 100"
+      >
+        Continue
+      </button>
 
-      <button class="my-cta-btn-back hoverable" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel === 100 && sumFuel / sumlength !== 100 && selectedCarIndex < selectedCarsToRace.length - 1"
-       (click)="selectedCarIndex = selectedCarIndex + 1;calcSumFuel();tutorialStep = 2">Continue</button>
+      <button
+        class="my-cta-btn-back hoverable"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
+          sumFuel / sumlength !== 100 &&
+          selectedCarIndex < selectedCarsToRace.length - 1
+        "
+        (click)="
+          selectedCarIndex = selectedCarIndex + 1;
+          calcSumFuel();
+          tutorialStep = 2
+        "
+      >
+        Continue
+      </button>
 
-      <button class="my-cta-btn-back hoverable" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel === 100 && sumFuel / sumlength === 100" 
-      (click)="stepIndex = 5; nextTutorialStep(); calcPossibleMultibet()">Continue</button>
+      <button
+        class="my-cta-btn-back hoverable"
+        *ngIf="
+          selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
+          sumFuel / sumlength === 100
+        "
+        (click)="stepIndex = 5; nextTutorialStep(); calcPossibleMultibet()"
+      >
+        Continue
+      </button>
 
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        Skip the tutorial &gt;
+      </p>
     </div>
   </div>
 
   <div class="box-content content4">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
       <p class="heading">Summary</p>
-      <p class="text">Check all of your choices before joining the race, see the prize pool, your bet and  the ammount of players. Add a multibet and earn even more money.</p>
+      <p class="text">
+        Check all of your choices before joining the race, see the prize pool,
+        your bet and the ammount of players. Add a multibet and earn even more
+        money.
+      </p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="signupToRace()">Continue</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button class="my-cta-btn-back hoverable" (click)="signupToRace()">
+        Continue
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        Skip the tutorial &gt;
+      </p>
     </div>
   </div>
-
 </div>

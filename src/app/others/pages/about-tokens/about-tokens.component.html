@@ -21,7 +21,24 @@
       </div>
     </div>
   </div>
+
   <div class="content">
+    <div class="my-menu">
+      <div
+        [routerLink]="['/other/about-tokens']"
+        class="menu-item my-cta-btn-back active"
+        [ngClass]="{ inactive: leaderboardType !== 'about-rewards' }"
+      >
+        <p>{{ "leaderboard.racer_button" | translate }}</p>
+      </div>
+      <div
+        [routerLink]="['/other/about-tokens/rewards']"
+        class="menu-item my-cta-btn-back"
+        [ngClass]="{ inactive: leaderboardType !== 'rewards' }"
+      >
+        <p>{{ "leaderboard.team_button" | translate }}</p>
+      </div>
+    </div>
     <div class="level">
       <div class="level-left">
         <div class="avatar">
@@ -291,12 +308,12 @@
       <div class="dividend-section">
         <div class="dividend">
           <div class="dividend-left">
-            <h2>What is a Dividend pool?</h2>
+            <h2>What is a Reward pool?</h2>
             <p>
-              Dividends are a public platform's net profit in IOI currency.
+              Rewards are a public platform's net profit in IOI currency.
               <br /><br />
-              Watch the dividend pool getting filled in real-time and see the
-              history of dividends distribution.
+              Watch the reward pool getting filled in real-time and see the
+              history of rewards distribution.
             </p>
           </div>
           <div class="dividend-right">
@@ -425,7 +442,7 @@
               <div class="inner-want-more">
                 <h2>Want more benefits? We got you.</h2>
                 <p>
-                  While earning dividends, you get 6 - 24% staking, and a free
+                  While earning rewards, you get 6 - 24% staking, and a free
                   entry to speed races, where you can win 35 IOI daily!
                 </p>
               </div>

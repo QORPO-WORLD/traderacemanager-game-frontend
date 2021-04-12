@@ -53,8 +53,8 @@
         [ngClass]="{ 'filter-content-active': mobileFilter === true }"
         class="filter-content"
       >
-        <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
         <div (click)="filterCars(); filterMobile()"><p>Cars</p></div>
+        <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
         <div (click)="filterTracks(); filterMobile()"><p>Tracks</p></div>
         <div (click)="filterTeams(); filterMobile()"><p>Teams</p></div>
         <div (click)="filterAll(); filterMobile()"><p>All</p></div>
@@ -68,16 +68,6 @@
         <div class="filter-boxes">
           <div>
             <div
-              (click)="filterRacers()"
-              [ngClass]="{
-                'filter-active': racersActive === true
-              }"
-              class="filter-box"
-            ></div>
-            <p>Racers</p>
-          </div>
-          <div>
-            <div
               (click)="filterCars()"
               [ngClass]="{
                 'filter-active': carsActive === true
@@ -86,6 +76,17 @@
             ></div>
             <p>Cars</p>
           </div>
+          <div>
+            <div
+              (click)="filterRacers()"
+              [ngClass]="{
+                'filter-active': racersActive === true
+              }"
+              class="filter-box"
+            ></div>
+            <p>Racers</p>
+          </div>
+
           <div>
             <div
               (click)="filterTracks()"
