@@ -1,18 +1,14 @@
-
-
 <div class="main-wrapper">
-
-  <div class="rewards-box" [ngClass]="{'tutorial-high': tutorialStep === 3}">
-    
+  <div class="rewards-box" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
     <div class="top-wrapper">
-      <p class="box-heading">{{'start-race.dividends' | translate}} </p>
+      <p class="box-heading">{{ "start-race.dividends" | translate }}</p>
       <div class="info-icon">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="">
+        <img src="/assets/base/images/menu/info-icon.svg" alt="" />
         <div class="info-bubble">
           <div class="img-holder">
-            <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
+            <img src="/assets/base/images/icons/inner-info-icon.png" alt="" />
           </div>
-          <p>{{'start-race.complete_levels' | translate}}</p>
+          <p>{{ "start-race.complete_levels" | translate }}</p>
         </div>
       </div>
 
@@ -22,55 +18,147 @@
             <defs>
               <filter id="f2" x="-30%" y="-30%" width="160%" height="160%">
                 <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0" />
-                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.3" />
+                <feGaussianBlur
+                  result="blurOut"
+                  in="offOut"
+                  stdDeviation="1.3"
+                />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
               </filter>
-              <linearGradient id="linear" x1="5%" y1="0%" x2="105%" y2="0%" x3="20%" y3="0%" spreadMethod="pad">
-                <stop offset="0%"   stop-color="#950552"/>
-                <stop offset="100%" stop-color="#FE173F"/>
+              <linearGradient
+                id="linear"
+                x1="5%"
+                y1="0%"
+                x2="105%"
+                y2="0%"
+                x3="20%"
+                y3="0%"
+                spreadMethod="pad"
+              >
+                <stop offset="0%" stop-color="#950552" />
+                <stop offset="100%" stop-color="#FE173F" />
               </linearGradient>
             </defs>
-            <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="black"></circle>
-            <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3.5"></circle>
+            <circle
+              class="donut-hole"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="black"
+            ></circle>
+            <circle
+              class="donut-ring"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="transparent"
+              stroke-width="3.5"
+            ></circle>
 
-            <circle filter="url(#f2)" stroke="url(#linear)" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-            stroke-width="2" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': startingValue + ' ' + (100 - startingValue)}"></circle>
+            <circle
+              filter="url(#f2)"
+              stroke="url(#linear)"
+              class="donut-segment"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="transparent"
+              stroke-width="2"
+              stroke-dashoffset="25"
+              [ngStyle]="{
+                'stroke-dasharray': startingValue + ' ' + (100 - startingValue)
+              }"
+            ></circle>
           </svg>
-          <svg width="100%" height="100%" viewBox="0 0 40 40" class="donut-blue">
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 40 40"
+            class="donut-blue"
+          >
             <defs>
               <filter id="f1" x="-30%" y="-30%" width="160%" height="160%">
                 <feOffset result="offOut" in="SourceGraphic" dx="0" dy="0" />
-                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.3" />
+                <feGaussianBlur
+                  result="blurOut"
+                  in="offOut"
+                  stdDeviation="1.3"
+                />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
               </filter>
-              <linearGradient id="linear2" x1="5%" y1="0%" x2="190%" y2="-100%" x3="20%" y3="0%" spreadMethod="pad">
-                <stop offset="0%" stop-color="#23FFFF"/>
-                <stop offset="100%" stop-color="#2B16F7"/>
+              <linearGradient
+                id="linear2"
+                x1="5%"
+                y1="0%"
+                x2="190%"
+                y2="-100%"
+                x3="20%"
+                y3="0%"
+                spreadMethod="pad"
+              >
+                <stop offset="0%" stop-color="#23FFFF" />
+                <stop offset="100%" stop-color="#2B16F7" />
               </linearGradient>
             </defs>
-            <circle class="donut-hole" cx="20" cy="20" r="15.91549430918954" fill="black"></circle>
-            <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="3.5"></circle>
+            <circle
+              class="donut-hole"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="black"
+            ></circle>
+            <circle
+              class="donut-ring"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="transparent"
+              stroke-width="3.5"
+            ></circle>
 
-            <circle filter="url(#f1)" stroke="url(#linear2)" class="donut-segment" cx="20" cy="20" r="15.91549430918954" fill="transparent" 
-            stroke-width="2" stroke-dashoffset="25" [ngStyle]="{'stroke-dasharray': startingValue + ' ' + (100 - startingValue)}"></circle>
+            <circle
+              filter="url(#f1)"
+              stroke="url(#linear2)"
+              class="donut-segment"
+              cx="20"
+              cy="20"
+              r="15.91549430918954"
+              fill="transparent"
+              stroke-width="2"
+              stroke-dashoffset="25"
+              [ngStyle]="{
+                'stroke-dasharray': startingValue + ' ' + (100 - startingValue)
+              }"
+            ></circle>
           </svg>
           <div class="text-holder">
-            <p class="value">{{ ioioreward | number:'1.2-2':'fr' }}</p>
-            <p class="desc">{{'start-race.actual_ioi_rewards' | translate}}</p>
+            <p class="value">{{ ioioreward | number: "1.2-2":"fr" }}</p>
+            <p class="desc">
+              {{ "start-race.actual_ioi_rewards" | translate }}
+            </p>
           </div>
         </div>
       </div>
 
       <div class="proggres-holder">
-        <p class="value">{{rewardLevel | number:'1.2-2':'fr' }} {{'shared.ioi' | translate}}</p>
+        <p class="value">
+          {{ rewardLevel | number: "1.2-2":"fr" }}
+          {{ "shared.ioi" | translate }}
+        </p>
         <div class="my-bar">
-          <div class="inner-bar my-cta-btn-back" [ngStyle]="{width: rewardLevelSum + '%'}"></div>
+          <div
+            class="inner-bar my-cta-btn-back"
+            [ngStyle]="{ width: rewardLevelSum + '%' }"
+          ></div>
         </div>
         <div class="desc-holder" *ngIf="rewardLevel < 100">
           <p class="left">0</p>
           <p class="right">100</p>
         </div>
-        <div class="desc-holder" *ngIf="rewardLevel > 100 && rewardLevel < 1000">
+        <div
+          class="desc-holder"
+          *ngIf="rewardLevel > 100 && rewardLevel < 1000"
+        >
           <p class="left">100</p>
           <p class="right">1000</p>
         </div>
@@ -78,167 +166,337 @@
           <p class="left">1 000</p>
           <p class="right">10 000</p>
         </div>
-        <p class="bottom-desc" *ngIf="rewardLevel < 100">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target1' | translate}}</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target2' | translate}}</p>
-        <p class="bottom-desc" *ngIf="rewardLevel > 999">{{rewardLevelSum | number:'1.2-2':'fr'}}% {{'start-race.ioi_target3' | translate}}</p>
+        <p class="bottom-desc" *ngIf="rewardLevel < 100">
+          {{ rewardLevelSum | number: "1.2-2":"fr" }}%
+          {{ "start-race.ioi_target1" | translate }}
+        </p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 100 && rewardLevel < 1000">
+          {{ rewardLevelSum | number: "1.2-2":"fr" }}%
+          {{ "start-race.ioi_target2" | translate }}
+        </p>
+        <p class="bottom-desc" *ngIf="rewardLevel > 999">
+          {{ rewardLevelSum | number: "1.2-2":"fr" }}%
+          {{ "start-race.ioi_target3" | translate }}
+        </p>
       </div>
     </div>
 
     <div class="leader-holder" [routerLink]="['/teams/leaderboard']">
-      <p class="value">March {{'start-race.top_leader' | translate}} <span>&gt;</span></p>
+      <p class="value">
+        March {{ "start-race.top_leader" | translate }} <span>&gt;</span>
+      </p>
       <div class="leader-cont my-border-grad">
         <div class="inner">
           <div class="img-holder">
-            <img src="/assets/base/images/start-race/lead-trophy-red.svg" alt="" class="trophy-red">
-            <img src="/assets/base/images/start-race/lead-trophy-blue.svg" alt="" class="trophy-blue">
+            <img
+              src="/assets/base/images/start-race/lead-trophy-red.svg"
+              alt=""
+              class="trophy-red"
+            />
+            <img
+              src="/assets/base/images/start-race/lead-trophy-blue.svg"
+              alt=""
+              class="trophy-blue"
+            />
           </div>
           <div class="text-holder">
-            <p class="name">{{bestRacer?.user_nickname}}</p>
-            <p class="desc">{{'leaderboard.team_leaderboard.turnover' | translate}} | {{bestRacer?.total_bet_amount| number:'1.2-2':'fr'}} IOI</p>
+            <p class="name">{{ bestRacer?.user_nickname }}</p>
+            <p class="desc">
+              {{ "leaderboard.team_leaderboard.turnover" | translate }} |
+              {{ bestRacer?.total_bet_amount | number: "1.2-2":"fr" }} IOI
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="main-center-box" [ngClass]="{'tutorial-high': tutorialStep === 4}">
+  <div
+    class="main-center-box"
+    [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
+  >
     <div class="top-banner red-variant">
       <button class="arrow left" (click)="prevBanner()">&lt;</button>
       <button class="arrow right" (click)="nextBanner()">&gt;</button>
       <div class="dots-holder">
-        <div class="dot my-low-gradient" (click)="manualBannerChange(1)" [ngClass]="{'inactive': topBannerIndex !== 1}"></div>
-        <div class="dot my-low-gradient" (click)="manualBannerChange(2)" [ngClass]="{'inactive': topBannerIndex !== 2}"></div>
-        <div class="dot my-low-gradient" (click)="manualBannerChange(3)" [ngClass]="{'inactive': topBannerIndex !== 3}"></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(1)"
+          [ngClass]="{ inactive: topBannerIndex !== 1 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(2)"
+          [ngClass]="{ inactive: topBannerIndex !== 2 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(3)"
+          [ngClass]="{ inactive: topBannerIndex !== 3 }"
+        ></div>
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.modal1_text1" | translate}} <br>
-            {{"start-race.modal1_text2" | translate}}</p>
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/teams/join-teams']">{{"start-race.join_now" | translate}}</button>
+          <p class="race-name">
+            {{ "start-race.modal1_text1" | translate }} <br />
+            {{ "start-race.modal1_text2" | translate }}
+          </p>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/teams/join-teams']"
+          >
+            {{ "start-race.join_now" | translate }}
+          </button>
         </div>
-        <img src="/assets/base/images/start-race/helmet-img.png" alt="" class="banner-img crown">
+        <img
+          src="/assets/base/images/start-race/helmet-img.png"
+          alt=""
+          class="banner-img crown"
+        />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.modal2_text1" | translate}}<br>
-            {{"start-race.modal2_text2" | translate}}</p> 
+          <p class="race-name">
+            {{ "start-race.modal2_text1" | translate }}<br />
+            {{ "start-race.modal2_text2" | translate }}
+          </p>
 
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/other/tasks']">{{"start-race.show_tasks" | translate}}</button>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/other/tasks']"
+          >
+            {{ "start-race.show_tasks" | translate }}
+          </button>
         </div>
-        <img src="/assets/base/images/start-race/tasks-img.png" alt="" class="banner-img tasks">
+        <img
+          src="/assets/base/images/start-race/tasks-img.png"
+          alt=""
+          class="banner-img tasks"
+        />
       </div>
 
       <div class="banner-item item3 red" *ngIf="topBannerIndex === 3">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.modal3_text1" | translate}}<br>
-            {{"start-race.modal3_text2" | translate}}</p> 
-          <p class="banner-text">{{"start-race.modal3_text3" | translate}}</p>
+          <p class="race-name">
+            {{ "start-race.modal3_text1" | translate }}<br />
+            {{ "start-race.modal3_text2" | translate }}
+          </p>
+          <p *ngIf="display > 640" class="banner-text">
+            {{ "start-race.modal3_text3" | translate }}
+          </p>
 
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/nft-market']">{{"start-race.get_nfts" | translate}}</button>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/car/nft-market']"
+          >
+            {{ "start-race.get_nfts" | translate }}
+          </button>
         </div>
       </div>
-      
     </div>
 
     <div class="top-banner blue-variant">
       <button class="arrow left" (click)="prevBanner()">&lt;</button>
       <button class="arrow right" (click)="nextBanner()">&gt;</button>
       <div class="dots-holder">
-        <div class="dot my-low-gradient" (click)="manualBannerChange(1)" [ngClass]="{'inactive': topBannerIndex !== 1}"></div>
-        <div class="dot my-low-gradient" (click)="manualBannerChange(2)" [ngClass]="{'inactive': topBannerIndex !== 2}"></div>
-        <div class="dot my-low-gradient" (click)="manualBannerChange(3)" [ngClass]="{'inactive': topBannerIndex !== 3}"></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(1)"
+          [ngClass]="{ inactive: topBannerIndex !== 1 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(2)"
+          [ngClass]="{ inactive: topBannerIndex !== 2 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(3)"
+          [ngClass]="{ inactive: topBannerIndex !== 3 }"
+        ></div>
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.buy_nft1" | translate}}<br>
-            {{"start-race.buy_nft2" | translate}}</p>
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/garage']">{{"start-race.buy" | translate}}</button>
+          <p class="race-name">
+            {{ "start-race.buy_nft1" | translate }}<br />
+            {{ "start-race.buy_nft2" | translate }}
+          </p>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/car/garage']"
+          >
+            {{ "start-race.buy" | translate }}
+          </button>
         </div>
-        <img src="/assets/base/images/start-race/nft-img.png" alt="" class="banner-img nft">
+        <img
+          src="/assets/base/images/start-race/nft-img.png"
+          alt=""
+          class="banner-img nft"
+        />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.collect_nft1" | translate}}<br>
-            {{"start-race.collect_nft2" | translate}}</p> 
+          <p class="race-name">
+            {{ "start-race.collect_nft1" | translate }}<br />
+            {{ "start-race.collect_nft2" | translate }}
+          </p>
 
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/garage']">Collect</button>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/car/garage']"
+          >
+            Collect
+          </button>
         </div>
-        <img src="/assets/base/images/start-race/nft-collection.png" alt="" class="banner-img collection">
+        <img
+          src="/assets/base/images/start-race/nft-collection.png"
+          alt=""
+          class="banner-img collection"
+        />
       </div>
 
       <div class="banner-item item3" *ngIf="topBannerIndex === 3">
         <div class="text-holder">
-          <p class="race-name">{{"start-race.modal4_text1" | translate}}<br>
-            {{"start-race.modal4_text2" | translate}}</p> 
-          <p class="banner-text">{{"start-race.modal4_text3" | translate}}</p>
+          <p class="race-name">
+            {{ "start-race.modal4_text1" | translate }}<br />
+            {{ "start-race.modal4_text2" | translate }}
+          </p>
+          <p *ngIf="display > 640" class="banner-text">
+            {{ "start-race.modal4_text3" | translate }}
+          </p>
 
-          <button class="register my-cta-btn-back hoverable"  [routerLink]="['/car/nft-market']">{{"start-race.get_racer" | translate}}</button>
+          <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/car/nft-market']"
+          >
+            {{ "start-race.get_racer" | translate }}
+          </button>
         </div>
       </div>
-      
     </div>
 
     <div class="categories-holder">
-      <p class="box-heading w-padd">{{'start-race.categories' | translate}}</p>
+      <p class="box-heading w-padd">
+        {{ "start-race.categories" | translate }}
+      </p>
       <div class="cat-cont">
-
-        <div class="cat-item cars my-cta-btn-back" [routerLink]="['/car/garage/my-cars']">
-          <img src="/assets/base/images/start-race/nft-back-red.png" alt="" class="back-img cars red">
-          <img src="/assets/base/images/start-race/nft-back-blue.png" alt="" class="back-img cars blue">
+        <div
+          class="cat-item cars my-cta-btn-back"
+          [routerLink]="['/car/garage/my-cars']"
+        >
+          <img
+            src="/assets/base/images/start-race/nft-back-red.png"
+            alt=""
+            class="back-img cars red"
+          />
+          <img
+            src="/assets/base/images/start-race/nft-back-blue.png"
+            alt=""
+            class="back-img cars blue"
+          />
           <div class="text-holder">
-            <p class="value">{{'start-race.nft_cars' | translate}}</p>
-            <p class="text">{{'start-race.nft_cars_desc' | translate}}</p>
+            <p class="value">{{ "start-race.nft_cars" | translate }}</p>
+            <p class="text">{{ "start-race.nft_cars_desc" | translate }}</p>
             <button class="arrow-btn">&gt;</button>
           </div>
         </div>
 
-        <div class="cat-item teams my-cta-btn-back" [routerLink]="['/teams/join-teams']">
-          <img src="/assets/base/images/start-race/team-back.png" alt="" class="back-img teams">
+        <div
+          class="cat-item teams my-cta-btn-back"
+          [routerLink]="['/teams/join-teams']"
+        >
+          <img
+            src="/assets/base/images/start-race/team-back.png"
+            alt=""
+            class="back-img teams"
+          />
           <div class="text-holder">
-            <p class="value">{{'leaderboard.teams' | translate}}</p>
-            <p class="text">{{'start-race.teams_desc' | translate}}</p>
+            <p class="value">{{ "leaderboard.teams" | translate }}</p>
+            <p class="text">{{ "start-race.teams_desc" | translate }}</p>
             <button class="arrow-btn">&gt;</button>
           </div>
         </div>
 
-        <div class="cat-item races my-cta-btn-back"  [routerLink]="['/race/all-races']" [queryParams]="{ raceType: 'trx' }">
-          <img src="/assets/base/images/start-race/races-back.png" alt="" class="back-img races">
+        <div
+          class="cat-item races my-cta-btn-back"
+          [routerLink]="['/race/all-races']"
+          [queryParams]="{ raceType: 'trx' }"
+        >
+          <img
+            src="/assets/base/images/start-race/races-back.png"
+            alt=""
+            class="back-img races"
+          />
           <div class="text-holder">
-            <p class="value">{{'profile.races' | translate}}</p>
-            <p class="text">{{'start-race.races_desc' | translate}}</p>
+            <p class="value">{{ "profile.races" | translate }}</p>
+            <p class="text">{{ "start-race.races_desc" | translate }}</p>
             <button class="arrow-btn">&gt;</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <div class="small-boxes" [ngClass]="{'tutorial-high': tutorialStep === 3}">
-    
+  <div class="small-boxes" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
     <div class="day-tip" (click)="recognizeOpenTips()">
-      <p class="box-heading">{{'teams.my_team.tip_of_day' | translate}}</p>
-      <div class="tip-box my-border-grad " [ngClass]="{'clickable': meManager === true}" style="cursor: pointer;">
+      <p class="box-heading">{{ "teams.my_team.tip_of_day" | translate }}</p>
+      <div
+        class="tip-box my-border-grad"
+        [ngClass]="{ clickable: meManager === true }"
+        style="cursor: pointer"
+      >
         <div class="border-maker"></div>
         <div class="inner-holder">
           <div class="img-holder">
-            <img src="/assets/base/images/start-race/flame-red.svg" alt="" class="flame-red">
-            <img src="/assets/base/images/start-race/flame-blue.svg" alt="" class="flame-blue">
+            <img
+              src="/assets/base/images/start-race/flame-red.svg"
+              alt=""
+              class="flame-red"
+            />
+            <img
+              src="/assets/base/images/start-race/flame-blue.svg"
+              alt=""
+              class="flame-blue"
+            />
           </div>
-          <div class="text-holder" *ngIf="tips.length > 0 && isPremium === true">
-            <p class="value">{{'start-race.best_racer_strategy' | translate}}</p>
+          <div
+            class="text-holder"
+            *ngIf="tips.length > 0 && isPremium === true"
+          >
+            <p class="value">
+              {{ "start-race.best_racer_strategy" | translate }}
+            </p>
             <div class="currs-holder">
               <div class="curr-item" *ngFor="let item of tips">
-                <img [src]="'/assets/base/images/curr-logos/' + item.symbol +'-logo.png'" alt="">
-                <img class="arrow-img" src="/assets/base/images/start-race/long-box.svg" alt="" *ngIf="item.short === false">
-                <img class="arrow-img" src="/assets/base/images/start-race/short-box.svg" alt="" *ngIf="item.short === true">
+                <img
+                  [src]="
+                    '/assets/base/images/curr-logos/' +
+                    item.symbol +
+                    '-logo.png'
+                  "
+                  alt=""
+                />
+                <img
+                  class="arrow-img"
+                  src="/assets/base/images/start-race/long-box.svg"
+                  alt=""
+                  *ngIf="item.short === false"
+                />
+                <img
+                  class="arrow-img"
+                  src="/assets/base/images/start-race/short-box.svg"
+                  alt=""
+                  *ngIf="item.short === true"
+                />
               </div>
-
             </div>
           </div>
-          <div class="text-holder" *ngIf="tips.length === 0 && isPremium === true">
+          <div
+            class="text-holder"
+            *ngIf="tips.length === 0 && isPremium === true"
+          >
             <p class="value smaller">No tips at the moment</p>
           </div>
           <div class="text-holder" *ngIf="isPremium === false">
@@ -248,456 +506,889 @@
       </div>
     </div>
     <div class="next-burn">
-      <p class="box-heading">{{'start-race.next_burning' | translate}}</p>
+      <p class="box-heading">{{ "start-race.next_burning" | translate }}</p>
       <div class="info-icon">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="">
+        <img src="/assets/base/images/menu/info-icon.svg" alt="" />
         <div class="info-bubble">
           <div class="img-holder">
-            <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
+            <img src="/assets/base/images/icons/inner-info-icon.png" alt="" />
           </div>
-          <p>{{'start-race.burning_desc' | translate}}</p>
+          <p>{{ "start-race.burning_desc" | translate }}</p>
         </div>
       </div>
       <div class="burn-box my-border-grad">
         <div class="inner-holder">
-          <p><span style="display:none">300 000 {{'shared.ioi' | translate}}</span> {{'shared.in' | translate}} <span class="time my-text-color"><app-timer-long class="my-text-color" [value]="hwdays" [type]="1"></app-timer-long></span></p>
+          <p>
+            <span style="display: none"
+              >300 000 {{ "shared.ioi" | translate }}</span
+            >
+            {{ "shared.in" | translate }}
+            <span class="time my-text-color"
+              ><app-timer-long
+                class="my-text-color"
+                [value]="hwdays"
+                [type]="1"
+              ></app-timer-long
+            ></span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="center-bottom-box" [ngClass]="{'tutorial-high': tutorialStep === 4}">
+  <div
+    class="center-bottom-box"
+    [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
+  >
     <app-exp-bar></app-exp-bar>
     <div class="stats-holder">
-      <p class="box-heading w-padd">{{'shared.stats' | translate}}</p>
+      <p class="box-heading w-padd">{{ "shared.stats" | translate }}</p>
       <div class="info-icon">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="">
+        <img src="/assets/base/images/menu/info-icon.svg" alt="" />
         <div class="info-bubble">
           <div class="img-holder">
-            <img src="/assets/base/images/icons/inner-info-icon.png" alt="">
+            <img src="/assets/base/images/icons/inner-info-icon.png" alt="" />
           </div>
-          <p>{{'start-race.stats_desc' | translate}}</p>
+          <p>{{ "start-race.stats_desc" | translate }}</p>
         </div>
       </div>
       <div class="stats-cont">
-        <div class="shiny-dummy my-border-grad stats-dummy"><div class="inner"></div></div>
+        <div class="shiny-dummy my-border-grad stats-dummy">
+          <div class="inner"></div>
+        </div>
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">{{myCarsvals  | number:'1.2-2':'fr'}} <span class="desc">{{'shared.ioi' | translate}}</span></p>
-            <p class="bot-desc">{{'start-race.your_garage_value' | translate}}</p>
+            <p class="value">
+              {{ myCarsvals | number: "1.2-2":"fr" }}
+              <span class="desc">{{ "shared.ioi" | translate }}</span>
+            </p>
+            <p class="bot-desc">
+              {{ "start-race.your_garage_value" | translate }}
+            </p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value" style="
-              margin-bottom: 5px;">{{dailyReward}} IOI</p>
-              <p class="desc">{{'start-race.daily_reward' | translate}}</p>
+              <p class="value" style="margin-bottom: 5px">
+                {{ dailyReward }} IOI
+              </p>
+              <p class="desc">{{ "start-race.daily_reward" | translate }}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
-              <p class="value">{{carBonus}}%</p>
-              <p class="desc">{{'start-race.apy' | translate}}</p>
+              <p class="value">{{ carBonus }}%</p>
+              <p class="desc">{{ "start-race.apy" | translate }}</p>
             </div>
           </div>
         </div>
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value" *ngIf="myLdrbrd?.team_name">{{'profile.team' | translate}} {{ myLdrbrd?.team_name }}</p>
+            <p class="value" *ngIf="myLdrbrd?.team_name">
+              {{ "profile.team" | translate }} {{ myLdrbrd?.team_name }}
+            </p>
             <p class="value" *ngIf="!myLdrbrd?.team_name">-</p>
 
-            <p class="bot-desc">{{'start-race.your_team' | translate}}</p>
+            <p class="bot-desc">{{ "start-race.your_team" | translate }}</p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value">{{myDriverOld?.is_paid_membership}}</p>
-              <p class="desc">{{'start-race.membership' | translate}}</p>
+              <p class="value">{{ myDriverOld?.is_paid_membership }}</p>
+              <p class="desc">{{ "start-race.membership" | translate }}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
-              <p class="value">{{myRewards?.team_bonus | number:'1.2-2':'fr'}}</p>
-              <p class="desc">{{'start-race.dividends' | translate}}</p>
+              <p class="value">
+                {{ myRewards?.team_bonus | number: "1.2-2":"fr" }}
+              </p>
+              <p class="desc">{{ "start-race.dividends" | translate }}</p>
             </div>
           </div>
         </div>
 
         <div class="stat-item">
           <div class="top-part">
-            <p class="value">{{'start-race.leaderboard' | translate}}</p>
-            <p class="bot-desc" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{'start-race.leaderboard_placement' | translate}}</p>
-            <p class="bot-desc" *ngIf="myDriverOld?.is_paid_membership === 'Free'">Available for premium members</p>
+            <p class="value">{{ "start-race.leaderboard" | translate }}</p>
+            <p
+              class="bot-desc"
+              *ngIf="myDriverOld?.is_paid_membership !== 'Free'"
+            >
+              {{ "start-race.leaderboard_placement" | translate }}
+            </p>
+            <p
+              class="bot-desc"
+              *ngIf="myDriverOld?.is_paid_membership === 'Free'"
+            >
+              Available for premium members
+            </p>
           </div>
           <div class="bottom-part">
             <div class="my-item">
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{ myLdrbrd?.team_position ?  myLdrbrd?.team_position : '-'}}/3</p>
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership === 'Free'">-</p>
-              <p class="desc">{{'profile.t_position' | translate}}</p>
+              <p
+                class="value"
+                *ngIf="myDriverOld?.is_paid_membership !== 'Free'"
+              >
+                {{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}/3
+              </p>
+              <p
+                class="value"
+                *ngIf="myDriverOld?.is_paid_membership === 'Free'"
+              >
+                -
+              </p>
+              <p class="desc">{{ "profile.t_position" | translate }}</p>
               <div class="line"></div>
             </div>
             <div class="my-item">
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership !== 'Free'">{{ myLdrbrd?.player_position_overall ? myLdrbrd?.team_position : '-' }}</p>
-              <p class="value" *ngIf="myDriverOld?.is_paid_membership === 'Free'">-</p>
-              <p class="desc">{{'leaderboard.my_position' | translate}}</p>
+              <p
+                class="value"
+                *ngIf="myDriverOld?.is_paid_membership !== 'Free'"
+              >
+                {{
+                  myLdrbrd?.player_position_overall
+                    ? myLdrbrd?.team_position
+                    : "-"
+                }}
+              </p>
+              <p
+                class="value"
+                *ngIf="myDriverOld?.is_paid_membership === 'Free'"
+              >
+                -
+              </p>
+              <p class="desc">{{ "leaderboard.my_position" | translate }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
 
-    <!-- MODALS -->
+<!-- MODALS -->
 
-<div class="modal fade" id="bet-free" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
+<div
+  class="modal fade"
+  id="bet-free"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
     <div class="modal-content my-modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.free' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
+        <h5 class="modal-title">{{ "modals.heading.free" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
         </button>
       </div>
       <div class="modal-body">
-          <p> 
-            {{'modals.text.free' | translate}}
+        <p>
+          {{ "modals.text.free" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="bet-10"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.trx10" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.trx10" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="bet-50"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.trx50" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.trx50" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="bet-100"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.trx100" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.trx100" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="bet-500"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.trx500" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.trx500" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="bet-1000"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.trx1000" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.trx1000" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="summer-party-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ "modals.heading.wednesday_race" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bonus-race-text">
+          <p>
+            {{ "modals.text.wednesday_race" | translate }}
           </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="bet-10" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.trx10' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.trx10' | translate}}
+          <p class="bonus-info-row mt-4">
+            <span class="left-part"
+              >100 - 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part right-pad"
+              >1 {{ "modals.shared.ticket" | translate }}</span
+            >
           </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="bet-50" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.trx50' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.trx50' | translate}}
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >1 000 - 4 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >2 {{ "modals.shared.tickets" | translate }}</span
+            >
           </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="bet-100" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.trx100' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.trx100' | translate}}
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >3 {{ "modals.shared.tickets" | translate }}</span
+            >
           </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="bet-500" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.trx500' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.trx500' | translate}}
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >4 {{ "modals.shared.tickets" | translate }}</span
+            >
           </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="bet-1000" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.trx1000' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.trx1000' | translate}}
-          </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="summer-party-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.wednesday_race' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="bonus-race-text">
-              <p> 
-                {{'modals.text.wednesday_race' | translate}}
-              </p>
-              <p class="bonus-info-row mt-4"><span class="left-part">100 -  999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part right-pad">1 {{'modals.shared.ticket' | translate}}</span></p>
-              <p class="bonus-info-row"><span class="left-part">1 000 -  4 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">2 {{'modals.shared.tickets' | translate}}</span>	</p>
-              <p class="bonus-info-row"><span class="left-part">5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">3 {{'modals.shared.tickets' | translate}}</span></p>
-              <p class="bonus-info-row"><span class="left-part">10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">4 {{'modals.shared.tickets' | translate}}</span></p>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="tournament-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.tournament' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.tournament' | translate}}
-          </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="ioi-1-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.ioi1' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.ioi1_text' | translate}}
-          </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="ioi-3-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.ioi3' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.ioi3_text' | translate}}
-          </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="ioi-5-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.ioi5' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.ioi5_text' | translate}}
-          </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="free-tournament-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.free_tournament' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="bonus-race-text">
-              <p> 
-                {{'modals.text.free_tournament' | translate}}
-              </p>
-              <p class="bonus-info-row mt-4"><span class="left-part">100 -  999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part right-pad">1 {{'modals.shared.ticket' | translate}}</span></p>
-              <p class="bonus-info-row"><span class="left-part">1 000 -  4 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">2 {{'modals.shared.tickets' | translate}}</span>	</p>
-              <p class="bonus-info-row"><span class="left-part">5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">3 {{'modals.shared.tickets' | translate}}</span></p>
-              <p class="bonus-info-row"><span class="left-part">10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                  <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">4 {{'modals.shared.tickets' | translate}}</span></p>
-              <p class="mt-3">{{'start-race.minimum_amount' | translate}}</p>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="golden-ticket-modal" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.golden_ticket' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p> 
-            {{'modals.text.golden_ticket' | translate}}
-          </p>
-          <div class="bonus-race-text">
-            <p class="bonus-info-row mt-4"><span class="left-part">100 -  999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part right-pad">1 {{'modals.shared.ticket' | translate}}</span></p>
-            <p class="bonus-info-row"><span class="left-part">1 000 -  4 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">2 {{'modals.shared.tickets' | translate}}</span>	</p>
-            <p class="bonus-info-row"><span class="left-part">5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">3 {{'modals.shared.tickets' | translate}}</span></p>
-            <p class="bonus-info-row"><span class="left-part">10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""></span> 
-                <span class="mid-part">{{'modals.shared.get' | translate}}</span> <span class="right-part">4 {{'modals.shared.tickets' | translate}}</span></p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="golden-race-24" tabindex="-1" role="dialog" aria-labelledby="bet 1 000 TRX info" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered my-modal-dialog" role="document">
+<div
+  class="modal fade"
+  id="tournament-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
     <div class="modal-content my-modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{'modals.heading.golden_race' | translate}}</h5>
-        <button type="button" class="close my-modal-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><img src="assets/rewards/X-modal.png" alt=""></span>
+        <h5 class="modal-title">
+          {{ "modals.heading.tournament" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
         </button>
       </div>
       <div class="modal-body">
-          <p> 
-            {{'modals.text.golden_race' | translate}}
-          </p>
+        <p>
+          {{ "modals.text.tournament" | translate }}
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="tutorial-modal" [ngClass]="'step' + tutorialStep" *ngIf="introModal === true">
-
-  <div class="box-content only-cta content0">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
-    <div class="text-holder centered">
-      <p class="heading">{{'tutorial.skip_tutorial' | translate}}</p>
-      <p class="text">{{'tutorial.skip_desc' | translate}}</p>
+<div
+  class="modal fade"
+  id="ioi-1-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.ioi1" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.ioi1_text" | translate }}
+        </p>
+      </div>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="skipModal()">{{'tutorial.skip_tutorial' | translate}}</button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="ioi-3-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.ioi3" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.ioi3_text" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="ioi-5-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "modals.heading.ioi5" | translate }}</h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.ioi5_text" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="free-tournament-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ "modals.heading.free_tournament" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="bonus-race-text">
+          <p>
+            {{ "modals.text.free_tournament" | translate }}
+          </p>
+          <p class="bonus-info-row mt-4">
+            <span class="left-part"
+              >100 - 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part right-pad"
+              >1 {{ "modals.shared.ticket" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >1 000 - 4 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >2 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >3 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >4 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+          <p class="mt-3">{{ "start-race.minimum_amount" | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="golden-ticket-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ "modals.heading.golden_ticket" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.golden_ticket" | translate }}
+        </p>
+        <div class="bonus-race-text">
+          <p class="bonus-info-row mt-4">
+            <span class="left-part"
+              >100 - 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part right-pad"
+              >1 {{ "modals.shared.ticket" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >1 000 - 4 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >2 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >3 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+          <p class="bonus-info-row">
+            <span class="left-part"
+              >10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""
+            /></span>
+            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
+            <span class="right-part"
+              >4 {{ "modals.shared.tickets" | translate }}</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="golden-race-24"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bet 1 000 TRX info"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered my-modal-dialog"
+    role="document"
+  >
+    <div class="modal-content my-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ "modals.heading.golden_race" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="close my-modal-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true"
+            ><img src="assets/rewards/X-modal.png" alt=""
+          /></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ "modals.text.golden_race" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="tutorial-modal"
+  [ngClass]="'step' + tutorialStep"
+  *ngIf="introModal === true"
+>
+  <div class="box-content only-cta content0">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi big"
+    />
+    <div class="text-holder centered">
+      <p class="heading">{{ "tutorial.skip_tutorial" | translate }}</p>
+      <p class="text">{{ "tutorial.skip_desc" | translate }}</p>
+    </div>
+    <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+      {{ "tutorial.skip_tutorial" | translate }}
+    </button>
   </div>
 
   <div class="box-content only-cta content1">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi big"
+    />
     <div class="text-holder centered">
-      <p class="heading">{{'modals.welcome_btn' | translate}} {{myDriverOld.nickname}}</p>
-      <p class="text">{{'tutorial.tutorial_msg1' | translate}}</p>
+      <p class="heading">
+        {{ "modals.welcome_btn" | translate }} {{ myDriverOld.nickname }}
+      </p>
+      <p class="text">{{ "tutorial.tutorial_msg1" | translate }}</p>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'tutorial.lets_start' | translate}}</button>
+    <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+      {{ "tutorial.lets_start" | translate }}
+    </button>
   </div>
 
   <div class="box-content content2">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
-      <p class="heading">{{'tutorial.tutorial_msg2' | translate}}</p>
-      <p class="text">{{'tutorial.tutorial_msg3' | translate}}</p>
+      <p class="heading">{{ "tutorial.tutorial_msg2" | translate }}</p>
+      <p class="text">{{ "tutorial.tutorial_msg3" | translate }}</p>
       <div class="pointing-line to-right"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">{{'tutorial.skip_the_tutorial' | translate}} &gt;</p>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+        {{ "race.continue" | translate }}
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+      </p>
     </div>
   </div>
 
   <div class="box-content content3">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
-      <p class="heading">{{'tutorial.tutorial_msg4' | translate}}</p>
-      <p class="text">{{'tutorial.tutorial_msg5' | translate}}</p>
+      <p class="heading">{{ "tutorial.tutorial_msg4" | translate }}</p>
+      <p class="text">{{ "tutorial.tutorial_msg5" | translate }}</p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">{{'tutorial.skip_the_tutorial' | translate}} &gt;</p>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+        {{ "race.continue" | translate }}
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+      </p>
     </div>
   </div>
 
   <div class="box-content content4">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
-      <p class="heading">{{'tutorial.tutorial_msg6' | translate}}</p>
-      <p class="text">{{'tutorial.tutorial_msg7' | translate}}</p>
+      <p class="heading">{{ "tutorial.tutorial_msg6" | translate }}</p>
+      <p class="text">{{ "tutorial.tutorial_msg7" | translate }}</p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">{{'race.continue' | translate}}</button>
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+        {{ "race.continue" | translate }}
+      </button>
     </div>
   </div>
 
-  <div class="skip-text absolute my-cta-btn-back" *ngIf="tutorialStep !== 2 && tutorialStep !== 3 && tutorialStep !== 0" 
-  (click)="tutorialStep = 0"><p>{{'tutorial.skip_the_tutorial' | translate}} &gt;</p></div>
+  <div
+    class="skip-text absolute my-cta-btn-back"
+    *ngIf="tutorialStep !== 2 && tutorialStep !== 3 && tutorialStep !== 0"
+    (click)="tutorialStep = 0"
+  >
+    <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
+  </div>
 </div>
 
-
-<app-daily-tip-modal (modalClose)="tipsSaved($event)" *ngIf="showDayTipModal === true" [meOwner]="meManager"></app-daily-tip-modal>
-
-
-
+<app-daily-tip-modal
+  (modalClose)="tipsSaved($event)"
+  *ngIf="showDayTipModal === true"
+  [meOwner]="meManager"
+></app-daily-tip-modal>

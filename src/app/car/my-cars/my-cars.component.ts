@@ -1,16 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CarsService } from 'src/app/api/services';
-import { NotifiqService } from 'src/app/common/services/notifiq.service';
-import { AuthService } from 'src/app/user/services/auth.service';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs";
+import { CarsService } from "src/app/api/services";
+import { NotifiqService } from "src/app/common/services/notifiq.service";
+import { AuthService } from "src/app/user/services/auth.service";
 
 @Component({
-  selector: 'app-my-cars',
-  templateUrl: './my-cars.component.html',
-  styleUrls: ['./my-cars.component.scss'],
+  selector: "app-my-cars",
+  templateUrl: "./my-cars.component.html",
+  styleUrls: ["./my-cars.component.scss"],
 })
 export class MyCarsComponent implements OnInit, OnDestroy {
-
   myCars = [];
   carIndex = 1;
   editionIndex = 1;
@@ -19,6 +18,98 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   boughtCar: any;
   owning: boolean;
   hasNoCars = false;
+  i = 0;
+
+  carsNames: Array<object> = [
+    //bronze
+    {
+      name: "RHINO",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "VULCANIC",
+    },
+    {
+      name: "LUNA",
+    },
+    //silver
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "VULCANIC",
+    },
+    {
+      name: "SILVER KNIGHT",
+    },
+    //gold
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "RHINO",
+    },
+    {
+      name: "HYPER",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "HITMAN",
+    },
+    {
+      name: "MIDAS",
+    },
+    //platinum
+    {
+      name: "HYPER",
+    },
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "VULCANIC",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "KNOCKOUT",
+    },
+    {
+      name: "LARA",
+    },
+    {
+      name: "BLUE STORM",
+    },
+  ];
   myCarsSorted = {
     car0: [],
     car1: [],
@@ -48,7 +139,7 @@ export class MyCarsComponent implements OnInit, OnDestroy {
     car25: [],
     car26: [],
     car27: [],
-    car28: []
+    car28: [],
   };
   myCar: any;
   dataReady = false;
@@ -66,19 +157,21 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   tick: number;
   tickInterval: any;
   myTeam: string;
-  constructor(protected api: CarsService, private notifiq: NotifiqService, private identityService: AuthService) {
+  constructor(
+    protected api: CarsService,
+    private notifiq: NotifiqService,
+    private identityService: AuthService
+  ) {
     this.getMyCars();
   }
 
-
-
   ngOnInit() {
-    const tick = JSON.parse(localStorage.getItem('trxusdt'));
+    const tick = JSON.parse(localStorage.getItem("trxusdt"));
 
     if (tick) {
       this.tick = tick;
-      this.tickInterval = setInterval(() => { 
-        const tickn = JSON.parse(localStorage.getItem('trxusdt'));
+      this.tickInterval = setInterval(() => {
+        const tickn = JSON.parse(localStorage.getItem("trxusdt"));
         this.tick = tickn;
       }, 3000);
     }
@@ -95,7 +188,6 @@ export class MyCarsComponent implements OnInit, OnDestroy {
     }
   }
 
-
   selectCar(data) {
     this.bestIndex = data.length - 1;
     this.myCars = data;
@@ -105,20 +197,20 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   }
 
   getFreeCar() {
-    this.api.carsBuyList('0').subscribe(mycar => {
+    this.api.carsBuyList("0").subscribe((mycar) => {
       this.getMyCars();
     });
   }
 
   getMyCars() {
     this.clearSortedCars();
-    this.myCarsObserver = this.api.carsMineList().subscribe(data => {
+    this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       const objsx: any = data;
       const objs: any = objsx.cars;
       if (objs.length === 0) {
         this.getFreeCar();
       } else {
-        if(objs.length < 2){
+        if (objs.length < 2) {
           this.hasNoCars = true;
         }
         for (let x = 0; x < objs.length; x++) {
@@ -283,36 +375,43 @@ export class MyCarsComponent implements OnInit, OnDestroy {
     this.getCarBonus();
   }
 
-
   getCarBonus() {
-    if(this.myCarsvals > 0 && this.myCarsvals < 1000) { this.carBonus = 6}
-    if(this.myCarsvals > 1000 && this.myCarsvals < 5000) { this.carBonus = 12}
-    if(this.myCarsvals > 5000 && this.myCarsvals < 10000) { this.carBonus = 18}
-    if(this.myCarsvals > 10000) { this.carBonus = 24}
+    if (this.myCarsvals > 0 && this.myCarsvals < 1000) {
+      this.carBonus = 6;
+    }
+    if (this.myCarsvals > 1000 && this.myCarsvals < 5000) {
+      this.carBonus = 12;
+    }
+    if (this.myCarsvals > 5000 && this.myCarsvals < 10000) {
+      this.carBonus = 18;
+    }
+    if (this.myCarsvals > 10000) {
+      this.carBonus = 24;
+    }
   }
 
-  selectMyCar(id: number){
+  selectMyCar(id: number) {
     this.carIndex = id;
     this.shiftIndex = (id - 1) % 6;
-    if(id > 24){
+    if (id > 24) {
       this.shiftIndex = 6;
     }
     let key = Object.values(this.myCarsSorted)[id];
-    if(key.length > 0){
+    if (key.length > 0) {
       this.boughtCar = true;
     } else {
       this.boughtCar = false;
     }
   }
 
-  changeEdition(edNum: number){
+  changeEdition(edNum: number) {
     this.editionIndex = edNum;
-    this.carIndex = (this.shiftIndex + 1) + (6 * (edNum - 1));
-    if(this.shiftIndex === 6 ){
+    this.carIndex = this.shiftIndex + 1 + 6 * (edNum - 1);
+    if (this.shiftIndex === 6) {
       this.carIndex = 24 + edNum;
     }
     let key = Object.values(this.myCarsSorted)[this.carIndex];
-    if(key.length > 0){
+    if (key.length > 0) {
       this.boughtCar = true;
     } else {
       this.boughtCar = false;
@@ -325,17 +424,17 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   }
 
   copyInputMessage() {
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = 'https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions';
+    let selBox = document.createElement("textarea");
+    selBox.style.position = "fixed";
+    selBox.style.left = "0";
+    selBox.style.top = "0";
+    selBox.style.opacity = "0";
+    selBox.value =
+      "https://explorer-mainnet.maticvigil.com/address/0xECc4C3dD345DBdE65FBcc460E5aC5C807B84b019/transactions";
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(selBox);
   }
-
 }

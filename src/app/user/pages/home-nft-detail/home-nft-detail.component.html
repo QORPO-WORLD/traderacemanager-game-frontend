@@ -133,6 +133,23 @@
                 <p>super skill</p>
               </div>
             </div>
+            <div
+              *ngIf="displayArray[0]['rank'] === 'height'"
+              class="ability-box"
+            >
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["ability3"] }} from NFTS</h1>
+                <p>legendary skill</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -554,10 +571,7 @@
             <div class="ability-box">
               <div class="ability-image">
                 <button>
-                  <img
-                    src="/assets/base/images/home-page/abilitypercent.png"
-                    alt=""
-                  />
+                  <img src="/assets/base/images/home-page/clock.svg" alt="" />
                 </button>
               </div>
               <div class="ability-type">
@@ -567,7 +581,9 @@
             </div>
             <div class="ability-box">
               <div class="ability-image">
-                <button>?</button>
+                <button>
+                  <img src="/assets/base/images/home-page/gift.png" alt="" />
+                </button>
               </div>
               <div class="ability-type">
                 <h1>{{ displayArray[0]["ability2"] }}</h1>
@@ -625,10 +641,7 @@
             <div class="ability-box">
               <div class="ability-image">
                 <button>
-                  <img
-                    src="/assets/base/images/home-page/abilitypercent.png"
-                    alt=""
-                  />
+                  <img src="/assets/base/images/home-page/clock.svg" alt="" />
                 </button>
               </div>
               <div class="ability-type">
@@ -638,7 +651,9 @@
             </div>
             <div class="ability-box">
               <div class="ability-image">
-                <button>?</button>
+                <button>
+                  <img src="/assets/base/images/home-page/gift.png" alt="" />
+                </button>
               </div>
               <div class="ability-type">
                 <h1>{{ displayArray[0]["ability2"] }}</h1>
@@ -647,10 +662,12 @@
             </div>
           </div>
         </div>
-        <button [routerLink]="['/user/sign-up']" class="sign-in-tracks">
-          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
-          <span class="txt-span">Buy now</span>
-        </button>
+        <div class="mobile-sign">
+          <button [routerLink]="['/user/sign-up']" class="sign-in-tracks">
+            <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+            <span class="txt-span">Buy now</span>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -681,17 +698,12 @@
             your team anytime on the open market. We are adding feature in the
             future where you can sell shares of your team and recuperate costs
             of team instantly even sell your team for much higher price as you
-            purchased it works just like company in the stock market.
-            <br />
-            This is only game that really incorporates ownership of NFT in much
-            wider spectrum and team ownership can become your main source of
-            income. The name of the game is to build the team, develop strategy,
-            hire manager, engage in community and run your empire - Get paid
-            from your work - You are jumping from game to real asset that can
-            produce value for times to come.
+            purchased it works just like company in the stock market. Every
+            premium member increase team value by 50 IOI. More premium members
+            your team has the bigger the overal value.
           </p>
         </div>
-        <div class="detail-abilities">
+        <div *ngIf="display > 1024" class="detail-abilities">
           <h1>Abilities</h1>
           <div class="ability-boxes">
             <div class="ability-box">
@@ -704,7 +716,7 @@
                 </button>
               </div>
               <div class="ability-type">
-                <h1>{{ displayArray[0]["prize"] }} IOI</h1>
+                <h1>{{ displayArray[0]["prize"] }}</h1>
                 <p>IOI value</p>
               </div>
             </div>
@@ -718,8 +730,8 @@
                 </button>
               </div>
               <div class="ability-type">
-                <h1>{{ displayArray[0]["ability1"] }} from invites</h1>
-                <p>super skill</p>
+                <h1>50 IOI</h1>
+                <p>increase per premium member</p>
               </div>
             </div>
             <div class="ability-box">
@@ -732,7 +744,7 @@
                 </button>
               </div>
               <div class="ability-type">
-                <h1>{{ displayArray[0]["ability2"] }} from NFTS</h1>
+                <h1>20% from premium member</h1>
                 <p>super skill</p>
               </div>
             </div>
@@ -750,10 +762,59 @@
             alt=""
           />
         </div>
-        <button [routerLink]="['/user/sign-up']" class="sign-in-teams">
-          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
-          <span class="txt-span">Buy now</span>
-        </button>
+        <div *ngIf="display <= 1024" class="detail-abilities">
+          <h1>Abilities</h1>
+          <div class="ability-boxes">
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilityvalue.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>{{ displayArray[0]["prize"] }}</h1>
+                <p>IOI value</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>50 IOI</h1>
+                <p>increase per premium member</p>
+              </div>
+            </div>
+            <div class="ability-box">
+              <div class="ability-image">
+                <button>
+                  <img
+                    src="/assets/base/images/home-page/abilitypercent.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+              <div class="ability-type">
+                <h1>20% from premium member</h1>
+                <p>super skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-sign">
+          <button [routerLink]="['/user/sign-up']" class="sign-in-teams">
+            <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
+            <span class="txt-span">Buy now</span>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>

@@ -120,9 +120,23 @@ h1{
     }
     div.cell{
         text-align: center;
-        min-width: 131px;
+        min-width: 156px;
         flex-direction: column;
         justify-content: center;
+        position: relative;
+        &.big{
+            min-width: 176px;
+        }
+        .info-img{
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translate(100%, -50%);
+            width: 19px;
+            margin-right: 0 !important;
+            cursor: pointer;
+            z-index: 5;
+        }
     }
     div.cell:last-child{
         min-width: 200px;
@@ -590,6 +604,13 @@ h1{
             max-height: calc(100vh - 60px);
         }
     }
+    .table{
+        div.cell{
+            .info-img{
+                right: -5px;
+            }
+        }
+    }
 }
 
 @media screen and ( max-width: 425px )
@@ -672,7 +693,13 @@ h1{
 
 @media screen and ( max-width: 480px )
 {  
-
+    .table{
+        div.cell{
+            .info-img{
+                right: 0px;
+            }
+        }
+    }
     .text-info{
         h1{
           font-size: 17px;

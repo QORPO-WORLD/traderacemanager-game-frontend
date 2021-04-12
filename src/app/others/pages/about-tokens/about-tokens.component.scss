@@ -94,6 +94,38 @@ h1 {
   }
 }
 //REWORK START
+.my-menu {
+  bottom: 20px;
+  border-radius: 10px;
+  background: #222222;
+  width: 40%;
+  display: flex;
+  position: relative;
+  .menu-item {
+    width: 50%;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+    position: relative;
+    &.inactive {
+      background: transparent;
+      p {
+        font-weight: 400;
+      }
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
 .content {
   * {
     margin: 0;
@@ -825,6 +857,14 @@ h1 {
   justify-content: center;
 }
 @media screen and (max-width: 1700px) {
+  .my-menu {
+    .menu-item {
+      height: 45px;
+      p {
+        font-size: 15px;
+      }
+    }
+  }
   .content {
     .dividend-section {
       .token {
@@ -1007,6 +1047,10 @@ h1 {
   }
 }
 @media screen and (max-width: 1550px) {
+  .my-menu {
+    margin: 30px 0 20px;
+  }
+
   p {
     font-size: 12px;
   }
@@ -1052,6 +1096,14 @@ h1 {
 }
 
 @media screen and (max-width: 1200px) {
+  .my-menu {
+    .menu-item {
+      height: 40px;
+      p {
+        font-size: 14px;
+      }
+    }
+  }
   .main-holder {
     width: calc(100% - 340px);
     padding-left: 13px;
@@ -1345,6 +1397,16 @@ h1 {
 }
 
 @media screen and (max-width: 640px) {
+  .my-menu {
+    margin: 20px 0 25px;
+    width: 100%;
+    .menu-item {
+      height: 36px;
+      p {
+        font-size: 13px;
+      }
+    }
+  }
   .content {
     margin-top: 5px;
     width: 94%;
@@ -1594,6 +1656,14 @@ h1 {
 }
 
 @media screen and (max-width: 500px) {
+  .my-menu {
+    flex-wrap: wrap;
+    width: 80%;
+    left: 10%;
+    .menu-item {
+      width: 100%;
+    }
+  }
   .divident-pool-info {
     margin-bottom: 50px;
   }

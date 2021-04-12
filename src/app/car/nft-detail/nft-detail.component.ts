@@ -23,7 +23,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Flash",
       prize: "100",
-      image: "red-korpo",
+      image: "red-trm-small",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -93,6 +93,7 @@ export class NftDetailComponent implements OnInit {
       type: "racer",
       ability1: "2%",
       ability2: "20%",
+      ability3: "18% APY staking",
       rank: "height",
     },
   ];

@@ -88,8 +88,9 @@
           [ngClass]="{ 'filter-content-active': mobileFilter === true }"
           class="filter-content"
         >
-          <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
           <div (click)="filterCars(); filterMobile()"><p>Cars</p></div>
+          <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
+
           <div (click)="filterTracks(); filterMobile()"><p>Tracks</p></div>
           <div (click)="filterTeams(); filterMobile()"><p>Teams</p></div>
           <div (click)="filterAll(); filterMobile()"><p>All</p></div>
@@ -102,15 +103,6 @@
           </div>
 
           <div class="filter-boxes">
-            <div (click)="filterRacers()">
-              <div
-                [ngClass]="{
-                  'filter-active': racersActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Racers</p>
-            </div>
             <div (click)="filterCars()">
               <div
                 [ngClass]="{
@@ -119,6 +111,15 @@
                 class="filter-box"
               ></div>
               <p>Cars</p>
+            </div>
+            <div (click)="filterRacers()">
+              <div
+                [ngClass]="{
+                  'filter-active': racersActive === true
+                }"
+                class="filter-box"
+              ></div>
+              <p>Racers</p>
             </div>
             <div (click)="filterTracks()">
               <div
@@ -280,8 +281,15 @@
               class="pagebtn-l"
             >
               <img
+                class="red-box-detail"
                 [ngClass]="{ 'page-opacity': sliceStart === 0 }"
-                src="/assets/base/images/home-page/arrow-l.png"
+                src="/assets/base/images/home-page/arrowleftred.png"
+                alt=""
+              />
+              <img
+                class="blue-box-detail"
+                [ngClass]="{ 'page-opacity': sliceStart === 0 }"
+                src="/assets/base/images/home-page/arrowleftblue.png"
                 alt=""
               />
             </button>
@@ -290,7 +298,8 @@
             <p>
               Page
               <span class="leftspan">{{ currentPage }} /</span>
-              <span class="rightspan">{{ lastPage }}</span>
+              <span class="rightspan blue-box-detail">{{ lastPage }}</span>
+              <span class="rightspan red-box-detail">{{ lastPage }}</span>
             </p>
           </div>
           <div class="page-right">
@@ -302,10 +311,19 @@
               class="pagebtn-r"
             >
               <img
+                class="red-box-detail"
                 [ngClass]="{
                   'page-opacity': sliceMiddle >= this.newProducts.length
                 }"
-                src="/assets/base/images/home-page/arrow-r.png"
+                src="/assets/base/images/home-page/arrowrightred.png"
+                alt=""
+              />
+              <img
+                class="blue-box-detail"
+                [ngClass]="{
+                  'page-opacity': sliceMiddle >= this.newProducts.length
+                }"
+                src="/assets/base/images/home-page/arrowrightblue.png"
                 alt=""
               />
             </button>
