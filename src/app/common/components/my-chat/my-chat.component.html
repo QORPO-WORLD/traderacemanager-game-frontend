@@ -2,9 +2,9 @@
 
 <div class="chat-cont">
   <div class="info-panel">
-    <p class="desc">{{ myTeam.me.team_name }} team chat</p>
+    <p class="desc">Team chat <span class="my-text-color">{{ myDriverStats.team }}</span></p>
     <p class="players-num my-text-color">
-      <img  [src]="'assets/base/images/avatars/avatar'+Affilate.affiliate_level+'-small.png'" alt="My affiliate level avatar">
+      <img *ngIf="Affilate.affiliate_level" [src]="'assets/base/images/avatars/avatar' + Affilate?.affiliate_level + '-small.png'" alt="My affiliate level avatar">
     </p>
     <!-- online {{chatList?.length}} -->
   </div>
