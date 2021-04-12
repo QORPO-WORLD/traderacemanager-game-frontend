@@ -297,6 +297,72 @@ class AuthService extends __BaseService {
       __map(_r => _r.body as {result?: boolean})
     );
   }
+  
+  
+  meActivateResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/me/activate-account`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<{result?: boolean}>;
+      })
+    );
+  }
+  /**
+   * @param data undefined
+   */
+  meActivate(data: any): __Observable<any> {
+    return this.meActivateResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  
+  meResendActivateResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/me/resend-account-activation-code`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<{result?: boolean}>;
+      })
+    );
+  }
+  /**
+   * @param data undefined
+   */
+  meResendActivate(data: any): __Observable<any> {
+    return this.meResendActivateResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+
+
+
   authSignOutUpdateResponse(): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();

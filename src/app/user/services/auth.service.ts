@@ -40,10 +40,11 @@ export class AuthService extends AbstractService {
 
   public login(token) {
     localStorage.setItem('bal-first-time', 'true');
-    this.setToken(token);
     setTimeout(() => {
       this.me();
      }, 10);
+    this.setToken(token);
+
     
     return token;
 
@@ -202,9 +203,11 @@ export class AuthService extends AbstractService {
 
 
   setToken = function (token) {
-    this.token = token;
-    localStorage.setItem('auth-token', JSON.stringify(token));
-    localStorage.setItem('ndate', JSON.stringify(Date.now()));
+    if (token) {
+      this.token = token;
+      localStorage.setItem('auth-token', JSON.stringify(token));
+      localStorage.setItem('ndate', JSON.stringify(Date.now()));
+    }
   };
 
   refreshingGone() {

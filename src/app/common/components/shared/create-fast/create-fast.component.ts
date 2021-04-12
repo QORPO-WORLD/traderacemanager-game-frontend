@@ -49,6 +49,9 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   actualRaceAmount: any;
   nextRaceHash: string;
   numOfBets = 0;
+  windowFuelCarIndex = 0;
+  bottomCarsBalancer = 4;
+  bottomPercentBalancer = 25;
   trxneeded: number;
   validerr: string;
   showPulse = true;
@@ -115,7 +118,7 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16 },
     { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17 },
     { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18 },
-    { symbol: 'USDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
+    { symbol: 'USDTUSDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
   ];
   selectedBets: Array<number> = [];
   order = 'favourite';
@@ -158,9 +161,9 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.trDate = Date.now();
     this.trsDate = Date.now();
+    this.selectDefaultCoin(0);
     this.getFavCars();
     this.getRaceDetails();
-    console.log(this.myCar);
   }
 
   ngOnDestroy() {
@@ -721,6 +724,29 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   reload() {
     window.location.reload();
   }
+
+  selectDefaultCoin(customIndex: number){
+    this.trsDate = Date.now();
+    this.selectedSymbol = this.myBet[customIndex].symbol;
+    this.trDate = Date.now();
+  }
+
+  nextFuelCar(){
+    if (this.windowFuelCarIndex < this.selectedCarsToRace.length - this.bottomCarsBalancer) {
+      this.windowFuelCarIndex++;
+    } else {
+      this.windowFuelCarIndex = 0;
+    }
+  }
+
+  prevFuelCar(){
+    if (this.windowFuelCarIndex > 0) {
+      this.windowFuelCarIndex--;
+    } else {
+      this.windowFuelCarIndex = this.selectedCarsToRace.length - this.bottomCarsBalancer;
+    }
+  }
+
 }
 
 

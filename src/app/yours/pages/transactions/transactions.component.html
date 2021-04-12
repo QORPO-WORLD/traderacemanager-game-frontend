@@ -1,8 +1,18 @@
 
-<app-main-top-banner [page]="'history'"></app-main-top-banner>
-
 <div class="main-holder">
-<div class="trans-menu">
+
+    <app-main-top-banner [page]="'history'"></app-main-top-banner>
+
+    <div class="my-menu">
+        <div class="menu-item my-cta-btn-back" [routerLink]="['/your-races/transactions']">
+            <p>{{'history.transactions' | translate}}</p>
+        </div>
+        <div class="menu-item my-cta-btn-back inactive" [routerLink]="['/your-races/transactions/my-races']">
+            <p>{{'profile.races' | translate}}</p>
+        </div>
+    </div>
+
+<!-- <div class="trans-menu">
     <div class="menu-desc">
         <p class="join-team active"[routerLink]="['/your-races/transactions']">{{'history.transactions' | translate}}</p>
         <p class="my-team" [routerLink]="['/your-races/transactions/my-races']">{{'profile.races' | translate}}</p>
@@ -10,50 +20,50 @@
     <div class="menu-line my-cta-btn-back">
         <div class="inner-line my-cta-btn-back">&nbsp;</div>
     </div>
-</div>
+</div> -->
 
-<!--<div class="ledeboard-team-list-component next2">
-    <div class="sub-header-component">
-        <div class="item"><button>{{'history.date' | translate}}</button></div>
-        <div class="item"><button>{{'history.action' | translate}}</button></div>
-        <div class="item small"><button>{{'history.payment' | translate}}</button></div>
-        <div class="item"><button>{{'modals.amount' | translate}}</button></div>
+<div class="table">
+
+    <div class="table-row header">
+      <div class="table-item small"><p>Position</p></div>
+      <div class="table-item big"><p>Date</p></div>
+      <div class="table-item big"><p>Action</p></div>
+      <div class="table-item"><p>Payment</p></div>
+      <div class="table-item"><p>Amount</p></div>
     </div>
 
-    <div class="table-body" *ngIf="transactions?.length > 0">
-        <div class="tab-team" *ngFor="let trans of transactions;let indexx = index;">
-            <div class="inner-tab">
-                <div class="position">
-                    <p>{{indexx + 1}}.</p>
-                </div>
-                <div class="item races">
-                    <span>{{trans.created | date:'short'}}</span>
-                </div>
-                <div class="item">
-                    <span>{{trans.action_type}}</span>
-                </div>
-                <div class="item small">
-                    <span class="image trx" *ngIf="trans.currency === 'trx' || trans.currency === 'game_wallet_trx'"><img src="assets/base/images/trx.png"></span>
-                    <span class="image" *ngIf="trans.currency === 'ioi' || trans.currency === 'game_wallet_ioi'"><img src="assets/base/images/token.png"></span>
-                    <span class="image ket" *ngIf="trans.currency === 'ket'"><img src="/assets/base/images/ticket-icon.png" alt=""></span>
-                </div>
-                <div class="item">
-                    <span>{{trans.delta | number:'1.2-2':'fr' }}</span>
-                </div>
-            </div>
-        </div>
-
-
+    <div class="table-row" *ngFor="let trans of transactions;let indexx = index;">
+      <div class="table-item small my-cta-btn-back"><p>{{(indexx + 1)+10*(actualPage-1)}}.</p></div>
+      <div class="table-item big"><p>{{trans.created_at | date:'short'}}</p></div>
+      <div class="table-item big" *ngIf="trans.history_type !== 'reward'"><p>{{'transactions_desc.' + trans.history_type | translate}}</p></div>
+      <div class="table-item big" *ngIf="trans.history_type === 'reward'"><p>{{'transactions_desc.' + trans.history_type | translate}} - {{'transactions_desc.' + trans.extras.reward_type  | translate}}</p></div>
+      <div class="table-item"><p class="img-item">
+        <img src="/assets/base/images/tokens/ioi-logo.png"  *ngIf="trans.currency === 'ioi' || trans.currency === 'game_wallet_ioi'">
+        <img class="ticket" src="assets/base/images/ticket-icon.png"  *ngIf="trans.currency === 'ket'">
+      </p></div>
+      <div class="table-item last"><p>{{trans.delta | number:'1.2-2':'fr' }}</p></div>
     </div>
-    <div class="arrows" *ngIf="transactions?.length > 0">
-    
-        <button class="left" (click)="prevPage()" *ngIf="actualPage > 1"></button>
-        <span class="pager-actual">{{actualPage}}/{{totalPages}}</span>
-        <button class="right" (click)="nextPage()" *ngIf="actualPage < totalPages"></button>
-    </div>-->
 
+    <div class="arrow right" *ngIf="(totalPages > 1) && (actualPage < totalPages)"  (click)="nextPage()">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left" *ngIf="(totalPages > 1) && (actualPage > 1)" (click)="prevPage()">
+      <p>&lt;</p>
+    </div>
+    <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left inactive" *ngIf="actualPage === 1">
+      <p>&lt;</p>
+    </div>
 
-    <div class="table">
+    <div class="leaderboard-empty" *ngIf="transactions.length === 0 && actualPage === 1">
+      <h2>{{'history.transactions_empty' | translate}}</h2>
+    </div>
+
+  </div>
+
+    <!-- <div class="table">
         <div class="header table-row">
             <div>&#8203;</div>
             <div>{{'history.date' | translate}}</div>
@@ -87,5 +97,5 @@
         <div class="empty" *ngIf="transactions.length===0 && actualPage===1">
             <h2>{{'history.transactions_empty' | translate}}</h2>
         </div>
-    </div>
+    </div> -->
 </div>

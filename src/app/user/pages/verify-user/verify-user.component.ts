@@ -1,3 +1,4 @@
+import { AuthService as Ninja } from 'src/app/api/services/auth.service';
 import { Router } from '@angular/router';
 import { NotifyService } from './../../../common/services/notify.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -18,29 +19,16 @@ export class VerifyUserComponent implements OnInit {
 
   myCode = '';
   loading = false;
-  constructor(private _http: HttpClient, private notify: NotifyService, private router: Router, private auth: AuthService) { }
+  constructor(private _http: HttpClient, private notify: NotifyService, private router: Router, private auth: AuthService,
+    private api: Ninja) { }
 
   ngOnInit() { }
-
-  activate() {
-    return this._http.put(environment.api_url + '/me/activate-account', {
-      code: this.myCode
-    }, httpOptions );
-  }
-
-  resend() {
-    return this._http.post(environment.api_url + '/me/resend-account-activation-code', {
-      code: this.myCode
-    },
-      httpOptions);
-  }
 
   tryActivation() {
     if (this.myCode.length > 5) {
       this.loading = true;
-      this.activate().subscribe({
-        next: data => this.resolveActivation(data),
-        error: error => this.notify.error(error.error.message)
+      this.api.meActivate({ code: this.myCode }).subscribe(data => {
+        this.resolveActivation(data);
       });
       setTimeout(() => { this.loading = false; }, 5000);
     }
@@ -51,9 +39,8 @@ export class VerifyUserComponent implements OnInit {
   }
 
   resendActivation() {
-    this.resend().subscribe({
-      next: data => console.log(data),
-      error: error => this.notify.error(error.error)
+    this.api.meResendActivate({ code: this.myCode }).subscribe(data => {
+      this.notify.error('New verification code sent to your email.')
     });
     this.myCode = '';
   }
