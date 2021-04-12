@@ -144,7 +144,6 @@ export class MyChatComponent implements OnInit {
     const data = this.identityService.getStorageIdentity();
     this.myDriver = data.id;
     this.myDriverStats = data;
-
   }
 
   getteammembers() {
