@@ -131,6 +131,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   selectedBets: Array<number> = [];
   order = 'favourite';
   reverse = true;
+  isPremium = false;
   editionStylePx = 0;
   editionAvailableSlides: number;
   currAvailableSlides: number;
@@ -1308,6 +1309,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
   getMyTeam() {
     const data = this.identityService.getDriverMe();
+    if(data.is_paid_membership === 'Premium'){
+      this.isPremium = true;
+    }
     this.myTeam = data.team;
 
   }

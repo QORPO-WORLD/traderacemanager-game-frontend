@@ -11,7 +11,7 @@
   <div class="msgs-cont">
     <div class="my-flex" *ngIf="chatList?.length > 0">
       <ng-container *ngFor="let msg of chatList | orderBy: 'created':reverse">
-        <div class="message-item not-my" [ngClass]="msg?.message?.author_id === myDriver ? 'my-msg' : 'not-my'">
+        <div class="message-item" [ngClass]="msg?.message?.author_id === myDriver ? 'my-msg' : 'not-my'">
           <div class="img-holder">
             <img [src]="'assets/base/images/avatars/avatar' + msg?.message?.affiliate_level + '-small.png'" alt="">
           </div>
@@ -20,7 +20,7 @@
               <p class="username">{{msg?.user_nickname}}</p>
               <p class="date">{{msg?.created | date: "shortTime"}}</p>
             </div>
-            <div class="message-text my-border-grad">
+            <div class="message-text">
               <div class="inner-msg-text">
                 <p>{{msg?.message?.content}}</p>
               </div>
@@ -35,11 +35,11 @@
   <div class="texting-cont"><small style="font-size: 9px;
     padding-right: 5px;
     position: absolute;
-    top: -13px;">{{chatInput.length}}/140</small>
+    top: -13px;color:#333;">{{chatInput.length}}/140</small>
     <form (ngSubmit)="postChat()">
       <input name="message" cols="1" rows="2" class="chat-input msg" [(ngModel)]="chatInput" [ngModelOptions]="{standalone: true}"
         maxlength="140" placeholder="Your message">
-      <div (click)="postChat()" class="send-btn">
+      <div (click)="postChat()" class="send-btn my-cta-btn-back">
         <p>&gt;</p>
       </div>
     </form>

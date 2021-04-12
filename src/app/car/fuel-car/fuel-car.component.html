@@ -160,7 +160,7 @@
               <div class="item-holder" [ngClass]="{'fav': majbet.favourite === true}">
                 <div class="item-curr my-cta-btn-back" (click)="toggleCoin(majbet.customIndex)" [ngClass]="{'not-selected': majbet.selected !== true, 'animated': majbet.customIndex === animatedCurrIndex && animatedCurrIndex < 20}">
                   <div class="marks-holder">
-                    <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" class="premium-mark" *ngIf="majbet?.symbol === myBetInput[0] || majbet?.symbol === myBetInput[1] || majbet?.symbol === myBetInput[2]">
+                    <img src="/assets/base/images/tankovanie/premium-icon.svg" alt="" class="premium-mark" *ngIf="(majbet?.symbol === myBetInput[0] || majbet?.symbol === myBetInput[1] || majbet?.symbol === myBetInput[2]) && isPremium === true">
                     <img src="/assets/base/images/tankovanie/racer-tip-icon.svg" alt="" class="premium-mark" *ngIf="majbet?.customIndex === tips[0]?.customIndex || majbet?.customIndex === tips[1]?.customIndex || majbet?.customIndex === tips[2]?.customIndex">
                   </div>
                   <img [src]="'/assets/base/images/curr-logos/'+ majbet.symbol +'-logo.png'" alt="">

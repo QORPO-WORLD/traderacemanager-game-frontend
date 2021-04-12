@@ -11,7 +11,7 @@
     </div>
     <div class="text-holder">
       <p class="name">{{myDriverStats?.nickname}}</p>
-      <p class="team">{{'profile.team' | translate}}: <span>{{cachedLdrbrd?.team_name ? cachedLdrbrd?.team_name : '-'}}</span></p>
+      <p class="team">{{'profile.team' | translate}}: <span class="my-text-color">{{cachedLdrbrd?.team_name ? cachedLdrbrd?.team_name : '-'}}</span></p>
     </div>
   </div>
 
@@ -41,11 +41,20 @@
 
         <div class="buttons-holder">
           <p class="my-btn" (click)="closeMenu()" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
-            <img class="blue-img" src="/assets/base/images/menu/add-icon-red.svg" alt=""></p>
+            <img class="red-img" src="/assets/base/images/menu/add-icon-red.svg" alt="">
+            <img class="blue-img" src="/assets/base/images/menu/add-icon-blue.svg" alt="">
+            Deposit
+          </p>
           <p class="my-btn" (click)="closeMenu()" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'withdraw' }">
-            <img class="red-img" src="/assets/base/images/menu/with-icon-red.svg" alt=""></p>
+            <img class="red-img" src="/assets/base/images/menu/with-icon-red.svg" alt="">
+            <img class="blue-img" src="/assets/base/images/menu/with-icon-blue.svg" alt="">
+            Withdraw
+          </p>
           <p class="my-btn" (click)="closeMenu()" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'transfer' }">
-            <img class="red-img" src="/assets/base/images/menu/transfer-icon-red.svg" alt=""></p>
+            <img class="red-img" src="/assets/base/images/menu/transfer-icon-red.svg" alt="">
+            <img class="blue-img" src="/assets/base/images/menu/transfer-icon-blue.svg" alt="">
+            Transfer
+          </p>
         </div>
         
       </div>
@@ -67,7 +76,7 @@
   <div class="aff-holder">
 
     <div class="non-premium-box" *ngIf="myDriverOld?.is_paid_membership === 'Free' || !myDriverOld?.is_paid_membership">
-      <img src="/assets/base/images/menu/lock-icon.svg" alt="">
+      <img src="/assets/base/images/menu/lock-icon-dark.svg" alt="">
       <p class="text">Unlock your affiliate reward and get 2% from turnover of your partners</p>
       <button class="my-btn my-cta-btn-back hoverable" [routerLink]="['/teams/join-teams']">Get premium</button>
     </div>
