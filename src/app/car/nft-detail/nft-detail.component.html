@@ -323,16 +323,42 @@
           *ngIf="assetType === 'car'"
         />
       </div>
-      <button class="sign-in cars red-box-shop" (click)="showBuyModal()">
+      <button
+        *ngIf="displayArray[0]['rare'] != true"
+        class="sign-in cars red-box-shop"
+        (click)="showBuyModal()"
+      >
         <div class="btn-content">
           <img src="/assets/base/images/market/buy-icon.svg" alt="" />
           <span class="txt-span">Buy</span>
         </div>
       </button>
-      <button class="sign-in cars blue-box-shop" (click)="showBuyModal()">
+      <button
+        *ngIf="displayArray[0]['rare'] != true"
+        class="sign-in cars blue-box-shop"
+      >
         <div class="btn-content">
           <img src="/assets/base/images/market/buy-icon.svg" alt="" />
           <span class="txt-span">Buy</span>
+        </div>
+      </button>
+      <button
+        *ngIf="displayArray[0]['rare'] === true"
+        class="sign-in cars blue-box-shop"
+        (click)="showBuyModal()"
+      >
+        <div class="btn-content">
+          <i class="fa fa-lock"></i>
+          <span class="txt1-span">Locked</span>
+        </div>
+      </button>
+      <button
+        *ngIf="displayArray[0]['rare'] === true"
+        class="sign-in cars red-box-shop"
+      >
+        <div class="btn-content">
+          <i class="fa fa-lock"></i>
+          <span class="txt1-span">Locked</span>
         </div>
       </button>
     </div>

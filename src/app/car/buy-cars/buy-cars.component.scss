@@ -1,15 +1,13 @@
 :host {
   width: 100%;
   height: 100%;
-  
 }
-
 
 :host {
   width: 100%;
 }
 
-.new-rare-modal{
+.new-rare-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,14 +15,14 @@
   height: 100vh;
   overflow: auto;
   z-index: 10001;
-  .modal-back{
+  .modal-back {
     background-color: #000000f2;
     position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
   }
-  .rare-modal-cont{
+  .rare-modal-cont {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -35,20 +33,20 @@
     border-radius: 15px;
     background: #111;
     padding: 40px 20px;
-    .modal-close{
+    .modal-close {
       position: absolute;
       top: 15px;
       right: 15px;
       padding: 7px;
       cursor: pointer;
-      transition: .2s;
-      &:hover{
+      transition: 0.2s;
+      &:hover {
         transform: rotate(90deg);
       }
     }
-    .img-holder{
+    .img-holder {
       position: relative;
-      .back-img{
+      .back-img {
         width: 70%;
         position: absolute;
         top: 0;
@@ -56,16 +54,16 @@
         transform: translateX(-50%);
         z-index: 1;
       }
-      .car-img{
+      .car-img {
         position: relative;
         z-index: 2;
       }
     }
-    h1{
+    h1 {
       text-align: center;
       font-size: 26px;
     }
-    button{
+    button {
       padding: 12px 35px;
       border-radius: 10px;
       font-size: 17px;
@@ -75,8 +73,8 @@
   }
 }
 
-.modal-dialog{
-  &.car-modal-dialog{
+.modal-dialog {
+  &.car-modal-dialog {
     max-width: 1300px;
     padding-top: 80px;
   }
@@ -88,44 +86,44 @@
   border-radius: 30px;
   position: relative;
   padding: 30px;
-  .modal-close{
+  .modal-close {
     position: absolute;
     top: 20px;
     right: 20px;
     padding: 10px;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
     z-index: 10;
-    &:hover{
+    &:hover {
       transform: rotate(90deg);
     }
   }
-  .modal-body{
-    .car-holder{
+  .modal-body {
+    .car-holder {
       position: relative;
       text-align: left;
-      img{
+      img {
         max-height: 490px;
       }
-      .car-info{
+      .car-info {
         position: absolute;
         top: 8%;
         right: 0;
         text-align: left;
         width: 100%;
         max-width: 350px;
-        p{
+        p {
           font-weight: 600;
           font-size: 36px;
           margin: 0;
-          &.desc{
+          &.desc {
             font-size: 14px;
             font-weight: 300;
-            opacity: .6;
+            opacity: 0.6;
           }
         }
       }
-      .car-stats{
+      .car-stats {
         margin-top: 50px;
         position: absolute;
         top: 50%;
@@ -133,104 +131,109 @@
         transform: translateY(-50%);
         width: 100%;
         max-width: 350px;
-        .stat-item{
-            width: 100%;
+        .stat-item {
+          width: 100%;
+          position: relative;
+          margin: 0 0 30px 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-right: 60px;
+          .desc {
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+          }
+          .my-progress-bar {
+            width: calc(100% - 110px);
+            height: 16px;
+            background: #252525;
+            border: 4px solid #111111;
+            box-sizing: border-box;
+            box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05),
+              10px 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
             position: relative;
-            margin: 0 0 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-right: 60px;
-            .desc{
-                font-size: 16px;
-                font-weight: 400;
-                margin: 0;
+            .inner-bar {
+              height: 100%;
+              width: 50%;
+              background: linear-gradient(
+                100.58deg,
+                #fe173f 48.82%,
+                #240b36 168.17%
+              );
+              border-radius: 10px;
             }
-            .my-progress-bar{
-              width: calc(100% - 110px);
-                height: 16px;
-                background: #252525;
-                border: 4px solid #111111;
-                box-sizing: border-box;
-                box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
-                border-radius: 10px;
-                position: relative;
-                .inner-bar{
-                    height: 100%;
-                    width: 50%;
-                    background: linear-gradient(100.58deg, #FE173F 48.82%, #240B36 168.17%);
-                    border-radius: 10px;
-                }
-                .curr-value{
-                    font-size: 18px;
-                    font-weight: 600;
-                    margin: 0;
-                    position: absolute;
-                    left: 50%;
-                    bottom: -10px;
-                    transform: translate(-50%, 100%);
-                    white-space: nowrap;
-                }
-                .max-value{
-                    font-size: 18px;
-                    font-weight: 400;
-                    margin: 0;
-                    position: absolute;
-                    right: -12px;
-                    top: 50%;
-                    transform: translate(100%, -50%);
-                }
+            .curr-value {
+              font-size: 18px;
+              font-weight: 600;
+              margin: 0;
+              position: absolute;
+              left: 50%;
+              bottom: -10px;
+              transform: translate(-50%, 100%);
+              white-space: nowrap;
             }
+            .max-value {
+              font-size: 18px;
+              font-weight: 400;
+              margin: 0;
+              position: absolute;
+              right: -12px;
+              top: 50%;
+              transform: translate(100%, -50%);
+            }
+          }
         }
       }
     }
-    .info-holder{
+    .info-holder {
       display: flex;
       justify-content: space-evenly;
       align-items: flex-start;
-      .info-item{
+      .info-item {
         width: 33%;
         text-align: center;
-        &.free{
+        &.free {
           max-width: 260px;
         }
-        &.buy{
+        &.buy {
           max-width: 160px;
         }
-        &.stakes{
+        &.stakes {
           max-width: 320px;
         }
-        .heading{
+        .heading {
           font-weight: 600;
           font-size: 20px;
           margin: 0 0 10px 0;
         }
-        .text{
+        .text {
           height: 70px;
           margin: 0 0 5px 0;
           font-size: 16px;
           font-weight: 400;
-          span{
+          span {
             font-weight: 600;
           }
         }
-        .buy-btn{
+        .buy-btn {
           font-size: 16px;
           margin: 0;
           font-weight: 400;
           padding: 13px 52px;
           border-radius: 15px;
         }
-        .my-progress{
+        .my-progress {
           font-size: 16px;
           margin: 0;
           font-weight: 300;
-          span{
+          span {
             font-weight: 500;
           }
-          &.stakes{
+          &.stakes {
             margin-top: 7px;
-            img{
+            img {
               display: inline-block;
               margin-right: 9px;
             }
@@ -238,13 +241,13 @@
         }
       }
     }
-    .rare-info{
+    .rare-info {
       width: 100%;
       text-align: center;
-      img{
+      img {
         margin-bottom: 10px;
       }
-      .text{
+      .text {
         margin: 0;
         font-size: 16px;
         font-weight: 400;
@@ -253,58 +256,57 @@
   }
 }
 
-@media screen and (max-width: 1550px){
-  .modal-dialog{
-    &.car-modal-dialog{
+@media screen and (max-width: 1550px) {
+  .modal-dialog {
+    &.car-modal-dialog {
       padding-top: 20px;
     }
   }
-  .Mymodal{
-    .modal-body{
-      .car-holder{
-        img{
+  .Mymodal {
+    .modal-body {
+      .car-holder {
+        img {
           max-height: 420px;
         }
-        .car-info{
+        .car-info {
           max-width: 400px;
-          p{
+          p {
             font-size: 30px;
-            &.desc{
+            &.desc {
               font-size: 13px;
             }
           }
         }
-        .car-stats{
+        .car-stats {
           max-width: 400px;
-          .stat-item{
-              margin: 0 0 25px 0;
-              .desc{
-                  font-size: 14px;
+          .stat-item {
+            margin: 0 0 25px 0;
+            .desc {
+              font-size: 14px;
+            }
+            .my-progress-bar {
+              width: calc(100% - 95px);
+              height: 13px;
+              border: 3px solid #111111;
+              .curr-value {
+                font-size: 15px;
+                bottom: -7px;
               }
-              .my-progress-bar{
-                width: calc(100% - 95px);
-                  height: 13px;
-                  border: 3px solid #111111;
-                  .curr-value{
-                      font-size: 15px;
-                      bottom: -7px;
-                  }
-                  .max-value{
-                      font-size: 16px;
-                      right: -10px;
-
-                  }
+              .max-value {
+                font-size: 16px;
+                right: -10px;
               }
+            }
           }
         }
       }
-      .info-holder{
-        .info-item{
-          .heading{
+      .info-holder {
+        .info-item {
+          .heading {
             font-size: 18px;
             margin: 0 0 7px 0;
           }
-          .text{
+          .text {
             height: 65px;
             font-size: 15px;
           }
@@ -314,44 +316,44 @@
   }
 }
 
-@media screen and (max-width: 1350px){
-  .modal-dialog{
-    &.car-modal-dialog{
+@media screen and (max-width: 1350px) {
+  .modal-dialog {
+    &.car-modal-dialog {
       max-width: 96%;
     }
   }
 }
 
-@media screen and (max-width: 1200px){
-  .Mymodal{
-    .modal-body{
-      .car-holder{
-        .car-info{
+@media screen and (max-width: 1200px) {
+  .Mymodal {
+    .modal-body {
+      .car-holder {
+        .car-info {
           max-width: 320px;
         }
-        img{
+        img {
           max-height: 380px;
         }
-        .car-stats{
+        .car-stats {
           max-width: 320px;
-          .stat-item{
-              margin: 0 0 20px 0;
-              .desc{
-                  font-size: 12px;
+          .stat-item {
+            margin: 0 0 20px 0;
+            .desc {
+              font-size: 12px;
+            }
+            .my-progress-bar {
+              width: calc(100% - 95px);
+              height: 10px;
+              border: 2px solid #111111;
+              .curr-value {
+                font-size: 13px;
+                bottom: -5px;
               }
-              .my-progress-bar{
-                width: calc(100% - 95px);
-                  height: 10px;
-                  border: 2px solid #111111;
-                  .curr-value{
-                      font-size: 13px;
-                      bottom: -5px;
-                  }
-                  .max-value{
-                      font-size: 14px;
-                      right: -8px;
-                  }
+              .max-value {
+                font-size: 14px;
+                right: -8px;
               }
+            }
           }
         }
       }
@@ -359,24 +361,24 @@
   }
 }
 
-@media screen and (max-width: 1024px){
-  .modal-dialog{
-    &.car-modal-dialog{
+@media screen and (max-width: 1024px) {
+  .modal-dialog {
+    &.car-modal-dialog {
       padding-top: 0;
     }
   }
-  .Mymodal{
-    .modal-body{
-      .car-holder{
+  .Mymodal {
+    .modal-body {
+      .car-holder {
         text-align: center;
-        .car-info{
+        .car-info {
           max-width: unset;
           width: unset;
         }
-        img{
+        img {
           max-height: 380px;
         }
-        .car-stats{
+        .car-stats {
           max-width: 500px;
           margin: 0 auto;
           position: relative;
@@ -387,48 +389,48 @@
   }
 }
 
-@media screen and (max-width: 800px){
-  .Mymodal{
+@media screen and (max-width: 800px) {
+  .Mymodal {
     padding: 20px 10px;
-    .modal-body{
-      .car-holder{
-        img{
+    .modal-body {
+      .car-holder {
+        img {
           max-width: 90%;
         }
-        .car-info{
+        .car-info {
           top: 5%;
           right: 5%;
-          p{
+          p {
             font-size: 26px;
-            &.desc{
+            &.desc {
               font-size: 12px;
             }
           }
         }
       }
-      .info-holder{
-        .info-item{
-          .heading{
+      .info-holder {
+        .info-item {
+          .heading {
             font-size: 16px;
             margin: 0 0 5px 0;
           }
-          .text{
+          .text {
             height: 55px;
             font-size: 14px;
             line-height: 1.2;
           }
-          .my-progress{
+          .my-progress {
             font-size: 14px;
-            &.spent{
-              img{
+            &.spent {
+              img {
                 width: 40px;
               }
             }
-            &.stakes{
+            &.stakes {
               margin-top: 13px;
             }
           }
-          .buy-btn{
+          .buy-btn {
             font-size: 14px;
             padding: 9px 40px;
             border-radius: 10px;
@@ -439,83 +441,83 @@
   }
 }
 
-@media screen and (max-width: 640px){
-  .Mymodal{
-    .modal-close{
+@media screen and (max-width: 640px) {
+  .Mymodal {
+    .modal-close {
       top: 10px;
       right: 10px;
     }
-    .modal-body{
+    .modal-body {
       padding: 16px 0;
-      .car-holder{
-        img{
+      .car-holder {
+        img {
           max-width: 85%;
         }
-        .car-info{
+        .car-info {
           top: 2%;
           right: unset;
           left: 4%;
-          p{
+          p {
             font-size: 20px;
             margin: 0;
             line-height: 1.3;
-            &.desc{
+            &.desc {
               font-size: 11px;
             }
           }
         }
-        .car-stats{
+        .car-stats {
           top: -15px;
           transform: none;
         }
       }
-      .info-holder{
+      .info-holder {
         flex-wrap: wrap;
-        .info-item{
+        .info-item {
           width: 100%;
           margin-top: 12px;
-          .heading{
+          .heading {
             font-size: 15px;
           }
-          .text{
+          .text {
             height: unset;
             margin-bottom: 10px;
           }
-          .buy-btn{
+          .buy-btn {
             margin-top: 5px;
           }
         }
       }
-      .rare-info{
-        img{
+      .rare-info {
+        img {
           width: 25px;
         }
-        .text{
+        .text {
           font-size: 14px;
         }
       }
     }
   }
-  .new-rare-modal{
-    .rare-modal-cont{
-      h1{
+  .new-rare-modal {
+    .rare-modal-cont {
+      h1 {
         font-size: 21px;
       }
     }
   }
 }
 
-@media screen and (max-width: 400px){
-  .Mymodal{
-    .modal-body{
-      .car-holder{
-        img{
+@media screen and (max-width: 400px) {
+  .Mymodal {
+    .modal-body {
+      .car-holder {
+        img {
           max-width: 100%;
         }
       }
-      .info-holder{
-        .info-item{
-          &.free{
+      .info-holder {
+        .info-item {
+          &.free {
             margin-top: 0;
           }
         }
@@ -526,173 +528,173 @@
 
 // modal styles
 
-
-.main-holder{
+.main-holder {
   width: calc(100% - 457px);
   padding-left: 40px;
 }
 
-.top-info{
+.top-info {
   margin: 30px 0 0;
-    padding-bottom: 20px;
-    width: 100%;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+  }
+  .back {
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 0 20px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    h1{
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-    }
-    .back{
-        cursor: pointer;
-        transition: .2s;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        text-align: center;
-        min-height: 132px;
-        background: linear-gradient(0deg, #111111, #111111);
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px;
-        p{
-            line-height: 30px;
-        }
-    }
-    .back:hover{
-        transform: scale(1.1);
-    }
-    .text-info{
-      max-width: 785px;
-      margin: 0 20px;
-    }
-    .info-box{
-      margin-left: auto;
-      width: 482px;
-      min-width: 482px;
-      background: #111111;
-      box-shadow: 0px 0px 80px #000000;
-      border-radius: 20px;
-      padding: 40px;
-      .nums-holder{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        position: relative;
-        margin-bottom: 15px;
-        .num-box{
-          width: 51px;
-          height: 50px;
-          background: rgba(255, 255, 255, 0.03);
-          box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
-          border-radius: 10px;
-          padding-top: 7px;
-          margin: 0 5px;
-          p{
-            font-size: 24px;
-            font-weight: 400;
-            margin: 0;
-            text-align: center;
-          }
-        }
-        .desc{
-          position: absolute;
-          bottom: -10px;
-          font-size: 16px;
-          font-weight: 300;
-          color: rgba(255, 255, 255, 0.6);
-          left: 50%;
-          transform: translate(-50%, 100%);
-          margin: 0;
-        }
-      }
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    min-height: 132px;
+    background: linear-gradient(0deg, #111111, #111111);
+    box-shadow: 0px 0px 80px #000000;
+    border-radius: 20px;
+    p {
+      line-height: 30px;
     }
   }
-  
-  .my-menu{
-    width: 100%;
-    .menu-desc{
+  .back:hover {
+    transform: scale(1.1);
+  }
+  .text-info {
+    max-width: 785px;
+    margin: 0 20px;
+  }
+  .info-box {
+    margin-left: auto;
+    width: 482px;
+    min-width: 482px;
+    background: #111111;
+    box-shadow: 0px 0px 80px #000000;
+    border-radius: 20px;
+    padding: 40px;
+    .nums-holder {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
-      p{
-        margin: 0;
-        font-size: 18px;
-        text-align: center;
-        color: #FFFFFF;
-        display: block;
-        width: 50%;
-        padding-bottom: 15px;
-        cursor: pointer;
-        text-transform: uppercase;
-      }
-      .active{
-        font-weight: 600;
-      }
-    }
-    .menu-line{
       width: 100%;
-      background: #252525;
-      border: 4px solid #111111;
-      box-sizing: border-box;
-      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 10px 10px 20px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      .inner-line{
-        position: relative;
+      position: relative;
+      margin-bottom: 15px;
+      .num-box {
+        width: 51px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
-        width: 33.333%;
-        left: 33.333%;
-        height: 4px;
+        padding-top: 7px;
+        margin: 0 5px;
+        p {
+          font-size: 24px;
+          font-weight: 400;
+          margin: 0;
+          text-align: center;
+        }
+      }
+      .desc {
+        position: absolute;
+        bottom: -10px;
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.6);
+        left: 50%;
+        transform: translate(-50%, 100%);
+        margin: 0;
       }
     }
   }
+}
 
-.content-holder{
+.my-menu {
+  width: 100%;
+  .menu-desc {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    p {
+      margin: 0;
+      font-size: 18px;
+      text-align: center;
+      color: #ffffff;
+      display: block;
+      width: 50%;
+      padding-bottom: 15px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .active {
+      font-weight: 600;
+    }
+  }
+  .menu-line {
+    width: 100%;
+    background: #252525;
+    border: 4px solid #111111;
+    box-sizing: border-box;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05),
+      10px 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    .inner-line {
+      position: relative;
+      border-radius: 10px;
+      width: 33.333%;
+      left: 33.333%;
+      height: 4px;
+    }
+  }
+}
+
+.content-holder {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
-  .switchers-holder{
+  .switchers-holder {
     width: 195px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 560px;
-    p{
+    p {
       text-shadow: none;
       font-size: 34px;
       font-weight: 900;
       margin: 0;
-      transition: .2s;
+      transition: 0.2s;
       cursor: pointer;
       padding: 15px 0;
       opacity: 1;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       color: rgba(255, 255, 255, 0.2);
-      &:hover{
+      &:hover {
         color: rgba(255, 255, 255, 0.4);
       }
-      &.inactive{
+      &.inactive {
         background: none;
         -webkit-background-clip: unset;
         -webkit-text-fill-color: unset;
       }
     }
   }
-  .cars-holder{
+  .cars-holder {
     width: calc(100% - 195px);
     margin-top: 58px;
-    .edition-holder{
+    .edition-holder {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 546px;
-      .regular-cars{
+      .regular-cars {
         width: calc(74% - 10px);
         display: flex;
         justify-content: space-between;
@@ -700,14 +702,18 @@
         flex-wrap: wrap;
         height: 100%;
         gap: 20px;
-        .car-item{
+        .car-item {
           width: calc(33.333% - 15px);
           height: calc(50% - 15px);
           box-shadow: 0px 0px 80px #000000;
           border-radius: 15px;
           position: relative;
-          .car-check{
-            background: linear-gradient(to bottom right, #84C319 0%, rgba(254, 24, 63, 0) 60%);
+          .car-check {
+            background: linear-gradient(
+              to bottom right,
+              #84c319 0%,
+              rgba(254, 24, 63, 0) 60%
+            );
             padding: 1px 0 0 1px;
             border-radius: 10px;
             position: absolute;
@@ -716,18 +722,18 @@
             width: 146px;
             transform: translate(10%, -75%);
             z-index: 3;
-            .inner{
+            .inner {
               width: 100%;
               height: 100%;
               background: #111111;
               border-radius: 10px;
-              p{
+              p {
                 text-align: center;
                 font-size: 16px;
                 font-weight: 400;
                 margin: 0;
                 padding: 10px 0;
-                img{
+                img {
                   display: inline-block;
                   margin-right: 10px;
                   width: 13px;
@@ -735,28 +741,41 @@
               }
             }
           }
-          .car-info{
+          .car-info {
             width: 100%;
             padding: 15px 0 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 22px;
-            .name{
-              p{
+            .name {
+              p {
+                font-family: True-Lies;
+                font-style: normal;
+                font-weight: normal;
+                transform: rotate(-5deg);
                 font-size: 20px;
-                font-weight: 600;
                 margin: 0;
-                &.desc{
+                -webkit-transform: rotate(-5deg);
+                -moz-transform: rotate(-5deg);
+                -ms-transform: rotate(-5deg);
+                -o-transform: rotate(-5deg);
+                &.desc {
+                  font-family: unset;
                   font-size: 14px;
                   font-weight: 300;
-                  opacity: .6;
+                  opacity: 0.6;
+                  transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -ms-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
                 }
               }
             }
-            .cars-left{
+            .cars-left {
               border-radius: 15px 0px 0px 15px;
-              p{
+              p {
                 font-size: 14px;
                 font-weight: 600;
                 margin: 0;
@@ -764,13 +783,13 @@
               }
             }
           }
-          .car-img{
+          .car-img {
             position: absolute;
             left: 50%;
             top: 52%;
             transform: translate(-50%, -50%);
           }
-          .bottom-info{
+          .bottom-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -779,25 +798,25 @@
             width: 100%;
             left: 0;
             bottom: 20px;
-            .prize{
+            .prize {
               font-size: 20px;
               font-weight: 600;
               margin: 0;
             }
-            .buy-now{
+            .buy-now {
               padding: 2px;
               border-radius: 15px;
               cursor: pointer;
-              &:hover{
-                .buy-inner{
+              &:hover {
+                .buy-inner {
                   background: rgba(17, 17, 17, 0);
                 }
               }
-              .buy-inner{
+              .buy-inner {
                 background: rgba(17, 17, 17, 1);
                 border-radius: 15px;
-                transition: .2s ease-out;
-                p{
+                transition: 0.2s ease-out;
+                p {
                   margin: 0;
                   font-size: 16px;
                   font-weight: 400;
@@ -808,24 +827,24 @@
           }
         }
       }
-      .rare-car{
+      .rare-car {
         width: calc(26% - 10px);
         box-shadow: 0px 0px 80px #000000;
         border-radius: 15px;
         height: 100%;
         position: relative;
         cursor: pointer;
-        &:hover{
-          .locked-cover{
-            &::before{
+        &:hover {
+          .locked-cover {
+            &::before {
               opacity: 1;
             }
-            .text-holder{
+            .text-holder {
               opacity: 1;
             }
           }
         }
-        .locked-cover{
+        .locked-cover {
           width: 100%;
           height: 36%;
           border-radius: 15px;
@@ -834,58 +853,76 @@
           left: 0;
           z-index: 5;
           text-align: center;
-          &::before{
-            content: '';
+          &::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             z-index: -1;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(17, 17, 17, 0.0549706) 2.1%, rgba(9, 9, 9, 0.32) 57.45%, rgba(5, 5, 5, 0.0586787) 98.26%);
+            background: linear-gradient(
+              180deg,
+              rgba(17, 17, 17, 0.0549706) 2.1%,
+              rgba(9, 9, 9, 0.32) 57.45%,
+              rgba(5, 5, 5, 0.0586787) 98.26%
+            );
             backdrop-filter: blur(10px);
             border-radius: 10px;
             opacity: 0;
-            transition: .3s;
+            transition: 0.3s;
           }
-          .text-holder{
+          .text-holder {
             width: 85%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
-            transition: .3s;
-            p{
+            transition: 0.3s;
+            p {
               font-size: 16px;
               font-weight: 400;
               margin: 0;
             }
           }
         }
-        .name{
+        .name {
           position: relative;
           z-index: 1;
           padding: 30px 20px 0 20px;
-          p{
-            font-size: 20px;
-            font-weight: 600;
+          p {
+            font-family: True-Lies;
+            font-size: 23px;
+            font-weight: normal;
             margin: 0;
-            &.desc{
+            transform: rotate(-5deg);
+            -webkit-transform: rotate(-5deg);
+            -moz-transform: rotate(-5deg);
+            -ms-transform: rotate(-5deg);
+            -o-transform: rotate(-5deg);
+            &.desc {
+              margin-top: 5px;
+              font-family: unset;
               font-size: 14px;
               font-weight: 300;
-              opacity: .6;
+              opacity: 0.6;
+              transform: rotate(0deg);
+              -webkit-transform: rotate(0deg);
+              -moz-transform: rotate(0deg);
+              -ms-transform: rotate(0deg);
+              -o-transform: rotate(0deg);
             }
           }
         }
-        .img-holder{
+        .img-holder {
           position: absolute;
           top: 50%;
           left: 0;
           width: 100%;
           transform: translateY(-50%);
           z-index: 1;
-          &::before{
+          &::before {
             content: "";
             position: absolute;
             top: 50%;
@@ -894,10 +931,10 @@
             height: 30px;
             transform: translate(-50%, -50%);
             background: transparent;
-            box-shadow: 0px 0px 100px 25px #FBA37C;
+            box-shadow: 0px 0px 100px 25px #fba37c;
             z-index: -1;
           }
-          .back-img{
+          .back-img {
             position: absolute;
             z-index: 1;
             left: 50%;
@@ -905,12 +942,12 @@
             transform: translate(-50%, -50%);
             max-width: 80%;
           }
-          .car-img{
+          .car-img {
             position: relative;
             z-index: 2;
             transform: scale(1.17);
           }
-          .bonus{
+          .bonus {
             font-weight: 600;
             font-size: 20px;
             line-height: 1.2;
@@ -922,26 +959,54 @@
             left: 50%;
             transform: translate(-50%, 100%);
             width: 100%;
-            &.bronze{
-              background: linear-gradient(180deg, #b35736 0%, #e68e66 52.08%, #D5805E 90.62%, #F5C7AC 100%), #C4C4C4;
+            &.bronze {
+              background: linear-gradient(
+                  180deg,
+                  #b35736 0%,
+                  #e68e66 52.08%,
+                  #d5805e 90.62%,
+                  #f5c7ac 100%
+                ),
+                #c4c4c4;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               background-size: cover;
             }
-            &.silver{
-              background: linear-gradient(180deg, #74838a 0%, #FAFAFA 65.1%, #939393 99.99%, #717171 100%), #C4C4C4;
+            &.silver {
+              background: linear-gradient(
+                  180deg,
+                  #74838a 0%,
+                  #fafafa 65.1%,
+                  #939393 99.99%,
+                  #717171 100%
+                ),
+                #c4c4c4;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               background-size: cover;
             }
-            &.gold{
-              background: linear-gradient(180deg, #C19123 0%, #c58c1a 10.42%, #FEF2A3 70.83%, #B57F12 100%), #C4C4C4;
+            &.gold {
+              background: linear-gradient(
+                  180deg,
+                  #c19123 0%,
+                  #c58c1a 10.42%,
+                  #fef2a3 70.83%,
+                  #b57f12 100%
+                ),
+                #c4c4c4;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               background-size: cover;
             }
-            &.platinum{
-              background: linear-gradient(180deg, #79A3AC 0%, #E4FCFF 65.1%, #B1CCD1 83.33%, #939393 99.99%), #C4C4C4;
+            &.platinum {
+              background: linear-gradient(
+                  180deg,
+                  #79a3ac 0%,
+                  #e4fcff 65.1%,
+                  #b1ccd1 83.33%,
+                  #939393 99.99%
+                ),
+                #c4c4c4;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
               background-size: cover;
@@ -953,44 +1018,44 @@
   }
 }
 
-@media screen and (max-width: 1800px){
-  .top-info{
-    h1{
+@media screen and (max-width: 1800px) {
+  .top-info {
+    h1 {
       font-size: 30px;
     }
-    .text-info{
+    .text-info {
       max-width: 575px;
     }
   }
-  .content-holder{
-    .cars-holder{
-      .edition-holder{
-        .regular-cars{
-          .car-item{
-            .car-info{
+  .content-holder {
+    .cars-holder {
+      .edition-holder {
+        .regular-cars {
+          .car-item {
+            .car-info {
               padding: 15px 0 0 16px;
-              .name{
-                p{
+              .name {
+                p {
                   font-size: 18px;
-                  &.desc{
+                  &.desc {
                     font-size: 13px;
                   }
                 }
               }
-              .cars-left{
-                p{
+              .cars-left {
+                p {
                   padding: 13px 16px;
                 }
               }
             }
-            .bottom-info{
+            .bottom-info {
               padding: 0 16px;
-              .prize{
+              .prize {
                 font-size: 18px;
               }
-              .buy-now{
-                .buy-inner{
-                  p{
+              .buy-now {
+                .buy-inner {
+                  p {
                     padding: 9px 18px;
                     font-size: 15px;
                   }
@@ -1004,92 +1069,92 @@
   }
 }
 
-@media screen and (max-width: 1700px){
-  .main-holder{
+@media screen and (max-width: 1700px) {
+  .main-holder {
     width: calc(100% - 430px);
     padding-left: 30px;
   }
-  .top-info{
+  .top-info {
     padding-bottom: 10px;
-    .text-info{
+    .text-info {
       max-width: 535px;
       margin: 0 15px;
-      h1{
+      h1 {
         font-size: 26px;
         line-height: unset;
         margin: 10px 0;
       }
-      p{
+      p {
         font-size: 15px;
       }
     }
-    .info-box{
+    .info-box {
       width: 412px;
       min-width: 412px;
       padding: 27px 15px;
-      .nums-holder{
+      .nums-holder {
         margin-bottom: 10px;
-        .num-box{
+        .num-box {
           width: 44px;
           height: 42px;
           padding-top: 6px;
-          p{
+          p {
             font-size: 20px;
           }
         }
-        .desc{
+        .desc {
           bottom: -8px;
           font-size: 14px;
         }
       }
     }
   }
-  .content-holder{
-    .switchers-holder{
+  .content-holder {
+    .switchers-holder {
       width: 150px;
-      p{
+      p {
         font-size: 30px;
       }
     }
-    .cars-holder{
+    .cars-holder {
       width: calc(100% - 160px);
-      .edition-holder{
-        .regular-cars{
-          .car-item{
-            .car-check{
+      .edition-holder {
+        .regular-cars {
+          .car-item {
+            .car-check {
               min-width: 124px;
               width: unset;
-              .inner{
-                p{
+              .inner {
+                p {
                   font-size: 14px;
                   padding: 7px 0;
-                  img{
+                  img {
                     margin-right: 7px;
                   }
                 }
               }
             }
-            .car-info{
+            .car-info {
               padding: 14px 0 0 14px;
-              .name{
-                p{
+              .name {
+                p {
                   font-size: 17px;
                 }
               }
-              .cars-left{
-                p{
+              .cars-left {
+                p {
                   padding: 12px 15px;
                 }
               }
             }
-            .bottom-info{
+            .bottom-info {
               padding: 0 14px;
-              .prize{
+              .prize {
                 font-size: 17px;
               }
-              .buy-now{
-                .buy-inner{
-                  p{
+              .buy-now {
+                .buy-inner {
+                  p {
                     padding: 8px 16px;
                   }
                 }
@@ -1097,11 +1162,11 @@
             }
           }
         }
-        .rare-car{
-          .name{
-            p{
+        .rare-car {
+          .name {
+            p {
               font-size: 17px;
-              &.desc{
+              &.desc {
                 font-size: 13px;
               }
             }
@@ -1112,123 +1177,123 @@
   }
 }
 
-@media screen and (max-width: 1550px){
-  .main-holder{
+@media screen and (max-width: 1550px) {
+  .main-holder {
     width: calc(100% - 380px);
     padding-left: 20px;
   }
-  .my-menu{
-    .menu-desc{
-      p{
+  .my-menu {
+    .menu-desc {
+      p {
         font-size: 16px;
         padding-bottom: 7px;
       }
     }
   }
-  .top-info{
+  .top-info {
     margin-top: 20px;
-    .text-info{
+    .text-info {
       max-width: 475px;
       margin: 0 10px;
-      h1{
+      h1 {
         font-size: 24px;
         margin: 5px 0 7px;
       }
-      p{
+      p {
         font-size: 13px;
       }
     }
-    .back{
+    .back {
       min-height: 105px;
       padding: 0 14px;
-      p{
+      p {
         line-height: unset;
         font-size: 14px;
       }
     }
-    .info-box{
+    .info-box {
       width: 352px;
       min-width: 352px;
-      .nums-holder{
+      .nums-holder {
         margin-bottom: 8px;
-        .num-box{
+        .num-box {
           width: 35px;
           height: 33px;
           padding-top: 5px;
           margin: 0 3px;
-          p{
+          p {
             font-size: 16px;
           }
         }
-        .desc{
+        .desc {
           bottom: -6px;
           font-size: 13px;
         }
       }
     }
   }
-  .content-holder{
-    .switchers-holder{
+  .content-holder {
+    .switchers-holder {
       height: 460px;
       width: 135px;
-      p{
+      p {
         font-size: 26px;
       }
     }
-    .cars-holder{
+    .cars-holder {
       margin-top: 25px;
       width: calc(100% - 145px);
-      .edition-holder{
+      .edition-holder {
         height: 446px;
-        .regular-cars{
+        .regular-cars {
           gap: 10px;
           width: calc(74% - 5px);
-          .car-item{
+          .car-item {
             width: calc(33.333% - 7px);
             height: calc(50% - 5px);
-            .car-check{
+            .car-check {
               min-width: 104px;
               border-radius: 6px;
-              .inner{
+              .inner {
                 border-radius: 6px;
-                p{
+                p {
                   font-size: 12px;
                   padding: 4px 0;
-                  img{
+                  img {
                     margin-right: 7px;
                     width: 9px;
                   }
                 }
               }
             }
-            .car-info{
+            .car-info {
               padding: 12px 0 0 12px;
-              .name{
-                p{
+              .name {
+                p {
                   font-size: 16px;
-                  &.desc{
+                  &.desc {
                     font-size: 12px;
                     line-height: 1;
                   }
                 }
               }
-              .cars-left{
-                p{
+              .cars-left {
+                p {
                   padding: 10px 13px;
                 }
               }
             }
-            .bottom-info{
+            .bottom-info {
               padding: 0 12px;
               bottom: 12px;
-              .prize{
+              .prize {
                 font-size: 16px;
               }
-              .buy-now{
+              .buy-now {
                 border-radius: 10px;
-                .buy-inner{
+                .buy-inner {
                   border-radius: 10px;
-                  p{
+                  p {
                     padding: 8px 16px;
                     font-size: 14px;
                     padding: 6px 15px;
@@ -1238,19 +1303,19 @@
             }
           }
         }
-        .rare-car{
+        .rare-car {
           width: calc(26% - 5px);
-          .name{
-            p{
+          .name {
+            p {
               font-size: 16px;
-              &.desc{
+              &.desc {
                 font-size: 12px;
                 line-height: 1;
               }
             }
           }
-          .img-holder{
-            .bonus{
+          .img-holder {
+            .bonus {
               font-size: 20px;
             }
           }
@@ -1260,38 +1325,38 @@
   }
 }
 
-@media screen and (max-width: 1350px){
-  .content-holder{
-    .cars-holder{
-      .edition-holder{
-        .regular-cars{
-          .car-item{
-            .car-info{
+@media screen and (max-width: 1350px) {
+  .content-holder {
+    .cars-holder {
+      .edition-holder {
+        .regular-cars {
+          .car-item {
+            .car-info {
               padding: 10px 0 0 10px;
-              .name{
-                p{
+              .name {
+                p {
                   font-size: 14px;
-                  &.desc{
+                  &.desc {
                     font-size: 11px;
                   }
                 }
               }
-              .cars-left{
-                p{
+              .cars-left {
+                p {
                   font-size: 12px;
                   padding: 8px 10px;
                 }
               }
             }
-            .bottom-info{
+            .bottom-info {
               padding: 0 10px;
               bottom: 10px;
-              .prize{
+              .prize {
                 font-size: 14px;
               }
-              .buy-now{
-                .buy-inner{
-                  p{
+              .buy-now {
+                .buy-inner {
+                  p {
                     text-align: center;
                     padding: 7px 14px;
                     font-size: 13px;
@@ -1302,17 +1367,17 @@
             }
           }
         }
-        .rare-car{
-          .name{
-            p{
+        .rare-car {
+          .name {
+            p {
               font-size: 14px;
-              &.desc{
+              &.desc {
                 font-size: 11px;
               }
             }
           }
-          .img-holder{
-            .bonus{
+          .img-holder {
+            .bonus {
               font-size: 20px;
             }
           }
@@ -1322,150 +1387,154 @@
   }
 }
 
-@media screen and (max-width: 1300px){
-  .top-info{
-    .text-info{
+@media screen and (max-width: 1300px) {
+  .top-info {
+    .text-info {
       max-width: 665px;
-      h1{
+      h1 {
         font-size: 20px;
         margin: 3px 0 5px;
       }
-      p{
+      p {
         font-size: 12px;
         margin: 0;
       }
     }
-    .info-box{
+    .info-box {
       width: 322px;
       min-width: 322px;
     }
   }
 }
 
-@media screen and (max-width: 1200px){
-  .main-holder{
+@media screen and (max-width: 1200px) {
+  .main-holder {
     width: calc(100% - 340px);
     padding-left: 13px;
   }
-  .my-menu{
-    .menu-desc{
-      p{
+  .my-menu {
+    .menu-desc {
+      p {
         font-size: 14px;
       }
     }
-    .menu-line{
+    .menu-line {
       border-width: 3px;
     }
   }
-  .content-holder{
+  .content-holder {
     flex-wrap: wrap;
-    .switchers-holder{
+    .switchers-holder {
       height: unset;
       width: 100%;
       flex-direction: row;
       align-items: center;
-      p{
+      p {
         padding: 15px;
         font-size: 21px;
       }
     }
-    .cars-holder{
+    .cars-holder {
       margin-top: 20px;
       width: 100%;
     }
   }
 }
 
-@media screen and (max-width: 1024px){
-  .main-holder{
+@media screen and (max-width: 1024px) {
+  .main-holder {
     width: 100%;
     padding: 0 13px 0px 10px;
   }
 }
 
-@media screen and (max-width: 800px){
-  .top-info{
+@media screen and (max-width: 800px) {
+  .top-info {
     flex-wrap: wrap;
-    .back{
+    .back {
       order: 1;
-      p{
+      p {
         font-size: 11px;
         margin-bottom: 7px;
       }
     }
-    .info-box{
+    .info-box {
       width: calc(100% - 70px);
       order: 2;
       padding: 27px 18px;
       min-width: unset;
-      .nums-holder{
+      .nums-holder {
         margin-bottom: 12px;
-        .num-box{
+        .num-box {
           margin: 0 9px;
           width: 40px;
           height: 38px;
-          p{
+          p {
             font-size: 19px;
           }
         }
       }
     }
-    .text-info{
+    .text-info {
       order: 3;
       margin: 15px auto;
       text-align: center;
     }
   }
-  .content-holder{
-    .cars-holder{
-      .edition-holder{
+  .content-holder {
+    .cars-holder {
+      .edition-holder {
         flex-wrap: wrap;
         height: unset;
-        .regular-cars{
+        .regular-cars {
           width: 100%;
           height: 440px;
-          .car-item{
+          .car-item {
             margin-bottom: 20px;
           }
         }
-        .rare-car{
+        .rare-car {
           width: 100%;
           height: 170px;
           margin-top: -2px;
           margin-bottom: 100px;
-          .locked-cover{
+          .locked-cover {
             padding: 0 5px;
             max-width: 175px;
             height: 100%;
             left: unset;
             right: 0;
-            .text-holder{
+            .text-holder {
               max-width: 350px;
-              img{
+              img {
                 width: 25px;
               }
-              p{
+              p {
                 font-size: 14px;
                 margin-top: 10px;
               }
             }
           }
-          .name{
-            padding: 15px 20px 0 20px;
+          .name {
+            p {
+              &.desc {
+                margin-top: 30px;
+              }
+            }
           }
-          .img-holder{
+          .img-holder {
             height: 100%;
             text-align: center;
-            &::before{
+            &::before {
               width: 20px;
               height: 20px;
             }
-            .car-img{
+            .car-img {
               top: 15%;
               max-height: 85%;
               transform: none;
             }
-            .back-img{
+            .back-img {
               top: 50%;
               max-height: 92%;
             }
@@ -1476,57 +1545,66 @@
   }
 }
 
-@media screen and (max-width: 640px){
-  .main-holder{
+@media screen and (max-width: 640px) {
+  .main-holder {
     width: 100%;
     padding: 0 10px 0px 10px;
   }
-  .top-info{
+  .top-info {
     padding-bottom: 0;
-    .back{
+    .back {
       min-height: 80px;
-      p{
+      p {
         font-size: 10px;
         margin-bottom: 6px;
       }
     }
-    .info-box{
+    .info-box {
       width: calc(100% - 60px);
       padding: 20px 18px;
-      .nums-holder{
-        .num-box{
+      .nums-holder {
+        .num-box {
           width: 35px;
           height: 33px;
           margin: 0 6px;
           padding-top: 6px;
-          p{
+          p {
             font-size: 15px;
           }
         }
-        .desc{
+        .desc {
           bottom: -3px;
           font-size: 12px;
         }
       }
     }
   }
-  .my-menu{
-    .menu-desc{
-      p{
+  .my-menu {
+    .menu-desc {
+      p {
         font-size: 14px;
         padding-bottom: 6px;
       }
     }
   }
-  .content-holder{
-    .cars-holder{
+  .content-holder {
+    .cars-holder {
       margin-top: 15px;
-      .edition-holder{
-        .regular-cars{
+      .edition-holder {
+        .regular-cars {
           height: unset;
-          .car-item{
+          .car-item {
             width: calc(50% - 5px);
             height: 215px;
+          }
+        }
+        .rare-car {
+          .name {
+            p {
+              &.desc {
+                margin-top: 20px;
+              }
+            }
           }
         }
       }
@@ -1534,46 +1612,46 @@
   }
 }
 
-@media screen and (max-width: 450px){
-  .my-menu{
-    .menu-desc{
-      p{
+@media screen and (max-width: 450px) {
+  .my-menu {
+    .menu-desc {
+      p {
         font-size: 12px;
         padding-bottom: 5px;
       }
     }
   }
-  .content-holder{
-    .switchers-holder{
-      p{
+  .content-holder {
+    .switchers-holder {
+      p {
         font-size: 17px;
         padding: 12px 7px;
       }
     }
-    .cars-holder{
-      .edition-holder{
-        .regular-cars{
-          .car-item{
+    .cars-holder {
+      .edition-holder {
+        .regular-cars {
+          .car-item {
             height: 200px;
           }
         }
-        .rare-car{
+        .rare-car {
           height: 155px;
-          .name{
+          .name {
             padding: 10px 15px 0 15px;
           }
-          .img-holder{
-            &::before{
+          .img-holder {
+            &::before {
               width: 15px;
               height: 15px;
               top: 57%;
-              box-shadow: 0px 0px 70px 20px #FBA37C;
+              box-shadow: 0px 0px 70px 20px #fba37c;
             }
-            .back-img{
+            .back-img {
               top: 55%;
               max-height: 82%;
             }
-            .car-img{
+            .car-img {
               top: 16%;
               max-height: 90%;
             }
@@ -1584,24 +1662,24 @@
   }
 }
 
-@media screen and (max-width: 400px){
-  .top-info{
-    .info-box{
+@media screen and (max-width: 400px) {
+  .top-info {
+    .info-box {
       padding: 20px 10px;
-      .nums-holder{
-        .num-box{
+      .nums-holder {
+        .num-box {
           margin: 0 3px;
         }
       }
     }
   }
-  .content-holder{
-    .cars-holder{
-      .edition-holder{
-        .regular-cars{
-          .car-item{
+  .content-holder {
+    .cars-holder {
+      .edition-holder {
+        .regular-cars {
+          .car-item {
             width: 100%;
-            .car-img{
+            .car-img {
               max-width: 280px;
             }
           }
