@@ -24,7 +24,7 @@ export class NftMarketComponent implements OnInit {
     //bronze
     {
       id: 9,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "RHINO",
       prize: "600 IOI",
       image: "car1",
@@ -32,7 +32,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 10,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "PANTHER",
       prize: "600 IOI",
       image: "car2",
@@ -40,7 +40,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 11,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "ONYX",
       prize: "600 IOI",
       image: "car3",
@@ -48,7 +48,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 12,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "ZANDER",
       prize: "600 IOI",
       image: "car4",
@@ -56,7 +56,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 13,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "CYBORG",
       prize: "600 IOI",
       image: "car5",
@@ -64,7 +64,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 14,
-      collection: "Bronze Collection",
+      collection: "Common",
       name: "VULCANIC",
       prize: "600 IOI",
       image: "car6",
@@ -72,7 +72,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 15,
-      collection: "Bronze Collection Rare",
+      collection: "Common rare",
       name: "LUNA",
       prize: "3 600 IOI",
       image: "car25",
@@ -82,7 +82,7 @@ export class NftMarketComponent implements OnInit {
     //silver
     {
       id: 16,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "DORIAN",
       prize: "1 000 IOI",
       image: "car7",
@@ -90,7 +90,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 17,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "PANTHER",
       prize: "1 000 IOI",
       image: "car8",
@@ -98,7 +98,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 18,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "ONYX",
       prize: "1 000 IOI",
       image: "car9",
@@ -106,7 +106,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 19,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "ZANDER",
       prize: "1 000 IOI",
       image: "car10",
@@ -114,7 +114,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 20,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "PYTHON",
       prize: "1 000 IOI",
       image: "car11",
@@ -122,7 +122,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 21,
-      collection: "Silver Collection",
+      collection: "Super",
       name: "VULCANIC",
       prize: "1 000 IOI",
       image: "car12",
@@ -130,7 +130,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 22,
-      collection: "Silver Collection Rare",
+      collection: "Super rare",
       name: "SILVER KNIGHT",
       prize: "6 000 IOI",
       image: "car26",
@@ -140,7 +140,7 @@ export class NftMarketComponent implements OnInit {
     //gold
     {
       id: 23,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "CYBORG",
       prize: "1 600 IOI",
       image: "car13",
@@ -148,7 +148,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 24,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "RHINO",
       prize: "1 600 IOI",
       image: "car14",
@@ -156,7 +156,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 25,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "HYPER",
       prize: "1 600 IOI",
       image: "car15",
@@ -164,7 +164,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 26,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "BULL",
       prize: "1 600 IOI",
       image: "car16",
@@ -172,7 +172,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 27,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "PYTHON",
       prize: "1 600 IOI",
       image: "car17",
@@ -180,7 +180,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 28,
-      collection: "Gold Collection",
+      collection: "Epic",
       name: "HITMAN",
       prize: "1 600 IOI",
       image: "car18",
@@ -188,7 +188,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 29,
-      collection: "Gold Collection Rare",
+      collection: "Epic rare",
       name: "MIDAS",
       prize: "9 600 IOI",
       image: "car27",
@@ -198,7 +198,7 @@ export class NftMarketComponent implements OnInit {
     //platinum
     {
       id: 30,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "HYPER",
       prize: "2 600 IOI",
       image: "car19",
@@ -206,7 +206,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 31,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "DORIAN",
       prize: "2 600 IOI",
       image: "car20",
@@ -214,7 +214,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 32,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "VULCANIC",
       prize: "2 600 IOI",
       image: "car21",
@@ -222,7 +222,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 33,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "BULL",
       prize: "2 600 IOI",
       image: "car22",
@@ -230,7 +230,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 34,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "KNOCKOUT",
       prize: "2 600 IOI",
       image: "car23",
@@ -238,7 +238,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 35,
-      collection: "Platinum Collection",
+      collection: "Legendary",
       name: "LARA",
       prize: "2 600 IOI",
       image: "car24",
@@ -246,7 +246,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 36,
-      collection: "Platinum Collection Rare",
+      collection: "Legendary rare",
       name: "BLUE STORM",
       prize: "15 600 IOI",
       image: "car28",
@@ -255,7 +255,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 1,
-      collection: "Limited rare",
+      collection: "Super",
       name: "Axle",
       prize: "100 IOI",
       image: "avatar-white",
@@ -263,7 +263,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 2,
-      collection: "Limited rare",
+      collection: "Super",
       name: "Flash",
       prize: "100 IOI",
       image: "avatar-red",
@@ -271,7 +271,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 3,
-      collection: "Limited rare",
+      collection: "Super",
       name: "Octane",
       prize: "100 IOI",
       image: "avatar-blue",
@@ -279,7 +279,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 4,
-      collection: "Limited rare",
+      collection: "Super",
       name: "Punisher",
       prize: "100 IOI",
       image: "avatar-black",
@@ -287,7 +287,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 5,
-      collection: "Super rare",
+      collection: "Epic",
       name: "Lady Rich",
       prize: "1 000 IOI",
       image: "lady-rich",
@@ -295,7 +295,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 6,
-      collection: "Super rare",
+      collection: "Epic",
       name: "Rich Jr.",
       prize: "1 000 IOI",
       image: "bad-boy",
@@ -303,7 +303,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 7,
-      collection: "Super rare",
+      collection: "Epic",
       name: "Mrs. Rich",
       prize: "1 000 IOI",
       image: "mrs-rich",
