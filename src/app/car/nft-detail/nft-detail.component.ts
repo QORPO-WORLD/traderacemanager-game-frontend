@@ -105,7 +105,7 @@ export class NftDetailComponent implements OnInit {
       name: "RHINO",
       prize: "600",
       image: "car1",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 10,
@@ -113,7 +113,7 @@ export class NftDetailComponent implements OnInit {
       name: "PANTHER",
       prize: "600",
       image: "car2",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 11,
@@ -121,7 +121,7 @@ export class NftDetailComponent implements OnInit {
       name: "ONYX",
       prize: "600",
       image: "car3",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 12,
@@ -129,7 +129,7 @@ export class NftDetailComponent implements OnInit {
       name: "ZANDER",
       prize: "600",
       image: "car4",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 13,
@@ -137,7 +137,7 @@ export class NftDetailComponent implements OnInit {
       name: "CYBORG",
       prize: "600",
       image: "car5",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 14,
@@ -145,7 +145,7 @@ export class NftDetailComponent implements OnInit {
       name: "VULCANIC",
       prize: "600",
       image: "car6",
-      extras: { stake: "0.1", roi: "6" },
+      extras: { stake: "0.1", roi: "6", value: "600" },
     },
     {
       id: 15,
@@ -154,7 +154,7 @@ export class NftDetailComponent implements OnInit {
       prize: "3 600",
       image: "car25",
       rare: true,
-      extras: { stake: "0.6", roi: "6" },
+      extras: { stake: "0.6", roi: "6", value: "3600" },
     },
     //silver
     {
@@ -163,7 +163,7 @@ export class NftDetailComponent implements OnInit {
       name: "DORIAN",
       prize: "1 000",
       image: "car7",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 17,
@@ -171,7 +171,7 @@ export class NftDetailComponent implements OnInit {
       name: "PANTHER",
       prize: "1 000",
       image: "car8",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 18,
@@ -179,7 +179,7 @@ export class NftDetailComponent implements OnInit {
       name: "ONYX",
       prize: "1 000",
       image: "car9",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 19,
@@ -187,7 +187,7 @@ export class NftDetailComponent implements OnInit {
       name: "ZANDER",
       prize: "1 000",
       image: "car10",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 20,
@@ -195,7 +195,7 @@ export class NftDetailComponent implements OnInit {
       name: "PYTHON",
       prize: "1 000",
       image: "car11",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 21,
@@ -203,7 +203,7 @@ export class NftDetailComponent implements OnInit {
       name: "VULCANIC",
       prize: "1 000",
       image: "car12",
-      extras: { stake: "0.33", roi: "12" },
+      extras: { stake: "0.33", roi: "12", value: "1000" },
     },
     {
       id: 22,
@@ -212,7 +212,7 @@ export class NftDetailComponent implements OnInit {
       prize: "6 000",
       image: "car26",
       rare: true,
-      extras: { stake: "1.98", roi: "12" },
+      extras: { stake: "1.98", roi: "12", value: "6000" },
     },
     //gold
     {
@@ -221,7 +221,7 @@ export class NftDetailComponent implements OnInit {
       name: "CYBORG",
       prize: "1 600",
       image: "car13",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 24,
@@ -229,7 +229,7 @@ export class NftDetailComponent implements OnInit {
       name: "RHINO",
       prize: "1 600",
       image: "car14",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 25,
@@ -237,7 +237,7 @@ export class NftDetailComponent implements OnInit {
       name: "HYPER",
       prize: "1 600",
       image: "car15",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 26,
@@ -245,7 +245,7 @@ export class NftDetailComponent implements OnInit {
       name: "BULL",
       prize: "1 600",
       image: "car16",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 27,
@@ -253,7 +253,7 @@ export class NftDetailComponent implements OnInit {
       name: "PYTHON",
       prize: "1 600",
       image: "car17",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 28,
@@ -261,7 +261,7 @@ export class NftDetailComponent implements OnInit {
       name: "HITMAN",
       prize: "1 600",
       image: "car18",
-      extras: { stake: "0.79", roi: "18" },
+      extras: { stake: "0.79", roi: "18", value: "1600" },
     },
     {
       id: 29,
@@ -270,7 +270,7 @@ export class NftDetailComponent implements OnInit {
       prize: "9 600",
       image: "car27",
       rare: true,
-      extras: { stake: "4.74", roi: "18" },
+      extras: { stake: "4.74", roi: "18", value: "9600" },
     },
     //platinum
     {
@@ -279,7 +279,7 @@ export class NftDetailComponent implements OnInit {
       name: "HYPER",
       prize: "2 600",
       image: "car19",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 31,
@@ -287,7 +287,7 @@ export class NftDetailComponent implements OnInit {
       name: "DORIAN",
       prize: "2 600",
       image: "car20",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 32,
@@ -295,7 +295,7 @@ export class NftDetailComponent implements OnInit {
       name: "VULCANIC",
       prize: "2 600",
       image: "car21",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 33,
@@ -303,7 +303,7 @@ export class NftDetailComponent implements OnInit {
       name: "BULL",
       prize: "2 600",
       image: "car22",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 34,
@@ -311,7 +311,7 @@ export class NftDetailComponent implements OnInit {
       name: "KNOCKOUT",
       prize: "2 600",
       image: "car23",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 35,
@@ -319,7 +319,7 @@ export class NftDetailComponent implements OnInit {
       name: "LARA",
       prize: "2 600",
       image: "car24",
-      extras: { stake: "1.71", roi: "24" },
+      extras: { stake: "1.71", roi: "24", value: "2600" },
     },
     {
       id: 36,
@@ -328,7 +328,7 @@ export class NftDetailComponent implements OnInit {
       prize: "15 600",
       image: "car28",
       rare: true,
-      extras: { stake: "10.25", roi: "24" },
+      extras: { stake: "10.25", roi: "24", value: "15600" },
     },
   ];
   tracks: Array<object> = [

@@ -80,7 +80,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 1',
       prize: '600',
       image: 'car1',
-      extras: { stake: '0.1', roi: '6', buy_id: 1 }
+      extras: { stake: '0.1', roi: '6', buy_id: 1, value: '600' }
     },
     {
       id: 10,
@@ -88,7 +88,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 2',
       prize: '600',
       image: 'car2',
-      extras: { stake: '0.1', roi: '6', buy_id: 2 }
+      extras: { stake: '0.1', roi: '6', buy_id: 2, value: '600' }
     },
     {
       id: 11,
@@ -96,7 +96,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 3',
       prize: '600',
       image: 'car3',
-      extras: { stake: '0.1', roi: '6', buy_id: 3 }
+      extras: { stake: '0.1', roi: '6', buy_id: 3, value: '600' }
     },
     {
       id: 12,
@@ -104,7 +104,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 4',
       prize: '600',
       image: 'car4',
-      extras: { stake: '0.1', roi: '6', buy_id: 4 }
+      extras: { stake: '0.1', roi: '6', buy_id: 4, value: '600' }
     },
     {
       id: 13,
@@ -112,7 +112,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 5',
       prize: '600',
       image: 'car5',
-      extras: { stake: '0.1', roi: '6', buy_id: 5 }
+      extras: { stake: '0.1', roi: '6', buy_id: 5, value: '600' }
     },
     {
       id: 14,
@@ -120,190 +120,190 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 6',
       prize: '600',
       image: 'car6',
-      extras: { stake: '0.1', roi: '6', buy_id: 6 }
+      extras: { stake: '0.1', roi: '6', buy_id: 6, value: '600' }
     },
     {
       id: 15,
       collection: 'Bronze Collection Rare',
       name: 'Bronze 7',
-      prize: '3600',
+      prize: '3 600',
       image: 'car25',
       rare: true,
-      extras: { stake: '0.6', roi: '6', buy_id: 25 }
+      extras: { stake: '0.6', roi: '6', buy_id: 25, value: '3600' }
     },
     //silver
     {
       id: 16,
       collection: 'Silver Collection',
       name: 'Silver 1',
-      prize: '1000',
+      prize: '1 000',
       image: 'car7',
-      extras: { stake: '0.33', roi: '12', buy_id: 7 }
+      extras: { stake: '0.33', roi: '12', buy_id: 7, value: '1000' }
     },
     {
       id: 17,
       collection: 'Silver Collection',
       name: 'Silver 2',
-      prize: '1000',
+      prize: '1 000',
       image: 'car8',
-      extras: { stake: '0.33', roi: '12', buy_id: 8 }
+      extras: { stake: '0.33', roi: '12', buy_id: 8, value: '1000' }
     },
     {
       id: 18,
       collection: 'Silver Collection',
       name: 'Silver 3',
-      prize: '1000',
+      prize: '1 000',
       image: 'car9',
-      extras: { stake: '0.33', roi: '12', buy_id: 9 }
+      extras: { stake: '0.33', roi: '12', buy_id: 9, value: '1000' }
     },
     {
       id: 19,
       collection: 'Silver Collection',
       name: 'Silver 4',
-      prize: '1000',
+      prize: '1 000',
       image: 'car10',
-      extras: { stake: '0.33', roi: '12', buy_id: 10 }
+      extras: { stake: '0.33', roi: '12', buy_id: 10, value: '1000' }
     },
     {
       id: 20,
       collection: 'Silver Collection',
       name: 'Silver 5',
-      prize: '1000',
+      prize: '1 000',
       image: 'car11',
-      extras: { stake: '0.33', roi: '12', buy_id: 11 }
+      extras: { stake: '0.33', roi: '12', buy_id: 11, value: '1000' }
     },
     {
       id: 21,
       collection: 'Silver Collection',
       name: 'Silver 6',
-      prize: '1000',
+      prize: '1 000',
       image: 'car12',
-      extras: { stake: '0.33', roi: '12', buy_id: 12 }
+      extras: { stake: '0.33', roi: '12', buy_id: 12, value: '1000' }
     },
     {
       id: 22,
       collection: 'Silver Collection Rare',
       name: 'Silver 7',
-      prize: '6000',
+      prize: '6 000',
       image: 'car26',
       rare: true,
-      extras: { stake: '1.98', roi: '12', buy_id: 26 }
+      extras: { stake: '1.98', roi: '12', buy_id: 26, value: '6000' }
     },
     //gold
     {
       id: 23,
       collection: 'Gold Collection',
       name: 'Gold 1',
-      prize: '1600',
+      prize: '1 600',
       image: 'car13',
-      extras: { stake: '0.79', roi: '18', buy_id: 13 }
+      extras: { stake: '0.79', roi: '18', buy_id: 13, value: '1600' }
     },
     {
       id: 24,
       collection: 'Gold Collection',
       name: 'Gold 2',
-      prize: '1600',
+      prize: '1 600',
       image: 'car14',
-      extras: { stake: '0.79', roi: '18', buy_id: 14 }
+      extras: { stake: '0.79', roi: '18', buy_id: 14, value: '1600' }
     },
     {
       id: 25,
       collection: 'Gold Collection',
       name: 'Gold 3',
-      prize: '1600',
+      prize: '1 600',
       image: 'car15',
-      extras: { stake: '0.79', roi: '18', buy_id: 15 }
+      extras: { stake: '0.79', roi: '18', buy_id: 15, value: '1600' }
     },
     {
       id: 26,
       collection: 'Gold Collection',
       name: 'Gold 4',
-      prize: '1600',
+      prize: '1 600',
       image: 'car16',
-      extras: { stake: '0.79', roi: '18', buy_id: 16 }
+      extras: { stake: '0.79', roi: '18', buy_id: 16, value: '1600' }
     },
     {
       id: 27,
       collection: 'Gold Collection',
       name: 'Gold 5',
-      prize: '1600',
+      prize: '1 600',
       image: 'car17',
-      extras: { stake: '0.79', roi: '18', buy_id: 17 }
+      extras: { stake: '0.79', roi: '18', buy_id: 17, value: '1600' }
     },
     {
       id: 28,
       collection: 'Gold Collection',
       name: 'Gold 6',
-      prize: '1600',
+      prize: '1 600',
       image: 'car18',
-      extras: { stake: '0.79', roi: '18', buy_id: 18 }
+      extras: { stake: '0.79', roi: '18', buy_id: 18, value: '1600' }
     },
     {
       id: 29,
       collection: 'Gold Collection Rare',
       name: 'Gold 7',
-      prize: '9600',
+      prize: '9 600',
       image: 'car27',
       rare: true,
-      extras: { stake: '4.74', roi: '18', buy_id: 27 }
+      extras: { stake: '4.74', roi: '18', buy_id: 27, value: '9600' }
     },
     //platinum
     {
       id: 30,
       collection: 'Platinum Collection',
       name: 'Platinum 1',
-      prize: '2600',
+      prize: '2 600',
       image: 'car19',
-      extras: { stake: '1.71', roi: '24', buy_id: 19 }
+      extras: { stake: '1.71', roi: '24', buy_id: 19, value: '2600' }
     },
     {
       id: 31,
       collection: 'Platinum Collection',
       name: 'Platinum 2',
-      prize: '2600',
+      prize: '2 600',
       image: 'car20',
-      extras: { stake: '1.71', roi: '24', buy_id: 20 }
+      extras: { stake: '1.71', roi: '24', buy_id: 20, value: '2600' }
     },
     {
       id: 32,
       collection: 'Platinum Collection',
       name: 'Platinum 3',
-      prize: '2600',
+      prize: '2 600',
       image: 'car21',
-      extras: { stake: '1.71', roi: '24', buy_id: 21 }
+      extras: { stake: '1.71', roi: '24', buy_id: 21, value: '2600' }
     },
     {
       id: 33,
       collection: 'Platinum Collection',
       name: 'Platinum 4',
-      prize: '2600',
+      prize: '2 600',
       image: 'car22',
-      extras: { stake: '1.71', roi: '24', buy_id: 22 }
+      extras: { stake: '1.71', roi: '24', buy_id: 22, value: '2600' }
     },
     {
       id: 34,
       collection: 'Platinum Collection',
       name: 'Platinum 5',
-      prize: '2600',
+      prize: '2 600',
       image: 'car23',
-      extras: { stake: '1.71', roi: '24', buy_id: 23 }
+      extras: { stake: '1.71', roi: '24', buy_id: 23, value: '2600' }
     },
     {
       id: 35,
       collection: 'Platinum Collection',
       name: 'Platinum 6',
-      prize: '2600',
+      prize: '2 600',
       image: 'car24',
-      extras: { stake: '1.71', roi: '24', buy_id: 24 }
+      extras: { stake: '1.71', roi: '24', buy_id: 24, value: '2600' }
     },
     {
       id: 36,
       collection: 'Platinum Collection Rare',
       name: 'Platinum 7',
-      prize: '15600',
+      prize: '15 600',
       image: 'car28',
       rare: true,
-      extras: { stake: '10.25', roi: '24', buy_id: 28 }
+      extras: { stake: '10.25', roi: '24', buy_id: 28, value: '15600' }
     },
   ];
   tracks: Array<object> = [
