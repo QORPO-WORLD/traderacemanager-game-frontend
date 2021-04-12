@@ -317,7 +317,7 @@ class AuthService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{result?: boolean}>;
+        return _r as __StrictHttpResponse<any>;
       })
     );
   }
@@ -348,7 +348,7 @@ class AuthService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{result?: boolean}>;
+        return _r as __StrictHttpResponse<any>;
       })
     );
   }
