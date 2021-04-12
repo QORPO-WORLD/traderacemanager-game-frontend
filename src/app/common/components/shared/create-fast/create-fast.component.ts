@@ -118,7 +118,7 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16 },
     { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17 },
     { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18 },
-    { symbol: 'USDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
+    { symbol: 'USDTUSDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
   ];
   selectedBets: Array<number> = [];
   order = 'favourite';
@@ -161,9 +161,9 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.trDate = Date.now();
     this.trsDate = Date.now();
+    this.selectDefaultCoin(0);
     this.getFavCars();
     this.getRaceDetails();
-    console.log(this.myCar);
   }
 
   ngOnDestroy() {
@@ -727,16 +727,8 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
 
   selectDefaultCoin(customIndex: number){
     this.trsDate = Date.now();
-    
-    if (this.trsDate - this.trDate > 1000) {
-      this.selectedSymbol = null;
-      setTimeout(() => {
-
-
-        this.selectedSymbol = this.selectedCarsToRace[this.selectedCarIndex].bet[customIndex].symbol;
-        this.trDate = Date.now();
-      }, 1000);
-    }
+    this.selectedSymbol = this.myBet[customIndex].symbol;
+    this.trDate = Date.now();
   }
 
   nextFuelCar(){

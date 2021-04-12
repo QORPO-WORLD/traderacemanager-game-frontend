@@ -2,7 +2,7 @@ import { ExperienceService } from 'src/app/common/services/experience.service';
 import { DriversService, RacesService, LeaderboardService } from 'src/app/api/services';
 import { NextRaceV2 } from './../../../api/models/next-race-v2';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { race, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/user/services/auth.service';
 @Component({
@@ -49,7 +49,11 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
   myIoiBalance = 0;
   myTrxBalance = 0;
   tickets = 0;
+  infoRaceId: string;
+  infoTourId: number;
+  infoBetAmount: number;
   ready = false;
+  showInfoModal = false;
   baseFavRaces = [
     { type: 'car_race_short_0', fav: false },
     { type: 'car_race_ioi_10', fav: false },
@@ -230,6 +234,15 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     );
   }
 
+  closeInfoModal(myBool: boolean) {
+    this.showInfoModal = myBool;
+  }
 
+  openInfoModal(raceId: string, tourId: number, betAmount: number){
+    this.infoBetAmount = betAmount;
+    this.infoRaceId = raceId;
+    this.infoTourId = tourId;
+    this.showInfoModal = true;
+  }
 
 }
