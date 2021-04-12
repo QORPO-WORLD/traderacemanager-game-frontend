@@ -80,7 +80,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 1',
       prize: '600',
       image: 'car1',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 1 }
     },
     {
       id: 10,
@@ -88,7 +88,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 2',
       prize: '600',
       image: 'car2',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 2 }
     },
     {
       id: 11,
@@ -96,7 +96,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 3',
       prize: '600',
       image: 'car3',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 3 }
     },
     {
       id: 12,
@@ -104,7 +104,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 4',
       prize: '600',
       image: 'car4',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 4 }
     },
     {
       id: 13,
@@ -112,7 +112,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 5',
       prize: '600',
       image: 'car5',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 5 }
     },
     {
       id: 14,
@@ -120,7 +120,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Bronze 6',
       prize: '600',
       image: 'car6',
-      extras: { stake: '0.1', roi: '6' }
+      extras: { stake: '0.1', roi: '6', buy_id: 6 }
     },
     {
       id: 15,
@@ -129,7 +129,7 @@ export class BuyNftComponent implements OnInit {
       prize: '3600',
       image: 'car25',
       rare: true,
-      extras: { stake: '0.6', roi: '6' }
+      extras: { stake: '0.6', roi: '6', buy_id: 25 }
     },
     //silver
     {
@@ -138,7 +138,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 1',
       prize: '1000',
       image: 'car7',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 7 }
     },
     {
       id: 17,
@@ -146,7 +146,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 2',
       prize: '1000',
       image: 'car8',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 8 }
     },
     {
       id: 18,
@@ -154,7 +154,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 3',
       prize: '1000',
       image: 'car9',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 9 }
     },
     {
       id: 19,
@@ -162,7 +162,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 4',
       prize: '1000',
       image: 'car10',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 10 }
     },
     {
       id: 20,
@@ -170,7 +170,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 5',
       prize: '1000',
       image: 'car11',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 11 }
     },
     {
       id: 21,
@@ -178,7 +178,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Silver 6',
       prize: '1000',
       image: 'car12',
-      extras: { stake: '0.33', roi: '12' }
+      extras: { stake: '0.33', roi: '12', buy_id: 12 }
     },
     {
       id: 22,
@@ -187,7 +187,7 @@ export class BuyNftComponent implements OnInit {
       prize: '6000',
       image: 'car26',
       rare: true,
-      extras: { stake: '1.98', roi: '12' }
+      extras: { stake: '1.98', roi: '12', buy_id: 26 }
     },
     //gold
     {
@@ -196,7 +196,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 1',
       prize: '1600',
       image: 'car13',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 13 }
     },
     {
       id: 24,
@@ -204,7 +204,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 2',
       prize: '1600',
       image: 'car14',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 14 }
     },
     {
       id: 25,
@@ -212,7 +212,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 3',
       prize: '1600',
       image: 'car15',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 15 }
     },
     {
       id: 26,
@@ -220,7 +220,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 4',
       prize: '1600',
       image: 'car16',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 16 }
     },
     {
       id: 27,
@@ -228,7 +228,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 5',
       prize: '1600',
       image: 'car17',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 17 }
     },
     {
       id: 28,
@@ -236,7 +236,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Gold 6',
       prize: '1600',
       image: 'car18',
-      extras: { stake: '0.79', roi: '18' }
+      extras: { stake: '0.79', roi: '18', buy_id: 18 }
     },
     {
       id: 29,
@@ -245,7 +245,7 @@ export class BuyNftComponent implements OnInit {
       prize: '9600',
       image: 'car27',
       rare: true,
-      extras: { stake: '4.74', roi: '18' }
+      extras: { stake: '4.74', roi: '18', buy_id: 27 }
     },
     //platinum
     {
@@ -254,7 +254,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 1',
       prize: '2600',
       image: 'car19',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 19 }
     },
     {
       id: 31,
@@ -262,7 +262,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 2',
       prize: '2600',
       image: 'car20',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 20 }
     },
     {
       id: 32,
@@ -270,7 +270,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 3',
       prize: '2600',
       image: 'car21',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 21 }
     },
     {
       id: 33,
@@ -278,7 +278,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 4',
       prize: '2600',
       image: 'car22',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 22 }
     },
     {
       id: 34,
@@ -286,7 +286,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 5',
       prize: '2600',
       image: 'car23',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 23 }
     },
     {
       id: 35,
@@ -294,7 +294,7 @@ export class BuyNftComponent implements OnInit {
       name: 'Platinum 6',
       prize: '2600',
       image: 'car24',
-      extras: { stake: '1.71', roi: '24' }
+      extras: { stake: '1.71', roi: '24', buy_id: 24 }
     },
     {
       id: 36,
@@ -303,7 +303,7 @@ export class BuyNftComponent implements OnInit {
       prize: '15600',
       image: 'car28',
       rare: true,
-      extras: { stake: '10.25', roi: '24' }
+      extras: { stake: '10.25', roi: '24', buy_id: 28 }
     },
   ];
   tracks: Array<object> = [
