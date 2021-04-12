@@ -222,11 +222,18 @@
       </div>
       <div class="detail-info">
         <h1>About Car</h1>
-        <p>
-          With the most unique characters, cars and tracks - all as
-          NFTs.Purchase one, or more of our characters, get amazing and unique
-          NFTs cars and start racing today. More cars and characters means
-          higher earnings!
+        <p *ngIf="displayArray[0]['rare'] === undefined">
+          {{ displayArray[0]["name"] }} is unique limited car. Each car is
+          unparalleled way of owning IOI tokens, staking and APY. The main
+          benefit is that you can use your NFTs in-game, buy, sell and trade
+          on open markets. The new era of NFTs in your pocket.
+        </p>
+        <p *ngIf="displayArray[0]['rare'] === true">
+          {{ displayArray[0]["name"] }} is highly limited with unique
+          abilities. Each car is unparalleled way of owning IOI tokens,
+          staking and APY. The main benefit is that you can use your NFTs
+          in-game, buy, sell and trade on open markets. The new era of NFTs in
+          your pocket.
         </p>
       </div>
 
@@ -252,7 +259,7 @@
                 <div
                   class="inner-slider red-box-shop"
                   [ngStyle]="{
-                    'width.%': (displayArray[0]['prize'] * 100) / 15600
+                    'width.%': (displayArray[0]['extras'].value * 100) / 15600
                   }"
                 ></div>
                 <div
