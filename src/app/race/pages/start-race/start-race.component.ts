@@ -67,12 +67,14 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myLdrbrdObserver: Subscription;
   teamSubscription: Subscription;
   raceData: any;
+  
   myDriver: any;
   interval: any;
   liveRacesData: any;
   myRewards: any;
   myLdrbrd: any;
   myNick = "";
+  display= window.innerWidth;
   timerReady = false;
   dataReady = false;
   bonusTicketOpened = false;
@@ -140,6 +142,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   currentExpLevel: number;
   ioioreward: number;
   actualIoiReward = 1000000;
+  
   displayReward = 0;
   tutorialInterval: any;
   animationInterval: any;
