@@ -254,13 +254,12 @@
 
   <div class="content-wrapper">
     <div class="leaderboard">
-      <div class="ioi-volume box-background box-shadow">
-        <span>
-          <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
-        </span>
-      </div>
-
       <div class="table">
+        <div class="ioi-volume box-background">
+          <span>
+            <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
+          </span>
+        </div>
         <div class="header table-row">
           <div>
             <p>{{ "leaderboard.place" | translate }}</p>
@@ -307,29 +306,6 @@
           &gt;
         </div>
       </div>-->
-    </div>
-
-    <div class="graph-wrapper">
-      <div class="graph">
-        <div class="graph-buttons">
-          <button
-            (click)="graphType = 'Turnover'"
-            [ngClass]="{ 'active button-gradient': graphType == 'Turnover' }"
-            class="border-color"
-          >
-            {{ "leaderboard.team_leaderboard.turnover" | translate }}
-          </button>
-          <button
-            (click)="graphType = 'Profit'"
-            [ngClass]="{ 'active button-gradient': graphType == 'Profit' }"
-            class="border-color"
-          >
-            {{ "teams.my_team.profit" | translate }}
-          </button>
-        </div>
-        <h4>Coming soon</h4>
-        <img class="soon" src="/assets/base/images/teams/graph.png" alt="" />
-      </div>
       <div class="tip">
         <h5 class="tip-heading">
           {{ "teams.my_team.tip_of_day" | translate }}
@@ -344,6 +320,31 @@
         />
         <app-show-tips #showTip [teamVersion]="true"></app-show-tips>
       </div>
+    </div>
+
+    <div class="graph-wrapper">
+      <div class="graph-buttons">
+        <button
+          (click)="graphType = 'Turnover'"
+          [ngClass]="{ 'active button-gradient': graphType == 'Turnover' }"
+          class="border-color"
+        >
+          {{ "leaderboard.team_leaderboard.turnover" | translate }}
+        </button>
+        <button
+          (click)="graphType = 'Profit'"
+          [ngClass]="{ 'active button-gradient': graphType == 'Profit' }"
+          class="border-color"
+        >
+          {{ "teams.my_team.profit" | translate }}
+        </button>
+      </div>
+      <div class="graph">
+        
+        <h4>Coming soon</h4>
+        <img class="soon" src="/assets/base/images/teams/graph.png" alt="" />
+      </div>
+      
     </div>
   </div>
 </div>
