@@ -215,21 +215,14 @@
               </p>
               <p class="prize">{{ item["prize"] }}</p>
               <button
-                class="blue-box-shop"
+                class="my-cta-btn-back"
                 *ngIf="item['type'] === 'car'"
                 (click)="showAsset(item['id'], item['type'])"
               >
                 See details
               </button>
               <button
-                class="red-box-shop"
-                *ngIf="item['type'] === 'car'"
-                (click)="showAsset(item['id'], item['type'])"
-              >
-                See details
-              </button>
-              <button
-                class="blue-box-shop"
+                class="my-cta-btn-back"
                 *ngIf="
                   item['type'] === 'racer' ||
                   item['type'] === 'track' ||
@@ -240,26 +233,7 @@
                 See details
               </button>
               <button
-                class="red-box-shop"
-                *ngIf="
-                  item['type'] === 'racer' ||
-                  item['type'] === 'track' ||
-                  (item['name'] === 'You' && item['type'] === 'team')
-                "
-                (click)="showAsset(item['id'], item['type'])"
-              >
-                See details
-              </button>
-              <button
-                class="blue-box-shop"
-                [ngStyle]="{ opacity: '0.3' }"
-                *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
-                style="cursor: default"
-              >
-                Sold out
-              </button>
-              <button
-                class="red-box-shop"
+                class="my-cta-btn-back"
                 [ngStyle]="{ opacity: '0.3' }"
                 *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
                 style="cursor: default"

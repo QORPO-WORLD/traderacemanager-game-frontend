@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: "app-nft-detail",
@@ -439,11 +440,13 @@ export class NftDetailComponent implements OnInit {
   @Input() assetType = "racer";
   @Input() assetId = 1;
   @Output() marketState = new EventEmitter<number>();
+  myDriverBalances: any;
 
-  constructor() {}
+  constructor(private identityService: AuthService) {}
 
   ngOnInit() {
     this.resolveShowAsset();
+    this.getMydriverBalances();
   }
 
   resolveShowAsset() {
@@ -467,4 +470,9 @@ export class NftDetailComponent implements OnInit {
   showBuyModal() {
     this.marketState.emit(3);
   }
+
+  getMydriverBalances() {
+    this.myDriverBalances = this.identityService.getBalance();
+  }
+
 }
