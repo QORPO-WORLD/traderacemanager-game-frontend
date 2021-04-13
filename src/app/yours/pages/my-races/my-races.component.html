@@ -60,7 +60,40 @@
     <div class="winner-body">
         <img src="/assets/base/images/garage/red-close-cross.svg" alt="" class="close-modal" (click)="showFinalModal = false">
 
-        <div class="table-holder">
+        <div class="table winner-table">
+
+            <div class="table-row header">
+              <div class="table-item small"><p>Position</p></div>
+              <div class="table-item big"><p>Nick</p></div>
+              <div class="table-item"><p>Team</p></div>
+              <div class="table-item"><p>Prize</p></div>
+              <div class="table-item"><p>Points</p></div>
+            </div>
+        
+            <div class="table-row" *ngFor="let item of winnersList;let i = index;">
+              <div class="table-item small my-cta-btn-back"><p>{{item.car_position_in_the_race}}.</p></div>
+              <div class="table-item big"><p>{{ item.nickname }}</p></div>
+              <div class="table-item"><p>{{ item.team ? item.team : 'NO'}}</p></div>
+              <div class="table-item"><p>{{ (item.amount ? item.amount : 0 ) | number:'1.2-2':'fr'}}</p></div>
+              <div class="table-item last"><p>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</p></div>
+            </div>
+        
+            <div class="arrow right" *ngIf="(actualPageWinner < totalPagesWinner)"  (click)="actualPageWinner = actualPageWinner + 1;getRaceWinner(atualUrl)">
+              <p>&gt;</p>
+            </div>
+            <div class="arrow left" *ngIf="(actualPageWinner > 1)" (click)="actualPageWinner = actualPageWinner - 1;getRaceWinner(atualUrl)">
+              <p>&lt;</p>
+            </div>
+            <div class="arrow right inactive" *ngIf="actualPageWinner === totalPagesWinner">
+              <p>&gt;</p>
+            </div>
+            <div class="arrow left inactive" *ngIf="actualPageWinner === 1">
+              <p>&lt;</p>
+            </div>
+        
+        </div>    
+
+        <!-- <div class="table-holder">
             <div class="my-row header">
                 <div>
                     <p>{{'leaderboard.position' | translate}}</p>
@@ -99,7 +132,7 @@
                     <p>{{( item.points ? item.points : 0 ) | number:'1.2-2':'fr'}}</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="arrow-right"  *ngIf="(totalPagesWinner > 1) && (actualPageWinner < totalPagesWinner)"  (click)="actualPageWinner = actualPageWinner + 1;getRaceWinner(atualUrl)">
             &gt;

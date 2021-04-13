@@ -36,7 +36,7 @@ class TeamChatService extends __BaseService {
     //if (limit != null) __params = __params.set('limit', limit.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/chat/team-chat`,
+      this.rootUrl + `/chat/team-chat?limit=200`,
       __body,
       {
         headers: __headers,

@@ -256,13 +256,7 @@
               <p>{{ displayArray[0]["prize"] }}</p>
               <div class="ab-slider">
                 <div
-                  class="inner-slider red-box-shop"
-                  [ngStyle]="{
-                    'width.%': (displayArray[0]['extras'].value * 100) / 15600
-                  }"
-                ></div>
-                <div
-                  class="inner-slider blue-box-shop"
+                  class="inner-slider my-cta-btn-back"
                   [ngStyle]="{
                     'width.%': (displayArray[0]['extras'].value * 100) / 15600
                   }"
@@ -278,13 +272,7 @@
               <p>{{ displayArray[0]["extras"].stake }}</p>
               <div class="ab-slider">
                 <div
-                  class="inner-slider red-box-shop"
-                  [ngStyle]="{
-                    'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
-                  }"
-                ></div>
-                <div
-                  class="inner-slider blue-box-shop"
+                  class="inner-slider my-cta-btn-back"
                   [ngStyle]="{
                     'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
                   }"
@@ -300,13 +288,7 @@
               <p>{{ displayArray[0]["extras"].roi }}%</p>
               <div class="ab-slider">
                 <div
-                  class="inner-slider red-box-shop"
-                  [ngStyle]="{
-                    'width.%': (displayArray[0]['extras'].roi * 100) / 24
-                  }"
-                ></div>
-                <div
-                  class="inner-slider blue-box-shop"
+                  class="inner-slider my-cta-btn-back"
                   [ngStyle]="{
                     'width.%': (displayArray[0]['extras'].roi * 100) / 24
                   }"
@@ -330,8 +312,8 @@
         />
       </div>
       <button
-        *ngIf="displayArray[0]['rare'] != true"
-        class="sign-in cars red-box-shop"
+        *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi >= displayArray[0]['prize']"
+        class="sign-in cars my-cta-btn-back"
         (click)="showBuyModal()"
       >
         <div class="btn-content">
@@ -339,46 +321,20 @@
           <span class="txt-span">Buy</span>
         </div>
       </button>
-      <button
-        *ngIf="displayArray[0]['rare'] != true"
-        class="sign-in cars blue-box-shop"
-      >
-        <div class="btn-content">
-          <img src="/assets/base/images/market/buy-icon.svg" alt="" />
-          <span class="txt-span">Buy</span>
-        </div>
-      </button>
-      <button
-        *ngIf="displayArray[0]['rare'] === true"
-        class="sign-in cars blue-box-shop"
-      >
-        <div class="btn-content">
-          <img
-            class="img1"
-            src="/assets/base/images/icons/inner-info-icon.png"
-            alt=""
-          />
-          <span class="txt1-span">Locked</span>
 
-          <div class="info-icon">
-            <div class="info-bubble">
-              <div class="img-holder">
-                <img
-                  src="/assets/base/images/icons/inner-info-icon.png"
-                  alt=""
-                />
-              </div>
-              <p>
-                Unlock your premium car by purchasing all regular cars from the
-                collection.
-              </p>
-            </div>
-          </div>
+      <button
+      *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi < displayArray[0]['prize']"
+      class="sign-in cars my-cta-btn-back"
+      [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }"
+      >
+        <div class="btn-content">
+          <span class="txt-span">Deposit</span>
         </div>
       </button>
+
       <button
         *ngIf="displayArray[0]['rare'] === true"
-        class="sign-in cars red-box-shop"
+        class="sign-in cars my-cta-btn-back"
       >
         <div class="btn-content">
           <img
@@ -387,19 +343,19 @@
             alt=""
           />
           <span class="txt1-span">Locked</span>
-          <div class="info-icon">
-            <div class="info-bubble">
-              <div class="img-holder">
-                <img
-                  src="/assets/base/images/icons/inner-info-icon.png"
-                  alt=""
-                />
-              </div>
-              <p>
-                Unlock your premium car by purchasing all regular cars from the
-                collection.
-              </p>
+        </div>
+        <div class="info-icon">
+          <div class="info-bubble">
+            <div class="img-holder">
+              <img
+                src="/assets/base/images/icons/inner-info-icon.png"
+                alt=""
+              />
             </div>
+            <p>
+              Unlock your premium car by purchasing all regular cars from the
+              collection.
+            </p>
           </div>
         </div>
       </button>
@@ -518,13 +474,7 @@
           alt=""
         />
       </div>
-      <button class="sign-in red-box-shop">
-        <div class="btn-content">
-          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
-          <span class="txt-span">Soon</span>
-        </div>
-      </button>
-      <button class="sign-in blue-box-shop">
+      <button class="sign-in my-cta-btn-back">
         <div class="btn-content">
           <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
           <span class="txt-span">Soon</span>
@@ -632,16 +582,7 @@
       </div>
       <button
         [routerLink]="['/teams/owners-managers']"
-        class="sign-in red-box-shop"
-      >
-        <div class="btn-content">
-          <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
-          <span class="txt-span">Buy</span>
-        </div>
-      </button>
-      <button
-        [routerLink]="['/teams/owners-managers']"
-        class="sign-in blue-box-shop"
+        class="sign-in my-cta-btn-back"
       >
         <div class="btn-content">
           <img src="/assets/base/images/home-page/abilityvalue.png" alt="" />
