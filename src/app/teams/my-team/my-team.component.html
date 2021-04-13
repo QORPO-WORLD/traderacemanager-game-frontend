@@ -25,327 +25,358 @@
     </div>
   </div>
 
-  <div class="team-menu">
-    <div class="menu-desc">
-      <p class="join-team" [routerLink]="['/teams/join-teams']">
-        {{ "teams.shared.join" | translate }}
-      </p>
-      <p class="owners-managers" [routerLink]="['/teams/owners-managers']">
-        {{ "teams.shared.owners_managers" | translate }}
-      </p>
-      <p class="join-team active" [routerLink]="['/teams/my-team']">
-        {{ "teams.shared.my_team" | translate }}
-      </p>
+  <div class="teams-content">
+    <div class="my-menu">
+      <div class="menu-item" [routerLink]="['/teams/join-teams']">
+          <p>{{'teams.shared.join' | translate}}</p>
+      </div>
+      <div class="menu-item" [routerLink]="['/teams/owners-managers']">
+          <p>{{'teams.shared.owners_managers' | translate}}</p>
+      </div>
+      <div class="menu-item my-cta-btn-back active" [routerLink]="['/teams/my-team']">
+          <p>{{'teams.shared.my_team' | translate}}</p>
+      </div>
     </div>
-    <div class="menu-line">
-      <div class="inner-line my-cta-btn-back">&nbsp;</div>
-    </div>
-  </div>
-
-  <div class="box-wrapper">
-    <div class="box box-background">
-      <span class="box-content">
-        <p class="box-name">{{ "teams.join.benefit4_heading" | translate }}</p>
-        <span *ngFor="let owner of myTeam?.owners">
-          <h4>{{ owner.nickname }}</h4>
+  
+    <div class="box-wrapper">
+      <div class="box box-background">
+        <span class="box-content">
+          <p class="box-name">{{ "teams.join.benefit4_heading" | translate }}</p>
+          <span *ngFor="let owner of myTeam?.owners">
+            <h4>{{ owner.nickname }}</h4>
+            <p>
+              <span
+                >{{ owner.ownership_percentage }}%
+                {{ "teams.my_team.shares_owner" | translate }}</span
+              >
+            </p>
+          </span>
+        </span>
+      </div>
+  
+      <div class="box box-background">
+        <div class="box-switchers">
+          <div
+            class="left"
+            (click)="manualChange(1)"
+            [ngClass]="{ 'active-button': TeamManagerSlide === 1 }"
+          ></div>
+          <div
+            class="right"
+            (click)="manualChange(2)"
+            [ngClass]="{ 'active-button': TeamManagerSlide === 2 }"
+          ></div>
+        </div>
+        <ng-container *ngIf="isOwner === false">
+          <span class="box-content">
+            <p class="box-name">
+              {{ "leaderboard.team_leaderboard.team_manager" | translate }}
+            </p>
+            <h4>{{ myTeam?.manager_user_nickname }}</h4>
+            <p style="display: none">
+              <span>?% {{ "teams.my_team.satisfaction_rate" | translate }}</span>
+            </p>
+            <ng-container *ngIf="TeamManagerSlide === 1">
+              <div class="satisfaction-wrapper">
+                <div class="satisfaction-info">
+                  <p>{{ "teams.my_team.rate_your_experience" | translate }}</p>
+                  <p class="desc">{{ "teams.my_team.Best" | translate }}</p>
+                </div>
+                <div class="satisfaction-rate">
+                  <div
+                    class="rate-icon"
+                    [ngClass]="{ active: activeRate == 1 }"
+                    (click)="activeRate = 1"
+                  >
+                    <img src="assets/base/images/teams/angry-icon.png" alt="" />
+                  </div>
+                  <div
+                    class="rate-icon"
+                    [ngClass]="{ active: activeRate == 2 }"
+                    (click)="activeRate = 2"
+                  >
+                    <img
+                      src="assets/base/images/teams/confused-icon.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="rate-icon"
+                    [ngClass]="{ active: activeRate == 3 }"
+                    (click)="activeRate = 3"
+                  >
+                    <img
+                      src="assets/base/images/teams/smirking-icon.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="rate-icon"
+                    [ngClass]="{ active: activeRate == 4 }"
+                    (click)="activeRate = 4"
+                  >
+                    <img src="assets/base/images/teams/love-icon.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="TeamManagerSlide === 2">
+              <button
+                class="apply-button border-color"
+                (click)="becomeManager(teamId)"
+                *ngIf="myTeamStats.me_waiting_as_manager === 'NONE'"
+              >
+                {{ "teams.my_team.apply" | translate }}
+              </button>
+              <button
+                class="apply-button border-color"
+                *ngIf="myTeamStats.me_waiting_as_manager === 'WAITING'"
+              >
+                Applied
+              </button>
+              <button
+                class="apply-button border-color"
+                *ngIf="myTeamStats.me_waiting_as_manager === 'APPROVED'"
+              >
+                Approved
+              </button>
+              <button
+                class="apply-button border-color"
+                *ngIf="myTeamStats.me_waiting_as_manager === 'DECLINED'"
+              >
+                Rejected
+              </button>
+            </ng-container>
+          </span>
+        </ng-container>
+  
+        <ng-container *ngIf="isOwner === true">
+          <span class="box-content">
+            <p class="box-name">
+              {{ "leaderboard.team_leaderboard.team_manager" | translate }}
+            </p>
+  
+            <ng-container *ngIf="TeamManagerSlide === 1">
+              <h4>
+                {{
+                  myTeam?.manager_user_nickname
+                    ? myTeam?.manager_user_nickname
+                    : "-"
+                }}
+              </h4>
+              <p style="display: none">
+                <span
+                  >?% {{ "teams.my_team.satisfaction_rate" | translate }}</span
+                >
+              </p>
+              <p>
+                <span>{{ "teams.my_team.current_manager" | translate }}</span>
+              </p>
+              <button
+                class="apply-button border-color release"
+                (click)="suspendManager()"
+                *ngIf="isOwner === true && myTeam?.manager_user_nickname"
+              >
+                {{ "teams.my_team.release_manager" | translate }}
+              </button>
+            </ng-container>
+  
+            <ng-container *ngIf="TeamManagerSlide === 2 && isOwner === true">
+              <h4>{{ managers[selectedmanager]?.user_nickname }}</h4>
+              <p>
+                <span>{{ "teams.my_team.waiting_manager" | translate }}</span>
+              </p>
+              <div class="accept-buttons" *ngIf="managers[selectedmanager]">
+                <button
+                  (click)="
+                    putManagerRequests(
+                      managers[selectedmanager]?.team_manager_request_id,
+                      true
+                    )
+                  "
+                >
+                  {{ "teams.my_team.accept" | translate }}
+                </button>
+                <button
+                  (click)="
+                    putManagerRequests(
+                      managers[selectedmanager]?.team_manager_request_id,
+                      false
+                    )
+                  "
+                >
+                  {{ "teams.my_team.reject" | translate }}
+                </button>
+              </div>
+              <div
+                class="manager-arrow-left"
+                (click)="selectedmanager = selectedmanager - 1"
+                *ngIf="selectedmanager > 0"
+              >
+                &lt;
+              </div>
+              <div
+                class="manager-arrow-right"
+                (click)="selectedmanager = selectedmanager + 1"
+                *ngIf="selectedmanager < managers?.length - 1"
+              >
+                &gt;
+              </div>
+            </ng-container>
+          </span>
+        </ng-container>
+      </div>
+  
+      <div class="box box-background">
+        <span class="box-content">
+          <p class="box-name">{{ "teams.my_team.best_racer" | translate }}</p>
+          <h4>{{ bestRacer?.user_nickname }}</h4>
           <p>
             <span
-              >{{ owner.ownership_percentage }}%
-              {{ "teams.my_team.shares_owner" | translate }}</span
+              >{{ bestRacer?.total_bet_amount | number: "1.1-1":"fr" }} IOI
+              {{ "teams.my_team.player_turnover" | translate }}</span
             >
           </p>
         </span>
-      </span>
-    </div>
-
-    <div class="box box-background">
-      <div class="box-switchers">
-        <div
-          class="left"
-          (click)="manualChange(1)"
-          [ngClass]="{ 'active-button': TeamManagerSlide === 1 }"
-        ></div>
-        <div
-          class="right"
-          (click)="manualChange(2)"
-          [ngClass]="{ 'active-button': TeamManagerSlide === 2 }"
-        ></div>
       </div>
-      <ng-container *ngIf="isOwner === false">
+  
+      <div class="box box-background">
         <span class="box-content">
-          <p class="box-name">
-            {{ "leaderboard.team_leaderboard.team_manager" | translate }}
-          </p>
-          <h4>{{ myTeam?.manager_user_nickname }}</h4>
-          <p style="display: none">
-            <span>?% {{ "teams.my_team.satisfaction_rate" | translate }}</span>
-          </p>
-          <ng-container *ngIf="TeamManagerSlide === 1">
-            <div class="satisfaction-wrapper">
-              <div class="satisfaction-info">
-                <p>{{ "teams.my_team.rate_your_experience" | translate }}</p>
-                <p class="desc">{{ "teams.my_team.Best" | translate }}</p>
-              </div>
-              <div class="satisfaction-rate">
-                <div
-                  class="rate-icon"
-                  [ngClass]="{ active: activeRate == 1 }"
-                  (click)="activeRate = 1"
-                >
-                  <img src="assets/base/images/teams/angry-icon.png" alt="" />
-                </div>
-                <div
-                  class="rate-icon"
-                  [ngClass]="{ active: activeRate == 2 }"
-                  (click)="activeRate = 2"
-                >
-                  <img
-                    src="assets/base/images/teams/confused-icon.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="rate-icon"
-                  [ngClass]="{ active: activeRate == 3 }"
-                  (click)="activeRate = 3"
-                >
-                  <img
-                    src="assets/base/images/teams/smirking-icon.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="rate-icon"
-                  [ngClass]="{ active: activeRate == 4 }"
-                  (click)="activeRate = 4"
-                >
-                  <img src="assets/base/images/teams/love-icon.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="TeamManagerSlide === 2">
-            <button
-              class="apply-button border-color"
-              (click)="becomeManager(teamId)"
-              *ngIf="myTeamStats.me_waiting_as_manager === 'NONE'"
-            >
-              {{ "teams.my_team.apply" | translate }}
-            </button>
-            <button
-              class="apply-button border-color"
-              *ngIf="myTeamStats.me_waiting_as_manager === 'WAITING'"
-            >
-              Applied
-            </button>
-            <button
-              class="apply-button border-color"
-              *ngIf="myTeamStats.me_waiting_as_manager === 'APPROVED'"
-            >
-              Approved
-            </button>
-            <button
-              class="apply-button border-color"
-              *ngIf="myTeamStats.me_waiting_as_manager === 'DECLINED'"
-            >
-              Rejected
-            </button>
-          </ng-container>
+          <p class="box-name">{{ "teams.my_team.team_value" | translate }}</p>
+          <h4>{{ myTeam?.team_value }} IOI</h4>
         </span>
-      </ng-container>
-
-      <ng-container *ngIf="isOwner === true">
-        <span class="box-content">
-          <p class="box-name">
-            {{ "leaderboard.team_leaderboard.team_manager" | translate }}
-          </p>
-
-          <ng-container *ngIf="TeamManagerSlide === 1">
-            <h4>
-              {{
-                myTeam?.manager_user_nickname
-                  ? myTeam?.manager_user_nickname
-                  : "-"
-              }}
-            </h4>
-            <p style="display: none">
-              <span
-                >?% {{ "teams.my_team.satisfaction_rate" | translate }}</span
-              >
-            </p>
-            <p>
-              <span>{{ "teams.my_team.current_manager" | translate }}</span>
-            </p>
-            <button
-              class="apply-button border-color release"
-              (click)="suspendManager()"
-              *ngIf="isOwner === true && myTeam?.manager_user_nickname"
-            >
-              {{ "teams.my_team.release_manager" | translate }}
-            </button>
-          </ng-container>
-
-          <ng-container *ngIf="TeamManagerSlide === 2 && isOwner === true">
-            <h4>{{ managers[selectedmanager]?.user_nickname }}</h4>
-            <p>
-              <span>{{ "teams.my_team.waiting_manager" | translate }}</span>
-            </p>
-            <div class="accept-buttons" *ngIf="managers[selectedmanager]">
-              <button
-                (click)="
-                  putManagerRequests(
-                    managers[selectedmanager]?.team_manager_request_id,
-                    true
-                  )
-                "
-              >
-                {{ "teams.my_team.accept" | translate }}
-              </button>
-              <button
-                (click)="
-                  putManagerRequests(
-                    managers[selectedmanager]?.team_manager_request_id,
-                    false
-                  )
-                "
-              >
-                {{ "teams.my_team.reject" | translate }}
-              </button>
-            </div>
-            <div
-              class="manager-arrow-left"
-              (click)="selectedmanager = selectedmanager - 1"
-              *ngIf="selectedmanager > 0"
-            >
-              &lt;
-            </div>
-            <div
-              class="manager-arrow-right"
-              (click)="selectedmanager = selectedmanager + 1"
-              *ngIf="selectedmanager < managers?.length - 1"
-            >
-              &gt;
-            </div>
-          </ng-container>
-        </span>
-      </ng-container>
+      </div>
     </div>
+  
+    <div class="content-wrapper">
+      <div class="leaderboard">
 
-    <div class="box box-background">
-      <span class="box-content">
-        <p class="box-name">{{ "teams.my_team.best_racer" | translate }}</p>
-        <h4>{{ bestRacer?.user_nickname }}</h4>
-        <p>
-          <span
-            >{{ bestRacer?.total_bet_amount | number: "1.1-1":"fr" }} IOI
-            {{ "teams.my_team.player_turnover" | translate }}</span
+        <div class="table">
+
+          <div class="ioi-volume box-background">
+            <span>
+              <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
+            </span>
+          </div>
+
+          <div class="table-row header">
+            <div class="table-item small"><p>Position</p></div>
+            <div class="table-item big"><p>Nickname</p></div>
+            <div class="table-item"><p>Turnover</p></div>
+            <div class="table-item"><p>Potential win</p></div>
+          </div>
+      
+          <div class="table-row" *ngFor="let pl of myTeam?.top10; let yy = index" [ngClass]="{'mine': pl?.user_id === myuser}">
+            <div class="table-item small my-cta-btn-back"><p>{{ yy + 1 }}.</p></div>
+            <div class="table-item big"><p>{{ pl?.user_nickname }}</p></div>
+            <div class="table-item"><p>{{ pl?.total_bet_amount | number: "1.1-1":"fr" }}</p></div>
+            <div class="table-item last"><p>{{ myTeam?.applicable_team_bonuses[yy] | number: "1.1-1":"fr" }}</p></div>
+          </div>
+      
+          <!-- <div class="arrow right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
+            <p>&gt;</p>
+          </div>
+          <div class="arrow left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 0">
+            <p>&lt;</p>
+          </div>
+          <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+            <p>&gt;</p>
+          </div>
+          <div class="arrow left inactive" *ngIf="actualPage === 0">
+            <p>&lt;</p>
+          </div> -->
+      
+          <!-- <div class="leaderboard-empty" *ngIf="players.length === 0">
+            <h2>{{"leaderboard.empty" | translate}}</h2>
+          </div> -->
+      
+        </div>
+
+        <!-- <div class="table">
+          <div class="ioi-volume box-background">
+            <span>
+              <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
+            </span>
+          </div>
+          <div class="header table-row">
+            <div>
+              <p>{{ "leaderboard.place" | translate }}</p>
+            </div>
+            <div>
+              <p>{{ "shared.nick" | translate }}</p>
+            </div>
+            <div>
+              <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
+            </div>
+            <div>
+              <p>{{ "shared.potential_win" | translate }}</p>
+            </div>
+          </div>
+          <div
+            class="table-row"
+            [ngClass]="pl?.user_id === myuser ? 'me' : null"
+            *ngFor="let pl of myTeam?.top10; let yy = index"
           >
-        </p>
-      </span>
-    </div>
-
-    <div class="box box-background">
-      <span class="box-content">
-        <p class="box-name">{{ "teams.my_team.team_value" | translate }}</p>
-        <h4>{{ myTeam?.team_value }} IOI</h4>
-      </span>
-    </div>
-  </div>
-
-  <div class="content-wrapper">
-    <div class="leaderboard">
-      <div class="ioi-volume box-background box-shadow">
-        <span>
-          <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
-        </span>
-      </div>
-
-      <div class="table">
-        <div class="header table-row">
-          <div>
-            <p>{{ "leaderboard.place" | translate }}</p>
-          </div>
-          <div>
-            <p>{{ "shared.nick" | translate }}</p>
-          </div>
-          <div>
-            <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
-          </div>
-          <div>
-            <p>{{ "shared.potential_win" | translate }}</p>
-          </div>
-        </div>
-        <div
-          class="table-row"
-          [ngClass]="pl?.user_id === myuser ? 'me' : null"
-          *ngFor="let pl of myTeam?.top10; let yy = index"
-        >
-          <div class="cell">
-            <p *ngIf="pl?.user_id === myuser">me</p>
-            <div class="placement my-border-grad box-background">
-              <span>{{ yy + 1 }}</span>
+            <div class="cell">
+              <p *ngIf="pl?.user_id === myuser">me</p>
+              <div class="placement my-border-grad box-background">
+                <span>{{ yy + 1 }}</span>
+              </div>
+            </div>
+            <div class="cell">
+              <p>{{ pl?.user_nickname }}</p>
+            </div>
+            <div class="cell">
+              <p>{{ pl?.total_bet_amount | number: "1.1-1":"fr" }}</p>
+            </div>
+            <div class="cell">
+              <p>
+                {{ myTeam?.applicable_team_bonuses[yy] | number: "1.1-1":"fr" }}
+              </p>
             </div>
           </div>
-          <div class="cell">
-            <p>{{ pl?.user_nickname }}</p>
-          </div>
-          <div class="cell">
-            <p>{{ pl?.total_bet_amount | number: "1.1-1":"fr" }}</p>
-          </div>
-          <div class="cell">
-            <p>
-              {{ myTeam?.applicable_team_bonuses[yy] | number: "1.1-1":"fr" }}
-            </p>
-          </div>
+        </div> -->
+        <div class="tip">
+          <h5 class="tip-heading">
+            {{ "teams.my_team.tip_of_day" | translate }}
+            <img src="/assets/base/images/teams/fire.png" alt="" />
+          </h5>
+          <img
+            class="edit-icon"
+            src="assets/base/images/teams/edit-icon.png"
+            alt=""
+            (click)="showDayTipModal = true"
+            *ngIf="meManager === true"
+          />
+          <app-show-tips #showTip [teamVersion]="true"></app-show-tips>
         </div>
       </div>
-      <!--<div class="arrows">
-        <div class="arrow-left">
-          &lt;
-        </div>
-        <div class="arrow-right arrow-active">
-          &gt;
-        </div>
-      </div>-->
-    </div>
-
-    <div class="graph-wrapper">
-      <div class="graph">
+  
+      <div class="graph-wrapper">
         <div class="graph-buttons">
           <button
             (click)="graphType = 'Turnover'"
             [ngClass]="{ 'active button-gradient': graphType == 'Turnover' }"
-            class="border-color"
           >
             {{ "leaderboard.team_leaderboard.turnover" | translate }}
           </button>
           <button
             (click)="graphType = 'Profit'"
             [ngClass]="{ 'active button-gradient': graphType == 'Profit' }"
-            class="border-color"
           >
             {{ "teams.my_team.profit" | translate }}
           </button>
         </div>
-        <h4>Coming soon</h4>
-        <img class="soon" src="/assets/base/images/teams/graph.png" alt="" />
-      </div>
-      <div class="tip">
-        <h5 class="tip-heading">
-          {{ "teams.my_team.tip_of_day" | translate }}
-          <img src="/assets/base/images/teams/fire.png" alt="" />
-        </h5>
-        <img
-          class="edit-icon"
-          src="assets/base/images/teams/edit-icon.png"
-          alt=""
-          (click)="showDayTipModal = true"
-          *ngIf="meManager === true"
-        />
-        <app-show-tips #showTip [teamVersion]="true"></app-show-tips>
+        <div class="graph">
+          
+          <h4>Coming soon</h4>
+          <img class="soon" src="/assets/base/images/teams/graph.png" alt="" />
+        </div>
+        
       </div>
     </div>
   </div>
+
 </div>
 
 <div *ngIf="showDayTipModal === true">
