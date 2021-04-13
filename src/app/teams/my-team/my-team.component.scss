@@ -2,6 +2,43 @@
   width: calc(100% - 457px);
   padding-left: 40px;
 }
+
+.teams-content{
+  padding-left: 112px;
+}
+
+.my-menu{
+  margin: 70px 0 25px;
+  border-radius: 10px;
+  background: #222222;
+  width: 66%;
+  display: flex;
+  justify-content: space-between;
+  .menu-item{
+    width: 33.3333%;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+    position: relative;
+    &.active{
+      p{
+        font-weight: 600;
+      }
+    }
+    p{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      margin: 0;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}
+
 .main-holder {
   .box-background {
     background: linear-gradient(
@@ -24,13 +61,6 @@
     .me {
       background: linear-gradient(
         90deg,
-        rgba(8, 114, 152, 1) 0%,
-        rgba(7, 66, 87, 1) 58%
-      );
-    }
-    .table-row:not(.header):hover {
-      background: linear-gradient(
-        to bottom right,
         rgba(8, 114, 152, 1) 0%,
         rgba(7, 66, 87, 1) 58%
       );
@@ -102,13 +132,6 @@
         rgba(7, 71, 45, 1) 58%
       );
     }
-    .table-row:not(.header):hover {
-      background: linear-gradient(
-        to bottom right,
-        rgba(1, 131, 79, 1) 0%,
-        rgba(7, 71, 45, 1) 58%
-      );
-    }
     .border-color {
       border: 1px solid #01834f;
     }
@@ -172,13 +195,6 @@
       box-shadow: 0px 0px 40px 5px rgba(163, 43, 42, 0.51);
     }
     .me {
-      background: linear-gradient(
-        to bottom right,
-        rgba(163, 43, 42, 1) 0%,
-        rgba(93, 14, 13, 1) 58%
-      );
-    }
-    .table-row:not(.header):hover {
       background: linear-gradient(
         to bottom right,
         rgba(163, 43, 42, 1) 0%,
@@ -265,8 +281,7 @@ h1 {
   height: 100%;
   text-align: center;
   min-height: 132px;
-  background: linear-gradient(0deg, #111111, #111111);
-  box-shadow: 0px 0px 80px #000000;
+  background: #222222;
   border-radius: 20px;
   p {
     line-height: 20px;
@@ -288,8 +303,7 @@ h1 {
 }
 .bonus-info {
   width: 448px;
-  background: linear-gradient(0deg, #111111, #111111);
-  box-shadow: 0px 0px 80px #000000;
+  background: #222222;
   border-radius: 20px;
   min-height: 132px;
   display: flex;
@@ -320,43 +334,6 @@ h1 {
 .soon {
   opacity: 0.4;
 }
-.team-menu {
-  width: 100%;
-  .menu-desc {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    p {
-      margin: 0;
-      font-size: 18px;
-      text-align: center;
-      color: #ffffff;
-      display: block;
-      width: 50%;
-      padding-bottom: 15px;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-    .active {
-      font-weight: 600;
-    }
-  }
-  .menu-line {
-    width: 100%;
-    background: #252525;
-    border: 4px solid #111111;
-    box-sizing: border-box;
-    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05),
-      10px 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    .inner-line {
-      border-radius: 10px;
-      width: 33.333%;
-      height: 4px;
-      float: right;
-    }
-  }
-}
 
 .box-wrapper {
   margin-top: 40px;
@@ -375,11 +352,10 @@ h1 {
   }
 }
 .box-content {
-  background: rgba($color: #111111, $alpha: 0.8);
+  background: rgba($color: #222222, $alpha: 0.8);
   position: relative;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 0px 80px #000000;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -590,33 +566,127 @@ h1 {
   width: 49%;
   border-radius: 20px;
 }
-.table {
-  margin-bottom: 80px;
+.table{
   position: relative;
-  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
   color: white;
+  min-height: 500px;
   width: 100%;
+  background: #222222;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
-  background: #222222;
-}
-.table-row {
-  z-index: 1;
-  width: 85%;
-  margin: 5px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  transition: 0.2s;
-  border-radius: 10px;
-  padding-right: 30px;
-}
-.table-row:not(.header):hover {
-  font-weight: 600;
+  padding: 40px 5%;
+  .table-row{ 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1px;
+      background: #111111;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      &.header{
+          background: transparent;
+          margin-bottom: 10px;
+          .table-item{
+              &.small{
+                  p{
+                      white-space: nowrap;
+                      position: absolute;
+                      left: 0;
+                  }
+              }
+              &::after{
+                  content: none;
+              }
+              p{
+                  font-weight: 600;
+              }
+          }
+      }
+      &.mine{
+          background: #FFFFFF;
+          .table-item{
+              &.small{
+                  p{
+                      color: white;
+                  }
+              }
+              p{
+                  color: black;
+              }
+              .team-badge{
+                  p{
+                      color: white;
+                  }
+              }
+          }
+      }
+      .table-item{
+          width: 28%;
+          text-align: center;
+          height: 40px;
+          position: relative;
+          &.big{
+              width: 37%;
+          }
+          &.small{
+              width: 7%;
+          }
+          &::after{
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 1px;
+              height: 100%;
+              z-index: 2;
+              background: #222222;
+          }
+          &.last{
+              &::after{
+                  content: none;
+              }
+          }
+          p{
+              font-size: 16px;
+              font-weight: 400;
+              margin: 0;
+              line-height: 40px;
+          }
+          .team-badge{
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              &.IOI{
+                  background: #00D1FF;
+              }
+              &.ALT{
+                  background: #00D481;
+              }
+              &.BTC{
+                  background: #EB2163;
+              }
+              p{
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  font-size: 11px;
+                  line-height: 1;
+              }
+          }
+      }
+  }
 }
 .placement {
   font-weight: 600;
@@ -683,15 +753,15 @@ h1 {
 }
 
 .ioi-volume {
-  margin: 0 auto 20px;
+  margin: 0 0 20px;
   width: 100%;
-  padding: 2px;
+  padding: 1px;
   background: linear-gradient(
     152.86deg,
     #59ecd5 -6.47%,
     rgba(17, 17, 17, 0) 87.12%
   );
-  border-radius: 20px;
+  border-radius: 10px;
   span {
     background: rgba($color: #111111, $alpha: 0.8);
     text-align: center;
@@ -699,7 +769,7 @@ h1 {
     width: 100%;
     height: 100%;
     padding: 25px 0;
-    border-radius: 20px;
+    border-radius: 10px;
     h4 {
       font-weight: 600;
       margin: 0;
@@ -754,27 +824,26 @@ h1 {
 .graph {
   position: relative;
   width: 100%;
+  img{
+    width: 100%;
+    max-height: 372px;
+    object-fit: cover;
+  }
 }
 .graph-buttons {
   position: relative;
   margin: 0 0 20px;
+  background: #222222;
+  border-radius: 10px;
   button {
     transition: 0.2s;
     width: 50%;
     font-size: 20px;
     line-height: 30px;
     color: rgba(255, 255, 255, 0.6);
-    background: #111111;
-    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03),
-      2px 3px 10px rgba(0, 0, 0, 0.6);
+    background: #222222;
     border-radius: 10px;
     padding: 10px 0;
-  }
-  button:first-of-type {
-    margin-right: -10px;
-  }
-  button:last-of-type {
-    margin-left: -10px;
   }
   .active {
     position: relative;
@@ -1011,6 +1080,46 @@ h1 {
   }
 }
 
+@media screen and (max-width: 1700px){
+  .teams-content{
+    padding-left: 100px;
+  }
+  .my-menu{
+    .menu-item{
+      height: 45px;
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+  .table{
+    padding: 25px 4.5%;
+    .table-row{
+      &.header{
+        .table-item{
+          p{
+            font-size: 13px;
+          }
+        }
+      }
+        .table-item{
+            height: 37px;
+            p{
+                font-size: 15px;
+                line-height: 37px;
+            }
+            .team-badge{
+                width: 20px;
+                height: 20px;
+                p{
+                    font-size: 9px;
+                }
+            }
+        }
+    }
+  }
+}
+
 @media screen and (max-width: 1680px) {
   .graph-buttons {
     button {
@@ -1034,17 +1143,12 @@ h1 {
   h5 {
     font-size: 16px;
   }
+  .teams-content{
+    padding-left: 60px;
+  }
   .main-holder {
     width: calc(100% - 380px);
     padding-left: 20px;
-  }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 17px;
-        padding-bottom: 10px;
-      }
-    }
   }
   .rate-icon {
     width: 35px;
@@ -1086,26 +1190,18 @@ h1 {
       font-size: 14px;
     }
   }
-  .table {
-    margin-bottom: 30px;
-  }
   .leaderboard {
     .arrows {
       bottom: -5px;
     }
   }
   .ioi-volume {
-    margin: 0 auto 20px;
     width: 100%;
     border-radius: 10px;
     span {
       padding: 15px 0;
       border-radius: 10px;
     }
-  }
-
-  .table-row {
-    margin-bottom: 3px auto;
   }
   .me {
     .cell:first-child {
@@ -1147,10 +1243,24 @@ h1 {
   }
 }
 
+@media screen and (max-width: 1400px){
+  .teams-content{
+    padding-left: 0;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .main-holder {
     width: calc(100% - 340px);
     padding-left: 13px;
+  }
+  .my-menu{
+    .menu-item{
+      height: 40px;
+      p{
+        font-size: 14px;
+      }
+    }
   }
   .page-info {
     margin-top: 20px;
@@ -1162,13 +1272,6 @@ h1 {
     }
     p {
       font-size: 12px;
-    }
-  }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 15px;
-      }
     }
   }
 
@@ -1183,14 +1286,6 @@ h1 {
   }
   .cell:first-child {
     width: 25px;
-  }
-  .table-row {
-    p {
-      margin-bottom: 0;
-    }
-    width: 88%;
-    padding-right: 10px;
-    margin-left: auto;
   }
   .me {
     .cell:first-child {
@@ -1224,10 +1319,35 @@ h1 {
 
   .graph-buttons {
     button {
-      width: 80px;
       font-size: 14px;
       padding: 5px 0;
     }
+  }
+  .table{
+    padding: 20px 3.5%;
+    .table-row{
+      &.header{
+        .table-item{
+          p{
+            font-size: 11px;
+          }
+        }
+      }
+        .table-item{
+            height: 34px;
+            p{
+                font-size: 14px;
+                line-height: 34px;
+            }
+        }
+    }
+  }
+  .arrow{
+      width: 3%;
+      height: 70px;
+      p{
+          font-size: 22px;
+      }
   }
 }
 
@@ -1283,6 +1403,7 @@ h1 {
   .leaderboard {
     width: 100%;
     order: 2;
+    margin-top: 20px;
   }
   .graph-wrapper {
     order: 1;
@@ -1313,6 +1434,16 @@ h1 {
       margin: 0;
     }
   }
+  .my-menu{
+    margin: 20px 0 25px;
+    width: 100%;
+    .menu-item{
+      height: 36px;
+      p{
+        font-size: 13px;
+      }
+    }
+  }
   .back {
     box-sizing: border-box;
     padding: 0 10px;
@@ -1323,13 +1454,40 @@ h1 {
     flex-basis: 70%;
     order: 2;
   }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 14px;
-        padding-bottom: 6px;
-      }
+  .table{
+    padding: 17px 3% 43px;
+    min-height: 440px;
+    .table-row{
+        .table-item{
+            height: 30px;
+            width: 22%;
+            &.small{
+                width: 7%;
+            }
+            &.big{
+                width: 27%;
+            }
+            p{
+                font-size: 12px;
+                line-height: 30px;
+            }
+        }
     }
+  }
+  .arrow{
+      width: 60px;
+      height: 25px;
+      top: unset;
+      bottom: 0;
+      transform: translateX(-50%);
+      &.left{
+          left: calc(50% - 30px);
+          border-radius: 5px 5px 0 0;
+      }
+      &.right{
+          left: calc(50% + 50px);
+          border-radius: 5px 5px 0 0;
+      }
   }
 }
 
@@ -1339,6 +1497,18 @@ h1 {
       p {
         left: -23px;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 500px){
+  .my-menu{
+    max-width: 420px;
+    margin: 20px auto 25px;
+    flex-wrap: wrap;
+    width: 80%;
+    .menu-item{
+      width: 100%;
     }
   }
 }
@@ -1356,6 +1526,22 @@ h1 {
     .back {
       font-size: 9px;
       padding: 0 6px;
+    }
+  }
+  .table{
+    .table-row{
+        .table-item{
+            p{
+                font-size: 10px;
+            }
+            .team-badge{
+                width: 17px;
+                height: 17px;
+                p{
+                    font-size: 7px;
+                }
+            }
+        }
     }
   }
 }
@@ -1380,10 +1566,6 @@ h1 {
       }
     }
   }
-  .table-row {
-    width: 96%;
-    padding-right: 5px;
-  }
 
   .graph-buttons {
     button {
@@ -1402,9 +1584,4 @@ h1 {
 
 .box-switchers {
   display: none;
-}
-
-.ioi-volume.box-background {
-  margin: 20px;
-  width: calc(100% - 40px);
 }
