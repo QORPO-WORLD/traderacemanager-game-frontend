@@ -312,7 +312,7 @@
         />
       </div>
       <button
-        *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi >= displayArray[0]['prize']"
+        *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value"
         class="sign-in cars my-cta-btn-back"
         (click)="showBuyModal()"
       >
@@ -323,7 +323,7 @@
       </button>
 
       <button
-      *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi < displayArray[0]['prize']"
+      *ngIf="displayArray[0]['rare'] != true && myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value"
       class="sign-in cars my-cta-btn-back"
       [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }"
       >
