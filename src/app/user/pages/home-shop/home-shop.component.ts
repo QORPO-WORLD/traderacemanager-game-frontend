@@ -246,7 +246,7 @@ export class HomeShopComponent implements OnInit {
       collection: "Super",
       name: "Axle",
       prize: "100 IOI",
-      image: "white-mn",
+      image: "white-trm",
       type: "racer",
     },
     {

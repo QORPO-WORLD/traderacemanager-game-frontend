@@ -129,25 +129,29 @@
           <div class="boximage">
             <img
               class="img"
-              *ngIf="item['type'] != 'racer'"
+              *ngIf="item['type'] === 'car'"
+              [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+              alt=""
+            />
+
+            <img
+              class="img"
+              *ngIf="item['type'] === 'racer'"
+              [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
+              alt=""
+            />
+            <img
+              class="img"
+              *ngIf="item['type'] === 'track'"
               [src]="
-                '/assets/base/images/nft-racers/' + item['image'] + '.png'
+                '/assets/base/images/home-page/' + item['image'] + '-small.png'
               "
               alt=""
             />
 
             <img
               class="img"
-              *ngIf="item['type'] != 'car'"
-              [src]="
-                '/assets/base/images/nft-cars/' + item['image'] + '.png'
-              "
-              alt=""
-            />
-
-            <img
-              class="img"
-              *ngIf="item['type'] != 'team' || item['type'] != 'track'"
+              *ngIf="item['type'] === 'team'"
               [src]="
                 '/assets/base/images/home-page/' + item['image'] + '-small.png'
               "

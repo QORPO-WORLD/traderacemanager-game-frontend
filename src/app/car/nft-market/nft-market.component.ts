@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CarsService } from "../../api/services";
+import { Subscription } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-nft-market",
@@ -12,12 +14,13 @@ export class NftMarketComponent implements OnInit {
   selectedId = 1;
   selectedType = "racers";
 
-  constructor(protected api: CarsService) {
+  constructor(protected api: CarsService, private route: ActivatedRoute) {
     this.width();
   }
 
   ngOnInit() {
     this.getShowroomCars();
+    this.getAssetType();
   }
 
   products: Array<object> = [
@@ -258,7 +261,7 @@ export class NftMarketComponent implements OnInit {
       collection: "Super",
       name: "Axle",
       prize: "100 IOI",
-      image: "white-mn",
+      image: "white-trm",
       type: "racer",
     },
     {
@@ -411,12 +414,34 @@ export class NftMarketComponent implements OnInit {
   newProducts = this.products;
 
   assetType: any;
-
   mobileFilter = false;
   inRow;
   currentPage = 1;
   maxPage;
   lastPage;
+  typeObserver: Subscription;
+
+  getAssetType() {
+    this.typeObserver = this.route.queryParams.subscribe((params) => {
+      this.assetType = params["type"];
+      if (!this.assetType) {
+        this.assetType = "all";
+      }
+      if (this.assetType === "car") {
+        this.filterCars();
+      }
+      if (this.assetType === "racer") {
+        this.filterRacers();
+      }
+      if (this.assetType === "track") {
+        this.filterTracks();
+      }
+      if (this.assetType === "team") {
+        this.filterTeams();
+      }
+    });
+  }
+
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }

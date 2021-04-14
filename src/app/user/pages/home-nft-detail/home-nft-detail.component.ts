@@ -30,7 +30,7 @@ export class HomeNftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Axle",
       prize: 100,
-      image: "white-mn",
+      image: "white-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",

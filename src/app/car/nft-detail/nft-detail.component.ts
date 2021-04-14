@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { AuthService } from 'src/app/user/services/auth.service';
+import { AuthService } from "src/app/user/services/auth.service";
 
 @Component({
   selector: "app-nft-detail",
@@ -13,7 +13,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Axle",
       prize: "100",
-      image: "white-mn",
+      image: "white-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -474,5 +474,4 @@ export class NftDetailComponent implements OnInit {
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
   }
-
 }
