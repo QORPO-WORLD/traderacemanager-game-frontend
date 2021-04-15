@@ -2,22 +2,23 @@
   <div class="config-holder">
     <p class="heading">Choose a team logo</p>
     <div class="logos-holder">
-      <div class="logo-item">
+      <div class="logo-item" (click)="avatarType = 0" [ngClass]="avatarType === 0 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
       </div>
-      <div class="logo-item">
+      <div class="logo-item" (click)="avatarType = 1" [ngClass]="avatarType === 1 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
       </div>
-      <div class="logo-item">
+      <div class="logo-item" (click)="avatarType = 2" [ngClass]="avatarType === 2 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
       </div>
-      <div class="logo-item">
+      <div class="logo-item" (click)="avatarType = 3" [ngClass]="avatarType === 3 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
       </div>
     </div>
     <p class="heading">Choose a team name</p>
     <div class="name-holder">
-      <input type="text" class="name-input" placeholder="Team name">
+      <input type="text" class="name-input" placeholder="Team name" [(ngModel)]="teamName"
+    [ngModelOptions]="{ standalone: true }">
       <button class="apply-btn">Apply</button>
     </div>
   </div>
@@ -29,7 +30,7 @@
           <img src="/assets/base/images/home-page/avatar-white-small.png" alt="">
         </div>
         <div class="text-holder">
-          <h2>Team Godzillaracer</h2>
+          <h2>Team {{teamName ? teamName : '-'}}</h2>
   
           <div class="invite-item">
             <p class="desc">Invite a team manager</p>
@@ -46,7 +47,8 @@
             <p class="value">1 000 IOI</p>
           </div>
           <!-- <button class="confirm-btn">Confirm</button> -->
-          <button class="confirm-btn soon">Soon</button>
+          <button class="confirm-btn" (click)="createTeam()" *ngIf="teamName && loading === false">CREATE TEAM</button>
+          <button class="confirm-btn" disabled *ngIf="!teamName && loading === false">CHOOSE NAME</button>
         </div>
       </div>
     </div>
