@@ -1,3 +1,4 @@
+import { NotifiqService } from 'src/app/common/services/notifiq.service';
 import { DriversService } from 'src/app/api/services';
 import { environment } from './../../../../environments/environment.prod';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -59,7 +60,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
     private recaptchaV3Service: ReCaptchaV3Service,
-    private platform: Platform, private dapi: DriversService) {
+    private platform: Platform, private dapi: DriversService, private notify: NotifiqService) {
     super(injector);
 
   }
@@ -237,6 +238,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   handleError(error: any) {
+    this.notify.error('', error.message);
     this.trying = false;
     this.loading = false;
     this.token = null;

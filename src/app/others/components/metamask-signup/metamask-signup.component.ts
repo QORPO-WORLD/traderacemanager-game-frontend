@@ -76,7 +76,7 @@ export class MetamaskSignupComponent implements OnInit {
         if (error.code === 4001) {
           this.notify.error('Please connect to MetaMask.');
         } else {
-          //this.notify.error(error);
+          this.notify.error(error);
         }
       });
 
@@ -91,7 +91,7 @@ export class MetamaskSignupComponent implements OnInit {
       if (error.code === 4001) {
         this.notify.error('Please connect to MetaMask.');
       } else {
-        //this.notify.error(error);
+        this.notify.error(error);
       }
     });
   }
