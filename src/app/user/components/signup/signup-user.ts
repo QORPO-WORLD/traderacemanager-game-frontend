@@ -178,7 +178,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         if (this.mmewa) {
             this.signupWithMetamask().subscribe({
                 next: data => this.doLogin(data),
-                error: error => this.clearMetamask(error.body)
+                error: error => this.clearMetamask(error)
             });
         } else {
             this.api.authUsersCreateDesktop({
@@ -252,6 +252,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
     clearMetamask(error) {
         //this.getErrorService().apiError(error);
+
         this.notify.error('', error.message);
         this.mmewa = null;
         this.metaSwitch = false;
