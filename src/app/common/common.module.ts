@@ -1,3 +1,4 @@
+import { IoiloaderComponent } from './components/ioiloader/ioiloader.component';
 import { SynergizerComponent } from './../synergizer/synergizer.component';
 import { NotificationListComponent } from './notification-list/notification-list.component';
 import { MyRacesAdComponent } from './components/shared/my-races-ad/my-races-ad.component';
@@ -112,7 +113,8 @@ import { RaceInfoModalComponent } from './components/race-info-modal/race-info-m
     WaitingTransferComponent,
     TeamsSelectionComponent,
     RaceInfoModalComponent,
-    FuelLayoutComponent
+    FuelLayoutComponent,
+    IoiloaderComponent
   ],
   providers: [
     CurrencyPipe,
@@ -144,7 +146,7 @@ import { RaceInfoModalComponent } from './components/race-info-modal/race-info-m
     MySettingsComponent, CreateFastFuelCarComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
-    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent],
+    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent],
   entryComponents: []
 })
 
