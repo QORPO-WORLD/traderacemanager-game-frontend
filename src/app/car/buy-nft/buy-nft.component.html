@@ -175,13 +175,22 @@
       </div>
       <button
         class="buy-nft my-cta-btn-back"
-        *ngIf="assetType === 'car' && !displayArray[0]['rare']"
+        *ngIf="assetType === 'car' && !displayArray[0]['rare'] && myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value"
         (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
       >
         Buy with IOI &rarr;
       </button>
+
+      <button
+        class="buy-nft my-cta-btn-back"
+        *ngIf="assetType === 'car' && !displayArray[0]['rare'] && myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value"
+        [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }"
+      >
+        Deposit &rarr;
+      </button>
+
       <button class="buy-nft my-cta-btn-back" *ngIf="assetType !== 'car'">
-        Buy now &rarr;
+        Buy with IOI &rarr;
       </button>
       <button
         class="buy-nft my-cta-btn-back"

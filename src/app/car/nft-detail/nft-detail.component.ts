@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: "app-nft-detail",
@@ -13,7 +12,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Axle",
       prize: "100",
-      image: "white-mn",
+      image: "white-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -24,7 +23,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Flash",
       prize: "100",
-      image: "red-trm-small",
+      image: "red-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -35,7 +34,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Octane",
       prize: "100",
-      image: "bluetrm",
+      image: "blue-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -46,7 +45,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Punisher",
       prize: "100",
-      image: "black-trm-small",
+      image: "black-trm",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -90,7 +89,7 @@ export class NftDetailComponent implements OnInit {
       collection: "Bronze Collection",
       name: "Mr. Rich",
       prize: "10 000",
-      image: "mr-rich-shop",
+      image: "mr-rich",
       type: "racer",
       ability1: "2%",
       ability2: "20%",
@@ -440,13 +439,11 @@ export class NftDetailComponent implements OnInit {
   @Input() assetType = "racer";
   @Input() assetId = 1;
   @Output() marketState = new EventEmitter<number>();
-  myDriverBalances: any;
 
-  constructor(private identityService: AuthService) {}
+  constructor() {}
 
   ngOnInit() {
     this.resolveShowAsset();
-    this.getMydriverBalances();
   }
 
   resolveShowAsset() {
@@ -470,9 +467,4 @@ export class NftDetailComponent implements OnInit {
   showBuyModal() {
     this.marketState.emit(3);
   }
-
-  getMydriverBalances() {
-    this.myDriverBalances = this.identityService.getBalance();
-  }
-
 }

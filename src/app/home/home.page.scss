@@ -934,13 +934,13 @@ h6 {
     > div {
       cursor: pointer;
       position: relative;
-      transform: skew(-15deg);
+      transform: skew(-15deg) translate3d(0, 0, 0);
       background: #111111;
       overflow: hidden;
-      -webkit-transform: skew(-15deg);
-      -moz-transform: skew(-15deg);
-      -ms-transform: skew(-15deg);
-      -o-transform: skew(-15deg);
+      -webkit-transform: skew(-15deg) translate3d(0, 0, 0);
+      -moz-transform: skew(-15deg) translate3d(0, 0, 0);
+      -ms-transform: skew(-15deg) translate3d(0, 0, 0);
+      -o-transform: skew(-15deg) translate3d(0, 0, 0);
       > div > div {
         filter: grayscale(1);
         position: absolute;
@@ -961,6 +961,8 @@ h6 {
       overflow: hidden;
       width: 34%;
       cursor: pointer;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
       h1 {
         left: 65%;
         transform: skew(15deg) rotate(-5deg) translateX(-65%);
@@ -999,6 +1001,8 @@ h6 {
       left: -2px;
       width: 20%;
       border-left: 3px solid;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
       border-image-source: linear-gradient(
         0deg,
         rgba(17, 17, 17, 1) 7%,
@@ -1023,6 +1027,8 @@ h6 {
       }
     }
     .sec3 {
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
       .s3 {
         overflow: hidden;
 
@@ -1052,6 +1058,8 @@ h6 {
       }
     }
     .sec4 {
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
       .s4 {
         overflow: hidden;
       }
@@ -3949,22 +3957,25 @@ footer {
         width: 40px;
         margin: 0 35px;
         position: relative;
-        transition: 0.2s;
-        -webkit-transition: 0.2s;
-        -moz-transition: 0.2s;
-        -ms-transition: 0.2s;
-        -o-transition: 0.2s;
         &.last {
           &::after {
             content: none;
           }
         }
-        &:hover {
-          transform: scale(1.15);
-          -webkit-transform: scale(1.15);
-          -moz-transform: scale(1.15);
-          -ms-transform: scale(1.15);
-          -o-transform: scale(1.15);
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: -35px;
+          width: 2px;
+          height: 45px;
+          border-radius: 5px;
+          background: #24fcff;
+          transform: rotate(23deg);
+          -webkit-transform: rotate(23deg);
+          -moz-transform: rotate(23deg);
+          -ms-transform: rotate(23deg);
+          -o-transform: rotate(23deg);
         }
         img {
           max-width: 100%;

@@ -246,7 +246,7 @@ export class HomeShopComponent implements OnInit {
       collection: "Super",
       name: "Axle",
       prize: "100 IOI",
-      image: "avatar-white",
+      image: "white-trm",
       type: "racer",
     },
     {
@@ -254,7 +254,7 @@ export class HomeShopComponent implements OnInit {
       collection: "Super",
       name: "Flash",
       prize: "100 IOI",
-      image: "avatar-red",
+      image: "red-trm",
       type: "racer",
     },
     {
@@ -262,7 +262,7 @@ export class HomeShopComponent implements OnInit {
       collection: "Super",
       name: "Octane",
       prize: "100 IOI",
-      image: "avatar-blue",
+      image: "blue-trm",
       type: "racer",
     },
     {
@@ -270,7 +270,7 @@ export class HomeShopComponent implements OnInit {
       collection: "Super",
       name: "Punisher",
       prize: "100 IOI",
-      image: "avatar-black",
+      image: "black-trm",
       type: "racer",
     },
     {

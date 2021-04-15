@@ -40,7 +40,6 @@ import { AuthUserGuard } from './services/guards/auth-user.guard';
 import { IonicModule } from '@ionic/angular';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { WloginComponent } from './components/wlogin/wlogin';
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
@@ -91,7 +90,6 @@ const routes: Routes = [
         EmailCreatedComponent,
         UserVerifiedComponent,
         HomePageComponent,
-        WelcomePageComponent,
         WloginComponent,
         MetamaskSignupComponent,
         VerifyUserComponent,

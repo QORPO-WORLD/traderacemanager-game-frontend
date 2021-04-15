@@ -8,7 +8,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { BuyCarsComponent } from './buy-cars/buy-cars.component';
 import { FuelCarComponent } from './fuel-car/fuel-car.component';
 import { RefuelCarComponent } from './refuel-car/refuel-car.component';
-import { GaragePromBannerComponent } from './garage-prom-banner/garage-prom-banner.component';
 import { CommonModule as ninja } from '../common/common.module';
 import { CommonModule } from '@angular/common';
 import { RaceLayoutComponent } from '../common/components/layout/race-layout/race-layout.component';
@@ -45,7 +44,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [BuyCarsComponent, FuelCarComponent, GaragePromBannerComponent,
+  declarations: [BuyCarsComponent, FuelCarComponent,
     MyCarsComponent, RefuelCarComponent,
     FavouriteCarsComponent, EditFastFuelCarComponent, NftMarketComponent, NftDetailComponent,
     BuyNftComponent],

@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
       collection: "Racers",
       name: "Mr. Rich",
       prize: "10 000 IOI",
-      image: "mr-rich-small",
+      image: "mr-rich",
       type: "racer",
     },
     {
