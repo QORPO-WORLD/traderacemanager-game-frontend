@@ -46,6 +46,100 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
   mostFueledObserver: Subscription;
   myteamObserver: Subscription;
 
+  carsNames: Array<object> = [
+    //bronze
+    {
+      name: "RHINO",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "VULCANIC",
+    },
+    //silver
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "VULCANIC",
+    },
+    
+    //gold
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "RHINO",
+    },
+    {
+      name: "HYPER",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "HITMAN",
+    },
+    
+    //platinum
+    {
+      name: "HYPER",
+    },
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "VULCANIC",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "KNOCKOUT",
+    },
+    {
+      name: "LARA",
+    },
+    {
+      name: "LUNA",
+    },
+    {
+      name: "SILVER KNIGHT",
+    },
+    {
+      name: "MIDAS",
+    },
+    {
+    
+      name: "BLUE STORM",
+    },
+  ];
+
   myBalance = 0;
   myDriver: any;
   actualRaceAmount: any;

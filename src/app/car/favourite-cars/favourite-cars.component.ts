@@ -14,6 +14,99 @@ export class FavouriteCarsComponent implements OnInit {
   showCreateModal = false;
   showMySettings = false;
   editionIndex = 1;
+  carsNames: Array<object> = [
+    //bronze
+    {
+      name: "RHINO",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "VULCANIC",
+    },
+    //silver
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "PANTHER",
+    },
+    {
+      name: "ONYX",
+    },
+    {
+      name: "ZANDER",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "VULCANIC",
+    },
+    
+    //gold
+    {
+      name: "CYBORG",
+    },
+    {
+      name: "RHINO",
+    },
+    {
+      name: "HYPER",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "PYTHON",
+    },
+    {
+      name: "HITMAN",
+    },
+    
+    //platinum
+    {
+      name: "HYPER",
+    },
+    {
+      name: "DORIAN",
+    },
+    {
+      name: "VULCANIC",
+    },
+    {
+      name: "BULL",
+    },
+    {
+      name: "KNOCKOUT",
+    },
+    {
+      name: "LARA",
+    },
+    {
+      name: "LUNA",
+    },
+    {
+      name: "SILVER KNIGHT",
+    },
+    {
+      name: "MIDAS",
+    },
+    {
+    
+      name: "BLUE STORM",
+    },
+  ];
   myCarsSorted = {
     car0: [],
     car1: [],
