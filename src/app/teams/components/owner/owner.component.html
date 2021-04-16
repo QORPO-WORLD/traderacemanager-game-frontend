@@ -35,15 +35,15 @@
         <div class="text-holder">
           <h2>Team {{teamName ? teamName : '-'}}</h2>
   
-          <div class="invite-item">
+          <div class="invite-item" *ngIf="teamCreated === true">
             <p class="desc">Invite a team manager</p>
             <button class="invite-btn" (click)="notifyTeam('racers')" *ngIf="racerInvited === false">Invite</button>
             <button class="invite-btn"  *ngIf="racerInvited === true">Invited!</button>
           </div>
   
-          <div class="invite-item">
+          <div class="invite-item" *ngIf="teamCreated === true">
             <p class="desc">Invite a racer</p>
-            <button class="invite-btn" (click)="notifyTeam('racers')" *ngIf="managersInvited === true">Invite</button>
+            <button class="invite-btn" (click)="notifyTeam('racers')" *ngIf="managersInvited === false">Invite</button>
             <button class="invite-btn" *ngIf="managersInvited === true">Invited!</button>
           </div>
   
@@ -52,8 +52,9 @@
             <p class="value">1 000 IOI</p>
           </div>
           <!-- <button class="confirm-btn">Confirm</button> -->
-          <button class="confirm-btn" (click)="createTeam()" *ngIf="teamName && loading === false">CREATE TEAM</button>
-          <button class="confirm-btn" disabled *ngIf="!teamName && loading === false">CHOOSE NAME</button>
+          <button class="confirm-btn" (click)="createTeam()" *ngIf="teamName && loading === false && teamCreated === false">CREATE TEAM</button>
+          <button class="confirm-btn" disabled *ngIf="!teamName && loading === false && teamCreated === false">CHOOSE NAME</button>
+          <button class="confirm-btn" disabled *ngIf="teamCreated === true">Team created</button>
         </div>
       </div>
     </div>

@@ -42,6 +42,7 @@ export class OwnerComponent implements OnInit, OnDestroy {
     { color: 'A34400', id: 18 },
     { color: '990000', id: 19 },
   ];
+  teamCreated = false;
   constructor(private api: TeamsService, private route: Router, private notify: NotifiqService, private identityService: AuthService) { }
 
   ngOnInit() {
@@ -66,6 +67,7 @@ export class OwnerComponent implements OnInit, OnDestroy {
         "avatar": this.teamType
       }).subscribe(data => {
         this.loading = false;
+        this.teamCreated = true;
         this.teamName = null;
         setTimeout(() => {
           this.identityService.updateDriverMe();
