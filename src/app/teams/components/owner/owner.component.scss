@@ -18,6 +18,7 @@
             align-items: center;
             width: 100%;
             margin-bottom: 46px;
+            position: relative;
             .logo-item{
                 background: #222222;
                 border-radius: 15px;
@@ -29,6 +30,38 @@
                     top: 50%;
                     max-width: 100%;
                     max-height: 90%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .arrow{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4%;
+                max-width: 50px;
+                height: 80px;
+                background: #111111;
+                cursor: pointer;
+                user-select: none;
+                &.inactive{
+                    cursor: default;
+                    p{
+                        color: #222222;
+                    }
+                }
+                &.left{
+                    border-radius: 0px 4px 4px 0px;
+                    left: 0;
+                }
+                &.right{
+                    border-radius: 4px 0px 0px 4px;
+                    right: 0;
+                }
+                p{
+                    font-size: 25px;
+                    position: absolute;
+                    top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                 }
@@ -375,6 +408,11 @@
         }
         .config-holder{
             margin-bottom: 20px;
+            .logos-holder{
+                .arrow{
+                    height: 50px;
+                }
+            }
         }
         .summary-holder{
             .summary-box{

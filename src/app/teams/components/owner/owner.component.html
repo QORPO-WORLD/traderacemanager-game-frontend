@@ -2,18 +2,17 @@
   <div class="config-holder">
     <p class="heading">Choose a team badge</p>
     <div class="logos-holder">
-      <div class="logo-item" (click)="avatarType = 0" [ngClass]="avatarType === 0 ? 'active' : null">
-        <img src="assets/base/images/teams/you-team.png" alt="">
+      <ng-container *ngFor="let item of myTeams | slice:startTeamIndex:(startTeamIndex + 4)">
+        <div class="logo-item" (click)="selectColor(item.id)" [ngClass]="teamType === item.id ? 'active' : null">
+          <img [src]="'assets/base/images/custom-teams/custom-team' + (item.id + 1) + '.png'" alt="">
+        </div>
+      </ng-container>
+      <div class="arrow right" (click)="nextTeam()">
+        <p>&gt;</p>
       </div>
-      <!-- <div class="logo-item" (click)="avatarType = 1" [ngClass]="avatarType === 1 ? 'active' : null">
-        <img src="assets/base/images/avatars/avatar1-small.png" alt="">
+      <div class="arrow left" (click)="prevTeam()">
+        <p>&lt;</p>
       </div>
-      <div class="logo-item" (click)="avatarType = 2" [ngClass]="avatarType === 2 ? 'active' : null">
-        <img src="assets/base/images/avatars/avatar1-small.png" alt="">
-      </div>
-      <div class="logo-item" (click)="avatarType = 3" [ngClass]="avatarType === 3 ? 'active' : null">
-        <img src="assets/base/images/avatars/avatar1-small.png" alt="">
-      </div> -->
     </div>
     <p class="heading">Choose a team name</p>
     <div class="name-holder">
@@ -27,7 +26,7 @@
     <div class="summary-box">
       <div class="inner">
         <div class="img-holder">
-          <img src="/assets/base/images/teams/you-team.png" alt="">
+          <img [src]="'assets/base/images/custom-teams/custom-team' + (teamType + 1) + '.png'" alt="">
           <div class="team-name">
             <p class="name">{{teamName ? teamName : '-'}}</p>
             <p class="team">TEAM</p>

@@ -31,6 +31,7 @@ export class TeamsSelectionComponent implements OnInit {
   startTeamIndex = 0;
   sliceBalancer = 3;
   myWW = 1920;
+  selectedTeamId = 1;
 
   constructor(protected api: TeamsService, private identityService: AuthService,
     private balanceService: BalanceService, protected notify: NotifiqService) {
