@@ -209,10 +209,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
   executeImportantAction(): void {
+    this.token = null;
     this.recaptchaV3Service.execute('signIn')
       .subscribe((token) => {
-
-        this.token = token
+        this.token = token;
       });
   }
 
