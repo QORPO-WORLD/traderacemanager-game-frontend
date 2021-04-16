@@ -39,8 +39,8 @@ export class OwnerComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.identityService.updateDriverMe();
           this.identityService.updateBalance();
-          this.notify.error('team created', 'Your team ' + this.teamName + ' has been created!');
-          this.route.navigate(['/teams/my-team']);
+          this.notify.error('team created', 'Your team ' + this.teamName + ' has been created! Now you can invite members');
+          //this.route.navigate(['/teams/my-team']);
         }, 500);
       });
     }
