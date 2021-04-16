@@ -1,11 +1,11 @@
 <div class="owner-holder">
   <div class="config-holder">
-    <p class="heading">Choose a team logo</p>
+    <p class="heading">Choose a team badge</p>
     <div class="logos-holder">
       <div class="logo-item" (click)="avatarType = 0" [ngClass]="avatarType === 0 ? 'active' : null">
-        <img src="assets/base/images/avatars/avatar1-small.png" alt="">
+        <img src="assets/base/images/teams/you-team.png" alt="">
       </div>
-      <div class="logo-item" (click)="avatarType = 1" [ngClass]="avatarType === 1 ? 'active' : null">
+      <!-- <div class="logo-item" (click)="avatarType = 1" [ngClass]="avatarType === 1 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
       </div>
       <div class="logo-item" (click)="avatarType = 2" [ngClass]="avatarType === 2 ? 'active' : null">
@@ -13,11 +13,11 @@
       </div>
       <div class="logo-item" (click)="avatarType = 3" [ngClass]="avatarType === 3 ? 'active' : null">
         <img src="assets/base/images/avatars/avatar1-small.png" alt="">
-      </div>
+      </div> -->
     </div>
     <p class="heading">Choose a team name</p>
     <div class="name-holder">
-      <input type="text" class="name-input" placeholder="Team name" [(ngModel)]="teamName"
+      <input type="text" maxlength="6" class="name-input" placeholder="Team name" [(ngModel)]="teamName"
     [ngModelOptions]="{ standalone: true }">
       <button class="apply-btn">Apply</button>
     </div>
@@ -27,7 +27,11 @@
     <div class="summary-box">
       <div class="inner">
         <div class="img-holder">
-          <img src="/assets/base/images/home-page/avatar-white-small.png" alt="">
+          <img src="/assets/base/images/teams/you-team.png" alt="">
+          <div class="team-name">
+            <p class="name">{{teamName ? teamName : '-'}}</p>
+            <p class="team">TEAM</p>
+          </div>
         </div>
         <div class="text-holder">
           <h2>Team {{teamName ? teamName : '-'}}</h2>
