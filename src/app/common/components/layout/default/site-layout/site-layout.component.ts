@@ -148,6 +148,9 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.checkUser();
       this.getNextraces();
     }
+    if (brec === undefined) {
+      this.checkUser();
+    }
     this.nxInterval = setInterval(() => {
       const rec = JSON.parse(localStorage.getItem('ndate'));
       const nowx = Date.now();
@@ -167,11 +170,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 */
     this.sumUsers = Math.floor(Math.random() * (300 - 260 + 1)) + 260;
 
-    this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(datax => {
 
-      this.numOfNotifications = datax.length;
-      this.numOfNotificationsBack = this.numOfNotifications;
-    });
     if (mmea && !metaBalance) {
       this.getMetamaskBalance();
     }
@@ -284,23 +283,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   countNotifications(data) {
-    this.numOfNotifications = 0;
+    this.numOfNotifications = data.length;
     for (let x = 0; x < data.length; x++) {
-     // if (data[x].event !== 'race_signup' && data[x].event !== 'game_reward') {
-        this.numOfNotifications = this.numOfNotifications + 1;
-     // }
-      if (data[x].event === 'balance_deposit') {
+      if (data[x].event === 'deposit') {
         this.checkDeposit(data[x].created);
       }
     }
 
     if (this.numOfNotifications > this.numOfNotificationsBack) {
-
-/*
-      const obj = document.createElement('audio');
-      obj.src = './assets/base/sounds/notification.mp3';
-      obj.play();
-      */
       this.numOfNotificationsBack = this.numOfNotifications;
       this.shakeBell();
     }

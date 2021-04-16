@@ -736,7 +736,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   getTips() {
     this.eventSubscription = this.tsapi
-      .getTips(this.teamId)
+      .getTips()
       .subscribe((data) => {
         this.tips = data;
       });
