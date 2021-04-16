@@ -25,7 +25,7 @@ export class ErrorService {
     }
 
     apiError(error) {
-        console.log(error);
+    
         //const errorModel: ApiError = new ApiError(error);
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
@@ -34,13 +34,13 @@ export class ErrorService {
             
            
             if (error.error.message) {
-                console.log('bug');
+      
                 this.notifyService.error(error.error.message);
                 return;
             }
             
             if (error.error.description) {
-                console.log('bug');
+
                 this.notifyService.error(error.error.description);
                 return;
             }
