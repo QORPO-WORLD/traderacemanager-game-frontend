@@ -14,11 +14,12 @@ export class OwnerComponent implements OnInit, OnDestroy {
   ownerSubscribe: Subscription;
   notifySubscribe: Subscription;
   avatarType = 0;
-  color = '000000';
+  color = '990000';
   teamName: string;
   loading = false;
   managersInvited = false;
   racerInvited = false;
+  teamCreated = false;
   constructor(private api: TeamsService, private route: Router, private notify: NotifiqService, private identityService: AuthService) { }
 
   ngOnInit() { }
@@ -41,6 +42,7 @@ export class OwnerComponent implements OnInit, OnDestroy {
         "avatar": this.avatarType
       }).subscribe(data => {
         this.loading = false;
+        this.teamCreated = true;
         this.teamName = null;
         setTimeout(() => {
           this.identityService.updateDriverMe();
