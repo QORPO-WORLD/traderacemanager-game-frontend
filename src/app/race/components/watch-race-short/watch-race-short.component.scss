@@ -680,6 +680,14 @@
     }
   }
 }
+@-webkit-keyframes loadingRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
 @keyframes loadingRotate {
   0% {
@@ -4566,6 +4574,18 @@ button small {
       display: none;
     }
   }
+  @-webkit-keyframes rotateDevice {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+
   @keyframes rotateDevice {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);
@@ -4601,6 +4621,7 @@ button small {
       position: fixed;
       left: 0;
       top: 0;
+      overflow: auto;
       .left-align {
         display: flex;
         justify-content: flex-start;
@@ -4674,6 +4695,7 @@ button small {
       .right-align {
         height: unset;
         flex-direction: column;
+        margin-top: 15px;
         .switch-btn {
           display: none;
         }
@@ -4897,6 +4919,33 @@ button small {
     top: 2.5%;
     .table-holder{
       max-height: 186px;
+    }
+  }
+}
+
+@media only screen and (max-height: 400px){
+  .main-content.zavod {
+    .car_rc {
+      top: -80px;
+      height: 380px;
+      .cr_cars_box {
+        top: 110px;
+        .car_row {
+          margin-bottom: 5px;
+          .car-user-stats {
+            top: 10px;
+            .my-line {
+              height: 11px;
+            }
+          }
+        }
+      }
+      .still-road,
+      .still-helperix,
+      .moving-road,
+      .moving-helperix{
+        height: 380px;
+      }
     }
   }
 }
