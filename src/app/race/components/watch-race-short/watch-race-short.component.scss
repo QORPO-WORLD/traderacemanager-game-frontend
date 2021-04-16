@@ -1,5 +1,7 @@
 
-
+.dmg-hider{
+  display: none;
+}
 .my-rewards {
   color: #fff;
   text-transform: uppercase;
@@ -638,24 +640,63 @@
 .sub-content.zavod_bg {
   flex-direction: column !important;
   .tour-message {
-    font-size: 40px;
-    color: white;
-    font-family: "Poppins";
     position: absolute;
-    top: 420px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 9;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-    &.speci {
-      font-size: 32px;
-      left: 38%;
-      max-width: 700px;
-      app-timer {
-        color: magenta;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    max-width: 640px;
+    background: rgba(17, 17, 17, 0.7);
+    border-radius: 15px;
+    height: 150px;
+    overflow: hidden;
+    z-index: 1000;
+    .loading-box{
+      width: 150px;
+      height: 100%;
+      position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img{
+        max-width: 90%;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+        animation-name: loadingRotate;
+        animation-duration: 3s;
       }
     }
+    .text{
+      width: calc(100% - 150px);
+      p{
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+      }
+    }
+  }
+}
+@-webkit-keyframes loadingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
@@ -2635,23 +2676,14 @@ button small {
     justify-content: space-between;
     align-items: center;
     padding: 0 0 0 38px;
-    background: rgba(0, 0, 0, 1);
+    background: #222222;
     .small-box {
-      padding: 1px 0 0 1px;
-      border-radius: 15px;
+      border-radius: 10px;
       height: 46px;
-      background: linear-gradient(
-        to bottom right,
-        #fe183f 0%,
-        rgba(254, 24, 63, 0) 60%
-      );
+      background: #111111;
       .inner {
-        border-radius: 15px;
-        background: linear-gradient(
-          90deg,
-          rgba(17, 17, 17, 0.85) 0%,
-          rgba(17, 17, 17, 1) 100%
-        );
+        border-radius: 10px;
+        background: #111111;
         width: 100%;
         height: 100%;
         p,
@@ -2663,11 +2695,7 @@ button small {
         }
       }
       &.prize-box {
-        background: linear-gradient(
-          to bottom right,
-          #23ffff 0%,
-          rgba(254, 24, 63, 0) 60%
-        );
+        background: #111111;
         margin-left: 40px;
         .inner {
           background: #111111;
@@ -2801,21 +2829,13 @@ button small {
         align-items: center;
         .avatar-box {
           padding: 1px 0 0 1px;
-          border-radius: 15px;
+          border-radius: 10px;
           height: 73px;
           width: 73px;
-          background: linear-gradient(
-            to bottom right,
-            #fe183f 0%,
-            rgba(254, 24, 63, 0) 60%
-          );
+          background: #111111;
           .inner {
-            border-radius: 15px;
-            background: linear-gradient(
-              90deg,
-              rgba(17, 17, 17, 0.85) 0%,
-              rgba(17, 17, 17, 1) 100%
-            );
+            border-radius: 10px;
+            background: #111111;
             width: 100%;
             height: 100%;
             position: relative;
@@ -2842,7 +2862,7 @@ button small {
         z-index: 2;
         cursor: pointer;
         border-left: 1px solid rgba(255, 255, 255, 0.15);
-        background: black;
+        background: #222222;
         p {
           position: absolute;
           top: 50%;
@@ -4498,578 +4518,193 @@ button small {
   }
 }
 
-@media only screen and (max-width: 900px) and (orientation: portrait) {
-  .tournament {
-    margin: 0;
-    .mini-races-holder {
-      max-width: 320px;
-      margin: 20px auto;
-      .tour {
-        margin-bottom: 10px;
-        &.not-on-mobile {
-          width: 60px;
-          .smx {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-
-  .zavod .car_rc .cr_cars_box .car_row {
-    &.my-car-high {
-      &::before {
-        top: -12px;
-        left: 67px;
-        width: 216px;
-        height: 102px;
-      }
-      &::after {
-        top: 28px;
-        width: 23px;
-        left: 163px;
-        height: 20px;
-      }
-    }
-    .car-user-stats {
-      height: unset;
-      top: 50%;
-      left: 0%;
-      transform: translateY(-50%) rotate(90deg);
-      flex-wrap: wrap;
-      text-align: center;
-      min-width: 110px;
-      .my-line {
-        display: none;
-      }
-      .place {
-        width: 100%;
-        height: 18px;
-        border-radius: 0 10px 0 0;
-        p {
-          font-size: 13px;
-        }
-      }
-      .stats-box {
-        width: 100%;
-        border-radius: 0px 0px 10px 10px;
-        .inner-stats{
-          .name {
-            margin: 3px 0;
-            font-size: 12px;
-          }
-          .roi-holder {
-            flex-wrap: wrap;
-            justify-content: center;
-            .my-bar-holder {
-              width: 100%;
-              margin: 0 0 3px 0;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  #time-wrapper.mobile {
-    display: block;
-  }
-
-  .main-content.zavod {
-    .all-positions {
-      max-height: calc(100vh - 160px);
-      top: 100px;
-      right: unset;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  .semafor-inner {
-    transform: scale(0.5);
-    top: 50% !important;
-  }
-  .mobile-timer {
-    display: block !important;
-  }
-
-  .all-positions,
-  .chat,
-  .new-fuel {
-    width: 100% !important;
-    max-width: 350px;
-  }
-  .chat {
-    position: absolute;
-    top: 100px;
-    width: 290px;
-    z-index: 1000000;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    border-radius: 0 0 10px 10px;
-    max-height: calc(100vh - 160px);
-  }
-  .winning-back{
-    height: calc(100% - 95px);
-  }
-  .winning-modal {
-    &.cops-modal {
-      .inner-item {
-        height: 300px;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        .cont-holder {
-          h1 {
-            font-size: 30px;
-          }
-          h2 {
-            font-size: 30px;
-          }
-          .reward-box {
-            p {
-              font-size: 31px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .my-rewards {
-    font-size: 24px;
-    margin: 15px 0;
-  }
-
-  .mobile-hub {
-    display: block !important;
-  }
-
-  .zavod .final_line {
-    right: unset;
-    width: 530px;
-    height: 530px;
-    top: 20px;
-    transform: translateX(-50%) rotate(-90deg);
-    left: 50%;
-    background-position: 71% -70px !important;
-    z-index: 1;
-  }
-
-  .zavod .start_line {
-    right: unset;
-    width: 180px;
-    height: 530px;
-    bottom: -40px;
-    top: unset;
-    transform: translateX(-50%) rotate(-90deg);
-    left: 50%;
-    background-position: 23% -70px !important;
-    z-index: 1;
-  }
-
-  .zavod {
-    .car_rc {
-      .cr_cars_box {
-        width: 100vh;
-        .car_row {
-          .car-currs {
-            &.position-left {
-              left: -70px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav .best-position {
-    display: none;
-  }
-
-  .sub-content.zavod_bg .race-top-nav .prize-heading {
-    h1 {
-      font-family: "Poppins";
-      font-weight: 700;
-      margin: 0;
-      padding: 0;
-      font-size: 30px;
-    }
-    &.small {
-      h1 {
-        &.tour-tickets {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-
-  .sub-content.zavod_bg {
-    .tour-message {
-      font-size: 24px;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      &.speci {
-        font-size: 20px;
-        max-width: 400px;
-        top: 60%;
-        left: 50%;
-        width: 90%;
-      }
-    }
-    .race-bottom-nav {
-      background: none;
-    }
-  }
-
-  .sub-content.zavod_bg .race-top-nav .prize-heading h1 span {
-    font-family: "Poppins";
-    font-weight: 700;
-  }
-
-  .zavod.cp3 .car_rc .cr_cars_box {
-    top: -8px !important;
-  }
-
-  .main-content.zavod {
-    height: 100vh;
-  }
-
-  .sub-content.zavod_bg {
-    height: 100vh;
-  }
-
-  .still_road {
-    height: 320px;
-    background-size: content;
-    top: auto;
-    position: relative;
-    left: auto;
-    width: auto;
-  }
-
-  .zavod .car_rc {
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    height: 100vh;
-    top: 0;
-    z-index: 1;
-    left: 0;
-  }
-
-  .top-nav-back {
-    height: 80px;
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav {
-    margin-top: 0;
-    padding: 0;
-    height: auto;
-    display: block;
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav .link-btns {
-    position: absolute;
-    justify-content: space-between;
-    display: flex;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 320px;
-    bottom: 11px;
-    width: 100%;
-    justify-content: flex-start;
-    .new_cta-button {
-      padding: 9px 25px;
-      font-size: 12px;
-      width: unset;
-      &.not-mobile {
-        display: none;
-      }
-    }
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav .link-btns,
-  .sub-content.zavod_bg .race-bottom-nav .link-btns.small {
-    margin: 0;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav .race-type {
-    display: none;
-  }
-  .main-content .sub-content {
-    display: block;
-  }
-
-  .still-road,
-  .moving-road {
-    position: relative;
-    background-size: auto 100% !important;
-    background-position: center;
-    top: 50% !important;
-    transform-origin: left top;
-    left: 34%;
-    width: 100vh;
-    height: 153vw;
-    transform: rotate(-90deg) translate(-50%, -50%);
-  }
-  .still-helperix,
-  .moving-helperix {
-    display: none;
-  }
-
-  .main-content.zavod {
-    width: 100%;
-  }
-
-  .zavod .car_rc .cr_cars_box {
-    position: absolute;
-    left: 50%;
-    width: 100vh !important;
-    height: 100vw;
-    top: 50%;
-    transform: rotate(-90deg) translate(-50%, -50%);
-    transform-origin: left top;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 12vw 330px 12vw 0;
-    z-index: 2;
-    .car {
-      width: 250px;
-      min-width: 250px;
-      height: 83px;
-      margin-bottom: -20px;
-      margin-top: -20px;
-    }
-  }
-
-  .prize-heading {
-    display: none;
-  }
-
-  .sub-content.zavod_bg .race-top-nav .prize-heading img {
-    display: none;
-  }
-
-  .sub-content.zavod_bg .race-top-nav {
-    padding: 5px 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    height: unset;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.8) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    .left-align {
-      justify-content: center;
-
-      .ioi-logo-race {
-        position: absolute;
-        left: 5px;
-        top: 5px;
-      }
-    }
-    .small-box{
-      &.timer-box{
-        .inner{
-          .dots-holder {
-            display: none;
-          }
-        }
-      }
-    }
-    .right-align {
-      justify-content: center;
-      padding-top: 5px;
-      padding-bottom: 15px;
-      .switch-btn {
-        display: none;
-      }
-      .username-holder {
-        .avatar-box {
-          height: 36px;
-        }
-      }
-      .winner-close {
-        display: none;
-      }
-    }
-  }
-
-  .sub-content.zavod_bg {
-    .bottom-mobile-nav {
+@media only screen and (max-width: 900px) and (orientation: portrait){
+  .sub-content.zavod_bg{
+    .dmg-hider{
+      display: block;
       position: fixed;
-      z-index: 1000000;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      height: 55px;
-      background: #111;
-      border-radius: 20px 20px 0 0;
-      .switch-btn {
-        height: 100%;
-        max-width: 90px;
-        width: 25%;
-        cursor: pointer;
-        position: relative;
-        &.active {
-          background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: black;
+      z-index: 10000000000;
+      .rotate-display{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 85%;
+        max-width: 640px;
+        background: rgba(17, 17, 17, 0.7);
+        border-radius: 15px;
+        height: 102px;
+        overflow: hidden;
+        z-index: 1000;
+        .phone-box{
+          width: 102px;
+          height: 100%;
+          position: relative;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          img{
+            max-width: 90%;
+            -webkit-animation-name: rotateDevice;
+            animation-name: rotateDevice;
+            -webkit-animation-duration: 4s;
+            animation-duration: 4s;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+          }
         }
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+        .text{
+          width: calc(100% - 102px);
+          p{
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+          }
         }
       }
     }
+    .tour-message{
+      display: none;
+    }
   }
-
-  .cops-signal {
-    top: 60px;
-  }
-
-  .zavod .car_rc .cr_cars_box .car_row > span {
-    transform: rotate(90deg);
-    text-align: center;
-    width: 77px;
-    min-width: 77px;
-    font-size: 11px;
-    padding: 34px 0px 2px 0px;
-    span {
-      font-size: 10px;
+  @-webkit-keyframes rotateDevice {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
     }
   }
 
-  .car_row b.position {
-    left: 50%;
-    top: 0px;
-    transform: translate(-50%, 0);
-  }
-
-  .sub-content.zavod_bg .race-bottom-nav {
-    position: absolute;
-  }
-
-  .new_cta-button {
-    padding: 9px 45px;
-  }
-
-  .zavod .final_line.starter {
-    height: auto;
-    right: 80px;
-    top: -40px;
-    transform: scale(0.5);
-  }
-
-  #transparent-bg {
-    display: none;
-  }
-
-  .zavod .car_rc .cr_cars_box.cars4 {
-    top: -20px;
-  }
-
-  .zavod .car_rc .cr_cars_box.cars3 {
-    top: -7px;
-  }
-
-  .zavod .car_rc .cr_cars_box.cars2 {
-    top: 20px;
-  }
-
-  .zavod .car_rc .cr_cars_box.cars1 {
-    top: 42px;
+  @keyframes rotateDevice {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
 }
 
 @media only screen and (max-width: 900px) and (orientation: landscape){
+  .sub-content.zavod_bg{
+    .dmg-hider{
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px){
   .car{
     width: 285px;
     height: 97px;
   }
   .sub-content.zavod_bg {
     .race-top-nav {
-      height: 50px;
-      padding: 0 0 0 13px;
+      height: 100vh;
+      width: 80px;
+      flex-direction: column;
+      padding: 0 8px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      overflow: auto;
       .left-align {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: unset;
+        flex-direction: column;
+        width: 100%;
         .ioi-logo-race {
-          height: 25px;
+          height: auto;
+          width: 100%;
+          right: -6px;
+          margin-top: 15px;
         }
       }
       .small-box {
-        border-radius: 9px;
-        height: 28px;
+        border-radius: 5px;
+        height: unset;
+        width: 100%;
         .inner {
           border-radius: 9px;
+          padding: 12px 2px;
           p,
           span {
             font-size: 12px;
           }
         }
         &.prize-box {
-          margin-left: 13px;
+          margin: 15px 0 0 0;
           .inner {
-            padding: 5px 20px;
+            padding: 12px 2px;
             p {
               img {
-                width: 13px;
+                width: 17px;
+                display: block;
+                margin: 0 auto;
               }
             }
           }
         }
         &.pos-box {
+          min-width: unset;
           .inner {
-            padding: 5px 23px;
+            padding: 12px 2px;
             p{
               img{
-                width: 20px;
+                width: 28px;
+                display: block;
+                margin: 0 auto 5px;
               }
             }
           }
+          &.progress{
+            margin: 0 0 15px 0;
+          }
         }
         &.timer-box{
+          min-width: unset;
+          margin: 15px 0;
           .inner{
+            padding: 12px 2px;
+            flex-direction: column;
             .dots-holder{
-              display: none;
+              margin: 0 auto 3px;
+              .dot.last{
+                margin-right: 0;
+              }
             }
           }
         }
       }
       .right-align {
+        height: unset;
+        flex-direction: column;
+        margin-top: 15px;
         .switch-btn {
-          width: 45px;
-          img {
-            height: 14px;
-          }
+          display: none;
         }
         .username-holder {
-          .avatar-box {
-            border-radius: 9px;
-            height: 43px;
-            width: 43px;
-            .inner {
-              border-radius: 9px;
-              img {
-                width: 13px;
-              }
-            }
-          }
+          display: none;
         }
         .winner-close {
           width: 135px;
@@ -5082,10 +4717,58 @@ button small {
         }
       }
     }
+    .bottom-mobile-nav {
+      position: fixed;
+      z-index: 100;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 95%;
+      width: 80px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: column;
+      background: #222;
+      border-radius: 10px 0 0 10px;
+      overflow: hidden;
+      .switch-btn {
+        height: 33.333%;
+        width: 100%;
+        cursor: pointer;
+        position: relative;
+        border-bottom: 1px solid #333;
+        &.active {
+          background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
+        }
+        &:last-child{
+          border-bottom: none;
+        }
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    .tour-message{
+      height: 120px;
+      max-width: 490px;
+      .loading-box{
+        width: 120px;
+        img{
+          width: 60px;
+        }
+      }
+    }
   }
-  .zavod {
+  .main-content.zavod {
     .car_rc {
       top: -70px;
+      min-width: calc(100% - 80px);
+      margin-left: auto;
+      margin-right: 0;
       .cr_cars_box {
         top: 150px;
         width: calc(100% - 285px);
@@ -5148,14 +4831,18 @@ button small {
         height: 470px;
       }
     }
+    .all-positions{
+      top: 2.5%;
+      right: 90px;
+    }
   }
   .winning-back{
-    height: calc(100% - 50px);
+    height: 100%;
   }
   .winning-back {
     position: absolute;
     min-height: 465px;
-    top: 50px;
+    top: 0;
     .winning-modal {
       padding: 30px 20px 20px;
       .close-icon {
@@ -5230,6 +4917,40 @@ button small {
   }
   .semafor-inner {
     transform: scale(0.55);
+  }
+  .chat{
+    left: 90px;
+    top: 2.5%;
+    .table-holder{
+      max-height: 186px;
+    }
+  }
+}
+
+@media only screen and (max-height: 400px){
+  .main-content.zavod {
+    .car_rc {
+      top: -80px;
+      height: 380px;
+      .cr_cars_box {
+        top: 110px;
+        .car_row {
+          margin-bottom: 5px;
+          .car-user-stats {
+            top: 10px;
+            .my-line {
+              height: 11px;
+            }
+          }
+        }
+      }
+      .still-road,
+      .still-helperix,
+      .moving-road,
+      .moving-helperix{
+        height: 380px;
+      }
+    }
   }
 }
 
