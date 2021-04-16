@@ -151,9 +151,26 @@
 
   <div class="sub-content zavod_bg">
 
+    <div class="dmg-hider">
+      <div class="rotate-display">
+        <div class="phone-box my-cta-btn-back">
+          <img src="/assets/base/images/zavod/phone.png" alt="">
+        </div>
+        <div class="text">
+          <p>Please rotate <br> your device!</p>
+        </div>
+      </div>
+    </div>
 
-    
-    <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true && raceDataildata?.players_count < 10 && (10 - raceDataildata?.players_count > 0)">Waiting for minimum of {{10 - raceDataildata?.players_count}} more {{ 10 - raceDataildata?.players_count > 1 ? 'racers' : 'racer'}}, otherwise you will be redirected to the next race.</h1>
+    <div class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 1 && showTourMsg === true && raceDataildata?.players_count < 10 && (10 - raceDataildata?.players_count > 0)">
+      <div class="loading-box my-cta-btn-back">
+        <img src="/assets/base/images/zavod/loading-img.png" alt="">
+      </div>
+      <div class="text">
+        <p>Waiting for minimum of {{10 - raceDataildata?.players_count}} more {{ 10 - raceDataildata?.players_count > 1 ? 'racers' : 'racer'}}, <br>
+          otherwise you will be redirected to the next race.</p>
+      </div>
+    </div>
     <h1 class="tour-message speci" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">Next race starts in <app-timer [value]="redirectNum"></app-timer> <br> You will be redirected automatically</h1>
     <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 11 && showTourMsg === true">{{'race.knock_out1' | translate}} <br> {{'race.knock_out2' | translate}}</h1>
 
@@ -209,7 +226,7 @@
               <div class="dot" [ngClass]="{'active': raceData?.race_progress > 49}"></div>
               <div class="dot" [ngClass]="{'active': raceData?.race_progress > 66}"></div>
               <div class="dot" [ngClass]="{'active': raceData?.race_progress > 80}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress >= 100}"></div>
+              <div class="dot last" [ngClass]="{'active': raceData?.race_progress >= 100}"></div>
             </div>
             <p class="timer-value" *ngIf="raceStarted === false">
               <app-timer [value]="startsIn"></app-timer>
