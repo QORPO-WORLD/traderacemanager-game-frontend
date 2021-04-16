@@ -170,27 +170,38 @@
         </div>
         <div class="summary-item">
           <p class="desc">Subtotal</p>
-          <p class="value big">{{ displayArray[0]["extras"].value * amount }} IOI</p>
+          <p class="value big">
+            {{ displayArray[0]["extras"].value * amount }} IOI
+          </p>
         </div>
       </div>
       <button
         class="buy-nft my-cta-btn-back"
-        *ngIf="assetType === 'car' && !displayArray[0]['rare'] && myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value"
+        *ngIf="
+          assetType === 'car' &&
+          !displayArray[0]['rare'] &&
+          myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+        "
         (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
       >
-        Buy with IOI &rarr;
+        Buy with IOI
       </button>
 
       <button
         class="buy-nft my-cta-btn-back"
-        *ngIf="assetType === 'car' && !displayArray[0]['rare'] && myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value"
-        [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }"
+        *ngIf="
+          assetType === 'car' &&
+          !displayArray[0]['rare'] &&
+          myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+        "
+        [routerLink]="['/other/wallet-control']"
+        [queryParams]="{ controlType: 'deposit' }"
       >
-        Deposit &rarr;
+        Deposit
       </button>
 
       <button class="buy-nft my-cta-btn-back" *ngIf="assetType !== 'car'">
-        Buy with IOI &rarr;
+        Buy with IOI
       </button>
       <button
         class="buy-nft my-cta-btn-back"
@@ -204,7 +215,11 @@
         href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
         target="_blank"
       >
-        Buy with paypal on Arkane &rarr;
+        Buy on Arkane market
+        <img src="assets/base/images/paypal.png" alt="paypal logo" /><img
+          src="assets/base/images/bitpay.png"
+          alt="bitpay logo"
+        />
       </a>
     </div>
   </div>
