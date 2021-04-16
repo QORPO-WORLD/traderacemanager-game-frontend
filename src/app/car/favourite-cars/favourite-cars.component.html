@@ -1,5 +1,4 @@
-
-<div class="edit-car-modal open"  *ngIf="createFavCar === true">
+<div class="edit-car-modal open" *ngIf="createFavCar === true">
   <div class="modal-back" (click)="favCarId = null; showCreateModal = false">
     &nbsp;
   </div>
@@ -17,80 +16,168 @@
   </div>
 </div>
 
-
 <div class="main-holder">
-  <div class="page-info"> 
+  <div class="page-info">
     <div class="back" [routerLink]="['/race/all-races']">
       <p>&lt;</p>
-    <p>{{'shared.back' | translate}}</p>
+      <p>{{ "shared.back" | translate }}</p>
     </div>
     <div class="text-info">
-    <h1>{{'favourite_cars.page_heading' | translate}}</h1>
-    <p>{{'favourite_cars.page_info' | translate}}</p>
+      <h1>{{ "favourite_cars.page_heading" | translate }}</h1>
+      <p>{{ "favourite_cars.page_info" | translate }}</p>
     </div>
     <div class="bonus-info">
-    <h5>{{teamreward | number:'1.2-2':'fr'}} <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
-    <p>{{'teams.shared.current_team_bonus' | translate}}</p>
+      <h5>
+        {{ teamreward | number: "1.2-2":"fr" }}
+        <img src="assets/base/images/tokens/ioi-logo.png" alt="" />
+      </h5>
+      <p>{{ "teams.shared.current_team_bonus" | translate }}</p>
     </div>
   </div>
 
   <div class="content-holder">
     <div class="switchers-holder">
-      <p class="my-cta-btn-back" (click)="editionIndex = 1" [ngClass]="{'inactive': editionIndex !== 1}">{{'garage.bronze' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 2" [ngClass]="{'inactive': editionIndex !== 2}">{{'garage.silver' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 3" [ngClass]="{'inactive': editionIndex !== 3}">{{'garage.gold' | translate}}</p>
-      <p class="my-cta-btn-back" (click)="editionIndex = 4" [ngClass]="{'inactive': editionIndex !== 4}">{{'garage.platinum' | translate}}</p>
+      <p
+        class="my-cta-btn-back"
+        (click)="editionIndex = 1"
+        [ngClass]="{ inactive: editionIndex !== 1 }"
+      >
+        Common
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="editionIndex = 2"
+        [ngClass]="{ inactive: editionIndex !== 2 }"
+      >
+        Super
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="editionIndex = 3"
+        [ngClass]="{ inactive: editionIndex !== 3 }"
+      >
+        Epic
+      </p>
+      <p
+        class="my-cta-btn-back"
+        (click)="editionIndex = 4"
+        [ngClass]="{ inactive: editionIndex !== 4 }"
+      >
+        Legendary
+      </p>
     </div>
 
     <div class="cars-holder">
       <div class="edition-holder">
-        <div class="regular-cars">       
+        <div class="regular-cars">
           <ng-container *ngFor="let mc of myCars; let x = index">
-            <div class="car-item set" 
-            *ngIf="mc.favourite !== undefined && mc.car_id > ((editionIndex * 6) - 6) && mc.car_id <= (editionIndex * 6) || (mc.favourite !== undefined && mc.car_id === (24 + editionIndex))">
+            <div
+              class="car-item set"
+              *ngIf="
+                (mc.favourite !== undefined &&
+                  mc.car_id > editionIndex * 6 - 6 &&
+                  mc.car_id <= editionIndex * 6) ||
+                (mc.favourite !== undefined && mc.car_id === 24 + editionIndex)
+              "
+            >
               <div class="fast-race">
-                <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
-                <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
+                <img
+                  class="red-light"
+                  src="/assets/base/images/all-races/lighting.png"
+                  alt=""
+                />
+                <img
+                  class="blue-light"
+                  src="/assets/base/images/all-races/lighting-blue.png"
+                  alt=""
+                />
               </div>
               <div class="car-info">
                 <div class="name">
                   <ng-container *ngIf="mc.car_id <= 24">
-                      <p class="value" *ngIf="editionIndex === 1">Bronze {{ mc.car_id }} </p>
-                      <p class="value" *ngIf="editionIndex === 2">Silver {{ mc.car_id - 6 }} </p>
-                      <p class="value" *ngIf="editionIndex === 3">Gold {{ mc.car_id - 12 }} </p>
-                      <p class="value" *ngIf="editionIndex === 4">Platinum {{ mc.car_id - 18 }} </p>
+                    <p class="value" *ngIf="editionIndex === 1">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 2">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 3">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 4">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
                   </ng-container>
-                  
-                  <p class="value" *ngIf="mc.car_id === 25">Bronze 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 26">Silver 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 27">Gold 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 28">Platinum 7 </p>
+
+                  <p class="value" *ngIf="mc.car_id === 25">
+                    {{ carsNames[24]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 26">
+                    {{ carsNames[25]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 27">
+                    {{ carsNames[26]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 28">
+                    {{ carsNames[27]["name"] }}
+                  </p>
                 </div>
                 <div class="fuel-wrapper" *ngIf="mc.favourite === true">
                   <div class="fuel-inner">
-                    <div class="fuel" *ngFor="let coin of mc.bet" [hidden]="coin.bet === 0">
+                    <div
+                      class="fuel"
+                      *ngFor="let coin of mc.bet"
+                      [hidden]="coin.bet === 0"
+                    >
                       <p>
-                        <img [src]="'/assets/base/images/curr-logos/' + coin.symbol + '-logo.png'" alt=""> 
+                        <img
+                          [src]="
+                            '/assets/base/images/curr-logos/' +
+                            coin.symbol +
+                            '-logo.png'
+                          "
+                          alt=""
+                        />
                         <small>{{ coin.bet }}%</small>
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + mc.car_id + '.png'" alt="">
+              <img
+                class="car-img"
+                [src]="'/assets/base/images/nft-cars/car' + mc.car_id + '.png'"
+                alt=""
+              />
               <div class="bottom-info">
                 <div class="play-now">
                   <div class="play-inner">
-                    <div class="edit-icon red-light"><img src="assets/base/images/fast-fuel/edit-icon.png" alt="" (click)="
-                      showEditModal = !showEditModal;"></div>
-                    <div class="edit-icon blue-light"><img src="assets/base/images/fast-fuel/edit-icon-blue.png" alt="" *ngIf="mc.favourite === true"
-                      (click)="
-                        showEditModal = !showEditModal;
-                        favEditCarId = mc.pk;
-                        editFavCar = true;
-                        editCar = mc
-                      "></div>
-                    <button class="my-cta-btn-back" (click)="deleteCar(mc.custom_index)">Delete</button>
+                    <div class="edit-icon red-light">
+                      <img
+                        src="assets/base/images/fast-fuel/edit-icon.png"
+                        alt=""
+                        (click)="showEditModal = !showEditModal"
+                      />
+                    </div>
+                    <div class="edit-icon blue-light">
+                      <img
+                        src="assets/base/images/fast-fuel/edit-icon-blue.png"
+                        alt=""
+                        *ngIf="mc.favourite === true"
+                        (click)="
+                          showEditModal = !showEditModal;
+                          favEditCarId = mc.pk;
+                          editFavCar = true;
+                          editCar = mc
+                        "
+                      />
+                    </div>
+                    <button
+                      class="my-cta-btn-back"
+                      (click)="deleteCar(mc.custom_index)"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
@@ -98,58 +185,92 @@
           </ng-container>
 
           <ng-container *ngFor="let mc of myCars; let x = index">
-            <div class="car-item" 
-            *ngIf="mc.favourite !== true && mc.car_id > ((editionIndex * 6) - 6) && mc.car_id <= (editionIndex * 6) || (mc.favourite !== true && mc.car_id === (24 + editionIndex))"
-            data-toggle="modal"
-            data-target="#cars-modal">
+            <div
+              class="car-item"
+              *ngIf="
+                (mc.favourite !== true &&
+                  mc.car_id > editionIndex * 6 - 6 &&
+                  mc.car_id <= editionIndex * 6) ||
+                (mc.favourite !== true && mc.car_id === 24 + editionIndex)
+              "
+              data-toggle="modal"
+              data-target="#cars-modal"
+            >
               <div class="fast-race">
-                <img class="red-light" src="/assets/base/images/all-races/lighting.png" alt="">
-                <img class="blue-light" src="/assets/base/images/all-races/lighting-blue.png" alt="">
+                <img
+                  class="red-light"
+                  src="/assets/base/images/all-races/lighting.png"
+                  alt=""
+                />
+                <img
+                  class="blue-light"
+                  src="/assets/base/images/all-races/lighting-blue.png"
+                  alt=""
+                />
               </div>
               <div class="car-info">
                 <div class="name">
                   <ng-container *ngIf="mc.car_id <= 24">
-                    <p class="value" *ngIf="editionIndex === 1">Bronze {{ mc.car_id }} </p>
-                    <p class="value" *ngIf="editionIndex === 2">Silver {{ mc.car_id - 6 }} </p>
-                    <p class="value" *ngIf="editionIndex === 3">Gold {{ mc.car_id - 12 }} </p>
-                    <p class="value" *ngIf="editionIndex === 4">Platinum {{ mc.car_id - 18 }} </p>
-                </ng-container>
+                    <p class="value" *ngIf="editionIndex === 1">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 2">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 3">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                    <p class="value" *ngIf="editionIndex === 4">
+                      {{ carsNames[mc.car_id - 1]["name"] }}
+                    </p>
+                  </ng-container>
 
-                  <p class="value" *ngIf="mc.car_id === 25">Bronze 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 26">Silver 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 27">Gold 7 </p>
-                  <p class="value" *ngIf="mc.car_id === 28">Platinum 7 </p>
+                  <p class="value" *ngIf="mc.car_id === 25">
+                    {{ carsNames[24]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 26">
+                    {{ carsNames[25]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 27">
+                    {{ carsNames[26]["name"] }}
+                  </p>
+                  <p class="value" *ngIf="mc.car_id === 28">
+                    {{ carsNames[27]["name"] }}
+                  </p>
                 </div>
-                
               </div>
-              <img class="car-img" [src]="'/assets/base/images/nft-cars/car' + mc.car_id + '.png'" alt="">
+              <img
+                class="car-img"
+                [src]="'/assets/base/images/nft-cars/car' + mc.car_id + '.png'"
+                alt=""
+              />
               <div class="bottom-info">
-              
                 <div class="buy-now my-cta-btn-back">
-                  <div class="buy-inner set-up"
-                  (click)="
-                    showCreateModal = !showCreateModal;
-                    favCarId = mc.pk;
-                    createFavCar = true
-                  ">
+                  <div
+                    class="buy-inner set-up"
+                    (click)="
+                      showCreateModal = !showCreateModal;
+                      favCarId = mc.pk;
+                      createFavCar = true
+                    "
+                  >
                     <p>Set up Fast fuel</p>
-                  </div>              
-      
-    
+                  </div>
                 </div>
               </div>
             </div>
           </ng-container>
-
         </div>
         <div class="no-cars-box">
           <p>You dont have any cars in this edition.</p>
-          <button class="my-cta-btn-back hoverable" [routerLink]="['/car/garage']">Buy NFT cars</button>
+          <button
+            class="my-cta-btn-back hoverable"
+            [routerLink]="['/car/garage']"
+          >
+            Buy NFT cars
+          </button>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
-
-

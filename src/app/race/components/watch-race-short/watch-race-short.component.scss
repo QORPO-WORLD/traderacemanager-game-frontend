@@ -658,10 +658,12 @@
       width: 150px;
       height: 100%;
       position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       img{
-        position: absolute;
-        top: 50%;
-        left: 50%;
         max-width: 90%;
         animation-iteration-count: infinite;
         animation-fill-mode: both;
@@ -680,13 +682,21 @@
     }
   }
 }
+@-webkit-keyframes loadingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes loadingRotate {
   0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -4538,10 +4548,12 @@ button small {
           width: 102px;
           height: 100%;
           position: relative;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           img{
-            position: absolute;
-            top: 50%;
-            left: 50%;
             max-width: 90%;
             -webkit-animation-name: rotateDevice;
             animation-name: rotateDevice;
@@ -4566,15 +4578,27 @@ button small {
       display: none;
     }
   }
-  @keyframes rotateDevice {
+  @-webkit-keyframes rotateDevice {
     0% {
-      transform: translate(-50%, -50%) rotate(0deg);
+      transform: rotate(0deg);
     }
     50% {
-      transform: translate(-50%, -50%) rotate(90deg);
+      transform: rotate(90deg);
     }
     100% {
-      transform: translate(-50%, -50%) rotate(0deg);
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes rotateDevice {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
     }
   }
 }
@@ -4594,13 +4618,14 @@ button small {
   }
   .sub-content.zavod_bg {
     .race-top-nav {
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       width: 80px;
       flex-direction: column;
       padding: 0 8px;
       position: fixed;
       left: 0;
       top: 0;
+      overflow: auto;
       .left-align {
         display: flex;
         justify-content: flex-start;
@@ -4674,6 +4699,7 @@ button small {
       .right-align {
         height: unset;
         flex-direction: column;
+        margin-top: 15px;
         .switch-btn {
           display: none;
         }
@@ -4897,6 +4923,33 @@ button small {
     top: 2.5%;
     .table-holder{
       max-height: 186px;
+    }
+  }
+}
+
+@media only screen and (max-height: 400px) and (max-width: 900px){
+  .main-content.zavod {
+    .car_rc {
+      top: -80px;
+      height: 380px;
+      .cr_cars_box {
+        top: 110px;
+        .car_row {
+          margin-bottom: 5px;
+          .car-user-stats {
+            top: 10px;
+            .my-line {
+              height: 11px;
+            }
+          }
+        }
+      }
+      .still-road,
+      .still-helperix,
+      .moving-road,
+      .moving-helperix{
+        height: 380px;
+      }
     }
   }
 }
