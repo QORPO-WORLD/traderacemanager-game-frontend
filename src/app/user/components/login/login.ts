@@ -247,16 +247,6 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   dumbCall() {
-    this.getAuthService().logOutApi().subscribe(
-      data => {
-        console.log(data);
-      }
-    );
-    return;
-    this.dobserver = this.dapi.firstCall().subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+    this.getAuthService().initSession();
   }
 }

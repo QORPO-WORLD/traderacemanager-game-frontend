@@ -124,7 +124,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.resolvemeAffilate();
         }
 
-        this.getAuthService().logOutApi();
+        this.getAuthService().initSession();
 
     }
 
