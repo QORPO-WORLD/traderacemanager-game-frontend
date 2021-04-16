@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TeamsService } from 'src/app/api/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
   selector: 'app-owner',
@@ -15,7 +16,7 @@ export class OwnerComponent implements OnInit, OnDestroy {
   color = '000000';
   teamName: string;
   loading = false;
-  constructor(private api: TeamsService, private route: Router, private notify: NotifiqService) { }
+  constructor(private api: TeamsService, private route: Router, private notify: NotifiqService, private identityService: AuthService) { }
 
   ngOnInit() { }
 
@@ -35,8 +36,12 @@ export class OwnerComponent implements OnInit, OnDestroy {
       }).subscribe(data => {
         this.loading = false;
         this.teamName = null;
-        this.notify.error('team created','Your team ' + this.teamName + ' has been created!');
-        this.route.navigate(['/teams/my-team']);
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+          this.identityService.updateBalance();
+          this.notify.error('team created', 'Your team ' + this.teamName + ' has been created!');
+          this.route.navigate(['/teams/my-team']);
+        }, 500);
       });
     }
     setTimeout(() => {
