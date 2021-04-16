@@ -12,10 +12,13 @@ import { AuthService } from 'src/app/user/services/auth.service';
 })
 export class OwnerComponent implements OnInit, OnDestroy {
   ownerSubscribe: Subscription;
+  notifySubscribe: Subscription;
   avatarType = 0;
   color = '000000';
   teamName: string;
   loading = false;
+  managersInvited = false;
+  racerInvited = false;
   constructor(private api: TeamsService, private route: Router, private notify: NotifiqService, private identityService: AuthService) { }
 
   ngOnInit() { }
@@ -23,6 +26,9 @@ export class OwnerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.ownerSubscribe) {
       this.ownerSubscribe.unsubscribe();
+    }
+    if (this.notifySubscribe) {
+      this.notifySubscribe.unsubscribe();
     }
   }
 
@@ -47,6 +53,19 @@ export class OwnerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.loading = false;
     }, 1500);
+  }
+
+  notifyTeam(type: string) {
+    this.notifySubscribe = this.api.notifyTeam({
+      "type": type
+    }).subscribe(data => {
+      if (type === 'racers') {
+        this.racerInvited = true;
+      } else {
+        this.managersInvited = true;
+      }
+      this.notify.error('', 'Members have been notified!');
+    });
   }
 
 }

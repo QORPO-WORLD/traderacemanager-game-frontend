@@ -289,6 +289,38 @@ class TeamsService extends __BaseService {
       __map(_r => _r.body as any)
     );
   }
+  notifyTeamResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + '/races/notify-all',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+   notifyTeam(data: any): __Observable<any> {
+    return this.notifyTeamResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
   getManagerRequestsResponse(id: number): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
