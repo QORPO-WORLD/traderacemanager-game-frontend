@@ -7,28 +7,47 @@
     </div>
   </div>
 
-  <div class="team-holder">
-    <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position'">         
+  <div class="team-holder" (window:resize)="width()">
+    <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position' | slice:startTeamIndex:(startTeamIndex + sliceBalancer)">         
         <div class="anim-helper">
           <div class="inner-holder" [ngClass]="'team' + tt?.id">
-              <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'WAITING'">
+              <div class="joined" 
+              [ngClass]="tt.name" 
+              *ngIf="tt.me_waiting_as_manager === 'WAITING'"
+              [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + tt.color + ' 0%, rgba(255, 212, 59, 0) 60%)' }"
+              >
                   <span>
-                      <p> <strong>✓</strong> Currently waiting</p>
+                      <p> <strong [ngStyle]="{'color': '#' + tt.color}">✓</strong> Currently waiting</p>
                   </span>
               </div>
-              <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'APPROVED'">
+              <div class="joined" 
+              [ngClass]="tt.name" 
+              *ngIf="tt.me_waiting_as_manager === 'APPROVED'"
+              [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + tt.color + ' 0%, rgba(255, 212, 59, 0) 60%)' }"
+              >
                 <span>
-                    <p> <strong>✓</strong> Approved</p>
+                    <p> <strong [ngStyle]="{'color': '#' + tt.color}">✓</strong> Approved</p>
                 </span>
             </div>
-            <div class="joined" [ngClass]="tt.name" *ngIf="tt.me_waiting_as_manager === 'DECLINED'">
+            <div class="joined" 
+            [ngClass]="tt.name" 
+            *ngIf="tt.me_waiting_as_manager === 'DECLINED'"
+            [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + tt.color + ' 0%, rgba(255, 212, 59, 0) 60%)' }"
+            >
               <span>
-                  <p> <strong>X</strong> Rejected</p>
+                  <p> <strong [ngStyle]="{'color': '#' + tt.color}">X</strong> Rejected</p>
               </span>
             </div>
-              <div class="img-holder">
-                  <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
-              </div>
+            <div class="img-holder" *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'">
+              <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
+            </div>
+            <div class="img-holder" *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'">
+                <img [src]="'assets/base/images/custom-teams/custom-team' + (tt.avatar + 1) + '.png'" alt="">
+                <div class="badge-name">
+                    <p class="name">{{tt?.name}}</p>
+                    <p class="team">TEAM</p>
+                </div>
+            </div>
               <p class="heading">Team {{tt?.name}}</p>
               <div class="item-holder">
                   <p class="desc">Total members</p>
@@ -57,9 +76,9 @@
                 <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
             </div>
   
-            <div class="reward-box" [ngClass]="tt.name">
+            <div class="reward-box" [ngClass]="tt.name" [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + tt.color + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
                 <div class="inner-box">
-                  <p><i class="fa fa-trophy"></i> <span> {{tt.current_team_bonus | number:'1.2-2':'fr'}} IOI</span> actual reward</p>
+                  <p [ngStyle]="{'color': '#' + tt.color}"><i [ngStyle]="{'color': '#' + tt.color}" class="fa fa-trophy"></i> <span [ngStyle]="{'color': '#' + tt.color}"> {{tt.current_team_bonus | number:'1.2-2':'fr'}} IOI</span> actual reward</p>
                 </div>
             </div>
         
@@ -74,6 +93,13 @@
             </div>
         </div>
         
+    </div>
+
+    <div class="arrow right" (click)="nextTeam()">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left" (click)="prevTeam()">
+      <p>&lt;</p>
     </div>
     
   </div>

@@ -345,12 +345,14 @@ export class BuyNftComponent implements OnInit {
   @Input() assetType = 'racer';
   @Input() assetId = 1;
   amount = 1;
+  myDriverBalances: any;
 
   constructor(protected api: CarsService, private balanceService: BalanceService, private identityService: AuthService,
     private notify: NotifyService, private router: Router) { }
 
   ngOnInit() {
     this.resolveBuyAsset();
+    this.getMydriverBalances();
   }
 
   resolveBuyAsset(){
@@ -394,6 +396,10 @@ export class BuyNftComponent implements OnInit {
   notifyChangedBalance() {
     this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();
+  }
+
+  getMydriverBalances() {
+    this.myDriverBalances = this.identityService.getBalance();
   }
 
 }

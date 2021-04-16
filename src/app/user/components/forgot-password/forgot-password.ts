@@ -34,6 +34,8 @@ export class ForgotPasswordComponent extends AbstractComponent implements OnInit
         this.forgotForm = this.formBuilder.group({
             email: ['', Validators.required]
         });
+
+        this.api.initSession();
     }
 
     ngOnDestroy() {

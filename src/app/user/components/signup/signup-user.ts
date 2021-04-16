@@ -124,7 +124,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.resolvemeAffilate();
         }
 
-        this.getAuthService().logOutApi();
+        this.getAuthService().initSession();
 
     }
 
@@ -178,7 +178,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         if (this.mmewa) {
             this.signupWithMetamask().subscribe({
                 next: data => this.doLogin(data),
-                error: error => this.clearMetamask(error.body)
+                error: error => this.clearMetamask(error)
             });
         } else {
             this.api.authUsersCreateDesktop({
@@ -251,7 +251,9 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
 
     clearMetamask(error) {
-        this.getErrorService().apiError(error);
+        //this.getErrorService().apiError(error);
+        console.log(error);
+        this.notify.error('', error.error.description);
         this.mmewa = null;
         this.metaSwitch = false;
         this.trying = false;

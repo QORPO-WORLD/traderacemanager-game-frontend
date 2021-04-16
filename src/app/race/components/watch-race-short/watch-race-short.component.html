@@ -1,5 +1,5 @@
 <div class="main-content zavod" *ngIf="!raceDataildata && !raceData">
-  <h2>{{'shared.loading' | translate}}</h2>
+<app-ioiloader></app-ioiloader>
 </div>
 
 <div class="main-content zavod" *ngIf="raceData && raceDataildata" #topRoad>
@@ -349,7 +349,7 @@
       <ng-container *ngIf="raceStarted === false ">
         <div class="start_line" [ngClass]="'type' + backType">
         </div>
-        <div class="final_line" [ngClass]="'type' + backType"> 
+        <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceData?.race_progress > 95"> 
         </div>
       </ng-container>
       
@@ -502,7 +502,7 @@
         </div>
       </div>
       
-      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true  ">
+      <div class="final_line" [ngClass]="'type' + backType" *ngIf="raceStarted === true && raceData?.race_progress > 95">
       </div>
 
     </div>

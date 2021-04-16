@@ -5,7 +5,7 @@
   <div class="content-wrapper">
     <div class="tip-wrapper my-cta-btn-back">
       <div class="tip-border ">
-        <ng-container *ngIf="tips.length > 0 && isPremium === true">
+        <ng-container *ngIf="tips.length > 0 && (isPremium === true || isManager === true)">
           <div class="tip-item" *ngFor="let tip of tips">
             <div class="tip-stats">
               <img src="assets/base/images/teams/long.png" alt="" *ngIf="tip.short === false">
@@ -28,9 +28,9 @@
           </div>
         </ng-container>
         
-        <p class="no-tips" *ngIf="tips.length === 0 && isPremium === true">No tips at the moment</p>
+        <p class="no-tips" *ngIf="tips.length === 0 && (isPremium === true || isManager === true)">No tips at the moment</p>
 
-        <p class="no-tips" *ngIf="isPremium === false">Available only for premium members</p>
+        <p class="no-tips" *ngIf="isPremium === false && isManager === false">Available only for premium members</p>
         
       </div>
     </div>

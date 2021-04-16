@@ -12,12 +12,27 @@ export class ManagerComponent implements OnInit {
   teams: any;
   myDriverBalances: any;
   ownerIndex = 0;
+  animationState = 0;
+  startTeamIndex = 0;
+  sliceBalancer = 3;
+  myWW = 1920;
 
-  constructor(private api: TeamsService, private identityService: AuthService) { }
+  constructor(private api: TeamsService, private identityService: AuthService) {
+    this.width();
+   }
 
   ngOnInit() {
     this.getTeams();
     this.getBalance();
+  }
+
+  width(){
+    this.myWW = window.innerWidth;
+    if (this.myWW <= 640) {
+      this.sliceBalancer = 1;
+    } else {
+      this.sliceBalancer = 3;
+    }
   }
   
   getTeams() {
@@ -28,7 +43,6 @@ export class ManagerComponent implements OnInit {
       });
 
       this.teams = data.results;
-      console.log(this.teams);
     });
   }
 
@@ -42,6 +56,18 @@ export class ManagerComponent implements OnInit {
 
   getBalance(){
     this.myDriverBalances = this.identityService.getBalance();
+  }
+
+  nextTeam(){
+    if (this.startTeamIndex < this.teams.length - this.sliceBalancer) {
+      this.startTeamIndex++;
+    } else this.startTeamIndex = 0;
+  }
+
+  prevTeam(){
+    if (this.startTeamIndex > 0) {
+      this.startTeamIndex--;
+    } else this.startTeamIndex = this.teams.length - this.sliceBalancer;
   }
 
 }

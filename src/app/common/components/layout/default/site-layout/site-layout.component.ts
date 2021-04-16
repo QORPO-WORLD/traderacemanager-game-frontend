@@ -296,10 +296,11 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
     if (this.numOfNotifications > this.numOfNotificationsBack) {
 
-
+/*
       const obj = document.createElement('audio');
       obj.src = './assets/base/sounds/notification.mp3';
       obj.play();
+      */
       this.numOfNotificationsBack = this.numOfNotifications;
       this.shakeBell();
     }

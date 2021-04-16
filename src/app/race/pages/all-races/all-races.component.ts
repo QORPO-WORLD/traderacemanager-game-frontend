@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NextRaceV2 } from 'src/app/api/models';
-import { DriversService } from 'src/app/api/services';
+import { DriversService, TeamsService } from 'src/app/api/services';
 import { AuthService } from 'src/app/user/services/auth.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class AllRacesComponent implements OnInit {
 
   raceType = 'trx';
   raceObserver: Subscription;
+  tsubscribe: Subscription;
   selRaceType: string;
   currentExpLevel: number;
   myDriverBalances: any;
@@ -41,8 +42,10 @@ export class AllRacesComponent implements OnInit {
   myIoiBalance = 0;
   myTrxBalance = 0;
   tickets = 0;
+  myTeamStats: any;
+  myTeamName: any;
   constructor(private route: ActivatedRoute, private experience: ExperienceService, protected api: RacesService,
-              private dapi: DriversService, private identityService: AuthService) {
+              private dapi: DriversService, private identityService: AuthService, private tapi: TeamsService) {
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
@@ -53,6 +56,13 @@ export class AllRacesComponent implements OnInit {
     this.getAllRaces();
     this.fastFuelEnabled();
     this.getMydriverBalances();
+    this.getMyTeam();
+  }
+
+  getMyTeam() {
+    const data = this.identityService.getDriverMe();
+    this.myTeamName = data.team;
+    this.getTeams();
   }
 
   getRaceType(){
@@ -126,6 +136,16 @@ export class AllRacesComponent implements OnInit {
       this.myDriverBalances.nitro_wallet_ioi;
     const datax =  this.identityService.getStorageIdentity();
     this.tickets = datax.tournament_tickets;
+  }
+
+  getTeams() {
+    this.tsubscribe = this.tapi.teamsList().subscribe(data => {
+      const newdata = data.results;
+      const resort = newdata.sort((a, b) => {
+        return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
+      });
+       this.myTeamStats = newdata.find(x => x.name === this.myTeamName);
+    });
   }
 
 
