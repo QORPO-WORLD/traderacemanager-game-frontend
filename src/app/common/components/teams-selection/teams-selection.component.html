@@ -1,7 +1,7 @@
 
 
-<div class="team-holder" [ngClass]="{'first-modal': modalVersion === true}">
-  <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position'" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id, 'hide': tt?.id != animationState && animationState > 0}">         
+<div class="team-holder" (window:resize)="width()" [ngClass]="{'first-modal': modalVersion === true}">
+  <div class="team-item"  *ngFor="let tt of teams | sortmain: '!position' | slice:startTeamIndex:(startTeamIndex + sliceBalancer)" [ngClass]="{'active' : tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id, 'hide': tt?.id != animationState && animationState > 0}">         
       <div class="anim-helper" [ngClass]="'state' + animationState">
         <div class="inner-holder" [ngClass]="'team' + tt?.id">
             <div class="joined" [ngClass]="tt.name" *ngIf="tt?.id === myDriverStats?.next_month_team_id && modalVersion === false">
@@ -9,8 +9,15 @@
                     <p> <strong>✓</strong> Currently waiting</p>
                 </span>
             </div>
-            <div class="img-holder">
+            <div class="img-holder" *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'">
                 <img [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'" alt="">
+            </div>
+            <div class="img-holder" *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'">
+                <img src="/assets/base/images/teams/you-team.png" alt="">
+                <div class="badge-name">
+                    <p class="name">{{tt?.name}}</p>
+                    <p class="team">TEAM</p>
+                </div>
             </div>
             <p class="heading">Team {{tt?.name}}</p>
             <div class="item-holder">
@@ -99,6 +106,19 @@
           </div>
       </div>
   </div>
+
+  <div class="arrow right" (click)="nextTeam()">
+    <p>&gt;</p>
+  </div>
+  <div class="arrow left" (click)="prevTeam()">
+    <p>&lt;</p>
+  </div>
+  <!-- <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+    <p>&gt;</p>
+  </div>
+  <div class="arrow left inactive" *ngIf="actualPage === 0">
+    <p>&lt;</p>
+  </div> -->
   
 </div>
 

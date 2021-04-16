@@ -28,14 +28,28 @@ export class TeamsSelectionComponent implements OnInit {
   myDriverStats: any;
   ownerIndex = 0;
   animationState = 0;
+  startTeamIndex = 0;
+  sliceBalancer = 3;
+  myWW = 1920;
 
   constructor(protected api: TeamsService, private identityService: AuthService,
-    private balanceService: BalanceService, protected notify: NotifiqService) { }
+    private balanceService: BalanceService, protected notify: NotifiqService) {
+      this.width();
+    }
 
   ngOnInit() {
     this.getMyTeam();
     this.getCurrentMonth();
     this.getMydriver();
+  }
+
+  width(){
+    this.myWW = window.innerWidth;
+    if (this.myWW <= 640) {
+      this.sliceBalancer = 1;
+    } else {
+      this.sliceBalancer = 3;
+    }
   }
 
   getTeams() {
@@ -46,6 +60,7 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
+      console.log(this.teams);
     });
   }
 
@@ -123,6 +138,18 @@ export class TeamsSelectionComponent implements OnInit {
     setTimeout(() => {
       this.joinTeamFree(id);
     }, 2200);
+  }
+
+  nextTeam(){
+    if (this.startTeamIndex < this.teams.length - this.sliceBalancer) {
+      this.startTeamIndex++;
+    } else this.startTeamIndex = 0;
+  }
+
+  prevTeam(){
+    if (this.startTeamIndex > 0) {
+      this.startTeamIndex--;
+    } else this.startTeamIndex = this.teams.length - this.sliceBalancer;
   }
 
 }
