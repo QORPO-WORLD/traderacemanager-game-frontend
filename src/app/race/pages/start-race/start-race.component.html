@@ -47,237 +47,7 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div
-    class="main-center-box"
-    [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
-  >
-    <div class="top-banner red-variant">
-      <button class="arrow left" (click)="prevBanner()">&lt;</button>
-      <button class="arrow right" (click)="nextBanner()">&gt;</button>
-      <div class="dots-holder">
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(1)"
-          [ngClass]="{ inactive: topBannerIndex !== 1 }"
-        ></div>
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(2)"
-          [ngClass]="{ inactive: topBannerIndex !== 2 }"
-        ></div>
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(3)"
-          [ngClass]="{ inactive: topBannerIndex !== 3 }"
-        ></div>
-      </div>
-
-      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.modal1_text1" | translate }} <br />
-            {{ "start-race.modal1_text2" | translate }}
-          </p>
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/teams/join-teams']"
-          >
-            {{ "start-race.join_now" | translate }}
-          </button>
-        </div>
-        <img
-          src="/assets/base/images/start-race/helmet-img.png"
-          alt=""
-          class="banner-img crown"
-        />
-      </div>
-      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.modal2_text1" | translate }}<br />
-            {{ "start-race.modal2_text2" | translate }}
-          </p>
-
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/other/tasks']"
-          >
-            {{ "start-race.show_tasks" | translate }}
-          </button>
-        </div>
-        <img
-          src="/assets/base/images/start-race/tasks-img.png"
-          alt=""
-          class="banner-img tasks"
-        />
-      </div>
-
-      <div class="banner-item item3 red" *ngIf="topBannerIndex === 3">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.modal3_text1" | translate }}<br />
-            {{ "start-race.modal3_text2" | translate }}
-          </p>
-          <p *ngIf="display > 640" class="banner-text">
-            {{ "start-race.modal3_text3" | translate }}
-          </p>
-
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/car/nft-market']"
-          >
-            {{ "start-race.get_nfts" | translate }}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="top-banner blue-variant">
-      <button class="arrow left" (click)="prevBanner()">&lt;</button>
-      <button class="arrow right" (click)="nextBanner()">&gt;</button>
-      <div class="dots-holder">
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(1)"
-          [ngClass]="{ inactive: topBannerIndex !== 1 }"
-        ></div>
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(2)"
-          [ngClass]="{ inactive: topBannerIndex !== 2 }"
-        ></div>
-        <div
-          class="dot my-low-gradient"
-          (click)="manualBannerChange(3)"
-          [ngClass]="{ inactive: topBannerIndex !== 3 }"
-        ></div>
-      </div>
-
-      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.buy_nft1" | translate }}<br />
-            {{ "start-race.buy_nft2" | translate }}
-          </p>
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/car/garage']"
-          >
-            {{ "start-race.buy" | translate }}
-          </button>
-        </div>
-        <img
-          src="/assets/base/images/start-race/nft-img.png"
-          alt=""
-          class="banner-img nft"
-        />
-      </div>
-      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.collect_nft1" | translate }}<br />
-            {{ "start-race.collect_nft2" | translate }}
-          </p>
-
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/car/garage']"
-          >
-            Collect
-          </button>
-        </div>
-        <img
-          src="/assets/base/images/start-race/nft-collection.png"
-          alt=""
-          class="banner-img collection"
-        />
-      </div>
-
-      <div class="banner-item item3" *ngIf="topBannerIndex === 3">
-        <div class="text-holder">
-          <p class="race-name">
-            {{ "start-race.modal4_text1" | translate }}<br />
-            {{ "start-race.modal4_text2" | translate }}
-          </p>
-          <p *ngIf="display > 640" class="banner-text">
-            {{ "start-race.modal4_text3" | translate }}
-          </p>
-
-          <button
-            class="register my-cta-btn-back hoverable"
-            [routerLink]="['/car/nft-market']"
-          >
-            {{ "start-race.get_racer" | translate }}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="categories-holder">
-      <p class="box-heading w-padd">
-        {{ "start-race.categories" | translate }}
-      </p>
-      <div class="cat-cont">
-        <div
-          class="cat-item cars my-cta-btn-back"
-          [routerLink]="['/car/garage/my-cars']"
-        >
-          <img
-            src="/assets/base/images/start-race/nft-back-red.png"
-            alt=""
-            class="back-img cars red"
-          />
-          <img
-            src="/assets/base/images/start-race/nft-back-blue.png"
-            alt=""
-            class="back-img cars blue"
-          />
-          <div class="text-holder">
-            <p class="value">{{ "start-race.nft_cars" | translate }}</p>
-            <p class="text">{{ "start-race.nft_cars_desc" | translate }}</p>
-            <button class="arrow-btn">&gt;</button>
-          </div>
-        </div>
-
-        <div
-          class="cat-item teams my-cta-btn-back"
-          [routerLink]="['/teams/join-teams']"
-        >
-          <img
-            src="/assets/base/images/start-race/team-back.png"
-            alt=""
-            class="back-img teams"
-          />
-          <div class="text-holder">
-            <p class="value">{{ "leaderboard.teams" | translate }}</p>
-            <p class="text">{{ "start-race.teams_desc" | translate }}</p>
-            <button class="arrow-btn">&gt;</button>
-          </div>
-        </div>
-
-        <div
-          class="cat-item races my-cta-btn-back"
-          [routerLink]="['/race/all-races']"
-          [queryParams]="{ raceType: 'trx' }"
-        >
-          <img
-            src="/assets/base/images/start-race/races-back.png"
-            alt=""
-            class="back-img races"
-          />
-          <div class="text-holder">
-            <p class="value">{{ "profile.races" | translate }}</p>
-            <p class="text">{{ "start-race.races_desc" | translate }}</p>
-            <button class="arrow-btn">&gt;</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="small-boxes" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
     <div class="day-tip" (click)="recognizeOpenTips()">
       <p class="box-heading">{{ "teams.my_team.tip_of_day" | translate }}</p>
       <div
@@ -343,43 +113,233 @@
         </div>
       </div>
     </div>
-    <div class="next-burn">
-      <p class="box-heading">{{ "start-race.next_burning" | translate }}</p>
-      <div class="info-icon">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="" />
-        <div class="info-bubble">
-          <div class="img-holder">
-            <img src="/assets/base/images/icons/inner-info-icon.png" alt="" />
-          </div>
-          <p>{{ "start-race.burning_desc" | translate }}</p>
-        </div>
-      </div>
-      <div class="burn-box my-border-grad">
-        <div class="inner-holder">
-          <p>
-            <span style="display: none"
-              >300 000 {{ "shared.ioi" | translate }}</span
-            >
-            {{ "shared.in" | translate }}
-            <span class="time my-text-color"
-              ><app-timer-long
-                class="my-text-color"
-                [value]="hwdays"
-                [type]="1"
-              ></app-timer-long
-            ></span>
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div
-    class="center-bottom-box"
+    class="main-center-box"
     [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
   >
+    <div class="top-banner red-variant">
+      <button class="arrow left" (click)="prevBanner()">&lt;</button>
+      <button class="arrow right" (click)="nextBanner()">&gt;</button>
+      <div class="dots-holder">
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(1)"
+          [ngClass]="{ inactive: topBannerIndex !== 1 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(2)"
+          [ngClass]="{ inactive: topBannerIndex !== 2 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(3)"
+          [ngClass]="{ inactive: topBannerIndex !== 3 }"
+        ></div>
+      </div>
+
+      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.modal1_text1" | translate }} <br />
+            {{ "start-race.modal1_text2" | translate }}
+          </p>
+        </div>
+        <button
+          class="register my-cta-btn-back hoverable"
+          [routerLink]="['/teams/join-teams']"
+        >
+          {{ "start-race.join_now" | translate }}
+        </button>
+        <img
+          src="/assets/base/images/start-race/helmet-img.png"
+          alt=""
+          class="banner-img crown"
+        />
+      </div>
+      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.modal2_text1" | translate }}<br />
+            {{ "start-race.modal2_text2" | translate }}
+          </p>
+        </div>
+        <button
+            class="register my-cta-btn-back hoverable"
+            [routerLink]="['/other/tasks']"
+          >
+            {{ "start-race.show_tasks" | translate }}
+          </button>
+        <img
+          src="/assets/base/images/start-race/tasks-img.png"
+          alt=""
+          class="banner-img tasks"
+        />
+      </div>
+
+      <div class="banner-item item3 red" *ngIf="topBannerIndex === 3">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.modal3_text1" | translate }}<br />
+            {{ "start-race.modal3_text2" | translate }}
+          </p>
+          <p *ngIf="display > 640" class="banner-text">
+            {{ "start-race.modal3_text3" | translate }}
+          </p>
+
+        </div>
+        <button
+          class="register my-cta-btn-back hoverable"
+          [routerLink]="['/car/nft-market']"
+        >
+          {{ "start-race.get_nfts" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="top-banner blue-variant">
+      <button class="arrow left" (click)="prevBanner()">&lt;</button>
+      <button class="arrow right" (click)="nextBanner()">&gt;</button>
+      <div class="dots-holder">
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(1)"
+          [ngClass]="{ inactive: topBannerIndex !== 1 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(2)"
+          [ngClass]="{ inactive: topBannerIndex !== 2 }"
+        ></div>
+        <div
+          class="dot my-low-gradient"
+          (click)="manualBannerChange(3)"
+          [ngClass]="{ inactive: topBannerIndex !== 3 }"
+        ></div>
+      </div>
+
+      <div class="banner-item item1" *ngIf="topBannerIndex === 1">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.buy_nft1" | translate }}<br />
+            {{ "start-race.buy_nft2" | translate }}
+          </p>
+        </div>
+        <button
+          class="register my-cta-btn-back hoverable"
+          [routerLink]="['/car/garage']"
+        >
+          {{ "start-race.buy" | translate }}
+        </button>
+        <img
+          src="/assets/base/images/start-race/nft-img.png"
+          alt=""
+          class="banner-img nft"
+        />
+      </div>
+      <div class="banner-item item2" *ngIf="topBannerIndex === 2">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.collect_nft1" | translate }}<br />
+            {{ "start-race.collect_nft2" | translate }}
+          </p>
+
+        </div>
+        <button
+          class="register my-cta-btn-back hoverable"
+          [routerLink]="['/car/garage']"
+        >
+          Collect
+        </button>
+        <img
+          src="/assets/base/images/start-race/nft-collection.png"
+          alt=""
+          class="banner-img collection"
+        />
+      </div>
+
+      <div class="banner-item item3" *ngIf="topBannerIndex === 3">
+        <div class="text-holder">
+          <p class="race-name">
+            {{ "start-race.modal4_text1" | translate }}<br />
+            {{ "start-race.modal4_text2" | translate }}
+          </p>
+          <p *ngIf="display > 640" class="banner-text">
+            {{ "start-race.modal4_text3" | translate }}
+          </p>
+
+        </div>
+        <button
+          class="register my-cta-btn-back hoverable"
+          [routerLink]="['/car/nft-market']"
+        >
+          {{ "start-race.get_racer" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="categories-holder">
+      <p class="box-heading w-padd">
+        {{ "start-race.categories" | translate }}
+      </p>
+      <div class="cat-cont">
+        <div
+          class="cat-item cars my-cta-btn-back"
+          [routerLink]="['/car/garage/my-cars']"
+        >
+          <img
+            src="/assets/base/images/start-race/nft-back-red.png"
+            alt=""
+            class="back-img cars red"
+          />
+          <img
+            src="/assets/base/images/start-race/nft-back-blue.png"
+            alt=""
+            class="back-img cars blue"
+          />
+          <div class="text-holder">
+            <p class="value">{{ "start-race.nft_cars" | translate }}</p>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+
+        <div
+          class="cat-item teams my-cta-btn-back"
+          [routerLink]="['/teams/join-teams']"
+        >
+          <img
+            src="/assets/base/images/start-race/team-back.png"
+            alt=""
+            class="back-img teams"
+          />
+          <div class="text-holder">
+            <p class="value">{{ "leaderboard.teams" | translate }}</p>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+
+        <div
+          class="cat-item races my-cta-btn-back"
+          [routerLink]="['/race/all-races']"
+          [queryParams]="{ raceType: 'trx' }"
+        >
+          <img
+            src="/assets/base/images/start-race/races-back.png"
+            alt=""
+            class="back-img races"
+          />
+          <div class="text-holder">
+            <p class="value">{{ "profile.races" | translate }}</p>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <app-exp-bar></app-exp-bar>
   </div>
+
 </div>
 
 <!-- MODALS -->

@@ -27,7 +27,7 @@
 }
 .rewards-box {
   width: 25%;
-  height: 620px;
+  height: 650px;
   position: relative;
   .top-wrapper {
     background: #222222;
@@ -44,7 +44,7 @@
     .buy-btn{
       font-size: 16px;
       padding: 12px 0 13px;
-      width: 100%;
+      width: calc(100% - 46px);
       height: 46px;
       border-radius: 10px;
       position: absolute;
@@ -54,7 +54,6 @@
     }
   }
   .box-heading {
-    margin: 0;
     text-align: left;
   }
   .info-icon {
@@ -104,7 +103,7 @@
     }
     .leader-cont {
       width: 100%;
-      height: 90px;
+      height: 130px;
       position: relative;
       padding: 1px 0 0 1px;
       border-radius: 20px;
@@ -176,79 +175,11 @@
       }
     }
   }
-}
-.small-boxes {
-  width: 25%;
-  .next-burn {
-    margin-top: 10px;
-    position: relative;
-    .info-icon {
-      position: absolute;
-      top: 0;
-      right: 20px;
-      z-index: 5;
-      &:hover {
-        .info-bubble {
-          opacity: 1;
-        }
-      }
-      .info-bubble {
-        width: 353px;
-        position: absolute;
-        top: 0;
-        right: -10px;
-        transition: 0.2s;
-        transform: translate(100%, -100%);
-        pointer-events: none;
-        opacity: 0;
-        p {
-          font-size: 16px;
-          font-weight: 400;
-          margin: 0;
-        }
-      }
-    }
-    .burn-box {
-      width: 100%;
-      height: 76px;
-      position: relative;
-      padding: 1px 0 0 1px;
-      border-radius: 20px;
-      .inner-holder {
-        z-index: 2;
-        border-radius: 20px;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background: rgba(34, 34, 34, 0.5);
-        transition: 0.3s;
-        p {
-          font-size: 20px;
-          margin: 0;
-          font-weight: 400;
-          width: 100%;
-          text-align: center;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          app-timer-long {
-            font-size: 20px;
-            font-weight: 400;
-            display: inline-block;
-          }
-          span {
-            font-weight: 600;
-          }
-        }
-      }
-    }
-  }
   .day-tip {
-    margin-top: 15px;
+    margin-top: 26px;
     .tip-box {
       width: 100%;
-      height: 90px;
+      height: 130px;
       position: relative;
       padding: 1px 0 0 1px;
       border-radius: 20px;
@@ -277,7 +208,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 15px;
         .img-holder {
           width: 60px;
           position: relative;
@@ -446,7 +377,7 @@
       }
       .text-holder {
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50px;
         transform: translateY(-50%);
         z-index: 2;
@@ -465,37 +396,41 @@
           max-width: 233px;
           margin: 0;
         }
-        .register {
-          outline: none;
-          border: none;
-          font-size: 16px;
-          font-weight: 600;
-          margin: 75px 0 0 0;
-          box-shadow: 0px 0px 40px rgba(254, 23, 63, 0.1);
-          border-radius: 15px;
-          cursor: pointer;
-          color: white;
-          padding: 12px 0 13px;
-          opacity: 1;
-          transition: 0.3s;
-          width: 187px;
-          height: 46px;
-        }
+      }
+      .register {
+        outline: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 75px 0 0 0;
+        box-shadow: 0px 0px 40px rgba(254, 23, 63, 0.1);
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        padding: 12px 0 13px;
+        opacity: 1;
+        transition: 0.3s;
+        width: 187px;
+        height: 46px;
+        position: absolute;
+        left: 50px;
+        bottom: 45px;
+        z-index: 5;
       }
     }
   }
   .categories-holder {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 35px;
     .box-heading {
-      margin-bottom: 6px;
+      margin-bottom: 12px;
     }
     .cat-cont {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 144px;
+      height: 270px;
       .cat-item {
         cursor: pointer;
         width: 32%;
@@ -506,26 +441,20 @@
         z-index: 1;
         transition: 0.2s;
         &:hover {
-          .vector-back {
-            width: 140px;
-          }
           .back-img {
-            transform: scale(1.03);
+            transform: scale(1.03) translate(-50%, -50%);
           }
         }
         .back-img {
           position: absolute;
-          right: 0;
-          top: 0;
+          left: 50%;
+          top: 45%;
+          transform: translate(-50%, -50%);
           z-index: 2;
           transition: 0.3s;
-          &.cars {
-            top: 4%;
-            right: -23%;
-          }
           &.races {
-            right: -1%;
             max-height: 95%;
+            transform: translateX(-50%);
             top: unset;
             bottom: 0;
           }
@@ -536,19 +465,13 @@
           left: 20px;
           z-index: 3;
           max-width: 185px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           p {
-            font-size: 20px;
+            font-size: 30px;
             font-weight: 600;
-            margin: 0 0 5px 0;
-            &.text {
-              font-size: 16px;
-              font-weight: 300;
-              color: white;
-              margin: 0;
-              border-radius: 5px;
-              line-height: 1.3;
-              text-shadow: 0 0 2px black;
-            }
+            margin: 0 11px 0 0;
           }
           .arrow-btn {
             width: 25px;
@@ -556,7 +479,6 @@
             line-height: 25px;
             font-weight: 700;
             font-size: 22px;
-            margin-top: 11px;
             background: #ffffff;
             border-radius: 5px;
             transition: 0.2s;
@@ -565,9 +487,6 @@
       }
     }
   }
-}
-.center-bottom-box {
-  width: 72%;
 }
 
 .info-bubble {
@@ -1036,7 +955,7 @@
         font-size: 23px;
       }
       .leader-cont {
-        height: 120px;
+        height: 150px;
         .inner {
           .img-holder {
             width: 70px;
@@ -1061,95 +980,10 @@
         }
       }
     }
-  }
-  .main-center-box {
-    .top-banner {
-      height: 399px;
-      .banner-item {
-        .text-holder {
-          left: 100px;
-          .top-desc {
-            font-size: 18px;
-            margin: 0 0 15px 0;
-          }
-          .race-name {
-            font-size: 26px;
-            margin: 0 0 25px 0;
-          }
-          .banner-text {
-            font-size: 17px;
-            max-width: 260px;
-            line-height: 1.3;
-          }
-          .register {
-            font-size: 17px;
-            margin: 52px 0 0 0;
-            padding: 14px 0 15px;
-          }
-        }
-        &.item3 {
-          .text-holder {
-            .register {
-              margin: 28px 0 42px 0;
-            }
-          }
-        }
-      }
-    }
-    .categories-holder {
-      margin-top: 19px;
-      .cat-cont {
-        height: 164px;
-        .cat-item {
-          .back-img {
-            max-height: 100%;
-            &.cars {
-              top: 10%;
-              right: -17%;
-            }
-            &.teams {
-              top: 3%;
-            }
-            &.races {
-              bottom: 10%;
-            }
-          }
-          .text-holder {
-            max-width: 200px;
-            bottom: unset;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            p {
-              font-size: 24px;
-              &.text {
-                font-size: 17px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .small-boxes {
-    .next-burn {
-      margin-top: 20px;
-      .burn-box {
-        height: 100px;
-        .inner-holder {
-          p {
-            font-size: 22px;
-            app-timer-long {
-              font-size: 22px;
-            }
-          }
-        }
-      }
-    }
     .day-tip {
-      margin-top: 20px;
+      margin-top: 31px;
       .tip-box {
-        height: 120px;
+        height: 150px;
         .inner-holder {
           .img-holder {
             width: 70px;
@@ -1190,6 +1024,57 @@
       }
     }
   }
+  .main-center-box {
+    .top-banner {
+      height: 430px;
+      .banner-item {
+        .text-holder {
+          left: 100px;
+          .top-desc {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+          }
+          .race-name {
+            font-size: 26px;
+            margin: 0 0 25px 0;
+          }
+          .banner-text {
+            font-size: 17px;
+            max-width: 260px;
+            line-height: 1.3;
+          }
+          .register {
+            font-size: 17px;
+            margin: 52px 0 0 0;
+            padding: 14px 0 15px;
+          }
+        }
+        &.item3 {
+          .text-holder {
+            .register {
+              margin: 28px 0 42px 0;
+            }
+          }
+        }
+      }
+    }
+    .categories-holder {
+      margin-top: 27px;
+      .cat-cont {
+        height: 300px;
+        .cat-item {
+          .text-holder {
+            p {
+              font-size: 26px;
+            }
+          }
+          .back-img{
+            width: 80%;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 2300px) and (min-height: 1300px) {
@@ -1207,19 +1092,9 @@
     height: 730px;
     .top-wrapper {
       padding: 35px 36px;
-    }
-    .svg-holder {
-      height: 230px;
-      .svg-item {
-        width: 235px;
-        .text-holder {
-          p {
-            font-size: 23px;
-            &.desc {
-              font-size: 17px;
-            }
-          }
-        }
+      height: 490px;
+      .rate-desc{
+        font-size: 20px;
       }
     }
     .proggres-holder {
@@ -1244,7 +1119,7 @@
         font-size: 26px;
       }
       .leader-cont {
-        height: 130px;
+        height: 165px;
         .inner {
           .img-holder {
             width: 90px;
@@ -1269,89 +1144,10 @@
         }
       }
     }
-  }
-  .main-center-box {
-    .top-banner {
-      height: 462px;
-      .banner-item {
-        .text-holder {
-          left: 130px;
-          .top-desc {
-            font-size: 20px;
-            margin: 0 0 15px 0;
-          }
-          .race-name {
-            font-size: 29px;
-            margin: 0 0 25px 0;
-          }
-          .register {
-            font-size: 18px;
-            margin: 52px 0 0 0;
-            padding: 14px 0 17px;
-          }
-        }
-      }
-    }
-    .categories-holder {
-      margin-top: 21px;
-      .box-heading {
-        margin-bottom: 20px;
-      }
-      .cat-cont {
-        height: 179px;
-        .cat-item {
-          .back-img {
-            max-height: 100%;
-            &.cars {
-              top: 10%;
-              right: -12%;
-              width: 265px;
-            }
-            &.teams {
-              top: 5%;
-              width: 200px;
-            }
-            &.races {
-              bottom: 10%;
-              width: 180px;
-            }
-          }
-          .text-holder {
-            max-width: 220px;
-            bottom: unset;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            p {
-              font-size: 27px;
-              &.text {
-                font-size: 19px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .small-boxes {
-    .next-burn {
-      margin-top: 19px;
-      .burn-box {
-        height: 105px;
-        .inner-holder {
-          p {
-            font-size: 25px;
-            app-timer-long {
-              font-size: 25px;
-            }
-          }
-        }
-      }
-    }
     .day-tip {
       margin-top: 27px;
       .tip-box {
-        height: 130px;
+        height: 165px;
         .inner-holder {
           .img-holder {
             width: 80px;
@@ -1392,6 +1188,50 @@
       }
     }
   }
+  .main-center-box {
+    .top-banner {
+      height: 490px;
+      .banner-item {
+        .text-holder {
+          left: 130px;
+          .top-desc {
+            font-size: 20px;
+            margin: 0 0 15px 0;
+          }
+          .race-name {
+            font-size: 29px;
+            margin: 0 0 25px 0;
+          }
+          .register {
+            font-size: 18px;
+            margin: 52px 0 0 0;
+            padding: 14px 0 17px;
+          }
+        }
+      }
+    }
+    .categories-holder {
+      margin-top: 29px;
+      .box-heading {
+        margin-bottom: 20px;
+      }
+      .cat-cont {
+        height: 330px;
+        .cat-item {
+          .text-holder {
+            p {
+              font-size: 28px;
+            }
+          }
+          .back-img{
+            &.races{
+              width: 65%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1700px) {
@@ -1414,6 +1254,11 @@
     height: 497px;
     .top-wrapper {
       padding: 22px;
+      height: 400px;
+      .buy-btn{
+        bottom: 40px;
+        height: 40px;
+      }
     }
     .svg-holder {
       height: 155px;
@@ -1442,7 +1287,7 @@
         font-size: 17px;
       }
       .leader-cont {
-        height: 84px;
+        height: 120px;
         .inner {
           .img-holder {
             width: 50px;
@@ -1467,10 +1312,49 @@
         }
       }
     }
+    .day-tip {
+      .tip-box {
+        height: 120px;
+        .inner-holder {
+          .img-holder {
+            width: 47px;
+            margin-right: 19px;
+            &::before {
+              width: 15px;
+              height: 15px;
+            }
+          }
+          .text-holder {
+            p {
+              font-size: 17px;
+              &.smaller {
+                font-size: 14px;
+              }
+            }
+            .currs-holder {
+              height: 18px;
+              max-height: 18px;
+              .curr-item {
+                margin-right: 13px;
+                &::before {
+                  right: -7px;
+                }
+                .arrow-img {
+                  margin-left: 3px;
+                }
+                &.borderless {
+                  margin-right: 3px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .main-center-box {
     .top-banner {
-      height: 328px;
+      height: 400px;
       .banner-item {
         .banner-img {
           &.collection {
@@ -1531,20 +1415,19 @@
               }
             }
           }
-          .register {
-            font-size: 16px;
-            margin: 55px 0 0 0;
-            padding: 14px 0 15px;
-            border-radius: 13px;
-            min-width: 150px;
-          }
+        }
+        .register {
+          font-size: 16px;
+          min-width: 150px;
+          height: 40px;
+          bottom: 40px;
         }
       }
     }
     .categories-holder {
-      margin-top: 14px;
+      margin-top: 28px;
       .cat-cont {
-        height: 124px;
+        height: 236px;
         .cat-item {
           .back-img {
             max-height: 100%;
@@ -1554,71 +1437,13 @@
             bottom: 8px;
             left: 15px;
             p {
-              font-size: 18px;
-              &.text {
-                font-size: 14px;
-              }
+              font-size: 26px;
             }
             .arrow-btn {
               width: 21px;
               height: 21px;
               line-height: 21px;
               font-size: 19px;
-              margin-top: 7px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .small-boxes {
-    .next-burn {
-      .burn-box {
-        height: 67px;
-        .inner-holder {
-          p {
-            font-size: 17px;
-            app-timer-long {
-              font-size: 17px;
-            }
-          }
-        }
-      }
-    }
-    .day-tip {
-      .tip-box {
-        height: 80px;
-        .inner-holder {
-          .img-holder {
-            width: 47px;
-            margin-right: 19px;
-            &::before {
-              width: 15px;
-              height: 15px;
-            }
-          }
-          .text-holder {
-            p {
-              font-size: 17px;
-              &.smaller {
-                font-size: 14px;
-              }
-            }
-            .currs-holder {
-              height: 18px;
-              max-height: 18px;
-              .curr-item {
-                margin-right: 13px;
-                &::before {
-                  right: -7px;
-                }
-                .arrow-img {
-                  margin-left: 3px;
-                }
-                &.borderless {
-                  margin-right: 3px;
-                }
-              }
             }
           }
         }
@@ -1647,13 +1472,17 @@
     height: 432px;
     .top-wrapper {
       padding: 20px 18px;
+      height: 360px;
+      .token-img{
+        max-width: 76%;
+      }
+      .buy-btn{
+        bottom: 35px;
+      }
     }
     .info-icon {
       top: 15px;
       right: 15px;
-    }
-    .box-heading {
-      margin: 0;
     }
     .svg-holder {
       height: 130px;
@@ -1686,7 +1515,7 @@
         font-size: 15px;
       }
       .leader-cont {
-        height: 75px;
+        height: 100px;
         .inner {
           .img-holder {
             width: 40px;
@@ -1711,67 +1540,10 @@
         }
       }
     }
-  }
-  .main-center-box {
-    .top-banner {
-      height: 287px;
-      .banner-item {
-        .banner-img {
-          &.crown {
-            width: 370px;
-          }
-          &.tasks {
-            width: 310px;
-          }
-          &.collection {
-            max-width: 501px;
-          }
-          &.nft {
-            max-width: 540px;
-          }
-        }
-      }
-    }
-    .categories-holder {
-      margin-top: 13px;
-      .cat-cont {
-        height: 104px;
-        .cat-item {
-          .text-holder {
-            max-width: 152px;
-            bottom: 7px;
-            left: 13px;
-            p {
-              margin: 0;
-              font-size: 16px;
-              &.text {
-                font-size: 13px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .small-boxes {
-    .next-burn {
-      margin-top: 10px;
-      .burn-box {
-        height: 62px;
-        .inner-holder {
-          p {
-            font-size: 15px;
-            app-timer-long {
-              font-size: 15px;
-            }
-          }
-        }
-      }
-    }
     .day-tip {
       margin-top: 17px;
       .tip-box {
-        height: 75px;
+        height: 100px;
         .inner-holder {
           .img-holder {
             width: 42px;
@@ -1805,6 +1577,46 @@
       }
     }
   }
+  .main-center-box {
+    .top-banner {
+      height: 360px;
+      .banner-item {
+        .banner-img {
+          &.crown {
+            width: 370px;
+          }
+          &.tasks {
+            width: 310px;
+          }
+          &.collection {
+            max-width: 501px;
+          }
+          &.nft {
+            max-width: 540px;
+          }
+        }
+      }
+    }
+    .categories-holder {
+      margin-top: 20px;
+      .cat-cont {
+        height: 188px;
+        .cat-item {
+          .text-holder {
+            max-width: 152px;
+            bottom: 11px;
+            left: 18px;
+            p {
+              font-size: 22px;
+            }
+          }
+          .back-img{
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1300px) {
@@ -1825,21 +1637,6 @@
           .text-holder {
             p {
               font-size: 15px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .small-boxes {
-    width: 26.5%;
-    .next-burn {
-      .burn-box {
-        .inner-holder {
-          p {
-            font-size: 14px;
-            app-timer-long {
-              font-size: 14px;
             }
           }
         }
@@ -1915,7 +1712,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .small-boxes {
+  .rewards-box {
     .day-tip {
       .tip-box {
         .inner-holder {
@@ -1938,6 +1735,9 @@
 }
 
 @media screen and (max-width: 640px) {
+  .main-wrapper{
+    padding: 0 20px;
+  }
   .info-bubble {
     .img-holder {
       img {
@@ -1955,6 +1755,8 @@
   .main-center-box {
     width: 100%;
     order: 1;
+    max-width: 500px;
+    margin: 0 auto;
     .top-banner {
       height: 285px;
       max-width: 500px;
@@ -1962,8 +1764,10 @@
       .dots-holder {
         transform: none;
         left: unset;
-        right: 35px;
-        bottom: 26px;
+        right: unset;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
       }
       .banner-item {
         .banner-img {
@@ -2029,16 +1833,6 @@
               }
             }
           }
-          .register {
-            font-size: 16px;
-            padding: 13px 0 13px;
-            border-radius: 15px;
-            margin-top: 12px;
-            min-width: 160px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-          }
         }
         .car-img {
           right: -10%;
@@ -2056,30 +1850,45 @@
             }
           }
         }
+        .register{
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
     }
     .categories-holder {
       width: 100%;
       max-width: 500px;
-      margin: 17px auto 0;
+      margin: 17px 0;
       .cat-cont {
         height: unset;
-        overflow: auto;
+        flex-wrap: wrap;
         .cat-item {
           height: 120px;
           width: 100%;
           margin-bottom: 15px;
           min-width: 260px;
-          margin-right: 20px;
           box-shadow: none;
           .back-img {
-            &.cars {
-              right: -13%;
-            }
+            position: absolute;
+            left: unset;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: 0.3s;
+            max-height: 110%;
+            right: 0;
           }
           .text-holder {
-            bottom: 13px;
-            left: 16px;
+            bottom: unset;
+            top: 50%;
+            left: 26px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            transform: translateY(-50%);
+            p{
+              width: 100%;
+              margin: 0 0 10px 0;
+            }
           }
         }
       }
@@ -2089,7 +1898,11 @@
     width: 100%;
     order: 2;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 17px auto;
+    height: unset;
+    .top-wrapper{
+      height: 390px;
+    }
     .info-icon {
       .info-bubble {
         bottom: -10px;
@@ -2100,18 +1913,6 @@
         padding: 10px 20px 10px 15px;
       }
     }
-  }
-  .center-bottom-box {
-    width: 100%;
-    order: 4;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  .small-boxes {
-    width: 100%;
-    order: 3;
-    max-width: 500px;
-    margin: 0 auto;
     .day-tip {
       .box-heading {
         padding-left: 18px;
@@ -2133,21 +1934,12 @@
         }
       }
     }
-    .next-burn {
-      .info-icon {
-        .info-bubble {
-          bottom: -10px;
-          top: unset;
-          right: 0;
-          transform: translateY(100%);
-          width: 300px;
-          padding: 10px 20px 10px 15px;
-        }
-      }
-      .box-heading {
-        padding-left: 18px;
-      }
-    }
+  }
+  .center-bottom-box {
+    width: 100%;
+    order: 4;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
