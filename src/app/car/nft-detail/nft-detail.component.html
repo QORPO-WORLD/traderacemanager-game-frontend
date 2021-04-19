@@ -1,4 +1,3 @@
-
 <ng-container *ngIf="assetType === 'racer'">
   <div class="detail-racers">
     <div class="detail-text">
@@ -122,7 +121,9 @@
       <div>
         <img
           [src]="
-            '/assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'
+            '/assets/base/images/nft-racers/' +
+            displayArray[0]['image'] +
+            '.png'
           "
           alt=""
         />
@@ -506,6 +507,74 @@
           <span class="txt-span">Buy</span>
         </div>
       </button>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="assetType === 'special'">
+  <div class="detail-racers special">
+    <div class="detail-text">
+      <div class="back"></div>
+      <div class="detail-name">
+        <h1 class="name-font">
+          {{ displayArray[0]["name"] }}
+        </h1>
+      </div>
+      <div class="detail-info">
+        <h1>About {{ displayArray[0]["name"] }}</h1>
+        <p *ngIf="displayArray[0]['name'] === 'Ring'">
+          Ring is a special prize that you can win every month in monthly
+          tournament. It is also a ticket to biggest yearly tournament where you
+          can win the trophy.
+        </p>
+        <p *ngIf="displayArray[0]['name'] === 'Trophy'">
+          Trophy is a special prize that you can win every year. If you want to
+          win this trophy, you need at least one ring from monthly tournaments.
+        </p>
+      </div>
+      <div class="detail-abilities">
+        <h1>Abilities</h1>
+        <div class="ability-boxes">
+          <div *ngIf="displayArray[0]['name'] === 'Ring'" class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img src="/assets/base/images/market/ticket.svg" alt="" />
+              </button>
+              <button class="blue-box-shop">
+                <img src="/assets/base/images/market/ticket.svg" alt="" />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>Ticket to yearly tournament</h1>
+              <p>ticket</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <div class="ability-image">
+              <button class="red-box-shop">
+                <img src="/assets/base/images/home-page/clock.svg" alt="" />
+              </button>
+              <button class="blue-box-shop">
+                <img src="/assets/base/images/home-page/clock.svg" alt="" />
+              </button>
+            </div>
+            <div class="ability-type">
+              <h1>{{ displayArray[0]["ability1"] }}</h1>
+              <p>time period</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-image">
+      <div class="img">
+        <img
+          class="special"
+          [src]="
+            '/assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
+          "
+          alt=""
+        />
+      </div>
     </div>
   </div>
 </ng-container>
