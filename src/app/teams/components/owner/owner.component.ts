@@ -71,6 +71,7 @@ export class OwnerComponent implements OnInit, OnDestroy {
         this.teamName = null;
         setTimeout(() => {
           this.identityService.updateDriverMe();
+          this.identityService.updateLeaderboardMe();
           this.identityService.updateBalance();
           this.notify.error('team created', 'Your team ' + data.name + ' has been created! Now you can invite members');
           //this.route.navigate(['/teams/my-team']);

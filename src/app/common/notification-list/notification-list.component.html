@@ -44,6 +44,19 @@
         </p>
       </div>
     </div>
+    <div class="notifiq-item" *ngIf="item.event === 'deposit'">
+      <div class="top-info">
+        <p class="heading">Deposit succesful</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+          <span class="opacity">You deposited</span>
+          <span class="important my-text-color"> {{item.data.amount}} {{item.data.currency}} </span>
+          <span class="opacity">into your wallet.</span>
+        </p>
+      </div>
+    </div>
     <div class="notifiq-item" *ngIf="item.event === 'balance_withdrawal'">
       <div class="top-info">
         <p class="heading">Withdrawal succesful</p>
@@ -57,6 +70,19 @@
         </p>
       </div>
     </div>
+    <div class="notifiq-item" *ngIf="item.event === 'withdrawal'">
+      <div class="top-info">
+        <p class="heading">Withdrawal from game wallet</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+          <span class="opacity">You withrawed</span>
+          <span class="important my-text-color"> {{item.data.amount}} {{item.data.currency}} </span>
+          <span class="opacity">into your ioi-wallet.</span>
+        </p>
+      </div>
+    </div>
     <div class="notifiq-item" *ngIf="item.event === 'game_daily_task'">
       <div class="top-info">
         <p class="heading">You finished</p>
@@ -66,6 +92,33 @@
         <p>
 
           <span class="important my-text-color"> Daily task</span>
+
+        </p>
+      </div>
+    </div>
+    <div class="notifiq-item" *ngIf="item.event === 'new_manager_request'">
+      <div class="top-info">
+        <p class="heading">You have new manager request</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+
+          <span class="important my-text-color" [routerLink]="['/teams/my-team']">Resolve</span>
+
+        </p>
+      </div>
+    </div>
+     
+     <div class="notifiq-item" *ngIf="item.event === 'manager_request_resolution'">
+      <div class="top-info">
+        <p class="heading">You have new manager resolution</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+
+          <span class="important my-text-color" [routerLink]="['/teams/my-team']">See</span>
 
         </p>
       </div>

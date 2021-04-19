@@ -161,14 +161,14 @@ class TeamsService extends __BaseService {
       __map(_r => _r.body as any)
     );
   }
-  getTipsResponse(url: number): __Observable<__StrictHttpResponse<any>> {
+  getTipsResponse(): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/team/` + url + '/manager-tips',
+      this.rootUrl + '/races/team/manager-tips',
       __body,
       {
         headers: __headers,
@@ -188,8 +188,8 @@ class TeamsService extends __BaseService {
    * @param data undefined
    * @return Returns the team id you're a member of.
    */
-  getTips(url: number): __Observable<any> {
-    return this.getTipsResponse(url).pipe(
+  getTips(): __Observable<any> {
+    return this.getTipsResponse().pipe(
       __map(_r => _r.body as any)
     );
   }

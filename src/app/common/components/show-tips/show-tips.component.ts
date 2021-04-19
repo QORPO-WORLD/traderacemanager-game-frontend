@@ -46,7 +46,7 @@ export class ShowTipsComponent implements OnInit, OnDestroy {
   }
 
   getTips() {
-    this.eventSubscription = this.api.getTips(this.teamId).subscribe(data => {
+    this.eventSubscription = this.api.getTips().subscribe(data => {
       this.tips = data;
     });
   }

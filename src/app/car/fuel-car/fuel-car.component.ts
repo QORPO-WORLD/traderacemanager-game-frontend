@@ -1606,7 +1606,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   getTips() {
-    this.eventSubscription = this.teamsServ.getTips(this.teamId).subscribe(data => {
+    this.eventSubscription = this.teamsServ.getTips().subscribe(data => {
       this.tips = data;
     });
   }
