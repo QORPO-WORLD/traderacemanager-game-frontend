@@ -401,12 +401,31 @@ export class NftMarketComponent implements OnInit {
       image: "team-you",
       type: "team",
     },
+    {
+      id: 47,
+      collection: "",
+      name: "Trophy",
+      prize: "",
+      image: "trophy",
+      type: "special",
+      ability1: "Yearly",
+    },
+    {
+      id: 48,
+      collection: "",
+      name: "Ring",
+      prize: "",
+      image: "ring",
+      type: "special",
+      ability1: "Monthly",
+    },
   ];
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
   racersActive = false;
   carsActive = false;
   tracksActive = false;
   teamsActive = false;
+  specialActive = false;
   allActive = true;
   sliceStart = 0;
   sliceMiddle;
@@ -438,6 +457,9 @@ export class NftMarketComponent implements OnInit {
       }
       if (this.assetType === "team") {
         this.filterTeams();
+      }
+      if (this.assetType === "special") {
+        this.filterSpecial();
       }
     });
   }
@@ -477,6 +499,7 @@ export class NftMarketComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
+    this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
   }
@@ -491,6 +514,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
+    this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
   }
@@ -504,6 +528,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
+    this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
   }
@@ -517,6 +542,23 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = true;
     this.allActive = false;
+    this.specialActive = false;
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+  }
+  filterSpecial() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter(
+      (item) => item["type"] === "special"
+    );
+    this.sliceStart = 0;
+    this.width();
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.racersActive = false;
+    this.teamsActive = false;
+    this.specialActive = true;
+    this.allActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
   }
@@ -529,6 +571,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = true;
+    this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
   }

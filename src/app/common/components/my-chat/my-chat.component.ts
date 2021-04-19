@@ -59,7 +59,7 @@ export class MyChatComponent implements OnInit {
     this.getDriver();
     this.getMyLevel();
     
-    this.tchatObserver = this.api.teamChatList(200).subscribe(
+    this.tchatObserver = this.api.teamChatList(100).subscribe(
       data => {
         this.chatList = data;
         this.chatLength = this.chatList.length;
@@ -70,13 +70,13 @@ export class MyChatComponent implements OnInit {
     this.getAllRaces();
 
     this.interval = setInterval(() => {
-      // this.getChat();
+       this.getChat();
       this.getteammembers();
     }, 5000);
   }
 
   getChat() {
-    this.tchatObserver = this.api.teamChatList(200).subscribe(
+    this.tchatObserver = this.api.teamChatList(100).subscribe(
       data => {
         this.chatList = data;
         this.recognizeChatSum();

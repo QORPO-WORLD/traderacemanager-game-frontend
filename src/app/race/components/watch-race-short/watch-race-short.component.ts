@@ -167,6 +167,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   active_area = 0.2;
   actualPageWinner = 1;
   totalPagesWinner: number;
+  showRotateMsg = true;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
     private tcksrvc: TickerPricesService, private crsrcvc: CarsService, private identityService: AuthService,
@@ -212,6 +213,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       });
     }, 300);
     setTimeout(() => { this.getRaceData(); }, 50);
+    setTimeout(() => { this.showRotateMsg = false }, 6000);
     this.detailInterval = setInterval(() => {
       this.getRaceDetail();
       this.recognizeSound();
@@ -912,7 +914,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
           if (this.cFuelOpen === false) {
-             this.play();
+            //  this.play();
           }
 
         }, 60000);

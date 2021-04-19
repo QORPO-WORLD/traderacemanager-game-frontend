@@ -1,863 +1,774 @@
-*{
-    color: white;
+* {
+  color: white;
 }
-:host{
-    width: 100%;
+:host {
+  width: 100%;
 }
 
-.main-holder{
-    width: calc(100% - 457px);
-    padding-left: 40px;
-    margin-right: auto;
-    h5{
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 36px;
-    }
-    h6{
-        font-size: 20px;
-        list-style: 30px;
-        font-weight: 600;
+.main-holder {
+  width: calc(100% - 457px);
+  padding-left: 40px;
+  margin-right: auto;
+  h5 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+  }
+  h6 {
+    font-size: 20px;
+    list-style: 30px;
+    font-weight: 600;
+    font-family: Poppins;
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+  }
+}
+
+.page-info {
+  margin: 30px 0;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.back {
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: center;
+  min-height: 132px;
+  background: #222222;
+  border-radius: 15px;
+  p {
+    line-height: 20px;
+    margin-bottom: 22px;
+  }
+}
+.back:hover {
+  transform: scale(1.1) translate3d(0, 0, 0);
+  -webkit-transform: scale(1.1) translate3d(0, 0, 0);
+  -moz-transform: scale(1.1) translate3d(0, 0, 0);
+  -ms-transform: scale(1.1) translate3d(0, 0, 0);
+  -o-transform: scale(1.1) translate3d(0, 0, 0);
+}
+.text-info {
+  max-width: 812px;
+  margin: 0 30px;
+}
+.info-modal {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 448px;
+  height: 162px;
+  background: #222222;
+  border-radius: 15px;
+  h6 {
+    margin: 10px;
+    text-align: center;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1px;
+    div {
+      text-align: center;
+      width: 188px;
+      height: 94px;
+      flex-direction: column;
+      .inner-members {
+        background: rgba(34, 34, 34, 0.6);
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+      }
+      p {
+        margin: 0;
         font-family: Poppins;
-    }
-    p{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+        color: rgba(255, 255, 255, 1);
+        sup {
+          margin: 3px;
+        }
+      }
+      p:last-child,
+      sup {
         font-size: 16px;
-        line-height: 24px;
+        color: rgba(255, 255, 255, 0.4);
+      }
     }
-    h1{
-        font-weight: 600;
-        font-size: 36px;
-        line-height: 54px;
+    div:last-child {
+      border-radius: 10px;
     }
+  }
 }
 
-.category-heading{
+.content {
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  width: 92.5%;
+  margin-left: 7.5%;
+
+  p {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #868686;
+  }
+  h2 {
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
-    color: #FFFFFF;
-    margin-left: 30px;
-    opacity: 1;
-    margin-bottom: 20px;
+  }
+
+  .categories {
+    .category-heading {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .categories-content {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .box {
+        background: transparent;
+        transition: 0.2s;
+        cursor: pointer;
+        margin: 0;
+        height: 305;
+        width: 23.5%;
+        overflow: hidden;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        .box-img {
+          height: 65%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .box-text {
+          height: 35%;
+          padding: 20px;
+          h2 {
+            display: inline;
+          }
+          p {
+            color: #d0d0d0;
+          }
+          .arrow {
+            display: inline;
+            margin-left: 20px;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            p {
+              color: grey;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .box:hover {
+        transform: scale(1.02) translate3d(0, 0, 0);
+        -webkit-transform: scale(1.02) translate3d(0, 0, 0);
+        -moz-transform: scale(1.02) translate3d(0, 0, 0);
+        -ms-transform: scale(1.02) translate3d(0, 0, 0);
+        -o-transform: scale(1.02) translate3d(0, 0, 0);
+        .box-text {
+          .arrow {
+            p {
+              color: #fe183f;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-    .page-info{
-        margin: 30px 0;
-        padding-bottom: 20px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+.coming-soon:hover {
+  transform: scale(1);
+  filter: grayscale(100%);
+}
 
-    }
-    .back{
-        cursor: pointer;
-        transition: .2s;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        height: 100%;
-        text-align: center;
-        min-height: 132px;
-        background: linear-gradient(0deg, #111111, #111111);
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px;
-        p{
-            line-height: 20px;
-            margin-bottom: 22px;
+.tutorial-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .tutorial-content {
+    margin-top: 40px;
+    margin-bottom: 70px;
+    width: 49%;
+    max-width: 720px;
+    .tutorial-box {
+      padding: 30px 20px 20px 30px;
+      margin-top: 15px;
+      position: relative;
+      height: 250px;
+      border-radius: 15px;
+
+      .text {
+        position: relative;
+        height: 65%;
+        z-index: 1;
+        p {
+          margin-top: 10px;
+          width: 75%;
         }
-    }
-    .back:hover{
-        transform: scale(1.1);
-    }
-    .text-info{
-        max-width: 812px;
-        margin: 0 20px;
-    }
-    .info-modal{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-width: 448px;
-        height: 162px;
-        background: linear-gradient(0deg, #111111, #111111);
-        box-shadow: 0px 0px 80px #000000;
-        border-radius: 20px;
-        h6{
-            margin: 10px;
-            text-align: center;
-        }
-        div{
-            display: flex;
-            flex-direction: row;
+      }
+      .button-section {
+        position: relative;
+        z-index: 1;
+        height: 25%;
+        .join-btn {
+          padding: 1px;
+          transition: 0.15s;
+          width: 160px;
+
+          outline: none;
+          height: 50px;
+
+          border-radius: 10px;
+          -webkit-transition: 0.15s;
+          -moz-transition: 0.15s;
+          -ms-transition: 0.15s;
+          -o-transition: 0.15s;
+          > div {
             justify-content: center;
-            div{
-                text-align: center;
-                width: 188px;
-                height: 94px;
-                flex-direction: column;
-                p{
-                    margin: 0;
-                    font-family: Poppins;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 20px;
-                    line-height: 30px;
-                    color: rgba(255,255,255, 1);
-                    sup{
-                        margin: 3px;
-                    }
-                }
-                p:last-child, sup{
-                    font-size: 16px;
-                    color: rgba(255,255,255, .4);
-                }
-            }
-            div:last-child{
-                border-radius: 10px;
-            }
-        }
-    }
-        
-    .categories{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        .category{
-            cursor: pointer;
-            transition: .2s;
             display: flex;
-            position: relative;
-            flex-direction: column;
-            justify-content: flex-end;
-            height: 300px;
-            width: 320px;
-            background: linear-gradient(0deg, #111111, #111111);
-            box-shadow: 0px 0px 80px #000000;
-            border-radius: 20px;
-            margin: 0 4px;
-            div.race-img{
-                border-radius: 20px;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                bottom: 0;
-                img{
-                    border-radius: 20px;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            div.race-description{
-                z-index: 2;
-                justify-self: flex-end;
-                padding: 30px;
-                padding-bottom: 25px;
-                display: inline;
-                p{
-                    color: rgba(255,255,255, 0.6);
-                    margin: 0;
-                }
-                h6{
-                    margin: 0px;
-                    margin-bottom: 5px;
-                }
-            }
+            align-items: center;
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            background: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+          }
+          a {
+            text-decoration: none;
+            color: white;
+          }
         }
-    }
-
-    .category:hover{
-        transform: scale(1.06);
-    }
-    .coming-soon:hover{
-        transform: scale(1.00);
-        filter: grayscale(100%);
-        
-    }
-    .hover-maker{
-        transition: .2s;
+        .join-btn:hover {
+          transform: scale(1.05);
+          -webkit-transform: scale(1.05);
+          -moz-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+          -o-transform: scale(1.05);
+        }
+      }
+      .background {
+        z-index: 0;
+        top: 0;
+        left: 0;
         position: absolute;
         width: 100%;
         height: 100%;
-        z-index: 5;
-        opacity: 0;
-        border-radius: 20px;
+      }
     }
-    .hover-maker:hover{
-        opacity: 1;
-    }
-
-    .tutorial-wrapper{
-        margin-top: 15px;
-        margin-bottom: 30px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        .button{
-            cursor: pointer;
-            min-width: 150px;
-            display: inline-block;
-            text-align: center;
-            max-width: 120px;
-            border-radius: 15px;
-            transition: .2s;
-            padding: 12px 20px;
-            opacity: 1;
-            p{
-                font-size: 16px;
-                line-height: 24px;
-                font-weight: normal;
-                margin-bottom: 0;
-            }
-            z-index: 1;
-        }
-        .button:hover{
-            transform: scale(1.02)
-        }
-        h6{
-            margin: 20px 0 20px 30px;
-        }
-        div.tutorial{
-            flex-basis: 62%;
-            div.wrapper{
-                position: relative;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
-                align-items: center;
-                height: 205px;
-                background: url("/assets/base/images/all-races/tutorial-bg.png");
-                background-position: right;
-                background-repeat: no-repeat;
-                box-shadow: 0px 0px 80px #000000;
-                border-radius: 20px;
-                div.tutorial-text{
-                    z-index: 1;
-                    max-width: 500px;
-                }
-                p{
-                    opacity: .6;
-                }
-            }
-        }
-        div.next-race-join{
-            flex-basis: 30%;
-            
-            div.wrapper{
-                position: relative;
-                overflow: hidden;
-                width: 100%;
-                height: 205px;
-                display: flex;
-                border-radius: 20px;
-                justify-content: center;
-                justify-content: space-between;
-                div.next-race-text {
-                    z-index: 2;
-                    border-radius: 20px;
-                    position: absolute;
-                    left: 1px;
-                    top: 1px;
-                    width: calc(100% - 1px);
-                    height: calc(100% - 1px);
-                    background: linear-gradient( to bottom right, rgba(17,17,17,.86) 50%, rgba(17,17,17,0.3) 100%);
-                    padding:0 0 30px 30px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    h6{
-                        margin: 0;
-                    }
-                    p{
-                        font-size: 14px;
-                        opacity: .6;
-                    }
-                }
-                .back-image{
-                    position: absolute;
-                    transform: translateY(-50%);
-                    top: 50%;
-                    right: 0;
-                  }
-                  .border-maker{
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 20px;
-                    position: relative;
-                    z-index: 1;
-                  }
-                  .button{           
-                      min-width: 116px;    
-                  }
-            }
-        }
-    }
-
-@media screen and ( max-width: 1850px )
-{
-    .main-holder{
-        div.categories{
-            div.category{
-                cursor: pointer;
-                height: 250px;
-                width: 300px;
-                div.race-description{
-                    h6{
-                        font-size: 17px;
-                    }
-                    p{
-                        font-size: 16px;
-                        line-height: 19px;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 
-@media screen and ( max-width: 1700px )
-{
-    .main-holder{
-        width: calc(100% - 410px);
-        h6{
-            font-size: 17px;
-            line-height: 25px;
-        }
-        h5{
-            font-size: 20px;
-            line-height: 25px;
-        }
-        p{
-            font-size: 16px;
-        }
-        h1{
-            font-size: 30px;
-        }
-        .page-info{
-            padding-bottom: 10px;
-        }
-        
-        div.categories{
-            div.category{
-                height: 230px;
-                width: 270px;
-                div.race-description{
-                    padding: 15px;
-                    h6{
-                        font-size: 17px;
-                    }
-                    p{
-                        font-size: 12px;
-                        line-height: 19px;
-                    }
-                }
-            }
-        }
-
-        div.tutorial-wrapper{
-            div.tutorial{
-                div.wrapper{
-                    height: 180px;
-                    div.tutorial-text{
-                        max-width: 350px;
-                    }
-                }
-            }
-            div.next-race-join{
-                width: 400px;
-                div.wrapper{
-                    height: 180px;
-                }
-            }
-        }
-    }
+@media screen and (max-width: 1850px) {
 }
 
-@media screen and ( max-width: 1550px )
-{
-    .main-holder{
-        width: calc(100% - 380px);
-        padding-left: 20px;
-        h6{
-            font-size: 16px;
-            line-height: 22px;
-        }
-        h5{
-            font-size: 18px;
-            line-height: 20px;
-        }
-        p{
-            font-size: 12px;
-        }
-        h1{
-            font-size: 25px;
-        }
+@media screen and (max-width: 1700px) {
+  .main-holder {
+    width: calc(100% - 410px);
+    h6 {
+      font-size: 17px;
+      line-height: 25px;
     }
+    h5 {
+      font-size: 20px;
+      line-height: 25px;
+    }
+    p {
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    .page-info {
+      padding-bottom: 10px;
+    }
+  }
+}
 
-    .page-info{
-        margin: 0;
-        padding-bottom: 20px;
+@media screen and (max-width: 1550px) {
+  .main-holder {
+    width: calc(100% - 380px);
+    padding-left: 20px;
+    h6 {
+      font-size: 16px;
+      line-height: 22px;
     }
-    .text-info{
-        max-width: 555px;
-        margin: 0 10px;
-        h1{
-          font-size: 26px;
-          margin: 5px 0 7px;
-        }
-        p{
-          font-size: 13px;
-        }
+    h5 {
+      font-size: 18px;
+      line-height: 20px;
     }
-    .back{
-        min-height: 120px;
+    p {
+      font-size: 14px;
     }
-    .bonus-info{
-        min-height: 120px;
-        width: 380px;
+    h1 {
+      font-size: 25px;
     }
-    .info-modal{
-        margin: 0px;
-        min-width: 348px;
-        height: 120px;
-        h6{
-            font-size: 16px;
-            line-height: 22px;
-        }
-        div{
-            div{
-                width: 160px;
-                height: 65px;
-                p{
-                    font-size: 14px;
-                    line-height: 15px;
-                }
-                p:last-child, sup{
-                    font-size: 14px;
-                    line-height: 17px;
-                }    
-            }
-        }
-    }
-        
-        
-        div.categories{
-            div.category{
-                height: 210px;
-                width: 220px;
-                div.race-description{
-                    h6{
-                        font-size: 15px;
-                    }
-                    p{
-                        font-size: 11px;
-                        line-height: 15px;
-                    }
-                }
-            }
-        }
+  }
 
-        div.tutorial-wrapper{
-            div.button{
-                padding: 5px 10px;
-                border-radius: 9px;
-                p{
-                    font-size: 12px;
-                }
-            }
-            div.tutorial{
-                div.wrapper{
-                    height: 150px;
-                    div.tutorial-text{
-                        max-width: 300px;
-                    }
-                }
-            }
-            div.next-race-join{
-                width: 300px;
-                div.wrapper{
-                    width: 300px;
-                    height: 150px;
-                }
-            }
-        }
+  .page-info {
+    margin: 0;
+    padding-bottom: 20px;
+  }
+  .text-info {
+    max-width: 555px;
+    margin: 0 10px;
+    h1 {
+      font-size: 26px;
+      margin: 5px 0 7px;
     }
-@media screen and ( max-width: 1200px )
-{
-    .main-holder{
-        width: calc(100% - 340px);
-        padding-left: 13px;
-        div.categories{
-            div.category{
-                height: 190px;
-                .race-description{
-                    padding: 7px 20px;
-                    h6{
-                        margin: 0 0 5px 0;
-                    }
-                    p{
-                        margin-bottom: 10px;
-                    }
-                }
-            }
-        }
+    p {
+      font-size: 13px;
     }
-    .page-info{
+  }
+  .back {
+    min-height: 120px;
+  }
+  .bonus-info {
+    min-height: 120px;
+    width: 380px;
+  }
+  .info-modal {
+    min-width: 348px;
+    height: 120px;
+    h6 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+    div {
+      div {
+        width: 160px;
+        height: 65px;
+        p {
+          font-size: 14px;
+          line-height: 15px;
+        }
+        p:last-child,
+        sup {
+          font-size: 14px;
+          line-height: 17px;
+        }
+      }
+    }
+  }
+  .content {
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      color: #868686;
+    }
+    h6 {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    .categories {
+      .categories-content {
+        .box {
+          .box-text {
+            padding: 10px 20px 10px 20px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1400px) {
+  .content {
+    .categories {
+      .categories-content {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .box {
+          width: 35%;
+          margin: 15px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1300px) {
+  .content {
+    p {
+      font-size: 13px;
+      line-height: 18px;
+      color: #868686;
+    }
+    h2 {
+      font-size: 17px;
+      line-height: 22px;
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 340px);
+    padding-left: 13px;
+  }
+  .page-info {
+    margin-top: 20px;
+  }
+  .text-info {
+    max-width: 555px;
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .main-holder {
+    width: 100%;
+    padding: 30px 13px 0px 10px;
+  }
+  .page-info {
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+  .content {
+    .categories {
+      .categories-content {
+        .box:hover {
+          transform: none;
+          -webkit-transform: none;
+          -moz-transform: none;
+          -ms-transform: none;
+          -o-transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .text-info {
+    order: 3;
+    margin: 15px auto;
+    text-align: center;
+  }
+  .content {
+    width: 95%;
+    margin-left: 2.5%;
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      color: #868686;
+    }
+    h6 {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    .categories {
+      .categories-content {
+        .box {
+          width: 70%;
+          .box-text {
+            padding: 10px 20px 10px 20px;
+          }
+        }
+      }
+    }
+    .tutorial-section {
+      flex-direction: column;
+      justify-content: unset;
+      .tutorial-content {
         margin-top: 20px;
-    }
-    .text-info{
-        max-width: 555px;
-        h1{
-          font-size: 20px;
-        }
-        p{
-          font-size: 12px;
-        }
-    }
-}
-
-@media screen and ( max-width: 1024px )
-{
-    .main-holder{
         width: 100%;
-        padding: 30px 13px 0px 10px;
+        .tutorial-box {
+          .text {
+            p {
+              width: 55%;
+            }
+          }
+          .button-section {
+            text-align: right;
+            margin-top: 20px;
+            height: 20%;
+            .join-btn {
+              width: 100px;
+              height: 40px;
+            }
+          }
+        }
+      }
     }
-    .page-info{
-        margin-top: 0;
-        padding-bottom: 10px;
-    }
+  }
 }
 
-@media screen and ( max-width: 800px )
-{ 
-    .text-info{
-        order: 3;
-        margin: 15px auto;
+@media screen and (max-width: 640px) {
+  .page-info {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+  .back {
+    box-sizing: border-box;
+    padding: 0 10px;
+    flex-basis: 23%;
+    order: 1;
+  }
+  .text-info {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    max-width: 100%;
+    order: 3;
+  }
+  .info-modal {
+    flex-basis: 70%;
+    order: 2;
+    div {
+      div {
+        width: 140px;
+        height: 60px;
+        p {
+          font-size: 14px;
+          line-height: 15px;
+        }
+        p:last-child,
+        sup {
+          font-size: 14px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+
+  .main-holder {
+    width: 100%;
+    padding: 30px 20px 0px 20px;
+
+    .race-type-info {
+      margin-left: 0;
+      padding: 0 30px;
+      .race-info {
+        flex-direction: column;
+        margin: auto;
+        .info-modal {
+          min-width: 0;
+          width: 100%;
+          div {
+            div {
+              width: 140px;
+              height: 60px;
+              p {
+                font-size: 14px;
+                line-height: 15px;
+              }
+              p:last-child,
+              sup {
+                font-size: 14px;
+                line-height: 15px;
+              }
+            }
+          }
+        }
+      }
+      h6 {
         text-align: center;
       }
+    }
+  }
 }
 
-
-@media screen and ( max-width: 640px )
-{   
-    .page-info{
-        box-sizing: border-box;
-        flex-wrap: wrap;
-        padding-bottom: 0;
+@media screen and (max-width: 480px) {
+  .text-info {
+    h1 {
+      font-size: 17px;
     }
-    .back{
-        box-sizing: border-box;
-        padding: 0 10px;
-        flex-basis: 23%;
-        order: 1;
+    p {
+      font-size: 11px;
     }
-    .text-info{
-        box-sizing: border-box;
-        flex-basis: 100%;
-        max-width: 100%;
-        order: 3;
-    }
-    .info-modal{
-        flex-basis: 70%;
-        order: 2;
-        div{
-            div{
-                width: 140px;
-                height: 60px;
-                p{
-                    font-size: 14px;
-                    line-height: 15px;
-                }
-                p:last-child, sup{
-                    font-size: 14px;
-                    line-height: 15px;
-                }    
-            }
+  }
+
+  .info-modal {
+    min-width: 0px;
+    flex-basis: 70%;
+    order: 2;
+    div {
+      div {
+        width: 100px;
+        height: 60px;
+        p {
+          font-size: 12px;
+          line-height: 12px;
         }
-    }
-
-    .main-holder{
-        width: 100%;
-        padding: 30px 20px 0px 20px;
-
-        .race-type-info{
-            margin-left: 0;
-            padding: 0 30px;
-            .race-info{
-                flex-direction: column;
-                margin: auto;
-                .info-modal{
-                    min-width: 0;
-                    width: 100%;
-                    div{
-                        div{
-                            width: 140px;
-                            height: 60px;
-                            p{
-                                font-size: 14px;
-                                line-height: 15px;
-                            }
-                            p:last-child, sup{
-                                font-size: 14px;
-                                line-height: 15px;
-                            }    
-                        }
-                    }
-                }
-            }
-            h6{
-                text-align: center;
-            }
-        }
-
-
-
-        .categories{
-            flex-wrap: wrap;
-            align-items: center;
-            .category{
-                margin: auto;
-                margin-bottom: 30px;
-                .race-description{
-                    padding: 7px 20px;
-                    h6{
-                        margin: 0 0 5px 0;
-                    }
-                    p{
-                        margin-bottom: 10px;
-                    }
-                }
-            }
-        }
-
-        div.tutorial-wrapper{
-            padding: 0 10px;
-            flex-direction: column;
-            margin: auto;
-            div.button{
-                padding: 5px 10px;
-                border-radius: 9px;
-                p{
-                    font-size: 12px;
-                }
-            }
-            div.tutorial{
-                width: 100%;
-                div.wrapper{
-                    padding: 0 0 30px 30px;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    max-height: auto;
-                    height: auto;
-                    div.tutorial-text{
-                        width: 90%;
-                    }
-                }
-            }
-            div.next-race-join{
-                width: 100%;
-                div.wrapper{
-                    width: 100%;
-                    height: 150px;
-                }
-            }
-        }
-    }
-}
-
-@media screen and ( max-width: 480px )
-{  
-
-    .text-info{
-        h1{
-          font-size: 17px;
-        }
-        p{
-          font-size: 11px;
+        p:last-child,
+        sup {
+          font-size: 12px;
+          line-height: 12px;
         }
       }
-
-    .info-modal{
-        min-width: 0px;
-        flex-basis: 70%;
-        order: 2;
-        div{
-            div{
-                width: 100px;
-                height: 60px;
-                p{
-                    font-size: 12px;
-                    line-height: 12px;
-                }
-                p:last-child, sup{
-                    font-size: 12px;
-                    line-height: 12px;
-                }    
-            }
-        }
     }
+  }
 }
 
-@media screen and ( max-width: 480px )
-{  
-    .page-info{
-        .back{
-            font-size: 9px;
-            padding: 0 6px;
-        }
+@media screen and (max-width: 480px) {
+  .page-info {
+    .back {
+      font-size: 9px;
+      padding: 0 6px;
     }
-}
-
-
-
-@media screen and (min-width: 2100px){
-    .categories{
-        .category{
-            width: 23%;
-            padding-top: 20%;
-        }
+  }
+  .content {
+    width: 95%;
+    margin-left: 2.5%;
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      color: #868686;
     }
-    .tutorial-wrapper{
-        margin-top: 50px;
-        .tutorial{
-            .wrapper{
-                height: 300px;
-                background-size: cover;
-            }
-        }
-        .next-race-join{
-            .wrapper{
-                height: 300px;
-                .next-race-text{
-                    padding: 0 0 0 30px;
-                    justify-content: center;
-                }
-            }
-        }
+    h6 {
+      font-size: 18px;
+      line-height: 25px;
     }
-    .main-holder{
-        h5{
-            font-weight: 600;
-            font-size: 28px;
-            line-height: unset
-        }
-        h6{
-            font-size: 24px;
-            font-weight: 600;
-            font-family: Poppins;
-        }
-        p{
-            font-size: 18px;
-            line-height: unset
-        }
-        h1{
-            font-weight: 600;
-            font-size: 40px;
-            line-height: unset
-        }
-    }
-}
-
-@media screen and (min-width: 2300px) and (min-height: 1350px){
-    .main-holder{
-        h5{
-            font-weight: 600;
-            font-size: 30px;
-            line-height: unset
-        }
-        h6{
-            font-size: 26px;
-            font-weight: 600;
-            font-family: Poppins;
-        }
-        p{
-            font-size: 20px;
-            line-height: unset
-        }
-        h1{
-            font-weight: 600;
-            font-size: 43px;
-            line-height: unset
-        }
-    }
-    .page-info{
-        .back{
-            padding: 0 30px;
-            min-height: 160px;
-            p{
-                line-height: 20px;
-                margin-bottom: 32px;
-            }
-        }
-        .back:hover{
-            transform: scale(1.1);
-        }
-        .text-info{
-            max-width: 1200px;
-            margin: 0 35px;
-        }
-        .top-info{
-            margin-left: 35px;
-        }
-        .bonus-info{
-            width: 500px;
-            min-height: 160px;
-            h4{
-              font-size: 24px;
-            }
-            img{
-              width: 65px;
-              height: 65px;
-            }
+    .categories {
+      .categories-content {
+        .box {
+          width: 90%;
+          .box-text {
+            padding: 10px 20px 0px 20px;
+          }
         }
       }
-    .categories{
-        .category{
-            width: 23%;
-            padding-top: 22%;
-        }
     }
-    .category-heading{
-        margin-top: 40px;
-        margin-bottom: 40px;
-    }
-    .tutorial-wrapper{
-        margin-top: 50px;
-        .tutorial{
-            h6{
-                margin-top: 40px;
-                margin-bottom: 40px;
-            }
-            .wrapper{
-                height: 300px;
-                background-size: cover;
-            }
-        }
-        .next-race-join{
-            h6{
-                margin-top: 40px;
-                margin-bottom: 40px;
-            }
-            .wrapper{
-                height: 300px;
-                .next-race-text{
-                    padding: 0 0 0 30px;
-                    justify-content: center;
-                }
-            }
-        }
-    }
-
+  }
 }
 
+@media screen and (min-width: 2100px) {
+  .main-holder {
+    h5 {
+      font-weight: 600;
+      font-size: 28px;
+      line-height: unset;
+    }
+    h6 {
+      font-size: 24px;
+      font-weight: 600;
+      font-family: Poppins;
+    }
+    p {
+      font-size: 18px;
+      line-height: unset;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 40px;
+      line-height: unset;
+    }
+  }
+}
 
+@media screen and (min-width: 2300px) and (min-height: 1350px) {
+  .main-holder {
+    h5 {
+      font-weight: 600;
+      font-size: 30px;
+      line-height: unset;
+    }
+    h6 {
+      font-size: 26px;
+      font-weight: 600;
+      font-family: Poppins;
+    }
+    p {
+      font-size: 20px;
+      line-height: unset;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 43px;
+      line-height: unset;
+    }
+  }
+  .page-info {
+    .back {
+      padding: 0 30px;
+      min-height: 160px;
+      p {
+        line-height: 20px;
+        margin-bottom: 32px;
+      }
+    }
+    .back:hover {
+      transform: scale(1.1);
+    }
+    .text-info {
+      max-width: 1200px;
+      margin: 0 35px;
+    }
+    .top-info {
+      margin-left: 35px;
+    }
+    .bonus-info {
+      width: 500px;
+      min-height: 160px;
+      h4 {
+        font-size: 24px;
+      }
+      img {
+        width: 65px;
+        height: 65px;
+      }
+    }
+  }
+}
 
 .tank-fast {
   background-image: url("/assets/base/images/sidenav/ff-menu.png");
@@ -872,13 +783,12 @@
 }
 
 .intro-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100000;
-    background-color: #111111;
-    overflow: auto;
-    width: 100%;
-    height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  background-color: #111111;
+  overflow: auto;
+  width: 100%;
+  height: 100vh;
 }
-

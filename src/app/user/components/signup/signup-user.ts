@@ -124,7 +124,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             this.resolvemeAffilate();
         }
 
-        this.getAuthService().logOutApi();
+        this.getAuthService().initSession();
 
     }
 
@@ -252,8 +252,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
     clearMetamask(error) {
         //this.getErrorService().apiError(error);
-
-        this.notify.error('', error.message);
+        console.log(error);
+        this.notify.error('', error.error.description);
         this.mmewa = null;
         this.metaSwitch = false;
         this.trying = false;

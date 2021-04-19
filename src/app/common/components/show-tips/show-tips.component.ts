@@ -14,6 +14,7 @@ export class ShowTipsComponent implements OnInit, OnDestroy {
   @Input() teamVersion = false;
   eventSubscription: Subscription;
   isPremium = false;
+  isManager = false;
   constructor(private api: TeamsService, private identityService: AuthService) { }
 
   ngOnInit() {
@@ -37,11 +38,15 @@ export class ShowTipsComponent implements OnInit, OnDestroy {
       this.isPremium = true;
     }
 
+    if (user.is_manager === true) {
+      this.isManager = true;
+    }
+
     this.getTips();
   }
 
   getTips() {
-    this.eventSubscription = this.api.getTips(this.teamId).subscribe(data => {
+    this.eventSubscription = this.api.getTips().subscribe(data => {
       this.tips = data;
     });
   }

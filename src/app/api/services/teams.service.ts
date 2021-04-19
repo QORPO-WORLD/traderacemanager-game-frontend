@@ -161,14 +161,14 @@ class TeamsService extends __BaseService {
       __map(_r => _r.body as any)
     );
   }
-  getTipsResponse(url: number): __Observable<__StrictHttpResponse<any>> {
+  getTipsResponse(): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/team/` + url + '/manager-tips',
+      this.rootUrl + '/races/team/manager-tips',
       __body,
       {
         headers: __headers,
@@ -188,8 +188,8 @@ class TeamsService extends __BaseService {
    * @param data undefined
    * @return Returns the team id you're a member of.
    */
-  getTips(url: number): __Observable<any> {
-    return this.getTipsResponse(url).pipe(
+  getTips(): __Observable<any> {
+    return this.getTipsResponse().pipe(
       __map(_r => _r.body as any)
     );
   }
@@ -286,6 +286,38 @@ class TeamsService extends __BaseService {
    */
   createTeam(data: any): __Observable<any> {
     return this.createTeamResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+  notifyTeamResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + '/races/notify-all',
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to join the team.
+   * @param data undefined
+   * @return Returns the team id you're a member of.
+   */
+   notifyTeam(data: any): __Observable<any> {
+    return this.notifyTeamResponse(data).pipe(
       __map(_r => _r.body as any)
     );
   }

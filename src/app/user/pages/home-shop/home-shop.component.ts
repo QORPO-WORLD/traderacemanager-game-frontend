@@ -404,16 +404,34 @@ export class HomeShopComponent implements OnInit {
       image: "team-you",
       type: "team",
     },
+    {
+      id: 47,
+      collection: "",
+      name: "Trophy",
+      prize: "",
+      image: "trophy",
+      type: "special",
+    },
+    {
+      id: 48,
+      collection: "",
+      name: "Ring",
+      prize: "",
+      image: "ring",
+      type: "special",
+    },
   ];
   typeObserver: Subscription;
   assetType: any;
   assetPage: number;
   assetStartPage: number;
   assetFilter: any;
+
   racersActive = false;
   carsActive = false;
   tracksActive = false;
   teamsActive = false;
+  specialActive = false;
   allActive = true;
   display = window.innerWidth;
   mobileFilter = false;
@@ -462,6 +480,9 @@ export class HomeShopComponent implements OnInit {
       }
       if (this.assetFilter === "team") {
         this.filterTeams();
+      }
+      if (this.assetFilter === "special") {
+        this.filterSpecial();
       }
       if (this.assetFilter === "all") {
         this.filterAll();
@@ -590,6 +611,27 @@ export class HomeShopComponent implements OnInit {
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
     this.filter = "team";
+  }
+  filterSpecial() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter(
+      (item) => item["type"] === "special"
+    );
+
+    this.width();
+    this.specialActive = true;
+    this.racersActive = false;
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.allActive = false;
+    this.teamsActive = false;
+    this.title = "Racers";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "racer";
   }
   filterAll() {
     this.newProducts = this.products;

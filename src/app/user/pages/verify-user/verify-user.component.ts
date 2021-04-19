@@ -22,7 +22,10 @@ export class VerifyUserComponent implements OnInit {
   constructor(private _http: HttpClient, private notify: NotifyService, private router: Router, private auth: AuthService,
     private api: Ninja) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.api.initSession().subscribe(data => { console.log('init'); }
+    );
+  }
 
 
   tryActivation() {

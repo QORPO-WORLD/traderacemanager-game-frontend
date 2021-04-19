@@ -337,6 +337,109 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="small-boxes" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
+    <div class="day-tip" (click)="recognizeOpenTips()">
+      <p class="box-heading">{{ "teams.my_team.tip_of_day" | translate }}</p>
+      <div
+        class="tip-box my-border-grad"
+        [ngClass]="{ clickable: meManager === true }"
+        style="cursor: pointer"
+      >
+        <div class="border-maker"></div>
+        <div class="inner-holder">
+          <div class="img-holder">
+            <img
+              src="/assets/base/images/start-race/flame-red.svg"
+              alt=""
+              class="flame-red"
+            />
+            <img
+              src="/assets/base/images/start-race/flame-blue.svg"
+              alt=""
+              class="flame-blue"
+            />
+          </div>
+          <div
+            class="text-holder"
+            *ngIf="tips.length > 0 && (isPremium === true || isManager === true)"
+          >
+            <p class="value">
+              {{ "start-race.best_racer_strategy" | translate }}
+            </p>
+            <div class="currs-holder">
+              <div class="curr-item" *ngFor="let item of tips">
+                <img
+                  [src]="
+                    '/assets/base/images/curr-logos/' +
+                    item.symbol +
+                    '-logo.png'
+                  "
+                  alt=""
+                />
+                <img
+                  class="arrow-img"
+                  src="/assets/base/images/start-race/long-box.svg"
+                  alt=""
+                  *ngIf="item.short === false"
+                />
+                <img
+                  class="arrow-img"
+                  src="/assets/base/images/start-race/short-box.svg"
+                  alt=""
+                  *ngIf="item.short === true"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="text-holder"
+            *ngIf="tips.length === 0 && (isPremium === true || isManager === true)"
+          >
+            <p class="value smaller">No tips at the moment</p>
+          </div>
+          <div class="text-holder" *ngIf="isPremium === false && isManager === false">
+            <p class="value smaller">Available only for premium members</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="next-burn">
+      <p class="box-heading">{{ "start-race.next_burning" | translate }}</p>
+      <div class="info-icon">
+        <img src="/assets/base/images/menu/info-icon.svg" alt="" />
+        <div class="info-bubble">
+          <div class="img-holder">
+            <img src="/assets/base/images/icons/inner-info-icon.png" alt="" />
+          </div>
+          <p>{{ "start-race.burning_desc" | translate }}</p>
+        </div>
+      </div>
+      <div class="burn-box my-border-grad">
+        <div class="inner-holder">
+          <p>
+            <span style="display: none"
+              >300 000 {{ "shared.ioi" | translate }}</span
+            >
+            {{ "shared.in" | translate }}
+            <span class="time my-text-color"
+              ><app-timer-long
+                class="my-text-color"
+                [value]="hwdays"
+                [type]="1"
+              ></app-timer-long
+            ></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="center-bottom-box"
+    [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
+  >
     <app-exp-bar></app-exp-bar>
   </div>
 

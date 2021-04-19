@@ -18,6 +18,7 @@
             align-items: center;
             width: 100%;
             margin-bottom: 46px;
+            position: relative;
             .logo-item{
                 background: #222222;
                 border-radius: 15px;
@@ -26,11 +27,43 @@
                 position: relative;
                 img{
                     position: absolute;
-                    bottom: 0;
+                    top: 50%;
                     max-width: 100%;
                     max-height: 90%;
                     left: 50%;
-                    transform: translateX(-50%);
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .arrow{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4%;
+                max-width: 50px;
+                height: 80px;
+                background: #111111;
+                cursor: pointer;
+                user-select: none;
+                &.inactive{
+                    cursor: default;
+                    p{
+                        color: #222222;
+                    }
+                }
+                &.left{
+                    border-radius: 0px 4px 4px 0px;
+                    left: 0;
+                }
+                &.right{
+                    border-radius: 4px 0px 0px 4px;
+                    right: 0;
+                }
+                p{
+                    font-size: 25px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                 }
             }
         }
@@ -84,7 +117,25 @@
                         left: 50%;
                         transform: translate(-50%, -50%);
                         max-width: 350px;
-                        width: 130%;
+                        width: 100%;
+                    }
+                    .team-name{
+                        position: absolute;
+                        top: 45%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        text-align: center;
+                        p{
+                            color: rgba($color: #ffffff, $alpha: .5);
+                            font-size: 24px;
+                            margin: 0;
+                            line-height: 1;
+                            font-weight: 900;
+                            text-transform: uppercase;
+                            &.name{
+                             font-size: 30px;   
+                            }
+                        }
                     }
                 }
                 .text-holder{
@@ -178,6 +229,14 @@
                     padding: 19px;
                     .img-holder{
                         height: 377px;
+                        .team-name{
+                            p{
+                                font-size: 21px;
+                                &.name{
+                                    font-size: 24px;
+                                }
+                            }
+                        }
                     }
                     .text-holder{
                         h2{
@@ -236,6 +295,14 @@
                     padding: 15px;
                     .img-holder{
                         height: 330px;
+                        .team-name{
+                            p{
+                                font-size: 18px;
+                                &.name{
+                                    font-size: 22px;
+                                }
+                            }
+                        }
                     }
                     .text-holder{
                         h2{
@@ -290,6 +357,14 @@
                     padding: 13px;
                     .img-holder{
                         height: 310px;
+                        .team-name{
+                            p{
+                                font-size: 17px;
+                                &.name{
+                                    font-size: 20px;
+                                }
+                            }
+                        }
                     }
                     .text-holder{
                         h2{
@@ -333,6 +408,11 @@
         }
         .config-holder{
             margin-bottom: 20px;
+            .logos-holder{
+                .arrow{
+                    height: 50px;
+                }
+            }
         }
         .summary-holder{
             .summary-box{
@@ -340,6 +420,35 @@
                     .img-holder{
                         img{
                             max-width: 300px;
+                        }
+                        .team-name{
+                            p{
+                                font-size: 21px;
+                                &.name{
+                                    font-size: 26px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px){
+    .owner-holder{
+        .summary-holder{
+            .summary-box{
+                .inner{
+                    .img-holder{
+                        .team-name{
+                            p{
+                                font-size: 19px;
+                                &.name{
+                                    font-size: 23px;
+                                }
+                            }
                         }
                     }
                 }
@@ -356,6 +465,14 @@
                     padding: 10px;
                     .img-holder{
                         height: 280px;
+                        .team-name{
+                            p{
+                                font-size: 17px;
+                                &.name{
+                                    font-size: 20px;
+                                }
+                            }
+                        }
                     }
                     .text-holder{
                         h2{

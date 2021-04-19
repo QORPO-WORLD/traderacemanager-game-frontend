@@ -209,10 +209,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
   executeImportantAction(): void {
+    this.token = null;
     this.recaptchaV3Service.execute('signIn')
       .subscribe((token) => {
-
-        this.token = token
+        this.token = token;
       });
   }
 
@@ -238,25 +238,14 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   handleError(error: any) {
-    this.notify.error('', error.message);
+    //this.notify.error('', error.message);
     this.trying = false;
     this.loading = false;
-    this.token = null;
     clearInterval(this.dangerInterval);
     error.code === 456 ? this.fireGAuth() : this.getErrorService().apiError(error);
   }
 
   dumbCall() {
-    this.getAuthService().logOutApi().subscribe(
-      data => {
-        console.log(data);
-      }
-    );
-    return;
-    this.dobserver = this.dapi.firstCall().subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+    this.getAuthService().initSession();
   }
 }

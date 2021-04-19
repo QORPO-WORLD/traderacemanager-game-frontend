@@ -201,6 +201,13 @@ export class AuthService extends AbstractService {
  
   }
 
+  initSession() {
+
+    this.api.initSession().subscribe(data => {
+      console.log('session initialized');
+    });
+  }
+
 
   setToken = function (token) {
     if (token) {

@@ -434,6 +434,26 @@ export class NftDetailComponent implements OnInit {
       type: "team",
     },
   ];
+  special: Array<object> = [
+    {
+      id: 47,
+      collection: "",
+      name: "Trophy",
+      prize: "",
+      image: "trophy",
+      type: "special",
+      ability1: "Yearly",
+    },
+    {
+      id: 48,
+      collection: "",
+      name: "Ring",
+      prize: "",
+      image: "ring",
+      type: "special",
+      ability1: "Monthly",
+    },
+  ];
 
   displayArray = [];
   @Input() assetType = "racer";
@@ -458,6 +478,9 @@ export class NftDetailComponent implements OnInit {
     }
     if (this.assetType === "team") {
       this.displayArray = this.teams;
+    }
+    if (this.assetType === "special") {
+      this.displayArray = this.special;
     }
     this.displayArray = this.displayArray.filter(
       (asset) => asset.id === this.assetId

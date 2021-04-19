@@ -474,6 +474,24 @@ export class HomeNftDetailComponent implements OnInit {
       image: "team-you-small",
       type: "team",
     },
+    {
+      id: 47,
+      collection: "",
+      name: "Trophy",
+      prize: "",
+      image: "trophy",
+      type: "special",
+      ability1: "Yearly",
+    },
+    {
+      id: 48,
+      collection: "",
+      name: "Ring",
+      prize: "",
+      image: "ring",
+      type: "special",
+      ability1: "Monthly",
+    },
   ];
 
   width() {
@@ -496,6 +514,9 @@ export class HomeNftDetailComponent implements OnInit {
   }
   filterTeams() {
     this.products = this.products.filter((item) => item["type"] === "team");
+  }
+  filterSpecial() {
+    this.products = this.products.filter((item) => item["type"] === "special");
   }
 
   getAssetType() {
@@ -535,6 +556,10 @@ export class HomeNftDetailComponent implements OnInit {
       }
       if (this.assetType === "team") {
         this.filterTeams();
+        this.displayArray = this.products;
+      }
+      if (this.assetType === "special") {
+        this.filterSpecial();
         this.displayArray = this.products;
       }
       this.displayArray = this.displayArray.filter(
