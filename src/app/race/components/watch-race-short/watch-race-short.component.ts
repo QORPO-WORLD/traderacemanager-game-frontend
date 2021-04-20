@@ -14,6 +14,7 @@ import { NgIf } from '@angular/common';
 import { CurrentRace, NextRaceV2, TournamentLeaderboard } from 'src/app/api/models';
 import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
 import { format } from 'url';
+declare let gtag: any;
 /*import * as html2canvas from "html2canvas"; */
 @Component({
   selector: 'app-watch-race-short',
@@ -232,6 +233,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     this.recognizeGame();
     //this.recognizeSound();
+
   }
 
 
@@ -530,7 +532,22 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
 
-
+        if (this.raceData.me) {
+          if ( this.raceDataildata.race_identifier === 'car_race_short_0') {
+            gtag('event', 'fast-race-rookie', {
+              'event_category': 'race',
+              'event_label': 'fast-race-rookie',
+              'value': 'fast-race-rookie'
+            });
+          }
+          if ( this.raceDataildata.race_identifier !== 'car_race_short_0') {
+            gtag('event',  this.raceDataildata.race_identifier, {
+              'event_category': 'race',
+              'event_label':  this.raceDataildata.race_identifier,
+              'value':  this.raceDataildata.race_identifier
+            });
+          }
+        }
       });
   }
 

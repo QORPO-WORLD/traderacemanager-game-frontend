@@ -14,7 +14,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { DriversService, AffiliatesService, LeaderboardService } from 'src/app/api/services';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
-
+declare let gtag: any;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   withCredentials: true
@@ -90,7 +90,11 @@ export class AuthService extends AbstractService {
           .subscribe(ldata => {
             this.setLeaderboardMe(ldata);
             this.router.navigate(['/race/start-race']);
-
+            gtag('event', 'prihlaseni', {
+              'event_category': 'prihlaseni',
+              'event_label': 'prihlaseni',
+              'value': 'prihlaseni dokonceno'
+            });
           });
       });
 
