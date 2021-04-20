@@ -34,17 +34,21 @@
           <div>
             <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
           </div>
-          <button class="my-cta" [routerLink]="['/user/sign-in']">
+          <button class="my-cta" [routerLink]="['/user/sign-in']" *ngIf="logged === false">
             Play now
           </button>
+          <button [routerLink]="['/race/start-race']" *ngIf="logged === true" class="my-cta">Back to game</button>
+    
         </div>
       </div>
       <div class="top-text">
         <h1>Collectible #NFT Trading game</h1>
         <p>Pick your racers and become the richest NFT trader in the world</p>
-        <button class="my-cta" [routerLink]="['/user/sign-up']">
+        <button class="my-cta" [routerLink]="['/user/sign-up']" *ngIf="logged === false">
           Register for free
         </button>
+        <button [routerLink]="['/race/start-race']" *ngIf="logged === true" class="my-cta">Back to game</button>
+    
       </div>
 
       <div class="google-play">
@@ -500,7 +504,8 @@
       </div>
     </div>
     <div class="start">
-      <button [routerLink]="['/user/sign-up']">Start competing</button>
+      <button [routerLink]="['/user/sign-up']" *ngIf="logged === false">Start competing</button>
+      <button [routerLink]="['/race/start-race']" *ngIf="logged === true">Back to game</button>
     </div>
   </div>
   <div class="review-position">
