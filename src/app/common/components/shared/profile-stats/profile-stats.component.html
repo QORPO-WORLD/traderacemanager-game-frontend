@@ -35,8 +35,24 @@
       </p>
     </div>
   </div>
+
+  <div class="stats-holder">
+    <div class="stat-item">
+      <p class="value">{{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}</p>
+      <p class="desc">in team <br> position</p>
+    </div>
+    <div class="stat-item">
+      <p class="value">{{ myLdrbrd?.player_position_overall ? myLdrbrd?.team_position : "-" }}</p>
+      <p class="desc">total <br> position</p>
+    </div>
+    <div class="stat-item">
+      <p class="value">{{ myCarsvals | number: "1.0-0":"fr" }} IOI</p>
+      <p class="desc">asset <br> value</p>
+    </div>
+  </div>
+
   <div class="my-profile">
-    <button [routerLink]="['/profile/my-profile']" class="my-cta-btn-back">
+    <button [routerLink]="['/profile/my-profile']" class="my-cta-btn-back hoverable">
       My Profile
     </button>
   </div>
@@ -54,7 +70,7 @@
       <img src="/assets/base/images/ticket-icon.png" alt="" />
       <p class="indicator">{{ tickets }}</p>
     </div>
-    <ng-container *ngIf="showVerified === false">
+    <ng-container>
       <p class="heading">{{ "profile.your_balance" | translate }}</p>
       <div class="items-holder">
         <div class="balance-item">
@@ -67,9 +83,18 @@
             {{ myDriverBalances?.game_wallet_ioi * 0.4 | number: "1.2-2":"fr" }}
           </p>
         </div>
+        
 
         <div class="buttons-holder">
-          <p
+
+          <button class="funds-btn my-cta-btn-back hoverable"
+            (click)="closeMenu()"
+            [routerLink]="['/other/wallet-control']"
+            [queryParams]="{ controlType: 'deposit' }">
+            Manage funds
+          </button>
+
+          <!-- <p
             class="my-btn"
             (click)="closeMenu()"
             [routerLink]="['/other/wallet-control']"
@@ -122,40 +147,10 @@
               alt=""
             />
             Transfer
-          </p>
+          </p> -->
         </div>
       </div>
     </ng-container>
-
-    <div class="non-verified-box my-cta-btn-back" *ngIf="showVerified === true">
-      <img
-        src="/assets/base/images/icons/close-white.svg"
-        alt="Close icon"
-        class="verify-close"
-        (click)="showVerified = false"
-      />
-      <img
-        class="info-img"
-        src="/assets/base/images/icons/inner-info-icon.png"
-        alt="Information icon"
-      />
-      <p class="heading">Your account isn’t verified</p>
-      <p class="text">
-        Please, verify your account by clicking a link in the e-mail we sent
-        you.
-      </p>
-
-      <p
-        class="link"
-        (click)="resendActivation()"
-        *ngIf="activationSent === false"
-      >
-        Resend verification code &gt;
-      </p>
-      <p class="link" *ngIf="activationSent === true">
-        Verification code sent &#x2713;
-      </p>
-    </div>
   </div>
 
   <div class="aff-holder">
@@ -239,13 +234,6 @@
     </div>
   </div> -->
   </div>
-
-  <!-- <div class="edit-car-modal" *ngIf="showEditModal === true">
-  <div class="modal-back" (click)="showEditModal = false">&nbsp;</div>
-  <div class="modal-holder">
-    <h1>editovanie fav áut</h1>
-  </div>
-</div> -->
 
   <div class="edit-car-modal small" *ngIf="showMyStats === true">
     <div class="modal-back" (click)="showMyStats = false">&nbsp;</div>

@@ -1,7 +1,7 @@
 /* tslint:disable */
 export interface Car {
   pk?: number;
-  car_id?: string;
+  car_id?: number;
   car_wins_count?: number;
   car_wins_roi_avg?: number;
   car_wins_total_points?: number;
