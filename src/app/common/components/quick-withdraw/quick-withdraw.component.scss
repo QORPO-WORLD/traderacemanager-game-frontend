@@ -11,11 +11,11 @@
     margin: 0;
   }
   .left-holder{
-    width: 54.8%;
+    width: 49%;
     .curr-holder{
       width: 100%;
       .common-heading{
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
       .desc-text{
         font-size: 16px;
@@ -26,38 +26,47 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 212px;
+        height: 80px;
+        width: 100%;
         .box-item{
-          box-shadow: 0px 0px 80px #000000;
-          border-radius: 15px;
-          padding: 1px 0 0 1px;
+          border-radius: 10px;
           width: 31%;
           height: 100%;
           cursor: pointer;
-          &.active{
-            &.ioi{
-              background: linear-gradient(to bottom right, #23FFFF 0%, rgba(254, 24, 63, 0) 75%);
-            }
-            &.trx{
-              background: linear-gradient(to bottom right, #fe183f 0%, rgba(254, 24, 63, 0) 75%);
-            }
+          opacity: 1;
+          padding: 0 10px;
+          &.inactive{
+            background: #222222;
           }
           .inner{
-            background: rgba(17,17,17,.8);
             border-radius: 15px;
             padding: 3px;
             width: 100%;
             height: 100%;
             position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             .curr-logo{
-              &.matic{
-                padding: 10px 0 0 15px;
-              }
+              width: 35px;
+              margin-right: 5px;
             }
             .text-holder{
-              position: absolute;
-              bottom: 30px;
-              left: 17px;
+              max-width: 145px;
+              width: 100%;
+              text-align: center;
+              .curr-type{
+                font-weight: 600;
+                font-size: 20px;
+                margin: 0;
+                .arrow-btn{
+                  font-size: 16px;
+                  border-radius: 5px;
+                  margin-left: 7px;
+                  width: 25px;
+                  height: 25px;
+                }
+              }
               .value{
                 font-weight: 600;
                 font-size: 19px;
@@ -66,7 +75,6 @@
               .dollars{
                 font-weight: 500;
                 font-size: 16px;
-                opacity: 0.8;
                 margin: 0;
               }
             }
@@ -76,56 +84,95 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: 64%;
+          width: 31%;
           height: 100%;
           position: relative;
           .box-item{
-            width: 47.5%;
-            opacity: .1;
-            cursor: default;
-          }
-          .mid-text{
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
             width: 100%;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 400;
+            cursor: default;
+            background: #868686;
+            border-radius: 10px;
+            position: relative;
+            .soon-text{
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              font-size: 16px;
+              margin: 0;
+              width: 100%;
+              text-align: center;
+              line-height: 1.3;
+              span{
+                display: block;
+              }
+            }
           }
         }
       }
     }
     .amount-holder{
       width: 100%;
-      height: 316px;
-      padding: 25px 20px;
-      box-shadow: 0px 0px 80px #000000;
+      padding: 40px 30px;
+      background: #222222;
       border-radius: 15px;
       margin: 30px 0 10px;
       .common-heading{
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         margin-left: 15px;
+      }
+      .selected-curr{
+        background: #111111;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 316px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 40px;
+        margin-bottom: 27px;
+        .desc{
+          height: 100%;
+          width: 70%;
+          padding: 0 10px 0 25px;
+          border-right: 1px solid #222;
+          p{
+            line-height: 40px;
+            margin: 0;
+            color: #868686;
+            font-size: 16px;
+          }
+        }
+        .value{
+          height: 100%;
+          width: 30%;
+          text-align: center;
+          p{
+            line-height: 40px;
+            margin: 0;
+            font-size: 16px;
+          }
+        }
       }
       .amount-input{
         width: 100%;
         border-radius: 15px;
-        padding: 1px;
         position: relative;
         margin-bottom: 40px;
         .inner{
-          background: #181818;
-          border-radius: 15px;
+          background: white;
+          border-radius: 10px;
           width: 100%;
           position: relative;
           input{
             padding: 13px 64px 13px 30px;
-            border-radius: 15px;
+            border-radius: 10px;
             background: transparent;
             width: 100%;
             border: none;
             outline: none;
+            color: #333;
+            font-weight: 600;
           }
           input::-webkit-outer-spin-button,
           input::-webkit-inner-spin-button {
@@ -149,9 +196,9 @@
         }
         .input-note{
           position: absolute;
-          bottom: -10px;
+          top: -10px;
           right: 0;
-          transform: translateY(100%);
+          transform: translateY(-100%);
           font-size: 16px;
           font-weight: 300;
           opacity: .4;
@@ -161,111 +208,117 @@
       .crypto-input{
         width: 100%;
         input{
-          background: #181818;
-          border-radius: 15px;
+          background: white;
+          border-radius: 10px;
           padding: 13px 30px;
           width: 100%;
           border: none;
           outline: none;
+          color: #333;
+          font-weight: 600;
         }
       }
     }
   }
   .right-holder{
-    width: 41%;
+    width: 49%;
     .common-heading{
       margin-bottom: 20px;
     }
     .main-panel{
       width: 100%;
-      background: #111111;
-      box-shadow: 0px 0px 80px #000000;
       border-radius: 15px;
-      height: 602px;
+      height: 467px;
       margin-bottom: 10px;
-      padding: 40px 40px 10px 40px;
       text-align: center;
-      .withdraw-info{
-        text-align: center;
-        .text{
-          font-size: 18px;
-          font-weight: 300;
-          margin: 40px 0;
-        }
-        .value{
-          font-weight: 600;
-          font-size: 40px;
-          margin: 0;
-          display: inline-block;
-          position: relative;
-          .value-desc{
-            position: absolute;
-            top: 0;
-            right: 0;
-            transform: translate(102%, -25%);
+      padding: 1px;
+      .inner{
+        background: rgba(34,34,34,.5);
+        padding: 40px 40px 10px 40px;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        .withdraw-info{
+          text-align: center;
+          .text{
             font-size: 18px;
             font-weight: 300;
+            margin: 0 0 20px 0;
           }
-        }
-        .desc{
-          font-size: 18px;
-          margin: 0;
-          opacity: .4;
-        }
-      }
-      .summary-box{
-        padding-top: 55px;
-        position: relative;
-        margin-top: 55px;
-        .border-maker{
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 40%;
-          height: 1px;
-          border-radius: 2px;
-          top: 0;
-        }
-        .info-item{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-          &.crypto-adress{
-            flex-wrap: wrap;
-            justify-content: center;
-            input{
-              width: 100%;
-              text-align: center;
-            }
-          }
-          &.second{
-            margin-top: 30px;
-          }
-          p{
-            font-size: 16px;
+          .value{
+            font-weight: 600;
+            font-size: 40px;
             margin: 0;
-            font-weight: 500;
-            &.desc{
-              font-weight: 400;
-              opacity: .4;
+            display: inline-block;
+            position: relative;
+            .value-desc{
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: translate(102%, -25%);
+              font-size: 18px;
+              font-weight: 300;
             }
           }
-          input{
-            background: transparent;
-            padding: 5px 10px;
-            border: none;
+          .desc{
+            font-size: 18px;
+            margin: 0;
+            opacity: .4;
           }
         }
-      }
-      .confirm-btn{
-        font-size: 16px;
-        font-weight: 400;
-        padding: 11px 40px;
-        border-radius: 10px;
-        margin-top: 65px;
-        &.inactive{
-          opacity: .7;
+        .summary-box{
+          position: relative;
+          margin-top: 55px;
+          .info-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: #111111;
+            height: 40px;
+            border-radius: 10px;
+            &.second{
+              margin-top: 1px;
+            }
+            input{
+              background: transparent;
+              padding: 5px 10px;
+              border: none;
+            }
+            .desc{
+              width: 50%;
+              height: 100%;
+              border-right: 2px solid #222;
+              p{
+                margin: 0;
+                color: #868686;
+                font-size: 18px;
+                text-align: center;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+            .text{
+              width: 50%;
+              padding: 0 10px 0 30px;
+              p{
+                font-size: 16px;
+                text-align: left;
+                margin: 0;
+              }
+            }
+          }
+        }
+        .confirm-btn{
+          font-size: 16px;
+          font-weight: 400;
+          padding: 11px 40px;
+          border-radius: 10px;
+          margin-top: 65px;
+          &.inactive{
+            opacity: .7;
+          }
         }
       }
     }
@@ -357,20 +410,17 @@
     .left-holder{
       .curr-holder{
         .common-heading{
-          margin-bottom: 6px;
+          margin-bottom: 15px;
         }
         .desc-text{
           font-size: 15px;
           margin: 0 0 15px 0;
         }
         .boxes-holder{
-          height: 202px;
+          height: 75px;
           .box-item{
             width: 32%;
             .inner{
-              .curr-logo{
-                width: 56px;
-              }
               .text-holder{
                 left: 14px;
                 .value{
@@ -380,13 +430,22 @@
                 .dollars{
                   font-size: 14px;
                 }
+                .curr-type{
+                  font-size: 17px;
+                  .arrow-btn{
+                    width: 22px;
+                    height: 22px;
+                  }
+                }
               }
             }
           }
           .soon-curs{
-            width: 65%;
-            .mid-text{
-              font-size: 14px;
+            width: 32%;
+            .box-item{
+              .soon-text{
+                font-size: 15px;
+              }
             }
           }
         }
@@ -397,15 +456,16 @@
         margin-bottom: 15px;
       }
       .main-panel{
-        height: 576px;
-        padding: 25px 30px 10px 30px;
-        .summary-box{
-          .info-item{
-            p{
-              font-size: 15px;
-            }
-            input{
-              font-size: 15px;
+        height: 457px;
+        .inner{
+          padding: 25px 30px 10px 30px;
+          .summary-box{
+            .info-item{
+              .desc{
+                p{
+                  font-size: 16px;
+                }
+              }
             }
           }
         }
@@ -422,18 +482,18 @@
     .left-holder{
       .curr-holder{
         .common-heading{
-          margin-bottom: 2px;
+          margin-bottom: 12px;
         }
         .desc-text{
           font-size: 14px;
           margin: 0 0 12px 0;
         }
         .boxes-holder{
-          height: 185px;
+          height: 70px;
           .box-item{
             .inner{
               .curr-logo{
-                width: 50px;
+                width: 30px;
                 &.matic{
                   padding: 7px 0 0 12px;
                 }
@@ -460,10 +520,25 @@
       .amount-holder{
         padding: 20px 15px;
         margin: 20px 0 10px;
-        height: 251px;
         .common-heading{
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           margin-left: 11px;
+        }
+        .selected-curr{
+          max-width: 276px;
+          height: 36px;
+          .desc{
+            p{
+              font-size: 15px;
+              line-height: 36px;
+            }
+          }
+          .value{
+            p{
+              line-height: 36px;
+              font-size: 15px;
+            }
+          }
         }
         .amount-input{
           margin-bottom: 27px;
@@ -479,7 +554,6 @@
           }
           .input-note{
             font-size: 14px;
-            bottom: -4px;
           }
         }
         .crypto-input{
@@ -494,54 +568,40 @@
         margin-bottom: 12px;
       }
       .main-panel{
-        height: 480px;
-        padding: 20px 22px 7px 22px;
-        .withdraw-info{
-          .text{
-            font-size: 16px;
-            margin: 22px 0;
-          }
-          .value{
-            font-size: 30px;
-            .value-desc{
-              font-size: 15px;
+        height: 377px;
+        .inner{
+          padding: 20px 22px 7px 22px;
+          .withdraw-info{
+            .text{
+              font-size: 16px;
+              margin: 22px 0;
             }
-          }
-          .desc{
-            font-size: 16px;
-          }
-        }
-        .summary-box{
-          padding-top: 40px;
-          margin-top: 40px;
-          .info-item{
-            text-align: left;
-            p{
-              font-size: 14px;
-              &.desc{
-                font-size: 13px;
+            .value{
+              font-size: 30px;
+              .value-desc{
+                font-size: 15px;
               }
             }
-            input{
-              font-size: 14px;
+            .desc{
+              font-size: 16px;
             }
-            &.second{
-              margin-top: 22px;
+          }
+          .summary-box{
+            margin-top: 40px;
+            .info-item{
+              text-align: left;
+              .desc{
+                p{
+                  font-size: 13px;
+                }
+              }
             }
+          }
+          .confirm-btn{
+            margin-top: 30px;
           }
         }
       }
-    }
-  }
-}
-
-@media screen and (max-width: 1300px){
-  .content-holder{
-    .left-holder{
-      width: 56%;
-    }
-    .right-holder{
-      width: 42%;
     }
   }
 }
@@ -552,23 +612,25 @@
       font-size: 16px;
     }
     .left-holder{
-      width: 54%;
       .curr-holder{
         .common-heading{
-          margin-bottom: 0;
+          margin-bottom: 10px;
         }
         .desc-text{
           font-size: 13px;
           margin: 0 0 10px 0;
         }
         .boxes-holder{
-          height: 185px;
+          .box-item{
+            width: 48%;
+          }
+          .soon-curs{
+            display: none;
+          }
         }
       }
       .amount-holder{
-        padding: 16px 13px;
-        margin: 15px 0 7px;
-        height: 228px;
+        padding: 27px 15px;
         .common-heading{
           margin-bottom: 12px;
           margin-left: 9px;
@@ -600,44 +662,24 @@
       }
     }
     .right-holder{
-      width: 44%;
       .common-heading{
         margin-bottom: 10px;
       }
       .main-panel{
-        height: 448px;
-        padding: 16px 18px 5px 18px;
-        .summary-box{
-          .info-item{
-            p{
-              font-size: 13px;
-              &.desc{
-                font-size: 12px;
+        .inner{
+          padding: 16px 18px 5px 18px;
+          .summary-box{
+            .info-item{
+              p{
+                font-size: 13px;
+                &.desc{
+                  font-size: 12px;
+                }
+              }
+              input{
+                font-size: 13px;
               }
             }
-            input{
-              font-size: 13px;
-            }
-            &.second{
-              margin-top: 20px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px){
-  .content-holder{
-    .left-holder{
-      .curr-holder{
-        .boxes-holder{
-          .box-item{
-            width: 100%;
-          }
-          .soon-curs{
-            display: none;
           }
         }
       }
@@ -653,10 +695,23 @@
       width: 90%;
       margin: 0 auto;
     }
+    .left-holder{
+      .curr-holder{
+        .boxes-holder{
+          .box-item{
+            .inner{
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
     .right-holder{
       .main-panel{
         height: unset;
-        padding: 16px 18px;
+        .inner{
+          padding: 16px 18px;
+        }
       }
     }
   }
@@ -668,6 +723,14 @@
     .left-holder,
     .right-holder{
       width: 100%;
+    }
+    .left-holder{
+      .amount-holder{
+        .selected-curr{
+          max-width: 100%;
+          width: 100%;
+        }
+      }
     }
     .right-holder{
       .main-panel{
@@ -708,6 +771,24 @@
           margin-top: 30px;
           font-size: 14px;
           padding: 9px 30px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px){
+  .content-holder{
+    .left-holder{
+      .curr-holder{
+        .boxes-holder{
+          height: unset;
+          flex-wrap: wrap;
+          .box-item{
+            height: 70px;
+            margin-bottom: 10px;
+            width: 100%;
+          }
         }
       }
     }
