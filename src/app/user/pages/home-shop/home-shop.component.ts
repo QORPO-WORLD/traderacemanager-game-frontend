@@ -544,6 +544,7 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products.filter((item) => item["type"] === "racer");
 
     this.width();
+    this.specialActive = false;
     this.racersActive = true;
     this.tracksActive = false;
     this.carsActive = false;
@@ -563,6 +564,7 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products.filter((item) => item["type"] === "car");
 
     this.width();
+    this.specialActive = false;
     this.carsActive = true;
     this.tracksActive = false;
     this.racersActive = false;
@@ -581,6 +583,7 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products.filter((item) => item["type"] === "track");
 
     this.width();
+    this.specialActive = false;
     this.tracksActive = true;
     this.carsActive = false;
     this.racersActive = false;
@@ -599,6 +602,7 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products.filter((item) => item["type"] === "team");
 
     this.width();
+    this.specialActive = false;
     this.tracksActive = false;
     this.carsActive = false;
     this.racersActive = false;
@@ -637,6 +641,7 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products;
 
     this.width();
+    this.specialActive = false;
     this.tracksActive = false;
     this.carsActive = false;
     this.racersActive = false;

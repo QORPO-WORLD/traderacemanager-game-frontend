@@ -1,5 +1,4 @@
-<div class="main-holder">
-  <div class="page-info">
+<!-- <div class="page-info">
     <div class="back" [routerLink]="['/race/start-race']">
       <p>&lt;</p>
       <p>{{ "shared.back" | translate }}</p>
@@ -89,656 +88,595 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
-  <div class="content">
-    <div class="level">
-      <div class="level-left">
-        <div class="avatar">
+<div class="content-affiliate">
+  <div class="level">
+    <div class="level-left">
+      <div class="avatar">
+        <img
+          src="assets/base/images/nft-racers/white-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 1"
+        />
+        <img
+          src="assets/base/images/nft-racers/red-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 2"
+        />
+        <img
+          src="assets/base/images/nft-racers/blue-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 3"
+        />
+        <img
+          src="assets/base/images/nft-racers/black-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 4"
+        />
+      </div>
+      <div class="text">
+        <div class="referal"><p>Referal link</p></div>
+
+        <div class="link">
+          <p>{{ myAfiilate ? myAfiilate : dumbreferral }}</p>
           <img
-            src="assets/base/images/nft-racers/white-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 1"
+            class="red-copy"
+            (click)="copyInputMessage()"
+            src="/assets/base/images/icons/copy.png"
+            alt="Red copy image"
           />
           <img
-            src="assets/base/images/nft-racers/red-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 2"
-          />
-          <img
-            src="assets/base/images/nft-racers/blue-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 3"
-          />
-          <img
-            src="assets/base/images/nft-racers/black-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 4"
+            class="blue-copy"
+            (click)="copyInputMessage()"
+            src="/assets/base/images/tokens/blue-copy.png"
+            alt="Blue copy image"
           />
         </div>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="row-title">
+        <div></div>
+        <div><h2>Level</h2></div>
+        <div>
+          <h2>Invite</h2>
+        </div>
+        <div><h2>NFT</h2></div>
+        <div><h2>APY</h2></div>
+      </div>
+      <div class="row row1">
+        <div>
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          />
+          <img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          />
+        </div>
+        <div><p>Lvl. 1</p></div>
+        <div><p>0.5 %</p></div>
+        <div><p>3 %</p></div>
+        <div><p>0 %</p></div>
+      </div>
+      <div class="row">
+        <div>
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          />
+        </div>
+        <div><p>Lvl. 2</p></div>
+        <div><p>1 %</p></div>
+        <div><p>10 %</p></div>
+        <div><p>0 %</p></div>
+      </div>
+      <div class="row">
+        <div>
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          />
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          />
+        </div>
+        <div><p>Lvl. 3</p></div>
+        <div><p>1.5 %</p></div>
+        <div><p>15 %</p></div>
+        <div><p>0 %</p></div>
+      </div>
+      <div class="row">
+        <div>
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          />
+          <img
+            class="red-star"
+            src="/assets/base/images/affiliate/red-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          /><img
+            class="blue-star"
+            src="/assets/base/images/affiliate/blue-star.svg"
+            alt="star"
+          />
+        </div>
+        <div><p>Lvl. 4</p></div>
+        <div><p>2 %</p></div>
+        <div><p>20 %</p></div>
+        <div><p>18 %</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="affiliate-ranks">
+    <h2>Affiliate ranks</h2>
+    <div class="row">
+      <div class="row-left">
+        <img
+          src="assets/base/images/affiliate/common.png"
+          alt="white common avatar"
+        />
+      </div>
+      <div class="row-right">
+        <div class="title">
+          <h2>Common</h2>
+          <div class="title-star red-star">
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+          </div>
+          <div class="title-star blue-star">
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+          </div>
+        </div>
+        <div class="text">
+          <p>
+            Unique feature of THIS NON NFT avatar is an affiliate bet turnover
+            (ABT) earning you 0.5% of each affiliate member your link bring. You
+            will also gain 3% of price from each NFT any of your affiliate
+            member buy. What means your investment can be recuperated in a very
+            short time.
+          </p>
+        </div>
+        <div class="abilities my-border-grad">
+          <div class="inner-abilities">
+            <div class="ability1">
+              <div class="ability-content">
+                <h2>Invite</h2>
+                <p>0.5 %</p>
+              </div>
+            </div>
+            <div class="ability2">
+              <div class="ability-content">
+                <h2>NFT</h2>
+                <p>3 %</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <img
+          class="super-img"
+          src="assets/base/images/affiliate/super.png"
+          alt="white common avatar"
+        />
+      </div>
+      <div class="row-right">
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn red-star"
+          src="assets/base/images/affiliate/buy-red.svg"
+          alt="Red buy button"
+        />
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn blue-star"
+          src="assets/base/images/affiliate/buy-blue.svg"
+          alt="Blue buy button"
+        />
+        <div class="title">
+          <h2>Super</h2>
+          <div class="title-star red-star">
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+          </div>
+          <div class="title-star blue-star">
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+          </div>
+        </div>
+        <div class="text">
+          <p>
+            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
+            earning you 1% of each affiliate member your link bring. You will
+            also gain 10% of price from each NFT any of your affiliate member
+            buy. What means your investment can be recuperated in a very short
+            time.
+          </p>
+        </div>
+        <div class="abilities my-border-grad">
+          <div class="inner-abilities">
+            <div class="ability1">
+              <div class="ability-content">
+                <h2>Invite</h2>
+                <p>1 %</p>
+              </div>
+            </div>
+            <div class="ability2">
+              <div class="ability-content">
+                <h2>NFT</h2>
+                <p>10 %</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <img
+          src="assets/base/images/affiliate/epic.png"
+          alt="white common avatar"
+        />
+      </div>
+      <div class="row-right">
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn red-star"
+          src="assets/base/images/affiliate/buy-red.svg"
+          alt="Red buy button"
+        />
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn blue-star"
+          src="assets/base/images/affiliate/buy-blue.svg"
+          alt="Blue buy button"
+        />
+        <div class="title">
+          <h2>Epic</h2>
+          <div class="title-star red-star">
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+          </div>
+          <div class="title-star blue-star">
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+          </div>
+        </div>
+        <div class="text">
+          <p>
+            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
+            earning you 1,5% of each affiliate member your link bring. You will
+            also gain 15% of price from each NFT any of your affiliate member
+            buy. What means your investment can be recuperated in a very short
+            time.
+          </p>
+        </div>
+        <div class="abilities my-border-grad">
+          <div class="inner-abilities">
+            <div class="ability1">
+              <div class="ability-content">
+                <h2>Invite</h2>
+                <p>1.5 %</p>
+              </div>
+            </div>
+            <div class="ability2">
+              <div class="ability-content">
+                <h2>NFT</h2>
+                <p>15 %</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <img
+          src="assets/base/images/affiliate/legendary.png"
+          alt="white common avatar"
+        />
+      </div>
+      <div class="row-right">
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn red-star"
+          src="assets/base/images/affiliate/buy-red.svg"
+          alt="Red buy button"
+        />
+        <img
+          [routerLink]="['/car/nft-market']"
+          [queryParams]="{
+            type: 'racer'
+          }"
+          class="buy-btn blue-star"
+          src="assets/base/images/affiliate/buy-blue.svg"
+          alt="Blue buy button"
+        />
+        <div class="title">
+          <h2>Legendary</h2>
+          <div class="title-star red-star">
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/red-star.svg" alt="star" />
+          </div>
+          <div class="title-star blue-star">
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+            <img src="/assets/base/images/affiliate/blue-star.svg" alt="star" />
+          </div>
+        </div>
+        <div class="text">
+          <p>
+            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
+            earning you 2% of each affiliate member your link bring. You will
+            also gain 20% of price from each NFT any of your affiliate member
+            buy. What means your investment can be recuperated in a very short
+            time.
+          </p>
+        </div>
+        <div class="abilities abilities-legendary my-border-grad">
+          <div class="inner-abilities">
+            <div class="ability1">
+              <div class="ability-content">
+                <h2>Invite</h2>
+                <p>2 %</p>
+              </div>
+            </div>
+            <div class="ability2">
+              <div class="ability-content">
+                <h2>NFT</h2>
+                <p>20 %</p>
+              </div>
+            </div>
+            <div class="ability3">
+              <div class="ability-content">
+                <h2>APY</h2>
+                <p>18 %</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="referal-transactions">
+    <div class="referal">
+      <h2 class="title">Referral program</h2>
+      <div class="info">
+        <div class="referals my-border-grad">
+          <div class="inner-referal">
+            <div class="img">
+              <img
+                class="red-star"
+                src="assets/base/images/affiliate/referrals.svg"
+                alt="referrals icon"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/affiliate/referrals-blue.svg"
+                alt="referrals icon"
+              />
+            </div>
+            <div class="text">
+              <div class="text-content">
+                <h2>{{ affMe?.total_affiliates_count }}</h2>
+                <p>referrals</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="active my-border-grad">
+          <div class="inner-referal">
+            <div class="img">
+              <img
+                class="red-star"
+                src="assets/base/images/affiliate/referral-active.svg"
+                alt="active referrals icon"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/affiliate/referral-active-blue.svg"
+                alt="active referrals icon"
+              />
+            </div>
+            <div class="text">
+              <div class="text-content">
+                <h2>{{ affMe?.active_affiliates_count }}</h2>
+                <p>active</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="income my-border-grad">
+          <div class="inner-referal">
+            <div class="img">
+              <img
+                class="red-star"
+                src="assets/base/images/affiliate/refferal-income.svg"
+                alt="income icon"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/affiliate/refferal-income-blue.svg"
+                alt="income icon"
+              />
+            </div>
+            <div class="text">
+              <div class="text-content">
+                <h2>{{ affMe?.maintenance_level ? "Yes" : "No" }}</h2>
+                <p>maintenance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="link">
         <div class="text">
           <div class="referal"><p>Referal link</p></div>
 
-          <div class="link">
+          <div class="linked">
             <p>{{ myAfiilate ? myAfiilate : dumbreferral }}</p>
             <img
-              class="red-copy"
+              class="red-star"
               (click)="copyInputMessage()"
               src="/assets/base/images/icons/copy.png"
               alt="Red copy image"
             />
             <img
-              class="blue-copy"
+              class="blue-star"
               (click)="copyInputMessage()"
               src="/assets/base/images/tokens/blue-copy.png"
               alt="Blue copy image"
             />
           </div>
         </div>
-      </div>
-      <div class="level-right">
-        <div class="row-title">
-          <div></div>
-          <div><h2>Level</h2></div>
-          <div>
-            <h2>Invite</h2>
-          </div>
-          <div><h2>NFT</h2></div>
-          <div><h2>APY</h2></div>
-        </div>
-        <div class="row row1">
-          <div>
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            />
-            <img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            />
-          </div>
-          <div><p>Lvl. 1</p></div>
-          <div><p>0.5 %</p></div>
-          <div><p>3 %</p></div>
-          <div><p>0 %</p></div>
-        </div>
-        <div class="row">
-          <div>
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            />
-          </div>
-          <div><p>Lvl. 2</p></div>
-          <div><p>1 %</p></div>
-          <div><p>10 %</p></div>
-          <div><p>0 %</p></div>
-        </div>
-        <div class="row">
-          <div>
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            />
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            />
-          </div>
-          <div><p>Lvl. 3</p></div>
-          <div><p>1.5 %</p></div>
-          <div><p>15 %</p></div>
-          <div><p>0 %</p></div>
-        </div>
-        <div class="row">
-          <div>
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            />
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            /><img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            />
-          </div>
-          <div><p>Lvl. 4</p></div>
-          <div><p>2 %</p></div>
-          <div><p>20 %</p></div>
-          <div><p>18 %</p></div>
-        </div>
-      </div>
-    </div>
+        <div class="text1">
+          <div class="referal"><p>What is ABT?</p></div>
 
-    <div class="affiliate-ranks">
-      <h2>Affiliate ranks</h2>
-      <div class="row">
-        <div class="row-left">
-          <img
-            src="assets/base/images/affiliate/common.png"
-            alt="white common avatar"
-          />
-        </div>
-        <div class="row-right">
-          <div class="title">
-            <h2>Common</h2>
-            <div class="title-star red-star">
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-            </div>
-            <div class="title-star blue-star">
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-            </div>
-          </div>
-          <div class="text">
+          <div class="linked">
             <p>
-              Unique feature of THIS NON NFT avatar is an affiliate bet turnover
-              (ABT) earning you 0.5% of each affiliate member your link bring.
-              You will also gain 3% of price from each NFT any of your affiliate
-              member buy. What means your investment can be recuperated in a
-              very short time.
+              ABT is short for affiliate bet turnover. ABT means every bet your
+              affiliate member makes you get 1% from their bet back. This
+              function is active for a lifetime of a user on the platform.
             </p>
-          </div>
-          <div class="abilities my-border-grad">
-            <div class="inner-abilities">
-              <div class="ability1">
-                <div class="ability-content">
-                  <h2>Invite</h2>
-                  <p>0.5 %</p>
-                </div>
-              </div>
-              <div class="ability2">
-                <div class="ability-content">
-                  <h2>NFT</h2>
-                  <p>3 %</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-left">
-          <img
-            class="super-img"
-            src="assets/base/images/affiliate/super.png"
-            alt="white common avatar"
-          />
-        </div>
-        <div class="row-right">
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn red-star"
-            src="assets/base/images/affiliate/buy-red.svg"
-            alt="Red buy button"
-          />
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn blue-star"
-            src="assets/base/images/affiliate/buy-blue.svg"
-            alt="Blue buy button"
-          />
-          <div class="title">
-            <h2>Super</h2>
-            <div class="title-star red-star">
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-            </div>
-            <div class="title-star blue-star">
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-            </div>
-          </div>
-          <div class="text">
-            <p>
-              Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-              earning you 1% of each affiliate member your link bring. You will
-              also gain 10% of price from each NFT any of your affiliate member
-              buy. What means your investment can be recuperated in a very short
-              time.
-            </p>
-          </div>
-          <div class="abilities my-border-grad">
-            <div class="inner-abilities">
-              <div class="ability1">
-                <div class="ability-content">
-                  <h2>Invite</h2>
-                  <p>1 %</p>
-                </div>
-              </div>
-              <div class="ability2">
-                <div class="ability-content">
-                  <h2>NFT</h2>
-                  <p>10 %</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-left">
-          <img
-            src="assets/base/images/affiliate/epic.png"
-            alt="white common avatar"
-          />
-        </div>
-        <div class="row-right">
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn red-star"
-            src="assets/base/images/affiliate/buy-red.svg"
-            alt="Red buy button"
-          />
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn blue-star"
-            src="assets/base/images/affiliate/buy-blue.svg"
-            alt="Blue buy button"
-          />
-          <div class="title">
-            <h2>Epic</h2>
-            <div class="title-star red-star">
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-            </div>
-            <div class="title-star blue-star">
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-            </div>
-          </div>
-          <div class="text">
-            <p>
-              Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-              earning you 1,5% of each affiliate member your link bring. You
-              will also gain 15% of price from each NFT any of your affiliate
-              member buy. What means your investment can be recuperated in a
-              very short time.
-            </p>
-          </div>
-          <div class="abilities my-border-grad">
-            <div class="inner-abilities">
-              <div class="ability1">
-                <div class="ability-content">
-                  <h2>Invite</h2>
-                  <p>1.5 %</p>
-                </div>
-              </div>
-              <div class="ability2">
-                <div class="ability-content">
-                  <h2>NFT</h2>
-                  <p>15 %</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-left">
-          <img
-            src="assets/base/images/affiliate/legendary.png"
-            alt="white common avatar"
-          />
-        </div>
-        <div class="row-right">
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn red-star"
-            src="assets/base/images/affiliate/buy-red.svg"
-            alt="Red buy button"
-          />
-          <img
-            [routerLink]="['/car/nft-market']"
-            [queryParams]="{
-              type: 'racer'
-            }"
-            class="buy-btn blue-star"
-            src="assets/base/images/affiliate/buy-blue.svg"
-            alt="Blue buy button"
-          />
-          <div class="title">
-            <h2>Legendary</h2>
-            <div class="title-star red-star">
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/red-star.svg"
-                alt="star"
-              />
-            </div>
-            <div class="title-star blue-star">
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-              <img
-                src="/assets/base/images/affiliate/blue-star.svg"
-                alt="star"
-              />
-            </div>
-          </div>
-          <div class="text">
-            <p>
-              Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-              earning you 2% of each affiliate member your link bring. You will
-              also gain 20% of price from each NFT any of your affiliate member
-              buy. What means your investment can be recuperated in a very short
-              time.
-            </p>
-          </div>
-          <div class="abilities abilities-legendary my-border-grad">
-            <div class="inner-abilities">
-              <div class="ability1">
-                <div class="ability-content">
-                  <h2>Invite</h2>
-                  <p>2 %</p>
-                </div>
-              </div>
-              <div class="ability2">
-                <div class="ability-content">
-                  <h2>NFT</h2>
-                  <p>20 %</p>
-                </div>
-              </div>
-              <div class="ability3">
-                <div class="ability-content">
-                  <h2>APY</h2>
-                  <p>18 %</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="referal-transactions">
-      <div class="referal">
-        <h2 class="title">Referral program</h2>
-        <div class="info">
-          <div class="referals my-border-grad">
-            <div class="inner-referal">
-              <div class="img">
-                <img
-                  class="red-star"
-                  src="assets/base/images/affiliate/referrals.svg"
-                  alt="referrals icon"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/affiliate/referrals-blue.svg"
-                  alt="referrals icon"
-                />
-              </div>
-              <div class="text">
-                <div class="text-content">
-                  <h2>{{ affMe?.total_affiliates_count }}</h2>
-                  <p>referrals</p>
-                </div>
-              </div>
+    <div class="transactions">
+      <h2 class="title">Affiliate transaction</h2>
+      <div class="transactions-table">
+        <div class="table-row table-header">
+          <div class="arrows" *ngIf="totalPages > 1">
+            <div
+              class="arrow-left arrow-unactive"
+              (click)="prevPage()"
+              *ngIf="actualPage > 1"
+            >
+              &lt;
+            </div>
+            <div
+              class="arrow-right arrow-active"
+              (click)="nextPage()"
+              *ngIf="actualPage < totalPages"
+            >
+              &gt;
             </div>
           </div>
-          <div class="active my-border-grad">
-            <div class="inner-referal">
-              <div class="img">
-                <img
-                  class="red-star"
-                  src="assets/base/images/affiliate/referral-active.svg"
-                  alt="active referrals icon"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/affiliate/referral-active-blue.svg"
-                  alt="active referrals icon"
-                />
-              </div>
-              <div class="text">
-                <div class="text-content">
-                  <h2>{{ affMe?.active_affiliates_count }}</h2>
-                  <p>active</p>
-                </div>
-              </div>
-            </div>
+          <div class="table-cell">
+            <p><span>&gt;</span> {{ "affiliate.referral" | translate }}</p>
           </div>
-          <div class="income my-border-grad">
-            <div class="inner-referal">
-              <div class="img">
-                <img
-                  class="red-star"
-                  src="assets/base/images/affiliate/refferal-income.svg"
-                  alt="income icon"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/affiliate/refferal-income-blue.svg"
-                  alt="income icon"
-                />
-              </div>
-              <div class="text">
-                <div class="text-content">
-                  <h2>{{ affMe?.maintenance_level ? "Yes" : "No" }}</h2>
-                  <p>maintenance</p>
-                </div>
-              </div>
-            </div>
+          <div class="table-cell">
+            <p>{{ "shared.level" | translate }}</p>
+          </div>
+          <div class="table-cell">
+            <p>{{ "shared.layout.reward" | translate }}</p>
           </div>
         </div>
-        <div class="link">
-          <div class="text">
-            <div class="referal"><p>Referal link</p></div>
 
-            <div class="linked">
-              <p>{{ myAfiilate ? myAfiilate : dumbreferral }}</p>
-              <img
-                class="red-star"
-                (click)="copyInputMessage()"
-                src="/assets/base/images/icons/copy.png"
-                alt="Red copy image"
-              />
-              <img
-                class="blue-star"
-                (click)="copyInputMessage()"
-                src="/assets/base/images/tokens/blue-copy.png"
-                alt="Blue copy image"
-              />
+        <ng-container *ngIf="affilatesList?.length > 0">
+          <div
+            class="table-row"
+            *ngFor="let item of affilatesList; let i = index"
+          >
+            <div class="table-cell">
+              <p>{{ item.nickname }}</p>
             </div>
-          </div>
-          <div class="text1">
-            <div class="referal"><p>What is ABT?</p></div>
-
-            <div class="linked">
+            <div class="table-cell">
+              <p>Lvl.{{ item.level }}</p>
+            </div>
+            <div class="table-cell">
               <p>
-                ABT is short for affiliate bet turnover. ABT means every bet
-                your affiliate member makes you get 1% from their bet back. This
-                function is active for a lifetime of a user on the platform.
+                {{ item.total_rewards_ioi | number: "1.0-0":"fr" }}
+                {{ "shared.ioi" | translate }}
               </p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="transactions">
-        <h2 class="title">Affiliate transaction</h2>
-        <div class="transactions-table">
-          <div class="table-row table-header">
-            <div class="arrows" *ngIf="totalPages > 1">
-              <div
-                class="arrow-left arrow-unactive"
-                (click)="prevPage()"
-                *ngIf="actualPage > 1"
-              >
-                &lt;
-              </div>
-              <div
-                class="arrow-right arrow-active"
-                (click)="nextPage()"
-                *ngIf="actualPage < totalPages"
-              >
-                &gt;
-              </div>
-            </div>
-            <div class="table-cell">
-              <p><span>&gt;</span> {{ "affiliate.referral" | translate }}</p>
-            </div>
-            <div class="table-cell">
-              <p>{{ "shared.level" | translate }}</p>
-            </div>
-            <div class="table-cell">
-              <p>{{ "shared.layout.reward" | translate }}</p>
-            </div>
-          </div>
+        </ng-container>
 
-          <ng-container *ngIf="affilatesList?.length > 0">
-            <div
-              class="table-row"
-              *ngFor="let item of affilatesList; let i = index"
-            >
-              <div class="table-cell">
-                <p>{{ item.nickname }}</p>
-              </div>
-              <div class="table-cell">
-                <p>Lvl.{{ item.level }}</p>
-              </div>
-              <div class="table-cell">
-                <p>
-                  {{ item.total_rewards_ioi | number: "1.0-0":"fr" }}
-                  {{ "shared.ioi" | translate }}
-                </p>
-              </div>
-            </div>
-          </ng-container>
-
-          <ng-container *ngIf="affilatesList?.length === 0">
-            <h2 class="no-aff-msg">You dont have any affiliate players.</h2>
-          </ng-container>
-        </div>
+        <ng-container *ngIf="affilatesList?.length === 0">
+          <h2 class="no-aff-msg">You dont have any affiliate players.</h2>
+        </ng-container>
       </div>
     </div>
   </div>

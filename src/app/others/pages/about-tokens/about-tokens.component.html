@@ -1,5 +1,4 @@
-<div class="main-holder">
-  <div class="page-info">
+<!--<div class="page-info">
     <div class="back" [routerLink]="['/race/start-race']">
       <p class="arrow">&lt;</p>
       <p>{{ "shared.back" | translate }}</p>
@@ -19,10 +18,10 @@
         <p>{{ "rewards.divident_pool" | translate }}</p>
       </div>
     </div>
-  </div>
+  </div>-->
 
-  <div class="content">
-    <div class="my-menu">
+<div class="content">
+  <!-- <div class="my-menu">
       <div
         [routerLink]="['/other/about-tokens']"
         class="menu-item my-cta-btn-back active"
@@ -37,436 +36,435 @@
       >
         <p>Rewards pool</p>
       </div>
-    </div>
-    <div class="level">
-      <div class="level-left">
-        <div class="avatar">
-          <img
-            src="assets/base/images/nft-racers/white-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 1"
-          />
-          <img
-            src="assets/base/images/nft-racers/red-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 2"
-          />
-          <img
-            src="assets/base/images/nft-racers/blue-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 3"
-          />
-          <img
-            src="assets/base/images/nft-racers/black-trm.png"
-            alt=""
-            *ngIf="Affilate.affiliate_level === 4"
-          />
-        </div>
-        <div class="text">
-          <div class="referal"><p>Referal link</p></div>
+    </div>-->
+  <div class="level">
+    <div class="level-left">
+      <div class="avatar">
+        <img
+          src="assets/base/images/nft-racers/white-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 1"
+        />
+        <img
+          src="assets/base/images/nft-racers/red-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 2"
+        />
+        <img
+          src="assets/base/images/nft-racers/blue-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 3"
+        />
+        <img
+          src="assets/base/images/nft-racers/black-trm.png"
+          alt=""
+          *ngIf="Affilate.affiliate_level === 4"
+        />
+      </div>
+      <div class="text">
+        <div class="referal"><p>Referal link</p></div>
 
-          <div class="link">
-            <p>{{ myAfiilate ? myAfiilate : dumbreferral }}</p>
-            <img
-              class="red-copy"
-              (click)="copyInputMessage()"
-              src="/assets/base/images/icons/copy.png"
-              alt="Red copy image"
-            />
-            <img
-              class="blue-copy"
-              (click)="copyInputMessage()"
-              src="/assets/base/images/tokens/blue-copy.png"
-              alt="Blue copy image"
-            />
-          </div>
+        <div class="link">
+          <p>{{ myAfiilate ? myAfiilate : dumbreferral }}</p>
+          <img
+            class="red-copy"
+            (click)="copyInputMessage()"
+            src="/assets/base/images/icons/copy.png"
+            alt="Red copy image"
+          />
+          <img
+            class="blue-copy"
+            (click)="copyInputMessage()"
+            src="/assets/base/images/tokens/blue-copy.png"
+            alt="Blue copy image"
+          />
         </div>
       </div>
-      <div class="level-right">
-        <div class="account-level"><p>Level 1</p></div>
-        <div class="title">
-          <p>{{ rewardLevel | number: "1.2-2":"fr" }} IOI</p>
+    </div>
+    <div class="level-right">
+      <div class="account-level"><p>Level 1</p></div>
+      <div class="title">
+        <p>{{ rewardLevel | number: "1.2-2":"fr" }} IOI</p>
+      </div>
+      <div class="my-progress-bar">
+        <div class="my-bar">
+          <div
+            class="inner-bar my-cta-btn-back"
+            [ngStyle]="{ width: rewardLevelMax + '%' }"
+          ></div>
+          <!-- [ngStyle]="{width: rewardLevelMax + '%'}" -->
         </div>
-        <div class="my-progress-bar">
-          <div class="my-bar">
-            <div
-              class="inner-bar my-cta-btn-back"
-              [ngStyle]="{ width: rewardLevelMax + '%' }"
-            ></div>
-            <!-- [ngStyle]="{width: rewardLevelMax + '%'}" -->
+      </div>
+      <div class="level-number">
+        <p class="left">0</p>
+        <p class="right">Level {{ isLevel }}</p>
+      </div>
+      <div class="note">
+        <p>
+          {{ rewardLevelMax | number: "1.0-0":"fr" }}%
+          {{ "rewards.level_info1" | translate }} {{ isLevel }}
+          {{ "rewards.level_info2" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-to-reach">
+    <h2 class="how-title">How to reach up to 100 000 IOI</h2>
+    <div class="first-row space">
+      <div class="text">
+        <div
+          class="rank-star"
+          [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
+        >
+          <div class="inner-rank-star">
+            <div class="rank-star-content">
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+
+              <h3>100 IOI</h3>
+            </div>
           </div>
         </div>
-        <div class="level-number">
-          <p class="left">0</p>
-          <p class="right">Level {{ isLevel }}</p>
+        <div class="rank-text">
+          <h2>{{ "rewards.reach_ioi_heading" | translate }} 100 IOI?</h2>
+
+          <p>• {{ "rewards.reach_100ioi_item1" | translate }}</p>
+
+          <p>• {{ "rewards.reach_100ioi_item2" | translate }}</p>
+
+          <p>• {{ "rewards.reach_100ioi_item3" | translate }}</p>
+
+          <p>• {{ "rewards.reach_100ioi_item4" | translate }}</p>
         </div>
-        <div class="note">
+      </div>
+      <div class="image-first image"></div>
+    </div>
+    <div class="second-row space">
+      <div class="text">
+        <div
+          class="rank-star"
+          [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
+        >
+          <div class="inner-rank-star">
+            <div class="rank-star-content">
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <h3>1000 IOI</h3>
+            </div>
+          </div>
+        </div>
+        <div class="rank-text">
+          <h2>{{ "rewards.reach_ioi_heading" | translate }} 1000 IOI?</h2>
+
+          <p>• {{ "rewards.reach_1000ioi_item1" | translate }}</p>
+
+          <p>• {{ "rewards.reach_1000ioi_item2" | translate }}</p>
+
+          <p>• {{ "rewards.reach_1000ioi_item3" | translate }}</p>
+        </div>
+      </div>
+      <div class="image-second image"></div>
+    </div>
+    <div class="first-row space">
+      <div class="text">
+        <div
+          class="rank-star"
+          [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
+        >
+          <div class="inner-rank-star">
+            <div class="rank-star-content">
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              /><img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              /><img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <h3>10 000 IOI</h3>
+            </div>
+          </div>
+        </div>
+        <div class="rank-text">
+          <h2>{{ "rewards.reach_ioi_heading" | translate }} 10 000 IOI?</h2>
+
+          <p>• {{ "rewards.reach_10000ioi_item1" | translate }}</p>
+
+          <p>• {{ "rewards.reach_10000ioi_item2" | translate }}</p>
+
+          <p>• {{ "rewards.reach_10000ioi_item3" | translate }}</p>
+        </div>
+      </div>
+      <div class="image-third image"></div>
+    </div>
+    <div class="second-row space">
+      <div class="text">
+        <div
+          class="rank-star"
+          [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
+        >
+          <div class="inner-rank-star">
+            <div class="rank-star-content">
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              /><img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              /><img
+                class="red-star"
+                src="assets/base/images/tokens/star.svg"
+                alt="red star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              /><img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              /><img
+                class="blue-star"
+                src="assets/base/images/tokens/blue-star.png"
+                alt="blue star"
+              />
+              <h3>100 000 IOI</h3>
+            </div>
+          </div>
+        </div>
+        <div class="rank-text">
+          <h2>{{ "rewards.reach_ioi_heading" | translate }} 100 000 IOI?</h2>
+          <p>• Unlock all rare cars and double your rewards</p>
+          <p>• Invite team members to get a 20% commission from each</p>
+          <p>• Buy and sell with profit shares of your NFT teams</p>
+          <p>• Buy NFT track and get % from each game played on the track</p>
+        </div>
+      </div>
+
+      <div class="image-fourth image"></div>
+    </div>
+    <div class="dividend-section">
+      <div class="dividend">
+        <div class="dividend-left">
+          <h2>What is a Reward pool?</h2>
           <p>
-            {{ rewardLevelMax | number: "1.0-0":"fr" }}%
-            {{ "rewards.level_info1" | translate }} {{ isLevel }}
-            {{ "rewards.level_info2" | translate }}
+            Rewards are a public platform's net profit in IOI currency.
+            <br /><br />
+            Watch the reward pool getting filled in real-time and see the
+            history of rewards distribution.
           </p>
         </div>
-      </div>
-    </div>
+        <div class="dividend-right">
+          <div class="circle-content">
+            <div class="circle">
+              <div class="circle-image">
+                <div class="circle-bigger"></div>
+                <div class="circle-lower"></div>
+                <div class="svg-item">
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 40 40"
+                    class="donut-red"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="linear"
+                        x1="5%"
+                        y1="0%"
+                        x2="105%"
+                        y2="0%"
+                        x3="20%"
+                        y3="0%"
+                        spreadMethod="pad"
+                      >
+                        <stop offset="0%" stop-color="#950552" />
+                        <stop offset="100%" stop-color="#FE173F" />
+                      </linearGradient>
+                    </defs>
+                    <circle
+                      class="donut-hole"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                    ></circle>
+                    <circle
+                      class="donut-ring"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                      stroke-width="3.5"
+                    ></circle>
 
-    <div class="how-to-reach">
-      <h2 class="how-title">How to reach up to 100 000 IOI</h2>
-      <div class="first-row space">
-        <div class="text">
-          <div
-            class="rank-star"
-            [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
-          >
-            <div class="inner-rank-star">
-              <div class="rank-star-content">
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
+                    <circle
+                      stroke="url(#linear)"
+                      class="donut-segment"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                      stroke-width="1.5"
+                      stroke-dashoffset="25"
+                      [ngStyle]="{
+                        'stroke-dasharray': 10 + ' ' + (100 - 10)
+                      }"
+                    ></circle>
+                  </svg>
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 40 40"
+                    class="donut-blue"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="linear2"
+                        x1="5%"
+                        y1="0%"
+                        x2="190%"
+                        y2="-100%"
+                        x3="20%"
+                        y3="0%"
+                        spreadMethod="pad"
+                      >
+                        <stop offset="0%" stop-color="#23FFFF" />
+                        <stop offset="100%" stop-color="#2B16F7" />
+                      </linearGradient>
+                    </defs>
+                    <circle
+                      class="donut-hole"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                    ></circle>
+                    <circle
+                      class="donut-ring"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                      stroke-width="3.5"
+                    ></circle>
 
-                <h3>100 IOI</h3>
-              </div>
-            </div>
-          </div>
-          <div class="rank-text">
-            <h2>{{ "rewards.reach_ioi_heading" | translate }} 100 IOI?</h2>
-
-            <p>• {{ "rewards.reach_100ioi_item1" | translate }}</p>
-
-            <p>• {{ "rewards.reach_100ioi_item2" | translate }}</p>
-
-            <p>• {{ "rewards.reach_100ioi_item3" | translate }}</p>
-
-            <p>• {{ "rewards.reach_100ioi_item4" | translate }}</p>
-          </div>
-        </div>
-        <div class="image-first image"></div>
-      </div>
-      <div class="second-row space">
-        <div class="text">
-          <div
-            class="rank-star"
-            [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
-          >
-            <div class="inner-rank-star">
-              <div class="rank-star-content">
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <h3>1000 IOI</h3>
-              </div>
-            </div>
-          </div>
-          <div class="rank-text">
-            <h2>{{ "rewards.reach_ioi_heading" | translate }} 1000 IOI?</h2>
-
-            <p>• {{ "rewards.reach_1000ioi_item1" | translate }}</p>
-
-            <p>• {{ "rewards.reach_1000ioi_item2" | translate }}</p>
-
-            <p>• {{ "rewards.reach_1000ioi_item3" | translate }}</p>
-          </div>
-        </div>
-        <div class="image-second image"></div>
-      </div>
-      <div class="first-row space">
-        <div class="text">
-          <div
-            class="rank-star"
-            [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
-          >
-            <div class="inner-rank-star">
-              <div class="rank-star-content">
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                /><img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <h3>10 000 IOI</h3>
-              </div>
-            </div>
-          </div>
-          <div class="rank-text">
-            <h2>{{ "rewards.reach_ioi_heading" | translate }} 10 000 IOI?</h2>
-
-            <p>• {{ "rewards.reach_10000ioi_item1" | translate }}</p>
-
-            <p>• {{ "rewards.reach_10000ioi_item2" | translate }}</p>
-
-            <p>• {{ "rewards.reach_10000ioi_item3" | translate }}</p>
-          </div>
-        </div>
-        <div class="image-third image"></div>
-      </div>
-      <div class="second-row space">
-        <div class="text">
-          <div
-            class="rank-star"
-            [ngClass]="rewardLevel > 99 ? 'my-border-grad' : 'locked'"
-          >
-            <div class="inner-rank-star">
-              <div class="rank-star-content">
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                /><img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                /><img
-                  class="red-star"
-                  src="assets/base/images/tokens/star.svg"
-                  alt="red star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/tokens/blue-star.png"
-                  alt="blue star"
-                />
-                <h3>100 000 IOI</h3>
-              </div>
-            </div>
-          </div>
-          <div class="rank-text">
-            <h2>{{ "rewards.reach_ioi_heading" | translate }} 100 000 IOI?</h2>
-            <p>• Unlock all rare cars and double your rewards</p>
-            <p>• Invite team members to get a 20% commission from each</p>
-            <p>• Buy and sell with profit shares of your NFT teams</p>
-            <p>• Buy NFT track and get % from each game played on the track</p>
-          </div>
-        </div>
-
-        <div class="image-fourth image"></div>
-      </div>
-      <div class="dividend-section">
-        <div class="dividend">
-          <div class="dividend-left">
-            <h2>What is a Reward pool?</h2>
-            <p>
-              Rewards are a public platform's net profit in IOI currency.
-              <br /><br />
-              Watch the reward pool getting filled in real-time and see the
-              history of rewards distribution.
-            </p>
-          </div>
-          <div class="dividend-right">
-            <div class="circle-content">
-              <div class="circle">
-                <div class="circle-image">
-                  <div class="circle-bigger"></div>
-                  <div class="circle-lower"></div>
-                  <div class="svg-item">
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 40 40"
-                      class="donut-red"
-                    >
-                      <defs>
-                        <linearGradient
-                          id="linear"
-                          x1="5%"
-                          y1="0%"
-                          x2="105%"
-                          y2="0%"
-                          x3="20%"
-                          y3="0%"
-                          spreadMethod="pad"
-                        >
-                          <stop offset="0%" stop-color="#950552" />
-                          <stop offset="100%" stop-color="#FE173F" />
-                        </linearGradient>
-                      </defs>
-                      <circle
-                        class="donut-hole"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                      ></circle>
-                      <circle
-                        class="donut-ring"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                        stroke-width="3.5"
-                      ></circle>
-
-                      <circle
-                        stroke="url(#linear)"
-                        class="donut-segment"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                        stroke-width="1.5"
-                        stroke-dashoffset="25"
-                        [ngStyle]="{
-                          'stroke-dasharray': 10 + ' ' + (100 - 10)
-                        }"
-                      ></circle>
-                    </svg>
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 40 40"
-                      class="donut-blue"
-                    >
-                      <defs>
-                        <linearGradient
-                          id="linear2"
-                          x1="5%"
-                          y1="0%"
-                          x2="190%"
-                          y2="-100%"
-                          x3="20%"
-                          y3="0%"
-                          spreadMethod="pad"
-                        >
-                          <stop offset="0%" stop-color="#23FFFF" />
-                          <stop offset="100%" stop-color="#2B16F7" />
-                        </linearGradient>
-                      </defs>
-                      <circle
-                        class="donut-hole"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                      ></circle>
-                      <circle
-                        class="donut-ring"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                        stroke-width="3.5"
-                      ></circle>
-
-                      <circle
-                        stroke="url(#linear2)"
-                        class="donut-segment"
-                        cx="20"
-                        cy="20"
-                        r="15.91549430918954"
-                        fill="transparent"
-                        stroke-width="1.5"
-                        stroke-dashoffset="25"
-                        [ngStyle]="{
-                          'stroke-dasharray': 10 + ' ' + (100 - 10)
-                        }"
-                      ></circle>
-                    </svg>
-                    <div class="text-holder">
-                      <p class="value">10 %</p>
-                      <p class="desc">IOI GAMES</p>
-                    </div>
+                    <circle
+                      stroke="url(#linear2)"
+                      class="donut-segment"
+                      cx="20"
+                      cy="20"
+                      r="15.91549430918954"
+                      fill="transparent"
+                      stroke-width="1.5"
+                      stroke-dashoffset="25"
+                      [ngStyle]="{
+                        'stroke-dasharray': 10 + ' ' + (100 - 10)
+                      }"
+                    ></circle>
+                  </svg>
+                  <div class="text-holder">
+                    <p class="value">10 %</p>
+                    <p class="desc">IOI GAMES</p>
                   </div>
                 </div>
               </div>
-              <div class="circle-text">
-                <p>
-                  Earn 10% of all IOI that has been used across the whole game
-                </p>
-              </div>
             </div>
-            <div class="want-more my-border-grad">
-              <div class="inner-want-more">
-                <h2>Want more benefits? We got you.</h2>
-                <p>
-                  While earning rewards, you get 6 - 24% staking, and a free
-                  entry to speed races, where you can win 35 IOI daily!
-                </p>
-              </div>
+            <div class="circle-text">
+              <p>
+                Earn 10% of all IOI that has been used across the whole game
+              </p>
+            </div>
+          </div>
+          <div class="want-more my-border-grad">
+            <div class="inner-want-more">
+              <h2>Want more benefits? We got you.</h2>
+              <p>
+                While earning rewards, you get 6 - 24% staking, and a free entry
+                to speed races, where you can win 35 IOI daily!
+              </p>
             </div>
           </div>
         </div>
-        <div class="token">
-          <h2>Token utilities</h2>
-          <div class="token-content">
-            <img
-              src="assets/base/images/tokens/blue-token.png"
-              alt="IOI blue token"
-            />
-            <div class="left-up fix">
-              <h3>Unlimited rewards</h3>
-            </div>
-            <div class="left-down fix">
-              <h3>Unlock rare Nfts</h3>
-            </div>
-            <div class="right-up fix">
-              <h3>Automatic value protection</h3>
-            </div>
-            <div class="right-down fix">
-              <h3>Governance</h3>
-            </div>
+      </div>
+      <div class="token">
+        <h2>Token utilities</h2>
+        <div class="token-content">
+          <img
+            src="assets/base/images/tokens/blue-token.png"
+            alt="IOI blue token"
+          />
+          <div class="left-up fix">
+            <h3>Unlimited rewards</h3>
+          </div>
+          <div class="left-down fix">
+            <h3>Unlock rare Nfts</h3>
+          </div>
+          <div class="right-up fix">
+            <h3>Automatic value protection</h3>
+          </div>
+          <div class="right-down fix">
+            <h3>Governance</h3>
           </div>
         </div>
       </div>

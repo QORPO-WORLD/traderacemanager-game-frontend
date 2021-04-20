@@ -85,5 +85,6 @@ const routes: Routes = [
     JwSocialButtonsModule,
   ],
   providers: [SocialSharing],
+  exports: [AboutTokensComponent, AffilateComponent, RewardsComponent],
 })
 export class OthersModule {}

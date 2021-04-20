@@ -1,0 +1,101 @@
+<div class="main-holder">
+  <div class="profile-nav">
+    <div class="left-nav">
+      <div [routerLink]="['/race/start-race']" class="back">
+        <div class="upper-back"><p>&lt;</p></div>
+        <div class="lower-back"><p>Back</p></div>
+      </div>
+    </div>
+    <div class="right-nav">
+      <div class="name">
+        <h2>{{ myDriverStats?.nickname }}</h2>
+      </div>
+      <div class="my-menu-nav">
+        <div
+          (click)="activatePage('nfts')"
+          class="menu-item my-cta-btn-back active"
+          [ngClass]="{ inactive: show !== 'nfts' }"
+        >
+          <p>My NFTs</p>
+        </div>
+        <div
+          (click)="activatePage('affiliate')"
+          class="menu-item my-cta-btn-back active"
+          [ngClass]="{ inactive: show !== 'affiliate' }"
+        >
+          <p>Affiliate</p>
+        </div>
+        <div
+          (click)="activatePage('rewards'); activateSecondPage('about rewards')"
+          class="menu-item my-cta-btn-back active"
+          [ngClass]="{ inactive: show !== 'rewards' }"
+        >
+          <p>Rewards</p>
+        </div>
+        <div
+          (click)="activatePage('history'); activateSecondPage('transactions')"
+          class="menu-item my-cta-btn-back active"
+          [ngClass]="{ inactive: show !== 'history' }"
+        >
+          <p>History</p>
+        </div>
+        <div
+          (click)="activatePage('stats')"
+          class="menu-item my-cta-btn-back"
+          [ngClass]="{ inactive: show !== 'stats' }"
+        >
+          <p>Stats</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div *ngIf="show === 'history'" class="my-menu">
+      <div
+        class="menu-item my-cta-btn-back"
+        (click)="activateSecondPage('transactions')"
+        [ngClass]="{ inactive: showSecond !== 'transactions' }"
+      >
+        <p>{{ "history.transactions" | translate }}</p>
+      </div>
+      <div
+        class="menu-item my-cta-btn-back inactive"
+        (click)="activateSecondPage('races')"
+        [ngClass]="{ inactive: showSecond !== 'races' }"
+      >
+        <p>{{ "profile.races" | translate }}</p>
+      </div>
+    </div>
+    <div *ngIf="show === 'rewards'" class="my-menu">
+      <div
+        (click)="activateSecondPage('about rewards')"
+        class="menu-item my-cta-btn-back"
+        [ngClass]="{ inactive: showSecond !== 'about rewards' }"
+      >
+        <p>About rewards</p>
+      </div>
+      <div
+        (click)="activateSecondPage('rewards pool')"
+        class="menu-item my-cta-btn-back"
+        [ngClass]="{ inactive: showSecond !== 'rewards pool' }"
+      >
+        <p>Rewards pool</p>
+      </div>
+    </div>
+
+    <app-about-tokens
+      *ngIf="show === 'rewards' && showSecond === 'about rewards'"
+    ></app-about-tokens>
+    <app-rewards
+      *ngIf="show === 'rewards' && showSecond === 'rewards pool'"
+    ></app-rewards>
+    <app-affilate *ngIf="show === 'affiliate'"></app-affilate>
+    <app-transactions
+      *ngIf="show === 'history' && showSecond === 'transactions'"
+    ></app-transactions>
+    <app-my-races
+      *ngIf="show === 'history' && showSecond === 'races'"
+    ></app-my-races>
+    <app-stats-profile *ngIf="show === 'stats'"></app-stats-profile>
+  </div>
+</div>
