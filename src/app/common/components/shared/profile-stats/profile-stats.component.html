@@ -4,9 +4,10 @@
     <div class="img-holder">
       <div class="avatar-icon">
         <img
+        *ngIf="Affilate.affiliate_level"
           [src]="
             'assets/base/images/avatars/avatar' +
-            Affilate.affiliate_level +
+            Affilate?.affiliate_level +
             '-small.png'
           "
           alt="My affiliate level avatar"
@@ -93,61 +94,6 @@
             [queryParams]="{ controlType: 'deposit' }">
             Manage funds
           </button>
-
-          <!-- <p
-            class="my-btn"
-            (click)="closeMenu()"
-            [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'deposit' }"
-          >
-            <img
-              class="red-img"
-              src="/assets/base/images/menu/add-icon-red.svg"
-              alt=""
-            />
-            <img
-              class="blue-img"
-              src="/assets/base/images/menu/add-icon-blue.svg"
-              alt=""
-            />
-            Deposit
-          </p>
-          <p
-            class="my-btn"
-            (click)="closeMenu()"
-            [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'withdraw' }"
-          >
-            <img
-              class="red-img"
-              src="/assets/base/images/menu/with-icon-red.svg"
-              alt=""
-            />
-            <img
-              class="blue-img"
-              src="/assets/base/images/menu/with-icon-blue.svg"
-              alt=""
-            />
-            Withdraw
-          </p>
-          <p
-            class="my-btn"
-            (click)="closeMenu()"
-            [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'transfer' }"
-          >
-            <img
-              class="red-img"
-              src="/assets/base/images/menu/transfer-icon-red.svg"
-              alt=""
-            />
-            <img
-              class="blue-img"
-              src="/assets/base/images/menu/transfer-icon-blue.svg"
-              alt=""
-            />
-            Transfer
-          </p> -->
         </div>
       </div>
     </ng-container>
@@ -172,67 +118,6 @@
         Get premium
       </button>
     </div>
-    <!--
-    <p
-      class="heading"
-      [routerLink]="['/other/affilate']"
-      style="cursor: pointer"
-    >
-      {{ "shared.layout.affiliate" | translate }}
-    </p>
-
-    <div class="copy-link" (click)="copyInputMessage(); animateOnClick()">
-      <div class="border-maker my-cta-btn-back"></div>
-      <div class="inner-holder">
-        <p>{{ "profile.copy_link" | translate }}</p>
-      </div>
-      <div class="inner-holder clicked" [ngClass]="myAffClass">
-        <p>Copied</p>
-      </div>
-    </div>
-
-    <p
-      class="sub-heading"
-      [routerLink]="['/other/affilate']"
-      style="cursor: pointer"
-    >
-      {{ "shared.level" | translate }} {{ myAffilate }}
-      {{ "shared.layout.affiliate" | translate }}
-    </p>
-
-    <div
-      class="cont-holder"
-      [routerLink]="['/other/affilate']"
-      style="cursor: pointer"
-    >
-      <div class="cont-item">
-        <p class="value">{{ affMe?.total_affiliates_count }}</p>
-        <p class="desc">partners</p>
-        <div class="line"></div>
-      </div>
-      <div class="cont-item">
-        <p class="value">{{ affMe?.active_affiliates_count }}</p>
-        <p class="desc">active</p>
-        <div class="line"></div>
-      </div>
-      <div class="cont-item">
-        <p class="value">{{ affMe?.maintenance_level ? "Yes" : "No" }}</p>
-        <p class="desc" style="font-size: 12px">maintenance</p>
-      </div>
-    </div>
-  </div> -->
-
-    <!-- <div class="aff-cont">
-    <div class="go-to-btn neum-box aff-box" (click)="showAff = true">
-      <p>{{'shared.layout.affiliate' | translate}}: {{'shared.level' | translate}} {{myAffilate}}</p>
-    </div>
-    <div class="icon-holder" (click)="copyInputMessage(); animateOnClick()">
-      <img src="/assets/base/images/start-race/copy-icon.png" alt="">
-    </div>
-    <div class="copy-bubble" [ngClass]="myAffClass">
-      <p>Copied</p>
-    </div>
-  </div> -->
   </div>
 
   <div class="edit-car-modal small" *ngIf="showMyStats === true">

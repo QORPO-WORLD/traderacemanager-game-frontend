@@ -89,7 +89,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     this.raceObser = this.api.racesNextV2MineList().subscribe(data => {
 
       this.mnr = this.getUniqueListBy(data, 'race_hash');
-
+      console.log(this.mnr);
       this.bestIndex = data.length - 1;
     });
   }

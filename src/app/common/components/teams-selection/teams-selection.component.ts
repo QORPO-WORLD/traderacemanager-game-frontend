@@ -127,6 +127,7 @@ export class TeamsSelectionComponent implements OnInit {
   getMydriver() {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
+      console.log(this.myDriverStats);
     }, 500);
   }
 
