@@ -168,7 +168,6 @@
             *ngIf="item['type'] === 'team' && item['name'] != 'Team You'"
             class="namefont"
           >
-            Team
             <span
               *ngIf="item['name'] === 'BTC'"
               [ngStyle]="{ color: 'red' }"
@@ -190,7 +189,7 @@
           </p>
           <p class="prize">{{ item["prize"] }}</p>
           <button
-            (click)="showAsset(item['id'], item['type'])"
+            (click)="showAsset(item['id'], item['type'], item['amount'].length)"
             class="my-cta-btn-back"
             *ngIf="item['type'] != 'team'"
           >
@@ -206,7 +205,7 @@
           <button
             class="my-cta-btn-back"
             *ngIf="item['name'] === 'Team You' && item['type'] === 'team'"
-            (click)="showAsset(item['id'], item['type'])"
+            (click)="showAsset(item['id'], item['type'], item['amount'].length)"
           >
             See details
           </button>
@@ -276,5 +275,6 @@
   *ngIf="marketState === 2"
   [assetId]="selectedId"
   [assetType]="selectedType"
+  [owned]="owned"
   (marketState)="showAssetBuy($event)"
 ></app-my-nft-detail>

@@ -6,11 +6,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./my-nft-detail.component.scss"],
 })
 export class MyNftDetailComponent implements OnInit {
+  noGifActive = true;
   gifName = "";
   animationActive = false;
   displayArray = [];
-  @Input() assetType = "racer";
-  @Input() assetId = 4;
+
+  @Input() assetType = "car";
+  @Input() assetId = 11;
+  @Input() owned;
   @Output() marketState = new EventEmitter<number>();
   products: Array<object> = [
     //bronze
@@ -21,6 +24,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car1",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -30,6 +35,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car2",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -39,6 +46,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car3",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -48,6 +57,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car4",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -57,6 +68,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car5",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -66,6 +79,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "600 IOI",
       image: "car6",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
       amount: [],
     },
     {
@@ -76,6 +91,8 @@ export class MyNftDetailComponent implements OnInit {
       image: "car25",
       type: "car",
       rare: true,
+      ability1: 0.6,
+      ability2: 6,
       amount: [],
     },
     //silver
@@ -86,6 +103,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car7",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -95,6 +114,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car8",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -104,6 +125,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car9",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -113,6 +136,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car10",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -122,6 +147,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car11",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -131,6 +158,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 000 IOI",
       image: "car12",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
       amount: [],
     },
     {
@@ -141,6 +170,8 @@ export class MyNftDetailComponent implements OnInit {
       image: "car26",
       type: "car",
       rare: true,
+      ability1: 1.98,
+      ability2: 12,
       amount: [],
     },
     //gold
@@ -151,6 +182,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car13",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -160,6 +193,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car14",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -169,6 +204,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car15",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -178,6 +215,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car16",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -187,6 +226,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car17",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -196,6 +237,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "1 600 IOI",
       image: "car18",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
       amount: [],
     },
     {
@@ -206,6 +249,8 @@ export class MyNftDetailComponent implements OnInit {
       image: "car27",
       type: "car",
       rare: true,
+      ability1: 4.74,
+      ability2: 18,
       amount: [],
     },
     //platinum
@@ -216,6 +261,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car19",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -225,6 +272,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car20",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -234,6 +283,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car21",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -243,6 +294,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car22",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -252,6 +305,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car23",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -261,6 +316,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "2 600 IOI",
       image: "car24",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
       amount: [],
     },
     {
@@ -271,6 +328,8 @@ export class MyNftDetailComponent implements OnInit {
       image: "car28",
       type: "car",
       rare: true,
+      ability1: 10.25,
+      ability2: 24,
       amount: [],
     },
     {
@@ -378,6 +437,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "free-track",
       type: "track",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
     {
@@ -387,6 +448,9 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "desert",
       type: "track",
+      bet: "1 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
     {
@@ -396,6 +460,9 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "dark-forest",
       type: "track",
+      bet: "5 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
     {
@@ -405,6 +472,9 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "night-city",
       type: "track",
+      bet: "10 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
     {
@@ -414,6 +484,9 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "sea-bridge",
       type: "track",
+      bet: "50 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
 
@@ -424,6 +497,9 @@ export class MyNftDetailComponent implements OnInit {
       prize: "Coming soon",
       image: "underground",
       type: "track",
+      bet: "100 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
       amount: [],
     },
     {
@@ -457,10 +533,12 @@ export class MyNftDetailComponent implements OnInit {
     {
       id: 46,
       collection: "",
-      name: "You",
+      name: "Team You",
       prize: "1 000 IOI",
       image: "team-you",
       type: "team",
+      ability1: "50 IOI",
+      ability2: "20%",
       amount: [],
     },
     {
@@ -470,7 +548,7 @@ export class MyNftDetailComponent implements OnInit {
       prize: "",
       image: "trophy",
       type: "special",
-      ability1: "Yearly",
+      ability2: "Yearly",
       amount: [],
     },
     {
@@ -480,7 +558,8 @@ export class MyNftDetailComponent implements OnInit {
       prize: "",
       image: "ring",
       type: "special",
-      ability1: "Monthly",
+      ability1: "Entry to yearly tournament",
+      ability2: "Monthly",
       amount: [],
     },
   ];
@@ -513,15 +592,22 @@ export class MyNftDetailComponent implements OnInit {
     void element.offsetWidth;
     element.classList.add("show-animation");
   }
-
-  activateAnimation() {
+  timer = null;
+  showAnimation() {
+    this.gifName = "none";
     this.gifName = "black-trm-animation";
     this.animationActive = true;
-    var random;
-    setTimeout(() => {
+    this.noGifActive = false;
+
+    this.timer = setTimeout(() => {
       this.animationActive = false;
-      this.gifName = "pes";
-      console.log(this.gifName);
+      this.gifName = "none1";
+      this.noGifActive = true;
     }, 6500);
+  }
+
+  activateAnimation() {
+    clearTimeout(this.timer);
+    this.showAnimation();
   }
 }

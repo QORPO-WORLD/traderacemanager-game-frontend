@@ -39,8 +39,18 @@
         </div>
       </div>
       <div class="detail-image">
+        <div class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              Owned
+              <span class="red-box-detail">{{ owned }}</span>
+              <span class="blue-box-detail">{{ owned }}</span>
+            </p>
+          </div>
+        </div>
         <div class="image">
           <img
+            *ngIf="noGifActive === true"
             class="no-gif"
             [src]="
               '/assets/base/images/nft-racers/' +
@@ -84,7 +94,191 @@
       </div>
       <div class="detail-abilities">
         <div class="ability-title"><h3>Abilities</h3></div>
-        <div class="ability-box my-border-grad">
+        <div
+          [ngClass]="{ moreboxes: displayArray[0]['ability3'] }"
+          class="ability-box box1 my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/affiliate/buy-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/affiliate/buy-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["prize"] }}</h4>
+                <p>IOI value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          [ngClass]="{ moreboxes: displayArray[0]['ability3'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability1"] }} from invites</h4>
+                <p>skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          [ngClass]="{ moreboxes: displayArray[0]['ability3'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability2"] }} from NFTs</h4>
+                <p>skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability3']"
+          [ngClass]="{ moreboxes: displayArray[0]['ability3'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability3"] }}</h4>
+                <p>legendary skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-button"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="displayArray[0]['type'] === 'car'">
+  <div class="detail">
+    <div class="detail-header">
+      <button (click)="backToProducts()" class="back-btn">
+        <p>&lt; Back to products</p>
+      </button>
+    </div>
+    <div class="detail-content">
+      <div class="detail-text">
+        <div class="text-name">
+          <h2 class="name-font red-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+          <h2 class="name-font blue-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+        </div>
+        <div class="text-title"><h3>About Car</h3></div>
+        <div class="text-info">
+          <p *ngIf="displayArray[0]['rare'] === undefined">
+            {{ displayArray[0]["name"] }} is unique limited car. Each car is
+            unparalleled way of owning IOI tokens, staking and APY. The main
+            benefit is that you can use your NFTs in-game, buy, sell and trade
+            on open markets. The new era of NFTs in your pocket.
+          </p>
+          <p *ngIf="displayArray[0]['rare'] === true">
+            {{ displayArray[0]["name"] }} is highly limited with unique
+            abilities. Each car is unparalleled way of owning IOI tokens,
+            staking and APY. The main benefit is that you can use your NFTs
+            in-game, buy, sell and trade on open markets. The new era of NFTs in
+            your pocket.
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              Owned
+              <span class="red-box-detail">{{ owned }}</span>
+              <span class="blue-box-detail">{{ owned }}</span>
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['rare'] === true"
+          class="rare my-border-grad-reverse"
+        >
+          <div class="inner-rare">
+            <img
+              class="red-star"
+              src="/assets/base/images/affiliate/red-star.svg"
+              alt="star"
+            />
+            <img
+              class="blue-star"
+              src="/assets/base/images/affiliate/blue-star.svg"
+              alt="star"
+            />
+            <span
+              ><p>rare {{ displayArray[0]["type"] }}</p></span
+            >
+          </div>
+        </div>
+        <div class="image">
+          <img
+            class="no-gif"
+            [src]="
+              '/assets/base/images/nft-cars/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
+            alt="avatar image"
+          />
+        </div>
+      </div>
+      <div class="detail-abilities">
+        <div class="ability-title"><h3>Abilities</h3></div>
+        <div class="ability-box box1 my-border-grad">
           <div class="inner-ability">
             <div class="ability-content">
               <div class="ability-image">
@@ -122,8 +316,8 @@
                 />
               </div>
               <div class="ability-text">
-                <h4>{{ displayArray[0]["ability1"] }} from invites</h4>
-                <p>skill</p>
+                <h4>{{ displayArray[0]["ability1"] }} IOI</h4>
+                <p>daily stake</p>
               </div>
             </div>
           </div>
@@ -144,19 +338,487 @@
                 />
               </div>
               <div class="ability-text">
-                <h4>{{ displayArray[0]["ability2"] }} from NFTs</h4>
-                <p>skill</p>
+                <h4>{{ displayArray[0]["ability2"] }}%</h4>
+                <p>ROI</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="detail-button">
-      <button class="my-cta-btn-back">
-        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
-        <h4>Buy</h4>
+    <div class="detail-button"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="displayArray[0]['type'] === 'track'">
+  <div class="detail">
+    <div class="detail-header">
+      <button (click)="backToProducts()" class="back-btn">
+        <p>&lt; Back to products</p>
       </button>
     </div>
+    <div class="detail-content">
+      <div class="detail-text">
+        <div class="text-name">
+          <h2 class="name-font red-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+          <h2 class="name-font blue-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+        </div>
+        <div class="text-title"><h3>About Track</h3></div>
+        <div class="text-info">
+          <p>
+            Track NFTs are introducing investment model for real hardcore
+            owners. You will receive percentage of each game played on your NFT
+            property!<br /><br />
+            Become a track owner - a real NFT whale investor and earn 3% from
+            prize pool of each game played on your track. Tracks will be sold
+            exclusively through special event auctions! For more info follow our
+            social media! Good luck.
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              Owned
+              <span class="red-box-detail">{{ owned }}</span>
+              <span class="blue-box-detail">{{ owned }}</span>
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['rare'] === true"
+          class="rare my-border-grad-reverse"
+        >
+          <div class="inner-rare">
+            <img
+              class="red-star"
+              src="/assets/base/images/affiliate/red-star.svg"
+              alt="star"
+            />
+            <img
+              class="blue-star"
+              src="/assets/base/images/affiliate/blue-star.svg"
+              alt="star"
+            />
+            <span
+              ><p>rare {{ displayArray[0]["type"] }}</p></span
+            >
+          </div>
+        </div>
+        <div class="image">
+          <img
+            class="no-gif"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '-small.png'
+            "
+            alt="avatar image"
+          />
+        </div>
+      </div>
+      <div class="detail-abilities">
+        <div class="ability-title"><h3>Abilities</h3></div>
+        <div
+          [ngClass]="{ moreboxes: displayArray[0]['bet'] }"
+          class="ability-box box1 my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/affiliate/buy-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/affiliate/buy-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["prize"] }}</h4>
+                <p>IOI value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['bet']"
+          [ngClass]="{ moreboxes: displayArray[0]['bet'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["bet"] }}</h4>
+                <p>bet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability1']"
+          [ngClass]="{ moreboxes: displayArray[0]['bet'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability1"] }}</h4>
+                <p>race period</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability2']"
+          [ngClass]="{ moreboxes: displayArray[0]['bet'] }"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability2"] }}</h4>
+                <p>super skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-button"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="displayArray[0]['type'] === 'team'">
+  <div class="detail">
+    <div class="detail-header">
+      <button (click)="backToProducts()" class="back-btn">
+        <p>&lt; Back to products</p>
+      </button>
+    </div>
+    <div class="detail-content">
+      <div class="detail-text">
+        <div class="text-name">
+          <h2 class="name-font red-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+          <h2 class="name-font blue-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+        </div>
+        <div class="text-title">
+          <h3>About Team</h3>
+        </div>
+        <div class="text-info">
+          <p>
+            You buy your team in form of NFT - what means you can buy/sell/trade
+            your team anytime on the open market. We are adding feature in the
+            future where you can sell shares of your team and recuperate costs
+            of team instantly even sell your team for much higher price as you
+            purchased it works just like company in the stock market. Every
+            premium member increase team value by 50 IOI. More premium members
+            your team has the bigger the overal value.
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              Owned
+              <span class="red-box-detail">{{ owned }}</span>
+              <span class="blue-box-detail">{{ owned }}</span>
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['rare'] === true"
+          class="rare my-border-grad-reverse"
+        >
+          <div class="inner-rare">
+            <img
+              class="red-star"
+              src="/assets/base/images/affiliate/red-star.svg"
+              alt="star"
+            />
+            <img
+              class="blue-star"
+              src="/assets/base/images/affiliate/blue-star.svg"
+              alt="star"
+            />
+            <span
+              ><p>rare {{ displayArray[0]["type"] }}</p></span
+            >
+          </div>
+        </div>
+        <div class="image">
+          <img
+            class="no-gif ring"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '-small.png'
+            "
+            alt="avatar image"
+          />
+        </div>
+      </div>
+      <div class="detail-abilities">
+        <div class="ability-title"><h3>Abilities</h3></div>
+        <div
+          *ngIf="displayArray[0]['prize']"
+          class="ability-box box1 my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/affiliate/buy-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/affiliate/buy-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["prize"] }}</h4>
+                <p>prize</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability1']"
+          class="ability-box box1 my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability1"] }}</h4>
+                <p>increase per premium member</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability2']"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability2"] }}</h4>
+                <p>from premium member</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-button"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="displayArray[0]['type'] === 'special'">
+  <div class="detail">
+    <div class="detail-header">
+      <button (click)="backToProducts()" class="back-btn">
+        <p>&lt; Back to products</p>
+      </button>
+    </div>
+    <div class="detail-content">
+      <div class="detail-text">
+        <div class="text-name">
+          <h2 class="name-font red-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+          <h2 class="name-font blue-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+        </div>
+        <div class="text-title">
+          <h3>About {{ displayArray[0]["name"] }}</h3>
+        </div>
+        <div class="text-info">
+          <p *ngIf="displayArray[0]['name'] === 'Ring'">
+            Ring is a special prize that you can win every month by being the
+            best racer. It is also a ticket to biggest yearly tournament where
+            you can win the trophy.
+          </p>
+          <p *ngIf="displayArray[0]['name'] === 'Trophy'">
+            Trophy is a special prize that you can win every year. If you want
+            to win this trophy, you need at least one ring from monthly
+            tournaments.
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              Owned
+              <span class="red-box-detail">{{ owned }}</span>
+              <span class="blue-box-detail">{{ owned }}</span>
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['rare'] === true"
+          class="rare my-border-grad-reverse"
+        >
+          <div class="inner-rare">
+            <img
+              class="red-star"
+              src="/assets/base/images/affiliate/red-star.svg"
+              alt="star"
+            />
+            <img
+              class="blue-star"
+              src="/assets/base/images/affiliate/blue-star.svg"
+              alt="star"
+            />
+            <span
+              ><p>rare {{ displayArray[0]["type"] }}</p></span
+            >
+          </div>
+        </div>
+        <div class="image">
+          <img
+            class="no-gif ring"
+            [src]="
+              '/assets/base/images/home-page/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
+            alt="avatar image"
+          />
+        </div>
+      </div>
+      <div
+        [ngClass]="{ lessthanthree: !displayArray[0]['ability3'] }"
+        class="detail-abilities"
+      >
+        <div class="ability-title"><h3>Abilities</h3></div>
+        <div
+          *ngIf="displayArray[0]['ability1']"
+          class="ability-box box1 my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/affiliate/buy-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/affiliate/buy-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability1"] }}</h4>
+                <p>ticket</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="displayArray[0]['ability2']"
+          class="ability-box my-border-grad"
+        >
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability2"] }}</h4>
+                <p>time period</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-button"></div>
   </div>
 </ng-container>

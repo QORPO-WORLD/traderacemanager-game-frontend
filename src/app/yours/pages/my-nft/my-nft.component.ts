@@ -324,7 +324,7 @@ export class MyNftComponent implements OnInit {
       prize: "100 IOI",
       image: "white-trm",
       type: "racer",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 2,
@@ -351,7 +351,7 @@ export class MyNftComponent implements OnInit {
       prize: "100 IOI",
       image: "black-trm",
       type: "racer",
-      amount: [],
+      amount: ["yes"],
     },
     {
       id: 5,
@@ -387,7 +387,7 @@ export class MyNftComponent implements OnInit {
       prize: "10 000 IOI",
       image: "mr-rich",
       type: "racer",
-      amount: [],
+      amount: ["yes"],
     },
     {
       id: 37,
@@ -475,7 +475,7 @@ export class MyNftComponent implements OnInit {
     {
       id: 46,
       collection: "",
-      name: "You",
+      name: "Team You",
       prize: "1 000 IOI",
       image: "team-you",
       type: "team",
@@ -555,14 +555,16 @@ export class MyNftComponent implements OnInit {
   isPaged;
   filter;
 
-  selectedId = 4;
-  selectedType = "racer";
-  marketState = 2;
+  selectedId = 46;
+  selectedType = "team";
+  owned;
+  marketState = 1;
 
-  showAsset(id: number, type: string) {
+  showAsset(id: number, type: string, owned) {
     this.selectedId = id;
     this.selectedType = type;
     this.marketState = 2;
+    this.owned = owned;
   }
   showAssetBuy(state: number) {
     this.marketState = state;
