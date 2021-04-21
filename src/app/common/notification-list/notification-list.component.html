@@ -78,7 +78,8 @@
       <div class="message">
         <p>
           <span class="opacity">You withrawed</span>
-          <span class="important my-text-color"> {{item.data.amount}} {{item.data.currency}} </span>
+          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) !== 'car'"> {{item.data.amount}} {{item.data.currency}} </span>
+          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) === 'car'"> {{item.data.amount}} {{ "car_names." + item.data.currency | translate }} </span>
           <span class="opacity">into your ioi-wallet.</span>
         </p>
       </div>
