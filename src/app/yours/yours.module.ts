@@ -1,3 +1,5 @@
+import { MyNftDetailComponent } from "./pages/my-nft-detail/my-nft-detail.component";
+import { MyNftComponent } from "./pages/my-nft/my-nft.component";
 import { StatsProfileComponent } from "./pages/stats-profile/stats-profile.component";
 import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { TransactionsComponent } from "./../yours/pages/transactions/transactions.component";
@@ -58,6 +60,8 @@ const routes: Routes = [
     MyRacesComponent,
     MyProfileComponent,
     StatsProfileComponent,
+    MyNftComponent,
+    MyNftDetailComponent,
   ],
   providers: [AuthUserGuard, AuthStatusGuard, AuthService],
   exports: [],

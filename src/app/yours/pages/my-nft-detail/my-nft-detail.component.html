@@ -1,0 +1,162 @@
+<ng-container *ngIf="displayArray[0]['type'] === 'racer'">
+  <div class="detail">
+    <div class="detail-header">
+      <button (click)="backToProducts()" class="back-btn">
+        <p>&lt; Back to products</p>
+      </button>
+    </div>
+    <div class="detail-content">
+      <div class="detail-text">
+        <div class="text-name">
+          <h2>Racer</h2>
+          <h2 class="name-font red-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+          <h2 class="name-font blue-box-detail">
+            {{ displayArray[0]["name"] }}
+          </h2>
+        </div>
+        <div class="text-title"><h3>About Racer</h3></div>
+        <div class="text-info">
+          <p *ngIf="displayArray[0]['rank'] === 'low'">
+            {{ displayArray[0]["name"] }} is unique limited rare avatar in form
+            of NFT. Each avatar is unparalleled way of owning IOI tokens. The
+            main benefit is that you can use your NFTs in-game, buy, sell and
+            trade on open markets as well as your NFT vehicles.
+          </p>
+          <p *ngIf="displayArray[0]['rank'] === 'normal'">
+            {{ displayArray[0]["name"] }} is unique limited super rare avatar in
+            form of NFT. Each avatar is unparalleled way of owning IOI tokens.
+            The main benefit is that you can use your NFTs in-game, buy, sell
+            and trade on open markets as well as your NFT vehicles.
+          </p>
+          <p *ngIf="displayArray[0]['rank'] === 'height'">
+            {{ displayArray[0]["name"] }} is unique limited legendary avatar in
+            form of NFT. Each avatar is unparalleled way of owning IOI tokens.
+            The main benefit is that you can use your NFTs in-game, buy, sell
+            and trade on open markets as well as your NFT vehicles.
+          </p>
+        </div>
+      </div>
+      <div class="detail-image">
+        <div class="image">
+          <img
+            class="no-gif"
+            [src]="
+              '/assets/base/images/nft-racers/' +
+              displayArray[0]['image'] +
+              '.png'
+            "
+            alt="avatar image"
+          />
+          <img
+            *ngIf="animationActive === true"
+            class="gif"
+            [src]="'assets/base/images/nft-racers/' + gifName + '.gif'"
+            alt="winners move animation"
+          />
+        </div>
+        <div class="image-button">
+          <button
+            (click)="resetAnimationBtn(); resetAnimationGif()"
+            class="my-cta-btn-back my-box-shadow"
+          >
+            <div class="btn-background"></div>
+            <div (click)="activateAnimation()" class="inner-btn">
+              <div class="btn-img">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/play-red.svg"
+                  alt="play button"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/play-blue.svg"
+                  alt="play button"
+                />
+              </div>
+              <div class="btn-text">
+                <p>Show Racers move</p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="detail-abilities">
+        <div class="ability-title"><h3>Abilities</h3></div>
+        <div class="ability-box my-border-grad">
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/affiliate/buy-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/affiliate/buy-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["prize"] }}</h4>
+                <p>IOI value</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ability-box my-border-grad">
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability1"] }} from invites</h4>
+                <p>skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ability-box my-border-grad">
+          <div class="inner-ability">
+            <div class="ability-content">
+              <div class="ability-image">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/staking-red.svg"
+                  alt="buy icon"
+                />
+                <img
+                  class="blue-star"
+                  src="assets/base/images/market/staking-blue.svg"
+                  alt="buy icon"
+                />
+              </div>
+              <div class="ability-text">
+                <h4>{{ displayArray[0]["ability2"] }} from NFTs</h4>
+                <p>skill</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-button">
+      <button class="my-cta-btn-back">
+        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+        <h4>Buy</h4>
+      </button>
+    </div>
+  </div>
+</ng-container>

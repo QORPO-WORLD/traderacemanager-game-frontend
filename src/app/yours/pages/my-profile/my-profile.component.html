@@ -12,7 +12,7 @@
       </div>
       <div class="my-menu-nav">
         <div
-          (click)="activatePage('nfts')"
+          (click)="activatePage('nfts'); activateSecondPage('list')"
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'nfts' }"
         >
@@ -97,5 +97,6 @@
       *ngIf="show === 'history' && showSecond === 'races'"
     ></app-my-races>
     <app-stats-profile *ngIf="show === 'stats'"></app-stats-profile>
+    <app-my-nft *ngIf="show === 'nfts' && showSecond === 'list'"></app-my-nft>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { flushMicrotasks } from "@angular/core/testing";
 
 import { AuthService } from "src/app/user/services/auth.service";
@@ -10,8 +10,11 @@ import { AuthService } from "src/app/user/services/auth.service";
 })
 export class MyProfileComponent implements OnInit {
   show = "nfts";
-  showSecond: string;
+  showSecond = "list";
   myDriverStats: any;
+  selectedId = 1;
+  selectedType = "racer";
+  marketState = 1;
 
   constructor(private identityService: AuthService) {}
 
