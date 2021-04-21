@@ -168,7 +168,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       }
     }, 10000);
 */
-    this.sumUsers = Math.floor(Math.random() * (300 - 260 + 1)) + 260;
+    this.sumUsers = 173;
 
 
     if (mmea && !metaBalance) {

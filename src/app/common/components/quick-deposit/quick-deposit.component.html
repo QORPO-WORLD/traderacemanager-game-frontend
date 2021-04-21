@@ -3,20 +3,30 @@
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
-      <p class="common-heading">Currency</p>
-      <p class="desc-text">Choose a currency you want to receive for deposited funds</p>
+      <p class="common-heading">Deposit a currency</p>
       <div class="boxes-holder">
-        <div class="box-item ioi" [ngClass]="{'active': tokenSelected === 'ioi'}" (click)="tokenSelected = 'ioi'">
-          <div class="inner">
-            <img src="/assets/base/images/tankovanie/ioi-token.png" alt="Logo of ioi token" class="curr-logo">
-            <div class="text-holder">
-              <ng-container *ngIf="myIoiBalance > 0">
-                <p class="value">{{myIoiBalance | number:'1.0-2':'fr' }} IOI</p>
-              <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
-              </ng-container>
 
+        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'ioi'}" (click)="tokenSelected = 'ioi'">
+          <div class="inner">
+            <img src="/assets/base/images/logo-blank.png" alt="Logo of ioi token" class="curr-logo">
+            <div class="text-holder">
+              <p class="curr-type">IOI <button class="arrow-btn my-text-color">&gt;</button></p>
+              <ng-container *ngIf="myIoiBalance > 0">
+                <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+              </ng-container>
               <ng-container *ngIf="myIoiBalance === 0">
-                <p class="value">0 IOI</p>
+                <p class="dollars">&#36; 0</p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'matic'}" (click)="tokenSelected = 'matic'">
+          <div class="inner">
+            <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="Logo of matic token" class="curr-logo">
+            <div class="text-holder">
+              <p class="curr-type">MTC <button class="arrow-btn my-text-color">&gt;</button></p>
+              <ng-container>
                 <p class="dollars">&#36; 0</p>
               </ng-container>
             </div>
@@ -24,24 +34,8 @@
         </div>
 
         <div class="soon-curs">
-          <p class="mid-text">More currencies coming soon</p>
           <div class="box-item">
-            <div class="inner">
-              <img src="/assets/base/images/tankovanie/btc-token.png" alt="Logo of Bitcoin token" class="curr-logo">
-              <div class="text-holder">
-                <p class="value">Bitcoin</p>
-                <p class="dollars">&#36; 1,235.12</p>
-              </div>
-            </div>
-          </div>
-          <div class="box-item">
-            <div class="inner">
-              <img src="/assets/base/images/tankovanie/eth-token.png" alt="Logo of Ethereum token" class="curr-logo">
-              <div class="text-holder">
-                <p class="value">Ethereum</p>
-                <p class="dollars">&#36; 1,235.12</p>
-              </div>
-            </div>
+            <p class="soon-text"><span>More currencies</span> coming soon</p>
           </div>
         </div>
       </div>
@@ -56,32 +50,34 @@
   </div>
   <div class="right-holder">
     <p class="common-heading">Your deposit summary</p>
-    <div class="main-panel">
-      <div class="depositing-info">
-        <p class="text">You are depositing</p>
-      </div>
-      <div class="my-wallet-info">
-        <div class="info-border top my-cta-btn-back"></div>
-        <div class="info-item crypto-adress">
-          <p class="desc">Crypto address</p>
-          <input type="text" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+    <div class="main-panel my-border-grad">
+      <div class="inner">
+        <div class="depositing-info">
+          <p class="text">You are depositing</p>
         </div>
-        <div class="info-item second">
-          <p class="desc">Currency you will receive</p>
-          <p *ngIf="tokenSelected === 'matic'" class="value">Matic</p>
-          <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+        <div class="my-wallet-info">
+          <div class="info-border top my-cta-btn-back"></div>
+          <div class="info-item crypto-adress">
+            <p class="desc">Crypto address</p>
+            <input type="text" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+          </div>
+          <div class="info-item second">
+            <p class="desc">Currency you will receive</p>
+            <p *ngIf="tokenSelected === 'matic'" class="value">Matic</p>
+            <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+          </div>
+          <div class="info-border bottom my-cta-btn-back"></div>
         </div>
-        <div class="info-border bottom my-cta-btn-back"></div>
-      </div>
-      <div class="qr-code-holder">
-        <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
-
-        <qrcode class="qr-code"
-            [level]="1"
-            [qrvalue]="cryptoMtfrckr"
-        ></qrcode>
-
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();">Claim</button>
+        <div class="qr-code-holder">
+          <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
+  
+          <qrcode class="qr-code"
+              [level]="1"
+              [qrvalue]="cryptoMtfrckr"
+          ></qrcode>
+  
+          <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();">Claim</button>
+        </div>
       </div>
     </div>
   </div>

@@ -18,6 +18,7 @@ import { Platform } from '@ionic/angular';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { Subscription } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
+declare let gtag: any;
 declare let fbq:Function;
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -195,7 +196,12 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 fbq('track', 'CompleteRegistration');
 
                 this.ioiapi.setToken(data.authKey);
-                this.router.navigate(['/user/verify-code']);    
+                this.router.navigate(['/user/verify-code']);
+                gtag('event', 'nedokoncena', {
+                    'event_category': 'registrace',
+                    'event_label': 'nedokoncena',
+                    'value': 'registrace dokoncena'
+                  });
             });
         }
     }
@@ -272,6 +278,11 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         localStorage.setItem('first-time', JSON.stringify('yes'));
         fbq('track', 'CompleteRegistration');
         this.ioiapi.login(data.authkey);
+        gtag('event', 'nedokoncena', {
+            'event_category': 'registrace',
+            'event_label': 'nedokoncena',
+            'value': 'registrace dokoncena'
+          });
     }
 
     isStrong(control: FormControl): any {

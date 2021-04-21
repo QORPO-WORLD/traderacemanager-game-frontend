@@ -12,13 +12,11 @@ export class WalletControllerComponent implements OnInit {
 
   controlType: string;
   routeObserver: Subscription;
-  nickname: string;
   accountValue: number;
   constructor(private route: ActivatedRoute, private identityService: AuthService) { }
 
   ngOnInit() {
     this.getControlType();
-    this.getUser();
     this.getAccountValue();
   }
 
@@ -29,11 +27,6 @@ export class WalletControllerComponent implements OnInit {
         this.controlType = params['controlType'].toString();
         if (params['controlType'].length <= 0) { this.controlType = 'deposit'; }
       });
-  }
-
-  getUser() {
-    this.nickname = this.identityService.getStorageIdentity().nickname;
-
   }
 
   getAccountValue() {

@@ -108,7 +108,7 @@ export class HomePage implements OnInit {
   actualMonth;
   monthsStart = 0;
   monthsEnd;
-
+  logged = false;
   getMonth() {
     var today = new Date();
     var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -142,7 +142,13 @@ export class HomePage implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    const token = JSON.parse(localStorage.getItem('auth-token'));
+    if (token) {
+      this.logged = true;
+    }
+  }
 
   width() {
     this.display = window.innerWidth;

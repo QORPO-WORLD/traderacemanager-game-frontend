@@ -45,6 +45,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   createFavCar = false;
   favCarId: number;
   myCarsIndex = 0;
+  myCarsvals = 0;
   balanceInterval: any;
   balanceUpdateInterval: any;
   cachedLdrbrd: any;
@@ -73,11 +74,9 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getCachedLeaderboard();
     this.getAffilateLink();
-    //this.getMyLeaderboard();
-    //this.getTicker();
     this.getAffilate();
-
-    //this.getCars();
+    this.getMyLeaderboard();
+    this.getCars();
 
     this.balanceInterval = setInterval(() => {
       this.getCachedLeaderboard();
@@ -155,6 +154,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     })
       .subscribe(data => {
         this.myLdrbrd = data;
+        console.log(data);
       });
   }
 
@@ -177,9 +177,10 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
       data => {
         const datax: any = data;
         // carid is string
-        this.myCars = datax.sort((a, b) => {
+        this.myCars = datax.cars.sort((a, b) => {
           return a.car_id - b.car_id;
         });
+        this.calcCarsValue();
       }
     );
   }
@@ -257,6 +258,35 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
 
   closeMenu(){
     this.menuClose.emit(false);
+  }
+
+  calcCarsValue() {
+    for (let x = 0; x < this.myCars.length; x++) {
+      if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
+        this.myCarsvals += 600;
+      }
+      if (this.myCars[x].car_id >= 7 && this.myCars[x].car_id < 13) {
+        this.myCarsvals += 1000;
+      }
+      if (this.myCars[x].car_id >= 13 && this.myCars[x].car_id < 19) {
+        this.myCarsvals += 1600;
+      }
+      if (this.myCars[x].car_id >= 19 && this.myCars[x].car_id < 25) {
+        this.myCarsvals += 2600;
+      }
+      if (this.myCars[x].car_id === 25) {
+        this.myCarsvals += 3600;
+      }
+      if (this.myCars[x].car_id === 26) {
+        this.myCarsvals += 6000;
+      }
+      if (this.myCars[x].car_id === 27) {
+        this.myCarsvals += 9600;
+      }
+      if (this.myCars[x].car_id === 28) {
+        this.myCarsvals += 15600;
+      }
+    }
   }
 
 }
