@@ -1494,28 +1494,29 @@ button.xko {
         background: #222222;
         &:hover{
           .inner-box{
-            .back-img{
-              transform: scale(1.03) translateX(-50%); 
-            }
+            opacity: 1;
           }
         }
         &.selected{
           &.racer{
-            width: 54%;
+            width: 70%;
           }
           &.owner{
-            width: 52%;
+            width: 68%;
+          }
+          .inner-box{
+            opacity: 1;
           }
         }
         &.not-selected{
           .inner-box{
-            opacity: .5;
+            opacity: .3;
           }
           &.racer{
-            width: 48%;
+            width: 32%;
           }
           &.owner{
-            width: 46%;
+            width: 30%;
           }
         }
         &.racer{
@@ -1563,6 +1564,7 @@ button.xko {
           width: 100%;
           height: 100%;
           transition: .4s;
+          opacity: .5;
           .heading-desc{
             font-weight: 600;
             font-size: 48px;
@@ -1609,6 +1611,9 @@ button.xko {
           font-size: 16px;
           font-weight: 400;
           margin: 0 0 60px 0;
+          &.antimargin{
+            margin: 0 0 10px 0;
+          }
         }
         .next-btn{
           font-size: 20px;
@@ -1650,22 +1655,31 @@ button.xko {
             }
           }
           &.selected{
-            width: 35%;
+            width: 40%;
             &.first{
-              width: 42%;
+              width: 48%;
             }
             .inner-box{
               .badge-holder{
                 .badge-img{
                   transform: scale(1.03) skew(15deg); 
+                  &.btc{
+                    filter: drop-shadow(0px 0px 40px rgba(201, 82, 92, 0.7));
+                  }
+                  &.alt{
+                    filter: drop-shadow(0px 0px 40px rgba(1, 177, 108, 0.7));
+                  }
+                  &.ioi{
+                    filter: drop-shadow(0px 0px 40px rgba(10, 139, 180, 0.7));
+                  }
                 }
               }
             }
           }
           &.not-selected{
-            width: 29%;
+            width: 26%;
             &.first{
-              width: 36%;
+              width: 34%;
             }
           }
           .inner-box{
@@ -1699,6 +1713,7 @@ button.xko {
           cursor: default;
           width: 100%;
           .inner-box{
+            opacity: 1;
             .asset-holder{
               position: absolute;
               top: 50%;
@@ -2800,14 +2815,13 @@ button.xko {
   }
   .mobile-nav {
     width: 90%;
-    height: 80px;
+    height: 65px;
     position: fixed;
     z-index: 9999;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: #111111;
-    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+    background: #222222;
     border-radius: 20px 20px 0px 0px;
     display: block;
     .items-holder {
@@ -2821,71 +2835,14 @@ button.xko {
         height: 100%;
         cursor: pointer;
         position: relative;
-        &.active {
-          img {
-            opacity: 0;
-            &.active {
-              opacity: 1;
-            }
-          }
-          & ~ .menu-border {
-            .border-dot {
-              opacity: 1;
-            }
-          }
-        }
-        &.item1 {
-          &.active ~ .menu-border {
-            left: 0;
-          }
-        }
-        &.item2 {
-          &.active ~ .menu-border {
-            left: 20%;
-          }
-        }
-        &.item3 {
-          &.active ~ .menu-border {
-            left: 40%;
-          }
-        }
-        &.item4 {
-          &.active ~ .menu-border {
-            left: 60%;
-          }
-        }
-        &.item5 {
-          &.active ~ .menu-border {
-            left: 80%;
-          }
+        &.play{
+          transform: translateY(-15%);
         }
         img {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          opacity: 0.1;
-          &.active {
-            opacity: 0;
-          }
-        }
-      }
-      .menu-border {
-        position: absolute;
-        top: calc(50% + 20px);
-        transform: translateY(-50%);
-        width: 20%;
-        height: 5px;
-        background: transparent;
-        transition: 0.2s;
-        .border-dot {
-          background: linear-gradient(113.6deg, #fe173f 15.09%, #240b36 467.03%),
-            #ffffff;
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          margin: 0 auto;
-          opacity: 0;
         }
       }
     }
@@ -3058,14 +3015,19 @@ button.xko {
           }
           &.owner{
             .inner-box{
+              transform: none;
               .heading-desc{
                 position: absolute;
                 bottom: 40px;
-                left: -100%;
+                left: 0;
+                transform: skew(45deg);
+                transform-origin: bottom;
               }
               .back-img{
                 right: unset;
-                left: -110%;
+                left: 0;
+                transform: skew(45deg);
+                transform-origin: bottom;
               }
             }
           }
@@ -3216,6 +3178,29 @@ button.xko {
     .modal-holder{
       .big-box{
         height: calc((var(--vh, 1vh) * 100) - 100vw);
+      }
+      &.teams{
+        .items-box{
+          .arrow{
+            height: 85px;
+            width: 45px;
+            p{
+              font-size: 31px;
+              font-weight: 500;
+            }
+          }
+          .small-box{
+            &:hover{
+              .inner-box{
+                .badge-holder{
+                  .badge-img{
+                    transform: scale(1.02);
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

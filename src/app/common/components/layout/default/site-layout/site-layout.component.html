@@ -90,7 +90,7 @@
             <app-lang-switcher></app-lang-switcher>
           </div> -->
           <div class="profile">
-            <div class="profile-img" [routerLink]="['/other/affilate']">
+            <div class="profile-img" [routerLink]="['/profile/my-profile']">
               <img
                 src="assets/base/images/avatars/avatar1-small.png"
                 alt=""
@@ -214,32 +214,51 @@
         >
           <img src="/assets/base/images/menu/dash-mobile.svg" alt="" />
           <img
-            class="active"
+            class="active blue"
             src="/assets/base/images/menu/dash-mobile-active.svg"
+            alt=""
+          />
+          <img
+            class="active red"
+            src="/assets/base/images/menu/dash-mobile-red.svg"
             alt=""
           />
         </div>
         <div
           class="menu-item item2"
-          [routerLink]="['/other/about-tokens']"
+          [routerLink]="['/teams/my-team']"
           [routerLinkActive]="'active'"
         >
-          <img src="/assets/base/images/menu/reward-mobile.svg" alt="" />
+          <img src="/assets/base/images/menu/my-team-mobile.svg" alt="" />
           <img
-            class="active"
-            src="/assets/base/images/menu/reward-mobile-active.svg"
+            class="active blue"
+            src="/assets/base/images/menu/my-team-mobile-active.svg"
+            alt=""
+          />
+          <img
+            class="active red"
+            src="/assets/base/images/menu/my-team-mobile-red.svg"
             alt=""
           />
         </div>
+        <div class="menu-item play" [routerLink]="['/race/all-races/']">
+          <img src="/assets/base/images/menu/play-btn.svg" alt="" class="blue-play">
+          <img src="/assets/base/images/menu/play-btn-red.svg" alt="" class="red-play">
+        </div>
         <div
           class="menu-item item3"
-          [routerLink]="['/your-races/transactions']"
+          [routerLink]="['/car/nft-market']"
           [routerLinkActive]="'active'"
         >
-          <img src="/assets/base/images/menu/history-mobile.svg" alt="" />
+          <img src="/assets/base/images/menu/market-mobile.svg" alt="" />
           <img
-            class="active"
-            src="/assets/base/images/menu/history-mobile-active.svg"
+            class="active blue"
+            src="/assets/base/images/menu/market-mobile-active.svg"
+            alt=""
+          />
+          <img
+            class="active red"
+            src="/assets/base/images/menu/market-mobile-red.svg"
             alt=""
           />
         </div>
@@ -250,24 +269,16 @@
         >
           <img src="/assets/base/images/menu/tasks-mobile.svg" alt="" />
           <img
-            class="active"
+            class="active blue"
             src="/assets/base/images/menu/tasks-mobile-active.svg"
             alt=""
           />
-        </div>
-        <div
-          class="menu-item item5"
-          [routerLink]="['/other/affilate']"
-          [routerLinkActive]="'active'"
-        >
-          <img src="/assets/base/images/menu/affiliate-mobile.svg" alt="" />
           <img
-            class="active"
-            src="/assets/base/images/menu/affiliate-mobile-active.svg"
+            class="active red"
+            src="/assets/base/images/menu/tasks-mobile-red.svg"
             alt=""
           />
         </div>
-        <div class="menu-border"><div class="border-dot"></div></div>
       </div>
     </div>
 
@@ -430,8 +441,9 @@
       </div>
       <div class="big-box">
         <div class="text-holder">
-          <h2>Pick a color</h2>
-          <p>Choose a colour you want your interface to be. You can change the colour in the settings later.</p>
+          <h2>Pick a colour</h2>
+          <p class="antimargin">Choose a colour of your layout</p>
+          <p>This can be changed anytime in settings</p>
           <button class="next-btn inactive" *ngIf="selectedMode.length === 0">Continue</button>
           <button class="next-btn" *ngIf="selectedMode.length > 0" (click)="setMode(selectedMode)">Continue</button>
         </div>
@@ -452,7 +464,7 @@
             <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
             <div class="badge-holder">
               <h3>Team BTC</h3>
-              <img src="/assets/base/images/teams/BTC-team.png" alt="" class="badge-img">
+              <img src="/assets/base/images/teams/BTC-team.png" alt="" class="badge-img btc">
             </div>
           </div>
         </div>
@@ -462,7 +474,7 @@
             <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
             <div class="badge-holder">
               <h3>Team ALT</h3>
-              <img src="/assets/base/images/teams/ALT-team.png" alt="" class="badge-img">
+              <img src="/assets/base/images/teams/ALT-team.png" alt="" class="badge-img alt">
             </div>
           </div>
         </div>
@@ -471,15 +483,16 @@
             <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
             <div class="badge-holder">
               <h3>Team IOI</h3>
-              <img src="/assets/base/images/teams/IOI-team.png" alt="" class="badge-img">
+              <img src="/assets/base/images/teams/IOI-team.png" alt="" class="badge-img ioi">
             </div>
           </div>
         </div>
       </div>
       <div class="big-box">
         <div class="text-holder">
-          <h2>Pick a crypto team</h2>
-          <p>You can transfer to another team anytime</p>
+          <h2>Choose your crypto team</h2>
+          <p class="antimargin">Join winning teams, get a Premium membership and become a pro racer in no time! Compete against other teams and prove that your strategy is the best.</p>
+          <p>Joining a team unlocks player a lot of team based features.</p>
           <button class="next-btn inactive" *ngIf="selectedTeam === 0">Continue</button>
           <button class="next-btn" *ngIf="selectedTeam > 0" (click)="joinTeamFree(selectedTeam)">Continue</button>
         </div>
@@ -524,7 +537,7 @@
       <div class="big-box">
         <div class="text-holder">
           <h2>Congratulations, you got a new racer!</h2>
-          <p>This is Rookie racer, a NON - NFT avatar each player receive when registering. Special skill for NON - NFT avatar is their affiliate function. </p>
+          <p>You just received common tier NON - NFT avatar. Each avatar has special skills. Common level avatars have only their basic affiliate function. Buy NFT avatars to gain access to other special skills.</p>
           <button class="next-btn" (click)="closeFirstModal(false)">Continue</button>
         </div>
       </div>
