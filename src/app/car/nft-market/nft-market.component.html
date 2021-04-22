@@ -203,7 +203,9 @@
                 <p
                   *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
                   class="name"
-                  (click)="showAsset(item['id'], item['type'])"
+                  (click)="
+                    showAsset(item['id'], item['type'], item['position'])
+                  "
                 >
                   {{ item["name"] }}
                 </p>
@@ -213,9 +215,11 @@
                 </p>
                 <p class="prize">{{ item["prize"] }}</p>
                 <button
-                  class="my-cta-btn-back"
+                  class="my-cta-btn-back my-box-shadow"
                   *ngIf="item['type'] === 'car'"
-                  (click)="showAsset(item['id'], item['type'])"
+                  (click)="
+                    showAsset(item['id'], item['type'], item['position'])
+                  "
                 >
                   See details
                 </button>
@@ -227,7 +231,9 @@
                     item['type'] === 'special' ||
                     (item['name'] === 'You' && item['type'] === 'team')
                   "
-                  (click)="showAsset(item['id'], item['type'])"
+                  (click)="
+                    showAsset(item['id'], item['type'], item['position'])
+                  "
                 >
                   See details
                 </button>
@@ -310,7 +316,9 @@
       *ngIf="marketState === 2"
       [assetId]="selectedId"
       [assetType]="selectedType"
+      [assetPosition]="selectedPosition"
       (marketState)="showAssetBuy($event)"
+      (modalActive)="showModal($event)"
     ></app-nft-detail>
 
     <app-buy-nft
@@ -318,5 +326,51 @@
       [assetId]="selectedId"
       [assetType]="selectedType"
     ></app-buy-nft>
+  </div>
+</div>
+
+<div *ngIf="modalActive === 1" class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img
+      src="/assets/base/images/garage/red-close-cross.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
+    <ng-container *ngIf="modalActive === 1">
+      <h3>How to get free</h3>
+      <br />
+      <p>Spend 12 000 IOI tokens in races to unlock this car for free</p>
+    </ng-container>
+    <ng-container *ngIf="modalActive === 2">
+      <h3>Daily stakes</h3>
+      <br />
+      <p>
+        Buy all 6 cars in a collection and get double staking and double their
+        value.
+      </p>
+    </ng-container>
+  </div>
+</div>
+<div *ngIf="modalActive === 2" class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img
+      src="/assets/base/images/garage/red-close-cross.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
+    <ng-container *ngIf="modalActive === 2">
+      <h3>Daily stakes</h3>
+      <br />
+      <p>
+        Buy all 6 cars in a collection and get double staking and double their
+        value.
+      </p>
+    </ng-container>
   </div>
 </div>

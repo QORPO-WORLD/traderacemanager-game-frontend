@@ -60,6 +60,7 @@ export class MyNftComponent implements OnInit {
     //bronze
     {
       id: 9,
+
       collection: "Common",
       name: "RHINO",
       prize: "600 IOI",
@@ -69,6 +70,7 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 10,
+
       collection: "Common",
       name: "PANTHER",
       prize: "600 IOI",
@@ -78,6 +80,7 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 11,
+
       collection: "Common",
       name: "ONYX",
       prize: "600 IOI",
@@ -87,6 +90,7 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 12,
+
       collection: "Common",
       name: "ZANDER",
       prize: "600 IOI",

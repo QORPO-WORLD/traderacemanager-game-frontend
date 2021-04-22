@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { CarsService } from "../../api/services";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
@@ -27,51 +27,75 @@ export class NftMarketComponent implements OnInit {
     //bronze
     {
       id: 9,
+      position: 0,
       collection: "Common",
       name: "RHINO",
       prize: "600 IOI",
       image: "car1",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 10,
+      position: 1,
       collection: "Common",
       name: "PANTHER",
       prize: "600 IOI",
       image: "car2",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 11,
+      position: 2,
       collection: "Common",
       name: "ONYX",
       prize: "600 IOI",
       image: "car3",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 12,
+      position: 3,
       collection: "Common",
       name: "ZANDER",
       prize: "600 IOI",
       image: "car4",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 13,
+      position: 4,
       collection: "Common",
       name: "CYBORG",
       prize: "600 IOI",
       image: "car5",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 14,
+      position: 5,
       collection: "Common",
       name: "VULCANIC",
       prize: "600 IOI",
       image: "car6",
       type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
     },
     {
       id: 15,
@@ -81,55 +105,82 @@ export class NftMarketComponent implements OnInit {
       image: "car25",
       type: "car",
       rare: true,
+      ability1: 0.6,
+      ability2: 6,
+      amount: [],
     },
     //silver
     {
       id: 16,
+      position: 6,
       collection: "Super",
       name: "DORIAN",
       prize: "1 000 IOI",
       image: "car7",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 17,
+      position: 7,
       collection: "Super",
       name: "PANTHER",
       prize: "1 000 IOI",
       image: "car8",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 18,
+      position: 8,
       collection: "Super",
       name: "ONYX",
       prize: "1 000 IOI",
       image: "car9",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 19,
+      position: 9,
       collection: "Super",
       name: "ZANDER",
       prize: "1 000 IOI",
       image: "car10",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 20,
+      position: 10,
       collection: "Super",
       name: "PYTHON",
       prize: "1 000 IOI",
       image: "car11",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 21,
+      position: 11,
       collection: "Super",
       name: "VULCANIC",
       prize: "1 000 IOI",
       image: "car12",
       type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
     },
     {
       id: 22,
@@ -139,55 +190,82 @@ export class NftMarketComponent implements OnInit {
       image: "car26",
       type: "car",
       rare: true,
+      ability1: 1.98,
+      ability2: 12,
+      amount: [],
     },
     //gold
     {
       id: 23,
+      position: 12,
       collection: "Epic",
       name: "CYBORG",
       prize: "1 600 IOI",
       image: "car13",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 24,
+      position: 13,
       collection: "Epic",
       name: "RHINO",
       prize: "1 600 IOI",
       image: "car14",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 25,
+      position: 14,
       collection: "Epic",
       name: "HYPER",
       prize: "1 600 IOI",
       image: "car15",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 26,
+      position: 15,
       collection: "Epic",
       name: "BULL",
       prize: "1 600 IOI",
       image: "car16",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 27,
+      position: 16,
       collection: "Epic",
       name: "PYTHON",
       prize: "1 600 IOI",
       image: "car17",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 28,
+      position: 17,
       collection: "Epic",
       name: "HITMAN",
       prize: "1 600 IOI",
       image: "car18",
       type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
     },
     {
       id: 29,
@@ -197,55 +275,82 @@ export class NftMarketComponent implements OnInit {
       image: "car27",
       type: "car",
       rare: true,
+      ability1: 4.74,
+      ability2: 18,
+      amount: [],
     },
     //platinum
     {
       id: 30,
+      position: 18,
       collection: "Legendary",
       name: "HYPER",
       prize: "2 600 IOI",
       image: "car19",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 31,
+      position: 19,
       collection: "Legendary",
       name: "DORIAN",
       prize: "2 600 IOI",
       image: "car20",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 32,
+      position: 20,
       collection: "Legendary",
       name: "VULCANIC",
       prize: "2 600 IOI",
       image: "car21",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 33,
+      position: 21,
       collection: "Legendary",
       name: "BULL",
       prize: "2 600 IOI",
       image: "car22",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 34,
+      position: 22,
       collection: "Legendary",
       name: "KNOCKOUT",
       prize: "2 600 IOI",
       image: "car23",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 35,
+      position: 23,
       collection: "Legendary",
       name: "LARA",
       prize: "2 600 IOI",
       image: "car24",
       type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 36,
@@ -255,6 +360,9 @@ export class NftMarketComponent implements OnInit {
       image: "car28",
       type: "car",
       rare: true,
+      ability1: 10.25,
+      ability2: 24,
+      amount: [],
     },
     {
       id: 1,
@@ -263,7 +371,12 @@ export class NftMarketComponent implements OnInit {
       prize: "100 IOI",
       image: "white-trm",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
     },
+
     {
       id: 2,
       collection: "Super",
@@ -271,6 +384,10 @@ export class NftMarketComponent implements OnInit {
       prize: "100 IOI",
       image: "red-trm",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
     },
     {
       id: 3,
@@ -279,6 +396,10 @@ export class NftMarketComponent implements OnInit {
       prize: "100 IOI",
       image: "blue-trm",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
     },
     {
       id: 4,
@@ -287,6 +408,10 @@ export class NftMarketComponent implements OnInit {
       prize: "100 IOI",
       image: "black-trm",
       type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
     },
     {
       id: 5,
@@ -295,6 +420,10 @@ export class NftMarketComponent implements OnInit {
       prize: "1 000 IOI",
       image: "lady-rich",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
     },
     {
       id: 6,
@@ -303,6 +432,10 @@ export class NftMarketComponent implements OnInit {
       prize: "1 000 IOI",
       image: "bad-boy",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
     },
     {
       id: 7,
@@ -311,6 +444,10 @@ export class NftMarketComponent implements OnInit {
       prize: "1 000 IOI",
       image: "mrs-rich",
       type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
     },
     {
       id: 8,
@@ -319,6 +456,11 @@ export class NftMarketComponent implements OnInit {
       prize: "10 000 IOI",
       image: "mr-rich",
       type: "racer",
+      ability1: "2%",
+      ability2: "20%",
+      ability3: "18% APY staking",
+      rank: "height",
+      amount: [],
     },
     {
       id: 37,
@@ -327,6 +469,9 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "free-track",
       type: "track",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
     {
       id: 38,
@@ -335,6 +480,10 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "desert",
       type: "track",
+      bet: "1 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
     {
       id: 39,
@@ -343,6 +492,10 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "dark-forest",
       type: "track",
+      bet: "5 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
     {
       id: 40,
@@ -351,6 +504,10 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "night-city",
       type: "track",
+      bet: "10 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
     {
       id: 41,
@@ -359,6 +516,10 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "sea-bridge",
       type: "track",
+      bet: "50 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
 
     {
@@ -368,6 +529,10 @@ export class NftMarketComponent implements OnInit {
       prize: "Coming soon",
       image: "underground",
       type: "track",
+      bet: "100 IOI",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
     },
     {
       id: 43,
@@ -376,7 +541,9 @@ export class NftMarketComponent implements OnInit {
       prize: "",
       image: "btc-team",
       type: "team",
+      amount: [],
     },
+
     {
       id: 44,
       collection: "",
@@ -384,6 +551,7 @@ export class NftMarketComponent implements OnInit {
       prize: "",
       image: "ioi-team",
       type: "team",
+      amount: [],
     },
     {
       id: 45,
@@ -392,6 +560,7 @@ export class NftMarketComponent implements OnInit {
       prize: "",
       image: "alt-team",
       type: "team",
+      amount: [],
     },
     {
       id: 46,
@@ -400,6 +569,9 @@ export class NftMarketComponent implements OnInit {
       prize: "1 000 IOI",
       image: "team-you",
       type: "team",
+      ability1: "50 IOI",
+      ability2: "20%",
+      amount: [],
     },
     {
       id: 47,
@@ -408,7 +580,8 @@ export class NftMarketComponent implements OnInit {
       prize: "",
       image: "trophy",
       type: "special",
-      ability1: "Yearly",
+      ability2: "Yearly",
+      amount: [],
     },
     {
       id: 48,
@@ -417,10 +590,13 @@ export class NftMarketComponent implements OnInit {
       prize: "",
       image: "ring",
       type: "special",
-      ability1: "Monthly",
+      ability1: "Entry to yearly tournament",
+      ability2: "Monthly",
+      amount: [],
     },
   ];
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
+  selectedPosition;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
@@ -439,6 +615,12 @@ export class NftMarketComponent implements OnInit {
   maxPage;
   lastPage;
   typeObserver: Subscription;
+
+  modalActive;
+
+  closeModal() {
+    this.modalActive = false;
+  }
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
@@ -605,7 +787,8 @@ export class NftMarketComponent implements OnInit {
     });
   }
 
-  showAsset(id: number, type: string) {
+  showAsset(id: number, type: string, position: number) {
+    this.selectedPosition = position;
     this.selectedId = id;
     this.selectedType = type;
     this.marketState = 2;
@@ -645,5 +828,8 @@ export class NftMarketComponent implements OnInit {
   }
   showAssetBuy(state: number) {
     this.marketState = state;
+  }
+  showModal(modal: number) {
+    this.modalActive = modal;
   }
 }

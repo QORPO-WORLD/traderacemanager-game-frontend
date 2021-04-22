@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { CarsService, DriversService } from "../../api/services";
 
 @Component({
   selector: "app-nft-detail",
@@ -10,6 +11,7 @@ export class NftDetailComponent implements OnInit {
     //bronze
     {
       id: 9,
+      position: 0,
       collection: "Common",
       name: "RHINO",
       prize: "600 IOI",
@@ -21,6 +23,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 10,
+      position: 1,
       collection: "Common",
       name: "PANTHER",
       prize: "600 IOI",
@@ -32,6 +35,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 11,
+      position: 2,
       collection: "Common",
       name: "ONYX",
       prize: "600 IOI",
@@ -43,6 +47,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 12,
+      position: 3,
       collection: "Common",
       name: "ZANDER",
       prize: "600 IOI",
@@ -54,6 +59,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 13,
+      position: 4,
       collection: "Common",
       name: "CYBORG",
       prize: "600 IOI",
@@ -65,6 +71,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 14,
+      position: 5,
       collection: "Common",
       name: "VULCANIC",
       prize: "600 IOI",
@@ -89,6 +96,7 @@ export class NftDetailComponent implements OnInit {
     //silver
     {
       id: 16,
+      position: 6,
       collection: "Super",
       name: "DORIAN",
       prize: "1 000 IOI",
@@ -100,6 +108,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 17,
+      position: 7,
       collection: "Super",
       name: "PANTHER",
       prize: "1 000 IOI",
@@ -111,6 +120,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 18,
+      position: 8,
       collection: "Super",
       name: "ONYX",
       prize: "1 000 IOI",
@@ -122,6 +132,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 19,
+      position: 9,
       collection: "Super",
       name: "ZANDER",
       prize: "1 000 IOI",
@@ -133,6 +144,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 20,
+      position: 10,
       collection: "Super",
       name: "PYTHON",
       prize: "1 000 IOI",
@@ -144,6 +156,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 21,
+      position: 11,
       collection: "Super",
       name: "VULCANIC",
       prize: "1 000 IOI",
@@ -168,6 +181,7 @@ export class NftDetailComponent implements OnInit {
     //gold
     {
       id: 23,
+      position: 12,
       collection: "Epic",
       name: "CYBORG",
       prize: "1 600 IOI",
@@ -179,6 +193,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 24,
+      position: 13,
       collection: "Epic",
       name: "RHINO",
       prize: "1 600 IOI",
@@ -190,6 +205,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 25,
+      position: 14,
       collection: "Epic",
       name: "HYPER",
       prize: "1 600 IOI",
@@ -201,6 +217,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 26,
+      position: 15,
       collection: "Epic",
       name: "BULL",
       prize: "1 600 IOI",
@@ -212,6 +229,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 27,
+      position: 16,
       collection: "Epic",
       name: "PYTHON",
       prize: "1 600 IOI",
@@ -223,6 +241,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 28,
+      position: 17,
       collection: "Epic",
       name: "HITMAN",
       prize: "1 600 IOI",
@@ -247,6 +266,7 @@ export class NftDetailComponent implements OnInit {
     //platinum
     {
       id: 30,
+      position: 18,
       collection: "Legendary",
       name: "HYPER",
       prize: "2 600 IOI",
@@ -258,6 +278,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 31,
+      position: 19,
       collection: "Legendary",
       name: "DORIAN",
       prize: "2 600 IOI",
@@ -269,6 +290,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 32,
+      position: 20,
       collection: "Legendary",
       name: "VULCANIC",
       prize: "2 600 IOI",
@@ -280,6 +302,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 33,
+      position: 21,
       collection: "Legendary",
       name: "BULL",
       prize: "2 600 IOI",
@@ -291,6 +314,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 34,
+      position: 22,
       collection: "Legendary",
       name: "KNOCKOUT",
       prize: "2 600 IOI",
@@ -302,6 +326,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 35,
+      position: 23,
       collection: "Legendary",
       name: "LARA",
       prize: "2 600 IOI",
@@ -524,7 +549,7 @@ export class NftDetailComponent implements OnInit {
     {
       id: 46,
       collection: "",
-      name: "Team You",
+      name: "You",
       prize: "1 000 IOI",
       image: "team-you",
       type: "team",
@@ -554,10 +579,17 @@ export class NftDetailComponent implements OnInit {
       amount: [],
     },
   ];
+  p: number;
+  i: number;
+  carSum: string;
+  availableCars = [];
+  remainingCars = [];
 
   displayArray = [];
   @Input() assetType = "racer";
   @Input() assetId = 1;
+  @Input() assetPosition = 1;
+  @Output() modalActive = new EventEmitter<number>();
   @Output() marketState = new EventEmitter<number>();
 
   noGifActive = true;
@@ -566,10 +598,20 @@ export class NftDetailComponent implements OnInit {
   timer = null;
   timer2 = null;
 
-  constructor() {}
+  constructor(protected api: CarsService, drvrsrvc: DriversService) {
+    this.getShowroomCars();
+  }
 
   ngOnInit() {
     this.resolveShowAsset();
+  }
+  getShowroomCars() {
+    this.api.carsShowroomList().subscribe((data) => {
+      const objs: any = data;
+      this.remainingCars = objs.remaining_cars_by_tier;
+      this.carSum = objs.remaining_cars.toString();
+      this.availableCars = objs.cars;
+    });
   }
   showAnimation() {
     this.animationActive = false;
@@ -597,9 +639,13 @@ export class NftDetailComponent implements OnInit {
     this.displayArray = this.products.filter(
       (asset) => asset["id"] === this.assetId
     );
+    this.i = this.displayArray[0]["position"];
   }
 
   showBuyModal() {
     this.marketState.emit(3);
+  }
+  showModal(p) {
+    this.modalActive.emit(p);
   }
 }

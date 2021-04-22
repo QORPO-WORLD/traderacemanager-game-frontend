@@ -35,6 +35,13 @@
         </div>
       </div>
       <div class="detail-image">
+        <button
+          *ngIf="!displayArray[0]['rare']"
+          class="buy-btn my-cta-btn-back my-box-shadow"
+        >
+          <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+          <h4>Soon</h4>
+        </button>
         <div class="image">
           <img
             *ngIf="noGifActive === true"
@@ -55,7 +62,7 @@
           />
         </div>
         <div class="image-button">
-          <button class="my-cta-btn-back my-box-shadow">
+          <button class="animation-btn my-cta-btn-back my-box-shadow">
             <div
               [ngClass]="{ 'button-animation': animationActive === true }"
               class="btn-background"
@@ -74,9 +81,16 @@
                 />
               </div>
               <div class="btn-text">
-                <p>Show Racers move</p>
+                <p>Show move</p>
               </div>
             </div>
+          </button>
+          <button
+            *ngIf="!displayArray[0]['rare']"
+            class="buy-btn-racer my-cta-btn-back my-box-shadow"
+          >
+            <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+            <h4>Soon</h4>
           </button>
         </div>
       </div>
@@ -185,12 +199,7 @@
         </div>
       </div>
     </div>
-    <div class="detail-button">
-      <button class="my-cta-btn-back">
-        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
-        <h4>Soon</h4>
-      </button>
-    </div>
+    <div class="detail-button"></div>
   </div>
 </ng-container>
 <ng-container *ngIf="displayArray[0]['type'] === 'car'">
@@ -220,9 +229,48 @@
             in-game, buy, sell and trade on open markets. The new era of NFTs in
             your pocket.
           </p>
+          <br />
+          <h3
+            (click)="showModal(1)"
+            class="modalh3"
+            *ngIf="displayArray[0]['rare'] === undefined"
+          >
+            How to get free &gt;
+          </h3>
+
+          <br />
+          <h3
+            (click)="showModal(2)"
+            class="modalh3"
+            *ngIf="displayArray[0]['rare'] === undefined"
+          >
+            Daily stakes &gt;
+          </h3>
         </div>
       </div>
       <div class="detail-image">
+        <div *ngIf="i < 24" class="owned my-border-grad">
+          <div class="inner-owned">
+            <p class="owned-text">
+              <span class="red-box-detail">{{
+                remainingCars[i].count.toLocaleString()
+              }}</span>
+              <span class="blue-box-detail">{{
+                remainingCars[i].count.toLocaleString()
+              }}</span>
+
+              left
+            </p>
+          </div>
+        </div>
+        <button
+          *ngIf="!displayArray[0]['rare']"
+          (click)="showBuyModal()"
+          class="buy-btn my-cta-btn-back my-box-shadow"
+        >
+          <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+          <h4>Buy</h4>
+        </button>
         <div
           *ngIf="displayArray[0]['rare'] === true"
           class="rare my-border-grad-reverse"
@@ -326,17 +374,9 @@
       </div>
     </div>
     <div class="detail-button">
-      <button
-        *ngIf="!displayArray[0]['rare']"
-        (click)="showBuyModal()"
-        class="my-cta-btn-back"
-      >
-        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
-        <h4>Buy</h4>
-      </button>
       <div *ngIf="displayArray[0]['rare']" class="raremsg">
         <img src="assets/base/images/market/ticket.svg" alt="key" />
-        <p>To unlock this car you have to own all cars from this collection.</p>
+        <p>To unlock this car you have to own all cars from same collection.</p>
       </div>
     </div>
   </div>
@@ -368,6 +408,13 @@
         </div>
       </div>
       <div class="detail-image">
+        <button
+          *ngIf="!displayArray[0]['rare']"
+          class="buy-btn my-cta-btn-back my-box-shadow"
+        >
+          <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+          <h4>Soon</h4>
+        </button>
         <div
           *ngIf="displayArray[0]['rare'] === true"
           class="rare my-border-grad-reverse"
@@ -507,12 +554,6 @@
         </div>
       </div>
     </div>
-    <div class="detail-button">
-      <button class="my-cta-btn-back">
-        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
-        <h4>Soon</h4>
-      </button>
-    </div>
   </div>
 </ng-container>
 <ng-container *ngIf="displayArray[0]['type'] === 'team'">
@@ -543,6 +584,15 @@
         </div>
       </div>
       <div class="detail-image">
+        <button
+          *ngIf="!displayArray[0]['rare']"
+          [routerLink]="['/teams/owners-managers']"
+          routerLinkActive="router-link-active"
+          class="buy-btn my-cta-btn-back my-box-shadow"
+        >
+          <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
+          <h4>Buy</h4>
+        </button>
         <div
           *ngIf="displayArray[0]['rare'] === true"
           class="rare my-border-grad-reverse"
@@ -654,17 +704,7 @@
         </div>
       </div>
     </div>
-    <div class="detail-button">
-      <button
-        [routerLink]="['/teams/owners-managers']"
-        routerLinkActive="router-link-active"
-        class="my-cta-btn-back"
-      >
-        <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
-
-        <h4>Buy</h4>
-      </button>
-    </div>
+    <div class="detail-button"></div>
   </div>
 </ng-container>
 <ng-container *ngIf="displayArray[0]['type'] === 'special'">
@@ -696,6 +736,18 @@
         </div>
       </div>
       <div class="detail-image">
+        <button
+          [routerLink]="['/race/all-races']"
+          routerLinkActive="router-link-active"
+          class="buy-btn my-cta-btn-back"
+        >
+          <img
+            src="assets/base/images/market/play-white.svg"
+            alt="play button"
+          />
+
+          <h4>Play now</h4>
+        </button>
         <div
           *ngIf="displayArray[0]['rare'] === true"
           class="rare my-border-grad-reverse"
@@ -785,16 +837,6 @@
         </div>
       </div>
     </div>
-    <div class="detail-button">
-      <button
-        [routerLink]="['/race/all-races']"
-        routerLinkActive="router-link-active"
-        class="my-cta-btn-back"
-      >
-        <img src="assets/base/images/market/play-white.svg" alt="play button" />
-
-        <h4>Play now</h4>
-      </button>
-    </div>
+    <div class="detail-button"></div>
   </div>
 </ng-container>
