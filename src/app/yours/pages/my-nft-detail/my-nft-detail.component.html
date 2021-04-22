@@ -60,6 +60,7 @@
             alt="avatar image"
           />
           <img
+            [ngClass]="{ 'show-animation': animationActive === true }"
             *ngIf="animationActive === true"
             class="gif"
             [src]="'assets/base/images/nft-racers/' + gifName + '.gif'"
@@ -67,11 +68,11 @@
           />
         </div>
         <div class="image-button">
-          <button
-            (click)="resetAnimationBtn(); resetAnimationGif()"
-            class="my-cta-btn-back my-box-shadow"
-          >
-            <div class="btn-background"></div>
+          <button class="my-cta-btn-back my-box-shadow">
+            <div
+              [ngClass]="{ 'button-animation': animationActive === true }"
+              class="btn-background"
+            ></div>
             <div (click)="activateAnimation()" class="inner-btn">
               <div class="btn-img">
                 <img

@@ -578,27 +578,17 @@ export class MyNftDetailComponent implements OnInit {
   backToProducts() {
     this.marketState.emit(1);
   }
-  resetAnimationBtn() {
-    let element;
-    element = document.querySelector(".btn-background");
-    element.classList.remove("button-animation");
-    void element.offsetWidth;
-    element.classList.add("button-animation");
-  }
-  resetAnimationGif() {
-    let element;
-    element = document.querySelector(".gif");
-    element.classList.remove("show-animation");
-    void element.offsetWidth;
-    element.classList.add("show-animation");
-  }
   timer = null;
+  timer2 = null;
   showAnimation() {
-    this.gifName = "none";
-    this.gifName = "black-trm-animation";
-    this.animationActive = true;
-    this.noGifActive = false;
-
+    this.animationActive = false;
+    this.noGifActive = true;
+    this.gifName = "none1";
+    this.timer2 = setTimeout(() => {
+      this.gifName = "black-trm-animation";
+      this.animationActive = true;
+      this.noGifActive = false;
+    }, 1);
     this.timer = setTimeout(() => {
       this.animationActive = false;
       this.gifName = "none1";
@@ -607,6 +597,7 @@ export class MyNftDetailComponent implements OnInit {
   }
 
   activateAnimation() {
+    clearTimeout(this.timer2);
     clearTimeout(this.timer);
     this.showAnimation();
   }
