@@ -1,1022 +1,514 @@
-.detail-page {
-  height: 100vh;
-  background: #111111;
-  overflow: hidden;
+* {
+  margin: 0;
+  padding: 0;
 }
-.hamburger {
-  display: none;
+h2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  &.name-font {
+    margin-top: -15px;
+    font-family: True-Lies;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 65px;
+    transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+  }
 }
-
-.sign-in {
-  z-index: 1;
-  cursor: pointer;
-  transition: 0.2s;
-  outline: none;
-  font-weight: 600;
+h3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
   font-size: 20px;
-  line-height: 30px;
-  color: white;
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 65px;
-  border-radius: 12px;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -ms-transition: 0.2s;
-  -o-transition: 0.2s;
-  &.cars,
-  &.tracks {
-  }
-
-  .btn-content {
-    display: flex;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    img {
-      margin-right: 5px;
-    }
-    i {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-    }
-  }
 }
-.info-icon {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  .info-bubble {
-    z-index: 0;
-    padding: 10px;
-    transition: 0.2s;
-    z-index: 2;
-    background: rgba(17, 17, 17, 0.9);
-    width: 200px;
+
+h4 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}
+p {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+
+  color: #868686;
+}
+.detail {
+  margin-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.detail-header {
+  display: flex;
+  .back-btn {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    overflow: hidden;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
-    opacity: 0;
+    height: 50px;
+    background: #222222;
+    width: 200px;
     p {
-      font-size: 17px;
-      line-height: 1.3;
-      margin: 10px 0;
+      transition: 0.2s;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      -ms-transition: 0.2s;
+      -o-transition: 0.2s;
     }
-    .img-holder {
-      width: fit-content;
-      margin: 0 auto;
-      img {
-        margin: 0 auto;
-      }
+  }
+  .back-btn:hover {
+    p {
+      color: white;
     }
   }
 }
-.sign-in:hover {
-  transform: translateX(-50%) scale(1.05);
-  -webkit-transform: translateX(-50%) scale(1.05);
-  -moz-transform: translateX(-50%) scale(1.05);
-  -ms-transform: translateX(-50%) scale(1.05);
-  -o-transform: translateX(-50%) scale(1.05);
-  .info-icon {
-    .info-bubble {
-      z-index: 2;
-
-      opacity: 1;
-    }
-  }
-}
-
-.detail-racers {
-  color: white;
-  position: relative;
-  padding: 10px;
+.detail-content {
+  margin-top: 20px;
   display: flex;
-  margin-top: 7.5%;
-  width: 100%;
-  &.cars {
-    margin-top: 5.5%;
-    .detail-text {
-      .detail-name {
-        h1 {
-          font-size: 48px;
-          font-weight: 700;
-        }
-      }
-      .detail-info {
-        margin: 10px 0px 0px 0px;
-        width: 100%;
-      }
-      .mobile-img {
-        display: none;
-        text-align: center;
-      }
-      .car-abilities {
-        margin-top: 0px;
-        width: 100%;
-        h1 {
-          font-size: 20px;
-          line-height: 30px;
-          color: #ffffff;
-        }
-        .ability-boxes {
-          width: 100%;
-          .ability-box {
-            width: 100%;
-            .heading {
-              text-align: center;
-              font-size: 16px;
-              margin: 0;
-              padding: 0;
-            }
-            .slider-holder {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              p {
-                width: 80px;
-                margin: 0;
-                text-align: center;
-              }
-              .ab-slider {
-                width: calc(100% - 170px);
-                border-radius: 5px;
-                background: rgba(51, 51, 51, 0.5);
-                height: 10px;
-                position: relative;
-                box-shadow: 0px 1px 3px 0px rgb(255 255 255 / 50%);
-                .inner-slider {
-                  position: absolute;
-                  left: 0;
-                  top: 0;
-                  height: 100%;
-                  border-radius: 5px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  justify-content: space-between;
   .detail-text {
-    z-index: 1;
-    > div {
-      margin-top: 10px;
-    }
-    margin-top: -50px;
-    width: 60%;
-    height: 100%;
+    padding: 50px 35px 40px 35px;
+    height: 500px;
+    background: #222222;
+    border-radius: 15px;
+    width: 39%;
     display: flex;
     flex-direction: column;
-
-    .detail-name {
-      margin: 0;
-      position: relative;
-      .name-font {
-        position: absolute;
-        font-family: True-Lies;
-        font-style: normal;
-        font-weight: normal;
-        left: 65px;
-        top: 5px;
-        font-size: 80px;
-        line-height: 65px;
-        transform: rotate(-5deg);
-        -webkit-transform: rotate(-5deg);
-        -moz-transform: rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-        -o-transform: rotate(-5deg);
-      }
-      .name-carfont {
-        font-family: True-Lies;
-        font-style: normal;
-        font-weight: normal;
-        left: 65px;
-        top: 5px;
-        font-size: 80px;
-        line-height: 65px;
-        transform: rotate(-5deg);
-        -webkit-transform: rotate(-5deg);
-        -moz-transform: rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-        -o-transform: rotate(-5deg);
-      }
+    .text-title {
+      margin-top: 40px;
     }
-    .detail-info {
-      margin: 90px 0 30px;
-      width: 110%;
-      h1 {
-        font-size: 20px;
-        line-height: 30px;
-        color: #ffffff;
-      }
-      p {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 30px;
-        opacity: 0.6;
-        color: #ffffff;
-      }
-    }
-    .detail-abilities {
-      h1 {
-        font-size: 20px;
-        line-height: 30px;
-        color: #ffffff;
-      }
-      width: 120%;
-      > div {
-        display: flex;
-        flex-wrap: wrap;
-
-        > div {
-          width: 30%;
-          margin: 15px;
-          display: flex;
-          align-items: center;
-          .ability-image {
-            width: 80px;
-            position: relative;
-            button {
-              outline: none;
-              border: 0;
-              width: 80px;
-              height: 80px;
-              border-radius: 10px;
-              font-style: normal;
-              font-weight: 300;
-              font-size: 30px;
-              line-height: 45px;
-              color: #ffffff;
-            }
-          }
-          .ability-type {
-            position: relative;
-            width: 100%;
-            padding: 0 0px 0px 20px;
-            h1 {
-              font-weight: 600;
-              font-size: 20px;
-              line-height: 30px;
-              margin: 0;
-            }
-            p {
-              margin: 0;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 24px;
-
-              color: #ffffff;
-
-              opacity: 0.6;
-            }
-          }
-        }
-      }
+    .text-info {
+      margin-top: 20px;
     }
   }
   .detail-image {
+    overflow: hidden;
+    height: 500px;
+    background: #222222;
+    border-radius: 15px;
+    width: 39%;
+    display: flex;
+    flex-direction: column;
     position: relative;
-    width: 40%;
-    > div {
+    .owned {
+      position: absolute;
+      top: 15px;
+      right: -1px;
+      padding: 1px;
+      border-radius: 15px 0px 0px 15px;
+      .inner-owned {
+        border-radius: 15px 0px 0px 15px;
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+        background: rgba(34, 34, 34, 0.6);
+      }
+      .owned-text {
+        color: white;
+        margin-right: 20px;
+        margin-left: 10px;
+
+        span {
+          margin-left: 5px;
+          font-size: 19px;
+          font-weight: 600;
+        }
+      }
+    }
+    .rare {
+      width: 140px;
+      padding: 1px;
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      border-radius: 0px 15px 0px 0px;
+      -webkit-border-radius: 0px 15px 0px 0px;
+      -moz-border-radius: 0px 15px 0px 0px;
+      -ms-border-radius: 0px 15px 0px 0px;
+      -o-border-radius: 0px 15px 0px 0px;
+      .inner-rare {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        border-radius: 0px 15px 0px 0px;
+        -webkit-border-radius: 0px 15px 0px 0px;
+        -moz-border-radius: 0px 15px 0px 0px;
+        -ms-border-radius: 0px 15px 0px 0px;
+        -o-border-radius: 0px 15px 0px 0px;
+        background: rgba(34, 34, 34, 0.6);
+        img {
+          width: 15px;
+        }
+      }
+    }
+    .image {
+      height: 90%;
       position: relative;
-      height: 100%;
-      width: 100%;
       img {
-        transition: 0.2s;
         position: absolute;
-        top: 40%;
+        width: 480px;
         left: 50%;
-        max-width: 130%;
-        width: 400px;
+        top: 60%;
         transform: translate(-50%, -50%);
         -webkit-transform: translate(-50%, -50%);
         -moz-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         -o-transform: translate(-50%, -50%);
-        &.special {
-          width: 250px;
-          max-width: 100%;
+        &.ring {
+          width: 280px;
+        }
+      }
+      .gif {
+        top: 50%;
+        opacity: 0;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+      }
+    }
+    .show-animation {
+      animation: showanimation 6.5s linear;
+      -webkit-animation: showanimation 6.5s linear;
+    }
+    @keyframes showanimation {
+      0% {
+        opacity: 0;
+        z-index: -1;
+      }
+      5% {
+        opacity: 1;
+        z-index: 1;
+      }
+      95% {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      100% {
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+    .image-button {
+      position: relative;
+      padding: 20px;
+      text-align: right;
+      z-index: 3;
+      button {
+        transition: 0.2s;
+        position: relative;
+        padding: 1px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        width: 231px;
+        height: 50px;
+        .btn-background {
+          box-sizing: content-box;
+
+          width: 100%;
+          height: 100%;
+          background: rgba(34, 34, 34, 1);
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          -ms-border-radius: 10px;
+          -o-border-radius: 10px;
+        }
+        .inner-btn {
+          top: 0px;
+          left: 0px;
+          position: absolute;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          align-items: center;
+          display: flex;
+          border-radius: 10px;
+
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          -ms-border-radius: 10px;
+          -o-border-radius: 10px;
+          .btn-img {
+            width: 20%;
+            img {
+              margin-left: 10px;
+            }
+          }
+          .btn-text {
+            width: 80%;
+            p {
+              color: white;
+            }
+          }
         }
       }
     }
-  }
-}
-.detail-cars {
-  color: white;
-  position: relative;
-  padding: 10px;
-  display: flex;
-  margin-left: 12.5%;
-  margin-top: 7.5%;
-  height: 60%;
-  width: 75%;
-  .detail-text {
-    z-index: 1;
-    > div {
-      margin-top: 10px;
+
+    .button-animation {
+      background: red;
+      animation: btnanimation 6s linear;
+      -webkit-animation: btnanimation 6s linear;
+      height: 100%;
     }
-    margin-top: -50px;
-    width: 60%;
-    height: 100%;
+    @keyframes btnanimation {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+  }
+  .detail-abilities {
+    height: 500px;
+    width: 18%;
     display: flex;
     flex-direction: column;
-
-    .back {
-      width: fit-content;
-      p {
-        outline: none;
-        cursor: pointer;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 30px;
-        /* identical to box height */
-
-        color: #ffffff;
-
-        opacity: 0.2;
+    justify-content: space-between;
+    &.lessthanthree {
+      justify-content: unset;
+      .ability-box {
+        margin-top: 10px;
       }
     }
-    .detail-name {
-      margin-top: 20px;
-      position: relative;
-      height: 20%;
-      .racer {
-      }
-      .name-nofont {
-        font-size: 50px;
-      }
-    }
-    .detail-info {
-      height: 30%;
-      width: 80%;
-      h1 {
-        font-size: 20px;
-        line-height: 30px;
-        /* identical to box height */
-        color: #ffffff;
-      }
-      p {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 30px;
 
-        color: #ffffff;
-      }
-    }
-  }
-  .detail-image {
-    position: relative;
-    width: 40%;
-    > div {
+    .inner-ability {
       position: relative;
       height: 100%;
       width: 100%;
-      img {
-        transition: 0.2s;
+      background: rgba(34, 34, 34, 0.6);
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px;
+      display: flex;
+      display: row;
+      justify-content: center;
+      .ability-content {
+        width: 95%;
+        display: flex;
         position: absolute;
         top: 50%;
-        left: 50%;
-        width: 400px;
-        transform: translate(-50%, -50%);
-      }
-      img:hover {
-        filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.5));
-      }
-    }
-  }
-}
-@media screen and (min-width: 2000px) {
-  .detail-racers {
-    .detail-text {
-      .detail-name {
-        .name-carfont {
-          margin-bottom: 30px;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        width: 90%;
+        .ability-image {
+          position: relative;
+          width: 40%;
+          img {
+            width: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+          }
+        }
+        .ability-text {
+          position: relative;
+          width: 60%;
         }
       }
     }
-  }
-}
-@media screen and (max-width: 1800px) {
-  .detail-racers {
-    .detail-text {
-      .detail-info {
-        p {
-          font-size: 17.5px;
-        }
-      }
+    .ability-title {
+      height: 10%;
+    }
+    .ability-box {
+      height: 28%;
+      border-radius: 15px;
+      padding: 1px;
+    }
+    .moreboxes {
+      height: 20%;
     }
   }
 }
-@media screen and (max-width: 1700px) {
-  .sign-in {
-    font-size: 18px;
+.detail-button {
+  display: flex;
+  margin-top: 20px;
+  button {
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    width: 174px;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
     img {
-      width: 30px;
+      display: inline;
+      padding-right: 10px;
     }
-    .txt-span {
-    }
-  }
-  .detail-racers {
-    margin-top: 6%;
-    .detail-text {
-      .detail-name {
-        h1 {
-          margin: 10px 0;
-        }
-        .name-font {
-          font-size: 65px;
-          left: 74px;
-        }
-      }
-      .detail-info {
-        width: 100%;
-        margin: 75px 0 25px;
-        h1 {
-          font-size: 18px;
-        }
-        p {
-          font-size: 17px;
-          line-height: 1.5;
-        }
-      }
-      .detail-abilities {
-        h1 {
-          font-size: 18px;
-        }
-        & > div {
-          & > div {
-            .ability-image {
-              width: 70px;
-              button {
-                width: 70px;
-                height: 70px;
-              }
-            }
-            .ability-type {
-              h1 {
-                font-size: 18px;
-                line-height: 25px;
-              }
-            }
-          }
-        }
-      }
+    h4 {
+      display: inline;
     }
   }
-}
-@media screen and (max-width: 1550px) {
-  .sign-in {
-    width: 186px;
-    height: 60px;
-    font-size: 17px;
-    right: -55px;
-    &.cars {
-      bottom: 50px;
-    }
+  button:hover {
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+  }
+  .raremsg {
+    display: flex;
+    align-items: center;
     img {
-      width: 25px;
+      width: 40px;
     }
-  }
-  .detail-racers {
-    &.cars {
-      .detail-text {
-        .detail-name {
-          h1 {
-            font-size: 38px;
-          }
-        }
-        .detail-info {
-          margin: 15px 0 20px;
-        }
-        .car-abilities {
-          h1 {
-            margin: 0;
-            font-size: 17px;
-          }
-          .ability-boxes {
-            .ability-box {
-              .heading {
-                font-size: 15px;
-              }
-              .slider-holder {
-                p {
-                  font-size: 15px;
-                }
-                .ab-slider {
-                  height: 8px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .detail-text {
-      .detail-name {
-        h1 {
-          margin: 7px 0;
-          font-size: 21px;
-        }
-        .name-font {
-          font-size: 57px;
-          left: 80px;
-        }
-      }
-      .detail-info {
-        margin: 65px 0 22px;
-        h1 {
-          font-size: 17px;
-        }
-        p {
-          font-size: 16px;
-          line-height: 1.4;
-        }
-      }
-      .detail-abilities {
-        h1 {
-          font-size: 17px;
-        }
-        & > div {
-          & > div {
-            .ability-image {
-              width: 60px;
-              button {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-              }
-            }
-            .ability-type {
-              h1 {
-                font-size: 16px;
-                line-height: 22px;
-              }
-              p {
-                font-size: 15px;
-              }
-            }
-          }
-        }
-      }
+    p {
+      margin-left: 15px;
     }
   }
 }
 @media screen and (max-width: 1300px) {
-  .detail-racers {
+  h2 {
+    font-size: 33px;
+    &.name-font {
+      font-size: 45px;
+    }
+  }
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .detail-content {
+    flex-wrap: wrap;
     .detail-text {
-      .detail-info {
-        margin: 45px 0 0px;
-      }
-      .detail-abilities {
-        h1 {
-          font-size: 20px;
-          line-height: 30px;
-          color: #ffffff;
-        }
-        width: 110%;
-        > div {
-          flex-wrap: wrap;
-          > div {
-            width: 45%;
-            margin: 1%;
-            .ability-image {
-              button {
-                width: 57px;
-                height: 57px;
-                font-size: 22px;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.tracks {
-      .detail-text {
-        .detail-info {
-          width: 90%;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 1024px) {
-  .sign-in {
-    .btn-content {
-      left: 50%;
-    }
-    &.cars {
-      transform: translateX(-50%);
-    }
-  }
-  .detail-page {
-    height: auto;
-
-    background: #111111;
-    overflow: hidden;
-    position: relative;
-  }
-  .sign-in {
-    z-index: 1;
-    cursor: pointer;
-    transition: 0.2s;
-    outline: none;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    color: white;
-
-    position: absolute;
-    right: unset;
-    top: unset;
-    left: 50%;
-    bottom: 3%;
-    transform: none;
-    transform: translateX(-50%);
-    width: 292px;
-    height: 70px;
-    border-radius: 12px;
-    &.cars {
-      bottom: 10px;
-    }
-
-    .txt {
-      margin-right: 10px;
-    }
-    .txt-span {
-      margin-right: 0px;
-    }
-  }
-
-  .detail-racers {
-    color: white;
-    position: relative;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
-    margin-top: 100px;
-    height: auto;
-    width: 90%;
-    &.cars {
-      .detail-text {
-        margin-top: 0;
-        .detail-name {
-          margin-top: 0;
-        }
-        .mobile-img {
-          display: block;
-        }
-        .car-abilities {
-          margin-bottom: 0px;
-        }
-      }
-      .detail-image {
-        height: 150px;
-        & > div {
-          img {
-            display: none;
-          }
-        }
-      }
-    }
-    &.tracks {
-      .detail-text {
-        .detail-info {
-          width: 100%;
-        }
-      }
-    }
-    &.teams {
-      .detail-image {
-        .img {
-          img {
-            width: 300px;
-          }
-        }
-      }
-    }
-    &.special {
-      .detail-image {
-        .img {
-          img {
-            top: 10%;
-          }
-        }
-      }
-    }
-
-    .detail-text {
-      height: auto;
-      z-index: 1;
-      > div {
-        margin-top: 10px;
-      }
-      margin-top: -50px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      .detail-name {
-        margin-top: -20px;
-        position: relative;
-        height: 30%;
-        .name-font {
-          position: absolute;
-          font-family: True-Lies;
-          font-style: normal;
-          font-weight: normal;
-          left: 0%;
-          top: 5px;
-          font-size: 55px;
-          line-height: 65px;
-          text-align: center;
-          width: 100%;
-          transform: rotate(-5deg);
-          -webkit-transform: rotate(-5deg);
-          -moz-transform: rotate(-5deg);
-          -ms-transform: rotate(-5deg);
-          -o-transform: rotate(-5deg);
-        }
-      }
-      .detail-info {
-        overflow: unset;
-        height: auto;
-        width: 100%;
-        margin-top: 100px;
-        h1 {
-          font-size: 20px;
-          line-height: 30px;
-          /* identical to box height */
-          color: #ffffff;
-        }
-        p {
-          font-style: normal;
-          font-weight: normal;
-          font-size: 17px;
-          color: #ffffff;
-        }
-      }
-      .detail-abilities {
-        position: absolute;
-        top: 600px;
-        width: 100%;
-        height: auto;
-        h1 {
-          font-size: 20px;
-          line-height: 30px;
-          color: #ffffff;
-        }
-        > div {
-          display: flex;
-          flex-wrap: wrap;
-          > div {
-            width: 45%;
-            margin: 1%;
-            height: 100%;
-            display: flex;
-            .ability-image {
-              width: 30%;
-              position: relative;
-              button {
-                outline: none;
-                border: 0;
-                width: 80px;
-                height: 80px;
-                border-radius: 10px;
-                font-family: Poppins;
-                font-style: normal;
-                font-weight: 300;
-                font-size: 30px;
-                line-height: 45px;
-                /* identical to box height */
-
-                color: #ffffff;
-              }
-            }
-            .ability-type {
-              position: relative;
-              width: 70%;
-              height: 80px;
-              padding: 10px 0px 0px 20px;
-              h1 {
-                font-weight: 600;
-                font-size: 20px;
-                line-height: 30px;
-                margin: 0;
-              }
-              p {
-                margin: 0;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 24px;
-
-                color: #ffffff;
-
-                opacity: 0.6;
-              }
-            }
-          }
-        }
-      }
+      width: 49%;
     }
     .detail-image {
-      height: 800px;
-      position: relative;
+      width: 49%;
+    }
+    .detail-abilities {
       width: 100%;
-      > div {
-        position: relative;
-        height: 100%;
+      justify-content: unset;
+      height: 160px;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      .ability-title {
         width: 100%;
-        img {
-          transition: 0.2s;
-          position: absolute;
-          top: 0px;
-          left: 50%;
-          width: 400px;
-          transform: translate(-50%, 0%);
-          -webkit-transform: translate(-50%, 0%);
-          -moz-transform: translate(-50%, 0%);
-          -ms-transform: translate(-50%, 0%);
-          -o-transform: translate(-50%, 0%);
-        }
-        img:hover {
-          filter: none;
-        }
+        margin-top: 20px;
+        height: 20%;
+      }
+      .ability-box {
+        margin-left: 1%;
+        width: 24%;
+        height: 80%;
+      }
+      .box1 {
+        margin-left: 0%;
       }
     }
+  }
+  .detail-button {
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 800px) {
+  h2 {
+    font-size: 30px;
+    &.name-font {
+      font-size: 40px;
+    }
+  }
+  h3 {
+    font-size: 17px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 @media screen and (max-width: 640px) {
-  .sign-in {
-    width: 184px;
-    height: 55px;
-    font-size: 18px;
-    bottom: 0;
-  }
-  .detail-racers {
-    &.cars {
-      .detail-image {
-        height: 50px;
-      }
-      .detail-text {
-        .car-abilities {
-          margin-bottom: 90px;
-          .ability-boxes {
-            .ability-box {
-              .slider-holder {
-                .ab-slider {
-                  width: calc(100% - 135px);
-                }
-                p {
-                  width: 60px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    &.tracks {
-      .detail-image {
-        height: 850px;
-      }
-    }
+  .detail-content {
+    flex-direction: column;
 
     .detail-text {
-      .detail-abilities {
-        top: 620px;
-        h1 {
-          font-size: 19px;
-          line-height: 30px;
-          /* identical to box height */
-
-          color: #ffffff;
-        }
-        width: 120%;
-        height: 30%;
-        > div {
-          display: flex;
-          flex-wrap: wrap;
-          > div {
-            width: 100%;
-            margin: 10px 0px 10px 0px;
-            height: 100%;
-            display: flex;
-            .ability-image {
-              width: 100px;
-              position: relative;
-              button {
-                outline: none;
-                border: 0;
-                width: 80px;
-                height: 80px;
-                border-radius: 10px;
-                font-family: Poppins;
-                font-style: normal;
-                font-weight: 300;
-                font-size: 30px;
-                line-height: 45px;
-                /* identical to box height */
-
-                color: #ffffff;
-              }
-            }
-            .ability-type {
-              position: relative;
-              width: 90%;
-              height: 80px;
-              padding: 10px 0px 0px 10px;
-              h1 {
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 22px;
-                margin: 0;
-              }
-              p {
-                margin: 0;
-                font-weight: normal;
-                font-size: 15px;
-                line-height: 15px;
-
-                color: #ffffff;
-
-                opacity: 0.6;
-              }
-            }
-          }
-        }
-      }
-    }
-    &.special {
-      .detail-text {
-        .detail-abilities {
-          top: 500px;
-          > div {
-            > div {
-              .ability-type {
-                width: 60%;
-              }
-            }
-          }
-        }
-      }
-      .detail-image {
-        height: 630px;
-      }
+      width: 100%;
+      height: auto;
     }
     .detail-image {
-      height: 900px;
-      & > div {
-        img {
-          height: auto;
+      margin-top: 20px;
+      width: 100%;
+
+      .image-button {
+        text-align: center;
+        button:hover {
+          box-shadow: none;
         }
+      }
+    }
+    .detail-abilities {
+      height: auto;
+      .ability-title {
+        margin-bottom: 10px;
+      }
+      .ability-box {
+        width: 48%;
+        height: 141px;
+        margin-left: 0%;
+        margin: 1%;
       }
     }
   }
+  .detail-button {
+    justify-content: center;
+  }
 }
-
-@media screen and (max-width: 500px) {
-  .detail-racers {
-    width: 100%;
-    margin-left: 0;
-    &.teams {
-      .detail-text {
-        .detail-abilities {
-          top: 750px;
-          .ability-boxes {
-            .ability-box {
-              .ability-type {
-                width: 60%;
-              }
-            }
-          }
-        }
+@media screen and (max-width: 400px) {
+  .detail-content {
+    .detail-image {
+      height: 420px;
+    }
+    .detail-abilities {
+      .ability-box {
+        width: 100%;
+        height: 120px;
+        margin: 0%;
+        margin-top: 10px;
       }
     }
   }

@@ -26,314 +26,297 @@
     </div>
     <div class="info-box">
       <div class="nums-holder">
-        <div class="num-box">
-          <p>{{ carSum.charAt(0) }}</p>
-        </div>
-        <div class="num-box">
-          <p>{{ carSum.charAt(1) }}</p>
-        </div>
-        <div class="num-box">
-          <p>{{ carSum.charAt(2) }}</p>
-        </div>
-        <div class="num-box">
-          <p>{{ carSum.charAt(3) }}</p>
-        </div>
-        <div class="num-box">
-          <p>{{ carSum.charAt(4) }}</p>
-        </div>
-        <div class="num-box">
-          <p>{{ carSum.charAt(5) }}</p>
-        </div>
+        <p>{{ carSum.charAt(0) }}</p>
+
+        <p>{{ carSum.charAt(1) }}</p>
+
+        <p>{{ carSum.charAt(2) }}</p>
+        &nbsp;
+        <p>{{ carSum.charAt(3) }}</p>
+
+        <p>{{ carSum.charAt(4) }}</p>
+
+        <p>{{ carSum.charAt(5) }}</p>
+
         <p class="desc">cars left</p>
       </div>
     </div>
   </div>
-
-  <div class="my-menu">
-    <div class="menu-desc">
-      <p class="join-team" [routerLink]="['/car/garage/my-cars']">
-        {{ "garage.my_cars_btn" | translate }}
-      </p>
-      <p class="team-chat" [routerLink]="['/car/garage']">
-        {{ "garage.buy_nfts" | translate }}
-      </p>
-      <p class="soon active" [routerLink]="['/car/nft-market']">
-        {{ "garage.market" | translate }}
-      </p>
-    </div>
-    <div class="menu-line">
-      <div class="inner-line my-cta-btn-back">&nbsp;</div>
-    </div>
-  </div>
-
-  <div
-    [class.disable-scroll]="isMenuActive"
-    class="shop-pagee"
-    *ngIf="marketState === 1"
-  >
+  <div class="content-holder">
     <div
-      class="navoverlay"
-      (click)="activateMenu()"
-      [class.navoverlay-active]="isMenuActive"
-      [class.nav-active]="isMenuActive"
-    ></div>
+      [class.disable-scroll]="isMenuActive"
+      class="shop-pagee"
+      *ngIf="marketState === 1"
+    >
+      <div
+        class="navoverlay"
+        (click)="activateMenu()"
+        [class.navoverlay-active]="isMenuActive"
+        [class.nav-active]="isMenuActive"
+      ></div>
 
-    <div class="shop-section">
-      <div *ngIf="display <= 1350" class="filter-mobile">
-        <div (click)="filterMobile()" class="filter-tit">
-          <h1 class="f">Filters</h1>
-          <h1 class="a"><i class="fa fa-sort-down"></i></h1>
-        </div>
-        <div
-          [ngClass]="{ 'filter-content-active': mobileFilter === true }"
-          class="filter-content"
-        >
-          <div (click)="filterCars(); filterMobile()"><p>Cars</p></div>
-          <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
-
-          <div (click)="filterTracks(); filterMobile()"><p>Tracks</p></div>
-          <div (click)="filterTeams(); filterMobile()"><p>Teams</p></div>
-          <div (click)="filterSpecial(); filterMobile()"><p>Special</p></div>
-          <div (click)="filterAll(); filterMobile()"><p>All</p></div>
-        </div>
-      </div>
-      <div class="shop-header">
-        <div *ngIf="display > 1350" class="filter-featured">
-          <div class="filter-title">
-            <p>Filters</p>
+      <div class="shop-section">
+        <div *ngIf="display <= 1350" class="filter-mobile">
+          <div (click)="filterMobile()" class="filter-tit">
+            <h1 class="f">Filters</h1>
+            <h1 class="a"><i class="fa fa-sort-down"></i></h1>
           </div>
-
-          <div class="filter-boxes">
-            <div (click)="filterCars()">
-              <div
-                [ngClass]="{
-                  'filter-active': carsActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Cars</p>
-            </div>
-            <div (click)="filterRacers()">
-              <div
-                [ngClass]="{
-                  'filter-active': racersActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Racers</p>
-            </div>
-            <div (click)="filterTracks()">
-              <div
-                [ngClass]="{
-                  'filter-active': tracksActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Tracks</p>
-            </div>
-            <div (click)="filterTeams()">
-              <div
-                [ngClass]="{
-                  'filter-active': teamsActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Teams</p>
-            </div>
-            <div (click)="filterSpecial()">
-              <div
-                [ngClass]="{
-                  'filter-active': specialActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>Special</p>
-            </div>
-            <div (click)="filterAll()">
-              <div
-                [ngClass]="{
-                  'filter-active': allActive === true
-                }"
-                class="filter-box"
-              ></div>
-              <p>All</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="shop-section-center" #myScroll>
-        <div class="boxes">
           <div
-            *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
-            class="box"
+            [ngClass]="{ 'filter-content-active': mobileFilter === true }"
+            class="filter-content"
           >
-            <div class="boximage">
-              <img
-                *ngIf="item['type'] === 'racer'"
-                class="img"
-                [src]="
-                  '/assets/base/images/nft-racers/' + item['image'] + '.png'
-                "
-                alt=""
-              />
-              <img
-                *ngIf="item['type'] === 'car'"
-                class="img"
-                [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
-                alt=""
-              />
-              <img
-                *ngIf="item['type'] === 'track'"
-                class="img"
-                [src]="
-                  '/assets/base/images/home-page/' +
-                  item['image'] +
-                  '-small.png'
-                "
-                alt=""
-              />
-              <img
-                *ngIf="item['type'] === 'team'"
-                class="img"
-                [src]="
-                  '/assets/base/images/home-page/' +
-                  item['image'] +
-                  '-small.png'
-                "
-                alt=""
-              />
-              <img
-                *ngIf="item['type'] === 'special'"
-                class="img special"
-                [src]="
-                  '/assets/base/images/home-page/' + item['image'] + '.png'
-                "
-                alt=""
-              />
-            </div>
-            <div class="txt">
-              <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
-                {{ item["collection"] }}
-              </p>
-              <p *ngIf="item['type'] === 'team'" class="name">
-                Team {{ item["name"] }}
-              </p>
-              <p
-                *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
-                class="name"
-                (click)="showAsset(item['id'], item['type'])"
-              >
-                {{ item["name"] }}
-              </p>
+            <div (click)="filterCars(); filterMobile()"><p>Cars</p></div>
+            <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
 
-              <p *ngIf="item['type'] === 'racer'" class="name">
-                {{ item["name"] }}
-              </p>
-              <p class="prize">{{ item["prize"] }}</p>
-              <button
-                class="my-cta-btn-back"
-                *ngIf="item['type'] === 'car'"
-                (click)="showAsset(item['id'], item['type'])"
-              >
-                See details
-              </button>
-              <button
-                class="my-cta-btn-back"
-                *ngIf="
-                  item['type'] === 'racer' ||
-                  item['type'] === 'track' ||
-                  item['type'] === 'special' ||
-                  (item['name'] === 'You' && item['type'] === 'team')
-                "
-                (click)="showAsset(item['id'], item['type'])"
-              >
-                See details
-              </button>
-              <button
-                class="my-cta-btn-back"
-                [ngStyle]="{ opacity: '0.3' }"
-                *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
-                style="cursor: default"
-              >
-                Sold out
-              </button>
+            <div (click)="filterTracks(); filterMobile()"><p>Tracks</p></div>
+            <div (click)="filterTeams(); filterMobile()"><p>Teams</p></div>
+            <div (click)="filterSpecial(); filterMobile()"><p>Special</p></div>
+            <div (click)="filterAll(); filterMobile()"><p>All</p></div>
+          </div>
+        </div>
+        <div class="shop-header">
+          <div *ngIf="display > 1350" class="filter-featured">
+            <div class="filter-title">
+              <p>Filters</p>
+            </div>
+
+            <div class="filter-boxes">
+              <div (click)="filterCars()">
+                <div
+                  [ngClass]="{
+                    'filter-active': carsActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Cars</p>
+              </div>
+              <div (click)="filterRacers()">
+                <div
+                  [ngClass]="{
+                    'filter-active': racersActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Racers</p>
+              </div>
+              <div (click)="filterTracks()">
+                <div
+                  [ngClass]="{
+                    'filter-active': tracksActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Tracks</p>
+              </div>
+              <div (click)="filterTeams()">
+                <div
+                  [ngClass]="{
+                    'filter-active': teamsActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Teams</p>
+              </div>
+              <div (click)="filterSpecial()">
+                <div
+                  [ngClass]="{
+                    'filter-active': specialActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Special</p>
+              </div>
+              <div (click)="filterAll()">
+                <div
+                  [ngClass]="{
+                    'filter-active': allActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>All</p>
+              </div>
             </div>
           </div>
         </div>
+        <div class="shop-section-center" #myScroll>
+          <div class="boxes">
+            <div
+              *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
+              class="box my-box-shadow"
+            >
+              <div class="boximage">
+                <img
+                  *ngIf="item['type'] === 'racer'"
+                  class="img"
+                  [src]="
+                    '/assets/base/images/nft-racers/' + item['image'] + '.png'
+                  "
+                  alt=""
+                />
+                <img
+                  *ngIf="item['type'] === 'car'"
+                  class="img"
+                  [src]="
+                    '/assets/base/images/nft-cars/' + item['image'] + '.png'
+                  "
+                  alt=""
+                />
+                <img
+                  *ngIf="item['type'] === 'track'"
+                  class="img"
+                  [src]="
+                    '/assets/base/images/home-page/' +
+                    item['image'] +
+                    '-small.png'
+                  "
+                  alt=""
+                />
+                <img
+                  *ngIf="item['type'] === 'team'"
+                  class="img"
+                  [src]="
+                    '/assets/base/images/home-page/' +
+                    item['image'] +
+                    '-small.png'
+                  "
+                  alt=""
+                />
+                <img
+                  *ngIf="item['type'] === 'special'"
+                  class="img special"
+                  [src]="
+                    '/assets/base/images/home-page/' + item['image'] + '.png'
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="txt">
+                <p
+                  [ngClass]="{ gold: item['rare'] === true }"
+                  class="collection"
+                >
+                  {{ item["collection"] }}
+                </p>
+                <p *ngIf="item['type'] === 'team'" class="name">
+                  Team {{ item["name"] }}
+                </p>
+                <p
+                  *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
+                  class="name"
+                  (click)="showAsset(item['id'], item['type'])"
+                >
+                  {{ item["name"] }}
+                </p>
+
+                <p *ngIf="item['type'] === 'racer'" class="name">
+                  {{ item["name"] }}
+                </p>
+                <p class="prize">{{ item["prize"] }}</p>
+                <button
+                  class="my-cta-btn-back"
+                  *ngIf="item['type'] === 'car'"
+                  (click)="showAsset(item['id'], item['type'])"
+                >
+                  See details
+                </button>
+                <button
+                  class="my-cta-btn-back"
+                  *ngIf="
+                    item['type'] === 'racer' ||
+                    item['type'] === 'track' ||
+                    item['type'] === 'special' ||
+                    (item['name'] === 'You' && item['type'] === 'team')
+                  "
+                  (click)="showAsset(item['id'], item['type'])"
+                >
+                  See details
+                </button>
+                <button
+                  class="my-cta-btn-back"
+                  [ngStyle]="{ opacity: '0.3' }"
+                  *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
+                  style="cursor: default"
+                >
+                  Sold out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="newProducts.length > inRow">
+          <div class="pages">
+            <div class="page-left">
+              <button
+                (click)="
+                  prevPageCars(); resetPageArrowLeft(); scrollTop(myScroll)
+                "
+                [disabled]="sliceStart <= 0"
+                class="pagebtn-l"
+              >
+                <img
+                  class="red-box-detail"
+                  [ngClass]="{ 'page-opacity': sliceStart === 0 }"
+                  src="/assets/base/images/home-page/arrowleftred.png"
+                  alt=""
+                />
+                <img
+                  class="blue-box-detail"
+                  [ngClass]="{ 'page-opacity': sliceStart === 0 }"
+                  src="/assets/base/images/home-page/arrowleftblue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="page-middle">
+              <p>
+                Page
+                <span class="leftspan">{{ currentPage }} /</span>
+                <span class="rightspan blue-box-detail">{{ lastPage }}</span>
+                <span class="rightspan red-box-detail">{{ lastPage }}</span>
+              </p>
+            </div>
+            <div class="page-right">
+              <button
+                (click)="
+                  nextPageCars(); resetPageArrowRight(); scrollTop(myScroll)
+                "
+                [disabled]="sliceMiddle >= newProducts.length"
+                class="pagebtn-r"
+              >
+                <img
+                  class="red-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceMiddle >= this.newProducts.length
+                  }"
+                  src="/assets/base/images/home-page/arrowrightred.png"
+                  alt=""
+                />
+                <img
+                  class="blue-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceMiddle >= this.newProducts.length
+                  }"
+                  src="/assets/base/images/home-page/arrowrightblue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </ng-container>
       </div>
-      <ng-container *ngIf="newProducts.length > inRow">
-        <div class="pages">
-          <div class="page-left">
-            <button
-              (click)="
-                prevPageCars(); resetPageArrowLeft(); scrollTop(myScroll)
-              "
-              [disabled]="sliceStart <= 0"
-              class="pagebtn-l"
-            >
-              <img
-                class="red-box-detail"
-                [ngClass]="{ 'page-opacity': sliceStart === 0 }"
-                src="/assets/base/images/home-page/arrowleftred.png"
-                alt=""
-              />
-              <img
-                class="blue-box-detail"
-                [ngClass]="{ 'page-opacity': sliceStart === 0 }"
-                src="/assets/base/images/home-page/arrowleftblue.png"
-                alt=""
-              />
-            </button>
-          </div>
-          <div class="page-middle">
-            <p>
-              Page
-              <span class="leftspan">{{ currentPage }} /</span>
-              <span class="rightspan blue-box-detail">{{ lastPage }}</span>
-              <span class="rightspan red-box-detail">{{ lastPage }}</span>
-            </p>
-          </div>
-          <div class="page-right">
-            <button
-              (click)="
-                nextPageCars(); resetPageArrowRight(); scrollTop(myScroll)
-              "
-              [disabled]="sliceMiddle >= newProducts.length"
-              class="pagebtn-r"
-            >
-              <img
-                class="red-box-detail"
-                [ngClass]="{
-                  'page-opacity': sliceMiddle >= this.newProducts.length
-                }"
-                src="/assets/base/images/home-page/arrowrightred.png"
-                alt=""
-              />
-              <img
-                class="blue-box-detail"
-                [ngClass]="{
-                  'page-opacity': sliceMiddle >= this.newProducts.length
-                }"
-                src="/assets/base/images/home-page/arrowrightblue.png"
-                alt=""
-              />
-            </button>
-          </div>
-        </div>
-      </ng-container>
     </div>
+
+    <app-nft-detail
+      *ngIf="marketState === 2"
+      [assetId]="selectedId"
+      [assetType]="selectedType"
+      (marketState)="showAssetBuy($event)"
+    ></app-nft-detail>
+
+    <app-buy-nft
+      *ngIf="marketState === 3"
+      [assetId]="selectedId"
+      [assetType]="selectedType"
+    ></app-buy-nft>
   </div>
-
-  <app-nft-detail
-    *ngIf="marketState === 2"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
-    (marketState)="showAssetBuy($event)"
-  ></app-nft-detail>
-
-  <app-buy-nft
-    *ngIf="marketState === 3"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
-  ></app-buy-nft>
 </div>

@@ -175,52 +175,72 @@
           </p>
         </div>
       </div>
-      <button
-        class="buy-nft my-cta-btn-back"
-        *ngIf="
-          assetType === 'car' &&
-          !displayArray[0]['rare'] &&
-          myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
-        "
-        (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
-      >
-        Buy with IOI
-      </button>
+      <div class="ioi">
+        <button
+          class="buy-nft my-cta-btn-back"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+          "
+          (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
+        >
+          Buy with IOI
+        </button>
+        <button
+          class="buy-nft my-cta-btn-back"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+          "
+          (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
+        >
+          Buy with MATIC
+        </button>
 
-      <button
-        class="buy-nft my-cta-btn-back"
-        *ngIf="
-          assetType === 'car' &&
-          !displayArray[0]['rare'] &&
-          myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
-        "
-        [routerLink]="['/other/wallet-control']"
-        [queryParams]="{ controlType: 'deposit' }"
-      >
-        Deposit
-      </button>
+        <button
+          class="buy-nft my-cta-btn-back"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+          "
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Deposit
+        </button>
 
-      <button class="buy-nft my-cta-btn-back" *ngIf="assetType !== 'car'">
-        Buy with IOI
-      </button>
-      <button
-        class="buy-nft my-cta-btn-back"
-        *ngIf="assetType === 'car' && displayArray[0]['rare']"
-      >
-        Not available
-      </button>
-      <a
-        class="buy-nft my-cta-btn-back"
-        *ngIf="assetType === 'car' && !displayArray[0]['rare']"
-        href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
-        target="_blank"
-      >
-        Buy on Arkane market
-        <img src="assets/base/images/paypal.png" alt="paypal logo" /><img
-          src="assets/base/images/bitpay.png"
-          alt="bitpay logo"
-        />
-      </a>
+        <button class="buy-nft my-cta-btn-back" *ngIf="assetType !== 'car'">
+          Buy with IOI
+        </button>
+        <button
+          class="buy-nft my-cta-btn-back"
+          *ngIf="assetType === 'car' && displayArray[0]['rare']"
+        >
+          Not available
+        </button>
+      </div>
+      <div class="arkane">
+        <div class="arkane-paypal">
+          <img src="assets/base/images/paypal.png" alt="paypal logo" />
+        </div>
+        <div class="arkane-bitpay">
+          <img src="assets/base/images/bitpay.png" alt="bitpay logo" />
+        </div>
+        <button
+          *ngIf="assetType === 'car' && !displayArray[0]['rare']"
+          class="buy-nft my-cta-btn-back"
+        >
+          <a
+            href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
+            target="_blank"
+          >
+            Buy on Arkane market
+          </a>
+        </button>
+      </div>
     </div>
   </div>
 </div>
