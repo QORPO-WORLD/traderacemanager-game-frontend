@@ -412,111 +412,125 @@
 
   <div class="verify-modal" *ngIf="verifyModal === true">
     <div class="modal-holder" *ngIf="verifyStep === 1">
-      <div class="modal-heading">
-        <h2>{{ "site-layout.pick_layout1" | translate }}</h2>
-        <p class="desc">{{ "site-layout.pick_layout2" | translate }}</p>
-      </div>
 
-      <div
-        class="panel-holder blue"
-        [ngClass]="{
-          animate: animateState === 1,
-          disanimate: animateState === 2
-        }"
-        (click)="animateManagerMode(true); setMode('owner')"
-      >
-        <div class="img-holder">
-          <p class="picked-text">Owner mode</p>
-          <img src="/assets/base/images/welcome/owner-img.png" alt="" />
+      <div class="items-box">
+        <div class="small-box racer bordered" (click)="selectedMode = 'racer'" [ngClass]="{'selected': selectedMode === 'racer', 'not-selected': selectedMode === 'owner'}">
+          <div class="my-border"></div>
+          <div class="inner-box">
+            <p class="heading-desc">Red</p>
+            <img src="/assets/base/images/modal/racer-back.png" alt="" class="back-img">
+          </div>
         </div>
-        <div class="text-holder">
-          <h1 class="main-heading">
-            {{ "owners_managers.owner-heading" | translate }}
-          </h1>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/nft-rewards.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.owner1" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/car.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.owner2" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/stopwatch.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.owner3" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/crown.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.owner4" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/imperium.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.owner5" | translate }}</p>
+        <div class="small-box owner" (click)="selectedMode = 'owner'" [ngClass]="{'selected': selectedMode === 'owner', 'not-selected': selectedMode === 'racer'}">
+          <div class="inner-box">
+            <p class="heading-desc">Blue</p>
+            <img src="/assets/base/images/modal/owner-back.png" alt="" class="back-img">
           </div>
         </div>
       </div>
-
-      <div
-        class="panel-holder racer"
-        [ngClass]="{
-          disanimate: animateState === 1,
-          animate: animateState === 2
-        }"
-        (click)="animateManagerMode(false); setMode('racer')"
-      >
-        <div class="img-holder">
-          <img src="/assets/base/images/welcome/racer-img.png" alt="" />
-          <p class="picked-text">Racer mode</p>
-        </div>
+      <div class="big-box">
         <div class="text-holder">
-          <h1 class="main-heading">
-            {{ "site-layout.become_racer" | translate }}
-          </h1>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/user.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.racer1" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/support.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.racer2" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/trading.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.racer3" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/to-do-list.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.racer4" | translate }}</p>
-          </div>
-          <div class="list-item">
-            <div class="icon-holder">
-              <img src="/assets/base/images/welcome/tokens.svg" alt="" />
-            </div>
-            <p>{{ "site-layout.racer5" | translate }}</p>
-          </div>
+          <h2>Pick a color</h2>
+          <p>Choose a colour you want your interface to be. You can change the colour in the settings later.</p>
+          <button class="next-btn inactive" *ngIf="selectedMode.length === 0">Continue</button>
+          <button class="next-btn" *ngIf="selectedMode.length > 0" (click)="setMode(selectedMode)">Continue</button>
         </div>
       </div>
     </div>
 
-    <section class="teams-sec" *ngIf="verifyStep === 2">
+    <div class="modal-holder teams" *ngIf="verifyStep === 2">
+      <div class="items-box">
+        <div class="arrow left" (click)="prevTeam()">
+          <p>&lt;</p>
+        </div>
+        <div class="arrow right" (click)="nextTeam()">
+          <p>&gt;</p>
+        </div>
+        <div class="small-box first bordered" (click)="selectedTeam = 1" [ngClass]="{'selected': selectedTeam === 1, 'not-selected': selectedTeam !== 1 && selectedTeam > 0}">
+          <div class="my-border"></div>
+          <div class="inner-box">
+            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <div class="badge-holder">
+              <h3>Team BTC</h3>
+              <img src="/assets/base/images/teams/BTC-team.png" alt="" class="badge-img">
+            </div>
+          </div>
+        </div>
+        <div class="small-box bordered" (click)="selectedTeam = 2" [ngClass]="{'selected': selectedTeam === 2, 'not-selected': selectedTeam !== 2 && selectedTeam > 0}">
+          <div class="my-border"></div>
+          <div class="inner-box">
+            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <div class="badge-holder">
+              <h3>Team ALT</h3>
+              <img src="/assets/base/images/teams/ALT-team.png" alt="" class="badge-img">
+            </div>
+          </div>
+        </div>
+        <div class="small-box" (click)="selectedTeam = 3" [ngClass]="{'selected': selectedTeam === 3, 'not-selected': selectedTeam !== 3 && selectedTeam > 0}">
+          <div class="inner-box">
+            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <div class="badge-holder">
+              <h3>Team IOI</h3>
+              <img src="/assets/base/images/teams/IOI-team.png" alt="" class="badge-img">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="big-box">
+        <div class="text-holder">
+          <h2>Pick a crypto team</h2>
+          <p>You can transfer to another team anytime</p>
+          <button class="next-btn inactive" *ngIf="selectedTeam === 0">Continue</button>
+          <button class="next-btn" *ngIf="selectedTeam > 0" (click)="joinTeamFree(selectedTeam)">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-holder simple car" *ngIf="verifyStep === 3">
+
+      <div class="items-box">
+        <div class="small-box">
+          <div class="inner-box">
+            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <div class="asset-holder">
+              <img src="/assets/base/images/nft-cars/car0b.png" alt="">
+              <h3>Blue Basic</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="big-box">
+        <div class="text-holder">
+          <h2>Congratulations, you got a new car!</h2>
+          <p>This is a free Basic NON NFTs car you received automatically for free. Buy our NFTs cars to start earning more money in races and also by simply holding them.</p>
+          <button class="next-btn" (click)="verifyStep = 4">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-holder simple racer" *ngIf="verifyStep === 4">
+
+      <div class="items-box">
+        <div class="small-box">
+          <div class="inner-box">
+            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <div class="asset-holder">
+              <img src="/assets/base/images/nft-racers/rookie-basic.png" alt="">
+              <h3>Racer Rookie</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="big-box">
+        <div class="text-holder">
+          <h2>Congratulations, you got a new racer!</h2>
+          <p>This is Rookie racer, a NON - NFT avatar each player receive when registering. Special skill for NON - NFT avatar is their affiliate function. </p>
+          <button class="next-btn" (click)="closeFirstModal(false)">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <section class="teams-sec" *ngIf="verifyStep === 2">
       <div class="modal-heading">
         <h2>{{ "site-layout.pick_team1" | translate }}</h2>
         <p class="desc">{{ "site-layout.pick_team2" | translate }}</p>
@@ -526,6 +540,6 @@
         [modalVersion]="true"
         (modalOpen)="closeFirstModal($event)"
       ></app-teams-selection>
-    </section>
+    </section> -->
   </div>
 </div>

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TeamsService } from '../../../../../api/services/teams.service';
 
 
 declare let $: any;
@@ -76,7 +77,9 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   tickets = 0;
   myDriverBalances: any;
   menuType = 'me';
+  selectedMode = '';
   myAddressClass = '';
+  selectedTeam = 0;
   animateState = 0;
   animateTeamState = 0;
   sumUsers = 0;
@@ -94,7 +97,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
     private identityService: AuthService, private balanceService: BalanceService,
     private uapi: ninja, private notify: NotifiqService, private experience: ExperienceService,
-    private rservice: RacesService, private _http: HttpClient) {
+    private rservice: RacesService, private _http: HttpClient, protected teams: TeamsService) {
     super();
     this.calculateCorrectVh();
     experience.load((data: Experience) => {
@@ -462,6 +465,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   setMode(type: string) {
     this.driverSrvc.driversSetMode({ mode: type }).subscribe(
       data => {
+        this.verifyStep = 2;
         console.log(data);
       }
     )
@@ -472,6 +476,34 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     setTimeout(() => {
       this.shaking = false;
     }, 1000);
+  }
+
+  joinTeamFree(teamId: number) {
+    this.teams.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: 1, join_now: true }).
+      subscribe(data => {
+        setTimeout(() => {
+          this.identityService.updateLeaderboardMe();
+          this.identityService.updateDriverMe();
+          this.getMydriver();
+          this.verifyStep = 3;
+        }, 100);
+      });
+  }
+
+  nextTeam(){
+    if (this.selectedTeam > 2) {
+      this.selectedTeam = 1;
+    } else {
+      this.selectedTeam++;
+    }
+  }
+
+  prevTeam(){
+    if (this.selectedTeam === 1) {
+      this.selectedTeam = 3;
+    } else {
+      this.selectedTeam--;
+    }
   }
 
 }
