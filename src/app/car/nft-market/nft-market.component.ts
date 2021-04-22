@@ -28,6 +28,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 9,
       position: 0,
+      free: 6000,
       collection: "Common",
       name: "RHINO",
       prize: "600 IOI",
@@ -40,6 +41,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 10,
       position: 1,
+      free: 12000,
       collection: "Common",
       name: "PANTHER",
       prize: "600 IOI",
@@ -51,7 +53,9 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 11,
+
       position: 2,
+      free: 24000,
       collection: "Common",
       name: "ONYX",
       prize: "600 IOI",
@@ -64,6 +68,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 12,
       position: 3,
+      free: 48000,
       collection: "Common",
       name: "ZANDER",
       prize: "600 IOI",
@@ -76,6 +81,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 13,
       position: 4,
+      free: 96000,
       collection: "Common",
       name: "CYBORG",
       prize: "600 IOI",
@@ -88,6 +94,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 14,
       position: 5,
+      free: 192000,
       collection: "Common",
       name: "VULCANIC",
       prize: "600 IOI",
@@ -113,6 +120,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 16,
       position: 6,
+      free: 288000,
       collection: "Super",
       name: "DORIAN",
       prize: "1 000 IOI",
@@ -125,6 +133,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 17,
       position: 7,
+      free: 432000,
       collection: "Super",
       name: "PANTHER",
       prize: "1 000 IOI",
@@ -137,6 +146,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 18,
       position: 8,
+      free: 648000,
       collection: "Super",
       name: "ONYX",
       prize: "1 000 IOI",
@@ -149,6 +159,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 19,
       position: 9,
+      free: 972000,
       collection: "Super",
       name: "ZANDER",
       prize: "1 000 IOI",
@@ -161,6 +172,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 20,
       position: 10,
+      free: 1458000,
       collection: "Super",
       name: "PYTHON",
       prize: "1 000 IOI",
@@ -173,6 +185,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 21,
       position: 11,
+      free: 2187000,
       collection: "Super",
       name: "VULCANIC",
       prize: "1 000 IOI",
@@ -198,6 +211,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 23,
       position: 12,
+      free: 3000000,
       collection: "Epic",
       name: "CYBORG",
       prize: "1 600 IOI",
@@ -210,6 +224,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 24,
       position: 13,
+      free: 3600000,
       collection: "Epic",
       name: "RHINO",
       prize: "1 600 IOI",
@@ -222,6 +237,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 25,
       position: 14,
+      free: 4320000,
       collection: "Epic",
       name: "HYPER",
       prize: "1 600 IOI",
@@ -234,6 +250,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 26,
       position: 15,
+      free: 5184000,
       collection: "Epic",
       name: "BULL",
       prize: "1 600 IOI",
@@ -246,6 +263,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 27,
       position: 16,
+      free: 6220000,
       collection: "Epic",
       name: "PYTHON",
       prize: "1 600 IOI",
@@ -258,6 +276,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 28,
       position: 17,
+      free: 7465000,
       collection: "Epic",
       name: "HITMAN",
       prize: "1 600 IOI",
@@ -283,6 +302,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 30,
       position: 18,
+      free: 8200000,
       collection: "Legendary",
       name: "HYPER",
       prize: "2 600 IOI",
@@ -295,6 +315,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 31,
       position: 19,
+      free: 9000000,
       collection: "Legendary",
       name: "DORIAN",
       prize: "2 600 IOI",
@@ -307,6 +328,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 32,
       position: 20,
+      free: 9900000,
       collection: "Legendary",
       name: "VULCANIC",
       prize: "2 600 IOI",
@@ -319,6 +341,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 33,
       position: 21,
+      free: 10890000,
       collection: "Legendary",
       name: "BULL",
       prize: "2 600 IOI",
@@ -331,6 +354,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 34,
       position: 22,
+      free: 12000000,
       collection: "Legendary",
       name: "KNOCKOUT",
       prize: "2 600 IOI",
@@ -343,6 +367,7 @@ export class NftMarketComponent implements OnInit {
     {
       id: 35,
       position: 23,
+      free: 13200000,
       collection: "Legendary",
       name: "LARA",
       prize: "2 600 IOI",
@@ -370,6 +395,7 @@ export class NftMarketComponent implements OnInit {
       name: "Axle",
       prize: "100 IOI",
       image: "white-trm",
+      gif: "white-trm-animation",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -383,6 +409,7 @@ export class NftMarketComponent implements OnInit {
       name: "Flash",
       prize: "100 IOI",
       image: "red-trm",
+      gif: "red-trm-animation",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -395,6 +422,7 @@ export class NftMarketComponent implements OnInit {
       name: "Octane",
       prize: "100 IOI",
       image: "blue-trm",
+      gif: "blue-trm-animation",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -407,6 +435,7 @@ export class NftMarketComponent implements OnInit {
       name: "Punisher",
       prize: "100 IOI",
       image: "black-trm",
+      gif: "black-trm-animation",
       type: "racer",
       ability1: "1%",
       ability2: "10%",
@@ -419,6 +448,7 @@ export class NftMarketComponent implements OnInit {
       name: "Lady Rich",
       prize: "1 000 IOI",
       image: "lady-rich",
+      gif: "lady-rich-animation",
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
@@ -431,6 +461,7 @@ export class NftMarketComponent implements OnInit {
       name: "Rich Jr.",
       prize: "1 000 IOI",
       image: "bad-boy",
+      gif: "bad-boy-animation",
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
@@ -443,6 +474,7 @@ export class NftMarketComponent implements OnInit {
       name: "Mrs. Rich",
       prize: "1 000 IOI",
       image: "mrs-rich",
+      gif: "mrs-rich-animation",
       type: "racer",
       ability1: "1.5%",
       ability2: "15%",
@@ -455,6 +487,7 @@ export class NftMarketComponent implements OnInit {
       name: "Mr. Rich",
       prize: "10 000 IOI",
       image: "mr-rich",
+      gif: "mr-rich-animation",
       type: "racer",
       ability1: "2%",
       ability2: "20%",

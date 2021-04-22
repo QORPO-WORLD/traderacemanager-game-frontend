@@ -63,7 +63,9 @@
             [ngClass]="{ 'show-animation': animationActive === true }"
             *ngIf="animationActive === true"
             class="gif"
-            [src]="'assets/base/images/nft-racers/' + gifName + '.gif'"
+            [src]="
+              'assets/base/images/nft-racers/' + displayArray[0]['gif'] + '.gif'
+            "
             alt="winners move animation"
           />
         </div>
@@ -87,7 +89,7 @@
                 />
               </div>
               <div class="btn-text">
-                <p>Show Racers move</p>
+                <p>Show move</p>
               </div>
             </div>
           </button>
@@ -253,26 +255,7 @@
             </p>
           </div>
         </div>
-        <div
-          *ngIf="displayArray[0]['rare'] === true"
-          class="rare my-border-grad-reverse"
-        >
-          <div class="inner-rare">
-            <img
-              class="red-star"
-              src="/assets/base/images/affiliate/red-star.svg"
-              alt="star"
-            />
-            <img
-              class="blue-star"
-              src="/assets/base/images/affiliate/blue-star.svg"
-              alt="star"
-            />
-            <span
-              ><p>rare {{ displayArray[0]["type"] }}</p></span
-            >
-          </div>
-        </div>
+
         <div class="image">
           <img
             class="no-gif"

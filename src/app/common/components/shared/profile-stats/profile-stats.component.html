@@ -4,7 +4,7 @@
     <div class="img-holder">
       <div class="avatar-icon">
         <img
-        *ngIf="Affilate.affiliate_level"
+          *ngIf="Affilate.affiliate_level"
           [src]="
             'assets/base/images/avatars/avatar' +
             Affilate?.affiliate_level +
@@ -39,21 +39,37 @@
 
   <div class="stats-holder">
     <div class="stat-item">
-      <p class="value">{{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}</p>
-      <p class="desc">in team <br> position</p>
+      <p class="value">
+        {{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}
+      </p>
+      <p class="desc">
+        Team <br />
+        position
+      </p>
     </div>
     <div class="stat-item">
-      <p class="value">{{ myLdrbrd?.player_position_overall ? myLdrbrd?.team_position : "-" }}</p>
-      <p class="desc">total <br> position</p>
+      <p class="value">
+        {{ myLdrbrd?.player_position_overall ? myLdrbrd?.team_position : "-" }}
+      </p>
+      <p class="desc">
+        total <br />
+        position
+      </p>
     </div>
     <div class="stat-item">
       <p class="value">{{ myCarsvals | number: "1.0-0":"fr" }} IOI</p>
-      <p class="desc">asset <br> value</p>
+      <p class="desc">
+        asset <br />
+        value
+      </p>
     </div>
   </div>
 
   <div class="my-profile">
-    <button [routerLink]="['/profile/my-profile']" class="my-cta-btn-back hoverable">
+    <button
+      [routerLink]="['/profile/my-profile']"
+      class="my-cta-btn-back hoverable"
+    >
       My Profile
     </button>
   </div>
@@ -84,14 +100,14 @@
             {{ myDriverBalances?.game_wallet_ioi * 0.4 | number: "1.2-2":"fr" }}
           </p>
         </div>
-        
 
         <div class="buttons-holder">
-
-          <button class="funds-btn my-cta-btn-back hoverable"
+          <button
+            class="funds-btn my-cta-btn-back hoverable"
             (click)="closeMenu()"
             [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'deposit' }">
+            [queryParams]="{ controlType: 'deposit' }"
+          >
             Manage funds
           </button>
         </div>
