@@ -390,7 +390,7 @@ export class BuyNftComponent implements OnInit {
       const data: any = datax;
       setTimeout(() => {
         this.notifyChangedBalance();
-        this.router.navigate(["/car/garage/my-cars"]);
+        this.router.navigate(["/profile/my-profile"]);
         this.notify.error("You have bought a new car!");
       }, 1000);
     });
