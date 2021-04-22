@@ -21,6 +21,7 @@ export class OwnerLeaderboardComponent implements OnInit {
   actualPage = 1;
   totalPages: number;
   updateTime: string;
+  isPageWithMe = false;
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
   private identityService: AuthService) { }
 
@@ -48,7 +49,8 @@ export class OwnerLeaderboardComponent implements OnInit {
         this.myLdrbrd = data.results;
         this.totalPages = data.total_pages;
         this.updateTime = data.last_update_at;
-        console.log(this.myLdrbrd);
+        console.log(this.actualPage);
+        this.isMePage();
       });
   }
 
@@ -56,6 +58,15 @@ export class OwnerLeaderboardComponent implements OnInit {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
 
+  }
+
+  isMePage() {
+    this.isPageWithMe = false;
+    this.myLdrbrd.forEach(element => {
+      if (element.user_nickname === this.mydrvr) {
+        this.isPageWithMe = true;
+      }
+    });
   }
 
 }
