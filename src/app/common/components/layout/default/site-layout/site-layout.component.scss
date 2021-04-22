@@ -1499,10 +1499,10 @@ button.xko {
         }
         &.selected{
           &.racer{
-            width: 54%;
+            width: 70%;
           }
           &.owner{
-            width: 52%;
+            width: 68%;
           }
           .inner-box{
             opacity: 1;
@@ -1510,13 +1510,13 @@ button.xko {
         }
         &.not-selected{
           .inner-box{
-            opacity: .5;
+            opacity: .3;
           }
           &.racer{
-            width: 48%;
+            width: 32%;
           }
           &.owner{
-            width: 46%;
+            width: 30%;
           }
         }
         &.racer{
@@ -1611,6 +1611,9 @@ button.xko {
           font-size: 16px;
           font-weight: 400;
           margin: 0 0 60px 0;
+          &.antimargin{
+            margin: 0 0 10px 0;
+          }
         }
         .next-btn{
           font-size: 20px;
@@ -1652,22 +1655,31 @@ button.xko {
             }
           }
           &.selected{
-            width: 35%;
+            width: 40%;
             &.first{
-              width: 42%;
+              width: 48%;
             }
             .inner-box{
               .badge-holder{
                 .badge-img{
                   transform: scale(1.03) skew(15deg); 
+                  &.btc{
+                    filter: drop-shadow(0px 0px 40px rgba(201, 82, 92, 0.7));
+                  }
+                  &.alt{
+                    filter: drop-shadow(0px 0px 40px rgba(1, 177, 108, 0.7));
+                  }
+                  &.ioi{
+                    filter: drop-shadow(0px 0px 40px rgba(10, 139, 180, 0.7));
+                  }
                 }
               }
             }
           }
           &.not-selected{
-            width: 29%;
+            width: 26%;
             &.first{
-              width: 36%;
+              width: 34%;
             }
           }
           .inner-box{
@@ -1697,11 +1709,11 @@ button.xko {
     }
     &.simple{
       .items-box{
-        opacity: 1;
         .small-box{
           cursor: default;
           width: 100%;
           .inner-box{
+            opacity: 1;
             .asset-holder{
               position: absolute;
               top: 50%;
@@ -3003,14 +3015,19 @@ button.xko {
           }
           &.owner{
             .inner-box{
+              transform: none;
               .heading-desc{
                 position: absolute;
                 bottom: 40px;
-                left: -100%;
+                left: 0;
+                transform: skew(45deg);
+                transform-origin: bottom;
               }
               .back-img{
                 right: unset;
-                left: -110%;
+                left: 0;
+                transform: skew(45deg);
+                transform-origin: bottom;
               }
             }
           }
@@ -3161,6 +3178,29 @@ button.xko {
     .modal-holder{
       .big-box{
         height: calc((var(--vh, 1vh) * 100) - 100vw);
+      }
+      &.teams{
+        .items-box{
+          .arrow{
+            height: 85px;
+            width: 45px;
+            p{
+              font-size: 31px;
+              font-weight: 500;
+            }
+          }
+          .small-box{
+            &:hover{
+              .inner-box{
+                .badge-holder{
+                  .badge-img{
+                    transform: scale(1.02);
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
