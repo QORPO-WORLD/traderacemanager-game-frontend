@@ -1,4 +1,9 @@
-<div *ngIf="marketState === 1" (window:resize)="width()" class="shop-section">
+<div
+  *ngIf="marketState === 1"
+  (window:resize)="width()"
+  class="shop-section"
+  #myScroll2
+>
   <div class="title">
     <h1>{{ title }}</h1>
   </div>
@@ -189,7 +194,10 @@
           </p>
           <p class="prize">{{ item["prize"] }}</p>
           <button
-            (click)="showAsset(item['id'], item['type'], item['amount'].length)"
+            (click)="
+              showAsset(item['id'], item['type'], item['amount'].length);
+              scrollTop(myScroll2)
+            "
             class="my-cta-btn-back my-box-shadow"
             *ngIf="item['type'] != 'team'"
           >
@@ -205,7 +213,10 @@
           <button
             class="my-cta-btn-back my-box-shadow"
             *ngIf="item['name'] === 'Team You' && item['type'] === 'team'"
-            (click)="showAsset(item['id'], item['type'], item['amount'].length)"
+            (click)="
+              showAsset(item['id'], item['type'], item['amount'].length);
+              scrollTop(myScroll2)
+            "
           >
             See details
           </button>

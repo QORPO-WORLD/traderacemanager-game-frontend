@@ -1,4 +1,4 @@
-<div (window:resize)="width()" class="main-holder">
+<div (window:resize)="width()" class="main-holder" #myScroll2>
   <div class="top-info">
     <div
       class="back"
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div class="content-holder">
+  <div class="content-holder" #myScroll>
     <div
       [class.disable-scroll]="isMenuActive"
       class="shop-pagee"
@@ -138,7 +138,7 @@
             </div>
           </div>
         </div>
-        <div class="shop-section-center" #myScroll>
+        <div class="shop-section-center">
           <div class="boxes">
             <div
               *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
@@ -218,7 +218,8 @@
                   class="my-cta-btn-back my-box-shadow"
                   *ngIf="item['type'] === 'car'"
                   (click)="
-                    showAsset(item['id'], item['type'], item['position'])
+                    showAsset(item['id'], item['type'], item['position']);
+                    scrollTop(myScroll2)
                   "
                 >
                   See details
@@ -232,7 +233,8 @@
                     (item['name'] === 'You' && item['type'] === 'team')
                   "
                   (click)="
-                    showAsset(item['id'], item['type'], item['position'])
+                    showAsset(item['id'], item['type'], item['position']);
+                    scrollTop(myScroll2)
                   "
                 >
                   See details
