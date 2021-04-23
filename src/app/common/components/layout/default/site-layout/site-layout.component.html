@@ -182,7 +182,6 @@
         <button
           class="deposit-btn my-cta-btn-back hoverable"
           [routerLink]="['/race/all-races/']"
-          [queryParams]="{ controlType: 'deposit' }"
         >
           <img src="/assets/base/images/play-btn.svg" alt="Play button" />
           <span> Play</span>
@@ -242,8 +241,16 @@
           />
         </div>
         <div class="menu-item play" [routerLink]="['/race/all-races/']">
-          <img src="/assets/base/images/menu/play-btn.svg" alt="" class="blue-play">
-          <img src="/assets/base/images/menu/play-btn-red.svg" alt="" class="red-play">
+          <img
+            src="/assets/base/images/menu/play-btn.svg"
+            alt=""
+            class="blue-play"
+          />
+          <img
+            src="/assets/base/images/menu/play-btn-red.svg"
+            alt=""
+            class="red-play"
+          />
         </div>
         <div
           class="menu-item item3"
@@ -423,19 +430,40 @@
 
   <div class="verify-modal" *ngIf="verifyModal === true">
     <div class="modal-holder" *ngIf="verifyStep === 1">
-
       <div class="items-box">
-        <div class="small-box racer bordered" (click)="selectedMode = 'racer'" [ngClass]="{'selected': selectedMode === 'racer', 'not-selected': selectedMode === 'owner'}">
+        <div
+          class="small-box racer bordered"
+          (click)="selectedMode = 'racer'"
+          [ngClass]="{
+            selected: selectedMode === 'racer',
+            'not-selected': selectedMode === 'owner'
+          }"
+        >
           <div class="my-border"></div>
           <div class="inner-box">
             <p class="heading-desc">Red</p>
-            <img src="/assets/base/images/modal/racer-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/racer-back.png"
+              alt=""
+              class="back-img"
+            />
           </div>
         </div>
-        <div class="small-box owner" (click)="selectedMode = 'owner'" [ngClass]="{'selected': selectedMode === 'owner', 'not-selected': selectedMode === 'racer'}">
+        <div
+          class="small-box owner"
+          (click)="selectedMode = 'owner'"
+          [ngClass]="{
+            selected: selectedMode === 'owner',
+            'not-selected': selectedMode === 'racer'
+          }"
+        >
           <div class="inner-box">
             <p class="heading-desc">Blue</p>
-            <img src="/assets/base/images/modal/owner-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/owner-back.png"
+              alt=""
+              class="back-img"
+            />
           </div>
         </div>
       </div>
@@ -444,8 +472,16 @@
           <h2>Pick a colour</h2>
           <p class="antimargin">Choose a colour of your layout</p>
           <p>This can be changed anytime in settings</p>
-          <button class="next-btn inactive" *ngIf="selectedMode.length === 0">Continue</button>
-          <button class="next-btn" *ngIf="selectedMode.length > 0" (click)="setMode(selectedMode)">Continue</button>
+          <button class="next-btn inactive" *ngIf="selectedMode.length === 0">
+            Continue
+          </button>
+          <button
+            class="next-btn"
+            *ngIf="selectedMode.length > 0"
+            (click)="setMode(selectedMode)"
+          >
+            Continue
+          </button>
         </div>
       </div>
     </div>
@@ -458,32 +494,77 @@
         <div class="arrow right" (click)="nextTeam()">
           <p>&gt;</p>
         </div>
-        <div class="small-box first bordered" (click)="selectedTeam = 1" [ngClass]="{'selected': selectedTeam === 1, 'not-selected': selectedTeam !== 1 && selectedTeam > 0}">
+        <div
+          class="small-box first bordered"
+          (click)="selectedTeam = 1"
+          [ngClass]="{
+            selected: selectedTeam === 1,
+            'not-selected': selectedTeam !== 1 && selectedTeam > 0
+          }"
+        >
           <div class="my-border"></div>
           <div class="inner-box">
-            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/basic-back.png"
+              alt=""
+              class="back-img"
+            />
             <div class="badge-holder">
               <h3>Team BTC</h3>
-              <img src="/assets/base/images/teams/BTC-team.png" alt="" class="badge-img btc">
+              <img
+                src="/assets/base/images/teams/BTC-team.png"
+                alt=""
+                class="badge-img btc"
+              />
             </div>
           </div>
         </div>
-        <div class="small-box bordered" (click)="selectedTeam = 2" [ngClass]="{'selected': selectedTeam === 2, 'not-selected': selectedTeam !== 2 && selectedTeam > 0}">
+        <div
+          class="small-box bordered"
+          (click)="selectedTeam = 2"
+          [ngClass]="{
+            selected: selectedTeam === 2,
+            'not-selected': selectedTeam !== 2 && selectedTeam > 0
+          }"
+        >
           <div class="my-border"></div>
           <div class="inner-box">
-            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/basic-back.png"
+              alt=""
+              class="back-img"
+            />
             <div class="badge-holder">
               <h3>Team ALT</h3>
-              <img src="/assets/base/images/teams/ALT-team.png" alt="" class="badge-img alt">
+              <img
+                src="/assets/base/images/teams/ALT-team.png"
+                alt=""
+                class="badge-img alt"
+              />
             </div>
           </div>
         </div>
-        <div class="small-box" (click)="selectedTeam = 3" [ngClass]="{'selected': selectedTeam === 3, 'not-selected': selectedTeam !== 3 && selectedTeam > 0}">
+        <div
+          class="small-box"
+          (click)="selectedTeam = 3"
+          [ngClass]="{
+            selected: selectedTeam === 3,
+            'not-selected': selectedTeam !== 3 && selectedTeam > 0
+          }"
+        >
           <div class="inner-box">
-            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/basic-back.png"
+              alt=""
+              class="back-img"
+            />
             <div class="badge-holder">
               <h3>Team IOI</h3>
-              <img src="/assets/base/images/teams/IOI-team.png" alt="" class="badge-img ioi">
+              <img
+                src="/assets/base/images/teams/IOI-team.png"
+                alt=""
+                class="badge-img ioi"
+              />
             </div>
           </div>
         </div>
@@ -491,22 +572,37 @@
       <div class="big-box">
         <div class="text-holder">
           <h2>Choose your crypto team</h2>
-          <p class="antimargin">Join winning teams, get a Premium membership and become a pro racer in no time! Compete against other teams and prove that your strategy is the best.</p>
+          <p class="antimargin">
+            Join winning teams, get a Premium membership and become a pro racer
+            in no time! Compete against other teams and prove that your strategy
+            is the best.
+          </p>
           <p>Joining a team unlocks player a lot of team based features.</p>
-          <button class="next-btn inactive" *ngIf="selectedTeam === 0">Continue</button>
-          <button class="next-btn" *ngIf="selectedTeam > 0" (click)="joinTeamFree(selectedTeam)">Continue</button>
+          <button class="next-btn inactive" *ngIf="selectedTeam === 0">
+            Continue
+          </button>
+          <button
+            class="next-btn"
+            *ngIf="selectedTeam > 0"
+            (click)="joinTeamFree(selectedTeam)"
+          >
+            Continue
+          </button>
         </div>
       </div>
     </div>
 
     <div class="modal-holder simple car" *ngIf="verifyStep === 3">
-
       <div class="items-box">
         <div class="small-box">
           <div class="inner-box">
-            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/basic-back.png"
+              alt=""
+              class="back-img"
+            />
             <div class="asset-holder">
-              <img src="/assets/base/images/nft-cars/car0b.png" alt="">
+              <img src="/assets/base/images/nft-cars/car0b.png" alt="" />
               <h3>Blue Basic</h3>
             </div>
           </div>
@@ -515,20 +611,30 @@
       <div class="big-box">
         <div class="text-holder">
           <h2>Congratulations, you got a new car!</h2>
-          <p>This is a free Basic NON NFTs car you received automatically for free. Buy our NFTs cars to start earning more money in races and also by simply holding them.</p>
+          <p>
+            This is a free Basic NON NFTs car you received automatically for
+            free. Buy our NFTs cars to start earning more money in races and
+            also by simply holding them.
+          </p>
           <button class="next-btn" (click)="verifyStep = 4">Continue</button>
         </div>
       </div>
     </div>
 
     <div class="modal-holder simple racer" *ngIf="verifyStep === 4">
-
       <div class="items-box">
         <div class="small-box">
           <div class="inner-box">
-            <img src="/assets/base/images/modal/basic-back.png" alt="" class="back-img">
+            <img
+              src="/assets/base/images/modal/basic-back.png"
+              alt=""
+              class="back-img"
+            />
             <div class="asset-holder">
-              <img src="/assets/base/images/nft-racers/rookie-basic.png" alt="">
+              <img
+                src="/assets/base/images/nft-racers/rookie-basic.png"
+                alt=""
+              />
               <h3>Racer Rookie</h3>
             </div>
           </div>
@@ -537,8 +643,14 @@
       <div class="big-box">
         <div class="text-holder">
           <h2>Congratulations, you got a new racer!</h2>
-          <p>You just received common tier NON - NFT avatar. Each avatar has special skills. Common level avatars have only their basic affiliate function. Buy NFT avatars to gain access to other special skills.</p>
-          <button class="next-btn" (click)="closeFirstModal(false)">Continue</button>
+          <p>
+            You just received common tier NON - NFT avatar. Each avatar has
+            special skills. Common level avatars have only their basic affiliate
+            function. Buy NFT avatars to gain access to other special skills.
+          </p>
+          <button class="next-btn" (click)="closeFirstModal(false)">
+            Continue
+          </button>
         </div>
       </div>
     </div>

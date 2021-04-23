@@ -1,4 +1,4 @@
-<div class="main-wrapper">
+<div (window:resize)="width()" class="main-wrapper">
   <div class="rewards-box" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
     <div class="top-wrapper">
       <p class="box-heading">{{ "start-race.dividends" | translate }}</p>
@@ -150,7 +150,7 @@
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal1_text1" | translate }}</span>
             {{ "start-race.modal1_text2" | translate }}
@@ -169,7 +169,7 @@
         />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal2_text1" | translate }}</span>
             {{ "start-race.modal2_text2" | translate }}
@@ -189,7 +189,7 @@
       </div>
 
       <div class="banner-item item3 red" *ngIf="topBannerIndex === 3">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal3_text1" | translate }}</span>
             {{ "start-race.modal3_text2" | translate }}
@@ -229,7 +229,7 @@
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.buy_nft1" | translate }}</span>
             {{ "start-race.buy_nft2" | translate }}
@@ -248,7 +248,7 @@
         />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.collect_nft1" | translate }}</span>
             {{ "start-race.collect_nft2" | translate }}
@@ -268,7 +268,7 @@
       </div>
 
       <div class="banner-item item3" *ngIf="topBannerIndex === 3">
-        <div class="text-holder">
+        <div *ngIf="display > 640" class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal4_text1" | translate }}</span>
             {{ "start-race.modal4_text2" | translate }}

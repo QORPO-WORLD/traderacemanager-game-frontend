@@ -418,5 +418,6 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
     this.luckyCar = null;
   }
 
+
 }
 
