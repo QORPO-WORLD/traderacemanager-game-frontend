@@ -171,7 +171,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
               this.trySignup();
             }
         }, 300);
-
+        setTimeout(() => { this.loading = false; }, 2000);
     }
 
     trySignup() {

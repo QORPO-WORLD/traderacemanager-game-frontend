@@ -866,8 +866,7 @@ console.log('got here');
     for (let i = 0; i < fakeSelected.length; i++) {
       fakeSelected[i].newBet = [];
       for (let ix = 0; ix < fakeSelected[i].betik.length; ix++) {
-        console.log(fakeSelected[i].betik[ix].bet);
-        if (fakeSelected[i].betik[ix].bet > 0) {
+        if (fakeSelected[i].betik[ix].bet !== 0) {
           fakeSelected[i].newBet.push({
             symbol: fakeSelected[i].betik[ix].symbol,
             bet: fakeSelected[i].betik[ix].bet

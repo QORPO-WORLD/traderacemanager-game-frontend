@@ -15,7 +15,7 @@ import { CarShowroom } from '../models/car-showroom';
 class CarsService extends __BaseService {
   static readonly carsMineListPath = '/races/me/assets';
   static readonly carsShowroomListPath = '/races/assets/list';
-  static readonly carsBuyListPath = '/races/assets/buy/{car_model}';
+  static readonly carsBuyListPath = '/races/assets/buy';
 
   constructor(
     config: __Configuration,
@@ -94,14 +94,14 @@ class CarsService extends __BaseService {
    * API endpoint to buy cars.
    * @param car_model undefined
    */
-  carsBuyListResponse(carModel: string): __Observable<__StrictHttpResponse<{car_pk?: number, delivered_new?: any}>> {
+  carsBuyListResponse(carModel: any): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-
+    __body = carModel;
     let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/races/assets/buy/${carModel}`,
+      'POST',
+      this.rootUrl + `/races/assets/buy`,
       __body,
       {
         headers: __headers,
@@ -112,7 +112,7 @@ class CarsService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{car_pk?: number, delivered_new?: any}>;
+        return _r as __StrictHttpResponse<any>;
       })
     );
   }
@@ -120,9 +120,9 @@ class CarsService extends __BaseService {
    * API endpoint to buy cars.
    * @param car_model undefined
    */
-  carsBuyList(carModel: string): __Observable<{car_pk?: number, delivered_new?: any}> {
+  carsBuyList(carModel: any): __Observable<any> {
     return this.carsBuyListResponse(carModel).pipe(
-      __map(_r => _r.body as {car_pk?: number, delivered_new?: any})
+      __map(_r => _r.body as {any})
     );
   }
 }

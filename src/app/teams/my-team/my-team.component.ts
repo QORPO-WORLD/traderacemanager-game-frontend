@@ -44,6 +44,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   selectedmanager = 0;
   myId: string;
   meManager = false;
+  meRated = false;
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -187,7 +188,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getManagerRequests() {
-    this.teams_service.getManagerRequests(this.teamId).subscribe(data => {
+    this.teamSubscription = this.teams_service.getManagerRequests(this.teamId).subscribe(data => {
       console.log(data);
       this.managers = data;
     });
@@ -195,7 +196,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
 
 
   putManagerRequests(id: number, accept: boolean) {
-    this.teams_service.putManagerRequests({
+    this.teamSubscription = this.teams_service.putManagerRequests({
       requestId: id,
       acceptRequest: accept
     }).subscribe(data => {
@@ -207,14 +208,13 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   suspendManager() {
-    this.teams_service.suspendManager(this.teamId).subscribe(data => {
+    this.teamSubscription = this.teams_service.suspendManager(this.teamId).subscribe(data => {
       this.getMyTem();
     });
   }
 
   recognizeOwnerMe() {
     let sum = 0;
-    console.log(this.myTeam.owners)
     for (let x = 0; x < this.myTeam.owners.length; x++) {
 
       if (this.myTeamData.id === this.myTeam.owners[x].user_id) {
@@ -227,6 +227,17 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       this.getManagerRequests();
     } else {
       this.isOwner = false;
+    }
+  }
+
+
+  rateManager() {
+    if (this.meRated === false) {
+      this.teamSubscription = this.teams_service.rateManager({ 'stars': this.activeRate }).subscribe(
+        data => {
+          this.meRated = true;
+        }
+      )
     }
   }
 
