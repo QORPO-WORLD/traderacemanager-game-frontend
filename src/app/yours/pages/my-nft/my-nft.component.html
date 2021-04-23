@@ -96,7 +96,7 @@
     </div>
   </div>
   <div class="shop-section-center" #myScroll>
-    <p *ngIf="newProducts.length === 0" class="info-message">
+    <p *ngIf="newProducts.length === 0 && !teamsActive" class="info-message">
       You don't have any products, you can buy them in
       <span [routerLink]="['/car/nft-market']" class="red-box-detail"
         >market</span
@@ -104,6 +104,9 @@
       <span [routerLink]="['/car/nft-market']" class="blue-box-detail"
         >market</span
       >.
+    </p>
+    <p *ngIf="newProducts.length === 0 && teamsActive" class="info-message">
+      Coming soon.
     </p>
     <div *ngIf="newProducts.length > 0" class="boxes">
       <div
