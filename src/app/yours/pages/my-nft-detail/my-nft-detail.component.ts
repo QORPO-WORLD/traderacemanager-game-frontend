@@ -99,6 +99,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     {
       id: 15,
+      position: 24,
       collection: "Common rare",
       name: "LUNA",
       prize: "3 600 IOI",
@@ -190,6 +191,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     {
       id: 22,
+      position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
       prize: "6 000 IOI",
@@ -281,6 +283,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     {
       id: 29,
+      position: 26,
       collection: "Epic rare",
       name: "MIDAS",
       prize: "9 600 IOI",
@@ -372,6 +375,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     {
       id: 36,
+      position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
       prize: "15 600 IOI",
