@@ -39,7 +39,8 @@
     </div>
   
     <div class="box-wrapper">
-      <div class="box box-background">
+      <div class="box box-background"
+      [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + teamColor + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
         <span class="box-content">
           <p class="box-name">{{ "teams.join.benefit4_heading" | translate }}</p>
           <span *ngFor="let owner of myTeam?.owners">
@@ -54,7 +55,8 @@
         </span>
       </div>
   
-      <div class="box box-background">
+      <div class="box box-background"
+      [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + teamColor + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
         <div class="box-switchers">
           <div
             class="left"
@@ -123,6 +125,7 @@
             <ng-container *ngIf="TeamManagerSlide === 2">
               <button
                 class="apply-button border-color"
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                 (click)="becomeManager(teamId)"
                 *ngIf="myTeamStats.me_waiting_as_manager === 'NONE'"
               >
@@ -130,6 +133,7 @@
               </button>
               <button
                 class="apply-button border-color"
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                 *ngIf="myTeamStats.me_waiting_as_manager === 'WAITING'"
                 style="cursor: default;"
               >
@@ -137,12 +141,14 @@
               </button>
               <button
                 class="apply-button border-color"
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                 *ngIf="myTeamStats.me_waiting_as_manager === 'APPROVED'"
               >
                 Approved
               </button>
               <button
                 class="apply-button border-color"
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                 *ngIf="myTeamStats.me_waiting_as_manager === 'DECLINED'"
               >
                 Rejected
@@ -175,6 +181,7 @@
               </p>
               <button
                 class="apply-button border-color release"
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                 (click)="suspendManager()"
                 *ngIf="isOwner === true && myTeam?.manager_user_nickname"
               >
@@ -189,6 +196,7 @@
               </p>
               <div class="accept-buttons" *ngIf="managers[selectedmanager]">
                 <button
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                   (click)="
                     putManagerRequests(
                       managers[selectedmanager]?.team_manager_request_id,
@@ -199,6 +207,7 @@
                   {{ "teams.my_team.accept" | translate }}
                 </button>
                 <button
+                [ngStyle]="{'border': '1px solid #' + teamColor }"
                   (click)="
                     putManagerRequests(
                       managers[selectedmanager]?.team_manager_request_id,
@@ -228,7 +237,8 @@
         </ng-container>
       </div>
   
-      <div class="box box-background">
+      <div class="box box-background"
+      [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + teamColor + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
         <span class="box-content">
           <p class="box-name">{{ "teams.my_team.best_racer" | translate }}</p>
           <h4>{{ bestRacer?.user_nickname }}</h4>
@@ -241,7 +251,8 @@
         </span>
       </div>
   
-      <div class="box box-background">
+      <div class="box box-background"
+      [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + teamColor + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
         <span class="box-content">
           <p class="box-name">{{ "teams.my_team.team_value" | translate }}</p>
           <h4>{{ myTeam?.team_value }} IOI</h4>
@@ -254,7 +265,8 @@
 
         <div class="table">
 
-          <div class="ioi-volume box-background">
+          <div class="ioi-volume box-background"
+          [ngStyle]="{'background': 'linear-gradient(to bottom right, #' + teamColor + ' 0%, rgba(255, 212, 59, 0) 60%)' }">
             <span>
               <h4>{{ myTeam?.team_bonus | number: "1.0-0":"fr" }} IOI</h4>
             </span>
@@ -357,12 +369,14 @@
         <div class="graph-buttons">
           <button
             (click)="graphType = 'Turnover'"
+            [ngStyle]="graphType === 'Turnover' && {'background': 'linear-gradient(238.54deg,' + ' #' + teamColor + 'a5 -1.25%, #' + teamColor + '22 100.91%)' }"
             [ngClass]="{ 'active button-gradient': graphType == 'Turnover' }"
           >
             {{ "leaderboard.team_leaderboard.turnover" | translate }}
           </button>
           <button
             (click)="graphType = 'Profit'"
+            [ngStyle]="graphType === 'Profit' && {'background': 'linear-gradient(238.54deg,' + ' #' + teamColor + 'a5 -1.25%, #' + teamColor + '22 100.91%)' }"
             [ngClass]="{ 'active button-gradient': graphType == 'Profit' }"
           >
             {{ "teams.my_team.profit" | translate }}

@@ -38,6 +38,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   myuser: any;
   teams: any;
   isOwner = true;
+  teamColor: string;
   @ViewChild('showTip', { static: false }) showTip: any;
   teamId: number;
   managers = [];
@@ -90,6 +91,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         if (data.manager_user_id === this.myTeamData.id) {
           this.meManager = true;
         }
+        this.teamColor = data.color;
         this.recognizeOwnerMe();
       }
     );
