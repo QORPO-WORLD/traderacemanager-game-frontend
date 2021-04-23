@@ -125,6 +125,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         setTimeout(() => { this.tryLogin() }, 300);
       }
     }, 500);
+
+    setTimeout(() => { this.loading = false; }, 2000);
   }
 
   tryLogin() {
