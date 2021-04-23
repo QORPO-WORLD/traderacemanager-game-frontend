@@ -1,73 +1,266 @@
-
-<div class="main-holder" [ngClass]="{'non-premium': isPremium === false}">
+<div class="main-holder" [ngClass]="{ 'non-premium': isPremium === false }">
   <div class="top-text">
     <p class="heading">Daily tasks</p>
-    <p class="text">Finish your daily tasks and earn your bonuses! Become premium member and earn 4x more</p>
+    <p class="text">
+      Finish your daily tasks and earn your bonuses! Become premium member and
+      earn 4x more
+    </p>
   </div>
 
   <div class="non-premium-box">
-    <img src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <p>Unlock more Daily tasks<br>by becoming a<br> <button [routerLink]="['/teams/join-teams']" class="deposit-btn my-cta-btn-back hoverable" style="padding: 6px 15px;
-      border-radius: 13px;
-      margin-top: 10px;">Premium member</button></p>
+    <img
+      src="/assets/base/images/menu/lock-icon.svg"
+      alt="Icon of lock - locked"
+    />
+    <p>
+      Unlock more Daily tasks<br />by becoming a<br />
+      <button
+        [routerLink]="['/teams/join-teams']"
+        class="deposit-btn my-cta-btn-back hoverable"
+        style="padding: 6px 15px; border-radius: 13px; margin-top: 10px"
+      >
+        Premium member
+      </button>
+    </p>
   </div>
 
-  <div class="task-item item1" [ngClass]="{'active': task6}">
+  <div class="task-item item1" [ngClass]="{ active: task6 }">
     <div class="text-holder" *ngIf="!task6">
-      <p>0<span class="complete-num">/1</span> Deposit 1 000 IOI <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>
+        0<span class="complete-num">/1</span> Deposit 1 000 IOI
+        <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-    <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
+    <img
+      class="locked-icon"
+      src="/assets/base/images/menu/lock-icon.svg"
+      alt="Icon of lock - locked"
+    />
     <div class="text-holder" *ngIf="task6">
-      <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt=""> Deposit 100 IOI <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>
+        <img
+          class="done-icon"
+          src="/assets/base/images/tasks/done-icon.svg"
+          alt=""
+        />
+        Deposit 100 IOI <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-    <img *ngIf="!task6 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item1.png" alt="" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }">
-    <img *ngIf="!task6 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item1.png" alt="">
-    <img *ngIf="task6" class="task-icon" src="/assets/base/images/tasks/item1-active.png" alt="">
+    <img
+      *ngIf="!task6 && isPremium === true"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item1.png"
+      alt=""
+      [routerLink]="['/other/wallet-control']"
+      [queryParams]="{ controlType: 'deposit' }"
+    />
+    <img
+      *ngIf="!task6 && isPremium === false"
+      class="task-icon"
+      src="/assets/base/images/tasks/item1.png"
+      alt=""
+    />
+    <img
+      *ngIf="task6"
+      class="task-icon"
+      src="/assets/base/images/tasks/item1-active.png"
+      alt=""
+    />
   </div>
-  <div class="task-item item2" [ngClass]="{'tutorial-high': tutorialStep === 1}">
+  <div
+    class="task-item item2"
+    [ngClass]="{ 'tutorial-high': tutorialStep === 1 }"
+  >
     <div class="text-holder" *ngIf="!task0">
-      <p>0<span class="complete-num">/1</span> Free race rookie <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>
+        0<span class="complete-num">/1</span> Free race rookie
+        <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
     <div class="text-holder" *ngIf="task0">
-      <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt=""> Free race rookie <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>
+        <img
+          class="done-icon"
+          src="/assets/base/images/tasks/done-icon.svg"
+          alt=""
+        />
+        Free race rookie <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-    <img *ngIf="!task0 && startTutorial === false" class="task-icon clickable" src="/assets/base/images/tasks/item2.png" alt="" [routerLink]="['/car/fuel-car/car_race_short_0']">
-    <img *ngIf="task0 || startTutorial === true" class="task-icon" src="/assets/base/images/tasks/item2-active.png" alt="" [routerLink]="['/car/fuel-car/car_race_short_0']">
+    <img
+      *ngIf="!task0 && startTutorial === false"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item2.png"
+      alt=""
+      [routerLink]="['/car/fuel-car/car_race_short_0']"
+    />
+    <img
+      *ngIf="task0 || startTutorial === true"
+      class="task-icon"
+      src="/assets/base/images/tasks/item2-active.png"
+      alt=""
+      [routerLink]="['/car/fuel-car/car_race_short_0']"
+    />
   </div>
-  <div class="task-item item4" [ngClass]="{'active': task8}">
-    <div class="text-holder"  *ngIf="!task8">
-      <p>0<span class="complete-num">/1</span> Join Tournament "Expert IOI" <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+  <div class="task-item item4" [ngClass]="{ active: task8 }">
+    <div class="text-holder" *ngIf="!task8">
+      <p>
+        0<span class="complete-num">/1</span> Join Tournament "Expert IOI"
+        <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-    <div class="text-holder"  *ngIf="task8">
-      <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt="">  Join Tournament "Expert IOI" <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+    <div class="text-holder" *ngIf="task8">
+      <p>
+        <img
+          class="done-icon"
+          src="/assets/base/images/tasks/done-icon.svg"
+          alt=""
+        />
+        Join Tournament "Expert IOI" <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-    <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="!task8 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item4.png" alt="">
-    <img [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="!task8 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item4.png" alt="">
-    <img [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="task8" class="task-icon" src="/assets/base/images/tasks/item4-active.png" alt="">
+    <img
+      class="locked-icon"
+      src="/assets/base/images/menu/lock-icon.svg"
+      alt="Icon of lock - locked"
+    />
+    <img
+      [routerLink]="['/car/fuel-car/classic_tournament_10']"
+      *ngIf="!task8 && isPremium === true"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item4.png"
+      alt=""
+    />
+    <img
+      [routerLink]="['/car/fuel-car/classic_tournament_10']"
+      *ngIf="!task8 && isPremium === false"
+      class="task-icon"
+      src="/assets/base/images/tasks/item4.png"
+      alt=""
+    />
+    <img
+      [routerLink]="['/car/fuel-car/classic_tournament_10']"
+      *ngIf="task8"
+      class="task-icon"
+      src="/assets/base/images/tasks/item4-active.png"
+      alt=""
+    />
   </div>
   <div class="task-item item5">
-    <div class="text-holder" >
-      <p><span class="complete-num"></span> Share IOI on socials. <br> Receive up to 100 IOI weekly</p>
+    <div class="text-holder">
+      <p>
+        <span class="complete-num"></span> Share IOI on socials. <br />
+        Receive up to 100 IOI weekly
+      </p>
     </div>
-    <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img *ngIf="isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item5.png" alt="" (click)="showShareModal = true">
-    <img *ngIf="isPremium === false" class="task-icon" src="/assets/base/images/tasks/item5.png" alt="">
+    <img
+      class="locked-icon"
+      src="/assets/base/images/menu/lock-icon.svg"
+      alt="Icon of lock - locked"
+    />
+    <img
+      *ngIf="isPremium === true"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item5.png"
+      alt=""
+      (click)="showShareModal = true"
+    />
+    <img
+      *ngIf="isPremium === false"
+      class="task-icon"
+      src="/assets/base/images/tasks/item5.png"
+      alt=""
+    />
     <!-- <img class="task-icon" src="/assets/base/images/tasks/item5-active.png" alt=""> -->
   </div>
-  <div class="task-item item6" [ngClass]="{'active': task1}" style="display: none;">
+  <div
+    class="task-item item6"
+    [ngClass]="{ active: task1 }"
+    style="display: none"
+  >
     <div class="text-holder" *ngIf="task1">
-      <p><img class="done-icon" src="/assets/base/images/tasks/done-icon.svg" alt=""> Invite two active referrals <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+      <p>
+        <img
+          class="done-icon"
+          src="/assets/base/images/tasks/done-icon.svg"
+          alt=""
+        />
+        Invite two active referrals <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+        />
+      </p>
     </div>
-  <div class="text-holder" *ngIf="!task1" [routerLink]="['/other/affilate']">
-    <p>0<span class="complete-num">/1</span> Invite two active referrals <span>for</span> 1 <img class="ioi-icon" src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt="" [routerLink]="['/other/affilate']"></p>
+    <div class="text-holder" *ngIf="!task1" [routerLink]="['/other/affilate']">
+      <p>
+        0<span class="complete-num">/1</span> Invite two active referrals
+        <span>for</span> 1
+        <img
+          class="ioi-icon"
+          src="/assets/base/images/ticket-white.png"
+          alt=""
+          [routerLink]="['/other/affilate']"
+        />
+      </p>
     </div>
-    <img class="locked-icon" src="/assets/base/images/menu/lock-icon.svg" alt="Icon of lock - locked">
-    <img *ngIf="!task1 && isPremium === true" class="task-icon clickable" src="/assets/base/images/tasks/item6.png" alt="" [routerLink]="['/other/affilate']">
-    <img *ngIf="!task1 && isPremium === false" class="task-icon" src="/assets/base/images/tasks/item6.png" alt="">
-    <img *ngIf="task1" class="task-icon clickable" src="/assets/base/images/tasks/item6-active.png" alt="" [routerLink]="['/other/affilate']">
+    <img
+      class="locked-icon"
+      src="/assets/base/images/menu/lock-icon.svg"
+      alt="Icon of lock - locked"
+    />
+    <img
+      *ngIf="!task1 && isPremium === true"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item6.png"
+      alt=""
+      [routerLink]="['/other/affilate']"
+    />
+    <img
+      *ngIf="!task1 && isPremium === false"
+      class="task-icon"
+      src="/assets/base/images/tasks/item6.png"
+      alt=""
+    />
+    <img
+      *ngIf="task1"
+      class="task-icon clickable"
+      src="/assets/base/images/tasks/item6-active.png"
+      alt=""
+      [routerLink]="['/other/affilate']"
+    />
   </div>
-  
 
   <div class="panels-holder">
     <div class="time-box my-border-grad">
@@ -85,45 +278,74 @@
         <p class="heading">Your info</p>
         <div class="item-holder">
           <p class="desc">Your daily challenge</p>
-          <p class="value"><span>{{task?.daily_tasks.length}}</span>/4</p>
+          <p class="value">
+            <span>{{ task?.daily_tasks.length }}</span
+            >/4
+          </p>
         </div>
         <div class="item-holder rewards">
           <p class="desc">Your daily rewards</p>
-          <p class="value">{{task?.daily_tasks.length}} <img src="/assets/base/images/curr-logos/nex/ioi-logo.png" alt=""></p>
+          <p class="value">
+            {{ task?.daily_tasks.length }}
+            <img src="/assets/base/images/ticket-white.png" alt="" />
+          </p>
         </div>
-
       </div>
     </div>
   </div>
-
 </div>
 
-
-<div class="tutorial-modal" [ngClass]="'step' + tutorialStep" *ngIf="startTutorial === true">
-  <div class="modal-back" [ngClass]="{'inactive': tutorialStep !== 1}"></div>
+<div
+  class="tutorial-modal"
+  [ngClass]="'step' + tutorialStep"
+  *ngIf="startTutorial === true"
+>
+  <div class="modal-back" [ngClass]="{ inactive: tutorialStep !== 1 }"></div>
 
   <div class="box-content only-cta content0">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi big">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi big"
+    />
     <div class="text-holder centered">
       <p class="heading">Skip tutorial</p>
-      <p class="text">No worries, you can still turn the tutorial on in the settings anytime.</p>
+      <p class="text">
+        No worries, you can still turn the tutorial on in the settings anytime.
+      </p>
     </div>
-    <button class="my-cta-btn-back hoverable" (click)="skipModal()">{{'tutorial.skip_tutorial' | translate}}</button>
+    <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+      {{ "tutorial.skip_tutorial" | translate }}
+    </button>
   </div>
 
   <div class="box-content content1">
-    <img src="/assets/base/images/modal/tutorial-racer.png" alt="" class="racer-boi">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
     <div class="text-holder">
       <p class="heading">Daily tasks</p>
-      <p class="text">Start your daily tasks challenge and get 1 IOI every day for simply joining our races. Get Premium membership to get 4x more rewards in Daily tasks</p>
+      <p class="text">
+        Start your daily tasks challenge and get 1 IOI every day for simply
+        joining our races. Get Premium membership to get 4x more rewards in
+        Daily tasks
+      </p>
       <div class="pointing-line to-left"></div>
     </div>
     <div class="btns-holder">
-      <button class="my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/car_race_short_0']">I want IOI</button>
-      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">Skip the tutorial &gt;</p>
+      <button
+        class="my-cta-btn-back hoverable"
+        [routerLink]="['/car/fuel-car/car_race_short_0']"
+      >
+        I want IOI
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        Skip the tutorial &gt;
+      </p>
     </div>
   </div>
-
 </div>
 
 <!-- 
@@ -242,12 +464,15 @@
 <div class="winning-modal win-share-modal" *ngIf="showShareModal === true">
   <div class="modal-bg">
     <div class="win-head">
-      <img src="./assets/base/images/xko.png" class="krizik" (click)="showShareModal = false;">
-
+      <img
+        src="./assets/base/images/xko.png"
+        class="krizik"
+        (click)="showShareModal = false"
+      />
     </div>
 
     <div class="details">
-      <h2>Share </h2>
+      <h2>Share</h2>
       <h3>Share IOI with your friends on social media.</h3>
       <div class="share-that">
         <div class="share-item facebook">
@@ -256,11 +481,14 @@
         </div>
 
         <div class="share-item twitter">
-          <tweet class="twitter-cont" url="https://traderacemanager.com" text="{{affilateText}}"></tweet>
+          <tweet
+            class="twitter-cont"
+            url="https://traderacemanager.com"
+            text="{{ affilateText }}"
+          ></tweet>
           <p>Share on Twitter</p>
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -174,7 +174,7 @@
       </div>
       <div class="ioi">
         <button
-          class="buy-nft my-cta-btn-back"
+          class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
             assetType === 'car' &&
             !displayArray[0]['rare'] &&
@@ -185,6 +185,8 @@
           Buy with IOI
         </button>
         <button
+          [ngStyle]="{ opacity: '.5' }"
+          disabled
           class="buy-nft my-cta-btn-back"
           *ngIf="
             assetType === 'car' &&
@@ -193,11 +195,11 @@
           "
           (click)="buyCarFromGarage(displayArray[0]['extras'].buy_id)"
         >
-          Buy with MATIC
+          Buy with MATIC <span>(soon)</span>
         </button>
 
         <button
-          class="buy-nft my-cta-btn-back"
+          class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
             assetType === 'car' &&
             !displayArray[0]['rare'] &&
@@ -209,7 +211,10 @@
           Deposit
         </button>
 
-        <button class="buy-nft my-cta-btn-back" *ngIf="assetType !== 'car'">
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="assetType !== 'car'"
+        >
           Buy with IOI
         </button>
         <button
@@ -229,7 +234,7 @@
 
         <a
           *ngIf="assetType === 'car' && !displayArray[0]['rare']"
-          class="buy-nft my-cta-btn-back"
+          class="buy-nft my-cta-btn-back hoverable"
           href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
           target="_blank"
         >

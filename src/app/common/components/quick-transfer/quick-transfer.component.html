@@ -1,19 +1,27 @@
-
-
-
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
       <p class="common-heading">Deposit a currency</p>
       <div class="boxes-holder">
-
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'ioi'}" (click)="tokenSelected = 'ioi'">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: tokenSelected !== 'ioi' }"
+          (click)="tokenSelected = 'ioi'"
+        >
           <div class="inner">
-            <img src="/assets/base/images/logo-blank.png" alt="Logo of ioi token" class="curr-logo">
+            <img
+              src="/assets/base/images/logo-blank.png"
+              alt="Logo of ioi token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">IOI <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                IOI <button class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container *ngIf="myIoiBalance > 0">
-                <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+                <p class="dollars">
+                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
+                </p>
               </ng-container>
               <ng-container *ngIf="myIoiBalance === 0">
                 <p class="dollars">&#36; 0</p>
@@ -22,13 +30,24 @@
           </div>
         </div>
 
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'matic'}" (click)="tokenSelected = 'matic'">
+        <div
+          [ngStyle]="{ cursor: 'default' }"
+          class="box-item my-cta-btn-back"
+          [ngClass]="{ inactive: tokenSelected !== 'matic' }"
+        >
           <div class="inner">
-            <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="Logo of matic token" class="curr-logo">
+            <img
+              src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
+              alt="Logo of matic token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">MTC <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                MTC
+                <button disabled class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container>
-                <p class="dollars">&#36; 0</p>
+                <p class="dollars">Coming soon</p>
               </ng-container>
             </div>
           </div>
@@ -44,7 +63,11 @@
 
     <div class="amount-holder">
       <div class="info-box">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="" class="info-img">
+        <img
+          src="/assets/base/images/menu/info-icon.svg"
+          alt=""
+          class="info-img"
+        />
         <div class="inner-holder my-cta-btn-back">
           <h3>Deposit Detail</h3>
           <p class="top-desc">Our processes are completely secure and free</p>
@@ -63,8 +86,12 @@
             </div>
           </div>
           <div class="btns-holder">
-            <a target="_blank" href="https://www.ioi-token.com/" class="high">Read more about token &gt;</a>
-            <a target="_blank" href="https://www.coingecko.com">Check Coingecko.com &gt;</a>
+            <a target="_blank" href="https://www.ioi-token.com/" class="high"
+              >Read more about token &gt;</a
+            >
+            <a target="_blank" href="https://www.coingecko.com"
+              >Check Coingecko.com &gt;</a
+            >
           </div>
         </div>
       </div>
@@ -80,7 +107,13 @@
       <p class="common-heading">Amount</p>
       <div class="amount-input">
         <div class="inner">
-          <input type="number" min="100" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the amount you want to transfer">
+          <input
+            type="number"
+            min="100"
+            [(ngModel)]="amount"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter the amount you want to transfer"
+          />
           <p class="curr-desc" *ngIf="tokenSelected === 'matic'">MATIC</p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
@@ -88,19 +121,26 @@
       <div class="transfer-inputs">
         <div class="input-item left">
           <div class="my-input bordered">
-            <input type="text" [value]="'modals.transfer_modal.from_game' | translate" readonly>
+            <input
+              type="text"
+              [value]="'modals.transfer_modal.from_game' | translate"
+              readonly
+            />
           </div>
           <p class="destination-desc">Send from</p>
         </div>
         <div class="input-item">
           <div class="my-input">
-            <input type="text" [value]="'modals.transfer_modal.from_nitro' | translate" readonly>
+            <input
+              type="text"
+              [value]="'modals.transfer_modal.from_nitro' | translate"
+              readonly
+            />
           </div>
           <p class="destination-desc">Send to</p>
         </div>
       </div>
     </div>
-
   </div>
   <div class="right-holder">
     <p class="common-heading">Your transfer summary</p>
@@ -108,12 +148,20 @@
       <div class="inner">
         <div class="withdraw-info">
           <p class="text">You are transferring</p>
-          <p class="value"><span *ngIf="amount > 0">{{amount}}</span> <span *ngIf="amount < 1">0</span>
-            <span *ngIf="tokenSelected === 'trx'" class="value-desc">MATIC</span>
+          <p class="value">
+            <span *ngIf="amount > 0">{{ amount }}</span>
+            <span *ngIf="amount < 1">0</span>
+            <span *ngIf="tokenSelected === 'trx'" class="value-desc"
+              >MATIC</span
+            >
             <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
-          <p *ngIf="tokenSelected === 'trx'" class="desc">market value 1 MATIC = 20 USD</p>
-          <p *ngIf="tokenSelected === 'ioi'" class="desc">market value 1 IOI = 0.4$</p>
+          <p *ngIf="tokenSelected === 'trx'" class="desc">
+            market value 1 MATIC = 20 USD
+          </p>
+          <p *ngIf="tokenSelected === 'ioi'" class="desc">
+            market value 1 IOI = 0.4$
+          </p>
         </div>
         <div class="summary-box">
           <div class="info-item crypto-adress">
@@ -135,7 +183,13 @@
             </div>
           </div>
         </div>
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveTransfer()" [disabled]="tokenSelected.length < 1 || amount < 1">Confirm</button>
+        <button
+          class="confirm-btn my-cta-btn-back hoverable"
+          (click)="resolveTransfer()"
+          [disabled]="tokenSelected.length < 1 || amount < 1"
+        >
+          Confirm
+        </button>
       </div>
     </div>
   </div>
