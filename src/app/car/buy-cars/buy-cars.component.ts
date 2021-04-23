@@ -118,7 +118,7 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
   }
 
   buyCarFromGarage(index: string) {
-    this.api.carsBuyList(index).
+    this.api.carsBuyList({ "tier": index, "amount": 1 }).
       subscribe(datax => {
         const data: any = datax;
         setTimeout(() => {
