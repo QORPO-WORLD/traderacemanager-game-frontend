@@ -40,7 +40,7 @@ export class VerifyUserComponent implements OnInit {
   }
 
   resolveActivation(data) {
-    this.auth.login(data);
+    this.auth.login(null);
     gtag('event', 'dokoncena', {
       'event_category': 'registrace',
       'event_label': 'dokoncena',
