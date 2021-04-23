@@ -24,7 +24,7 @@
             </p>
             <p class="time" *ngIf="refreshing === false"><app-timer class="timer" [value]="mainr?.starts_in_seconds" (onComplete)="timerCompleted()"></app-timer> {{'race.remaining' | translate}}</p>
 
-            <button class="fuel-btn transparent my-races-btn-border" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Fuel now</button>
+            <button class="fuel-btn transparent my-races-btn-border" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Fuel now <div class="btn-back my-cta-btn-back"></div></button>
             <button class="fuel-btn deposit-btn my-cta-btn-back" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)">Deposit</button>
 
           </div>
@@ -58,7 +58,7 @@
             <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
           </p>
 
-          <button class="fuel-btn transparent my-races-btn-border" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Fuel now</button>
+          <button class="fuel-btn transparent my-races-btn-border" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Fuel now <div class="btn-back my-cta-btn-back"></div></button>
           <button class="fuel-btn deposit-btn my-cta-btn-back" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)">Deposit</button>
 
         </div>
@@ -90,7 +90,7 @@
             </p>
             <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
 
-            <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now</button>
+            <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
 
           </div>
     
@@ -128,7 +128,7 @@
           </p>
           <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
 
-          <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now</button>
+          <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
         </div>
   
         <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]"></div>
