@@ -11,33 +11,32 @@
   ></div>
 
   <div class="navigation">
-    <div
-      data-aos="fade-down"
-      class="hamburger"
-      [class.hamburgerclick]="isMenuActive"
-      (click)="activateMenu(); reset()"
-    >
-      <i class="fa fa-bars"></i>
-    </div>
     <div class="menu">
-      <div [routerLink]="['/home']" class="logo">
+      <div
+        class="hamburger"
+        [class.hamburgerclick]="isMenuActive"
+        (click)="activateMenu(); reset()"
+      >
+        <i class="fa fa-bars"></i>
+      </div>
+      <div data-aos="fade-down" class="logo" [routerLink]="['/user/home']">
         <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
-        <p [routerLink]="['/home']">TRADE RACE <span>MANAGER</span></p>
+        <p>TRADE RACE <span>MANAGER</span></p>
       </div>
 
       <div class="nav" [class.nav-active]="isMenuActive">
         <div>
-          <p [routerLink]="['/home']" class="p-small">Home</p>
+          <p [routerLink]="['/user/home']" class="p-small">Home</p>
         </div>
 
         <div>
-          <p class="p-small active">Marketplace</p>
+          <p [routerLink]="['/user/shop']" class="p-small active">
+            Marketplace
+          </p>
         </div>
-        <div>
-          <button class="my-cta" [routerLink]="['/user/sign-in']">
-            Play now
-          </button>
-        </div>
+        <button class="my-cta" [routerLink]="['/user/sign-in']">
+          Play now
+        </button>
       </div>
     </div>
   </div>
