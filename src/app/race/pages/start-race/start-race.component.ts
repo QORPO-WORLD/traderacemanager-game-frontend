@@ -67,14 +67,14 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myLdrbrdObserver: Subscription;
   teamSubscription: Subscription;
   raceData: any;
-  
+
   myDriver: any;
   interval: any;
   liveRacesData: any;
   myRewards: any;
   myLdrbrd: any;
   myNick = "";
-  display= window.innerWidth;
+  display = window.innerWidth;
   timerReady = false;
   dataReady = false;
   bonusTicketOpened = false;
@@ -142,7 +142,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   currentExpLevel: number;
   ioioreward: number;
   actualIoiReward = 1000000;
-  
+
   displayReward = 0;
   tutorialInterval: any;
   animationInterval: any;
@@ -256,6 +256,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }, 1500);
   }
 
+  width() {
+    this.display = window.innerWidth;
+  }
   getAllRaces() {
     this.astart = null;
     this.bstart = null;
@@ -735,11 +738,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   getTips() {
-    this.eventSubscription = this.tsapi
-      .getTips()
-      .subscribe((data) => {
-        this.tips = data;
-      });
+    this.eventSubscription = this.tsapi.getTips().subscribe((data) => {
+      this.tips = data;
+    });
   }
 
   recognizeOwnerMe() {
