@@ -385,8 +385,7 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyCarFromGarage(index: number) {
-    this.myIndex = index.toString();
-    this.api.carsBuyList(this.myIndex).subscribe((datax) => {
+    this.api.carsBuyList({ "tier": index, "amount": this.amount }).subscribe((datax) => {
       const data: any = datax;
       setTimeout(() => {
         this.notifyChangedBalance();
