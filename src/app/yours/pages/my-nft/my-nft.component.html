@@ -96,7 +96,16 @@
     </div>
   </div>
   <div class="shop-section-center" #myScroll>
-    <div class="boxes">
+    <p *ngIf="newProducts.length === 0" class="info-message">
+      You don't have any products, you can buy them in
+      <span [routerLink]="['/car/nft-market']" class="red-box-detail"
+        >market</span
+      >
+      <span [routerLink]="['/car/nft-market']" class="blue-box-detail"
+        >market</span
+      >.
+    </p>
+    <div *ngIf="newProducts.length > 0" class="boxes">
       <div
         *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
         class="box my-box-shadow"

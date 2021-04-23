@@ -355,7 +355,7 @@ export class MyNftComponent implements OnInit {
       prize: "100 IOI",
       image: "black-trm",
       type: "racer",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 5,
@@ -391,7 +391,7 @@ export class MyNftComponent implements OnInit {
       prize: "10 000 IOI",
       image: "mr-rich",
       type: "racer",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 37,
@@ -400,7 +400,7 @@ export class MyNftComponent implements OnInit {
       prize: "Coming soon",
       image: "free-track",
       type: "track",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 38,
@@ -483,7 +483,7 @@ export class MyNftComponent implements OnInit {
       prize: "1 000 IOI",
       image: "team-you",
       type: "team",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 47,
@@ -493,7 +493,7 @@ export class MyNftComponent implements OnInit {
       image: "trophy",
       type: "special",
       ability1: "Yearly",
-      amount: ["yes"],
+      amount: [],
     },
     {
       id: 48,
@@ -503,7 +503,7 @@ export class MyNftComponent implements OnInit {
       image: "ring",
       type: "special",
       ability1: "Monthly",
-      amount: ["yes"],
+      amount: [],
     },
   ];
   myCar: any;
