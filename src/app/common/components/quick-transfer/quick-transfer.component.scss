@@ -117,6 +117,7 @@
       background: #222222;
       border-radius: 15px;
       margin: 30px 0 10px;
+      position: relative;
       .common-heading{
         margin-bottom: 5px;
         margin-left: 15px;
@@ -247,6 +248,91 @@
             opacity: .8;
             font-size: 16px;
             font-weight: 300;
+          }
+        }
+      }
+      .info-box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .info-img{
+          padding: 5px;
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          z-index: 3;
+          &:hover{
+            & + .inner-holder{
+              opacity: 1;
+              z-index: 2;
+            }
+          }
+        }
+        .inner-holder{
+          border-radius: 15px;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          position: relative;
+          z-index: -1;
+          padding: 10px 20px;
+          opacity: 0;
+          transition: .2s;
+          &:hover{
+            opacity: 1;
+            z-index: 2;
+          }
+          h3{
+            font-weight: 600;
+            font-size: 20px;
+            padding-top: 20px;
+            margin: 0 0 20px 0;
+          }
+          .top-desc{
+            font-size: 14px;
+            margin: 0 0 30px 0;
+          }
+          .items-holder{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            .info-item{
+              width: 32%;
+              max-width: 122px;
+              .value{
+                font-weight: 300;
+                font-size: 34px;
+                margin: 0 0 15px 0;
+              }
+              .desc{
+                font-size: 14px;
+                margin: 0;
+              }
+            }
+          }
+          .btns-holder{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 35px;
+            a{
+              width: 40%;
+              border-radius: 10px;
+              margin: 0 10px;
+              color: white;
+              border: 2px solid #FFFFFF;
+              background: transparent;
+              height: 46px;
+              font-size: 16px;
+              text-decoration: none;
+              line-height: 44px;
+              &.high{
+                background: white;
+                color: #EF1542;
+              }
+            }
           }
         }
       }
@@ -405,6 +491,40 @@
           }
         }
       }
+      .amount-holder{
+        .info-box{
+          .inner-holder{
+            padding: 5px 15px;
+            h3{
+              font-size: 18px;
+              padding-top: 17px;
+              margin: 0 0 14px 0;
+            }
+            .top-desc{
+              margin: 0 0 22px 0;
+            }
+            .items-holder{
+              .info-item{
+                .value{
+                  font-size: 30px;
+                  margin: 0 0 10px 0;
+                }
+                .desc{
+                  font-size: 13px;
+                }
+              }
+            }
+            .btns-holder{
+              margin-top: 32px;
+              a{
+                line-height: 40px;
+                height: 42px;
+                width: 48%;
+              }
+            }
+          }
+        }
+      }
     }
     .right-holder{
       .common-heading{
@@ -533,6 +653,44 @@
             }
           }
         }
+        .info-box{
+          .info-img{
+            top: 15px;
+            right: 20px;
+          }
+          .inner-holder{
+            padding: 3px 12px;
+            h3{
+              font-size: 16px;
+              padding-top: 14px;
+              margin: 0 0 12px 0;
+            }
+            .top-desc{
+              margin: 0 0 18px 0;
+            }
+            .items-holder{
+              .info-item{
+                max-width: 108px;
+                .value{
+                  font-size: 26px;
+                  margin: 0 0 8px 0;
+                }
+                .desc{
+                  font-size: 12px;
+                }
+              }
+            }
+            .btns-holder{
+              margin-top: 28px;
+              a{
+                width: 45%;
+                line-height: 36px;
+                height: 38px;
+                font-size: 14px;
+              }
+            }
+          }
+        }
       }
     }
     .right-holder{
@@ -609,6 +767,16 @@
       }
       .amount-holder{
         padding: 27px 15px;
+        .info-box{
+          .inner-holder{
+            .btns-holder{
+              a{
+                width: 48%;
+                margin: 0 5px;
+              }
+            }
+          }
+        }
       }
     }
     .right-holder{
@@ -678,8 +846,19 @@
     .left-holder{
       .amount-holder{
         .selected-curr{
+          margin-top: 15px;
           max-width: 100%;
           width: 100%;
+        }
+        .info-box{
+          .info-img{
+            top: 7px;
+          }
+          .inner-holder{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
         }
       }
     }
@@ -734,6 +913,9 @@
       .amount-holder{
         height: unset;
         padding: 16px 13px 32px;
+        .selected-curr{
+          margin-top: 24px;
+        }
         .amount-input{
           .input-note{
             top: unset;
@@ -758,6 +940,37 @@
             }
           }
         }
+        .info-box{
+          .inner-holder{
+            h3{
+              padding-top: 11px;
+              margin: 0 0 5px 0;
+            }
+            .top-desc{
+              margin: 0 0 10px 0;
+            }
+            .items-holder{
+              .info-item{
+                .value{
+                  font-size: 24px;
+                  margin: 0 0 6px 0;
+                  line-height: 1.2;
+                }
+                .desc{
+                  line-height: 1.3;
+                }
+              }
+            }
+            .btns-holder{
+              margin-top: 19px;
+              flex-wrap: wrap;
+              a{
+                width: 80%;
+                margin: 5px auto;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -774,6 +987,36 @@
             height: 70px;
             margin-bottom: 10px;
             width: 100%;
+          }
+        }
+      }
+      .amount-holder{
+        .info-box{
+          .info-img{
+            top: 8px;
+            right: 14px;
+          }
+          .inner-holder{
+            .top-desc{
+              font-size: 12px;
+            }
+            .items-holder{
+              .info-item{
+                max-width: 88px;
+                .value{
+                  font-size: 21px;
+                }
+                .desc{
+                  font-size: 10px;
+                }
+              }
+            }
+            .btns-holder{
+              a{
+                line-height: 29px;
+                height: 33px;
+              }
+            }
           }
         }
       }
