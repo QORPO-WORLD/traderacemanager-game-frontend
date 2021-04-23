@@ -628,6 +628,7 @@ export class NftMarketComponent implements OnInit {
       amount: [],
     },
   ];
+  title = "All products";
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
   selectedPosition;
   racersActive = false;
@@ -717,6 +718,7 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "Racers";
   }
 
   filterCars() {
@@ -732,6 +734,7 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "Cars";
   }
   filterTracks() {
     this.newProducts = this.products;
@@ -746,6 +749,7 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "Tracks";
   }
   filterTeams() {
     this.newProducts = this.products;
@@ -760,6 +764,7 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "Teams";
   }
   filterSpecial() {
     this.newProducts = this.products;
@@ -776,6 +781,7 @@ export class NftMarketComponent implements OnInit {
     this.allActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "Special";
   }
   filterAll() {
     this.newProducts = this.products;
@@ -789,6 +795,7 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.title = "All products";
   }
 
   //NAVBAR
