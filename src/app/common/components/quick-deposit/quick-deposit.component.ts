@@ -13,7 +13,7 @@ declare let gtag: any;
 export class QuickDepositComponent implements OnInit, OnDestroy {
   tokenTypes = [
     { type: 'ioi', name: 'ioi' },
-    { type: 'trx', name: 'trx' }
+    { type: 'matic', name: 'matic' }
   ];
   transferSubscription: Subscription;
   myDriverObserver: Subscription;
@@ -103,7 +103,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     ).subscribe(datax => {
       const data: any = datax;
       this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', 'We found ' + data.outstanding_amount + ' new IOI tokens on your wallet.');
+        this.notify.error('x', 'We found ' + data.outstanding_amount + ' new tokens on your wallet.');
         this.depositing();
         this.claimed = true;
       });
