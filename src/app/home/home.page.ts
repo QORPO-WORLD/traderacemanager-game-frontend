@@ -96,6 +96,13 @@ export class HomePage implements OnInit {
     },
   ];
 
+  twitterName = "twitter.svg";
+  telegramName = "telegram.svg";
+  facebookName = "facebook.svg";
+  instagramName = "instagram.svg";
+  twitchName = "twitch.svg";
+  youtubeName = "youtube.svg";
+  bitcoinName = "btc.png";
   windowWidth;
   menuActive = 1;
   reviewSlide = 0;
@@ -143,8 +150,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-
-    const token = JSON.parse(localStorage.getItem('auth-token'));
+    const token = JSON.parse(localStorage.getItem("auth-token"));
     if (token) {
       this.logged = true;
     }
@@ -246,6 +252,61 @@ export class HomePage implements OnInit {
       element.classList.remove("month-arrow-click");
       void element.offsetWidth;
       element.classList.add("month-arrow-click");
+    }
+  }
+
+  //FOOTER HOVERING
+  changeImage(n) {
+    if (n === "twitter.svg") {
+      this.twitterName = "twitter-blue.png";
+    }
+    if (n === "twitter-blue.png") {
+      this.twitterName = "twitter.svg";
+    }
+    //TELEGRAM
+
+    if (n === "telegram.svg") {
+      this.telegramName = "telegram-blue.png";
+    }
+    if (n === "telegram-blue.png") {
+      this.telegramName = "telegram.svg";
+    }
+    //FACEBOOK
+
+    if (n === "facebook.svg") {
+      this.facebookName = "facebook-blue.png";
+    }
+    if (n === "facebook-blue.png") {
+      this.facebookName = "facebook.svg";
+    }
+    //IG
+
+    if (n === "instagram.svg") {
+      this.instagramName = "instagram-blue.png";
+    }
+    if (n === "instagram-blue.png") {
+      this.instagramName = "instagram.svg";
+    }
+    //TWITCH
+    if (n === "twitch.svg") {
+      this.twitchName = "twitch-blue.png";
+    }
+    if (n === "twitch-blue.png") {
+      this.twitchName = "twitch.svg";
+    }
+    //YOUTUBE
+    if (n === "youtube.svg") {
+      this.youtubeName = "youtube-blue.png";
+    }
+    if (n === "youtube-blue.png") {
+      this.youtubeName = "youtube.svg";
+    }
+    //BTC
+    if (n === "btc.png") {
+      this.bitcoinName = "btc-blue.png";
+    }
+    if (n === "btc-blue.png") {
+      this.bitcoinName = "btc.png";
     }
   }
 }
