@@ -1,4 +1,4 @@
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+
 import { NotifyService } from './../../../common/services/notify.service';
 import { Component, Injector, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { AbstractComponent } from '../../../common/components/abstract.component
 import { AuthService } from '../../../api/services';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+declare let grecaptcha: any;
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true
@@ -26,7 +27,7 @@ export class ForgotPasswordComponent extends AbstractComponent implements OnInit
     capInterval: any;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
         private router: Router, protected api: AuthService, private notify: NotifyService,
-        protected translate: TranslateService, private recaptchaV3Service: ReCaptchaV3Service) {
+        protected translate: TranslateService) {
         super(injector);
     }
 
@@ -82,11 +83,11 @@ export class ForgotPasswordComponent extends AbstractComponent implements OnInit
 
 
     executeImportantAction(): void {
-        this.recaptchaV3Service.execute('sendResetPasswordConfirmationCode')
-            .subscribe((token) => {
 
-                this.token = token
-            });
+            this.token = null;
+      grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', {action: 'sendResetPasswordConfirmationCode'}).then((token) => {
+        this.token = token;
+      });
     }
 
 }

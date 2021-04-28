@@ -2,7 +2,7 @@
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
-      <p class="common-heading">Deposit a currency</p>
+      <p class="common-heading">Withdraw a currency</p>
       <div class="boxes-holder">
 
         <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'ioi'}" (click)="tokenSelected = 'ioi'">
@@ -24,9 +24,9 @@
           <div class="inner">
             <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="Logo of matic token" class="curr-logo">
             <div class="text-holder">
-              <p class="curr-type">MTC <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">MATIC <button class="arrow-btn my-text-color">&gt;</button></p>
               <ng-container>
-                <p class="dollars">&#36; 0</p>
+                <p class="dollars">&#36; {{myBalance?.game_wallet_matic * maticusdt}}</p>
               </ng-container>
             </div>
           </div>
@@ -76,7 +76,7 @@
             <span *ngIf="tokenSelected === 'matic'" class="value-desc">MATIC</span>
             <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
-          <p *ngIf="tokenSelected === 'matic'" class="desc">market value 1 MATIC = 20 USD</p>
+          <p *ngIf="tokenSelected === 'matic'" class="desc">market value 1 MATIC = {{maticusdt}} USD</p>
           <p *ngIf="tokenSelected === 'ioi'" class="desc">market value 1 IOI = 0.4$</p>
         </div>
         <div class="summary-box">
@@ -105,7 +105,7 @@
         <button class="confirm-btn my-cta-btn-back hoverable" (click)="confirming = true" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
            *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
   
-        <button class="confirm-btn my-cta-btn-back hoverable" disabled>Disabled</button>
+        <button class="confirm-btn my-cta-btn-back hoverable" (click)="withdrawalIoiToken()">Withdraw</button>
       </div>
     </div>
   </div>

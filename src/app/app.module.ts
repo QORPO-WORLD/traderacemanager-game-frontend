@@ -24,7 +24,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 //import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
-import { NgxHotjarModule, NgxHotjarRouterModule, NgxHotjarService } from 'ngx-hotjar';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -42,16 +42,12 @@ export function createTranslateLoader(http: HttpClient) {
       },
       isolate: true
     }),
-    NgxHotjarModule.forRoot('2133538'),
-    NgxHotjarRouterModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     ScreenOrientation,
     HttpClient,
-    //GoogleAnalytics,
-    NgxHotjarService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: ErrorHandler,

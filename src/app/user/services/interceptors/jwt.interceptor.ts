@@ -40,8 +40,11 @@ export class JwtInterceptor implements HttpInterceptor {
                 .pipe(
                     catchError(err => {
                         if (err.status === 401) {
-                            console.log(401);
+                            const lastRoute = this.route.url;
                             this.identityService.logout();
+                            setTimeout(() => {
+                                localStorage.setItem('last-route', JSON.stringify(lastRoute));
+                            }, 200);
                             //return this.handle401Error(request, next);
                         } else if (err.status === 406) {
                             this.identityService.logout();

@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, Input, OnDestroy } from '@angular/core';
-;
-declare var UnityLoader: any;
+
+declare let UnityLoader: any;
+declare let createUnityInstance: any;
+declare let window: any;
 @Component({
   selector: 'app-unityrace',
   templateUrl: './unityrace.component.html',
@@ -41,9 +43,6 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
 
-    this.fakeDetail = this.rDetail;
-    this.fakeStats = this.rStats;
-    this.resolveAction();
   }
 
   ngOnDestroy() {
@@ -58,76 +57,52 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    /*
+    console.log(UnityLoader);
     this.gameInstance = UnityLoader.instantiate(
       'unityContainer',
-      '/assets/game2/Build/Builds.json', {
+      '/assets/game/build.json', {
       onProgress: (unityContainer: any, progres: any) => {
+        console.log('jano');
         this.progress = progres;
         if (progres === 1) {
           this.initRace();
         }
       }
     });
-
-
+*/
+    console.log('junity here');
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      dataUrl: "/assets/game/IOI_Avatar.data",
+      frameworkUrl: "/assets/game//IOI_Avatar.framework.js",
+      codeUrl: "/assets/game//IOI_Avatar.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "IOI Corporation s.r.o",
+      productName: "IOI_Avatar",
+      productVersion: "0.1",
+    }).then((unityInstance) => {
+      console.log(unityInstance);
+      window.unityInstance = unityInstance; // <-- this
+      this.gameInstance  = unityInstance; // <-- this
+    });
   }
 
   initRace() {
-
-    this.gameInterval = setInterval((
-    ) => {
-      this.checkData();
-    }, 900);
-    this.runDetail();
-    setTimeout(() => {
-      this.progress = 2;
-    }, 10);
+    //this.runDetail();
   }
 
-  checkData() {
-    console.log(this.rStats.race_progress);
-    console.log(this.fakeStats.race_progress);
-    if (this.rDetail.starts_in_seconds !== this.fakeDetail.starts_in_seconds || this.fakeStats.race_progress !== this.rStats.race_progress) {
-      this.fakeDetail = this.rDetail;
-      if (this.rStats) {
-        this.fakeStats = this.rStats;
-      }
 
-      this.resolveAction();
-    }
+
+  hello() {
+    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|1');
+  }
+  yo() {
+    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|2|4');
+  }
+  good() {
+    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '2|3');
   }
 
-  runStats() {
-    console.log('called statsto unity with race progress');
-    console.log(this.rStats.race_progress);
-    this.gameInstance.SendMessage('JsonHook', 'RunRaceStats', JSON.stringify(this.rStats));
-  }
-
-  runDetail() {
-    this.gameInstance.SendMessage('JsonHook', 'RunRaceDetails', JSON.stringify(this.rDetail));
-  }
-
-  resolveAction() {
-
-    if (this.rStats.race_progress > 0) {
-      this.runStats();
-    } else {
-      this.runDetail()
-    }
-
-    return;
-    if (this.rDetail.starts_in_seconds > 5) {
-      this.runDetail();
-      if (this.timeoutBool === false) {
-        this.timeoutBool = true;
-        setTimeout(() => {
-          this.runStats();
-        }, this.rDetail.starts_in_seconds * 1000);
-      }
-    } else {
-      this.runStats()
-    }
-  }
 
 
 }

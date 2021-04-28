@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NotifiqService } from 'src/app/common/services/notifiq.service';
 import { DriversService } from 'src/app/api/services';
 import { environment } from './../../../../environments/environment.prod';
@@ -11,9 +12,7 @@ import { SocialService } from '../../services/social.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformService } from 'src/app/common/services/platform.service';
 import { Platform } from '@ionic/angular';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
-//import { ReCaptchaV3Service } from 'ngx-captcha';
-//import { RecaptchaService } from '../../services/recaptcha.service';
+declare let grecaptcha: any;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   withCredentials: true
@@ -59,7 +58,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   idioticLogin = 2;
   constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
     private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
-    private recaptchaV3Service: ReCaptchaV3Service,
+    // eeeej private recaptchaV3Service: ReCaptchaV3Service,
+    private route: Router,
     private platform: Platform, private dapi: DriversService, private notify: NotifiqService) {
     super(injector);
 
@@ -78,13 +78,14 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       password: new FormControl('', Validators.required),
       recaptchaReactive: new FormControl(this.myCap, Validators.required)
     });
+   
     this.mmewinterval = setInterval(() => {
       const mmew = JSON.parse(localStorage.getItem('mmealq'));
       if (mmew && this.submitted === false) {
         this.submitted = true;
         this.mmewa = mmew;
 
-        if (location.href === 'https://dev-play.traderacemanager.com/user/sign-in') {
+        if (this.route.url === '/user/sign-in') {
           this.submit();
         }
 
@@ -118,7 +119,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       }
     }
     this.loading = true;
-    this.executeImportantAction();
+    //this.executeImportantAction();
+    this.executeManualCaptcha();
 
     this.dangerInterval = setInterval(() => {
       if (this.trying === false && this.token) {
@@ -210,12 +212,16 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
 
-  executeImportantAction(): void {
+
+
+  executeManualCaptcha(): void {
+    console.log('executing');
     this.token = null;
-    this.recaptchaV3Service.execute('signIn')
-      .subscribe((token) => {
+      grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', {action: 'signIn'}).then((token) => {
         this.token = token;
+        console.log(this.token);
       });
+
   }
 
 

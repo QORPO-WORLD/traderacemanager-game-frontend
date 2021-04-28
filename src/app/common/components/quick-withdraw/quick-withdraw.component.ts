@@ -44,15 +44,12 @@ export class QuickWithdrawComponent implements OnInit {
   confirmCode: string;
   confirmed = false;
   confirming = false;
+  maticusdt = 1;
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, private uapi: AuthService, protected translate: TranslateService,
     private identityService: ninja, private _http: HttpClient, private notifyapi: ErrorService) { }
 
   ngOnInit() {
-    const tick = JSON.parse(localStorage.getItem('trxusdt'));
-    if (tick) {
-      this.trxUsdt = tick;
-    }
     this.getMydriver();
     this.getMyBalance();
   }
@@ -60,7 +57,6 @@ export class QuickWithdrawComponent implements OnInit {
 
   getMydriver() {
     this.myDriver = this.identityService.getStorageIdentity();
-    // this.cryptoMtfrckr = this.myDriver.my_crypto_address;
   }
 
   getMyBalance() {
@@ -68,6 +64,9 @@ export class QuickWithdrawComponent implements OnInit {
     this.myBalance = data;
     this.myIoiBalance = this.myBalance.game_wallet_ioi;
     this.myTrxBalance = this.myBalance.game_wallet_trx;
+    if (this.myBalance.matic_usdt) {
+      this.maticusdt = this.myBalance.matic_usdt;
+    }
   }
 
   resolveWithdrawal() {

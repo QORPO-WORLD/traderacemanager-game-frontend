@@ -89,7 +89,14 @@ export class AuthService extends AbstractService {
         })
           .subscribe(ldata => {
             this.setLeaderboardMe(ldata);
-            this.router.navigate(['/race/start-race']);
+            const hasLastRoute =  JSON.parse(localStorage.getItem('last-route'));
+   
+            if (hasLastRoute) {
+              this.router.navigate([hasLastRoute]);
+              localStorage.removeItem('last-route');
+            } else {
+              this.router.navigate(['/race/start-race']);
+            }
             gtag('event', 'prihlaseni', {
               'event_category': 'prihlaseni',
               'event_label': 'prihlaseni',

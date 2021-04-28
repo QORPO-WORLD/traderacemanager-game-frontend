@@ -47,15 +47,13 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     cssClass: 'customSelect profileSelect'
   };
   @Input() nftId: number;
+  minAmount = 100;
+  maticusdt = 1;
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, protected translate: TranslateService,
     private identityService: AuthService, private balanceService: BalanceService) { }
 
   ngOnInit() { 
-    const tick = JSON.parse(localStorage.getItem('trxusdt'));
-    if (tick) {
-      this.trxUsdt = tick;
-    }
     this.getMyBalance();
   }
 
@@ -69,6 +67,9 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     this.myBalance = data;
     this.myIoiBalance = this.myBalance.game_wallet_ioi;
     this.myTrxBalance = this.myBalance.game_wallet_trx;
+    if (this.myBalance.matic_usdt) {
+      this.maticusdt = this.myBalance.matic_usdt;
+    }
   }
 
 
@@ -114,6 +115,17 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     this.cryptoMtfrckr = data.my_crypto_address;
 
 
+  }
+
+  selectMatic() {
+    this.minAmount = 0.001;
+    this.tokenSelected = 'matic';
+  }
+
+ 
+  selectIoi() {
+    this.minAmount = 100;
+    this.tokenSelected = 'ioi';
   }
 
  

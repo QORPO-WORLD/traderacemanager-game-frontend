@@ -15,11 +15,11 @@ import { CountryCode, CountryCodes } from '../../components/countries/country-co
 import { PlatformService } from 'src/app/common/services/platform.service';
 import { Platform } from '@ionic/angular';
 
-import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { Subscription } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
+declare let grecaptcha: any;
 declare let gtag: any;
-declare let fbq:Function;
+declare let fbq: Function;
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true
@@ -74,7 +74,6 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         protected ioiapi: ninja, private pltfrm: PlatformService,
         private platform: Platform,
         private _http: HttpClient,
-        private recaptchaV3Service: ReCaptchaV3Service,
         private authsrvc: SocialService) {
         super(injector);
         this.referralId = this.route.snapshot.paramMap.get('id');
@@ -116,7 +115,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.mmewa = mmew;
             }
         }, 2000);
-       // const cook = JSON.parse(localStorage.getItem('afilate'));
+        // const cook = JSON.parse(localStorage.getItem('afilate'));
         //if (cook) {
         //    this.referralId = cook;
         //}
@@ -147,18 +146,18 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
 
     onSubmit() {
-        
+
         if (this.f.nickname.status === 'INVALID') {
             this.notify.error('validation error', 'Invalid nickname format. Only letters and numbers, min 5 - max 20 digits.');
-            return; 
+            return;
         }
         if (this.f.email.value === '' || this.f.email.value == undefined || this.validateEmail(this.f.email.value) === false) {
             this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
-            return; 
+            return;
         }
         if (this.f.password.status === 'INVALID' && !this.mmewa) {
             this.notify.error('validation error', 'Invalid password format. Min 8 digits, 1 number, 1 small, 1 capital letter are required. (example: ioiGame1)');
-            return; 
+            return;
         }
         this.submitted = true;
         this.passone = '';
@@ -168,7 +167,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
         this.dangerInterval = setInterval(() => {
             if (this.trying === false && this.token) {
-              this.trySignup();
+                this.trySignup();
             }
         }, 300);
         setTimeout(() => { this.loading = false; }, 2000);
@@ -191,7 +190,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 this.loading = false;
                 this.token = null;
                 clearInterval(this.dangerInterval);
-            
+
                 localStorage.setItem('first-time', JSON.stringify('yes'));
                 fbq('track', 'CompleteRegistration');
 
@@ -201,17 +200,16 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                     'event_category': 'registrace',
                     'event_label': 'nedokoncena',
                     'value': 'registrace dokoncena'
-                  });
+                });
             });
         }
     }
 
-    validateEmail(email) 
-    {
+    validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
-    
+
 
 
     countryChange(event) {
@@ -229,11 +227,10 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
 
     executeImportantAction(): void {
-        this.recaptchaV3Service.execute('signUp')
-            .subscribe((token) => {
-
-                this.token = token
-            });
+        this.token = null;
+        grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', { action: 'signUp' }).then((token) => {
+            this.token = token;
+        });
     }
 
     signupWithMetamask() {
@@ -268,13 +265,13 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         clearInterval(this.dangerInterval);
     }
 
-    
+
     doLogin(data) {
         this.trying = false;
         this.loading = false;
         this.token = null;
         clearInterval(this.dangerInterval);
-       
+
         localStorage.setItem('first-time', JSON.stringify('yes'));
         fbq('track', 'CompleteRegistration');
         this.ioiapi.login(data.authkey);
@@ -282,7 +279,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             'event_category': 'registrace',
             'event_label': 'nedokoncena',
             'value': 'registrace dokoncena'
-          });
+        });
     }
 
     isStrong(control: FormControl): any {
@@ -304,13 +301,13 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                 next: data => this.affSetDone(),
                 error: error => console.log(error)
             });
-        } 
+        }
     }
 
     affSetDone() {
-       // localStorage.setItem('affilate_set', JSON.stringify(true));
-      //  localStorage.setItem('affilate', JSON.stringify(this.referralId));
+        // localStorage.setItem('affilate_set', JSON.stringify(true));
+        //  localStorage.setItem('affilate', JSON.stringify(this.referralId));
     }
 
-    
+
 }

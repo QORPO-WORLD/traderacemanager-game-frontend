@@ -43,7 +43,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { WloginComponent } from './components/wlogin/wlogin';
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+//import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 const routes: Routes = [
 
     { path: 'sign-up', component: SignupUserComponent, data: { title: 'Team Sign Up' } },
@@ -77,7 +77,7 @@ const routes: Routes = [
         //RecaptchaFormsModule,
         IonicModule,
         IonicSelectableModule,
-        RecaptchaV3Module
+        //ecaptchaV3Module
     ],
     declarations: [
         LoginComponent,
@@ -107,7 +107,7 @@ const routes: Routes = [
         SocialService,
         GoogleService,
         //RecaptchaService,
-        { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcKQ2AaAAAAACcV8QYvmnl38fUrziGMJzLFq4o1' },
+        //{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE' },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
        /* {
             provide: RECAPTCHA_SETTINGS,

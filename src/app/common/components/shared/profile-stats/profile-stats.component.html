@@ -103,10 +103,10 @@
 
         <div class="balance-item">
           <p class="value">
-            0,00
-            <span class="curr">MTC</span>
+            {{ myDriverBalances?.game_wallet_matic | number: "1.2-2":"fr" }}
+            <span class="curr">MATIC</span>
           </p>
-          <p class="dollars">&#36; 0,00</p>
+          <p class="dollars">&#36; {{ (myDriverBalances?.game_wallet_matic * maticusdt) | number: "1.2-2":"fr" }}</p>
           <div class="line"></div>
         </div>
 
