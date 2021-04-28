@@ -59,6 +59,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   activationSent = false;
   Affilate: any;
   affMe: AffiliateDetails;
+  maticusdt = 1;
   constructor(private identityService: AuthService, protected api: DriversService,
     protected ldrbrdSrvc: LeaderboardService, protected teamsrvc: TeamsService,
     private carService: CarsService, private balanceService: BalanceService, private experience: ExperienceService,
@@ -146,7 +147,9 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
 
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
-    //this.myDriverBalances = this.identityService.driverBalance;
+    if (this.myDriverBalances.matic_usdt) {
+      this.maticusdt = this.myDriverBalances.matic_usdt;
+    }
     this.profileReady = true;
   }
 

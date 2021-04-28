@@ -98,7 +98,8 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   depositIoiToken() {
     this.transferSubscription = this.blcksrvc.blockchainDepositCreate(
       {
-        currency: this.tokenSelected
+        currency: this.tokenSelected,
+        location: 'races'
       }
     ).subscribe(datax => {
       const data: any = datax;

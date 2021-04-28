@@ -1,3 +1,4 @@
+import { BinaryRaceComponent } from './components/binary-race/binary-race.component';
 import { UnityraceComponent } from './unityrace/unityrace.component';
 import { MultiViewComponent } from './multi-view/multi-view.component';
 import { OrderModule } from 'ngx-order-pipe';
@@ -19,7 +20,7 @@ import { StartRaceComponent } from './pages/start-race/start-race.component';
 import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
 import { BinaryInitialSelectionComponent } from './components/binary-initial-selection/binary-initial-selection.component';
-
+import { ChartModule } from 'angular-highcharts';
 
 const routes: Routes = [
   {
@@ -51,7 +52,8 @@ const routes: Routes = [
       },
       { path: 'watch-race-3min/:id', component: WatchRaceShortComponent },
       { path: 'watch-multiple-races', component: MultiViewComponent },
-      { path: 'binary-fuel', component: BinaryInitialSelectionComponent }
+      { path: 'binary-fuel', component: BinaryInitialSelectionComponent },
+      { path: 'binary-race/:id', component: BinaryRaceComponent }
     ]
   }
 ];
@@ -60,7 +62,7 @@ const routes: Routes = [
   declarations: [AllRacesComponent, WatchRaceShortComponent,
     StartRaceComponent, MiniLdrbrdComponent,
     MultiViewComponent, RaceTypeComponent, UnityraceComponent,
-    BinaryInitialSelectionComponent],
+    BinaryInitialSelectionComponent,MultiViewComponent, RaceTypeComponent, UnityraceComponent, BinaryRaceComponent],
   imports: [
     CommonModule,
     ninja,
@@ -70,7 +72,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    OrderModule
+    OrderModule,
+    ChartModule
   ]
 })
 export class RaceModule { }

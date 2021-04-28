@@ -1,4 +1,4 @@
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+
 import { NotifyService } from './../../../common/services/notify.service';
 import { Component, Injector, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/api/services';
 import { TranslateService } from '@ngx-translate/core';
-
+declare let grecaptcha: any;
 @Component({
     templateUrl: './reset-password.html',
     styleUrls: ['./forgot-password.scss']
@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
         private router: Router, private actv: ActivatedRoute,
         protected api: AuthService, private notify: NotifyService,
-        protected translate: TranslateService, private recaptchaV3Service: ReCaptchaV3Service) {
+        protected translate: TranslateService) {
         this.hashId = this.actv.snapshot.paramMap.get('id');
         this.uId = this.actv.snapshot.paramMap.get('uid');
     }
@@ -89,11 +89,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
 
     executeImportantAction(): void {
-        this.recaptchaV3Service.execute('resetPassword')
-            .subscribe((token) => {
 
-                this.token = token
-            });
+            this.token = null;
+      grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', {action: 'resetPassword'}).then((token) => {
+        this.token = token;
+      });
     }
 
 }

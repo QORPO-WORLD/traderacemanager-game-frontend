@@ -10,7 +10,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { TranslateService } from "@ngx-translate/core";
 //import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 //import { Network } from '@ionic-native/network/ngx';
-import { NgxHotjarService } from "ngx-hotjar";
+
 import { Router, NavigationEnd } from "@angular/router";
 
 declare let gtag: Function;
@@ -32,7 +32,6 @@ export class AppComponent {
     private translate: TranslateService,
     //private ga: GoogleAnalytics,
     private uapi: AuthService,
-    public hjService: NgxHotjarService,
     private cdr: ChangeDetectorRef,
     private balanceService: BalanceService,
     public router: Router
