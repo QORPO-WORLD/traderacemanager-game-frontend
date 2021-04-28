@@ -61,7 +61,6 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
-      console.log(this.teams);
     });
   }
 

@@ -134,6 +134,8 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
 
   getMyOldDriver() {
     this.myDriverOld = this.identityService.getDriverMe();
+    console.log(this.myDriverOld);
+    console.log('dddd');
     if (this.myDriverOld === undefined || this.myDriverOld === null) {
       //this.identityService.logout()();
       return;

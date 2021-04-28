@@ -160,7 +160,14 @@
           otherwise you will be redirected to the next race.</p>
       </div>
     </div>
-    <h1 class="tour-message speci" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">Next race starts in <app-timer [value]="redirectNum"></app-timer> <br> You will be redirected automatically</h1>
+    <div class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">
+      <div class="loading-box my-cta-btn-back">
+        <img src="/assets/base/images/zavod/loading-img.png" alt="">
+      </div>
+      <div class="text">
+        <p>Next race starts in <app-timer [value]="redirectNum"></app-timer> <br> You will be redirected automatically</p>
+      </div>
+    </div>
     <h1 class="tour-message" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index === 11 && showTourMsg === true">{{'race.knock_out1' | translate}} <br> {{'race.knock_out2' | translate}}</h1>
 
 
