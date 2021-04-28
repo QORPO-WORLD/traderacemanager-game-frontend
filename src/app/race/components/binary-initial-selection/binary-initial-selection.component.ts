@@ -16,6 +16,7 @@ export class BinaryInitialSelectionComponent implements OnInit {
   myAvatar: any;
   opponentPlayer: any;
   automatchLoading = false;
+  menuOpen = false;
 
   racers: Array<any> = [
     {
@@ -64,6 +65,9 @@ export class BinaryInitialSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.getMyDriver();
+    if (window.innerWidth < 641) {
+      this.sliceBalancer = 2;
+    }
   }
 
   getMyDriver(){
@@ -94,11 +98,11 @@ export class BinaryInitialSelectionComponent implements OnInit {
     this.automatchLoading = true;
     setTimeout(() => {
       this.opponentPlayer = {
-        avatar: this.racers[Math.floor(Math.random() * (8)) + 1],
+        avatar: this.racers[Math.floor(Math.random() * (7)) + 1],
         name: 'pesHejhou',
       }
       this.automatchLoading = false;
-     }, 4000);
+     }, 2500);
   }
 
 }

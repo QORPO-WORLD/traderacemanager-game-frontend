@@ -16,6 +16,9 @@
     align-items: center;
     padding: 0 0 0 46px;
     position: relative;
+    .mobile-handler{
+        height: 100%;
+    }
     .center-items{
         height: 100%;
         display: flex;
@@ -40,6 +43,9 @@
             img{
                 max-height: 20px;
             }
+        }
+        .quit-btn{
+            display: none;
         }
     }
     .right-items{
@@ -89,6 +95,9 @@
               border-left: 1px solid black;
             }
         }
+    }
+    .my-mobile-button{
+        display: none;
     }
 }
 
@@ -240,10 +249,10 @@
                 width: 190px;
                 margin: 0 5px;
                 border-radius: 10px;
+                font-size: 16px;
                 transition: .15s;
                 &.back{
                     font-weight: 500;
-                    font-size: 16px;
                     border: 1px solid #FE183F;
                     background: #222222;
                     &:hover{
@@ -354,6 +363,8 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
+                        position: relative;
+                        z-index: 5;
                         .item-name{
                             font-family: 'True-Lies';
                             font-size: 24px;
@@ -552,6 +563,8 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
+                        position: relative;
+                        z-index: 5;
                         .item-name{
                             font-family: 'True-Lies';
                             font-size: 24px;
@@ -613,4 +626,720 @@
     100% {
       transform: rotate(360deg);
     }
-  }
+}
+
+
+@media screen and (max-width: 1700px) {
+    .race-menu{
+        height: 75px;
+        padding: 0 0 0 40px;
+        .menu-logo{
+            width: 65px;
+        }
+        .center-items{
+            .small-box{
+                padding: 6px 17px;
+                height: 44px;
+                img{
+                    max-height: 18px;
+                }
+                p{
+                    margin: 0 0 0 11px;
+                    font-size: 15px;
+                }
+            }
+        }
+        .right-items{
+            .name-holder{
+                margin-right: 15px;
+                .avatar{
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+            .switch-btn{
+                width: 78px;
+                img{
+                    height: 20px;
+                }
+            }
+        }
+    }
+    .bottom-box{
+        height: 90px;
+    }
+    .modal-component{
+        height: 570px;
+        top: 48%;
+        width: 63%;
+        .cont-holder{
+            &.step1{
+                .heading-holder{
+                    margin: 40px auto 20px;
+                    max-width: 330px;
+                    p{
+                        font-size: 22px;
+                        span{
+                            font-size: 33px;
+                        }
+                    }
+                }
+                .race-desc{
+                    font-size: 15px;
+                    margin: 0 auto 20px;
+                    max-width: 591px;
+                }
+                .items-holder{
+                    height: 209px;
+                    margin: 0 auto 26px;
+                    max-width: 660px;
+                    .box-item{
+                        .inner{
+                            .img-holder{
+                                height: 109px;
+                                img{
+                                    max-height: 54px;
+                                    &.big-img{
+                                        max-height: 41px;
+                                    }
+                                }
+                            }
+                            .desc{
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+                .play-btn{
+                    font-size: 15px;
+                    img{
+                        width: 16px;
+                    }
+                }
+            }
+            &.step2,
+            &.step3{
+                .heading-holder{
+                    margin: 40px 0 35px;
+                    h3{
+                        font-size: 22px;
+                    }
+                    p{
+                        font-size: 15px;
+                    }
+                }
+                .btns-holder{
+                    height: 42px;
+                    margin: 32px 0 0 0;
+                    button{
+                        font-size: 15px;
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    height: 340px;
+                    .racer-item{
+                        max-width: 210px;
+                        .img-holder{
+                            .locked-avatar{
+                                max-width: 150px;
+                                img{
+                                    width: 22px;
+                                }
+                                p{
+                                    font-size: 14px;
+                                    margin: 9px 0 0;
+                                }
+                            }
+                        }
+                        .racer-info{
+                            padding: 0 12px 12px;
+                            .choose-btn{
+                                height: 42px;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+            &.step3{
+                .racers-holder{
+                    height: 340px;
+                    .racer-item{
+                        max-width: 210px;
+                        .racer-info{
+                            .name-sheet{
+                                height: 42px;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+                .big-avatar{
+                    &.rival{
+                        right: 0;
+                        transform: translate(77%, -50%);
+                    }
+                    &.mine{
+                        left: 0;
+                        transform: translate(-77%, -50%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .race-menu{
+        height: 65px;
+        padding: 0 0 0 30px;
+        .menu-logo{
+            width: 60px;
+        }
+        .center-items{
+            .small-box{
+                padding: 4px 15px;
+                height: 40px;
+                img{
+                    max-height: 17px;
+                }
+                p{
+                    margin: 0 0 0 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .right-items{
+            .name-holder{
+                margin-right: 13px;
+                .avatar{
+                    width: 53px;
+                    height: 53px;
+                    img{
+                        width: 17px;
+                    }
+                }
+            }
+            .switch-btn{
+                width: 70px;
+                img{
+                    height: 18px;
+                }
+            }
+        }
+    }
+    .bottom-box{
+        height: 60px;
+    }
+    .modal-component{
+        height: 490px;
+        top: 49%;
+        .cont-holder{
+            &.step1{
+                .heading-holder{
+                    margin: 30px auto 17px;
+                    max-width: 297px;
+                    p{
+                        font-size: 20px;
+                        span{
+                            font-size: 30px;
+                        }
+                    }
+                }
+                .race-desc{
+                    font-size: 14px;
+                    margin: 0 auto 17px;
+                    max-width: 555px;
+                }
+                .items-holder{
+                    height: 180px;
+                    margin: 0 auto 21px;
+                    max-width: 620px;
+                    .box-item{
+                        .inner{
+                            .img-holder{
+                                height: 90px;
+                                img{
+                                    max-height: 48px;
+                                    &.big-img{
+                                        max-height: 37px;
+                                    }
+                                }
+                            }
+                            .desc{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                .play-btn{
+                    font-size: 14px;
+                    padding: 12px 35px;
+                    margin: 0 auto 20px;
+                    img{
+                        width: 14px;
+                    }
+                }
+                .disclaim{
+                    font-size: 13px;
+                }
+            }
+            &.step2,
+            &.step3{
+                .heading-holder{
+                    margin: 30px 0 25px;
+                    h3{
+                        font-size: 20px;
+                    }
+                    p{
+                        font-size: 14px;
+                    }
+                }
+                .btns-holder{
+                    height: 40px;
+                    margin: 28px 0 0 0;
+                    button{
+                        font-size: 14px;
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    height: 290px;
+                    .racer-item{
+                        max-width: 190px;
+                        .img-holder{
+                            .locked-avatar{
+                                max-width: 140px;
+                                img{
+                                    width: 18px;
+                                }
+                                p{
+                                    font-size: 13px;
+                                    margin: 7px 0 0;
+                                }
+                            }
+                        }
+                        .racer-info{
+                            padding: 0 10px 10px;
+                            .name{
+                                .bet-box{
+                                    width: 40px;
+                                    height: 40px;
+                                    p{
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                            .choose-btn{
+                                height: 35px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .arrow{
+                        max-width: 35px;
+                        height: 65px;
+                        p{
+                            font-size: 23px;
+                        }
+                    }
+                }
+            }
+            &.step3{
+                .racers-holder{
+                    height: 290px;
+                    .racer-item{
+                        max-width: 190px;
+                        .racer-info{
+                            .name-sheet{
+                                height: 35px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px){
+    .modal-component{
+        .cont-holder{
+            &.step3{
+                .big-avatar{
+                    max-height: 105%;
+                    &.rival{
+                        transform: translate(73%, -50%);
+                    }
+                    &.mine{
+                        transform: translate(-73%, -50%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .race-menu{
+        .center-items{
+            left: 46%;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .race-menu{
+        z-index: 100;
+        &::before{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #222222;
+            z-index: 10;
+        }
+        .menu-logo{
+            position: relative;
+            z-index: 11;
+        }
+        .my-mobile-button {
+            width: 33px;
+            height: 24px;
+            position: relative;
+            margin: 0 10px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: 0.5s ease-in-out;
+            -moz-transition: 0.5s ease-in-out;
+            -o-transition: 0.5s ease-in-out;
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
+            display: block;
+            z-index: 11;
+            span {
+              display: block;
+              position: absolute;
+              height: 4px;
+              width: 100%;
+              border-radius: 9px;
+              opacity: 1;
+              left: 0;
+              -webkit-transform: rotate(0deg);
+              -moz-transform: rotate(0deg);
+              -o-transform: rotate(0deg);
+              transform: rotate(0deg);
+              -webkit-transition: 0.25s ease-in-out;
+              -moz-transition: 0.25s ease-in-out;
+              -o-transition: 0.25s ease-in-out;
+              transition: 0.25s ease-in-out;
+            }
+            span:nth-child(1) {
+              top: 0px;
+            }
+            span:nth-child(2),
+            span:nth-child(3) {
+              top: 10px;
+            }
+            span:nth-child(4) {
+              top: 20px;
+            }
+            &.open {
+              span:nth-child(1) {
+                top: 10px;
+                width: 0%;
+                left: 50%;
+              }
+              span:nth-child(2) {
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+              span:nth-child(3) {
+                -webkit-transform: rotate(-45deg);
+                -moz-transform: rotate(-45deg);
+                -o-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+              }
+              span:nth-child(4) {
+                top: 10px;
+                width: 0%;
+                left: 50%;
+              }
+            }
+        }
+        .mobile-handler{
+            position: absolute;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            background: #222222;
+            z-index: 9;
+            border-width: 1px 0 1px 0;
+            border-style: solid;
+            border-color: #333333;
+            height: unset;
+            padding-bottom: 48px;
+            transition: .25s cubic-bezier(.5,.09,.22,.34);
+            transform: translateY(-100%);
+            &.mobile-open{
+                transform: translateY(0);
+            }
+            .right-items{
+                height: unset;
+                margin: 48px 0;
+                .name-holder{
+                    display: none;
+                }
+                .switch-btn{
+                    border: 1px solid #FE183F;
+                    border-radius: 10px;
+                    width: 60px;
+                    height: 60px;
+                    margin: 0 7px;
+                }
+            }
+            .center-items{
+                height: unset;
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+        }
+    }
+    .modal-component{
+        min-width: 670px;
+        .cont-holder{
+            &.step3{
+                .big-avatar{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px){
+    .modal-component{
+        height: 435px;
+        min-width: 630px;
+        .cont-holder{
+            &.step1{
+                .heading-holder{
+                    margin: 25px auto 15px;
+                    max-width: 290px;
+                    p{
+                        font-size: 18px;
+                        span{
+                            font-size: 25px;
+                        }
+                    }
+                }
+                .race-desc{
+                    font-size: 13px;
+                    margin: 0 auto 15px;
+                    max-width: 555px;
+                }
+                .items-holder{
+                    height: 150px;
+                    margin: 0 auto 18px;
+                    max-width: 590px;
+                    .box-item{
+                        .inner{
+                            .img-holder{
+                                height: 70px;
+                                img{
+                                    max-height: 39px;
+                                    &.big-img{
+                                        max-height: 29px;
+                                    }
+                                }
+                            }
+                            .desc{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+                .play-btn{
+                    font-size: 14px;
+                    padding: 12px 35px;
+                    margin: 0 auto 20px;
+                    img{
+                        width: 14px;
+                    }
+                }
+                .disclaim{
+                    font-size: 13px;
+                }
+            }
+            &.step2,
+            &.step3{
+                .heading-holder{
+                    margin: 26px 0 21px;
+                    h3{
+                        font-size: 17px;
+                    }
+                    p{
+                        font-size: 13px;
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    height: 258px;
+                    .racer-item{
+                        max-width: 165px;
+                        .img-holder{
+                            .locked-avatar{
+                                max-width: 130px;
+                                img{
+                                    width: 15px;
+                                }
+                                p{
+                                    font-size: 12px;
+                                    line-height: 1.3;
+                                }
+                            }
+                        }
+                        .racer-info{
+                            padding: 0 10px 10px;
+                            .name{
+                                .item-name{
+                                    font-size: 20px;
+                                }
+                            }
+                            .choose-btn{
+                                height: 31px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                    .arrow{
+                        width: 6%;
+                    }
+                }
+            }
+            &.step3{
+                .racers-holder{
+                    height: 258px;
+                    .racer-item{
+                        .img-holder{
+                            .racer-img{
+                                width: 115%;
+                            }
+                        }
+                        .racer-info{
+                            .name{
+                                .item-name{
+                                    font-size: 20px;
+                                }
+                            }
+                            .name-sheet{
+                                height: 31px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px){
+    .race-menu{
+        .mobile-handler{
+            .right-items{
+                justify-content: flex-end;
+                margin: 48px 11px 48px 0;
+                .switch-btn{
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+            .center-items{
+                display: block;
+                .small-box{
+                    width: calc(100% - 36px);
+                    margin: 0 auto 8px;
+                    height: 45px;
+                }
+                .quit-btn{
+                    width: calc(100% - 36px);
+                    height: 45px;
+                    border: 1px solid #FE183F;
+                    border-radius: 10px;
+                    display: block;
+                    margin: 60px auto 0;
+                    background: transparent;
+                }
+            }
+        }
+    }
+    .bottom-box{
+        display: none;
+    }
+    .modal-component{
+        height: unset;
+        min-width: unset;
+        width: 95%;
+        top: 75px;
+        transform: translateX(-50%);
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        .cont-holder{
+            &.step1{
+                .items-holder{
+                    flex-wrap: wrap;
+                    height: unset;
+                    justify-content: center;
+                    .box-item{
+                        height: 130px;
+                        width: 60%;
+                        margin-bottom: 7px;
+                    }
+                }
+            }
+            &.step2,
+            &.step3{
+                .btns-holder{
+                    button{
+                        width: 40%;
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    .racer-item{
+                        max-width: 40%;
+                        width: 40%;
+                        .img-holder{
+                            .racer-img{
+                                width: 114%;
+                            }
+                        }
+                    }
+                }
+            }
+            &.step3{
+                .racers-holder{
+                    .racer-item{
+                        max-width: 40%;
+                        width: 40%;
+                    }
+                }
+            }
+        }
+    }
+}

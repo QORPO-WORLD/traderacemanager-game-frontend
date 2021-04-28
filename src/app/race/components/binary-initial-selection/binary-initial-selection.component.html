@@ -4,32 +4,48 @@
 <div class="main-holder">
 
   <div class="race-menu">
-    <img src="/assets/base/images/binary-race/binary-logo.png" alt="">
+    <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
 
-    <div class="center-items">
-      <div class="small-box">
-        <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
-        <p>Potential win: 2014 IOI</p>
+    <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
+  
+      <div class="right-items">
+        <div class="name-holder">
+          <div class="avatar">
+            <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
+          </div>
+          <p>{{ myDriverStats.nickname }}</p>
+        </div>
+        <div class="switch-btn">
+          <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
+        </div>
+        <div class="switch-btn">
+          <img src="/assets/base/images/zavod/info-icon.svg" alt="">
+        </div>
       </div>
-      <div class="small-box">
-        <img src="/assets/base/images/binary-race/balance-icon.svg" alt="">
-        <p>Balance: 0.00 IOI</p>
+
+      <div class="center-items">
+        <div class="small-box">
+          <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
+          <p>Potential win: 2014 IOI</p>
+        </div>
+        <div class="small-box">
+          <img src="/assets/base/images/binary-race/balance-icon.svg" alt="">
+          <p>Balance: 0.00 IOI</p>
+        </div>
+        <button class="quit-btn">Quit game</button>
       </div>
+
     </div>
 
-    <div class="right-items">
-      <div class="name-holder">
-        <div class="avatar">
-          <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
-        </div>
-        <p>Username</p>
-      </div>
-      <div class="switch-btn">
-        <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
-      </div>
-      <div class="switch-btn">
-        <img src="/assets/base/images/zavod/info-icon.svg" alt="">
-      </div>
+    <div
+      class="my-mobile-button"
+      (click)="menuOpen = !menuOpen"
+      [ngClass]="{ open: menuOpen === true }"
+    >
+      <span class="my-cta-btn-back"></span>
+      <span class="my-cta-btn-back"></span>
+      <span class="my-cta-btn-back"></span>
+      <span class="my-cta-btn-back"></span>
     </div>
 
   </div>
@@ -66,7 +82,7 @@
         <div class="box-item">
           <div class="inner">
             <div class="img-holder">
-              <img src="/assets/base/images/binary-race/balance-icon.svg" alt="">
+              <img class="big-img" src="/assets/base/images/binary-race/balance-icon.svg" alt="">
             </div>
             <p class="desc">Make more correct guesses and win</p>
           </div>
