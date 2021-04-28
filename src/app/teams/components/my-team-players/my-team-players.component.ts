@@ -1,13 +1,13 @@
-import { AuthService } from 'src/app/user/services/auth.service';
-import { PlayerLeaderboard } from './../../../api/models/player-leaderboard';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { DriversService, LeaderboardService } from 'src/app/api/services';
+import { AuthService } from "src/app/user/services/auth.service";
+import { PlayerLeaderboard } from "./../../../api/models/player-leaderboard";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs";
+import { DriversService, LeaderboardService } from "src/app/api/services";
 
 @Component({
-  selector: 'app-my-team-players',
-  templateUrl: './my-team-players.component.html',
-  styleUrls: ['./my-team-players.component.scss'],
+  selector: "app-my-team-players",
+  templateUrl: "./my-team-players.component.html",
+  styleUrls: ["./my-team-players.component.scss"],
 })
 export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   @Input() players: PlayerLeaderboard[];
@@ -16,6 +16,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   @Input() mrp: any;
   myLdrbrd: any;
   mydrvr: any;
+  display = window.innerWidth;
   myStatData: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
@@ -25,20 +26,25 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   slice3: number;
   slice4: number;
   slice5: number;
+  position: number = 1;
   sliceNums = {
     0: 3,
     1: 3,
     2: 3,
     3: 3,
-    4: 3
-  }
-  constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
-  private identityService: AuthService) { }
+    4: 3,
+  };
+  constructor(
+    protected ldrbrdSrvc: LeaderboardService,
+    private drvrsrvc: DriversService,
+    private identityService: AuthService
+  ) {}
 
   ngOnInit() {
-   // this.getMyDriver();
+    // this.getMyDriver();
     //this.getMyLeaderboard();
     this.getMyTeam();
+    this.width();
   }
 
   ngOnDestroy() {
@@ -51,21 +57,23 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   }
 
   getMyLeaderboard() {
-    this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardMe({
-      page: 1, lastMonth: false
-    })
-      .subscribe(data => {
+    this.myLdrbrdObserver = this.ldrbrdSrvc
+      .leaderboardMe({
+        page: 1,
+        lastMonth: false,
+      })
+      .subscribe((data) => {
         this.myLdrbrd = data;
-
       });
   }
 
+  width() {
+    this.display = window.innerWidth;
+  }
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
-
   }
-  
 
   getMyTeam() {
     const data = this.identityService.getLeaderboardMe();
@@ -74,10 +82,8 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   }
 
   getteamStats() {
-    this.ldrbrdSrvc.leaderboardTeamOverall(1)
-    .subscribe(data => {
+    this.ldrbrdSrvc.leaderboardTeamOverall(1).subscribe((data) => {
       this.myStatData = data;
     });
   }
-
 }
