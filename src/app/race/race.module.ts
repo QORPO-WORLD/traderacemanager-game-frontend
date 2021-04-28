@@ -18,6 +18,7 @@ import { OthersModule } from '../others/others.module';
 import { StartRaceComponent } from './pages/start-race/start-race.component';
 import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
+import { BinaryInitialSelectionComponent } from './components/binary-initial-selection/binary-initial-selection.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,8 @@ const routes: Routes = [
         path: '', redirectTo: 'start-race', pathMatch: 'full'
       },
       { path: 'watch-race-3min/:id', component: WatchRaceShortComponent },
-      { path: 'watch-multiple-races', component: MultiViewComponent }
+      { path: 'watch-multiple-races', component: MultiViewComponent },
+      { path: 'binary-fuel', component: BinaryInitialSelectionComponent }
     ]
   }
 ];
@@ -57,7 +59,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [AllRacesComponent, WatchRaceShortComponent,
     StartRaceComponent, MiniLdrbrdComponent,
-    MultiViewComponent, RaceTypeComponent, UnityraceComponent],
+    MultiViewComponent, RaceTypeComponent, UnityraceComponent,
+    BinaryInitialSelectionComponent],
   imports: [
     CommonModule,
     ninja,

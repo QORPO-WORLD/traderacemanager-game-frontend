@@ -1,0 +1,222 @@
+
+
+
+<div class="main-holder">
+
+  <div class="race-menu">
+    <img src="/assets/base/images/binary-race/binary-logo.png" alt="">
+
+    <div class="center-items">
+      <div class="small-box">
+        <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
+        <p>Potential win: 2014 IOI</p>
+      </div>
+      <div class="small-box">
+        <img src="/assets/base/images/binary-race/balance-icon.svg" alt="">
+        <p>Balance: 0.00 IOI</p>
+      </div>
+    </div>
+
+    <div class="right-items">
+      <div class="name-holder">
+        <div class="avatar">
+          <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
+        </div>
+        <p>Username</p>
+      </div>
+      <div class="switch-btn">
+        <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
+      </div>
+      <div class="switch-btn">
+        <img src="/assets/base/images/zavod/info-icon.svg" alt="">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-component">
+  
+    <div class="cont-holder step1" *ngIf="fuelStep === 1">
+      <div class="heading-holder">
+        <p>Hello <span>{{ myDriverStats.nickname }}</span></p>
+        <p>welcome to IOI Binary Races!</p>
+      </div>
+  
+      <p class="race-desc">The most unique Binary race experience. Choose your racer and your bet, 
+        guess if a binary option which lasts 10 seconds will be going up or down,
+        make more correct guesses than your oponent in the 5 minute duel and win!</p>
+  
+      <div class="items-holder">
+        <div class="box-item">
+          <div class="inner">
+            <div class="img-holder">
+              <img src="/assets/base/images/binary-race/stopwatch.svg" alt="">
+            </div>
+            <p class="desc">Whole game only takes 1 minutes</p>
+          </div>
+        </div>
+        <div class="box-item">
+          <div class="inner">
+            <div class="img-holder">
+              <img src="/assets/base/images/binary-race/guess-icon.svg" alt="">
+            </div>
+            <p class="desc">Guess if a currency will go up or down in the next 10 seconds</p>
+          </div>
+        </div>
+        <div class="box-item">
+          <div class="inner">
+            <div class="img-holder">
+              <img src="/assets/base/images/binary-race/balance-icon.svg" alt="">
+            </div>
+            <p class="desc">Make more correct guesses and win</p>
+          </div>
+        </div>
+      </div>
+  
+      <button class="play-btn" (click)="fuelStep = 2"><img src="/assets/base/images/binary-race/play-icon.svg" alt=""> Start playing</button>
+  
+      <p class="disclaim">IOI takes 2% comission of all winnings from IOI Duel</p>
+  
+    </div>
+  
+    <div class="cont-holder step2" *ngIf="fuelStep === 2">
+  
+      <div class="heading-holder">
+        <h3>Choose your racer</h3>
+        <p>Pick a racer you want to play with</p>
+      </div>
+  
+      <div class="racers-holder">
+        
+        <ng-container *ngFor="let item of racers | slice:startRacerIndex:startRacerIndex + sliceBalancer; let i = index">
+          <div class="racer-item" [ngClass]="{'active': chosenRacerId === item.id, 'locked': item.id % 3 === 0}">
+            
+            <div class="img-holder">
+              <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + item.image + '.png'" alt=""/>
+              <div class="locked-avatar">
+                <img src="/assets/base/images/binary-race/avatar-locked.svg" alt="">
+                <p>You don’t own this Racer, but you can buy it now!</p>
+              </div>
+            </div>
+    
+            <div class="racer-info">
+              <div class="name">
+                <p class="item-name">{{ item.name }}</p>
+                <div class="bet-box">
+                  <p>1 IOI</p>
+                </div>
+              </div>
+              <button class="choose-btn" *ngIf="item.id % 3 !== 0" (click)="chosenRacerId = item.id">Choose</button>
+              <button class="choose-btn" *ngIf="item.id % 3 === 0" [routerLink]="['/car/nft-market']">Buy a racer</button>
+            </div>
+          </div>
+        </ng-container>
+        
+  
+        <div class="arrow right" (click)="nextRacer()" *ngIf="startRacerIndex < racers.length">
+          <p>&gt;</p>
+        </div>
+        <div class="arrow left" (click)="prevRacer()" *ngIf="startRacerIndex > 0">
+          <p>&lt;</p>
+        </div>
+  
+        <div class="arrow right inactive" *ngIf="startRacerIndex + sliceBalancer === racers.length">
+          <p>&gt;</p>
+        </div>
+        <div class="arrow left inactive" *ngIf="startRacerIndex === 0">
+          <p>&lt;</p>
+        </div>
+  
+      </div>
+  
+      <div class="btns-holder">
+        <button class="back" (click)="fuelStep = 1">Back</button>
+        <button class="continue" (click)="fuelStep = 3;getMyChosenAvatar()">Continue</button>
+      </div>
+  
+    </div>
+
+    <div class="cont-holder step3" *ngIf="fuelStep === 3">
+
+      <img class="big-avatar mine" [src]="'/assets/base/images/nft-racers/' + myAvatar.image + '.png'" alt=""/>
+
+      <img *ngIf="opponentPlayer" class="big-avatar rival" [src]="'/assets/base/images/nft-racers/' + opponentPlayer.avatar.image + '.png'" alt=""/>
+
+      <div class="heading-holder">
+        <h3>Automatch</h3>
+        <p>Lorem ipsum</p>
+      </div>
+
+      <div class="racers-holder">
+        <div class="racer-item mine">
+            
+          <img src="/assets/base/images/binary-race/okey-icon.svg" alt="" class="status-img">
+
+          <div class="img-holder">
+            <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + myAvatar.image + '.png'" alt=""/>
+          </div>
+  
+          <div class="racer-info">
+            <div class="name">
+              <p class="item-name">{{ myAvatar.name }}</p>
+              <div class="bet-box">
+                <p>1 IOI</p>
+              </div>
+            </div>
+            <button class="name-sheet">Mirek55554</button>
+          </div>
+        </div>
+
+        <div class="racer-item hollow" *ngIf="!opponentPlayer">
+            
+          <img src="/assets/base/images/binary-race/question-mark.svg" alt="" class="status-img">
+
+          <div class="img-holder">
+            <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + myAvatar.image + '.png'" alt=""/>
+          </div>
+  
+          <div class="racer-info">
+            <div class="name">
+              <p class="item-name"></p>
+              <div class="bet-box">
+                <p>1 IOI</p>
+              </div>
+            </div>
+            <button class="name-sheet">-</button>
+          </div>
+        </div>
+
+        <div class="racer-item rival"  *ngIf="opponentPlayer">
+
+          <img src="/assets/base/images/binary-race/okey-icon.svg" alt="" class="status-img">
+            
+          <div class="img-holder">
+            <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + opponentPlayer.avatar.image + '.png'" alt=""/>
+          </div>
+  
+          <div class="racer-info">
+            <div class="name">
+              <p class="item-name">{{ opponentPlayer.avatar.name }}</p>
+              <div class="bet-box">
+                <p>1 IOI</p>
+              </div>
+            </div>
+            <button class="name-sheet">{{ opponentPlayer.name }}</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="btns-holder">
+        <button class="back" (click)="fuelStep = 2">Back</button>
+        <button class="continue" (click)="automatch()" *ngIf="!automatchLoading">Automatch</button>
+        <button class="continue loading" *ngIf="automatchLoading"><img src="/assets/base/images/binary-race/loading-icon.svg" alt=""> Please, wait</button>
+      </div>
+
+    </div>
+  
+  </div>
+
+  <div class="bottom-box"></div>
+
+</div>
