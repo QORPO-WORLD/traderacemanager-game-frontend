@@ -23,11 +23,9 @@
             class="joined"
             [ngClass]="tt.name"
             *ngIf="
-              (tt?.id === myDriverStats?.next_month_team_id &&
-                myDriverStats?.next_month_membership_type !== 'Free') ||
-              (myDriverStats?.is_paid_membership === 'Premium' &&
+              myDriverStats?.is_paid_membership === 'Free' &&
                 tt?.id === myDriverStats?.next_month_team_id &&
-                myDriverStats?.next_month_membership_type === 'Free')
+                myDriverStats?.next_month_membership_type === 'Premium'
             "
             [ngStyle]="{
               background:
