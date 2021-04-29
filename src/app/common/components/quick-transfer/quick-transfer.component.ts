@@ -76,7 +76,7 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
 
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc.nitroWalletTransferCreate({
-      currency: 'ioi',
+      currency: this.tokenSelected,
       amount: this.amount,
       mode: 'races2nitro'
     }).subscribe(data => {
