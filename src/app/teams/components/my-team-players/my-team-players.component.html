@@ -1,68 +1,169 @@
-
-
-<div class="teams-table">
-
+<div (window:resize)="width()" class="teams-table">
   <div class="desktop-header">
-    <p class="first">Team</p>
+    <p class="first"></p>
     <div class="table-header">
-      <div class="table-item small"><p>{{"leaderboard.place"| translate}}</p></div>
-      <div class="table-item big"><p>{{"affiliate.name"| translate}}</p></div>
-      <div class="table-item"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
-      <div class="table-item last"><p>{{"shared.potential_win"| translate}}</p></div>
+      <div class="table-item small">
+        <p>{{ "leaderboard.place" | translate }}</p>
+      </div>
+      <div class="table-item big">
+        <p>{{ "affiliate.name" | translate }}</p>
+      </div>
+      <div class="table-item">
+        <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
+      </div>
+      <div class="table-item last">
+        <p>{{ "shared.potential_win" | translate }}</p>
+      </div>
     </div>
   </div>
 
-  <div class="first-team team-row" *ngFor="let tt of myStatData;let ix = index;">
-
+  <div
+    class="first-team team-row"
+    *ngFor="let tt of myStatData; let ix = index"
+  >
+    <div *ngIf="display <= 640" class="position-holder">
+      <p *ngIf="ix === 0">1st</p>
+      <p *ngIf="ix === 1">2nd</p>
+      <p *ngIf="ix === 2">3rd</p>
+    </div>
     <div class="team-box">
+      <div *ngIf="display > 640" class="position-holder">
+        <p *ngIf="ix === 0">1st</p>
+        <p *ngIf="ix === 1">2nd</p>
+        <p *ngIf="ix === 2">3rd</p>
+      </div>
       <div class="image-holder">
         <div class="image">
-          <img [src]="'assets/base/images/teams/' + tt.team.team_name.toUpperCase() + '-team.png'" alt="">
+          <img
+            *ngIf="ix === 0"
+            class="crown"
+            [src]="'assets/base/images/leaderboard/crown.svg'"
+            alt=""
+          />
+          <div
+            *ngIf="ix === 0"
+            [ngStyle]="{
+              'box-shadow': '0px 0px 20px rgba(255, 212, 59, 0.9)',
+              border: '1px solid gold'
+            }"
+            class="shadow-image"
+          ></div>
+          <div
+            *ngIf="ix === 1"
+            [ngStyle]="{
+              'box-shadow': '0px 0px 20px rgba(197, 197, 197, 0.9)',
+              border: '1px solid silver'
+            }"
+            class="shadow-image"
+          ></div>
+          <div
+            *ngIf="ix === 2"
+            [ngStyle]="{
+              'box-shadow': '0px 0px 20px rgba(255, 144, 29, 0.9)',
+              border: '1px solid #FFB971'
+            }"
+            class="shadow-image"
+          ></div>
+          <img
+            [src]="
+              'assets/base/images/teams/' +
+              tt.team.team_name.toUpperCase() +
+              '-team.png'
+            "
+            alt=""
+          />
         </div>
-        <h6>{{"shared.layout.team"| translate}} {{tt.team.team_name.toUpperCase()}}</h6>
+        <h6>
+          {{ "shared.layout.team" | translate }}
+          {{ tt.team.team_name.toUpperCase() }}
+        </h6>
       </div>
       <div class="team-info">
         <div class="team-info-text">
-          <p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p> <p>{{tt.team.total_sum | number:'1.2-2':'fr'}}</p>
+          <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
+          <p>{{ tt.team.total_sum | number: "1.2-2":"fr" }}</p>
         </div>
         <div class="team-info-text">
-          <p>{{"leaderboard.team_leaderboard.team_manager"| translate}}</p> <p>{{tt.team.manager_user_nickname | slice:0:15}}</p>
+          <p>{{ "leaderboard.team_leaderboard.team_manager" | translate }}</p>
+          <p>{{ tt.team.manager_user_nickname | slice: 0:15 }}</p>
         </div>
         <div class="reward-box" [ngClass]="tt.team.team_name.toUpperCase()">
           <div class="inner-box">
-            <p><i class="fa fa-trophy"></i> <span> {{(tt?.team_bonus ? tt?.team_bonus : 0)  | number:'1.2-2':'fr'}} IOI</span> {{"leaderboard.team_leaderboard.actual_reward"| translate}}</p>
+            <p>
+              <i class="fa fa-trophy"></i>
+              <span>
+                {{
+                  (tt?.team_bonus ? tt?.team_bonus : 0) | number: "1.2-2":"fr"
+                }}
+                IOI</span
+              >
+              {{ "leaderboard.team_leaderboard.actual_reward" | translate }}
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <div class="team-leaders-table" [ngClass]="tt.team.team_name.toUpperCase()">
-      <div class="arrow-right" (click)="this.sliceNums[ix] = this.sliceNums[ix] + 3" *ngIf="tt.top10.length > this.sliceNums[ix]">
+      <div
+        class="arrow-right"
+        (click)="this.sliceNums[ix] = this.sliceNums[ix] + 3"
+        *ngIf="tt.top10.length > this.sliceNums[ix]"
+      >
         <p>&gt;</p>
       </div>
-      <div class="arrow-left" (click)="this.sliceNums[ix] = this.sliceNums[ix] - 3" *ngIf="this.sliceNums[ix] > 3">
-        <p>&lt;<p>
+      <div
+        class="arrow-left"
+        (click)="this.sliceNums[ix] = this.sliceNums[ix] - 3"
+        *ngIf="this.sliceNums[ix] > 3"
+      >
+        <p>&lt;</p>
+        <p></p>
       </div>
 
       <div class="table-row header">
-        <div class="table-item small"><p>{{"leaderboard.place"| translate}}</p></div>
-        <div class="table-item big"><p>{{"affiliate.name"| translate}}</p></div>
-        <div class="table-item"><p>{{"leaderboard.team_leaderboard.turnover"| translate}}</p></div>
-        <div class="table-item last"><p>{{"shared.potential_win"| translate}}</p></div>
+        <div class="table-item small">
+          <p>{{ "leaderboard.place" | translate }}</p>
+        </div>
+        <div class="table-item big">
+          <p>{{ "affiliate.name" | translate }}</p>
+        </div>
+        <div class="table-item">
+          <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
+        </div>
+        <div class="table-item last">
+          <p>{{ "shared.potential_win" | translate }}</p>
+        </div>
       </div>
 
-      <div class="table-row" *ngFor="let toper of tt.top10 | slice:this.sliceNums[ix] - 3 :this.sliceNums[ix];">
-        <div class="table-item small"><p>{{toper.position}}.</p></div>
-        <div class="table-item big"><p>{{toper.user_nickname  | slice:0:15}}</p></div>
-        <div class="table-item"><p>{{toper.total_bet_amount | number:'1.2-2':'fr'}}</p></div>
-        <div class="table-item last"><p>{{tt.applicable_team_bonuses[toper.position] | number:'1.2-2':'fr'}}</p></div>
+      <div
+        class="table-row"
+        *ngFor="
+          let toper of tt.top10
+            | slice: this.sliceNums[ix] - 3:this.sliceNums[ix]
+        "
+      >
+        <div class="table-item small">
+          <p>{{ toper.position }}.</p>
+        </div>
+        <div class="table-item big">
+          <p>{{ toper.user_nickname | slice: 0:15 }}</p>
+        </div>
+        <div class="table-item">
+          <p>{{ toper.total_bet_amount | number: "1.2-2":"fr" }}</p>
+        </div>
+        <div class="table-item last">
+          <p>
+            {{
+              tt.applicable_team_bonuses[toper.position] | number: "1.2-2":"fr"
+            }}
+          </p>
+        </div>
       </div>
-
     </div>
   </div>
 
   <div class="no-data" *ngIf="myStatData.length < 3">
     <p>There are incomplete data in this leaderboard so far</p>
   </div>
-
 </div>
