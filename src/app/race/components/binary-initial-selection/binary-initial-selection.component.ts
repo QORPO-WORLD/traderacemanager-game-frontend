@@ -105,4 +105,8 @@ export class BinaryInitialSelectionComponent implements OnInit {
      }, 2500);
   }
 
+  jano(){
+    console.log(this.opponentPlayer);
+  }
+
 }

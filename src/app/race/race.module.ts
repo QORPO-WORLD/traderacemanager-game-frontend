@@ -21,6 +21,7 @@ import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
 import { BinaryInitialSelectionComponent } from './components/binary-initial-selection/binary-initial-selection.component';
 import { ChartModule } from 'angular-highcharts';
+import { BinaryWinnerComponent } from './components/binary-winner/binary-winner.component';
 
 const routes: Routes = [
   {
@@ -62,7 +63,8 @@ const routes: Routes = [
   declarations: [AllRacesComponent, WatchRaceShortComponent,
     StartRaceComponent, MiniLdrbrdComponent,
     MultiViewComponent, RaceTypeComponent, UnityraceComponent,
-    BinaryInitialSelectionComponent,MultiViewComponent, RaceTypeComponent, UnityraceComponent, BinaryRaceComponent],
+    BinaryInitialSelectionComponent,MultiViewComponent, RaceTypeComponent, UnityraceComponent, 
+    BinaryRaceComponent, BinaryWinnerComponent],
   imports: [
     CommonModule,
     ninja,

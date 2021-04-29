@@ -1,0 +1,320 @@
+
+
+.main-cont{
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+
+    .race-menu{
+        width: 100%;
+        height: 86px;
+        background: #222222;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 0 46px;
+        position: relative;
+        .mobile-handler{
+            height: 100%;
+        }
+        .center-items{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .small-box{
+                background: #111111;
+                border-radius: 10px;
+                padding: 12px 20px;
+                margin: 0 2px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                p{
+                    margin: 0 0 0 14px;
+                }
+                img{
+                    max-height: 20px;
+                }
+            }
+            .quit-btn{
+                display: none;
+            }
+        }
+        .right-items{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .name-holder{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 25px;
+                .avatar{
+                    background: #111111;
+                    border-radius: 10px;
+                    width: 73px;
+                    height: 73px;
+                    position: relative;
+                    img{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                p{
+                    font-weight: 500;
+                    font-size: 12px;
+                    margin: 0 12px;
+                }
+            }
+            .switch-btn {
+                width: 92px;
+                height: 100%;
+                position: relative;
+                cursor: pointer;
+                border-left: 1px solid rgba(255, 255, 255, 0.15);
+                background: transparent;
+                img {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                }
+                &.active {
+                  background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
+                  border-left: 1px solid black;
+                }
+            }
+        }
+        .my-mobile-button{
+            display: none;
+        }
+    }
+
+    .content-holder{
+        position: absolute;
+        top: 49%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 1018px;
+        z-index: 10;
+        .chart-holder{
+            width: 100%;
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 442px;
+            .react-controls{
+                width: 120px;
+                background: #222222;
+                height: 100%;
+                border-radius: 15px 0px 0px 15px;
+                p{
+                    margin: 63px 0 18px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                .control-btns{
+                    .react-btn{
+                        background: linear-gradient(to bottom right,#fe183f 0%,rgba(254, 24, 63, 0.1) 80%);
+                        padding: 1px;
+                        border-radius: 10px;
+                        width: 70px;
+                        height: 70px;
+                        margin: 0 auto 8px;
+                        cursor: pointer;
+                        &:hover{
+                            .inner{
+                                background: rgba(34,34,34,.4);
+                            }
+                        }
+                        .inner{
+                            background: rgba(34,34,34,.6);
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            border-radius: 10px;
+                            transition: .15s;
+                            img{
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
+                        }
+                    }
+                }
+                .conv-box{
+                    width: 82%;
+                    height: 40px;
+                    background: #333333;
+                    border-radius: 10px;
+                    position: relative;
+                    margin: 39px auto 0;
+                    p{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        margin: 0;
+                        text-align: center;
+                        font-weight: 500;
+                        font-size: 12px;
+                    }
+                }
+            }
+            #container{
+                width: calc(100% - 120px);
+                height: 100%;
+            }
+        }
+        .control-panel{
+            margin: 55px 0 0 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            .player-stats{
+                width: 40%;
+                max-width: 163px;
+                &.rival{
+                    .name{
+                        color: #00D1FF;
+                    }
+                    .my-progress{
+                        .inner-bar{
+                            background: #00D1FF;
+                        }
+                    }
+                }
+                .name{
+                    font-size: 24px;
+                    font-family: 'True-lies';
+                    margin: 0 0 20px;
+                    color: #FE183F;
+                }
+                .targets-holder{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    .target-item{
+                        width: 24px;
+                        height: 24px;
+                        background: #B9B9B9;
+                        border-radius: 50%;
+                        position: relative;
+                        img{
+                            display: none;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                        &.okey{
+                            background: white;
+                            img{
+                                &.okey{
+                                    display: block;
+                                }
+                                &.wrong{
+                                    display: none;
+                                }
+                            }
+                        }
+                        &.wrong{
+                            background: white;
+                            img{
+                                &.okey{
+                                    display: none;
+                                }
+                                &.wrong{
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                }
+                .my-progress{
+                    width: 100%;
+                    background: white;
+                    border-radius: 5px;
+                    height: 10px;
+                    position: relative;
+                    margin: 6px 0;
+                    .inner-bar{
+                        height: 100%;
+                        background: #FE183F;
+                        border-radius: 5px;
+                        width: 20%;
+                    }
+                }
+                .percent{
+                    font-weight: 500;
+                    font-size: 16px;
+                    margin: 0;
+                }
+            }
+            .player-controls{
+                width: 100%;
+                max-width: 480px;
+                border-radius: 10px;
+                height: 90px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                & > div{
+                    height: 100%;
+                }
+                .control-btn{
+                    width: 19%;
+                    position: relative;
+                    cursor: pointer;
+                    background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+                    &.up{
+                        background: linear-gradient(90deg, #00A363 -1.82%, #00EE91 97.27%);
+                        img{
+                            top: 55%;
+                        }
+                    }
+                    img{
+                        position: absolute;
+                        top: 45%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                .data-box{
+                    width: 31%;
+                    background: white;
+                    text-align: center;
+                    &.bordered{
+                        border-right: 1px solid #EBEBEB;
+                    }
+                    img{
+                        margin-top: 7px;
+                    }
+                    p{
+                        color: #333333;
+                        font-weight: 500;
+                        font-size: 20px;
+                        margin: 10px 0;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+    }
+}
