@@ -95,16 +95,42 @@
     }
 
     .leaderboard-box {
+      transition: 0.2s;
       background: #222222;
       border-radius: 15px;
       padding: 24px 30px;
       height: 270px;
       text-align: center;
       position: relative;
-      .rate-desc {
-        font-weight: 500;
-        font-size: 14px;
-        margin: 14px 0;
+      cursor: pointer;
+      .text-holder {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        z-index: 3;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          font-size: 30px;
+          font-weight: 600;
+          margin: 0 11px 0 0;
+        }
+        .arrow-btn {
+          width: 25px;
+          height: 25px;
+          line-height: 25px;
+          font-weight: 700;
+          font-size: 22px;
+          background: #ffffff;
+          border-radius: 5px;
+          transition: 0.2s;
+          -webkit-transition: 0.2s;
+          -moz-transition: 0.2s;
+          -ms-transition: 0.2s;
+          -o-transition: 0.2s;
+        }
       }
       .buy-btn {
         font-size: 16px;
@@ -123,8 +149,26 @@
         -o-transform: translateX(-50%);
       }
       .token-img {
-        width: 180px;
+        width: 200px;
+
+        transition: 0.2s;
+        -webkit-transition: 0.2s;
+        -moz-transition: 0.2s;
+        -ms-transition: 0.2s;
+        -o-transition: 0.2s;
       }
+      &:hover {
+        .token-img {
+          transform: scale(1.03) translate(-3px, -3px);
+          -webkit-transform: scale(1.03) translate(-3px, -3px);
+          -moz-transform: scale(1.03) translate(-3px, -3px);
+          -ms-transform: scale(1.03) translate(-3px, -3px);
+          -o-transform: scale(1.03) translate(-3px, -3px);
+        }
+      }
+    }
+    .leaderboard-box:hover {
+      box-shadow: 0px 0px 30px rgb(87, 87, 87);
     }
   }
 }
@@ -1006,7 +1050,20 @@
         }
 
         .token-img {
-          width: 142.5px;
+          width: 170px;
+        }
+        .text-holder {
+          bottom: 8px;
+          left: 15px;
+          p {
+            font-size: 26px;
+          }
+          .arrow-btn {
+            width: 21px;
+            height: 21px;
+            line-height: 21px;
+            font-size: 19px;
+          }
         }
       }
     }
@@ -1181,7 +1238,14 @@
         }
         .token-img {
           margin-top: -10px;
-          width: 115px;
+          width: 140px;
+        }
+        .text-holder {
+          bottom: 11px;
+          left: 18px;
+          p {
+            font-size: 22px;
+          }
         }
       }
     }
@@ -1517,6 +1581,11 @@
         .token-img {
           margin-top: 0px;
           width: 240px;
+        }
+        .text-holder {
+          p {
+            width: 100%;
+          }
         }
       }
     }
