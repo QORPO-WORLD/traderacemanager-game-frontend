@@ -1,3 +1,4 @@
+import { MyCars } from "./../../../api/models/my-cars";
 import {
   Component,
   OnInit,
@@ -14,10 +15,12 @@ import { Subscription } from "rxjs";
 import { NotifiqService } from "./../../../common/services/notifiq.service";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
   selector: "app-my-nft",
   templateUrl: "./my-nft.component.html",
   styleUrls: ["./my-nft.component.scss"],
+  
 })
 export class MyNftComponent implements OnInit {
   cars: any;
@@ -25,6 +28,7 @@ export class MyNftComponent implements OnInit {
   editionIndex = 1;
   myCars: any;
   carsSorted;
+  allCars;
   myCarsSorted = {
     car0: [],
     car1: [],
@@ -558,12 +562,59 @@ export class MyNftComponent implements OnInit {
   lastPage;
   isPaged;
   filter;
+  myCarsvals = 0;
+  carBonus;
 
   selectedId = 46;
   selectedType = "team";
   owned;
   marketState = 1;
 
+  calcCarsValue() {
+    for (let x = 0; x < this.myCars.length; x++) {
+      if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
+        this.myCarsvals += 600;
+      }
+      if (this.myCars[x].car_id >= 7 && this.myCars[x].car_id < 13) {
+        this.myCarsvals += 1000;
+      }
+      if (this.myCars[x].car_id >= 13 && this.myCars[x].car_id < 19) {
+        this.myCarsvals += 1600;
+      }
+      if (this.myCars[x].car_id >= 19 && this.myCars[x].car_id < 25) {
+        this.myCarsvals += 2600;
+      }
+      if (this.myCars[x].car_id === 25) {
+        this.myCarsvals += 3600;
+      }
+      if (this.myCars[x].car_id === 26) {
+        this.myCarsvals += 6000;
+      }
+      if (this.myCars[x].car_id === 27) {
+        this.myCarsvals += 9600;
+      }
+      if (this.myCars[x].car_id === 28) {
+        this.myCarsvals += 15600;
+      }
+    }
+
+    this.getCarBonus();
+  }
+
+  getCarBonus() {
+    if (this.myCarsvals > 0 && this.myCarsvals < 1000) {
+      this.carBonus = 6;
+    }
+    if (this.myCarsvals > 1000 && this.myCarsvals < 5000) {
+      this.carBonus = 12;
+    }
+    if (this.myCarsvals > 5000 && this.myCarsvals < 10000) {
+      this.carBonus = 18;
+    }
+    if (this.myCarsvals > 10000) {
+      this.carBonus = 24;
+    }
+  }
   showAsset(id: number, type: string, owned) {
     this.selectedId = id;
     this.selectedType = type;
@@ -595,7 +646,9 @@ export class MyNftComponent implements OnInit {
     const that = this;
     this.getMyOldDriver();
     this.getMyBalance();
+    this.calcCarsValue();
   }
+
   getMyCars() {
     this.clearSortedCars();
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
@@ -603,6 +656,7 @@ export class MyNftComponent implements OnInit {
         this.getFreeCar();
       } else {
         const objs: any = data;
+
         for (let x = 0; x < objs.cars.length; x++) {
           if (objs.cars[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs.cars[x]);
@@ -696,6 +750,8 @@ export class MyNftComponent implements OnInit {
         this.selectCar(objs);
         this.filterAll();
         this.sortingDone = true;
+        this.allCars = objs.cars.length;
+        
       }
     });
   }
@@ -1036,8 +1092,6 @@ export class MyNftComponent implements OnInit {
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
     this.filter = "all";
-    console.log(this.products);
-    console.log(this.newProducts);
   }
 
   reset() {

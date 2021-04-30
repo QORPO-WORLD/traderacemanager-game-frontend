@@ -19,6 +19,13 @@
           <p>My NFTs</p>
         </div>
         <div
+          (click)="activatePage('overview')"
+          class="menu-item my-cta-btn-back active"
+          [ngClass]="{ inactive: show !== 'overview' }"
+        >
+          <p>NFTs Overview</p>
+        </div>
+        <div
           (click)="activatePage('affiliate')"
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'affiliate' }"
@@ -98,5 +105,6 @@
     ></app-my-races>
     <app-stats-profile *ngIf="show === 'stats'"></app-stats-profile>
     <app-my-nft *ngIf="show === 'nfts' && showSecond === 'list'"></app-my-nft>
+    <app-nft-overview *ngIf="show === 'overview'"></app-nft-overview>
   </div>
 </div>

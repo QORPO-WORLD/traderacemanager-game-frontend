@@ -1,3 +1,4 @@
+import { NftOverviewComponent } from "./pages/nft-overview/nft-overview.component";
 import { MyNftDetailComponent } from "./pages/my-nft-detail/my-nft-detail.component";
 import { MyNftComponent } from "./pages/my-nft/my-nft.component";
 import { StatsProfileComponent } from "./pages/stats-profile/stats-profile.component";
@@ -23,6 +24,8 @@ import { environment } from "../../environments/environment";
 import { MyRacesComponent } from "./pages/my-races/my-races.component";
 import { SiteLayoutComponent } from "../common/components/layout/default/site-layout/site-layout.component";
 import { OthersModule } from "../others/others.module";
+
+import { ChartModule } from "angular-highcharts";
 
 const routes: Routes = [
   {
@@ -54,6 +57,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     OthersModule,
+    ChartModule,
   ],
   declarations: [
     TransactionsComponent,
@@ -62,6 +66,7 @@ const routes: Routes = [
     StatsProfileComponent,
     MyNftComponent,
     MyNftDetailComponent,
+    NftOverviewComponent,
   ],
   providers: [AuthUserGuard, AuthStatusGuard, AuthService],
   exports: [],
