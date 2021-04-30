@@ -124,7 +124,6 @@ export class TeamsSelectionComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          console.log(teamId);
           if (this.modalVersion === true) {
             this.closeModal();
           }
@@ -157,7 +156,6 @@ export class TeamsSelectionComponent implements OnInit {
   getMydriver() {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
-      console.log(this.myDriverStats);
     }, 500);
   }
 

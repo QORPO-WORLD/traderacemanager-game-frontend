@@ -423,7 +423,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   setupMetaBalance(data) {
-    console.log(data);
     this.metaEth = data;
     this.isUsingMetamask = true;
   }
@@ -471,7 +470,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.driverSrvc.driversSetMode({ mode: type }).subscribe(
       data => {
         this.verifyStep = 2;
-        console.log(data);
       }
     )
   }
@@ -534,8 +532,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       });
 
       this.myTeams = data.results;
-      console.log(this.myTeams);
-      console.log('rudko');
     });
   }
 
