@@ -198,7 +198,6 @@ export class NftOverviewComponent implements OnInit {
       .subscribe((datax) => {
         const data: any = datax;
         this.myTeamAllData = data;
-        console.log(this.myTeamAllData);
       });
   }
 }
