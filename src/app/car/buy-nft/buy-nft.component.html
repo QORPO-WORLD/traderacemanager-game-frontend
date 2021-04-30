@@ -184,18 +184,6 @@
         >
           Buy with IOI
         </button>
-        <button
-          [ngStyle]="{ opacity: '.5' }"
-          class="buy-nft my-cta-btn-back"
-          *ngIf="
-            assetType === 'car' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
-          "
-          (click)="tokenSelected = 'matic';buyCarFromGarage(displayArray[0]['extras'].buy_id)"
-        >
-          Buy with MATIC 
-        </button>
 
         <button
           class="buy-nft my-cta-btn-back hoverable"
@@ -208,6 +196,20 @@
           [queryParams]="{ controlType: 'deposit' }"
         >
           Deposit
+        </button>
+
+
+        <button
+          [ngStyle]="{ opacity: '.5' }"
+          class="buy-nft my-cta-btn-back"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+          "
+          (click)="tokenSelected = 'matic';buyCarFromGarage(displayArray[0]['extras'].buy_id)"
+        >
+          Buy with MATIC 
         </button>
 
         <button
