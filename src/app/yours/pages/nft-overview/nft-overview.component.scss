@@ -55,16 +55,60 @@ p {
       background: #222222;
       border-radius: 15px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      p {
+      h2 {
         margin-top: 5px;
       }
+      p {
+        margin-top: 4px;
+      }
+    }
+  }
+  .box-animation {
+    animation: box-enter 5.5s;
+    -webkit-animation: box-enter 5.5s;
+  }
+  @keyframes box-enter {
+    0% {
+      opacity: 0;
+      transform: translateX(-500px);
+      -webkit-transform: translateX(-500px);
+      -moz-transform: translateX(-500px);
+      -ms-transform: translateX(-500px);
+      -o-transform: translateX(-500px);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(0px);
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+      -o-transform: translateX(0px);
+    }
+    80% {
+      opacity: 1;
+      transform: translateX(0px);
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+      -o-transform: translateX(0px);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(500px);
+      -webkit-transform: translateX(500px);
+      -moz-transform: translateX(500px);
+      -ms-transform: translateX(500px);
+      -o-transform: translateX(500px);
     }
   }
   .details {
     .detail-box {
+      overflow: hidden;
       position: relative;
       height: 358px;
       background: #222222;
@@ -74,17 +118,104 @@ p {
 
       align-items: center;
       text-align: center;
+      .box {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        text-align: center;
+      }
+      .racers {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        .left-side {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .detail-img {
+            width: 350px;
+            max-width: 350px;
+          }
+        }
+        .right-side {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          .detail-title {
+            margin-top: 40px;
+          }
+          .values-racers {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+
+            .left-value {
+              margin-bottom: 10px;
+              margin-right: 0px;
+            }
+            .middle {
+              width: 0px;
+
+              height: 0px;
+              width: 25%;
+              border: 1px solid #868686;
+            }
+            .right-value {
+              margin-left: 0px;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
       .detail-title {
         margin-top: 30px;
       }
       .detail-img {
         margin-top: 20px;
+        width: 300px;
+        position: relative;
+        .badge-name {
+          top: 45%;
+          left: 49%;
+          transform: translate(-50%, -50%);
+          position: absolute;
+          max-width: 100%;
+          width: 100%;
+          z-index: 2;
+          p {
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            line-height: 1;
+            &.name {
+              font-size: 20px;
+            }
+          }
+        }
+        &.track {
+          width: 180px;
+        }
+        &.team {
+          margin-top: -5px;
+          width: 160px;
+          height: 160px;
+        }
       }
       .values {
         margin-top: 20px;
         display: flex;
         position: relative;
         align-items: center;
+
         .left-value {
           margin-right: 25px;
         }
@@ -315,6 +446,21 @@ p {
     }
     .details {
       .detail-box {
+        .detail-img {
+          &.team {
+            width: 140px;
+            height: 140px;
+          }
+        }
+
+        .racers {
+          .left-side {
+            .detail-img {
+              width: 350px;
+              max-width: 300px;
+            }
+          }
+        }
         .values {
           margin-top: 20px;
           display: flex;
@@ -348,7 +494,7 @@ p {
   .left-content {
     width: 100%;
     .left-column {
-      height: 410px;
+      height: 660px;
     }
   }
   .right-content {
