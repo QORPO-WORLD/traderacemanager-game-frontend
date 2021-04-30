@@ -41,6 +41,10 @@ import { IonicModule } from '@ionic/angular';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { WloginComponent } from './components/wlogin/wlogin';
+import { CompetitionComponent } from './components/competition/competition.component';
+import { CreditSystemComponent } from './components/credit-system/credit-system.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
 //import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
@@ -60,7 +64,11 @@ const routes: Routes = [
     { path: 'verify-authenticator', component: VerifyauthenticatorComponent, data: { title: 'Verify user' } },
     { path: 'home', component: HomePageComponent, data: { title: 'Home page' } },
     { path: 'shop', component: HomeShopComponent, data: { title: 'Nft shop' } },
-    { path: 'nft-detail', component: HomeNftDetailComponent, data: { title: 'Nft detail' } }
+    { path: 'nft-detail', component: HomeNftDetailComponent, data: { title: 'Nft detail' } },
+    { path: 'terms-conditions', component: TermsConditionsComponent, data: { title: 'Terms and conditions' } },
+    { path: 'competition', component: CompetitionComponent, data: { title: 'Statue of competition' } },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent, data: { title: 'Privacy policy' } },
+    { path: 'credit-system', component: CreditSystemComponent, data: { title: 'Credit system' } },
 
 ];
 
@@ -95,7 +103,11 @@ const routes: Routes = [
         VerifyUserComponent,
         VerifyauthenticatorComponent,
         HomeShopComponent,
-        HomeNftDetailComponent
+        HomeNftDetailComponent,
+        CompetitionComponent,
+        CreditSystemComponent,
+        PrivacyPolicyComponent,
+        TermsConditionsComponent
     ],
     providers: [
         AutologinGuard,
