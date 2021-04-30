@@ -57,6 +57,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   myDriverAff: any;
   interval: any;
   refreshInterval: any;
+  myTeams: any;
   walletSubscription: Subscription;
   // @Output() valueChange = new EventEmitter();
   balanceChanged: boolean;
@@ -84,6 +85,8 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   animateTeamState = 0;
   sumUsers = 0;
   trxUsdt = 3;
+  startTeamIndex = 0;
+  sliceBalancer = 3;
   tickInterval: any;
   managerInterval: any;
   depositInterval: any;
@@ -115,8 +118,10 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     const mmea = JSON.parse(localStorage.getItem('mmea'));
     const tick = JSON.parse(localStorage.getItem('trxusdt'));
     const data = JSON.parse(localStorage.getItem('first-time'));
+    this.getTeams();
     if (data) {
       this.verifyModal = true;
+      this.getTeams();
     }
     this.balanceInterval = setInterval(() => {
       this.identityService.updateBalance();
@@ -504,6 +509,34 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     } else {
       this.selectedTeam--;
     }
+  }
+
+  nextTeamPc(){
+    if (this.startTeamIndex < this.myTeams.length - this.sliceBalancer) {
+      this.startTeamIndex++;
+    } else this.startTeamIndex = 0;
+  }
+
+  prevTeamPc(){
+    if (this.startTeamIndex > 0) {
+      this.startTeamIndex--;
+    } else this.startTeamIndex = this.myTeams.length - this.sliceBalancer;
+  }
+
+  getTeams() {
+    if (window.innerWidth < 641) {
+      this.sliceBalancer = 1;
+    }
+    this.teams.teamsList().subscribe(data => {
+      const newdata = data.results;
+      const resort = newdata.sort((a, b) => {
+        return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
+      });
+
+      this.myTeams = data.results;
+      console.log(this.myTeams);
+      console.log('rudko');
+    });
   }
 
 }

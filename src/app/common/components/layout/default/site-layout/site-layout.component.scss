@@ -1633,8 +1633,36 @@ button.xko {
         .arrow {
           display: none;
         }
+        .pc-arrows-holder{
+          position: absolute;
+          bottom: 20px;
+          transform: translateX(-50%);
+          z-index: 10;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .arrow-pc{
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            background: #111;
+            position: relative;
+            margin: 0 7px;
+            cursor: pointer;
+            p{
+              font-size: 28px;
+              margin: 0;
+              line-height: 1;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+        }
         .small-box {
           width: 31%;
+          transition: none;
           &:hover {
             .inner-box {
               .badge-holder {
@@ -1699,9 +1727,39 @@ button.xko {
                 font-size: 48px;
                 margin: 0 0 50px 0;
               }
+              .img-holder{
+                position: relative;
+                max-width: 242px;
+                margin: 0 auto;
+                transform: skew(15deg);
+                .badge-img{
+                  transform: none;
+                }
+                .badge-name {
+                  top: 44.5%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  position: absolute;
+                  max-width: 100%;
+                  width: 100%;
+                  z-index: 2;
+                  p {
+                    text-transform: uppercase;
+                    font-size: 24px;
+                    font-weight: 900;
+                    color: rgba(255, 255, 255, 0.5);
+                    margin: 0;
+                    line-height: 1;
+                    &.name {
+                      font-size: 31px;
+                    }
+                  }
+                }
+              }
               .badge-img {
                 transition: 0.3s;
                 transform: skew(15deg);
+                max-width: 100%;
               }
             }
           }
@@ -2701,6 +2759,13 @@ button.xko {
                   transform: skew(10deg);
                   margin: 0 0 10px 0;
                 }
+                .img-holder{
+                  transform: skew(10deg);
+                  max-width: 210px;
+                  .badge-img{
+                    max-width: 100%;
+                  }
+                }
                 .badge-img {
                   max-width: 210px;
                   transform: skew(10deg);
@@ -2907,6 +2972,9 @@ button.xko {
         .items-box {
           width: 120%;
           min-width: 120%;
+          .pc-arrows-holder{
+            transform: none;
+          }
           .small-box {
             transform: skew(-10deg);
             width: 33.333%;
@@ -3063,12 +3131,27 @@ button.xko {
           flex-wrap: nowrap;
           transform: none;
           height: 100vw;
+          .pc-arrows-holder{
+            display: none;
+          }
           .small-box {
             min-width: 100%;
             position: absolute;
             left: 0;
             top: 0;
             transform: skew(0deg);
+            &:hover{
+              .inner-box {
+                .badge-holder {
+                  .img-holder{
+                    transform: scale(1.03);
+                  }
+                  .badge-img {
+                    transform: scale(1.03);
+                  }
+                }
+              }
+            }
             &.selected {
               opacity: 1;
               z-index: 5;
@@ -3081,7 +3164,7 @@ button.xko {
               }
             }
             &.not-selected {
-              opacity: 0.5;
+              opacity: 1;
               z-index: 1;
             }
             &.first {
@@ -3098,6 +3181,9 @@ button.xko {
             }
             .inner-box {
               .badge-holder {
+                .img-holder{
+                  transform: skew(0deg);
+                }
                 h3,
                 .badge-img {
                   transform: skew(0deg);
