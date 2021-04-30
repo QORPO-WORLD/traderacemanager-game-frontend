@@ -88,8 +88,9 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
           this.identityService.getBalance();
           this.balanceService.balanceHasbeenChanged();
           this.amount = 0;
+          this.getMyBalance();
           this.getMydriverBalances();
-       })
+        }, 100);
       });
       
 

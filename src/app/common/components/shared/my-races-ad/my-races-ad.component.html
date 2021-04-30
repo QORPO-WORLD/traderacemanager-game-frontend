@@ -82,10 +82,12 @@
           <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
           <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
           <div class="inner-holder">
+
+
             <p class="race-name">
-              <span *ngIf="mainr.new_race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
-              <span *ngIf="mainr.new_race_type !== 'classic_tournament' && mainr.new_race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
-              <span *ngIf="mainr.new_race_type === 'classic_tournament'">{{'race.type.classic_tournament' | translate}}</span>
+              <span *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
+              <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
+              <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
             <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>

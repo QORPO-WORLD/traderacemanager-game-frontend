@@ -666,7 +666,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   manualBannerChange(index: number) {
     this.topBannerIndex = index;
     clearInterval(this.bannerInterval);
-    // this.setBannerInterval();
+    this.setBannerInterval();
   }
 
   nextTimers() {
