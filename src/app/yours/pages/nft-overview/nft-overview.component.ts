@@ -20,8 +20,8 @@ export class NftOverviewComponent implements OnInit {
   typeObserver: Subscription;
   teamSubscription: Subscription;
   display: any = window.innerWidth;
-  allItems: number;
-
+  allItemsBalance: number;
+  allItems: any;
   allCars: any;
   racers: any;
   cars: any;
@@ -102,14 +102,19 @@ export class NftOverviewComponent implements OnInit {
   getMydriver() {
     this.accountInfo = this.auth.getDriverMe();
   }
-  calcItems() {
+  calcItemsBalance() {
     setTimeout(() => {
       if (this.teamsCount > 0) {
-        this.allItems =
+        this.allItemsBalance =
           this.carAssets.garage_value + this.myTeamAllData.team_value;
       } else {
-        this.allItems = this.carAssets.garage_value;
+        this.allItemsBalance = this.carAssets.garage_value;
       }
+    }, 1000);
+  }
+  calcItems() {
+    setTimeout(() => {
+      this.allItems = this.allCars + this.teamsCount;
     }, 1000);
   }
   width() {
@@ -165,6 +170,7 @@ export class NftOverviewComponent implements OnInit {
       this.donutChartOptions.series[0]["data"].push(this.teams);
       this.donutChartOptions.series[0]["data"].push(this.special);
       this.donutChart = new Chart(this.donutChartOptions);
+      this.calcItemsBalance();
       this.calcItems();
     });
   }
