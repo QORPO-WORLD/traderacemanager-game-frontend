@@ -66,9 +66,9 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     const data = this.identityService.getBalance();
     this.myBalance = data;
     this.myIoiBalance = this.myBalance.game_wallet_ioi;
-    this.myTrxBalance = this.myBalance.game_wallet_trx;
     if (this.myBalance.matic_usdt) {
       this.maticusdt = this.myBalance.matic_usdt;
+      console.log(data);
     }
   }
 
@@ -76,7 +76,7 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
 
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc.nitroWalletTransferCreate({
-      currency: 'ioi',
+      currency: this.tokenSelected,
       amount: this.amount,
       mode: 'races2nitro'
     }).subscribe(data => {

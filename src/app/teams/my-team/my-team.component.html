@@ -75,11 +75,14 @@
               {{ "leaderboard.team_leaderboard.team_manager" | translate }}
             </p>
             <h4>{{ myTeam?.manager_user_nickname }}</h4>
-            <p style="display: none">
-              <span>?% {{ "teams.my_team.satisfaction_rate" | translate }}</span>
+            <p>
+              <span>{{myTeam?.current_manager_rating }}% {{ "teams.my_team.satisfaction_rate" | translate }}</span>
             </p>
             <ng-container *ngIf="TeamManagerSlide === 1">
-              <div class="satisfaction-wrapper">
+              <div class="satisfaction-wrapper" *ngIf="myTeam?.can_rate_manager === false">
+              You have already rated this manager.  
+              </div>
+              <div class="satisfaction-wrapper" *ngIf="myTeam?.can_rate_manager === true">
                 <div class="satisfaction-info">
                   <p>{{ "teams.my_team.rate_your_experience" | translate }}</p>
                   <p class="desc">{{ "teams.my_team.Best" | translate }}</p>
