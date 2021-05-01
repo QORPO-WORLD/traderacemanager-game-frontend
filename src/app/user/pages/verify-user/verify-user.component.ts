@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { environment } from 'src/environments/environment.prod';
-declare let gtag: any;
+declare let ga: any;
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   withCredentials: true
@@ -41,9 +41,9 @@ export class VerifyUserComponent implements OnInit {
 
   resolveActivation(data) {
     this.auth.login(null);
-    gtag('event', 'dokoncena', {
-      'event_category': 'registrace',
-      'event_label': 'dokoncena',
+    ga('event', 'dokoncena', {
+      'eventCategory': 'registrace',
+      'eventAction': 'dokoncena',
       'value': 'registrace dokoncena'
     });
   }

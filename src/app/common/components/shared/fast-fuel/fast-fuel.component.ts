@@ -329,7 +329,6 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
 
 
   doMagic() {
-    console.log(this.myFavFuels);
     let favSum = 0;
     for (let x = 0; x < this.myCars.length; x++) {
       for (let y = 0; y < this.myFavFuels.length; y++) {
@@ -352,7 +351,6 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
   }
 
   getCanJoin() {
-    console.log(this.raceId);
     this.canJoinObservable = this.raceApi.racesMultiCanJoinV2List().subscribe(data => {
 
       this.driverSrvc.driversFavFuelList().subscribe(datax => {
@@ -403,7 +401,6 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         const uniq5 = [...new Set(step5)];
         this.canJoin5 = uniq5;
 
-console.log('got here');
         const step6 = newdata.filter(item => {
           return item.race_identifier === 'car_race_ioi_1';
         });
@@ -990,7 +987,6 @@ console.log('got here');
   }
 
   getRaceDetails() {
-    console.log(this.chosenRace);
     this.myCars = this.chosenRace[0].available_cars;
     this.getFavCars();
     const mynextrace = this.newCars;

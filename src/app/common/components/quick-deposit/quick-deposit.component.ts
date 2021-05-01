@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { BlockchainService, DriversService, NitroWalletService } from 'src/app/api/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/user/services/auth.service';
-declare let gtag: any;
+declare let ga: any;
 @Component({
   selector: 'app-quick-deposit',
   templateUrl: './quick-deposit.component.html',
@@ -44,9 +44,9 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     }
     this.getMydriver();
     this.getMyBalance();
-    gtag('event', 'deposit-funds', {
-      'event_category': 'navsteva',
-      'event_label': 'deposit-funds',
+    ga('event', 'deposit-funds', {
+      'eventCategory': 'navsteva',
+      'eventAction': 'deposit-funds',
       'value': 'deposit-funds'
     });
   }

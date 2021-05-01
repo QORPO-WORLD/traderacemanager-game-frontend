@@ -957,6 +957,7 @@ a:hover {
         top: 50%;
         transform: translateY(-50%);
         z-index: -1;
+        pointer-events: none;
       }
       p {
         margin: 0;
@@ -1472,7 +1473,6 @@ button.xko {
   overflow: auto;
   background: #111111;
   z-index: 1000005;
-  padding-bottom: 35px;
   .modal-holder {
     display: flex;
     justify-content: center;
@@ -1487,7 +1487,7 @@ button.xko {
       .small-box {
         width: 49%;
         height: calc(var(--vh, 1vh) * 100);
-        transform: skew(-15deg);
+        transform: skew(-15deg) translate3d(0,0,0);
         transform-origin: top;
         cursor: pointer;
         transition: 0.6s;
@@ -1562,7 +1562,7 @@ button.xko {
           }
         }
         .inner-box {
-          transform: skew(15deg);
+          transform: skew(15deg) translate3d(0,0,0);
           transform-origin: top;
           width: 100%;
           height: 100%;
@@ -1588,6 +1588,7 @@ button.xko {
             width: auto;
             z-index: 1;
             transition: 0.4s;
+            pointer-events: none;
           }
         }
       }
@@ -1669,7 +1670,7 @@ button.xko {
             .inner-box {
               .badge-holder {
                 .badge-img {
-                  transform: scale(1.03) skew(15deg);
+                  transform: scale(1.03) skew(15deg) translate3d(0,0,0);
                 }
               }
             }
@@ -1714,7 +1715,10 @@ button.xko {
             }
           }
           .inner-box {
-            transform: none;
+            transform: translate3d(0, 0, 0);
+            .back-img{
+              transform: translateX(-50%) skew(15deg) translate3d(0, 0, 0);
+            }
             .badge-holder {
               position: absolute;
               top: 50%;
@@ -1724,7 +1728,7 @@ button.xko {
               z-index: 5;
               transform: translate(-50%, -50%);
               h3 {
-                transform: skew(15deg);
+                transform: skew(15deg) translate3d(0,0,0);
                 font-weight: 600;
                 font-size: 48px;
                 margin: 0 0 50px 0;
@@ -1733,7 +1737,7 @@ button.xko {
                 position: relative;
                 max-width: 242px;
                 margin: 0 auto;
-                transform: skew(15deg);
+                transform: skew(15deg) translate3d(0,0,0);
                 .badge-img{
                   transform: none;
                 }
@@ -1760,7 +1764,7 @@ button.xko {
               }
               .badge-img {
                 transition: 0.3s;
-                transform: skew(15deg);
+                transform: skew(15deg) translate3d(0,0,0);
                 max-width: 100%;
               }
             }
@@ -2980,6 +2984,11 @@ button.xko {
           .small-box {
             transform: skew(-10deg);
             width: 33.333%;
+            .inner-box{
+              .back-img{
+                transform: none;
+              }
+            }
             &:hover {
               .inner-box {
                 .badge-holder {
@@ -3077,14 +3086,25 @@ button.xko {
     .modal-holder {
       .items-box {
         flex-wrap: wrap;
-        min-width: 200%;
-        transform: translateX(25%);
+        width: 100%;
+        transform: none;
+        height: 100vw;
         .small-box {
           height: 100vw;
-          transform: skew(-45deg) translate3d(0,0,0);
+          transform: none;
+          position: relative;
           &.owner,
           &.racer {
-            width: 50%;
+            width: 100%;
+            height: 50%;
+            &.selected{
+              height: 70%;
+              width: 100%;
+            }
+            &.not-selected{
+              height: 30%;
+              width: 100%;
+            }
           }
           &.owner {
             .inner-box {
@@ -3093,19 +3113,26 @@ button.xko {
                 position: absolute;
                 bottom: 40px;
                 left: 0;
-                transform: skew(45deg) translate3d(0,0,0);
+                transform: none;
                 transform-origin: bottom;
               }
               .back-img {
                 right: unset;
                 left: 0;
-                transform: skew(45deg) translate3d(0,0,0);
+                transform: none;
                 transform-origin: bottom;
               }
             }
           }
           .inner-box {
-            transform: skew(45deg) translate3d(0,0,0);
+            transform: none;
+            .heading-desc{
+              padding: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
           }
         }
       }
@@ -3143,7 +3170,7 @@ button.xko {
             position: absolute;
             left: 0;
             top: 0;
-            transform: skew(0deg) translate3d(0,0,0);
+            transform: skew(0deg);
             &:hover{
               .inner-box {
                 .badge-holder {
@@ -3186,11 +3213,11 @@ button.xko {
             .inner-box {
               .badge-holder {
                 .img-holder{
-                  transform: skew(0deg) translate3d(0,0,0);
+                  transform: skew(0deg);
                 }
                 h3,
                 .badge-img {
-                  transform: skew(0deg) translate3d(0,0,0);
+                  transform: skew(0deg);
                 }
               }
             }
@@ -3232,9 +3259,9 @@ button.xko {
           width: 100%;
           transform: none;
           .small-box {
-            transform: skew(0deg) translate3d(0,0,0);
+            transform: skew(0deg);
             .inner-box {
-              transform: skew(0deg) translate3d(0,0,0);
+              transform: skew(0deg);
               .asset-holder {
                 img {
                   max-width: 100%;

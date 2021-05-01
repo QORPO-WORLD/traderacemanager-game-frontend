@@ -149,7 +149,7 @@
         </div>
         <div class="summary-item">
           <p class="desc">Price per piece</p>
-          <p class="value">{{ displayArray[0]["prize"] }} IOI</p>
+          <p class="value">{{ displayArray[0]["prize"] }} IOI <span>or</span> {{ (displayArray[0]["extras"].value * 0.4) / this.myDriverBalances.matic_usdt | number:'1.0-2':'fr'}} MTC</p>
         </div>
         <div class="summary-item amount-item">
           <p class="desc">Amount</p>
@@ -168,7 +168,7 @@
         <div class="summary-item">
           <p class="desc">Subtotal</p>
           <p class="value big">
-            {{ displayArray[0]["extras"].value * amount }} IOI
+            {{ displayArray[0]["extras"].value * amount }} IOI <span>or</span> {{ ((displayArray[0]["extras"].value * 0.4) / this.myDriverBalances.matic_usdt) * amount | number:'1.0-2':'fr'}} MTC
           </p>
         </div>
       </div>
@@ -184,21 +184,6 @@
         >
           Buy with IOI
         </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            assetType === 'car' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
-          "
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-        >
-          Deposit
-        </button>
-
-
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
@@ -210,6 +195,47 @@
         >
           Buy with MATIC 
         </button>
+
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+          "
+          (click)="lowBalance()"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Buy with IOI
+        </button>
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+          "
+          (click)="lowBalance()"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Buy with MATIC 
+        </button>
+
+        <!-- <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'car' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+          "
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Deposit
+        </button> -->
+
 
         <button
           class="buy-nft my-cta-btn-back hoverable"

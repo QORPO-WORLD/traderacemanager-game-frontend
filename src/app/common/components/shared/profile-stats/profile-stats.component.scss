@@ -89,8 +89,9 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  position: relative;
   .stat-item {
-    max-width: 30%;
+    width: 30%;
     p {
       text-align: center;
       margin: 0 0 5px;
@@ -100,6 +101,31 @@
       &.desc {
         color: #868686;
         font-size: 16px;
+      }
+    }
+  }
+  .non-premium-hider{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 65%;
+    height: 100%;
+    border-radius: 7px;
+    padding: 1px;
+    z-index: 3;
+    .inner{
+      border-radius: 6px;
+      background: white;
+      text-align: center;
+      height: 100%;
+      img{
+        width: 15px;
+      }
+      p{
+        color: #333;
+        margin: 3px 0 0 0;
+        text-shadow: none;
+        line-height: 1.2;
       }
     }
   }
@@ -598,6 +624,17 @@
         font-size: 17px;
         &.desc {
           font-size: 14px;
+        }
+      }
+    }
+    .non-premium-hider{
+      .inner{
+        padding: 0 5px;
+        img{
+          width: 14px;
+        }
+        p{
+          font-size: 13px;
         }
       }
     }

@@ -1,4 +1,4 @@
-<div class="main-holder" [ngClass]="{ 'non-premium': isPremium === true }">
+<div class="main-holder" [ngClass]="{ 'non-premium': isPremium === false }">
   <div class="top-text">
     <p class="heading">Daily tasks</p>
     <p class="text">
@@ -162,7 +162,6 @@
       alt=""
     />
     <img
-      [routerLink]="['/car/fuel-car/classic_tournament_10']"
       *ngIf="!task8 && isPremium === false"
       class="task-icon"
       src="/assets/base/images/tasks/item4.png"
@@ -348,119 +347,6 @@
   </div>
 </div>
 
-<!-- 
-<div class="content-holder">
-  <app-main-top-banner [page]="'d-tasks'"></app-main-top-banner>
-
-  <div class="bot-container">
-    <div class="progress-holder">
-      <div class="timer">
-        <h2><app-timer [value]="task.seconds_to_midnight" (onComplete)="getDailyTasks()"></app-timer></h2>
-      </div>
-      <div class="my-progress-bar">
-        <p>{{task?.daily_tasks?.length}}/9</p>
-        <div class="my-progress">
-          <div [ngClass]="task?.daily_tasks?.length > 0 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 1 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 2 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 3 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 4 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 5 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 6 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 7 ? 'done' : ''"></div>
-          <div [ngClass]="task?.daily_tasks?.length > 8 ? 'done' : ''"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cards-holder">
-
-      
-      <div class="game-item free" [ngClass]="{'active': task0}">
-        <div class="background"></div>
-        <div class="card-content">
-              <h2><span>Play a free</span> race to get 1 IOI </h2>
-              <button class="play-button" [routerLink]="['/car/fuel-car/car_race_short_0']" *ngIf="!task0">DO IT <span>></span></button>
-              <button class="play-button" *ngIf="task0">DONE <span>></span></button>
-            </div>
-      </div>
-      
-      <div class="game-item refferal" [ngClass]="{'active': task1}">
-        <div class="background"></div>
-          <div class="card-content">
-            <h2><span>Make two</span> referrals to get 1 IOI</h2>
-            <button class="play-button" *ngIf="!task1">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task1">DONE <span>></span></button>
-          </div>
-        </div>
-        
-        <div class="game-item trx10" [ngClass]="{'active': task2}">
-          <div class="background"></div>
-          <div class="card-content">
-            <h2><span>Play 10X a 10 TRX</span> game to get 1 IOI</h2>
-            <button class="play-button" [routerLink]="['/car/fuel-car/car_race_short_10']" *ngIf="!task2">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task2">DONE <span>></span></button>
-          </div>
-        </div>
-
-        <div class="game-item trx100" [ngClass]="{'active': task3}">
-          <div class="background"></div>
-          <div class="card-content">
-              <h2><span>Play 5X a 100 TRX</span> game to get 3 IOI </h2>
-              <button class="play-button" [routerLink]="['/car/fuel-car/car_race_short_100']" *ngIf="!task3">DO IT <span>></span></button>
-              <button class="play-button" *ngIf="task3">DONE <span>></span></button>
-            </div>
-          </div>
-
-          <div class="game-item trx500" [ngClass]="{'active': task4}">
-            <div class="background"></div>
-            <div class="card-content">
-            <h2><span>Play A 500 TRX</span> game 5X to get 5 IOI</h2>
-            <button class="play-button" [routerLink]="['/car/fuel-car/car_race_short_500']" *ngIf="!task4">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task4">DONE <span>></span></button>
-          </div>
-      </div>
-      
-      <div class="game-item trx1000" [ngClass]="{'active': task5}">
-        <div class="background"></div>
-        <div class="card-content">
-            <h2><span>Play A 1000 TRX</span> game to get 1 IOI</h2>
-            <button class="play-button" [routerLink]="['/car/fuel-car/car_race_short_1000']" *ngIf="!task5">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task5">DONE <span>></span></button>
-          </div>
-        </div>
-        
-      <div class="game-item deposit" [ngClass]="{'active': task6}">
-        <div class="background"></div>
-        <div class="card-content">
-          <h2><span>Deposit 1 000 TRX</span> to get 1 IOI</h2>
-          <button class="play-button" data-toggle="modal" data-target="#deposit-modal" *ngIf="!task6">DO IT <span>></span></button>
-          <button class="play-button" *ngIf="task6">DONE <span>></span></button>
-        </div>
-      </div>
-      
-      <div class="game-item gold-race" [ngClass]="{'active': task7}">
-        <div class="background"></div>
-        <div class="card-content">
-          <h2><span>Play a  golden race</span> to get 5 IOI</h2>
-            <button class="play-button" [routerLink]="['/car/fuel-car/car_race_24hrs_1000']" *ngIf="!task7">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task7">DONE <span>></span></button>
-        </div>
-      </div>
-
-      <div class="game-item tour" [ngClass]="{'active': task8}">
-        <div class="background"></div>
-        <div class="card-content">
-            <h2><span>Play a tournament</span> to get 1 IOI</h2>
-            <button class="play-button" [routerLink]="['/car/fuel-car/classic_tournament_10']" *ngIf="!task8">DO IT <span>></span></button>
-            <button class="play-button" *ngIf="task8">DONE <span>></span></button>
-        </div>
-      </div>
-        
-    </div>
-  </div>
-</div> 
--->
 <div class="winning-modal win-share-modal" *ngIf="showShareModal === true">
   <div class="modal-bg">
     <div class="win-head">

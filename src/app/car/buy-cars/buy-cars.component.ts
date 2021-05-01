@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { NotifiqService } from './../../common/services/notifiq.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CarsService, DriversService } from '../../api/services';
-declare let gtag: any;
+declare let ga: any;
 @Component({
   selector: 'app-buy-cars',
   templateUrl: './buy-cars.component.html',
@@ -94,9 +94,9 @@ export class BuyCarsComponent implements OnInit, OnDestroy {
     const that = this;
     this.getMyOldDriver();
     this.getMyBalance();
-    gtag('event', 'navsteva', {
-      'event_category': 'navsteva',
-      'event_label': 'nfts-car',
+    ga('event', 'navsteva', {
+      'eventCategory': 'navsteva',
+      'eventAction': 'nfts-car',
       'value': 'navsteva buy cars'
     });
   }

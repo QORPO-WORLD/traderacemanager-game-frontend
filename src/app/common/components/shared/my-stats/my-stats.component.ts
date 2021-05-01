@@ -27,7 +27,6 @@ export class MyStatsComponent implements OnInit {
       .subscribe(data => {
         this.myLdrbrd = data;
         this.getWinsPercent(data);
-        console.log(data);
       });
   }
 

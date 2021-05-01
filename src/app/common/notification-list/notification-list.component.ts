@@ -40,7 +40,6 @@ export class NotificationListComponent implements OnInit, OnDestroy, AfterViewIn
   countNotifications(data) {
     this.countSum = data.length;
     this.notifications = data;
-    console.log(data);
   }
 
   clearNotifications() {
