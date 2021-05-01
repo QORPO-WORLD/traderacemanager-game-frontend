@@ -38,6 +38,18 @@
   </div>
 
   <div class="stats-holder">
+
+    <div class="non-premium-hider my-cta-btn-back" 
+    *ngIf="
+    myDriverOld?.is_paid_membership === 'Free' ||
+    !myDriverOld?.is_paid_membership
+  ">
+      <div class="inner">
+        <img src="/assets/base/images/menu/lock-icon-dark.svg" alt="" />
+        <p>Unlock by becoming a premium member</p>
+      </div>
+    </div>
+
     <div class="stat-item">
       <p class="value">
         {{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}
