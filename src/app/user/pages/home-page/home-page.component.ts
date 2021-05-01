@@ -103,18 +103,18 @@ export class HomePageComponent implements OnInit {
   twitchName = "twitch.svg";
   youtubeName = "youtube.svg";
   bitcoinName = "btc.png";
-  windowWidth;
+  windowWidth: any;
   menuActive = 1;
   reviewSlide = 0;
   maxRevSlides = 2;
   isMenuActive = false;
   activeMenu = 0;
-  sliceStart;
-  sliceEnd;
+  sliceStart: number;
+  sliceEnd: number;
   display = window.innerWidth;
-  actualMonth;
+  actualMonth: any;
   monthsStart = 0;
-  monthsEnd;
+  monthsEnd: any;
   logged = false;
   getMonth() {
     var today = new Date();
