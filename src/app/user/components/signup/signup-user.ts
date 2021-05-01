@@ -18,7 +18,7 @@ import { Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
 declare let grecaptcha: any;
-declare let gtag: any;
+declare let ga: any;
 declare let fbq: Function;
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -196,9 +196,9 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
                 this.ioiapi.setToken(data.authKey);
                 this.router.navigate(['/user/verify-code']);
-                gtag('event', 'nedokoncena', {
-                    'event_category': 'registrace',
-                    'event_label': 'nedokoncena',
+                ga('event', 'nedokoncena', {
+                    'eventCategory': 'registrace',
+                    'eventAction': 'nedokoncena',
                     'value': 'registrace dokoncena'
                 });
             });
@@ -255,7 +255,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
 
     clearMetamask(error) {
         //this.getErrorService().apiError(error);
-        console.log(error);
+
         this.notify.error('', error.error.description);
         this.mmewa = null;
         this.metaSwitch = false;
@@ -275,9 +275,9 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         localStorage.setItem('first-time', JSON.stringify('yes'));
         fbq('track', 'CompleteRegistration');
         this.ioiapi.login(data.authkey);
-        gtag('event', 'nedokoncena', {
-            'event_category': 'registrace',
-            'event_label': 'nedokoncena',
+        ga('event', 'nedokoncena', {
+            'eventCategory': 'registrace',
+            'eventAction': 'nedokoncena',
             'value': 'registrace dokoncena'
         });
     }
