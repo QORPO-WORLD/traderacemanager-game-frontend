@@ -38,6 +38,18 @@
   </div>
 
   <div class="stats-holder">
+
+    <div class="non-premium-hider my-cta-btn-back" 
+    *ngIf="
+    myDriverOld?.is_paid_membership === 'Free' ||
+    !myDriverOld?.is_paid_membership
+  ">
+      <div class="inner">
+        <img src="/assets/base/images/menu/lock-icon-dark.svg" alt="" />
+        <p>Unlock by becoming a premium member</p>
+      </div>
+    </div>
+
     <div class="stat-item">
       <p class="value">
         {{ myLdrbrd?.team_position ? myLdrbrd?.team_position : "-" }}
@@ -122,27 +134,6 @@
         </div>
       </div>
     </ng-container>
-  </div>
-
-  <div class="aff-holder">
-    <div
-      class="non-premium-box"
-      *ngIf="
-        myDriverOld?.is_paid_membership === 'Free' ||
-        !myDriverOld?.is_paid_membership
-      "
-    >
-      <img src="/assets/base/images/menu/lock-icon-dark.svg" alt="" />
-      <p class="text">
-        Unlock your affiliate reward and get 2% from turnover of your partners
-      </p>
-      <button
-        class="my-btn my-cta-btn-back hoverable"
-        [routerLink]="['/teams/join-teams']"
-      >
-        Get premium
-      </button>
-    </div>
   </div>
 
   <div class="edit-car-modal small" *ngIf="showMyStats === true">

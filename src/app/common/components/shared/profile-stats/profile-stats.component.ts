@@ -157,7 +157,6 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     })
       .subscribe(data => {
         this.myLdrbrd = data;
-        console.log(data);
       });
   }
 

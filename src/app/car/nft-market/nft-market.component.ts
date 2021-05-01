@@ -630,7 +630,7 @@ export class NftMarketComponent implements OnInit {
   ];
   title = "All products";
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
-  selectedPosition;
+  selectedPosition: number;
   racersActive = false;
   carsActive = false;
   tracksActive = false;

@@ -68,7 +68,6 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     this.myIoiBalance = this.myBalance.game_wallet_ioi;
     if (this.myBalance.matic_usdt) {
       this.maticusdt = this.myBalance.matic_usdt;
-      console.log(data);
     }
   }
 

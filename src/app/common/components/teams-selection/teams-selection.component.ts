@@ -1,27 +1,39 @@
-import { NotifiqService } from './../../services/notifiq.service';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TeamsService } from '../../../api/services/teams.service';
-import { AuthService } from '../../../user/services/auth.service';
-import { BalanceService } from '../../../common/services/balance.service';
+import { NotifiqService } from "./../../services/notifiq.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { TeamsService } from "../../../api/services/teams.service";
+import { AuthService } from "../../../user/services/auth.service";
+import { BalanceService } from "../../../common/services/balance.service";
 
 @Component({
-  selector: 'app-teams-selection',
-  templateUrl: './teams-selection.component.html',
-  styleUrls: ['./teams-selection.component.scss'],
+  selector: "app-teams-selection",
+  templateUrl: "./teams-selection.component.html",
+  styleUrls: ["./teams-selection.component.scss"],
 })
 export class TeamsSelectionComponent implements OnInit {
-
   @Input() modalVersion = false;
   @Output() modalOpen = new EventEmitter<boolean>();
   teams: any;
   myTeam: string;
   myTeamData: any;
-  mySettings = { type: 'team', numOfBanners: 2 };
+  mySettings = { type: "team", numOfBanners: 2 };
   joinFree = false;
   teamreward: any;
   currMonth: number;
   showInfoBubble = false;
-  allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  allMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   monthCount = 1;
   teamOption = 1;
   startNow = false;
@@ -33,10 +45,14 @@ export class TeamsSelectionComponent implements OnInit {
   myWW = 1920;
   selectedTeamId = 1;
 
-  constructor(protected api: TeamsService, private identityService: AuthService,
-    private balanceService: BalanceService, protected notify: NotifiqService) {
-      this.width();
-    }
+  constructor(
+    protected api: TeamsService,
+    private identityService: AuthService,
+    private balanceService: BalanceService,
+    protected notify: NotifiqService
+  ) {
+    this.width();
+  }
 
   ngOnInit() {
     this.getMyTeam();
@@ -44,7 +60,7 @@ export class TeamsSelectionComponent implements OnInit {
     this.getMydriver();
   }
 
-  width(){
+  width() {
     this.myWW = window.innerWidth;
     if (this.myWW <= 640) {
       this.sliceBalancer = 1;
@@ -54,7 +70,7 @@ export class TeamsSelectionComponent implements OnInit {
   }
 
   getTeams() {
-    this.api.teamsList().subscribe(data => {
+    this.api.teamsList().subscribe((data) => {
       const newdata = data.results;
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
@@ -72,28 +88,42 @@ export class TeamsSelectionComponent implements OnInit {
   }
 
   joinTeam(teamId: number) {
-    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: true, month_count: this.monthCount, join_now: this.startNow }).
-      subscribe(data => {
+    this.api
+      .teamsJoinCreate({
+        join_team_id: teamId,
+        join_paid_membership: true,
+        month_count: this.monthCount,
+        join_now: this.startNow,
+      })
+      .subscribe((data) => {
         this.notifyChangedBalance();
         setTimeout(() => {
           this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          this.notify.error('sucess', 'Thank you for your interest! You will be part of the team from');
+          this.notify.error(
+            "sucess",
+            "Thank you for your interest! You will be part of the team from"
+          );
         }, 100);
       });
   }
 
   joinTeamFree(teamId: number) {
-    this.api.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: this.monthCount, join_now: this.startNow }).
-      subscribe(data => {
+    this.api
+      .teamsJoinCreate({
+        join_team_id: teamId,
+        join_paid_membership: false,
+        month_count: this.monthCount,
+        join_now: this.startNow,
+      })
+      .subscribe((data) => {
         setTimeout(() => {
           this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          console.log(teamId);
           if (this.modalVersion === true) {
             this.closeModal();
           }
@@ -126,31 +156,29 @@ export class TeamsSelectionComponent implements OnInit {
   getMydriver() {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
-      console.log(this.myDriverStats);
     }, 500);
   }
 
-  closeModal(){
+  closeModal() {
     this.modalOpen.emit(false);
   }
 
-  animateTeam(id: number){
+  animateTeam(id: number) {
     this.animationState = id;
     setTimeout(() => {
       this.joinTeamFree(id);
     }, 2200);
   }
 
-  nextTeam(){
+  nextTeam() {
     if (this.startTeamIndex < this.teams.length - this.sliceBalancer) {
       this.startTeamIndex++;
     } else this.startTeamIndex = 0;
   }
 
-  prevTeam(){
+  prevTeam() {
     if (this.startTeamIndex > 0) {
       this.startTeamIndex--;
     } else this.startTeamIndex = this.teams.length - this.sliceBalancer;
   }
-
 }
