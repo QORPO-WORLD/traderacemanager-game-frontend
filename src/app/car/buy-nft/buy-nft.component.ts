@@ -345,7 +345,7 @@ export class BuyNftComponent implements OnInit {
   @Input() assetId = 1;
   amount = 1;
   myDriverBalances: any;
-
+  tokenSelected = 'ioi';
   constructor(
     protected api: CarsService,
     private balanceService: BalanceService,
@@ -385,7 +385,7 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyCarFromGarage(index: number) {
-    this.api.carsBuyList({ "tier": index, "amount": this.amount }).subscribe((datax) => {
+    this.api.carsBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
       const data: any = datax;
       setTimeout(() => {
         this.notifyChangedBalance();
@@ -402,5 +402,11 @@ export class BuyNftComponent implements OnInit {
 
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
+    console.log(this.myDriverBalances);
+    console.log('janko');
+  }
+
+  lowBalance(){
+    this.notify.error('Insufficient balance');
   }
 }

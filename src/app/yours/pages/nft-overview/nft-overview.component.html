@@ -1,0 +1,283 @@
+<div (window:resize)="width()" class="overview-content">
+  <div class="left-content">
+    <h2 class="title">My NFTs value</h2>
+    <div class="left-column">
+      <div class="my-nfts">
+        <div class="nfts-box">
+          <div>
+            <h2>
+              {{ this.allItemsBalance * 0.4 | number: "1.2-2":"fr" }}
+              &#36;
+            </h2>
+            <p>total USD value</p>
+          </div>
+          <div class="middle"></div>
+          <div class="right-value">
+            <h2>{{ this.allItemsBalance | number: "1.2-2":"fr" }} IOI</h2>
+            <p>total IOI value</p>
+          </div>
+        </div>
+      </div>
+      <div class="details">
+        <h2 class="title">NFTs Details</h2>
+        <div class="detail-box">
+          <ng-container *ngIf="active === 1">
+            <div class="box box-animation">
+              <h2 class="detail-title">Cars</h2>
+              <img
+                class="detail-img"
+                src="assets/base/images/nft-cars/gold-bugatti.png"
+                alt="Golden Bugatti"
+              />
+              <div class="values">
+                <div class="left-value">
+                  <h2>
+                    {{ carAssets?.garage_value * 0.4 | number: "1.2-2":"fr" }}
+                    &#36;
+                  </h2>
+                  <p>total USD value</p>
+                </div>
+                <div class="middle"></div>
+                <div class="right-value">
+                  <h2>
+                    {{ carAssets?.garage_value | number: "1.2-2":"fr" }} IOI
+                  </h2>
+                  <p>total IOI value</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="active === 2">
+            <div class="racers box-animation">
+              <div class="left-side">
+                <img
+                  class="detail-img"
+                  src="assets/base/images/nft-racers/white-trm.png"
+                  alt="white nft racer"
+                />
+              </div>
+              <div class="right-side">
+                <h2 class="detail-title">Racers</h2>
+                <div class="values-racers">
+                  <div class="left-value">
+                    <h2>0 &#36;</h2>
+                    <p>total USD value</p>
+                  </div>
+                  <div class="middle"></div>
+                  <div class="right-value">
+                    <h2>0 IOI</h2>
+                    <p>total IOI value</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="active === 3">
+            <div class="box box-animation">
+              <h2 class="detail-title">Tracks</h2>
+              <img
+                class="detail-img track"
+                src="assets/base/images/home-page/underground-small.png"
+                alt="underground race"
+              />
+              <div class="values">
+                <div class="left-value">
+                  <h2>0 &#36;</h2>
+                  <p>total USD value</p>
+                </div>
+                <div class="middle"></div>
+                <div class="right-value">
+                  <h2>0 IOI</h2>
+                  <p>total IOI value</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="active === 4 && teamsCount > 0">
+            <div class="box box-animation">
+              <h2 class="detail-title">
+                Team
+                <span class="my-text-color"> {{ accountInfo.team }}</span>
+              </h2>
+              <div
+                class="detail-img team"
+                *ngIf="
+                  myTeamAllData?.name === 'IOI' ||
+                  myTeamAllData?.name === 'BTC' ||
+                  myTeamAllData?.name === 'ALT'
+                "
+              >
+                <img
+                  [src]="
+                    '/assets/base/images/teams/' +
+                    myTeamAllData?.name +
+                    '-team.png'
+                  "
+                  alt=""
+                />
+              </div>
+              <div
+                class="detail-img team"
+                *ngIf="
+                  myTeamAllData?.name !== 'IOI' &&
+                  myTeamAllData?.name !== 'BTC' &&
+                  myTeamAllData?.name !== 'ALT'
+                "
+              >
+                <img
+                  [src]="
+                    'assets/base/images/custom-teams/custom-team' +
+                    (myTeamAllData.avatar + 1) +
+                    '.png'
+                  "
+                  alt=""
+                />
+                <div class="badge-name">
+                  <p class="name">{{ accountInfo.team }}</p>
+                  <p class="team">TEAM</p>
+                </div>
+              </div>
+              <div class="values team-values">
+                <div class="left-value">
+                  <h2>
+                    {{ myTeamAllData.team_value * 0.4 | number: "1.2-2":"fr" }}
+                    &#36;
+                  </h2>
+                  <p>total USD value</p>
+                </div>
+                <div class="middle"></div>
+                <div class="right-value">
+                  <h2>
+                    {{ myTeamAllData.team_value | number: "1.2-2":"fr" }} IOI
+                  </h2>
+                  <p>total IOI value</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="changer">
+            <div
+              (click)="changeActive(1)"
+              [ngClass]="{ inactive: active != 1 }"
+              class="dot car my-cta-btn-back"
+            ></div>
+            <div
+              (click)="changeActive(2)"
+              [ngClass]="{ inactive: active != 2 }"
+              class="dot racer my-cta-btn-back"
+            ></div>
+            <div
+              (click)="changeActive(3)"
+              [ngClass]="{ inactive: active != 3 }"
+              class="dot track my-cta-btn-back"
+            ></div>
+            <div
+              *ngIf="teamsCount > 0"
+              (click)="changeActive(4)"
+              [ngClass]="{ inactive: active != 4 }"
+              class="dot team my-cta-btn-back"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right-content">
+    <h2 class="title">NFTs Details</h2>
+    <div class="complete-details">
+      <div class="complete-upper">
+        <div class="graph">
+          <div class="middle-graph">
+            <h2>{{ allItems.toLocaleString() }}</h2>
+            <p>total items</p>
+          </div>
+          <div class="pie" [chart]="donutChart"></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item first">
+            <div
+              [ngStyle]="{ 'background-color': cars.color }"
+              class="legend-dot"
+            ></div>
+            <h3>{{ allCars }} Cars</h3>
+          </div>
+          <div class="legend-item">
+            <div
+              [ngStyle]="{ 'background-color': racers.color }"
+              class="legend-dot"
+            ></div>
+            <h3>0 Racers</h3>
+          </div>
+          <div class="legend-item">
+            <div
+              [ngStyle]="{ 'background-color': tracks.color }"
+              class="legend-dot"
+            ></div>
+            <h3>0 Tracks</h3>
+          </div>
+          <div class="legend-item">
+            <div
+              [ngStyle]="{ 'background-color': teams.color }"
+              class="legend-dot"
+            ></div>
+            <h3>{{ teamsCount }} Teams</h3>
+          </div>
+          <div class="legend-item">
+            <div
+              [ngStyle]="{ 'background-color': special.color }"
+              class="legend-dot"
+            ></div>
+            <h3>0 Specials</h3>
+          </div>
+        </div>
+      </div>
+      <div class="complete-lower">
+        <div class="stakes">
+          <div class="daily-stakes">
+            <div>
+              <h3 class="stake-heading">DAILY NFTs STAKES</h3>
+            </div>
+            <div>
+              <p>Daily USD stakes</p>
+              <h2>
+                {{
+                  carAssets?.daily_staking_reward * 0.4 | number: "1.2-2":"fr"
+                }}
+                <img src="assets/base/images/tokens/dollar.svg" alt="" />
+              </h2>
+            </div>
+
+            <div>
+              <p>Daily IOI stakes</p>
+              <h2>
+                {{ carAssets?.daily_staking_reward | number: "1.2-2":"fr" }}
+                <img src="assets/base/images/tokens/ioi-logo.png" alt="" />
+              </h2>
+            </div>
+          </div>
+
+          <div class="total-stakes">
+            <div>
+              <h3 class="stake-heading">TOTAL NFTs STAKES</h3>
+            </div>
+            <div>
+              <p>Total USD stakes</p>
+              <h2>
+                {{ totalStaking | number: "1.2-2":"fr" }}
+                <img src="assets/base/images/tokens/dollar.svg" alt="" />
+              </h2>
+            </div>
+
+            <div>
+              <p>Total IOI stakes</p>
+              <h2>
+                {{ totalStaking * 0.4 | number: "1.2-2":"fr" }}
+                <img src="assets/base/images/tokens/ioi-logo.png" alt="" />
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

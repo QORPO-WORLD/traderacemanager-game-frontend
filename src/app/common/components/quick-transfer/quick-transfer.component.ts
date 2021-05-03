@@ -66,7 +66,6 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
     const data = this.identityService.getBalance();
     this.myBalance = data;
     this.myIoiBalance = this.myBalance.game_wallet_ioi;
-    this.myTrxBalance = this.myBalance.game_wallet_trx;
     if (this.myBalance.matic_usdt) {
       this.maticusdt = this.myBalance.matic_usdt;
     }
@@ -88,8 +87,9 @@ export class QuickTransferComponent implements OnInit, OnDestroy {
           this.identityService.getBalance();
           this.balanceService.balanceHasbeenChanged();
           this.amount = 0;
+          this.getMyBalance();
           this.getMydriverBalances();
-       })
+        }, 100);
       });
       
 

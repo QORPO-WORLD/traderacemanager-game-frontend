@@ -14,7 +14,7 @@ import { NgIf } from '@angular/common';
 import { CurrentRace, NextRaceV2, TournamentLeaderboard } from 'src/app/api/models';
 import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
 import { format } from 'url';
-declare let gtag: any;
+declare let ga: any;
 /*import * as html2canvas from "html2canvas"; */
 @Component({
   selector: 'app-watch-race-short',
@@ -386,13 +386,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.moveWheels();
         setTimeout(() => {
           this.semaforsVisible = false;
-          return;
-          this.raceSound = document.createElement('audio');
-          this.raceSound.src = './assets/base/sounds/Race.mp3';
-          this.raceSound.volume = 0.5;
-          if (this.soundEnabled === true) {
-            this.raceSound.play();
-          }
+          
         }, 1500);
 
       }
@@ -474,12 +468,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 */
           this.moveNum = 0;
 
-          if (this.willShoot === true) {
-            setTimeout(() => { this.shooter(); }, 100);
-            setTimeout(() => { this.shooter(); }, 300);
-            setTimeout(() => { this.shooter(); this.willShoot = false; }, 450);
-          }
-   
 
           if (this.raceData.me !== null) {
             this.resolvePosition(this.raceData.me.cpr);
@@ -534,16 +522,16 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
         if (this.raceData.me) {
           if ( this.raceDataildata.race_identifier === 'car_race_short_0') {
-            gtag('event', 'fast-race-rookie', {
-              'event_category': 'race',
-              'event_label': 'fast-race-rookie',
+            ga('event', 'fast-race-rookie', {
+              'eventCategory': 'race',
+              'eventAction': 'fast-race-rookie',
               'value': 'fast-race-rookie'
             });
           }
           if ( this.raceDataildata.race_identifier !== 'car_race_short_0') {
-            gtag('event',  this.raceDataildata.race_identifier, {
-              'event_category': 'race',
-              'event_label':  this.raceDataildata.race_identifier,
+            ga('event',  this.raceDataildata.race_identifier, {
+              'eventCategory': 'race',
+              'eventAction':  this.raceDataildata.race_identifier,
               'value':  this.raceDataildata.race_identifier
             });
           }
@@ -620,18 +608,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
 
-  shooter() {
-    if (this.pageOpen === true) {
-      const obj = document.createElement('audio');
-      obj.src = './assets/base/images/camera-shutter-click-08.mp3';
-      obj.volume = 0.2;
-      obj.play();
-      this.shooting = true;
-      setTimeout(() => {
-        this.shooting = false;
-      }, 30 * 2 + 45);
-    }
-  }
 
 
   nextCar() {
@@ -663,32 +639,32 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.semaforsLaunched = true;
       this.firstSemafor = true;
       setTimeout(() => {
-        this.playRed();
+    
         this.semaforVal = 4;
 
       }, 1000);
       setTimeout(() => {
-        this.playRed();
+
         this.semaforVal = 3;
 
       }, 2000);
       setTimeout(() => {
-        this.playRed();
+     
         this.semaforVal = 2;
 
       }, 3000);
       setTimeout(() => {
-        this.playRed();
+  
         this.semaforVal = 1;
 
       }, 4000);
       setTimeout(() => {
-        this.playRed();
+
         this.semaforVal = 0;
 
       }, 5000);
       setTimeout(() => {
-        this.playGreen();
+
         this.semaforVal = -1;
         /*
                 this.startSound = document.createElement('audio');
@@ -700,22 +676,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
   }
 
-  playRed() {
-    const red = document.createElement('audio');
-    red.src = './assets/base/sounds/Red.mp3';
-    if (this.soundEnabled) {
-      red.play();
-    }
-  }
-
-
-  playGreen() {
-    const green = document.createElement('audio');
-    green.src = './assets/base/sounds/Green.mp3';
-    if (this.soundEnabled) {
-      green.play();
-    }
-  }
 
   getMyAffilate() {
     const data = this.identityService.getStorageIdentity();

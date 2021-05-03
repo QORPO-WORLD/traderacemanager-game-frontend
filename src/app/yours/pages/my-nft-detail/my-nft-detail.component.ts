@@ -30,6 +30,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car rhino",
     },
     {
       id: 10,
@@ -43,6 +44,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car panther",
     },
     {
       id: 11,
@@ -57,6 +59,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car onyx",
     },
     {
       id: 12,
@@ -70,6 +73,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car zander",
     },
     {
       id: 13,
@@ -83,6 +87,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car cyborg",
     },
     {
       id: 14,
@@ -96,10 +101,10 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.1,
       ability2: 6,
       amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 15,
-      position: 24,
       collection: "Common rare",
       name: "LUNA",
       prize: "3 600 IOI",
@@ -109,6 +114,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.6,
       ability2: 6,
       amount: [],
+      alt: "nft car luna",
     },
     //silver
     {
@@ -123,6 +129,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car dorian",
     },
     {
       id: 17,
@@ -136,6 +143,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car panther",
     },
     {
       id: 18,
@@ -149,6 +157,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car onyx",
     },
     {
       id: 19,
@@ -162,6 +171,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car zander",
     },
     {
       id: 20,
@@ -175,6 +185,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car python",
     },
     {
       id: 21,
@@ -188,10 +199,10 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.33,
       ability2: 12,
       amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 22,
-      position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
       prize: "6 000 IOI",
@@ -201,6 +212,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.98,
       ability2: 12,
       amount: [],
+      alt: "nft car silver knight",
     },
     //gold
     {
@@ -215,6 +227,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car cyborg",
     },
     {
       id: 24,
@@ -228,6 +241,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car rhino",
     },
     {
       id: 25,
@@ -241,6 +255,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car hyper",
     },
     {
       id: 26,
@@ -254,6 +269,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car bull",
     },
     {
       id: 27,
@@ -267,6 +283,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car python",
     },
     {
       id: 28,
@@ -280,10 +297,10 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 0.79,
       ability2: 18,
       amount: [],
+      alt: "nft car hitman",
     },
     {
       id: 29,
-      position: 26,
       collection: "Epic rare",
       name: "MIDAS",
       prize: "9 600 IOI",
@@ -293,6 +310,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 4.74,
       ability2: 18,
       amount: [],
+      alt: "nft car midas",
     },
     //platinum
     {
@@ -307,6 +325,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car hyper",
     },
     {
       id: 31,
@@ -320,6 +339,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car dorian",
     },
     {
       id: 32,
@@ -333,6 +353,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 33,
@@ -346,6 +367,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car bull",
     },
     {
       id: 34,
@@ -359,6 +381,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car knockout",
     },
     {
       id: 35,
@@ -372,10 +395,10 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 1.71,
       ability2: 24,
       amount: [],
+      alt: "nft car lara",
     },
     {
       id: 36,
-      position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
       prize: "15 600 IOI",
@@ -385,6 +408,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: 10.25,
       ability2: 24,
       amount: [],
+      alt: "nft car blue storm",
     },
     {
       id: 1,
@@ -398,6 +422,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "10%",
       rank: "low",
       amount: [],
+      alt: "nft racer Axle",
     },
 
     {
@@ -412,6 +437,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "10%",
       rank: "low",
       amount: [],
+      alt: "nft racer Flash",
     },
     {
       id: 3,
@@ -425,6 +451,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "10%",
       rank: "low",
       amount: [],
+      alt: "nft racer Octane",
     },
     {
       id: 4,
@@ -438,6 +465,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "10%",
       rank: "low",
       amount: [],
+      alt: "nft racer Punisher",
     },
     {
       id: 5,
@@ -451,6 +479,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "15%",
       rank: "normal",
       amount: [],
+      alt: "nft racer Lady Rich",
     },
     {
       id: 6,
@@ -464,6 +493,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "15%",
       rank: "normal",
       amount: [],
+      alt: "nft racer Rich Junior",
     },
     {
       id: 7,
@@ -477,6 +507,7 @@ export class MyNftDetailComponent implements OnInit {
       ability2: "15%",
       rank: "normal",
       amount: [],
+      alt: "nft racer Mrs. Rich",
     },
     {
       id: 8,
@@ -491,6 +522,7 @@ export class MyNftDetailComponent implements OnInit {
       ability3: "18% APY staking",
       rank: "height",
       amount: [],
+      alt: "nft racer mr. rich",
     },
     {
       id: 37,
@@ -502,6 +534,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track free",
     },
     {
       id: 38,
@@ -514,6 +547,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track desert",
     },
     {
       id: 39,
@@ -526,6 +560,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track dark forest",
     },
     {
       id: 40,
@@ -538,6 +573,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track night city",
     },
     {
       id: 41,
@@ -550,6 +586,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track sea bridge",
     },
 
     {
@@ -563,6 +600,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
+      alt: "nft track underground",
     },
     {
       id: 43,
@@ -572,6 +610,7 @@ export class MyNftDetailComponent implements OnInit {
       image: "btc-team",
       type: "team",
       amount: [],
+      alt: "nft team btc",
     },
 
     {
@@ -582,6 +621,7 @@ export class MyNftDetailComponent implements OnInit {
       image: "ioi-team",
       type: "team",
       amount: [],
+      alt: "nft team ioi",
     },
     {
       id: 45,
@@ -591,6 +631,7 @@ export class MyNftDetailComponent implements OnInit {
       image: "alt-team",
       type: "team",
       amount: [],
+      alt: "nft team alt",
     },
     {
       id: 46,
@@ -602,6 +643,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "50 IOI",
       ability2: "20%",
       amount: [],
+      alt: "nft tea you",
     },
     {
       id: 47,
@@ -612,6 +654,7 @@ export class MyNftDetailComponent implements OnInit {
       type: "special",
       ability2: "Yearly",
       amount: [],
+      alt: "nft yearly trophy",
     },
     {
       id: 48,
@@ -623,6 +666,7 @@ export class MyNftDetailComponent implements OnInit {
       ability1: "Entry to yearly tournament",
       ability2: "Monthly",
       amount: [],
+      alt: "nft monthly ring",
     },
   ];
 

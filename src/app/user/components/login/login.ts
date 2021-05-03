@@ -215,11 +215,11 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
 
   executeManualCaptcha(): void {
-    console.log('executing');
+
     this.token = null;
       grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', {action: 'signIn'}).then((token) => {
         this.token = token;
-        console.log(this.token);
+ 
       });
 
   }
