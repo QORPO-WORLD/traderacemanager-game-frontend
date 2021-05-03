@@ -26,9 +26,12 @@
         width: 100%;
         height: 45px;
         margin: 36px 0 0 0;
+        &.big-margin{
+            margin: 89px 0 0 0;
+        }
         button{
             height: 100%;
-            width: 190px;
+            width: 200px;
             margin: 0 5px;
             border-radius: 10px;
             font-size: 16px;
@@ -50,7 +53,11 @@
                 &.loading{
                     background: white;
                     color: #222222;
+                    padding-left: 10px;
                     img{
+                        position: relative;
+                        top: 0;
+                        left: 0;
                         margin-right: 8px;
                         animation-iteration-count: infinite;
                         animation-fill-mode: both;
@@ -65,6 +72,15 @@
             }
             &.imaged{
                 padding-left: 17px;
+            }
+            &.too-big{
+                img{
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    margin-right: 8px;
+                    transform: none;
+                }
             }
             img{
                 position: absolute;
@@ -119,6 +135,488 @@
                     font-size: 16px;
                     margin: 0;
                     text-align: center;
+                }
+            }
+        }
+    }
+    &.step2{
+        .heading-holder{
+            text-align: center;
+            margin: 47px 0 40px;
+            h3{
+                font-weight: 800;
+                font-size: 24px;  
+                margin: 0 0 4px 0;
+            }
+            p{
+                font-weight: 500;
+                font-size: 16px;
+            }
+        }
+        .racers-holder{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            height: 358px;
+            .racer-item{
+                width: 30%;
+                max-width: 229px;
+                margin: 0 5px;
+                background: #FFFFFF;
+                border-radius: 10px;
+                height: 100%;
+                position: relative;
+                transition: .15s;
+                &:hover{
+                    background: #faaab8;
+                }
+                &.mine{
+                    background: #FE183F;
+                    .racer-info{
+                        .name{
+                            .item-name{
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                &.hollow{
+                    .img-holder{
+                        .racer-img{
+                            opacity: .3;
+                        }
+                    }
+                    .racer-info{
+                        .name-sheet{
+                            background: #EBEBEB;
+                        }
+                    }
+                }
+                &.rival{
+                    background: #00D1FF;
+                    .racer-info{
+                        .name{
+                            .item-name{
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                .status-img{
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    z-index: 5;
+                }
+                .img-holder{
+                    position: relative;
+                    width: 100%;
+                    .racer-img{
+                        position: relative;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        max-width: unset;
+                        width: 131%;
+                        z-index: 1;
+                    }
+                    .locked-avatar{
+                        width: 100%;
+                        max-width: 165px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 2;
+                        text-align: center;
+                        display: none;
+                        p{
+                            color: #222222;
+                            font-weight: 600;
+                            font-size: 15px;
+                            margin: 13px 0 0;
+                        }
+                    }
+                }
+                .racer-info{
+                    width: 100%;
+                    padding: 0 13px 13px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 5;
+                    .name{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        position: relative;
+                        z-index: 5;
+                        .item-name{
+                            font-family: 'True-Lies';
+                            font-size: 24px;
+                            margin: 0;
+                            color: #FE183F;
+                            transition: .15s;
+                            position: relative;
+                            z-index: 3;
+                        }
+                        .bet-box{
+                            width: 45px;
+                            height: 45px;
+                            background: #EBEBEB;
+                            border-radius: 10px;
+                            position: relative;
+                            p{
+                                color: #222222;
+                                font-weight: 500;
+                                font-size: 16px;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                margin: 0;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                    .name-sheet{
+                        background: white;
+                        border-radius: 10px;
+                        height: 45px;
+                        font-weight: 500;
+                        font-size: 16px;
+                        width: 100%;
+                        margin-top: 4px;
+                        transition: .15s;
+                        color: #222222;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@-webkit-keyframes loadingRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loadingRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width: 1700px) {
+    .modal-component{
+        height: 570px;
+        top: 48%;
+        width: 63%;
+        &.small{
+            height: 470px;
+        }
+        .cont-holder{
+            .btns-holder{
+                height: 42px;
+                margin: 32px 0 0 0;
+                &.big-margin{
+                    margin: 82px 0 0 0;
+                }
+                button{
+                    font-size: 15px;
+                }
+            }
+            &.step1{
+                h3{
+                    font-size: 22px;
+                    margin: 70px 0 14px;
+                }
+                .race-desc{
+                    max-width: 465px;
+                    font-size: 15px;
+                }
+            }
+            &.step2{
+                .heading-holder{
+                    margin: 40px 0 35px;
+                    h3{
+                        font-size: 22px;
+                    }
+                    p{
+                        font-size: 15px;
+                    }
+                }
+                .racers-holder{
+                    height: 340px;
+                    .racer-item{
+                        max-width: 210px;
+                        .racer-info{
+                            .name-sheet{
+                                height: 42px;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .modal-component{
+        height: 490px;
+        top: 49%;
+        &.small{
+            height: 430px;
+        }
+        .cont-holder{
+            .btns-holder{
+                height: 40px;
+                margin: 28px 0 0 0;
+                button{
+                    font-size: 14px;
+                    img{
+                        max-height: 23px;
+                    }
+                }
+            }
+            &.step1{
+                h3{
+                    font-size: 20px;
+                    margin: 60px 0 12px;
+                }
+                .race-desc{
+                    max-width: 440px;
+                    font-size: 14px;
+                }
+                .win-item{
+                    height: 113px;
+                    width: 240px;
+                    margin: 37px auto 42px;
+                    .inner{
+                        .img-holder{
+                            height: 60px;
+                            img{
+                                width: 34px;
+                            }
+                        }
+                        .desc{
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+            &.step2{
+                .heading-holder{
+                    margin: 30px 0 25px;
+                    h3{
+                        font-size: 20px;
+                    }
+                    p{
+                        font-size: 14px;
+                    }
+                }
+                .racers-holder{
+                    height: 290px;
+                    .racer-item{
+                        max-width: 190px;
+                        .racer-info{
+                            .name-sheet{
+                                height: 35px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .modal-component{
+        min-width: 670px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .modal-component{
+        height: 435px;
+        min-width: 630px;
+        .cont-holder{
+            &.step1{
+                .btns-holder{
+                    button{
+                        width: 150px;
+                        img{
+                            max-height: 20px;
+                        }
+                    }
+                }
+            }
+            &.step2{
+                .heading-holder{
+                    margin: 26px 0 21px;
+                    h3{
+                        font-size: 17px;
+                    }
+                    p{
+                        font-size: 13px;
+                    }
+                }
+                .racers-holder{
+                    height: 258px;
+                    .racer-item{
+                        .img-holder{
+                            .racer-img{
+                                width: 115%;
+                            }
+                        }
+                        .racer-info{
+                            .name{
+                                .item-name{
+                                    font-size: 20px;
+                                }
+                            }
+                            .name-sheet{
+                                height: 31px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px){
+    .modal-component{
+        height: unset;
+        min-width: unset;
+        width: 95%;
+        top: 75px;
+        transform: translateX(-50%);
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        .cont-holder{
+            .btns-holder{
+                button{
+                    width: 40%;
+                }
+            }
+            &.step1{
+                h3{
+                    font-size: 18px;
+                    margin: 40px 0 10px;
+                    &.lost-heading{
+                        margin: 60px 0 15px;
+                    }
+                }
+                .race-desc{
+                    max-width: 397px;
+                    font-size: 13px;
+                    padding: 0 7px;
+                }
+                .win-item{
+                    height: 100px;
+                    width: 210px;
+                    .inner{
+                        .img-holder{
+                            height: 50px;
+                            img{
+                                width: 30px;
+                            }
+                        }
+                        .desc{
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .btns-holder{
+                    flex-wrap: wrap;
+                    height: unset;
+                    button{
+                        width: 40%;
+                        margin: 5px;
+                        height: 40px;
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    .racer-item{
+                        max-width: 40%;
+                        width: 40%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px){
+    .modal-component{
+        .cont-holder{
+            .btns-holder{
+                button{
+                    width: 40%;
+                    &.continue.loading{
+                        img{
+                            width: 18px;
+                        }
+                    }
+                    &.too-big{
+                        font-size: 13px;
+                        img{
+                            width: 15px;
+                        }
+                    }
+                }
+            }
+            &.step1{
+                .btns-holder{
+                    button{
+                        font-size: 12px;
+                        img{
+                            max-height: 18px;
+                        }
+                    }
+                }
+            }
+            &.step2{
+                .racers-holder{
+                    .racer-item{
+                        .img-holder{
+                            .racer-img{
+                                width: 200px;
+                            }
+                        }
+                        .racer-info{
+                            .name{
+                                .item-name{
+                                    font-size: 17px;
+                                }
+                                .bet-box{
+                                    width: 40px;
+                                    height: 40px;
+                                    p{
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

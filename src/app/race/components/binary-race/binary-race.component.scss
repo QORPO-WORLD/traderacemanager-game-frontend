@@ -4,6 +4,8 @@
     min-height: 100vh;
     width: 100%;
     position: relative;
+    background: url('/assets/base/images/binary-race/main-back.jpg') center no-repeat;
+    background-size: cover;
 
     .race-menu{
         width: 100%;
@@ -312,6 +314,264 @@
                         font-size: 20px;
                         margin: 10px 0;
                         line-height: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1700px) {
+    .main-cont{
+        .race-menu{
+            height: 75px;
+            padding: 0 0 0 40px;
+            .menu-logo{
+                width: 65px;
+            }
+            .center-items{
+                .small-box{
+                    padding: 6px 17px;
+                    height: 44px;
+                    img{
+                        max-height: 18px;
+                    }
+                    p{
+                        margin: 0 0 0 11px;
+                        font-size: 15px;
+                    }
+                }
+            }
+            .right-items{
+                .name-holder{
+                    margin-right: 15px;
+                    .avatar{
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+                .switch-btn{
+                    width: 78px;
+                    img{
+                        height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .main-cont{
+        .race-menu{
+            height: 65px;
+            padding: 0 0 0 30px;
+            .menu-logo{
+                width: 60px;
+            }
+            .center-items{
+                .small-box{
+                    padding: 4px 15px;
+                    height: 40px;
+                    img{
+                        max-height: 17px;
+                    }
+                    p{
+                        margin: 0 0 0 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .right-items{
+                .name-holder{
+                    margin-right: 13px;
+                    .avatar{
+                        width: 53px;
+                        height: 53px;
+                        img{
+                            width: 17px;
+                        }
+                    }
+                }
+                .switch-btn{
+                    width: 70px;
+                    img{
+                        height: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .main-cont{
+        .race-menu{
+            .center-items{
+                left: 46%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .main-cont{
+        .race-menu{
+            z-index: 100;
+            &::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #222222;
+                z-index: 10;
+            }
+            .menu-logo{
+                position: relative;
+                z-index: 11;
+            }
+            .my-mobile-button {
+                width: 33px;
+                height: 24px;
+                position: relative;
+                margin: 0 10px;
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+                -webkit-transition: 0.5s ease-in-out;
+                -moz-transition: 0.5s ease-in-out;
+                -o-transition: 0.5s ease-in-out;
+                transition: 0.5s ease-in-out;
+                cursor: pointer;
+                display: block;
+                z-index: 11;
+                span {
+                  display: block;
+                  position: absolute;
+                  height: 4px;
+                  width: 100%;
+                  border-radius: 9px;
+                  opacity: 1;
+                  left: 0;
+                  -webkit-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+                  -webkit-transition: 0.25s ease-in-out;
+                  -moz-transition: 0.25s ease-in-out;
+                  -o-transition: 0.25s ease-in-out;
+                  transition: 0.25s ease-in-out;
+                }
+                span:nth-child(1) {
+                  top: 0px;
+                }
+                span:nth-child(2),
+                span:nth-child(3) {
+                  top: 10px;
+                }
+                span:nth-child(4) {
+                  top: 20px;
+                }
+                &.open {
+                  span:nth-child(1) {
+                    top: 10px;
+                    width: 0%;
+                    left: 50%;
+                  }
+                  span:nth-child(2) {
+                    -webkit-transform: rotate(45deg);
+                    -moz-transform: rotate(45deg);
+                    -o-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                  }
+                  span:nth-child(3) {
+                    -webkit-transform: rotate(-45deg);
+                    -moz-transform: rotate(-45deg);
+                    -o-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+                  }
+                  span:nth-child(4) {
+                    top: 10px;
+                    width: 0%;
+                    left: 50%;
+                  }
+                }
+            }
+            .mobile-handler{
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #222222;
+                z-index: 9;
+                border-width: 1px 0 1px 0;
+                border-style: solid;
+                border-color: #333333;
+                height: unset;
+                padding-bottom: 48px;
+                transition: .25s cubic-bezier(.5,.09,.22,.34);
+                transform: translateY(-100%);
+                &.mobile-open{
+                    transform: translateY(0);
+                }
+                .right-items{
+                    height: unset;
+                    margin: 48px 0;
+                    .name-holder{
+                        display: none;
+                    }
+                    .switch-btn{
+                        border: 1px solid #FE183F;
+                        border-radius: 10px;
+                        width: 60px;
+                        height: 60px;
+                        margin: 0 7px;
+                    }
+                }
+                .center-items{
+                    height: unset;
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    transform: none;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 640px){
+    .main-cont{
+        .race-menu{
+            .mobile-handler{
+                .right-items{
+                    justify-content: flex-end;
+                    margin: 48px 11px 48px 0;
+                    .switch-btn{
+                        width: 45px;
+                        height: 45px;
+                    }
+                }
+                .center-items{
+                    display: block;
+                    .small-box{
+                        width: calc(100% - 36px);
+                        margin: 0 auto 8px;
+                        height: 45px;
+                    }
+                    .quit-btn{
+                        width: calc(100% - 36px);
+                        height: 45px;
+                        border: 1px solid #FE183F;
+                        border-radius: 10px;
+                        display: block;
+                        margin: 60px auto 0;
+                        background: transparent;
                     }
                 }
             }

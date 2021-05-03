@@ -27,47 +27,50 @@ export class BinaryRaceComponent implements OnInit {
   chartMin = 54000;
   menuOpen = false;
   myDriverStats: any;
-  raceEnded = true;
+  raceEnded = true; 
 
   @ViewChild("unityRace", { static: false }) raceComp: any;
 
   constructor(private identityService: AuthService) { }
 
   ngOnInit() {
+    setTimeout(() => {
       let chart = Highcharts.chart('container',{
-      chart: {
-          type: 'areaspline',
-          scrollablePlotArea: {
-            minWidth: 100,
-            scrollPositionX: 1
-          }
-      },
-      yAxis: {
-        offset: 50,
-        labels: {
-          align: 'right'
+        chart: {
+            type: 'areaspline',
+            scrollablePlotArea: {
+              minWidth: 100,
+              scrollPositionX: 1
+            }
         },
-        opposite: true,
-        max: this.chartMax,
-        min: this.chartMin
-      },
-      series: [{
-          name: 'Price',
-          type: 'areaspline',
-          data: [...this.chartData]
-      }]
-    });
-    let counter = 0;
-
-    this.chartInterval = setInterval(() => {
-      this.add(chart);
-      this.updatePlotLine(chart);
-      counter++;
-      if (counter === 10) {
-        this.makeItStop();
-      }
-    }, this.timeStamp);
-
+        yAxis: {
+          offset: 50,
+          labels: {
+            align: 'right'
+          },
+          opposite: true,
+          max: this.chartMax,
+          min: this.chartMin
+        },
+        series: [{
+            name: 'Price',
+            type: 'areaspline',
+            data: [...this.chartData]
+        }]
+      });
+      
+      let counter = 0;
+      
+      this.chartInterval = setInterval(() => {
+        this.add(chart);
+        this.updatePlotLine(chart);
+        counter++;
+        if (counter === 10) {
+          this.makeItStop();
+        }
+      }, this.timeStamp);
+    }, 100);
+      
     this.getMyDriver();
 
   }
