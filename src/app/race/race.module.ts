@@ -19,7 +19,9 @@ import { OthersModule } from '../others/others.module';
 import { StartRaceComponent } from './pages/start-race/start-race.component';
 import { CarModule } from '../car/car.module';
 import { MiniLdrbrdComponent } from './components/mini-ldrbrd/mini-ldrbrd.component';
+import { BinaryInitialSelectionComponent } from './components/binary-initial-selection/binary-initial-selection.component';
 import { ChartModule } from 'angular-highcharts';
+import { BinaryWinnerComponent } from './components/binary-winner/binary-winner.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,7 @@ const routes: Routes = [
       },
       { path: 'watch-race-3min/:id', component: WatchRaceShortComponent },
       { path: 'watch-multiple-races', component: MultiViewComponent },
+      { path: 'binary-fuel', component: BinaryInitialSelectionComponent },
       { path: 'binary-race/:id', component: BinaryRaceComponent }
     ]
   }
@@ -59,7 +62,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [AllRacesComponent, WatchRaceShortComponent,
     StartRaceComponent, MiniLdrbrdComponent,
-    MultiViewComponent, RaceTypeComponent, UnityraceComponent, BinaryRaceComponent],
+    MultiViewComponent, RaceTypeComponent, UnityraceComponent,
+    BinaryInitialSelectionComponent,MultiViewComponent, RaceTypeComponent, UnityraceComponent, 
+    BinaryRaceComponent, BinaryWinnerComponent],
   imports: [
     CommonModule,
     ninja,

@@ -1,0 +1,126 @@
+
+
+<div class="modal-component" [ngClass]="{'small': repeatGame === false}">
+
+  <ng-container *ngIf="repeatGame === false">
+    <div class="cont-holder step1" *ngIf="hasWon === true">
+
+      <h3>Game won!</h3>
+      <p class="race-desc">Congratulations! Repeat the game with the same opponent
+      or invite a new player to play agaist and win again!</p>
+  
+      <div class="win-item">
+        <div class="inner">
+          <div class="img-holder">
+            <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
+          </div>
+          <p class="desc">Win: 2014 IOI</p>
+        </div>
+      </div>
+  
+      <div class="btns-holder">
+        <button class="back">Quit game</button>
+        <button class="back imaged"><img src="/assets/base/images/binary-race/fatality.svg" alt=""> Fatality</button>
+        <button class="continue imaged" (click)="repeat()"><img src="/assets/base/images/binary-race/repeat.svg" alt=""> Repeat</button>
+      </div>
+  
+    </div>
+  
+    <div class="cont-holder step1" *ngIf="hasWon === false">
+  
+      <h3 class="lost-heading">Game over</h3>
+      <p class="race-desc">Don’t worry, repeat the game against the same opponent
+        or invite a new player and win next time!</p>
+  
+      <div class="btns-holder big-margin">
+        <button class="back">Quit game</button>
+        <button class="continue imaged" (click)="repeat()"><img src="/assets/base/images/binary-race/repeat.svg" alt=""> Repeat</button>
+      </div>
+  
+    </div>
+  </ng-container>
+  
+
+  <div class="cont-holder step2" *ngIf="repeatGame === true">
+
+    <div class="heading-holder" *ngIf="requestDenied === false">
+      <h3>All ready</h3>
+      <p>Your opponent accepted the invite.
+        Please, wait until your opponent picks his racer.</p>
+    </div>
+
+    <div class="heading-holder" *ngIf="requestDenied === true">
+      <h3>Request denied</h3>
+      <p>Your opponent did not accept the invite.
+        Try match with other player.</p>
+    </div>
+
+    <div class="racers-holder">
+      <div class="racer-item mine">
+          
+        <img src="/assets/base/images/binary-race/okey-icon.svg" alt="" class="status-img">
+
+        <div class="img-holder">
+          <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + myAvatar.image + '.png'" alt=""/>
+        </div>
+
+        <div class="racer-info">
+          <div class="name">
+            <p class="item-name">{{ myAvatar.name }}</p>
+            <div class="bet-box">
+              <p>1 IOI</p>
+            </div>
+          </div>
+          <button class="name-sheet">Mirek55554</button>
+        </div>
+      </div>
+
+      <div class="racer-item hollow" *ngIf="!opponentPlayer">
+          
+        <img src="/assets/base/images/binary-race/question-mark.svg" alt="" class="status-img">
+
+        <div class="img-holder">
+          <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + myAvatar.image + '.png'" alt=""/>
+        </div>
+
+        <div class="racer-info">
+          <div class="name">
+            <p class="item-name"></p>
+            <div class="bet-box">
+              <p>1 IOI</p>
+            </div>
+          </div>
+          <button class="name-sheet">-</button>
+        </div>
+      </div>
+
+      <div class="racer-item rival"  *ngIf="opponentPlayer">
+
+        <img src="/assets/base/images/binary-race/okey-icon.svg" alt="" class="status-img">
+          
+        <div class="img-holder">
+          <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + opponentPlayer.avatar.image + '.png'" alt=""/>
+        </div>
+
+        <div class="racer-info">
+          <div class="name">
+            <p class="item-name">{{ opponentPlayer.avatar.name }}</p>
+            <div class="bet-box">
+              <p>1 IOI</p>
+            </div>
+          </div>
+          <button class="name-sheet">{{ opponentPlayer.name }}</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="btns-holder">
+      <button class="back">Quit game</button>
+      <button class="continue too-big" *ngIf="loading === false" (click)="automatch()"><img src="/assets/base/images/binary-race/peasant-icon.svg" alt=""> Match with other</button>
+      <button class="continue loading" *ngIf="loading === true"><img src="/assets/base/images/binary-race/loading-icon.svg" alt=""> Please, wait</button>
+    </div>
+
+  </div>
+
+</div>
