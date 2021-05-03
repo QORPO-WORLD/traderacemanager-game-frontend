@@ -923,7 +923,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
     const that = this;
 
     that.isLoading = false;
-    if (that.raceId === 'car_race_24hrs_1000' || that.raceId === 'wednesday_party_race_0') {
+    if (that.raceId === 'car_race_24hrs_1000') {
       that.router.navigate(['/race/watch-race-24hod/' + that.nextRaceHash]);
     } else {
       that.router.navigate(['/race/watch-race-3min/' + that.nextRaceHash]);
