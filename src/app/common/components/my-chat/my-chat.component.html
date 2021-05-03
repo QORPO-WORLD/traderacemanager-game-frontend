@@ -2,15 +2,16 @@
 
 <div class="chat-cont">
   <div class="info-panel">
-    <p class="desc">Team chat <span class="my-text-color">{{ myDriverStats.team }}</span></p>
+
+    <p class="desc">Team chat <span class="my-text-color">{{ myDriverStats?.team }}</span></p>
     <p class="players-num my-text-color">
-      <img *ngIf="Affilate.affiliate_level" [src]="'assets/base/images/avatars/avatar' + Affilate?.affiliate_level + '-small.png'" alt="My affiliate level avatar">
+      <img *ngIf="Affilate?.affiliate_level" [src]="'assets/base/images/avatars/avatar' + Affilate?.affiliate_level + '-small.png'" alt="My affiliate level avatar">
     </p>
     <!-- online {{chatList?.length}} -->
   </div>
   <div class="msgs-cont">
     <div class="my-flex" *ngIf="chatList?.length > 0">
-      <ng-container *ngFor="let msg of chatList | orderBy: 'created':reverse">
+      <div *ngFor="let msg of chatList | orderBy: 'created':reverse">
         <div class="message-item" [ngClass]="msg?.message?.author_id === myDriver ? 'my-msg' : 'not-my'">
           <div class="img-holder">
             <img [src]="'assets/base/images/avatars/avatar' + msg?.message?.affiliate_level + '-small.png'" alt="">
@@ -18,7 +19,7 @@
           <div class="message">
             <div class="name">
               <p class="username">{{msg?.user_nickname}}</p>
-              <p class="date">{{msg?.created | date: "shortTime"}}</p>
+             <!-- <p class="date">{{msg?.created | date: "short"}}</p>-->
             </div>
             <div class="message-text">
               <div class="inner-msg-text">
@@ -27,7 +28,7 @@
             </div>
           </div>
         </div>
-      </ng-container>
+      </div>
     </div>
 
   </div>
