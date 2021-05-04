@@ -312,9 +312,9 @@ export class HomePage implements OnInit {
 
   goToLink(type: string){
     if (type === 'maker') {
-      window.location.href = 'https://daomaker.com/';
+      window.location.href = 'https://daomaker.com/company/ioi';
     } else {
-      window.location.href = 'https://www.ignitioncoin.org/';
+      window.location.href = 'https://paidnetwork.com/ioi-corporation-to-launch-ido-on-ignition/';
     }
   }
 
