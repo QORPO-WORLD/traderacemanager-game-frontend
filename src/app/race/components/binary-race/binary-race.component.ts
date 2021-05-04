@@ -27,7 +27,7 @@ export class BinaryRaceComponent implements OnInit {
   chartMin = 54000;
   menuOpen = false;
   myDriverStats: any;
-  raceEnded = true; 
+  raceEnded = false; 
 
   @ViewChild("unityRace", { static: false }) raceComp: any;
 
