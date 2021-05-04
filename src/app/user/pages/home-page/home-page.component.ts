@@ -308,4 +308,13 @@ export class HomePageComponent implements OnInit {
       this.bitcoinName = "btc.png";
     }
   }
+
+  goToLink(type: string){
+    if (type === 'maker') {
+      window.location.href = 'https://daomaker.com/';
+    } else {
+      window.location.href = 'https://www.ignitioncoin.org/';
+    }
+  }
+
 }
