@@ -138,13 +138,15 @@ export class BinaryRaceComponent implements OnInit {
 
     if (this.currentValue > this.chartMax) {
       this.myChart.yAxis[0].update({
-        max: this.chartMax
+        max: this.chartMax,
+        min: this.chartMin
       });
     }
 
     if (this.currentValue < this.chartMin) {
       this.myChart.yAxis[0].update({
-        min: this.chartMin
+        min: this.chartMin,
+        max: this.chartMax
       });
     }
   }
