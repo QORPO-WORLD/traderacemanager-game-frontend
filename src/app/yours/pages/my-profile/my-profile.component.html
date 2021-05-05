@@ -1,53 +1,110 @@
-<div class="main-holder">
+<div (window:resize)="width()" class="main-holder">
   <div class="profile-nav">
     <div class="left-nav">
-      <div [routerLink]="['/race/start-race']" class="back">
+      <div
+        *ngIf="display > 640"
+        [routerLink]="['/race/start-race']"
+        class="back"
+      >
+        <div class="upper-back"><p>&lt;</p></div>
+        <div class="lower-back"><p>Back</p></div>
+      </div>
+      <div
+        *ngIf="firstShow === 'menu' && display <= 640"
+        [routerLink]="['/race/start-race']"
+        class="back"
+      >
+        <div class="upper-back"><p>&lt;</p></div>
+        <div class="lower-back"><p>Back</p></div>
+      </div>
+      <div
+        *ngIf="firstShow != 'menu' && display <= 640"
+        (click)="activatePage('nfts'); firstShow = 'menu'; mobileMenu = true"
+        class="back"
+      >
         <div class="upper-back"><p>&lt;</p></div>
         <div class="lower-back"><p>Back</p></div>
       </div>
     </div>
     <div class="right-nav">
-      <div class="name">
-        <h2>{{ myDriverStats?.nickname }}</h2>
+      <div class="profile-info">
+        <div class="profile-img">
+          <img
+            src="assets/base/images/avatars/avatar1-small.png"
+            alt=""
+            *ngIf="affiliate.affiliate_level === 1"
+          />
+          <img
+            src="assets/base/images/avatars/avatar2-small.png"
+            alt=""
+            *ngIf="affiliate.affiliate_level === 2"
+          />
+          <img
+            src="assets/base/images/avatars/avatar3-small.png"
+            alt=""
+            *ngIf="affiliate.affiliate_level === 3"
+          />
+          <img
+            src="assets/base/images/avatars/avatar4-small.png"
+            alt=""
+            *ngIf="affiliate.affiliate_level === 4"
+          />
+        </div>
+        <div class="profile-text">
+          <div class="name">
+            <h2>{{ myDriverStats?.nickname }}</h2>
+          </div>
+          <div class="level">
+            <p>Level {{ affiliate.affiliate_level }}</p>
+          </div>
+        </div>
       </div>
       <div class="my-menu-nav">
         <div
-          (click)="activatePage('nfts'); activateSecondPage('list')"
+          (click)="activatePage('nfts'); firstShow = 'none'; mobileMenu = false"
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'nfts' }"
         >
           <p>My NFTs</p>
         </div>
         <div
-          (click)="activatePage('overview')"
+          (click)="activatePage('overview'); firstShow = 'none'"
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'overview' }"
         >
           <p>NFTs Overview</p>
         </div>
         <div
-          (click)="activatePage('affiliate')"
+          (click)="activatePage('affiliate'); firstShow = 'none'"
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'affiliate' }"
         >
           <p>Affiliate</p>
         </div>
         <div
-          (click)="activatePage('rewards'); activateSecondPage('about rewards')"
+          (click)="
+            activatePage('rewards');
+            activateSecondPage('about rewards');
+            firstShow = 'none'
+          "
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'rewards' }"
         >
           <p>Rewards</p>
         </div>
         <div
-          (click)="activatePage('history'); activateSecondPage('transactions')"
+          (click)="
+            activatePage('history');
+            activateSecondPage('transactions');
+            firstShow = 'none'
+          "
           class="menu-item my-cta-btn-back active"
           [ngClass]="{ inactive: show !== 'history' }"
         >
           <p>History</p>
         </div>
         <div
-          (click)="activatePage('stats')"
+          (click)="activatePage('stats'); firstShow = 'none'"
           class="menu-item my-cta-btn-back"
           [ngClass]="{ inactive: show !== 'stats' }"
         >
@@ -89,12 +146,106 @@
         <p>Rewards pool</p>
       </div>
     </div>
-    <ng-container *ngIf="show === 'menu'">
+    <ng-container *ngIf="mobileMenu === true && firstShow === 'menu'">
       <div class="mobile-menu">
-        <div class="cat-cont my-cta-btn-back">
+        <div
+          (click)="activatePage('nfts'); firstShow = 'none'; mobileMenu = false"
+          class="cat-cont my-cta-btn-back"
+        >
           <div class="cat-item">
-            <img src="assets/base/images/profile/nfts.svg" alt="car image" />
+            <div class="item-image my-simple-back">
+              <img src="assets/base/images/profile/nfts.svg" alt="car image" />
+            </div>
+
             <h2 class="item-title">My NFTs</h2>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+        <div
+          (click)="activatePage('overview'); firstShow = 'none'"
+          class="cat-cont my-cta-btn-back"
+        >
+          <div class="cat-item">
+            <div class="item-image my-simple-back">
+              <img
+                src="assets/base/images/profile/overview.svg"
+                alt="Overview image"
+              />
+            </div>
+
+            <h2 class="item-title">NFTs Overview</h2>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+        <div
+          (click)="activatePage('affiliate'); firstShow = 'none'"
+          class="cat-cont my-cta-btn-back"
+        >
+          <div class="cat-item">
+            <div class="item-image my-simple-back">
+              <img
+                src="assets/base/images/profile/affiliate.svg"
+                alt="affiliate image"
+              />
+            </div>
+
+            <h2 class="item-title">Affiliate</h2>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+        <div
+          (click)="
+            activatePage('rewards');
+            activateSecondPage('about rewards');
+            firstShow = 'none'
+          "
+          class="cat-cont my-cta-btn-back"
+        >
+          <div class="cat-item">
+            <div class="item-image my-simple-back">
+              <img
+                src="assets/base/images/profile/rewards.svg"
+                alt="rewards image"
+              />
+            </div>
+
+            <h2 class="item-title">Rewards</h2>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+        <div
+          (click)="
+            activatePage('history');
+            activateSecondPage('transactions');
+            firstShow = 'none'
+          "
+          class="cat-cont my-cta-btn-back"
+        >
+          <div class="cat-item">
+            <div class="item-image my-simple-back">
+              <img
+                src="assets/base/images/profile/history.svg"
+                alt="history image"
+              />
+            </div>
+
+            <h2 class="item-title">History</h2>
+            <button class="arrow-btn">&gt;</button>
+          </div>
+        </div>
+        <div
+          (click)="activatePage('stats'); firstShow = 'none'"
+          class="cat-cont my-cta-btn-back"
+        >
+          <div class="cat-item">
+            <div class="item-image my-simple-back">
+              <img
+                src="assets/base/images/profile/stats.svg"
+                alt="graph image"
+              />
+            </div>
+
+            <h2 class="item-title">Stats</h2>
             <button class="arrow-btn">&gt;</button>
           </div>
         </div>
@@ -114,7 +265,7 @@
       *ngIf="show === 'history' && showSecond === 'races'"
     ></app-my-races>
     <app-stats-profile *ngIf="show === 'stats'"></app-stats-profile>
-    <app-my-nft *ngIf="show === 'nfts' && showSecond === 'list'"></app-my-nft>
+    <app-my-nft *ngIf="show === 'nfts' && mobileMenu === false"></app-my-nft>
     <app-nft-overview *ngIf="show === 'overview'"></app-nft-overview>
   </div>
 </div>
