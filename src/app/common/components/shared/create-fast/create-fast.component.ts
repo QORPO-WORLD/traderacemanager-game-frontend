@@ -324,8 +324,8 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
         return item.pk === this.myCar;
       });
       if (this.myCars.length === 0) {
-        this.notify.error('Error', 'You have no available race car for this race');
-        setTimeout(() => { this.router.navigate(['/car/garage']); }, 1000);
+        this.notify.error('Error', 'You have no available cars to set up fast fuel');
+        setTimeout(() => { this.router.navigate(['/car/nft-market']); }, 1000);
       }
       this.selectCarToRace(0);
       const statBet = [];

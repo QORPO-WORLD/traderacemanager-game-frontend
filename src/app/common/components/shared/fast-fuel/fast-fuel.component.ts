@@ -1008,7 +1008,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
     if (this.myCars.length === 0) {
 
       this.notify.error('Error', 'You have no available race car for this race');
-      setTimeout(() => { this.router.navigate(['/car/garage']); }, 1000);
+      setTimeout(() => { this.router.navigate(['/car/nft-market']); }, 1000);
     } else {
       this.myCars = this.myCars.sort((a, b) => {
         return a.asset_type_id - b.asset_type_id;

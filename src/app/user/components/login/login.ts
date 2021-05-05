@@ -118,6 +118,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
         return;
       }
     }
+    if (this.f.username.value === '' || this.f.username.value == undefined || this.validateEmail(this.f.username.value) === false) {
+      this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
+      return;
+    }
     this.loading = true;
     //this.executeImportantAction();
     this.executeManualCaptcha();
@@ -129,6 +133,11 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     }, 500);
 
     setTimeout(() => { this.loading = false; }, 2000);
+  }
+
+  validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
   }
 
   tryLogin() {

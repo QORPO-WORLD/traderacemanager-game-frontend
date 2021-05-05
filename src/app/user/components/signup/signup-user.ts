@@ -148,7 +148,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     onSubmit() {
 
         if (this.f.nickname.status === 'INVALID') {
-            this.notify.error('validation error', 'Invalid nickname format. Only letters and numbers, min 5 - max 20 digits.');
+            this.notify.error('validation error', 'Invalid nickname format. Only letters and numbers, min 5 - max 20 characters.');
             return;
         }
         if (this.f.email.value === '' || this.f.email.value == undefined || this.validateEmail(this.f.email.value) === false) {
@@ -156,7 +156,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             return;
         }
         if (this.f.password.status === 'INVALID' && !this.mmewa) {
-            this.notify.error('validation error', 'Invalid password format. Min 8 digits, 1 number, 1 small, 1 capital letter are required. (example: ioiGame1)');
+            this.notify.error('validation error', 'Invalid password format. Min 8 characters, 1 number, 1 small, 1 capital letter are required. (example: ioiGame123)');
             return;
         }
         this.submitted = true;
