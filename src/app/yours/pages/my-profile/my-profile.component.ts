@@ -9,7 +9,7 @@ import { AuthService } from "src/app/user/services/auth.service";
   styleUrls: ["./my-profile.component.scss"],
 })
 export class MyProfileComponent implements OnInit {
-  show = "nfts";
+  show = "menu";
   showSecond = "list";
   myDriverStats: any;
   selectedId = 1;

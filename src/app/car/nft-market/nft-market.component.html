@@ -1,3 +1,7 @@
+<div
+  [ngClass]="{ 'filter-overlay-active': mobileFilter === true }"
+  class="filter-overlay"
+></div>
 <div (window:resize)="width()" class="main-holder" #myScroll2>
   <div class="top-info">
     <div
@@ -17,7 +21,7 @@
       <p>{{ "shared.back" | translate }}</p>
     </div>
     <div class="text-info">
-      <h1>Limited amount, unlimited rewards</h1>
+      <h2>Limited amount, unlimited rewards</h2>
       <p>
         Non-Fungible Tokens are virtual tokens minted on the blockchain for
         digital scarcity, security, and authenticity. They are unique,
@@ -56,25 +60,157 @@
       ></div>
 
       <div class="shop-section">
-        <div class="title">
-          <h1>{{ title }}</h1>
-        </div>
         <div *ngIf="display <= 1350" class="filter-mobile">
-          <div (click)="filterMobile()" class="filter-tit">
-            <h1 class="f">Filters</h1>
-            <h1 class="a"><i class="fa fa-sort-down"></i></h1>
+          <div class="filter-tit">
+            <h2 class="f">{{ title }}</h2>
+          </div>
+          <div class="filter-img">
+            <img
+              [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+              class="red-star"
+              (click)="filterMobile()"
+              src="assets/base/images/market/filter-red.svg"
+              alt="Red empty filter icon"
+            />
+            <img
+              [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+              class="red-star"
+              (click)="filterMobile()"
+              src="assets/base/images/market/filter-full-red.svg"
+              alt="Red full filter icon"
+            />
+            <img
+              [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+              class="blue-star"
+              (click)="filterMobile()"
+              src="assets/base/images/market/filter-blue.svg"
+              alt="Blue empty filter icon"
+            />
+            <img
+              [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+              class="blue-star"
+              (click)="filterMobile()"
+              src="assets/base/images/market/filter-full-blue.svg"
+              alt="Blue full filter icon"
+            />
           </div>
           <div
             [ngClass]="{ 'filter-content-active': mobileFilter === true }"
             class="filter-content"
           >
-            <div (click)="filterCars(); filterMobile()"><p>Cars</p></div>
-            <div (click)="filterRacers(); filterMobile()"><p>Racers</p></div>
+            <div class="item-title"><h3>Filter</h3></div>
+            <div
+              [ngClass]="{ 'item-active': carsActive === true }"
+              class="item"
+              (click)="filterCars()"
+            >
+              <p>Cars</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
+            <div
+              [ngClass]="{ 'item-active': racersActive === true }"
+              class="item"
+              (click)="filterRacers()"
+            >
+              <p>Racers</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
 
-            <div (click)="filterTracks(); filterMobile()"><p>Tracks</p></div>
-            <div (click)="filterTeams(); filterMobile()"><p>Teams</p></div>
-            <div (click)="filterSpecial(); filterMobile()"><p>Special</p></div>
-            <div (click)="filterAll(); filterMobile()"><p>All</p></div>
+            <div
+              [ngClass]="{ 'item-active': tracksActive === true }"
+              class="item"
+              (click)="filterTracks()"
+            >
+              <p>Tracks</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
+            <div
+              [ngClass]="{ 'item-active': teamsActive === true }"
+              class="item"
+              (click)="filterTeams()"
+            >
+              <p>Teams</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
+            <div
+              [ngClass]="{ 'item-active': specialActive === true }"
+              class="item"
+              (click)="filterSpecial()"
+            >
+              <p>Special</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
+            <div
+              [ngClass]="{ 'item-active': allActive === true }"
+              class="item"
+              (click)="filterAll()"
+            >
+              <p>All products</p>
+              <div class="checkbox">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/check-red.svg"
+                  alt="Red check icon"
+                /><img
+                  class="blue-star"
+                  src="assets/base/images/market/check-blue.svg"
+                  alt="Blue check icon"
+                />
+              </div>
+            </div>
+            <button class="my-cta-btn-back hoverable" (click)="filterMobile()">
+              Apply
+            </button>
           </div>
         </div>
         <div class="shop-header">
@@ -176,7 +312,7 @@
                 />
                 <img
                   *ngIf="item['type'] === 'team'"
-                  class="img"
+                  class="img team"
                   [src]="
                     '/assets/base/images/home-page/' +
                     item['image'] +
@@ -200,15 +336,12 @@
                 >
                   {{ item["collection"] }}
                 </p>
-                <p *ngIf="item['type'] === 'team'" class="name">
+                <p *ngIf="item['type'] === 'team'" class="name team">
                   Team {{ item["name"] }}
                 </p>
                 <p
                   *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
                   class="name"
-                  (click)="
-                    showAsset(item['id'], item['type'], item['position'])
-                  "
                 >
                   {{ item["name"] }}
                 </p>
@@ -216,7 +349,9 @@
                 <p *ngIf="item['type'] === 'racer'" class="name">
                   {{ item["name"] }}
                 </p>
+
                 <p class="prize">{{ item["prize"] }}</p>
+
                 <button
                   class="my-cta-btn-back my-box-shadow"
                   *ngIf="item['type'] === 'car'"
