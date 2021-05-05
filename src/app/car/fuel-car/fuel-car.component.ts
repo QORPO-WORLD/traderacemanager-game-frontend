@@ -911,7 +911,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.myCars = this.chosenRace[0].available_cars;
     if (this.myCars.length === 0) {
       this.notify.error('Error', 'You have no available race car for this race');
-      setTimeout(() => { this.router.navigate(['/car/garage']); }, 1000);
+      setTimeout(() => { this.router.navigate(['/car/nft-market']); }, 1000);
     } else {
       this.myCars = this.myCars.sort((a, b) => {
         return a.extras.tier - b.extras.tier;
