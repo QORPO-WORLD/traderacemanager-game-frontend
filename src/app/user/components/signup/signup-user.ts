@@ -164,17 +164,22 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         this.passonelength = this.passone.length;
         this.loading = true;
         this.executeImportantAction();
-
+        console.log(this.trying);
+        console.log(this.token);
         this.dangerInterval = setInterval(() => {
             if (this.trying === false && this.token) {
                 this.trySignup();
             }
         }, 300);
-        setTimeout(() => { this.loading = false; }, 2000);
+        setTimeout(() => {
+            this.loading = false;
+            this.trying = false;
+        }, 3000);
     }
 
     trySignup() {
         this.trying = true;
+        clearInterval(this.dangerInterval);
         if (this.mmewa) {
             this.signupWithMetamask().subscribe({
                 next: data => this.doLogin(data),
@@ -202,6 +207,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
                     'value': 'registrace dokoncena'
                 });
             });
+           
         }
     }
 
