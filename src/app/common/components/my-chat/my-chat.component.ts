@@ -20,7 +20,7 @@ export class MyChatComponent implements OnInit {
   tmObserver: Subscription;
   drObserver: Subscription;
   raceObserver: Subscription;
-  chatList: ChatMessage[];
+  chatList = [];
   interval: any;
   chatPosting: SendChatMessage;
   chatInput = '';
@@ -49,6 +49,7 @@ export class MyChatComponent implements OnInit {
   Affilate: any;
   signedIntoRace = false;
   chatLength = 0;
+  
   constructor(private api: TeamChatService, private drvrscrv: DriversService,
     private router: Router, protected notify: NotifiqService, private lead: LeaderboardService,
     private identityService: AuthService, private apichat: TeamChatService,
@@ -59,27 +60,31 @@ export class MyChatComponent implements OnInit {
     this.getDriver();
     this.getMyLevel();
     
-    this.tchatObserver = this.api.teamChatList(100).subscribe(
+    this.tchatObserver = this.api.teamChatList(20).subscribe(
       data => {
         this.chatList = data;
-        this.chatLength = this.chatList.length;
+        this.chatLength = data.length;
+       
       }
     );
-    this.getteammembers();
+
     this.getRewards();
     this.getAllRaces();
 
     this.interval = setInterval(() => {
        this.getChat();
-      this.getteammembers();
-    }, 5000);
+      
+    }, 20000);
   }
 
   getChat() {
-    this.tchatObserver = this.api.teamChatList(100).subscribe(
+    this.tchatObserver = this.api.teamChatList(10).subscribe(
       data => {
+
+ 
+
         this.chatList = data;
-        this.recognizeChatSum();
+        this.recognizeChatSum(data);
       }
     );
   }
@@ -88,12 +93,16 @@ export class MyChatComponent implements OnInit {
   }
 
 
-  recognizeChatSum() {
-    if (this.chatList.length !== this.chatLength) {
+  recognizeChatSum(data) {
+   /* for (let x = 0; x < data.length; x++){
+      this.chatList.push(data[x]);
+    }
+    */ 
+    if (data.length !== this.chatLength) {
       const obj = document.createElement('audio');
       obj.src = './assets/base/sounds/chat.mp3';
       obj.play();
-      this.chatLength = this.chatList.length;
+      this.chatLength = data.length;
     }
   }
 

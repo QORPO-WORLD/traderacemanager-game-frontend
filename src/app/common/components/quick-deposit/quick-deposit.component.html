@@ -73,6 +73,10 @@
           Please push the claim button to see your balance in the dashboard.</p>
     </div>
 
+    <div class="deposit-disclaim my-cta-btn-back">
+      <p>Please, send Matic on Matic Blockchain, not its token version on Ethereum Blockchain!</p>
+    </div>
+
   </div>
   <div class="right-holder">
     <p class="common-heading">Your deposit summary</p>
@@ -96,7 +100,8 @@
         </div>
         <div class="qr-code-holder">
           <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
-  
+          <p class="info-text important" *ngIf="tokenSelected === 'matic'">Please send matic on matic blockchain, not its token version on ethereum blockchain!</p>
+
           <qrcode class="qr-code"
               [level]="1"
               [qrvalue]="cryptoMtfrckr"

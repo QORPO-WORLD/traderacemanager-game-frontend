@@ -22,6 +22,9 @@ h6 {
 .hamburger {
   display: none;
 }
+.main-holder{
+  padding-bottom: 80px;
+}
 .menu {
   width: 100%;
   display: flex;
@@ -100,6 +103,64 @@ h6 {
     }
   }
 }
+
+.public-sale-popup{
+  background: #FE173F;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  .text-holder{
+    p{
+      font-size: 20px;
+      margin: 0;
+      span{
+        font-weight: 700;
+      }
+      a{
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+  .list-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .text{
+      margin: 0 40px 0 0;
+    }
+    .item-box{
+      background: #FFFFFF;
+      border-radius: 10px;
+      width: 200px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &.first{
+        margin-right: 20px;
+      }
+      p{
+        display: inline-block;
+        color: #FE173F;
+        margin: 0;
+      }
+      img{
+        display: inline-block;
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
 .top-section {
   position: relative;
   width: 70%;
@@ -1493,6 +1554,32 @@ h6 {
       margin: 30px 0 50px !important;
     }
   }
+  .public-sale-popup{
+    height: 60px;
+    padding: 0 3%;
+    .text-holder{
+      p{
+        font-size: 17px;
+      }
+    }
+    .list-holder{
+      .text{
+        margin: 0 30px 0 0;
+        font-size: 17px;
+      }
+      .item-box{
+        border-radius: 6px;
+        width: 165px;
+        height: 40px;
+        p{
+          font-size: 17px;
+        }
+        img{
+          height: 23px;
+        }
+      }
+    }
+  }
   .review-position {
     .reviews-sec {
       .my-score {
@@ -1630,6 +1717,32 @@ h6 {
 
     height: 100%;
     width: 100%;
+  }
+  .public-sale-popup{
+    height: 50px;
+    padding: 0 1.5%;
+    .text-holder{
+      p{
+        font-size: 14px;
+      }
+    }
+    .list-holder{
+      .text{
+        margin: 0 20px 0 0;
+        font-size: 14px;
+      }
+      .item-box{
+        border-radius: 5px;
+        width: 140px;
+        height: 33px;
+        p{
+          font-size: 15px;
+        }
+        img{
+          height: 20px;
+        }
+      }
+    }
   }
   .hamburger {
     padding: 0px;
@@ -2453,6 +2566,18 @@ h6 {
   }
 }
 @media screen and (max-width: 900px) {
+
+  .public-sale-popup{
+    height: unset;
+    padding: 8px 1.5%;
+    flex-wrap: wrap;
+    justify-content: center;
+    .text-holder{
+      width: 100%;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+  }
   .review-position {
     .reviews-sec {
       padding: 0 20px;
@@ -3150,6 +3275,35 @@ h6 {
     }
   }
 }
+
+@media screen and (max-width: 500px){
+  .public-sale-popup{
+    .text-holder{
+      p{
+        font-size: 12px;
+      }
+    }
+    .list-holder{
+      .text{
+        display: none;
+      }
+      .item-box{
+        width: 120px;
+        height: 30px;
+        &.first{
+          margin-right: 10px;
+        }
+        p{
+          font-size: 13px;
+        }
+        img{
+          height: 17px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 450px) {
   .review-position {
     height: 250px;
@@ -3746,6 +3900,13 @@ h6 {
   }
 }
 @media screen and (max-width: 400px) {
+  .public-sale-popup{
+    .text-holder{
+      a{
+        display: block;
+      }
+    }
+  }
   .category-racers {
     min-height: 100vh;
     .racers-content {

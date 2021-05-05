@@ -279,23 +279,13 @@ export class RaceLayoutComponent extends AbstractComponent implements OnInit {
     this.tickets = datax.tournament_tickets;
   }
 
-  changeManager() {
-    this.isManager = !this.isManager;
-    if (this.isManager) {
-      localStorage.setItem('manager', JSON.stringify(this.isManager))
-    } else {
-      localStorage.removeItem('manager');
-    }
-    this.recognizeManager();
-  }
-
   recognizeManager() {
-    const man = JSON.parse(localStorage.getItem('manager'));
-    if (man) {
+    const man = this.identityService.getDriverMe().mode;
+    if (man === 'owner') {
       this.isManager = true;
     } else {
       this.isManager = false;
-      }
+    }
   }
 
   changeSound() {

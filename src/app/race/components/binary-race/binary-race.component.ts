@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Chart as lineChart } from 'angular-highcharts';
+import { AuthService } from 'src/app/user/services/auth.service';
 
 declare let ccxt: any;
 declare let ccxws: any;
-import Highcharts from 'highcharts';
+import Highcharts, { Axis } from 'highcharts';
+import { min } from 'rxjs/operators';
 @Component({
   selector: 'app-binary-race',
   templateUrl: './binary-race.component.html',
@@ -16,56 +18,124 @@ export class BinaryRaceComponent implements OnInit {
   mainChart = [];
   lineChart: any;
   raceStep = 1;
-  chartData = [[1,1], [2,2], [3,3]];
-  timeStamp = 3;
+  chartData = [];
+  timeStamp = 1000;
   chartInterval: any;
   currentValue: number;
   plotYvalue = 2;
-  constructor() { }
+  chartMax = 54500;
+  chartMin = 54000;
+  menuOpen = false;
+  myDriverStats: any;
+  raceEnded = false; 
 
-  ngOnInit() {let chart = Highcharts.chart('container',{
-    chart: {
-        type: 'areaspline'
-    },
-    title: {
-        text: 'my chart'
-    },
-    series: [{
-        name: 'Price',
-        type: 'areaspline',
-        data: [...this.chartData]
-    }]
-  });
+  @ViewChild("unityRace", { static: false }) raceComp: any;
 
-  this.chartInterval = setInterval(() => {
-    this.add(chart);
-    this.updatePlotLine(chart);
-  }, 1000);
-}
+  constructor(private identityService: AuthService) { }
 
-add(chart: any) {
-  this.currentValue = Math.floor(Math.random() * 10);
-  this.timeStamp++;
-  chart.series[0].addPoint([this.timeStamp, this.currentValue]);
-}
+  ngOnInit() {
+    setTimeout(() => {
+      let chart = Highcharts.chart('container',{
+        chart: {
+            type: 'areaspline',
+            scrollablePlotArea: {
+              minWidth: 100,
+              scrollPositionX: 1
+            }
+        },
+        yAxis: {
+          offset: 50,
+          labels: {
+            align: 'right'
+          },
+          opposite: true,
+          max: this.chartMax,
+          min: this.chartMin
+        },
+        series: [{
+            name: 'Price',
+            type: 'areaspline',
+            data: [...this.chartData]
+        }]
+      });
+      
+      let counter = 0;
+      
+      this.chartInterval = setInterval(() => {
+        this.add(chart);
+        this.updatePlotLine(chart);
+        counter++;
+        if (counter === 10) {
+          this.makeItStop();
+        }
+      }, this.timeStamp);
+    }, 100);
+      
+    this.getMyDriver();
 
-updatePlotLine(chart: any){
-  this.plotYvalue = this.currentValue;
-  chart.yAxis[0].removePlotBand('line');
-  chart.yAxis[0].addPlotLine({
-    color: 'red',
-    dashStyle: 'Solid',
-    value: this.plotYvalue,
-    width: 2,
-    label: {align: 'right', text: '' + this.plotYvalue, x: -10, useHTML: true},
-    zIndex: 10,
-    id: 'line'
-  })
-}
+  }
 
-makeItStop(){
-  clearInterval(this.chartInterval);
-}
+  add(chart: any) {
+    this.currentValue = Math.floor(Math.random() * (60000 - 54000 + 1)) + 54000;
+    this.timeStamp++;
+    this.chartData.push(this.currentValue);
+    chart.series[0].addPoint([(this.timeStamp / 1000), this.currentValue]);
+    this.adjustChartAxis(chart);
+  }
+
+  updatePlotLine(chart: any){
+    this.plotYvalue = this.currentValue;
+    chart.yAxis[0].removePlotBand('line');
+    chart.yAxis[0].addPlotLine({
+      color: 'red',
+      dashStyle: 'Solid',
+      value: this.plotYvalue,
+      width: 2,
+      label: {align: 'right', text: '' + this.plotYvalue, x: -10, useHTML: true},
+      zIndex: 10,
+      id: 'line'
+    })
+  }
+
+  adjustChartAxis(chart: any){
+
+    if (this.chartData.length > 20) {
+      this.chartData.shift();
+      chart.series[0].data[0].remove(true, true);
+    }
+
+    if (this.currentValue > this.chartMax) {
+      this.chartMax = this.currentValue;
+      chart.yAxis[0].update({
+        max: this.chartMax
+    });
+    }
+
+    if (this.currentValue < this.chartMin) {
+      this.chartMax = this.currentValue;
+      chart.yAxis[0].update({
+        min: this.chartMin
+    });
+    }
+  }
+
+  getMyDriver(){
+    this.myDriverStats = this.identityService.getDriverMe();
+  }
+
+  makeItStop(){
+    clearInterval(this.chartInterval);
+  }
+
+  hello(){
+    this.raceComp.hello();
+  }
+  yo(){
+    this.raceComp.yo();
+  }
+  good(){
+    this.raceComp.good();
+  }
 
   async initCcxt() {
 
