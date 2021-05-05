@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, pairwise, tap } from 'rxjs/operators';
 import { Observable, Subject, EMPTY, of, interval } from 'rxjs';
 declare let ccxt: any;
-import { Chart } from 'chart.js';
+
 import { min } from 'rxjs/operators';
 
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
