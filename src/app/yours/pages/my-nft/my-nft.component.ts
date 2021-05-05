@@ -492,7 +492,7 @@ export class MyNftComponent implements OnInit {
       ability1: "1%",
       ability2: "10%",
       rank: "low",
-      amount: ["yes"],
+      amount: [],
       alt: "nft racer Octane",
     },
     {
@@ -520,7 +520,7 @@ export class MyNftComponent implements OnInit {
       ability1: "1.5%",
       ability2: "15%",
       rank: "normal",
-      amount: ["yes"],
+      amount: [],
       alt: "nft racer Lady Rich",
     },
     {
@@ -548,7 +548,7 @@ export class MyNftComponent implements OnInit {
       ability1: "1.5%",
       ability2: "15%",
       rank: "normal",
-      amount: ["yes"],
+      amount: [],
       alt: "nft racer Mrs. Rich",
     },
     {
@@ -614,7 +614,7 @@ export class MyNftComponent implements OnInit {
       bet: "10 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
-      amount: ["yes"],
+      amount: [],
       alt: "nft track night city",
     },
     {
@@ -651,7 +651,7 @@ export class MyNftComponent implements OnInit {
       prize: "",
       image: "btc-team",
       type: "team",
-      amount: ["yes"],
+      amount: [],
       alt: "nft team btc",
     },
 
@@ -695,7 +695,7 @@ export class MyNftComponent implements OnInit {
       image: "trophy",
       type: "special",
       ability2: "Yearly",
-      amount: ["yes"],
+      amount: [],
       alt: "nft yearly trophy",
     },
     {
@@ -707,7 +707,7 @@ export class MyNftComponent implements OnInit {
       type: "special",
       ability1: "Entry to yearly tournament",
       ability2: "Monthly",
-      amount: ["yes"],
+      amount: [],
       alt: "nft monthly ring",
     },
   ];
