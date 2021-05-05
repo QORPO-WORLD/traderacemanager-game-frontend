@@ -133,7 +133,14 @@
         </div>
         <div class="data-box bordered">
           <img src="/assets/base/images/binary-race/btc-logo.svg" alt="">
-          <p>61 480,90 &#36;</p>
+        
+          <p *ngIf="price$ | async as price; else loading">
+            &#36; {{price}}
+              </p>
+          5
+          <ng-template #loading>
+            <p>Loading</p>
+          </ng-template>
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
