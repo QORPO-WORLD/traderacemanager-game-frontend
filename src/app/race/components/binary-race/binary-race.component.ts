@@ -36,8 +36,8 @@ export class BinaryRaceComponent implements OnInit {
   chartInterval: any;
   currentValue: number;
   plotYvalue = 2;
-  chartMax = 54500;
-  chartMin = 54000;
+  chartMax: number;
+  chartMin: number;
   menuOpen = false;
   myDriverStats: any;
   raceEnded = false;
@@ -94,10 +94,10 @@ export class BinaryRaceComponent implements OnInit {
   }
 
   add() {
-    //this.currentValue = Math.floor(Math.random() * (60000 - 54000 + 1)) + 54000;
 
-    console.log(Math.floor(Math.random() * (60000 - 54000 + 1)) + 54000);
-    console.log(this.currentValue);
+    //this.currentValue = Math.floor(Math.random() * (60000 - 54000 + 1)) + 54000;
+    this.currentValue = Math.floor(this.currentValue);
+
     this.timeStamp++;
     this.chartData.push(this.currentValue);
     this.myChart.series[0].addPoint([(this.timeStamp / 1000), this.currentValue]);
@@ -120,20 +120,29 @@ export class BinaryRaceComponent implements OnInit {
 
   adjustChartAxis() {
 
+    const min = Math.min(...this.chartData);
+    const max = Math.max(...this.chartData);
+
+    if (min !== 0) {
+      this.chartMin = min;
+    }
+
+    if (max !== 0) {
+      this.chartMax = max;
+    }
+
     if (this.chartData.length > 20) {
       this.chartData.shift();
       this.myChart.series[0].data[0].remove(true, true);
     }
 
     if (this.currentValue > this.chartMax) {
-      this.chartMax = this.currentValue;
       this.myChart.yAxis[0].update({
         max: this.chartMax
       });
     }
 
     if (this.currentValue < this.chartMin) {
-      this.chartMax = this.currentValue;
       this.myChart.yAxis[0].update({
         min: this.chartMin
       });
@@ -219,72 +228,6 @@ export class BinaryRaceComponent implements OnInit {
 
   }
 
-  fireBtc() {
-    this.btcinterval = setInterval(() => {
-
-    }, 1000);
-  }
-
-  getLineChart() {
-    this.lineChart = new lineChart({
-      chart: {
-        type: 'areaspline',
-        backgroundColor: null
-      },
-      xAxis: {
-        visible: true
-      },
-      yAxis: {
-        visible: true,
-        tickAmount: 4,
-        gridLineColor: '#ffffff10',
-        title: {
-          text: ''
-        }
-      },
-      legend: {
-        enabled: false
-      },
-      title: {
-        text: ''
-      },
-      credits: {
-        enabled: false
-      },
-      tooltip: {
-        shared: true,
-        valueSuffix: ' TRX'
-      },
-      plotOptions: {
-        areaspline: {
-          fillOpacity: 0
-        },
-        series: {
-          enableMouseTracking: false,
-          marker: {
-            enabled: false
-          },
-          states: {
-            hover: {
-              enabled: false
-            }
-          }
-        }
-      },
-      series: [
-        {
-          name: '',
-          type: 'areaspline',
-          data: [...this.mainChart]
-        }
-      ]
-    });
-  }
-
-  createChart() {
-
-  }
-
   updateChart() {
     this.lineChart.series[0].setData(...this.mainChart);
     this.lineChart.redraw();
@@ -331,11 +274,7 @@ export class BinaryRaceComponent implements OnInit {
 
   setPriceToGraph(data) {
     const time = Date.now();
-    //this.timeStamp = time;
     this.currentValue = data;
-
-    //console.log(time);
-    //console.log(data);
     this.add();
   }
 
