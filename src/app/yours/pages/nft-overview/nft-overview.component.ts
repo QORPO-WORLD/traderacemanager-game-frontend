@@ -43,6 +43,7 @@ export class NftOverviewComponent implements OnInit {
     chart: {
       type: "pie",
       plotShadow: false,
+      className: 'my-donut-chart',
 
       backgroundColor: "none",
     },
