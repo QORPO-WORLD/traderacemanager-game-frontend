@@ -66,6 +66,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   favCoins: FavCoins;
   myFavCoins = [];
   sortingStarted = false;
+  scrollAnimation = false;
   myBetInput = [];
   myMultiBetAmounts = [];
   mostFueled: any;
@@ -1387,7 +1388,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   scrollToView(id: string) {
-    if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 3) {
+    if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 3 || id === 'selectCoinsScroll') {
       if (window.innerWidth < 641) {
         let el = document.getElementById(id);
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1596,7 +1597,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
 
   nextTutorialStep(){
-    this.tutorialStep++;
+    if (this.firstLogin === true && window.innerWidth > 1024){
+      this.tutorialStep++;
+    }
   }
 
   getMyLeaderboard() {
@@ -1612,6 +1615,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   animateFuelSlider(){
+
+    this.scrollAnimation = true;
+    setTimeout(() => {
+      this.scrollAnimation = false;
+    }, 6000);
+
     if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 0) {
       setTimeout(() => {
         if (this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length === 0){
