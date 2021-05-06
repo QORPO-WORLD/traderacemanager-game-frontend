@@ -1060,6 +1060,36 @@ input[type="number"]::-webkit-outer-spin-button {
         margin-top: 41px;
       }
     }
+    .scroll-anim{
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      display: none;
+      img{
+        animation-name: scrollAnim;
+        animation-duration: 2s;
+        animation-iteration-count: 3;
+        animation-fill-mode: both;
+      }
+    }
+    @keyframes scrollAnim {
+      0% {
+        transform: scale(1) translateY(0);
+      }
+      10% {
+        transform: scale(0.95) translateY(0);
+      }
+      40% {
+        transform: scale(0.95) translateY(-20px);
+      }
+      50% {
+        transform: scale(1) translateY(-20px);
+      }
+      100% {
+        transform: scale(1) translateY(0);
+      }
+    }
   }
   .step-cont {
     width: 100%;
@@ -1434,6 +1464,26 @@ input[type="number"]::-webkit-outer-spin-button {
               }
             }
           }
+          .lucky-btn{
+            margin: 30px 0 10px;
+            width: 100%;
+            border-radius: 5px;
+            padding: 1px;
+            display: none;
+            cursor: pointer;
+            .inner{
+              border-radius: 4px;
+              background: #222222;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 42px;
+              p{
+                font-size: 16px;
+                margin: 0 0 0 10px;
+              }
+            }
+          }
         }
         &.box2 {
           width: calc(100% - 538px);
@@ -1799,6 +1849,9 @@ input[type="number"]::-webkit-outer-spin-button {
                 }
               }
             }
+          }
+          .your-fuels-box{
+            display: none;
           }
         }
       }
@@ -4441,11 +4494,28 @@ button.g-button {
           margin-bottom: 0;
         }
       }
+      .boxes-holder{
+        .timer-box{
+          position: fixed;
+          top: 0;
+          right: 0;
+          z-index: 1000001;
+          max-width: 200px;
+          height: 65px;
+          margin: 0;
+          border-radius: 10px 0 0 10px;
+          .inner{
+            height: 100%;
+            border-radius: 10px 0 0 10px;
+            padding: 8px 0 11px 0;
+          }
+        }
+      }
     }
     .bottom-panels {
       height: 90px;
       .selected-cars {
-        max-width: 324px;
+        max-width: 296px;
         .inner {
           .top-desc {
             font-size: 11px;
@@ -4502,6 +4572,9 @@ button.g-button {
           margin-bottom: 2px;
         }
       }
+      .scroll-anim{
+        display: block;
+      }
     }
     .step1 {
       padding-bottom: 60px;
@@ -4547,8 +4620,28 @@ button.g-button {
       .content-holder {
         padding-left: 0;
         .content-box {
+          .box-heading{
+            p{
+              text-align: center;
+            }
+          }
           &.box1 {
             width: 100%;
+            .carousel-holder{
+              .inner-item-holder{
+                .item-holder{
+                  .item-curr{
+                    margin: 0 auto;
+                  }
+                }
+              }
+            }
+            .legend{
+              justify-content: center;
+            }
+            .lucky-btn{
+              display: block;
+            }
           }
           &.box2 {
             padding-bottom: 50px;
@@ -4587,6 +4680,110 @@ button.g-button {
               }
               .svg-holder {
                 width: 100%;
+                flex-wrap: wrap;
+                .desc-text{
+                  display: none;
+                }
+                .lucky-holder{
+                  width: 100%;
+                  .lucky-btn{
+                    width: 100%;
+                    border-radius: 5px;
+                    .inner{
+                      border-radius: 4px;
+                      height: 42px;
+                      justify-content: center;
+                      p{
+                        font-size: 16px;
+                        margin: 0 0 0 10px;
+                      }
+                      img{
+                        width: 24px;
+                      }
+                    }
+                  }
+                }
+              }
+              .fuel-up-holder{
+                height: unset;
+              }
+            }
+            .your-fuels-box{
+              display: block;
+              width: 100%;
+              margin-bottom: 40px;
+              .items-holder{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .item-box{
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 10px;
+                  background: #222222;
+                  padding: 12px 0 5px 0;
+                  position: relative;
+                  margin: 0 10px 10px;
+                  text-align: center;
+                  &.empty{
+                    cursor: pointer;
+                    &:hover{
+                      p{
+                        transform: translate(-50%, -50%) rotate(90deg);
+                      }
+                    }
+                    p{
+                      font-size: 20px;
+                      margin: 0;
+                      opacity: 1;
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%);
+                      transition: .2s;
+                    }
+                  }
+                  img{
+                    max-width: 42px;
+                    max-height: 36px;
+                  }
+                  p{
+                    font-weight: 300;
+                    text-transform: uppercase;
+                    color: #ffffff;
+                    margin-top: 3px;
+                    font-size: 14px;
+                    opacity: 0.2;
+                  }
+                  .remove-box{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: translate(40%, -40%);
+                    width: 25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    background: #FFFFFF;
+                    &:hover{
+                      p{
+                        transform: translate(-50%, -50%) rotate(135deg);
+                      }
+                    }
+                    p{
+                      font-size: 24px;
+                      margin: 0;
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%) rotate(45deg);
+                      transition: .2s;
+                      color: #333333;
+                      opacity: 1;
+                      text-transform: none;
+                    }
+                  }
+                }
               }
             }
           }
@@ -4722,19 +4919,20 @@ button.g-button {
       }
       .back-button {
         height: 100%;
-        width: 75px;
+        width: 95px;
         margin-left: 0;
-        font-size: 11px;
+        font-size: 12px;
         border-radius: 10px 0 0 10px;
         position: absolute;
         left: 50%;
         transform: translateX(calc(-50% - 110px));
         text-align: left;
-        padding-left: 15px;
+        padding-left: 19px;
         background: #111111;
         .my-gt {
           display: inline-block;
-          margin-bottom: 17px;
+          margin-bottom: 16px;
+          font-size: 22px;
           margin-left: 9px;
         }
       }

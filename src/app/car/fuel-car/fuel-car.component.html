@@ -1,7 +1,7 @@
 
 <div class="main-holder" *ngIf="!myCars"><app-ioiloader></app-ioiloader></div>
 
-<div class="main-holder" *ngIf="myCars?.length > 0">
+<div class="main-holder" id="selectCoinsScroll" *ngIf="myCars?.length > 0">
   <div class="main-top-panel">
     <!-- <img src="/assets/base/images/logo.png" alt="ioi logo" class="ioi-logo" [routerLink]="['/race/start-race']" [ngClass]="{'tutorial-hide': tutorialStep === 1 || tutorialStep === 4}"> -->
 
@@ -357,6 +357,13 @@
             Racer Tip of the day
           </p>
         </div>
+        <div class="lucky-btn my-cta-btn-back" (click)="generateAutomaticBetsOnce(); scrollToView('analysisBox')">
+          <div class="inner">
+            <img src="/assets/base/images/tankovanie/lucky-icon.svg" alt="" class="lucky-red">
+            <img src="/assets/base/images/tankovanie/lucky-icon-blue.svg" alt="" class="lucky-blue"/>
+            <p>Lucky fuel</p>
+          </div>
+        </div>
       </div>
 
       <div
@@ -364,6 +371,52 @@
         id="analysisBox"
         [ngClass]="{ 'tutorial-high': tutorialStep === 3 }"
       >
+
+      <div class="your-fuels-box">
+
+        <div class="box-heading">
+          <p class="heading">Your fuels</p>
+        </div>
+
+        <div class="items-holder">
+          <div class="item-box" 
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 0">
+            <img [src]="'/assets/base/images/curr-logos/' + selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].symbol + '-logo.png'" alt=""/>
+            <p class="item-symbol">{{ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].symbol }}</p>
+            <div class="remove-box" (click)="toggleCoin(selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[0]].customIndex)">
+              <p>+</p>
+            </div>
+          </div>
+          <div class="item-box"
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 1">
+            <img [src]="'/assets/base/images/curr-logos/' + selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].symbol + '-logo.png'" alt=""/>
+            <p class="item-symbol">{{ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].symbol }}</p>
+            <div class="remove-box" (click)="toggleCoin(selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[1]].customIndex)">
+              <p>+</p>
+            </div>
+          </div>
+          <div class="item-box"
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length > 2">
+            <img [src]="'/assets/base/images/curr-logos/' + selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].symbol + '-logo.png'" alt=""/> 
+            <p class="item-symbol">{{ selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].symbol }}</p>
+            <div class="remove-box" (click)="toggleCoin(selectedCarsToRace[selectedCarIndex]?.bet[selectedCarsToRace[selectedCarIndex]?.selectedBets[2]].customIndex)">
+              <p>+</p>
+            </div>
+          </div>
+          <div class="item-box empty" (click)="scrollToView('selectCoinsScroll')"
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 1">
+            <p>+</p>
+          </div>
+          <div class="item-box empty" (click)="scrollToView('selectCoinsScroll')"
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 2">
+            <p>+</p>
+          </div>
+          <div class="item-box empty" (click)="scrollToView('selectCoinsScroll')"
+          *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">
+            <p>+</p>
+          </div>
+        </div>
+      </div>
         <div class="bottom-part">
           <div class="box-heading">
             <p class="heading">Fuel up to 100%</p>
@@ -1107,6 +1160,12 @@
                     <img
                       src="/assets/base/images/tankovanie/lucky-icon.svg"
                       alt=""
+                      class="lucky-red"
+                    />
+                    <img
+                      src="/assets/base/images/tankovanie/lucky-icon-blue.svg"
+                      alt=""
+                      class="lucky-blue"
                     />
                     <p>Lucky fuel</p>
                   </div>
@@ -1604,6 +1663,10 @@
       <p class="select-car" *ngIf="selectedCarsToRace.length === 0">
         Pick a car
       </p>
+    </div>
+
+    <div class="scroll-anim" *ngIf="stepIndex === 2 && scrollAnimation === true">
+      <img src="/assets/base/images/tankovanie/scroll-hand.svg" alt="">
     </div>
 
     <div class="selected-cars" *ngIf="stepIndex === 2">
