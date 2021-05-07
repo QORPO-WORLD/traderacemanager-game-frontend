@@ -78,7 +78,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
       password: new FormControl('', Validators.required),
       recaptchaReactive: new FormControl(this.myCap, Validators.required)
     });
-   
+
     this.mmewinterval = setInterval(() => {
       const mmew = JSON.parse(localStorage.getItem('mmealq'));
       if (mmew && this.submitted === false) {
@@ -114,13 +114,11 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   public submit() {
     if (!this.mmewa) {
-      if (this.f.username.value === '' || this.f.password.value === '') {
+
+      if (this.f.username.value === '' || this.f.username.value === undefined || this.validateEmail(this.f.username.value) === false) {
+        this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
         return;
       }
-    }
-    if (this.f.username.value === '' || this.f.username.value == undefined || this.validateEmail(this.f.username.value) === false) {
-      this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
-      return;
     }
     this.loading = true;
     //this.executeImportantAction();
@@ -226,10 +224,10 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   executeManualCaptcha(): void {
 
     this.token = null;
-      grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', {action: 'signIn'}).then((token) => {
-        this.token = token;
- 
-      });
+    grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', { action: 'signIn' }).then((token) => {
+      this.token = token;
+
+    });
 
   }
 
