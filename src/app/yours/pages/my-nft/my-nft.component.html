@@ -13,7 +13,22 @@
       <div class="filter-tit">
         <h2 class="f">{{ title }}</h2>
       </div>
+
       <div class="filter-img">
+        <button
+          (click)="showDeposit = true; filterAllDep()"
+          *ngIf="showDeposit === false"
+          class="deposit-switcher my-cta-btn-back hoverable"
+        >
+          &#43;
+        </button>
+        <button
+          (click)="showDeposit = false; filterAll()"
+          *ngIf="showDeposit === true"
+          class="deposit-switcher smaller my-cta-btn-back hoverable"
+        >
+          Owned
+        </button>
         <img
           [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
           class="red-star"
@@ -44,6 +59,7 @@
         />
       </div>
       <div
+        *ngIf="showDeposit === false"
         [ngClass]="{ 'filter-content-active': mobileFilter === true }"
         class="filter-content"
       >
@@ -161,13 +177,132 @@
           Apply
         </button>
       </div>
+      <div
+        *ngIf="showDeposit === true"
+        [ngClass]="{ 'filter-content-active': mobileFilter === true }"
+        class="filter-content"
+      >
+        <div class="item-title"><h3>Filter</h3></div>
+        <div
+          [ngClass]="{ 'item-active': carsActive === true }"
+          class="item"
+          (click)="filterCarsDep()"
+        >
+          <p>Cars</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'item-active': racersActive === true }"
+          class="item"
+          (click)="filterRacersDep()"
+        >
+          <p>Racers</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+
+        <div
+          [ngClass]="{ 'item-active': tracksActive === true }"
+          class="item"
+          (click)="filterTracksDep()"
+        >
+          <p>Tracks</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'item-active': teamsActive === true }"
+          class="item"
+          (click)="filterTeamsDep()"
+        >
+          <p>Teams</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'item-active': specialActive === true }"
+          class="item"
+          (click)="filterSpecialDep()"
+        >
+          <p>Special</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'item-active': allActive === true }"
+          class="item"
+          (click)="filterAllDep()"
+        >
+          <p>All products</p>
+          <div class="checkbox">
+            <img
+              class="red-star"
+              src="assets/base/images/market/check-red.svg"
+              alt="Red check icon"
+            /><img
+              class="blue-star"
+              src="assets/base/images/market/check-blue.svg"
+              alt="Blue check icon"
+            />
+          </div>
+        </div>
+        <button class="my-cta-btn-back hoverable" (click)="filterMobile()">
+          Apply
+        </button>
+      </div>
     </div>
     <div *ngIf="display > 1350" class="filter-featured">
       <div class="filter-title">
         <p>Filters</p>
       </div>
-      <div class="filter-boxes">
-        <div>
+      <div *ngIf="showDeposit === false" class="filter-boxes">
+        <div class="box-item">
           <div
             (click)="filterCars()"
             [ngClass]="{
@@ -229,10 +364,90 @@
           <p (click)="filterAll()">All</p>
         </div>
       </div>
+      <div *ngIf="showDeposit === true" class="filter-boxes">
+        <div class="box-item">
+          <div
+            (click)="filterCarsDep()"
+            [ngClass]="{
+              'filter-active': carsActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterCarsDep()">Cars</p>
+        </div>
+        <div>
+          <div
+            (click)="filterRacersDep()"
+            [ngClass]="{
+              'filter-active': racersActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterRacersDep()">Racers</p>
+        </div>
+
+        <div>
+          <div
+            (click)="filterTracksDep()"
+            [ngClass]="{
+              'filter-active': tracksActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterTracksDep()">Tracks</p>
+        </div>
+        <div>
+          <div
+            (click)="filterTeamsDep()"
+            [ngClass]="{
+              'filter-active': teamsActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterTeamsDep()">Teams</p>
+        </div>
+        <div>
+          <div
+            (click)="filterSpecialDep()"
+            [ngClass]="{
+              'filter-active': specialActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterSpecialDep()">Special</p>
+        </div>
+        <div>
+          <div
+            (click)="filterAllDep()"
+            [ngClass]="{
+              'filter-active': allActive === true
+            }"
+            class="filter-box"
+          ></div>
+          <p (click)="filterAll()">All</p>
+        </div>
+      </div>
+      <button
+        (click)="showDeposit = true; filterAllDep()"
+        *ngIf="showDeposit === false"
+        class="deposit-switcher my-cta-btn-back hoverable"
+      >
+        &#43; Deposit NFTs
+      </button>
+      <button
+        (click)="showDeposit = false; filterAll()"
+        *ngIf="showDeposit === true"
+        class="deposit-switcher my-cta-btn-back hoverable"
+      >
+        Owned
+      </button>
     </div>
   </div>
   <div class="shop-section-center" #myScroll>
-    <p *ngIf="newProducts.length === 0 && !teamsActive" class="info-message">
+    <p
+      *ngIf="newProducts.length === 0 && !teamsActive && showDeposit === false"
+      class="info-message"
+    >
       You don't have any products, you can buy them in
       <span [routerLink]="['/car/nft-market']" class="red-box-detail"
         >market</span
@@ -241,10 +456,17 @@
         >market</span
       >.
     </p>
-    <p *ngIf="newProducts.length === 0 && teamsActive" class="info-message">
+    <p
+      *ngIf="
+        newProducts.length === 0 &&
+        teamsActive === true &&
+        showDeposit === false
+      "
+      class="info-message"
+    >
       Coming soon.
     </p>
-    <div *ngIf="newProducts.length > 0" class="boxes">
+    <div *ngIf="newProducts.length > 0 && showDeposit === false" class="boxes">
       <div
         *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
         class="box my-box-shadow"
@@ -335,6 +557,92 @@
             "
           >
             See details
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showDeposit === true" class="boxes">
+      <div
+        *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
+        class="box my-box-shadow"
+      >
+        <div class="boximage">
+          <img
+            class="img"
+            *ngIf="item['type'] === 'car'"
+            [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+            [alt]="item['alt']"
+          />
+
+          <img
+            class="img"
+            *ngIf="item['type'] === 'racer'"
+            [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
+            [alt]="item['alt']"
+          />
+          <img
+            class="img"
+            *ngIf="item['type'] === 'track'"
+            [src]="
+              '/assets/base/images/home-page/' + item['image'] + '-small.png'
+            "
+            [alt]="item['alt']"
+          />
+
+          <img
+            class="img"
+            *ngIf="item['type'] === 'team'"
+            [src]="
+              '/assets/base/images/home-page/' + item['image'] + '-small.png'
+            "
+            [alt]="item['alt']"
+          />
+          <img
+            class="img special"
+            *ngIf="item['type'] === 'special'"
+            [src]="'/assets/base/images/home-page/' + item['image'] + '.png'"
+            [alt]="item['alt']"
+          />
+        </div>
+        <div class="txt">
+          <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
+            {{ item["collection"] }}
+          </p>
+
+          <p *ngIf="item['type'] === 'team'" class="namefont">
+            Team {{ item["name"] }}
+          </p>
+          <p *ngIf="item['type'] != 'team'" class="namefont">
+            {{ item["name"] }}
+          </p>
+
+          <p class="prize">{{ item["prize"] }}</p>
+          <button
+            (click)="
+              showAsset(item['id'], item['type'], item['amount'].length);
+              scrollTop(myScroll2)
+            "
+            class="my-cta-btn-back my-box-shadow"
+            *ngIf="item['type'] != 'team'"
+          >
+            Deposit
+          </button>
+          <button
+            class="my-cta-btn-back my-box-shadow"
+            [ngStyle]="{ opacity: '0.3' }"
+            *ngIf="item['name'] != 'You' && item['type'] === 'team'"
+          >
+            Sold out
+          </button>
+          <button
+            class="my-cta-btn-back my-box-shadow"
+            *ngIf="item['name'] === 'You' && item['type'] === 'team'"
+            (click)="
+              showAsset(item['id'], item['type'], item['amount'].length);
+              scrollTop(myScroll2)
+            "
+          >
+            Deposit
           </button>
         </div>
       </div>

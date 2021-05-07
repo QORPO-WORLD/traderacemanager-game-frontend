@@ -21,6 +21,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./my-nft.component.scss"],
 })
 export class MyNftComponent implements OnInit {
+  showDeposit = false;
   cars: any;
   buyedCar: any;
   editionIndex = 1;
@@ -1278,6 +1279,122 @@ export class MyNftComponent implements OnInit {
     this.newProducts = this.products.filter(
       (item) => item["amount"].length > 0
     );
+    this.width();
+    this.specialActive = false;
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.racersActive = false;
+    this.teamsActive = false;
+    this.allActive = true;
+    this.title = "Your products";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "all";
+  }
+
+  filterRacersDep() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter((item) => item["type"] === "racer");
+
+    this.width();
+    this.specialActive = false;
+    this.racersActive = true;
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.allActive = false;
+    this.teamsActive = false;
+    this.title = "Your Racers";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "racer";
+  }
+
+  filterCarsDep() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter((item) => item["type"] === "car");
+
+    this.width();
+    this.specialActive = false;
+    this.carsActive = true;
+    this.tracksActive = false;
+    this.racersActive = false;
+    this.teamsActive = false;
+    this.allActive = false;
+    this.title = "Your Cars";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "car";
+  }
+  filterTracksDep() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter((item) => item["type"] === "track");
+
+    this.width();
+    this.specialActive = false;
+    this.tracksActive = true;
+    this.carsActive = false;
+    this.racersActive = false;
+    this.teamsActive = false;
+    this.allActive = false;
+    this.title = "Your Tracks";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "track";
+  }
+  filterTeamsDep() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter((item) => item["type"] === "team");
+
+    this.width();
+    this.specialActive = false;
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.racersActive = false;
+    this.teamsActive = true;
+    this.allActive = false;
+    this.title = "Your Teams";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "team";
+  }
+  filterSpecialDep() {
+    this.newProducts = this.products;
+    this.newProducts = this.products.filter(
+      (item) => item["type"] === "special"
+    );
+
+    this.width();
+    this.specialActive = true;
+    this.racersActive = false;
+    this.tracksActive = false;
+    this.carsActive = false;
+    this.allActive = false;
+    this.teamsActive = false;
+    this.title = "Your Specials";
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
+    this.filter = "racer";
+  }
+  filterAllDep() {
+    this.newProducts = this.products;
     this.width();
     this.specialActive = false;
     this.tracksActive = false;

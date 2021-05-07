@@ -47,6 +47,9 @@ p {
   display: flex;
   flex-direction: column;
 }
+.sticky-buttons {
+  display: none;
+}
 .detail-header {
   display: flex;
   .back-btn {
@@ -76,12 +79,19 @@ p {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  .content-background {
+    background: #222222;
+    display: flex;
+    justify-content: space-between;
+    width: 78%;
+    border-radius: 15px;
+  }
   .detail-text {
     padding: 50px 35px 40px 35px;
     height: 550px;
-    background: #222222;
+
     border-radius: 15px;
-    width: 39%;
+    width: 55%;
     display: flex;
     flex-direction: column;
     .text-title {
@@ -105,46 +115,69 @@ p {
         }
       }
     }
+    .button-content {
+      margin-top: auto;
+      display: flex;
+      .buy-btn {
+        z-index: 1;
+
+        transition: 0.2s;
+        -webkit-transition: 0.2s;
+        -moz-transition: 0.2s;
+        -ms-transition: 0.2s;
+        -o-transition: 0.2s;
+        width: 175px;
+        height: 50px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+
+        img {
+          display: inline;
+          padding-right: 10px;
+        }
+        h4 {
+          display: inline;
+        }
+      }
+      .dep-btn {
+        z-index: 1;
+        margin-left: 20px;
+        transition: 0.2s;
+        -webkit-transition: 0.2s;
+        -moz-transition: 0.2s;
+        -ms-transition: 0.2s;
+        -o-transition: 0.2s;
+        width: 175px;
+        height: 50px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+
+        img {
+          display: inline;
+          padding-right: 10px;
+        }
+        h4 {
+          display: inline;
+        }
+      }
+    }
   }
   .detail-image {
     overflow: hidden;
     height: 550px;
-    background: #222222;
+
     border-radius: 15px;
-    width: 39%;
+    width: 44%;
     display: flex;
     flex-direction: column;
     position: relative;
-    .buy-btn {
-      z-index: 1;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 25px;
-      transition: 0.2s;
-      -webkit-transition: 0.2s;
-      -moz-transition: 0.2s;
-      -ms-transition: 0.2s;
-      -o-transition: 0.2s;
-      width: 175px;
-      height: 52px;
-      border-radius: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      -o-border-radius: 10px;
-      -webkit-transform: translateX(-50%);
-      -moz-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      -o-transform: translateX(-50%);
-      img {
-        display: inline;
-        padding-right: 10px;
-      }
-      h4 {
-        display: inline;
-      }
-    }
+
     .owned {
       position: absolute;
       top: 25px;
@@ -249,7 +282,7 @@ p {
     }
     .image-button {
       position: relative;
-      padding: 20px;
+      padding-bottom: 40px;
       display: flex;
       flex-direction: column;
       z-index: 3;
@@ -265,7 +298,6 @@ p {
         -o-border-radius: 10px;
         width: 175px;
         height: 50px;
-        margin-bottom: 15px;
         .btn-background {
           box-sizing: content-box;
 
@@ -308,30 +340,6 @@ p {
           }
         }
       }
-      .buy-btn-racer {
-        margin: 0 auto;
-        position: relative;
-        transition: 0.2s;
-        -webkit-transition: 0.2s;
-        -moz-transition: 0.2s;
-        -ms-transition: 0.2s;
-        -o-transition: 0.2s;
-        width: 175px;
-        height: 50px;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
-
-        img {
-          display: inline;
-          padding-right: 10px;
-        }
-        h4 {
-          display: inline;
-        }
-      }
     }
 
     .button-animation {
@@ -352,7 +360,7 @@ p {
   }
   .detail-abilities {
     height: 550px;
-    width: 18%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -409,15 +417,25 @@ p {
       }
     }
     .ability-title {
+      display: flex;
       height: 10%;
+      h4 {
+        display: none;
+      }
+    }
+    .ability-boxes {
+      height: 88%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .ability-box {
-      height: 28%;
+      height: 31%;
       border-radius: 15px;
       padding: 1px;
     }
     .moreboxes {
-      height: 20%;
+      height: 23%;
     }
   }
 }
@@ -456,6 +474,9 @@ p {
   }
   .detail-content {
     flex-wrap: wrap;
+    .content-background {
+      width: 100%;
+    }
     .detail-text {
       width: 49%;
     }
@@ -466,18 +487,26 @@ p {
       width: 100%;
       justify-content: unset;
       height: 160px;
-      flex-wrap: wrap;
-      flex-direction: row;
 
       .ability-title {
         width: 100%;
         margin-top: 20px;
         height: 20%;
       }
+      .ability-boxes {
+        overflow-x: scroll;
+        width: 100%;
+        display: flex;
+
+        justify-content: unset;
+
+        flex-direction: row;
+      }
       .ability-box {
         margin-left: 1%;
         width: 24%;
         height: 80%;
+        min-width: 175px;
       }
       .box1 {
         margin-left: 0%;
@@ -508,12 +537,79 @@ p {
   }
 }
 @media screen and (max-width: 640px) {
-  .detail-content {
-    flex-direction: column;
+  .sticky-buttons {
+    z-index: 5;
+    left: 5px;
+    width: calc(100% - 10px);
+    position: fixed;
+    bottom: 82.5px;
+    display: flex;
+    justify-content: center;
 
+    .buy-btn {
+      margin-right: 10px;
+      transition: 0.2s;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      -ms-transition: 0.2s;
+      -o-transition: 0.2s;
+
+      width: 45%;
+      height: 50px;
+      max-width: 175px;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+
+      img {
+        display: inline;
+        padding-right: 10px;
+      }
+      h4 {
+        display: inline;
+      }
+    }
+    .dep-btn {
+      margin-left: 10px;
+      transition: 0.2s;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      -ms-transition: 0.2s;
+      -o-transition: 0.2s;
+      width: 45%;
+      height: 50px;
+      max-width: 175px;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+
+      img {
+        display: inline;
+        padding-right: 10px;
+      }
+      h4 {
+        display: inline;
+      }
+    }
+  }
+  .detail-content {
+    background: #222222;
+    border-radius: 10px;
+    flex-direction: column;
+    .content-background {
+      flex-direction: column-reverse;
+    }
     .detail-text {
+      padding: 0px 35px 40px 35px;
       width: 100%;
       height: auto;
+      .button-content {
+        display: none;
+      }
     }
     .detail-image {
       margin-top: 20px;
@@ -528,14 +624,45 @@ p {
     }
     .detail-abilities {
       height: auto;
+      margin-bottom: 40px;
+      margin-left: 35px;
       .ability-title {
         margin-bottom: 10px;
+        h4 {
+          font-size: 20px;
+          display: block;
+          position: absolute;
+          right: 30px;
+          animation: arrow-move 0.4s infinite;
+          -webkit-animation: arrow-move 2s infinite;
+        }
+      }
+      @keyframes arrow-move {
+        0% {
+          transform: translateX(-20px);
+          -webkit-transform: translateX(-20px);
+          -moz-transform: translateX(-20px);
+          -ms-transform: translateX(-20px);
+          -o-transform: translateX(-20px);
+        }
+        50% {
+          transform: translateX(+5px);
+          -webkit-transform: translateX(+5px);
+          -moz-transform: translateX(+5px);
+          -ms-transform: translateX(+5px);
+          -o-transform: translateX(+5px);
+        }
+        100% {
+          transform: translateX(-20px);
+          -webkit-transform: translateX(-20px);
+          -moz-transform: translateX(-20px);
+          -ms-transform: translateX(-20px);
+          -o-transform: translateX(-20px);
+        }
       }
       .ability-box {
         width: 48%;
-        height: 141px;
-        margin-left: 0%;
-        margin: 1%;
+        height: 88px;
       }
     }
   }
@@ -547,14 +674,6 @@ p {
   .detail-content {
     .detail-image {
       height: 420px;
-    }
-    .detail-abilities {
-      .ability-box {
-        width: 100%;
-        height: 120px;
-        margin: 0%;
-        margin-top: 10px;
-      }
     }
   }
 }

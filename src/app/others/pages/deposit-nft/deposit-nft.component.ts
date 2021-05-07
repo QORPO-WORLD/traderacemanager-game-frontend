@@ -1,22 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-
+import { Component, OnInit } from "@angular/core";
+import { NotifiqService } from "./../../../common/services/notifiq.service";
+import { NitroWalletService } from "src/app/api/services";
+import { Subscription } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "src/app/user/services/auth.service";
 @Component({
-  selector: "app-my-nft-detail",
-  templateUrl: "./my-nft-detail.component.html",
-  styleUrls: ["./my-nft-detail.component.scss"],
+  selector: "app-deposit-nft",
+  templateUrl: "./deposit-nft.component.html",
+  styleUrls: ["./deposit-nft.component.scss"],
 })
-export class MyNftDetailComponent implements OnInit {
-  noGifActive = true;
-  gifName = "";
-  animationActive = false;
-  displayArray = [];
-  modalActive: any;
-
-  @Input() assetType = "car";
-  @Input() assetId = 11;
-  @Input() owned;
-
-  @Output() marketState = new EventEmitter<number>();
+export class DepositNftComponent implements OnInit {
+  nftId: number;
+  nftEdition: number;
+  nftIoiValue: number;
+  routeObserver: Subscription;
+  transferSubscription: Subscription;
+  nickname: string;
+  accountValue: number;
+  amount = 1;
   products: Array<object> = [
     //bronze
     {
@@ -674,48 +675,92 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
-
-  constructor() {}
+  constructor(
+    protected notify: NotifiqService,
+    private route: ActivatedRoute,
+    private identityService: AuthService,
+    private ntrsrvc: NitroWalletService
+  ) {}
 
   ngOnInit() {
+    this.getNftId();
+    this.getUser();
+    this.getAccountValue();
+  }
+
+  getNftId() {
+    this.routeObserver = this.route.queryParams.subscribe((params) => {
+      this.nftId = +params["nftId"];
+      if (params["nftId"].length <= 0) {
+        this.nftId = 1;
+      }
+    });
+    this.resolveCarEdition(this.nftId);
     this.resolveShowAsset();
   }
 
+  getUser() {
+    this.nickname = this.identityService.getStorageIdentity().nickname;
+  }
   resolveShowAsset() {
-    this.displayArray = this.products.filter(
-      (asset) => asset["id"] === this.assetId
+    this.products = this.products.filter(
+      (asset) => asset["position"] === this.nftId - 1
     );
   }
-  closeModal() {
-    this.modalActive = false;
-  }
-  showModal(p) {
-    this.modalActive = p;
-  }
-  backToProducts() {
-    this.marketState.emit(1);
-  }
-  timer = null;
-  timer2 = null;
-  showAnimation() {
-    this.animationActive = false;
-    this.noGifActive = true;
-    this.gifName = "none1";
-    this.timer2 = setTimeout(() => {
-      this.gifName = "black-trm-animation";
-      this.animationActive = true;
-      this.noGifActive = false;
-    }, 1);
-    this.timer = setTimeout(() => {
-      this.animationActive = false;
-      this.gifName = "none1";
-      this.noGifActive = true;
-    }, 6500);
+
+  getAccountValue() {
+    const data = this.identityService.getBalance();
+    this.accountValue = data.game_wallet_ioi * 0.4;
   }
 
-  activateAnimation() {
-    clearTimeout(this.timer2);
-    clearTimeout(this.timer);
-    this.showAnimation();
+  resolveCarEdition(id: number) {
+    if (id < 7 || id == 25) {
+      this.nftEdition = 1;
+      this.nftIoiValue = 600;
+      if (id == 25) {
+        this.nftIoiValue = 3600;
+      }
+    } else if ((id >= 7 && id < 13) || id == 26) {
+      this.nftEdition = 2;
+      this.nftIoiValue = 1000;
+      if (id == 26) {
+        this.nftIoiValue = 6000;
+      }
+    } else if ((id >= 13 && id < 19) || id == 27) {
+      this.nftEdition = 3;
+      this.nftIoiValue = 1600;
+      if (id == 27) {
+        this.nftIoiValue = 9600;
+      }
+    } else if ((id >= 19 && id < 25) || id == 28) {
+      this.nftEdition = 4;
+      this.nftIoiValue = 2600;
+      if (id == 28) {
+        this.nftIoiValue = 15600;
+      }
+    }
+  }
+
+  transferIoiToken() {
+    this.transferSubscription = this.ntrsrvc
+      .nitroWalletTransferCreate({
+        currency: "car_" + this.nftId.toString(),
+        amount: this.amount,
+        mode: "races2nitro",
+      })
+      .subscribe((data) => {
+        this.identityService.updateBalance();
+        setTimeout(() => {
+          this.notify.error("x", "Transfer successful");
+          this.identityService.updateBalance();
+          this.getAccountValue();
+        }, 10);
+      });
+  }
+
+  resolveTransfer() {
+    if (this.amount > 0) {
+      this.transferIoiToken();
+    }
   }
 }

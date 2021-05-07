@@ -50,16 +50,22 @@
   .shop-header {
     position: relative;
     width: 100%;
+    padding-left: 1%;
+    padding-right: 1%;
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: center;
     .filter-featured {
       margin-bottom: 20px;
-      width: 95%;
+      width: 100%;
       display: flex;
       position: relative;
+      align-items: center;
       .filter-title {
         position: relative;
+        display: flex;
+        align-items: center;
 
         p {
           font-family: Poppins;
@@ -77,25 +83,25 @@
       }
       .filter-boxes {
         display: flex;
+        align-items: center;
         width: 50%;
         > div {
           margin-left: 6.5%;
+          align-items: center;
+          flex-direction: row;
+          display: flex;
+          cursor: pointer;
           .filter-box {
             background: rgb(51, 51, 51, 0);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+
             width: 24px;
             height: 24px;
             transition: 0.2s;
             /*Gray5*/
             border: 1.5px solid #e0e0e0;
-            box-sizing: border-box;
+
             border-radius: 5px;
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
+
             &.filter-active {
               background: white;
             }
@@ -104,10 +110,8 @@
           p {
             cursor: pointer;
             display: inline-block;
-            margin-top: 0%;
-            width: 50px;
-            margin-left: 30%;
-            width: 100px;
+            margin-left: 10px;
+
             font-family: Poppins;
             font-style: normal;
             font-weight: normal;
@@ -116,6 +120,17 @@
             line-height: 30px;
           }
         }
+      }
+      .deposit-switcher {
+        opacity: 1;
+        margin-left: auto;
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
       }
     }
   }
@@ -414,6 +429,29 @@
       margin-top: 20px;
       margin-bottom: 50px;
     }
+    .shop-header {
+      .filter-featured {
+        .filter-title {
+          font-size: 18px;
+        }
+        .filter-boxes {
+          > div {
+            margin-left: 4%;
+            .filter-box {
+              width: 20px;
+              height: 20px;
+            }
+            p {
+              font-size: 17px;
+            }
+          }
+        }
+        .deposit-switcher {
+          width: 180px;
+          height: 45px;
+        }
+      }
+    }
     .shop-section-center {
       .boxes {
         .box {
@@ -445,7 +483,7 @@
 }
 @media screen and (max-width: 1350px) {
   .shop-section {
-    margin-top: 75px;
+    margin-top: 25px;
     padding-bottom: 150px;
     .shop-header {
       .filter-mobile {
@@ -466,18 +504,40 @@
         }
         .filter-img {
           width: 50%;
+          display: flex;
           position: relative;
           margin-left: auto;
-          cursor: pointer;
+          align-items: center;
+
           z-index: 2;
+          button {
+            width: 46px;
+            position: absolute;
+            right: 60px;
+            opacity: 1;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            height: 40px;
+            &.smaller {
+              right: 55px;
+              font-size: 12px;
+              width: 56px;
+            }
+          }
           img {
+            cursor: pointer;
+            position: absolute;
             top: 0px;
             right: 0px;
+            margin-left: auto;
             width: 25px;
             height: 25px;
             transition: 0.2s;
             opacity: 1;
-            position: absolute;
+
             &.filter-filled {
               opacity: 1;
             }
@@ -591,6 +651,7 @@
       }
     }
     .shop-section-center {
+      margin-top: 25px;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -889,6 +950,19 @@
         }
         .filter-img {
           width: 20%;
+          button {
+            right: 45px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            &.smaller {
+              right: 40px;
+              font-size: 12px;
+              width: 56px;
+            }
+          }
         }
       }
     }

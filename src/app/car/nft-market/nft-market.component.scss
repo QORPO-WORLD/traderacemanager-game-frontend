@@ -208,6 +208,8 @@
   }
 
   .shop-header {
+    padding-left: 1%;
+    padding-right: 1%;
     position: relative;
     width: 100%;
     display: flex;
@@ -215,42 +217,41 @@
     justify-content: center;
     .filter-featured {
       margin-bottom: 30px;
-      width: 95%;
+      width: 100%;
       display: flex;
       position: relative;
       .filter-title {
         position: relative;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 25px;
-        line-height: 30px;
-        color: #e0e0e0;
+        display: flex;
+        align-items: center;
+
         p {
-          margin: 7px 0 0 0;
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 25px;
+          line-height: 30px;
+          color: #e0e0e0;
         }
       }
       .filter-boxes {
         display: flex;
         width: 50%;
         > div {
-          margin-left: 8%;
+          margin-left: 6.5%;
           cursor: pointer;
+          align-items: center;
+          display: flex;
           .filter-box {
             background: rgb(120, 120, 120, 0);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+
             width: 25px;
             height: 25px;
             transition: 0.15s;
             border: 1.5px solid #e0e0e0;
-            box-sizing: border-box;
+
             border-radius: 5px;
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
+
             &.filter-active {
               background: white;
             }
@@ -258,13 +259,11 @@
 
           p {
             display: inline-block;
-            margin: 5px 0 0 30%;
-            width: 50px;
-            width: 100px;
+            margin-left: 10px;
             font-family: Poppins;
             font-style: normal;
             font-weight: normal;
-            font-size: 20px;
+            font-size: 17px;
             color: #e0e0e0;
             line-height: 30px;
           }
@@ -533,11 +532,10 @@
     margin-top: 30px;
     margin-bottom: 100px;
     .filter-mobile {
-      margin-left: 3%;
-      margin-right: 3%;
-
+      width: 100%;
       position: relative;
       display: flex;
+
       .filter-tit {
         width: 50%;
         h2 {
@@ -675,9 +673,10 @@
     }
     .shop-header {
       .filter-featured {
-        margin-bottom: 25px;
         .filter-title {
-          font-size: 20px;
+          p {
+            font-size: 20px;
+          }
         }
         .filter-boxes {
           & > div {
@@ -687,14 +686,12 @@
             }
             p {
               font-size: 17px;
-              margin: 4px 0 0 30%;
             }
           }
         }
       }
     }
     .shop-section-center {
-      margin-top: 30px;
       .boxes {
         .box {
           height: 370px;
@@ -717,6 +714,13 @@
           }
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 1350px) {
+  .shop-section {
+    .shop-section-center {
+      margin-top: 20px;
     }
   }
 }
@@ -750,6 +754,7 @@
     }
   }
 }
+
 @media screen and (max-width: 1200px) {
   .main-holder {
     width: calc(100% - 340px);

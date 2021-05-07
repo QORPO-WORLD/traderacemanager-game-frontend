@@ -28,23 +28,7 @@
         indivisible, and non-interchangeable.
       </p>
     </div>
-    <div class="info-box">
-      <div class="nums-holder">
-        <p>{{ carSum.charAt(0) }}</p>
-
-        <p>{{ carSum.charAt(1) }}</p>
-
-        <p>{{ carSum.charAt(2) }}</p>
-        &nbsp;
-        <p>{{ carSum.charAt(3) }}</p>
-
-        <p>{{ carSum.charAt(4) }}</p>
-
-        <p>{{ carSum.charAt(5) }}</p>
-
-        <p class="desc">cars left</p>
-      </div>
-    </div>
+    <div class="info-box"></div>
   </div>
   <div class="content-holder" #myScroll>
     <div
@@ -60,160 +44,163 @@
       ></div>
 
       <div class="shop-section">
-        <div *ngIf="display <= 1350" class="filter-mobile">
-          <div class="filter-tit">
-            <h2 class="f">{{ title }}</h2>
-          </div>
-          <div class="filter-img">
-            <img
-              [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
-              class="red-star"
-              (click)="filterMobile()"
-              src="assets/base/images/market/filter-red.svg"
-              alt="Red empty filter icon"
-            />
-            <img
-              [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
-              class="red-star"
-              (click)="filterMobile()"
-              src="assets/base/images/market/filter-full-red.svg"
-              alt="Red full filter icon"
-            />
-            <img
-              [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
-              class="blue-star"
-              (click)="filterMobile()"
-              src="assets/base/images/market/filter-blue.svg"
-              alt="Blue empty filter icon"
-            />
-            <img
-              [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
-              class="blue-star"
-              (click)="filterMobile()"
-              src="assets/base/images/market/filter-full-blue.svg"
-              alt="Blue full filter icon"
-            />
-          </div>
-          <div
-            [ngClass]="{ 'filter-content-active': mobileFilter === true }"
-            class="filter-content"
-          >
-            <div class="item-title"><h3>Filter</h3></div>
-            <div
-              [ngClass]="{ 'item-active': carsActive === true }"
-              class="item"
-              (click)="filterCars()"
-            >
-              <p>Cars</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-            <div
-              [ngClass]="{ 'item-active': racersActive === true }"
-              class="item"
-              (click)="filterRacers()"
-            >
-              <p>Racers</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-
-            <div
-              [ngClass]="{ 'item-active': tracksActive === true }"
-              class="item"
-              (click)="filterTracks()"
-            >
-              <p>Tracks</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-            <div
-              [ngClass]="{ 'item-active': teamsActive === true }"
-              class="item"
-              (click)="filterTeams()"
-            >
-              <p>Teams</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-            <div
-              [ngClass]="{ 'item-active': specialActive === true }"
-              class="item"
-              (click)="filterSpecial()"
-            >
-              <p>Special</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-            <div
-              [ngClass]="{ 'item-active': allActive === true }"
-              class="item"
-              (click)="filterAll()"
-            >
-              <p>All products</p>
-              <div class="checkbox">
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/check-red.svg"
-                  alt="Red check icon"
-                /><img
-                  class="blue-star"
-                  src="assets/base/images/market/check-blue.svg"
-                  alt="Blue check icon"
-                />
-              </div>
-            </div>
-            <button class="my-cta-btn-back hoverable" (click)="filterMobile()">
-              Apply
-            </button>
-          </div>
-        </div>
         <div class="shop-header">
+          <div *ngIf="display <= 1350" class="filter-mobile">
+            <div class="filter-tit">
+              <h2 class="f">{{ title }}</h2>
+            </div>
+            <div class="filter-img">
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+                class="red-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-red.svg"
+                alt="Red empty filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+                class="red-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-full-red.svg"
+                alt="Red full filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+                class="blue-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-blue.svg"
+                alt="Blue empty filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+                class="blue-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-full-blue.svg"
+                alt="Blue full filter icon"
+              />
+            </div>
+            <div
+              [ngClass]="{ 'filter-content-active': mobileFilter === true }"
+              class="filter-content"
+            >
+              <div class="item-title"><h3>Filter</h3></div>
+              <div
+                [ngClass]="{ 'item-active': carsActive === true }"
+                class="item"
+                (click)="filterCars()"
+              >
+                <p>Cars</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': racersActive === true }"
+                class="item"
+                (click)="filterRacers()"
+              >
+                <p>Racers</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+
+              <div
+                [ngClass]="{ 'item-active': tracksActive === true }"
+                class="item"
+                (click)="filterTracks()"
+              >
+                <p>Tracks</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': teamsActive === true }"
+                class="item"
+                (click)="filterTeams()"
+              >
+                <p>Teams</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': specialActive === true }"
+                class="item"
+                (click)="filterSpecial()"
+              >
+                <p>Special</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': allActive === true }"
+                class="item"
+                (click)="filterAll()"
+              >
+                <p>All products</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <button
+                class="my-cta-btn-back hoverable"
+                (click)="filterMobile()"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
           <div *ngIf="display > 1350" class="filter-featured">
             <div class="filter-title">
               <p>Filters</p>

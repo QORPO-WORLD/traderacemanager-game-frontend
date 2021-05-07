@@ -17,6 +17,7 @@ import { WalletControllerComponent } from "./pages/wallet-controller/wallet-cont
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
 import { TransferNftComponent } from "./pages/transfer-nft/transfer-nft.component";
+import { DepositNftComponent } from "./pages/deposit-nft/deposit-nft.component";
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'affilate', pathMatch: 'prefix' },*/
@@ -62,6 +63,10 @@ const routes: Routes = [
         path: "transfer-nft",
         component: TransferNftComponent,
       },
+      {
+        path: "deposit-nft",
+        component: DepositNftComponent,
+      },
     ],
   },
 ];
@@ -75,6 +80,7 @@ const routes: Routes = [
     AboutTokensComponent,
     WalletControllerComponent,
     TransferNftComponent,
+    DepositNftComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
