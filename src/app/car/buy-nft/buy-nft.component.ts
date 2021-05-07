@@ -402,8 +402,6 @@ export class BuyNftComponent implements OnInit {
 
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
-    console.log(this.myDriverBalances);
-    console.log('janko');
   }
 
   lowBalance(){

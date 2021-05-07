@@ -1,4 +1,4 @@
-<div (window:resize)="width()" class="main-holder">
+<div (window:resize)="width()" class="main-holder" #myScroll>
   <div class="profile-nav">
     <div class="left-nav">
       <div
@@ -149,7 +149,12 @@
     <ng-container *ngIf="mobileMenu === true && firstShow === 'menu'">
       <div class="mobile-menu">
         <div
-          (click)="activatePage('nfts'); firstShow = 'none'; mobileMenu = false"
+          (click)="
+            activatePage('nfts');
+            firstShow = 'none';
+            mobileMenu = false;
+            scrollTop(myScroll)
+          "
           class="cat-cont my-cta-btn-back"
         >
           <div class="cat-item">
@@ -162,7 +167,9 @@
           </div>
         </div>
         <div
-          (click)="activatePage('overview'); firstShow = 'none'"
+          (click)="
+            activatePage('overview'); firstShow = 'none'; scrollTop(myScroll)
+          "
           class="cat-cont my-cta-btn-back"
         >
           <div class="cat-item">
@@ -178,7 +185,9 @@
           </div>
         </div>
         <div
-          (click)="activatePage('affiliate'); firstShow = 'none'"
+          (click)="
+            activatePage('affiliate'); firstShow = 'none'; scrollTop(myScroll)
+          "
           class="cat-cont my-cta-btn-back"
         >
           <div class="cat-item">
@@ -197,7 +206,8 @@
           (click)="
             activatePage('rewards');
             activateSecondPage('about rewards');
-            firstShow = 'none'
+            firstShow = 'none';
+            scrollTop(myScroll)
           "
           class="cat-cont my-cta-btn-back"
         >
@@ -217,7 +227,8 @@
           (click)="
             activatePage('history');
             activateSecondPage('transactions');
-            firstShow = 'none'
+            firstShow = 'none';
+            scrollTop(myScroll)
           "
           class="cat-cont my-cta-btn-back"
         >
@@ -234,7 +245,9 @@
           </div>
         </div>
         <div
-          (click)="activatePage('stats'); firstShow = 'none'"
+          (click)="
+            activatePage('stats'); firstShow = 'none'; scrollTop(myScroll)
+          "
           class="cat-cont my-cta-btn-back"
         >
           <div class="cat-item">

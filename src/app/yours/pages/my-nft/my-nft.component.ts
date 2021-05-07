@@ -133,7 +133,7 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 14,
-      position: 5,
+
       free: 192000,
       collection: "Common",
       name: "VULCANIC",

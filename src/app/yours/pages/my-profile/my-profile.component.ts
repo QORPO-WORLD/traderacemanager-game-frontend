@@ -45,6 +45,9 @@ export class MyProfileComponent implements OnInit {
     this.display = window.innerWidth;
     this.solveContent();
   }
+  scrollTop(elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
   getMydriver() {
     this.myDriverStats = this.identityService.getStorageIdentity();
   }

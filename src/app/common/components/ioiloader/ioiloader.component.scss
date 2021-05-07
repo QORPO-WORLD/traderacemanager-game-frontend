@@ -1,37 +1,240 @@
 .loading {
-    background-image: url("../../../../assets/base/images/loading.png");
-    max-width: 336px;
-    width: 100%;
-    height: 336px;
     position: absolute;
     z-index: 1000;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-size: contain;
-    background-repeat: no-repeat;
-    span.sum {
+    .inner-cont{
+      width: 164px;
+      height: 100px;
+      position: relative;
+      img{
         position: absolute;
-        width: 100%;
-        height: 40px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-style: italic;
-        font-weight: bold;
-        font-size: 28px;
-        text-align: center;
-        letter-spacing: -0.05em;
-        color: #ffffff;
+        height: 100%;
+        width: auto;
+        &.item1{
+          left: 0;
+          top: 0;
+          animation-name: item1Vibe;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-duration: 3s;
+          -webkit-animation-name: item1Vibe;
+          -webkit-animation-fill-mode: both;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-duration: 3s;
+        }
+        &.item2{
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%);
+          animation-name: item3Vibe;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-duration: 3s;
+          animation-delay: .2s;
+          -webkit-animation-name: item3Vibe;
+          -webkit-animation-fill-mode: both;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-duration: 3s;
+          -webkit-animation-delay: .2s;
+        }
+        &.item3{
+          left: 50%;
+          top: -5px;
+          height: 58px;
+          transform: translateX(-50%);
+          animation-name: item3Vibe;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-duration: 3s;
+          animation-delay: .3s;
+          -webkit-animation-name: item3Vibe;
+          -webkit-animation-fill-mode: both;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-duration: 3s;
+          -webkit-animation-delay: .3s;
+        }
+        &.item4{
+          right: 0;
+          top: 0;
+          animation-name: item1Vibe;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-duration: 3s;
+          animation-delay: .4s;
+          -webkit-animation-name: item1Vibe;
+          -webkit-animation-fill-mode: both;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-duration: 3s;
+          -webkit-animation-delay: .4s;
+        }
+      }
     }
-    span.run {
-        background-color: rgba(254, 23, 63, 1);
-        height: 50px;
-        position:absolute;
-        border-radius: 30px;
-        shape-outside: circle();
-      clip-path: circle();
-      display:none;
+    p{
+      font-size: 26px;
+      text-align: center;
+      margin: 15px 0 0;
+      span{
+        animation-name: flickering;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        -webkit-animation-name: flickering;
+        -webkit-animation-fill-mode: both;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-duration: 6s;
+        &.dot2{
+          animation-delay: .1s;
+        }
+        &.dot3{
+          animation-delay: .3s;
+        }
+      }
+    }
+  }
+
+  @keyframes item1Vibe {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes item3Vibe {
+    0% {
+      transform: translateY(0) translateX(-50%);
+    }
+    30% {
+      transform: translateY(-20px) translateX(-50%);
+    }
+    60% {
+      transform: translateY(0) translateX(-50%);
+    }
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+  }
+
+  @-webkit-keyframes item1Vibe {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @-webkit-keyframes item3Vibe {
+    0% {
+      transform: translateY(0) translateX(-50%);
+    }
+    30% {
+      transform: translateY(-20px) translateX(-50%);
+    }
+    60% {
+      transform: translateY(0) translateX(-50%);
+    }
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+  }
+
+  @-webkit-keyframes flickering {
+    0% {
+      opacity: 1;
+    }
+    1% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 0;
+    }
+    11% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    21% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    31% {
+      opacity: 1;
+    }
+    45% {
+      opacity: 1;
+    }
+    46% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0;
+    }
+    61% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes flickering {
+    0% {
+      opacity: 1;
+    }
+    1% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 0;
+    }
+    11% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1;
+    }
+    21% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    31% {
+      opacity: 1;
+    }
+    45% {
+      opacity: 1;
+    }
+    46% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0;
+    }
+    61% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
     }
   }
 

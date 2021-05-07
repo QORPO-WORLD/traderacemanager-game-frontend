@@ -7,6 +7,23 @@
 .shop-pagee {
   background: white;
 }
+.filter-overlay {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, #111111 100%);
+  transition: 0.2s;
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+.filter-overlay-active {
+  opacity: 1;
+}
 
 .menu {
   position: relative;
@@ -95,7 +112,7 @@
 .shop-section {
   min-height: 100vh;
   position: relative;
-  margin-top: 100px;
+  margin-top: 150px;
   padding-bottom: 200px;
   .title {
     margin-top: 50px;
@@ -473,9 +490,163 @@
     }
   }
 }
+@media screen and (max-width: 1350px) {
+  .shop-section {
+    .shop-header {
+      .filter-mobile {
+        width: 100%;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-bottom: 20px;
+
+        position: relative;
+        display: flex;
+        .filter-tit {
+          width: 50%;
+          h2 {
+            color: black;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 30px;
+          }
+        }
+        .filter-img {
+          width: 50%;
+          position: relative;
+          margin-left: auto;
+          cursor: pointer;
+          z-index: 2;
+          img {
+            top: 0px;
+            right: 0px;
+            width: 25px;
+            height: 25px;
+            transition: 0.2s;
+            opacity: 1;
+            position: absolute;
+            &.filter-filled {
+              opacity: 1;
+            }
+            &.filter-unfilled {
+              opacity: 0;
+            }
+          }
+        }
+        .filter-content {
+          display: flex;
+          flex-direction: column;
+          z-index: 2;
+          overflow: hidden;
+          position: absolute;
+          width: 0px;
+          height: 0px;
+          right: 0px;
+          top: 50px;
+          transition: 0.2s;
+          background: #ffffff;
+          border-radius: 5px;
+          -webkit-transition: 0.2s;
+          -moz-transition: 0.2s;
+          -ms-transition: 0.2s;
+          -o-transition: 0.2s;
+
+          h3 {
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 30px;
+            color: #333333;
+          }
+
+          .item-title {
+            margin-bottom: 5px;
+          }
+          .item {
+            cursor: pointer;
+            display: flex;
+            margin-top: 5px;
+            p {
+              font-family: Poppins;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 24px;
+              color: #333333;
+
+              opacity: 0.4;
+            }
+            img {
+              transition: 0.2s;
+              position: absolute;
+              opacity: 0;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              -webkit-transform: translate(-50%, -50%);
+              -moz-transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              -o-transform: translate(-50%, -50%);
+              -webkit-transition: 0.2s;
+              -moz-transition: 0.2s;
+              -ms-transition: 0.2s;
+              -o-transition: 0.2s;
+            }
+            .checkbox {
+              position: relative;
+              margin-left: auto;
+              width: 20px;
+              height: 20px;
+
+              opacity: 0.4;
+              border: 1.5px solid #333333;
+              box-sizing: border-box;
+              border-radius: 5px;
+            }
+          }
+          .item-active {
+            p {
+              opacity: 1;
+            }
+            img {
+              opacity: 1;
+            }
+            .checkbox {
+              opacity: 1;
+            }
+          }
+          button {
+            margin-top: auto;
+            width: 213px;
+            height: 46px;
+            border-radius: 5px;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            background: linear-gradient(
+              99.76deg,
+              #fe173f 117.01%,
+              #240b36 187.56%
+            );
+          }
+        }
+        .filter-content-active {
+          padding: 20px;
+          width: 253px;
+          height: 320px;
+        }
+      }
+      .filter-mobile:hover {
+      }
+    }
+  }
+}
 @media screen and (max-width: 1300px) {
   .shop-section {
-    margin-top: 75px;
     padding-bottom: 150px;
     .title {
       margin-top: 50px;
@@ -757,110 +928,8 @@
   }
   .shop-section {
     margin-top: 150px;
-    .filter-mobile {
-      box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-      display: flex;
-      flex-direction: column;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 100px;
-      position: absolute;
-      width: 50%;
-      height: auto;
-      z-index: 1;
-      -webkit-transform: translateX(-50%);
-      -moz-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      -o-transform: translateX(-50%);
-      .filter-tit {
-        position: relative;
-        width: 100%;
-        height: 50px;
 
-        .f {
-          font-size: 22px;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          opacity: 0.7;
-          color: black;
-          -webkit-transform: translate(-50%, -50%);
-          -moz-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          -o-transform: translate(-50%, -50%);
-        }
-        .a {
-          font-size: 22px;
-          position: absolute;
-          right: 5%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          opacity: 0.7;
-          -webkit-transform: translate(-50%, -50%);
-          -moz-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          -o-transform: translate(-50%, -50%);
-          i {
-            color: black;
-          }
-        }
-      }
-      .filter-content {
-        transition: 0.2s;
-        overflow: hidden;
-        position: absolute;
-        background: white;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 0px;
-        box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-
-        > div {
-          padding: 5px;
-          width: 100%;
-          height: 25%;
-          position: relative;
-          position: relative;
-          p {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 150%;
-            color: #111111;
-            opacity: 0.6;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-          }
-        }
-        > div:hover {
-          background: rgba(0, 0, 0, 0.4);
-        }
-      }
-      .filter-content-active {
-        height: 200px;
-      }
-      .racers {
-        left: 5%;
-      }
-      .cars {
-        top: 17.5%;
-        z-index: 1;
-      }
-      .tracks {
-      }
-    }
     .shop-section-center {
-      margin-top: 50px;
       .boxes {
         .box {
           .txt {
@@ -899,7 +968,7 @@
 }
 @media screen and (max-width: 900px) {
   .shop-section {
-    margin-top: 75px;
+    margin-top: 100px;
     padding-bottom: 150px;
 
     .title {
@@ -922,6 +991,10 @@
 
         color: #333333;
       }
+    }
+    .shop-header {
+      width: 85%;
+      margin-left: 7.5%;
     }
     .shop-section-center {
       width: 85%;
@@ -1017,7 +1090,6 @@
 }
 @media screen and (max-width: 750px) {
   .shop-section {
-    margin-top: 100px;
     padding-bottom: 100px;
     .title {
       width: 75%;
@@ -1062,6 +1134,10 @@
         color: #333333;
       }
     }
+    .shop-header {
+      width: 95%;
+      margin-left: 2.5%;
+    }
     .shop-section-center {
       width: 95%;
       margin-left: 2.5%;
@@ -1070,7 +1146,6 @@
       justify-content: center;
 
       .boxes {
-        margin-top: 100px;
         width: 98%;
         display: flex;
         flex-wrap: wrap;
@@ -1152,129 +1227,57 @@
   }
 }
 @media screen and (max-width: 640px) {
+  .hamburger {
+    margin-right: 3%;
+  }
+  .menu {
+    width: 95%;
+    margin-left: 2.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
   .shop-section {
     margin-top: 100px;
     padding-bottom: 100px;
-    .title {
-      width: 90%;
-      margin-left: 5%;
-      text-align: center;
-      h1 {
-        margin-bottom: 100px;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 35px;
-        line-height: 40px;
-        /* identical to box height, or 164% */
-
-        text-align: center;
-
-        /* Gray 1 */
-
-        color: #333333;
-      }
-    }
-
-    .title {
-      margin-top: 150px;
-      margin-bottom: 50px;
-      width: 85%;
-      margin-left: 7.5%;
-      text-align: center;
-      h1 {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 40px;
-        line-height: 45px;
-        /* identical to box height, or 164% */
-
-        text-align: center;
-
-        /* Gray 1 */
-
-        color: #333333;
-      }
-    }
     .shop-section-center {
-      margin-top: 20px;
-      width: 95%;
-      margin-left: 2.5%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
       .boxes {
-        margin-top: 25px;
-        width: 98%;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 5%;
-
         .box {
-          overflow: hidden;
-          cursor: default;
-          box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-          background: #ffffff;
-          width: 95%;
-          height: 500px;
-          margin: 5% 2.5%;
-
-          border-radius: 10px;
-          padding: 20px;
-          transition: 0.2s;
+          padding: 3%;
+          border-radius: 5px;
+          height: 300px;
           .txt {
             position: relative;
             height: 40%;
             //meno kolekcie
             .collection {
-              font-size: 16px;
+              font-size: 14px;
             }
             //meno
+            .namefont {
+              font-size: 16px;
+            }
             .name {
-              font-size: 22px;
+              font-size: 16px;
             }
             //font name True lies
             .racername {
-              display: block;
-              top: 10%;
-              width: 100%;
-              position: relative;
-              left: 50%;
-              font-family: True-Lies;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 24px;
-              line-height: 110%;
+              font-size: 16px;
             }
             //cena
             .prize {
-              font-size: 22px;
+              font-size: 15px;
             }
             //button see more
             button {
-              outline: none;
-              cursor: pointer;
-              position: absolute;
-              border: 0;
-              left: 10%;
-              height: 28%;
-              width: 80%;
-              background: linear-gradient(
-                99.76deg,
-                #fe173f 117.01%,
-                #240b36 187.56%
-              );
-              border-radius: 12px;
-              font-family: Poppins;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 18px;
-              line-height: 30px;
-              color: white;
-              bottom: 20px;
-              transition: 0.2s;
+              border-radius: 5px;
+              left: 0px;
+              width: 100%;
+              height: 45px;
+              font-size: 14px;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              -ms-border-radius: 5px;
+              -o-border-radius: 5px;
             }
           }
           .boximage {
@@ -1309,49 +1312,22 @@
     }
   }
 }
-
-@media screen and (max-width: 330px) {
+@media screen and(max-width: 400px) {
   .shop-section {
     .shop-section-center {
       .boxes {
         .box {
-          .txt {
-            position: relative;
-            //font name True lies
-            .name {
-              position: absolute;
-              font-family: Poppins;
-              font-style: normal;
-              font-weight: 800;
-              font-size: 20px;
-              line-height: 150%;
-              bottom: 55%;
-              width: 100%;
-              /* identical to box height, or 36px */
-
-              /* Gray 1 */
-
-              color: #333333;
+          .boximage {
+            img {
+              max-width: 118.5%;
+              width: 200px;
+              top: 62.5%;
+              transform: translate(-50%, -50%);
+              -webkit-transform: translate(-50%, -50%);
+              -moz-transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              -o-transform: translate(-50%, -50%);
             }
-            //font name True lies
-            .racername {
-              display: block;
-              top: 10%;
-              width: 100%;
-              position: relative;
-              left: 20%;
-              font-family: True-Lies;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 24px;
-              line-height: 110%;
-              /* identical to box height, or 48px */
-
-              /* Gray 1 */
-
-              color: #333333;
-            }
-            //cena
           }
         }
       }
