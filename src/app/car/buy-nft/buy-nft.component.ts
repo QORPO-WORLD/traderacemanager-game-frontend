@@ -392,7 +392,20 @@ export class BuyNftComponent implements OnInit {
     }
   }
 
-  buyCarFromGarage(index: number) {
+  buyCarFromGarage(index: number, type?: string) {
+    // tu mozes prdat type racer iba pre racera
+    if (type) {
+      this.api.racerBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
+        const data: any = datax;
+        setTimeout(() => {
+          this.notifyChangedBalance();
+          this.router.navigate(["/profile/my-profile"]);
+          this.notify.error("You have bought a new racer!");
+        }, 1000);
+      });
+
+      return;
+    }
     this.api.carsBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
       const data: any = datax;
       setTimeout(() => {
