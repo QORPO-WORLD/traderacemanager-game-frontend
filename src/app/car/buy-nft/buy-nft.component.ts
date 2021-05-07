@@ -16,59 +16,67 @@ export class BuyNftComponent implements OnInit {
   racers: Array<object> = [
     {
       id: 1,
-      collection: "Bronze",
+      collection: "Super",
       name: "Axle",
-      prize: "1152",
-      image: "white-mn",
+      prize: "100",
+      image: "white-trm",
+      extras: { buy_id: 1, value: "100" }
     },
     {
       id: 2,
-      collection: "Bronze",
+      collection: "Super",
       name: "Flash",
-      prize: "1152",
-      image: "red-korpo",
+      prize: "100",
+      image: "red-trm",
+      extras: { buy_id: 2, value: "100" }
     },
     {
       id: 3,
-      collection: "Bronze",
+      collection: "Super",
       name: "Octane",
-      prize: "1152",
-      image: "blue-mn",
+      prize: "100",
+      image: "blue-trm",
+      extras: { buy_id: 3, value: "100" }
     },
     {
       id: 4,
-      collection: "Bronze",
+      collection: "Super",
       name: "Punisher",
-      prize: "1152",
-      image: "black-korpo",
+      prize: "100",
+      image: "black-trm",
+      extras: { buy_id: 4, value: "100" }
     },
     {
       id: 5,
-      collection: "Bronze",
+      collection: "Epic",
       name: "Lady Rich",
-      prize: "1152",
+      prize: "1 000",
       image: "lady-rich",
+      extras: { buy_id: 5, value: "1000" }
     },
     {
       id: 6,
-      collection: "Bronze",
+      collection: "Epic",
       name: "Rich Jr.",
-      prize: "1152",
+      prize: "1 000",
       image: "bad-boy",
+      extras: { buy_id: 6, value: "1000" }
     },
     {
       id: 7,
-      collection: "Bronze",
+      collection: "Epic",
       name: "Mr. Rich",
-      prize: "1152",
+      prize: "1 000",
       image: "mr-rich",
+      extras: { buy_id: 7, value: "1000" }
     },
     {
       id: 8,
-      collection: "Bronze",
+      collection: "Legendary",
       name: "Mrs. Rich",
-      prize: "1152",
+      prize: "10 000",
       image: "mrs-rich",
+      extras: { buy_id: 8, value: "10000" }
     },
   ];
   cars: Array<object> = [
@@ -385,6 +393,19 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyCarFromGarage(index: number) {
+
+    if (this.assetType === 'racer') {
+      this.api.racerBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
+        const data: any = datax;
+        setTimeout(() => {
+          this.notifyChangedBalance();
+          this.router.navigate(["/profile/my-profile"]);
+          this.notify.error("You have bought a new racer!");
+        }, 1000);
+      });
+
+      return;
+    }
     this.api.carsBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
       const data: any = datax;
       setTimeout(() => {

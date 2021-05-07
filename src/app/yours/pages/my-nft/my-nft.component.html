@@ -15,7 +15,7 @@
       </div>
 
       <div class="filter-img">
-        <button
+        <!-- <button
           (click)="showDeposit = true; filterAllDep()"
           *ngIf="showDeposit === false"
           class="deposit-switcher my-cta-btn-back hoverable"
@@ -28,7 +28,7 @@
           class="deposit-switcher smaller my-cta-btn-back hoverable"
         >
           Owned
-        </button>
+        </button> -->
         <img
           [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
           class="red-star"
@@ -427,20 +427,20 @@
           <p (click)="filterAll()">All</p>
         </div>
       </div>
-      <button
+      <!-- <button
         (click)="showDeposit = true; filterAllDep()"
         *ngIf="showDeposit === false"
         class="deposit-switcher my-cta-btn-back hoverable"
       >
         &#43; Deposit NFTs
-      </button>
-      <button
+      </button> -->
+      <!-- <button
         (click)="showDeposit = false; filterAll()"
         *ngIf="showDeposit === true"
         class="deposit-switcher my-cta-btn-back hoverable"
       >
         Owned
-      </button>
+      </button> -->
     </div>
   </div>
   <div class="shop-section-center" #myScroll>
@@ -618,10 +618,10 @@
 
           <p class="prize">{{ item["prize"] }}</p>
           <button
-            (click)="
-              showAsset(item['id'], item['type'], item['amount'].length);
-              scrollTop(myScroll2)
-            "
+            [routerLink]="['/other/deposit-nft']"
+            [queryParams]="{
+              nftId: item['position'] + 1
+            }"
             class="my-cta-btn-back my-box-shadow"
             *ngIf="item['type'] != 'team'"
           >
@@ -637,10 +637,10 @@
           <button
             class="my-cta-btn-back my-box-shadow"
             *ngIf="item['name'] === 'You' && item['type'] === 'team'"
-            (click)="
-              showAsset(item['id'], item['type'], item['amount'].length);
-              scrollTop(myScroll2)
-            "
+            [routerLink]="['/other/deposit-nft']"
+            [queryParams]="{
+              nftId: item['position'] + 1
+            }"
           >
             Deposit
           </button>

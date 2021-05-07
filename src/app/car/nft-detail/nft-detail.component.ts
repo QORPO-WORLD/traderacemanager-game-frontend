@@ -725,7 +725,9 @@ export class NftDetailComponent implements OnInit {
   showBuyModal() {
     this.marketState.emit(3);
   }
+  
   showModal(p) {
     this.modalActive.emit(p);
   }
+
 }
