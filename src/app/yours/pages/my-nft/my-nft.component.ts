@@ -857,7 +857,7 @@ export class MyNftComponent implements OnInit {
         this.getFreeCar();
       } else {
         const objs: any = data;
-
+        objs.racers = [];
         for (let x = 0; x < objs.cars.length; x++) {
           if (objs.cars[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs.cars[x]);
@@ -945,7 +945,35 @@ export class MyNftComponent implements OnInit {
           }
           if (objs.cars[x].car_id === 28) {
             this.products[27]["amount"].push(objs.cars[x]);
+          }  
+        }
+        
+        for (let x = 0; x < objs.racers.length; x++) {
+          if (objs.racers[x].car_id === 1) {
+            this.products[28]["amount"].push(objs.cars[x]);
           }
+          if (objs.racers[x].car_id === 2) {
+            this.products[29]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 3) {
+            this.products[30]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 4) {
+            this.products[31]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 5) {
+            this.products[32]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 6) {
+            this.products[33]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 7) {
+            this.products[34]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 8) {
+            this.products[35]["amount"].push(objs.cars[x]);
+          }
+          
         }
         this.calcEditionNum();
         this.selectCar(objs);
