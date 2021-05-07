@@ -28,7 +28,7 @@ export class BuyNftComponent implements OnInit {
       name: "Flash",
       prize: "100",
       image: "red-trm",
-      extras: { buy_id: 1, value: "100" }
+      extras: { buy_id: 2, value: "100" }
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ export class BuyNftComponent implements OnInit {
       name: "Octane",
       prize: "100",
       image: "blue-trm",
-      extras: { buy_id: 1, value: "100" }
+      extras: { buy_id: 3, value: "100" }
     },
     {
       id: 4,
@@ -44,7 +44,7 @@ export class BuyNftComponent implements OnInit {
       name: "Punisher",
       prize: "100",
       image: "black-trm",
-      extras: { buy_id: 1, value: "100" }
+      extras: { buy_id: 4, value: "100" }
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ export class BuyNftComponent implements OnInit {
       name: "Lady Rich",
       prize: "1 000",
       image: "lady-rich",
-      extras: { buy_id: 1, value: "1000" }
+      extras: { buy_id: 5, value: "1000" }
     },
     {
       id: 6,
@@ -60,7 +60,7 @@ export class BuyNftComponent implements OnInit {
       name: "Rich Jr.",
       prize: "1 000",
       image: "bad-boy",
-      extras: { buy_id: 1, value: "1000" }
+      extras: { buy_id: 6, value: "1000" }
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ export class BuyNftComponent implements OnInit {
       name: "Mr. Rich",
       prize: "1 000",
       image: "mr-rich",
-      extras: { buy_id: 1, value: "1000" }
+      extras: { buy_id: 7, value: "1000" }
     },
     {
       id: 8,
@@ -76,7 +76,7 @@ export class BuyNftComponent implements OnInit {
       name: "Mrs. Rich",
       prize: "10 000",
       image: "mrs-rich",
-      extras: { buy_id: 1, value: "10000" }
+      extras: { buy_id: 8, value: "10000" }
     },
   ];
   cars: Array<object> = [
@@ -393,7 +393,6 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyCarFromGarage(index: number) {
-    // tu mozes prdat type racer iba pre racera
 
     if (this.assetType === 'racer') {
       this.api.racerBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
