@@ -168,11 +168,13 @@
         <div class="summary-item">
           <p class="desc">Subtotal</p>
           <p class="value big">
-            {{ displayArray[0]["extras"].value * amount }} IOI <span>or</span> {{ ((displayArray[0]["extras"].value * 0.4) / this.myDriverBalances.matic_usdt) * amount | number:'1.0-2':'fr'}} MTC
+            {{ displayArray[0]["extras"].value * amount | number:'1.0-2':'fr' }} IOI <span>or</span> {{ ((displayArray[0]["extras"].value * 0.4) / this.myDriverBalances.matic_usdt) * amount | number:'1.0-2':'fr'}} MTC
           </p>
         </div>
       </div>
       <div class="ioi">
+
+        <!-- CAR BUTTONS -->
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
@@ -225,23 +227,64 @@
           Buy with MATIC 
         </button>
 
-        <!-- <button
+        <!-- RACER BUTTONS -->
+        <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            assetType === 'car' &&
+            assetType === 'racer' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+          "
+          (click)="tokenSelected = 'ioi';buyCarFromGarage(displayArray[0]['extras'].buy_id)"
+        >
+          Buy with IOI
+        </button>
+
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'racer' &&
             !displayArray[0]['rare'] &&
             myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
           "
+          (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
           [queryParams]="{ controlType: 'deposit' }"
         >
-          Deposit
-        </button> -->
+          Buy with IOI
+        </button>
+
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'racer' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_matic >= displayArray[0]['extras'].value
+          "
+          (click)="tokenSelected = 'matic';buyCarFromGarage(displayArray[0]['extras'].buy_id)"
+        >
+          Buy with MATIC 
+        </button>
+
+        <button
+          class="buy-nft my-cta-btn-back hoverable"
+          *ngIf="
+            assetType === 'racer' &&
+            !displayArray[0]['rare'] &&
+            myDriverBalances?.game_wallet_matic < displayArray[0]['extras'].value
+          "
+          (click)="lowBalance()"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          Buy with MATIC 
+        </button>
+
 
 
         <button
           class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="assetType !== 'car'"
+          *ngIf="assetType !== 'car' && assetType !== 'racer'"
         >
           Buy with IOI
         </button>
@@ -252,7 +295,7 @@
           Not available
         </button>
       </div>
-      <div class="arkane">
+      <div class="arkane" *ngIf="(assetType === 'car' || assetType === 'racer') && !displayArray[0]['rare']">
         <div class="arkane-paypal">
           <img src="assets/base/images/paypal.png" alt="paypal logo" />
         </div>
@@ -261,7 +304,6 @@
         </div>
 
         <a
-          *ngIf="assetType === 'car' && !displayArray[0]['rare']"
           class="buy-nft my-cta-btn-back hoverable"
           href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
           target="_blank"

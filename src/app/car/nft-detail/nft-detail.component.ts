@@ -728,4 +728,5 @@ export class NftDetailComponent implements OnInit {
   showModal(p) {
     this.modalActive.emit(p);
   }
+
 }
