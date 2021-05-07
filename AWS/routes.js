@@ -57,6 +57,9 @@ exports.handler = (event, context, callback) => {
     "/nft-detail",
     "/your-races/transactions/my-races",
     "/profile/my-profile",
+    "/user/credit-system",
+    "/user/terms-conditions",
+    "/user/competition",
   ];
 
   if (
