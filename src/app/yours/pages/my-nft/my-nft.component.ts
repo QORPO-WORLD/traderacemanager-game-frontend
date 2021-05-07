@@ -858,7 +858,6 @@ export class MyNftComponent implements OnInit {
         this.getFreeCar();
       } else {
         const objs: any = data;
-        objs.racers = [];
         for (let x = 0; x < objs.cars.length; x++) {
           if (objs.cars[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs.cars[x]);

@@ -39,6 +39,7 @@ export class NftOverviewComponent implements OnInit {
   interval: any;
   myTeam: string;
   myTeamData: any;
+  myAssets: any;
   donutChartOptions: Options = {
     chart: {
       type: "pie",
@@ -152,14 +153,15 @@ export class NftOverviewComponent implements OnInit {
   }
   pushTo() {
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
-      const objs: any = data;
-      this.allCars = objs.cars.length;
+      this.myAssets = data;
+      this.allCars = this.myAssets.total_cars;
       this.carAssets = data;
       this.isOwner();
-      this.teams = this.racers = { name: "Racers", y: 0, color: "#00f0ff" };
+      this.teams = { name: "Racers", y: 0, color: "#00f0ff" };
+      this.racers = { name: "Racers", y: this.myAssets.total_racers, color: "#00f0ff" }
       this.cars = {
         name: "Cars",
-        y: this.allCars,
+        y: this.myAssets.total_cars,
         color: "#fe173f",
       };
       this.tracks = { name: "Tracks", y: 0, color: "#A46100" };
