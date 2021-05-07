@@ -20,7 +20,9 @@ export class BuyNftComponent implements OnInit {
       name: "Axle",
       prize: "100",
       image: "white-trm",
-      extras: { buy_id: 1, value: "100" }
+      extras: { buy_id: 1, value: "100" },
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 2,
@@ -28,7 +30,9 @@ export class BuyNftComponent implements OnInit {
       name: "Flash",
       prize: "100",
       image: "red-trm",
-      extras: { buy_id: 2, value: "100" }
+      extras: { buy_id: 2, value: "100" },
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 3,
@@ -36,7 +40,9 @@ export class BuyNftComponent implements OnInit {
       name: "Octane",
       prize: "100",
       image: "blue-trm",
-      extras: { buy_id: 3, value: "100" }
+      extras: { buy_id: 3, value: "100" },
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 4,
@@ -44,7 +50,9 @@ export class BuyNftComponent implements OnInit {
       name: "Punisher",
       prize: "100",
       image: "black-trm",
-      extras: { buy_id: 4, value: "100" }
+      extras: { buy_id: 4, value: "100" },
+      ability1: "1%",
+      ability2: "10%",
     },
     {
       id: 5,
@@ -52,7 +60,9 @@ export class BuyNftComponent implements OnInit {
       name: "Lady Rich",
       prize: "1 000",
       image: "lady-rich",
-      extras: { buy_id: 5, value: "1000" }
+      extras: { buy_id: 5, value: "1000" },
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 6,
@@ -60,7 +70,9 @@ export class BuyNftComponent implements OnInit {
       name: "Rich Jr.",
       prize: "1 000",
       image: "bad-boy",
-      extras: { buy_id: 6, value: "1000" }
+      extras: { buy_id: 6, value: "1000" },
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 7,
@@ -68,7 +80,9 @@ export class BuyNftComponent implements OnInit {
       name: "Mr. Rich",
       prize: "1 000",
       image: "mr-rich",
-      extras: { buy_id: 7, value: "1000" }
+      extras: { buy_id: 7, value: "1000" },
+      ability1: "1.5%",
+      ability2: "15%",
     },
     {
       id: 8,
@@ -76,7 +90,10 @@ export class BuyNftComponent implements OnInit {
       name: "Mrs. Rich",
       prize: "10 000",
       image: "mrs-rich",
-      extras: { buy_id: 8, value: "10000" }
+      extras: { buy_id: 8, value: "10000" },
+      ability1: "2%",
+      ability2: "20%",
+      ability3: "18% APY staking",
     },
   ];
   cars: Array<object> = [
@@ -353,7 +370,7 @@ export class BuyNftComponent implements OnInit {
   @Input() assetId = 1;
   amount = 1;
   myDriverBalances: any;
-  tokenSelected = 'ioi';
+  tokenSelected = "ioi";
   constructor(
     protected api: CarsService,
     private balanceService: BalanceService,
@@ -393,27 +410,38 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyCarFromGarage(index: number) {
+    if (this.assetType === "racer") {
+      this.api
+        .racerBuyList({
+          tier: index,
+          amount: this.amount,
+          currency: this.tokenSelected,
+        })
+        .subscribe((datax) => {
+          const data: any = datax;
+          setTimeout(() => {
+            this.notifyChangedBalance();
+            this.router.navigate(["/profile/my-profile"]);
+            this.notify.error("You have bought a new racer!");
+          }, 1000);
+        });
 
-    if (this.assetType === 'racer') {
-      this.api.racerBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
+      return;
+    }
+    this.api
+      .carsBuyList({
+        tier: index,
+        amount: this.amount,
+        currency: this.tokenSelected,
+      })
+      .subscribe((datax) => {
         const data: any = datax;
         setTimeout(() => {
           this.notifyChangedBalance();
           this.router.navigate(["/profile/my-profile"]);
-          this.notify.error("You have bought a new racer!");
+          this.notify.error("You have bought a new car!");
         }, 1000);
       });
-
-      return;
-    }
-    this.api.carsBuyList({ "tier": index, "amount": this.amount, "currency": this.tokenSelected }).subscribe((datax) => {
-      const data: any = datax;
-      setTimeout(() => {
-        this.notifyChangedBalance();
-        this.router.navigate(["/profile/my-profile"]);
-        this.notify.error("You have bought a new car!");
-      }, 1000);
-    });
   }
 
   notifyChangedBalance() {
@@ -425,7 +453,7 @@ export class BuyNftComponent implements OnInit {
     this.myDriverBalances = this.identityService.getBalance();
   }
 
-  lowBalance(){
-    this.notify.error('Insufficient balance');
+  lowBalance() {
+    this.notify.error("Insufficient balance");
   }
 }
