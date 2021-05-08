@@ -45,10 +45,11 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   createFavCar = false;
   favCarId: number;
   myCarsIndex = 0;
-  myCarsvals = 0;
+  assetValue = 0;
   balanceInterval: any;
   balanceUpdateInterval: any;
   cachedLdrbrd: any;
+  assetData: any;
   myAffClass = '';
   tickets: number;
   currentExpLevel = 1;
@@ -178,7 +179,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
     this.carService.carsMineList().subscribe(
       data => {
         const datax: any = data;
-        // carid is string
+        this.assetData = data;
         this.myCars = datax.cars.sort((a, b) => {
           return a.car_id - b.car_id;
         });
@@ -263,32 +264,7 @@ export class ProfileStatsComponent implements OnInit, OnDestroy {
   }
 
   calcCarsValue() {
-    for (let x = 0; x < this.myCars.length; x++) {
-      if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
-        this.myCarsvals += 600;
-      }
-      if (this.myCars[x].car_id >= 7 && this.myCars[x].car_id < 13) {
-        this.myCarsvals += 1000;
-      }
-      if (this.myCars[x].car_id >= 13 && this.myCars[x].car_id < 19) {
-        this.myCarsvals += 1600;
-      }
-      if (this.myCars[x].car_id >= 19 && this.myCars[x].car_id < 25) {
-        this.myCarsvals += 2600;
-      }
-      if (this.myCars[x].car_id === 25) {
-        this.myCarsvals += 3600;
-      }
-      if (this.myCars[x].car_id === 26) {
-        this.myCarsvals += 6000;
-      }
-      if (this.myCars[x].car_id === 27) {
-        this.myCarsvals += 9600;
-      }
-      if (this.myCars[x].car_id === 28) {
-        this.myCarsvals += 15600;
-      }
-    }
+    this.assetValue = this.assetData.garage_value + this.assetData.racers_value;
   }
 
 }

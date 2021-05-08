@@ -979,8 +979,6 @@ export class MyNftComponent implements OnInit {
         this.filterAll();
         this.sortingDone = true;
         this.allCars = objs.cars.length;
-        console.log(data);
-        console.log("jano");
       }
     });
   }

@@ -108,12 +108,13 @@ export class NftOverviewComponent implements OnInit {
     setTimeout(() => {
       if (this.teamsCount > 0) {
         this.allItemsBalance =
-          this.carAssets.garage_value + this.myTeamAllData.team_value;
+          this.carAssets.garage_value + this.carAssets.racers_value + this.myTeamAllData.team_value;
       } else {
-        this.allItemsBalance = this.carAssets.garage_value;
+        this.allItemsBalance = this.carAssets.garage_value + this.carAssets.racers_value;
       }
     }, 1000);
   }
+
   calcItems() {
     setTimeout(() => {
       this.allItems = this.allCars + this.teamsCount;
