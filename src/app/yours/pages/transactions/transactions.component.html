@@ -27,7 +27,8 @@
       <p>{{ trans.created_at }}</p>
     </div>
     <div class="table-item big" *ngIf="trans.history_type !== 'reward'">
-      <p>{{ "transactions_desc." + trans.history_type | translate }}</p>
+      <p *ngIf="trans.history_type !== 'buy_asset'">{{ "transactions_desc." + trans.history_type | translate }}</p>
+      <p *ngIf="trans.history_type === 'buy_asset'">{{ "transactions_desc." + trans.history_type + '_' + trans.extras.name  | translate }}</p>
     </div>
     <div class="table-item big" *ngIf="trans.history_type === 'reward'">
       <p>
