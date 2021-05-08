@@ -77,9 +77,9 @@ export class BuyNftComponent implements OnInit {
     {
       id: 7,
       collection: "Epic",
-      name: "Mr. Rich",
+      name: "Mrs. Rich",
       prize: "1 000",
-      image: "mr-rich",
+      image: "mrs-rich",
       extras: { buy_id: 7, value: "1000" },
       ability1: "1.5%",
       ability2: "15%",
@@ -87,9 +87,9 @@ export class BuyNftComponent implements OnInit {
     {
       id: 8,
       collection: "Legendary",
-      name: "Mrs. Rich",
+      name: "Mr. Rich",
       prize: "10 000",
-      image: "mrs-rich",
+      image: "mr-rich",
       extras: { buy_id: 8, value: "10000" },
       ability1: "2%",
       ability2: "20%",
