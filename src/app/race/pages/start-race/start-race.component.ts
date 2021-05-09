@@ -442,8 +442,12 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.rewardLevelSum = 100;
     }
   }
-  showModal(modal: number) {
-    this.modalActive = modal;
+  showModal() {
+    if (this.modalActive === 1) {
+      this.modalActive = 0;
+    } else {
+      this.modalActive = 1;
+    }
   }
   closeModal() {
     this.modalActive = false;
