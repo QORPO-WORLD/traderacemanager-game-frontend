@@ -24,8 +24,8 @@
             [ngClass]="tt.name"
             *ngIf="
               myDriverStats?.is_paid_membership === 'Free' &&
-                tt?.id === myDriverStats?.next_month_team_id &&
-                myDriverStats?.next_month_membership_type === 'Premium'
+              tt?.id === myDriverStats?.next_month_team_id &&
+              myDriverStats?.next_month_membership_type === 'Premium'
             "
             [ngStyle]="{
               background:
@@ -37,7 +37,7 @@
             <span>
               <p>
                 <strong [ngStyle]="{ color: '#' + tt.color }">✓</strong>
-                Currently waiting
+                Currently waiting as premium
               </p>
             </span>
           </div>
@@ -191,10 +191,20 @@
     </div>
   </div>
 
-  <div class="arrow right" (click)="nextTeam()" *ngIf="modalVersion === false" [ngClass]="{'hidden': teams.length === 3}">
+  <div
+    class="arrow right"
+    (click)="nextTeam()"
+    *ngIf="modalVersion === false"
+    [ngClass]="{ hidden: teams.length === 3 }"
+  >
     <p>&gt;</p>
   </div>
-  <div class="arrow left" (click)="prevTeam()" *ngIf="modalVersion === false" [ngClass]="{'hidden': teams.length === 3}">
+  <div
+    class="arrow left"
+    (click)="prevTeam()"
+    *ngIf="modalVersion === false"
+    [ngClass]="{ hidden: teams.length === 3 }"
+  >
     <p>&lt;</p>
   </div>
 </div>
