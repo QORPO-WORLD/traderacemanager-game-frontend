@@ -67,7 +67,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myLdrbrdObserver: Subscription;
   teamSubscription: Subscription;
   raceData: any;
-
+  modalActive: any;
   myDriver: any;
   interval: any;
   liveRacesData: any;
@@ -442,7 +442,12 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.rewardLevelSum = 100;
     }
   }
-
+  showModal(modal: number) {
+    this.modalActive = modal;
+  }
+  closeModal() {
+    this.modalActive = false;
+  }
   getmyFavRaces() {
     this.favObserver = this.drvrsrvc.driversFavRacesList().subscribe((data) => {
       const nn: any = data;

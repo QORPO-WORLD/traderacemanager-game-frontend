@@ -2,12 +2,19 @@
   <div class="rewards-box" [ngClass]="{ 'tutorial-high': tutorialStep === 3 }">
     <div class="top-wrapper">
       <p class="box-heading">{{ "start-race.dividends" | translate }}</p>
-
       <img
-        src="/assets/base/images/start-race/big-token.png"
+        (click)="showModal(1)"
+        class="info-icon"
+        src="/assets/base/images/menu/info-icon.svg"
         alt=""
-        class="token-img"
       />
+      <a href="https://ioi-token.com" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/assets/base/images/start-race/big-token.png"
+          alt=""
+          class="token-img"
+        />
+      </a>
       <p class="rate-desc">1 IOI = 0.4&#36;</p>
 
       <button
@@ -17,6 +24,15 @@
       >
         Buy / Trade
       </button>
+      <p class="about-token">
+        <a
+          class="my-text-color"
+          href="https://ioi-token.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >About token</a
+        >
+      </p>
     </div>
     <div class="leaderboard cat-cont">
       <p class="box-heading">Winners</p>
@@ -983,5 +999,36 @@
     (click)="tutorialStep = 0"
   >
     <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
+  </div>
+</div>
+<div *ngIf="modalActive === 1" class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img
+      src="/assets/base/images/garage/red-close-cross.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
+    <ng-container *ngIf="modalActive === 1">
+      <p>
+        By holding IOI tokens on our platform you are eligible to receive
+        rewards.
+      </p>
+      <br />
+      <p>
+        For more info go to
+        <span
+          [routerLink]="['/profile/my-profile']"
+          [queryParams]="{
+            controlType: 'rewards',
+            secondControlType: 'about rewards'
+          }"
+          class="rewards my-text-color"
+          >rewards</span
+        >.
+      </p>
+    </ng-container>
   </div>
 </div>
