@@ -1,18 +1,27 @@
-
-
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
       <p class="common-heading">Deposit a currency</p>
       <div class="boxes-holder">
-
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'ioi'}" (click)="tokenSelected = 'ioi'">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: tokenSelected !== 'ioi' }"
+          (click)="tokenSelected = 'ioi'"
+        >
           <div class="inner">
-            <img src="/assets/base/images/logo-blank.png" alt="Logo of ioi token" class="curr-logo">
+            <img
+              src="/assets/base/images/logo-blank.png"
+              alt="Logo of ioi token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">IOI <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                IOI <button class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container *ngIf="myIoiBalance > 0">
-                <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+                <p class="dollars">
+                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
+                </p>
               </ng-container>
               <ng-container *ngIf="myIoiBalance === 0">
                 <p class="dollars">&#36; 0</p>
@@ -21,14 +30,29 @@
           </div>
         </div>
 
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'matic'}" (click)="tokenSelected = 'matic'">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: tokenSelected !== 'matic' }"
+          (click)="tokenSelected = 'matic'"
+        >
           <div class="inner">
-            <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="Logo of matic token" class="curr-logo">
+            <img
+              src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
+              alt="Logo of matic token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">MATIC <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                MATIC <button class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container>
-                <p class="dollars">&#36; {{(myBalance?.game_wallet_matic * myBalance?.matic_usdt)  | number:'1.0-2':'fr'}}</p>
-         
+                <p class="dollars">
+                  &#36;
+                  {{
+                    myBalance?.game_wallet_matic * myBalance?.matic_usdt
+                      | number: "1.0-2":"fr"
+                  }}
+                </p>
               </ng-container>
             </div>
           </div>
@@ -44,7 +68,11 @@
 
     <div class="amount-holder">
       <div class="info-box">
-        <img src="/assets/base/images/menu/info-icon.svg" alt="" class="info-img">
+        <img
+          src="/assets/base/images/menu/info-icon.svg"
+          alt=""
+          class="info-img"
+        />
         <div class="inner-holder my-cta-btn-back">
           <h3>Deposit Detail</h3>
           <p class="top-desc">Our processes are completely secure and free</p>
@@ -63,20 +91,32 @@
             </div>
           </div>
           <div class="btns-holder">
-            <a target="_blank" href="https://www.ioi-token.com/" class="high my-text-color">Read more about token &gt;</a>
-            <a class="default" target="_blank" href="https://www.coingecko.com">Check Coingecko.com &gt;</a>
+            <a
+              target="_blank"
+              href="https://www.ioi-token.com/"
+              class="high my-text-color"
+              >Read more about token &gt;</a
+            >
+            <a class="default" target="_blank" href="https://www.coingecko.com"
+              >Check Coingecko.com &gt;</a
+            >
           </div>
         </div>
       </div>
-      <p class="big-text">If you deposited the funds and the transaction has been confirmed on the blockchain,
-         push the claim button. You can claim anytime after a confirmed transaction on the blockchain.
-          Please push the claim button to see your balance in the dashboard.</p>
+      <p class="big-text">
+        If you deposited the funds and the transaction has been confirmed on the
+        blockchain, push the claim button. You can claim anytime after a
+        confirmed transaction on the blockchain. Please push the claim button to
+        see your balance in the dashboard.
+      </p>
     </div>
 
     <div class="deposit-disclaim my-cta-btn-back">
-      <p>Please, send Matic on Matic Blockchain, not its token version on Ethereum Blockchain!</p>
+      <p>
+        Please, send IOI on Polygon Blockchain, not its token version on
+        Ethereum Blockchain!
+      </p>
     </div>
-
   </div>
   <div class="right-holder">
     <p class="common-heading">Your deposit summary</p>
@@ -89,7 +129,12 @@
           <div class="info-border top my-cta-btn-back"></div>
           <div class="info-item crypto-adress">
             <p class="desc">Crypto address</p>
-            <input type="text" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+            <input
+              type="text"
+              [(ngModel)]="cryptoMtfrckr"
+              [ngModelOptions]="{ standalone: true }"
+              readonly
+            />
           </div>
           <div class="info-item second">
             <p class="desc">Currency you will receive</p>
@@ -99,15 +144,27 @@
           <div class="info-border bottom my-cta-btn-back"></div>
         </div>
         <div class="qr-code-holder">
-          <p class="info-text">Scan a QR code or paste the code into your external wallet to receive your funds, and confirm the transaction afterwards</p>
-          <p class="info-text important" *ngIf="tokenSelected === 'matic'">Please send matic on matic blockchain, not its token version on ethereum blockchain!</p>
+          <p class="info-text">
+            Scan a QR code or paste the code into your external wallet to
+            receive your funds, and confirm the transaction afterwards
+          </p>
+          <p class="info-text important" *ngIf="tokenSelected === 'matic'">
+            Please send matic on matic blockchain, not its token version on
+            ethereum blockchain!
+          </p>
 
-          <qrcode class="qr-code"
-              [level]="1"
-              [qrvalue]="cryptoMtfrckr"
+          <qrcode
+            class="qr-code"
+            [level]="1"
+            [qrvalue]="cryptoMtfrckr"
           ></qrcode>
-  
-          <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveDeposit();">Claim</button>
+
+          <button
+            class="confirm-btn my-cta-btn-back hoverable"
+            (click)="resolveDeposit()"
+          >
+            Claim
+          </button>
         </div>
       </div>
     </div>
