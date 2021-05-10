@@ -14,6 +14,7 @@ import { NgIf } from '@angular/common';
 import { CurrentRace, NextRaceV2, TournamentLeaderboard } from 'src/app/api/models';
 import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
 import { format } from 'url';
+import { DateTime, Settings } from 'luxon';
 declare let ga: any;
 /*import * as html2canvas from "html2canvas"; */
 @Component({
@@ -959,7 +960,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     this.ntoberver = this.api.racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString()).subscribe(
       data => {
-        console.log(data);
+
         this.newNext = data.race_hash;
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;
@@ -1158,8 +1159,9 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   getWhenStarts() {
     const then: any = new Date(this.raceDataildata.starts_at * 1000);
-    const now: any = new Date();
-    const diffTime = Math.abs((then - now) / 1000);
+    
+    const now: any = DateTime.utc();
+    const diffTime = Math.abs((then - now.ts) / 1000);
 
     return diffTime;
   }
