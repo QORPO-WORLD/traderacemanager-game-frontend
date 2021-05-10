@@ -249,7 +249,7 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] && 
-            (myDriverBalances?.game_wallet_matic * 0.4 / this.myDriverBalances.matic_usdt * amount) >= displayArray[0]['extras'].value"
+            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) <= myDriverBalances?.game_wallet_matic"
           (click)="
             tokenSelected = 'matic';
             buyCarFromGarage(displayArray[0]['extras'].buy_id)
@@ -263,8 +263,7 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            (myDriverBalances?.game_wallet_matic * 0.4 / this.myDriverBalances.matic_usdt * amount) <
-              displayArray[0]['extras'].value
+            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) > myDriverBalances?.game_wallet_matic
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
