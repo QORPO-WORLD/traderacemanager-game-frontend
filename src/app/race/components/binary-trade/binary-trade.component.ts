@@ -1,15 +1,17 @@
+import { RacesService } from 'src/app/api/services';
 import { timeStamp } from 'console';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Chart as lineChart } from 'angular-highcharts';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, pairwise, tap } from 'rxjs/operators';
-import { Observable, Subject, EMPTY, of, interval } from 'rxjs';
+import { Observable, Subject, EMPTY, of, interval, Subscription } from 'rxjs';
 declare let ccxt: any;
 
 import { min } from 'rxjs/operators';
 
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
+import { ActivatedRoute } from '@angular/router';
 export interface Trade {
   data: {
     p: number,
@@ -56,9 +58,14 @@ export class BinaryTradeComponent implements OnInit {
   price$: Observable<any>;
   direction$: Observable<any> = of('green');
   chart: any;
-  constructor(private identityService: AuthService) { }
+  gameObserver: Subscription;
+  raceHash: string;
+  long: boolean;
+  loadingCont = false;
+  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
 
   ngOnInit() {
+    this.raceHash = this.actv.snapshot.paramMap.get('id');
     setTimeout(() => {
       this.chart = new Chart('canvas', {
         type: "line",
@@ -294,5 +301,24 @@ export class BinaryTradeComponent implements OnInit {
       // }),
       map(arr => arr[0] < arr[1] ? 'green' : 'red')
     )
+  }
+
+
+  placeOption() {
+    if (this.loadingCont === false) {
+      this.loadingCont = true;
+      this.gameObserver = this.raceApi.binaryOption({
+        "race_hash": this.raceHash,
+        "long": this.long
+      }).subscribe(
+        data => {
+          console.log(data);
+        }
+      )
+    }
+
+    setTimeout(() => {
+      this.loadingCont = false;
+    }, 500)
   }
 }

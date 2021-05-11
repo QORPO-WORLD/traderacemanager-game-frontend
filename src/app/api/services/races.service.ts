@@ -458,6 +458,102 @@ class RacesService extends __BaseService {
       __map(_r => _r.body as RaceWinners)
     );
   }
+
+
+  // binary races 
+
+  liveBinaryResponse(): __Observable<__StrictHttpResponse<Array<any>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/versus/live`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<MyNextRace>>;
+      })
+    );
+  }
+
+  liveBinary(): __Observable<Array<any>> {
+    return this.liveBinaryResponse().pipe(
+      __map(_r => _r.body as Array<any>)
+    );
+  }
+
+  joinBinaryResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/races/versus/create-or-join`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to sign up to a race.
+   * @param data undefined
+   */
+  joinBinary(data: any): __Observable<any> {
+    return this.joinBinaryResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+
+  binaryOptionResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/races/versus/option`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to sign up to a race.
+   * @param data undefined
+   */
+  binaryOption(data: any): __Observable<any> {
+    return this.binaryOptionResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
+
 }
 
 module RacesService {

@@ -104,12 +104,12 @@
   
       <div class="racers-holder">
         
-        <ng-container *ngFor="let item of racers | slice:startRacerIndex:startRacerIndex + sliceBalancer; let i = index">
-          <div class="racer-item" [ngClass]="{'active': chosenRacerId === item.id, 'locked': item.id % 3 === 0}">
-            
+        <ng-container *ngFor="let item of racers | sortmain: '!sum' | slice:startRacerIndex:startRacerIndex + sliceBalancer; let i = index">
+          <div class="racer-item" [ngClass]="{'active': chosenRacerId === item.id, 'locked': item.sum < 1}">
+          aaa
             <div class="img-holder">
               <img class="racer-img" [src]="'/assets/base/images/nft-racers/' + item.image + '.png'" alt=""/>
-              <div class="locked-avatar">
+              <div class="locked-avatar"  *ngIf="item.sum < 1">
                 <img src="/assets/base/images/binary-race/avatar-locked.svg" alt="">
                 <p>You don’t own this Racer, but you can buy it now!</p>
               </div>
@@ -122,8 +122,8 @@
                   <p>1 IOI</p>
                 </div>
               </div>
-              <button class="choose-btn" *ngIf="item.id % 3 !== 0" (click)="chosenRacerId = item.id">Choose</button>
-              <button class="choose-btn" *ngIf="item.id % 3 === 0" [routerLink]="['/car/nft-market']">Buy a racer</button>
+              <button class="choose-btn" *ngIf="item.sum > 0" (click)="chosenRacerId = item.id;racerPk = item.pks[0]">Choose</button>
+              <button class="choose-btn" *ngIf="item.sum < 1" [routerLink]="['/car/nft-market']">Buy a racer</button>
             </div>
           </div>
         </ng-container>
@@ -147,7 +147,7 @@
   
       <div class="btns-holder">
         <button class="back" (click)="fuelStep = 1">Back</button>
-        <button class="continue" (click)="fuelStep = 3;getMyChosenAvatar()" *ngIf="chosenRacerId > 0">Continue</button>
+        <button class="continue" (click)="getMyChosenAvatar();fuelStep = 3;" *ngIf="chosenRacerId > 0">Continue</button>
         <button class="continue disabled" *ngIf="chosenRacerId === 0">Continue</button>
       </div>
   
@@ -180,7 +180,7 @@
                 <p>1 IOI</p>
               </div>
             </div>
-            <button class="name-sheet">Mirek55554</button>
+            <button class="name-sheet">{{myDriverStats?.nickname}}</button>
           </div>
         </div>
 
@@ -226,7 +226,7 @@
 
       <div class="btns-holder">
         <button class="back" (click)="fuelStep = 2">Back</button>
-        <button class="continue" (click)="automatch()" *ngIf="!automatchLoading && opponentPlayer === undefined">Automatch</button>
+        <button class="continue" (click)="joinToGame()" *ngIf="!automatchLoading && opponentPlayer === undefined">Automatch</button>
         <button class="continue loading" *ngIf="automatchLoading && opponentPlayer === undefined"><img src="/assets/base/images/binary-race/loading-icon.svg" alt=""> Please, wait</button>
         <button class="continue" *ngIf="opponentPlayer !== undefined" [routerLink]="['/race/binary-race/fdsfdlsfkl']">Ready</button>
       </div>
