@@ -91,6 +91,13 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       this.sliceBalancer = 2;
     }
     this.getMyAssets();
+    const bin = JSON.parse(localStorage.getItem('binary'));
+    if (bin) {
+      this.getInterval = setInterval(() => {
+        this.getMyGames();
+      }, 800);
+    }
+
   }
 
   ngOnDestroy() {
@@ -149,14 +156,27 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   joinToGame() {
-    console.log(this.racerPk);
+    const bin = JSON.parse(localStorage.getItem('binary'));
+    if (bin) {
+      return;
+    }
     this.automatchLoading = true;
     this.gameObserver = this.raceApi.joinBinary({
       avatar_id: this.racerPk
     }).subscribe(
       data => {
+        localStorage.setItem('binary', JSON.stringify({
+          hash: data.versus_hash,
+          time: Date.now() + (data.ttl * 1000)
+        }));
+
         this.getInterval = setInterval(() => {
-          this.getMyGames();
+           if (bin.time > Date.now()) {
+            this.getMyGames();
+          } else {
+            clearInterval(this.getInterval);
+          }
+          
         }, 800);
       }
     )
@@ -171,7 +191,8 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           this.automatchLoading = false;
 
           clearInterval(this.getInterval);
-
+          localStorage.removeItem('binary');
+   
           setTimeout(() => {
             this.route.navigate(['/race/binary-trade/' + data[0].versus_hash]);
           }, 1000);
