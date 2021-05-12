@@ -1,17 +1,27 @@
-
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
       <p class="common-heading">Withdraw a currency</p>
       <div class="boxes-holder">
-
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'ioi'}" (click)="tokenSelected = 'ioi'">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: tokenSelected !== 'ioi' }"
+          (click)="tokenSelected = 'ioi'"
+        >
           <div class="inner">
-            <img src="/assets/base/images/logo-blank.png" alt="Logo of ioi token" class="curr-logo">
+            <img
+              src="/assets/base/images/logo-blank.png"
+              alt="Logo of ioi token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">IOI <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                IOI <button class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container *ngIf="myIoiBalance > 0">
-                <p class="dollars">&#36; {{(myIoiBalance * 0.4 | number:'1.0-2':'fr')}}</p>
+                <p class="dollars">
+                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
+                </p>
               </ng-container>
               <ng-container *ngIf="myIoiBalance === 0">
                 <p class="dollars">&#36; 0</p>
@@ -20,13 +30,29 @@
           </div>
         </div>
 
-        <div class="box-item my-cta-btn-back hoverable" [ngClass]="{'inactive': tokenSelected !== 'matic'}" (click)="tokenSelected = 'matic'">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: tokenSelected !== 'matic' }"
+          (click)="tokenSelected = 'matic'"
+        >
           <div class="inner">
-            <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="Logo of matic token" class="curr-logo">
+            <img
+              src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
+              alt="Logo of matic token"
+              class="curr-logo"
+            />
             <div class="text-holder">
-              <p class="curr-type">MATIC <button class="arrow-btn my-text-color">&gt;</button></p>
+              <p class="curr-type">
+                MATIC <button class="arrow-btn my-text-color">&gt;</button>
+              </p>
               <ng-container>
-                <p class="dollars">&#36; {{(myBalance?.game_wallet_matic * maticusdt) | number:'1.0-2':'fr'}}</p>
+                <p class="dollars">
+                  &#36;
+                  {{
+                    myBalance?.game_wallet_matic * maticusdt
+                      | number: "1.0-2":"fr"
+                  }}
+                </p>
               </ng-container>
             </div>
           </div>
@@ -53,18 +79,30 @@
       <p class="common-heading">Amount</p>
       <div class="amount-input">
         <div class="inner">
-          <input type="number" min="100" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}" placeholder="Enter the ammount you want to withdraw">
+          <input
+            type="number"
+            min="100"
+            [(ngModel)]="amount"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter the ammount you want to withdraw"
+          />
           <p class="curr-desc" *ngIf="tokenSelected === 'matic'">MATIC</p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
-        <p class="input-note">Minimal withdrawal amount is 100 {{tokenSelected.toUpperCase()}}</p>
+        <p class="input-note">
+          Minimal withdrawal amount is 100 {{ tokenSelected.toUpperCase() }}
+        </p>
       </div>
       <p class="common-heading">Crypto wallet address</p>
       <div class="crypto-input">
-        <input type="text" placeholder="Enter an address  of crypto wallet you want to send funds into" [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}">
+        <input
+          type="text"
+          placeholder="Enter an address  of crypto wallet you want to send funds into"
+          [(ngModel)]="cryptoMtfrckr"
+          [ngModelOptions]="{ standalone: true }"
+        />
       </div>
     </div>
-
   </div>
   <div class="right-holder">
     <p class="common-heading">Your withdrawal summary</p>
@@ -72,12 +110,20 @@
       <div class="inner">
         <div class="withdraw-info">
           <p class="text">You are withdrawing</p>
-          <p class="value"><span *ngIf="amount > 0">{{amount}}</span> <span *ngIf="amount < 1">0</span>
-            <span *ngIf="tokenSelected === 'matic'" class="value-desc">MATIC</span>
+          <p class="value">
+            <span *ngIf="amount > 0">{{ amount }}</span>
+            <span *ngIf="amount < 1">0</span>
+            <span *ngIf="tokenSelected === 'matic'" class="value-desc"
+              >MATIC</span
+            >
             <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
-          <p *ngIf="tokenSelected === 'matic'" class="desc">market value 1 MATIC = {{maticusdt}} USD</p>
-          <p *ngIf="tokenSelected === 'ioi'" class="desc">market value 1 IOI = 0.4$</p>
+          <p *ngIf="tokenSelected === 'matic'" class="desc">
+            market value 1 MATIC = {{ maticusdt }} USD
+          </p>
+          <p *ngIf="tokenSelected === 'ioi'" class="desc">
+            market value 1 IOI = 0.4$
+          </p>
         </div>
         <div class="summary-box">
           <div class="info-item crypto-adress">
@@ -85,7 +131,11 @@
               <p>Crypto wallet address</p>
             </div>
             <div class="text">
-              <input [(ngModel)]="cryptoMtfrckr" [ngModelOptions]="{standalone: true}" readonly>
+              <input
+                [(ngModel)]="cryptoMtfrckr"
+                [ngModelOptions]="{ standalone: true }"
+                readonly
+              />
             </div>
           </div>
           <div class="info-item second">
@@ -98,38 +148,61 @@
             </div>
           </div>
         </div>
-  
+
         <!-- <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
            *ngIf="myDriver?.is_using_authenticator === false">Confirm</button>
   
         <button class="confirm-btn my-cta-btn-back hoverable" (click)="confirming = true" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
            *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
-  
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="withdrawalIoiToken()">Withdraw</button>
+
+        <button
+          class="confirm-btn my-cta-btn-back hoverable"
+          (click)="withdrawalIoiToken()"
+        >
+          Withdraw
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="confirm-code-modal" *ngIf="confirmed === false && confirming === true">
-
+<div
+  class="confirm-code-modal"
+  *ngIf="confirmed === false && confirming === true"
+>
   <div class="inner-modal-content">
-    <div class="modal-close" [routerLink]="['/race/start-race']"><img src="/assets/base/images/garage/red-close-cross.svg" alt="Close modal icon"></div>
+    <div class="modal-close" [routerLink]="['/race/start-race']">
+      <img
+        src="/assets/base/images/garage/red-close-cross.svg"
+        alt="Close modal icon"
+      />
+    </div>
 
     <div class="deposit-modal-body">
-
-        <h1 class="main-heading">Enter confirmation code from your email</h1>
-        <div class="input-box modal-box desc-box">
-          <div class="input-holder my-cta-btn-back">
-            <input [(ngModel)]="confirmCode" [ngModelOptions]="{standalone: true}">
-          </div>
-          <p class="disclaim"></p>
+      <h1 class="main-heading">Enter confirmation code from your email</h1>
+      <div class="input-box modal-box desc-box">
+        <div class="input-holder my-cta-btn-back">
+          <input
+            [(ngModel)]="confirmCode"
+            [ngModelOptions]="{ standalone: true }"
+          />
         </div>
+        <p class="disclaim"></p>
+      </div>
+      <div class="input-box modal-box desc-box" *ngIf="myDriver?.is_using_authenticator === true">
+        <h2 class="main-heading">Enter Google Authenticator code</h2>
+        <div class="input-holder my-cta-btn-back">
+          <input
+            [(ngModel)]="authcode"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <p class="disclaim"></p>
+      </div>
 
-        <button class="confirm-btn my-cta-btn-back" (click)="confirmWithdrawal()">Confirm</button>
-        
+      <button class="confirm-btn my-cta-btn-back" (click)="confirmWithdrawal()">
+        Confirm
+      </button>
     </div>
   </div>
-  
-</div> 
+</div>

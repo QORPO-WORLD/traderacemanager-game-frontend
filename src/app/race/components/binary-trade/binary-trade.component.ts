@@ -1,15 +1,17 @@
+import { RacesService } from 'src/app/api/services';
 import { timeStamp } from 'console';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Chart as lineChart } from 'angular-highcharts';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, pairwise, tap } from 'rxjs/operators';
-import { Observable, Subject, EMPTY, of, interval } from 'rxjs';
+import { Observable, Subject, EMPTY, of, interval, Subscription } from 'rxjs';
 declare let ccxt: any;
 
 import { min } from 'rxjs/operators';
 
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
+import { ActivatedRoute } from '@angular/router';
 export interface Trade {
   data: {
     p: number,
@@ -43,7 +45,7 @@ export class BinaryTradeComponent implements OnInit {
   raceEnded = false;
 
   @ViewChild("unityRace", { static: false }) raceComp: any;
-  myChart: any;
+  chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
     url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
@@ -55,57 +57,148 @@ export class BinaryTradeComponent implements OnInit {
   });
   price$: Observable<any>;
   direction$: Observable<any> = of('green');
-  chart: any;
-  constructor(private identityService: AuthService) { }
+
+  gameObserver: Subscription;
+  raceHash: string;
+  long: boolean;
+  loadingCont = false;
+  chartColors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+  color = Chart.helpers.color;
+  config: any;
+  colorNames = Object.keys(this.chartColors);
+  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.chart = new Chart('canvas', {
-        type: "line",
-        options: {
-          responsive: true,
-          title: {
-            display: false,
-            text: 'Real Time Chart'
+    this.config = {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Dataset 1 (linear interpolation)',
+          backgroundColor: this.color(this.chartColors.red).alpha(0.5).rgbString(),
+          borderColor: this.chartColors.red,
+          fill: false,
+          data: []
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'realtime',
+            realtime: {
+              duration: 20000,
+              refresh: 1000,
+              delay: 2000,
+              
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'value'
+            }
           }
         },
-        data: {
-          labels: [],
-          datasets: [
-            {
-              type: "line",
-              label: "BTC price",
-              backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#e8c3b9", "#8e5ea2", "#3e95cd"],
-              fill: true
-            }
-          ]
+        interaction: {
+          intersect: false
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Line chart (hotizontal scroll) sample'
+          }
         }
-
-      });
-
+      }
+    };
+    this.raceHash = this.actv.snapshot.paramMap.get('id');
+    setTimeout(() => {
+      this.chart = new Chart('canvas', this.config);
+      console.log('first');
+      this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100);
+    setTimeout(() => {
+      this.addData();
+    }, 3000);
+
+
 
     //this.runScheduler();
     this.getMyDriver();
     this.price$ = this.getLatestPrice();
   }
 
-  add() {
-    console.log(this.currentValue);
-    if (this.currentValue > 0) {
-      const timeElapsed = Date.now();
-      const today = new Date(timeElapsed);
-      this.chart.data.datasets[0].data.push(this.currentValue);
-      this.chart.data.labels.push(today.toDateString());
 
-      this.chart.update();
+
+  onRefresh() {
+    console.log('second');
+    console.log(this.chart);
+    if (this.chart) {
+      const now = Date.now();
+      this.chart.data.datasets[0].data.push({
+        x: now,
+        y: this.currentValue
+    
+      });
+      console.log(this.chart.data.datasets[0].data);
+      if (this.chart.data.datasets[0].data.length > 20) {
+        console.log(this.chart.data.datasets[0].data);
+        this.chart.data.datasets[0].data.shift();
+        console.log(this.chart.data.datasets[0].data);
+      }
+    }
+
+  }
+
+  addData() {
+    this.onRefresh();
+    this.chart.update();
+  }
+
+  addDataset() {
+    console.log('2d3');
+    const colorName = this.colorNames[this.config.data.datasets.length % this.colorNames.length];
+    const newColor = this.chartColors[colorName];
+    const newDataset: any = {
+      label: 'Dataset ' + (this.config.data.datasets.length + 1),
+      backgroundColor: this.color(newColor).alpha(0.5).rgbString(),
+      borderColor: newColor,
+      fill: false,
+      data: []
+    };
+
+    this.config.data.datasets[0].push(newDataset);
+    this.chart.update();
+    console.log('updated');
+  }
+
+  add() {
+    if(this.chart) {
+    console.log(this.currentValue);
+      if (this.currentValue > 0) {
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        this.chart.data.datasets[0].data.push(this.currentValue);
+        this.chart.data.labels.push(today.toDateString());
+        if (this.chart.data.datasets[0].data.length > 20) {
+          this.chart.data.datasets[0].data.shift();
+          this.chart.data.labels.shift();
+        }
+        this.chart.update();
+      }
     }
     /*
     this.currentValue = Math.floor(this.currentValue);
 
     this.timeStamp++;
     this.chartData.push(this.currentValue);
-    this.myChart.series[0].addPoint([(this.timeStamp / 1000), this.currentValue]);
+    this.chart.series[0].addPoint([(this.timeStamp / 1000), this.currentValue]);
     this.adjustChartAxis();
     */
   }
@@ -139,18 +232,18 @@ export class BinaryTradeComponent implements OnInit {
 
     if (this.chartData.length > 20) {
       this.chartData.shift();
-      this.myChart.series[0].data[0].remove(true, true);
+      this.chart.series[0].data[0].remove(true, true);
     }
 
     if (this.currentValue > this.chartMax) {
-      this.myChart.yAxis[0].update({
+      this.chart.yAxis[0].update({
         max: this.chartMax,
         min: this.chartMin
       });
     }
 
     if (this.currentValue < this.chartMin) {
-      this.myChart.yAxis[0].update({
+      this.chart.yAxis[0].update({
         min: this.chartMin,
         max: this.chartMax
       });
@@ -263,7 +356,7 @@ export class BinaryTradeComponent implements OnInit {
  
      this.chartInterval = setInterval(() => {
     this.add();
-    this.updatePlotLine(this.myChart);
+    this.updatePlotLine(this.chart);
   }, 5000);
   */
 
@@ -283,6 +376,7 @@ export class BinaryTradeComponent implements OnInit {
   setPriceToGraph(data) {
     const time = Date.now();
     this.currentValue = data;
+
     this.add();
   }
 
@@ -294,5 +388,24 @@ export class BinaryTradeComponent implements OnInit {
       // }),
       map(arr => arr[0] < arr[1] ? 'green' : 'red')
     )
+  }
+
+
+  placeOption() {
+    if (this.loadingCont === false) {
+      this.loadingCont = true;
+      this.gameObserver = this.raceApi.binaryOption({
+        "race_hash": this.raceHash,
+        "long": this.long
+      }).subscribe(
+        data => {
+          console.log(data);
+        }
+      )
+    }
+
+    setTimeout(() => {
+      this.loadingCont = false;
+    }, 500)
   }
 }

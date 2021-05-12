@@ -79,49 +79,51 @@
               <span>{{myTeam?.current_manager_rating }}% {{ "teams.my_team.satisfaction_rate" | translate }}</span>
             </p>
             <ng-container *ngIf="TeamManagerSlide === 1">
-              <div class="satisfaction-wrapper" *ngIf="myTeam?.can_rate_manager === false">
-              You have already rated this manager.  
-              </div>
-              <div class="satisfaction-wrapper" *ngIf="myTeam?.can_rate_manager === true">
+
+              <div class="satisfaction-wrapper">
                 <div class="satisfaction-info">
                   <p>{{ "teams.my_team.rate_your_experience" | translate }}</p>
                   <p class="desc">{{ "teams.my_team.Best" | translate }}</p>
                 </div>
                 <div class="satisfaction-rate">
-                  <div
+                  <button
                     class="rate-icon"
                     [ngClass]="{ active: activeRate == 1 }"
                     (click)="activeRate = 1;rateManager()"
+                    [disabled]="myTeam?.can_rate_manager === false"
                   >
                     <img src="assets/base/images/teams/angry-icon.png" alt="" />
-                  </div>
-                  <div
+                  </button>
+                  <button
                     class="rate-icon"
                     [ngClass]="{ active: activeRate == 2 }"
                     (click)="activeRate = 2;rateManager()"
+                    [disabled]="myTeam?.can_rate_manager === false"
                   >
                     <img
                       src="assets/base/images/teams/confused-icon.png"
                       alt=""
                     />
-                  </div>
-                  <div
+                  </button>
+                  <button
                     class="rate-icon"
                     [ngClass]="{ active: activeRate == 3 }"
                     (click)="activeRate = 3;rateManager()"
+                    [disabled]="myTeam?.can_rate_manager === false"
                   >
                     <img
                       src="assets/base/images/teams/smirking-icon.png"
                       alt=""
                     />
-                  </div>
-                  <div
+                  </button>
+                  <button
                     class="rate-icon"
                     [ngClass]="{ active: activeRate == 4 }"
                     (click)="activeRate = 4;rateManager()"
+                    [disabled]="myTeam?.can_rate_manager === false"
                   >
                     <img src="assets/base/images/teams/love-icon.png" alt="" />
-                  </div>
+                  </button>
                 </div>
               </div>
             </ng-container>

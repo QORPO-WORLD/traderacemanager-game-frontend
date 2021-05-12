@@ -27,7 +27,7 @@ class CarsService extends __BaseService {
   /**
    * API endpoint to list users cars.
    */
-  carsMineListResponse(): __Observable<__StrictHttpResponse<Array<Car>>> {
+  carsMineListResponse(): __Observable<__StrictHttpResponse<Array<any>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -44,16 +44,16 @@ class CarsService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Car>>;
+        return _r as __StrictHttpResponse<any>;
       })
     );
   }
   /**
    * API endpoint to list users cars.
    */
-  carsMineList(): __Observable<Array<Car>> {
+  carsMineList(): __Observable<any> {
     return this.carsMineListResponse().pipe(
-      __map(_r => _r.body as Array<Car>)
+      __map(_r => _r.body as any)
     );
   }
 

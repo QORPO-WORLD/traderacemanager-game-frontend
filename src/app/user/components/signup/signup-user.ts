@@ -68,6 +68,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
     showMmew = false;
     trying = false;
     chainId = 137;
+    newsChecked = true;
     constructor(protected injector: Injector, private formBuilder: FormBuilder,
         private notify: NotifiqService,
         private router: Router, protected api: AuthService, protected route: ActivatedRoute,

@@ -218,9 +218,9 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            assetType === 'car' &&
+            (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
+            myDriverBalances?.game_wallet_ioi * amount >= displayArray[0]['extras'].value
           "
           (click)="
             tokenSelected = 'ioi';
@@ -233,9 +233,9 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            assetType === 'car' &&
+            (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
+            myDriverBalances?.game_wallet_ioi * amount < displayArray[0]['extras'].value
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
@@ -247,11 +247,9 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            assetType === 'car' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_matic >=
-              displayArray[0]['extras'].value
-          "
+            (assetType === 'car' || assetType === 'racer') &&
+            !displayArray[0]['rare'] && 
+            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) <= myDriverBalances?.game_wallet_matic"
           (click)="
             tokenSelected = 'matic';
             buyCarFromGarage(displayArray[0]['extras'].buy_id)
@@ -263,71 +261,9 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            assetType === 'car' &&
+            (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_matic <
-              displayArray[0]['extras'].value
-          "
-          (click)="lowBalance()"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-        >
-          Buy with MATIC
-        </button>
-
-        <!-- RACER BUTTONS -->
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            assetType === 'racer' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi >= displayArray[0]['extras'].value
-          "
-          (click)="
-            tokenSelected = 'ioi';
-            buyCarFromGarage(displayArray[0]['extras'].buy_id)
-          "
-        >
-          Buy with IOI
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            assetType === 'racer' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi < displayArray[0]['extras'].value
-          "
-          (click)="lowBalance()"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-        >
-          Buy with IOI
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            assetType === 'racer' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_matic >=
-              displayArray[0]['extras'].value
-          "
-          (click)="
-            tokenSelected = 'matic';
-            buyCarFromGarage(displayArray[0]['extras'].buy_id)
-          "
-        >
-          Buy with MATIC
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            assetType === 'racer' &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_matic <
-              displayArray[0]['extras'].value
+            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) > myDriverBalances?.game_wallet_matic
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
