@@ -254,16 +254,12 @@
       </div>
 
       <div class="content-box box2" id="analysisBox">
-
-        <div class="box-heading">
-          <p class="heading">Technical analysis</p>
-        </div>
-
-        <div class="graphs-holder">
-          <app-indicator [type]="selectedSymbol" *ngIf="selectedSymbol"></app-indicator>
-        </div>
         
         <div class="bottom-part">
+
+          <div class="box-heading">
+            <p class="heading">Technical analysis</p>
+          </div>
           <div class="sliders" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 0">
             
     
@@ -536,6 +532,16 @@
             </div>
           </div>
         </div>
+
+        <div class="graphs-holder">
+          <div class="box-heading">
+            <p class="heading">Technical analysis</p>
+          </div>
+          <div class="inner" *ngIf="selectedSymbol">
+            <app-indicator [type]="selectedSymbol"></app-indicator>
+          </div>
+        </div>
+
 
       </div>
 
