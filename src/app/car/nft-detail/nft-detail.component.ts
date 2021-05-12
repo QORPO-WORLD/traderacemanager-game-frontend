@@ -17,6 +17,7 @@ export class NftDetailComponent implements OnInit {
       name: "RHINO",
       prize: "600 IOI",
       image: "car1",
+      gif: "car1-animation",
       type: "car",
       ability1: 0.1,
       ability2: 6,
@@ -725,9 +726,8 @@ export class NftDetailComponent implements OnInit {
   showBuyModal() {
     this.marketState.emit(3);
   }
-  
+
   showModal(p) {
     this.modalActive.emit(p);
   }
-
 }
