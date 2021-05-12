@@ -4,7 +4,7 @@ export const environment = {
   api_url: "https://dev-api.traderacemanager.com",
   production: false,
   encryptPassphrase: "ioi-game-cbucrebnu778i37943",
-  bugsnag_api: "5e742571214fc41347ff9270518937de",
+  bugsnag_api: "5e74257114fc41347ff9270518937de",
   title_suffix: "IOI-GAME",
   ctaEmail: "mailto",
   ctaEmailShareTeamProfile: "mailto:",

@@ -46,6 +46,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   myId: string;
   meManager = false;
   meRated = false;
+  myRating: number;
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -92,6 +93,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
           this.meManager = true;
         }
         this.teamColor = data.color;
+        data.last_manager_like_value ? this.activeRate = data.last_manager_like_value : null;
         this.recognizeOwnerMe();
       }
     );
@@ -139,7 +141,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
-
+    //this.myRating = data.
   }
 
   getMyLevel() {
@@ -238,6 +240,10 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       this.teamSubscription = this.teams_service.rateManager({ 'stars': this.activeRate }).subscribe(
         data => {
           this.meRated = true;
+          this.identityService.updateDriverMe();
+          setTimeout(() => {
+            this.getMyDriver();
+          }, 200);
         }
       )
     }
