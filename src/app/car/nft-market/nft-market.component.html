@@ -281,8 +281,20 @@
           </div>
         </div>
         <div class="shop-section-center">
-          <div class="boxes">
+          <div
+            [ngClass]="{
+              'engage-next-anim': animation === 0,
+              'disengage-next-anim': animation === 1,
+              'engage-prev-anim': animation === 2,
+              'disengage-prev-anim': animation === 3
+            }"
+            class="boxes"
+          >
             <div
+              (click)="
+                showAsset(item['id'], item['type'], item['position']);
+                scrollTop(myScroll2)
+              "
               *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
               class="box my-box-shadow"
             >
@@ -339,12 +351,6 @@
                 />
               </div>
               <div class="txt">
-                <p
-                  [ngClass]="{ gold: item['rare'] === true }"
-                  class="collection"
-                >
-                  {{ item["collection"] }}
-                </p>
                 <p *ngIf="item['type'] === 'team'" class="name team">
                   Team {{ item["name"] }}
                 </p>
@@ -358,42 +364,13 @@
                 <p *ngIf="item['type'] === 'racer'" class="name">
                   {{ item["name"] }}
                 </p>
-
+                <p
+                  [ngClass]="{ gold: item['rare'] === true }"
+                  class="collection"
+                >
+                  {{ item["collection"] }}
+                </p>
                 <p class="prize">{{ item["prize"] }}</p>
-
-                <button
-                  class="my-cta-btn-back my-box-shadow"
-                  *ngIf="item['type'] === 'car'"
-                  (click)="
-                    showAsset(item['id'], item['type'], item['position']);
-                    scrollTop(myScroll2)
-                  "
-                >
-                  See details
-                </button>
-                <button
-                  class="my-cta-btn-back"
-                  *ngIf="
-                    item['type'] === 'racer' ||
-                    item['type'] === 'track' ||
-                    item['type'] === 'special' ||
-                    (item['name'] === 'You' && item['type'] === 'team')
-                  "
-                  (click)="
-                    showAsset(item['id'], item['type'], item['position']);
-                    scrollTop(myScroll2)
-                  "
-                >
-                  See details
-                </button>
-                <button
-                  class="my-cta-btn-back"
-                  [ngStyle]="{ opacity: '0.3' }"
-                  *ngIf="item['name'] !== 'You' && item['type'] === 'team'"
-                  style="cursor: default"
-                >
-                  Sold out
-                </button>
               </div>
             </div>
           </div>
@@ -402,10 +379,8 @@
           <div class="pages">
             <div class="page-left">
               <button
-                (click)="
-                  prevPageCars(); resetPageArrowLeft(); scrollTop(myScroll)
-                "
-                [disabled]="sliceStart <= 0"
+                (click)="prevPageCars(); scrollTop(myScroll)"
+                [disabled]="timeoutPage || sliceStart <= 0"
                 class="pagebtn-l"
               >
                 <img
@@ -432,10 +407,10 @@
             </div>
             <div class="page-right">
               <button
-                (click)="
-                  nextPageCars(); resetPageArrowRight(); scrollTop(myScroll)
+                (click)="nextPageCars(); scrollTop(myScroll)"
+                [disabled]="
+                  timeoutPage || currentPage >= newProducts.length / inRow
                 "
-                [disabled]="sliceMiddle >= newProducts.length"
                 class="pagebtn-r"
               >
                 <img

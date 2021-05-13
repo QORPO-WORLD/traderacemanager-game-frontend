@@ -759,7 +759,7 @@ export class MyNftComponent implements OnInit {
   newProducts: any;
   assetId: any;
   title = "All products";
-  currentPage;
+  currentPage: number;
   maxPage: number;
   lastPage: number;
   isPaged: any;
@@ -772,6 +772,20 @@ export class MyNftComponent implements OnInit {
   owned: any;
   marketState = 1;
 
+  constructor(
+    protected api: CarsService,
+    private balanceService: BalanceService,
+    private identityService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    this.getMyCars();
+  }
+  ngOnInit(): void {
+    const that = this;
+    this.getMyOldDriver();
+    this.getMyBalance();
+    this.calcCarsValue();
+  }
   calcCarsValue() {
     for (let x = 0; x < this.myCars.length; x++) {
       if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
@@ -826,14 +840,6 @@ export class MyNftComponent implements OnInit {
   showAssetBuy(state: number) {
     this.marketState = state;
   }
-  constructor(
-    protected api: CarsService,
-    private balanceService: BalanceService,
-    private identityService: AuthService,
-    private route: ActivatedRoute
-  ) {
-    this.getMyCars();
-  }
 
   get balanceHasChanged(): boolean {
     return this.balanceService.balanceChanged;
@@ -842,13 +848,6 @@ export class MyNftComponent implements OnInit {
   notifyChangedBalance() {
     this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();
-  }
-
-  ngOnInit(): void {
-    const that = this;
-    this.getMyOldDriver();
-    this.getMyBalance();
-    this.calcCarsValue();
   }
 
   getMyCars() {
@@ -1150,9 +1149,7 @@ export class MyNftComponent implements OnInit {
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  widthFilter() {
-    this.display = window.innerWidth;
-  }
+
   width() {
     this.display = window.innerWidth;
 

@@ -12,16 +12,10 @@ export class NftMarketComponent implements OnInit {
   carSum: string;
   marketState = 1;
   selectedId = 1;
+  isPaged = 0;
   selectedType = "racers";
-
-  constructor(protected api: CarsService, private route: ActivatedRoute) {
-    this.width();
-  }
-
-  ngOnInit() {
-    this.getShowroomCars();
-    this.getAssetType();
-  }
+  timeoutPage: any;
+  animation = 0;
 
   products: Array<object> = [
     //bronze
@@ -686,8 +680,8 @@ export class NftMarketComponent implements OnInit {
   teamsActive = false;
   specialActive = false;
   allActive = true;
-  sliceStart = 0;
-  sliceMiddle;
+  sliceStart: number;
+  sliceMiddle: number;
   display = window.innerWidth;
   newProducts = this.products;
 
@@ -700,6 +694,15 @@ export class NftMarketComponent implements OnInit {
   typeObserver: Subscription;
 
   modalActive: any;
+
+  constructor(protected api: CarsService, private route: ActivatedRoute) {
+    this.width();
+  }
+
+  ngOnInit() {
+    this.getShowroomCars();
+    this.getAssetType();
+  }
 
   closeModal() {
     this.modalActive = false;
@@ -739,25 +742,29 @@ export class NftMarketComponent implements OnInit {
       this.mobileFilter = false;
     }
   }
+
   width() {
     this.display = window.innerWidth;
     if (this.display > 640 && this.display < 1300) {
       this.inRow = 9;
       this.maxPage = 9;
-      this.sliceMiddle = this.inRow;
+
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+      this.sliceStart = this.inRow * this.isPaged;
+      this.sliceMiddle = this.inRow * this.currentPage;
     } else {
       this.inRow = 8;
       this.maxPage = 8;
-      this.sliceMiddle = this.inRow;
+
       this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+      this.sliceStart = this.inRow * this.isPaged;
+      this.sliceMiddle = this.inRow * this.currentPage;
     }
   }
 
   filterRacers() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "racer");
-    this.sliceStart = 0;
     this.width();
     this.racersActive = true;
     this.tracksActive = false;
@@ -767,13 +774,16 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Racers";
   }
 
   filterCars() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "car");
-    this.sliceStart = 0;
+
     this.width();
     this.carsActive = true;
     this.tracksActive = false;
@@ -783,12 +793,15 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Cars";
   }
   filterTracks() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "track");
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = true;
     this.carsActive = false;
@@ -798,12 +811,15 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Tracks";
   }
   filterTeams() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "team");
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = false;
     this.carsActive = false;
@@ -813,6 +829,9 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Teams";
   }
   filterSpecial() {
@@ -820,7 +839,7 @@ export class NftMarketComponent implements OnInit {
     this.newProducts = this.products.filter(
       (item) => item["type"] === "special"
     );
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = false;
     this.carsActive = false;
@@ -830,11 +849,14 @@ export class NftMarketComponent implements OnInit {
     this.allActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Special";
   }
   filterAll() {
     this.newProducts = this.products;
-    this.sliceStart = 0;
+
     this.width();
     this.tracksActive = false;
     this.carsActive = false;
@@ -844,6 +866,9 @@ export class NftMarketComponent implements OnInit {
     this.specialActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
+    this.isPaged = 0;
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "All products";
   }
 
@@ -877,43 +902,56 @@ export class NftMarketComponent implements OnInit {
   }
 
   showAsset(id: number, type: string, position: number) {
-    this.selectedPosition = position;
-    this.selectedId = id;
-    this.selectedType = type;
-    this.marketState = 2;
+    if (
+      this.newProducts["name"] != "BTC" &&
+      this.newProducts["name"] != "ALT" &&
+      this.newProducts["name"] != "IOI"
+    ) {
+      this.selectedPosition = position;
+      this.selectedId = id;
+      this.selectedType = type;
+      this.marketState = 2;
+    }
   }
 
+  timeoutReset() {
+    clearTimeout(this.timeoutPage);
+  }
   prevPageCars() {
-    if (this.sliceStart > 0) {
-      this.sliceStart = this.sliceStart - this.inRow;
-      this.sliceMiddle = this.sliceMiddle - this.inRow;
+    if (this.currentPage > 0) {
+      this.timeoutReset();
+      this.currentPage--;
+      this.isPaged--;
+      this.animation = 3;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 2;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+      }, 300);
     }
+    console.log("paged" + this.isPaged);
+    console.log("current" + this.currentPage);
+    console.log("start" + this.sliceStart);
+    console.log("end" + this.sliceMiddle);
   }
   nextPageCars() {
-    if (this.sliceMiddle < this.newProducts.length) {
-      this.sliceStart = this.sliceStart + this.inRow;
-      this.sliceMiddle = this.sliceMiddle + this.inRow;
+    if (this.currentPage < this.newProducts.length / this.inRow) {
+      this.timeoutReset();
+      this.currentPage++;
+      this.isPaged++;
+      this.animation = 1;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 0;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+      }, 300);
     }
-  }
-  resetPageArrowLeft() {
-    let page;
-    page = document.querySelector(".pagebtn-l");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage > 0) {
-      this.currentPage = this.currentPage - 1;
-    }
-  }
-  resetPageArrowRight() {
-    let page;
-    page = document.querySelector(".pagebtn-r");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage <= this.newProducts.length / 8) {
-      this.currentPage = this.currentPage + 1;
-    }
+    console.log("paged" + this.isPaged);
+    console.log("current" + this.currentPage);
+    console.log("start" + this.sliceStart);
+    console.log("end" + this.sliceMiddle);
   }
   showAssetBuy(state: number) {
     this.marketState = state;

@@ -286,18 +286,23 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
 
       .box {
+        cursor: pointer;
         overflow: hidden;
         margin: 0.75%;
-        cursor: default;
 
         background: white;
         width: 23.5%;
-        height: 500px;
+        height: 420px;
         margin-bottom: 1.5%;
         border-radius: 10px;
-        padding: 2%;
+        padding: 1%;
         transition: 0.2s;
         -webkit-transition: 0.2s;
         -moz-transition: 0.2s;
@@ -307,9 +312,12 @@
           display: flex;
           flex-direction: column;
           position: relative;
-          height: 40%;
+          height: 20%;
           //meno kolekcie
           .collection {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
             font-style: normal;
             font-weight: normal;
             font-size: 16px;
@@ -322,6 +330,11 @@
           //meno
 
           .name {
+            height: fit-content;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            position: absolute;
             font-style: normal;
             font-weight: normal;
 
@@ -331,10 +344,13 @@
           }
 
           .prize {
+            height: fit-content;
+            position: absolute;
             font-style: normal;
             font-weight: bold;
             font-size: 22px;
-
+            right: 0px;
+            bottom: 0px;
             color: #30cece;
           }
           button {
@@ -358,14 +374,19 @@
           }
         }
         .boximage {
+          border-radius: 10px;
+          background-image: url("/assets/base/images/market/background-white.png");
+          background-position: center;
+          background-size: cover;
           position: relative;
           width: 100%;
-          height: 60%;
+          height: 80%;
           img {
+            max-width: 360px;
             width: 100%;
             position: absolute;
             left: 50%;
-            top: 55%;
+            top: 50%;
             transform: translate(-50%, -50%);
             transition: 0.2s;
             -webkit-transform: translate(-50%, -50%);
@@ -393,6 +414,94 @@
         -moz-transform: scale(1.02);
         -ms-transform: scale(1.02);
         -o-transform: scale(1.02);
+      }
+    }
+    .engage-next-anim {
+      animation: engage-boxes 0.4s;
+      -webkit-animation: engage-boxes 0.4s;
+    }
+    .disengage-next-anim {
+      animation: disengage-boxes 0.4s;
+      -webkit-animation: disengage-boxes 0.4s;
+    }
+    .engage-prev-anim {
+      animation: engage-boxes-left 0.4s;
+      -webkit-animation: engage-boxes-left 0.4s;
+    }
+    .disengage-prev-anim {
+      animation: disengage-boxes-left 0.4s;
+      -webkit-animation: disengage-boxes-left 0.4s;
+    }
+    @keyframes engage-boxes-left {
+      0% {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        opacity: 1;
+      }
+    }
+    @keyframes disengage-boxes-left {
+      0% {
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+    @keyframes engage-boxes {
+      0% {
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        opacity: 1;
+      }
+    }
+    @keyframes disengage-boxes {
+      0% {
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        opacity: 0;
       }
     }
   }
@@ -450,7 +559,7 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 400px;
+          height: 300px;
           .boximage {
             img {
               width: 100%;
@@ -461,7 +570,6 @@
               font-size: 21px;
             }
             .collection {
-              top: 0;
               font-size: 15px;
             }
             .racername {
@@ -700,7 +808,6 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 370px;
           .txt {
             .name {
               font-size: 19px;
@@ -880,8 +987,8 @@
     .shop-section-center {
       .boxes {
         .box {
-          padding: 3%;
-          height: 300px;
+          padding: 2%;
+          height: 270px;
           width: 46%;
           margin: 2%;
           border-radius: 5px;
@@ -890,10 +997,13 @@
           -ms-border-radius: 5px;
           -o-border-radius: 5px;
           .boximage {
-            height: 55%;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
           }
           .txt {
-            height: 45%;
             button {
               height: 45px;
               font-size: 14px;
@@ -915,7 +1025,7 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 270px;
+          height: 240px;
           .boximage {
             img {
               top: 50%;
@@ -961,12 +1071,25 @@
     .shop-section-center {
       .boxes {
         .box {
+          height: 200px;
           .boximage {
             img {
               max-width: 120%;
               width: 200px;
               top: 50%;
               transform: translate(-50%, -50%);
+            }
+          }
+          .txt {
+            .name {
+              top: 2px;
+              font-size: 15px;
+            }
+            .collection {
+              font-size: 13px;
+            }
+            .prize {
+              font-size: 13px;
             }
           }
         }
@@ -1082,6 +1205,27 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
+    }
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .shop-section {
+    .shop-section-center {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .boxes {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .box {
+          height: 500px;
+        }
+      }
     }
   }
 }
