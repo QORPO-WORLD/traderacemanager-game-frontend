@@ -471,16 +471,16 @@
         *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
         class="box my-box-shadow"
       >
-        <div class="owned my-border-grad-reverse-top">
-          <div class="inner-owned">
-            <p class="owned-text">
-              Owned
-              <span class="red-box-detail">{{ item["amount"].length }}</span>
-              <span class="blue-box-detail">{{ item["amount"].length }}</span>
-            </p>
-          </div>
-        </div>
         <div class="boximage">
+          <div class="owned my-border-grad-reverse-top">
+            <div class="inner-owned">
+              <p class="owned-text">
+                Owned
+                <span class="red-box-detail">{{ item["amount"].length }}</span>
+                <span class="blue-box-detail">{{ item["amount"].length }}</span>
+              </p>
+            </div>
+          </div>
           <img
             class="img"
             *ngIf="item['type'] === 'car'"
@@ -519,15 +519,14 @@
           />
         </div>
         <div class="txt">
-          <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
-            {{ item["collection"] }}
-          </p>
-
-          <p *ngIf="item['type'] === 'team'" class="namefont">
+          <p *ngIf="item['type'] === 'team'" class="name">
             Team {{ item["name"] }}
           </p>
-          <p *ngIf="item['type'] != 'team'" class="namefont">
+          <p *ngIf="item['type'] != 'team'" class="name">
             {{ item["name"] }}
+          </p>
+          <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
+            {{ item["collection"] }}
           </p>
 
           <p class="prize">{{ item["prize"] }}</p>

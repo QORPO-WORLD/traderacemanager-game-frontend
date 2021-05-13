@@ -303,6 +303,14 @@
                   *ngIf="item['type'] === 'racer'"
                   class="img"
                   [src]="
+                    '/assets/base/images/nft-racers/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'racer'"
+                  class="img gif"
+                  [src]="
                     '/assets/base/images/nft-racers/' + item['gif'] + '.gif'
                   "
                   [alt]="item['alt']"
@@ -310,20 +318,29 @@
                 <img
                   *ngIf="item['type'] === 'car' && item['gif']"
                   class="img"
-                  [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
-                  [alt]="item['alt']"
-                />
-                <img
-                  *ngIf="item['type'] === 'car' && !item['gif']"
-                  class="img"
                   [src]="
                     '/assets/base/images/nft-cars/' + item['image'] + '.png'
                   "
                   [alt]="item['alt']"
                 />
                 <img
+                  *ngIf="item['type'] === 'car' && item['gif']"
+                  class="img gif"
+                  [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'car' && !item['gif']"
+                  class="img still"
+                  [src]="
+                    '/assets/base/images/nft-cars/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+
+                <img
                   *ngIf="item['type'] === 'track'"
-                  class="img"
+                  class="img still"
                   [src]="
                     '/assets/base/images/home-page/' +
                     item['image'] +
@@ -333,7 +350,7 @@
                 />
                 <img
                   *ngIf="item['type'] === 'team'"
-                  class="img team"
+                  class="img team still"
                   [src]="
                     '/assets/base/images/home-page/' +
                     item['image'] +
@@ -343,7 +360,7 @@
                 />
                 <img
                   *ngIf="item['type'] === 'special'"
-                  class="img special"
+                  class="img special still"
                   [src]="
                     '/assets/base/images/home-page/' + item['image'] + '.png'
                   "

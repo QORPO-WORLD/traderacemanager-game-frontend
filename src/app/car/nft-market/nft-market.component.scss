@@ -291,7 +291,6 @@
       -moz-transition: 0.3s;
       -ms-transition: 0.3s;
       -o-transition: 0.3s;
-
       .box {
         cursor: pointer;
         overflow: hidden;
@@ -374,14 +373,16 @@
           }
         }
         .boximage {
+          overflow: hidden;
           border-radius: 10px;
-          background-image: url("/assets/base/images/market/background-white.png");
+          background: #ebebeb;
           background-position: center;
           background-size: cover;
           position: relative;
           width: 100%;
           height: 80%;
           img {
+            transition: 0.3s;
             max-width: 360px;
             width: 100%;
             position: absolute;
@@ -393,10 +394,10 @@
             -moz-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             -o-transform: translate(-50%, -50%);
-            -webkit-transition: 0.2s;
-            -moz-transition: 0.2s;
-            -ms-transition: 0.2s;
-            -o-transition: 0.2s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
             &.special {
               width: 80%;
               max-width: 260px;
@@ -404,6 +405,12 @@
             &.team {
               width: 80%;
               max-width: 260px;
+            }
+            &.gif {
+              opacity: 0;
+            }
+            &.still {
+              opacity: 1;
             }
           }
         }
@@ -414,6 +421,17 @@
         -moz-transform: scale(1.02);
         -ms-transform: scale(1.02);
         -o-transform: scale(1.02);
+        .boximage {
+          img {
+            opacity: 0;
+            &.gif {
+              opacity: 1;
+            }
+            &.still {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
     .engage-next-anim {
@@ -425,12 +443,12 @@
       -webkit-animation: disengage-boxes 0.4s;
     }
     .engage-prev-anim {
-      animation: engage-boxes-left 0.4s;
-      -webkit-animation: engage-boxes-left 0.4s;
+      animation: engage-boxes 0.4s;
+      -webkit-animation: engage-boxes 0.4s;
     }
     .disengage-prev-anim {
-      animation: disengage-boxes-left 0.4s;
-      -webkit-animation: disengage-boxes-left 0.4s;
+      animation: disengage-boxes 0.4s;
+      -webkit-animation: disengage-boxes 0.4s;
     }
     @keyframes engage-boxes-left {
       0% {
@@ -465,7 +483,6 @@
         -moz-transform: translateX(100%);
         -ms-transform: translateX(100%);
         -o-transform: translateX(100%);
-        opacity: 0;
       }
     }
     @keyframes engage-boxes {
