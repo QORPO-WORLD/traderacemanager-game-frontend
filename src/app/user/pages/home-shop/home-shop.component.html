@@ -231,58 +231,96 @@
       </div>
     </div>
     <div class="shop-section-center" #myScroll>
-      <div class="boxes">
+      <div
+        [ngClass]="{
+          'engage-next-anim': animation === 0,
+          'disengage-next-anim': animation === 1,
+          'engage-prev-anim': animation === 2,
+          'disengage-prev-anim': animation === 3
+        }"
+        class="boxes"
+      >
         <div
+          [ngClass]="{
+            'sold-out':
+              item['name'] === 'BTC' ||
+              item['name'] === 'ALT' ||
+              item['name'] === 'IOI'
+          }"
+          [routerLink]="
+            item['name'] === 'BTC' ||
+            item['name'] === 'ALT' ||
+            item['name'] === 'IOI'
+              ? null
+              : ['/nft-detail']
+          "
+          [queryParams]="{
+            type: item['type'],
+            id: item['id'],
+            page: currentPage,
+            startPage: isPaged,
+            filter: filter
+          }"
           *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
-          class="box"
+          class="box my-box-shadow"
         >
           <div class="boximage">
             <img
+              *ngIf="item['type'] === 'racer'"
+              class="img racer"
+              [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'racer'"
+              class="img gif"
+              [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'car' && item['gif']"
               class="img"
-              *ngIf="item['type'] === 'car'"
+              [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'car' && item['gif']"
+              class="img gif"
+              [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'car' && !item['gif']"
+              class="img still"
               [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
               [alt]="item['alt']"
             />
 
             <img
-              class="img"
-              *ngIf="item['type'] === 'racer'"
-              [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
-              [alt]="item['alt']"
-            />
-            <img
-              class="img"
               *ngIf="item['type'] === 'track'"
+              class="img still"
               [src]="
                 '/assets/base/images/home-page/' + item['image'] + '-small.png'
               "
               [alt]="item['alt']"
             />
-
             <img
-              class="img"
               *ngIf="item['type'] === 'team'"
+              class="img team still"
               [src]="
                 '/assets/base/images/home-page/' + item['image'] + '-small.png'
               "
               [alt]="item['alt']"
             />
             <img
-              class="img special"
               *ngIf="item['type'] === 'special'"
+              class="img special still"
               [src]="'/assets/base/images/home-page/' + item['image'] + '.png'"
               [alt]="item['alt']"
             />
           </div>
           <div class="txt">
-            <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
-              {{ item["collection"] }}
-            </p>
-            <p *ngIf="item['type'] != 'team'" class="namefont">
-              {{ item["name"] }}
-            </p>
-
-            <p *ngIf="item['type'] === 'team'" class="namefont">
+            <p *ngIf="item['type'] === 'team'" class="name">
               Team
               <span
                 *ngIf="item['name'] === 'BTC'"
@@ -310,39 +348,21 @@
                 {{ item["name"] }}
               </span>
             </p>
+
+            <p
+              *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
+              class="name"
+            >
+              {{ item["name"] }}
+            </p>
+
+            <p *ngIf="item['type'] === 'racer'" class="name">
+              {{ item["name"] }}
+            </p>
+            <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
+              {{ item["collection"] }}
+            </p>
             <p class="prize">{{ item["prize"] }}</p>
-            <button
-              *ngIf="item['type'] != 'team'"
-              [routerLink]="['/nft-detail']"
-              [queryParams]="{
-                type: item['type'],
-                id: item['id'],
-                page: currentPage,
-                startPage: isPaged,
-                filter: filter
-              }"
-            >
-              See details
-            </button>
-            <button
-              [ngStyle]="{ opacity: '0.3' }"
-              *ngIf="item['name'] != 'You' && item['type'] === 'team'"
-            >
-              Sold out
-            </button>
-            <button
-              *ngIf="item['name'] === 'You' && item['type'] === 'team'"
-              [routerLink]="['/nft-detail']"
-              [queryParams]="{
-                type: item['type'],
-                id: item['id'],
-                page: currentPage,
-                startPage: isPaged,
-                filter: filter
-              }"
-            >
-              See details
-            </button>
           </div>
         </div>
       </div>
@@ -351,13 +371,17 @@
       <div class="pages">
         <div class="page-left">
           <button
-            (click)="prevPageCars(); resetPageArrowLeft(); scrollTop(myScroll)"
-            [disabled]="sliceStart <= 0"
+            (click)="prevPageCars(); scrollTop(myScroll)"
+            [disabled]="timeoutPage || sliceStart <= 0"
             class="pagebtn-l"
           >
             <img
-              [ngClass]="{ 'page-opacity': sliceStart === 0 }"
-              src="/assets/base/images/home-page/arrow-l.png"
+              class="red-box-detail"
+              [ngClass]="{
+                'page-opacity': sliceStart === 0,
+                'arrow-animation': animateArrow === true
+              }"
+              src="/assets/base/images/home-page/arrowleftred.png"
               alt=""
             />
           </button>
@@ -365,21 +389,25 @@
         <div class="page-middle">
           <p>
             Page
-            <span class="leftspan">{{ isPaged + 1 }} /</span>
+            <span class="leftspan">{{ currentPage }} /</span>
             <span class="rightspan">{{ lastPage }}</span>
           </p>
         </div>
         <div class="page-right">
           <button
-            (click)="nextPageCars(); resetPageArrowRight(); scrollTop(myScroll)"
-            [disabled]="sliceMiddle >= newProducts.length"
+            (click)="nextPageCars(); scrollTop(myScroll)"
+            [disabled]="
+              timeoutPage || currentPage >= newProducts.length / inRow
+            "
             class="pagebtn-r"
           >
             <img
+              class="red-box-detail"
               [ngClass]="{
-                'page-opacity': sliceMiddle >= this.newProducts.length
+                'page-opacity': sliceMiddle >= this.newProducts.length,
+                'arrow-animation': animateArrowRight === true
               }"
-              src="/assets/base/images/home-page/arrow-r.png"
+              src="/assets/base/images/home-page/arrowrightred.png"
               alt=""
             />
           </button>

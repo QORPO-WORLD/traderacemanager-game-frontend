@@ -291,9 +291,21 @@
             class="boxes"
           >
             <div
+              [ngClass]="{
+                'sold-out':
+                  item['name'] === 'BTC' ||
+                  item['name'] === 'ALT' ||
+                  item['name'] === 'IOI'
+              }"
               (click)="
-                showAsset(item['id'], item['type'], item['position']);
-                scrollTop(myScroll2)
+                item['name'] != 'BTC' &&
+                  item['name'] != 'ALT' &&
+                  item['name'] != 'IOI' &&
+                  showAsset(item['id'], item['type'], item['position']);
+                item['name'] != 'BTC' &&
+                  item['name'] != 'ALT' &&
+                  item['name'] != 'IOI' &&
+                  scrollTop(myScroll2)
               "
               *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
               class="box my-box-shadow"
@@ -301,7 +313,7 @@
               <div class="boximage">
                 <img
                   *ngIf="item['type'] === 'racer'"
-                  class="img"
+                  class="img racer"
                   [src]="
                     '/assets/base/images/nft-racers/' + item['image'] + '.png'
                   "
@@ -402,13 +414,19 @@
               >
                 <img
                   class="red-box-detail"
-                  [ngClass]="{ 'page-opacity': sliceStart === 0 }"
+                  [ngClass]="{
+                    'page-opacity': sliceStart === 0,
+                    'arrow-animation': animateArrow === true
+                  }"
                   src="/assets/base/images/home-page/arrowleftred.png"
                   alt=""
                 />
                 <img
                   class="blue-box-detail"
-                  [ngClass]="{ 'page-opacity': sliceStart === 0 }"
+                  [ngClass]="{
+                    'page-opacity': sliceStart === 0,
+                    'arrow-animation': animateArrow === true
+                  }"
                   src="/assets/base/images/home-page/arrowleftblue.png"
                   alt=""
                 />
@@ -433,7 +451,8 @@
                 <img
                   class="red-box-detail"
                   [ngClass]="{
-                    'page-opacity': sliceMiddle >= this.newProducts.length
+                    'page-opacity': sliceMiddle >= this.newProducts.length,
+                    'arrow-animation': animateArrowRight === true
                   }"
                   src="/assets/base/images/home-page/arrowrightred.png"
                   alt=""
@@ -441,7 +460,8 @@
                 <img
                   class="blue-box-detail"
                   [ngClass]="{
-                    'page-opacity': sliceMiddle >= this.newProducts.length
+                    'page-opacity': sliceMiddle >= this.newProducts.length,
+                    'arrow-animation': animateArrowRight === true
                   }"
                   src="/assets/base/images/home-page/arrowrightblue.png"
                   alt=""

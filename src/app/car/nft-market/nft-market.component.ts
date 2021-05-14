@@ -16,7 +16,8 @@ export class NftMarketComponent implements OnInit {
   selectedType = "racers";
   timeoutPage: any;
   animation = 0;
-
+  animateArrow = false;
+  animateArrowRight = false;
   products: Array<object> = [
     //bronze
     {
@@ -530,7 +531,7 @@ export class NftMarketComponent implements OnInit {
       id: 37,
       collection: "Race tracks",
       name: "Free track",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "free-track",
       type: "track",
       ability1: "2 minutes",
@@ -542,7 +543,7 @@ export class NftMarketComponent implements OnInit {
       id: 38,
       collection: "Race tracks",
       name: "Desert",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "desert",
       type: "track",
       bet: "1 IOI",
@@ -555,7 +556,7 @@ export class NftMarketComponent implements OnInit {
       id: 39,
       collection: "Race tracks",
       name: "Dark forest",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "dark-forest",
       type: "track",
       bet: "5 IOI",
@@ -568,7 +569,7 @@ export class NftMarketComponent implements OnInit {
       id: 40,
       collection: "Race tracks",
       name: "Night city",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "night-city",
       type: "track",
       bet: "10 IOI",
@@ -581,7 +582,7 @@ export class NftMarketComponent implements OnInit {
       id: 41,
       collection: "Race tracks",
       name: "Sea bridge",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "sea-bridge",
       type: "track",
       bet: "50 IOI",
@@ -595,7 +596,7 @@ export class NftMarketComponent implements OnInit {
       id: 42,
       collection: "Race tracks",
       name: "Underground",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "underground",
       type: "track",
       bet: "100 IOI",
@@ -608,7 +609,7 @@ export class NftMarketComponent implements OnInit {
       id: 43,
       collection: "",
       name: "BTC",
-      prize: "",
+      prize: "Sold out",
       image: "btc-team",
       type: "team",
       amount: [],
@@ -619,7 +620,7 @@ export class NftMarketComponent implements OnInit {
       id: 44,
       collection: "",
       name: "IOI",
-      prize: "",
+      prize: "Sold out",
       image: "ioi-team",
       type: "team",
       amount: [],
@@ -629,7 +630,7 @@ export class NftMarketComponent implements OnInit {
       id: 45,
       collection: "",
       name: "ALT",
-      prize: "",
+      prize: "Sold out",
       image: "alt-team",
       type: "team",
       amount: [],
@@ -919,6 +920,8 @@ export class NftMarketComponent implements OnInit {
   }
   prevPageCars() {
     if (this.currentPage > 0) {
+      this.animateArrow = false;
+      this.animateArrow = true;
       this.timeoutReset();
       this.currentPage--;
       this.isPaged--;
@@ -928,15 +931,14 @@ export class NftMarketComponent implements OnInit {
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;
+        this.animateArrow = false;
       }, 300);
     }
-    console.log("paged" + this.isPaged);
-    console.log("current" + this.currentPage);
-    console.log("start" + this.sliceStart);
-    console.log("end" + this.sliceMiddle);
   }
   nextPageCars() {
     if (this.currentPage < this.newProducts.length / this.inRow) {
+      this.animateArrowRight = false;
+      this.animateArrowRight = true;
       this.timeoutReset();
       this.currentPage++;
       this.isPaged++;
@@ -946,12 +948,9 @@ export class NftMarketComponent implements OnInit {
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;
+        this.animateArrowRight = false;
       }, 300);
     }
-    console.log("paged" + this.isPaged);
-    console.log("current" + this.currentPage);
-    console.log("start" + this.sliceStart);
-    console.log("end" + this.sliceMiddle);
   }
   showAssetBuy(state: number) {
     this.marketState = state;

@@ -28,6 +28,11 @@ export class MyNftComponent implements OnInit {
   myCars: any;
   carsSorted: any;
   allCars: any;
+  timeoutPage: any;
+  animation = 0;
+  animateArrow = false;
+  animateArrowRight = false;
+
   myCarsSorted = {
     car0: [],
     car1: [],
@@ -1176,18 +1181,41 @@ export class MyNftComponent implements OnInit {
       this.mobileFilter = false;
     }
   }
+  timeoutReset() {
+    clearTimeout(this.timeoutPage);
+  }
   prevPageCars() {
-    if (this.sliceStart > 0) {
-      this.sliceStart = this.sliceStart - this.inRow;
-      this.sliceMiddle = this.sliceMiddle - this.inRow;
-      this.isPaged = this.isPaged - 1;
+    if (this.currentPage > 0) {
+      this.animateArrow = false;
+      this.animateArrow = true;
+      this.timeoutReset();
+      this.currentPage--;
+      this.isPaged--;
+      this.animation = 3;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 2;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrow = false;
+      }, 300);
     }
   }
   nextPageCars() {
-    if (this.sliceMiddle < this.newProducts.length) {
-      this.sliceStart = this.sliceStart + this.inRow;
-      this.sliceMiddle = this.sliceMiddle + this.inRow;
-      this.isPaged = this.isPaged + 1;
+    if (this.currentPage < this.newProducts.length / this.inRow) {
+      this.animateArrowRight = false;
+      this.animateArrowRight = true;
+      this.timeoutReset();
+      this.currentPage++;
+      this.isPaged++;
+      this.animation = 1;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 0;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrowRight = false;
+      }, 300);
     }
   }
 

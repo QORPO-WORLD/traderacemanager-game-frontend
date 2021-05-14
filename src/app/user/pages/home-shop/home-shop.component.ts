@@ -18,6 +18,7 @@ export class HomeShopComponent implements OnInit {
       name: "RHINO",
       prize: "600 IOI",
       image: "car1",
+      gif: "car1-animation",
       type: "car",
       ability1: 0.1,
       ability2: 6,
@@ -520,7 +521,7 @@ export class HomeShopComponent implements OnInit {
       id: 37,
       collection: "Race tracks",
       name: "Free track",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "free-track",
       type: "track",
       ability1: "2 minutes",
@@ -532,7 +533,7 @@ export class HomeShopComponent implements OnInit {
       id: 38,
       collection: "Race tracks",
       name: "Desert",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "desert",
       type: "track",
       bet: "1 IOI",
@@ -545,7 +546,7 @@ export class HomeShopComponent implements OnInit {
       id: 39,
       collection: "Race tracks",
       name: "Dark forest",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "dark-forest",
       type: "track",
       bet: "5 IOI",
@@ -558,7 +559,7 @@ export class HomeShopComponent implements OnInit {
       id: 40,
       collection: "Race tracks",
       name: "Night city",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "night-city",
       type: "track",
       bet: "10 IOI",
@@ -571,7 +572,7 @@ export class HomeShopComponent implements OnInit {
       id: 41,
       collection: "Race tracks",
       name: "Sea bridge",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "sea-bridge",
       type: "track",
       bet: "50 IOI",
@@ -585,7 +586,7 @@ export class HomeShopComponent implements OnInit {
       id: 42,
       collection: "Race tracks",
       name: "Underground",
-      prize: "Coming soon",
+      prize: "Soon",
       image: "underground",
       type: "track",
       bet: "100 IOI",
@@ -598,7 +599,7 @@ export class HomeShopComponent implements OnInit {
       id: 43,
       collection: "",
       name: "BTC",
-      prize: "",
+      prize: "Sold out",
       image: "btc-team",
       type: "team",
       amount: [],
@@ -609,7 +610,7 @@ export class HomeShopComponent implements OnInit {
       id: 44,
       collection: "",
       name: "IOI",
-      prize: "",
+      prize: "Sold out",
       image: "ioi-team",
       type: "team",
       amount: [],
@@ -619,7 +620,7 @@ export class HomeShopComponent implements OnInit {
       id: 45,
       collection: "",
       name: "ALT",
-      prize: "",
+      prize: "Sold out",
       image: "alt-team",
       type: "team",
       amount: [],
@@ -666,7 +667,10 @@ export class HomeShopComponent implements OnInit {
   assetPage: number;
   assetStartPage: number;
   assetFilter: any;
-
+  timeoutPage: any;
+  animation = 0;
+  animateArrow = false;
+  animateArrowRight = false;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
@@ -762,20 +766,6 @@ export class HomeShopComponent implements OnInit {
       this.mobileFilter = true;
     } else {
       this.mobileFilter = false;
-    }
-  }
-  prevPageCars() {
-    if (this.sliceStart > 0) {
-      this.sliceStart = this.sliceStart - this.inRow;
-      this.sliceMiddle = this.sliceMiddle - this.inRow;
-      this.isPaged = this.isPaged - 1;
-    }
-  }
-  nextPageCars() {
-    if (this.sliceMiddle < this.newProducts.length) {
-      this.sliceStart = this.sliceStart + this.inRow;
-      this.sliceMiddle = this.sliceMiddle + this.inRow;
-      this.isPaged = this.isPaged + 1;
     }
   }
 
@@ -916,24 +906,41 @@ export class HomeShopComponent implements OnInit {
     void element.offsetWidth;
     element.classList.add("hamburgerclick");
   }
-  resetPageArrowLeft() {
-    let page;
-    page = document.querySelector(".pagebtn-l");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
+  timeoutReset() {
+    clearTimeout(this.timeoutPage);
+  }
+  prevPageCars() {
     if (this.currentPage > 0) {
-      this.currentPage = this.currentPage - 1;
+      this.animateArrow = false;
+      this.animateArrow = true;
+      this.timeoutReset();
+      this.currentPage--;
+      this.isPaged--;
+      this.animation = 3;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 2;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrow = false;
+      }, 300);
     }
   }
-  resetPageArrowRight() {
-    let page;
-    page = document.querySelector(".pagebtn-r");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage <= this.newProducts.length / 8) {
-      this.currentPage = this.currentPage + 1;
+  nextPageCars() {
+    if (this.currentPage < this.newProducts.length / this.inRow) {
+      this.animateArrowRight = false;
+      this.animateArrowRight = true;
+      this.timeoutReset();
+      this.currentPage++;
+      this.isPaged++;
+      this.animation = 1;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 0;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrowRight = false;
+      }, 300);
     }
   }
 }

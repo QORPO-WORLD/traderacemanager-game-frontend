@@ -160,8 +160,7 @@
         -o-transform: translate(-50%, -50%);
       }
     }
-    .clickPage {
-    }
+
     .page-left {
       width: 10%;
     }
@@ -187,7 +186,11 @@
     .page-opacity {
       opacity: 0.4;
     }
-    @keyframes pageclick {
+    .arrow-animation {
+      animation: arrow-animation 0.4s;
+      -webkit-animation: arrow-animation 0.4s;
+    }
+    @keyframes arrow-animation {
       0% {
         transform: translate(-50%, -50%);
         -webkit-transform: translate(-50%, -50%);
@@ -196,11 +199,11 @@
         -o-transform: translate(-50%, -50%);
       }
       50% {
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -30%);
+        -webkit-transform: translate(-50%, -30%);
+        -moz-transform: translate(-50%, -30%);
+        -ms-transform: translate(-50%, -30%);
+        -o-transform: translate(-50%, -30%);
       }
       100% {
         transform: translate(-50%, -50%);
@@ -295,7 +298,7 @@
         cursor: pointer;
         overflow: hidden;
         margin: 0.75%;
-
+        position: relative;
         background: white;
         width: 23.5%;
         height: 420px;
@@ -307,6 +310,9 @@
         -moz-transition: 0.2s;
         -ms-transition: 0.2s;
         -o-transition: 0.2s;
+        &.sold-out {
+          opacity: 0.7;
+        }
         .txt {
           display: flex;
           flex-direction: column;
@@ -314,6 +320,8 @@
           height: 20%;
           //meno kolekcie
           .collection {
+            max-width: 50%;
+            line-height: 10px;
             position: absolute;
             left: 0px;
             bottom: 0px;
@@ -411,6 +419,9 @@
             }
             &.still {
               opacity: 1;
+            }
+            &.racer {
+              top: 55%;
             }
           }
         }
@@ -1002,6 +1013,8 @@
       }
     }
     .shop-section-center {
+      width: 102%;
+      margin-left: -1%;
       .boxes {
         .box {
           padding: 2%;
@@ -1088,13 +1101,18 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 200px;
+          height: 215px;
+
           .boximage {
             img {
               max-width: 120%;
               width: 200px;
               top: 50%;
               transform: translate(-50%, -50%);
+              &.racer {
+                max-width: 110%;
+                top: 55%;
+              }
             }
           }
           .txt {
@@ -1103,7 +1121,7 @@
               font-size: 15px;
             }
             .collection {
-              font-size: 13px;
+              font-size: 11px;
             }
             .prize {
               font-size: 13px;

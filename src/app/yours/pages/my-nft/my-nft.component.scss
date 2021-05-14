@@ -187,7 +187,11 @@
     .page-opacity {
       opacity: 0.4;
     }
-    @keyframes pageclick {
+    .arrow-animation {
+      animation: arrow-animation 0.4s;
+      -webkit-animation: arrow-animation 0.4s;
+    }
+    @keyframes arrow-animation {
       0% {
         transform: translate(-50%, -50%);
         -webkit-transform: translate(-50%, -50%);
@@ -196,11 +200,11 @@
         -o-transform: translate(-50%, -50%);
       }
       50% {
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -30%);
+        -webkit-transform: translate(-50%, -30%);
+        -moz-transform: translate(-50%, -30%);
+        -ms-transform: translate(-50%, -30%);
+        -o-transform: translate(-50%, -30%);
       }
       100% {
         transform: translate(-50%, -50%);
@@ -277,6 +281,7 @@
     }
   }
   .shop-section-center {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -290,61 +295,37 @@
       -moz-transition: 0.3s;
       -ms-transition: 0.3s;
       -o-transition: 0.3s;
-
       .box {
         cursor: pointer;
         overflow: hidden;
         margin: 0.75%;
+        position: relative;
         background: white;
         width: 23.5%;
         height: 420px;
         margin-bottom: 1.5%;
-        border-radius: 15px;
-        padding: 1.2%;
+        border-radius: 10px;
+        padding: 1%;
         transition: 0.2s;
         -webkit-transition: 0.2s;
         -moz-transition: 0.2s;
         -ms-transition: 0.2s;
         -o-transition: 0.2s;
-        .owned {
-          position: absolute;
-          top: 0px;
-          right: 0px;
-          padding: 1px;
-          border-radius: 0px 15px 0px 15px;
-          .inner-owned {
-            border-radius: 0px 15px 0px 15px;
-            height: 100%;
-            width: 100%;
-            padding: 5px;
-            background: rgba(255, 255, 255, 0.6);
-            -webkit-border-radius: 0px 15px 0px 15px;
-            -moz-border-radius: 0px 15px 0px 15px;
-            -ms-border-radius: 0px 15px 0px 15px;
-            -o-border-radius: 0px 15px 0px 15px;
-          }
-          .owned-text {
-            color: black;
-            margin-right: 20px;
-            margin-left: 10px;
-
-            span {
-              margin-left: 5px;
-              font-size: 19px;
-              font-weight: 600;
-            }
-          }
+        &.sold-out {
+          opacity: 0.7;
         }
         .txt {
           display: flex;
           flex-direction: column;
           position: relative;
-          height: 30%;
+          height: 20%;
           //meno kolekcie
           .collection {
+            max-width: 50%;
+            line-height: 10px;
             position: absolute;
             left: 0px;
-            bottom: 40%;
+            bottom: 0px;
             font-style: normal;
             font-weight: normal;
             font-size: 16px;
@@ -377,16 +358,18 @@
             font-weight: bold;
             font-size: 22px;
             right: 0px;
-            bottom: 40%;
+            bottom: 0px;
             color: #30cece;
           }
           button {
             outline: none;
             cursor: pointer;
+
             border: 0;
-            height: 45px;
-            width: 100%;
-            border-radius: 10px;
+
+            height: 32.5%;
+            width: 85%;
+            border-radius: 12px;
             font-family: Poppins;
             font-style: normal;
             font-weight: normal;
@@ -396,21 +379,48 @@
             margin: 0 auto;
             margin-top: auto;
             transition: 0.2s;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -ms-border-radius: 10px;
-            -o-border-radius: 10px;
           }
         }
         .boximage {
-          border-radius: 15px;
+          overflow: hidden;
+          border-radius: 10px;
           background: #ebebeb;
           background-position: center;
           background-size: cover;
           position: relative;
           width: 100%;
-          height: 70%;
+          height: 80%;
+          .owned {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 1px;
+            border-radius: 0px 15px 0px 15px;
+            .inner-owned {
+              border-radius: 0px 15px 0px 15px;
+              height: 100%;
+              width: 100%;
+              padding: 5px;
+              background: rgba(255, 255, 255, 0.6);
+              -webkit-border-radius: 0px 15px 0px 15px;
+              -moz-border-radius: 0px 15px 0px 15px;
+              -ms-border-radius: 0px 15px 0px 15px;
+              -o-border-radius: 0px 15px 0px 15px;
+            }
+            .owned-text {
+              color: black;
+              margin-right: 20px;
+              margin-left: 10px;
+
+              span {
+                margin-left: 5px;
+                font-size: 19px;
+                font-weight: 600;
+              }
+            }
+          }
           img {
+            transition: 0.3s;
             max-width: 360px;
             width: 100%;
             position: absolute;
@@ -422,10 +432,10 @@
             -moz-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             -o-transform: translate(-50%, -50%);
-            -webkit-transition: 0.2s;
-            -moz-transition: 0.2s;
-            -ms-transition: 0.2s;
-            -o-transition: 0.2s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
             &.special {
               width: 80%;
               max-width: 260px;
@@ -433,6 +443,15 @@
             &.team {
               width: 80%;
               max-width: 260px;
+            }
+            &.gif {
+              opacity: 0;
+            }
+            &.still {
+              opacity: 1;
+            }
+            &.racer {
+              top: 55%;
             }
           }
         }
@@ -443,6 +462,17 @@
         -moz-transform: scale(1.02);
         -ms-transform: scale(1.02);
         -o-transform: scale(1.02);
+        .boximage {
+          img {
+            opacity: 0;
+            &.gif {
+              opacity: 1;
+            }
+            &.still {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
     .engage-next-anim {
@@ -454,12 +484,12 @@
       -webkit-animation: disengage-boxes 0.4s;
     }
     .engage-prev-anim {
-      animation: engage-boxes-left 0.4s;
-      -webkit-animation: engage-boxes-left 0.4s;
+      animation: engage-boxes 0.4s;
+      -webkit-animation: engage-boxes 0.4s;
     }
     .disengage-prev-anim {
-      animation: disengage-boxes-left 0.4s;
-      -webkit-animation: disengage-boxes-left 0.4s;
+      animation: disengage-boxes 0.4s;
+      -webkit-animation: disengage-boxes 0.4s;
     }
     @keyframes engage-boxes-left {
       0% {
@@ -494,7 +524,6 @@
         -moz-transform: translateX(100%);
         -ms-transform: translateX(100%);
         -o-transform: translateX(100%);
-        opacity: 0;
       }
     }
     @keyframes engage-boxes {
@@ -588,7 +617,7 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 400px;
+          height: 300px;
           .boximage {
             img {
               width: 100%;
@@ -843,14 +872,12 @@
             }
             .collection {
               font-size: 14px;
-              bottom: 45%;
             }
             .racername {
               font-size: 23px;
             }
             .prize {
               font-size: 19px;
-              bottom: 45%;
             }
             button {
               font-size: 16px;
@@ -965,15 +992,6 @@
       text-align: center;
     }
   }
-  .shop-section {
-    .shop-section-center {
-      .boxes {
-        .box {
-          height: 350px;
-        }
-      }
-    }
-  }
 }
 @media screen and (max-width: 640px) {
   .main-holder {
@@ -1030,24 +1048,24 @@
       .boxes {
         .box {
           padding: 2%;
-          height: 350px;
+          height: 270px;
           width: 46%;
           margin: 2%;
-          border-radius: 10px;
-          -webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          -ms-border-radius: 10px;
-          -o-border-radius: 10px;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
           .boximage {
-            border-radius: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -ms-border-radius: 10px;
-            -o-border-radius: 10px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
           }
           .txt {
             button {
-              height: 40px;
+              height: 45px;
               font-size: 14px;
               width: 100%;
               border-radius: 5px;
@@ -1067,28 +1085,28 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 300px;
-          .owned {
-            padding: 1px;
-            border-radius: 0px 10px 0px 10px;
-            .inner-owned {
-              border-radius: 0px 10px 0px 10px;
-
+          height: 240px;
+          .boximage {
+            .owned {
               padding: 1px;
-              background: rgba(255, 255, 255, 0.6);
-              -webkit-border-radius: 0px 10px 0px 10px;
-              -moz-border-radius: 0px 10px 0px 10px;
-              -ms-border-radius: 0px 10px 0px 10px;
-              -o-border-radius: 0px 10px 0px 10px;
-              p {
-                font-size: 14px;
-              }
-              span {
-                font-size: 15px;
+              border-radius: 0px 10px 0px 10px;
+              .inner-owned {
+                border-radius: 0px 10px 0px 10px;
+
+                padding: 1px;
+                background: rgba(255, 255, 255, 0.6);
+                -webkit-border-radius: 0px 10px 0px 10px;
+                -moz-border-radius: 0px 10px 0px 10px;
+                -ms-border-radius: 0px 10px 0px 10px;
+                -o-border-radius: 0px 10px 0px 10px;
+                p {
+                  font-size: 14px;
+                }
+                span {
+                  font-size: 15px;
+                }
               }
             }
-          }
-          .boximage {
             img {
               top: 50%;
               transform: translate(-50%, -50%);
@@ -1100,12 +1118,11 @@
           }
           .txt {
             .collection {
-              font-size: 12px;
+              font-size: 14px;
             }
             //meno
 
             .name {
-              top: 5px;
               font-size: 16px;
             }
 
@@ -1134,30 +1151,30 @@
     .shop-section-center {
       .boxes {
         .box {
-          height: 260px;
+          height: 215px;
+
           .boximage {
             img {
-              max-width: 115%;
+              max-width: 120%;
               width: 200px;
-              top: 55%;
+              top: 50%;
               transform: translate(-50%, -50%);
+              &.racer {
+                max-width: 100%;
+                top: 60%;
+              }
             }
           }
           .txt {
             .name {
-              top: 5px;
+              top: 2px;
               font-size: 15px;
             }
             .collection {
-              font-size: 10px;
-              bottom: 47.5%;
+              font-size: 11px;
             }
             .prize {
               font-size: 13px;
-              bottom: 47.5%;
-            }
-            button {
-              height: 35px;
             }
           }
         }
