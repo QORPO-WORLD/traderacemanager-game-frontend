@@ -149,7 +149,7 @@ export class MySettingsComponent implements OnInit {
     )
   }
 
-  setNews() {
+  setNews(data:any) {
     let reqBool: boolean;
     this.newsEnabled === true ? reqBool = false : reqBool = true;
     this.api.enableNews({ news_agree: reqBool }).subscribe(
@@ -161,9 +161,6 @@ export class MySettingsComponent implements OnInit {
     )
   }
 
-  switchNewsletter(event) {
-// todo connect to api
-  }
 
 
 }
