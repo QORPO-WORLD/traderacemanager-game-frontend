@@ -28,7 +28,7 @@ export class NftMarketComponent implements OnInit {
       name: "RHINO",
       prize: "600 IOI",
       image: "car1",
-      gif: "car1-animation",
+
       type: "car",
       ability1: 0.1,
       ability2: 6,
