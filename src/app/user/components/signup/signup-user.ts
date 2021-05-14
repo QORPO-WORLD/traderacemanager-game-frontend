@@ -165,8 +165,7 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         this.passonelength = this.passone.length;
         this.loading = true;
         this.executeImportantAction();
-        console.log(this.trying);
-        console.log(this.token);
+
         this.dangerInterval = setInterval(() => {
             if (this.trying === false && this.token) {
                 this.trySignup();
@@ -189,7 +188,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
         } else {
             this.api.authUsersCreateDesktop({
                 email: this.f.email.value, password: this.f.password.value,
-                nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token
+                nick: this.f.nickname.value, country: this.selectedCountry, recaptchaToken: this.token,
+                news_agree: this.newsChecked
             }).subscribe(datax => {
                 const data: any = datax;
                 this.trying = false;
@@ -246,7 +246,8 @@ export class SignupUserComponent extends AbstractComponent implements OnInit, On
             recaptchaToken: this.token,
             email: this.f.email.value,
             nick: this.f.nickname.value,
-            chain_id: this.chainId
+            chain_id: this.chainId,
+            news_agree: this.newsChecked
         },
             httpOptions);
     }

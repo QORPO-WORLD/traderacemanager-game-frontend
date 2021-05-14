@@ -8,4 +8,5 @@ export interface UserRegistration {
   affiliate_slug?: null | string;
   recaptcha_token?: string;
   recaptchaToken?: string;
+  news_agree: boolean;
 }

@@ -182,7 +182,7 @@ export class BinaryTradeComponent implements OnInit {
 
   add() {
     if(this.chart) {
-    console.log(this.currentValue);
+
       if (this.currentValue > 0) {
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed);

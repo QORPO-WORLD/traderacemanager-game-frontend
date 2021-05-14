@@ -91,7 +91,6 @@ export class MySettingsComponent implements OnInit {
         this.getMydriver();
         this.editingWallet = false;
       }, 1500);
-
     });
   }
 
@@ -100,6 +99,7 @@ export class MySettingsComponent implements OnInit {
     this.myDriver = data;
     data.is_in_tutorial === true ? this.tutorialStarted = false : this.tutorialStarted = true;
     data.is_using_authenticator === true ? this.authenabled = false : this.authenabled = true;
+    data.news_agree === true ? this.newsEnabled = false : this.newsEnabled = true;
 
     this.cryptoMtfrckr = data.my_crypto_address;
     this.getMyOldDriver();
@@ -128,6 +128,7 @@ export class MySettingsComponent implements OnInit {
   }
 
 
+
   recognizeManager() {
     const man = this.identityService.getDriverMe().mode;
     if (man === 'owner') {
@@ -140,6 +141,18 @@ export class MySettingsComponent implements OnInit {
 
   setMode(type: string) {
     this.api.driversSetMode({ mode: type }).subscribe(
+      data => {
+        setTimeout(() => {
+          this.identityService.updateDriverMe();
+         }, 500);
+      }
+    )
+  }
+
+  setNews() {
+    let reqBool: boolean;
+    this.newsEnabled === true ? reqBool = false : reqBool = true;
+    this.api.enableNews({ news_agree: reqBool }).subscribe(
       data => {
         setTimeout(() => {
           this.identityService.updateDriverMe();
