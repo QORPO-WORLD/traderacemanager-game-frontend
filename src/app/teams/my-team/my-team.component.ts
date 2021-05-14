@@ -47,6 +47,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   meManager = false;
   meRated = false;
   myRating: number;
+  teamChart = [];
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -59,6 +60,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.getRewards();
     this.changeSlide();
     this.getTeams();
+    this.getTeamHistory();
   }
 
   routerOnDeactivate() {
@@ -247,6 +249,12 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         }
       )
     }
+  }
+
+  getTeamHistory() {
+    this.teamSubscription = this.teams_service.getTeamHistory().subscribe(data => {
+      this.teamChart = data;
+    });
   }
 
 

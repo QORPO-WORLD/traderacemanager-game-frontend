@@ -48,9 +48,11 @@ export class BinaryTradeComponent implements OnInit {
   chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
-    url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    //url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    url: 'http://dev-api.traderacemanager.com/binary-socket/socket.io',
     openObserver: {
-      next: () => {
+      next: (data) => {
+        console.log(data);
         this.socket$.next({ 'type': 'subscribe', 'symbol': 'BINANCE:BTCUSDT' });
       }
     },

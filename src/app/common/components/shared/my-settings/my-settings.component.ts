@@ -27,7 +27,7 @@ export class MySettingsComponent implements OnInit {
   myDriver: any;
   myDriverBalances: any;
   myDriverOld: any;
-
+  newsEnabled = false;
   constructor(private uapi: AuthService, protected notify: NotifiqService, protected api: DriversService,
     private identityService: ninja, private route: Router, protected ntrsrvc: NitroWalletService) { }
 
@@ -78,6 +78,8 @@ export class MySettingsComponent implements OnInit {
       this.route.navigate(['/player/disable-auth']);
     }
   }
+
+
 
   patchWallet() {
     this.nitroObserver = this.ntrsrvc.nitroWalletPartialUpdate({
@@ -144,6 +146,10 @@ export class MySettingsComponent implements OnInit {
          }, 500);
       }
     )
+  }
+
+  switchNewsletter(event) {
+// todo connect to api
   }
 
 

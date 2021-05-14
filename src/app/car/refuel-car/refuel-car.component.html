@@ -139,7 +139,10 @@
                 </div>
     
                 <img [src]="'/assets/base/images/nft-cars/car' + car.c + '.png'" alt="">
-    
+                <div *ngFor="let caris of car.b" [hidden]="caris.bet === 0">
+                  <span>{{caris.symbol}}</span>
+                  <span>{{caris.bet}}</span>
+                </div>
               </div>
             </ng-container>
           </div>
@@ -610,8 +613,8 @@
         <p>Next car &gt;</p>
       </div>
 
-      <div class="next-btn my-fuel-btn-back" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel === 100 && sumFuel / sumlength === 100" (click)="signupToRace()">
-        <p>Start game &gt;</p>
+      <div class="next-btn my-fuel-btn-back" (click)="resolveNext()">
+        <p>{{(selectedCarIndex + 1) < selectedCarsToRace.length ? 'Next car' : 'Refuel'}} &gt;</p>
       </div>
 
       <div class="next-btn inactive my-fuel-btn-back" (click)="scrollToView('analysisBox')" *ngIf="selectedCarsToRace[selectedCarIndex]?.fuel !== 100 && sumFuel / sumlength !== 100">
