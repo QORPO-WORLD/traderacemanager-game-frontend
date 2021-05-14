@@ -1206,10 +1206,10 @@
     padding-top: 10px;
   }
   .box-heading {
-    font-size: 15px;
+    font-size: 20px;
     margin: 0 0 10px 0;
     &.w-padd {
-      padding-left: 18px;
+      padding-left: 26px;
     }
     .info-icon {
       width: 16px;
@@ -1413,9 +1413,10 @@
     max-width: 500px;
     margin: 0 auto;
     .top-banner {
-      height: 285px;
+      height: 375px;
       max-width: 500px;
       margin: 0 auto;
+      border-radius: 10px;
       .dots-holder {
         transform: none;
         left: unset;
@@ -1425,8 +1426,35 @@
         transform: translateX(-50%);
       }
       .banner-item {
+        .skewed-color {
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          height: 100%;
+          width: 40%;
+          transform-origin: bottom;
+          transform: skew(-23.85deg) translate3d(0, 0, 0);
+          -webkit-transform: skew(-23.85deg) translate3d(0, 0, 0);
+          -moz-transform: skew(-23.85deg) translate3d(0, 0, 0);
+          -ms-transform: skew(-23.85deg) translate3d(0, 0, 0);
+          -o-transform: skew(-23.85deg) translate3d(0, 0, 0);
+        }
+
+        &.item1 {
+          background: #222222;
+        }
+        &.item2 {
+          background: #222222;
+        }
         &.item3 {
-          background-image: url("/assets/base/images/start-race/banner-back-blue3.jpg");
+          background: linear-gradient(
+              180deg,
+              #222222 12.33%,
+              rgba(34, 34, 34, 0) 40.8%
+            ),
+            url("/assets/base/images/start-race/banner-back-blue3-mobile.png");
+
+          background-size: cover;
           background-position: 70% 50%;
         }
         &.item3.red {
@@ -1435,37 +1463,64 @@
         }
         .banner-img {
           &.crown {
-            width: 240px;
-            right: 16%;
-            bottom: 70px;
+            width: 230px;
+            max-width: 230px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
           }
           &.tasks {
             width: 190px;
-            bottom: 70px;
-            right: 17%;
+            max-width: 200px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
           }
           &.collection {
-            max-width: 386px;
-            bottom: 70px;
+            max-width: 360px;
+            position: absolute;
+            left: 55%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
           }
           &.nft {
-            max-width: 370px;
+            max-width: 400px;
             bottom: 70px;
             right: 2%;
+            left: 65%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
           }
         }
         .text-holder {
           transform: none;
-          top: 10%;
+          top: 23px;
           height: 85%;
-          left: 30px;
+          width: 90%;
+          left: 26px;
           .top-desc {
             font-size: 13px;
             margin: 13px 0 5px 0;
           }
           .race-name {
             font-size: 19px;
-            margin: 0 0 10px 0;
+            margin: 0px;
           }
           .timer-holder {
             .day {
@@ -1522,6 +1577,7 @@
         }
       }
     }
+
     .categories-holder {
       width: 100%;
       max-width: 500px;
@@ -1532,9 +1588,10 @@
         .cat-item {
           height: 120px;
           width: 100%;
-          margin-bottom: 15px;
+          margin-bottom: 12px;
           min-width: 260px;
           box-shadow: none;
+          border-radius: 10px;
           &:hover {
             .back-img {
               transform: scale(1.03) translateY(-50%);
@@ -1563,6 +1620,13 @@
             p {
               width: 100%;
               margin: 0 0 10px 0;
+            }
+            .arrow-btn {
+              width: 25px;
+              height: 25px;
+
+              font-size: 25px;
+              font-weight: 500;
             }
           }
         }
@@ -1613,20 +1677,6 @@
   .main-center-box {
     .top-banner {
       .banner-item {
-        .text-holder {
-          left: 35px;
-        }
-        .banner-img {
-          &.collection {
-            max-width: 336px;
-
-            right: -2%;
-          }
-          &.nft {
-            max-width: 350px;
-            right: -7%;
-          }
-        }
       }
     }
   }

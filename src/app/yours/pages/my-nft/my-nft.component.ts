@@ -28,6 +28,11 @@ export class MyNftComponent implements OnInit {
   myCars: any;
   carsSorted: any;
   allCars: any;
+  timeoutPage: any;
+  animation = 0;
+  animateArrow = false;
+  animateArrowRight = false;
+
   myCarsSorted = {
     car0: [],
     car1: [],
@@ -759,7 +764,7 @@ export class MyNftComponent implements OnInit {
   newProducts: any;
   assetId: any;
   title = "All products";
-  currentPage;
+  currentPage: number;
   maxPage: number;
   lastPage: number;
   isPaged: any;
@@ -772,6 +777,20 @@ export class MyNftComponent implements OnInit {
   owned: any;
   marketState = 1;
 
+  constructor(
+    protected api: CarsService,
+    private balanceService: BalanceService,
+    private identityService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    this.getMyCars();
+  }
+  ngOnInit(): void {
+    const that = this;
+    this.getMyOldDriver();
+    this.getMyBalance();
+    this.calcCarsValue();
+  }
   calcCarsValue() {
     for (let x = 0; x < this.myCars.length; x++) {
       if (this.myCars[x].car_id < 7 && this.myCars[x].car_id > 0) {
@@ -826,14 +845,6 @@ export class MyNftComponent implements OnInit {
   showAssetBuy(state: number) {
     this.marketState = state;
   }
-  constructor(
-    protected api: CarsService,
-    private balanceService: BalanceService,
-    private identityService: AuthService,
-    private route: ActivatedRoute
-  ) {
-    this.getMyCars();
-  }
 
   get balanceHasChanged(): boolean {
     return this.balanceService.balanceChanged;
@@ -842,13 +853,6 @@ export class MyNftComponent implements OnInit {
   notifyChangedBalance() {
     this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();
-  }
-
-  ngOnInit(): void {
-    const that = this;
-    this.getMyOldDriver();
-    this.getMyBalance();
-    this.calcCarsValue();
   }
 
   getMyCars() {
@@ -1150,9 +1154,7 @@ export class MyNftComponent implements OnInit {
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  widthFilter() {
-    this.display = window.innerWidth;
-  }
+
   width() {
     this.display = window.innerWidth;
 
@@ -1179,18 +1181,41 @@ export class MyNftComponent implements OnInit {
       this.mobileFilter = false;
     }
   }
+  timeoutReset() {
+    clearTimeout(this.timeoutPage);
+  }
   prevPageCars() {
-    if (this.sliceStart > 0) {
-      this.sliceStart = this.sliceStart - this.inRow;
-      this.sliceMiddle = this.sliceMiddle - this.inRow;
-      this.isPaged = this.isPaged - 1;
+    if (this.currentPage > 0) {
+      this.animateArrow = false;
+      this.animateArrow = true;
+      this.timeoutReset();
+      this.currentPage--;
+      this.isPaged--;
+      this.animation = 3;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 2;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrow = false;
+      }, 300);
     }
   }
   nextPageCars() {
-    if (this.sliceMiddle < this.newProducts.length) {
-      this.sliceStart = this.sliceStart + this.inRow;
-      this.sliceMiddle = this.sliceMiddle + this.inRow;
-      this.isPaged = this.isPaged + 1;
+    if (this.currentPage < this.newProducts.length / this.inRow) {
+      this.animateArrowRight = false;
+      this.animateArrowRight = true;
+      this.timeoutReset();
+      this.currentPage++;
+      this.isPaged++;
+      this.animation = 1;
+      this.timeoutPage = setTimeout(() => {
+        this.animation = 0;
+        this.sliceStart = this.inRow * this.isPaged;
+        this.sliceMiddle = this.inRow * this.currentPage;
+        this.timeoutPage = null;
+        this.animateArrowRight = false;
+      }, 300);
     }
   }
 

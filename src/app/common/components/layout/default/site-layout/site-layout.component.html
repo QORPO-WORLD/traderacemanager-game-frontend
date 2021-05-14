@@ -3,6 +3,7 @@
     class="cont-holder main-app-cont-holder"
     [ngClass]="isManager === true ? 'manager' : 'racer'"
   >
+    <div class="overlay"></div>
     <nav class="my-nav" [ngClass]="{ 'high-index': menuOpen === true }">
       <img
         class="nav-logo"
@@ -501,52 +502,71 @@
             <p>&gt;</p>
           </div>
         </div>
-        <ng-container *ngFor="let team of myTeams | slice:startTeamIndex:startTeamIndex + sliceBalancer; let i = index">
-          <div
-          class="small-box"
-          (click)="selectedTeam = team.id"
-          [ngClass]="{
-            'selected': selectedTeam === team.id,
-            'not-selected': selectedTeam !== team.id && selectedTeam > 0,
-            'first': i % 3 === 0,
-            'bordered': i !== 2
-          }"
+        <ng-container
+          *ngFor="
+            let team of myTeams
+              | slice: startTeamIndex:startTeamIndex + sliceBalancer;
+            let i = index
+          "
         >
-          <div class="my-border"></div>
-          <div class="inner-box">
-            <img
-              src="/assets/base/images/modal/basic-back.png"
-              alt=""
-              class="back-img"
-            />
-            <div class="badge-holder">
-              <h3>Team {{ team?.name }}</h3>
+          <div
+            class="small-box"
+            (click)="selectedTeam = team.id"
+            [ngClass]="{
+              selected: selectedTeam === team.id,
+              'not-selected': selectedTeam !== team.id && selectedTeam > 0,
+              first: i % 3 === 0,
+              bordered: i !== 2
+            }"
+          >
+            <div class="my-border"></div>
+            <div class="inner-box">
               <img
-                *ngIf="team?.name === 'IOI' || team?.name === 'BTC' || team?.name === 'ALT'"
-                [src]="'/assets/base/images/teams/' + team?.name +'-team.png'"
+                src="/assets/base/images/modal/basic-back.png"
                 alt=""
-                class="badge-img btc"
+                class="back-img"
               />
-              <div class="img-holder" *ngIf="team?.name !== 'IOI' && team?.name !== 'BTC' && team?.name !== 'ALT'">
+              <div class="badge-holder">
+                <h3>Team {{ team?.name }}</h3>
                 <img
-                  class="badge-img"
+                  *ngIf="
+                    team?.name === 'IOI' ||
+                    team?.name === 'BTC' ||
+                    team?.name === 'ALT'
+                  "
                   [src]="
-                    'assets/base/images/custom-teams/custom-team' +
-                    (team.avatar + 1) +
-                    '.png'
+                    '/assets/base/images/teams/' + team?.name + '-team.png'
                   "
                   alt=""
+                  class="badge-img btc"
                 />
-                <div class="badge-name">
-                  <p class="name">{{ team?.name }}</p>
-                  <p class="team">TEAM</p>
+                <div
+                  class="img-holder"
+                  *ngIf="
+                    team?.name !== 'IOI' &&
+                    team?.name !== 'BTC' &&
+                    team?.name !== 'ALT'
+                  "
+                >
+                  <img
+                    class="badge-img"
+                    [src]="
+                      'assets/base/images/custom-teams/custom-team' +
+                      (team.avatar + 1) +
+                      '.png'
+                    "
+                    alt=""
+                  />
+                  <div class="badge-name">
+                    <p class="name">{{ team?.name }}</p>
+                    <p class="team">TEAM</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </ng-container>
-        
+
         <!-- <div
           class="small-box bordered"
           (click)="selectedTeam = 2"
