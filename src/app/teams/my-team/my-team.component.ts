@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TeamsService } from '../../api/services/teams.service';
+import { Chart } from 'angular-highcharts';
 
 @Component({
   selector: 'app-my-team',
@@ -48,6 +49,9 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   meRated = false;
   myRating: number;
   teamChart = [];
+  turnoverData = [10,15,20,10,13,2,5];
+  chart: any;
+
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -61,6 +65,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.changeSlide();
     this.getTeams();
     this.getTeamHistory();
+    this.getChart();
   }
 
   routerOnDeactivate() {
@@ -81,6 +86,57 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       this.afSubscription.unsubscribe();
     }
     clearInterval(this.tickInterval);
+  }
+
+  getChart() {
+    this.chart = new Chart({
+      chart: {
+        type: 'areaspline',
+        backgroundColor: null
+      },
+      xAxis: {
+        visible: false
+      },
+      yAxis: {
+        visible: false
+      },
+      legend: {
+        enabled: false
+      },
+      title: {
+        text: ''
+      },
+      credits: {
+        enabled: false
+      },
+      tooltip: {
+        shared: true,
+        valueSuffix: ' TRX'
+      },
+      plotOptions: {
+        areaspline: {
+            fillOpacity: 0
+        },
+        series: {
+          enableMouseTracking: false,
+          marker: {
+            enabled: false
+          },
+          states: {
+            hover: {
+              enabled: false
+            }
+          }
+        }
+      },
+      series: [
+        {
+          name: '',
+          type: 'areaspline',
+          data: [...this.turnoverData]
+        }
+      ]
+    });
   }
 
   getMyTem() {
