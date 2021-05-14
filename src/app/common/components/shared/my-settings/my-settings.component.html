@@ -28,17 +28,6 @@
     </div>
   </div>
 
-  <div class="settings-item country my-cta-btn-back">
-    <div class="inner">
-      <div class="img-holder">
-        <img src="/assets/base/images/icons/country-icon.png" alt="">
-      </div>
-      <div class="text-holder">
-        <p class="desc">{{'profile.country' | translate}}:</p>
-        <p>{{myDriver?.country}}</p>
-      </div>
-    </div>
-  </div>
 
   <!-- <div class="settings-item">
     <p class="desc">{{'profile.crypto' | translate}}:</p>
@@ -50,6 +39,21 @@
     <img src="/assets/base/k-24.png" alt="" class="edit-icon" *ngIf="editingWallet === true" (click)="patchWallet()"></p>
   </div> -->
 
+  <div class="switch-holder">
+    <p class="desc">Newsletter</p>
+    <p class="value">
+      <span class="desc" [ngClass]="{'active': newsEnabled === true}">{{'profile.off' | translate}}</span>
+      <span class="info">
+        <form method="#">
+          <div class="switch">
+            <input id="switch-4" type="checkbox" class="switch-input" [(ngModel)]="newsEnabled"  [ngModelOptions]="{standalone: true}" (change)="setNews($event)"/>
+            <label for="switch-4" class="switch-label">Switch</label>
+          </div>
+        </form>
+      </span>
+      <span class="desc" [ngClass]="{'active': newsEnabled === false}">{{'profile.on' | translate}}</span>
+    </p>
+  </div>
   <div class="switch-holder">
     <p class="desc">{{'profile.auth' | translate}}</p>
     <p class="value">
