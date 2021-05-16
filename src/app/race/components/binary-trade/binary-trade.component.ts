@@ -80,15 +80,31 @@ export class BinaryTradeComponent implements OnInit {
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
 
   ngOnInit() {
+    let options = {
+      transportOptions: {
+        polling: {
+          extraHeaders: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          }
+        }
+      }
+    };
     const socket = io("https://dev-api.traderacemanager.com", {
-      path: "/binary-socket/socket.io"
+      path: "/binary-socket/socket.io",
+      auth: {
+        token: "abcd"
+      }
     });
 
     console.log(socket);
 
-    socket.on("connect", function() {
-      console.log("Client connected")!;
-    });
+  
+
+    
+
+    //socket.emit("client_triggered_send", { "user": "janko", "room": "random_room_name", "data": "MyMessage" });
+    
 
     //this.socket = io.connect(this.SOC_URL, { query: { token: this.token }, 'forceNew': true });
  
