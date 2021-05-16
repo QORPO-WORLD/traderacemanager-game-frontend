@@ -33,6 +33,7 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
   isReady = false;
   @Input() rDetail: any;
   @Input() rStats: any;
+  @Input() players: any;
   fakeDetail: any;
   fakeStats: any;
   timeoutBool = false;
@@ -83,8 +84,8 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
     }).then((unityInstance) => {
       window.unityInstance = unityInstance;
       this.gameInstance = unityInstance;
-      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '1|6');
-      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '2|5');
+      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '1|' + this.players[0].user_id);
+      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '2|'  + this.players[1].user_id);
  
     });
   }
@@ -95,19 +96,17 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-  hello() {
-    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|1');
+
+  yo(data) {
+    let avatarIndex: number;
+    for (let x = 0; x < this.players.length; x++) {
+      if (this.players[x].user_hash === data.user_hash) {
+        avatarIndex = x + 1;
+      }
+    }
+    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', avatarIndex + '|' + data.reaction);
   }
 
-  helloOponent() {
-    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '2|1');
-  }
-  yo() {
-    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|2|4');
-  }
-  good() {
-    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '2|3');
-  }
 
 
 

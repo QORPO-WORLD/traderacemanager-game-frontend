@@ -1,19 +1,15 @@
 import { RacesService } from 'src/app/api/services';
-import { timeStamp } from 'console';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Chart as lineChart } from 'angular-highcharts';
 import { AuthService } from 'src/app/user/services/auth.service';
-import { map, catchError, distinctUntilChanged, pairwise, tap } from 'rxjs/operators';
-import { Observable, Subject, EMPTY, of, interval, Subscription } from 'rxjs';
+import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
+import { Observable, EMPTY, of, Subscription } from 'rxjs';
 declare let ccxt: any;
-declare let sxc: any;
-
-import { min } from 'rxjs/operators';
+let popsock = (window as any).kocksock;
 import io from "socket.io-client"
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
-import { jsonpFactory } from '@angular/http/src/http_module';
 export interface Trade {
   data: {
     p: number,
@@ -45,13 +41,14 @@ export class BinaryTradeComponent implements OnInit {
   menuOpen = false;
   myDriverStats: any;
   raceEnded = false;
-
+  mePlaying = false;
+  players = [];
+  myPlayer: any;
   @ViewChild("unityRace", { static: false }) raceComp: any;
   chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
     url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
-    //url: 'http://dev-api.traderacemanager.com/binary-socket/socket.io',
     openObserver: {
       next: (data) => {
         console.log(data);
@@ -79,47 +76,30 @@ export class BinaryTradeComponent implements OnInit {
   config: any;
   colorNames = Object.keys(this.chartColors);
   mainSocket: any;
-  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
+  myId: string;
+  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
+    this.raceHash = this.actv.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
-    
-    this.mainSocket = io("https://dev-api.traderacemanager.com", {
+    this.getBinaryPlayers();
+    this.getMyDriver();
+    popsock = io("https://dev-api.traderacemanager.com", {
       path: "/binary-socket/socket.io",
-     
-        auth:{
-          user_hash: "ado",
-          auth_token: "12345",
-          room_name: 'random_room_name'
-        }
-      
-    });
-
-
-
-    this.mainSocket.on("connect", function() {
-      console.log("Client connected")!;
-      this.mainSocket.emit("client_triggered_send", { "user": "ado", "room": "random_room_name", "data": "MyMessage" });
-      console.log(this.mainSocket)!;
-
-    });
-
-    this.mainSocket.on("message", function(data) {
-      console.log(data);
-      if (data === '2|1') {
-        this.helloOponent();
+      auth: {
+        user_hash: "ado",
+        auth_token: "12345",
+        room_name: 'random_room_name'
       }
-      if (data === '1|1') {
-        this.hello();
-      }
+
     });
-
-    
-
-    //socket.emit("client_triggered_send", { "user": "janko", "room": "random_room_name", "data": "MyMessage" });
-    
-
-    //this.socket = io.connect(this.SOC_URL, { query: { token: this.token }, 'forceNew': true });
- 
+    popsock.on("connect", function () {
+      console.log('connected')
+    });
+    let _this = this;
+    popsock.on("message", function (data) {
+      _this.avatarMsg(data);
+    });
 
     this.config = {
       type: 'line',
@@ -161,28 +141,23 @@ export class BinaryTradeComponent implements OnInit {
         }
       }
     };
-    this.raceHash = this.actv.snapshot.paramMap.get('id');
+
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
-      console.log('first');
+
       this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100);
     setTimeout(() => {
       this.addData();
     }, 3000);
 
-
-
-    //this.runScheduler();
-    this.getMyDriver();
     this.price$ = this.getLatestPrice();
   }
 
 
 
   onRefresh() {
-    console.log('second');
-    console.log(this.chart);
+
     if (this.chart) {
       const now = Date.now();
       this.chart.data.datasets[0].data.push({
@@ -190,11 +165,8 @@ export class BinaryTradeComponent implements OnInit {
         y: this.currentValue
 
       });
-      console.log(this.chart.data.datasets[0].data);
       if (this.chart.data.datasets[0].data.length > 20) {
-        console.log(this.chart.data.datasets[0].data);
         this.chart.data.datasets[0].data.shift();
-        console.log(this.chart.data.datasets[0].data);
       }
     }
 
@@ -206,7 +178,6 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   addDataset() {
-    console.log('2d3');
     const colorName = this.colorNames[this.config.data.datasets.length % this.colorNames.length];
     const newColor = this.chartColors[colorName];
     const newDataset: any = {
@@ -219,7 +190,6 @@ export class BinaryTradeComponent implements OnInit {
 
     this.config.data.datasets[0].push(newDataset);
     this.chart.update();
-    console.log('updated');
   }
 
   add() {
@@ -302,78 +272,32 @@ export class BinaryTradeComponent implements OnInit {
     clearInterval(this.chartInterval);
   }
 
-  hello() {
-    this.raceComp.hello();
+
+  avatarMsgLocal(msg: any) {
+    this.raceComp.yo(msg);
   }
-  yo() {
-    this.raceComp.yo();
+
+  avatarMsg(msg: any) {
+    this.raceComp.yo(JSON.parse(msg));
   }
-  good() {
-    this.raceComp.good();
+
+  sendSockAvatarMsg(msg: any) {
+    
+    popsock.emit("client_triggered_send",
+      {
+        "event": "message",
+        "user": this.myId,
+        "room": "random_room_name",
+        "data": JSON.stringify(msg)
+      });
   }
-  helloOponent() {
-    this.raceComp.helloOponent();
-  }
+
 
   async initCcxt() {
-
-
-    //let kraken = new ccxt.kraken();
     let bitfinex = new ccxt.bitfinex({ verbose: true });
-    //let huobipro = new ccxt.huobipro();
-
     this.btcmeno = await bitfinex.fetchTicker('BTC/USD');
     const p = this.btcmeno['average'] * Math.random();
     this.mainChart.push(p);
-
-
-    //console.log(test);
-
-    //console.log(kraken);
-    /*
-    console.log(kraken);
-     console.log(bitfinex);
-     console.log(huobipro);
- */
-    //console.log(kraken.id, await kraken.loadMarkets());
-    //console.log(bitfinex.id, await bitfinex.loadMarkets());
-    //console.log(huobipro.id, await huobipro.loadMarkets());
-    //let okcoinusd = new ccxt.okcoinusd();
-
-    //let okcoinusd = new ccxt.okcoinusd();
-
-    /*
-        const exchangeId = 'binance'
-          , exchangeClass = ccxt[exchangeId]
-          , exchange = new exchangeClass({
-            'apiKey': 'uKAKx1tLaVm6YTvurr7fJpYnOxEpnSFpTTNIb67rJVcy7btOhfBNI6CZfLlVSd5v',
-            'secret': 'nUDGTt22dbSwaUVisuincnEJFBqisjKmmuLT5vokFERrAf31UIu1evKI6LQYwJ3r',
-            'timeout': 30000,
-            'enableRateLimit': true,
-          });
-        console.log('got here');
-    
-        console.log(kraken.id, await kraken.loadMarkets());
-        console.log(bitfinex.id, await bitfinex.loadMarkets());
-        console.log(huobipro.id, await huobipro.loadMarkets());
-    
-        console.log(kraken.id, await kraken.fetchOrderBook(kraken.symbols[0]));
-        console.log(bitfinex.id, await bitfinex.fetchTicker('BTC/USD'));
-        console.log(huobipro.id, await huobipro.fetchTrades('ETH/USDT'));
-    */
-    //console.log(okcoinusd.id, await okcoinusd.fetchBalance());
-
-    // sell 1 BTC/USD for market price, sell a bitcoin for dollars immediately
-    //console.log(okcoinusd.id, await okcoinusd.createMarketSellOrder('BTC/USD', 1));
-
-    // buy 1 BTC/USD for $2500, you pay $2500 and receive ฿1 when the order is closed
-    //console.log(okcoinusd.id, await okcoinusd.createLimitBuyOrder('BTC/USD', 1, 2500.00));
-
-    // pass/redefine custom exchange-specific order params: type, amount, price or whatever
-    // use a custom order type
-    //bitfinex.createLimitSellOrder('BTC/USD', 1, 10, { 'type': 'trailing-stop' });
-
-
   }
 
   updateChart() {
@@ -382,31 +306,6 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   async runScheduler() {
-    /*
-     const exchange = new ccxt.binance({ enableRateLimit: true });
-  if (exchange.has['watchTicker']) {
-
-    try {
-      const ticker = await exchange.watchTicker('BTC/USDT');
-      this.myCoin = {
-        time: ticker.timeStamp,
-        value: ticker.last
-      };
-    } catch (e) {
-      console.log(e)
-      // stop the loop on exception or leave it commented to retry
-      // throw e
-    }
-
-  }
-
- 
-     this.chartInterval = setInterval(() => {
-    this.add();
-    this.updatePlotLine(this.chart);
-  }, 5000);
-  */
-
 
   }
 
@@ -427,17 +326,6 @@ export class BinaryTradeComponent implements OnInit {
     this.add();
   }
 
-  getDirection() {
-    return this.getLatestPrice().pipe(
-      pairwise(),
-      // tap(d => {
-      //   console.log(`Current val ${d[1]} > ${d[0]} `, d[1] > d[0])
-      // }),
-      map(arr => arr[0] < arr[1] ? 'green' : 'red')
-    )
-  }
-
-
   placeOption() {
     if (this.loadingCont === false) {
       this.loadingCont = true;
@@ -454,5 +342,41 @@ export class BinaryTradeComponent implements OnInit {
     setTimeout(() => {
       this.loadingCont = false;
     }, 500)
+  }
+
+  getBinaryPlayers() {
+    this.raceApi.binaryPlayers(
+      this.raceHash
+    ).subscribe(data => {
+      const datax: any = data;
+      this.resolveAvatars(datax);
+    });
+  }
+
+  resolveAvatars(data: Array<{
+    user_id: string;
+    user_hash: string;
+    user_nickname: string;
+  }>) {
+    this.myId = this.identityService.getDriverMe().id;
+
+    for (const el of data) {
+      if (el.user_hash === this.myId) {
+        this.mePlaying = true;
+        this.myPlayer = el;
+      }
+    }
+
+    if (this.mePlaying === true) {
+      this.players.push(this.myPlayer);
+
+      for (const el of data) {
+        if (el.user_hash !== this.myId) {
+          this.players.push(el);
+        }
+      }
+    } else {
+      this.players = data;
+    }
   }
 }

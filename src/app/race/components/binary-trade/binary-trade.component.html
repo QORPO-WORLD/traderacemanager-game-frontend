@@ -49,32 +49,58 @@
     </div>
 
   </div>
-
-  <app-unityrace #unityRace style="width: 100%;
+  <div *ngIf="players?.length > 1">
+    <app-unityrace [players]="players" #unityRace style="width: 100%;
           height: 100%;
           position: relative;
           background: black;
           z-index: 1;" >
-  </app-unityrace>
-
+    </app-unityrace>
+  </div>
   <div class="content-holder" *ngIf="raceEnded === false">
     <div class="chart-holder">
-      <div class="react-controls">
+      <div class="react-controls" *ngIf="mePlaying === true">
         <p>React!</p>
         <div class="control-btns">
-          <div class="react-btn" (click)="hello()">
+          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 1});avatarMsgLocal({user_hash: myId, reaction: 1})">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-possitive.svg" alt="">
             </div>
           </div>
   
-          <div class="react-btn" (click)="yo()">
+          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 2});avatarMsgLocal({user_hash: myId, reaction: 2})">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-negative.svg" alt="">
             </div>
           </div>
   
-          <div class="react-btn" (click)="good()">
+          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 3});avatarMsgLocal({user_hash: myId, reaction: 3})">
+            <div class="inner">
+              <img src="/assets/base/images/binary-race/react-diss.svg" alt="">
+            </div>
+          </div>
+              </div>
+
+        <div class="conv-box">
+          <p>BTC/USD</p>
+        </div>
+      </div>
+      <div class="react-controls" *ngIf="1 + 1 === 3">
+        <p>React!</p>
+        <div class="control-btns">
+          <div class="react-btn" (click)="sendSockAvatarMsg('2|1');avatarMsg('2|1')">
+            <div class="inner">
+              <img src="/assets/base/images/binary-race/react-possitive.svg" alt="">
+            </div>
+          </div>
+  
+          <div class="react-btn" (click)="sendSockAvatarMsg('2|2');avatarMsg('2|2')">
+            <div class="inner">
+              <img src="/assets/base/images/binary-race/react-negative.svg" alt="">
+            </div>
+          </div>
+  
+          <div class="react-btn" (click)="sendSockAvatarMsg('2|3');avatarMsg('2|3')">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-diss.svg" alt="">
             </div>
