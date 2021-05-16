@@ -83,7 +83,7 @@ export class BinaryTradeComponent implements OnInit {
 
   ngOnInit() {
     
-    sxc = io("https://dev-api.traderacemanager.com", {
+    this.mainSocket = io("https://dev-api.traderacemanager.com", {
       path: "/binary-socket/socket.io",
      
         auth:{
@@ -96,14 +96,14 @@ export class BinaryTradeComponent implements OnInit {
 
 
 
-    sxc.on("connect", function() {
+    this.mainSocket.on("connect", function() {
       console.log("Client connected")!;
-      sxc.emit("client_triggered_send", { "user": "ado", "room": "random_room_name", "data": "MyMessage" });
-      console.log(sxc)!;
+      this.mainSocket.emit("client_triggered_send", { "user": "ado", "room": "random_room_name", "data": "MyMessage" });
+      console.log(this.mainSocket)!;
 
     });
 
-    sxc.on("message", function(data) {
+    this.mainSocket.on("message", function(data) {
       console.log(data);
       if (data === '2|1') {
         this.helloOponent();
