@@ -7,11 +7,13 @@ import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, pairwise, tap } from 'rxjs/operators';
 import { Observable, Subject, EMPTY, of, interval, Subscription } from 'rxjs';
 declare let ccxt: any;
+declare let sxc: any;
 
 import { min } from 'rxjs/operators';
 import io from "socket.io-client"
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
+import { jsonpFactory } from '@angular/http/src/http_module';
 export interface Trade {
   data: {
     p: number,
@@ -76,30 +78,40 @@ export class BinaryTradeComponent implements OnInit {
   color = Chart.helpers.color;
   config: any;
   colorNames = Object.keys(this.chartColors);
-
+  mainSocket: any;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
 
   ngOnInit() {
-    let options = {
-      transportOptions: {
-        polling: {
-          extraHeaders: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-          }
-        }
-      }
-    };
-    const socket = io("https://dev-api.traderacemanager.com", {
+    
+    sxc = io("https://dev-api.traderacemanager.com", {
       path: "/binary-socket/socket.io",
-      auth: {
-        token: "abcd"
-      }
+     
+        auth:{
+          user_hash: "ado",
+          auth_token: "12345",
+          room_name: 'random_room_name'
+        }
+      
     });
 
-    console.log(socket);
 
-  
+
+    sxc.on("connect", function() {
+      console.log("Client connected")!;
+      sxc.emit("client_triggered_send", { "user": "ado", "room": "random_room_name", "data": "MyMessage" });
+      console.log(sxc)!;
+
+    });
+
+    sxc.on("message", function(data) {
+      console.log(data);
+      if (data === '2|1') {
+        this.helloOponent();
+      }
+      if (data === '1|1') {
+        this.hello();
+      }
+    });
 
     
 
@@ -298,6 +310,9 @@ export class BinaryTradeComponent implements OnInit {
   }
   good() {
     this.raceComp.good();
+  }
+  helloOponent() {
+    this.raceComp.helloOponent();
   }
 
   async initCcxt() {

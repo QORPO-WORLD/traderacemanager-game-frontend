@@ -98,6 +98,10 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
   hello() {
     this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|1');
   }
+
+  helloOponent() {
+    this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '2|1');
+  }
   yo() {
     this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', '1|2|4');
   }
