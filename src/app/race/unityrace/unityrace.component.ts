@@ -73,17 +73,19 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
 */
     console.log('junity here');
     createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "/assets/game/IOI_Avatar.data",
-      frameworkUrl: "/assets/game//IOI_Avatar.framework.js",
-      codeUrl: "/assets/game//IOI_Avatar.wasm",
+      dataUrl: "/assets/game/Build/IOI_Avatar.data",
+      frameworkUrl: "/assets/game/Build/IOI_Avatar.framework.js",
+      codeUrl: "/assets/game/Build/IOI_Avatar.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "IOI Corporation s.r.o",
       productName: "IOI_Avatar",
       productVersion: "0.1",
     }).then((unityInstance) => {
-      console.log(unityInstance);
-      window.unityInstance = unityInstance; // <-- this
-      this.gameInstance  = unityInstance; // <-- this
+      window.unityInstance = unityInstance;
+      this.gameInstance = unityInstance;
+      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '1|6');
+      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '2|5');
+ 
     });
   }
 

@@ -9,7 +9,7 @@ import { Observable, Subject, EMPTY, of, interval, Subscription } from 'rxjs';
 declare let ccxt: any;
 
 import { min } from 'rxjs/operators';
-
+import io from "socket.io-client"
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
 export interface Trade {
@@ -76,9 +76,23 @@ export class BinaryTradeComponent implements OnInit {
   color = Chart.helpers.color;
   config: any;
   colorNames = Object.keys(this.chartColors);
+
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) { }
 
   ngOnInit() {
+    const socket = io("https://dev-api.traderacemanager.com", {
+      path: "/binary-socket/socket.io"
+    });
+
+    console.log(socket);
+
+    socket.on("connect", function() {
+      console.log("Client connected")!;
+    });
+
+    //this.socket = io.connect(this.SOC_URL, { query: { token: this.token }, 'forceNew': true });
+ 
+
     this.config = {
       type: 'line',
       data: {
@@ -98,7 +112,7 @@ export class BinaryTradeComponent implements OnInit {
               duration: 20000,
               refresh: 1000,
               delay: 2000,
-              
+
             }
           },
           y: {
@@ -146,7 +160,7 @@ export class BinaryTradeComponent implements OnInit {
       this.chart.data.datasets[0].data.push({
         x: now,
         y: this.currentValue
-    
+
       });
       console.log(this.chart.data.datasets[0].data);
       if (this.chart.data.datasets[0].data.length > 20) {
@@ -181,7 +195,7 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   add() {
-    if(this.chart) {
+    if (this.chart) {
 
       if (this.currentValue > 0) {
         const timeElapsed = Date.now();
