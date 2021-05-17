@@ -186,7 +186,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyRewards();
     this.getRewards();
     this.launchTutorial();
-    this.setBannerInterval();
+
     this.getMyLevel();
     this.getMyLeaderboard();
     this.interval = setInterval(() => {

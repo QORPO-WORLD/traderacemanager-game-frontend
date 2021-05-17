@@ -216,160 +216,257 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+  .boxes {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    .box {
+      box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
+      cursor: pointer;
+      overflow: hidden;
+      margin: 0.75%;
+      position: relative;
+      background: white;
+      width: 23.5%;
+      height: 420px;
+      margin-bottom: 1.5%;
+      border-radius: 15px;
+      padding: 1%;
+      transition: 0.2s;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      -ms-transition: 0.2s;
+      -o-transition: 0.2s;
+      &.sold-out {
+        opacity: 0.7;
+      }
+      .txt {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 20%;
+        //meno kolekcie
+        .collection {
+          max-width: 50%;
+          position: absolute;
+          left: 0px;
+          bottom: 0px;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 10px;
+          /* identical to box height, or 24px */
 
-    .boxes {
-      width: 98%;
-      display: flex;
-      flex-wrap: wrap;
+          color: #111111;
+          opacity: 0.6;
+        }
+        //meno
 
-      .box {
-        cursor: default;
-        box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-        background: #ffffff;
-        width: 23%;
-        height: 500px;
-        margin: 1%;
-        border-radius: 10px;
-        padding: 2%;
-        transition: 0.2s;
-        .txt {
-          position: relative;
-          height: 40%;
-          //meno kolekcie
-          .collection {
-            top: 0%;
-            position: absolute;
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 150%;
-            /* identical to box height, or 24px */
+        .name {
+          height: fit-content;
+          position: absolute;
+          left: 0px;
+          top: 10px;
+          position: absolute;
+          font-style: normal;
+          font-weight: normal;
 
-            color: #111111;
-
-            opacity: 0.6;
-            &.gold {
-              color: #eb3349;
-              font-weight: 2000;
-              opacity: 1;
-            }
-          }
-
-          //meno
-          .name {
-            position: absolute;
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: 800;
-            font-size: 24px;
-            line-height: 150%;
-            bottom: 60%;
-            /* identical to box height, or 36px */
-
-            /* Gray 1 */
-
-            color: #333333;
-          }
-          .namefont {
-            position: absolute;
+          font-family: True-Lies;
+          font-size: 32px;
+          color: #111111;
+          span {
             font-family: True-Lies;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 32px;
-            bottom: 60%;
-            /* identical to box height, or 36px */
-
-            /* Gray 1 */
-
-            color: #333333;
-            span {
-              font-family: True-Lies;
-            }
-          }
-
-          //font name True lies
-          .racername {
-            width: 150px;
-            position: absolute;
-            left: 120%;
-            font-family: True-Lies;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 32px;
-            line-height: 150%;
-            /* identical to box height, or 48px */
-
-            /* Gray 1 */
-
-            color: #333333;
-          }
-          //cena
-          .prize {
-            bottom: 40%;
-            position: absolute;
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 36px;
-            /* identical to box height */
-
-            text-align: right;
-
-            color: #30cece;
-          }
-          //button see more
-          button {
-            outline: none;
-            cursor: pointer;
-            position: absolute;
-            border: 0;
-            left: 7.5%;
-            height: 32.5%;
-            width: 85%;
-            background: linear-gradient(
-              99.76deg,
-              #fe173f 117.01%,
-              #240b36 187.56%
-            );
-            border-radius: 12px;
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 20px;
-            line-height: 30px;
-            color: white;
-            bottom: 0%;
-            transition: 0.2s;
-          }
-          button:hover {
-            box-shadow: 0px 0px 20px rgba(254, 24, 63, 0.7);
           }
         }
-        .boximage {
-          position: relative;
+
+        .prize {
+          height: fit-content;
+          position: absolute;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 22px;
+          right: 0px;
+          bottom: 0px;
+          color: #30cece;
+        }
+        button {
+          outline: none;
+          cursor: pointer;
+
+          border: 0;
+
+          height: 32.5%;
+          width: 85%;
+          border-radius: 12px;
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 30px;
+          color: white;
+          margin: 0 auto;
+          margin-top: auto;
+          transition: 0.2s;
+        }
+      }
+      .boximage {
+        overflow: hidden;
+        border-radius: 15px;
+        background: #ebebeb;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        width: 100%;
+        height: 80%;
+        img {
+          transition: 0.3s;
+          max-width: 360px;
           width: 100%;
-          height: 60%;
-          img {
-            width: 95%;
-            position: absolute;
-            left: 50%;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: 0.2s;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+          &.special {
+            width: 80%;
+            max-width: 260px;
+          }
+          &.team {
+            width: 80%;
+            max-width: 260px;
+          }
+          &.gif {
+            opacity: 0;
+          }
+          &.still {
+            opacity: 1;
+          }
+          &.racer {
             top: 55%;
-            transform: translate(-50%, -50%);
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            &.special {
-              width: 80%;
-              max-width: 260px;
-            }
           }
         }
       }
-      .box:hover {
+    }
+    .box:hover {
+      transform: scale(1.02);
+      -webkit-transform: scale(1.02);
+      -moz-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+      -o-transform: scale(1.02);
+      box-shadow: 0px 0px 20px rgba(254, 23, 63, 0.7);
+      .boximage {
+        img {
+          opacity: 0;
+          &.gif {
+            opacity: 1;
+          }
+          &.still {
+            opacity: 1;
+          }
+        }
       }
+    }
+  }
+  .engage-next-anim {
+    animation: engage-boxes 0.4s;
+    -webkit-animation: engage-boxes 0.4s;
+  }
+  .disengage-next-anim {
+    animation: disengage-boxes 0.4s;
+    -webkit-animation: disengage-boxes 0.4s;
+  }
+  .engage-prev-anim {
+    animation: engage-boxes-left 0.4s;
+    -webkit-animation: engage-boxes-left 0.4s;
+  }
+  .disengage-prev-anim {
+    animation: disengage-boxes-left 0.4s;
+    -webkit-animation: disengage-boxes-left 0.4s;
+  }
+  @keyframes engage-boxes-left {
+    0% {
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      -moz-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes disengage-boxes-left {
+    0% {
+      transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      -moz-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      -o-transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  @keyframes engage-boxes {
+    0% {
+      transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      -o-transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      -moz-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes disengage-boxes {
+    0% {
+      transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      -moz-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      -o-transform: translateX(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      opacity: 0;
     }
   }
   .pages {
@@ -442,7 +539,11 @@
     .page-opacity {
       opacity: 0.4;
     }
-    @keyframes pageclick {
+    .arrow-animation {
+      animation: arrow-animation 0.4s;
+      -webkit-animation: arrow-animation 0.4s;
+    }
+    @keyframes arrow-animation {
       0% {
         transform: translate(-50%, -50%);
         -webkit-transform: translate(-50%, -50%);
@@ -451,11 +552,11 @@
         -o-transform: translate(-50%, -50%);
       }
       50% {
-        transform: translate(-50%, -45%);
-        -webkit-transform: translate(-50%, -45%);
-        -moz-transform: translate(-50%, -45%);
-        -ms-transform: translate(-50%, -45%);
-        -o-transform: translate(-50%, -45%);
+        transform: translate(-50%, -30%);
+        -webkit-transform: translate(-50%, -30%);
+        -moz-transform: translate(-50%, -30%);
+        -ms-transform: translate(-50%, -30%);
+        -o-transform: translate(-50%, -30%);
       }
       100% {
         transform: translate(-50%, -50%);
@@ -467,7 +568,52 @@
     }
   }
 }
-
+@media screen and (max-width: 1700px) {
+  .shop-section {
+    .shop-section-center {
+      .boxes {
+        .box {
+          height: 300px;
+          .boximage {
+            img {
+              width: 100%;
+              max-width: 250px;
+              &.special {
+                top: 55%;
+                width: 80%;
+                max-width: 220px;
+              }
+              &.team {
+                width: 80%;
+                max-width: 220px;
+              }
+              &.racer {
+                max-width: 300px;
+              }
+            }
+          }
+          .txt {
+            .name {
+              font-size: 21px;
+            }
+            .collection {
+              font-size: 15px;
+            }
+            .racername {
+              font-size: 26px;
+            }
+            .prize {
+              font-size: 21px;
+            }
+            button {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 1550px) {
   .shop-section {
     .title {
@@ -478,11 +624,20 @@
       .boxes {
         .box {
           .txt {
-            .namefont {
-              font-size: 27px;
+            .name {
+              font-size: 19px;
+            }
+            .collection {
+              font-size: 14px;
             }
             .racername {
-              font-size: 25px;
+              font-size: 23px;
+            }
+            .prize {
+              font-size: 19px;
+            }
+            button {
+              font-size: 16px;
             }
           }
         }
@@ -677,70 +832,10 @@
       justify-content: center;
 
       .boxes {
-        width: 98%;
-        display: flex;
-        flex-wrap: wrap;
-
         .box {
-          cursor: default;
-          box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-          background: #ffffff;
-          width: 30%;
-          height: 400px;
-          margin: 1.66%;
-          border-radius: 10px;
-          padding: 2%;
-          transition: 0.2s;
-          .txt {
-            .namefont {
-              font-size: 28px;
-              bottom: 60%;
-            }
-            position: relative;
-            height: 40%;
-            //meno kolekcie
-
-            //button see more
-            button {
-              outline: none;
-              cursor: pointer;
-              position: absolute;
-              border: 0;
-              left: 7.5%;
-              height: 32.5%;
-              width: 85%;
-              background: linear-gradient(
-                99.76deg,
-                #fe173f 117.01%,
-                #240b36 187.56%
-              );
-              border-radius: 12px;
-              font-family: Poppins;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 20px;
-              line-height: 30px;
-              color: white;
-              bottom: 0%;
-              transition: 0.2s;
-            }
-          }
-          .boximage {
-            position: relative;
-            width: 100%;
-            height: 60%;
-            img {
-              width: 95%;
-              position: absolute;
-              left: 50%;
-              top: 55%;
-              transform: translate(-50%, -50%);
-              -webkit-transform: translate(-50%, -50%);
-              -moz-transform: translate(-50%, -50%);
-              -ms-transform: translate(-50%, -50%);
-              -o-transform: translate(-50%, -50%);
-            }
-          }
+          width: 31%;
+          margin: 1.16%;
+          margin-bottom: 2.8%;
         }
       }
     }
@@ -930,15 +1025,6 @@
     margin-top: 150px;
 
     .shop-section-center {
-      .boxes {
-        .box {
-          .txt {
-            button {
-              opacity: 1;
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -957,10 +1043,12 @@
     }
     .shop-section-center {
       .boxes {
-        width: 150%;
-        .box:hover {
-          transform: scale(1.03);
-          box-shadow: (0px 0px 20px rgba(255, 24, 63, 0.5));
+        .box {
+          .txt {
+            button {
+              opacity: 1;
+            }
+          }
         }
       }
     }
@@ -995,96 +1083,6 @@
     .shop-header {
       width: 85%;
       margin-left: 7.5%;
-    }
-    .shop-section-center {
-      width: 85%;
-      margin-left: 7.5%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      .boxes {
-        width: 98%;
-        display: flex;
-        flex-wrap: wrap;
-
-        .box {
-          cursor: default;
-          box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-          background: #ffffff;
-          width: 30%;
-          height: 300px;
-          margin: 1.66%;
-          border-radius: 10px;
-          padding: 2%;
-          transition: 0.2s;
-          .txt {
-            position: relative;
-            height: 40%;
-            //meno kolekcie
-            .collection {
-              top: -7px;
-              font-size: 14px;
-            }
-            //meno
-            .name {
-              font-size: 18px;
-            }
-            .namefont {
-              font-size: 22px;
-              bottom: 60%;
-            }
-            //font name True lies
-            .racername {
-              font-size: 22px;
-            }
-            //cena
-            .prize {
-              font-size: 18px;
-            }
-            //button see more
-            button {
-              outline: none;
-              cursor: pointer;
-              position: absolute;
-              border: 0;
-              left: 7.5%;
-              height: 32.5%;
-              width: 80%;
-              background: linear-gradient(
-                99.76deg,
-                #fe173f 117.01%,
-                #240b36 187.56%
-              );
-              border-radius: 12px;
-              font-family: Poppins;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 30px;
-              color: white;
-              bottom: 0%;
-              transition: 0.2s;
-            }
-          }
-          .boximage {
-            position: relative;
-            width: 100%;
-            height: 60%;
-            img {
-              width: 95%;
-              position: absolute;
-              left: 50%;
-              top: 55%;
-              transform: translate(-50%, -50%);
-              -webkit-transform: translate(-50%, -50%);
-              -moz-transform: translate(-50%, -50%);
-              -ms-transform: translate(-50%, -50%);
-              -o-transform: translate(-50%, -50%);
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -1144,85 +1142,6 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-
-      .boxes {
-        width: 98%;
-        display: flex;
-        flex-wrap: wrap;
-
-        .box {
-          overflow: hidden;
-          cursor: default;
-          box-shadow: (6px 8px 35px rgba(0, 0, 0, 0.15));
-          background: #ffffff;
-          width: 46%;
-          height: 350px;
-          margin: 2%;
-          border-radius: 10px;
-          padding: 2%;
-          transition: 0.2s;
-          .txt {
-            position: relative;
-            height: 40%;
-            //meno kolekcie
-            .collection {
-              font-size: 14px;
-            }
-            //meno
-            .name {
-              font-size: 20px;
-            }
-            //font name True lies
-            .racername {
-              font-size: 24px;
-            }
-            //cena
-            .prize {
-              font-size: 20px;
-            }
-            //button see more
-            button {
-              outline: none;
-              cursor: pointer;
-              position: absolute;
-              border: 0;
-              left: 5%;
-              height: 32.5%;
-              width: 90%;
-              background: linear-gradient(
-                99.76deg,
-                #fe173f 117.01%,
-                #240b36 187.56%
-              );
-              border-radius: 12px;
-              font-family: Poppins;
-              font-style: normal;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 30px;
-              color: white;
-              bottom: 0%;
-              transition: 0.2s;
-            }
-          }
-          .boximage {
-            position: relative;
-            width: 100%;
-            height: 60%;
-            img {
-              width: 95%;
-              position: absolute;
-              left: 50%;
-              top: 55%;
-              transform: translate(-50%, -50%);
-              -webkit-transform: translate(-50%, -50%);
-              -moz-transform: translate(-50%, -50%);
-              -ms-transform: translate(-50%, -50%);
-              -o-transform: translate(-50%, -50%);
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -1242,58 +1161,28 @@
     .shop-section-center {
       .boxes {
         .box {
-          padding: 3%;
-          border-radius: 5px;
-          height: 300px;
+          padding: 2%;
+          height: 270px;
+          width: 46%;
+          margin: 2%;
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          -ms-border-radius: 10px;
+          -o-border-radius: 10px;
+          .boximage {
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+          }
           .txt {
-            position: relative;
-            height: 40%;
-            //meno kolekcie
-            .collection {
-              font-size: 14px;
-            }
-            //meno
-            .namefont {
-              font-size: 16px;
-            }
-            .name {
-              font-size: 16px;
-            }
-            //font name True lies
-            .racername {
-              font-size: 16px;
-            }
-            //cena
-            .prize {
-              font-size: 15px;
-            }
-            //button see more
             button {
-              border-radius: 5px;
-              left: 0px;
-              width: 100%;
               height: 45px;
               font-size: 14px;
-              -webkit-border-radius: 5px;
-              -moz-border-radius: 5px;
-              -ms-border-radius: 5px;
-              -o-border-radius: 5px;
-            }
-          }
-          .boximage {
-            position: relative;
-            width: 100%;
-            height: 60%;
-            img {
-              width: 280px;
-              position: absolute;
-              left: 50%;
-              top: 55%;
-              transform: translate(-50%, -50%);
-              -webkit-transform: translate(-50%, -50%);
-              -moz-transform: translate(-50%, -50%);
-              -ms-transform: translate(-50%, -50%);
-              -o-transform: translate(-50%, -50%);
+              width: 100%;
+              border-radius: 5px;
             }
           }
         }
@@ -1312,16 +1201,15 @@
     }
   }
 }
-@media screen and(max-width: 400px) {
+@media screen and (max-width: 500px) {
   .shop-section {
     .shop-section-center {
       .boxes {
         .box {
+          height: 240px;
           .boximage {
             img {
-              max-width: 118.5%;
-              width: 200px;
-              top: 62.5%;
+              top: 50%;
               transform: translate(-50%, -50%);
               -webkit-transform: translate(-50%, -50%);
               -moz-transform: translate(-50%, -50%);
@@ -1329,6 +1217,71 @@
               -o-transform: translate(-50%, -50%);
             }
           }
+          .txt {
+            .collection {
+              font-size: 14px;
+            }
+            //meno
+
+            .name {
+              font-size: 16px;
+            }
+
+            .prize {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and(max-width: 400px) {
+  .shop-section {
+    .shop-section-center {
+      .boxes {
+        .box {
+          height: 215px;
+
+          .boximage {
+            img {
+              max-width: 120%;
+              width: 200px;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              &.racer {
+                max-width: 110%;
+                top: 55%;
+              }
+            }
+          }
+          .txt {
+            .name {
+              top: 2px;
+              font-size: 15px;
+            }
+            .collection {
+              font-size: 11px;
+            }
+            .prize {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 2000px) {
+  .shop-section {
+    .shop-section-center {
+      .boxes {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .box {
+          height: 500px;
         }
       }
     }

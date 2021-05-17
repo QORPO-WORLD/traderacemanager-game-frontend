@@ -83,29 +83,30 @@
       <button class="arrow right" (click)="nextBanner()">&gt;</button>
       <div class="dots-holder">
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(1)"
           [ngClass]="{ inactive: topBannerIndex !== 1 }"
         ></div>
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(2)"
           [ngClass]="{ inactive: topBannerIndex !== 2 }"
         ></div>
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(3)"
           [ngClass]="{ inactive: topBannerIndex !== 3 }"
         ></div>
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal1_text1" | translate }}</span>
             {{ "start-race.modal1_text2" | translate }}
           </p>
         </div>
+        <div class="skewed-color my-cta-btn-back"></div>
         <button
           class="register my-cta-btn-back hoverable"
           [routerLink]="['/teams/join-teams']"
@@ -119,12 +120,13 @@
         />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal2_text1" | translate }}</span>
             {{ "start-race.modal2_text2" | translate }}
           </p>
         </div>
+        <div class="skewed-color my-cta-btn-back"></div>
         <button
           class="register my-cta-btn-back hoverable"
           [routerLink]="['/other/tasks']"
@@ -139,7 +141,7 @@
       </div>
 
       <div class="banner-item item3 red" *ngIf="topBannerIndex === 3">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal3_text1" | translate }}</span>
             {{ "start-race.modal3_text2" | translate }}
@@ -162,29 +164,30 @@
       <button class="arrow right" (click)="nextBanner()">&gt;</button>
       <div class="dots-holder">
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(1)"
           [ngClass]="{ inactive: topBannerIndex !== 1 }"
         ></div>
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(2)"
           [ngClass]="{ inactive: topBannerIndex !== 2 }"
         ></div>
         <div
-          class="dot my-low-gradient"
+          class="dot my-cta-btn-back"
           (click)="manualBannerChange(3)"
           [ngClass]="{ inactive: topBannerIndex !== 3 }"
         ></div>
       </div>
 
       <div class="banner-item item1" *ngIf="topBannerIndex === 1">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.buy_nft1" | translate }}</span>
             {{ "start-race.buy_nft2" | translate }}
           </p>
         </div>
+        <div class="skewed-color my-cta-btn-back"></div>
         <button
           class="register my-cta-btn-back hoverable"
           [routerLink]="['/car/nft-market']"
@@ -198,12 +201,13 @@
         />
       </div>
       <div class="banner-item item2" *ngIf="topBannerIndex === 2">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.collect_nft1" | translate }}</span>
             {{ "start-race.collect_nft2" | translate }}
           </p>
         </div>
+        <div class="skewed-color my-cta-btn-back"></div>
         <button
           class="register my-cta-btn-back hoverable"
           [routerLink]="['/car/nft-market']"
@@ -218,7 +222,7 @@
       </div>
 
       <div class="banner-item item3" *ngIf="topBannerIndex === 3">
-        <div *ngIf="display > 640" class="text-holder">
+        <div class="text-holder">
           <p class="race-name">
             <span>{{ "start-race.modal4_text1" | translate }}</span>
             {{ "start-race.modal4_text2" | translate }}
@@ -257,7 +261,10 @@
           />
           <div class="text-holder">
             <p class="value">Market</p>
-            <button class="arrow-btn">&gt;</button>
+            <button *ngIf="display > 640" class="arrow-btn">&gt;</button>
+            <button *ngIf="display <= 640" class="arrow-btn my-text-color">
+              &gt;
+            </button>
           </div>
         </div>
 
@@ -272,7 +279,10 @@
           />
           <div class="text-holder">
             <p class="value">{{ "leaderboard.teams" | translate }}</p>
-            <button class="arrow-btn">&gt;</button>
+            <button *ngIf="display > 640" class="arrow-btn">&gt;</button>
+            <button *ngIf="display <= 640" class="arrow-btn my-text-color">
+              &gt;
+            </button>
           </div>
         </div>
 
@@ -287,7 +297,10 @@
           />
           <div class="text-holder">
             <p class="value">{{ "profile.races" | translate }}</p>
-            <button class="arrow-btn">&gt;</button>
+            <button *ngIf="display > 640" class="arrow-btn">&gt;</button>
+            <button *ngIf="display <= 640" class="arrow-btn my-text-color">
+              &gt;
+            </button>
           </div>
         </div>
       </div>

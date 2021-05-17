@@ -322,6 +322,38 @@ class DriversService extends __BaseService {
       __map(_r => _r.body as any)
     );
   }
+  enableNewsResponse(data: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = data;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/me/newsletter`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoints to get and update favorite coins of the user
+   * @param data undefined
+   * @return Favorite races updated
+   */
+  enableNews(data: any): __Observable<any> {
+    return this.enableNewsResponse(data).pipe(
+      __map(_r => _r.body as any)
+    );
+  }
   driversFirstLoginPartialUpdateResponse(): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
