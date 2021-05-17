@@ -31,7 +31,7 @@ import {
   styleUrls: ["./start-race.component.scss"],
 })
 export class StartRaceComponent implements OnInit, OnDestroy {
-  @ViewChild("carousel", { static: false }) carousel: ElementRef;
+  @ViewChild("carousel") carousel: ElementRef;
 
   constructor(
     protected api: RacesService,
