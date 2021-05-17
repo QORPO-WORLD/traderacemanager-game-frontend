@@ -42,6 +42,7 @@ export class BinaryTradeComponent implements OnInit {
   myDriverStats: any;
   raceEnded = false;
   mePlaying = false;
+  locked = false;
   players = [];
   myPlayer: any;
   @ViewChild("unityRace", { static: false }) raceComp: any;
@@ -282,7 +283,7 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   sendSockAvatarMsg(msg: any) {
-    
+    this.locked = true;
     popsock.emit("client_triggered_emit",
       {
         "event": "message",
@@ -290,6 +291,9 @@ export class BinaryTradeComponent implements OnInit {
         "room": "random_room_name",
         "data": JSON.stringify(msg)
       });
+    setTimeout(() => {
+      this.locked = false;
+    }, 2000);
   }
 
 
