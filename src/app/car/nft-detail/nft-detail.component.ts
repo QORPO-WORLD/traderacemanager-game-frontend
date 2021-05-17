@@ -697,6 +697,7 @@ export class NftDetailComponent implements OnInit {
   gifName = "";
   animationActive = false;
   timer = null;
+
   timer2 = null;
 
   constructor(protected api: CarsService, drvrsrvc: DriversService) {
