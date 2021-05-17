@@ -45,7 +45,7 @@ export class BinaryTradeComponent implements OnInit {
   locked = false;
   players = [];
   myPlayer: any;
-  @ViewChild("unityRace", { static: false }) raceComp: any;
+  @ViewChild("unityRace") raceComp: any;
   chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({

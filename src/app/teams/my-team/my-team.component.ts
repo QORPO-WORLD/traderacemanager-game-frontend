@@ -40,7 +40,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   teams: any;
   isOwner = true;
   teamColor: string;
-  @ViewChild('showTip', { static: false }) showTip: any;
+  @ViewChild('showTip') showTip: any;
   teamId: number;
   managers = [];
   selectedmanager = 0;
