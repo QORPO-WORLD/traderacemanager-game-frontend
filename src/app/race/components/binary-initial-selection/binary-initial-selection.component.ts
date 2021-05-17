@@ -171,13 +171,8 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         }));
 
         this.getInterval = setInterval(() => {
-           if (bin.time > Date.now()) {
-            this.getMyGames();
-           } else {
+           
              this.getMyGames();
-             
-            //clearInterval(this.getInterval);
-          }
           
         }, 800);
       }

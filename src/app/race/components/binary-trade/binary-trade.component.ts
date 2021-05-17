@@ -283,7 +283,7 @@ export class BinaryTradeComponent implements OnInit {
 
   sendSockAvatarMsg(msg: any) {
     
-    popsock.emit("client_triggered_send",
+    popsock.emit("client_triggered_emit",
       {
         "event": "message",
         "user": this.myId,
