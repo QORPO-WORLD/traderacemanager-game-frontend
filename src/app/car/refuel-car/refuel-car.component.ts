@@ -122,7 +122,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   editionSlideIndex = 0;
   currSlideIndex = 0;
   selectedCarIndex: number;
-  stepIndex = 1;
+  stepIndex = 2;
   carSlideIndex = 0;
   selectedSlideIndex = 0;
   favFilter = false;
@@ -156,6 +156,8 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
     this.getMyTeam();
     // this.useManualFuel();
+
+    console.log(this.tourcars);
   }
 
   ngOnDestroy() {
@@ -266,6 +268,8 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   }
 
   signupToRace() {
+    const valid = this.validateBets();
+    console.log(valid);
     if (this.validateBets() === false) {
       return;
     } else {
@@ -374,7 +378,15 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
     this.actualRaceAmount = '1 IOI';
     this.isSpecial = true;
-    this.myCars = this.tourcars;
+/*
+    for (let x = 0; x < this.myCars.length; x++) {
+      this.myCars[x].b.splice(3, 17);
+      this.myCars[x].bet.splice(3, 17);
+    }
+*/
+
+
+  
     this.setupCarousel();
 
     for (let y = 0; y < mainlength; y++) {
@@ -412,26 +424,26 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
 
 
-            if (this.myCars[y].b[i].symbol === 'BTCUSDT') { selBets.push(0); }
-            if (this.myCars[y].b[i].symbol === 'ETHUSDT') { selBets.push(1); }
-            if (this.myCars[y].b[i].symbol === 'XRPUSDT') { selBets.push(2); }
-            if (this.myCars[y].b[i].symbol === 'BCHUSDT') { selBets.push(3); }
-            if (this.myCars[y].b[i].symbol === 'LTCUSDT') { selBets.push(4); }
-            if (this.myCars[y].b[i].symbol === 'EOSUSDT') { selBets.push(5); }
-            if (this.myCars[y].b[i].symbol === 'BNBUSDT') { selBets.push(6); }
-            if (this.myCars[y].b[i].symbol === 'XMRUSDT') { selBets.push(7); }
-            if (this.myCars[y].b[i].symbol === 'ADAUSDT') { selBets.push(8); }
-            if (this.myCars[y].b[i].symbol === 'TRXUSDT') { selBets.push(9); }
-            if (this.myCars[y].b[i].symbol === 'BATUSDT') { selBets.push(10); }
-            if (this.myCars[y].b[i].symbol === 'XLMUSDT') { selBets.push(11); }
-            if (this.myCars[y].b[i].symbol === 'XTZUSDT') { selBets.push(12); }
-            if (this.myCars[y].b[i].symbol === 'ENJUSDT') { selBets.push(13); }
-            if (this.myCars[y].b[i].symbol === 'MATICUSDT') { selBets.push(14); }
-            if (this.myCars[y].b[i].symbol === 'LINKUSDT') { selBets.push(15); }
-            if (this.myCars[y].b[i].symbol === 'WAVESUSDT') { selBets.push(16); }
-            if (this.myCars[y].b[i].symbol === 'ZILUSDT') { selBets.push(17); }
-            if (this.myCars[y].b[i].symbol === 'VETUSDT') { selBets.push(18); }
-            if (this.myCars[y].b[i].symbol === 'USDTUSDT') { selBets.push(19); }
+            if (this.myCars[y].b[i].symbol === 'BTCUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(0); }
+            if (this.myCars[y].b[i].symbol === 'ETHUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(1); }
+            if (this.myCars[y].b[i].symbol === 'XRPUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(2); }
+            if (this.myCars[y].b[i].symbol === 'BCHUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(3); }
+            if (this.myCars[y].b[i].symbol === 'LTCUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(4); }
+            if (this.myCars[y].b[i].symbol === 'EOSUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(5); }
+            if (this.myCars[y].b[i].symbol === 'BNBUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(6); }
+            if (this.myCars[y].b[i].symbol === 'XMRUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(7); }
+            if (this.myCars[y].b[i].symbol === 'ADAUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(8); }
+            if (this.myCars[y].b[i].symbol === 'TRXUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(9); }
+            if (this.myCars[y].b[i].symbol === 'BATUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(10); }
+            if (this.myCars[y].b[i].symbol === 'XLMUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(11); }
+            if (this.myCars[y].b[i].symbol === 'XTZUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(12); }
+            if (this.myCars[y].b[i].symbol === 'ENJUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(13); }
+            if (this.myCars[y].b[i].symbol === 'MATICUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(14); }
+            if (this.myCars[y].b[i].symbol === 'LINKUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(15); }
+            if (this.myCars[y].b[i].symbol === 'WAVESUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(16); }
+            if (this.myCars[y].b[i].symbol === 'ZILUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(17); }
+            if (this.myCars[y].b[i].symbol === 'VETUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(18); }
+            if (this.myCars[y].b[i].symbol === 'USDTUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(19); }
           /*
          
           */
@@ -468,6 +480,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
     }
 
+    console.log(this.myCars);
   }
 
 
@@ -935,6 +948,14 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     if(this.carSlideIndex > (-adjustNum)){
       this.carSlideIndex--;
       this.selectedSlideIndex--;
+    }
+  }
+
+  resolveNext() {
+    if ((this.selectedCarIndex + 1) < this.selectedCarsToRace.length) {
+      this.selectedCarIndex = this.selectedCarIndex + 1
+    } else {
+      this.signupToRace();
     }
   }
 
