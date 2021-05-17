@@ -200,7 +200,7 @@ export class BinaryTradeComponent implements OnInit {
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed);
         this.chart.data.datasets[0].data.push(this.currentValue);
-        this.chart.data.labels.push(today.toDateString());
+        this.chart.data.labels.push(Date.now());
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.labels.shift();
@@ -324,7 +324,14 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   setPriceToGraph(data) {
-    const time = Date.now();
+    const x = {
+      uh: 'invrwnivberwni',
+      ah: [{
+        timestamp: Date.now(),
+        long: true,
+        status: true
+      }]
+    }
     this.currentValue = data;
 
     this.add();
@@ -381,6 +388,18 @@ export class BinaryTradeComponent implements OnInit {
       }
     } else {
       this.players = data;
+    }
+  }
+
+
+  blabla() {
+    const x = {
+      uh: 'invrwnivberwni',
+      ah: [{
+        timestamp: '45654654',
+        long: true,
+        status: true
+      }]
     }
   }
 }
