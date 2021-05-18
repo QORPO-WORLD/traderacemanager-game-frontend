@@ -942,8 +942,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         fake.c = this.raceDataildata.my_cars[x].c,
         fake.cid = this.raceDataildata.my_cars[x].cid,
         fake.n = this.raceDataildata.my_cars[x].n,
-        fake.u = this.raceDataildata.my_cars[x].u,
-        stat.push(fake);
+        fake.u = this.raceDataildata.my_cars[x].u
+        if (fake.b !== 0) { stat.push(fake); }
     }
     if (this.loserIndex) {
 
