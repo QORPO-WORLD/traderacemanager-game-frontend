@@ -344,6 +344,7 @@ export class NftMarketComponent implements OnInit {
       name: "HYPER",
       prize: "2 600 IOI",
       image: "car19",
+      gif: "car19-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -358,6 +359,7 @@ export class NftMarketComponent implements OnInit {
       name: "DORIAN",
       prize: "2 600 IOI",
       image: "car20",
+      gif: "car20-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -372,6 +374,7 @@ export class NftMarketComponent implements OnInit {
       name: "VULCANIC",
       prize: "2 600 IOI",
       image: "car21",
+      gif: "car21-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -386,6 +389,7 @@ export class NftMarketComponent implements OnInit {
       name: "BULL",
       prize: "2 600 IOI",
       image: "car22",
+      gif: "car22-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -400,6 +404,7 @@ export class NftMarketComponent implements OnInit {
       name: "KNOCKOUT",
       prize: "2 600 IOI",
       image: "car23",
+      gif: "car23-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -414,6 +419,7 @@ export class NftMarketComponent implements OnInit {
       name: "LARA",
       prize: "2 600 IOI",
       image: "car24",
+      gif: "car24-animation",
       type: "car",
       ability1: 1.71,
       ability2: 24,
@@ -426,6 +432,7 @@ export class NftMarketComponent implements OnInit {
       name: "BLUE STORM",
       prize: "15 600 IOI",
       image: "car28",
+      gif: "car28-animation",
       type: "car",
       rare: true,
       ability1: 10.25,
@@ -705,6 +712,9 @@ export class NftMarketComponent implements OnInit {
   sliceMiddle: number;
   display = window.innerWidth;
   newProducts = this.products;
+  menuActive = 1;
+  isMenuActive = false;
+  activeMenu = 0;
 
   assetType: any;
   mobileFilter = false;
@@ -892,11 +902,6 @@ export class NftMarketComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "All products";
   }
-
-  //NAVBAR
-  menuActive = 1;
-  isMenuActive = false;
-  activeMenu = 0;
 
   activateMenu() {
     if (this.activeMenu === 0) {

@@ -7,8 +7,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TeamsService } from '../../api/services/teams.service';
-import { Chart } from 'angular-highcharts';
-
+import { Chart } from 'chart.js';
+import { DateTime, Settings } from 'luxon';
 @Component({
   selector: 'app-my-team',
   templateUrl: './my-team.component.html',
@@ -49,9 +49,20 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   meRated = false;
   myRating: number;
   teamChart = [];
-  turnoverData = [10,15,20,10,13,2,5];
+  turnoverData = [10, 15, 20, 10, 13, 2, 5];
   chart: any;
-
+  chartColors = {
+    red: '#52c0e4',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+  color = Chart.helpers.color;
+  config: any;
+  colorNames = Object.keys(this.chartColors);
   constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
     private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
 
@@ -115,7 +126,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       },
       plotOptions: {
         areaspline: {
-            fillOpacity: 0
+          fillOpacity: 0
         },
         series: {
           enableMouseTracking: false,
@@ -133,7 +144,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         {
           name: '',
           type: 'areaspline',
-          data: [...this.turnoverData]
+          data: [this.turnoverData]
         }
       ]
     });
@@ -146,7 +157,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         this.myTeam = data;
         this.myuser = data.me.user_id;
         this.bestRacer = this.myTeam.top10[0];
-        
+
         if (data.manager_user_id === this.myTeamData.id) {
           this.meManager = true;
         }
@@ -220,11 +231,11 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       if (this.isOwner === true && this.managers.length > 0) {
         if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
         else { this.TeamManagerSlide = 1; }
-      } 
-      else if(this.managers.length < 1 && this.isOwner === true)  {
+      }
+      else if (this.managers.length < 1 && this.isOwner === true) {
         this.TeamManagerSlide = 1;
       }
-      else{
+      else {
         if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
         else { this.TeamManagerSlide = 1; }
       }
@@ -310,7 +321,54 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getTeamHistory() {
     this.teamSubscription = this.teams_service.getTeamHistory().subscribe(data => {
       this.teamChart = data;
+      this.config = {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: 'Team turnover',
+            backgroundColor: this.color(this.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: this.chartColors.red,
+            fill: false,
+            data: []
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'value'
+              }
+            }
+          },
+          interaction: {
+            intersect: false
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Line chart (hotizontal scroll) sample'
+            }
+          }
+        }
+      };
+      this.chart = new Chart('canvas', this.config);
+      for (let x = 0; x < data.length; x++) {
+        this.add(data[x].from, data[x].turnover);
+      }
+      
     });
+  }
+
+  add(curdate, curval) {
+    if (this.chart) {
+      this.chart.data.datasets[0].data.push(curval);
+      this.chart.data.labels.push(new Date(curdate).toLocaleDateString('en-US'));
+      this.chart.update();
+    }
   }
 
 
