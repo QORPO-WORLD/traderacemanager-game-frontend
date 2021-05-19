@@ -1,8 +1,5 @@
 import { NotifiqService } from 'src/app/common/services/notifiq.service';
 import { Component, OnInit } from '@angular/core';
-import ContactsX from 'cordova-plugin-contacts-x';
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
-
 declare let window: any;
 @Component({
   selector: 'app-contact-list',
@@ -11,22 +8,11 @@ declare let window: any;
 })
 export class ContactListComponent implements OnInit {
 
-  constructor(private notify: NotifiqService, private contacts: Contacts) { }
+  constructor(private notify: NotifiqService) { }
 
   ngOnInit() {
 
-    this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], {filter: "", multiple: true})
-    .then(data => {
-      console.log(data);
-    });
-    console.log(window.ContactsX);
-    window.ContactsX.hasPermission(function (success) {
-      console.log(success);
-      this.hasAccess()
-    }, function (error) {
-      console.log(error);
-      this.hasNotAccess()
-    });
+    
   }
 
   hasAccess() {
