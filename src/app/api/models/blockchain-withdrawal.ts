@@ -4,4 +4,5 @@ export interface BlockchainWithdrawal {
   targetAddress: string;
   code?: string;
   amount: number;
+  location: string;
 }
