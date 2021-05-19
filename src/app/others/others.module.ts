@@ -1,3 +1,4 @@
+import { ContactListComponent } from './../other/components/contact-list/contact-list.component';
 import { BridgeComponent } from "./../bridge/bridge.component";
 import { ConfirmWithdrawalComponent } from "./confirm-withdrawal/confirm-withdrawal.component";
 import { Routes, RouterModule } from "@angular/router";
@@ -81,6 +82,7 @@ const routes: Routes = [
     WalletControllerComponent,
     TransferNftComponent,
     DepositNftComponent,
+    ContactListComponent
   ],
   imports: [
     RouterModule.forChild(routes),
