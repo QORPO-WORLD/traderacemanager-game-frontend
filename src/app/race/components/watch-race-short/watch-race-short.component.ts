@@ -86,6 +86,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   myUid = 'not-me';
   myUsername = '';
   backType = 1;
+  billboardType = 1;
   initialCars: any;
   ticker: any = [];
   introModal = false;
@@ -1133,6 +1134,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     } else {
       this.backType = 1;
     }
+    this.billboardType = this.randomInteger(1, 5)
   }
 
   getPositionInRace() {

@@ -264,23 +264,6 @@
               in-game, buy, sell and trade on open markets. The new era of NFTs
               in your pocket.
             </p>
-            <br />
-            <h3
-              (click)="showModal(1)"
-              class="modalh3"
-              *ngIf="displayArray[0]['rare'] === undefined"
-            >
-              How to get free &gt;
-            </h3>
-
-            <br />
-            <h3
-              (click)="showModal(2)"
-              class="modalh3"
-              *ngIf="displayArray[0]['rare'] === undefined"
-            >
-              How to get rare car &gt;
-            </h3>
           </div>
           <div class="button-content">
             <button
@@ -437,6 +420,34 @@
       </div>
     </div>
     <div class="detail-button">
+      <div *ngIf="!displayArray[0]['rare']" class="non-rare-msg">
+        <div>
+          <h3 class="modalh3" *ngIf="displayArray[0]['rare'] === undefined">
+            <span
+              ><img src="/assets/base/images/menu/info-icon.svg" alt=""
+            /></span>
+            More about this NFT
+          </h3>
+
+          <div class="free-modal">
+            <h3>Get this NFT for free</h3>
+            <br />
+            <p>
+              Spend {{ displayArray[0]["free"].toLocaleString() }} IOI tokens in
+              races to unlock this car for free
+            </p>
+            <br />
+            <br />
+            <h3>Get a rare NFT</h3>
+            <br />
+            <p>
+              Buy all 6 cars in a collection and get double staking thanks to
+              rare car.
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
       <div *ngIf="displayArray[0]['rare']" class="raremsg">
         <img src="assets/base/images/market/ticket.svg" alt="key" />
         <p>To unlock this car you have to own all cars from same collection.</p>
