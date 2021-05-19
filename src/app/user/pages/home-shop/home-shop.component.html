@@ -240,7 +240,7 @@
         }"
         class="boxes"
       >
-        <div
+        <button
           [ngClass]="{
             'sold-out':
               item['name'] === 'BTC' ||
@@ -261,6 +261,11 @@
             startPage: isPaged,
             filter: filter
           }"
+          [disabled]="
+            item['name'] === 'BTC' ||
+            item['name'] === 'ALT' ||
+            item['name'] === 'IOI'
+          "
           *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
           class="box my-box-shadow"
         >
@@ -364,7 +369,7 @@
             </p>
             <p class="prize">{{ item["prize"] }}</p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
     <ng-container *ngIf="newProducts.length > inRow">
