@@ -82,8 +82,8 @@ export class QuickWithdrawComponent implements OnInit {
       {
         currency: this.tokenSelected,
         amount:  this.amount,
-        code: this.authcode,
-        targetAddress: this.cryptoMtfrckr
+        targetAddress: this.cryptoMtfrckr,
+        location: 'races'
       }
     ).subscribe(data => {
       this.translate.get('nitro_notifiq').subscribe((res) => {

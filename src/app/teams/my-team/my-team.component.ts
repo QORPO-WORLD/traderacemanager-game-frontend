@@ -364,21 +364,11 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   add(curdate, curval) {
-    console.log(curval, curdate);
     if (this.chart) {
-
       this.chart.data.datasets[0].data.push(curval);
       this.chart.data.labels.push(new Date(curdate).toLocaleDateString('en-US'));
-      /*      if (this.chart.data.datasets[0].data.length > 20) {
-              this.chart.data.datasets[0].data.shift();
-              this.chart.data.labels.shift();
-            }
-        */
-      console.log(this.chart.data.datasets[0].data);
       this.chart.update();
-
     }
-
   }
 
 
