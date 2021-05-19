@@ -82,6 +82,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   myInterval = 3000;
   detailInterval: any;
   raceDataildata: RaceDetail;
+  detailClone: RaceDetail;
   myUid = 'not-me';
   myUsername = '';
   backType = 1;
@@ -170,6 +171,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   actualPageWinner = 1;
   totalPagesWinner: number;
   showRotateMsg = true;
+  carsClone: Array<any>;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
     private tcksrvc: TickerPricesService, private crsrcvc: CarsService, private identityService: AuthService,
@@ -387,7 +389,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.moveWheels();
         setTimeout(() => {
           this.semaforsVisible = false;
-          
+
         }, 1500);
 
       }
@@ -435,38 +437,38 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         if (data.race_progress > 0) {
           this.raceStarted = true;
         }
-        
+
         if (data.race_progress > 97 && data.race_progress < 99.98) {
           this.willShoot = true;
           this.willPlayFinishSound = true;
           this.myInterval = 1000;
         }
-        
+
         if (data.race_progress === 100) {
           setTimeout(() => {
             //if (this.gotWinner === false) {
 
-              this.getRaceWinner();
+            this.getRaceWinner();
             //}
           }, 2000);
           this.raceFinished = true;
-       
+
           clearInterval(this.moveInterval);
           clearInterval(this.detailInterval);
 
 
-/*
-          if (this.willPlayFinishSound === true) {
-            return;
-            this.endSound = document.createElement('audio');
-            this.endSound.src = './assets/base/sounds/End.mp3';
-            this.endSound.volume = 0.5;
-            if (this.soundEnabled === true) {
-              console.log('play end');
-              this.endSound.play();
-            }
-          }
-*/
+          /*
+                    if (this.willPlayFinishSound === true) {
+                      return;
+                      this.endSound = document.createElement('audio');
+                      this.endSound.src = './assets/base/sounds/End.mp3';
+                      this.endSound.volume = 0.5;
+                      if (this.soundEnabled === true) {
+                        console.log('play end');
+                        this.endSound.play();
+                      }
+                    }
+          */
           this.moveNum = 0;
 
 
@@ -522,18 +524,18 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
         if (this.raceData.me) {
-          if ( this.raceDataildata.race_identifier === 'car_race_short_0') {
+          if (this.raceDataildata.race_identifier === 'car_race_short_0') {
             ga('event', 'fast-race-rookie', {
               'eventCategory': 'race',
               'eventAction': 'fast-race-rookie',
               'value': 'fast-race-rookie'
             });
           }
-          if ( this.raceDataildata.race_identifier !== 'car_race_short_0') {
-            ga('event',  this.raceDataildata.race_identifier, {
+          if (this.raceDataildata.race_identifier !== 'car_race_short_0') {
+            ga('event', this.raceDataildata.race_identifier, {
               'eventCategory': 'race',
-              'eventAction':  this.raceDataildata.race_identifier,
-              'value':  this.raceDataildata.race_identifier
+              'eventAction': this.raceDataildata.race_identifier,
+              'value': this.raceDataildata.race_identifier
             });
           }
         }
@@ -572,15 +574,15 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.showTourMsg = false;
       }
     }, closeHint);
-/*
-    setTimeout((
-    ) => {
-      if (this.soundEnabled === true) {
-        //this.playBefore();
-      }
-    }, fireAudience);
-
-  */
+    /*
+        setTimeout((
+        ) => {
+          if (this.soundEnabled === true) {
+            //this.playBefore();
+          }
+        }, fireAudience);
+    
+      */
   }
 
 
@@ -640,7 +642,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.semaforsLaunched = true;
       this.firstSemafor = true;
       setTimeout(() => {
-    
+
         this.semaforVal = 4;
 
       }, 1000);
@@ -650,12 +652,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
       }, 2000);
       setTimeout(() => {
-     
+
         this.semaforVal = 2;
 
       }, 3000);
       setTimeout(() => {
-  
+
         this.semaforVal = 1;
 
       }, 4000);
@@ -842,7 +844,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       });
 
     }, 2000);
-    
+
     this.nextObservable = this.api.racesNextV2List().subscribe(xdata => {
       const nedata: any = xdata;
       const typeNow = this.raceDataildata.race_identifier;
@@ -852,51 +854,51 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.nextRaceHash = pekac[0].race_hash;
       this.nextStartsIn = pekac[0].starts_in_seconds;
     });
-      
-      /*  if (this.gotWinner === false) {
-          this.gotWinner = true;
-          //this.notify.success('info', 'This race is done, win or lose dont miss the next race.');
-  
-  
-          this.experience.load((callback: Experience) => {
-            this.currentExpLevel = callback.getCurrentExpLevel();
-            this.progressBarPercentage = callback.getProgressBarPercentage();
-            this.previousLevelExp = callback.getPreviousLevelExp();
-            this.nextLevelExp = callback.getNextLevelExp();
-          });
-          */
-      
 
-      if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index > 1) {
-        this.getLdrv();
-      }
-      
-
-      const dataf = JSON.parse(localStorage.getItem('first-race'));
-      if (dataf) {
-        this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
-          this.identityService.meUpdate();
-          localStorage.removeItem('first-race');
+    /*  if (this.gotWinner === false) {
+        this.gotWinner = true;
+        //this.notify.success('info', 'This race is done, win or lose dont miss the next race.');
+ 
+ 
+        this.experience.load((callback: Experience) => {
+          this.currentExpLevel = callback.getCurrentExpLevel();
+          this.progressBarPercentage = callback.getProgressBarPercentage();
+          this.previousLevelExp = callback.getPreviousLevelExp();
+          this.nextLevelExp = callback.getNextLevelExp();
         });
-      }
+        */
 
-      if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index !== 19) {
 
-        setTimeout(() => {
-          this.tourModal = true;
-          this.getnexttour();
-        }, 2000);
-      }
+    if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index > 1) {
+      this.getLdrv();
+    }
 
-      if (this.raceDataildata.tour_index === 19 || this.raceDataildata.tournament_id === null) {
 
-        setTimeout(() => {
-          if (this.cFuelOpen === false) {
-            //  this.play();
-          }
+    const dataf = JSON.parse(localStorage.getItem('first-race'));
+    if (dataf) {
+      this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
+        this.identityService.meUpdate();
+        localStorage.removeItem('first-race');
+      });
+    }
 
-        }, 60000);
-      }
+    if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index !== 19) {
+
+      setTimeout(() => {
+        this.tourModal = true;
+        this.getnexttour();
+      }, 2000);
+    }
+
+    if (this.raceDataildata.tour_index === 19 || this.raceDataildata.tournament_id === null) {
+
+      setTimeout(() => {
+        if (this.cFuelOpen === false) {
+          //  this.play();
+        }
+
+      }, 60000);
+    }
 
   }
 
@@ -934,27 +936,39 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   getnexttour() {
 
-    const stat = [];
+    let stat = [];
     let stat2 = [];
     for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
       const fake: any = {};
-      fake.b = this.raceDataildata.my_cars[x].b,
-        fake.c = this.raceDataildata.my_cars[x].c,
-        fake.cid = this.raceDataildata.my_cars[x].cid,
-        fake.n = this.raceDataildata.my_cars[x].n,
-        fake.u = this.raceDataildata.my_cars[x].u
-        if (fake.b !== 0) { stat.push(fake); }
+      fake.b = this.raceDataildata.my_cars[x].b;
+      fake.c = this.raceDataildata.my_cars[x].c;
+      fake.cid = this.raceDataildata.my_cars[x].cid;
+      fake.n = this.raceDataildata.my_cars[x].n;
+      fake.u = this.raceDataildata.my_cars[x].u;
+      stat.push(fake);
     }
     if (this.loserIndex) {
 
       stat2 = stat.filter(item => {
         return item.cid !== this.loserCar;
       });
-
     }
+
     if (stat2.length > 0) {
+      for (let x = 0; x < stat2.length; x++) {
+        stat2[x].batman = stat2[x].b.filter(item => {
+          return item.bet !== 0;
+        });
+
+      }
       this.commonCars = stat2;
     } else {
+      for (let x = 0; x < stat.length; x++) {
+        stat[x].batman = stat[x].b.filter(item => {
+          return item.bet !== 0;
+        });
+
+      }
       this.commonCars = stat;
     }
 
@@ -1159,7 +1173,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   getWhenStarts() {
     const then: any = new Date(this.raceDataildata.starts_at * 1000);
-    
+
     const now: any = DateTime.utc();
     const diffTime = Math.abs((then - now.ts) / 1000);
 

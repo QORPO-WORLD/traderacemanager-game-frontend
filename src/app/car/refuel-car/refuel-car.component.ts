@@ -129,6 +129,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   coinFilterType = 'most';
   sumFuel: number;
   sumlength: number;
+  
 
   constructor(private router: Router, protected api: CarsService,
     protected raceApi: RacesService, protected route: ActivatedRoute,
@@ -138,6 +139,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
       if (this.raceId === 'car_race_ioi_1' || this.raceId === 'car_race_ioi_3' || this.raceId === 'car_race_ioi_5') {
         this.currency = 'IOI';
       }
+
   }
 
   ngOnInit(): void {
@@ -155,9 +157,9 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
 
     this.getMyTeam();
-    // this.useManualFuel();
 
-    console.log(this.tourcars);
+    
+    
   }
 
   ngOnDestroy() {
@@ -227,7 +229,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
     this.selectCar(this.myCars);
     this.setupCarousel();
-
   }
 
   selectCar(data) {
@@ -419,7 +420,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
           fake.symbol = this.myCars[y].b[i].symbol;
           //fake.favourite = this.myBet[x].favourite;
           fake.customIndex = this.myBet[i].customIndex;
-          fake.selected = true;
+          fake.selected = false;
           fake.short = this.myCars[y].b[i].bet < 0 ? true : false;
 
 
@@ -433,7 +434,9 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
             if (this.myCars[y].b[i].symbol === 'BNBUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(6); }
             if (this.myCars[y].b[i].symbol === 'XMRUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(7); }
             if (this.myCars[y].b[i].symbol === 'ADAUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(8); }
-            if (this.myCars[y].b[i].symbol === 'TRXUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(9); }
+        if (this.myCars[y].b[i].symbol === 'TRXUSDT' && this.myCars[y].b[i].bet !== 0) {
+          fake.selected = true; selBets.push(9);
+        }
             if (this.myCars[y].b[i].symbol === 'BATUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(10); }
             if (this.myCars[y].b[i].symbol === 'XLMUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(11); }
             if (this.myCars[y].b[i].symbol === 'XTZUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(12); }
@@ -494,7 +497,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.selectedCarsToRace.push(...this.myCars);
     this.calcSumFuel();
 
-
+    this.setInitFuels();
   }
 
   timerCompleted() {
@@ -766,8 +769,60 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
       if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
         this.generateAutomaticBets();
       }
+      
     }
   }
+
+  setInitFuels() {
+    for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
+
+      const nums: Array<any> = [];
+      nums.push(this.selectedCarsToRace[xx].batman[0].bet);
+      nums.push(this.selectedCarsToRace[xx].batman[1].bet);
+      nums.push(this.selectedCarsToRace[xx].batman[2].bet);
+      
+
+
+      this.selectedCarsToRace[xx].selectedBets = [];
+      this.activeFuelType = 0;
+
+      for (let x = 0; x < this.selectedCarsToRace[xx].bet.length; x++) {
+        this.selectedCarsToRace[xx].bet[x].bet = 0;
+        this.selectedCarsToRace[xx].bet[x].short = false;
+        this.selectedCarsToRace[xx].bet[x].selected = false;
+      }
+
+      const c1 = this.selectedCarsToRace[xx].batman[0].symbol;
+      const f1 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c1);
+      const x1 = f1[0].customIndex;
+
+      const c2 = this.selectedCarsToRace[xx].batman[1].symbol;
+      const f2 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c2);
+      const x2 = f2[0].customIndex;
+
+      const c3 = this.selectedCarsToRace[xx].batman[2].symbol;
+      const f3 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c3);
+      const x3 = f3[0].customIndex;
+
+
+      this.selectedCarsToRace[xx].selectedBets.push(x1);
+      this.selectedCarsToRace[xx].selectedBets.push(x2);
+      this.selectedCarsToRace[xx].selectedBets.push(x3);
+
+
+      for (let x = 0; x < 3; x++) {
+
+        this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].selected = true;
+        this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(nums[x].toFixed(1));
+      }
+      this.calculateExactBidsAmountForAll();
+      if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
+        this.setInitFuels();
+      }
+      
+    }
+  }
+
 
   generateAutomaticBetsOnce() {
 
@@ -796,8 +851,9 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     if (this.selectedCarsToRace[this.selectedCarIndex].fuel < 100 || this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length < 3 || this.selectedCarsToRace[this.selectedCarIndex].fuel > 100) {
       this.generateAutomaticBetsOnce();
     }
-
+    console.log(this.selectedCarsToRace[this.selectedCarIndex]);
   }
+  
   generateTopAutomaticBets() {
     this.activeFuelType = 1;
     const nums: Array<any> = this.generateRandomNums(100, 3, 5);

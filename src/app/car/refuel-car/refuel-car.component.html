@@ -139,7 +139,7 @@
                 </div>
     
                 <img [src]="'/assets/base/images/nft-cars/car' + car.c + '.png'" alt="">
-                <div *ngFor="let caris of car.b" [hidden]="caris.bet === 0">
+                <div *ngFor="let caris of car.batman" [hidden]="caris.bet === 0">
                   <span>{{caris.symbol}}</span>
                   <span>{{caris.bet}}</span>
                 </div>
@@ -214,7 +214,7 @@
     <div class="content-holder">
       
       <div class="content-box box1">
-        <div class="box-heading">
+        <div class="box-heading">  
           <p class="heading">Pick 3 different fuels</p>
         </div>
 
@@ -526,13 +526,14 @@
               <p class="donut-percent">{{selectedCarsToRace[selectedCarIndex]?.fuel | number:'1.0-0':'fr'}}%</p>
             </div>
             <div class="lucky-holder">
-              <div class="lucky-btn my-cta-btn-back" (click)="generateAutomaticBetsOnce()">
+              <div class="lucky-btn my-cta-btn-back" (click)="generateAutomaticBets()">
                 <div class="inner">
                   <img src="/assets/base/images/tankovanie/lucky-icon.svg" alt="">
                   <p>Lucky fuel</p>
                 </div>
               </div>
             </div>
+            <button (click)="setInitFuels()">clickerss</button>
           </div>
         </div>
 
