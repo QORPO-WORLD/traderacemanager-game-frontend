@@ -232,38 +232,7 @@ export class BinaryTradeComponent implements OnInit {
     })
   }
 
-  adjustChartAxis() {
-
-    const min = Math.min(...this.chartData);
-    const max = Math.max(...this.chartData);
-
-    if (min !== 0) {
-      this.chartMin = min;
-    }
-
-    if (max !== 0) {
-      this.chartMax = max;
-    }
-
-    if (this.chartData.length > 20) {
-      this.chartData.shift();
-      this.chart.series[0].data[0].remove(true, true);
-    }
-
-    if (this.currentValue > this.chartMax) {
-      this.chart.yAxis[0].update({
-        max: this.chartMax,
-        min: this.chartMin
-      });
-    }
-
-    if (this.currentValue < this.chartMin) {
-      this.chart.yAxis[0].update({
-        min: this.chartMin,
-        max: this.chartMax
-      });
-    }
-  }
+  
 
   getMyDriver() {
     this.myDriverStats = this.identityService.getDriverMe();
@@ -304,10 +273,7 @@ export class BinaryTradeComponent implements OnInit {
     this.mainChart.push(p);
   }
 
-  updateChart() {
-    this.lineChart.series[0].setData(...this.mainChart);
-    this.lineChart.redraw();
-  }
+ 
 
   async runScheduler() {
 
