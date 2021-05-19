@@ -43,7 +43,7 @@
             />
             <div class="text-holder">
               <p class="curr-type">
-                MATIC <button class="arrow-btn my-text-color">&gt;</button>
+                Polygon <button class="arrow-btn my-text-color">&gt;</button>
               </p>
               <ng-container>
                 <p class="dollars">
@@ -72,7 +72,7 @@
           <p>Selected currency</p>
         </div>
         <div class="value">
-          <p *ngIf="tokenSelected === 'matic'">MATIC</p>
+          <p *ngIf="tokenSelected === 'matic'">Plygon</p>
           <p *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
       </div>
@@ -86,11 +86,14 @@
             [ngModelOptions]="{ standalone: true }"
             placeholder="Enter the ammount you want to withdraw"
           />
-          <p class="curr-desc" *ngIf="tokenSelected === 'matic'">MATIC</p>
+          <p class="curr-desc" *ngIf="tokenSelected === 'matic'">Polygon/p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
-        <p class="input-note">
-          Minimal withdrawal amount is 100 {{ tokenSelected.toUpperCase() }}
+        <p class="input-note" *ngIf="tokenSelected === 'ioi'">
+          Minimal withdrawal amount is 100 IOI
+        </p>
+        <p class="input-note" *ngIf="tokenSelected === 'matic'">
+          Minimal withdrawal amount is 100 Polygon
         </p>
       </div>
       <p class="common-heading">Crypto wallet address</p>
@@ -114,12 +117,12 @@
             <span *ngIf="amount > 0">{{ amount }}</span>
             <span *ngIf="amount < 1">0</span>
             <span *ngIf="tokenSelected === 'matic'" class="value-desc"
-              >MATIC</span
+              >PLG</span
             >
             <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
           <p *ngIf="tokenSelected === 'matic'" class="desc">
-            market value 1 MATIC = {{ maticusdt }} USD
+            market value 1 Polygon = {{ maticusdt }} USD
           </p>
           <p *ngIf="tokenSelected === 'ioi'" class="desc">
             market value 1 IOI = 0.4$
@@ -143,7 +146,7 @@
               <p>Currency you will receive</p>
             </div>
             <div class="text">
-              <p *ngIf="tokenSelected === 'matic'" class="value">MATIC</p>
+              <p *ngIf="tokenSelected === 'matic'" class="value">Polygon</p>
               <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
             </div>
           </div>
