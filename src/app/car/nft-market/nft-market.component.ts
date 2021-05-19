@@ -712,6 +712,9 @@ export class NftMarketComponent implements OnInit {
   sliceMiddle: number;
   display = window.innerWidth;
   newProducts = this.products;
+  menuActive = 1;
+  isMenuActive = false;
+  activeMenu = 0;
 
   assetType: any;
   mobileFilter = false;
@@ -899,11 +902,6 @@ export class NftMarketComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "All products";
   }
-
-  //NAVBAR
-  menuActive = 1;
-  isMenuActive = false;
-  activeMenu = 0;
 
   activateMenu() {
     if (this.activeMenu === 0) {
