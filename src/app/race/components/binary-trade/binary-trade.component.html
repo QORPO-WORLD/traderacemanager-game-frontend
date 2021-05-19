@@ -62,55 +62,30 @@
       <div class="react-controls" *ngIf="mePlaying === true">
         <p>React!</p>
         <div class="control-btns">
-          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 1});avatarMsgLocal({user_hash: myId, reaction: 1})">
+          <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 2});avatarMsgLocal({user_hash: myId, reaction: 2})" [disabled]="locked === true">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-possitive.svg" alt="">
             </div>
-          </div>
+          </button>
   
-          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 2});avatarMsgLocal({user_hash: myId, reaction: 2})">
+          <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 3});avatarMsgLocal({user_hash: myId, reaction: 3})" [disabled]="locked === true">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-negative.svg" alt="">
             </div>
-          </div>
+          </button>
   
-          <div class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 3});avatarMsgLocal({user_hash: myId, reaction: 3})">
+          <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 4});avatarMsgLocal({user_hash: myId, reaction: 4})" [disabled]="locked === true">
             <div class="inner">
               <img src="/assets/base/images/binary-race/react-diss.svg" alt="">
             </div>
-          </div>
+          </button>
               </div>
 
         <div class="conv-box">
           <p>BTC/USD</p>
         </div>
       </div>
-      <div class="react-controls" *ngIf="1 + 1 === 3">
-        <p>React!</p>
-        <div class="control-btns">
-          <div class="react-btn" (click)="sendSockAvatarMsg('2|1');avatarMsg('2|1')">
-            <div class="inner">
-              <img src="/assets/base/images/binary-race/react-possitive.svg" alt="">
-            </div>
-          </div>
-  
-          <div class="react-btn" (click)="sendSockAvatarMsg('2|2');avatarMsg('2|2')">
-            <div class="inner">
-              <img src="/assets/base/images/binary-race/react-negative.svg" alt="">
-            </div>
-          </div>
-  
-          <div class="react-btn" (click)="sendSockAvatarMsg('2|3');avatarMsg('2|3')">
-            <div class="inner">
-              <img src="/assets/base/images/binary-race/react-diss.svg" alt="">
-            </div>
-          </div>
-              </div>
-
-        <div class="conv-box">
-          <p>BTC/USD</p>
-        </div>
-      </div>
+      
       <div id="container"></div>
       <canvas id="canvas">
 
@@ -119,7 +94,7 @@
 
     <div class="control-panel">
       <div class="player-stats mine">
-        <p class="name">Johno0124</p>
+        <p class="name">{{players[0]?.user_nickname}}</p>
 
         <div class="targets-holder">
           <div class="target-item okey">
@@ -181,7 +156,7 @@
       </div>
 
       <div class="player-stats rival">
-        <p class="name">oponento222</p>
+        <p class="name">{{players[1]?.user_nickname}}</p>
 
         <div class="targets-holder">
           <div class="target-item okey">

@@ -42,9 +42,10 @@ export class BinaryTradeComponent implements OnInit {
   myDriverStats: any;
   raceEnded = false;
   mePlaying = false;
+  locked = false;
   players = [];
   myPlayer: any;
-  @ViewChild("unityRace", { static: false }) raceComp: any;
+  @ViewChild("unityRace") raceComp: any;
   chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
@@ -199,7 +200,7 @@ export class BinaryTradeComponent implements OnInit {
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed);
         this.chart.data.datasets[0].data.push(this.currentValue);
-        this.chart.data.labels.push(today.toDateString());
+        this.chart.data.labels.push(Date.now());
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.labels.shift();
@@ -282,14 +283,17 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   sendSockAvatarMsg(msg: any) {
-    
-    popsock.emit("client_triggered_send",
+    this.locked = true;
+    popsock.emit("client_triggered_emit",
       {
         "event": "message",
         "user": this.myId,
         "room": "random_room_name",
         "data": JSON.stringify(msg)
       });
+    setTimeout(() => {
+      this.locked = false;
+    }, 2000);
   }
 
 
@@ -320,7 +324,14 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   setPriceToGraph(data) {
-    const time = Date.now();
+    const x = {
+      uh: 'invrwnivberwni',
+      ah: [{
+        timestamp: Date.now(),
+        long: true,
+        status: true
+      }]
+    }
     this.currentValue = data;
 
     this.add();
@@ -377,6 +388,18 @@ export class BinaryTradeComponent implements OnInit {
       }
     } else {
       this.players = data;
+    }
+  }
+
+
+  blabla() {
+    const x = {
+      uh: 'invrwnivberwni',
+      ah: [{
+        timestamp: '45654654',
+        long: true,
+        status: true
+      }]
     }
   }
 }

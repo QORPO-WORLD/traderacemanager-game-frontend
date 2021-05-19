@@ -42,7 +42,7 @@ export class BinaryRaceComponent implements OnInit {
   myDriverStats: any;
   raceEnded = false;
 
-  @ViewChild("unityRace", { static: false }) raceComp: any;
+  @ViewChild("unityRace") raceComp: any;
   myChart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
@@ -59,7 +59,7 @@ export class BinaryRaceComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.myChart = Highcharts.chart('container', {
+      this.myChart = Highcharts.chart( {
         chart: {
           type: 'areaspline',
           scrollablePlotArea: {
@@ -68,7 +68,6 @@ export class BinaryRaceComponent implements OnInit {
           }
         },
         yAxis: {
-          offset: 50,
           labels: {
             align: 'right'
           },

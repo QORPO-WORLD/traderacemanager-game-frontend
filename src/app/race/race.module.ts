@@ -23,6 +23,7 @@ import { BinaryInitialSelectionComponent } from './components/binary-initial-sel
 import { ChartModule } from 'angular-highcharts';
 import { BinaryWinnerComponent } from './components/binary-winner/binary-winner.component';
 import { BinaryTradeComponent } from './components/binary-trade/binary-trade.component';
+import { RaceSelectionComponent } from './pages/race-selection/race-selection.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,9 @@ const routes: Routes = [
       },
       {
         path: 'race-type', component: RaceTypeComponent
+      },
+      {
+        path: 'race-selection', component: RaceSelectionComponent
       }
     ]
   },
@@ -66,7 +70,7 @@ const routes: Routes = [
     StartRaceComponent, MiniLdrbrdComponent,
     MultiViewComponent, RaceTypeComponent, UnityraceComponent,
     BinaryInitialSelectionComponent,MultiViewComponent, RaceTypeComponent, UnityraceComponent, 
-    BinaryRaceComponent, BinaryWinnerComponent, BinaryTradeComponent],
+    BinaryRaceComponent, BinaryWinnerComponent, BinaryTradeComponent, RaceSelectionComponent],
   imports: [
     CommonModule,
     ninja,
