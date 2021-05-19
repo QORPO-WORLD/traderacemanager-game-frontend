@@ -88,17 +88,17 @@
                   <div class="btns-holder">
                     <button
                       class="rate-icon"
-                      [ngClass]="{ 'active': activeRate == 1, 'disabled': activeRate !== 1 && myTeam?.can_rate_manager === false }"
+                      [ngClass]="{ 'active': activeRate == 1, 'disabled': activeRate !== 1 && (myTeam?.can_rate_manager === false || meRated === true) }"
                       (click)="activeRate = 1"
-                      [disabled]="myTeam?.can_rate_manager === false"
+                      [disabled]="myTeam?.can_rate_manager === false || meRated === true"
                     >
                       <img src="assets/base/images/teams/angry-icon.png" alt="" />
                     </button>
                     <button
                       class="rate-icon"
-                      [ngClass]="{ 'active': activeRate == 2, 'disabled': activeRate !== 2 && myTeam?.can_rate_manager === false }"
+                      [ngClass]="{ 'active': activeRate == 2, 'disabled': activeRate !== 2 && (myTeam?.can_rate_manager === false || meRated === true) }"
                       (click)="activeRate = 2"
-                      [disabled]="myTeam?.can_rate_manager === false"
+                      [disabled]="myTeam?.can_rate_manager === false || meRated === true"
                     >
                       <img
                         src="assets/base/images/teams/confused-icon.png"
@@ -107,9 +107,9 @@
                     </button>
                     <button
                       class="rate-icon"
-                      [ngClass]="{ 'active': activeRate == 3 , 'disabled': activeRate !== 3 && myTeam?.can_rate_manager === false }"
+                      [ngClass]="{ 'active': activeRate == 3 , 'disabled': activeRate !== 3 && (myTeam?.can_rate_manager === false || meRated === true) }"
                       (click)="activeRate = 3"
-                      [disabled]="myTeam?.can_rate_manager === false"
+                      [disabled]="myTeam?.can_rate_manager === false || meRated === true"
                     >
                       <img
                         src="assets/base/images/teams/smirking-icon.png"
@@ -118,9 +118,9 @@
                     </button>
                     <button
                       class="rate-icon"
-                      [ngClass]="{ 'active': activeRate == 4, 'disabled': activeRate !== 4 && myTeam?.can_rate_manager === false  }"
+                      [ngClass]="{ 'active': activeRate == 4, 'disabled': activeRate !== 4 && (myTeam?.can_rate_manager === false || meRated === true)  }"
                       (click)="activeRate = 4"
-                      [disabled]="myTeam?.can_rate_manager === false"
+                      [disabled]="myTeam?.can_rate_manager === false || meRated === true"
                     >
                       <img src="assets/base/images/teams/love-icon.png" alt="" />
                     </button>
