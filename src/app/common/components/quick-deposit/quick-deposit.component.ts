@@ -140,9 +140,9 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   }
 
   makeDeposit() {
-    console.log(this.ethChainDeposit.length);
+    console.log(this.ethMtfrckr.length);
     this.depositRequested = true;
-    if (this.chainSelected === 'ethereum' && this.ethChainDeposit.length === 42) {
+    if (this.chainSelected === 'ethereum' && this.ethMtfrckr.length === 42) {
       this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races' }).subscribe(data => {
         console.log(data);
       });

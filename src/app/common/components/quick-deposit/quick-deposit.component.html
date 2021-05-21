@@ -108,7 +108,7 @@
         [ngModelOptions]="{ standalone: true }"
       />
 
-      <button class="request-btn my-cta-btn-back hoverable" [disabled]="depositRequested === true" (click)="makeDeposit()">Make deposit</button>
+      <button class="request-btn my-cta-btn-back hoverable" [disabled]="depositRequested === true && ethMtfrckr.length !== 42" (click)="makeDeposit()">Make deposit</button>
     </div>
 
     <div class="amount-holder" *ngIf="chainSelected !== 'ethereum'">
@@ -195,6 +195,10 @@
             <p class="info-text">
               Scan a QR code or paste the code into your external wallet to
               receive your funds, and confirm the transaction afterwards
+            </p>
+            <p class="info-text important" *ngIf="tokenSelected === 'matic'">
+              Please send matic on matic blockchain, not its token version on
+              ethereum blockchain!
             </p>
   
             <qrcode
