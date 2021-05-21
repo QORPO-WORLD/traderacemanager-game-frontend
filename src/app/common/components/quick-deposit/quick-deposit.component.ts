@@ -29,6 +29,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   editingWallet = false;
   depositRequested = false;
   depositSuccessful = false;
+  ethAddress: string;
   myBalance: any;
   selectStyling = {
     subHeader: 'Select token type',
@@ -75,6 +76,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   getMydriver() {
     const data = this.identityService.getStorageIdentity();
     this.cryptoMtfrckr = data.my_crypto_address;
+    this.ethAddress = data.eth_crypto_address;
   }
 
   getMyBalance() {

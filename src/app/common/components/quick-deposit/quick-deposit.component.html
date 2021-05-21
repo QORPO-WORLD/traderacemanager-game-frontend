@@ -169,7 +169,7 @@
     <p class="common-heading">Your deposit summary</p>
     <div class="main-panel my-border-grad">
       <div class="inner">
-        <ng-container *ngIf="cryptoMtfrckr.length > 0 && depositRequested === true && depositSuccessful === true && chainSelected === 'ethereum' || chainSelected !== 'ethereum'">
+        <ng-container *ngIf="chainSelected !== 'ethereum'">
           <div class="depositing-info">
             <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
           </div>
@@ -213,6 +213,48 @@
             >
               Claim
             </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="cryptoMtfrckr.length > 0 && depositRequested === true && depositSuccessful === true && chainSelected === 'ethereum'">
+          <div class="depositing-info">
+            <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
+          </div>
+          <div class="my-wallet-info">
+            <div class="info-border top my-cta-btn-back"></div>
+            <div class="info-item crypto-adress">
+              <p class="desc">Your senders crypto address</p>
+              <input
+              *ngIf="ethAddress"
+                type="text"
+                [(ngModel)]="ethAddress"
+                [ngModelOptions]="{ standalone: true }"
+                readonly
+              />
+            </div>
+            <div class="info-item second">
+              <p class="desc">Currency you will receive</p>
+              <p *ngIf="tokenSelected === 'matic'" class="value">Matic</p>
+              <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+            </div>
+            <div class="info-border bottom my-cta-btn-back"></div>
+          </div>
+          <div class="qr-code-holder">
+            <p class="info-text">
+              Scan a QR code or paste the code into your external wallet to
+              receive your funds, and confirm the transaction afterwards
+            </p>
+            <p class="info-text important" *ngIf="tokenSelected === 'matic'">
+              Please send matic on matic blockchain, not its token version on
+              ethereum blockchain!
+            </p>
+  
+            <qrcode
+              class="qr-code"
+              [level]="1"
+              [qrvalue]="ethAddress"
+            ></qrcode>
+  
           </div>
         </ng-container>
   
