@@ -27,6 +27,8 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   stepIndex = 1;
   trxUsdt = 3;
   editingWallet = false;
+  depositRequested = false;
+  depositSuccessful = false;
   myBalance: any;
   selectStyling = {
     subHeader: 'Select token type',
@@ -132,5 +134,12 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
 
   depositing() {
     localStorage.setItem('depos', JSON.stringify(Date.now()));
+  }
+
+  makeDeposit() {
+    this.depositRequested = true;
+    setTimeout(() => {
+      this.depositSuccessful = true;
+    }, 2000);
   }
 }

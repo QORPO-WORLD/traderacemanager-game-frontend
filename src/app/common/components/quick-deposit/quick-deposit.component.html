@@ -107,6 +107,8 @@
         [(ngModel)]="cryptoMtfrckr"
         [ngModelOptions]="{ standalone: true }"
       />
+
+      <button class="request-btn my-cta-btn-back hoverable" [disabled]="depositRequested === true" (click)="makeDeposit()">Make deposit</button>
     </div>
 
     <div class="amount-holder" *ngIf="chainSelected !== 'ethereum'">
@@ -167,7 +169,7 @@
     <p class="common-heading">Your deposit summary</p>
     <div class="main-panel my-border-grad">
       <div class="inner">
-        <ng-container *ngIf="cryptoMtfrckr.length > 0 || chainSelected !== 'ethereum'">
+        <ng-container *ngIf="cryptoMtfrckr.length > 0 && depositRequested === true && depositSuccessful === true && chainSelected === 'ethereum' || chainSelected !== 'ethereum'">
           <div class="depositing-info">
             <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
           </div>
@@ -219,6 +221,21 @@
             <div class="loading"></div>
             <p class="heading">Set up your address</p>
             <p class="text">Fill in all the deposit data correctly to be able to proceed with the transaction</p>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="cryptoMtfrckr.length > 0 && chainSelected === 'ethereum' && depositRequested === false && depositSuccessful === false">
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Make a deposit request</p>
+            <p class="text">Confirm your deposit to continue</p>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="cryptoMtfrckr.length > 0 && chainSelected === 'ethereum' && depositRequested === true && depositSuccessful === false">
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Request in progress</p>
           </div>
         </ng-container>
       </div>
