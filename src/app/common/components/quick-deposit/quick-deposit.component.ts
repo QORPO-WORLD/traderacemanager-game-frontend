@@ -144,6 +144,11 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
       this.notify.error('xx', "Etherem Chain crypto wallet address must start with '0x'")
       return;
     }
+      
+    if (this.ethMtfrckr.length < 42) {
+      this.notify.error('xx', "Etherem Chain crypto wallet address length is too short")
+      return;
+    }
 
     this.depositRequested = true;
     if (this.chainSelected === 'ethereum' && this.ethMtfrckr.length === 42) {
@@ -156,9 +161,4 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  ethChainDeposit() {
-    if (this.chainSelected === 'ethereum') {
-      this.blcksrvc.makeDeposit({ from_address: this.cryptoMtfrckr, destination: 'races'}).subscribe
-    }
-  }
 }
