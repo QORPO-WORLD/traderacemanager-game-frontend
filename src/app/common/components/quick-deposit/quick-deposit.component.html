@@ -1,7 +1,7 @@
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
-      <p class="common-heading">Deposit a currency</p>
+      <p class="common-heading">1,Pick a currency</p>
       <div class="boxes-holder">
         <div
           class="box-item my-cta-btn-back hoverable"
@@ -16,7 +16,7 @@
             />
             <div class="text-holder">
               <p class="curr-type">
-                IOI <button class="arrow-btn my-text-color">&gt;</button>
+                IOI
               </p>
               <ng-container *ngIf="myIoiBalance > 0">
                 <p class="dollars">
@@ -27,6 +27,7 @@
                 <p class="dollars">&#36; 0</p>
               </ng-container>
             </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
           </div>
         </div>
 
@@ -43,7 +44,7 @@
             />
             <div class="text-holder">
               <p class="curr-type">
-                Polygon <button class="arrow-btn my-text-color">&gt;</button>
+                POLYGON
               </p>
               <ng-container>
                 <p class="dollars">
@@ -55,18 +56,60 @@
                 </p>
               </ng-container>
             </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
           </div>
         </div>
 
-        <div class="soon-curs">
-          <div class="box-item">
-            <p class="soon-text"><span>More currencies</span> coming soon</p>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div class="amount-holder">
+    <div class="curr-holder chain">
+      <p class="common-heading">2,Pick a blockchain</p>
+      <div class="boxes-holder">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: chainSelected !== 'polygon' }"
+          (click)="chainSelected  = 'polygon'"
+        >
+          <div class="inner">
+            <div class="text-holder">
+              <p class="curr-type">
+                Polygon chain
+              </p>
+            </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
+          </div>
+        </div>
+
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: chainSelected  !== 'ethereum' }"
+          (click)="chainSelected  = 'ethereum'"
+        >
+          <div class="inner">
+            <div class="text-holder">
+              <p class="curr-type">
+                Ethereum Chain
+              </p>
+            </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="address-holder"  *ngIf="chainSelected === 'ethereum'">
+      <p class="common-heading">3, Add your  crypto wallet address</p>
+      <input
+        type="text"
+        placeholder="Enter an address of crypto wallet you will deposit funds from"
+        [(ngModel)]="cryptoMtfrckr"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+
+    <div class="amount-holder" *ngIf="chainSelected !== 'ethereum'">
       <div class="info-box">
         <img
           src="/assets/base/images/menu/info-icon.svg"
@@ -112,60 +155,72 @@
     </div>
 
     <div class="deposit-disclaim my-cta-btn-back">
-      <p>
-        Please, send IOI on Polygon Blockchain, not its token version on
-        Ethereum Blockchain!
-      </p>
+      <div class="inner-holder">
+        <img src="/assets/base/images/modal/warning.png" alt="">
+        <p>
+          Don’t send funds from exchange, otherwise your transaction will be lost.
+        </p>
+      </div>
     </div>
   </div>
   <div class="right-holder">
     <p class="common-heading">Your deposit summary</p>
     <div class="main-panel my-border-grad">
       <div class="inner">
-        <div class="depositing-info">
-          <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
-        </div>
-        <div class="my-wallet-info">
-          <div class="info-border top my-cta-btn-back"></div>
-          <div class="info-item crypto-adress">
-            <p class="desc">Crypto address</p>
-            <input
-              type="text"
-              [(ngModel)]="cryptoMtfrckr"
-              [ngModelOptions]="{ standalone: true }"
-              readonly
-            />
+        <ng-container *ngIf="cryptoMtfrckr.length > 0 || chainSelected !== 'ethereum'">
+          <div class="depositing-info">
+            <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
           </div>
-          <div class="info-item second">
-            <p class="desc">Currency you will receive</p>
-            <p *ngIf="tokenSelected === 'matic'" class="value">Polygon</p>
-            <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+          <div class="my-wallet-info">
+            <div class="info-border top my-cta-btn-back"></div>
+            <div class="info-item crypto-adress">
+              <p class="desc">Your senders crypto address</p>
+              <input
+                type="text"
+                [(ngModel)]="cryptoMtfrckr"
+                [ngModelOptions]="{ standalone: true }"
+                readonly
+              />
+            </div>
+            <div class="info-item second">
+              <p class="desc">Currency you will receive</p>
+              <p *ngIf="tokenSelected === 'matic'" class="value">Matic</p>
+              <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+            </div>
+            <div class="info-border bottom my-cta-btn-back"></div>
           </div>
-          <div class="info-border bottom my-cta-btn-back"></div>
-        </div>
-        <div class="qr-code-holder">
-          <p class="info-text">
-            Scan a QR code or paste the code into your external wallet to
-            receive your funds, and confirm the transaction afterwards
-          </p>
-          <p class="info-text important" *ngIf="tokenSelected === 'matic'">
-            Please send Polygon on Polygon blockchain, not its token version on
-            ethereum blockchain!
-          </p>
-
-          <qrcode
-            class="qr-code"
-            [level]="1"
-            [qrvalue]="cryptoMtfrckr"
-          ></qrcode>
-
-          <button
-            class="confirm-btn my-cta-btn-back hoverable"
-            (click)="resolveDeposit()"
-          >
-            Claim
-          </button>
-        </div>
+          <div class="qr-code-holder">
+            <p class="info-text">
+              Scan a QR code or paste the code into your external wallet to
+              receive your funds, and confirm the transaction afterwards
+            </p>
+            <p class="info-text important" *ngIf="tokenSelected === 'matic'">
+              Please send matic on matic blockchain, not its token version on
+              ethereum blockchain!
+            </p>
+  
+            <qrcode
+              class="qr-code"
+              [level]="1"
+              [qrvalue]="cryptoMtfrckr"
+            ></qrcode>
+  
+            <button
+              class="confirm-btn my-cta-btn-back hoverable"
+              (click)="resolveDeposit()"
+            >
+              Claim
+            </button>
+          </div>
+        </ng-container>
+  
+        <ng-container *ngIf="cryptoMtfrckr.length === 0 && chainSelected === 'ethereum'">
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Set up your address</p>
+            <p class="text">Fill in all the deposit data correctly to be able to proceed with the transaction</p>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
