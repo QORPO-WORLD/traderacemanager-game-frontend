@@ -1,7 +1,7 @@
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
-      <p class="common-heading">Withdraw a currency</p>
+      <p class="common-heading">1,Pick a currency</p>
       <div class="boxes-holder">
         <div
           class="box-item my-cta-btn-back hoverable"
@@ -16,7 +16,7 @@
             />
             <div class="text-holder">
               <p class="curr-type">
-                IOI <button class="arrow-btn my-text-color">&gt;</button>
+                IOI
               </p>
               <ng-container *ngIf="myIoiBalance > 0">
                 <p class="dollars">
@@ -27,6 +27,7 @@
                 <p class="dollars">&#36; 0</p>
               </ng-container>
             </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
           </div>
         </div>
 
@@ -43,26 +44,58 @@
             />
             <div class="text-holder">
               <p class="curr-type">
-                Polygon <button class="arrow-btn my-text-color">&gt;</button>
+                POLYGON
               </p>
               <ng-container>
                 <p class="dollars">
                   &#36;
                   {{
-                    myBalance?.game_wallet_matic * maticusdt
+                    myBalance?.game_wallet_matic * myBalance?.matic_usdt
                       | number: "1.0-2":"fr"
                   }}
                 </p>
               </ng-container>
             </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
           </div>
         </div>
 
-        <div class="soon-curs">
-          <div class="box-item">
-            <p class="soon-text"><span>More currencies</span> coming soon</p>
+      </div>
+    </div>
+
+    <div class="curr-holder chain">
+      <p class="common-heading">2,Pick a blockchain</p>
+      <div class="boxes-holder">
+        <div
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: chainSelected !== 'polygon' }"
+          (click)="chainSelected  = 'polygon'"
+        >
+          <div class="inner">
+            <div class="text-holder">
+              <p class="curr-type">
+                Polygon chain
+              </p>
+            </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
           </div>
         </div>
+
+        <div
+        style="opacity: 0.5;cursor: default;"
+          class="box-item my-cta-btn-back hoverable"
+          [ngClass]="{ inactive: chainSelected  !== 'ethereum' }"
+        >
+          <div class="inner">
+            <div class="text-holder">
+              <p class="curr-type">
+                Coming soon
+              </p>
+            </div>
+            <button class="arrow-btn my-text-color">&gt;</button>
+          </div>
+        </div>
+
       </div>
     </div>
 

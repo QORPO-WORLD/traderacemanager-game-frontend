@@ -27,6 +27,7 @@ export class QuickWithdrawComponent implements OnInit {
   myDriverObserver: Subscription;
   nitroObserver: Subscription;
   tokenSelected = 'ioi';
+  chainSelected = 'polygon';
   cryptoMtfrckr = '';
   amount = 100;
   myIoiBalance = 0;
