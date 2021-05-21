@@ -36,6 +36,7 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   };
   myMaticBalance = 0;
   claimed: boolean;
+  ethMtfrckr = '0x';
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, protected translate: TranslateService,
     private identityService: AuthService) { }
@@ -137,9 +138,21 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   }
 
   makeDeposit() {
+    console.log(this.ethChainDeposit.length);
     this.depositRequested = true;
+    if (this.chainSelected === 'ethereum' && this.ethChainDeposit.length === 42) {
+      this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races' }).subscribe(data => {
+        console.log(data);
+      });
+    }
     setTimeout(() => {
       this.depositSuccessful = true;
     }, 2000);
+  }
+
+  ethChainDeposit() {
+    if (this.chainSelected === 'ethereum') {
+      this.blcksrvc.makeDeposit({ from_address: this.cryptoMtfrckr, destination: 'races'}).subscribe
+    }
   }
 }
