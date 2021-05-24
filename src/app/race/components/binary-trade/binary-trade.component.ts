@@ -80,6 +80,12 @@ export class BinaryTradeComponent implements OnInit {
   mainSocket: any;
   myId: string;
   roomName = "random_room_name";
+  emptyShots = 5;
+  goodShots = 0;
+  badShots = 0;
+  oponentEmptyShots = 5;
+  oponentGoodShots = 0;
+  oponentBadShots = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
   }
@@ -96,10 +102,28 @@ export class BinaryTradeComponent implements OnInit {
       }
 
     });
+
     popsock.on("option", function (data) {
       console.log(data);
-
+      const opt = JSON.parse(data);
+      console.log(opt);
     });
+
+    popsock.on("score", function (data) {
+      console.log(data);
+      // key = user hash as key & boolean
+      const opt = JSON.parse(data);
+      const user = data.key;
+      const boolik = true;
+      if (user === this.myId) {
+        this.emptyShots--;
+        boolik ? this.goodShots++ : this.badShots++;
+      } else {
+        this.oponentEmptyShots--;
+        boolik ? this.oponentGoodShots++ : this.oponentBadShots++;
+      }
+    });
+
     let _this = this;
     popsock.on("message", function (data) {
       _this.avatarMsg(data);
@@ -109,7 +133,7 @@ export class BinaryTradeComponent implements OnInit {
       type: 'line',
       data: {
         datasets: [{
-          label: 'Dataset 1 (linear interpolation)',
+          label:'left user',
           backgroundColor: this.color(this.chartColors.red).alpha(0.5).rgbString(),
           borderColor: this.chartColors.red,
           fill: false,
@@ -185,7 +209,7 @@ export class BinaryTradeComponent implements OnInit {
 
   add(timeV: string, valV: number) {
     const tdate = new Date(timeV).toLocaleTimeString();
-
+    this.currentValue = valV;
     if (this.chart) {
 
       if (valV > 0) {
