@@ -158,7 +158,7 @@
       </p>
     </div>
 
-    <div class="deposit-disclaim my-cta-btn-back">
+    <div class="deposit-disclaim my-cta-btn-back" *ngIf="chainSelected === 'ethereum'">
       <div class="inner-holder">
         <img src="/assets/base/images/modal/warning.png" alt="">
         <p>
@@ -197,10 +197,6 @@
             <p class="info-text">
               Scan a QR code or paste the code into your external wallet to
               receive your funds, and confirm the transaction afterwards
-            </p>
-            <p class="info-text important" *ngIf="tokenSelected === 'matic'">
-              Please send matic on matic blockchain, not its token version on
-              ethereum blockchain!
             </p>
   
             <qrcode
@@ -245,10 +241,6 @@
             <p class="info-text">
               Scan a QR code or paste the code into your external wallet to
               receive your funds, and confirm the transaction afterwards
-            </p>
-            <p class="info-text important" *ngIf="tokenSelected === 'matic'">
-              Please send matic on matic blockchain, not its token version on
-              ethereum blockchain!
             </p>
   
             <qrcode
