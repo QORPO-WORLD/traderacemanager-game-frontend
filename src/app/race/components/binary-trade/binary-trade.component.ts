@@ -49,7 +49,8 @@ export class BinaryTradeComponent implements OnInit {
   chart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
-    url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    //url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    url: 'https://api.binance.com/api/v3/depth?symbol=BNBBTC&limit=1000',
     openObserver: {
       next: (data) => {
         console.log(data);
@@ -78,6 +79,7 @@ export class BinaryTradeComponent implements OnInit {
   colorNames = Object.keys(this.chartColors);
   mainSocket: any;
   myId: string;
+  roomName = "random_room_name";
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
   }
@@ -94,8 +96,9 @@ export class BinaryTradeComponent implements OnInit {
       }
 
     });
-    popsock.on("connect", function () {
-      console.log('connected')
+    popsock.on("option", function (data) {
+      console.log(data);
+
     });
     let _this = this;
     popsock.on("message", function (data) {
@@ -145,20 +148,20 @@ export class BinaryTradeComponent implements OnInit {
 
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
-
       this.config.options.scales.x.onRefresh = this.onRefresh();
-    }, 100);
+    }, 100)
+    /*
     setTimeout(() => {
       this.addData();
     }, 3000);
-
-    this.price$ = this.getLatestPrice();
+*/
+    this.initCcxtTicker();
   }
 
 
 
   onRefresh() {
-
+    console.log('going');
     if (this.chart) {
       const now = Date.now();
       this.chart.data.datasets[0].data.push({
@@ -174,33 +177,20 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   addData() {
+    console.log('adding data');
     this.onRefresh();
     this.chart.update();
   }
 
-  addDataset() {
-    const colorName = this.colorNames[this.config.data.datasets.length % this.colorNames.length];
-    const newColor = this.chartColors[colorName];
-    const newDataset: any = {
-      label: 'Dataset ' + (this.config.data.datasets.length + 1),
-      backgroundColor: this.color(newColor).alpha(0.5).rgbString(),
-      borderColor: newColor,
-      fill: false,
-      data: []
-    };
 
-    this.config.data.datasets[0].push(newDataset);
-    this.chart.update();
-  }
+  add(timeV: string, valV: number) {
+    const tdate = new Date(timeV).toLocaleTimeString();
 
-  add() {
     if (this.chart) {
 
-      if (this.currentValue > 0) {
-        const timeElapsed = Date.now();
-        const today = new Date(timeElapsed);
-        this.chart.data.datasets[0].data.push(this.currentValue);
-        this.chart.data.labels.push(Date.now());
+      if (valV > 0) {
+        this.chart.data.datasets[0].data.push(valV);
+        this.chart.data.labels.push(tdate);
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.labels.shift();
@@ -217,22 +207,6 @@ export class BinaryTradeComponent implements OnInit {
     this.adjustChartAxis();
     */
   }
-
-  updatePlotLine(chart: any) {
-    this.plotYvalue = this.currentValue;
-    chart.yAxis[0].removePlotBand('line');
-    chart.yAxis[0].addPlotLine({
-      color: 'red',
-      dashStyle: 'Solid',
-      value: this.plotYvalue,
-      width: 2,
-      label: { align: 'right', text: '' + this.plotYvalue, x: -10, useHTML: true },
-      zIndex: 10,
-      id: 'line'
-    })
-  }
-
-  
 
   getMyDriver() {
     this.myDriverStats = this.identityService.getDriverMe();
@@ -257,7 +231,7 @@ export class BinaryTradeComponent implements OnInit {
       {
         "event": "message",
         "user": this.myId,
-        "room": "random_room_name",
+        "room": this.roomName,
         "data": JSON.stringify(msg)
       });
     setTimeout(() => {
@@ -265,43 +239,6 @@ export class BinaryTradeComponent implements OnInit {
     }, 2000);
   }
 
-
-  async initCcxt() {
-    let bitfinex = new ccxt.bitfinex({ verbose: true });
-    this.btcmeno = await bitfinex.fetchTicker('BTC/USD');
-    const p = this.btcmeno['average'] * Math.random();
-    this.mainChart.push(p);
-  }
-
- 
-
-  async runScheduler() {
-
-  }
-
-
-  getLatestPrice() {
-    return this.socket$.pipe(
-      map((t: Trade) => t.type === 'trade' && t.data[0].p.toFixed()),
-      distinctUntilChanged(),
-      tap(d => this.setPriceToGraph(d)),
-      catchError(_ => EMPTY)
-    )
-  }
-
-  setPriceToGraph(data) {
-    const x = {
-      uh: 'invrwnivberwni',
-      ah: [{
-        timestamp: Date.now(),
-        long: true,
-        status: true
-      }]
-    }
-    this.currentValue = data;
-
-    this.add();
-  }
 
   placeOption() {
     if (this.loadingCont === false) {
@@ -358,14 +295,31 @@ export class BinaryTradeComponent implements OnInit {
   }
 
 
-  blabla() {
-    const x = {
-      uh: 'invrwnivberwni',
-      ah: [{
-        timestamp: '45654654',
-        long: true,
-        status: true
-      }]
+  async fetchTickers(exchange) {
+    let tickers;
+    try {
+      // await exchange.loadMarkets () // optional
+      tickers = await exchange.fetchTickers();
+    } catch (e) {
+      console.error(e.constructor.name, e.message);
+    }
+    return tickers;
+  }
+
+  async initCcxtTicker() {
+    const enableRateLimit = true;
+    const binancex = new ccxt.binance({ enableRateLimit, options: {} });
+    if (binancex.has['watchTicker']) {
+      while (true) {
+        try {
+          const ticker = await binancex.watchTicker('BTC/USDT', {});
+          //console.log(new Date(), ticker);
+          //this.price$ = ticker.last;
+          this.add(ticker.timestamp, ticker.last)
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   }
 }
