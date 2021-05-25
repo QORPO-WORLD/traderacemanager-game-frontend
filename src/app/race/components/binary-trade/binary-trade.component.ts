@@ -48,6 +48,7 @@ export class BinaryTradeComponent implements OnInit {
   @ViewChild("unityRace") raceComp: any;
   chart: any;
   myCoin: any;
+  /*
   socket$: WebSocketSubject<any> = webSocket({
     //url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
     url: 'https://api.binance.com/api/v3/depth?symbol=BNBBTC&limit=1000',
@@ -60,13 +61,13 @@ export class BinaryTradeComponent implements OnInit {
   });
   price$: Observable<any>;
   direction$: Observable<any> = of('green');
-
+*/
   gameObserver: Subscription;
   raceHash: string;
   long: boolean;
   loadingCont = false;
   chartColors = {
-    red: 'rgb(255, 99, 132)',
+    red: 'rgb(255,255,255)',
     orange: 'rgb(255, 159, 64)',
     yellow: 'rgb(255, 205, 86)',
     green: 'rgb(75, 192, 192)',
@@ -80,12 +81,8 @@ export class BinaryTradeComponent implements OnInit {
   mainSocket: any;
   myId: string;
   roomName = "random_room_name";
-  emptyShots = 5;
-  goodShots = 0;
-  badShots = 0;
-  oponentEmptyShots = 5;
-  oponentGoodShots = 0;
-  oponentBadShots = 0;
+  myShots = [];
+  oponentShots = [];
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
   }
@@ -111,16 +108,15 @@ export class BinaryTradeComponent implements OnInit {
 
     popsock.on("score", function (data) {
       console.log(data);
-      // key = user hash as key & boolean
+
       const opt = JSON.parse(data);
-      const user = data.key;
-      const boolik = true;
-      if (user === this.myId) {
-        this.emptyShots--;
-        boolik ? this.goodShots++ : this.badShots++;
+      const boolik = opt[Object.keys(opt)[0]];
+      const user = Object.keys(opt)[0];
+      
+      if (user === this.players[0].user_hash) {
+        this.myShots.push(boolik);
       } else {
-        this.oponentEmptyShots--;
-        boolik ? this.oponentGoodShots++ : this.oponentBadShots++;
+        this.oponentShots.push(boolik);
       }
     });
 
@@ -128,15 +124,21 @@ export class BinaryTradeComponent implements OnInit {
     popsock.on("message", function (data) {
       _this.avatarMsg(data);
     });
+    let ctx, canvas = document.createElement('canvas');
 
+    ctx = canvas.getContext("2d");
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    console.log(gradient);
+    gradient.addColorStop(0, 'rgba(130, 130, 130, 1)');   
+    gradient.addColorStop(1, 'rgba(34, 34, 34, 0)');
     this.config = {
       type: 'line',
       data: {
         datasets: [{
-          label:'left user',
-          backgroundColor: this.color(this.chartColors.red).alpha(0.5).rgbString(),
+          label:'BTC/USDT',
+          backgroundColor: gradient,
           borderColor: this.chartColors.red,
-          fill: false,
+          fill: true,
           data: []
         }]
       },
@@ -185,7 +187,6 @@ export class BinaryTradeComponent implements OnInit {
 
 
   onRefresh() {
-    console.log('going');
     if (this.chart) {
       const now = Date.now();
       this.chart.data.datasets[0].data.push({
@@ -214,9 +215,11 @@ export class BinaryTradeComponent implements OnInit {
 
       if (valV > 0) {
         this.chart.data.datasets[0].data.push(valV);
+        //this.chart.data.datasets[1].data.push(valV);
         this.chart.data.labels.push(tdate);
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
+          //this.chart.data.datasets[1].data.shift();
           this.chart.data.labels.shift();
         }
         this.chart.update();
