@@ -96,7 +96,7 @@ export class BinaryTradeComponent implements OnInit {
       auth: {
         user_hash: "ado",
         auth_token: "12345",
-        room_name: this.raceHash
+        room_name: 'vs_' + this.raceHash
       }
 
     });
