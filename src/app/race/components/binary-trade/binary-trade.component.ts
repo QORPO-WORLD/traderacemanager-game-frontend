@@ -83,6 +83,7 @@ export class BinaryTradeComponent implements OnInit {
   roomName = "random_room_name";
   myShots = [];
   oponentShots = [];
+  optWaiting = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
   }
@@ -95,7 +96,7 @@ export class BinaryTradeComponent implements OnInit {
       auth: {
         user_hash: "ado",
         auth_token: "12345",
-        room_name: 'random_room_name'
+        room_name: this.raceHash
       }
 
     });
@@ -103,7 +104,19 @@ export class BinaryTradeComponent implements OnInit {
     popsock.on("option", function (data) {
       console.log(data);
       const opt = JSON.parse(data);
-      console.log(opt);
+
+    });
+
+    popsock.on("option_closed", function (data) {
+      console.log(data);
+    });
+
+    popsock.on("score", function (data) {
+      console.log(data);
+    });
+
+    popsock.on("status", function (data) {
+      console.log(data);
     });
 
     popsock.on("score", function (data) {
@@ -112,7 +125,7 @@ export class BinaryTradeComponent implements OnInit {
       const opt = JSON.parse(data);
       const boolik = opt[Object.keys(opt)[0]];
       const user = Object.keys(opt)[0];
-      
+
       if (user === this.players[0].user_hash) {
         this.myShots.push(boolik);
       } else {
@@ -122,24 +135,26 @@ export class BinaryTradeComponent implements OnInit {
 
     let _this = this;
     popsock.on("message", function (data) {
+      console.log(data);
       _this.avatarMsg(data);
     });
     let ctx, canvas = document.createElement('canvas');
 
     ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    console.log(gradient);
-    gradient.addColorStop(0, 'rgba(130, 130, 130, 1)');   
+    gradient.addColorStop(0, 'rgba(130, 130, 130, 1)');
     gradient.addColorStop(1, 'rgba(34, 34, 34, 0)');
     this.config = {
       type: 'line',
       data: {
         datasets: [{
-          label:'BTC/USDT',
+          label: 'BTC/USDT',
           backgroundColor: gradient,
           borderColor: this.chartColors.red,
           fill: true,
-          data: []
+          data: [],
+          lineTension: 0.1,
+          pointStyle: []
         }]
       },
       options: {
@@ -164,9 +179,12 @@ export class BinaryTradeComponent implements OnInit {
           intersect: false
         },
         plugins: {
+          tooltip: {
+            enabled: true
+          },
           title: {
             display: true,
-            text: 'Line chart (hotizontal scroll) sample'
+            text: 'BTC/UDST'
           }
         }
       }
@@ -215,13 +233,56 @@ export class BinaryTradeComponent implements OnInit {
 
       if (valV > 0) {
         this.chart.data.datasets[0].data.push(valV);
+        this.chart.data.datasets[0].pointStyle.push('circle');
         //this.chart.data.datasets[1].data.push(valV);
         this.chart.data.labels.push(tdate);
+        if (this.chart.data.datasets[0].data.length > 20) {
+          this.chart.data.datasets[0].data.shift();
+          this.chart.data.datasets[0].pointStyle.shift();
+          //this.chart.data.datasets[1].data.shift();
+          this.chart.data.labels.shift();
+        }
+        this.chart.update();
+      }
+    }
+    /*
+    this.currentValue = Math.floor(this.currentValue);
+
+    this.timeStamp++;
+    this.chartData.push(this.currentValue);
+    this.chart.series[0].addPoint([(this.timeStamp / 1000), this.currentValue]);
+    this.adjustChartAxis();
+    */
+  }
+
+  addFromPlayer(timeV: any, valV: number, long?: boolean, me?: boolean) {
+    if (me === true) {
+      this.optWaiting = 10;
+    }
+
+    timeV = Date.now();
+    valV = this.currentValue;
+    const tdate = new Date(timeV).toLocaleTimeString();
+    this.currentValue = valV;
+    if (this.chart) {
+
+      if (valV > 0) {
+        const imag = new Image();
+        long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
+        this.chart.data.datasets[0].data.push(valV);
+
+        this.chart.data.datasets[0].pointStyle.push(imag);
+
+
+        //this.chart.data.datasets[1].data.push(valV);
+        this.chart.data.labels.push(tdate);
+
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           //this.chart.data.datasets[1].data.shift();
           this.chart.data.labels.shift();
         }
+
         this.chart.update();
       }
     }
@@ -346,6 +407,49 @@ export class BinaryTradeComponent implements OnInit {
         } catch (e) {
           console.log(e);
         }
+      }
+    }
+  }
+
+  optTimerCompleted(event) {
+    setTimeout(() => {
+      this.optWaiting = 0;
+    }, 1000);
+  }
+
+  addFromDecision(lplayer: boolean, shot: any) {
+    const imag = new Image();
+    if (lplayer === true) {
+      shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
+      this.myShots.push(shot);
+    } else {
+      shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
+     // todo change source as oponent grey image
+      this.oponentShots.push(shot)
+    }
+
+    const timeV = Date.now();
+    const valV = this.currentValue;
+    const tdate = new Date(timeV).toLocaleTimeString();
+    this.currentValue = valV;
+    if (this.chart) {
+
+      if (valV > 0) {
+        this.chart.data.datasets[0].data.push(valV);
+
+        this.chart.data.datasets[0].pointStyle.push(imag);
+
+
+        //this.chart.data.datasets[1].data.push(valV);
+        this.chart.data.labels.push(tdate);
+
+        if (this.chart.data.datasets[0].data.length > 20) {
+          this.chart.data.datasets[0].data.shift();
+          //this.chart.data.datasets[1].data.shift();
+          this.chart.data.labels.shift();
+        }
+
+        this.chart.update();
       }
     }
   }

@@ -5,7 +5,6 @@
 
   <div class="race-menu">
     <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
-
     <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
   
       <div class="right-items">
@@ -86,10 +85,17 @@
         </div>
       </div>
       
-      <div id="container"></div>
+      <div id="container">
+
+      </div>
       <canvas id="canvas">
 
       </canvas>
+      <div class="timer-count" [hidden]="optWaiting === 0">
+
+        <div class="tc-wrap" *ngIf="optWaiting !== 0">
+          <app-timer [value]="10" (onComplete)="optTimerCompleted($event)"></app-timer>        </div>
+      </div>
     </div>
 
     <div class="control-panel">
@@ -127,9 +133,17 @@
         <div class="my-progress">
           <div class="inner-bar"></div>
         </div>
-
-        <p class="percent">20.50%</p>
-
+<!--
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromPlayer('859043890543', 35000, true)">long</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromPlayer('859043890543', 35000, false)">short</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromPlayer('859043890543', 35000, true, true)">bad my long</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromPlayer('859043890543', 35000, false, true)">bad my short</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromDecision(true, false)">bad decision my instant</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromDecision(true, true)">good decision my instant</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromDecision(false, true)">good decision oponent instant</button>
+        <p class="percent"><button style="background-color: black;border-radius: 9px; padding: 5px 10px;margin-bottom:5px;" (click)="addFromDecision(false, false)">bad decision oponent instant</button>
+        </p>
+-->
       </div>
 
       <div class="player-controls">
