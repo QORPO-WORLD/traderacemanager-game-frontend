@@ -385,7 +385,7 @@ export class BinaryTradeComponent implements OnInit {
       {
         "event": "message",
         "user": this.myId,
-        "room": this.roomName,
+        "room": 'vs_' + this.raceHash,
         "data": JSON.stringify(msg)
       });
     setTimeout(() => {
