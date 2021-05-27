@@ -2,20 +2,37 @@
   <div class="overlay"></div>
   <div class="detail">
     <div class="sticky-buttons">
-      <button class="buy-btn my-cta-btn-back my-box-shadow">
+      <button class="buy-btn my-cta-btn-back my-box-shadow"
+      [routerLink]="['/other/transfer-nft']"
+      [queryParams]="{
+        nftId: displayArray[0]['id'],
+        nftType: 'racer'
+      }">
         <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
         <h4>Transfer</h4>
       </button>
-      <!-- <button
+      <button
         
         class="dep-btn my-cta-btn-back my-box-shadow"
         [routerLink]="['/other/deposit-nft']"
         [queryParams]="{
-          nftId: displayArray[0]['position'] + 1
+          nftId: displayArray[0]['id'],
+          nftType: 'racer'
         }"
       >
         <h4>&#43; Deposit NFT</h4>
-      </button> -->
+      </button>
+      <button
+        
+        class="dep-btn my-cta-btn-back my-box-shadow"
+        [routerLink]="['/other/withdraw-nft']"
+        [queryParams]="{
+          nftId: displayArray[0]['id'],
+          nftType: 'racer'
+        }"
+      >
+        <h4>- Withdraw NFT</h4>
+      </button>
     </div>
     <div class="detail-header">
       <button (click)="backToProducts()" class="back-btn">
@@ -56,19 +73,37 @@
             </p>
           </div>
           <div class="button-content">
-            <button class="buy-btn my-cta-btn-back my-box-shadow">
-              <img
-                src="assets/base/images/market/buy-white.svg"
-                alt="buy icon"
-              />
+            <button class="buy-btn my-cta-btn-back my-box-shadow"
+            [routerLink]="['/other/transfer-nft']"
+            [queryParams]="{
+              nftId: displayArray[0]['id'],
+              nftType: 'racer'
+            }">
+              <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
               <h4>Transfer</h4>
             </button>
-            <!-- <button
-             
+            <button
+              
               class="dep-btn my-cta-btn-back my-box-shadow"
+              [routerLink]="['/other/deposit-nft']"
+              [queryParams]="{
+                nftId: displayArray[0]['id'],
+                nftType: 'racer'
+              }"
             >
               <h4>&#43; Deposit NFT</h4>
-            </button> -->
+            </button>
+            <button
+              
+              class="dep-btn my-cta-btn-back my-box-shadow"
+              [routerLink]="['/other/withdraw-nft']"
+              [queryParams]="{
+                nftId: displayArray[0]['id'],
+                nftType: 'racer'
+              }"
+            >
+              <h4>- Withdraw NFT</h4>
+            </button>
           </div>
         </div>
         <div class="detail-image">
@@ -221,22 +256,35 @@
         class="buy-btn my-cta-btn-back my-box-shadow"
         [routerLink]="['/other/transfer-nft']"
         [queryParams]="{
-          nftId: displayArray[0]['position'] + 1
+          nftId: displayArray[0]['position'] + 1,
+          nftType: 'car'
         }"
       >
         <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
         <h4>Transfer</h4>
       </button>
-      <!-- <button
+      <button
         
         class="dep-btn my-cta-btn-back my-box-shadow"
         [routerLink]="['/other/deposit-nft']"
         [queryParams]="{
-          nftId: displayArray[0]['position'] + 1
+          nftId: displayArray[0]['position'] + 1,
+          nftType: 'car'
         }"
       >
         <h4>&#43; Deposit NFT</h4>
-      </button> -->
+      </button>
+      <button
+        
+        class="dep-btn my-cta-btn-back my-box-shadow"
+        [routerLink]="['/other/withdraw-nft']"
+        [queryParams]="{
+          nftId: displayArray[0]['position'] + 1,
+          nftType: 'car'
+        }"
+      >
+        <h4>- Withdraw NFT</h4>
+      </button>
     </div>
     <div class="detail-content">
       <div class="content-background">
@@ -269,7 +317,8 @@
             <button
               [routerLink]="['/other/transfer-nft']"
               [queryParams]="{
-                nftId: displayArray[0]['position'] + 1
+                nftId: displayArray[0]['position'] + 1,
+                nftType: 'car'
               }"
               class="buy-btn my-cta-btn-back my-box-shadow"
             >
@@ -279,16 +328,28 @@
               />
               <h4>Transfer</h4>
             </button>
-            <!-- <button
+            <button
               
               class="dep-btn my-cta-btn-back my-box-shadow"
               [routerLink]="['/other/deposit-nft']"
               [queryParams]="{
-                nftId: displayArray[0]['position'] + 1
+                nftId: displayArray[0]['position'] + 1,
+                nftType: 'car'
               }"
             >
               <h4>&#43; Deposit NFT</h4>
-            </button> -->
+            </button>
+            <button
+        
+            class="dep-btn my-cta-btn-back my-box-shadow"
+            [routerLink]="['/other/withdraw-nft']"
+            [queryParams]="{
+              nftId: displayArray[0]['position'] + 1,
+              nftType: 'car'
+            }"
+          >
+            <h4>- Withdraw NFT</h4>
+          </button>
           </div>
         </div>
         <div class="detail-image">
@@ -463,16 +524,6 @@
         <img src="assets/base/images/market/buy-white.svg" alt="buy icon" />
         <h4>Transfer</h4>
       </button>
-      <!-- <button
-        
-        class="dep-btn my-cta-btn-back my-box-shadow"
-        [routerLink]="['/other/deposit-nft']"
-        [queryParams]="{
-          nftId: displayArray[0]['position'] + 1
-        }"
-      >
-        <h4>&#43; Deposit NFT</h4>
-      </button> -->
     </div>
     <div class="detail-header">
       <button (click)="backToProducts()" class="back-btn">
@@ -510,16 +561,6 @@
               />
               <h4>Transfer</h4>
             </button>
-            <!-- <button
-              
-              class="dep-btn my-cta-btn-back my-box-shadow"
-              [routerLink]="['/other/deposit-nft']"
-              [queryParams]="{
-                nftId: displayArray[0]['position'] + 1
-              }"
-            >
-              <h4>&#43; Deposit NFT</h4>
-            </button> -->
           </div>
         </div>
         <div class="detail-image">
