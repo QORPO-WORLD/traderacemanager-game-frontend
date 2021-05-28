@@ -246,9 +246,11 @@ export class BinaryTradeComponent implements OnInit {
     if (this.chart) {
       if (valV > 0) {
         let imag = new Image();
-        long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
-        me === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
-
+        if (me === true) {
+          long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
+        } else {
+          long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
+        }
         this.chart.data.datasets[0].data.push(valV);
         this.chart.data.datasets[0].pointStyle.push(imag);
         this.chart.data.labels.push(tdate);
@@ -259,7 +261,7 @@ export class BinaryTradeComponent implements OnInit {
         }
 
         this.chart.update();
-        console.log('kkkoooo');
+
       }
     }
   }
@@ -275,20 +277,18 @@ export class BinaryTradeComponent implements OnInit {
     }
 
     const tdate = new Date(timeV).toLocaleTimeString();
-    this.currentValue = valV;
     if (this.chart) {
-console.log('jjj')
+
       if (valV > 0) {
         this.chart.data.datasets[0].data.push(valV);
         this.chart.data.datasets[0].pointStyle.push(imag);
         this.chart.data.labels.push(tdate);
-        console.log('jjj')
+
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.labels.shift();
         }
         this.chart.update();
-        console.log('jjjoooo')
       }
     }
   }
@@ -345,7 +345,7 @@ console.log('jjj')
   }
 
   onOptionClosed(data?: any) {
-    
+
     const opt = data;
     opt.uh === this.players[0].user_hash ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(true, opt.result, opt.ts, opt.ap);
   }
