@@ -6,18 +6,19 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/user/services/auth.service";
 
 @Component({
-  selector: "app-deposit-nft",
-  templateUrl: "./deposit-nft.component.html",
-  styleUrls: ["./deposit-nft.component.scss"],
+  selector: 'app-withdraw-nft',
+  templateUrl: './withdraw-nft.component.html',
+  styleUrls: ['./withdraw-nft.component.scss'],
 })
-export class DepositNftComponent implements OnInit {
+export class WithdrawNftComponent implements OnInit {
+
   nftId: number;
   nftEdition: number;
   nftIoiValue: number;
   routeObserver: Subscription;
   transferSubscription: Subscription;
   nickname: string;
-  cryptoMtfrckr: string;
+  cryptoMtfrckr = '';
   accountValue: number;
   amount = 1;
   products: Array<object> = [
@@ -677,6 +678,9 @@ export class DepositNftComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
+
+  authcode: string;
+  confirmed = false;
   nftType = 'car';
   constructor(
     protected notify: NotifiqService,
@@ -709,7 +713,6 @@ export class DepositNftComponent implements OnInit {
   getUser() {
     const data = this.identityService.getStorageIdentity();
     this.nickname = data.nickname;
-    this.cryptoMtfrckr = data.my_crypto_address;
   }
   resolveShowAsset() {
     if (this.nftType === 'car') {
@@ -757,18 +760,20 @@ export class DepositNftComponent implements OnInit {
     }
   }
 
-  depositCar() {
+  withdrawCar() {
     this.transferSubscription = this.blcksrvc
-      .blockchainDepositCreate({
+      .blockchainWithdrawCreate({
+        currency: "car_" + this.nftId.toString(),
         amount: this.amount,
-        currency: this.nftType + this.nftId,
-      })
-      .subscribe((data) => {
-        this.depositing();
+        code: this.authcode,
+        targetAddress: this.cryptoMtfrckr,
+        location: 'nitro'
+      }
+      ).subscribe(data => {
+
+        this.amount = 0;
+        this.confirmed = false;
       });
   }
 
-  depositing() {
-    localStorage.setItem("depos", JSON.stringify(Date.now()));
-  }
 }

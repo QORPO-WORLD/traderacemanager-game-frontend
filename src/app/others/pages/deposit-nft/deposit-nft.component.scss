@@ -80,6 +80,24 @@
       position: relative;
       text-align: center;
       height: 306px;
+      &.racer{
+        text-align: left;
+        .car-img{
+          margin-left: 15%;
+        }
+        .car-stats{
+          flex-direction: column;
+          left: unset;
+          right: 0;
+          transform: none;
+          height: 100%;
+          width: 50%;
+          .name{
+            margin-right: 0;
+            text-align: center;
+          }
+        }
+      }
       .car-img {
         max-width: 100%;
         max-height: 100%;
@@ -133,95 +151,16 @@
       background: #222222;
       border-radius: 15px;
       margin: 30px 0 10px;
-      .common-heading {
-        margin-bottom: 20px;
-        margin-left: 15px;
-      }
-      .amount-input {
-        width: 100%;
-        border-radius: 15px;
-        padding: 1px;
-        position: relative;
-        margin-bottom: 40px;
-        .inner {
-          background: #181818;
-          border-radius: 15px;
-          width: 100%;
-          position: relative;
-          input {
-            padding: 13px 64px 13px 30px;
-            border-radius: 15px;
-            background: transparent;
-            width: 100%;
-            border: none;
-            outline: none;
-          }
-          .curr-desc {
-            position: absolute;
-            top: 50%;
-            right: 30px;
-            transform: translateY(-50%);
-            font-weight: 500;
-            font-size: 16px;
-            margin: 0;
-          }
-        }
-        .input-note {
-          position: absolute;
-          bottom: -10px;
-          right: 0;
-          transform: translateY(100%);
-          font-size: 16px;
-          font-weight: 300;
-          opacity: 0.4;
-          margin: 0;
-        }
-      }
-      .transfer-inputs {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        position: relative;
-        .input-item {
-          width: calc(50% - 30px);
-          position: relative;
-          .my-input {
-            width: 100%;
-            border-radius: 15px;
-            &.bordered {
-              padding: 1px;
-            }
-            input {
-              width: 100%;
-              background: #181818;
-              border-radius: 15px;
-              padding: 13px 30px;
-              width: 100%;
-              border: none;
-              outline: none;
-            }
-          }
-          &.left {
-            .transfer-arrows {
-              position: absolute;
-              top: 50%;
-              right: -16px;
-              transform: translate(100%, -50%);
-              cursor: pointer;
-            }
-          }
-          .destination-desc {
-            position: absolute;
-            bottom: -7px;
-            left: 15px;
-            transform: translateY(100%);
-            margin: 0;
-            opacity: 0.8;
-            font-size: 16px;
-            font-weight: 300;
-          }
-        }
+      position: relative;
+      .big-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        margin: 0;
+        font-size: 20px;
+        width: 90%;
       }
     }
   }
@@ -338,6 +277,12 @@
           }
         }
       }
+      .amount-holder{
+        .big-text{
+          font-size: 17px;
+          line-height: 1.2;
+        }
+      }
     }
     .right-holder {
       .common-heading {
@@ -392,48 +337,8 @@
         padding: 20px 15px;
         margin: 20px 0 10px;
         height: 251px;
-        .common-heading {
-          margin-bottom: 15px;
-          margin-left: 11px;
-        }
-        .amount-input {
-          margin-bottom: 27px;
-          .inner {
-            input {
-              padding: 10px 60px 10px 25px;
-              font-size: 15px;
-            }
-            .curr-desc {
-              right: 25px;
-              font-size: 14px;
-            }
-          }
-          .input-note {
-            font-size: 14px;
-            bottom: -4px;
-          }
-        }
-        .transfer-inputs {
-          .input-item {
-            width: calc(50% - 20px);
-            &.left {
-              .transfer-arrows {
-                right: -8px;
-                width: 26px;
-              }
-            }
-            .my-input {
-              input {
-                padding: 10px 25px;
-                font-size: 15px;
-              }
-            }
-            .destination-desc {
-              font-size: 14px;
-              bottom: -3px;
-              left: 11px;
-            }
-          }
+        .big-text {
+          font-size: 18px;
         }
       }
     }
@@ -463,7 +368,6 @@
           padding-top: 50px;
           margin-top: 50px;
           .info-item {
-            text-align: left;
             p {
               font-size: 14px;
               &.desc {
@@ -668,25 +572,23 @@
 @media screen and (max-width: 500px) {
   .content-holder {
     .left-holder {
+      .img-holder{
+        &.racer{
+          .car-img{
+            margin-left: 0;
+          }
+        }
+      }
       .amount-holder {
         height: unset;
-        padding: 16px 13px 32px;
-        .transfer-inputs {
-          flex-wrap: wrap;
-          .input-item {
-            width: 100%;
-            &.left {
-              margin-bottom: 50px;
-              .transfer-arrows {
-                right: unset;
-                width: 30px;
-                left: 50%;
-                top: unset;
-                bottom: 2px;
-                transform: translate(-50%, 100%);
-              }
-            }
-          }
+        padding: 26px 13px;
+        .big-text{
+          position: relative;
+          transform: none;
+          left: 0;
+          top: 0;
+          margin: 0 auto;
+          font-size: 16px;
         }
       }
     }

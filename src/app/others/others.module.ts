@@ -19,6 +19,7 @@ import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
 import { TransferNftComponent } from "./pages/transfer-nft/transfer-nft.component";
 import { DepositNftComponent } from "./pages/deposit-nft/deposit-nft.component";
+import { WithdrawNftComponent } from "./pages/withdraw-nft/withdraw-nft.component";
 import { ContactsStaticComponent } from './contacts-static/contacts-static.component';
 import { IonicModule } from "@ionic/angular";
 
@@ -71,6 +72,10 @@ const routes: Routes = [
         component: DepositNftComponent,
       },
       {
+        path: "withdraw-nft",
+        component: WithdrawNftComponent,
+      },
+      {
         path: "contats",
         component: ContactsStaticComponent,
       },
@@ -88,6 +93,7 @@ const routes: Routes = [
     WalletControllerComponent,
     TransferNftComponent,
     DepositNftComponent,
+    WithdrawNftComponent,
     ContactListComponent,
     ContactsStaticComponent
   ],
