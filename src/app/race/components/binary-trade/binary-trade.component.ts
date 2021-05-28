@@ -237,20 +237,18 @@ export class BinaryTradeComponent implements OnInit {
 
 
   addFromPlayer(timeV: any, valV: number, long?: boolean, me?: boolean) {
+
     if (me === true) {
       this.optWaiting = 10;
     }
 
-    timeV = Date.now();
-    valV = this.currentValue;
     const tdate = new Date(timeV).toLocaleTimeString();
-    this.currentValue = valV;
     if (this.chart) {
-
       if (valV > 0) {
-        const imag = new Image();
+        let imag = new Image();
         long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
         me === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
+
         this.chart.data.datasets[0].data.push(valV);
         this.chart.data.datasets[0].pointStyle.push(imag);
         this.chart.data.labels.push(tdate);
@@ -261,13 +259,14 @@ export class BinaryTradeComponent implements OnInit {
         }
 
         this.chart.update();
+        console.log('kkkoooo');
       }
     }
   }
 
 
 
-  addFromDecision(lplayer: boolean, shot: boolean) {
+  addFromDecision(lplayer: boolean, shot: boolean, timeV: number, valV: number) {
     const imag = new Image();
     if (lplayer === true) {
       shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
@@ -275,22 +274,21 @@ export class BinaryTradeComponent implements OnInit {
       shot === false ? imag.src = '/assets/base/images/binary/oponent-bad.png' : imag.src = '/assets/base/images/binary/oponent-good.png';
     }
 
-    const timeV = Date.now();
-    const valV = this.currentValue;
     const tdate = new Date(timeV).toLocaleTimeString();
     this.currentValue = valV;
     if (this.chart) {
-
+console.log('jjj')
       if (valV > 0) {
         this.chart.data.datasets[0].data.push(valV);
         this.chart.data.datasets[0].pointStyle.push(imag);
         this.chart.data.labels.push(tdate);
-
+        console.log('jjj')
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.labels.shift();
         }
         this.chart.update();
+        console.log('jjjoooo')
       }
     }
   }
@@ -323,12 +321,6 @@ export class BinaryTradeComponent implements OnInit {
       const opt = JSON.parse(data);
       _this.onOptionClosed(opt);
 
-      // mock
-      const x = {
-        "uh": "20d6a67d2f0adecd643edab73e1fbbab",
-        "ts": 1622033257, "result": false,
-        "ap": "40114.62", "roi": "0.0"
-      }
     });
 
     popsock.on("status", function (data) {
@@ -348,21 +340,23 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   onOption(data?: any) {
-    const opt = JSON.parse(data);
+    const opt = data;
     opt.uh === this.players[0].user_hash ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
 
   onOptionClosed(data?: any) {
-    const opt = JSON.parse(data);
-    opt.uh === this.players[0].user_hash ? this.addFromDecision(true, opt.result) : this.addFromDecision(true, opt.result);
+    
+    const opt = data;
+    opt.uh === this.players[0].user_hash ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(true, opt.result, opt.ts, opt.ap);
   }
 
   onScore(data?: any) {
-    const opt = JSON.parse(data);
+    const opt = data;
+    console.log(opt);
     if (opt.uh === this.players[0].user_hash) {
-      this.myShots.push(opt.result);
+      this.myShots = data.p;
     } else {
-      this.oponentShots.push(opt.result);
+      this.oponentShots = data.p;
     }
   }
 
