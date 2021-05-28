@@ -84,6 +84,8 @@ export class BinaryTradeComponent implements OnInit {
   myShots = [];
   oponentShots = [];
   optWaiting = 0;
+  roileft: number;
+  roiright: number;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
   }
@@ -330,8 +332,8 @@ export class BinaryTradeComponent implements OnInit {
     });
 
     popsock.on("score", function (data) {
-      console.log(data);
-      _this.onScore(data);
+      const opt = JSON.parse(data);
+      _this.onScore(opt);
     });
 
     popsock.on("message", function (data) {
@@ -352,11 +354,12 @@ export class BinaryTradeComponent implements OnInit {
 
   onScore(data?: any) {
     const opt = data;
-    console.log(opt);
     if (opt.uh === this.players[0].user_hash) {
       this.myShots = data.p;
+      this.roileft = data.r;
     } else {
       this.oponentShots = data.p;
+      this.roiright = data.r;
     }
   }
 

@@ -99,9 +99,9 @@
       <canvas id="canvas">
 
       </canvas>
-      <div class="timer-count" [hidden]="optWaiting === 0">
+      <div class="timer-count" *ngIf="optWaiting !== 0">
 
-        <div class="tc-wrap" *ngIf="optWaiting !== 0">
+        <div class="tc-wrap">
           <app-timer [value]="10" (onComplete)="optTimerCompleted($event)"></app-timer>        </div>
       </div>
     </div>
@@ -141,6 +141,8 @@
         <div class="my-progress">
           <div class="inner-bar"></div>
         </div>
+
+        <p class="percent" *ngIf="roileft">{{roileft}}%</p>
 
       </div>
 
@@ -205,7 +207,7 @@
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent">20.50%</p>
+        <p class="percent" *ngIf="roiright">{{roiright}}%</p>
 
       </div>
 
