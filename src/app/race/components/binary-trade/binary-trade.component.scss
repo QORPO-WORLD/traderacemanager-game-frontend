@@ -187,9 +187,10 @@
           }
         }
       }
-      #container {
-        width: calc(100% - 120px);
-        height: 100%;
+      #canvas {
+        width: calc(100% - 120px) !important;
+        height: 100% !important;
+        background: black;
       }
     }
     .control-panel {
@@ -593,11 +594,21 @@
   }
 }
 .timer-count {
-    position: absolute;
-    top:0;
-    right:0;
-  .tc-wrap span {
-    font-size: 52px !important;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 120px;
+  background: linear-gradient(to top left, #fe183f 0%, rgba(254, 24, 63, 0.1) 80%);
+  padding: 0 1px 1px 1px;
+  border-radius: 0 0 10px 10px;
+  .tc-wrap{
+    background: rgba(34, 34, 34, 0.6);
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    text-align: center;
+    app-timer {
+      font-size: 35px !important;
+    }
   }
 }
 
@@ -606,6 +617,9 @@
         .content-holder{
             max-width: 880px;
             .chart-holder{
+              #canvas{
+                width: calc(100% - 90px) !important;
+              }
                 .react-controls{
                     width: 90px;
                     min-width: 90px;
@@ -675,6 +689,9 @@
             max-width: 800px;
             .chart-holder{
                 height: 410px;
+                #canvas{
+                  width: calc(100% - 75px) !important;
+                }
                 .react-controls{
                     width: 75px;
                     min-width: 75px;
@@ -740,6 +757,14 @@
             font-size: 17px;
         }
     }
+    .timer-count{
+      width: 75px;
+      .tc-wrap{
+        app-timer{
+          font-size: 25px !important;
+        }
+      }
+    }
 }
 
 @media screen and (max-width: 1300px) {
@@ -754,6 +779,9 @@
             max-width: 750px;
             .chart-holder{
                 height: 400px;
+                #canvas{
+                  width: calc(100% - 70px) !important;
+                }
                 .react-controls{
                     width: 70px;
                     min-width: 70px;
@@ -885,6 +913,10 @@
             }
             .chart-holder{
                 display: block;
+                position: relative;
+                #canvas{
+                  width: 100% !important;
+                }
                 .react-controls{
                     background: transparent;
                     border-radius: unset;
@@ -972,6 +1004,17 @@
                 }
             }
         }
+    }
+    .timer-count{
+      bottom: 21%;
+      top: unset;
+      border-radius: 10px;
+      width: 95px;
+      transform: translateX(-50%);
+      .tc-wrap{
+        border-radius: 10px;
+        background: rgba(34, 34, 34, 1);
+      }
     }
 }
 

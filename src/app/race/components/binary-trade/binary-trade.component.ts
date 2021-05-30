@@ -1,3 +1,4 @@
+import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -141,6 +142,7 @@ export class BinaryTradeComponent implements OnInit {
       this.chart = new Chart('canvas', this.config);
       this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100)
+    Chart.defaults.global.legend.display = false;
     this.config = {
       type: 'line',
       data: {
@@ -165,12 +167,19 @@ export class BinaryTradeComponent implements OnInit {
 
             }
           },
-          y: {
-            title: {
-              display: true,
-              text: 'value'
+          yAxes: [{
+            display: true,
+            position: 'right',
+            ticks: {
+              fontColor: "#868686",
             }
-          }
+          }],
+          xAxes: [{
+            display: true,
+            ticks: {
+              fontColor: "#868686",
+            }
+          }]
         },
         interaction: {
           intersect: false
@@ -178,10 +187,6 @@ export class BinaryTradeComponent implements OnInit {
         plugins: {
           tooltip: {
             enabled: true
-          },
-          title: {
-            display: true,
-            text: 'BTC/UDST'
           }
         }
       }
