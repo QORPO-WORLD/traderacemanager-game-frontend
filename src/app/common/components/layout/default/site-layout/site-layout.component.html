@@ -18,7 +18,13 @@
           [routerLink]="['/race/start-race']"
           [routerLinkActive]="'active'"
         >
-          <p>{{ "shared.dashboard" | translate }}</p>
+          <img
+            src="assets/base/images/start-race/dashboard.png"
+            alt="layout image"
+          />
+          <div class="menu-border my-low-gradient">
+            <div class="inner-border"><p>Dashboard</p></div>
+          </div>
         </div>
 
         <div
@@ -26,7 +32,14 @@
           [routerLink]="['/teams/my-team']"
           [routerLinkActive]="'active'"
         >
-          <p>{{ "teams.shared.my_team" | translate }}</p>
+          <img
+            src="assets/base/images/start-race/group.png"
+            alt="team people image"
+          />
+          <div class="menu-border my-low-gradient">
+            <div class="inner-border"><p>Teams</p></div>
+          </div>
+          <div class="menu-border"></div>
         </div>
 
         <div
@@ -34,7 +47,14 @@
           [routerLink]="['/car/nft-market']"
           [routerLinkActive]="'active'"
         >
-          <p>{{ "garage.market" | translate }}</p>
+          <img
+            src="assets/base/images/start-race/marketplace.png"
+            alt="marketplace image"
+          />
+          <div class="menu-border my-low-gradient">
+            <div class="inner-border"><p>Marketplace</p></div>
+          </div>
+          <div class="menu-border"></div>
         </div>
 
         <div
@@ -42,10 +62,15 @@
           [routerLink]="['/other/tasks']"
           [routerLinkActive]="'active'"
         >
-          <p>{{ "main_top_banner.heading14" | translate }}</p>
+          <img
+            src="assets/base/images/start-race/clipboard.png"
+            alt="clipboard image"
+          />
+          <div class="menu-border my-low-gradient">
+            <div class="inner-border"><p>Daily tasks</p></div>
+          </div>
+          <div class="menu-border"></div>
         </div>
-
-        <div class="menu-border"></div>
       </div>
 
       <div class="overview">
@@ -90,33 +115,55 @@
           <!-- <div class="lang-switcher">
             <app-lang-switcher></app-lang-switcher>
           </div> -->
-          <div class="profile">
-            <div class="profile-img" [routerLink]="['/profile/my-profile']">
-              <img
-                src="assets/base/images/avatars/avatar1-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 1"
-              />
-              <img
-                src="assets/base/images/avatars/avatar2-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 2"
-              />
-              <img
-                src="assets/base/images/avatars/avatar3-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 3"
-              />
-              <img
-                src="assets/base/images/avatars/avatar4-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 4"
-              />
+          <div (click)="toggleSettings()" class="profile">
+            <div class="profile-content">
+              <div class="profile-img">
+                <img
+                  src="assets/base/images/avatars/avatar1-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 1"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar2-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 2"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar3-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 3"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar4-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 4"
+                />
+              </div>
+              <div class="profile-stats">
+                <p class="name">
+                  {{ myDriverStats?.nickname }}
+                </p>
+              </div>
             </div>
-            <div class="profile-stats">
-              <p class="name">
-                {{ myDriverStats?.nickname }}
-              </p>
+            <div
+              [ngClass]="{ active: settingsShown === true }"
+              class="profile-expander"
+            >
+              <div class="btn-item" (click)="showMySettings = true">
+                <p>
+                  <img
+                    src="/assets/base/images/menu/settings-icon.svg"
+                    alt=""
+                  />
+                  {{ "profile.acc_settings" | translate }}
+                </p>
+              </div>
+              <div class="btn-item" (click)="logout()">
+                <p>
+                  <img src="/assets/base/images/menu/logout-icon.svg" alt="" />
+                  {{ "profile.log_out" | translate }}
+                </p>
+              </div>
             </div>
           </div>
         </ng-container>
@@ -341,21 +388,6 @@
         <div class="races-holder" *ngIf="menuType === 'races'">
           <div>
             <app-my-races-ad (menuClose)="closeMenu($event)"></app-my-races-ad>
-          </div>
-        </div>
-
-        <div class="last-btns">
-          <div class="btn-item" (click)="showMySettings = true">
-            <p>
-              <img src="/assets/base/images/menu/settings-icon.svg" alt="" />
-              {{ "profile.acc_settings" | translate }}
-            </p>
-          </div>
-          <div class="btn-item" (click)="logout()">
-            <p>
-              <img src="/assets/base/images/menu/logout-icon.svg" alt="" />
-              {{ "profile.log_out" | translate }}
-            </p>
           </div>
         </div>
       </div>

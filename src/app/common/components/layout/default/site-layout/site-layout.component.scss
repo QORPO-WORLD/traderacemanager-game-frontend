@@ -3,7 +3,7 @@
 }
 
 .main {
-  position: unset;
+  position: relative;
 }
 
 .overlay {
@@ -14,7 +14,6 @@
 }
 
 .main {
-  position: unset;
   .cont-holder {
     width: 100%;
   }
@@ -40,6 +39,7 @@
   height: 80px;
   padding: 0 2%;
   background: #222222;
+  width: 100%;
   box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.7);
   position: sticky;
   top: 0;
@@ -53,6 +53,7 @@
     width: 80px;
   }
   .items-holder {
+    margin-left: auto;
     display: flex;
     align-items: center;
     width: 40%;
@@ -63,67 +64,57 @@
       height: 100%;
       cursor: pointer;
       position: relative;
-      &:hover {
-        p {
-          opacity: 0.8;
-        }
-      }
-      &.active {
-        p {
-          opacity: 1;
-          font-weight: 600;
-        }
-      }
-      &.item1 {
-        &.active ~ .menu-border {
-          left: 0;
-        }
-      }
-      &.item2 {
-        &.active ~ .menu-border {
-          left: 20%;
-        }
-      }
-      &.item3 {
-        &.active ~ .menu-border {
-          left: 40%;
-        }
-      }
-      &.item4 {
-        &.active ~ .menu-border {
-          left: 60%;
-        }
-      }
-      &.item5 {
-        &.active ~ .menu-border {
-          left: 80%;
-        }
-      }
-      p {
-        font-size: 14px;
-        font-weight: 400;
-        opacity: 0.4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.6;
+      .menu-border {
+        pointer-events: none;
+        transition: 0.3s;
         position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        text-align: center;
-        width: 100%;
-        transition: 0.2s;
-        text-transform: uppercase;
+        padding: 1px;
+        bottom: -30px;
+
+        width: 0px;
+        height: 44px;
+        opacity: 0;
+
+        .inner-border {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          background: linear-gradient(139.48deg, #8c1a2d 2.81%, #222222 72.36%);
+        }
       }
-    }
-    .menu-border {
-      position: absolute;
-      bottom: 0;
-      width: 20%;
-      height: 2px;
-      background: white;
-      border-radius: 5px;
-      transition: 0.2s;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      &:hover {
+        opacity: 0.8;
+        .menu-border {
+          width: 165px;
+
+          opacity: 1;
+        }
+      }
+
+      &.active {
+        opacity: 1;
+        font-weight: 600;
+      }
+
+      p {
+        color: #ffffff;
+        margin: 0px;
+        opacity: 0.6;
+      }
     }
   }
   .overview {
+    z-index: 1000002;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -251,9 +242,41 @@
     }
   }
   .profile {
+    position: relative;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+
+    .profile-content {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .profile-expander {
+      min-width: 145px;
+      transition: 0.3s;
+      opacity: 0;
+      width: 110%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: absolute;
+      background: #222222;
+      pointer-events: none;
+      top: 90%;
+      .btn-item {
+        cursor: pointer;
+      }
+      .btn-item:hover {
+        text-decoration: underline;
+      }
+      &.active {
+        pointer-events: all;
+        opacity: 1;
+      }
+    }
+
     .profile-img {
       width: 50px;
       height: 50px;
@@ -2034,7 +2057,7 @@ button.xko {
 }
 
 .right-container {
-  position: fixed;
+  position: absolute;
   width: 100%;
   min-height: calc(var(--vh, 1vh) * 100);
   top: 0;
@@ -2048,43 +2071,39 @@ button.xko {
   overflow: auto;
   .right-part-holder {
     pointer-events: all;
-    padding-right: 10px;
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding: 30px 30px 30px 30px;
     transition: 0.2s;
     width: 417px;
-    height: calc(100vh - 140px);
-    min-height: calc(100vh - 140px);
-    position: absolute;
+    height: calc(100vh - 350px);
+    min-height: calc(100vh - 350px);
+    position: fixed;
+    overflow: hidden;
     top: 110px;
-    right: 0;
-    background: white;
-    border-radius: 15px 0px 0px 15px;
+    right: 40px;
+    background: rgba(0, 0, 0, 0.8);
     z-index: 10000;
     p {
-      color: #333333;
+      color: #3d2a2a;
     }
     .profile-cont {
       position: relative;
       right: 0;
       transition: right 0.2s, box-shadow 0.08s;
-      max-height: calc(100% - 100px);
-      height: calc(100% - 100px);
+      max-height: calc(100% - 40px);
+      height: calc(100% - 40px);
       overflow: auto;
     }
     .menu-switchers {
-      width: calc(100% - 40px);
+      width: 100%;
       margin: 0 auto;
       background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 47px;
       z-index: 1;
-      background: #ebebeb;
+      background: rgba(255, 255, 255, 0.1);
       .switch-item {
         width: 33.3333%;
         height: 100%;
@@ -2092,21 +2111,24 @@ button.xko {
         position: relative;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border-radius: 15px;
         transition: 0.2s;
+
         &.active {
           p {
             color: white;
+            opacity: 1;
           }
         }
         &:hover {
           background-color: rgba(0, 0, 0, 0.1);
         }
         p {
+          opacity: 0.6;
+          color: white;
           text-align: center;
           margin: 0;
           font-size: 18px;
-          font-weight: 500;
+          font-weight: 400;
           width: 100%;
           position: absolute;
           top: 50%;
@@ -2120,12 +2142,16 @@ button.xko {
           left: 2%;
           top: 0;
           transform: translateY(-70%);
+          -webkit-transform: translateY(-70%);
+          -moz-transform: translateY(-70%);
+          -ms-transform: translateY(-70%);
+          -o-transform: translateY(-70%);
         }
       }
       .item-back {
         width: 33.3333%;
         height: 100%;
-        border-radius: 15px;
+
         position: absolute;
         z-index: 1;
         left: 33.3333%;
@@ -2144,14 +2170,13 @@ button.xko {
     }
     .chat-holder {
       position: relative;
-      max-height: calc(100% - 120px);
-      height: calc(100% - 120px);
+      max-height: calc(100% - 60px);
+      height: calc(100% - 60px);
       width: 100%;
       z-index: 1000;
-      background: #fff;
+
       transition: 0.2s;
       margin-top: 15px;
-      padding: 0 10px;
     }
     .last-btns {
       position: absolute;
@@ -2191,8 +2216,8 @@ button.xko {
       }
     }
     .races-holder {
-      max-height: calc(100% - 100px);
-      height: calc(100% - 100px);
+      max-height: calc(100% - 40px);
+      height: calc(100% - 40px);
       overflow: auto;
       position: relative;
     }
@@ -2295,8 +2320,8 @@ button.xko {
   .right-container {
     .right-part-holder {
       top: 130px;
-      height: calc(100vh - 150px);
-      min-height: calc(100vh - 150px);
+      height: calc(100vh - 350px);
+      min-height: calc(100vh - 350px);
     }
   }
 }
@@ -2307,18 +2332,13 @@ button.xko {
       width: 385px;
       padding-top: 20px;
       top: 90px;
-      height: calc(100vh - 105px);
-      min-height: calc(100vh - 105px);
+      right: 30px;
       .menu-switchers {
         height: 41px;
         .switch-item {
-          border-radius: 10px;
           p {
             font-size: 16px;
           }
-        }
-        .item-back {
-          border-radius: 10px;
         }
       }
     }
@@ -2394,9 +2414,6 @@ button.xko {
 }
 
 @media screen and (max-width: 1550px) {
-  .main {
-    padding-top: 70px;
-  }
   .ad-popup {
     .ticket-holder {
       left: 180px;
@@ -2408,18 +2425,12 @@ button.xko {
 
   .right-container {
     .right-part-holder {
+      right: 20px;
       width: 365px;
       top: 80px;
-      height: calc(var(--vh, 1vh) * 100 - 110px);
-      min-height: calc(var(--vh, 1vh) * 100 - 110px);
-      .chat-holder {
-        max-height: calc(100% - 100px);
-        height: calc(100% - 100px);
-      }
-      .profile-cont {
-        max-height: calc(100% - 80px);
-        height: calc(100% - 80px);
-      }
+      height: calc(var(--vh, 1vh) * 100 - 240px);
+      min-height: calc(var(--vh, 1vh) * 100 - 240px);
+
       .last-btns {
         padding: 0 25px 10px;
         .btn-item {
@@ -2437,10 +2448,32 @@ button.xko {
   .my-nav {
     height: 65px;
     padding: 0 2%;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
+
     top: 0;
+    .items-holder {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      width: 40%;
+      height: 100%;
+      position: relative;
+      .menu-item {
+        img {
+          width: 25px;
+          height: 25px;
+        }
+        .menu-border {
+          bottom: -32.5px;
+
+          height: 40px;
+        }
+        &:hover {
+          .menu-border {
+            width: 150px;
+          }
+        }
+      }
+    }
     .nav-logo {
       width: 65px;
     }
@@ -2812,6 +2845,7 @@ button.xko {
   }
   .right-container {
     .right-part-holder {
+      right: 13px;
       width: 325px;
     }
   }
@@ -2892,6 +2926,9 @@ button.xko {
         display: none;
       }
       .profile {
+        .profile-expander {
+          left: -30%;
+        }
         .profile-stats {
           display: none;
         }

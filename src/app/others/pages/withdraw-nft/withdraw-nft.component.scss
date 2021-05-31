@@ -114,10 +114,8 @@
           left: 50%;
           transform: translateX(-50%);
           width: 100%;
-          max-width: 400px;
           .name {
             text-align: left;
-            margin-right: 10%;
             p {
               font-weight: 600;
               font-size: 20px;
@@ -141,6 +139,9 @@
                 font-weight: 400;
               }
             }
+            img{
+              max-width: 30px;
+            }
           }
         }
       }
@@ -158,11 +159,10 @@
         .amount-input {
           width: 100%;
           border-radius: 15px;
-          padding: 1px;
           position: relative;
           margin-bottom: 40px;
           .inner {
-            background: #181818;
+            background: white;
             border-radius: 15px;
             width: 100%;
             position: relative;
@@ -173,6 +173,8 @@
               width: 100%;
               border: none;
               outline: none;
+              color: #333;
+              font-weight: 600;
             }
             .curr-desc {
               position: absolute;
@@ -193,6 +195,26 @@
             font-weight: 300;
             opacity: 0.4;
             margin: 0;
+          }
+          .correct-input{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 10px;
+            width: 50px;
+            height: 100%;
+            svg{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              path{
+                fill: white;
+              }
+            }
+            &.incorrect{
+              background: #EBEBEB;
+            }
           }
         }
         .transfer-inputs {
@@ -430,6 +452,9 @@
               font-size: 14px;
               bottom: -4px;
             }
+            .correct-input{
+              width: 42px;
+            }
           }
           .transfer-inputs {
             .input-item {
@@ -555,6 +580,12 @@
             }
             .input-note {
               font-size: 13px;
+            }
+            .correct-input{
+              width: 36px;
+              svg{
+                width: 15px;
+              }
             }
           }
           .transfer-inputs {

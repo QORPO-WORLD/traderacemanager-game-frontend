@@ -10,6 +10,9 @@
   }
   .left-holder {
     width: 49%;
+    &.mobile{
+      display: none;
+    }
     .curr-holder {
       width: 100%;
       margin-bottom: 20px;
@@ -47,7 +50,7 @@
           opacity: 1;
           padding: 0 10px;
           &.inactive {
-            opacity: .6;
+            background: rgba(255,255,255, .05);
           }
           .inner {
             border-radius: 15px;
@@ -99,6 +102,7 @@
     }
     .address-holder{
       margin-bottom: 69px;
+      position: relative;
       .common-heading{
         margin-bottom: 20px;
       }
@@ -120,6 +124,29 @@
         padding: 11px 40px;
         border-radius: 10px;
         margin-top: 25px;
+      }
+      .input-holder{
+        position: relative;
+        .correct-input{
+          position: absolute;
+          top: 0;
+          right: 0;
+          border-radius: 10px;
+          width: 50px;
+          height: 100%;
+          svg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            path{
+              fill: white;
+            }
+          }
+          &.incorrect{
+            background: #EBEBEB;
+          }
+        }
       }
     }
     .amount-holder {
@@ -760,7 +787,12 @@
         margin-bottom: 19px;
         input{
           font-size: 14px;
-          padding: 11px 40px 11px 25px;
+          padding: 11px 46px 11px 25px;
+        }
+        .input-holder{
+          .correct-input{
+            width: 43px;
+          }
         }
       }
     }
@@ -990,12 +1022,52 @@
       margin: 0 auto;
     }
     .left-holder {
+      &.mobile{
+        display: block;
+      }
       .curr-holder {
         .boxes-holder {
           .box-item {
+            border-radius: 5px;
             .inner {
-              justify-content: center;
+              border-radius: 5px;
+              .text-holder{
+                .dollars{
+                  display: none;
+                }
+              }
+              .arrow-btn{
+                display: none;
+              }
             }
+          }
+        }
+      }
+      .amount-holder{
+        display: none;
+        &.mobile{
+          display: block;
+        }
+        .big-text{
+          text-align: left;
+          color: rgba(255,255,255,.4);
+        }
+      }
+      .deposit-disclaim{
+        display: none;
+        &.mobile{
+          display: block;
+        }
+      }
+      .address-holder{
+        input,
+        button{
+          border-radius: 5px;
+        }
+        .input-holder{
+          .correct-input{
+            width: 43px;
+            border-radius: 5px;
           }
         }
       }
@@ -1005,9 +1077,18 @@
         height: unset;
         .inner {
           padding: 16px 18px;
+          display: flex;
+          flex-direction: column;
+          .depositing-info{
+            display: none;
+          }
           .my-wallet-info {
             padding: 12px 0;
             margin: 13px 0;
+            order: 2;
+            .info-border{
+              display: none;
+            }
             .info-item {
               p {
                 font-size: 14px;
@@ -1019,8 +1100,18 @@
                 font-size: 14px;
               }
               &.second {
-                margin-top: 10px;
+                display: none;
               }
+            }
+          }
+          .qr-code-holder{
+            order: 1;
+            .info-text{
+              display: none;
+            }
+            .qr-code{
+              width: 90%;
+              max-width: 220px;
             }
           }
           .not-setup-holder{
@@ -1096,10 +1187,17 @@
             padding: 11px 0;
             margin: 11px 0;
             .info-item {
+              &.crypto-adress{
+                justify-content: flex-start;
+                input{
+                  text-align: left;
+                }
+              }
               p {
                 font-size: 13px;
                 &.desc {
                   font-size: 11px;
+                  padding-left: 10px;
                 }
               }
               input {
@@ -1122,11 +1220,18 @@
       .curr-holder {
         .boxes-holder {
           height: unset;
-          flex-wrap: wrap;
           .box-item {
-            height: 70px;
+            height: 60px;
             margin-bottom: 10px;
-            width: 100%;
+            .inner{
+              padding: 3px 5px 5px 5px;
+              .text-holder{
+                margin-left: 10px;
+                .curr-type{
+                  font-size: 14px;
+                }
+              }
+            }
           }
         }
       }
@@ -1158,6 +1263,9 @@
               }
             }
           }
+        }
+        .big-text{
+          font-size: 16px;
         }
       }
     }

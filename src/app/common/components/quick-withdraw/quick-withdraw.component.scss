@@ -47,7 +47,7 @@
           opacity: 1;
           padding: 0 10px;
           &.inactive {
-            opacity: .6;
+            background: rgba(255,255,255, .05);
           }
           .inner {
             border-radius: 15px;
@@ -687,9 +687,43 @@
       .curr-holder {
         .boxes-holder {
           .box-item {
+            border-radius: 5px;
             .inner {
-              justify-content: center;
+              .arrow-btn{
+                display: none;
+              }
+              .text-holder{
+                .dollars{
+                  display: none;
+                }
+              }
             }
+          }
+        }
+      }
+      .amount-holder{
+        background: transparent;
+        padding: 20px 0;
+        .selected-curr{
+          display: none;
+        }
+        .amount-input{
+          border-radius: 5px;
+          .inner{
+            border-radius: 5px;
+            input{
+              border-radius: 5px;
+              padding: 11px 50px 11px 20px;
+              font-size: 17px;
+            }
+          }
+        }
+        .crypto-input{
+          border-radius: 5px;
+          input{
+            border-radius: 5px;
+            padding: 11px 20px;
+            font-size: 17px;
           }
         }
       }
@@ -699,6 +733,18 @@
         height: unset;
         .inner {
           padding: 16px 18px;
+          .summary-box{
+            margin-top: 0;
+            .info-item{
+              background: transparent;
+              input{
+                padding: 0;
+              }
+              .desc{
+                border-right: none;
+              }
+            }
+          }
         }
       }
     }
@@ -771,11 +817,18 @@
       .curr-holder {
         .boxes-holder {
           height: unset;
-          flex-wrap: wrap;
           .box-item {
-            height: 70px;
+            height: 60px;
             margin-bottom: 10px;
-            width: 100%;
+            .inner{
+              padding: 3px 5px 5px 5px;
+              .text-holder{
+                margin-left: 10px;
+                .curr-type{
+                  font-size: 14px;
+                }
+              }
+            }
           }
         }
       }

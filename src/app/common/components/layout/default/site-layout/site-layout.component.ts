@@ -1,33 +1,41 @@
-import { environment } from './../../../../../../environments/environment.prod';
-import { NextRaceV2 } from './../../../../../api/models/next-race-v2';
-import { RacesService } from 'src/app/api/services';
-import { NotifiqService } from './../../../../services/notifiq.service';
-import { BalanceService } from './../../../../services/balance.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { AbstractComponent } from '../../../abstract.component';
-import { Identity } from '../../../../../user/models/identity';
-import { DriversService, AffiliatesService, AuthService as ninja } from '../../../../../api/services';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/user/services/auth.service';
-import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TeamsService } from '../../../../../api/services/teams.service';
-
+import { environment } from "./../../../../../../environments/environment.prod";
+import { NextRaceV2 } from "./../../../../../api/models/next-race-v2";
+import { RacesService } from "src/app/api/services";
+import { NotifiqService } from "./../../../../services/notifiq.service";
+import { BalanceService } from "./../../../../services/balance.service";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
+import { AbstractComponent } from "../../../abstract.component";
+import { Identity } from "../../../../../user/models/identity";
+import {
+  DriversService,
+  AffiliatesService,
+  AuthService as ninja,
+} from "../../../../../api/services";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/user/services/auth.service";
+import {
+  Experience,
+  ExperienceService,
+} from "src/app/common/services/experience.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { TeamsService } from "../../../../../api/services/teams.service";
 
 declare let $: any;
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  withCredentials: true
+  headers: new HttpHeaders({ "Content-Type": "application/json" }),
+  withCredentials: true,
 };
 
 @Component({
-  selector: 'app-site-layout',
-  templateUrl: './site-layout.component.html',
-  styleUrls: ['./site-layout.component.scss']
+  selector: "app-site-layout",
+  templateUrl: "./site-layout.component.html",
+  styleUrls: ["./site-layout.component.scss"],
 })
-export class SiteLayoutComponent extends AbstractComponent implements OnInit, OnDestroy {
-
+export class SiteLayoutComponent
+  extends AbstractComponent
+  implements OnInit, OnDestroy
+{
   public identity: Identity;
   public menuVisible = false;
   isUsingMetamask = false;
@@ -47,9 +55,10 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   popupClosed = true;
   verifyModal = false;
   verifyStep = 1;
+  settingsShown = false;
   selectStyling = {
-    subHeader: 'Select token type',
-    cssClass: "customSelect profileSelect"
+    subHeader: "Select token type",
+    cssClass: "customSelect profileSelect",
   };
   myAffilate: any;
   myDriver: any;
@@ -77,9 +86,9 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   myTrxBalance = 0;
   tickets = 0;
   myDriverBalances: any;
-  menuType = 'me';
-  selectedMode = '';
-  myAddressClass = '';
+  menuType = "me";
+  selectedMode = "";
+  myAddressClass = "";
   selectedTeam = 0;
   animateState = 0;
   animateTeamState = 0;
@@ -94,13 +103,21 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   Affilate: any;
   deposTime: any;
   balanceInterval: any;
-  metaEth = { "ioi": 0, "eth": 0, "matic": 0 };
+  metaEth = { ioi: 0, eth: 0, matic: 0 };
   shaking = false;
-  constructor(public router: Router,
-    protected driverSrvc: DriversService, protected affisrvc: AffiliatesService,
-    private identityService: AuthService, private balanceService: BalanceService,
-    private uapi: ninja, private notify: NotifiqService, private experience: ExperienceService,
-    private rservice: RacesService, private _http: HttpClient, protected teams: TeamsService) {
+  constructor(
+    public router: Router,
+    protected driverSrvc: DriversService,
+    protected affisrvc: AffiliatesService,
+    private identityService: AuthService,
+    private balanceService: BalanceService,
+    private uapi: ninja,
+    private notify: NotifiqService,
+    private experience: ExperienceService,
+    private rservice: RacesService,
+    private _http: HttpClient,
+    protected teams: TeamsService
+  ) {
     super();
     this.calculateCorrectVh();
     experience.load((data: Experience) => {
@@ -111,13 +128,11 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     return this.balanceService.balanceChanged;
   }
 
-
   ngOnInit() {
-
-    const metaBalance = JSON.parse(localStorage.getItem('meta-balance'));
-    const mmea = JSON.parse(localStorage.getItem('mmea'));
-    const tick = JSON.parse(localStorage.getItem('trxusdt'));
-    const data = JSON.parse(localStorage.getItem('first-time'));
+    const metaBalance = JSON.parse(localStorage.getItem("meta-balance"));
+    const mmea = JSON.parse(localStorage.getItem("mmea"));
+    const tick = JSON.parse(localStorage.getItem("trxusdt"));
+    const data = JSON.parse(localStorage.getItem("first-time"));
     this.getTeams();
     if (data) {
       this.verifyModal = true;
@@ -133,7 +148,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.trxUsdt = tick;
       this.tickInterval = setInterval(() => {
         this.getCryptoStats();
-        const tickn = JSON.parse(localStorage.getItem('trxusdt'));
+        const tickn = JSON.parse(localStorage.getItem("trxusdt"));
         this.trxUsdt = tickn;
       }, 3000);
     }
@@ -146,10 +161,10 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.recognizeManager();
     }, 2000);
 
-    this.balanceService.balanceChange.subscribe(data => {
+    this.balanceService.balanceChange.subscribe((data) => {
       this.getCryptoStats();
     });
-    const brec = JSON.parse(localStorage.getItem('ndate'));
+    const brec = JSON.parse(localStorage.getItem("ndate"));
     const bnowx = Date.now();
     const bdiff = Number(bnowx) - Number(brec);
     if (brec && bdiff > 20000) {
@@ -160,14 +175,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.checkUser();
     }
     this.nxInterval = setInterval(() => {
-      const rec = JSON.parse(localStorage.getItem('ndate'));
+      const rec = JSON.parse(localStorage.getItem("ndate"));
       const nowx = Date.now();
       const diff = Number(nowx) - Number(rec);
       if (rec && diff > 29485) {
         this.checkUserAndClear();
       }
     }, 2473);
-/*
+    /*
     this.depositInterval = setInterval(() => {
       const rec = JSON.parse(localStorage.getItem('depos'));
       if (rec) {
@@ -177,7 +192,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }, 10000);
 */
     this.sumUsers = 173;
-
 
     if (mmea && !metaBalance) {
       this.getMetamaskBalance();
@@ -236,9 +250,6 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.identityService.logout();
   }
 
-
-
-
   getCryptoStats() {
     const data = this.identityService.getBalance();
     this.myDriver = data;
@@ -257,12 +268,10 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   onActivate(e, elem1: HTMLElement) {
-    elem1.scrollIntoView({ behavior: 'auto', block: 'start' });
+    elem1.scrollIntoView({ behavior: "auto", block: "start" });
   }
 
-
   checkUser() {
-
     if (this.identityService.hasToken()) {
       this.getNotifications();
     }
@@ -275,25 +284,28 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   getNotifications() {
-    this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(data => {
-      this.countNotifications(data);
-
-
-    });
+    this.notiObserver = this.driverSrvc
+      .driversNotificationsList()
+      .subscribe((data) => {
+        this.countNotifications(data);
+      });
   }
 
   getNotificationsAndClear() {
-    this.notiObserver = this.driverSrvc.driversNotificationsList().subscribe(data => {
-      this.countNotifications(data);
-      setTimeout(() => { localStorage.setItem('ndate', JSON.stringify(Date.now())); }, 500);
-
-    });
+    this.notiObserver = this.driverSrvc
+      .driversNotificationsList()
+      .subscribe((data) => {
+        this.countNotifications(data);
+        setTimeout(() => {
+          localStorage.setItem("ndate", JSON.stringify(Date.now()));
+        }, 500);
+      });
   }
 
   countNotifications(data) {
     this.numOfNotifications = data.length;
     for (let x = 0; x < data.length; x++) {
-      if (data[x].event === 'deposit') {
+      if (data[x].event === "deposit") {
         this.checkDeposit(data[x].created);
       }
     }
@@ -302,28 +314,29 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.numOfNotificationsBack = this.numOfNotifications;
       this.shakeBell();
     }
-
   }
 
   getNextraces() {
-    this.raceDriverObserver = this.rservice.racesNextV2List().subscribe(data => {
-      this.calcInterestedRaces(data);
-    });
+    this.raceDriverObserver = this.rservice
+      .racesNextV2List()
+      .subscribe((data) => {
+        this.calcInterestedRaces(data);
+      });
   }
 
   calcInterestedRaces(data: NextRaceV2[]) {
     const filteredFree = data.filter((item) => {
-      return item.race_identifier === 'tournament_for_ticket_0'
+      return item.race_identifier === "tournament_for_ticket_0";
     });
     const filteredFreeTime = filteredFree[0].starts_in_seconds;
 
     const filteredTrx = data.filter((item) => {
-      return item.race_identifier === 'classic_tournament_10'
+      return item.race_identifier === "classic_tournament_10";
     });
     const filteredTrxTime = filteredTrx[0].starts_in_seconds;
 
     const filteredIoi = data.filter((item) => {
-      return item.race_identifier === 'classic_tournament_0'
+      return item.race_identifier === "classic_tournament_0";
     });
     const filteredIoiTime = filteredIoi[0].starts_in_seconds;
 
@@ -335,39 +348,51 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
     const lowestTime = Math.min(...magicArray);
 
-
-    if (lowestTime === filteredFreeTime) { this.nextTour = filteredFree[0]; }
-    if (lowestTime === filteredTrxTime) { this.nextTour = filteredTrx[0]; }
-    if (lowestTime === filteredIoiTime) { this.nextTour = filteredIoi[0]; }
-
+    if (lowestTime === filteredFreeTime) {
+      this.nextTour = filteredFree[0];
+    }
+    if (lowestTime === filteredTrxTime) {
+      this.nextTour = filteredTrx[0];
+    }
+    if (lowestTime === filteredIoiTime) {
+      this.nextTour = filteredIoi[0];
+    }
   }
 
-
+  toggleSettings() {
+    if (this.settingsShown === true) {
+      this.settingsShown = false;
+    } else {
+      this.settingsShown = true;
+    }
+  }
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
-    this.myIoiBalance = this.myDriverBalances.game_wallet_ioi + this.myDriverBalances.stake_wallet_ioi +
+    this.myIoiBalance =
+      this.myDriverBalances.game_wallet_ioi +
+      this.myDriverBalances.stake_wallet_ioi +
       this.myDriverBalances.nitro_wallet_ioi;
     const datax = this.identityService.getStorageIdentity();
     this.tickets = datax.tournament_tickets;
   }
 
   closeTutorial() {
-    localStorage.removeItem('first-time');
+    localStorage.removeItem("first-time");
   }
 
   changeManager() {
     this.isManager = !this.isManager;
     if (this.isManager) {
-      localStorage.setItem('manager', JSON.stringify(this.isManager))
+      localStorage.setItem("manager", JSON.stringify(this.isManager));
     } else {
-      localStorage.removeItem('manager');
+      localStorage.removeItem("manager");
     }
     this.recognizeManager();
   }
 
   recognizeManager() {
     const man = this.identityService.getDriverMe().mode;
-    if (man === 'owner') {
+    if (man === "owner") {
       this.isManager = true;
     } else {
       this.isManager = false;
@@ -376,10 +401,10 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
 
   calculateCorrectVh() {
     let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    window.addEventListener('resize', () => {
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+    window.addEventListener("resize", () => {
       let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
     });
   }
 
@@ -387,39 +412,38 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     if (this.deposTime) {
       if (checker > this.deposTime) {
         this.depos = false;
-        localStorage.removeItem('depos');
+        localStorage.removeItem("depos");
       }
     }
   }
 
   copyMyAddress() {
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
+    let selBox = document.createElement("textarea");
+    selBox.style.position = "fixed";
+    selBox.style.left = "0";
+    selBox.style.top = "0";
+    selBox.style.opacity = "0";
     selBox.value = this.myDriverStats.my_crypto_address;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(selBox);
   }
 
   animateOnClick() {
-    this.myAddressClass = 'animate';
+    this.myAddressClass = "animate";
     setTimeout(() => {
-      this.myAddressClass = '';
+      this.myAddressClass = "";
     }, 1000);
   }
 
   getMetamaskBalance() {
-
     this.getMeta().subscribe({
-      next: data => this.setupMetaBalance(data),
-      error: error => this.getErrorService().apiError(error)
+      next: (data) => this.setupMetaBalance(data),
+      error: (error) => this.getErrorService().apiError(error),
     });
-    localStorage.setItem('meta-balance', JSON.stringify(true));
+    localStorage.setItem("meta-balance", JSON.stringify(true));
   }
 
   setupMetaBalance(data) {
@@ -427,14 +451,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     this.isUsingMetamask = true;
   }
 
-
   getMeta() {
-    return this._http.get(environment.api_url + '/me/metamask-balances',
-      httpOptions);
+    return this._http.get(
+      environment.api_url + "/me/metamask-balances",
+      httpOptions
+    );
   }
 
-
-  closeFirstModal(myBool: boolean){
+  closeFirstModal(myBool: boolean) {
     this.closeTutorial();
     this.verifyModal = myBool;
   }
@@ -442,18 +466,18 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   setManager(wantToBeManager: boolean) {
     this.isManager = wantToBeManager;
     if (this.isManager) {
-      localStorage.setItem('manager', JSON.stringify(this.isManager))
+      localStorage.setItem("manager", JSON.stringify(this.isManager));
     } else {
-      localStorage.removeItem('manager');
+      localStorage.removeItem("manager");
     }
     this.recognizeManager();
   }
 
-  animateManagerMode(wantToBeManager: boolean){
+  animateManagerMode(wantToBeManager: boolean) {
     if (wantToBeManager === true) {
       this.setManager(true);
       this.animateState = 1;
-    } else if(wantToBeManager === false){
+    } else if (wantToBeManager === false) {
       this.setManager(false);
       this.animateState = 2;
     }
@@ -462,16 +486,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }, 2800);
   }
 
-  closeMenu(myBool: boolean){
+  closeMenu(myBool: boolean) {
     this.menuOpen = myBool;
   }
 
   setMode(type: string) {
-    this.driverSrvc.driversSetMode({ mode: type }).subscribe(
-      data => {
-        this.verifyStep = 2;
-      }
-    )
+    this.driverSrvc.driversSetMode({ mode: type }).subscribe((data) => {
+      this.verifyStep = 2;
+    });
   }
 
   shakeBell() {
@@ -482,8 +504,14 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
   }
 
   joinTeamFree(teamId: number) {
-    this.teams.teamsJoinCreate({ join_team_id: teamId, join_paid_membership: false, month_count: 1, join_now: true }).
-      subscribe(data => {
+    this.teams
+      .teamsJoinCreate({
+        join_team_id: teamId,
+        join_paid_membership: false,
+        month_count: 1,
+        join_now: true,
+      })
+      .subscribe((data) => {
         setTimeout(() => {
           this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();
@@ -493,7 +521,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       });
   }
 
-  nextTeam(){
+  nextTeam() {
     if (this.selectedTeam > 2) {
       this.selectedTeam = 1;
     } else {
@@ -501,7 +529,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }
   }
 
-  prevTeam(){
+  prevTeam() {
     if (this.selectedTeam === 1) {
       this.selectedTeam = 3;
     } else {
@@ -509,13 +537,13 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     }
   }
 
-  nextTeamPc(){
+  nextTeamPc() {
     if (this.startTeamIndex < this.myTeams.length - this.sliceBalancer) {
       this.startTeamIndex++;
     } else this.startTeamIndex = 0;
   }
 
-  prevTeamPc(){
+  prevTeamPc() {
     if (this.startTeamIndex > 0) {
       this.startTeamIndex--;
     } else this.startTeamIndex = this.myTeams.length - this.sliceBalancer;
@@ -525,7 +553,7 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
     if (window.innerWidth < 641) {
       this.sliceBalancer = 1;
     }
-    this.teams.teamsList().subscribe(data => {
+    this.teams.teamsList().subscribe((data) => {
       const newdata = data.results;
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
@@ -534,5 +562,4 @@ export class SiteLayoutComponent extends AbstractComponent implements OnInit, On
       this.myTeams = data.results;
     });
   }
-
 }
