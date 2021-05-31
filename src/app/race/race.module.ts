@@ -59,8 +59,7 @@ const routes: Routes = [
       { path: 'watch-race-3min/:id', component: WatchRaceShortComponent },
       { path: 'watch-multiple-races', component: MultiViewComponent },
       { path: 'binary-fuel', component: BinaryInitialSelectionComponent },
-      { path: 'binary-race/:id', component: BinaryRaceComponent },
-      { path: 'binary-trade/:id', component: BinaryTradeComponent }
+      { path: 'binary-trade/:id/:starts', component: BinaryTradeComponent }
     ]
   }
 ];

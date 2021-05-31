@@ -1,7 +1,7 @@
 import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export interface Trade {
   templateUrl: './binary-trade.component.html',
   styleUrls: ['./binary-trade.component.scss'],
 })
-export class BinaryTradeComponent implements OnInit {
+export class BinaryTradeComponent implements OnInit, OnDestroy {
   btcinterval: any;
   btcmeno: any;
   mainChart = [];
@@ -87,8 +87,21 @@ export class BinaryTradeComponent implements OnInit {
   optWaiting = 0;
   roileft: number;
   roiright: number;
+  ccxtInterval: any;
+  winners = [];
+  winner: any;
+  loser: any;
+  meWon: boolean;
+  unityEnabled = true;
+  chartEnabled = true;
+  balance: any;
+  startsAt: number;
+  finishingAt: any;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
+    this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
+    this.finishingAt = this.startsAt - Date.now();
+    console.log(this.finishingAt);
   }
 
   ngOnInit() {
@@ -97,6 +110,13 @@ export class BinaryTradeComponent implements OnInit {
     this.initPopSock();
     this.initChartConfig();
     this.initCcxtTicker();
+    this.balance = this.identityService.getBalance().game_wallet_ioi;
+  }
+
+  ngOnDestroy() {
+    if (this.ccxtInterval) {
+      clearInterval(this.ccxtInterval)
+    }
   }
 
 
@@ -162,8 +182,8 @@ export class BinaryTradeComponent implements OnInit {
             type: 'realtime',
             realtime: {
               duration: 20000,
-              refresh: 1000,
-              delay: 2000,
+              refresh: 1500,
+              delay: 3000,
 
             }
           },
@@ -336,6 +356,12 @@ export class BinaryTradeComponent implements OnInit {
       _this.onStatus(opt);
     });
 
+    popsock.on("winners", function (data) {
+      console.log(data);
+      const opt = JSON.parse(data);
+      _this.onWinners(opt);
+    });
+
     popsock.on("score", function (data) {
       const opt = JSON.parse(data);
       _this.onScore(opt);
@@ -347,28 +373,61 @@ export class BinaryTradeComponent implements OnInit {
   }
 
   onOption(data?: any) {
+    console.log(this.myId);
     const opt = data;
-    opt.uh === this.players[0].user_hash ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
+    opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
 
   onOptionClosed(data?: any) {
 
     const opt = data;
-    opt.uh === this.players[0].user_hash ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(true, opt.result, opt.ts, opt.ap);
+    opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
+  }
+
+  onWinners(data?: any) {
+
+    const win = data.filter((item) => {
+      return item.win === true
+    });
+    const lose = data.filter((item) => {
+      return item.win === false
+    });
+    this.winner = win[0];
+    this.loser = lose[0];
+    this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
+    this.meWon === false ? this.unityEnabled === false : null;
+    this.raceEnded = true;
+    this.raceEnded = false;
+  
   }
 
   onScore(data?: any) {
+
     const opt = data;
-    if (opt.uh === this.players[0].user_hash) {
+    console.log(opt.uh);
+    console.log(this.myId);
+    
+
+    if (opt.uh === this.myId) {
+      console.log('shoting to my');
       this.myShots = data.p;
       this.roileft = data.r;
     } else {
+
+      console.log('shoting to his');
       this.oponentShots = data.p;
       this.roiright = data.r;
     }
   }
 
   onStatus(data?: any) {
+    if (data.type === 'countdown') {
+      if (data.s === 10) {
+        this.optWaiting = 10;
+      }
+    }
+
+    
 
   }
 
@@ -421,6 +480,7 @@ export class BinaryTradeComponent implements OnInit {
     } else {
       this.players = data;
     }
+    console.log(this.players);
   }
 
 
@@ -438,8 +498,9 @@ export class BinaryTradeComponent implements OnInit {
   async initCcxtTicker() {
     const enableRateLimit = true;
     const binancex = new ccxt.binance({ enableRateLimit, options: {} });
+    
     if (binancex.has['watchTicker']) {
-      while (true) {
+      while (this.chartEnabled === true) {
         try {
           const ticker = await binancex.watchTicker('BTC/USDT', {});
           this.add(ticker.timestamp, ticker.last)
@@ -448,6 +509,7 @@ export class BinaryTradeComponent implements OnInit {
         }
       }
     }
+    
   }
 
 
@@ -455,5 +517,12 @@ export class BinaryTradeComponent implements OnInit {
     setTimeout(() => {
       this.optWaiting = 0;
     }, 1000);
+  }
+
+  fatality() {
+    this.raceComp.fatality();
+    setTimeout(() => {
+      this.unityEnabled = false;
+    }, 3000);
   }
 }
