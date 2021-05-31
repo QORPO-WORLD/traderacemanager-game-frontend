@@ -93,9 +93,11 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     this.getMyAssets();
     const bin = JSON.parse(localStorage.getItem('binary'));
     if (bin) {
-      this.getInterval = setInterval(() => {
-        this.getMyGames();
-      }, 800);
+      if (Date.now() < bin.time) {
+        this.getInterval = setInterval(() => {
+          this.getMyGames();
+        }, 800);
+    }
     }
 
   }
@@ -158,13 +160,16 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   joinToGame() {
     const bin = JSON.parse(localStorage.getItem('binary'));
     if (bin) {
-      return;
+      if (Date.now() > bin.time) {
+        return;
+      }
     }
-    this.automatchLoading = true;
+
     this.gameObserver = this.raceApi.joinBinary({
       avatar_id: this.racerPk
     }).subscribe(
       data => {
+        this.automatchLoading = true;
         localStorage.setItem('binary', JSON.stringify({
           hash: data.versus_hash,
           time: Date.now() + (data.ttl * 1000)

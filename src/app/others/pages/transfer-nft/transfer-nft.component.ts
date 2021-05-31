@@ -421,7 +421,7 @@ export class TransferNftComponent implements OnInit {
       id: 1,
       collection: "Super",
       name: "Axle",
-      prize: "100 IOI",
+      prize: 100,
       image: "white-trm",
       gif: "white-trm-animation",
       type: "racer",
@@ -436,7 +436,7 @@ export class TransferNftComponent implements OnInit {
       id: 2,
       collection: "Super",
       name: "Flash",
-      prize: "100 IOI",
+      prize: 100,
       image: "red-trm",
       gif: "red-trm-animation",
       type: "racer",
@@ -450,7 +450,7 @@ export class TransferNftComponent implements OnInit {
       id: 3,
       collection: "Super",
       name: "Octane",
-      prize: "100 IOI",
+      prize: 100,
       image: "blue-trm",
       gif: "blue-trm-animation",
       type: "racer",
@@ -464,7 +464,7 @@ export class TransferNftComponent implements OnInit {
       id: 4,
       collection: "Super",
       name: "Punisher",
-      prize: "100 IOI",
+      prize: 100,
       image: "black-trm",
       gif: "black-trm-animation",
       type: "racer",
@@ -478,7 +478,7 @@ export class TransferNftComponent implements OnInit {
       id: 5,
       collection: "Epic",
       name: "Lady Rich",
-      prize: "1 000 IOI",
+      prize: 1000,
       image: "lady-rich",
       gif: "lady-rich-animation",
       type: "racer",
@@ -492,7 +492,7 @@ export class TransferNftComponent implements OnInit {
       id: 6,
       collection: "Epic",
       name: "Rich Jr.",
-      prize: "1 000 IOI",
+      prize: 1000,
       image: "bad-boy",
       gif: "bad-boy-animation",
       type: "racer",
@@ -506,7 +506,7 @@ export class TransferNftComponent implements OnInit {
       id: 7,
       collection: "Epic",
       name: "Mrs. Rich",
-      prize: "1 000 IOI",
+      prize: 1000,
       image: "mrs-rich",
       gif: "mrs-rich-animation",
       type: "racer",
@@ -520,7 +520,7 @@ export class TransferNftComponent implements OnInit {
       id: 8,
       collection: "Legendary",
       name: "Mr. Rich",
-      prize: "10 000 IOI",
+      prize: 10000,
       image: "mr-rich",
       gif: "mr-rich-animation",
       type: "racer",
@@ -676,6 +676,7 @@ export class TransferNftComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
+  nftType = 'car';
   constructor(
     protected notify: NotifiqService,
     private route: ActivatedRoute,
@@ -692,11 +693,14 @@ export class TransferNftComponent implements OnInit {
   getNftId() {
     this.routeObserver = this.route.queryParams.subscribe((params) => {
       this.nftId = +params["nftId"];
+      this.nftType = params["nftType"];
       if (params["nftId"].length <= 0) {
         this.nftId = 1;
       }
     });
-    this.resolveCarEdition(this.nftId);
+    if (this.nftType === 'car') {
+      this.resolveCarEdition(this.nftId);
+    }
     this.resolveShowAsset();
   }
 
@@ -704,9 +708,16 @@ export class TransferNftComponent implements OnInit {
     this.nickname = this.identityService.getStorageIdentity().nickname;
   }
   resolveShowAsset() {
-    this.products = this.products.filter(
-      (asset) => asset["position"] === this.nftId - 1
-    );
+    if (this.nftType === 'car') {
+      this.products = this.products.filter(
+        (asset) => asset["position"] === this.nftId - 1
+      );
+    } else if (this.nftType === 'racer') {
+      this.products = this.products.filter(
+        (asset) => asset["id"] === this.nftId
+      );
+      this.nftIoiValue = this.products[0]["prize"]
+    }
   }
 
   getAccountValue() {
@@ -745,7 +756,7 @@ export class TransferNftComponent implements OnInit {
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc
       .nitroWalletTransferCreate({
-        currency: "car_" + this.nftId.toString(),
+        currency: this.nftType + this.nftId.toString(),
         amount: this.amount,
         mode: "races2nitro",
       })

@@ -14,10 +14,17 @@
 
   <div class="content-holder">
     <div class="left-holder">
-      <div class="img-holder">
+      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
         <img
           class="car-img"
+          *ngIf="this.nftType === 'car'"
           [src]="'assets/base/images/nft-cars/car' + nftId + '.png'"
+          alt="Image of selected car"
+        />
+        <img
+          class="car-img"
+          *ngIf="this.nftType === 'racer'"
+          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
           alt="Image of selected car"
         />
         <div class="car-stats">
@@ -49,40 +56,12 @@
       </div>
 
       <div class="amount-holder">
-        <p class="common-heading">Amount</p>
-        <div class="amount-input my-cta-btn-back">
-          <div class="inner">
-            <input
-              type="number"
-              [(ngModel)]="amount"
-              [ngModelOptions]="{ standalone: true }"
-              placeholder="Enter the ammount you want to transfer"
-            />
-          </div>
-        </div>
-        <p class="common-heading">Internal transfer</p>
-        <div class="transfer-inputs">
-          <div class="input-item left">
-            <div class="my-input bordered my-cta-btn-back">
-              <input
-                type="text"
-                [value]="'modals.transfer_modal.from_game' | translate"
-                readonly
-              />
-            </div>
-            <p class="destination-desc">Send from</p>
-          </div>
-          <div class="input-item">
-            <div class="my-input">
-              <input
-                type="text"
-                [value]="'modals.transfer_modal.from_nitro' | translate"
-                readonly
-              />
-            </div>
-            <p class="destination-desc">Send to</p>
-          </div>
-        </div>
+        <p class="big-text">
+          If you deposited the funds and the transaction has been confirmed on the
+          blockchain, push the claim button. You can claim anytime after a
+          confirmed transaction on the blockchain. Please push the claim button to
+          see your balance in the dashboard.
+        </p>
       </div>
     </div>
     <div class="right-holder">
@@ -98,21 +77,19 @@
           <div class="border-maker my-cta-btn-back"></div>
           <p class="desc">{{ products[0]["name"] }}</p>
           <div class="border-maker my-cta-btn-back"></div>
-          <p class="desc">Crypto wallet address</p>
         </div>
         <div class="summary-box">
           <div class="border-maker my-cta-btn-back"></div>
           <div class="info-item">
-            <p class="desc">Transfer from | to</p>
-            <p class="value">Game Wallet | IOI Wallet</p>
+            <p class="desc">Crypto wallet address</p>
+            <p class="value">{{ cryptoMtfrckr }}</p>
           </div>
         </div>
         <button
           class="confirm-btn my-cta-btn-back hoverable"
-          [disabled]="amount < 1"
-          (click)="resolveTransfer()"
+          (click)="depositCar()"
         >
-          Confirm
+          Claim
         </button>
       </div>
     </div>

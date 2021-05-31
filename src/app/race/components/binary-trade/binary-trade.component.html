@@ -5,7 +5,6 @@
 
   <div class="race-menu">
     <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
-
     <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
   
       <div class="right-items">
@@ -49,7 +48,7 @@
     </div>
 
   </div>
-  <div *ngIf="players?.length > 1">
+  <div *ngIf="players?.length > 1" class="unity-holder">
     <app-unityrace [players]="players" #unityRace style="width: 100%;
           height: 100%;
           position: relative;
@@ -58,6 +57,14 @@
     </app-unityrace>
   </div>
   <div class="content-holder" *ngIf="raceEnded === false">
+    <div class="mobile-avatars">
+      <div class="avatar-box">
+        <img src="/assets/base/images/nft-racers/white-trm.png" alt="">
+      </div>
+      <div class="avatar-box rival">
+        <img src="/assets/base/images/nft-racers/red-trm.png" alt="">
+      </div>
+    </div>
     <div class="chart-holder">
       <div class="react-controls" *ngIf="mePlaying === true">
         <p>React!</p>
@@ -86,10 +93,17 @@
         </div>
       </div>
       
-      <div id="container"></div>
+      <div id="container">
+
+      </div>
       <canvas id="canvas">
 
       </canvas>
+      <div class="timer-count" *ngIf="optWaiting !== 0">
+
+        <div class="tc-wrap">
+          <app-timer [value]="10" (onComplete)="optTimerCompleted($event)"></app-timer>        </div>
+      </div>
     </div>
 
     <div class="control-panel">
@@ -97,37 +111,38 @@
         <p class="name">{{players[0]?.user_nickname}}</p>
 
         <div class="targets-holder">
-          <div class="target-item okey">
+          <div class="target-item" [ngClass]="{okey: myShots[0] === 1, wrong: myShots[0] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item okey">
+          <div class="target-item" [ngClass]="{okey: myShots[1] === 1, wrong: myShots[1] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item wrong">
+          <div class="target-item" [ngClass]="{okey: myShots[2] === 1, wrong: myShots[2] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+          <div class="target-item" [ngClass]="{okey: myShots[3] === 1, wrong: myShots[3] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+          <div class="target-item" [ngClass]="{okey: myShots[4] === 1, wrong: myShots[4] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+          <div class="target-item" [ngClass]="{okey: myShots[5] === 1, wrong: myShots[5] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
+          
         </div>
 
         <div class="my-progress">
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent">20.50%</p>
+        <p class="percent" *ngIf="roileft">{{roileft}}%</p>
 
       </div>
 
@@ -138,8 +153,8 @@
         <div class="data-box bordered">
           <img src="/assets/base/images/binary-race/btc-logo.svg" alt="">
         
-          <p *ngIf="price$ | async as price; else loading">
-            &#36; {{price}}
+          <p *ngIf="currentValue; else loading">
+            &#36; {{currentValue}}
               </p>
           5
           <ng-template #loading>
@@ -148,7 +163,9 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p>30 sec</p>
+          <p class="bin-trade">
+            <app-timer [value]="30"></app-timer> sec
+          </p>
         </div>
         <div class="control-btn up" (click)="long = true;placeOption();">
           <img src="/assets/base/images/binary-race/up-icon.svg" alt="">
@@ -159,37 +176,38 @@
         <p class="name">{{players[1]?.user_nickname}}</p>
 
         <div class="targets-holder">
-          <div class="target-item okey">
+          <div class="target-item" [ngClass]="{okey: oponentShots[0] === 1, wrong: oponentShots[0] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item wrong">
+           <div class="target-item" [ngClass]="{okey: oponentShots[1] === 1, wrong: oponentShots[1] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item wrong">
+           <div class="target-item" [ngClass]="{okey: oponentShots[2] === 1, wrong: oponentShots[2] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+           <div class="target-item" [ngClass]="{okey: oponentShots[3] === 1, wrong: oponentShots[3] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+           <div class="target-item" [ngClass]="{okey: oponentShots[4] === 1, wrong: oponentShots[4] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
-          <div class="target-item">
+           <div class="target-item" [ngClass]="{okey: oponentShots[5] === 1, wrong: oponentShots[5] === -1 }">
             <img src="/assets/base/images/binary-race/okey.svg" alt="" class="okey">
             <img src="/assets/base/images/binary-race/wrong.svg" alt="" class="wrong">
           </div>
+          
         </div>
 
         <div class="my-progress">
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent">20.50%</p>
+        <p class="percent" *ngIf="roiright">{{roiright}}%</p>
 
       </div>
 

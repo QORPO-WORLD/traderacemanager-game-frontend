@@ -115,33 +115,55 @@
           <!-- <div class="lang-switcher">
             <app-lang-switcher></app-lang-switcher>
           </div> -->
-          <div class="profile">
-            <div class="profile-img" [routerLink]="['/profile/my-profile']">
-              <img
-                src="assets/base/images/avatars/avatar1-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 1"
-              />
-              <img
-                src="assets/base/images/avatars/avatar2-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 2"
-              />
-              <img
-                src="assets/base/images/avatars/avatar3-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 3"
-              />
-              <img
-                src="assets/base/images/avatars/avatar4-small.png"
-                alt=""
-                *ngIf="Affilate.affiliate_level === 4"
-              />
+          <div (click)="toggleSettings()" class="profile">
+            <div class="profile-content">
+              <div class="profile-img">
+                <img
+                  src="assets/base/images/avatars/avatar1-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 1"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar2-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 2"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar3-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 3"
+                />
+                <img
+                  src="assets/base/images/avatars/avatar4-small.png"
+                  alt=""
+                  *ngIf="Affilate.affiliate_level === 4"
+                />
+              </div>
+              <div class="profile-stats">
+                <p class="name">
+                  {{ myDriverStats?.nickname }}
+                </p>
+              </div>
             </div>
-            <div class="profile-stats">
-              <p class="name">
-                {{ myDriverStats?.nickname }}
-              </p>
+            <div
+              [ngClass]="{ active: settingsShown === true }"
+              class="profile-expander"
+            >
+              <div class="btn-item" (click)="showMySettings = true">
+                <p>
+                  <img
+                    src="/assets/base/images/menu/settings-icon.svg"
+                    alt=""
+                  />
+                  {{ "profile.acc_settings" | translate }}
+                </p>
+              </div>
+              <div class="btn-item" (click)="logout()">
+                <p>
+                  <img src="/assets/base/images/menu/logout-icon.svg" alt="" />
+                  {{ "profile.log_out" | translate }}
+                </p>
+              </div>
             </div>
           </div>
         </ng-container>

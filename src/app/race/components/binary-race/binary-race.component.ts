@@ -46,7 +46,8 @@ export class BinaryRaceComponent implements OnInit {
   myChart: any;
   myCoin: any;
   socket$: WebSocketSubject<any> = webSocket({
-    url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    //url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
+    url: 'https://api.binance.com/api/v3/depth?symbol=BNBBTC&limit=1000',
     openObserver: {
       next: () => {
         this.socket$.next({ 'type': 'subscribe', 'symbol': 'BINANCE:BTCUSDT' });

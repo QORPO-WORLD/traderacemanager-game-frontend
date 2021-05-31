@@ -1,0 +1,113 @@
+<div class="main-holder">
+  <div class="top-info">
+    <div class="back" [routerLink]="['/profile/my-profile']">
+      <p>&lt;</p>
+      <p>{{ "shared.back" | translate }}</p>
+    </div>
+    <div class="text-info">
+      <h1>Withdraw NFTs</h1>
+      <p>
+        Welcome {{ nickname }}, you can withdraw your NFTs from other platforms.
+      </p>
+    </div>
+  </div>
+
+  <div class="content-holder">
+    <div class="left-holder">
+      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
+        <img
+          class="car-img"
+          *ngIf="this.nftType === 'car'"
+          [src]="'assets/base/images/nft-cars/car' + nftId + '.png'"
+          alt="Image of selected car"
+        />
+        <img
+          class="car-img"
+          *ngIf="this.nftType === 'racer'"
+          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
+          alt="Image of selected car"
+        />
+        <div class="car-stats">
+          <div class="name">
+            <p>{{ products[0]["name"] }}</p>
+            <p class="desc">{{ products[0]["collection"] }}</p>
+          </div>
+          <div class="value">
+            <p>
+              {{ nftIoiValue }}
+              <img
+                src="assets/base/images/curr-logos/nex/ioi-noshadow.png"
+                alt="ioi logo"
+              />
+            </p>
+            <p class="desc">IOI value</p>
+          </div>
+          <div class="value">
+            <p>
+              {{ nftIoiValue * 0.4 }}
+              <img
+                src="assets/base/images/curr-logos/nex/dollar-logo.png"
+                alt="ioi logo"
+              />
+            </p>
+            <p class="desc">USD value</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="amount-holder">
+        <p class="common-heading">Amount</p>
+        <div class="amount-input my-cta-btn-back">
+          <div class="inner">
+            <input
+              type="number"
+              [(ngModel)]="amount"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Enter the ammount you want to withdraw"
+            />
+          </div>
+        </div>
+        <p class="common-heading">Crypto wallet address</p>
+        <div class="amount-input my-cta-btn-back">
+          <div class="inner">
+            <input
+              type="text"
+              [(ngModel)]="cryptoMtfrckr"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Enter valid crypto address"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-holder">
+      <p class="common-heading">Your withdraw summary</p>
+      <div class="main-panel">
+        <div class="withdraw-info">
+          <p class="text">You are withdrawing</p>
+          <p class="value">
+            <span *ngIf="amount > 0">{{ amount }}</span>
+            <span *ngIf="amount < 1">0</span>
+            <span class="value-desc">NFTs</span>
+          </p>
+          <div class="border-maker my-cta-btn-back"></div>
+          <p class="desc">{{ products[0]["name"] }}</p>
+          <div class="border-maker my-cta-btn-back"></div>
+        </div>
+        <div class="summary-box">
+          <div class="border-maker my-cta-btn-back"></div>
+          <div class="info-item">
+            <p class="desc">Crypto wallet address</p>
+            <p class="value">{{ cryptoMtfrckr }}</p>
+          </div>
+        </div>
+        <button
+          class="confirm-btn my-cta-btn-back hoverable"
+          (click)="withdrawCar()"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

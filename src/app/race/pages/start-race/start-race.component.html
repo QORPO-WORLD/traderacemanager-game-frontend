@@ -4,7 +4,7 @@
     <div class="upper-dashboard">
       <div class="boxes">
         <h2 class="news-title">What's new</h2>
-        <div class="box first">
+        <div [routerLink]="['/teams/join-teams']" class="box first">
           <img
             class="left"
             src="assets/base/images/start-race/discount.png"
@@ -17,20 +17,32 @@
             </div>
           </div>
         </div>
-        <div class="box second my-cta-btn-back">
-          <div class="box-content">
-            <img
-              class="right"
-              src="assets/base/images/start-race/ioi-token.png"
-              alt="golden ioi token"
-            />
-            <div class="text">
-              <h3>IOI TOKEN</h3>
-              <p>as a backbone for TRM</p>
+        <a
+          href="https://ioi-token.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><div class="box second my-cta-btn-back">
+            <div class="box-content">
+              <img
+                class="right"
+                src="assets/base/images/start-race/ioi-token.png"
+                alt="golden ioi token"
+              />
+              <div class="text">
+                <h3>IOI TOKEN</h3>
+                <p>as a backbone for TRM</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="box second my-cta-btn-back">
+        </a>
+        <div
+          [routerLink]="['/profile/my-profile']"
+          [queryParams]="{
+            controlType: 'affiliate',
+            secondControlType: 'about rewards'
+          }"
+          class="box second my-cta-btn-back"
+        >
           <div class="box-content">
             <img
               class="right"
@@ -46,7 +58,10 @@
       </div>
     </div>
     <div class="lower-dashboard">
-      <div class="marketplace my-cta-btn-back">
+      <div
+        [routerLink]="['/car/nft-market']"
+        class="marketplace my-cta-btn-back"
+      >
         <img
           class="right"
           src="assets/base/images/start-race/nft-back-blue.png"
@@ -56,7 +71,7 @@
       </div>
       <div class="category-boxes">
         <h2 class="cat-title">Categories</h2>
-        <div class="lower-box first">
+        <div [routerLink]="['/profile/my-profile']" class="lower-box first">
           <img
             class="right"
             src="assets/base/images/start-race/nfts.png"
@@ -64,7 +79,7 @@
           />
           <h3>MY NFTs</h3>
         </div>
-        <div class="lower-box">
+        <div [routerLink]="['/teams/my-team']" class="lower-box">
           <img
             class="right"
             src="assets/base/images/start-race/my-team.png"
@@ -72,7 +87,7 @@
           />
           <h3>MY TEAM</h3>
         </div>
-        <div class="lower-box">
+        <div [routerLink]="['/teams/leaderboard']" class="lower-box">
           <img
             class="right"
             src="assets/base/images/start-race/leaderboard.png"
@@ -81,7 +96,10 @@
           <h3>LEADERBOARD</h3>
         </div>
       </div>
-      <div class="games my-cta-btn-back">
+      <div
+        [routerLink]="['/race/race-selection']"
+        class="games my-cta-btn-back"
+      >
         <img
           class="right"
           src="assets/base/images/start-race/games.png"

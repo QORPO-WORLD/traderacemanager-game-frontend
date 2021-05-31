@@ -1517,4 +1517,6 @@ export class MyNftComponent implements OnInit {
       this.currentPage = this.currentPage + 1;
     }
   }
+
+  
 }

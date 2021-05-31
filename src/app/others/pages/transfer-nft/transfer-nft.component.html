@@ -21,10 +21,17 @@
 
   <div class="content-holder">
     <div class="left-holder">
-      <div class="img-holder">
+      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
         <img
           class="car-img"
+          *ngIf="this.nftType === 'car'"
           [src]="'assets/base/images/nft-cars/car' + nftId + '.png'"
+          alt="Image of selected car"
+        />
+        <img
+          class="car-img"
+          *ngIf="this.nftType === 'racer'"
+          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
           alt="Image of selected car"
         />
         <div class="car-stats">
