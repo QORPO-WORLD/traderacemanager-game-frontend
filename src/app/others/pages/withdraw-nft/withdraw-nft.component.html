@@ -66,7 +66,7 @@
 
       <div class="amount-holder">
         <p class="common-heading">Amount</p>
-        <div class="amount-input my-cta-btn-back">
+        <div class="amount-input">
           <div class="inner">
             <input
               type="number"
@@ -77,7 +77,7 @@
           </div>
         </div>
         <p class="common-heading">Crypto wallet address</p>
-        <div class="amount-input my-cta-btn-back">
+        <div class="amount-input">
           <div class="inner">
             <input
               type="text"
@@ -85,6 +85,11 @@
               [ngModelOptions]="{ standalone: true }"
               placeholder="Enter valid crypto address"
             />
+            <div class="correct-input my-cta-btn-back" [ngClass]="{'incorrect': cryptoMtfrckr.substring(0, 2) !== '0x' || cryptoMtfrckr.length < 26}">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.7747 0.949537C19.4743 0.649145 18.9872 0.649145 18.6868 0.949537L6.21765 13.4187L1.31315 8.5142C1.01279 8.21377 0.525724 8.21377 0.225293 8.5142C-0.0750978 8.81459 -0.0750978 9.30162 0.225293 9.60205L5.67378 15.0505C5.97405 15.3508 6.46128 15.3509 6.76163 15.0505L19.7747 2.03739C20.0751 1.73696 20.0751 1.24993 19.7747 0.949537Z"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
