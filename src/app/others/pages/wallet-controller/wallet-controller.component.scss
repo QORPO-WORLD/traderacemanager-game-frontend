@@ -236,25 +236,32 @@
     flex-wrap: wrap;
     .back {
       order: 1;
+      min-height: 99px;
+      border-radius: 5px;
+      width: 60px;
+      min-width: 60px;
       p {
         font-size: 11px;
         margin-bottom: 7px;
+        &.arrow{
+          font-size: 24px;
+        }
       }
     }
     .info-box {
-      width: calc(100% - 90px);
-      order: 2;
-      padding: 27px 18px;
-      min-width: unset;
+      display: none;
     }
     .text-info {
       order: 3;
       max-width: unset;
-      width: 100%;
+      width: calc(100% - 85px);
       margin-top: 10px;
-      text-align: center;
       .my-menu {
         width: 100%;
+        border-radius: 5px;
+        .menu-item{
+          border-radius: 5px;
+        }
       }
     }
   }
@@ -267,18 +274,6 @@
   }
   .top-info {
     padding-bottom: 0;
-    .back {
-      min-height: 87px;
-      min-width: 65px;
-      width: 65px;
-      p {
-        font-size: 10px;
-        margin-bottom: 6px;
-        &.arrow {
-          font-size: 25px;
-        }
-      }
-    }
     .info-box {
       width: calc(100% - 75px);
       padding: 20px 18px;
@@ -304,14 +299,21 @@
 
 @media screen and (max-width: 400px) {
   .top-info {
-    .info-box {
-      padding: 20px 10px;
-      .text-holder {
-        .value {
-          font-size: 17px;
-        }
-        .desc {
-          font-size: 13px;
+    .back{
+      min-width: 50px;
+      width: 50px;
+    }
+    .text-info{
+      width: calc(100% - 75px);
+      margin-top: 6px;
+      h1{
+        margin: 3px 0 10px;
+      }
+      .my-menu{
+        .menu-item{
+          p{
+            font-size: 13px;
+          }
         }
       }
     }
