@@ -715,7 +715,6 @@ export class NftMarketComponent implements OnInit {
   menuActive = 1;
   isMenuActive = false;
   activeMenu = 0;
-
   assetType: any;
   mobileFilter = false;
   inRow: number;
@@ -723,7 +722,6 @@ export class NftMarketComponent implements OnInit {
   maxPage: number;
   lastPage: number;
   typeObserver: Subscription;
-
   modalActive: any;
 
   constructor(protected api: CarsService, private route: ActivatedRoute) {

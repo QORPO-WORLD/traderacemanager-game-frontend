@@ -1,3 +1,11 @@
+.dash-back {
+  position: absolute;
+  height: calc(100vh - 80px);
+  min-height: 650px;
+  width: 100%;
+  background: grey;
+}
+
 :host {
   width: 100%;
   background: transparent;
@@ -8,15 +16,656 @@
 }
 
 .main-wrapper {
-  width: calc(100% - 457px);
+  width: 100%;
+  height: calc(100vh - 80px);
+  min-height: 650px;
+  overflow-y: hidden;
   padding-left: 40px;
   display: flex;
+  width: calc(100% - 40px);
   justify-content: space-between;
   align-items: flex-start;
   padding-top: 30px;
   flex-wrap: wrap;
+  position: relative;
+}
+//START RACE REWORK
+p {
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  opacity: 0.6;
+}
+h2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+}
+h3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+.dashboard-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  justify-content: space-between;
+  .dashboard-avatars {
+    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    img {
+      position: absolute;
+      &.team {
+        width: 220px;
+        left: 25%;
+        bottom: 400px;
+        transform: translateX(-50%);
+      }
+      &.car {
+        width: 800px;
+        left: 37.5%;
+        bottom: 0px;
+        transform: translateX(-50%);
+      }
+      &.racer {
+        left: 62.5%;
+        width: 800px;
+        transform: translateX(-50%);
+        bottom: -100px;
+      }
+    }
+  }
+  .upper-dashboard {
+    z-index: 1;
+    position: relative;
+    height: 75%;
+    .boxes {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      .news-title {
+        display: none;
+        letter-spacing: 0em;
+      }
+      .box {
+        transition: 0.3s;
+        position: relative;
+        cursor: pointer;
+        margin-top: 35px;
+        &.first {
+          height: 130px;
+          width: 280px;
+          margin-left: 30px;
+          padding: 2px 2px 0px 0px;
+          background: linear-gradient(
+            180deg,
+            #ffcd3e 0%,
+            rgba(52, 43, 16, 0) 100%
+          );
+        }
+        &.second {
+          padding-bottom: 3px;
+          width: 310px;
+          height: 160px;
+        }
+        img {
+          position: absolute;
+          &.left {
+            top: -1px;
+            width: 130px;
+            height: 130px;
+            left: -60px;
+          }
+        }
+        .box-content {
+          padding: 20px;
+          display: flex;
+
+          background: url("/assets/base/images/start-race/arena-back.png");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          align-items: center;
+          .text {
+            z-index: 1;
+            width: 100%;
+          }
+          &.first {
+            background: linear-gradient(
+                89.26deg,
+                #ffd342 -70.31%,
+                rgba(0, 0, 0, 0) 80.55%
+              ),
+              url("/assets/base/images/start-race/arena-back.png"), #333333;
+
+            justify-content: flex-end;
+            .text {
+              width: 70%;
+            }
+          }
+          img {
+            position: absolute;
+
+            &.right {
+              width: 50%;
+
+              right: -20px;
+            }
+          }
+        }
+      }
+      .box:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  .lower-dashboard {
+    z-index: 1;
+    width: 100%;
+    height: 20%;
+    align-items: flex-end;
+    position: absolute;
+    display: flex;
+    bottom: 40px;
+
+    .marketplace {
+      transition: 0.3s;
+      cursor: pointer;
+      width: 310px;
+      height: 130px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h2 {
+        z-index: 1;
+      }
+      img {
+        width: 65%;
+        position: absolute;
+        right: -10px;
+        top: 15px;
+        opacity: 0.25;
+      }
+    }
+    .marketplace:hover {
+      transform: scale(1.05);
+    }
+    .category-boxes {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      .cat-title {
+        text-align: left;
+        display: none;
+        letter-spacing: 0em;
+      }
+      .lower-box {
+        transition: 0.3s;
+        cursor: pointer;
+        margin-left: 30px;
+        width: 230px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(17, 17, 17, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        h3 {
+          opacity: 0.4;
+          margin: 0px;
+        }
+        &.first {
+          margin-left: 0px;
+        }
+        img {
+          margin-bottom: 10px;
+        }
+      }
+      .lower-box:hover {
+        transform: scale(1.05);
+      }
+    }
+    .games {
+      transition: 0.3s;
+      cursor: pointer;
+      margin-left: auto;
+      width: 417px;
+      height: 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .games:hover {
+      transform: scale(1.05);
+    }
+  }
 }
 
+@media screen and(max-width: 1700px) {
+  .dashboard-content {
+    .lower-dashboard {
+      bottom: 30px;
+      .category-boxes {
+        .lower-box {
+          width: 210px;
+        }
+      }
+
+      .games {
+        width: 385px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  .main-wrapper {
+    height: calc(100vh - 65px);
+  }
+  .dash-back {
+    height: calc(100vh - 65px);
+  }
+  p {
+    font-size: 13px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .dashboard-content {
+    .dashboard-avatars {
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      position: absolute;
+      width: 70%;
+      height: 100%;
+      img {
+        position: absolute;
+        &.team {
+          width: 200px;
+          left: 25%;
+          bottom: 300px;
+          transform: translateX(-50%);
+        }
+        &.car {
+          width: 700px;
+          left: 35%;
+          bottom: 0px;
+          transform: translateX(-50%);
+        }
+        &.racer {
+          left: 62.5%;
+          width: 700px;
+          transform: translateX(-50%);
+          bottom: -100px;
+        }
+      }
+    }
+    .upper-dashboard {
+      .boxes {
+        .box {
+          margin-top: 15px;
+          img {
+            position: absolute;
+            &.left {
+              top: 0px;
+              width: 120px;
+              height: 120px;
+            }
+          }
+          &.first {
+            margin-left: 40px;
+            width: 250px;
+            height: 120px;
+          }
+          &.second {
+            width: 290px;
+            height: 140px;
+          }
+          .box-content {
+            img {
+              &.right {
+                top: 10px;
+                right: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .lower-dashboard {
+      bottom: 20px;
+      .marketplace {
+        width: 290px;
+        height: 115px;
+      }
+      .category-boxes {
+        position: relative;
+        transform: translate(0, 0);
+        left: 0;
+        margin-left: auto;
+        .lower-box {
+          width: 200px;
+          height: 90px;
+          margin-left: 20px;
+          &.first {
+            margin-left: 20px;
+          }
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+
+      .games {
+        width: 365px;
+        height: 115px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 1400px) {
+  .dashboard-content {
+    .dashboard-avatars {
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      position: absolute;
+      width: 70%;
+      height: 100%;
+      img {
+        position: absolute;
+
+        &.car {
+          width: 700px;
+          left: 35%;
+          bottom: 0px;
+          transform: translateX(-50%);
+        }
+        &.racer {
+          left: 62.5%;
+          width: 700px;
+          transform: translateX(-50%);
+          bottom: -100px;
+        }
+      }
+    }
+    .upper-dashboard {
+      .boxes {
+        .box {
+          img {
+            &.left {
+              width: 110px;
+              height: 110px;
+            }
+          }
+          &.first {
+            margin-left: 35px;
+            width: 240px;
+            height: 110px;
+          }
+          &.second {
+            width: 275px;
+            height: 125px;
+          }
+          .box-content {
+            img {
+              &.right {
+                top: 10px;
+                right: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .lower-dashboard {
+      .marketplace {
+        width: 275px;
+        height: 105px;
+      }
+      .category-boxes {
+        .lower-box {
+          width: 180px;
+          height: 80px;
+          margin-left: 15px;
+          &.first {
+            margin-left: 0px;
+          }
+        }
+      }
+      .games {
+        height: 105px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 1200px) {
+}
+@media screen and(max-width: 1024px) {
+  .dash-back {
+    height: 400px;
+    min-height: 400px;
+  }
+  .main-wrapper {
+    height: auto;
+  }
+  .dashboard-content {
+    padding-bottom: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    height: auto;
+    position: relative;
+    justify-content: unset;
+    .dashboard-avatars {
+      top: 0px;
+      left: 0%;
+      transform: translateX(0);
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 450px;
+      margin: 0 auto;
+      img {
+        position: absolute;
+        &.team {
+          width: 150px;
+          left: 35%;
+          bottom: 230px;
+          transform: translateX(-50%);
+        }
+        &.car {
+          width: 480px;
+          left: 42.5%;
+          bottom: 30px;
+          transform: translateX(-50%);
+        }
+        &.racer {
+          left: 60%;
+          width: 500px;
+          transform: translateX(-50%);
+          bottom: -100px;
+        }
+      }
+    }
+    .upper-dashboard {
+      z-index: 1;
+      margin-top: 50px;
+      .boxes {
+        z-index: 1;
+        align-items: center;
+        flex-direction: column;
+
+        .news-title {
+          display: block;
+          width: 400px;
+        }
+        .box {
+          z-index: 1;
+          margin-top: 25px;
+          &.first {
+            margin-left: 50px;
+            width: 350px;
+          }
+          &.second {
+            width: 400px;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+    .lower-dashboard {
+      position: relative;
+      flex-direction: column;
+      align-items: center;
+      .marketplace {
+        padding: 20px;
+        width: 400px;
+        position: relative;
+        overflow: hidden;
+        text-align: left;
+        justify-content: unset;
+        img {
+          width: 55%;
+          top: 50%;
+          left: 72.5%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+        }
+      }
+      .category-boxes {
+        margin-top: 50px;
+        margin-left: 0px;
+        flex-direction: column;
+        .cat-title {
+          display: block;
+        }
+        .lower-box {
+          margin-top: 25px;
+          width: 400px;
+          margin-left: 0px;
+        }
+      }
+      .games {
+        margin-top: 25px;
+        width: 400px;
+        margin-left: 0px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .dash-back {
+    height: 350px;
+    min-height: 350px;
+  }
+  .dashboard-content {
+    .dashboard-avatars {
+      height: 400px;
+
+      img {
+        position: absolute;
+
+        &.car {
+          width: 400px;
+          min-width: 400px;
+          left: 42.5%;
+          bottom: 30px;
+        }
+        &.racer {
+          left: 80%;
+          width: 500px;
+          min-width: 500px;
+          bottom: -100px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .dash-back {
+    height: 350px;
+    min-height: 350px;
+  }
+  .dashboard-content {
+    .dashboard-avatars {
+      img {
+        &.team {
+          width: 130px;
+          left: 32.5%;
+          bottom: 225px;
+        }
+        &.car {
+          width: 350px;
+          min-width: 350px;
+          left: 45%;
+          bottom: 60px;
+        }
+      }
+    }
+    .upper-dashboard {
+      .boxes {
+        .news-title {
+          width: 100%;
+        }
+        .box {
+          &.first {
+            margin-left: 20%;
+            width: 80%;
+          }
+          &.second {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .lower-dashboard {
+      .marketplace {
+        width: 100%;
+      }
+      .category-boxes {
+        width: 100%;
+        .lower-box {
+          width: 100%;
+        }
+      }
+      .games {
+        width: 100%;
+      }
+    }
+  }
+}
+//END REWORD
 .exp-content {
   width: 100%;
 }
@@ -837,6 +1486,44 @@
 }
 
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
+  .dashboard-content {
+    .dashboard-avatars {
+      z-index: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      position: absolute;
+      width: 70%;
+      height: 100%;
+      img {
+        position: absolute;
+        &.team {
+          width: 300px;
+          left: 25%;
+          bottom: 500px;
+          transform: translateX(-50%);
+        }
+        &.car {
+          width: 1000px;
+          left: 37.5%;
+          bottom: 0px;
+          transform: translateX(-50%);
+        }
+        &.racer {
+          left: 62.5%;
+          width: 1000px;
+          transform: translateX(-50%);
+          bottom: -100px;
+        }
+      }
+    }
+  }
+  .main-wrapper {
+    height: calc(100vh - 100px);
+  }
+  .dash-back {
+    height: calc(100vh - 100px);
+  }
   .box-heading {
     font-size: 23px;
     margin: 0 0 20px 0;
@@ -1024,7 +1711,7 @@
 
 @media screen and (max-width: 1700px) {
   .main-wrapper {
-    width: calc(100% - 410px);
+    width: calc(100% - 30px);
     padding-left: 30px;
     padding-top: 10px;
   }
@@ -1201,7 +1888,7 @@
 
 @media screen and (max-width: 1550px) {
   .main-wrapper {
-    width: calc(100% - 380px);
+    width: calc(100% - 20px);
     padding-left: 20px;
     padding-top: 10px;
   }
@@ -1350,7 +2037,7 @@
 
 @media screen and (max-width: 1200px) {
   .main-wrapper {
-    width: calc(100% - 340px);
+    width: calc(100% - 13px);
     padding-left: 13px;
   }
 }
