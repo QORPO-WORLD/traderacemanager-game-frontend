@@ -110,6 +110,11 @@
     </div>
     <div class="dashboard-avatars">
       <div
+        [routerLink]="
+          accountInfo.is_paid_membership === 'Free'
+            ? ['/teams/join-teams']
+            : null
+        "
         class="team-img team"
         *ngIf="
           accountInfo.team === 'IOI' ||
@@ -117,6 +122,18 @@
           accountInfo.team === 'ALT'
         "
       >
+        <img
+          *ngIf="accountInfo.is_paid_membership === 'Free'"
+          class="premium non-premium"
+          src="/assets/base/images/menu/premium-icon.svg"
+          alt="NonPremium icon"
+        />
+        <img
+          *ngIf="accountInfo.is_paid_membership === 'Premium'"
+          class="premium"
+          src="/assets/base/images/menu/premium-icon-active.svg"
+          alt="Premium icon"
+        />
         <img
           [src]="'/assets/base/images/teams/' + accountInfo.team + '-team.png'"
           alt=""
@@ -130,6 +147,11 @@
           accountInfo.team !== 'ALT'
         "
       >
+        <img
+          class="premium"
+          src="/assets/base/images/menu/premium-icon-active.svg"
+          alt="Premium icon"
+        />
         <img
           [src]="
             'assets/base/images/custom-teams/custom-team' +

@@ -782,6 +782,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.checkTutorial();
     }, 3000);
     this.recognizeBanner();
+    this.getMydriver();
     this.getDaysToDividens();
     this.getMyCars();
     this.myDriverOld = this.identityService.getDriverMe();
@@ -1517,6 +1518,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
   getMydriver() {
     this.accountInfo = this.identityService.getDriverMe();
+    console.log(this.accountInfo);
   }
   getTeams() {
     this.tsapi.teamsList().subscribe((data) => {
