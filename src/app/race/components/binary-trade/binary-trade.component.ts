@@ -132,10 +132,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   subscribeToStream() {
     this.chartSubscription = this.chartStream.subscribe(datax => {
       if (datax.value && this.raceEnded === false) {
-
+        const dateF = new Date(datax.time).toLocaleTimeString();
         this.chart.data.datasets[0].data.push(datax.value);
         this.chart.data.datasets[0].pointStyle.push(datax.type);
-        this.chart.data.labels.push(datax.time);
+        this.chart.data.labels.push(dateF);
         if (this.chart.data.datasets[0].data.length > 20) {
           this.chart.data.datasets[0].data.shift();
           this.chart.data.datasets[0].pointStyle.shift();
@@ -147,7 +147,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.pushing = false;
           }, 1000);
-          console.log(datax);
+          
         }
       }
     })
@@ -285,7 +285,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   add(timeV: number, valV: number) {
     if (this.pushing === false) {
       const tdate = new Date(timeV);
-      const vall = 1000 * ((timeV + 500) / 1000);
+      const vall = 1000 * Math.floor(timeV / 1000);
       this.currentValue = valV;
 
       const obj = {
