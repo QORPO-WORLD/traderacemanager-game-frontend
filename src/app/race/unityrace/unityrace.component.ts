@@ -107,6 +107,11 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gameInstance.SendMessage('JavascriptHook', 'SetAnimation', avatarIndex + '|' + data.reaction);
   }
 
+  fatality() {
+    this.gameInstance.SendMessage('JavascriptHook', 'Detonate', '2');
+  
+  }
+
 
 
 

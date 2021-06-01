@@ -94,7 +94,7 @@ export class AuthService extends AbstractService {
    
             if (hasLastRoute) {
               this.router.navigate([hasLastRoute]);
-              localStorage.removeItem('last-route');
+              setTimeout(() => { localStorage.removeItem('last-route'); }, 200);
             } else {
               this.router.navigate(['/race/start-race']);
             }

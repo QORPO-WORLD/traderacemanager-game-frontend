@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-binary-winner',
@@ -56,12 +57,26 @@ export class BinaryWinnerComponent implements OnInit {
       image: 'mr-rich',
     }
   ];
+  @Input() winner: any;
+  @Input() loser: any;
+  @Input() meWon: any;
+  @Output() fatality: EventEmitter<any> = new EventEmitter();
+  
+  constructor(private route: Router) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.hasWon = this.meWon;
+  }
 
-  ngOnInit() {}
+  fatalityDo() {
+    this.fatality.emit(1);
+  }
 
-  repeat(){
+  repeat() {
+    this.route.navigate(['/race/binary-fuel']);
+    return;
+
+
     this.repeatGame = true;
     this.myAvatar = this.racers[this.randomInteger(0,7)];
     this.loading = true;

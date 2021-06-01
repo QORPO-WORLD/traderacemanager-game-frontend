@@ -196,7 +196,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           localStorage.removeItem('binary');
    
           setTimeout(() => {
-            this.route.navigate(['/race/binary-trade/' + data[0].versus_hash]);
+            this.route.navigate(['/race/binary-trade/' + data[0].versus_hash + '/' + data[0].start_at.toString()]);
           }, 1000);
         }
       }
