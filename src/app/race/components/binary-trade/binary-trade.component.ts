@@ -1,3 +1,5 @@
+
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
 
@@ -5,7 +7,7 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
-import { Observable, EMPTY, of, Subscription } from 'rxjs';
+import { Observable, EMPTY, of, Subscription, Subject } from 'rxjs';
 declare let ccxt: any;
 let popsock = (window as any).kocksock;
 import io from "socket.io-client"
@@ -99,6 +101,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   startsAt: number;
   finishingAt: any;
   startsInSecs: number;
+  chartStream: Subject<any>  = new Subject();;
+  chartSubscription: Subscription;
+  pushing = false;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -112,12 +117,39 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.initChartConfig();
     this.initCcxtTicker();
     this.balance = this.identityService.getBalance().game_wallet_ioi;
+    this.subscribeToStream();
   }
 
   ngOnDestroy() {
     if (this.ccxtInterval) {
       clearInterval(this.ccxtInterval)
     }
+    if (this.chartSubscription) {
+      this.chartSubscription.unsubscribe();
+    }
+  }
+
+  subscribeToStream() {
+    this.chartSubscription = this.chartStream.subscribe(datax => {
+      if (datax) {
+        if (this.pushing === false) {
+          console.log(datax.time);
+          const vall = 1000 * ((datax.time + 500) / 1000);
+          this.pushing = true;
+          this.chart.data.datasets[0].data.push(datax.value);
+          this.chart.data.datasets[0].pointStyle.push(datax.type);
+          this.chart.data.labels.push(vall);
+          if (this.chart.data.datasets[0].data.length > 20) {
+            this.chart.data.datasets[0].data.shift();
+            this.chart.data.datasets[0].pointStyle.shift();
+            this.chart.data.labels.shift();
+          }
+          this.chart.update();
+          this.pushing = false;
+            
+        }
+      }
+    })
   }
 
 
@@ -175,7 +207,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           data: [],
           lineTension: 0.1,
           pointStyle: []
-        },{
+        }, {
           label: 'BTC/USDT',
           backgroundColor: gradient,
           borderColor: this.chartColors.red,
@@ -247,18 +279,20 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
   add(timeV: string, valV: number) {
-
-      const tdate = new Date(timeV).toLocaleTimeString();
+    if (this.pushing === false) {
+      const tdate = new Date(timeV);
       this.currentValue = valV;
 
-      this.chart.data.datasets[0].data.push(valV);
-      this.chart.data.datasets[0].pointStyle.push('circle');
-      this.chart.data.labels.push(tdate);
-      if (this.chart.data.datasets[0].data.length > 20) {
-        //this.chart.data.datasets[0].data.shift();
-        //this.chart.data.datasets[0].pointStyle.shift();
-        //this.chart.data.labels.shift();
-      }
+      const obj = {
+        value: valV,
+        type: 'circle',
+        time: timeV
+      };
+
+      this.chartStream.next(obj);
+    }
+
+
 
   }
 
@@ -275,25 +309,26 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
 
-    const tdate = new Date(timeV).toLocaleTimeString();
+    const tdate = new Date(timeV);
+    const rightdate = timeV * 1000;
+    let imag = new Image();
+    if (me === false) {
+      long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
+    }
+    if (me === true) {
+      long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
+    }
 
-        let imag = new Image();
-        if (me === false) {
-          long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
-        }
-        if (me === true) {
-          long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
-        }
-        this.chart.data.datasets[0].data.push(valV);
-        this.chart.data.datasets[0].pointStyle.push(imag);
-        this.chart.data.labels.push(tdate);
+    const obj = {
+      value: valV,
+      type: imag,
+      time: rightdate
+    };
 
-        if (this.chart.data.datasets[0].data.length > 20) {
-          // this.chart.data.datasets[0].data.shift();
-          // this.chart.data.labels.shift();
-        }
+    this.chartStream.next(obj);
 
-        this.chart.update();
+
+
 
   }
 
@@ -301,7 +336,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   addFromDecision(lplayer: boolean, shot: boolean, timeV: number, valV: number) {
     const imag = new Image();
-    const tdate = new Date(timeV).toLocaleTimeString();
+    const rightdate = timeV * 1000;
 
     if (lplayer === true) {
       shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
@@ -309,18 +344,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (lplayer === false) {
       shot === false ? imag.src = '/assets/base/images/binary/oponent-bad.png' : imag.src = '/assets/base/images/binary/oponent-good.png';
     }
-    console.log(valV);
-    console.log(tdate);
-    this.chart.data.datasets[0].data.push(valV);
-    this.chart.data.datasets[0].pointStyle.push(imag);
-    this.chart.data.labels.push(tdate);
+    const obj = {
+      value: valV,
+      type: imag,
+      time: rightdate
+    };
 
-    if (this.chart.data.datasets[0].data.length > 20) {
-      // this.chart.data.datasets[0].data.shift();
-      // this.chart.data.labels.shift();
-    }
+    this.chartStream.next(obj);
 
-    
+
+
   }
 
 
@@ -377,11 +410,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   onOption(data?: any) {
     const opt = data;
+    console.log(opt);
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
 
   onOptionClosed(data?: any) {
     const opt = data;
+    console.log(opt);
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
   }
 
@@ -524,4 +559,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     return diffTime;
   }
+
+  
 }
