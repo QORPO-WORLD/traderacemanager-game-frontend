@@ -396,9 +396,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.loser = lose[0];
     this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
     this.meWon === false ? this.unityEnabled === false : null;
-    this.raceEnded = true;
-    this.raceEnded = false;
-  
+    this.raceEnded = true;  
   }
 
   onScore(data?: any) {
@@ -427,7 +425,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       }
     }
 
-    
+
 
   }
 
