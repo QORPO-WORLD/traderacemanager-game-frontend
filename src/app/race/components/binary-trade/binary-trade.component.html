@@ -49,6 +49,7 @@
 
   </div>
   <div *ngIf="players?.length > 1" class="unity-holder">
+
     <app-unityrace [players]="players" #unityRace style="width: 100%;
           height: 100%;
           position: relative;
@@ -92,7 +93,6 @@
           <p>BTC/USD</p>
         </div>
       </div>
-      
       <div id="container">
 
       </div>
@@ -163,8 +163,8 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p class="bin-trade">
-            <app-timer [value]="30"></app-timer> sec
+          <p class="bin-trade" *ngIf="startsInSecs">
+            <app-timer [value]="startsInSecs"></app-timer> sec
           </p>
         </div>
         <div class="control-btn up" (click)="long = true;placeOption();">

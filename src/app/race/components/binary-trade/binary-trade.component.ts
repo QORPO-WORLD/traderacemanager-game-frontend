@@ -11,6 +11,7 @@ let popsock = (window as any).kocksock;
 import io from "socket.io-client"
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
+import { DateTime } from 'luxon';
 export interface Trade {
   data: {
     p: number,
@@ -97,14 +98,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   balance: any;
   startsAt: number;
   finishingAt: any;
+  startsInSecs: number;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
-    this.finishingAt = Date.now() - this.startsAt;
-    console.log(this.finishingAt);
   }
 
   ngOnInit() {
+    this.startsInSecs = this.getWhenStarts();
     this.getBinaryPlayers();
     this.getMyDriver();
     this.initPopSock();
@@ -253,9 +254,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.chart.data.datasets[0].pointStyle.push('circle');
         this.chart.data.labels.push(tdate);
         if (this.chart.data.datasets[0].data.length > 20) {
-          this.chart.data.datasets[0].data.shift();
-          this.chart.data.datasets[0].pointStyle.shift();
-          this.chart.data.labels.shift();
+          //this.chart.data.datasets[0].data.shift();
+          //this.chart.data.datasets[0].pointStyle.shift();
+          //this.chart.data.labels.shift();
         }
         this.chart.update();
 
@@ -288,8 +289,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.chart.data.labels.push(tdate);
 
         if (this.chart.data.datasets[0].data.length > 20) {
-          this.chart.data.datasets[0].data.shift();
-          this.chart.data.labels.shift();
+          // this.chart.data.datasets[0].data.shift();
+          // this.chart.data.labels.shift();
         }
 
         this.chart.update();
@@ -315,8 +316,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.chart.data.labels.push(tdate);
 
     if (this.chart.data.datasets[0].data.length > 20) {
-      this.chart.data.datasets[0].data.shift();
-      this.chart.data.labels.shift();
+      // this.chart.data.datasets[0].data.shift();
+      // this.chart.data.labels.shift();
     }
 
     
@@ -513,5 +514,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.unityEnabled = false;
     }, 3000);
+  }
+
+
+  getWhenStarts() {
+    const then: any = new Date(this.startsAt * 1000);
+    const now: any = DateTime.utc();
+    const diffTime = Math.abs((then - now.ts) / 1000);
+
+    return diffTime;
   }
 }

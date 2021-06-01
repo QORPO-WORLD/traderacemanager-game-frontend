@@ -73,7 +73,7 @@ export class BinaryWinnerComponent implements OnInit {
   }
 
   repeat() {
-    this.route.navigate(['/race/binary-fuel']);
+    this.route.navigate(['/race/binary-trade']);
     return;
 
 
