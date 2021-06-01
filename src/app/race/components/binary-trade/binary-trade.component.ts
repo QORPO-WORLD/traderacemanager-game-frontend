@@ -132,7 +132,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   subscribeToStream() {
     this.chartSubscription = this.chartStream.subscribe(datax => {
       if (datax && this.raceEnded === false) {
-        console.log(datax);
+
         this.chart.data.datasets[0].data.push(datax.value);
         this.chart.data.datasets[0].pointStyle.push(datax.type);
         this.chart.data.labels.push(datax.time);
@@ -142,6 +142,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.chart.data.labels.shift();
         }
         this.chart.update();
+        if (datax.type !== 'circle') {
+          this.pushing = true;
+          setTimeout(() => {
+            this.pushing = false;
+          }, 500);
+          console.log(datax);
+        }
       }
     })
   }
@@ -284,7 +291,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       const obj = {
         value: valV,
         type: 'circle',
-        time: timeV
+        time: vall
       };
 
       this.chartStream.next(obj);
