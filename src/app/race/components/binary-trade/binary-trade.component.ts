@@ -100,7 +100,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
-    this.finishingAt = this.startsAt - Date.now();
+    this.finishingAt = Date.now() - this.startsAt;
     console.log(this.finishingAt);
   }
 
@@ -141,7 +141,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         "long": this.long
       }).subscribe(
         data => {
-          console.log(data);
+          this.optWaiting = 10;
         }
       )
     }
@@ -167,6 +167,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       type: 'line',
       data: {
         datasets: [{
+          label: 'BTC/USDT',
+          backgroundColor: gradient,
+          borderColor: this.chartColors.red,
+          fill: true,
+          data: [],
+          lineTension: 0.1,
+          pointStyle: []
+        },{
           label: 'BTC/USDT',
           backgroundColor: gradient,
           borderColor: this.chartColors.red,
@@ -240,8 +248,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   add(timeV: string, valV: number) {
     const tdate = new Date(timeV).toLocaleTimeString();
     this.currentValue = valV;
-    if (this.chart) {
-      if (valV > 0) {
+
         this.chart.data.datasets[0].data.push(valV);
         this.chart.data.datasets[0].pointStyle.push('circle');
         this.chart.data.labels.push(tdate);
@@ -251,9 +258,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.chart.data.labels.shift();
         }
         this.chart.update();
-      }
-    }
+
   }
+
 
   makeItStop() {
     clearInterval(this.chartInterval);
@@ -265,13 +272,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   addFromPlayer(timeV: any, valV: number, long?: boolean, me?: boolean) {
 
-    if (me === true) {
-      this.optWaiting = 10;
-    }
+
 
     const tdate = new Date(timeV).toLocaleTimeString();
-    if (this.chart) {
-      if (valV > 0) {
+
         let imag = new Image();
         if (me === false) {
           long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
@@ -290,8 +294,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
         this.chart.update();
 
-      }
-    }
   }
 
 
@@ -317,7 +319,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.chart.data.labels.shift();
     }
 
-    this.chart.update();
+    
   }
 
 
@@ -378,32 +380,27 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   onOptionClosed(data?: any) {
-
     const opt = data;
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
   }
 
   onWinners(data?: Array<any>) {
-    console.log(data);
+
     const win = data.filter((item) => {
       return item.win === true
     });
     const lose = data.filter((item) => {
       return item.win === false
     });
-    console.log(win);
-    console.log(lose);
+
     this.winner = win[0];
     this.loser = lose[0];
     this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
-    console.log(this.meWon);
     this.meWon === false ? this.unityEnabled === false : null;
-    console.log(this.meWon);
     this.raceEnded = true;
   }
 
   onScore(data?: any) {
-
     const opt = data;
     if (opt.uh === this.myId) {
       this.myShots = data.p;
