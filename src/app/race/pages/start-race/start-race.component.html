@@ -143,7 +143,11 @@
           <p class="team">TEAM</p>
         </div>
       </div>
-      <button [routerLink]="['/car/nft-market']" class="upgrade">
+      <button
+        *ngIf="ownedCars.length <= 0"
+        [routerLink]="['/car/nft-market']"
+        class="upgrade"
+      >
         <p>UPGRADE</p>
         <img
           src="assets/base/images/start-race/upgrade.png"
