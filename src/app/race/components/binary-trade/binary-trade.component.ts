@@ -146,7 +146,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.pushing = true;
           setTimeout(() => {
             this.pushing = false;
-          }, 500);
+          }, 1000);
           console.log(datax);
         }
       }
