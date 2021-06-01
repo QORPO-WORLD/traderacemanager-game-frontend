@@ -131,7 +131,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   subscribeToStream() {
     this.chartSubscription = this.chartStream.subscribe(datax => {
-      if (datax && this.raceEnded === false) {
+      if (datax.value && this.raceEnded === false) {
 
         this.chart.data.datasets[0].data.push(datax.value);
         this.chart.data.datasets[0].pointStyle.push(datax.type);
