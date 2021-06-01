@@ -247,18 +247,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
   add(timeV: string, valV: number) {
-    const tdate = new Date(timeV).toLocaleTimeString();
-    this.currentValue = valV;
 
-        this.chart.data.datasets[0].data.push(valV);
-        this.chart.data.datasets[0].pointStyle.push('circle');
-        this.chart.data.labels.push(tdate);
-        if (this.chart.data.datasets[0].data.length > 20) {
-          //this.chart.data.datasets[0].data.shift();
-          //this.chart.data.datasets[0].pointStyle.shift();
-          //this.chart.data.labels.shift();
-        }
-        this.chart.update();
+      const tdate = new Date(timeV).toLocaleTimeString();
+      this.currentValue = valV;
+
+      this.chart.data.datasets[0].data.push(valV);
+      this.chart.data.datasets[0].pointStyle.push('circle');
+      this.chart.data.labels.push(tdate);
+      if (this.chart.data.datasets[0].data.length > 20) {
+        //this.chart.data.datasets[0].data.shift();
+        //this.chart.data.datasets[0].pointStyle.shift();
+        //this.chart.data.labels.shift();
+      }
 
   }
 
