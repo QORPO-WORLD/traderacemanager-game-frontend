@@ -273,9 +273,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (this.chart) {
       if (valV > 0) {
         let imag = new Image();
-        if (me === true) {
+        if (me === false) {
           long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
-        } else {
+        }
+        if (me === true) {
           long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
         }
         this.chart.data.datasets[0].data.push(valV);
@@ -297,27 +298,26 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   addFromDecision(lplayer: boolean, shot: boolean, timeV: number, valV: number) {
     const imag = new Image();
+    const tdate = new Date(timeV).toLocaleTimeString();
+
     if (lplayer === true) {
       shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
-    } else {
+    }
+    if (lplayer === false) {
       shot === false ? imag.src = '/assets/base/images/binary/oponent-bad.png' : imag.src = '/assets/base/images/binary/oponent-good.png';
     }
+    console.log(valV);
+    console.log(tdate);
+    this.chart.data.datasets[0].data.push(valV);
+    this.chart.data.datasets[0].pointStyle.push(imag);
+    this.chart.data.labels.push(tdate);
 
-    const tdate = new Date(timeV).toLocaleTimeString();
-    if (this.chart) {
-
-      if (valV > 0) {
-        this.chart.data.datasets[0].data.push(valV);
-        this.chart.data.datasets[0].pointStyle.push(imag);
-        this.chart.data.labels.push(tdate);
-
-        if (this.chart.data.datasets[0].data.length > 20) {
-          this.chart.data.datasets[0].data.shift();
-          this.chart.data.labels.shift();
-        }
-        this.chart.update();
-      }
+    if (this.chart.data.datasets[0].data.length > 20) {
+      this.chart.data.datasets[0].data.shift();
+      this.chart.data.labels.shift();
     }
+
+    this.chart.update();
   }
 
 
@@ -338,20 +338,20 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     });
 
     popsock.on("option", function (data) {
-      console.log(data);
+
       const opt = JSON.parse(data);
       _this.onOption(opt);
     });
 
     popsock.on("option_closed", function (data) {
-      console.log(data);
+
       const opt = JSON.parse(data);
       _this.onOptionClosed(opt);
 
     });
 
     popsock.on("status", function (data) {
-      console.log(data);
+
       const opt = JSON.parse(data);
       _this.onStatus(opt);
     });
@@ -373,7 +373,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   onOption(data?: any) {
-    console.log(this.myId);
     const opt = data;
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
@@ -384,49 +383,45 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
   }
 
-  onWinners(data?: any) {
-
+  onWinners(data?: Array<any>) {
+    console.log(data);
     const win = data.filter((item) => {
       return item.win === true
     });
     const lose = data.filter((item) => {
       return item.win === false
     });
+    console.log(win);
+    console.log(lose);
     this.winner = win[0];
     this.loser = lose[0];
     this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
+    console.log(this.meWon);
     this.meWon === false ? this.unityEnabled === false : null;
-    this.raceEnded = true;  
+    console.log(this.meWon);
+    this.raceEnded = true;
   }
 
   onScore(data?: any) {
 
     const opt = data;
-    console.log(opt.uh);
-    console.log(this.myId);
-    
-
     if (opt.uh === this.myId) {
-      console.log('shoting to my');
       this.myShots = data.p;
       this.roileft = data.r;
     } else {
-
-      console.log('shoting to his');
       this.oponentShots = data.p;
       this.roiright = data.r;
     }
   }
 
   onStatus(data?: any) {
-    if (data.type === 'countdown') {
-      if (data.s === 10) {
-        this.optWaiting = 10;
-      }
-    }
-
-
-
+    /*
+     if (data.type === 'countdown') {
+       if (data.s === 10) {
+         this.optWaiting = 10;
+       }
+     }
+     */
   }
 
 
@@ -478,7 +473,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     } else {
       this.players = data;
     }
-    console.log(this.players);
   }
 
 
@@ -496,7 +490,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   async initCcxtTicker() {
     const enableRateLimit = true;
     const binancex = new ccxt.binance({ enableRateLimit, options: {} });
-    
+
     if (binancex.has['watchTicker']) {
       while (this.chartEnabled === true) {
         try {
@@ -507,7 +501,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         }
       }
     }
-    
+
   }
 
 
