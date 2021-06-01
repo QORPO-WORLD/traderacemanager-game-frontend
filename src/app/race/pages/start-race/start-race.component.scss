@@ -21,7 +21,7 @@
 .main-wrapper {
   width: 100%;
   height: calc(100vh - 80px);
-  min-height: 650px;
+  min-height: 625px;
   overflow-y: hidden;
   padding-left: 40px;
   display: flex;
@@ -62,13 +62,130 @@ h3 {
   position: relative;
   justify-content: space-between;
   .dashboard-avatars {
-    z-index: 0;
+    z-index: 1;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     position: absolute;
     width: 70%;
     height: 100%;
+    .upgrade {
+      z-index: 1;
+      cursor: pointer;
+      position: absolute;
+      left: 42.5%;
+      bottom: 400px;
+      transform: translateX(-50%);
+      background: transparent;
+
+      width: 135px;
+      height: 45px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        letter-spacing: 0.1em;
+        opacity: 1;
+        margin: 0 auto;
+        z-index: 1;
+        font-size: 15px;
+        margin-bottom: 2.5px;
+      }
+      img {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 110%;
+        position: absolute;
+      }
+    }
+    .upgrade:hover {
+      animation: upgrade-animation 2s infinite linear;
+      -webkit-animation: upgrade-animation 2s infinite linear;
+    }
+    @keyframes upgrade-animation {
+      0% {
+        transform: translateX(-50%) translateY(0px);
+        -webkit-transform: translateX(-50%) translateY(0px);
+        -moz-transform: translateX(-50%) translateY(0px);
+        -ms-transform: translateX(-50%) translateY(0px);
+        -o-transform: translateX(-50%) translateY(0px);
+      }
+      25% {
+        transform: translateX(-50%) translateY(2.5px);
+        -webkit-transform: translateX(-50%) translateY(2.5px);
+        -moz-transform: translateX(-50%) translateY(2.5px);
+        -ms-transform: translateX(-50%) translateY(2.5px);
+        -o-transform: translateX(-50%) translateY(2.5px);
+      }
+      75% {
+        transform: translateX(-50%) translateY(-2.5px);
+        -webkit-transform: translateX(-50%) translateY(-2.5px);
+        -moz-transform: translateX(-50%) translateY(-2.5px);
+        -ms-transform: translateX(-50%) translateY(-2.5px);
+        -o-transform: translateX(-50%) translateY(-2.5px);
+      }
+      100% {
+        transform: translateX(-50%) translateY(0px);
+        -webkit-transform: translateX(-50%) translateY(0px);
+        -moz-transform: translateX(-50%) translateY(0px);
+        -ms-transform: translateX(-50%) translateY(0px);
+        -o-transform: translateX(-50%) translateY(0px);
+      }
+    }
+    .team-img {
+      z-index: 2;
+
+      position: absolute;
+      width: 220px;
+      left: 25%;
+      bottom: 400px;
+      transform: translateX(-50%);
+      .badge-name {
+        top: 45%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        max-width: 100%;
+        width: 100%;
+        z-index: 2;
+        p {
+          margin: 0px;
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: 900;
+          color: rgba(255, 255, 255, 0.9);
+          text-align: center;
+          line-height: 1;
+          &.name {
+            font-size: 30px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      &.track {
+        width: 180px;
+      }
+      &.team {
+        margin-top: -5px;
+        width: 220px;
+        height: 220px;
+      }
+      .premium {
+        z-index: 1;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 40px;
+        height: auto;
+        &.non-premium {
+          width: 35px;
+        }
+      }
+    }
     img {
       pointer-events: none;
       position: absolute;
@@ -93,7 +210,7 @@ h3 {
     }
   }
   .upper-dashboard {
-    z-index: 1;
+    z-index: 0;
     position: relative;
     height: 75%;
     a {
@@ -174,7 +291,7 @@ h3 {
 
             &.right {
               width: 50%;
-
+              height: auto;
               right: -20px;
             }
           }
@@ -186,7 +303,7 @@ h3 {
     }
   }
   .lower-dashboard {
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     height: 20%;
     align-items: flex-end;
@@ -256,6 +373,10 @@ h3 {
       }
     }
     .games {
+      h2 {
+        margin: 0px;
+        margin-top: 5px;
+      }
       transition: 0.3s;
       cursor: pointer;
       margin-left: auto;
@@ -312,6 +433,20 @@ h3 {
       position: absolute;
       width: 70%;
       height: 100%;
+      .upgrade {
+        left: 47.5%;
+        bottom: 330px;
+      }
+      .team-img {
+        bottom: 280px;
+
+        &.team {
+          width: 200px;
+        }
+        .badge-name {
+          top: 42.5%;
+        }
+      }
       img {
         position: absolute;
         &.team {
@@ -320,6 +455,7 @@ h3 {
           bottom: 280px;
           transform: translateX(-50%);
         }
+
         &.car {
           width: 680px;
           left: 45%;
@@ -339,21 +475,23 @@ h3 {
         .box {
           margin-top: 15px;
           img {
+            height: 120px;
             position: absolute;
             &.left {
               top: 0px;
-              width: 120px;
-              height: 120px;
+              width: 100px;
+              height: 100px;
+              left: -48px;
             }
           }
           &.first {
-            margin-left: 40px;
-            width: 250px;
-            height: 120px;
+            margin-left: 30px;
+            width: 220px;
+            height: 100px;
           }
           &.second {
-            width: 290px;
-            height: 140px;
+            width: 250px;
+            height: 120px;
           }
           .box-content {
             img {
@@ -369,8 +507,8 @@ h3 {
     .lower-dashboard {
       bottom: 20px;
       .marketplace {
-        width: 290px;
-        height: 115px;
+        width: 250px;
+        height: 100px;
       }
       .category-boxes {
         position: relative;
@@ -378,8 +516,8 @@ h3 {
         left: 0;
         margin-left: auto;
         .lower-box {
-          width: 200px;
-          height: 90px;
+          width: 185px;
+          height: 80px;
           margin-left: 20px;
           &.first {
             margin-left: 20px;
@@ -393,7 +531,7 @@ h3 {
 
       .games {
         width: 365px;
-        height: 115px;
+        height: 100px;
       }
     }
   }
@@ -407,6 +545,10 @@ h3 {
       position: absolute;
       width: 70%;
       height: 100%;
+      .upgrade {
+        left: 42.5%;
+        bottom: 350px;
+      }
       img {
         position: absolute;
 
@@ -427,26 +569,33 @@ h3 {
     .upper-dashboard {
       .boxes {
         .box {
+          margin-top: 15px;
           img {
+            height: 80px;
+            position: absolute;
             &.left {
-              width: 110px;
-              height: 110px;
+              top: 0px;
+              width: 80px;
+              height: 80px;
+              left: -40px;
             }
           }
           &.first {
-            margin-left: 35px;
-            width: 240px;
-            height: 110px;
+            margin-left: 30px;
+            width: 200px;
+            height: 80px;
           }
           &.second {
-            width: 275px;
-            height: 125px;
+            width: 230px;
+            height: 100px;
           }
           .box-content {
             img {
               &.right {
                 top: 10px;
                 right: -20px;
+                width: 100px;
+                height: auto;
               }
             }
           }
@@ -454,27 +603,44 @@ h3 {
       }
     }
     .lower-dashboard {
+      bottom: 20px;
       .marketplace {
-        width: 275px;
-        height: 105px;
+        width: 230px;
+        height: 90px;
       }
       .category-boxes {
+        position: relative;
+        transform: translate(0, 0);
+        left: 0;
         .lower-box {
-          width: 180px;
-          height: 80px;
+          width: 175px;
+          height: 70px;
           margin-left: 15px;
           &.first {
             margin-left: 0px;
           }
+          img {
+            width: 30px;
+            height: 30px;
+          }
         }
       }
+
       .games {
-        height: 105px;
+        width: 365px;
+        height: 90px;
       }
     }
   }
 }
 @media screen and(max-width: 1200px) {
+  .dashboard-content {
+    .lower-dashboard {
+      .games {
+        width: 325px;
+      }
+    }
+  }
 }
 @media screen and(max-width: 1024px) {
   .dash-back {
@@ -501,6 +667,35 @@ h3 {
       width: 100%;
       height: 450px;
       margin: 0 auto;
+      .upgrade {
+        left: 45%;
+        bottom: 280px;
+      }
+      .team-img {
+        width: 140px;
+        left: 15%;
+        bottom: 150px;
+        &.team {
+          width: 140px;
+        }
+        .badge-name {
+          top: 30%;
+          p {
+            font-size: 16px;
+            &.name {
+              margin-bottom: 3px;
+              font-size: 25px;
+            }
+          }
+        }
+        .premium {
+          top: 12.5px;
+          right: 17.5px;
+          &.non-premium {
+            width: 30px;
+          }
+        }
+      }
       img {
         position: absolute;
         &.team {
@@ -545,6 +740,13 @@ h3 {
           &.second {
             width: 400px;
             overflow: hidden;
+          }
+          .box-content {
+            img {
+              &.right {
+                right: 20px;
+              }
+            }
           }
         }
       }
@@ -593,6 +795,9 @@ h3 {
   }
 }
 @media screen and (max-width: 640px) {
+  .main-wrapper {
+    overflow-x: hidden;
+  }
   .dash-back {
     height: 350px;
     min-height: 350px;
@@ -600,7 +805,16 @@ h3 {
   .dashboard-content {
     .dashboard-avatars {
       height: 400px;
+      .upgrade {
+        left: 50%;
+        bottom: 240px;
+        width: 110px;
+        height: 40px;
 
+        p {
+          font-size: 14px;
+        }
+      }
       img {
         position: absolute;
 
@@ -1506,6 +1720,10 @@ h3 {
       position: absolute;
       width: 70%;
       height: 100%;
+      .upgrade {
+        left: 50%;
+        bottom: 500px;
+      }
       img {
         position: absolute;
         &.team {

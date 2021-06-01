@@ -38,7 +38,7 @@
   align-items: center;
   height: 80px;
   padding: 0 2%;
-  background: #222222;
+  background: rgba(0, 0, 0, 0.8);
   width: 100%;
   box-shadow: 10px 0px 30px rgba(0, 0, 0, 0.7);
   position: sticky;
@@ -70,22 +70,20 @@
       opacity: 0.6;
       .menu-border {
         pointer-events: none;
-        transition: 0.3s;
+        transition: 0.05s;
         position: absolute;
         padding: 1px;
         bottom: -30px;
-
         width: 0px;
         height: 44px;
         opacity: 0;
-
         .inner-border {
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100%;
           width: 100%;
-          background: linear-gradient(139.48deg, #8c1a2d 2.81%, #222222 72.36%);
+          background: rgba(34, 34, 34, 0.8);
         }
       }
       img {
@@ -96,8 +94,12 @@
         opacity: 0.8;
         .menu-border {
           width: 165px;
-
+          transition: 0.2s;
           opacity: 1;
+          -webkit-transition: 0.2s;
+          -moz-transition: 0.2s;
+          -ms-transition: 0.2s;
+          -o-transition: 0.2s;
         }
       }
 
@@ -250,6 +252,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      z-index: 1;
     }
     .profile-expander {
       min-width: 145px;
@@ -262,11 +265,19 @@
       justify-content: center;
       padding: 20px;
       position: absolute;
-      background: #222222;
+      background: rgba(0, 0, 0, 0.8);
       pointer-events: none;
+      border-radius: 0px 0px 5px 5px;
       top: 90%;
+      p {
+        margin: 0px;
+      }
+      img {
+        margin-right: 5px;
+      }
       .btn-item {
         cursor: pointer;
+        margin-top: 5px;
       }
       .btn-item:hover {
         text-decoration: underline;
@@ -2074,8 +2085,8 @@ button.xko {
     padding: 30px 30px 30px 30px;
     transition: 0.2s;
     width: 417px;
-    height: calc(100vh - 350px);
-    min-height: calc(100vh - 350px);
+    height: calc(100vh - 140px);
+    min-height: calc(100vh - 140px);
     position: fixed;
     overflow: hidden;
     top: 110px;
@@ -2317,13 +2328,6 @@ button.xko {
     font-size: 15px;
     line-height: 23px;
   }
-  .right-container {
-    .right-part-holder {
-      top: 130px;
-      height: calc(100vh - 350px);
-      min-height: calc(100vh - 350px);
-    }
-  }
 }
 
 @media screen and (max-width: 1700px) {
@@ -2333,6 +2337,8 @@ button.xko {
       padding-top: 20px;
       top: 90px;
       right: 30px;
+      height: calc(100vh - 110px);
+      min-height: calc(100vh - 110px);
       .menu-switchers {
         height: 41px;
         .switch-item {
@@ -2428,8 +2434,8 @@ button.xko {
       right: 20px;
       width: 365px;
       top: 80px;
-      height: calc(var(--vh, 1vh) * 100 - 240px);
-      min-height: calc(var(--vh, 1vh) * 100 - 240px);
+      height: calc(100vh - 100px);
+      min-height: calc(100vh - 100px);
 
       .last-btns {
         padding: 0 25px 10px;
@@ -2835,7 +2841,6 @@ button.xko {
     }
   }
 }
-
 @media screen and (max-width: 1200px) {
   .ad-popup {
     .ticket-holder {

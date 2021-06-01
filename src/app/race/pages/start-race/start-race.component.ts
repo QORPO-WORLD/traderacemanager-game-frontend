@@ -15,6 +15,7 @@ import {
   LeaderboardService,
   TeamsService,
 } from "src/app/api/services";
+import { AuthService as driver } from "./../../../user/services/auth.service";
 import { NotifiqService } from "./../../../common/services/notifiq.service";
 import { Subscription } from "rxjs";
 import { FavRaces, NextRaceV2, RewardsMe } from "src/app/api/models";
@@ -24,7 +25,6 @@ import {
   ExperienceService,
   Experience,
 } from "src/app/common/services/experience.service";
-
 @Component({
   selector: "app-start-race",
   templateUrl: "./start-race.component.html",
@@ -41,18 +41,24 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     protected notify: NotifiqService,
     private identityService: AuthService,
     private uapi: ninja,
+    private dapi: driver,
     private experience: ExperienceService,
     private capi: CarsService,
     private router: Router,
     private lapi: LeaderboardService,
-    private tsapi: TeamsService
+    private tsapi: TeamsService,
+    private lead: LeaderboardService
   ) {
+    this.getTeams();
+    this.getMyTem();
     this.getCryptoStats();
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
+    this.accountInfo = this.dapi.getDriverMe();
   }
-
+  allTeams: any;
+  myTeamAllData: any;
   filter = "all";
   bannerType = "tournament";
   raceObserver: Subscription;
@@ -70,6 +76,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   modalActive: any;
   myDriver: any;
   interval: any;
+  accountInfo: any;
   liveRacesData: any;
   myRewards: any;
   myLdrbrd: any;
@@ -136,6 +143,581 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     { type: "car_race_ioi_3", fav: false },
     { type: "car_race_ioi_5", fav: false },
   ];
+  products: Array<object> = [
+    //bronze
+    {
+      id: 9,
+      position: 0,
+      free: 6000,
+      collection: "Common",
+      name: "RHINO",
+      price: 600,
+      image: "car1",
+      gif: "car1-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car rhino",
+      likes: "2k",
+
+      ability: "pes je pes",
+    },
+    {
+      id: 10,
+      position: 1,
+      free: 12000,
+      collection: "Common",
+      name: "PANTHER",
+      price: 600,
+      image: "car2",
+      gif: "car2-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car panther",
+      likes: "2k",
+    },
+    {
+      id: 11,
+      position: 2,
+      free: 24000,
+      collection: "Common",
+      name: "ONYX",
+      price: 600,
+      image: "car3",
+      gif: "car3-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car onyx",
+      likes: "2k",
+    },
+    {
+      id: 12,
+      position: 3,
+      free: 48000,
+      collection: "Common",
+      name: "ZANDER",
+      price: 600,
+      image: "car4",
+      gif: "car4-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car zander",
+      likes: "2k",
+    },
+    {
+      id: 13,
+      position: 4,
+      free: 96000,
+      collection: "Common",
+      name: "CYBORG",
+      price: 600,
+      image: "car5",
+      type: "car",
+      gif: "car5-animation",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car cyborg",
+      likes: "2k",
+    },
+    {
+      id: 14,
+      position: 5,
+      free: 192000,
+      collection: "Common",
+      name: "VULCANIC",
+      price: 600,
+      image: "car6",
+      gif: "car6-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car vulcanic",
+      likes: "2k",
+    },
+    {
+      id: 15,
+      collection: "Common rare",
+      name: "LUNA",
+      price: 3600,
+      image: "car25",
+      gif: "car25-animation",
+      type: "car",
+      rare: true,
+      ability1: 0.6,
+      ability2: 6,
+      amount: [],
+      alt: "nft car luna",
+      likes: "2k",
+    },
+    //silver
+    {
+      id: 16,
+      position: 6,
+      free: 288000,
+      collection: "Super",
+      name: "DORIAN",
+      price: 1000,
+      image: "car7",
+      gif: "car7-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car dorian",
+      likes: "2k",
+    },
+    {
+      id: 17,
+      position: 7,
+      free: 432000,
+      collection: "Super",
+      name: "PANTHER",
+      price: 1000,
+      image: "car8",
+      gif: "car8-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car panther",
+      likes: "2k",
+    },
+    {
+      id: 18,
+      position: 8,
+      free: 648000,
+      collection: "Super",
+      name: "ONYX",
+      price: 1000,
+      image: "car9",
+      gif: "car9-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car onyx",
+      likes: "2k",
+    },
+    {
+      id: 19,
+      position: 9,
+      free: 972000,
+      collection: "Super",
+      name: "ZANDER",
+      price: 1000,
+      image: "car10",
+      gif: "car10-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car zander",
+      likes: "2k",
+    },
+    {
+      id: 20,
+      position: 10,
+      free: 1458000,
+      collection: "Super",
+      name: "PYTHON",
+      price: 1000,
+      image: "car11",
+      gif: "car11-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car python",
+      likes: "2k",
+    },
+    {
+      id: 21,
+      position: 11,
+      free: 2187000,
+      collection: "Super",
+      name: "VULCANIC",
+      price: 1000,
+      image: "car12",
+      gif: "car12-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car vulcanic",
+      likes: "2k",
+    },
+    {
+      id: 22,
+      collection: "Super rare",
+      name: "SILVER KNIGHT",
+      price: 6000,
+      image: "car26",
+      gif: "car26-animation",
+      type: "car",
+      rare: true,
+      ability1: 1.98,
+      ability2: 12,
+      amount: [],
+      alt: "nft car silver knight",
+      likes: "2k",
+    },
+    //gold
+    {
+      id: 23,
+      position: 12,
+      free: 3000000,
+      collection: "Epic",
+      name: "CYBORG",
+      price: 1600,
+      image: "car13",
+      gif: "car13-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car cyborg",
+      likes: "2k",
+    },
+    {
+      id: 24,
+      position: 13,
+      free: 3600000,
+      collection: "Epic",
+      name: "RHINO",
+      price: 1600,
+      image: "car14",
+      gif: "car14-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car rhino",
+      likes: "2k",
+    },
+    {
+      id: 25,
+      position: 14,
+      free: 4320000,
+      collection: "Epic",
+      name: "HYPER",
+      price: 1600,
+      image: "car15",
+      gif: "car15-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car hyper",
+      likes: "2k",
+    },
+    {
+      id: 26,
+      position: 15,
+      free: 5184000,
+      collection: "Epic",
+      name: "BULL",
+      price: 1600,
+      image: "car16",
+      gif: "car16-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car bull",
+      likes: "2k",
+    },
+    {
+      id: 27,
+      position: 16,
+      free: 6220000,
+      collection: "Epic",
+      name: "PYTHON",
+      price: 1600,
+      image: "car17",
+      gif: "car17-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car python",
+      likes: "2k",
+    },
+    {
+      id: 28,
+      position: 17,
+      free: 7465000,
+      collection: "Epic",
+      name: "HITMAN",
+      price: 1600,
+      image: "car18",
+      gif: "car18-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car hitman",
+      likes: "2k",
+    },
+    {
+      id: 29,
+      collection: "Epic rare",
+      name: "MIDAS",
+      price: 9600,
+      image: "car27",
+      gif: "car27-animation",
+      type: "car",
+      rare: true,
+      ability1: 4.74,
+      ability2: 18,
+      amount: [],
+      alt: "nft car midas",
+      likes: "2k",
+    },
+    //platinum
+    {
+      id: 30,
+      position: 18,
+      free: 8200000,
+      collection: "Legendary",
+      name: "HYPER",
+      price: 2600,
+      image: "car19",
+      gif: "car19-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car hyper",
+      likes: "2k",
+    },
+    {
+      id: 31,
+      position: 19,
+      free: 9000000,
+      collection: "Legendary",
+      name: "DORIAN",
+      price: 2600,
+      image: "car20",
+      gif: "car20-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car dorian",
+      likes: "2k",
+    },
+    {
+      id: 32,
+      position: 20,
+      free: 9900000,
+      collection: "Legendary",
+      name: "VULCANIC",
+      price: 2600,
+      image: "car21",
+      gif: "car21-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car vulcanic",
+      likes: "2k",
+    },
+    {
+      id: 33,
+      position: 21,
+      free: 10890000,
+      collection: "Legendary",
+      name: "BULL",
+      price: 2600,
+      image: "car22",
+      gif: "car22-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car bull",
+      likes: "2k",
+    },
+    {
+      id: 34,
+      position: 22,
+      free: 12000000,
+      collection: "Legendary",
+      name: "KNOCKOUT",
+      price: 2600,
+      image: "car23",
+      gif: "car23-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car knockout",
+      likes: "2k",
+    },
+    {
+      id: 35,
+      position: 23,
+      free: 13200000,
+      collection: "Legendary",
+      name: "LARA",
+      price: 2600,
+      image: "car24",
+      gif: "car24-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car lara",
+      likes: "2k",
+    },
+    {
+      id: 36,
+      collection: "Legendary rare",
+      name: "BLUE STORM",
+      price: 15600,
+      image: "car28",
+      gif: "car28-animation",
+      type: "car",
+      rare: true,
+      ability1: 10.25,
+      ability2: 24,
+      amount: [],
+      alt: "nft car blue storm",
+      likes: "2k",
+    },
+    {
+      id: 1,
+      collection: "Super",
+      name: "Axle",
+      price: 100,
+      image: "white-trm",
+      gif: "white-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Axle",
+      likes: "2k",
+    },
+
+    {
+      id: 2,
+      collection: "Super",
+      name: "Flash",
+      price: 100,
+      image: "red-trm",
+      gif: "red-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Flash",
+      likes: "2k",
+    },
+    {
+      id: 3,
+      collection: "Super",
+      name: "Octane",
+      price: 100,
+      image: "blue-trm",
+      gif: "blue-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Octane",
+      likes: "2k",
+    },
+    {
+      id: 4,
+      collection: "Super",
+      name: "Punisher",
+      price: 100,
+      image: "black-trm",
+      gif: "black-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Punisher",
+      likes: "2k",
+    },
+    {
+      id: 5,
+      collection: "Epic",
+      name: "Lady Rich",
+      price: 1000,
+      image: "lady-rich",
+      gif: "lady-rich-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Lady Rich",
+      likes: "2k",
+    },
+    {
+      id: 6,
+      collection: "Epic",
+      name: "Rich Jr.",
+      price: 1000,
+      image: "bad-boy",
+      gif: "bad-boy-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Rich Junior",
+      likes: "2k",
+    },
+    {
+      id: 7,
+      collection: "Epic",
+      name: "Mrs. Rich",
+      price: 1000,
+      image: "mrs-rich",
+      gif: "mrs-rich-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Mrs. Rich",
+      likes: "2k",
+    },
+    {
+      id: 8,
+      collection: "Legendary",
+      name: "Mr. Rich",
+      price: 10000,
+      image: "mr-rich",
+      gif: "mr-rich-animation",
+      type: "racer",
+      ability1: "2%",
+      ability2: "20%",
+      ability3: "18% APY staking",
+      rank: "height",
+      amount: [],
+      alt: "nft racer mr. rich",
+      likes: "2k",
+    },
+  ];
+  myAssets: any;
   myFavRaces = [];
   tickets = 0;
   selRaceType: string;
@@ -168,6 +750,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   bannerInterval: any;
   myId: string;
   meManager = false;
+  ownedCars: any;
+  ownedRacers: any;
+  ppes: any;
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem("first-time"));
     const notFinishedrace = JSON.parse(localStorage.getItem("first-race"));
@@ -181,6 +766,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     if (dataNick) {
       this.nickname = dataNick.nickname;
     }
+    this.getMyAssets();
     this.getAllRaces();
     this.getMyOwner();
     this.getMyRewards();
@@ -196,12 +782,14 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.checkTutorial();
     }, 3000);
     this.recognizeBanner();
+    this.getMydriver();
     this.getDaysToDividens();
     this.getMyCars();
     this.myDriverOld = this.identityService.getDriverMe();
     this.getMyTeamReward();
     this.getbestRacer();
     this.getMyLeaderboard();
+    console.log(this.products);
   }
   ngOnDestroy() {
     if (this.raceObserver) {
@@ -634,6 +1222,166 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.carBonus = 24;
     }
   }
+  getFreeCar() {
+    this.capi.carsBuyList("0").subscribe((mycar) => {
+      this.getMyCars();
+    });
+  }
+
+  filterHighestValue() {
+    //highest price car
+    const maxValueOfCar = Math.max(...this.ownedCars.map((o) => o.price), 0);
+    console.log(maxValueOfCar);
+    this.ownedCars = this.ownedCars.filter(
+      (item) => item["price"] === maxValueOfCar
+    );
+    console.log(this.ownedCars);
+    //highest price racer
+    const maxValueOfRacer = Math.max(
+      ...this.ownedRacers.map((o) => o.price),
+      0
+    );
+    console.log(maxValueOfRacer);
+    this.ownedRacers = this.ownedRacers.filter(
+      (item) => item["price"] === maxValueOfRacer
+    );
+    console.log(this.ownedCars);
+  }
+  filterMyAssets() {
+    this.ownedCars = this.products.filter(
+      (item) => item["amount"].length > 0 && item["type"] === "car"
+    );
+    this.ownedRacers = this.products.filter(
+      (item) => item["amount"].length > 0 && item["type"] === "racer"
+    );
+  }
+  getMyAssets() {
+    this.myCarsObserver = this.capi.carsMineList().subscribe((data) => {
+      if (data.length === 0) {
+        this.getFreeCar();
+      } else {
+        const objs: any = data;
+        for (let x = 0; x < objs.cars.length; x++) {
+          if (objs.cars[x].car_id === 1) {
+            this.products[0]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 2) {
+            this.products[1]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 3) {
+            this.products[2]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 4) {
+            this.products[3]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 5) {
+            this.products[4]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 6) {
+            this.products[5]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 7) {
+            this.products[7]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 8) {
+            this.products[8]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 9) {
+            this.products[9]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 10) {
+            this.products[10]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 11) {
+            this.products[11]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 12) {
+            this.products[12]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 13) {
+            this.products[14]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 14) {
+            this.products[15]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 15) {
+            this.products[16]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 16) {
+            this.products[17]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 17) {
+            this.products[18]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 18) {
+            this.products[19]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 19) {
+            this.products[21]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 20) {
+            this.products[22]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 21) {
+            this.products[23]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 22) {
+            this.products[24]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 23) {
+            this.products[25]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 24) {
+            this.products[26]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 25) {
+            this.products[6]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 26) {
+            this.products[13]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 27) {
+            this.products[20]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 28) {
+            this.products[27]["amount"].push(objs.cars[x]);
+          }
+        }
+
+        for (let x = 0; x < objs.racers.length; x++) {
+          if (objs.racers[x].car_id === 1) {
+            this.products[28]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 2) {
+            this.products[29]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 3) {
+            this.products[30]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 4) {
+            this.products[31]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 5) {
+            this.products[32]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 6) {
+            this.products[33]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 7) {
+            this.products[34]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 8) {
+            this.products[35]["amount"].push(objs.cars[x]);
+          }
+        }
+      }
+      this.filterMyAssets();
+      this.filterHighestValue();
+      console.log(this.myAssets);
+      console.log(this.ownedCars);
+      console.log(this.ownedRacers);
+    });
+  }
 
   getMyCars() {
     this.myCarsObserver = this.capi.carsMineList().subscribe((datax) => {
@@ -767,5 +1515,29 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     }
     console.log("cfsdv");
     //this.getTips();
+  }
+  getMydriver() {
+    this.accountInfo = this.identityService.getDriverMe();
+    console.log(this.accountInfo);
+  }
+  getTeams() {
+    this.tsapi.teamsList().subscribe((data) => {
+      const newdata = data.results;
+      const resort = newdata.sort((a, b) => {
+        return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
+      });
+
+      this.allTeams = data.results;
+      console.log(this.allTeams);
+    });
+  }
+  getMyTem() {
+    this.teamSubscription = this.lead
+      .leaderboardTeamInternalList()
+      .subscribe((datax) => {
+        const data: any = datax;
+        this.myTeamAllData = data;
+        console.log(this.myTeamAllData);
+      });
   }
 }
