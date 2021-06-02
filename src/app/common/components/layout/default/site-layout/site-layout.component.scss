@@ -212,6 +212,114 @@
         }
       }
     }
+    .overview-item{
+      width: 181px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      margin-right: 20px;
+      &.profile-cont{
+        margin-right: 0;
+        .value-box{
+          justify-content: center;
+          p{
+            &.value{
+              width: 100%;
+            }
+          }
+        }
+      }
+      .bubble-holder{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(139.48deg, #8247E5 2.87%, #222222 56.79%);
+        &.ioi{
+          background: linear-gradient(139.48deg, #0098D9 2.87%, #222222 56.79%);
+        }
+        &.profile{
+          background: linear-gradient(139.48deg, #8C1A2D 2.81%, #222222 72.36%);
+          overflow: hidden;
+          img{
+            max-width: 100%;
+          }
+        }
+        img{
+          max-width: 50%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .value-box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50px;
+        height: 40px;
+        padding: 0 20px 0 50px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        p{
+          margin: 0;
+          font-weight: bold;
+          font-size: 16px;
+          &.number{
+            width: calc(100% - 23px);
+            text-align: center;
+            white-space: nowrap;
+          }
+          &.add{
+            opacity: 0.4;
+            font-weight: 400;
+            padding-left: 12px;
+          }
+        }
+      }
+      .profile-expander {
+        transition: 0.3s;
+        z-index: 0;
+        opacity: 0;
+        width: 74%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 13px 15px 13px;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+        border-radius: 0px 0px 5px 5px;
+        top: 89%;
+        p {
+          margin: 0px;
+          font-size: 14px;
+        }
+        img {
+          margin-right: 5px;
+          height: 17px;
+        }
+        .btn-item {
+          cursor: pointer;
+          margin-top: 5px;
+        }
+        .btn-item:hover {
+          text-decoration: underline;
+        }
+        &.active {
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+    }
   }
   .lang-switcher {
     position: relative;
@@ -412,21 +520,7 @@
       }
     }
   }
-  .deposit-btn {
-    margin-left: 20px;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    padding: 10px 26px;
-    border-radius: 10px;
-    color: white;
-    border: none;
-    opacity: 1;
-    outline: none;
-    img {
-      margin-right: 10px;
-    }
-  }
+
 }
 .waiting-popup-holder {
   position: fixed;
@@ -1463,33 +1557,6 @@ button.xko {
           }
         }
       }
-      .deposit-btn {
-        width: 51px;
-        height: 51px;
-        box-shadow: 0 2px 4px rgba(64, 42, 42, 0.39);
-        border: 1px solid #00fffb;
-        background-color: #00fff0;
-        background-image: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.1) 0%,
-          rgba(255, 255, 255, 0.2) 100%
-        );
-        border-radius: 50%;
-        position: absolute;
-        right: -1px;
-        top: 0px;
-        cursor: pointer;
-        p {
-          font-size: 54px;
-          line-height: 54px;
-          color: white;
-          margin: 0;
-          position: absolute;
-          left: 52%;
-          top: 49%;
-          transform: translate(-50%, -50%);
-        }
-      }
     }
     .logout-button {
       z-index: -2;
@@ -1859,12 +1926,13 @@ button.xko {
 .notifiq-btn {
   margin-right: 20px;
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 20%;
   transition: 0.2s;
-  background: #111;
-  border-radius: 50%;
   z-index: 10002;
+  opacity: .6;
+  &.opened{
+    opacity: 1;
+  }
   .notifiq-back {
     position: fixed;
     top: 0;
@@ -2120,7 +2188,7 @@ button.xko {
       z-index: 1;
       background: rgba(255, 255, 255, 0.1);
       .switch-item {
-        width: 33.3333%;
+        width: 50%;
         height: 100%;
         z-index: 2;
         position: relative;
@@ -2164,19 +2232,16 @@ button.xko {
         }
       }
       .item-back {
-        width: 33.3333%;
+        width: 50%;
         height: 100%;
 
         position: absolute;
         z-index: 1;
-        left: 33.3333%;
+        left: 50%;
         top: 0;
         transition: 0.2s cubic-bezier(0.33, 0.2, 0.6, 1.17);
         &.chat {
-          left: 66.6666%;
-        }
-        &.me {
-          left: 33.3333%;
+          left: 50%;
         }
         &.races {
           left: 0;
@@ -2313,10 +2378,6 @@ button.xko {
           }
         }
       }
-    }
-    .deposit-btn {
-      font-size: 18px;
-      padding: 10px 26px;
     }
   }
   .notifiq-btn {
@@ -2488,23 +2549,23 @@ button.xko {
       width: 65px;
     }
     .overview {
-      .notifiq-btn {
-        margin-right: 15px;
-        width: 40px;
-        height: 40px;
-      }
-      .online-box {
-        padding: 11px 15px;
-        border-radius: 11px;
-        width: 135px;
-        img {
-          width: 17px;
-          margin-right: 7px;
+      .overview-item{
+        width: 165px;
+        .bubble-holder{
+          width: 40px;
+          height: 40px;
         }
-        p {
-          font-size: 13px;
-          &.desc {
-            margin-left: 15px;
+        .value-box{
+          height: 35px;
+          p{
+            font-size: 14px;
+            &.number{
+              font-size: 14px;
+              width: 100%;
+            }
+            &.add{
+              padding-left: 7px;
+            }
           }
         }
       }
@@ -2528,10 +2589,6 @@ button.xko {
           }
         }
       }
-    }
-    .deposit-btn {
-      padding: 8px 22px;
-      font-size: 14px;
     }
     .items-holder {
       width: 45%;
@@ -2649,34 +2706,6 @@ button.xko {
     .nav-logo {
       width: 60px;
     }
-    .overview {
-      .notifiq-btn {
-        margin-right: 12px;
-        width: 35px;
-        height: 35px;
-        img {
-          width: 17px;
-        }
-        .noti-count {
-          width: 16px;
-          height: 16px;
-        }
-      }
-      .online-box {
-        padding: 7px 12px;
-        border-radius: 7px;
-        img {
-          width: 15px;
-          margin-right: 5px;
-        }
-        p {
-          font-size: 12px;
-          &.desc {
-            margin-left: 12px;
-          }
-        }
-      }
-    }
     .lang-switcher {
       width: 35px;
       height: 35px;
@@ -2697,13 +2726,18 @@ button.xko {
         }
       }
     }
-    .deposit-btn {
-      padding: 7px 18px;
-      font-size: 13px;
-    }
     .items-holder {
       width: 45%;
+      .notifiq-btn{
+        img{
+          width: 22px;
+        }
+      }
       .menu-item {
+        img{
+          width: 22px;
+          height: auto;
+        }
         p {
           font-size: 12px;
           margin: 0;
@@ -2860,7 +2894,7 @@ button.xko {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (orientation: portrait) {
   .overlay {
     display: block;
     z-index: 5;
@@ -2930,8 +2964,7 @@ button.xko {
     }
     .overview {
       .online-box,
-      .lang-switcher,
-      .deposit-btn {
+      .lang-switcher{
         display: none;
       }
       .profile {
@@ -3131,7 +3164,162 @@ button.xko {
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .my-nav{
+    padding: 0 1%;
+    height: 45px;
+    .nav-logo{
+      width: 40px;
+    }
+    .items-holder{
+      width: 38%;
+      .menu-item,
+      .notifiq-btn{
+        img{
+          width: 17px;
+        }
+      }
+    }
+    .overview{
+      .overview-item{
+        width: 105px;
+        .bubble-holder{
+          width: 30px;
+          height: 30px;
+        }
+        .value-box{
+          height: 30px;
+          padding: 0 8px 0 30px;
+          p{
+            font-size: 10px;
+            &.number{
+              font-size: 10px;
+            }
+            &.add{
+              padding-left: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-container{
+    .right-part-holder{
+      top: 45px;
+      right: 10px;
+      width: 240px;
+      height: calc(var(--vh, 1vh) * 100 - 53px) !important;
+      min-height: calc(var(--vh, 1vh) * 100 - 53px) !important;
+      padding: 10px;
+      .menu-switchers{
+        height: 30px;
+        .switch-item{
+          p{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) and (orientation: portrait){
+  .my-nav{
+    .overview {
+      .overview-item{
+        width: 150px;
+        margin-right: 10px;
+        &.profile-cont{
+          margin-right: 10px;
+        }
+        .bubble-holder{
+          width: 35px;
+          height: 35px;
+        }
+        .value-box{
+          height: 30px;
+          p{
+            font-size: 12px;
+            &.number{
+              font-size: 12px;
+            }
+            &.add{
+              padding-left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .my-nav{
+    height: 40px;
+    .nav-logo{
+      width: 30px;
+    }
+    .items-holder{
+      width: 36%;
+      .menu-item,
+      .notifiq-btn{
+        img{
+          width: 14px;
+        }
+      }
+    }
+    .overview{
+      .overview-item{
+        width: 88px;
+        .bubble-holder{
+          width: 25px;
+          height: 25px;
+        }
+        .value-box{
+          height: 25px;
+          padding: 0 5px 0 25px;
+          p{
+            font-size: 7px;
+            &.number{
+              font-size: 7px;
+            }
+            &.add{
+              padding-left: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-container{
+    .right-part-holder{
+      top: 40px;
+      right: 5px;
+      width: 180px;
+      height: calc(var(--vh, 1vh) * 100 - 45px) !important;
+      min-height: calc(var(--vh, 1vh) * 100 - 45px) !important;
+      padding: 7px;
+      .menu-switchers{
+        height: 23px;
+        .switch-item{
+          p{
+            font-size: 12px;
+          }
+        }
+      }
+      .races-holder{
+        max-height: calc(100% - 22px);
+        height: calc(100% - 22px);
+      }
+      .chat-holder{
+        max-height: calc(100% - 30px);
+        height: calc(100% - 30px);
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait) {
   .main-content {
     z-index: unset;
   }
@@ -3334,6 +3522,39 @@ button.xko {
               }
             }
           }
+        }
+      }
+    }
+  }
+  .my-nav{
+    .overview {
+      .overview-item{
+        display: none;
+        width: 35px;
+        &.profile-cont{
+          display: flex;
+        }
+        .bubble-holder{
+          width: 35px;
+          height: 35px;
+        }
+        .value-box{
+          display: none;
+          height: 30px;
+          p{
+            font-size: 12px;
+            &.number{
+              font-size: 12px;
+            }
+            &.add{
+              padding-left: 5px;
+            }
+          }
+        }
+        .profile-expander{
+          width: 140px;
+          border-radius: 5px;
+          right: 0;
         }
       }
     }

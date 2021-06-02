@@ -71,22 +71,10 @@
           </div>
           <div class="menu-border"></div>
         </div>
-      </div>
 
-      <div class="overview">
-        <!-- <div class="mode-switcher" (click)="changeManager()" [ngClass]="isManager === true ? 'manager' : 'racer'">
-          <div class="inner my-cta-btn-back"></div>
-        </div> -->
-        <div class="notifiq-btn" [ngClass]="{ active: shaking === true }">
+        <div class="notifiq-btn" [ngClass]="{ active: shaking === true, 'opened': openNotifiq === true }">
           <img
-            class="red-bell"
-            src="/assets/base/images/start-race/notifiq-bell-red.svg"
-            alt=""
-            (click)="openNotifiq = !openNotifiq"
-          />
-          <img
-            class="blue-bell"
-            src="/assets/base/images/start-race/notifiq-bell-blue.svg"
+            src="/assets/base/images/start-race/notifiq-bell.svg"
             alt=""
             (click)="openNotifiq = !openNotifiq"
           />
@@ -104,18 +92,13 @@
             (click)="openNotifiq = !openNotifiq"
           ></div>
         </div>
+      </div>
+
+      <div class="overview">
 
         <ng-container *ngIf="showMetaBalance === false">
-          <!-- <div class="online-box my-layout-online-box my-low-gradient">
-            <img class="user-ico-red" src="/assets/base/images/menu/user-ico-red.svg" alt="">
-            <img class="user-ico-blue" src="/assets/base/images/menu/user-ico-blue.svg" alt="">
-            <p class="num">{{sumUsers | number:'1.0-2':'fr'}}</p>
-            <p class="desc my-text-color">{{"shared.online" | translate}}</p>
-          </div> -->
-          <!-- <div class="lang-switcher">
-            <app-lang-switcher></app-lang-switcher>
-          </div> -->
-          <div (click)="toggleSettings()" class="profile">
+
+          <!-- <div (click)="toggleSettings()" class="profile">
             <div class="profile-content">
               <div class="profile-img">
                 <img
@@ -144,6 +127,60 @@
                   {{ myDriverStats?.nickname }}
                 </p>
               </div>
+            </div>
+            <div
+              [ngClass]="{ active: settingsShown === true }"
+              class="profile-expander"
+            >
+              <div class="btn-item" (click)="showMySettings = true">
+                <p>
+                  <img
+                    src="/assets/base/images/menu/settings-icon.svg"
+                    alt=""
+                  />
+                  {{ "profile.acc_settings" | translate }}
+                </p>
+              </div>
+              <div class="btn-item" (click)="logout()">
+                <p>
+                  <img src="/assets/base/images/menu/logout-icon.svg" alt="" />
+                  {{ "profile.log_out" | translate }}
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="overview-item" 
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }">
+            <div class="bubble-holder">
+              <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="">
+            </div>
+            <div class="value-box">
+              <p class="number">{{ myDriver?.game_wallet_matic | number: "1.2-2":"fr" }}</p>
+              <p class="add">+</p>
+            </div>
+          </div>
+          <div class="overview-item"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }">
+            <div class="bubble-holder ioi">
+              <img src="/assets/base/images/logo-blank.png" alt="">
+            </div>
+            <div class="value-box">
+              <p class="number">{{ myDriver?.game_wallet_ioi | number: "1.2-2":"fr" }}</p>
+              <p class="add">+</p>
+            </div>
+          </div>
+          <div class="overview-item profile-cont" (click)="toggleSettings()">
+            <div class="bubble-holder profile">
+              <img
+                [src]="'assets/base/images/avatars/avatar' + Affilate?.affiliate_level + '-small.png'"
+                alt=""
+              />
+            </div>
+            <div class="value-box">
+              <p>{{ myDriverStats?.nickname }}</p>
             </div>
             <div
               [ngClass]="{ active: settingsShown === true }"
@@ -224,14 +261,6 @@
             />
           </div>
         </div>
-
-        <button
-          class="deposit-btn my-cta-btn-back hoverable"
-          [routerLink]="['/race/all-races/']"
-        >
-          <img src="/assets/base/images/play-btn.svg" alt="Play button" />
-          <span> Play</span>
-        </button>
 
         <div
           class="my-mobile-button"
@@ -346,25 +375,6 @@
             [ngClass]="{ active: menuType === 'races' }"
           >
             <p>{{ "site-layout.races" | translate }}</p>
-          </div>
-          <div
-            class="switch-item"
-            (click)="menuType = 'me'"
-            [ngClass]="{ active: menuType === 'me' }"
-          >
-            <ng-container *ngIf="myDriverStats?.is_verified === false">
-              <img
-                src="/assets/base/images/icons/verify-warning-red.png"
-                alt="Verify account warning"
-                class="my-warning red"
-              />
-              <img
-                src="/assets/base/images/icons/verify-warning-blue.png"
-                alt="Verify account warning"
-                class="my-warning blue"
-              />
-            </ng-container>
-            <p>{{ "site-layout.me" | translate }}</p>
           </div>
           <div
             class="switch-item"
