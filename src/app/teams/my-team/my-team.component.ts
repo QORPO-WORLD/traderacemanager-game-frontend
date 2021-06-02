@@ -100,52 +100,57 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getChart() {
-    // this.chart = new Chart({
-    //   chart: {
-    //     type: 'areaspline',
-    //     backgroundColor: null
-    //   },
-    //   xAxis: {
-    //     visible: false
-    //   },
-    //   yAxis: {
-    //     visible: false
-    //   },
-    //   legend: {
-    //     enabled: false
-    //   },
-    //   title: '',
-    //   credits: {
-    //     enabled: false
-    //   },
-    //   tooltip: {
-    //     shared: true,
-    //     valueSuffix: ' TRX'
-    //   },
-    //   plotOptions: {
-    //     areaspline: {
-    //       fillOpacity: 0
-    //     },
-    //     series: {
-    //       enableMouseTracking: false,
-    //       marker: {
-    //         enabled: false
-    //       },
-    //       states: {
-    //         hover: {
-    //           enabled: false
-    //         }
-    //       }
-    //     }
-    //   },
-    //   series: [
-    //     {
-    //       name: '',
-    //       type: 'areaspline',
-    //       data: [this.turnoverData]
-    //     }
-    //   ]
-    // }, {});
+    /*
+    this.chart = new Chart({
+      chart: {
+        type: 'areaspline',
+        backgroundColor: null
+      },
+      xAxis: {
+        visible: false
+      },
+      yAxis: {
+        visible: false
+      },
+      legend: {
+        enabled: false
+      },
+      title: {
+        text: ''
+      },
+      credits: {
+        enabled: false
+      },
+      tooltip: {
+        shared: true,
+        valueSuffix: ' TRX'
+      },
+      plotOptions: {
+        areaspline: {
+          fillOpacity: 0
+        },
+        series: {
+          enableMouseTracking: false,
+          marker: {
+            enabled: false
+          },
+          states: {
+            hover: {
+              enabled: false
+            }
+          }
+        }
+      },
+      series: [
+        {
+          name: '',
+          type: 'areaspline',
+          data: [this.turnoverData]
+        }
+      ]
+    }, {});
+
+    */
   }
 
   getMyTem() {
