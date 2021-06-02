@@ -1,5 +1,5 @@
 <div class="main-holder">
-  <div class="races-title">
+  <div class="content-title">
     <img
       class="red-star"
       src="assets/base/images/icons/icon-back-red.svg"
@@ -10,7 +10,141 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p class="races-title"></p>
+    <p class="races-title my-border-bottom">{{ title }}</p>
   </div>
-  <div class="races-content"></div>
+
+  <div class="races-content">
+    <div class="content-menu">
+      <div
+        (click)="title = 'ALL RACES'"
+        [ngClass]="{
+          active: title === 'ALL RACES'
+        }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/flag.svg" alt="flag" />
+          <p class="menu-title">ALL RACES</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
+        (click)="title = 'HOW TO PLAY'"
+        [ngClass]="{
+          active: title === 'HOW TO PLAY'
+        }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/gamepad.svg" alt="gamepad" />
+          <p class="menu-title">HOW TO PLAY</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+
+      <div
+        (click)="title = 'CARS'"
+        [ngClass]="{
+          active: title === 'CARS'
+        }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/car.svg" alt="car" />
+          <p class="menu-title">CARS</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
+        (click)="title = 'FAST FUEL'"
+        [ngClass]="{ active: title === 'FAST FUEL' }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/fire.svg" alt="fire" />
+          <p class="menu-title">FAST FUEL</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
+        (click)="title = 'PREMIUM'"
+        [ngClass]="{ active: title === 'PREMIUM' }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/badge.svg" alt="badge" />
+          <p class="menu-title">PREMIUM</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
+        (click)="title = 'HELPFUL TIPS'"
+        [ngClass]="{ active: title === 'HELPFUL TIPS' }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/idea.svg" alt="idea" />
+          <p class="menu-title">HELPFUL TIPS</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
+        (click)="title = 'TEAMS'"
+        [ngClass]="{ active: title === 'TEAMS' }"
+        class="item"
+      >
+        <div class="item-content">
+          <div class="hover-effect"></div>
+          <img src="assets/base/images/icons/group.svg" alt="group" />
+          <p class="menu-title">TEAMS</p>
+        </div>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+    </div>
+    <div class="content-side">
+      <div
+        [routerLink]="['/race/race-type']"
+        [queryParams]="{ raceType: 'fast' }"
+        class="fast-races hover-effect"
+      >
+        <p class="category-title-first">FAST RACES</p>
+        <p class="races-desc">30 second duration</p>
+      </div>
+      <div class="group">
+        <div
+          [routerLink]="['/race/race-type/']"
+          [queryParams]="{ raceType: 'tournament' }"
+          class="tournaments hover-effect"
+        >
+          <p class="category-title-second">TOURNAMENTS</p>
+          <p class="races-desc">19 Fast races in one Tournament</p>
+        </div>
+
+        <div class="category-group">
+          <div
+            [routerLink]="['/race/race-type/']"
+            [queryParams]="{ raceType: 'enduration' }"
+            class="enduration hover-effect"
+          >
+            <p class="category-title-third">Enduration Races</p>
+            <p class="races-desc">1 hour duration</p>
+          </div>
+          <div
+            [routerLink]="['/race/race-type']"
+            [queryParams]="{ raceType: 'special' }"
+            class="special-events hover-effect"
+          >
+            <p class="category-title-third">Special Events</p>
+            <p class="races-desc">IOI token holder events</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
