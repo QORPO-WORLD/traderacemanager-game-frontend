@@ -71,10 +71,10 @@ export class MyChatComponent implements OnInit {
     this.getRewards();
     this.getAllRaces();
 
-    this.interval = setInterval(() => {
-       this.getChat();
+    // this.interval = setInterval(() => {
+    //    this.getChat();
       
-    }, 20000);
+    // }, 20000);
   }
 
   getChat() {

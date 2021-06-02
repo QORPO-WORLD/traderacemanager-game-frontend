@@ -57,6 +57,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     });
     this.accountInfo = this.dapi.getDriverMe();
   }
+
   allTeams: any;
   myTeamAllData: any;
   filter = "all";
@@ -724,7 +725,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   currentExpLevel: number;
   ioioreward: number;
   actualIoiReward = 1000000;
-
   displayReward = 0;
   tutorialInterval: any;
   animationInterval: any;

@@ -1,3 +1,4 @@
+import { first } from 'rxjs/operators';
 import { NotifiqService } from "./../../services/notifiq.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { TeamsService } from "../../../api/services/teams.service";
@@ -77,6 +78,7 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
+      this.reorderTeams();
     });
   }
 
@@ -180,5 +182,15 @@ export class TeamsSelectionComponent implements OnInit {
     if (this.startTeamIndex > 0) {
       this.startTeamIndex--;
     } else this.startTeamIndex = this.teams.length - this.sliceBalancer;
+  }
+
+  reorderTeams() {
+    let helper = [...this.teams];
+    let specificItem = helper.filter((item) => item.name === "TRADER");
+    if (specificItem !== undefined) {
+      let firstTwo = helper.splice(0, 2);
+      helper = helper.filter((item) => item.name !== "TRADER");
+      this.teams = [...firstTwo, ...specificItem, ...helper]; 
+    }
   }
 }
