@@ -26,7 +26,7 @@ import { ChartModule } from "angular-highcharts";
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 //import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
-
+import { ChartsModule } from 'ng2-charts';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -44,6 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
     UserModule,
     HttpClientModule,
     ChartModule,
+    ChartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
