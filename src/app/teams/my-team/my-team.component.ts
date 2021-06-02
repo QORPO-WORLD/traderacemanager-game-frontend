@@ -147,7 +147,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
           data: [this.turnoverData]
         }
       ]
-    });
+    }, {});
   }
 
   getMyTem() {
