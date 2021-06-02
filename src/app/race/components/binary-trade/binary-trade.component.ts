@@ -14,6 +14,7 @@ import io from "socket.io-client"
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
+import 'chartjs-plugin-streaming';
 export interface Trade {
   data: {
     p: number,
@@ -23,7 +24,59 @@ export interface Trade {
   }[],
   type: string
 }
+const verticalLinePlugin = {
+  getLinePosition: function (chart, pointIndex) {
+      const meta = chart.getDatasetMeta(0); // first dataset is used to discover X coordinate of a point
+      const data = meta.data;
+      return data[pointIndex]._model.x;
+  },
+  renderVerticalLine: function (chartInstance, pointIndex) {
+      const lineLeftOffset = this.getLinePosition(chartInstance, pointIndex);
+      const scale = chartInstance.scales['y-axis-0'];
+      const context = chartInstance.chart.ctx;
 
+      // render vertical line
+      context.beginPath();
+      context.strokeStyle = '#ff0000';
+      context.moveTo(lineLeftOffset, scale.top);
+      context.lineTo(lineLeftOffset, scale.bottom);
+      context.stroke();
+
+      // write label
+      context.fillStyle = "#ff0000";
+      context.textAlign = 'center';
+      context.fillText('MY TEXT', lineLeftOffset, (scale.bottom - scale.top) / 2 + scale.top);
+  },
+
+  afterDatasetsDraw: function (chart, easing) {
+      if (chart.config.lineAtIndex) {
+          chart.config.lineAtIndex.forEach(pointIndex => this.renderVerticalLine(chart, pointIndex));
+      }
+  }
+};
+const originalLineDraw = Chart.controllers.line.prototype.draw;
+Chart.helpers.extend(Chart.controllers.line.prototype, {
+  draw: function() {
+    originalLineDraw.apply(this, arguments);
+
+    const chart = this.chart;
+    const ctx = chart.chart.ctx;
+
+    var index = chart.config.data.lineAtIndex;
+    if (index) {
+      const xaxis = chart.scales['x-axis-0'];
+      const yaxis = chart.scales['y-axis-0'];
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+      ctx.strokeStyle = '#ff0000';
+      ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+});
 @Component({
   selector: 'app-binary-trade',
   templateUrl: './binary-trade.component.html',
@@ -104,6 +157,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
+  chartTemp: any;
+  showChart = false;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -114,7 +169,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.getBinaryPlayers();
     this.getMyDriver();
     this.initPopSock();
-    this.initChartConfig();
+
     this.initCcxtTicker();
     this.balance = this.identityService.getBalance().game_wallet_ioi;
     this.subscribeToStream();
@@ -133,26 +188,72 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.chartSubscription = this.chartStream.subscribe(datax => {
       if (datax.value && this.raceEnded === false) {
         const dateF = new Date(datax.time).toLocaleTimeString();
-        this.chart.data.datasets[0].data.push(datax.value);
-        this.chart.data.datasets[0].pointStyle.push(datax.type);
-        this.chart.data.labels.push(dateF);
-        if (this.chart.data.datasets[0].data.length > 20) {
-          this.chart.data.datasets[0].data.shift();
-          this.chart.data.datasets[0].pointStyle.shift();
-          this.chart.data.labels.shift();
+        this.chartTemp = {
+          value: datax.value,
+          time: datax.time,
+          type: datax.type
         }
-        this.chart.update();
-        if (datax.type !== 'circle') {
-          this.pushing = true;
-          setTimeout(() => {
-            this.pushing = false;
-          }, 1000);
-          
-        }
+        this.updateChart();
       }
-    })
+    });
+    setTimeout(() => {
+      this.initChartConfig();
+    }, 5000);
   }
 
+  updateChart() {
+
+    if (this.chartTemp.value && this.chart) {
+      const tempIndex = this.chart.data.labels.indexOf(this.chartTemp.time);
+      let retypedindex: number;
+      retypedindex = tempIndex;
+      const isOnChart = this.chart.data.datasets[0].pointStyle[retypedindex] === 'circle';
+      if (this.chart.data.labels.includes(this.chartTemp.time) && this.chartTemp.type !== 'circle') {
+
+        console.log(this.chartTemp.type);
+        if (isOnChart) {
+          this.chart.data.datasets[0].data[tempIndex] = this.chartTemp.value;
+          this.chart.data.datasets[0].pointStyle[tempIndex] = null;
+          this.chart.data.datasets[0].pointStyle[tempIndex] = this.chartTemp.type;
+          console.log('replacing');
+          //this.chart.data.labels[tempIndex] = this.chartTemp.time;
+        } else {
+          this.chart.data.datasets[0].data.join(tempIndex + 1, 0, this.chartTemp.value);
+          this.chart.data.datasets[0].pointStyle.join(tempIndex + 1, 0, this.chartTemp.type);
+          this.chart.data.labels.join(tempIndex + 1, 0, this.chartTemp.time);
+          console.log('joining');
+          if (this.chart.data.datasets[0].data.length > 21) {
+            this.chart.data.datasets[0].data.shift();
+            this.chart.data.datasets[0].pointStyle.shift();
+            this.chart.data.labels.shift();
+            console.log('shifting');
+          }
+        }
+      } else {
+        console.log('adding');
+        this.addToChart();
+      }
+    }
+
+  }
+
+  addToChart() {
+    this.chart.data.datasets[0].data.push(this.chartTemp.value);
+    this.chart.data.datasets[0].pointStyle.push(this.chartTemp.type);
+    this.chart.data.labels.push(this.chartTemp.time);
+
+    if (this.chart.data.datasets[0].data.length > 21) {
+      this.chart.data.datasets[0].data.shift();
+      this.chart.data.datasets[0].pointStyle.shift();
+      this.chart.data.labels.shift();
+    }
+    if (this.chartTemp.type !== 'circle') {
+      this.pushing = true;
+      setTimeout(() => {
+        this.pushing = false;
+      }, 1000);
+    }
+  }
 
   getBinaryPlayers() {
     this.raceApi.binaryPlayers(
@@ -191,24 +292,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, 'rgba(130, 130, 130, 1)');
     gradient.addColorStop(1, 'rgba(34, 34, 34, 0)');
-
+    let _that = this;
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
-      this.config.options.scales.x.onRefresh = this.onRefresh();
+      this.hackChart();
+      //this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100)
     Chart.defaults.global.legend.display = false;
     this.config = {
       type: 'line',
       data: {
         datasets: [{
-          label: 'BTC/USDT',
-          backgroundColor: gradient,
-          borderColor: this.chartColors.red,
-          fill: true,
-          data: [],
-          lineTension: 0.1,
-          pointStyle: []
-        }, {
           label: 'BTC/USDT',
           backgroundColor: gradient,
           borderColor: this.chartColors.red,
@@ -223,10 +317,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           x: {
             type: 'realtime',
             realtime: {
-              duration: 3000,
+              duration: 20000,
               refresh: 1000,
-              delay: 1500,
-
+              delay: 2000,
             }
           },
           yAxes: [{
@@ -238,6 +331,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             }
           }],
           xAxes: [{
+            type: 'realtime',
+            realtime: {
+              duration: 20000,
+              refresh: 1000,
+              delay: 2000,
+              onRefresh: _that.updateChart()
+            },
             display: true,
             ticks: {
               fontColor: "#868686",
@@ -256,29 +356,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         }
       }
     };
-  }
-
-
-
-  onRefresh() {
-    if (this.chart) {
-      const now = Date.now();
-      this.chart.data.datasets[0].data.push({
-        x: now,
-        y: this.currentValue
-
-      });
-      if (this.chart.data.datasets[0].data.length > 20) {
-        this.chart.data.datasets[0].data.shift();
-      }
-    }
-
-  }
-
-  addData() {
-    console.log('adding data');
-    this.onRefresh();
-    this.chart.update();
+    
   }
 
 
@@ -300,12 +378,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
   }
-
-
-  makeItStop() {
-    clearInterval(this.chartInterval);
-  }
-
 
   // websocket to chart section
 
@@ -377,24 +449,22 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     popsock.on("option", function (data) {
 
       const opt = JSON.parse(data);
+      console.log(opt);
       _this.onOption(opt);
     });
 
     popsock.on("option_closed", function (data) {
-
       const opt = JSON.parse(data);
+      console.log(opt);
       _this.onOptionClosed(opt);
-
     });
 
     popsock.on("status", function (data) {
-
       const opt = JSON.parse(data);
       _this.onStatus(opt);
     });
 
     popsock.on("winners", function (data) {
-      console.log(data);
       const opt = JSON.parse(data);
       _this.onWinners(opt);
     });
@@ -411,13 +481,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   onOption(data?: any) {
     const opt = data;
-    console.log(opt);
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
 
   onOptionClosed(data?: any) {
     const opt = data;
-    console.log(opt);
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
   }
 
@@ -561,5 +629,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     return diffTime;
   }
 
+  hackChart() {
+    this.chart.data.datasets[0].data.push(0);
+    this.chart.data.datasets[0].pointStyle.push('circle');
+    this.chart.data.labels.push(Date.now());
+
+    this.chart.data.datasets[0].data.shift();
+    this.chart.data.datasets[0].pointStyle.shift();
+    this.chart.data.labels.shift();
+
+    setTimeout(() => { this.showChart = true; }, 100);
+  }
+
 
 }
+

@@ -49,13 +49,13 @@
 
   </div>
   <div *ngIf="players?.length > 1" class="unity-holder">
-
+<!-- 
     <app-unityrace [players]="players" #unityRace style="width: 100%;
           height: 100%;
           position: relative;
           background: black;
           z-index: 1;" >
-    </app-unityrace>
+    </app-unityrace> -->
   </div>
   <div class="content-holder">
     <div class="mobile-avatars">
@@ -96,9 +96,11 @@
       <div id="container">
 
       </div>
-      <canvas id="canvas"  *ngIf="unityEnabled === true">
+      <canvas id="canvas"  [hidden]="showChart === false">
 
       </canvas>
+
+      
       <div class="timer-count" *ngIf="optWaiting !== 0">
 
         <div class="tc-wrap">
