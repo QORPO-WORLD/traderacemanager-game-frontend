@@ -92,38 +92,45 @@
 .main-holder {
   width: calc(100% - 40px);
   height: calc(100vh - 80px);
-  overflow: hidden;
   padding: 40px 0px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
+  position: relative;
 }
 
 //FONT SETTINGS
 .content-title {
-  position: absolute;
-  top: 20px;
-  left: 40px;
   display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
   img {
-    width: 30px;
+    width: 21px;
   }
   p {
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 0.09em;
-    margin-left: 20px;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
   }
 }
 
 .category-title-first {
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 48px;
+  font-family: "Earth Orbiter";
 }
 .category-title-second {
+  text-align: center;
   margin-bottom: 3%;
   font-style: normal;
   font-weight: normal;
@@ -138,6 +145,7 @@
 //CONTENT SETTINGS
 
 .content {
+  margin: 0 auto;
   width: 80%;
   height: 60%;
   display: flex;
@@ -193,7 +201,12 @@
     padding: 30px 0px 30px 30px;
   }
   .content-title {
-    left: 30px;
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
   }
 }
 @media screen and(max-width: 1550px) {
@@ -204,14 +217,12 @@
   }
 
   .content-title {
-    top: 15px;
-    left: 20px;
+    height: 65px;
     img {
-      width: 20px;
+      width: 15px;
     }
     p {
-      margin-left: 15px;
-      font-size: 20px;
+      font-size: 22px;
     }
   }
 
@@ -227,12 +238,6 @@
   }
 }
 @media screen and(max-width: 1400px) {
-  .content-title {
-    img {
-      width: 18px;
-    }
-  }
-
   .category-title-first {
     font-size: 26px;
   }
@@ -251,29 +256,20 @@
     padding-bottom: 13px;
     padding-top: 13px;
   }
-  .content-title {
-    top: 22.5px;
-    left: 13px;
-    img {
-      width: 15px;
-    }
-    p {
-      font-size: 15px;
-    }
-  }
 }
 @media screen and(max-width: 1024px) {
   .main-holder {
     width: calc(100% - 10px);
-    padding: 10px 0px 10px 10px;
+    padding: 5% 0px 10px 10px;
+    justify-content: unset;
   }
-  .content-title {
-    top: 10px;
-    left: 10px;
 
+  .content-title {
+    img {
+      width: 13px;
+    }
     p {
-      margin-left: 10px;
-      font-size: 14px;
+      font-size: 20px;
     }
   }
 }
@@ -291,6 +287,9 @@
 
 //LANDSCAPE
 @media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
   .category-title-first {
     font-size: 20px;
     line-height: 22px;
@@ -313,7 +312,6 @@
 }
 @media screen and(max-width: 700px) and (orientation: landscape) {
   .content-title {
-    top: 15px;
     img {
       width: 8.5px;
     }
@@ -360,7 +358,10 @@
 @media screen and(max-width: 640px) and (orientation: portrait) {
   .content-title {
     img {
-      width: 18px;
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
     }
   }
 

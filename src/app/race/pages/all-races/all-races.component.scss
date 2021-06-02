@@ -92,28 +92,32 @@
 .main-holder {
   width: calc(100% - 40px);
   height: calc(100vh - 80px);
-  overflow: hidden;
   padding: 40px 0px 40px 40px;
   display: flex;
-
+  position: relative;
   align-items: flex-end;
 }
 
 //FONT SETTINGS
 .content-title {
-  position: absolute;
-  top: 20px;
-  left: 40px;
   display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
   img {
-    width: 30px;
+    width: 21px;
   }
   p {
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 0.09em;
-    margin-left: 20px;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
   }
 }
 
@@ -122,21 +126,25 @@
   font-weight: normal;
   font-size: 20px;
   margin-left: 20px;
+  font-family: "Earth Orbiter";
 }
 .category-title-first {
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 48px;
+  font-family: "Earth Orbiter";
 }
 .category-title-second {
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 40px;
+  font-family: "Earth Orbiter";
 }
 .category-title-third {
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 32px;
+  font-family: "Earth Orbiter";
 }
 .races-desc {
   font-style: normal;
@@ -360,7 +368,12 @@
     padding: 30px 0px 30px 30px;
   }
   .content-title {
-    left: 30px;
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
   }
 }
 @media screen and(max-width: 1550px) {
@@ -370,14 +383,12 @@
     padding: 20px 0px 20px 20px;
   }
   .content-title {
-    top: 15px;
-    left: 20px;
+    height: 65px;
     img {
-      width: 20px;
+      width: 15px;
     }
     p {
-      margin-left: 15px;
-      font-size: 20px;
+      font-size: 22px;
     }
   }
   .races-content {
@@ -407,11 +418,6 @@
   }
 }
 @media screen and(max-width: 1400px) {
-  .content-title {
-    img {
-      width: 18px;
-    }
-  }
   .menu-title {
     font-size: 16px;
   }
@@ -434,16 +440,6 @@
     padding: 13px 0px 13px 13px;
     padding-bottom: 13px;
     padding-top: 13px;
-  }
-  .content-title {
-    top: 22.5px;
-    left: 13px;
-    img {
-      width: 15px;
-    }
-    p {
-      font-size: 15px;
-    }
   }
 }
 @media screen and(max-width: 1024px) {
@@ -474,22 +470,16 @@
     padding: 10px 0px 10px 10px;
   }
   .content-title {
-    top: 10px;
-    left: 10px;
-
+    img {
+      width: 13px;
+    }
     p {
-      margin-left: 10px;
-      font-size: 14px;
+      font-size: 20px;
     }
   }
 }
 @media screen and(max-width: 800px) {
   .main-holder {
-  }
-}
-@media screen and(max-width: 640px) {
-  .main-holder {
-    padding: 20px;
   }
 }
 
@@ -500,6 +490,9 @@
 
 //LANDSCAPE
 @media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
   .menu-title {
     font-size: 12px;
     line-height: 14px;
@@ -557,7 +550,6 @@
 }
 @media screen and(max-width: 700px) and (orientation: landscape) {
   .content-title {
-    top: 15px;
     img {
       width: 8.5px;
     }
@@ -623,6 +615,9 @@
   }
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    align-items: flex-start;
+  }
   .races-content {
     flex-direction: column;
     .content-menu {
@@ -636,7 +631,98 @@
       }
     }
     .content-side {
+      width: 100%;
       height: 65%;
+      flex-direction: column;
+      .fast-races {
+        width: 100%;
+        height: 30%;
+      }
+      .group {
+        height: 67.5%;
+        width: 100%;
+      }
+      .tournaments {
+        height: 47.5%;
+      }
+      .category-group {
+        height: 48%;
+      }
+      .enduration {
+        width: 48%;
+      }
+      .special-events {
+        width: 48%;
+      }
+      .hoverable-category {
+        padding: 10px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
+  .menu-title {
+    font-size: 10px;
+    line-height: 12px;
+    margin-left: 5px;
+  }
+  .category-title-first {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-second {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .category-title-third {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+    opacity: 0.6;
+  }
+  .races-content {
+    .content-menu {
+      .item {
+        width: 31%;
+        border-top: 2px solid rgba(255, 255, 255, 0.4);
+        border-left: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+        border-right: 2px solid rgba(255, 255, 255, 0.4);
+        &.active {
+          border-bottom: 2px solid transparent;
+          border-top: 2px solid rgba(255, 255, 255, 0.6);
+          border-left: 2px solid rgba(255, 255, 255, 0.6);
+
+          border-right: 2px solid rgba(255, 255, 255, 0.6);
+          .bottom-border {
+            height: 3px;
+          }
+        }
+        img {
+          margin-left: 0%;
+          width: 15px;
+          height: auto;
+        }
+      }
+      .item:hover {
+        img {
+          margin-left: 0%;
+        }
+      }
+      .item-content {
+        justify-content: center;
+      }
     }
   }
 }
