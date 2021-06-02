@@ -157,8 +157,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       retypedindex = tempIndex;
       const isOnChart = this.chart.data.datasets[0].pointStyle[retypedindex] === 'circle';
       if (this.chart.data.labels.includes(this.chartTemp.time) && this.chartTemp.type !== 'circle') {
-
-        console.log(this.chartTemp.type);
         if (isOnChart) {
           this.chart.data.datasets[0].data[tempIndex] = this.chartTemp.value;
           this.chart.data.datasets[0].pointStyle[tempIndex] = null;
@@ -167,18 +165,37 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           console.log('replacing');
           //this.chart.data.labels[tempIndex] = this.chartTemp.time;
         } else {
-          this.chart.data.datasets[0].data.splice(tempIndex + 1, 0, this.chartTemp.value);
-          this.chart.data.datasets[0].pointStyle.splice(tempIndex + 1, 0, this.chartTemp.type);
-          this.chart.data.labels.splice(tempIndex + 1, 0, this.chartTemp.time);
-          console.log('joining');
+          const tempData = [];
+          tempData.push(...this.chart.data.datasets[0].data);
+          const tempPoint = [];
+          tempPoint.push(...this.chart.data.datasets[0].pointStyle);
+          const tempLabel = [];
+          tempLabel.push(...this.chart.data.labels);
 
+          
+
+          tempData.splice(tempIndex + 1, 0, this.chartTemp.value);
+          tempPoint.splice(tempIndex + 1, 0, this.chartTemp.type);
+          tempLabel.splice(tempIndex + 1, 0, this.chartTemp.time);
+
+
+          this.chart.data.datasets[0].data = tempData;
+          this.chart.data.datasets[0].pointStyle = tempPoint;
+          this.chart.data.labels = tempLabel;
+
+          
 
           if (this.chart.data.datasets[0].data.length > 21) {
             this.chart.data.datasets[0].data.shift();
             this.chart.data.datasets[0].pointStyle.shift();
             this.chart.data.labels.shift();
-            console.log('shifting');
           }
+          this.pushing = true;
+          setTimeout(() => {
+            this.pushing = false;
+          }, 700);
+
+          //this.chart.update();
         }
       } else {
         console.log('adding');
