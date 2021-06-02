@@ -163,13 +163,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.chart.data.datasets[0].data[tempIndex] = this.chartTemp.value;
           this.chart.data.datasets[0].pointStyle[tempIndex] = null;
           this.chart.data.datasets[0].pointStyle[tempIndex] = this.chartTemp.type;
+
           console.log('replacing');
           //this.chart.data.labels[tempIndex] = this.chartTemp.time;
         } else {
-          this.chart.data.datasets[0].data.join(tempIndex + 1, 0, this.chartTemp.value);
-          this.chart.data.datasets[0].pointStyle.join(tempIndex + 1, 0, this.chartTemp.type);
-          this.chart.data.labels.join(tempIndex + 1, 0, this.chartTemp.time);
+          this.chart.data.datasets[0].data.splice(tempIndex + 1, 0, this.chartTemp.value);
+          this.chart.data.datasets[0].pointStyle.splice(tempIndex + 1, 0, this.chartTemp.type);
+          this.chart.data.labels.splice(tempIndex + 1, 0, this.chartTemp.time);
           console.log('joining');
+
+
           if (this.chart.data.datasets[0].data.length > 21) {
             this.chart.data.datasets[0].data.shift();
             this.chart.data.datasets[0].pointStyle.shift();
@@ -304,7 +307,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         }
       }
     };
-    
+
   }
 
 

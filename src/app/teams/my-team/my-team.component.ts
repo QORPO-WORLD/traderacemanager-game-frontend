@@ -100,6 +100,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getChart() {
+    /*
     this.chart = new Chart({
       chart: {
         type: 'areaspline',
@@ -148,6 +149,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         }
       ]
     }, {});
+
+    */
   }
 
   getMyTem() {
