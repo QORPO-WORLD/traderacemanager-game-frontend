@@ -98,6 +98,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   meWon: boolean;
   unityEnabled = true;
   chartEnabled = true;
+  semaforsVisible = false;
   balance: any;
   startsAt: number;
   finishingAt: any;
@@ -105,6 +106,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
+  semaforVal = 5;
   chartTemp: any;
   showChart = true;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
@@ -114,6 +116,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.startsInSecs = this.getWhenStarts();
+    this.whenStarts();
     this.getBinaryPlayers();
     this.getMyDriver();
     this.initPopSock();
@@ -598,6 +601,51 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     setTimeout(() => { this.showChart = true; }, 100);
   }
 
+  whenStarts() {
+    const newwhen = this.getWhenStarts();
+
+    const fireSemaforx = (newwhen - 5) * 1000;
+
+    setTimeout((
+    ) => {
+      this.launchSemafor();
+    }, fireSemaforx);
+  }
+
+  launchSemafor() {
+    this.semaforsVisible = true;
+    this.semaforVal = 5;
+      setTimeout(() => {
+
+        this.semaforVal = 4;
+
+      }, 1000);
+      setTimeout(() => {
+
+        this.semaforVal = 3;
+
+      }, 2000);
+      setTimeout(() => {
+
+        this.semaforVal = 2;
+
+      }, 3000);
+      setTimeout(() => {
+
+        this.semaforVal = 1;
+
+      }, 4000);
+      setTimeout(() => {
+
+        this.semaforVal = 0;
+
+      }, 5000);
+      setTimeout(() => {
+
+        this.semaforVal = -1;
+        this.semaforsVisible = false
+      }, 5100);
+  }
 
 }
 
