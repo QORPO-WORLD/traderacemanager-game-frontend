@@ -106,7 +106,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartSubscription: Subscription;
   pushing = false;
   chartTemp: any;
-  showChart = false;
+  showChart = true;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -172,18 +172,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           const tempLabel = [];
           tempLabel.push(...this.chart.data.labels);
 
-          
 
+          const preformatTime = new Date(this.chartTemp.time).toLocaleTimeString();
           tempData.splice(tempIndex + 1, 0, this.chartTemp.value);
           tempPoint.splice(tempIndex + 1, 0, this.chartTemp.type);
-          tempLabel.splice(tempIndex + 1, 0, this.chartTemp.time);
+          tempLabel.splice(tempIndex + 1, 0, preformatTime);
 
 
           this.chart.data.datasets[0].data = tempData;
           this.chart.data.datasets[0].pointStyle = tempPoint;
           this.chart.data.labels = tempLabel;
 
-          
+
 
           if (this.chart.data.datasets[0].data.length > 21) {
             this.chart.data.datasets[0].data.shift();
@@ -195,7 +195,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             this.pushing = false;
           }, 700);
 
-          //this.chart.update();
+          this.chart.update();
         }
       } else {
         console.log('adding');
@@ -208,7 +208,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   addToChart() {
     this.chart.data.datasets[0].data.push(this.chartTemp.value);
     this.chart.data.datasets[0].pointStyle.push(this.chartTemp.type);
-    this.chart.data.labels.push(this.chartTemp.time);
+    const preformatTime = new Date(this.chartTemp.time).toLocaleTimeString();
+    this.chart.data.labels.push(preformatTime);
 
     if (this.chart.data.datasets[0].data.length > 21) {
       this.chart.data.datasets[0].data.shift();
@@ -221,6 +222,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.pushing = false;
       }, 1000);
     }
+
+    this.chart.update();
   }
 
   getBinaryPlayers() {
@@ -263,7 +266,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     let _that = this;
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
-      this.hackChart();
+      //this.hackChart();
       //this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100)
     Chart.defaults.global.legend.display = false;
@@ -299,13 +302,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             }
           }],
           xAxes: [{
-            type: 'realtime',
-            realtime: {
-              duration: 20000,
-              refresh: 1000,
-              delay: 2000,
-              onRefresh: _that.updateChart()
-            },
             display: true,
             ticks: {
               fontColor: "#868686",
@@ -342,9 +338,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
       this.chartStream.next(obj);
     }
-
-
-
   }
 
   // websocket to chart section
@@ -367,10 +360,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
-
-
-
-
   }
 
 
@@ -392,9 +381,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
-
-
-
   }
 
 
@@ -417,13 +403,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     popsock.on("option", function (data) {
 
       const opt = JSON.parse(data);
-      console.log(opt);
       _this.onOption(opt);
     });
 
     popsock.on("option_closed", function (data) {
       const opt = JSON.parse(data);
-      console.log(opt);
       _this.onOptionClosed(opt);
     });
 
@@ -440,6 +424,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     popsock.on("score", function (data) {
       const opt = JSON.parse(data);
       _this.onScore(opt);
+    });
+
+    popsock.on("history", function (data) {
+      const opt = JSON.parse(data);
+      console.log(opt);
     });
 
     popsock.on("message", function (data) {
