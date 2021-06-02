@@ -86,7 +86,7 @@ export class SiteLayoutComponent
   myTrxBalance = 0;
   tickets = 0;
   myDriverBalances: any;
-  menuType = "me";
+  menuType = "races";
   selectedMode = "";
   myAddressClass = "";
   selectedTeam = 0;
