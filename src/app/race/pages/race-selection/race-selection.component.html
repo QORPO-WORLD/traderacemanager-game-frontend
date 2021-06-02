@@ -1,100 +1,38 @@
-<div class="main-holder">
-  <div class="page-info">
-    <div class="back" [routerLink]="['/race/start-race']">
-      <p>&lt;</p>
-      <p>BACK</p>
-    </div>
-    <div class="text-info">
-      <h1>Races</h1>
-      <p>
-        Manage your car in virtual trading races in real time. Set up your
-        trading strategy, and fight your oponents with the best crypto
-        combination.
-      </p>
-    </div>
-    <div class="info-modal">
-      <h6>Free money every day</h6>
-      <div>
-        <div>
-          <p>{{ myTeamStats?.free_membership_count }}<sup>IOI</sup></p>
-          <p>{{ "teams.join.free_members" | translate }}</p>
-        </div>
-        <div class="my-border-grad">
-          <div class="inner-members">
-            <p>{{ myTeamStats?.premium_membership_count }}<sup>IOI</sup></p>
-            <p>{{ "teams.join.premium_members" | translate }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--<div class="race-type-info">
-        
-        <p class="path"> <span [routerLink]="['/race/start-race']">Dashboard</span>  > <strong>Races</strong></p>
-
-        <div class="race-info">
-        <div class="info-text">
-            <h1>Races</h1>
-            <p>Description how to play and what to do to win. Manage your car in virtual trading races in real time, and set up your trading</p>
-        </div>
-
-        <div class="info-modal">
-            <h6>Free money every day</h6>
-            <div>
-            <div>
-                <p>1440<sup>IOI</sup></p>
-                <p>free member</p>
-            </div>
-            <div>
-                <p>4320<sup>IOI</sup></p>
-                <p>premium member</p>
-            </div>
-            </div>
-        </div>
-        </div>
-
-
-    </div>-->
+<div class="content-title">
+  <img
+    (click)="back()"
+    class="red-star"
+    src="assets/base/images/icons/icon-back-red.svg"
+    alt="red arrow"
+  />
+  <img
+    (click)="back()"
+    class="blue-star"
+    src="assets/base/images/icons/icon-back-blue.svg"
+    alt="blue arrow"
+  />
+  <p>RACES</p>
+</div>
+<div
+  [ngClass]="{
+    'dissapear-left-animation': animation === 2,
+    'dissapear-right-animation': animation === 1,
+    'engage-left-animation': animation === 0
+  }"
+  class="main-holder"
+>
+  <p class="category-title-second">Chooose your favourite race mode</p>
   <div class="content">
-    <div class="categories">
-      <h2 class="category-heading">Categories</h2>
-      <div class="categories-content">
-
-        <div
-          [routerLink]="['/race/all-races']"
-          class="box my-box-shadow"
-        >
-          <div class="box-img">
-            <img
-              src="/assets/base/images/all-races/portfolio-race.jpg"
-              alt="fast race image"
-            />
-          </div>
-          <div class="box-text my-cta-btn-back">
-            <h2>Portfolio races</h2>
-            <button class="arrow"><p>&gt;</p></button>
-          </div>
-        </div>
-
-        <div
-          [routerLink]="['/race/binary-fuel/']"
-          class="box my-box-shadow"
-        >
-          <div class="box-img">
-            <img
-              src="/assets/base/images/all-races/binary-race.jpg"
-              alt="fast race image"
-            />
-          </div>
-          <div class="box-text my-cta-btn-back">
-            <h2>Binary fight</h2>
-            <button class="arrow"><p>&gt;</p></button>
-          </div>
-        </div>
-
-      </div>
+    <div (click)="next()" class="portfolio hoverable-category">
+      <p class="category-title-first">FAST RACES</p>
+      <p class="races-desc">30 second duration</p>
     </div>
-
-
+    <div
+      [routerLink]="['/race/binary-fuel/']"
+      class="binary hoverable-category"
+    >
+      <p class="category-title-first">FAST RACES</p>
+      <p class="races-desc">30 second duration</p>
+    </div>
   </div>
 </div>

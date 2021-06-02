@@ -1,21 +1,24 @@
-import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
-import { RacesService } from '../../../api/services/races.service';
+import {
+  Experience,
+  ExperienceService,
+} from "src/app/common/services/experience.service";
+import { RacesService } from "../../../api/services/races.service";
 
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { NextRaceV2 } from 'src/app/api/models';
-import { DriversService, TeamsService } from 'src/app/api/services';
-import { AuthService } from 'src/app/user/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import { NextRaceV2 } from "src/app/api/models";
+import { DriversService, TeamsService } from "src/app/api/services";
+import { AuthService } from "src/app/user/services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-race-selection',
-  templateUrl: './race-selection.component.html',
-  styleUrls: ['./race-selection.component.scss'],
+  selector: "app-race-selection",
+  templateUrl: "./race-selection.component.html",
+  styleUrls: ["./race-selection.component.scss"],
 })
 export class RaceSelectionComponent implements OnInit {
-
-  raceType = 'trx';
+  raceType = "trx";
   raceObserver: Subscription;
   tsubscribe: Subscription;
   selRaceType: string;
@@ -27,10 +30,20 @@ export class RaceSelectionComponent implements OnInit {
   myIoiBalance = 0;
   myTrxBalance = 0;
   tickets = 0;
+  animation = 0;
+  timeoutPrev: any;
+  timeoutNext: any;
   myTeamStats: any;
   myTeamName: any;
-  constructor(private route: ActivatedRoute, private experience: ExperienceService, protected api: RacesService,
-              private dapi: DriversService, private identityService: AuthService, private tapi: TeamsService) {
+  constructor(
+    private route: ActivatedRoute,
+    private experience: ExperienceService,
+    protected api: RacesService,
+    private dapi: DriversService,
+    private identityService: AuthService,
+    private tapi: TeamsService,
+    public router: Router
+  ) {
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
@@ -49,41 +62,56 @@ export class RaceSelectionComponent implements OnInit {
     this.getTeams();
   }
 
-  getRaceType(){
-    this.raceObserver = this.route
-      .queryParams
-      .subscribe(params => {
-        this.raceType = params['raceType'];
-      });
+  getRaceType() {
+    this.raceObserver = this.route.queryParams.subscribe((params) => {
+      this.raceType = params["raceType"];
+    });
   }
 
   fastFuelEnabled() {
-    this.dapi.driversFavFuelList().subscribe(
-      data => {
-        const datax: any = data;
-        if (datax.length > 0) {
-          this.fastEnabled = true;
-        }
+    this.dapi.driversFavFuelList().subscribe((data) => {
+      const datax: any = data;
+      if (datax.length > 0) {
+        this.fastEnabled = true;
       }
-    );
+    });
   }
 
   getMydriverBalances() {
     this.myDriverBalances = this.identityService.getBalance();
-    this.myIoiBalance = this.myDriverBalances.game_wallet_ioi + this.myDriverBalances.stake_wallet_ioi +
+    this.myIoiBalance =
+      this.myDriverBalances.game_wallet_ioi +
+      this.myDriverBalances.stake_wallet_ioi +
       this.myDriverBalances.nitro_wallet_ioi;
-    const datax =  this.identityService.getStorageIdentity();
+    const datax = this.identityService.getStorageIdentity();
     this.tickets = datax.tournament_tickets;
   }
 
   getTeams() {
-    this.tsubscribe = this.tapi.teamsList().subscribe(data => {
+    this.tsubscribe = this.tapi.teamsList().subscribe((data) => {
       const newdata = data.results;
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
       });
-       this.myTeamStats = newdata.find(x => x.name === this.myTeamName);
+      this.myTeamStats = newdata.find((x) => x.name === this.myTeamName);
     });
   }
-
+  next() {
+    this.animation = 2;
+    this.timeoutPrev = setTimeout(() => {
+      this.router.navigate(["/race/all-races"]);
+      this.timeoutReset();
+    }, 300);
+  }
+  back() {
+    this.animation = 1;
+    this.timeoutPrev = setTimeout(() => {
+      this.router.navigate(["/race/start-race"]);
+      this.timeoutReset();
+    }, 300);
+  }
+  timeoutReset() {
+    clearTimeout(this.timeoutNext);
+    clearTimeout(this.timeoutPrev);
+  }
 }

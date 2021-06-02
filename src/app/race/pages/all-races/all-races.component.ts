@@ -10,14 +10,18 @@ import { Subscription } from "rxjs";
 import { NextRaceV2 } from "src/app/api/models";
 import { DriversService, TeamsService } from "src/app/api/services";
 import { AuthService } from "src/app/user/services/auth.service";
-
+import { Router } from "@angular/router";
+import { throwIfEmpty } from "rxjs/operators";
 @Component({
   selector: "app-all-races",
   templateUrl: "./all-races.component.html",
   styleUrls: ["./all-races.component.scss"],
 })
 export class AllRacesComponent implements OnInit {
-  title = "RACERS";
+  animation = 0;
+  timeoutPrev: any;
+  timeoutNext: any;
+  title = "ALL RACES";
   raceType = "trx";
   raceObserver: Subscription;
   tsubscribe: Subscription;
@@ -48,6 +52,7 @@ export class AllRacesComponent implements OnInit {
   myTeamStats: any;
   myTeamName: any;
   constructor(
+    public router: Router,
     private route: ActivatedRoute,
     private experience: ExperienceService,
     protected api: RacesService,
@@ -195,5 +200,16 @@ export class AllRacesComponent implements OnInit {
       });
       this.myTeamStats = newdata.find((x) => x.name === this.myTeamName);
     });
+  }
+  back() {
+    this.animation = 1;
+    this.timeoutPrev = setTimeout(() => {
+      this.router.navigate(["/race/race-selection"]);
+      this.timeoutReset();
+    }, 300);
+  }
+  timeoutReset() {
+    clearTimeout(this.timeoutNext);
+    clearTimeout(this.timeoutPrev);
   }
 }

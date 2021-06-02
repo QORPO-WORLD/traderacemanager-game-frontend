@@ -5,13 +5,6 @@
   >
     <div class="overlay"></div>
     <nav class="my-nav" [ngClass]="{ 'high-index': menuOpen === true }">
-      <img
-        class="nav-logo"
-        src="/assets/base/images/logo.png"
-        alt=""
-        [routerLink]="['/race/start-race']"
-      />
-
       <div class="items-holder">
         <div
           class="menu-item item1"
@@ -72,7 +65,10 @@
           <div class="menu-border"></div>
         </div>
 
-        <div class="notifiq-btn" [ngClass]="{ active: shaking === true, 'opened': openNotifiq === true }">
+        <div
+          class="notifiq-btn"
+          [ngClass]="{ active: shaking === true, opened: openNotifiq === true }"
+        >
           <img
             src="/assets/base/images/start-race/notifiq-bell.svg"
             alt=""
@@ -95,9 +91,7 @@
       </div>
 
       <div class="overview">
-
         <ng-container *ngIf="showMetaBalance === false">
-
           <!-- <div (click)="toggleSettings()" class="profile">
             <div class="profile-content">
               <div class="profile-img">
@@ -150,32 +144,47 @@
             </div>
           </div> -->
 
-          <div class="overview-item" 
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }">
+          <div
+            class="overview-item"
+            [routerLink]="['/other/wallet-control']"
+            [queryParams]="{ controlType: 'deposit' }"
+          >
             <div class="bubble-holder">
-              <img src="/assets/base/images/curr-logos/MATICUSDT-logo.png" alt="">
+              <img
+                src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
+                alt=""
+              />
             </div>
             <div class="value-box">
-              <p class="number">{{ myDriver?.game_wallet_matic | number: "1.2-2":"fr" }}</p>
+              <p class="number">
+                {{ myDriver?.game_wallet_matic | number: "1.2-2":"fr" }}
+              </p>
               <p class="add">+</p>
             </div>
           </div>
-          <div class="overview-item"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }">
+          <div
+            class="overview-item"
+            [routerLink]="['/other/wallet-control']"
+            [queryParams]="{ controlType: 'deposit' }"
+          >
             <div class="bubble-holder ioi">
-              <img src="/assets/base/images/logo-blank.png" alt="">
+              <img src="/assets/base/images/logo-blank.png" alt="" />
             </div>
             <div class="value-box">
-              <p class="number">{{ myDriver?.game_wallet_ioi | number: "1.2-2":"fr" }}</p>
+              <p class="number">
+                {{ myDriver?.game_wallet_ioi | number: "1.2-2":"fr" }}
+              </p>
               <p class="add">+</p>
             </div>
           </div>
           <div class="overview-item profile-cont" (click)="toggleSettings()">
             <div class="bubble-holder profile">
               <img
-                [src]="'assets/base/images/avatars/avatar' + Affilate?.affiliate_level + '-small.png'"
+                [src]="
+                  'assets/base/images/avatars/avatar' +
+                  Affilate?.affiliate_level +
+                  '-small.png'
+                "
                 alt=""
               />
             </div>

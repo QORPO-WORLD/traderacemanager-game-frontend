@@ -1,18 +1,25 @@
-<div class="main-holder">
-  <div class="content-title">
-    <img
-      class="red-star"
-      src="assets/base/images/icons/icon-back-red.svg"
-      alt="red arrow"
-    />
-    <img
-      class="blue-star"
-      src="assets/base/images/icons/icon-back-blue.svg"
-      alt="blue arrow"
-    />
-    <p class="races-title my-border-bottom">{{ title }}</p>
-  </div>
-
+<div class="content-title">
+  <img
+    (click)="back()"
+    class="red-star"
+    src="assets/base/images/icons/icon-back-red.svg"
+    alt="red arrow"
+  />
+  <img
+    (click)="back()"
+    class="blue-star"
+    src="assets/base/images/icons/icon-back-blue.svg"
+    alt="blue arrow"
+  />
+  <p>RACES</p>
+</div>
+<div
+  [ngClass]="{
+    'dissapear-right-animation': animation === 1,
+    'engage-right-animation': animation === 0
+  }"
+  class="main-holder"
+>
   <div class="races-content">
     <div class="content-menu">
       <div
@@ -111,7 +118,7 @@
       <div
         [routerLink]="['/race/race-type']"
         [queryParams]="{ raceType: 'fast' }"
-        class="fast-races hover-effect"
+        class="fast-races hoverable-category"
       >
         <p class="category-title-first">FAST RACES</p>
         <p class="races-desc">30 second duration</p>
@@ -120,7 +127,7 @@
         <div
           [routerLink]="['/race/race-type/']"
           [queryParams]="{ raceType: 'tournament' }"
-          class="tournaments hover-effect"
+          class="tournaments hoverable-category"
         >
           <p class="category-title-second">TOURNAMENTS</p>
           <p class="races-desc">19 Fast races in one Tournament</p>
@@ -130,7 +137,7 @@
           <div
             [routerLink]="['/race/race-type/']"
             [queryParams]="{ raceType: 'enduration' }"
-            class="enduration hover-effect"
+            class="enduration hoverable-category"
           >
             <p class="category-title-third">Enduration Races</p>
             <p class="races-desc">1 hour duration</p>
@@ -138,7 +145,7 @@
           <div
             [routerLink]="['/race/race-type']"
             [queryParams]="{ raceType: 'special' }"
-            class="special-events hover-effect"
+            class="special-events hoverable-category"
           >
             <p class="category-title-third">Special Events</p>
             <p class="races-desc">IOI token holder events</p>
