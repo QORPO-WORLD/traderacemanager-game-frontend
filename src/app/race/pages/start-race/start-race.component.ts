@@ -1550,4 +1550,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   clearIntervalReward() {
     clearInterval(this.rewardInterval);
   }
+  navigateToToken() {
+    window.open("https://ioi-token.com", "_blank");
+  }
 }

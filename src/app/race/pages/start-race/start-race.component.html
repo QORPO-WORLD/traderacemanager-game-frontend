@@ -1,3 +1,20 @@
+<div class="ioi-banner">
+  <img
+    class="banner red-star"
+    src="assets/base/images/start-race/top-banner-red.png"
+    alt="ioi red banner"
+  />
+  <img
+    class="banner blue-star"
+    src="assets/base/images/start-race/top-banner-blue.png"
+    alt="ioi blue banner"
+  />
+  <img
+    class="logo"
+    src="assets/base/images/icons/logo-hollow.svg"
+    alt="ioi-logo"
+  />
+</div>
 <div class="dash-back"></div>
 <div (window:resize)="width()" class="main-wrapper">
   <div class="dashboard-content">
@@ -17,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="box second my-cta-btn-back">
+        <div (click)="navigateToToken()" class="box second my-cta-btn-back">
           <div class="box-content">
             <img
               class="right"
@@ -55,14 +72,19 @@
             controlType: 'affiliate',
             secondControlType: 'about rewards'
           }"
-          class="box second my-cta-btn-back"
+          class="box third my-cta-btn-back"
         >
-          <div class="box-content">
+          <img
+            class="reward"
+            src="assets/base/images/start-race/reward.png"
+            alt="Golden coin"
+          />
+          <div class="box-content second">
             <div *ngIf="reward === 1" class="text">
               <h3>{{ myTeamAllData.team_value.toLocaleString() }} IOI</h3>
               <p>Team reward</p>
             </div>
-            <div *ngIf="reward === 2" class="text holder">
+            <div *ngIf="reward === 2" class="text">
               <h3>{{ myTeamAllData.team_value.toLocaleString() }} IOI</h3>
               <p>Holder reward</p>
             </div>

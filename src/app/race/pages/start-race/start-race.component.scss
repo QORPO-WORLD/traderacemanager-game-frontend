@@ -1,3 +1,26 @@
+.ioi-banner {
+  position: absolute;
+  top: 0px;
+  left: 40px;
+  width: 100px;
+  height: 80px;
+  .banner {
+    width: 100%;
+    height: 125%;
+  }
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: auto;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+  }
+}
 .dash-back {
   position: absolute;
   height: calc(100vh - 80px);
@@ -39,6 +62,7 @@ p {
   font-style: normal;
   font-weight: normal;
   opacity: 0.6;
+  margin: 0px;
 }
 h2 {
   font-family: Poppins;
@@ -46,6 +70,7 @@ h2 {
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 0.15em;
+  margin: 0px;
   margin-bottom: 3px;
 }
 h3 {
@@ -54,6 +79,7 @@ h3 {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.15em;
+  margin: 0px;
   margin-bottom: 2px;
 }
 .dashboard-content {
@@ -228,11 +254,12 @@ h3 {
         position: relative;
         cursor: pointer;
         margin-top: 35px;
+
         &.first {
           height: 100px;
           width: 280px;
           margin-left: 30px;
-          padding: 2px 2px 0px 0px;
+          padding: 2px 2px 0px 2px;
           background: linear-gradient(
             180deg,
             #ffcd3e 0%,
@@ -243,21 +270,34 @@ h3 {
           padding-bottom: 3px;
           width: 310px;
           height: 100px;
-          overflow: hidden;
+        }
+        &.third {
+          padding-bottom: 3px;
+          height: 100px;
+          width: 280px;
+          margin-left: 30px;
+          img {
+            z-index: 1;
+            top: -5px;
+            width: auto;
+            height: 115px;
+            left: -50px;
+          }
         }
         img {
           position: absolute;
           &.left {
-            top: 0px;
+            z-index: 1;
+            top: -5px;
             width: auto;
-            height: 100px;
+            height: 115px;
             left: -50px;
           }
         }
         .box-content {
           padding: 20px;
           display: flex;
-
+          position: relative;
           background: url("/assets/base/images/start-race/arena-back.png");
           background-position: center;
           background-repeat: no-repeat;
@@ -280,19 +320,27 @@ h3 {
 
             justify-content: flex-start;
             .text {
-              width: 70%;
-              margin-left: 30%;
+              width: 80%;
+              margin-left: 20%;
             }
           }
+          &.second {
+            .text {
+              width: 80%;
+              margin-left: 20%;
+            }
+          }
+
           img {
             position: absolute;
 
             &.right {
-              width: 50%;
+              width: 45%;
               height: auto;
+
               right: -20px;
               &.avatar {
-                top: 10%;
+                top: 10px;
               }
             }
           }
@@ -421,6 +469,14 @@ h3 {
 }
 
 @media screen and(max-width: 1700px) {
+  .ioi-banner {
+    left: 30px;
+  }
+  .main-wrapper {
+    width: calc(100% - 30px);
+    padding-left: 30px;
+    padding-top: 10px;
+  }
   .dashboard-content {
     .lower-dashboard {
       bottom: 30px;
@@ -437,6 +493,16 @@ h3 {
   }
 }
 @media screen and(max-width: 1550px) {
+  .main-wrapper {
+    width: calc(100% - 20px);
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+  .ioi-banner {
+    left: 20px;
+    width: 85px;
+    height: 65px;
+  }
   .main-wrapper {
     height: calc(100vh - 65px);
   }
@@ -506,10 +572,7 @@ h3 {
             height: 120px;
             position: absolute;
             &.left {
-              top: 0px;
-              width: 100px;
-              height: 100px;
-              left: -48px;
+              left: -55px;
             }
           }
           &.first {
@@ -519,7 +582,12 @@ h3 {
           }
           &.second {
             width: 250px;
-            height: 120px;
+            height: 100px;
+          }
+          &.third {
+            margin-left: 30px;
+            width: 220px;
+            height: 100px;
           }
           .box-content {
             img {
@@ -605,10 +673,8 @@ h3 {
             height: 80px;
             position: absolute;
             &.left {
-              top: 0px;
-              width: 80px;
-              height: 80px;
-              left: -40px;
+              left: -50px;
+              height: 100px;
             }
           }
           &.first {
@@ -618,14 +684,23 @@ h3 {
           }
           &.second {
             width: 230px;
-            height: 100px;
+            height: 80px;
+          }
+          &.third {
+            margin-left: 30px;
+            width: 200px;
+            height: 80px;
+            img {
+              left: -50px;
+              height: 95px;
+            }
           }
           .box-content {
             img {
               &.right {
                 top: 10px;
                 right: -20px;
-                width: 100px;
+                width: 90px;
                 height: auto;
               }
             }
@@ -668,12 +743,28 @@ h3 {
   }
 }
 @media screen and(max-width: 1200px) {
+  .ioi-banner {
+    left: 13px;
+  }
+  .main-wrapper {
+    width: calc(100% - 13px);
+    padding-left: 13px;
+  }
   .dashboard-content {
     .lower-dashboard {
       .games {
         width: 325px;
       }
     }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .ioi-banner {
+    left: 10px;
+  }
+  .main-wrapper {
+    width: 100%;
+    padding: 0 10px;
   }
 }
 @media screen and(max-width: 1024px) and (orientation: landscape) {
@@ -692,6 +783,10 @@ h3 {
   h3 {
     font-size: 10px;
     line-height: 12px;
+  }
+  .ioi-banner {
+    height: 45px;
+    width: 65px;
   }
   .dash-back {
     display: none;
@@ -762,7 +857,7 @@ h3 {
             height: 17%;
             width: 20%;
             margin-left: 2%;
-            padding: 2px 2px 0px 0px;
+            padding: 2px 2px 0px 2px;
             background: linear-gradient(
               180deg,
               #ffcd3e 0%,
@@ -770,17 +865,29 @@ h3 {
             );
           }
           &.second {
-            padding-bottom: 3px;
+            padding-bottom: 2px;
             width: 22%;
             height: 20%;
+          }
+          &.third {
+            padding-bottom: 2px;
+            width: 20%;
+            margin-left: 2%;
+            height: 20%;
+            img {
+              top: -5px;
+              width: auto;
+              height: 120%;
+              left: -20%;
+            }
           }
           img {
             position: absolute;
             &.left {
-              top: 0px;
+              top: -3px;
               width: auto;
-              height: 100%;
-              left: -15%;
+              height: 120%;
+              left: -17.5%;
             }
           }
           .box-content {
@@ -792,13 +899,22 @@ h3 {
               &.right {
                 width: 40%;
                 height: auto;
-                right: -10%;
+                right: 0%;
                 top: 50%;
                 transform: translateY(-50%);
                 -webkit-transform: translateY(-50%);
                 -moz-transform: translateY(-50%);
                 -ms-transform: translateY(-50%);
                 -o-transform: translateY(-50%);
+                &.avatar {
+                  top: 70%;
+                }
+              }
+            }
+
+            &.second {
+              .text {
+                padding: 2px 2px 0px 0px;
               }
             }
           }
@@ -810,10 +926,13 @@ h3 {
       }
     }
     .lower-dashboard {
-      bottom: 10px;
+      bottom: 5px;
       .marketplace {
         height: 70%;
         width: 22%;
+        img {
+          top: -10px;
+        }
       }
       .category-boxes {
         height: 55%;
@@ -841,8 +960,52 @@ h3 {
   }
 }
 @media screen and(max-width: 850px) and (orientation: landscape) {
+  .ioi-banner {
+    height: 40px;
+    width: 50px;
+    .logo {
+      width: 40%;
+    }
+    .banner {
+      height: 110%;
+    }
+  }
   .main-wrapper {
     height: calc(100vh - 40px);
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  p {
+    font-size: 6px;
+    line-height: 8px;
+  }
+  h2 {
+    font-size: 9px;
+    line-height: 11px;
+  }
+  h3 {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .dashboard-content {
+    .dashboard-avatars {
+      .team-img {
+        bottom: 0%;
+        .badge-name {
+          top: 15%;
+          p {
+            font-size: 8px;
+            &.name {
+              font-size: 10px;
+              margin-bottom: 3px;
+            }
+          }
+        }
+        .premium {
+          top: 6%;
+        }
+      }
+    }
   }
 }
 
@@ -944,6 +1107,10 @@ h3 {
           &.second {
             width: 400px;
             overflow: hidden;
+          }
+          &.third {
+            margin-left: 50px;
+            width: 350px;
           }
           .box-content {
             img {
@@ -1074,6 +1241,10 @@ h3 {
           }
           &.second {
             width: 100%;
+          }
+          &.third {
+            margin-left: 15%;
+            width: 85%;
           }
         }
       }
@@ -2143,11 +2314,6 @@ h3 {
 }
 
 @media screen and (max-width: 1700px) {
-  .main-wrapper {
-    width: calc(100% - 30px);
-    padding-left: 30px;
-    padding-top: 10px;
-  }
   .box-heading {
     font-size: 17px;
     margin: 0 0 10px 0;
@@ -2320,11 +2486,6 @@ h3 {
 }
 
 @media screen and (max-width: 1550px) {
-  .main-wrapper {
-    width: calc(100% - 20px);
-    padding-left: 20px;
-    padding-top: 10px;
-  }
   .box-heading {
     font-size: 20px;
     margin: 0 0 10px 0;
@@ -2468,19 +2629,7 @@ h3 {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .main-wrapper {
-    width: calc(100% - 13px);
-    padding-left: 13px;
-  }
-}
-
 @media screen and (max-width: 1024px) {
-  .main-wrapper {
-    width: 100%;
-    padding: 0 10px;
-  }
-
   .main-center-box {
     .blue-variant {
       .banner-item {
