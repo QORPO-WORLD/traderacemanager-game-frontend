@@ -1936,8 +1936,15 @@ button.xko {
   transition: 0.2s;
   z-index: 10002;
   opacity: 0.6;
+  height: 100%;
   &.opened {
     opacity: 1;
+  }
+  .inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .notifiq-back {
     position: fixed;
@@ -1950,14 +1957,11 @@ button.xko {
   img {
     transition: 0.1s;
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   &:hover {
+    opacity: .8;
     img {
-      transform: translate(-50%, -50%) scale(1.05);
+      transform: scale(1.05);
     }
   }
   .notifiq-list {
@@ -2347,6 +2351,20 @@ button.xko {
       }
     }
   }
+}
+
+.noti-count {
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  font-size: 10px;
+  display: block;
+  position: absolute;
+  transform: translate(60%, -60%);
+  top: 0;
+  right: 0;
+  border-radius: 100%;
+  line-height: 18px;
 }
 
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
@@ -3228,6 +3246,12 @@ button.xko {
       }
     }
   }
+  .noti-count{
+    width: 13px;
+    height: 13px;
+    font-size: 9px;
+    line-height: 13px;
+  }
 }
 
 @media screen and (max-width: 800px) and (orientation: portrait) {
@@ -3323,6 +3347,12 @@ button.xko {
         margin-top: 5px;
       }
     }
+  }
+  .noti-count{
+    width: 10px;
+    height: 10px;
+    font-size: 7px;
+    line-height: 10px;
   }
 }
 
@@ -3617,19 +3647,6 @@ button.xko {
   }
 }
 
-.noti-count {
-  width: 18px;
-  height: 18px;
-  text-align: center;
-  font-size: 10px;
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 100%;
-  line-height: 18px;
-}
-
 // Bell animation
 
 .notifiq-btn.active img {
@@ -3640,30 +3657,30 @@ button.xko {
 
 @keyframes bellshake {
   0% {
-    transform: rotate(0) translate(-50%, -50%);
+    transform: rotate(0);
   }
   15% {
-    transform: rotate(5deg) translate(-50%, -50%);
+    transform: rotate(5deg);
   }
   30% {
-    transform: rotate(-5deg) translate(-50%, -50%);
+    transform: rotate(-5deg);
   }
   45% {
-    transform: rotate(4deg) translate(-50%, -50%);
+    transform: rotate(4deg);
   }
   60% {
-    transform: rotate(-4deg) translate(-50%, -50%);
+    transform: rotate(-4deg);
   }
   75% {
-    transform: rotate(2deg) translate(-50%, -50%);
+    transform: rotate(2deg);
   }
   85% {
-    transform: rotate(-2deg) translate(-50%, -50%);
+    transform: rotate(-2deg);
   }
   92% {
-    transform: rotate(1deg) translate(-50%, -50%);
+    transform: rotate(1deg);
   }
   100% {
-    transform: rotate(0) translate(-50%, -50%);
+    transform: rotate(0);
   }
 }
