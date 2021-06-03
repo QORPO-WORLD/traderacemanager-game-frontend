@@ -25,6 +25,7 @@ import {
   ExperienceService,
   Experience,
 } from "src/app/common/services/experience.service";
+
 @Component({
   selector: "app-start-race",
   templateUrl: "./start-race.component.html",
@@ -57,7 +58,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     });
     this.accountInfo = this.dapi.getDriverMe();
   }
-
+  reward = 1;
   allTeams: any;
   myTeamAllData: any;
   filter = "all";
@@ -77,6 +78,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   modalActive: any;
   myDriver: any;
   interval: any;
+  rewardInterval: any;
   accountInfo: any;
   liveRacesData: any;
   myRewards: any;
@@ -766,6 +768,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     if (dataNick) {
       this.nickname = dataNick.nickname;
     }
+    this.setRewardInterval();
     this.getMyAssets();
     this.getAllRaces();
     this.getMyOwner();
@@ -789,7 +792,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyTeamReward();
     this.getbestRacer();
     this.getMyLeaderboard();
-    console.log(this.products);
   }
   ngOnDestroy() {
     if (this.raceObserver) {
@@ -1231,21 +1233,20 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   filterHighestValue() {
     //highest price car
     const maxValueOfCar = Math.max(...this.ownedCars.map((o) => o.price), 0);
-    console.log(maxValueOfCar);
+
     this.ownedCars = this.ownedCars.filter(
       (item) => item["price"] === maxValueOfCar
     );
-    console.log(this.ownedCars);
+
     //highest price racer
     const maxValueOfRacer = Math.max(
       ...this.ownedRacers.map((o) => o.price),
       0
     );
-    console.log(maxValueOfRacer);
+
     this.ownedRacers = this.ownedRacers.filter(
       (item) => item["price"] === maxValueOfRacer
     );
-    console.log(this.ownedCars);
   }
   filterMyAssets() {
     this.ownedCars = this.products.filter(
@@ -1377,9 +1378,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       }
       this.filterMyAssets();
       this.filterHighestValue();
-      console.log(this.myAssets);
-      console.log(this.ownedCars);
-      console.log(this.ownedRacers);
     });
   }
 
@@ -1450,8 +1448,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
         const data: any = datax;
         this.myTeamReward = data.team_bonus;
         this.myTeam = data;
-        console.log(this.myId);
-        console.log(data.manager_user_id);
+
         if (data.manager_user_id === this.myId) {
           this.meManager = true;
         }
@@ -1501,7 +1498,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
 
   recognizeOwnerMe() {
-    console.log("cfsdv");
     let sum = 0;
     for (let x = 0; x < this.myTeam.owners.length; x++) {
       if (this.myId === this.myTeam.owners[x].user_id) {
@@ -1513,12 +1509,11 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     } else {
       this.isOwner = false;
     }
-    console.log("cfsdv");
+
     //this.getTips();
   }
   getMydriver() {
     this.accountInfo = this.identityService.getDriverMe();
-    console.log(this.accountInfo);
   }
   getTeams() {
     this.tsapi.teamsList().subscribe((data) => {
@@ -1528,7 +1523,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       });
 
       this.allTeams = data.results;
-      console.log(this.allTeams);
     });
   }
   getMyTem() {
@@ -1537,7 +1531,23 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       .subscribe((datax) => {
         const data: any = datax;
         this.myTeamAllData = data;
-        console.log(this.myTeamAllData);
       });
+  }
+  setRewardInterval() {
+    this.rewardInterval = window.setInterval(() => {
+      this.toggleReward();
+      this.clearIntervalReward();
+    }, 5000);
+  }
+  toggleReward() {
+    this.clearIntervalReward();
+    if (this.reward === 1) {
+      this.reward = 2;
+    } else {
+      this.reward = 1;
+    }
+  }
+  clearIntervalReward() {
+    clearInterval(this.rewardInterval);
   }
 }
