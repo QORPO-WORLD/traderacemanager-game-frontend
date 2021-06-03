@@ -107,24 +107,25 @@
           <app-timer [value]="10" (onComplete)="optTimerCompleted($event)"></app-timer>        </div>
       </div>
 
-      <!-- <div class="semafor-wrap visible">
+      <div class="semafor-wrap visible"  *ngIf="semaforsVisible === true">
 
         <div class="semafor-inner">
           <div class="color-box">
             <p class="desc">Race starts in</p>
-            <p class="time">30s</p>
+            <p class="time" *ngIf="semaforVal > 1">{{semaforVal - 1}}s</p>
+            <p class="time" *ngIf="semaforVal < 2">GO!</p>
           </div>
 
           <div class="circles-holder">
-            <div class="semaf red"></div>
-            <div class="semaf green"></div>
-            <div class="semaf"></div>
-            <div class="semaf"></div>
-            <div class="semaf"></div>
+            <div class="semaf" [ngClass]="{'red': semaforVal < 6 && semaforVal > 1, 'green': semaforVal < 2}"></div>
+            <div class="semaf" [ngClass]="{'red': semaforVal < 5 && semaforVal > 1, 'green': semaforVal < 2}"></div>
+            <div class="semaf" [ngClass]="{'red': semaforVal < 4 && semaforVal > 1, 'green': semaforVal < 2}"></div>
+            <div class="semaf" [ngClass]="{'red': semaforVal < 3 && semaforVal > 1, 'green': semaforVal < 2}"></div>
+            <div class="semaf" [ngClass]="{'green': semaforVal < 2}"></div>
           </div>
       
         </div>
-      </div> -->
+      </div>
 
     </div>
 

@@ -73,16 +73,18 @@
             opened: openNotifiq === true
           }"
         >
-          <img
-            src="/assets/base/images/start-race/notifiq-bell.svg"
-            alt=""
-            (click)="openNotifiq = !openNotifiq"
-          />
-          <span
-            *ngIf="numOfNotifications > 0"
-            class="noti-count my-cta-btn-back"
-            >{{ numOfNotifications }}</span
-          >
+          <div class="inner">
+            <img
+              src="/assets/base/images/start-race/notifiq-bell.svg"
+              alt=""
+              (click)="openNotifiq = !openNotifiq"
+            />
+            <span
+              *ngIf="numOfNotifications > 0"
+              class="noti-count my-cta-btn-back"
+              >{{ numOfNotifications }}</span
+            >
+          </div>
           <div class="notifiq-list" *ngIf="openNotifiq === true">
             <app-notification-list></app-notification-list>
           </div>
