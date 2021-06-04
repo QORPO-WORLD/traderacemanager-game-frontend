@@ -136,7 +136,7 @@
             data-toggle="modal"
             data-target="#teamModal"
             *ngIf="!tt?.me_joined"
-            (click)="selectedTeamId = tt?.id"
+            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
           >
             <span class="inner">{{ "teams.join.join_team" | translate }}</span>
           </a>
@@ -148,7 +148,7 @@
             *ngIf="
               tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'
             "
-            (click)="selectedTeamId = tt?.id"
+            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
           >
             <span class="inner">{{
               "teams.join.extend_memb" | translate
@@ -162,7 +162,7 @@
             *ngIf="
               tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'
             "
-            (click)="selectedTeamId = tt?.id"
+            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
           >
             <span class="inner">{{
               "teams.join.upgrade_memb" | translate
@@ -211,7 +211,10 @@
 
 <!-- MODALS -->
 
-<div
+<app-team-membership *ngIf="modalOpened===1"(openedModal)="openMembershipModal($event)" [selectedTeamId]="selectedTeamId"></app-team-membership>
+
+
+<!-- <div
   class="modal fade"
   id="teamModal"
   tabindex="-1"
@@ -355,4 +358,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

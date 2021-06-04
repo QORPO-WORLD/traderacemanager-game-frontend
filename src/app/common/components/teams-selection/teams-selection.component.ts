@@ -45,6 +45,7 @@ export class TeamsSelectionComponent implements OnInit {
   sliceBalancer = 3;
   myWW = 1920;
   selectedTeamId = 1;
+  modalOpened = 0;
 
   constructor(
     protected api: TeamsService,
@@ -192,5 +193,9 @@ export class TeamsSelectionComponent implements OnInit {
       helper = helper.filter((item) => item.name !== "TRADER");
       this.teams = [...firstTwo, ...specificItem, ...helper]; 
     }
+  }
+
+  openMembershipModal(state: number) {
+    this.modalOpened = state;
   }
 }
