@@ -3,23 +3,530 @@
   class="filter-overlay"
 ></div>
 <div (window:resize)="width()" class="main-holder" #myScroll2>
-  <div class="market-content">
-    <div class="market-header">
-      <div class=""></div>
+  <div class="top-info">
+    <div
+      class="back"
+      [routerLink]="['/race/start-race']"
+      *ngIf="marketState === 1"
+    >
+      <p>&lt;</p>
+      <p>{{ "shared.back" | translate }}</p>
+    </div>
+    <div class="back" (click)="marketState = 1" *ngIf="marketState === 2">
+      <p>&lt;</p>
+      <p>{{ "shared.back" | translate }}</p>
+    </div>
+    <div class="back" (click)="marketState = 2" *ngIf="marketState === 3">
+      <p>&lt;</p>
+      <p>{{ "shared.back" | translate }}</p>
+    </div>
+    <div class="text-info">
+      <h2>Limited amount, unlimited rewards</h2>
+      <p>
+        Non-Fungible Tokens are virtual tokens minted on the blockchain for
+        digital scarcity, security, and authenticity. They are unique,
+        indivisible, and non-interchangeable.
+      </p>
+    </div>
+    <div class="info-box">
+      <div class="nums-holder">
+        <p>{{ carSum.charAt(0) }}</p>
+
+        <p>{{ carSum.charAt(1) }}</p>
+
+        <p>{{ carSum.charAt(2) }}</p>
+        &nbsp;
+        <p>{{ carSum.charAt(3) }}</p>
+
+        <p>{{ carSum.charAt(4) }}</p>
+
+        <p>{{ carSum.charAt(5) }}</p>
+
+        <p class="desc">cars left</p>
+      </div>
     </div>
   </div>
-  <app-nft-detail
-    *ngIf="marketState === 2"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
-    [assetPosition]="selectedPosition"
-    (marketState)="showAssetBuy($event)"
-    (modalActive)="showModal($event)"
-  ></app-nft-detail>
+  <div class="content-holder" #myScroll>
+    <div
+      [class.disable-scroll]="isMenuActive"
+      class="shop-pagee"
+      *ngIf="marketState === 1"
+    >
+      <div
+        class="navoverlay"
+        (click)="activateMenu()"
+        [class.navoverlay-active]="isMenuActive"
+        [class.nav-active]="isMenuActive"
+      ></div>
 
-  <app-buy-nft
-    *ngIf="marketState === 3"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
-  ></app-buy-nft>
+      <div class="shop-section">
+        <div class="shop-header">
+          <div *ngIf="display <= 1350" class="filter-mobile">
+            <div class="filter-tit">
+              <h2 class="f">{{ title }}</h2>
+            </div>
+            <div class="filter-img">
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+                class="red-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-red.svg"
+                alt="Red empty filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+                class="red-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-full-red.svg"
+                alt="Red full filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === true }"
+                class="blue-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-blue.svg"
+                alt="Blue empty filter icon"
+              />
+              <img
+                [ngClass]="{ 'filter-unfilled': mobileFilter === false }"
+                class="blue-star"
+                (click)="filterMobile()"
+                src="assets/base/images/market/filter-full-blue.svg"
+                alt="Blue full filter icon"
+              />
+            </div>
+            <div
+              [ngClass]="{ 'filter-content-active': mobileFilter === true }"
+              class="filter-content"
+            >
+              <div class="item-title"><h3>Filter</h3></div>
+              <div
+                [ngClass]="{ 'item-active': carsActive === true }"
+                class="item"
+                (click)="filterCars()"
+              >
+                <p>Cars</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': racersActive === true }"
+                class="item"
+                (click)="filterRacers()"
+              >
+                <p>Racers</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+
+              <div
+                [ngClass]="{ 'item-active': tracksActive === true }"
+                class="item"
+                (click)="filterTracks()"
+              >
+                <p>Tracks</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': teamsActive === true }"
+                class="item"
+                (click)="filterTeams()"
+              >
+                <p>Teams</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': specialActive === true }"
+                class="item"
+                (click)="filterSpecial()"
+              >
+                <p>Special</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <div
+                [ngClass]="{ 'item-active': allActive === true }"
+                class="item"
+                (click)="filterAll()"
+              >
+                <p>All products</p>
+                <div class="checkbox">
+                  <img
+                    class="red-star"
+                    src="assets/base/images/market/check-red.svg"
+                    alt="Red check icon"
+                  /><img
+                    class="blue-star"
+                    src="assets/base/images/market/check-blue.svg"
+                    alt="Blue check icon"
+                  />
+                </div>
+              </div>
+              <button
+                class="my-cta-btn-back hoverable"
+                (click)="filterMobile()"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+          <div *ngIf="display > 1350" class="filter-featured">
+            <div class="filter-title">
+              <p>Filters</p>
+            </div>
+
+            <div class="filter-boxes">
+              <div (click)="filterCars()">
+                <div
+                  [ngClass]="{
+                    'filter-active': carsActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Cars</p>
+              </div>
+              <div (click)="filterRacers()">
+                <div
+                  [ngClass]="{
+                    'filter-active': racersActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Racers</p>
+              </div>
+              <div (click)="filterTracks()">
+                <div
+                  [ngClass]="{
+                    'filter-active': tracksActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Tracks</p>
+              </div>
+              <div (click)="filterTeams()">
+                <div
+                  [ngClass]="{
+                    'filter-active': teamsActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Teams</p>
+              </div>
+              <div (click)="filterSpecial()">
+                <div
+                  [ngClass]="{
+                    'filter-active': specialActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>Special</p>
+              </div>
+              <div (click)="filterAll()">
+                <div
+                  [ngClass]="{
+                    'filter-active': allActive === true
+                  }"
+                  class="filter-box"
+                ></div>
+                <p>All</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shop-section-center">
+          <div
+            [ngClass]="{
+              'engage-next-anim': animation === 0,
+              'disengage-next-anim': animation === 1,
+              'engage-prev-anim': animation === 2,
+              'disengage-prev-anim': animation === 3
+            }"
+            class="boxes"
+          >
+            <div
+              [ngClass]="{
+                'sold-out':
+                  item['name'] === 'BTC' ||
+                  item['name'] === 'ALT' ||
+                  item['name'] === 'IOI'
+              }"
+              (click)="
+                item['name'] != 'BTC' &&
+                  item['name'] != 'ALT' &&
+                  item['name'] != 'IOI' &&
+                  showAsset(item['id'], item['type'], item['position']);
+                item['name'] != 'BTC' &&
+                  item['name'] != 'ALT' &&
+                  item['name'] != 'IOI' &&
+                  scrollTop(myScroll2)
+              "
+              *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
+              class="box my-box-shadow"
+            >
+              <div class="boximage">
+                <img
+                  *ngIf="item['type'] === 'racer'"
+                  class="img racer"
+                  [src]="
+                    '/assets/base/images/nft-racers/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'racer'"
+                  class="img gif"
+                  [src]="
+                    '/assets/base/images/nft-racers/' + item['gif'] + '.gif'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'car' && item['gif']"
+                  class="img"
+                  [src]="
+                    '/assets/base/images/nft-cars/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'car' && item['gif']"
+                  class="img gif"
+                  [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'car' && !item['gif']"
+                  class="img still"
+                  [src]="
+                    '/assets/base/images/nft-cars/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+
+                <img
+                  *ngIf="item['type'] === 'track'"
+                  class="img still"
+                  [src]="
+                    '/assets/base/images/home-page/' +
+                    item['image'] +
+                    '-small.png'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'team'"
+                  class="img team still"
+                  [src]="
+                    '/assets/base/images/home-page/' +
+                    item['image'] +
+                    '-small.png'
+                  "
+                  [alt]="item['alt']"
+                />
+                <img
+                  *ngIf="item['type'] === 'special'"
+                  class="img special still"
+                  [src]="
+                    '/assets/base/images/home-page/' + item['image'] + '.png'
+                  "
+                  [alt]="item['alt']"
+                />
+              </div>
+              <div class="txt">
+                <p *ngIf="item['type'] === 'team'" class="name team">
+                  Team {{ item["name"] }}
+                </p>
+                <p
+                  *ngIf="item['type'] != 'racer' && item['type'] != 'team'"
+                  class="name"
+                >
+                  {{ item["name"] }}
+                </p>
+
+                <p *ngIf="item['type'] === 'racer'" class="name">
+                  {{ item["name"] }}
+                </p>
+                <p
+                  [ngClass]="{ gold: item['rare'] === true }"
+                  class="collection"
+                >
+                  {{ item["collection"] }}
+                </p>
+                <p class="prize">{{ item["prize"] }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="newProducts.length > inRow">
+          <div class="pages">
+            <div class="page-left">
+              <button
+                (click)="prevPageCars(); scrollTop(myScroll)"
+                [disabled]="timeoutPage || sliceStart <= 0"
+                class="pagebtn-l"
+              >
+                <img
+                  class="red-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceStart === 0,
+                    'arrow-animation': animateArrow === true
+                  }"
+                  src="/assets/base/images/home-page/arrowleftred.png"
+                  alt=""
+                />
+                <img
+                  class="blue-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceStart === 0,
+                    'arrow-animation': animateArrow === true
+                  }"
+                  src="/assets/base/images/home-page/arrowleftblue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="page-middle">
+              <p>
+                Page
+                <span class="leftspan">{{ currentPage }} /</span>
+                <span class="rightspan blue-box-detail">{{ lastPage }}</span>
+                <span class="rightspan red-box-detail">{{ lastPage }}</span>
+              </p>
+            </div>
+            <div class="page-right">
+              <button
+                (click)="nextPageCars(); scrollTop(myScroll)"
+                [disabled]="
+                  timeoutPage || currentPage >= newProducts.length / inRow
+                "
+                class="pagebtn-r"
+              >
+                <img
+                  class="red-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceMiddle >= this.newProducts.length,
+                    'arrow-animation': animateArrowRight === true
+                  }"
+                  src="/assets/base/images/home-page/arrowrightred.png"
+                  alt=""
+                />
+                <img
+                  class="blue-box-detail"
+                  [ngClass]="{
+                    'page-opacity': sliceMiddle >= this.newProducts.length,
+                    'arrow-animation': animateArrowRight === true
+                  }"
+                  src="/assets/base/images/home-page/arrowrightblue.png"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <app-nft-detail
+      *ngIf="marketState === 2"
+      [assetId]="selectedId"
+      [assetType]="selectedType"
+      [assetPosition]="selectedPosition"
+      (marketState)="showAssetBuy($event)"
+      (modalActive)="showModal($event)"
+    ></app-nft-detail>
+
+    <app-buy-nft
+      *ngIf="marketState === 3"
+      [assetId]="selectedId"
+      [assetType]="selectedType"
+    ></app-buy-nft>
+  </div>
+</div>
+
+<div *ngIf="modalActive === 1" class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img
+      src="/assets/base/images/garage/red-close-cross.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
+    <ng-container *ngIf="modalActive === 1">
+      <h3>How to get free</h3>
+      <br />
+      <p>
+        Spend {{ newProducts[selectedId - 9]["free"].toLocaleString() }} IOI
+        tokens in races to unlock this car for free
+      </p>
+    </ng-container>
+  </div>
+</div>
+<div *ngIf="modalActive === 2" class="modal-holder">
+  <div class="modal-back" (click)="closeModal()"></div>
+  <div class="info-modal-body">
+    <img
+      src="/assets/base/images/garage/red-close-cross.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
+    <ng-container *ngIf="modalActive === 2">
+      <h3>How to get rare car</h3>
+      <br />
+      <p>
+        Buy all 6 cars in a collection and get double staking thanks to rare
+        car.
+      </p>
+    </ng-container>
+  </div>
 </div>
