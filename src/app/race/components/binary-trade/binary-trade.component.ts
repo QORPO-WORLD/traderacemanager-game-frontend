@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
 
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -15,6 +15,7 @@ import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
+
 export interface Trade {
   data: {
     p: number,
@@ -109,6 +110,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   semaforVal = 5;
   chartTemp: any;
   showChart = true;
+  @ViewChild('audioOption') audioPlayerRef: ElementRef;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -466,11 +468,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   onOption(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
+    this.playSound('action');
   }
 
   onOptionClosed(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
+    this.playSound('action');
   }
 
   onWinners(data?: Array<any>) {
@@ -498,6 +502,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.oponentShots = data.p;
       this.roiright = data.r;
     }
+    this.playSound('action');
   }
 
   onStatus(data?: any) {
@@ -669,6 +674,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.semaforVal = -1;
         this.semaforsVisible = false
       }, 5100);
+  }
+
+  playSound(type: string) {
+    if (type === 'action') {
+      this.audioPlayerRef.nativeElement.play();
+
+    }
+ 
   }
 
 }

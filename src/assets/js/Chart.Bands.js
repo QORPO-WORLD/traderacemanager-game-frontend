@@ -182,3 +182,5 @@ var BandsPlugin = Chart.PluginBase.extend({
 
 Chart.pluginService.register(new BandsPlugin());
 },{"Chart":1}]},{},[2]);
+
+console.log(Chart.pluginService);
