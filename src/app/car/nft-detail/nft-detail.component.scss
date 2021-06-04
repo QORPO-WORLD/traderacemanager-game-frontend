@@ -11,19 +11,6 @@ h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
-  &.name-font {
-    margin-top: -15px;
-    font-family: True-Lies;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 50px;
-    line-height: 65px;
-    transform: rotate(-5deg);
-    -webkit-transform: rotate(-5deg);
-    -moz-transform: rotate(-5deg);
-    -ms-transform: rotate(-5deg);
-    -o-transform: rotate(-5deg);
-  }
 }
 h3 {
   font-family: Poppins;
@@ -43,13 +30,11 @@ p {
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-
-  color: #868686;
 }
 .detail {
-  margin-bottom: 150px;
   display: flex;
   flex-direction: column;
+  padding: 0 60px;
 }
 .sticky-buttons {
   display: none;
@@ -84,22 +69,35 @@ p {
   display: flex;
   justify-content: space-between;
   .content-background {
-    background: #222222;
+    background: transparent;
     display: flex;
     justify-content: space-between;
     width: 78%;
     border-radius: 15px;
   }
   .detail-text {
-    padding: 50px 35px 40px 35px;
+    padding: 50px 35px 40px 0;
     height: 550px;
 
     border-radius: 15px;
     width: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    .text-name{
+      h2{
+        font-size: 64px;
+        font-weight: 900;
+        font-family: Earth Orbiter;
+      }
+    }
     .text-title {
-      margin-top: 40px;
+      margin-top: 60px;
+      h3{
+        font-family: Earth Orbiter;
+        font-weight: 400;
+        font-size: 24px;
+      }
     }
 
     .text-info {
@@ -120,31 +118,36 @@ p {
       }
     }
     .button-content {
-      margin-top: auto;
+      margin-top: 60px;
       display: flex;
       .buy-btn {
         z-index: 1;
-
         transition: 0.2s;
         -webkit-transition: 0.2s;
         -moz-transition: 0.2s;
         -ms-transition: 0.2s;
         -o-transition: 0.2s;
-        width: 175px;
-        height: 50px;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
+        width: 200px;
+        height: 60px;
 
         img {
           display: inline;
           padding-right: 10px;
+          width: 40px;
         }
         h4 {
           display: inline;
+          font-weight: 700;
+          font-size: 24px;
         }
+      }
+      .cars-left{
+        width: 200px;
+        height: 60px;
+        font-weight: 500;
+        font-size: 24px;
+        background: rgba(255, 255, 255, 0.05);
+        margin-left: 30px;
       }
       .dep-btn {
         z-index: 1;
@@ -154,8 +157,8 @@ p {
         -moz-transition: 0.2s;
         -ms-transition: 0.2s;
         -o-transition: 0.2s;
-        width: 175px;
-        height: 50px;
+        width: 200px;
+        height: 60px;
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
@@ -168,6 +171,8 @@ p {
         }
         h4 {
           display: inline;
+          font-weight: 700;
+          font-size: 24px;
         }
       }
     }
@@ -239,7 +244,7 @@ p {
       position: relative;
       img {
         position: absolute;
-        width: 450px;
+        height: 100%;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -249,9 +254,11 @@ p {
         -o-transform: translate(-50%, -50%);
         &.ring {
           width: 280px;
+          height: unset;
         }
         &.car {
           width: 600px;
+          height: unset;
         }
       }
       .gif {
@@ -381,12 +388,20 @@ p {
         margin-top: 10px;
       }
     }
-
+    .ability-title{
+      margin-left: auto;
+      h3{
+        font-size: 24px;
+        text-align: right;
+        font-weight: 400;
+        font-family: Earth Orbiter;
+      }
+    }
     .inner-ability {
       position: relative;
       height: 100%;
       width: 100%;
-      background: rgba(34, 34, 34, 0.6);
+      background: transparent;
       border-radius: 15px;
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -442,8 +457,7 @@ p {
     }
     .ability-box {
       height: 31%;
-      border-radius: 15px;
-      padding: 1px;
+      background: rgba(17, 17, 17, 0.8);
     }
     .moreboxes {
       height: 23%;
@@ -465,6 +479,46 @@ p {
     }
   }
 }
+
+@media screen and (max-width: 1700px) {
+  .detail-content{
+    .detail-text{
+      .text-name{
+        h2{
+          font-size: 54px;
+        }
+      }
+      .text-title{
+        margin-top: 45px;
+      }
+      .text-info{
+        margin-top: 15px;
+        p{
+          font-size: 15px;
+        }
+      }
+      .button-content{
+        margin-top: 50px;
+        .buy-btn{
+          width: 180px;
+          height: 50px;
+          img{
+            padding-right: 5px;
+            width: 32px;
+          }
+          h4{
+            font-size: 21px;
+          }
+        }
+        .cars-left{
+          width: 180px;
+          height: 50px;
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 1300px) {
   h2 {
     font-size: 33px;
@@ -483,6 +537,9 @@ p {
     font-size: 15px;
     line-height: 18px;
   }
+  .detail{
+    padding: 0 20px;
+  }
   .detail-content {
     flex-wrap: wrap;
     .content-background {
@@ -490,6 +547,40 @@ p {
     }
     .detail-text {
       width: 49%;
+      .text-name{
+        h2{
+          font-size: 40px;
+        }
+      }
+      .text-title{
+        margin-top: 20px;
+        h3{
+          font-size: 20px;
+        }
+      }
+      .text-info{
+        margin-top: 10px;
+        p{
+          font-size: 14px;
+        }
+      }
+      .button-content{
+        .buy-btn{
+          width: 150px;
+          height: 40px;
+          img{
+            width: 28px;
+          }
+          h4{
+            font-size: 18px;
+          }
+        }
+        .cars-left{
+          width: 150px;
+          height: 40px;
+          font-size: 18px;
+        }
+      }
     }
     .detail-image {
       width: 49%;
@@ -528,6 +619,178 @@ p {
     margin-top: 40px;
   }
 }
+
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .detail{
+    height: 100%;
+  }
+  .detail-content{
+    height: 100%;
+    .detail-text{
+      height: unset;
+      padding: 10px 5px 10px 0;
+      border-radius: 0;
+      width: 50%;
+      .text-name{
+        h2{
+          font-size: 23px;
+        }
+      }
+      .text-title{
+        h3{
+          font-size: 15px;
+        }
+      }
+      .text-info{
+        p{
+          font-size: 12px;
+        }
+      }
+      .button-content{
+        margin-top: 30px;
+        justify-content: space-between;
+        .buy-btn{
+          width: 48%;
+          height: 34px;
+          img{
+            width: 22px;
+          }
+          h4{
+            font-size: 13px;
+          }
+        }
+        .cars-left{
+          margin-left: 0;
+          width: 48%;
+          height: 34px;
+          font-size: 13px;
+        }
+      }
+    }
+    .detail-image{
+      height: unset;
+      width: 50%;
+    }
+    .content-background{
+      width: 70%;
+    }
+    .detail-abilities{
+      width: 30%;
+      height: 100%;
+      max-height: 600px;
+      .ability-box{
+        width: 100%;
+        height: 30%;
+      }
+      .ability-boxes{
+        width: 100%;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .detail-content{
+    margin-top: 0;
+    .detail-text{
+      padding: 10px 5px 10px 0;
+      width: 48%;
+      justify-content: space-around;
+      .text-name{
+        h2{
+          font-size: 20px;
+        }
+      }
+      .text-title{
+        margin-top: 10px;
+        h3{
+          font-size: 12px;
+        }
+      }
+      .text-info{
+        margin-top: 5px;
+        p{
+          font-size: 10px;
+          line-height: 1.3;
+        }
+      }
+      .button-content{
+        margin-top: 30px;
+        justify-content: space-between;
+        .buy-btn{
+          height: 31px;
+          img{
+            width: 20px;
+          }
+          h4{
+            font-size: 11px;
+          }
+        }
+        .cars-left{
+          height: 31px;
+          font-size: 11px;
+        }
+      }
+    }
+    .detail-image{
+      height: unset;
+      width: 50%;
+    }
+    .content-background{
+      width: 70%;
+    }
+    .detail-abilities{
+      width: 30%;
+      height: 100%;
+      max-height: 600px;
+      .ability-title{
+        h3{
+          font-size: 17px;
+        }
+      }
+      .ability-box{
+        width: 100%;
+        height: 30%;
+      }
+      .ability-boxes{
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .inner-ability{
+        .ability-content{
+          .ability-image{
+            img{
+              width: 20px;
+            }
+          }
+          .ability-text{
+            h4{
+              font-size: 13px;
+            }
+            p{
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .detail-button{
+    margin-top: 0;
+    .non-rare-msg{
+      .modalh3{
+        font-size: 13px;
+        line-height: unset;
+        span{
+          img{
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 800px) {
   h2 {
     font-size: 30px;
@@ -547,7 +810,7 @@ p {
     line-height: 17px;
   }
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) and (orientation: portrait) {
   .overlay {
     display: block;
     z-index: 5;
@@ -593,9 +856,12 @@ p {
       img {
         display: inline;
         padding-right: 10px;
+        width: 40px;
       }
       h4 {
         display: inline;
+        font-weight: 700;
+        font-size: 24px;
       }
     }
     .dep-btn {
@@ -624,14 +890,13 @@ p {
     }
   }
   .detail-content {
-    background: #222222;
     border-radius: 10px;
     flex-direction: column;
     .content-background {
       flex-direction: column-reverse;
     }
     .detail-text {
-      padding: 0px 35px 40px 35px;
+      padding: 0px 15px 20px 15px;
       width: 100%;
       height: auto;
       .button-content {
@@ -641,6 +906,7 @@ p {
     .detail-image {
       margin-top: 20px;
       width: 100%;
+      height: 280px;
       .rare {
         display: none;
       }
@@ -653,8 +919,8 @@ p {
     }
     .detail-abilities {
       height: auto;
-      margin-bottom: 40px;
-      margin-left: 35px;
+      margin-bottom: 90px;
+      margin-left: 15px;
       .ability-title {
         margin-bottom: 10px;
         h4 {
@@ -699,10 +965,16 @@ p {
     justify-content: center;
   }
 }
-@media screen and (max-width: 400px) {
-  .detail-content {
-    .detail-image {
-      height: 420px;
+@media screen and (max-width: 640px) and (orientation: landscape){
+  .detail{
+    padding: 0;
+  }
+  .detail-content{
+    .detail-abilities{
+      .ability-title{
+        margin-top: 0px;
+        height: 15%;
+      }
     }
   }
 }

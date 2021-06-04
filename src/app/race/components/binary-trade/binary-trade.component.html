@@ -186,8 +186,8 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p class="bin-trade" *ngIf="startsInSecs">
-            <app-timer [value]="startsInSecs"></app-timer> sec
+          <p class="bin-trade" *ngIf="startVal">
+            <app-timer [value]="startVal"></app-timer> sec
           </p>
         </div>
         <div class="control-btn up" (click)="long = true;placeOption();">
@@ -239,5 +239,35 @@
   </div>
 
   <app-binary-winner (fatality)="fatality()" *ngIf="raceEnded === true" [winner]="winner" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner>
+
+</div>
+<div style="visibility: hidden;">
+  <audio #optionPlaced controls>
+    <source src='/assets/sound/option_placed.mp3' type="audio/mp3">
+</audio>
+  <audio #oponentOptionPlaced controls>
+    <source src='/assets/sound/option_placed2.mp3' type="audio/mp3">
+</audio>
+  <audio #optionWin controls>
+    <source src='/assets/sound/option_closed_win.mp3' type="audio/mp3">
+</audio>
+  <audio #optionWinOponent controls>
+    <source src='/assets/sound/option_closed_win2.mp3' type="audio/mp3">
+</audio>
+  <audio #optionLoose controls>
+    <source src='/assets/sound/option_closed_loose.mp3' type="audio/mp3">
+</audio>
+  <audio #optionLooseOponent controls>
+    <source src='/assets/sound/option_closed_loose2.mp3' type="audio/mp3">
+</audio>
+  <audio #meLoose controls>
+    <source src='/assets/sound/loose.mp3' type="audio/mp3">
+</audio>
+  <audio #meWin controls>
+    <source src='/assets/sound/win.mp3' type="audio/mp3">
+</audio>
+  <audio #optionsStart controls>
+    <source src='/assets/sound/versus.mp3' type="audio/mp3">
+</audio>
 
 </div>

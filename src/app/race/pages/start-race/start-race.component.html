@@ -1,3 +1,20 @@
+<div class="ioi-banner">
+  <img
+    class="banner red-star"
+    src="assets/base/images/start-race/top-banner-red.png"
+    alt="ioi red banner"
+  />
+  <img
+    class="banner blue-star"
+    src="assets/base/images/start-race/top-banner-blue.png"
+    alt="ioi blue banner"
+  />
+  <img
+    class="logo"
+    src="assets/base/images/icons/logo-hollow.svg"
+    alt="ioi-logo"
+  />
+</div>
 <div class="dash-back"></div>
 <div (window:resize)="width()" class="main-wrapper">
   <div class="dashboard-content">
@@ -17,24 +34,19 @@
             </div>
           </div>
         </div>
-        <a
-          href="https://ioi-token.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><div class="box second my-cta-btn-back">
-            <div class="box-content">
-              <img
-                class="right"
-                src="assets/base/images/start-race/ioi-token.png"
-                alt="golden ioi token"
-              />
-              <div class="text">
-                <h3>IOI TOKEN</h3>
-                <p>as a backbone for TRM</p>
-              </div>
+        <div (click)="navigateToToken()" class="box second my-cta-btn-back">
+          <div class="box-content">
+            <img
+              class="right"
+              src="assets/base/images/start-race/ioi-token.png"
+              alt="golden ioi token"
+            />
+            <div class="text">
+              <h3>IOI TOKEN</h3>
             </div>
           </div>
-        </a>
+        </div>
+
         <div
           [routerLink]="['/profile/my-profile']"
           [queryParams]="{
@@ -45,15 +57,50 @@
         >
           <div class="box-content">
             <img
-              class="right"
+              class="right avatar"
               src="assets/base/images/nft-racers/blue-trm.png"
               alt="nft racer"
             />
             <div class="text">
-              <h3>AFFILIATE PROGRAM</h3>
-              <p>for NFTs avatars up to 20%</p>
+              <h3>AFFILIATE</h3>
             </div>
           </div>
+        </div>
+        <div
+          [routerLink]="['/profile/my-profile']"
+          [queryParams]="{
+            controlType: 'affiliate',
+            secondControlType: 'about rewards'
+          }"
+          class="box third my-cta-btn-back"
+        >
+          <img
+            class="reward"
+            src="assets/base/images/start-race/reward.png"
+            alt="Golden coin"
+          />
+          <div class="box-content second">
+            <div *ngIf="reward === 1" class="text">
+              <h3>{{ myTeamAllData.team_value.toLocaleString() }} IOI</h3>
+              <p>Team reward</p>
+            </div>
+            <div *ngIf="reward === 2" class="text">
+              <h3>{{ myTeamAllData.team_value.toLocaleString() }} IOI</h3>
+              <p>Holder reward</p>
+            </div>
+          </div>
+        </div>
+        <div class="reward-switcher">
+          <div
+            (click)="toggleReward()"
+            [ngClass]="{ inactive: reward === 2 }"
+            class="left-line my-cta-btn-back bar"
+          ></div>
+          <div
+            (click)="toggleReward()"
+            [ngClass]="{ inactive: reward === 1 }"
+            class="right-line my-cta-btn-back bar"
+          ></div>
         </div>
       </div>
     </div>

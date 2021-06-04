@@ -1,3 +1,79 @@
+
+
+
+<div class="main-holder">
+
+  <div class="content-title">
+    <img
+      class="red-star"
+      src="assets/base/images/icons/icon-back-red.svg"
+      alt="red arrow"
+    />
+    <img
+      class="blue-star"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>TEAM</p>
+  </div>
+
+  <div class="boxes-holder">
+    <div class="memb-box">
+      <p class="desc">Membership ends in</p>
+      <div class="time-box">
+        <p>25 days</p>
+      </div>
+    </div>
+
+    <div class="reward-box">
+      <p class="desc">Current reward</p>
+      <div class="inner-box">
+        <img src="/assets/base/images/teams/reward-token.png" alt="" class="reward-badge">
+        <p>{{ myRewards?.team_bonus | number: "1.2-2":"fr" }}</p>
+      </div>
+    </div>
+
+    <div class="offers-box">
+      <p class="desc">Special offers</p>
+      <div class="offers-holder" [ngClass]="'state' + offerState">
+        <div class="offer-item">
+          <div class="img-holder">
+            <p class="heading">30% off</p>
+            <p class="text">of the price from the yearly premium membership right now!</p>
+          </div>
+          <button class="my-cta-btn-back">BUY PREMIUM NOW</button>
+        </div>
+
+        <div class="offer-item">
+          <div class="img-holder">
+            <p class="heading">10% off</p>
+            <p class="text">of the price from the yearly premium membership right now!</p>
+          </div>
+          <button class="my-cta-btn-back">BUY PREMIUM NOW</button>
+        </div>
+      </div>
+      <div class="offers-switch">
+        <div class="display-item my-cta-btn-back" [ngClass]="{'inactive': offerState !== 1}" (click)="changeOffer();manualOfferChange()"></div>
+        <div class="display-item my-cta-btn-back" [ngClass]="{'inactive': offerState !== 2}" (click)="changeOffer();manualOfferChange()"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nft-reward-box">
+    <img src="/assets/base/images/nft-cars/car1.png" alt="" class="car-img">
+    <img src="/assets/base/images/nft-racers/white-trm.png" alt="" class="racer-img">
+  </div>
+
+  <div class="teams-holder">
+    <p class="desc">Teams</p>
+    <app-teams-selection></app-teams-selection>
+  </div>
+
+</div>
+
+
+<!-- 
+
 <div class="main-holder">
   <div class="page-info">
     <div class="back" [routerLink]="['/race/start-race']">
@@ -200,4 +276,4 @@
       />
     </div>
   </div>
-</div>
+</div> -->

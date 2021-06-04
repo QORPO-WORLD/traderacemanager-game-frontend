@@ -1,904 +1,800 @@
-.main-holder {
-  width: calc(100% - 457px);
-  padding-left: 40px;
+
+
+* {
   color: white;
 }
 
-p {
-  font-size: 16px;
-  line-height: 24px;
-}
-h1 {
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 54px;
-}
-.gold {
-  background: -webkit-linear-gradient(
-      180deg,
-      #c19123 0%,
-      #b47e11 10.42%,
-      #fef2a3 70.83%,
-      #b57f12 100%
-    ),
-    linear-gradient(0deg, #ffffff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.silver {
-  background: -webkit-linear-gradient(
-      180deg,
-      #5d666a 0%,
-      #fafafa 40.63%,
-      #939393 70.83%,
-      #7b7b7b 100%
-    ),
-    linear-gradient(0deg, #ffffff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.bronze {
-  background: -webkit-linear-gradient(
-      180deg,
-      #7f3519 13.02%,
-      #fea67e 52.08%,
-      #d5805e 90.62%,
-      #f5c7ac 100%
-    ),
-    linear-gradient(0deg, #ffffff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-info {
-  margin: 30px 0;
-  padding-bottom: 20px;
+:host {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  .back {
-    cursor: pointer;
-    transition: 0.2s;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100%;
-    text-align: center;
-    min-height: 132px;
-    background: #222222;
-    border-radius: 15px;
-    p {
-      line-height: 20px;
-      margin-bottom: 22px;
-    }
-  }
-  .back:hover {
-    transform: scale(1.1);
-  }
-  .text-info {
-    max-width: 812px;
-    margin: 0 20px;
-  }
-  .bonus-info {
-    margin-left: auto;
-    width: 448px;
-    background: #222222;
-    border-radius: 15px;
-    min-height: 132px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    p {
-      color: rgba(255, 255, 255, 0.4);
-    }
-  }
 }
 
-.my-menu {
-  margin: 70px 0 25px;
-  border-radius: 10px;
-  background: #222222;
-  width: 66%;
+.main-holder {
+  width: calc(100% - 40px);
+  height: calc(100vh - 80px);
+  padding: 40px 0px 40px 40px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  .menu-item {
-    width: 33.3333%;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 50px;
-    position: relative;
-    &.active {
-      p {
-        font-weight: 600;
-      }
-    }
-    p {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      margin: 0;
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
+  position: relative;
 }
 
-.tables {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 130px;
-  .table {
-    position: relative;
-    color: white;
-    background: #222222;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    font-size: 16px;
-    padding-left: 40px;
-    .coll {
-      padding-top: 40px;
-      width: 15%;
-      .cell {
-        margin-bottom: 54px;
-      }
-      &.borderis {
-        &.big {
-          .cell {
-            &::after {
-              width: 380%;
-            }
-          }
-        }
-        .cell {
-          position: relative;
-          &.borderless {
-            position: unset;
-            &::after {
-              content: none;
-            }
-          }
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 210%;
-            height: 2px;
-            background: #333333;
-            z-index: 1;
-          }
-        }
-      }
-    }
-    .coll:first-child {
-      text-align: left;
-      .cell:first-child {
-        h4 {
-          position: absolute;
-          top: -70px;
-          font-weight: 600;
-          font-size: 20px;
-          line-height: 30px;
-        }
-      }
-    }
-  }
-  .memberships-table {
-    width: 45%;
-    .coll {
-      .cell:first-child {
-        margin-bottom: 70px;
-      }
-    }
-    .cell:last-child,
-    .cell:first-child {
-      font-weight: 600;
-    }
-    .coll:first-child {
-      width: 45%;
-    }
-    .coll:last-child {
-      width: 30%;
-      padding: 1px;
-      border-radius: 20px;
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(
-        to bottom right,
-        rgba(254, 24, 63, 0.6) 0%,
-        rgba(254, 24, 63, 0) 60%
-      );
-      .cell:not(:first-child) {
-        color: #fe183f;
-      }
-      span {
-        display: block;
-        padding: 1px;
-        padding-top: 39px;
-        border-radius: 20px;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-  .teams-table {
-    .coll {
-      width: 25%;
-      .cell {
-        margin-bottom: 79px;
-      }
-      .cell:first-child {
-        height: 21px;
-        margin-bottom: 70px;
-      }
-    }
-    .coll:not(:first-child) {
-      &.ioi {
-        .cell:not(:first-child) {
-          color: #00d1ff;
-        }
-      }
-      &.alt {
-        .cell:not(:first-child) {
-          color: #00d581;
-        }
-      }
-      &.btc {
-        .cell:not(:first-child) {
-          color: #fe183f;
-        }
-      }
-    }
-    .cell:first-child {
-      font-weight: 600;
-    }
-    max-width: 52%;
-    margin-left: 40px;
-  }
+.desc{
+  font-size: 24px;
+  font-family: 'Earth Orbiter';
+  margin: 0 0 10px 0;
+  font-weight: 900;
 }
-.benefits-list-box {
-  margin: 20px 0;
-  h4 {
-    padding: 40px 0 20px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-  }
-}
-.benefits-list {
-  margin: 15px 0;
+
+.boxes-holder{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  .ben-item {
-    min-height: 375px;
-    width: 19%;
-    background: #222222;
-    border-radius: 15px;
-    padding: 25px 25px 10px;
-    .img-holder {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-    .text {
-      margin-top: 20px;
-      p {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.3;
-        color: #868686;
-        &.heading {
-          color: #ffffff;
-          margin-bottom: 10px;
-          font-size: 20px;
-          height: 70px;
-          font-weight: 600;
-        }
-      }
-    }
-  }
-}
-
-.create-team {
-  width: 100%;
-  background: #222222;
-  border-radius: 15px;
-  padding: 25px 50px;
   position: relative;
-  overflow: hidden;
-  margin: 40px 0 20px;
-  .text-holder {
-    width: 50%;
-    max-width: 530px;
-    position: relative;
-    z-index: 2;
-    p {
-      color: #868686;
-      font-size: 16px;
-      margin: 0 0 15px 0;
-      span {
-        color: #868686;
-        font-weight: 600;
-      }
-      &.heading {
-        margin: 30px 0 20px 0;
-        font-weight: 600;
-        font-size: 20px;
-        color: white;
-      }
-    }
-    .want-team-box {
-      background: linear-gradient(
-        139.48deg,
-        #8c1a2d 9.81%,
-        rgba(34, 34, 34, 0) 102.36%
-      );
-      border-radius: 15px;
-      padding: 1px;
+  width: 100%;
+  z-index: 1;
+  .memb-box{
+    width: 300px;
+    .time-box{
       width: 100%;
-      max-width: 353px;
-      .inner {
-        padding: 10px;
-        background: rgba(34, 34, 34, 0.6);
-        border-radius: 15px;
-        text-align: center;
-        p {
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 1.3;
-          margin: 0 0 5px 0;
-          color: white;
-        }
-        h3 {
-          font-weight: 600;
-          font-size: 24px;
-          color: #fe183f;
-          margin: 0;
-        }
+      background: rgba(255, 255, 255, 0.15);
+      text-align: center;
+      padding: 25px 10px;
+      p{
+        font-size: 40px;
+        font-weight: 900;
+        font-family: 'Earth Orbiter';
+        margin: 0;
+        line-height: 1;
       }
     }
   }
-  .box-back {
+  .reward-box{
     position: absolute;
     top: 0;
-    right: 0;
-    height: 100%;
-    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 300px;
+    .inner-box{
+      background: rgba(255, 255, 255, 0.15);
+      border: 3px solid #FFFFFF;
+      width: 100%;
+      padding: 25px 10px;
+      position: relative;
+      .reward-badge{
+        position: absolute;
+        top: -3px;
+        left: 0;
+        height: calc(100% + 6px);
+        width: auto;
+        transform: translateX(-50%);
+      }
+      p{
+        font-size: 40px;
+        letter-spacing: 0.09em;
+        font-family: 'Earth Orbiter';
+        font-weight: 900;
+        margin: 0;
+        line-height: 1;
+      }
+    }
   }
-}
-
-.right h4 {
-  text-align: center;
-  width: 200px;
-  display: block;
-  color: #800063;
-  font-size: 24px;
-}
-.bookmark-cont {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 70px;
-  width: 100px;
-  overflow: hidden;
-}
-
-.balance-wrapper {
-  position: absolute;
-  right: -42px;
-  top: -30px;
-}
-
-@media screen and (max-width: 1700px) {
-  .main-holder {
-    width: calc(100% - 410px);
-    padding-left: 30px;
-  }
-  .benefits-list {
-    .ben-item {
-      padding: 20px 20px 7px;
-      .img-holder {
-        height: 60px;
-        &.img2 {
-          img {
-            max-width: 50px;
-            max-height: 50px;
+  .offers-box{
+    text-align: center;
+    width: 450px;
+    .offers-holder{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: hidden;
+      &.state1{
+        .offer-item{
+          left: 0;
+        }
+      }
+      &.state2{
+        .offer-item{
+          left: -100%;
+        }
+      }
+      .offer-item{
+        min-width: 100%;
+        position: relative;
+        transition: .2s;
+        .img-holder{
+          width: 100%;
+          height: 208px;
+          background: url('/assets/base/images/teams/offer-back.jpg') center no-repeat;
+          background-size: cover;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+          .heading{
+            font-size: 40px;
+            letter-spacing: 0.09em;
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            font-family: 'Earth Orbiter';
+          }
+          .text{
+            font-size: 16px;
+            max-width: 380px;
+            margin: 0;
           }
         }
-        img {
-          max-width: 40px;
-          max-height: 32px;
-        }
-      }
-      .text {
-        p {
-          &.heading {
-            font-size: 18px;
-          }
+        button{
+          width: 100%;
+          font-weight: 400;
+          font-size: 24px;
+          padding: 14px;
         }
       }
     }
-  }
-  .my-menu {
-    .menu-item {
-      height: 45px;
-      p {
-        font-size: 15px;
-      }
-    }
-  }
-  .create-team {
-    padding: 21px 43px;
-    .text-holder {
-      p {
-        font-size: 15px;
-        &.heading {
-          margin: 25px 0 18px 0;
-          font-size: 19px;
+    .offers-switch{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      .display-item{
+        width: 48%;
+        height: 2px;
+        cursor: pointer;
+        &.inactive{
+          background: rgba(255, 255, 255, 0.15);
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 1550px) {
-  p {
-    font-size: 12px;
+.nft-reward-box{
+  position: absolute;
+  bottom: 13%;
+  left: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  .car-img{
+    width: 55%;
+    max-width: 904px;
+    position: relative;
+    right: -7%;
   }
-  h1 {
-    font-size: 25px;
+  .racer-img{
+    width: 35%;
+    max-width: 540px;
+    position: relative;
+    left: -10%;
   }
+}
 
-  .text-info {
-    max-width: 555px;
-    margin: 0 10px;
-    h1 {
-      font-size: 26px;
-      margin: 5px 0 7px;
-    }
-    p {
-      font-size: 13px;
-    }
+.teams-holder{
+  width: 100%;
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+}
+
+@media screen and (max-width: 1700px){
+  .main-holder{
+    width: calc(100% - 20px);
+    height: calc(100vh - 80px);
+    padding: 30px 0px 30px 20px;
   }
-  .page-info {
-    margin: 0;
-    padding-bottom: 20px;
-    .back {
-      min-height: 120px;
-    }
-    .bonus-info {
-      min-height: 120px;
-      width: 380px;
-    }
+  .desc{
+    font-size: 21px;
+    margin: 0 0 8px 0;
   }
-  .main-holder {
-    width: calc(100% - 380px);
-    padding-left: 20px;
-  }
-  .get-banner {
-    height: 100px;
-    margin: 13px 0;
-    p {
-      font-size: 30px;
-      img {
-        width: 29px;
+  .boxes-holder{
+    .memb-box{
+      width: 250px;
+      .time-box{
+        padding: 20px 7px;
+        p{
+          font-size: 36px;
+        }
       }
     }
-  }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 17px;
-        padding-bottom: 10px;
+    .reward-box{
+      width: 270px;
+      .inner-box{
+        padding: 20px 10px;
+        p{
+          font-size: 36px;
+        }
       }
     }
-  }
-  .tables {
-    .table {
-      font-size: 14px;
-      .coll {
-        &.borderis {
-          &.big {
-            .cell {
-              &::after {
-                width: 240%;
-              }
+    .offers-box{
+      width: 400px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            .heading{
+              margin: 0 0 25px 0;
+              font-size: 36px;
+            }
+            .text{
+              font-size: 14px;
+              max-width: 330px;
             }
           }
-        }
-      }
-    }
-    .teams-table {
-      .coll:first-child {
-        width: 50%;
-      }
-    }
-  }
-
-  .benefits-list {
-    .ben-item {
-      padding: 15px 15px 7px;
-      min-height: 320px;
-      .img-holder {
-        height: 50px;
-        &.img2 {
-          img {
-            max-width: 42px;
-            max-height: 42px;
-          }
-        }
-        img {
-          max-width: 33px;
-          max-height: 28px;
-        }
-      }
-      .text {
-        p {
-          font-size: 14px;
-          list-style: 1.2;
-          &.heading {
-            font-size: 16px;
-          }
-        }
-      }
-    }
-  }
-  .create-team {
-    padding: 20px 40px;
-    .text-holder {
-      width: 70%;
-      max-width: 540px;
-      p {
-        font-size: 15px;
-        &.heading {
-          margin: 25px 0 18px 0;
-          font-size: 19px;
-        }
-      }
-      .want-team-box {
-        max-width: 313px;
-        .inner {
-          padding: 8px;
-          p {
-            font-size: 15px;
-          }
-          h3 {
+          button{
             font-size: 22px;
           }
         }
       }
     }
-    .box-back {
-      right: -10%;
-    }
+  }
+  .teams-holder{
+    bottom: 20px;
+    left: 30px;
   }
 }
-
-@media screen and (max-width: 1400px) {
-  .tables {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .memberships-table {
-      width: 90%;
-      margin-bottom: 100px;
-    }
-    .teams-table {
-      margin-left: 0;
-      max-width: 90%;
-    }
+@media screen and (max-width: 1550px){
+  .main-holder{
+    width: calc(100% - 15px);
+    height: calc(100vh - 65px);
+    padding: 20px 0px 22px 15px;
   }
-}
-
-@media screen and (max-width: 1300px) {
-  .benefits-list {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .ben-item {
-      width: 27%;
-      margin-bottom: 20px;
-    }
+  .desc{
+    font-size: 19px;
+    margin: 0 0 5px 0;
   }
-}
-
-@media screen and (max-width: 1200px) {
-  .my-menu {
-    .menu-item {
-      height: 40px;
-      p {
-        font-size: 14px;
-      }
-    }
-  }
-  .main-holder {
-    width: calc(100% - 340px);
-    padding-left: 13px;
-  }
-
-  .page-info {
-    margin-top: 20px;
-  }
-  .text-info {
-    max-width: 555px;
-    h1 {
-      font-size: 20px;
-    }
-    p {
-      font-size: 12px;
-    }
-  }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 15px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .main-holder {
-    width: 100%;
-    padding: 30px 13px 0px 10px;
-  }
-  .page-info {
-    margin-top: 0;
-    padding-bottom: 10px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .text-info {
-    order: 3;
-    margin: 15px auto;
-    text-align: center;
-  }
-  .benefits-list {
-    .ben-item {
-      width: 31%;
-    }
-  }
-  .create-team {
-    padding: 15px 30px;
-    .text-holder {
-      width: 70%;
-      max-width: 510px;
-      p {
-        font-size: 14px;
-        &.heading {
-          margin: 20px 0 14px 0;
-          font-size: 18px;
+  .boxes-holder{
+    .memb-box{
+      width: 230px;
+      .time-box{
+        padding: 16px 5px;
+        p{
+          font-size: 32px;
         }
       }
-      .want-team-box {
-        max-width: 300px;
-        .inner {
-          padding: 7px;
-          p {
-            font-size: 14px;
+    }
+    .reward-box{
+      width: 245px;
+      .inner-box{
+        padding: 16px 5px;
+        p{
+          font-size: 32px;
+        }
+      }
+    }
+    .offers-box{
+      width: 370px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 188px;
+            .heading{
+              margin: 0 0 18px 0;
+              font-size: 32px;
+            }
           }
-          h3 {
+          button{
             font-size: 20px;
           }
         }
       }
     }
-    .box-back {
-      right: -15%;
+  }
+  .teams-holder{
+    bottom: 15px;
+    left: 15px;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .desc{
+    font-size: 16px;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 210px;
+      .time-box{
+        padding: 14px 5px;
+        p{
+          font-size: 28px;
+        }
+      }
+    }
+    .reward-box{
+      width: 230px;
+      .inner-box{
+        padding: 14px 5px;
+        p{
+          font-size: 28px;
+        }
+      }
+    }
+    .offers-box{
+      width: 370px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 158px;
+            margin-bottom: 5px;
+            .heading{
+              margin: 0 0 14px 0;
+              font-size: 28px;
+            }
+          }
+          button{
+            font-size: 17px;
+          }
+        }
+      }
+      .offers-switch{
+        margin-top: 5px;
+      }
+    }
+  }
+  .teams-holder{
+    bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .main-holder{
+    width: calc(100% - 15px);
+    padding: 15px 0px 15px 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait){
+  .main-holder{
+    width: calc(100% - 15px);
+    padding: 15px 0px 15px 15px;
+    height: calc(100vh - 130px);
+  }
+  .desc{
+    font-size: 15px;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 216px;
+    }
+    .reward-box{
+      width: 200px;
+      top: 100px;
+      left: 15px;
+      transform: none;
+      .desc{
+        text-align: left;
+        position: relative;
+        left: -15px;
+      }
+    }
+    .offers-box{
+      width: 370px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 161px;
+            .heading{
+              margin: 0 0 14px 0;
+              font-size: 28px;
+            }
+          }
+          button{
+            font-size: 17px;
+          }
+        }
+      }
+      .offers-switch{
+        margin-top: 5px;
+      }
+    }
+  }
+  .teams-holder{
+    bottom: 10px;
+  }
+  .nft-reward-box{
+    bottom: 26%;
+    .car-img{
+      width: 65%;
+      right: -12%;
+    }
+    .racer-img{
+      width: 53%;
+      left: -15%;
     }
   }
 }
 
-@media screen and (max-width: 640px) {
-  .my-menu {
-    margin: 20px 0 25px;
-    width: 100%;
-    .menu-item {
-      height: 36px;
-      p {
-        font-size: 13px;
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .main-holder{
+    height: calc(100vh - 45px);
+  }
+  .desc{
+    font-size: 15px;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 27%;
+      .time-box{
+        padding: 14px 5px;
+        p{
+          font-size: 23px;
+        }
       }
     }
-  }
-
-  .page-info {
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    .text-info {
-      box-sizing: border-box;
-      flex-basis: 100%;
-      max-width: 100%;
-      order: 3;
-      margin: 0;
-    }
-  }
-  .back {
-    box-sizing: border-box;
-    padding: 0 10px;
-    flex-basis: 23%;
-    order: 1;
-  }
-  .bonus-info {
-    flex-basis: 70%;
-    order: 2;
-  }
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 14px;
-        padding-bottom: 6px;
+    .reward-box{
+      margin-left: 10px;
+      position: relative;
+      left: 0;
+      transform: none;
+      width: 27%;
+      .inner-box{
+        padding: 14px 5px;
+        p{
+          font-size: 23px;
+        }
       }
     }
-  }
-
-  .tables {
-    .table {
-      font-size: 12px;
-      .coll {
-        &.borderis {
-          &.big {
-            .cell {
-              &::after {
-                width: 325%;
-              }
+    .offers-box{
+      width: 40%;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 128px;
+            .heading{
+              font-size: 23px;
+              margin: 0 0 5px 0;
+            }
+            .text{
+              font-size: 13px;
+              max-width: 300px;
             }
           }
         }
-        .cell:first-child {
-          margin-bottom: 40px;
-        }
-        .cell {
-          margin-bottom: 30px;
-        }
-      }
-    }
-    .teams-table {
-      .coll:first-child {
-        width: 30%;
       }
     }
   }
+  .nft-reward-box{
+    bottom: 14%;
+  }
+  .teams-holder{
+    bottom: 12px;
+  }
+}
 
-  .benefits-list {
-    flex-wrap: wrap;
-    justify-content: center;
-    .ben-item {
-      max-width: 40%;
-      width: 100%;
-      margin: 10px 5px;
-      img {
-        max-height: 63px;
-      }
-      .text {
-        margin: 13px auto 0;
-        max-width: 150px;
-        p {
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .main-holder{
+    height: calc(100vh - 40px);
+    width: calc(100% - 10px);
+    padding: 5px 0px 5px 10px;
+  }
+  .desc{
+    font-size: 9px;
+    margin: 0 0 3px 0;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 150px;
+      .time-box{
+        padding: 7px 4px;
+        p{
           font-size: 13px;
         }
       }
     }
-  }
-  .create-team {
-    padding: 15px 10px;
-    .text-holder {
-      width: 90%;
-      margin: 0 auto;
-      p {
-        line-height: 1.3;
-        margin: 0 0 8px 0;
-      }
-      .want-team-box {
-        margin: 25px auto 0;
+    .reward-box{
+      width: 150px;
+      .inner-box{
+        padding: 7px 3px;
+        border: 1px solid #FFFFFF;
+        p{
+          font-size: 13px;
+        }
       }
     }
-    .box-back {
-      display: none;
-    }
-  }
-}
-@media screen and (max-width: 640px) {
-  .main-holder {
-    width: 100%;
-    padding: 20px 20px 0px 20px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .my-menu {
-    .menu-item {
-      p {
-        line-height: 18px;
+    .offers-box{
+      width: 225px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 70px;
+            margin-bottom: 0;
+            .heading{
+              font-size: 15px;
+              width: 100%;
+            }
+            .text{
+              font-size: 9px;
+              max-width: 70%;
+            }
+          }
+          button{
+            font-size: 10px;
+            padding: 6px;
+          }
+        }
       }
-    }
-  }
-
-  .tables {
-    .table {
-      font-size: 10px;
-    }
-    .memberships-table {
-      width: 100%;
-    }
-    .teams-table {
-      margin-left: 0;
-      max-width: 100%;
-    }
-
-    .teams-table {
-      .coll {
-        width: 30%;
-      }
-      .coll:first-child {
-        width: 40%;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .team-menu {
-    .menu-desc {
-      p {
-        font-size: 12px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-  .benefits-list {
-    .ben-item {
-      max-width: 70%;
-      img {
-        max-height: 75px;
-      }
-      .text {
-        max-width: 200px;
-        p {
-          font-size: 14px;
+      .offers-switch{
+        margin-top: 2px;
+        .display-item{
+          height: 1px;
         }
       }
     }
   }
+  .nft-reward-box{
+    bottom: 19%;
+    .car-img{
+      width: 330px;
+      right: -3%;
+    }
+    .racer-img{
+      width: 235px;
+      left: -14%;
+    }
+  }
+  .teams-holder{
+    bottom: 5px;
+  }
+}
 
-  .tables {
-    .table {
-      font-size: 8px;
-      padding: 10px;
+@media screen and (max-width: 640px) and (orientation: portrait){
+  .main-holder{
+    width: calc(100% - 10px);
+    height: unset;
+    padding: 10px 0px 0px 10px;
+  }
+  .desc{
+    font-size: 14px;
+  }
+  .boxes-holder{
+    flex-wrap: wrap;
+    .memb-box{
+      width: 48%;
+    }
+    .reward-box{
+      width: 48%;
+      top: unset;
+      left: unset;
+      position: relative;
+      .desc{
+        text-align: left;
+        position: relative;
+        left: -15px;
+      }
+      .inner-box{
+        .reward-badge{
+          transform: translateX(-30%);
+        }
+      }
+    }
+    .offers-box{
+      width: 100%;
+      margin-top: 20px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 161px;
+            .heading{
+              margin: 0 0 14px 0;
+              font-size: 28px;
+            }
+          }
+          button{
+            font-size: 17px;
+          }
+        }
+      }
+      .offers-switch{
+        margin-top: 5px;
+      }
+    }
+  }
+  .teams-holder{
+    bottom: unset;
+    position: relative;
+    left: 0;
+  }
+  .nft-reward-box{
+    bottom: unset;
+    position: relative;
+    .car-img{
+      width: 84%;
+      right: -23%;
+    }
+    .racer-img{
+      width: 70%;
+      left: -12%;
     }
   }
 }
 
-@media screen and (max-width: 480px) {
-  .text-info {
-    h1 {
-      font-size: 17px;
+@media screen and (max-width: 640px) and (orientation: landscape){
+  .desc{
+    font-size: 7px;
+    margin: 0 0 2px 0;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 120px;
+      .time-box{
+        padding: 5px 4px;
+        p{
+          font-size: 11px;
+        }
+      }
     }
-    p {
-      font-size: 11px;
+    .reward-box{
+      width: 120px;
+      .inner-box{
+        padding: 5px 3px;
+        p{
+          font-size: 11px;
+        }
+      }
+    }
+    .offers-box{
+      width: 170px;
+      .offers-holder{
+        .offer-item{
+          .img-holder{
+            height: 54px;
+            .heading{
+              font-size: 11px;
+            }
+            .text{
+              font-size: 8px;
+              line-height: 1.2;
+            }
+          }
+          button{
+            font-size: 8px;
+            padding: 5px;
+          }
+        }
+      }
+      .offers-switch{
+        margin-top: 2px;
+        .display-item{
+          height: 1px;
+        }
+      }
     }
   }
-  .page-info {
-    .back {
+  .nft-reward-box{
+    bottom: 19%;
+    .car-img{
+      width: 270px;
+    }
+    .racer-img{
+      width: 190px;
+    }
+  }
+  .teams-holder{
+    bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 400px) and (orientation: portrait){
+  .desc{
+    font-size: 13px;
+    text-align: center;
+  }
+  .boxes-holder{
+    .memb-box{
+      width: 100%;
+    }
+    .reward-box{
+      width: 100%;
+      margin: 10px 0;
+      .desc{
+        text-align: center;
+        position: relative;
+        left: 0;
+      }
+      .inner-box{
+        .reward-badge{
+          transform: translateX(-30%);
+        }
+      }
+    }
+    .offers-box{
+      margin-top: 0;
+    }
+  }
+  .nft-reward-box{
+    .car-img{
+      width: 84%;
+      right: -23%;
+    }
+    .racer-img{
+      width: 70%;
+      left: -12%;
+    }
+  }
+}
+
+//CONTENT TO CSS AT THE BOTTOM!
+.content-title {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: Earth Orbiter;
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+ .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+ .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
       font-size: 9px;
-      padding: 0 6px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
     }
   }
 }

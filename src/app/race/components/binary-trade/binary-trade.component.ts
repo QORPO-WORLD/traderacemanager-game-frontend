@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
 
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -11,10 +11,11 @@ import { Observable, EMPTY, of, Subscription, Subject } from 'rxjs';
 declare let ccxt: any;
 let popsock = (window as any).kocksock;
 import io from "socket.io-client"
-import { webSocket, WebSocketSubject } from "rxjs/webSocket";
+//import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
+
 export interface Trade {
   data: {
     p: number,
@@ -109,6 +110,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   semaforVal = 5;
   chartTemp: any;
   showChart = true;
+  startVal: number;
+  @ViewChild('optionPlaced') optionPlaced: ElementRef;
+  @ViewChild('oponentOptionPlaced') oponentOptionPlaced: ElementRef;
+  @ViewChild('optionWin') optionWin: ElementRef;
+  @ViewChild('optionWinOponent') optionWinOponent: ElementRef;
+  @ViewChild('optionLoose') optionLoose: ElementRef;
+  @ViewChild('optionLooseOponent') optionLooseOponent: ElementRef;
+  @ViewChild('meLoose') meLoose: ElementRef;
+  @ViewChild('meWin') meWin: ElementRef;
+  @ViewChild('optionsStart') optionsStart: ElementRef;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -188,7 +199,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
 
-          if (this.chart.data.datasets[0].data.length > 21) {
+          if (this.chart.data.datasets[0].data.length > 50) {
             this.chart.data.datasets[0].data.shift();
             this.chart.data.datasets[0].pointStyle.shift();
             this.chart.data.labels.shift();
@@ -214,7 +225,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const preformatTime = new Date(this.chartTemp.time).toLocaleTimeString();
     this.chart.data.labels.push(preformatTime);
 
-    if (this.chart.data.datasets[0].data.length > 21) {
+    if (this.chart.data.datasets[0].data.length > 50) {
       this.chart.data.datasets[0].data.shift();
       this.chart.data.datasets[0].pointStyle.shift();
       this.chart.data.labels.shift();
@@ -250,7 +261,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         "long": this.long
       }).subscribe(
         data => {
-          this.optWaiting = 10;
+          //this.optWaiting = 10;
         }
       )
     }
@@ -309,7 +320,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             ticks: {
               fontColor: "#868686",
               reverse: false,
-              stepSize: 5
+              stepSize: 5,
+              steps: 10,
+              stepValue: 5,
+              max: 100
             }
           }]
         },
@@ -320,10 +334,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           tooltip: {
             enabled: true
           }
+        },
+        bands: {
+          yValue: this.currentValue, //randomScalingFactor(),
+          baseColorGradientColor: [
+            'rgb(255, 100, 100)'
+          ],
+          bandLine: {
+            stroke: 2,
+            colour: 'rgba(100, 100, 255, 1)',
+            type: 'solid',
+          }
         }
       }
     };
-
+    console.log(this.currentValue);
   }
 
 
@@ -363,6 +388,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
+    if (me === true) {
+      this.optWaiting = 10;
+      this.playSound('optionPlaced');
+    } else {
+      this.playSound('oponentOptionPlaced');
+    }
+  }
+
+  placeLineToChart(obj) {
+    let imag = new Image();
+    imag.src = '/assets/base/images/binary/green.png';
+    
+
+    this.chartStream.next(obj);
+    
   }
 
 
@@ -384,6 +424,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
+
+    if (lplayer === true) {
+      shot === false ? this.playSound('optionLoose') : this.playSound('optionWin');
+    }
+    if (lplayer === false) {
+      shot === false ? this.playSound('optionLooseOponent') : this.playSound('optionWinOponent');
+    }
   }
 
 
@@ -442,6 +489,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   onOption(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
+
   }
 
   onOptionClosed(data?: any) {
@@ -461,7 +509,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.winner = win[0];
     this.loser = lose[0];
     this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
-    this.meWon === false ? this.unityEnabled === false : null;
+    if (this.meWon === false) {
+      this.unityEnabled === false;
+      this.playSound('meLoose');
+    } else {
+      this.playSound('meWin');
+    }
     this.raceEnded = true;
   }
 
@@ -474,6 +527,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.oponentShots = data.p;
       this.roiright = data.r;
     }
+    this.playSound('action');
   }
 
   onStatus(data?: any) {
@@ -603,7 +657,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
-
+    this.startVal = newwhen;
     const fireSemaforx = (newwhen - 5) * 1000;
 
     setTimeout((
@@ -638,13 +692,51 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       setTimeout(() => {
 
         this.semaforVal = 0;
-
+        this.playSound('optionsStart');
       }, 5000);
       setTimeout(() => {
 
         this.semaforVal = -1;
         this.semaforsVisible = false
       }, 5100);
+  }
+
+  playSound(type: string) {
+    if (type === 'optionPlaced') {
+      this.optionPlaced.nativeElement.play();
+    }
+ 
+    if (type === 'oponentOptionPlaced') {
+      this.oponentOptionPlaced.nativeElement.play();
+    }
+ 
+    if (type === 'optionWin') {
+      this.optionWin.nativeElement.play();
+    }
+ 
+    if (type === 'optionWinOponent') {
+      this.optionWinOponent.nativeElement.play();
+    }
+ 
+    if (type === 'optionLoose') {
+      this.optionLoose.nativeElement.play();
+    }
+ 
+    if (type === 'optionLooseOponent') {
+      this.optionLooseOponent.nativeElement.play();
+    }
+    if (type === 'meWin') {
+      this.meWin.nativeElement.play();
+    }
+ 
+    if (type === 'meLoose') {
+      this.meLoose.nativeElement.play();
+    }
+
+    if (type === 'optionsStart') {
+      this.optionsStart.nativeElement.play();
+    }
+ 
   }
 
 }
