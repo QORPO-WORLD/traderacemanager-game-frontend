@@ -11,7 +11,7 @@ import { Observable, EMPTY, of, Subscription, Subject } from 'rxjs';
 declare let ccxt: any;
 let popsock = (window as any).kocksock;
 import io from "socket.io-client"
-import { webSocket, WebSocketSubject } from "rxjs/webSocket";
+//import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
@@ -110,7 +110,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   semaforVal = 5;
   chartTemp: any;
   showChart = true;
-  @ViewChild('audioOption') audioPlayerRef: ElementRef;
+  @ViewChild('optionPlaced') optionPlaced: ElementRef;
+  @ViewChild('oponentOptionPlaced') oponentOptionPlaced: ElementRef;
+  @ViewChild('optionWin') optionWin: ElementRef;
+  @ViewChild('optionWinOponent') optionWinOponent: ElementRef;
+  @ViewChild('optionLoose') optionLoose: ElementRef;
+  @ViewChild('optionLooseOponent') optionLooseOponent: ElementRef;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -379,7 +384,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
-    
+    if (me === true) {
+      this.playSound('optionPlaced');
+    } else {
+      this.playSound('oponentOptionPlaced');
+    }
   }
 
   placeLineToChart(obj) {
@@ -410,6 +419,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
+
+    if (lplayer === true) {
+      shot === false ? this.playSound('optionLoose') : this.playSound('optionWin');
+    }
+    if (lplayer === false) {
+      shot === false ? this.playSound('optionLooseOponent') : this.playSound('optionWinOponent');
+    }
   }
 
 
@@ -468,13 +484,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   onOption(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
-    this.playSound('action');
+
   }
 
   onOptionClosed(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
-    this.playSound('action');
   }
 
   onWinners(data?: Array<any>) {
@@ -677,9 +692,28 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   playSound(type: string) {
-    if (type === 'action') {
-      this.audioPlayerRef.nativeElement.play();
-
+    if (type === 'optionPlaced') {
+      this.optionPlaced.nativeElement.play();
+    }
+ 
+    if (type === 'oponentOptionPlaced') {
+      this.oponentOptionPlaced.nativeElement.play();
+    }
+ 
+    if (type === 'optionWin') {
+      this.optionWin.nativeElement.play();
+    }
+ 
+    if (type === 'optionWinOponent') {
+      this.optionWinOponent.nativeElement.play();
+    }
+ 
+    if (type === 'optionLoose') {
+      this.optionLoose.nativeElement.play();
+    }
+ 
+    if (type === 'optionLooseOponent') {
+      this.optionLooseOponent.nativeElement.play();
     }
  
   }
