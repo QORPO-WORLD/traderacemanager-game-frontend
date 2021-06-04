@@ -116,6 +116,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   @ViewChild('optionWinOponent') optionWinOponent: ElementRef;
   @ViewChild('optionLoose') optionLoose: ElementRef;
   @ViewChild('optionLooseOponent') optionLooseOponent: ElementRef;
+  @ViewChild('meLoose') meLoose: ElementRef;
+  @ViewChild('meWin') meWin: ElementRef;
+  @ViewChild('optionsStart') optionsStart: ElementRef;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -257,7 +260,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         "long": this.long
       }).subscribe(
         data => {
-          this.optWaiting = 10;
+          //this.optWaiting = 10;
         }
       )
     }
@@ -385,6 +388,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     this.chartStream.next(obj);
     if (me === true) {
+      this.optWaiting = 10;
       this.playSound('optionPlaced');
     } else {
       this.playSound('oponentOptionPlaced');
@@ -504,7 +508,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.winner = win[0];
     this.loser = lose[0];
     this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
-    this.meWon === false ? this.unityEnabled === false : null;
+    if (this.meWon === false) {
+      this.unityEnabled === false;
+      this.playSound('meLoose');
+    } else {
+      this.playSound('meWin');
+    }
     this.raceEnded = true;
   }
 
@@ -682,7 +691,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       setTimeout(() => {
 
         this.semaforVal = 0;
-
+        this.playSound('optionsStart');
       }, 5000);
       setTimeout(() => {
 
@@ -714,6 +723,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
  
     if (type === 'optionLooseOponent') {
       this.optionLooseOponent.nativeElement.play();
+    }
+    if (type === 'meWin') {
+      this.meWin.nativeElement.play();
+    }
+ 
+    if (type === 'meLoose') {
+      this.meLoose.nativeElement.play();
+    }
+
+    if (type === 'optionsStart') {
+      this.optionsStart.nativeElement.play();
     }
  
   }
