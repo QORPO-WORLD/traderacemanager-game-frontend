@@ -3,49 +3,6 @@
   class="filter-overlay"
 ></div>
 <div (window:resize)="width()" class="main-holder" #myScroll2>
-  <div class="top-info">
-    <div
-      class="back"
-      [routerLink]="['/race/start-race']"
-      *ngIf="marketState === 1"
-    >
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="back" (click)="marketState = 1" *ngIf="marketState === 2">
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="back" (click)="marketState = 2" *ngIf="marketState === 3">
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="text-info">
-      <h2>Limited amount, unlimited rewards</h2>
-      <p>
-        Non-Fungible Tokens are virtual tokens minted on the blockchain for
-        digital scarcity, security, and authenticity. They are unique,
-        indivisible, and non-interchangeable.
-      </p>
-    </div>
-    <div class="info-box">
-      <div class="nums-holder">
-        <p>{{ carSum.charAt(0) }}</p>
-
-        <p>{{ carSum.charAt(1) }}</p>
-
-        <p>{{ carSum.charAt(2) }}</p>
-        &nbsp;
-        <p>{{ carSum.charAt(3) }}</p>
-
-        <p>{{ carSum.charAt(4) }}</p>
-
-        <p>{{ carSum.charAt(5) }}</p>
-
-        <p class="desc">cars left</p>
-      </div>
-    </div>
-  </div>
   <div class="content-holder" #myScroll>
     <div
       [class.disable-scroll]="isMenuActive"
