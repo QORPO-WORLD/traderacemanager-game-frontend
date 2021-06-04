@@ -26,8 +26,10 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   monthCount = 1;
   teamOption = 1;
+  offerState = 1;
   startNow = false;
   myTeamReward: any;
+  offerInterval: any;
   myRewards: any;
   ioioreward: number;
   myDriverStats: any;
@@ -43,6 +45,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.getMyTeamReward();
     this.getAllRewards();
     this.getMydriver();
+    this.setOfferInterval();
   }
 
   ngOnDestroy() {
@@ -52,6 +55,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     if (this.transObserver) {
       this.transObserver.unsubscribe();
     }
+    clearInterval(this.offerInterval);
   }
 
 
@@ -85,6 +89,25 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
     }, 500);
+  }
+
+  changeOffer() {
+    if (this.offerState === 1) {
+      this.offerState = 2;
+    } else {
+      this.offerState = 1;
+    }
+  }
+
+  setOfferInterval() {
+    this.offerInterval = setInterval(() => {
+      this.changeOffer();
+    }, 7000); 
+  }
+
+  manualOfferChange() {
+    clearInterval(this.offerInterval);
+    this.setOfferInterval();
   }
 
 }
