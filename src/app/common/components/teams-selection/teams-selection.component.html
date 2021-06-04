@@ -1,4 +1,93 @@
-<div
+
+
+<div class="teams-holder">
+  <div class="inner-slider">
+    <div class="team-item" *ngFor="let tt of teams | sortmain: '!position'; let i = index">
+      <div
+        class="img-holder"
+        *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
+      >
+        <img
+          [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'"
+          alt=""
+        />
+      </div>
+      <div
+      *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
+        class="img-holder"
+      >
+        <img
+          [src]="'assets/base/images/custom-teams/custom-team' + (tt.avatar + 1) + '.png'"
+          alt=""
+        />
+        <div class="badge-name">
+          <p class="name">{{ tt?.name }}</p>
+          <p class="team">TEAM</p>
+        </div>
+      </div>
+      <p class="team-name">{{ tt?.name }}</p>
+
+      <div class="stats-holder">
+        <img (click)="prevStat(i)" src="/assets/base/images/teams/team-arrow-left.svg" alt="" class="arrow left">
+        <img (click)="nextStat(i)" src="/assets/base/images/teams/team-arrow-right.svg" alt="" class="arrow right">
+        <div class="stat-item" *ngIf="tt.statState === 1">
+          <div class="inner-item">
+            <p><img src="/assets/base/images/teams/memb-num.svg" alt=""> {{ tt?.active_members }}</p>
+          </div>
+          <div class="inner-item">
+            <p><img src="/assets/base/images/teams/turnover.svg" alt=""> <img src="/assets/base/images/teams/reward-token.png" alt=""> {{ tt.current_team_bonus | number: "1.2-2":"fr" }}</p>
+          </div>
+        </div>
+        <div class="stat-item names" *ngIf="tt.statState === 2">
+          <div class="inner-item">
+            <p class="value" *ngIf="tt?.owners.length === 0">-</p>
+            <p class="value" *ngIf="tt?.owners.length > 0">
+              <span
+                class="arrow left"
+                *ngIf="tt?.owners.length > 1 && ownerIndex !== 0"
+                (click)="ownerIndex = ownerIndex - 1"
+                >&lt;</span
+              >
+              {{ tt?.owners[ownerIndex].user_nickname }}
+              <span
+                class="arrow right"
+                *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length"
+                (click)="ownerIndex = ownerIndex + 1"
+                >&gt;</span
+              >
+            </p>
+            <p class="desc">owner</p>
+          </div>
+          <div class="inner-item">
+            <p class="value" *ngIf="tt?.manager_user_nickname">
+              {{ tt?.manager_user_nickname }}
+            </p>
+            <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
+            <p class="desc">manager</p>
+          </div>
+        </div>
+        <div class="stat-item" *ngIf="tt.statState === 3">
+          <div class="inner-item">
+            <p><img src="/assets/base/images/race-type/player.svg" alt=""> {{ tt?.free_membership_count }}</p>
+          </div>
+          <div class="inner-item">
+            <p>
+              <span class="premium">
+                <img src="/assets/base/images/menu/premium-icon-active.svg" alt="" class="premium-badge"> 
+                <img src="/assets/base/images/race-type/player.svg" alt="">
+              </span> 
+            {{ tt?.premium_membership_count }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="join-team my-cta-btn-back">Join team</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div
   class="team-holder"
   (window:resize)="width()"
   [ngClass]="{ 'first-modal': modalVersion === true }"
@@ -207,11 +296,11 @@
   >
     <p>&lt;</p>
   </div>
-</div>
+</div> -->
 
 <!-- MODALS -->
 
-<div
+<!-- <div
   class="modal fade"
   id="teamModal"
   tabindex="-1"
@@ -355,4 +444,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
