@@ -110,6 +110,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   semaforVal = 5;
   chartTemp: any;
   showChart = true;
+  startVal: number;
   @ViewChild('optionPlaced') optionPlaced: ElementRef;
   @ViewChild('oponentOptionPlaced') oponentOptionPlaced: ElementRef;
   @ViewChild('optionWin') optionWin: ElementRef;
@@ -656,7 +657,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
-
+    this.startVal = newwhen;
     const fireSemaforx = (newwhen - 5) * 1000;
 
     setTimeout((
