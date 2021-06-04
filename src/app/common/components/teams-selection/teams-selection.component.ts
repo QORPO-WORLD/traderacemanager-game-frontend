@@ -1,6 +1,6 @@
 import { first } from 'rxjs/operators';
 import { NotifiqService } from "./../../services/notifiq.service";
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { TeamsService } from "../../../api/services/teams.service";
 import { AuthService } from "../../../user/services/auth.service";
 import { BalanceService } from "../../../common/services/balance.service";
@@ -11,7 +11,6 @@ import { BalanceService } from "../../../common/services/balance.service";
   styleUrls: ["./teams-selection.component.scss"],
 })
 export class TeamsSelectionComponent implements OnInit {
-  @Input() modalVersion = false;
   @Output() modalOpen = new EventEmitter<boolean>();
   teams: any;
   myTeam: string;
@@ -78,7 +77,12 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
-      this.reorderTeams();
+      this.teams.push(...this.teams);
+      for (let i = 0; i < this.teams.length; i++) {
+        this.teams[i].statState = 1;
+      }
+      console.log(this.teams);
+      // this.reorderTeams();
     });
   }
 
@@ -126,9 +130,6 @@ export class TeamsSelectionComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          if (this.modalVersion === true) {
-            this.closeModal();
-          }
         }, 100);
       });
   }
@@ -191,6 +192,22 @@ export class TeamsSelectionComponent implements OnInit {
       let firstTwo = helper.splice(0, 2);
       helper = helper.filter((item) => item.name !== "TRADER");
       this.teams = [...firstTwo, ...specificItem, ...helper]; 
+    }
+  }
+
+  nextStat(teamIndex: number) {
+    if (this.teams[teamIndex].statState < 3) {
+      this.teams[teamIndex].statState++;
+    } else {
+      this.teams[teamIndex].statState = 1;
+    }
+  }
+
+  prevStat(teamIndex: number) {
+    if (this.teams[teamIndex].statState > 1) {
+      this.teams[teamIndex].statState--;
+    } else {
+      this.teams[teamIndex].statState = 3;
     }
   }
 }

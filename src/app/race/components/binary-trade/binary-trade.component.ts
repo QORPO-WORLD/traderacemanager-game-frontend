@@ -188,7 +188,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
 
 
-          if (this.chart.data.datasets[0].data.length > 21) {
+          if (this.chart.data.datasets[0].data.length > 50) {
             this.chart.data.datasets[0].data.shift();
             this.chart.data.datasets[0].pointStyle.shift();
             this.chart.data.labels.shift();
@@ -214,7 +214,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const preformatTime = new Date(this.chartTemp.time).toLocaleTimeString();
     this.chart.data.labels.push(preformatTime);
 
-    if (this.chart.data.datasets[0].data.length > 21) {
+    if (this.chart.data.datasets[0].data.length > 50) {
       this.chart.data.datasets[0].data.shift();
       this.chart.data.datasets[0].pointStyle.shift();
       this.chart.data.labels.shift();
@@ -309,7 +309,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             ticks: {
               fontColor: "#868686",
               reverse: false,
-              stepSize: 5
+              stepSize: 5,
+              steps: 10,
+              stepValue: 5,
+              max: 100
             }
           }]
         },
@@ -320,10 +323,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           tooltip: {
             enabled: true
           }
+        },
+        bands: {
+          yValue: this.currentValue, //randomScalingFactor(),
+          baseColorGradientColor: [
+            'rgb(255, 100, 100)'
+          ],
+          bandLine: {
+            stroke: 2,
+            colour: 'rgba(100, 100, 255, 1)',
+            type: 'solid',
+          }
         }
       }
     };
-
+    console.log(this.currentValue);
   }
 
 
@@ -363,6 +377,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     };
 
     this.chartStream.next(obj);
+    
+  }
+
+  placeLineToChart(obj) {
+    let imag = new Image();
+    imag.src = '/assets/base/images/binary/green.png';
+    
+
+    this.chartStream.next(obj);
+    
   }
 
 
