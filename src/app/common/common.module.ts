@@ -63,6 +63,7 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
 import { OrderModule } from 'ngx-order-pipe';
 import { TeamsSelectionComponent } from './components/teams-selection/teams-selection.component';
 import { RaceInfoModalComponent } from './components/race-info-modal/race-info-modal.component';
+import {TeamMembershipComponent} from './components/team-membership/team-membership.component'
 
 @NgModule({
   imports: [
@@ -114,7 +115,8 @@ import { RaceInfoModalComponent } from './components/race-info-modal/race-info-m
     TeamsSelectionComponent,
     RaceInfoModalComponent,
     FuelLayoutComponent,
-    IoiloaderComponent
+    IoiloaderComponent,
+    TeamMembershipComponent
   ],
   providers: [
     CurrencyPipe,
