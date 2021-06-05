@@ -20,24 +20,45 @@
 
   <div class="market-content">
     <div class="market-header">
-      <div class="filter-item">
+      <div (click)="filterAll()" class="filter-item">
         <p class="category-title-first first">ALL NFTS</p>
+        <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div class="filter-item">
-        <img src="assets/base/images/icons/car.svg" alt="car icon" />
+      <div (click)="filterCars()" class="filter-item">
+        <img
+          class="filter-icon"
+          src="assets/base/images/icons/car.svg"
+          alt="car icon"
+        />
         <p class="category-title-first">CARS</p>
+        <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div class="filter-item">
-        <img src="assets/base/images/icons/helmet-icon.svg" alt="car icon" />
+      <div (click)="filterRacers()" class="filter-item">
+        <img
+          class="filter-icon"
+          src="assets/base/images/icons/helmet-icon.svg"
+          alt="car icon"
+        />
         <p class="category-title-first">RACERS</p>
+        <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div class="filter-item">
-        <img src="assets/base/images/icons/track-icon.svg" alt="car icon" />
+      <div (click)="filterTracks()" class="filter-item">
+        <img
+          class="filter-icon"
+          src="assets/base/images/icons/track-icon.svg"
+          alt="car icon"
+        />
         <p class="category-title-first">TRACKS</p>
+        <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div class="filter-item">
-        <img src="assets/base/images/icons/crown-icon.svg" alt="crown icon" />
-        <p class="category-title-first">CARS</p>
+      <div (click)="filterSpecial()" class="filter-item">
+        <img
+          class="filter-icon"
+          src="assets/base/images/icons/crown-icon.svg"
+          alt="crown icon"
+        />
+        <p class="category-title-first">SPECIALS</p>
+        <div class="active-border my-cta-btn-back"></div>
       </div>
     </div>
     <div
@@ -54,7 +75,10 @@
         *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
         class="box"
       >
-        <div class="box-content">
+        <div
+          (click)="showAsset(item['id'], item['type'], item['position'])"
+          class="box-content"
+        >
           <img
             *ngIf="item['type'] === 'racer'"
             class="img racer"

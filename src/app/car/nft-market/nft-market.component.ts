@@ -731,21 +731,12 @@ export class NftMarketComponent implements OnInit {
 
   width() {
     this.display = window.innerWidth;
-    if (this.display > 640 && this.display < 1300) {
-      this.inRow = 9;
-      this.maxPage = 9;
+    this.inRow = 8;
+    this.maxPage = 8;
 
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    } else {
-      this.inRow = 8;
-      this.maxPage = 8;
-
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    }
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
 
   filterRacers() {
