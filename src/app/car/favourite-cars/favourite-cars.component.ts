@@ -3,6 +3,7 @@ import { FavFuel } from './../../api/models/fav-fuel';
 import { Car } from './../../api/models/car';
 import { Component, OnInit } from '@angular/core';
 import { DriversService, CarsService, LeaderboardService } from 'src/app/api/services';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-favourite-cars',
@@ -10,6 +11,9 @@ import { DriversService, CarsService, LeaderboardService } from 'src/app/api/ser
   styleUrls: ['./favourite-cars.component.scss'],
 })
 export class FavouriteCarsComponent implements OnInit {
+  animation = 0;
+  timeoutPrev: any;
+  timeoutNext: any;
   showEditModal = false;
   showCreateModal = false;
   showMySettings = false;
@@ -148,7 +152,7 @@ export class FavouriteCarsComponent implements OnInit {
   myCarsInEdition: any;
   teamreward: number;
   rsubsciption: Subscription;
-  constructor(private api: DriversService, private carService: CarsService, private rapi: LeaderboardService) { }
+  constructor(private api: DriversService, private carService: CarsService, private rapi: LeaderboardService, public router: Router) { }
 
   ngOnInit() {
     this.getCars();
@@ -216,4 +220,19 @@ export class FavouriteCarsComponent implements OnInit {
     this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
   }
 
+  back() {
+    this.animation = 1;
+    this.timeoutPrev = setTimeout(() => {
+      this.router.navigate(["/race/race-selection"]);
+      this.timeoutReset();
+    }, 300);
+  }
+
+  timeoutReset() {
+    clearTimeout(this.timeoutNext);
+    clearTimeout(this.timeoutPrev);
+  }
+
 }
+
+

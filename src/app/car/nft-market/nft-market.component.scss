@@ -17,6 +17,9 @@
   animation: engage-left 0.3s linear;
   -webkit-animation: engage-left 0.3s linear;
 }
+.paging-img {
+  width: 21px;
+}
 @keyframes dissapear-left {
   0% {
     opacity: 1;
@@ -90,7 +93,6 @@
   }
 }
 .main-holder {
-  overflow: hidden;
   width: calc(100% - 40px);
   height: calc(100vh - 80px);
   padding: 40px 0px 40px 40px;
@@ -102,13 +104,15 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   .market-header {
-    height: 7%;
+    height: 7.5%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     .filter-item {
+      cursor: pointer;
+      position: relative;
       transition: 0.3s;
       background: rgba(255, 255, 255, 0.05);
       border: 3px solid rgba(255, 255, 255, 0.4);
@@ -116,13 +120,27 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      .active-border {
+        position: absolute;
+        width: calc(100% + 6px);
+        left: -3px;
+        height: 0px;
+        bottom: -3px;
+      }
       p {
         margin-left: 10%;
         &.first {
           margin-left: 0px;
         }
       }
-      img {
+      &.active-item {
+        background: rgba(255, 255, 255, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        .active-border {
+          height: 4px;
+        }
+      }
+      .filter-icon {
         width: 30px;
         height: 30px;
       }
@@ -133,20 +151,22 @@
     }
   }
   .market-center {
-    height: 82.5%;
-    margin-left: -0.5%;
-    width: 101%;
+    margin-top: 2%;
+    height: 85%;
+    margin-left: -1%;
+    width: 102%;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+
     .box {
       cursor: pointer;
       overflow: hidden;
       transition: 0.3s;
       display: flex;
       flex-direction: column;
-      width: 24%;
-      padding: 0.5%;
+      width: 23%;
+      margin: 1%;
       height: 48%;
       .box-content {
         overflow: hidden;
@@ -170,7 +190,7 @@
           }
           &.special {
             left: 50%;
-            top: 45%;
+            top: 50%;
             width: 45%;
           }
           &.racer {
@@ -185,8 +205,9 @@
           }
           &.gif-racer {
             left: 50%;
-            top: 59%;
+            top: 50%;
             width: 65%;
+            opacity: 0;
           }
           &.gif-car {
             top: 30%;
@@ -322,6 +343,7 @@
     }
   }
   .market-paging {
+    margin-top: 3%;
     height: 5%;
     display: flex;
     justify-content: center;
@@ -407,6 +429,9 @@
     width: calc(100% - 30px);
     padding: 30px 0px 30px 30px;
   }
+  .paging-img {
+    width: 17px;
+  }
 }
 @media screen and(max-width: 1550px) {
   .main-holder {
@@ -414,35 +439,52 @@
     height: calc(100vh - 65px);
     padding: 20px 0px 20px 20px;
   }
-
+  .paging-img {
+    width: 15px;
+  }
+  .market-content {
+    .market-header {
+      .filter-item {
+        .filter-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
   .category-title-first {
-    font-size: 32px;
+    font-size: 16px;
+    line-height: 18px;
   }
   .category-title-second {
-    font-size: 26px;
+    font-size: 20px;
+    line-height: 22px;
   }
   .category-title-third {
     font-size: 20px;
-  }
-  .races-desc {
-    font-size: 14px;
-  }
-}
-@media screen and(max-width: 1400px) {
-  .menu-title {
-    font-size: 16px;
-  }
-  .category-title-first {
-    font-size: 26px;
-  }
-  .category-title-second {
-    font-size: 22px;
-  }
-  .category-title-third {
-    font-size: 18px;
+    line-height: 22px;
   }
   .races-desc {
     font-size: 12px;
+    line-height: 14px;
+  }
+}
+@media screen and(max-width: 1400px) {
+  .category-title-first {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .category-title-second {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-third {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
   }
 }
 @media screen and(max-width: 1200px) {
@@ -457,6 +499,9 @@
   .content-holder {
     width: 100%;
   }
+  .paging-img {
+    width: 13px;
+  }
   .main-holder {
     width: calc(100% - 10px);
     padding: 10px 0px 10px 10px;
@@ -466,57 +511,188 @@
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
 }
 @media screen and(max-width: 1024px) and (orientation: landscape) {
+  .market-content {
+    .market-header {
+      .filter-item {
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        .filter-icon {
+          width: 17.5px;
+          height: 17.5px;
+        }
+        .active-border {
+          width: calc(100% + 4px);
+          left: -2px;
+
+          bottom: -2px;
+        }
+        &.active-item {
+          border: 2px solid rgba(255, 255, 255, 0.4);
+          .active-border {
+            height: 3px;
+          }
+        }
+      }
+    }
+  }
   .category-title-first {
-    font-size: 20px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 14px;
   }
   .category-title-second {
-    font-size: 17px;
-    line-height: 19px;
+    font-size: 16px;
+    line-height: 18px;
   }
   .category-title-third {
-    font-size: 15px;
-    line-height: 17px;
-  }
-  .races-desc {
-    font-size: 10px;
-    line-height: 12px;
-  }
-}
-@media screen and(max-width: 700px) and (orientation: landscape) {
-  .category-title-first {
-    font-size: 17px;
-    line-height: 19px;
-  }
-  .category-title-second {
-    font-size: 15px;
-    line-height: 17px;
-  }
-  .category-title-third {
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 14px;
+    line-height: 16px;
   }
   .races-desc {
     font-size: 8px;
     line-height: 10px;
   }
 }
-@media screen and(max-width: 1024px) and (orientation: portrait) {
-  .main-holder {
-    align-items: flex-start;
-  }
-}
-@media screen and(max-width: 1024px) and (orientation: landscape) {
-  .content-holder {
-    height: 100%;
-  }
-}
 @media screen and (max-width: 850px) and (orientation: landscape) {
   .main-holder {
     height: calc(100vh - 40px);
   }
+  .market-content {
+    .market-header {
+      .filter-item {
+        .filter-icon {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .category-title-second {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .category-title-third {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .races-desc {
+    font-size: 6px;
+    line-height: 8px;
+  }
 }
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .paging-img {
+    width: 8.5px;
+  }
+  .market-content {
+    .market-header {
+      .filter-item {
+        .filter-icon {
+          width: 12.5px;
+          height: 12.5px;
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 6px;
+    line-height: 8px;
+  }
+  .category-title-second {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-third {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .races-desc {
+    font-size: 4px;
+    line-height: 6px;
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+  }
+}
+
 @media screen and(max-width: 640px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 100vh;
+    height: auto;
+  }
+  .market-content {
+    .market-header {
+      width: 100%;
+      overflow-x: scroll;
+      justify-content: unset;
+      .filter-item {
+        width: 160px;
+        min-width: 160px;
+        height: 45px;
+
+        margin-left: 15px;
+        &.first {
+          margin-left: 0px;
+        }
+      }
+    }
+    .market-center {
+      .box {
+        height: 225px;
+        width: 48%;
+        margin: 1%;
+        .box-content {
+          height: 85%;
+          img {
+            &.racer {
+              top: 45%;
+              width: 90%;
+            }
+            &.gif-racer {
+              top: 40%;
+              width: 90%;
+            }
+            &.car {
+              width: 110%;
+              top: 50%;
+            }
+            &.gif-car {
+              top: 50%;
+            }
+            &.track {
+              width: 85%;
+            }
+            &.special {
+              width: 70%;
+            }
+          }
+        }
+        .box-button {
+          height: 15%;
+          img {
+            width: 12.5%;
+          }
+        }
+      }
+    }
+    .market-paging {
+      .page-left {
+        width: 25%;
+      }
+      .page-middle {
+        width: 50%;
+      }
+      .page-right {
+        width: 25%;
+      }
+    }
+  }
+  .paging-img {
+    width: 15px;
+  }
   .category-title-first {
     font-size: 16px;
     line-height: 18px;
@@ -538,6 +714,7 @@
 
 //BACK BUTTON
 .content-title {
+  cursor: pointer;
   display: flex;
   align-items: center;
   height: 80px;
@@ -596,7 +773,7 @@
     height: 40px;
   }
 }
-@media screen and(max-width: 700px) and (orientation: landscape) {
+@media screen and(max-width: 640px) and (orientation: landscape) {
   .content-title {
     img {
       width: 8.5px;

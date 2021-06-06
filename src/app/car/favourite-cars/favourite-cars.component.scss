@@ -1,6 +1,7 @@
 .main-holder {
-  width: calc(100% - 457px);
+  width: calc(100%);
   padding-left: 40px;
+  height: 85vh;
 }
 .no-cars-box {
   display: none;
@@ -74,13 +75,16 @@ h1 {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
+  height: 100%;
   .switchers-holder {
-    width: 195px;
+    z-index: 5;
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 480px;
     p {
+
       text-shadow: none;
       font-size: 34px;
       font-weight: 900;
@@ -89,11 +93,12 @@ h1 {
       cursor: pointer;
       padding: 15px 0;
       opacity: 1;
+      font-family: 'Earth Orbiter';
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.7);
       &:hover {
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 1);
       }
       &.inactive {
         background: none;
@@ -130,29 +135,34 @@ h1 {
     transform: scale(1.07);
   }
   .cars-holder {
+    height: 95%;
+    overflow: auto;
+    padding-top: 50px;
+    padding-bottom: 120px;
     position: relative;
     width: calc(100% - 300px);
     .edition-holder {
       margin-top: 10px;
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      height: 620px;
+      height: 100%;
       margin-bottom: 15px;
       .regular-cars {
         margin: auto;
         width: 100%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
         height: 100%;
         gap: 20px;
         .car-item {
           position: relative;
-          width: calc(33.333% - 15px);
+          width: calc(23% - 15px);
           height: calc(50% - 15px);
+          min-height: 240px;
           box-shadow: 0px 0px 80px #000000;
           border-radius: 15px;
           position: relative;
@@ -210,6 +220,7 @@ h1 {
                 margin: 0;
                 margin-top: 10px;
                 margin-bottom: 5px;
+                font-family: 'Earth Orbiter';
               }
             }
             .fuel-inner {
@@ -461,7 +472,7 @@ h1 {
     font-size: 25px;
   }
   .main-holder {
-    width: calc(100% - 380px);
+    width: calc(100%);
     padding-left: 20px;
   }
   .text-info {
@@ -490,8 +501,9 @@ h1 {
 
 @media screen and (max-width: 1200px) {
   .main-holder {
-    width: calc(100% - 340px);
+    width: calc(100%);
     padding-left: 13px;
+    height: 66vh;
   }
   .page-info {
     margin-top: 20px;
@@ -681,15 +693,13 @@ h1 {
       }
     }
     .cars-holder {
-      margin-top: 25px;
       width: calc(100% - 145px);
       .edition-holder {
-        height: 520px;
+        height: 100%;
         .regular-cars {
           gap: 10px;
-          width: calc(74% - 5px);
           .car-item {
-            width: calc(33.333% - 7px);
+            width: calc(23% - 7px);
             height: calc(50% - 5px);
             .car-img {
               top: 56%;
@@ -1001,7 +1011,7 @@ h1 {
       .edition-holder {
         .regular-cars {
           .car-item {
-            width: 100%;
+            width: 90%;
             .car-img {
               max-width: 280px;
             }
@@ -1022,4 +1032,92 @@ h1 {
   width: 100%;
   left: 0;
   overflow: auto;
+}
+
+
+
+
+
+
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+ .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+ .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
 }

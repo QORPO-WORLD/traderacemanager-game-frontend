@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { CarsService } from "../../api/services";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
+import { markTimeline } from "console";
 
 @Component({
   selector: "app-nft-market",
@@ -9,13 +11,16 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./nft-market.component.scss"],
 })
 export class NftMarketComponent implements OnInit {
+  animation = 5;
+  timeoutPrev: any;
+  timeoutNext: any;
   carSum: string;
   marketState = 1;
   selectedId = 1;
   isPaged = 0;
   selectedType = "racers";
   timeoutPage: any;
-  animation = 0;
+  animationPaging = 0;
   animateArrow = false;
   animateArrowRight = false;
   products: Array<object> = [
@@ -656,7 +661,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
-  title = "All products";
+  title = "All";
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
   selectedPosition: number;
   racersActive = false;
@@ -681,7 +686,11 @@ export class NftMarketComponent implements OnInit {
   typeObserver: Subscription;
   modalActive: any;
 
-  constructor(protected api: CarsService, private route: ActivatedRoute) {
+  constructor(
+    protected api: CarsService,
+    private route: ActivatedRoute,
+    public router: Router
+  ) {
     this.width();
   }
 
@@ -709,15 +718,25 @@ export class NftMarketComponent implements OnInit {
       if (this.assetType === "track") {
         this.filterTracks();
       }
-      if (this.assetType === "team") {
-        this.filterTeams();
-      }
+
       if (this.assetType === "special") {
         this.filterSpecial();
       }
     });
   }
-
+  back() {
+    this.animation = 1;
+    if (this.marketState === 1) {
+      this.timeoutPrev = setTimeout(() => {
+        this.router.navigate(["/race/start-race"]);
+        this.timeoutReset();
+      }, 300);
+    } else if (this.marketState === 2) {
+      this.marketState = 1;
+    } else if (this.marketState === 3) {
+      this.marketState = 2;
+    }
+  }
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -731,21 +750,12 @@ export class NftMarketComponent implements OnInit {
 
   width() {
     this.display = window.innerWidth;
-    if (this.display > 640 && this.display < 1300) {
-      this.inRow = 9;
-      this.maxPage = 9;
+    this.inRow = 8;
+    this.maxPage = 8;
 
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    } else {
-      this.inRow = 8;
-      this.maxPage = 8;
-
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    }
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
 
   filterRacers() {
@@ -802,24 +812,7 @@ export class NftMarketComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.title = "Tracks";
   }
-  filterTeams() {
-    this.newProducts = this.products;
-    this.newProducts = this.products.filter((item) => item["type"] === "team");
 
-    this.width();
-    this.tracksActive = false;
-    this.carsActive = false;
-    this.racersActive = false;
-    this.teamsActive = true;
-    this.allActive = false;
-    this.specialActive = false;
-    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-    this.currentPage = 1;
-    this.isPaged = 0;
-    this.sliceStart = this.inRow * this.isPaged;
-    this.sliceMiddle = this.inRow * this.currentPage;
-    this.title = "Teams";
-  }
   filterSpecial() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter(
@@ -838,7 +831,7 @@ export class NftMarketComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.title = "Special";
+    this.title = "Specials";
   }
   filterAll() {
     this.newProducts = this.products;
@@ -855,7 +848,7 @@ export class NftMarketComponent implements OnInit {
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.title = "All products";
+    this.title = "All";
   }
 
   activateMenu() {
@@ -882,17 +875,11 @@ export class NftMarketComponent implements OnInit {
     });
   }
 
-  showAsset(id: number, type: string, position: number) {
-    if (
-      this.newProducts["name"] != "BTC" &&
-      this.newProducts["name"] != "ALT" &&
-      this.newProducts["name"] != "IOI"
-    ) {
-      this.selectedPosition = position;
-      this.selectedId = id;
-      this.selectedType = type;
-      this.marketState = 2;
-    }
+  showAsset(state: number, id: number, type: string, position: number) {
+    this.marketState = state;
+    this.selectedPosition = position;
+    this.selectedId = id;
+    this.selectedType = type;
   }
 
   timeoutReset() {
@@ -905,9 +892,9 @@ export class NftMarketComponent implements OnInit {
       this.timeoutReset();
       this.currentPage--;
       this.isPaged--;
-      this.animation = 3;
+      this.animationPaging = 3;
       this.timeoutPage = setTimeout(() => {
-        this.animation = 2;
+        this.animationPaging = 2;
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;
@@ -922,9 +909,9 @@ export class NftMarketComponent implements OnInit {
       this.timeoutReset();
       this.currentPage++;
       this.isPaged++;
-      this.animation = 1;
+      this.animationPaging = 1;
       this.timeoutPage = setTimeout(() => {
-        this.animation = 0;
+        this.animationPaging = 0;
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;
