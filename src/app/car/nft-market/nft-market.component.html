@@ -3,8 +3,16 @@
   class="filter-overlay"
 ></div>
 
-<div (window:resize)="width()" class="main-holder" #myScroll2>
-  <div class="content-title">
+<div
+  [ngClass]="{
+    'dissapear-right-animation': animation === 1,
+    'engage-right-animation': animation === 0
+  }"
+  (window:resize)="width()"
+  class="main-holder"
+  #myScroll2
+>
+  <div (click)="back()" class="content-title">
     <img
       class="red-star"
       src="assets/base/images/icons/icon-back-red.svg"
@@ -18,13 +26,21 @@
     <p>MARKET</p>
   </div>
 
-  <div class="market-content">
+  <div *ngIf="marketState === 1" class="market-content">
     <div class="market-header">
-      <div (click)="filterAll()" class="filter-item">
+      <div
+        [ngClass]="{ 'active-item': title === 'All' }"
+        (click)="filterAll()"
+        class="filter-item first"
+      >
         <p class="category-title-first first">ALL NFTS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div (click)="filterCars()" class="filter-item">
+      <div
+        [ngClass]="{ 'active-item': title === 'Cars' }"
+        (click)="filterCars()"
+        class="filter-item"
+      >
         <img
           class="filter-icon"
           src="assets/base/images/icons/car.svg"
@@ -33,7 +49,11 @@
         <p class="category-title-first">CARS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div (click)="filterRacers()" class="filter-item">
+      <div
+        [ngClass]="{ 'active-item': title === 'Racers' }"
+        (click)="filterRacers()"
+        class="filter-item"
+      >
         <img
           class="filter-icon"
           src="assets/base/images/icons/helmet-icon.svg"
@@ -42,7 +62,11 @@
         <p class="category-title-first">RACERS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div (click)="filterTracks()" class="filter-item">
+      <div
+        [ngClass]="{ 'active-item': title === 'Tracks' }"
+        (click)="filterTracks()"
+        class="filter-item"
+      >
         <img
           class="filter-icon"
           src="assets/base/images/icons/track-icon.svg"
@@ -51,7 +75,11 @@
         <p class="category-title-first">TRACKS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div (click)="filterSpecial()" class="filter-item">
+      <div
+        [ngClass]="{ 'active-item': title === 'Specials' }"
+        (click)="filterSpecial()"
+        class="filter-item"
+      >
         <img
           class="filter-icon"
           src="assets/base/images/icons/crown-icon.svg"
@@ -63,10 +91,10 @@
     </div>
     <div
       [ngClass]="{
-        'engage-next-anim': animation === 0,
-        'disengage-next-anim': animation === 1,
-        'engage-prev-anim': animation === 2,
-        'disengage-prev-anim': animation === 3
+        'engage-next-anim': animationPaging === 0,
+        'disengage-next-anim': animationPaging === 1,
+        'engage-prev-anim': animationPaging === 2,
+        'disengage-prev-anim': animationPaging === 3
       }"
       class="market-center"
       #myScroll
@@ -76,7 +104,10 @@
         class="box"
       >
         <div
-          (click)="showAsset(item['id'], item['type'], item['position'])"
+          (click)="
+            showAsset(2, item['id'], item['type'], item['position']);
+            scrollTop(myScroll2)
+          "
           class="box-content"
         >
           <img
@@ -129,7 +160,13 @@
             {{ item["collection"] }}
           </p>
         </div>
-        <div class="box-button my-cta-btn-back">
+        <div
+          (click)="
+            showAsset(3, item['id'], item['type'], item['position']);
+            scrollTop(myScroll2)
+          "
+          class="box-button my-cta-btn-back"
+        >
           <img
             src="assets/base/images/market/ioi-token.png"
             alt="ioi token icon"
@@ -147,7 +184,7 @@
             class="pagebtn-l"
           >
             <img
-              class="red-box-detail"
+              class="red-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceStart === 0,
                 'arrow-animation': animateArrow === true
@@ -156,7 +193,7 @@
               alt="red back icon"
             />
             <img
-              class="blue-box-detail"
+              class="blue-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceStart === 0,
                 'arrow-animation': animateArrow === true
@@ -167,11 +204,9 @@
           </button>
         </div>
         <div class="page-middle">
-          <p>
+          <p class="category-title-second">
             Page
-            <span class="leftspan">{{ currentPage }} /</span>
-            <span class="rightspan blue-box-detail">{{ lastPage }}</span>
-            <span class="rightspan red-box-detail">{{ lastPage }}</span>
+            <span class="leftspan">{{ currentPage }} / {{ lastPage }}</span>
           </p>
         </div>
         <div class="page-right">
@@ -186,7 +221,7 @@
             class="pagebtn-r"
           >
             <img
-              class="red-box-detail"
+              class="red-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceMiddle >= this.newProducts.length
               }"
@@ -194,7 +229,7 @@
               alt="red next icon"
             />
             <img
-              class="blue-box-detail"
+              class="blue-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceMiddle >= this.newProducts.length,
                 'arrow-animation': animateArrowRight === true
