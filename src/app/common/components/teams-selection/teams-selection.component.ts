@@ -11,7 +11,7 @@ import { BalanceService } from "../../../common/services/balance.service";
   styleUrls: ["./teams-selection.component.scss"],
 })
 export class TeamsSelectionComponent implements OnInit {
-  @Output() modalOpen = new EventEmitter<boolean>();
+  @Output() endsIn = new EventEmitter<string>();
   teams: any;
   myTeam: string;
   myTeamData: any;
@@ -19,6 +19,7 @@ export class TeamsSelectionComponent implements OnInit {
   joinFree = false;
   teamreward: any;
   currMonth: number;
+  myMembEnds: string;
   showInfoBubble = false;
   allMonths = [
     "January",
@@ -78,11 +79,16 @@ export class TeamsSelectionComponent implements OnInit {
       });
 
       this.teams = data.results;
-      this.teams.push(...this.teams);
       for (let i = 0; i < this.teams.length; i++) {
         this.teams[i].statState = 1;
+        if (this.teams[i].name === this.myTeam) {
+          this.myMembEnds = this.teams[i].memberships[0].date_to;
+        }
       }
-      console.log(this.teams);
+
+      if (this.myMembEnds !== undefined) {
+        this.getMembEnd();
+      }
       // this.reorderTeams();
     });
   }
@@ -163,8 +169,8 @@ export class TeamsSelectionComponent implements OnInit {
     }, 500);
   }
 
-  closeModal() {
-    this.modalOpen.emit(false);
+  getMembEnd() {
+    this.endsIn.emit(this.myMembEnds);
   }
 
   animateTeam(id: number) {
@@ -196,8 +202,11 @@ export class TeamsSelectionComponent implements OnInit {
     }
   }
 
-  openMembershipModal(state: number) {
+  openMembershipModal(state: number, teamId?: number) {
     this.modalOpened = state;
+    if (teamId) {
+      this.selectedTeamId = teamId;
+    }
   }
   
   nextStat(teamIndex: number) {
