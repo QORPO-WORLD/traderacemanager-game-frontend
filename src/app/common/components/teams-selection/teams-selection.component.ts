@@ -44,6 +44,7 @@ export class TeamsSelectionComponent implements OnInit {
   sliceBalancer = 3;
   myWW = 1920;
   selectedTeamId = 1;
+  modalOpened = 0;
 
   constructor(
     protected api: TeamsService,
@@ -195,6 +196,10 @@ export class TeamsSelectionComponent implements OnInit {
     }
   }
 
+  openMembershipModal(state: number) {
+    this.modalOpened = state;
+  }
+  
   nextStat(teamIndex: number) {
     if (this.teams[teamIndex].statState < 3) {
       this.teams[teamIndex].statState++;

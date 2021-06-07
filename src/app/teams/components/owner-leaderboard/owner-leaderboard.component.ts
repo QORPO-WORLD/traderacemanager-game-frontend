@@ -49,7 +49,7 @@ export class OwnerLeaderboardComponent implements OnInit {
         this.myLdrbrd = data.results;
         this.totalPages = data.total_pages;
         this.updateTime = data.last_update_at;
-        console.log(this.actualPage);
+
         this.isMePage();
       });
   }
