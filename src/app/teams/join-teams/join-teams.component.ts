@@ -119,7 +119,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
 
   getMembEnd(event: any) {
     this.myMembEnd = event;
-    
   }
 
 
