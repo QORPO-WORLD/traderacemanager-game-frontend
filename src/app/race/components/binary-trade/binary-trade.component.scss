@@ -681,6 +681,7 @@
     }
     .content-holder{
       .chart-holder{
+        margin-top: 70px;
         .win-box {
           width: 190px;
           .inner-box {
@@ -692,6 +693,9 @@
               }
             }
           }
+        }
+        .win-box{
+          top: -5px;
         }
       }
     }
@@ -707,14 +711,6 @@
           &.profile-cont{
             display: flex;
           }
-        }
-      }
-    }
-    .content-holder{
-      .chart-holder{
-        margin-top: 70px;
-        .win-box{
-          top: -5px;
         }
       }
     }
@@ -1021,6 +1017,18 @@
                 top: 0;
                 left: 0;
                 width: 100%;
+                &.show-gif{
+                  .avatar-box{
+                    img{
+                      opacity: 0;
+                      z-index: -2;
+                      &.gifko{
+                        opacity: 1;
+                        z-index: 0;
+                      }
+                    }
+                  }
+                }
                 .avatar-box{
                     position: absolute;
                     top: 0;
@@ -1028,6 +1036,16 @@
                     img{
                         transform: translateX(-15%);
                         width: 360px;
+                        position: relative;
+                        z-index: 0;
+                        transition: .15s;
+                        &.gifko{
+                          opacity: 0;
+                          z-index: -2;
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                        }
                     }
                     &.rival{
                         left: unset;

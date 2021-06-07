@@ -107,11 +107,79 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
+  animateWinnerAvatars = false;
   affiliate: any;
   semaforVal = 6;
   chartTemp: any;
   showChart = true;
   startVal: number;
+
+  racers: Array<any> = [
+    {
+      id: 1,
+      name: 'Axle',
+      image: 'white-trm',
+      gif: "white-trm-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 2,
+      name: 'Flash',
+      image: 'red-trm',
+      gif: "red-trm-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 3,
+      name: 'Octane',
+      image: 'blue-trm',
+      gif: "blue-trm-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 4,
+      name: 'Punisher',
+      image: 'black-trm',
+      gif: "black-trm-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 5,
+      name: 'Lady Rich',
+      image: 'lady-rich',
+      gif: "lady-rich-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 6,
+      name: 'Rich Jr.',
+      image: 'bad-boy',
+      gif: "bad-boy-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 7,
+      name: 'Mrs. Rich',
+      image: 'mrs-rich',
+      gif: "mrs-rich-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 8,
+      name: 'Mr. Rich',
+      image: 'mr-rich',
+      gif: "mr-rich-animation",
+      sum: 0,
+      pks: []
+    }
+  ];
   @ViewChild('optionPlaced') optionPlaced: ElementRef;
   @ViewChild('oponentOptionPlaced') oponentOptionPlaced: ElementRef;
   @ViewChild('optionWin') optionWin: ElementRef;
@@ -851,6 +919,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const data = this.identityService.getBalance();
     this.myDriverBalances = data;
   }
+
 
 }
 
