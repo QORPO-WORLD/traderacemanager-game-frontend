@@ -7,22 +7,81 @@
     <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
     <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
   
-      <div class="right-items">
-        <div class="name-holder">
-          <div class="avatar">
-            <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
+      <div class="overview">
+        <div
+            class="overview-item"
+          >
+            <div class="bubble-holder">
+              <img
+                src="/assets/base/images/polygon-logo.png"
+                alt=""
+              />
+            </div>
+            <div class="value-box">
+              <p class="number">
+                {{ myDriverBalances?.game_wallet_matic | number: "1.2-2":"fr" }}
+              </p>
+              <p class="add">+</p>
+            </div>
           </div>
-          <p>{{ myDriverStats?.nickname }}</p>
+          <div
+            class="overview-item"
+          >
+            <div class="bubble-holder ioi">
+              <img src="/assets/base/images/ioi-logo-small.png" alt="" />
+            </div>
+            <div class="value-box">
+              <p class="number">
+                {{ myDriverBalances?.game_wallet_ioi | number: "1.2-2":"fr" }}
+              </p>
+              <p class="add">+</p>
+            </div>
+          </div>
+          <div class="overview-item profile-cont">
+            <div class="bubble-holder profile">
+              <img
+                [src]="
+                  'assets/base/images/avatars/avatar' +
+                  affiliate?.affiliate_level +
+                  '-small.png'
+                "
+                alt=""
+              />
+            </div>
+            <div class="value-box">
+              <p>{{ myDriverStats?.nickname }}</p>
+            </div>
+          </div>
+
+          <div class="switch-btn">
+            <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
+          </div>
+          <div class="switch-btn">
+            <img src="/assets/base/images/zavod/info-icon.svg" alt="">
+          </div>
+
+        <div
+          class="my-mobile-button"
+          (click)="menuOpen = !menuOpen"
+          [ngClass]="{ open: menuOpen === true }"
+        >
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
         </div>
+      </div>
+
+      <!-- <div class="right-items">
         <div class="switch-btn">
           <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
         </div>
         <div class="switch-btn">
           <img src="/assets/base/images/zavod/info-icon.svg" alt="">
         </div>
-      </div>
+      </div> -->
 
-      <div class="center-items">
+      <!-- <div class="center-items">
         <div class="small-box">
           <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
           <p>Potential win: 1.6 IOI</p>
@@ -32,7 +91,7 @@
           <p>Balance: {{balance}} IOI</p>
         </div>
         <button class="quit-btn"  [routerLink]="['/race/start-race']">Quit game</button>
-      </div>
+      </div> -->
 
     </div>
 
@@ -67,6 +126,15 @@
       </div>
     </div>
     <div class="chart-holder">
+
+      <div class="win-box">
+        <p class="desc">Potential win</p>
+        <div class="inner-box">
+          <img src="/assets/base/images/teams/reward-token.png" alt="" class="reward-badge">
+          <p>1.6 IOI</p>
+        </div>
+      </div>
+
       <div class="react-controls" *ngIf="mePlaying === true">
         <p>React!</p>
         <div class="control-btns">

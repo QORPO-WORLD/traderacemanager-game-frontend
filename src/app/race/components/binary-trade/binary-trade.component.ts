@@ -104,11 +104,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   balance: any;
   startsAt: number;
   finishingAt: any;
+  myDriverBalances: any;
   startsInSecs: number;
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
   semaforVal = 5;
+  affiliate: any;
   chartTemp: any;
   showChart = true;
   startVal: number;
@@ -134,6 +136,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.startsInSecs = this.getWhenStarts();
     this.whenStarts();
     this.getBinaryPlayers();
+    this.getCryptoStats();
+    this.getMyLevel();
     this.getMyDriver();
     this.initPopSock();
 
@@ -259,6 +263,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   getMyDriver() {
     this.myDriverStats = this.identityService.getDriverMe();
+    console.log(this.myDriverStats);
   }
 
   placeOption() {
@@ -622,8 +627,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.players.push(el);
         }
       }
+      console.log(this.players);
+      console.log('jfkdslajfd');
     } else {
       this.players = data;
+      console.log(this.players);
+      console.log('jfkdslajfd');
     }
   }
 
@@ -798,6 +807,15 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.initdata.length; x++) {
       this.add(this.initdata[x].ts * 1000, this.initdata[x].ap);
     }
+  }
+
+  getMyLevel() {
+    this.affiliate = this.identityService.getStorageAff();
+  }
+
+  getCryptoStats() {
+    const data = this.identityService.getBalance();
+    this.myDriverBalances = data;
   }
 
 }
