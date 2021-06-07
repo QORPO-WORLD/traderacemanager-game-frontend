@@ -781,7 +781,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   fillInitData() {
     for (let x = 0; x < this.initdata.length; x++) {
-      this.add(this.initdata[x].ts, this.initdata[x].ap);
+      this.add(this.initdata[x].ts * 1000, this.initdata[x].ap);
     }
   }
 
