@@ -784,8 +784,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].selected = true;
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(Math.round(nums[x]));
-        console.log(nums);
-        console.log(nums[x].toFixed(1));
       }
       this.calculateExactBidsAmountForAll();
       if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
@@ -835,7 +833,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
       this.selectedCarsToRace[xx].selectedBets.push(x2);
       this.selectedCarsToRace[xx].selectedBets.push(x3);
 
-      console.log(nums);
+
       for (let x = 0; x < 3; x++) {
 
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].selected = true;
@@ -888,7 +886,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     if (this.selectedCarsToRace[this.selectedCarIndex].fuel < 100 || this.selectedCarsToRace[this.selectedCarIndex].selectedBets.length < 3 || this.selectedCarsToRace[this.selectedCarIndex].fuel > 100) {
       this.generateAutomaticBetsOnce();
     }
-    console.log(this.selectedCarsToRace[this.selectedCarIndex]);
   }
   
   generateTopAutomaticBets() {

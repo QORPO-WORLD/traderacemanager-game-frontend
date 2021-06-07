@@ -507,7 +507,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     });
 
     popsock.on("cancel", function (data) {
-      _this.onCancel(data);
+      const opt = JSON.parse(data);
+      _this.onCancel(opt);
     });
   }
 
