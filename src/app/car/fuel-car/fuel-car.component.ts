@@ -1052,7 +1052,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(nums[x].toFixed(1));
       }
       this.calculateExactBidsAmountForAll();
-      if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
+      if (this.selectedCarsToRace[xx].fuel !== 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
         this.generateAutomaticBets();
       }
     }
