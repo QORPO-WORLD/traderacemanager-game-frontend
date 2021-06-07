@@ -517,6 +517,33 @@ class RacesService extends __BaseService {
       __map(_r => _r.body as Array<any>)
     );
   }
+  binaryHistoryResponse(raceHash: number): __Observable<__StrictHttpResponse<Array<any>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/versus/history/${raceHash}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<MyNextRace>>;
+      })
+    );
+  }
+
+  binaryHistory(raceHash: number): __Observable<Array<any>> {
+    return this.binaryHistoryResponse(raceHash).pipe(
+      __map(_r => _r.body as Array<any>)
+    );
+  }
 
   joinBinaryResponse(data: any): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();

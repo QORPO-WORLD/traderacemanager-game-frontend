@@ -15,7 +15,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   fuelStep = 1;
   startRacerIndex = 0;
   sliceBalancer = 3;
-  chosenRacerId = 0;
+  chosenRacerId: number;
   myAvatar: any;
   opponentPlayer: any;
   automatchLoading = false;
@@ -123,11 +123,15 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   getMyChosenAvatar() {
-    this.myAvatar = this.racers.filter(
-      (racer) => racer.id === this.chosenRacerId
-    );
-    this.myAvatar = this.myAvatar[0];
-    console.log()
+    if (this.chosenRacerId) {
+      console.log(this.chosenRacerId);
+
+      const filtered = this.racers.filter(
+        (racer) => racer.id === this.chosenRacerId
+      );
+      this.myAvatar = filtered[0];
+    }
+
   }
 
   automatch() {
@@ -146,13 +150,25 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     this.carService.carsMineList().subscribe(
       data => {
         this.myAssets = data.racers;
-
+ 
         for (let x = 0; x < data.racers.length; x++) {
           this.racers[data.racers[x].car_id - 1].sum++;
           this.racers[data.racers[x].car_id - 1].pks.push(
             data.racers[x].pk
           );
         }
+
+        const obj = {
+          id: 1000,
+          sum: 1,
+          pks: [0],
+          image: 'rookie-basic',
+          name: 'Rookie'
+        }
+
+        this.racers.splice(0, 0, obj)
+     
+        console.log(this.racers);
       }
     )
   }
