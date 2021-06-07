@@ -16,14 +16,15 @@
   position: relative;
 }
 
-.content-title{
+.content-title {
+  cursor: pointer;
   display: flex;
   align-items: center;
   height: 80px;
   position: absolute;
   top: 0;
   transform: translateY(-100%);
-  img{
+  img {
     width: 21px;
   }
   .races-title {
@@ -38,14 +39,14 @@
   }
 }
 
-.races-content{
+.races-content {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
-  .boxes-holder{
+  .boxes-holder {
     width: 80%;
     margin: 0 auto;
     height: 80%;
@@ -53,11 +54,12 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       width: 31%;
     }
-    .race-item{
+    .race-item {
+      transition: 0.3s;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -66,25 +68,25 @@
       margin-bottom: 2%;
       position: relative;
       cursor: pointer;
-      &.rookie{
-        background-image: url('/assets/base/images/race-type/rookie-shadow.jpg');
+      &.rookie {
+        background-image: url("/assets/base/images/race-type/rookie-shadow.jpg");
       }
-      &.beginner{
-        background-image: url('/assets/base/images/race-type/beginner-shadow.jpg');
+      &.beginner {
+        background-image: url("/assets/base/images/race-type/beginner-shadow.jpg");
       }
-      &.semi-pro{
-        background-image: url('/assets/base/images/race-type/semi-pro-shadow.jpg');
+      &.semi-pro {
+        background-image: url("/assets/base/images/race-type/semi-pro-shadow.jpg");
       }
-      &.professional{
-        background-image: url('/assets/base/images/race-type/professional-shadow.jpg');
+      &.professional {
+        background-image: url("/assets/base/images/race-type/professional-shadow.jpg");
       }
-      &.expert{
-        background-image: url('/assets/base/images/race-type/expert-shadow.jpg');
+      &.expert {
+        background-image: url("/assets/base/images/race-type/expert-shadow.jpg");
       }
-      &.master{
-        background-image: url('/assets/base/images/race-type/master-shadow.jpg');
+      &.master {
+        background-image: url("/assets/base/images/race-type/master-shadow.jpg");
       }
-      .click-dummy{
+      .click-dummy {
         cursor: pointer;
         position: absolute;
         top: 0;
@@ -93,48 +95,48 @@
         height: 100%;
         z-index: 5;
       }
-      .text-holder{
+      .text-holder {
         position: absolute;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
-        .name{
+        .name {
           font-size: 32px;
           font-family: Earth Orbiter;
           margin: 0 0 16px 0;
           font-weight: 700;
           text-transform: uppercase;
         }
-        .info-box{
+        .info-box {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          .info-item{
+          .info-item {
             width: 30%;
-            &.diff{
+            &.diff {
               width: 37%;
-              p{
+              p {
                 text-transform: uppercase;
               }
             }
-            &.cost{
+            &.cost {
               width: 29%;
             }
-            &.long{
+            &.long {
               width: 43%;
             }
-            &.short{
+            &.short {
               width: 23%;
             }
-            p{
+            p {
               width: 100%;
               font-weight: 700;
               font-size: 16px;
-              span{
-                opacity: .4;
+              span {
+                opacity: 0.4;
               }
-              img{
+              img {
                 margin-right: 16px;
                 vertical-align: baseline;
                 position: relative;
@@ -145,6 +147,14 @@
         }
       }
     }
+    .race-item:hover {
+      transform: scale(1.01);
+      -webkit-transform: scale(1.01);
+      -moz-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      -o-transform: scale(1.01);
+      box-shadow: (6px 8px 35px rgba(255, 255, 255, 0.9));
+    }
   }
   .fuel-strategy {
     height: 16%;
@@ -154,7 +164,7 @@
     align-items: center;
     background: rgba(17, 17, 17, 0.6);
     padding: 0 3%;
-    img{
+    img {
       height: 26px;
     }
     .tip-text {
@@ -168,8 +178,8 @@
       height: 50px;
       outline: none;
       background: rgba(17, 17, 17, 0);
-      transition: .2s;
-      &:hover{
+      transition: 0.2s;
+      &:hover {
         background: rgba(17, 17, 17, 1);
       }
     }
@@ -177,34 +187,34 @@
 }
 
 @media screen and (max-width: 1700px) {
-  .main-holder{
+  .main-holder {
     width: calc(100% - 20px);
     height: calc(100vh - 80px);
     padding: 75px 0px 30px 20px;
   }
-  .content-title{
-    img{
+  .content-title {
+    img {
       width: 17px;
     }
-    .races-title{
+    .races-title {
       font-size: 26px;
     }
   }
-  .races-content{
-    .boxes-holder{
+  .races-content {
+    .boxes-holder {
       width: 85%;
-      .race-item{
-        .text-holder{
-          .name{
+      .race-item {
+        .text-holder {
+          .name {
             margin: 0 0 12px 0;
             font-size: 28px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 14px;
                 margin: 0;
-                img{
+                img {
                   height: 17px;
                   margin-right: 12px;
                 }
@@ -214,42 +224,42 @@
         }
       }
     }
-    .fuel-strategy{
+    .fuel-strategy {
       width: 85%;
     }
   }
 }
 
 @media screen and (max-width: 1550px) {
-  .main-holder{
+  .main-holder {
     width: calc(100% - 15px);
     height: calc(100vh - 65px);
     padding: 65px 0px 22px 15px;
   }
-  .content-title{
+  .content-title {
     height: 65px;
-    img{
+    img {
       width: 15px;
     }
-    .races-title{
+    .races-title {
       font-size: 22px;
     }
   }
-  .races-content{
-    .boxes-holder{
+  .races-content {
+    .boxes-holder {
       width: 86%;
       height: 81%;
-      .race-item{
-        .text-holder{
-          .name{
+      .race-item {
+        .text-holder {
+          .name {
             margin: 0 0 10px 0;
             font-size: 24px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 13px;
-                img{
+                img {
                   height: 15px;
                   margin-right: 10px;
                 }
@@ -259,17 +269,17 @@
         }
       }
     }
-    .fuel-strategy{
+    .fuel-strategy {
       width: 86%;
       height: 15%;
-      img{
+      img {
         height: 22px;
       }
-      .tip-text{
+      .tip-text {
         margin-left: 15px;
         font-size: 15px;
       }
-      .set-up{
+      .set-up {
         width: 179px;
         height: 40px;
         font-size: 14px;
@@ -279,19 +289,19 @@
 }
 
 @media screen and (max-width: 1300px) {
-  .races-content{
-    .boxes-holder{
+  .races-content {
+    .boxes-holder {
       width: 90%;
-      .race-item{
-        .text-holder{
-          .name{
+      .race-item {
+        .text-holder {
+          .name {
             font-size: 22px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 11px;
-                img{
+                img {
                   height: 14px;
                   margin-right: 8px;
                 }
@@ -304,44 +314,44 @@
   }
 }
 
-@media screen and (max-width: 1024px){
-  .main-holder{
+@media screen and (max-width: 1024px) {
+  .main-holder {
     width: calc(100% - 15px);
     padding: 30px 0px 15px 15px;
   }
-  .content-title{
-    img{
+  .content-title {
+    img {
       width: 13px;
     }
-    .races-title{
+    .races-title {
       font-size: 20px;
     }
   }
-  .races-content{
+  .races-content {
     height: calc(100% - 65px);
-    .boxes-holder{
+    .boxes-holder {
       width: 100%;
-      .race-item{
+      .race-item {
         width: 32%;
-        .text-holder{
-          .name{
+        .text-holder {
+          .name {
             margin: 0 0 10px 0;
             font-size: 21px;
           }
-          .info-box{
+          .info-box {
             flex-wrap: wrap;
-            .info-item{
+            .info-item {
               width: 100%;
               &.players,
               &.diff,
               &.long,
               &.short,
-              &.cost{
+              &.cost {
                 width: 100%;
               }
-              p{
+              p {
                 font-size: 13px;
-                img{
+                img {
                   height: 15px;
                   margin-right: 10px;
                 }
@@ -351,17 +361,17 @@
         }
       }
     }
-    .fuel-strategy{
+    .fuel-strategy {
       width: 100%;
       height: 15%;
-      img{
+      img {
         height: 20px;
       }
-      .tip-text{
+      .tip-text {
         margin-left: 10px;
         font-size: 13px;
       }
-      .set-up{
+      .set-up {
         width: 140px;
         height: 35px;
         font-size: 13px;
@@ -370,38 +380,38 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape){
-  .content-title{
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .content-title {
     height: 40px;
   }
-  .races-content{
+  .races-content {
     height: 100%;
   }
-  .main-holder{
+  .main-holder {
     height: calc(100vh - 45px);
   }
 }
 
-@media screen and (max-width: 850px) and (orientation: landscape){
-  .main-holder{
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
     height: calc(100vh - 40px);
     width: calc(100% - 10px);
     padding: 5px 0px 5px 10px;
   }
-  .races-content{
-    .boxes-holder{
-      .race-item{
-        .text-holder{
+  .races-content {
+    .boxes-holder {
+      .race-item {
+        .text-holder {
           bottom: 10px;
-          .name{
+          .name {
             margin: 0 0 5px 0;
             font-size: 17px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 11px;
-                img{
+                img {
                   height: 12px;
                   margin-right: 8px;
                 }
@@ -411,11 +421,11 @@
         }
       }
     }
-    .fuel-strategy{
-      .tip-text{
+    .fuel-strategy {
+      .tip-text {
         font-size: 12px;
       }
-      .set-up{
+      .set-up {
         width: 120px;
         height: 27px;
         font-size: 11px;
@@ -424,28 +434,28 @@
   }
 }
 
-@media screen and (max-width: 700px) and (orientation: landscape){
-  .content-title{
-    img{
+@media screen and (max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
       width: 8.5px;
     }
-    .races-title{
+    .races-title {
       font-size: 9px;
       margin-left: 5px;
     }
   }
-  .races-content{
-    .boxes-holder{
-      .race-item{
-        .text-holder{
-          .name{
+  .races-content {
+    .boxes-holder {
+      .race-item {
+        .text-holder {
+          .name {
             font-size: 14px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 9px;
-                img{
+                img {
                   height: 10px;
                   margin-right: 6px;
                 }
@@ -455,14 +465,14 @@
         }
       }
     }
-    .fuel-strategy{
-      img{
+    .fuel-strategy {
+      img {
         height: 13px;
       }
-      .tip-text{
+      .tip-text {
         font-size: 10px;
       }
-      .set-up{
+      .set-up {
         width: 110px;
         font-size: 10px;
       }
@@ -470,37 +480,37 @@
   }
 }
 
-@media screen and (max-width: 640px) and (orientation: portrait){
-  .main-holder{
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .main-holder {
     width: calc(100% - 10px);
     height: unset;
     padding: 20px 0px 0px 10px;
   }
-  .content-title{
-    img{
+  .content-title {
+    img {
       width: 10px;
     }
-    .races-title{
+    .races-title {
       font-size: 17px;
     }
   }
-  .races-content{
+  .races-content {
     height: unset;
-    .boxes-holder{
+    .boxes-holder {
       height: unset;
-      .race-item{
+      .race-item {
         height: 200px;
         width: 48%;
-        .text-holder{
-          .name{
+        .text-holder {
+          .name {
             margin: 0 0 8px 0;
             font-size: 17px;
           }
-          .info-box{
-            .info-item{
-              p{
+          .info-box {
+            .info-item {
+              p {
                 font-size: 11px;
-                img{
+                img {
                   height: 12px;
                   margin-right: 8px;
                 }
@@ -510,16 +520,16 @@
         }
       }
     }
-    .fuel-strategy{
+    .fuel-strategy {
       height: 100px;
-      img{
+      img {
         height: 15px;
       }
-      .tip-text{
+      .tip-text {
         margin-left: 8px;
         font-size: 11px;
       }
-      .set-up{
+      .set-up {
         width: 120px;
         height: 30px;
         font-size: 11px;
@@ -528,28 +538,28 @@
   }
 }
 
-@media screen and (max-width: 400px) and (orientation: portrait){
-  .races-content{
-    .boxes-holder{
-      .race-item{
+@media screen and (max-width: 400px) and (orientation: portrait) {
+  .races-content {
+    .boxes-holder {
+      .race-item {
         height: 170px;
-        .text-holder{
-          .name{
+        .text-holder {
+          .name {
             font-size: 15px;
           }
         }
       }
     }
-    .fuel-strategy{
+    .fuel-strategy {
       height: unset;
-      img{
+      img {
         height: 15px;
       }
-      .tip-text{
+      .tip-text {
         font-size: 10px;
         max-width: 170px;
       }
-      .set-up{
+      .set-up {
         width: 100px;
         font-size: 10px;
       }
