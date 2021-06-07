@@ -3,9 +3,10 @@ import { RewardsService, LeaderboardService } from 'src/app/api/services';
 import { BalanceService } from './../../common/services/balance.service';
 import { Subscription } from 'rxjs';
 import { NotifiqService } from './../../common/services/notifiq.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { TeamsService } from '../../api/services/teams.service';
 import { DriversService } from '../../api/services/drivers.service';
+import { timelineEnd } from 'console';
 
 @Component({
   selector: 'app-join-teams',
@@ -33,6 +34,8 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myRewards: any;
   ioioreward: number;
   myDriverStats: any;
+  myMembEnd: number;
+  @ViewChild('teamSelection') teamSelection: any;
   constructor(protected api: TeamsService, protected notify: NotifiqService,
     protected driversApi: DriversService,
     private balanceService: BalanceService, private rapi: RewardsService, private identityService: AuthService,
@@ -109,5 +112,15 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     clearInterval(this.offerInterval);
     this.setOfferInterval();
   }
+  
+  getPremium() {
+    this.teamSelection.openMembershipModal(1, this.myDriverStats.next_month_team_id);
+  }
+
+  getMembEnd(event: any) {
+    this.myMembEnd = event;
+    
+  }
+
 
 }
