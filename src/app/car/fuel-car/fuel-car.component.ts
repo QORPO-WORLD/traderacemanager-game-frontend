@@ -1099,6 +1099,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.selectedCarsToRace[this.selectedCarIndex].bet.length; i++) {
         if (this.selectedCarsToRace[this.selectedCarIndex].bet[i].symbol === this.myBetInput[x].symbol) {
           this.selectedCarsToRace[this.selectedCarIndex].bet[i].bet = +(nums[x].toFixed(1));
+          console.log(nums[x].toFixed(1));
+          console.log(nums[x]);
         }
       }
     }

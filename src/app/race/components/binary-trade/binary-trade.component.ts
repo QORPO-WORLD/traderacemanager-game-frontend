@@ -120,6 +120,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   @ViewChild('meLoose') meLoose: ElementRef;
   @ViewChild('meWin') meWin: ElementRef;
   @ViewChild('optionsStart') optionsStart: ElementRef;
+  leftMsg: string;
+  rightMsg: string;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -391,8 +393,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (me === true) {
       this.optWaiting = 10;
       this.playSound('optionPlaced');
+      this.convertToHuman(true, 'Placed!');
     } else {
       this.playSound('oponentOptionPlaced');
+      this.convertToHuman(false, 'Placed!');
     }
   }
 
@@ -426,10 +430,23 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.chartStream.next(obj);
 
     if (lplayer === true) {
-      shot === false ? this.playSound('optionLoose') : this.playSound('optionWin');
+      if (shot === false) {
+        this.playSound('optionLoose');
+        this.convertToHuman(true, 'Ehm..');
+      }
+      else {
+        this.playSound('optionWin');
+        this.convertToHuman(true, 'Great!');
+      }
     }
     if (lplayer === false) {
-      shot === false ? this.playSound('optionLooseOponent') : this.playSound('optionWinOponent');
+      if (shot === false) {
+        this.playSound('optionLooseOponent')
+        this.convertToHuman(false, 'Loosed');
+      } else {
+        this.playSound('optionWinOponent');
+        this.convertToHuman(false, '');
+      } 
     }
   }
 
@@ -512,8 +529,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (this.meWon === false) {
       this.unityEnabled === false;
       this.playSound('meLoose');
+      this.convertToHuman(true, 'You loose');
     } else {
       this.playSound('meWin');
+      this.convertToHuman(true, 'You won!!!');
     }
     this.raceEnded = true;
   }
@@ -737,6 +756,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.optionsStart.nativeElement.play();
     }
  
+  }
+
+  convertToHuman(lPlayer: boolean, msg: string) {
+    if (lPlayer === true) {
+      this.leftMsg = msg;
+    } else {
+      this.rightMsg = msg;
+    }
   }
 
 }
