@@ -161,10 +161,13 @@
           </p>
         </div>
         <div
+          *ngIf="item['type'] != 'special'"
           (click)="
-            showAsset(3, item['id'], item['type'], item['position']);
-            scrollTop(myScroll2)
+            item['type'] != 'track'
+              ? showAsset(3, item['id'], item['type'], item['position'])
+              : null
           "
+          (click)="item['type'] != 'track' ? scrollTop(myScroll2) : null"
           class="box-button my-cta-btn-back"
         >
           <img
@@ -172,6 +175,14 @@
             alt="ioi token icon"
           />
           <p class="category-title-third">{{ item["price"] }}</p>
+        </div>
+        <div
+          *ngIf="item['type'] === 'special'"
+          [routerLink]="['/race/race-selection']"
+          (click)="scrollTop(myScroll2)"
+          class="box-button my-cta-btn-back"
+        >
+          <p class="category-title-third">Play now</p>
         </div>
       </div>
     </div>
@@ -242,6 +253,7 @@
     </div>
   </div>
   <app-nft-detail
+    class="detail-content"
     *ngIf="marketState === 2"
     [assetId]="selectedId"
     [assetType]="selectedType"
@@ -251,6 +263,7 @@
   ></app-nft-detail>
 
   <app-buy-nft
+    class="buy-content"
     *ngIf="marketState === 3"
     [assetId]="selectedId"
     [assetType]="selectedType"
