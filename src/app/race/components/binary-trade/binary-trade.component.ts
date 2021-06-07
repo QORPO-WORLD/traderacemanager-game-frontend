@@ -1,22 +1,18 @@
 import { NotifyService } from './../../../common/services/notify.service';
-import { NotifiqService } from './../../../common/services/notifiq.service';
-
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Axis } from 'highcharts';
 import { RacesService } from 'src/app/api/services';
-
 import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AuthService } from 'src/app/user/services/auth.service';
-import { map, catchError, distinctUntilChanged, tap } from 'rxjs/operators';
-import { Observable, EMPTY, of, Subscription, Subject } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 declare let ccxt: any;
+//declare let Chart.Bands: any;
 let popsock = (window as any).kocksock;
 import io from "socket.io-client"
 //import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { ActivatedRoute, Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
+import { BandsPlugin } from './Chart.Bands.js';
 
 export interface Trade {
   data: {
@@ -128,6 +124,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   endVal: number;
   canBet = false;
   raceStarted = false;
+  binanceT: any;
+  colorUp = false;
+  lastprice: number;
+  addedCommon = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     
@@ -160,6 +160,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (this.chartSubscription) {
       this.chartSubscription.unsubscribe();
     }
+    this.binanceT = null;
   }
 
   subscribeToStream() {
@@ -252,7 +253,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.pushing = false;
       }, 1000);
     }
+    this.currentValue
 
+    this.colorUp === true ? this.config.options.bands.bandLine.colour = 'rgb(0, 212, 129)' : this.config.options.bands.bandLine.colour = 'rgb(254, 23, 63)';
+    this.config.options.bands.yValue = this.currentValue;
+    console.log(this.chart);
     this.chart.update();
   }
 
@@ -311,8 +316,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
       this.fillInitData();
-      //this.hackChart();
-      //this.config.options.scales.x.onRefresh = this.onRefresh();
+      Chart.pluginService.register(new BandsPlugin());
     }, 100)
     Chart.defaults.global.legend.display = false;
     this.config = {
@@ -365,25 +369,27 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           }
         },
         bands: {
-          yValue: this.currentValue, //randomScalingFactor(),
+          yValue: this.currentValue, 
           baseColorGradientColor: [
-            'rgb(255, 100, 100)'
+            'rgb(0, 212, 129)'
           ],
           bandLine: {
-            stroke: 2,
-            colour: 'rgba(100, 100, 255, 1)',
-            type: 'solid',
+            stroke: 1,
+            colour: 'rgb(0, 212, 129)',
+            type: 'dashed',
           }
         }
       }
     };
+    
   }
 
 
   add(timeV: number, valV: number) {
     if (this.pushing === false) {
-      const tdate = new Date(timeV);
       const vall = 1000 * Math.floor(timeV / 1000);
+      
+      valV > this.currentValue ? this.colorUp = true : this.colorUp = false;
       this.currentValue = valV;
 
       const obj = {
@@ -667,13 +673,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   async initCcxtTicker() {
     const enableRateLimit = true;
-    const binancex = new ccxt.binance({ enableRateLimit, options: {} });
+    this.binanceT = new ccxt.binance({ enableRateLimit, options: {} });
 
-    if (binancex.has['watchTicker']) {
+    if (this.binanceT.has['watchTicker']) {
   
       while (this.chartEnabled === true) {
         try {
-          const ticker = await binancex.watchTicker('BTC/USDT', {});
+          const ticker = await this.binanceT.watchTicker('BTC/USDT', {});
           this.add(ticker.timestamp, ticker.last)
         } catch (e) {
           console.log(e);
