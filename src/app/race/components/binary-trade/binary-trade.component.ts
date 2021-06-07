@@ -122,6 +122,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   @ViewChild('optionsStart') optionsStart: ElementRef;
   leftMsg: string;
   rightMsg: string;
+  initdata = [];
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -136,7 +137,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     this.initCcxtTicker();
     this.balance = this.identityService.getBalance().game_wallet_ioi;
+    this.getBinaryHistory();
     this.subscribeToStream();
+  
+
   }
 
   ngOnDestroy() {
@@ -151,6 +155,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   subscribeToStream() {
     this.chartSubscription = this.chartStream.subscribe(datax => {
       if (datax.value && this.raceEnded === false) {
+
         const dateF = new Date(datax.time).toLocaleTimeString();
         this.chartTemp = {
           value: datax.value,
@@ -178,7 +183,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.chart.data.datasets[0].pointStyle[tempIndex] = null;
           this.chart.data.datasets[0].pointStyle[tempIndex] = this.chartTemp.type;
 
-          console.log('replacing');
+
           //this.chart.data.labels[tempIndex] = this.chartTemp.time;
         } else {
           const tempData = [];
@@ -214,7 +219,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.chart.update();
         }
       } else {
-        console.log('adding');
         this.addToChart();
       }
     }
@@ -282,6 +286,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     let _that = this;
     setTimeout(() => {
       this.chart = new Chart('canvas', this.config);
+      this.fillInitData();
       //this.hackChart();
       //this.config.options.scales.x.onRefresh = this.onRefresh();
     }, 100)
@@ -350,7 +355,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         }
       }
     };
-    console.log(this.currentValue);
   }
 
 
@@ -495,7 +499,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     popsock.on("history", function (data) {
       const opt = JSON.parse(data);
-      console.log(opt);
     });
 
     popsock.on("message", function (data) {
@@ -627,6 +630,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const binancex = new ccxt.binance({ enableRateLimit, options: {} });
 
     if (binancex.has['watchTicker']) {
+  
       while (this.chartEnabled === true) {
         try {
           const ticker = await binancex.watchTicker('BTC/USDT', {});
@@ -763,6 +767,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.leftMsg = msg;
     } else {
       this.rightMsg = msg;
+    }
+  }
+
+  getBinaryHistory() {
+    this.raceApi.binaryHistory(50).subscribe(
+      data => {
+        this.initdata = data;
+        
+      }
+    )
+  }
+
+  fillInitData() {
+    for (let x = 0; x < this.initdata.length; x++) {
+      this.add(this.initdata[x].ts, this.initdata[x].ap);
     }
   }
 
