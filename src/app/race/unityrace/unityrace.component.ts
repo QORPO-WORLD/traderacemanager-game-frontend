@@ -34,6 +34,7 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() rDetail: any;
   @Input() rStats: any;
   @Input() players: any;
+  @Input() enabled: boolean;
   fakeDetail: any;
   fakeStats: any;
   timeoutBool = false;
@@ -43,7 +44,29 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-
+    this.gameCheckInterval = setInterval(() => {
+      console.log(this.enabled);
+      if (this.enabled === true) {
+        clearInterval(this.gameCheckInterval);
+        console.log('junity here');
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+          dataUrl: "/assets/game/Build/IOI_Avatar.data",
+          frameworkUrl: "/assets/game/Build/IOI_Avatar.framework.js",
+          codeUrl: "/assets/game/Build/IOI_Avatar.wasm",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "IOI Corporation s.r.o",
+          productName: "IOI_Avatar",
+          productVersion: "0.1",
+        }).then((unityInstance) => {
+          window.unityInstance = unityInstance;
+          this.gameInstance = unityInstance;
+          setTimeout(() => {
+            this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '1|' + this.players[0].user_id);
+            this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '2|' + this.players[1].user_id);
+          }, 100);
+        });
+      }
+    }, 1000);
   }
 
   ngOnDestroy() {
@@ -72,22 +95,7 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 */
-    console.log('junity here');
-    createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "/assets/game/Build/IOI_Avatar.data",
-      frameworkUrl: "/assets/game/Build/IOI_Avatar.framework.js",
-      codeUrl: "/assets/game/Build/IOI_Avatar.wasm",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "IOI Corporation s.r.o",
-      productName: "IOI_Avatar",
-      productVersion: "0.1",
-    }).then((unityInstance) => {
-      window.unityInstance = unityInstance;
-      this.gameInstance = unityInstance;
-      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '1|' + this.players[0].user_id);
-      this.gameInstance.SendMessage('JavascriptHook', 'SetAvatar', '2|'  + this.players[1].user_id);
- 
-    });
+
   }
 
   initRace() {
@@ -109,7 +117,7 @@ export class UnityraceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   fatality() {
     this.gameInstance.SendMessage('JavascriptHook', 'Detonate', '2');
-  
+
   }
 
 

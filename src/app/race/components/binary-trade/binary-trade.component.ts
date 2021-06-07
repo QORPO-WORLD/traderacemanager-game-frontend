@@ -1,3 +1,4 @@
+import { NotifyService } from './../../../common/services/notify.service';
 import { NotifiqService } from './../../../common/services/notifiq.service';
 
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -98,9 +99,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   winner: any;
   loser: any;
   meWon: boolean;
-  unityEnabled = true;
+  unityEnabled = false;
   chartEnabled = true;
-  semaforsVisible = false;
+  semaforsVisible = true;
   balance: any;
   startsAt: number;
   finishingAt: any;
@@ -108,7 +109,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
-  semaforVal = 5;
+  semaforVal = 6;
   chartTemp: any;
   showChart = true;
   startVal: number;
@@ -125,24 +126,31 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   rightMsg: string;
   initdata = [];
   endVal: number;
-  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifiqService, private route: Router) {
+  canBet = false;
+  raceStarted = false;
+  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
-    this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
+    
   }
 
   ngOnInit() {
+    this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
     this.startsInSecs = this.getWhenStarts();
+    setTimeout(() => {
+      this.raceStarted = true;
+    }, this.startsInSecs * 1000)
     this.whenStarts();
     this.getBinaryPlayers();
     this.getMyDriver();
     this.initPopSock();
-
     this.initCcxtTicker();
     this.balance = this.identityService.getBalance().game_wallet_ioi;
     this.getBinaryHistory();
     this.subscribeToStream();
   
-
+    setTimeout(() => {
+      this.unityEnabled = true;
+    }, 5000);
   }
 
   ngOnDestroy() {
@@ -264,12 +272,26 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   placeOption() {
     if (this.loadingCont === false) {
       this.loadingCont = true;
+      this.canBet = false;
       this.gameObserver = this.raceApi.binaryOption({
         "race_hash": this.raceHash,
         "long": this.long
       }).subscribe(
         data => {
           //this.optWaiting = 10;
+          if (data.next_bet === 0) {
+            this.canBet = true;
+            setTimeout(() => {
+              this.canBet = true;
+              console.log('now can bet');
+            }, 10000);
+          } else {
+            const x = Date.now();
+            const y = (data.next_bet * 1000) - x;
+            setTimeout(() => {
+              this.canBet = true;
+            }, y);
+          }
         }
       )
     }
@@ -329,10 +351,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             ticks: {
               fontColor: "#868686",
               reverse: false,
-              stepSize: 5,
-              steps: 10,
-              stepValue: 5,
-              max: 100
+              stepSize: 10
+              
             }
           }]
         },
@@ -520,7 +540,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   onCancel(data?: any) {
     const opt = data;
-    this.notify.success('', data.reason);
+    this.notify.error( data.reason);
     setTimeout(() => {
       this.route.navigate(['/race/binary-trade/' + data.model.versus_hash + '/' + data.model.start_at.toString()]);
      }, 3000);
@@ -621,6 +641,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         if (el.user_hash !== this.myId) {
           this.players.push(el);
         }
+      }
+      if (this.startsInSecs > 5) {
+        setTimeout(() => {
+          this.notify.error('You can place 1 option before the game will start.');
+          this.canBet = true;
+        }, 2000);
       }
     } else {
       this.players = data;
