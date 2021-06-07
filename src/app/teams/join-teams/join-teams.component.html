@@ -61,6 +61,62 @@
   </div>
 
   <div class="nft-reward-box">
+    <div
+        [routerLink]="
+          myDriverStats.is_paid_membership === 'Free'
+            ? ['/teams/join-teams']
+            : null
+        "
+        class="team-img team"
+        *ngIf="
+          myDriverStats.team === 'IOI' ||
+          myDriverStats.team === 'BTC' ||
+          myDriverStats.team === 'ALT'
+        "
+      >
+        <img
+          *ngIf="myDriverStats.is_paid_membership === 'Free'"
+          class="premium non-premium"
+          src="/assets/base/images/menu/premium-icon.svg"
+          alt="NonPremium icon"
+        />
+        <img
+          *ngIf="myDriverStats.is_paid_membership === 'Premium'"
+          class="premium"
+          src="/assets/base/images/menu/premium-icon-active.svg"
+          alt="Premium icon"
+        />
+        <img
+          [src]="'/assets/base/images/teams/' + myDriverStats.team + '-team.png'"
+          alt=""
+        />
+      </div>
+      <div
+        class="team-img team"
+        *ngIf="
+          myDriverStats.team !== 'IOI' &&
+          myDriverStats.team !== 'BTC' &&
+          myDriverStats.team !== 'ALT'
+        "
+      >
+        <img
+          class="premium"
+          src="/assets/base/images/menu/premium-icon-active.svg"
+          alt="Premium icon"
+        />
+        <img
+          [src]="
+            'assets/base/images/custom-teams/custom-team' +
+            (myTeamAllData.avatar + 1) +
+            '.png'
+          "
+          alt=""
+        />
+        <div class="badge-name">
+          <p class="name">{{ myDriverStats.team }}</p>
+          <p class="team">TEAM</p>
+        </div>
+      </div>
     <img src="/assets/base/images/nft-cars/car1.png" alt="" class="car-img" [ngClass]="{'inactive': offerState === 2}">
     <img src="/assets/base/images/nft-racers/white-trm.png" alt="" class="racer-img">
   </div>

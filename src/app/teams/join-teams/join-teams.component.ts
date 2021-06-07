@@ -35,6 +35,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   ioioreward: number;
   myDriverStats: any;
   myMembEnd: number;
+  myTeamAllData: any;
   @ViewChild('teamSelection') teamSelection: any;
   constructor(protected api: TeamsService, protected notify: NotifiqService,
     protected driversApi: DriversService,
@@ -73,7 +74,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   getMyTeamReward() {
     this.teamSubscription = this.lapi.leaderboardTeamInternalList().subscribe(
       data => {
-
+        this.myTeamAllData = data;
         this.myTeamReward = data.team_bonus;
       }
     );
