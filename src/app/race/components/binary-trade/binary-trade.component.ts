@@ -1,3 +1,4 @@
+import { NotifiqService } from './../../../common/services/notifiq.service';
 
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Axis } from 'highcharts';
@@ -12,7 +13,7 @@ declare let ccxt: any;
 let popsock = (window as any).kocksock;
 import io from "socket.io-client"
 //import { webSocket, WebSocketSubject } from "rxjs/webSocket";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
 
@@ -123,7 +124,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   leftMsg: string;
   rightMsg: string;
   initdata = [];
-  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute) {
+  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifiqService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
   }
@@ -504,12 +505,23 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     popsock.on("message", function (data) {
       _this.avatarMsg(data);
     });
+
+    popsock.on("cancel", function (data) {
+      _this.onCancel(data);
+    });
   }
 
   onOption(data?: any) {
     const opt = data;
     opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
+  }
 
+  onCancel(data?: any) {
+    const opt = data;
+    this.notify.success('', data.reason);
+    setTimeout(() => {
+      this.route.navigate(['/race/binary-trade/' + data.model.versus_hash + '/' + data.model.start_at.toString()]);
+     }, 3000);
   }
 
   onOptionClosed(data?: any) {
