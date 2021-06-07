@@ -124,6 +124,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   leftMsg: string;
   rightMsg: string;
   initdata = [];
+  endVal: number;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifiqService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
@@ -507,7 +508,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     });
 
     popsock.on("cancel", function (data) {
-      _this.onCancel(data);
+      const opt = JSON.parse(data);
+      _this.onCancel(opt);
     });
   }
 
@@ -693,6 +695,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   whenStarts() {
     const newwhen = this.getWhenStarts();
     this.startVal = newwhen;
+    this.endVal = newwhen + 60;
     const fireSemaforx = (newwhen - 5) * 1000;
 
     setTimeout((
