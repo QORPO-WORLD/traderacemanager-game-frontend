@@ -371,7 +371,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         bands: {
           yValue: this.currentValue, 
           baseColorGradientColor: [
-            'rgb(0, 212, 129)'
+            
           ],
           bandLine: {
             stroke: 1,
