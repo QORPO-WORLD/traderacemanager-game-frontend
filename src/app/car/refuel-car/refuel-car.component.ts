@@ -129,7 +129,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   coinFilterType = 'most';
   sumFuel: number;
   sumlength: number;
-  
+  calced = false;
 
   constructor(private router: Router, protected api: CarsService,
     protected raceApi: RacesService, protected route: ActivatedRoute,
@@ -224,9 +224,24 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
       b.car_id - a.car_id
     );
     haha.reverse();
-
+    /*
+    for (let x = 0; x < haha.length; x++) {
+      for (let y = 0; y < 3; y++) {
+        if (haha[x].b[y].bet < 0) {
+          haha[x].b[y].short = true;
+        }
+        if (haha[x].b[y].bet > 0) {
+          haha[x].b[y].short = false;
+        }
+        if (haha[x].b[y].bet < 0) {
+          haha[x].b[y].bet = Math.abs(haha[x].b[y].bet);     
+        }
+      }
+    }
+    */
     this.myCars = haha;
-
+    this.selectedCarsToRace.push(...this.myCars);
+    console.log(this.myCars);
     this.selectCar(this.myCars);
     this.setupCarousel();
   }
@@ -483,7 +498,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
     }
 
-    console.log(this.myCars);
+
   }
 
 
@@ -493,11 +508,13 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     this.timerReady = false;
 
     this.getRaceDetails();
-
-    this.selectedCarsToRace.push(...this.myCars);
+      
+    
+    
     this.calcSumFuel();
 
     this.setInitFuels();
+    
   }
 
   timerCompleted() {
@@ -763,7 +780,9 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
       for (let x = 0; x < 3; x++) {
 
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].selected = true;
-        this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(nums[x].toFixed(1));
+        this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(Math.round(nums[x]));
+        console.log(nums);
+        console.log(nums[x].toFixed(1));
       }
       this.calculateExactBidsAmountForAll();
       if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
@@ -777,11 +796,11 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
 
       const nums: Array<any> = [];
+      console.log(this.selectedCarsToRace[xx].batman);
+      
       nums.push(this.selectedCarsToRace[xx].batman[0].bet);
       nums.push(this.selectedCarsToRace[xx].batman[1].bet);
       nums.push(this.selectedCarsToRace[xx].batman[2].bet);
-      
-
 
       this.selectedCarsToRace[xx].selectedBets = [];
       this.activeFuelType = 0;
@@ -794,33 +813,48 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
       const c1 = this.selectedCarsToRace[xx].batman[0].symbol;
       const f1 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c1);
+
       const x1 = f1[0].customIndex;
 
       const c2 = this.selectedCarsToRace[xx].batman[1].symbol;
       const f2 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c2);
+
       const x2 = f2[0].customIndex;
 
       const c3 = this.selectedCarsToRace[xx].batman[2].symbol;
       const f3 = this.selectedCarsToRace[xx].bet.filter(j => j.symbol === c3);
+
       const x3 = f3[0].customIndex;
 
 
+ 
       this.selectedCarsToRace[xx].selectedBets.push(x1);
       this.selectedCarsToRace[xx].selectedBets.push(x2);
       this.selectedCarsToRace[xx].selectedBets.push(x3);
 
-
+      console.log(nums);
       for (let x = 0; x < 3; x++) {
 
         this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].selected = true;
-        this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = +(nums[x].toFixed(1));
+        if (nums[x] < 0) {
+          console.log('nefalsujem');
+          this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].short = true;
+          this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = Math.abs(nums[x]);
+        } else {
+          console.log('falsujem');
+          this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].short = false;
+          this.selectedCarsToRace[xx].bet[this.selectedCarsToRace[xx].selectedBets[x]].bet = nums[x];
+       
+        }
+        
       }
-      this.calculateExactBidsAmountForAll();
-      if (this.selectedCarsToRace[xx].fuel < 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
+      //this.calculateExactBidsAmountForAll();
+      if (this.selectedCarsToRace[xx].fuel !== 100 || this.selectedCarsToRace[xx].selectedBets.length < 3) {
         this.setInitFuels();
       }
       
     }
+    
   }
 
 

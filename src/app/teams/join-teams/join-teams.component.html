@@ -19,9 +19,10 @@
 
   <div class="boxes-holder">
     <div class="memb-box">
-      <p class="desc">Membership ends in</p>
+      <p class="desc">Membership in {{ myDriverStats?.team }} ends</p>
       <div class="time-box">
-        <p>25 days</p>
+        <p *ngIf="myDriverStats?.is_paid_membership === 'Premium' && myMembEnd">{{ myMembEnd | date }}</p>
+        <p *ngIf="myDriverStats?.is_paid_membership === 'Free'">Become premium</p>
       </div>
     </div>
 
@@ -41,15 +42,15 @@
             <p class="heading">30% off</p>
             <p class="text">of the price from the yearly premium membership right now!</p>
           </div>
-          <button class="my-cta-btn-back">BUY PREMIUM NOW</button>
+          <button class="my-cta-btn-back" (click)="getPremium()">BUY PREMIUM NOW</button>
         </div>
 
         <div class="offer-item">
           <div class="img-holder">
             <p class="heading">10% off</p>
-            <p class="text">of the price from the yearly premium membership right now!</p>
+            <p class="text">of the price from the quartal premium membership right now!</p>
           </div>
-          <button class="my-cta-btn-back">BUY PREMIUM NOW</button>
+          <button class="my-cta-btn-back" (click)="getPremium()">BUY PREMIUM NOW</button>
         </div>
       </div>
       <div class="offers-switch">
@@ -60,13 +61,13 @@
   </div>
 
   <div class="nft-reward-box">
-    <img src="/assets/base/images/nft-cars/car1.png" alt="" class="car-img">
+    <img src="/assets/base/images/nft-cars/car1.png" alt="" class="car-img" [ngClass]="{'inactive': offerState === 2}">
     <img src="/assets/base/images/nft-racers/white-trm.png" alt="" class="racer-img">
   </div>
 
   <div class="teams-holder">
     <p class="desc">Teams</p>
-    <app-teams-selection></app-teams-selection>
+    <app-teams-selection (endsIn)="getMembEnd($event)" #teamSelection></app-teams-selection>
   </div>
 
 </div>
