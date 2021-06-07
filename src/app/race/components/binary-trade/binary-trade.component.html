@@ -107,9 +107,9 @@
     </div>
 
   </div>
-  <div *ngIf="players?.length > 1" class="unity-holder">
+  <div [hidden]="unityEnabled === false" class="unity-holder">
 
-    <app-unityrace [players]="players" #unityRace style="width: 100%;
+    <app-unityrace [enabled]="unityEnabled" [players]="players" #unityRace style="width: 100%; 
           height: 100%;
           position: relative;
           background: black;
@@ -128,10 +128,10 @@
     <div class="chart-holder">
 
       <div class="win-box">
-        <p class="desc">Potential win</p>
         <div class="inner-box">
           <img src="/assets/base/images/teams/reward-token.png" alt="" class="reward-badge">
           <p>1.6 IOI</p>
+          <p class="desc">Potential win</p>
         </div>
       </div>
 
@@ -180,7 +180,8 @@
         <div class="semafor-inner">
           <div class="color-box">
             <p class="desc">Race starts in</p>
-            <p class="time" *ngIf="semaforVal > 1">{{semaforVal - 1}}s</p>
+            <p class="time" *ngIf="startsInSecs > 6"><app-timer [value]="startsInSecs"></app-timer></p>
+            <p class="time" *ngIf="semaforVal > 1 && semaforVal < 6">{{semaforVal - 1}}s</p>
             <p class="time" *ngIf="semaforVal < 2">GO!</p>
           </div>
 
@@ -238,13 +239,13 @@
       </div>
 
       <div class="player-controls">
-        <div class="control-btn down" (click)="long = false;placeOption();">
+        <button class="control-btn down" (click)="long = false;placeOption();" [disabled]="canBet === false">
           <img src="/assets/base/images/binary-race/down-icon.svg" alt="">
-        </div>
+        </button>
         <div class="data-box bordered">
           <img src="/assets/base/images/binary-race/btc-logo.svg" alt="">
         
-          <p *ngIf="currentValue; else loading">
+          <p *ngIf="currentValue; else loading" [ngClass]="colorUp === true ? 'colorup' : 'colordown'">
             &#36; {{currentValue}}
               </p>
           5
@@ -254,13 +255,16 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p class="bin-trade" *ngIf="startVal">
+          <p class="bin-trade" *ngIf="endVal && raceStarted === true">
             <app-timer [value]="endVal"></app-timer> sec
           </p>
+          <p class="bin-trade" *ngIf="endVal && raceStarted === false">
+            60 sec
+          </p>
         </div>
-        <div class="control-btn up" (click)="long = true;placeOption();">
+        <button class="control-btn up" (click)="long = true;placeOption();" [disabled]="canBet === false">
           <img src="/assets/base/images/binary-race/up-icon.svg" alt="">
-        </div>
+        </button>
       </div>
 
       <div class="player-stats rival">

@@ -216,18 +216,19 @@
       align-items: center;
       height: 442px;
       position: relative;
+      margin-top: 50px;
       .win-box {
         position: absolute;
-        top: 0;
+        top: -15px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -100%);
         text-align: center;
         width: 300px;
         .inner-box {
           background: rgba(255, 255, 255, 0.15);
           border: 3px solid #ffffff;
           width: 100%;
-          padding: 25px 10px;
+          padding: 15px 10px;
           position: relative;
           .reward-badge {
             position: absolute;
@@ -244,6 +245,12 @@
             font-weight: 900;
             margin: 0;
             line-height: 1;
+            &.desc{
+              font-size: 14px;
+              opacity: .6;
+              font-family: 'Poppins';
+              font-weight: 400;
+            }
           }
         }
       }
@@ -322,10 +329,10 @@
       }
       .semafor-wrap {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
+        width: 400px;
+        height: 100px;
+        left: calc(50% - 200px);
+        top: calc(50% - 50px);
         z-index: 100;
         opacity: 0;
         &.visible {
@@ -474,7 +481,6 @@
       .player-controls {
         width: 100%;
         max-width: 480px;
-        border-radius: 10px;
         height: 90px;
         display: flex;
         justify-content: center;
@@ -486,7 +492,7 @@
         .control-btn {
           width: 19%;
           position: relative;
-          cursor: pointer;
+          height: 100px;
           background: linear-gradient(
             238.54deg,
             #fe173f -1.25%,
@@ -517,7 +523,7 @@
           }
           p,
           p.bin-trade span {
-            color: #333333 !important;
+            color: #333333;
             font-weight: 500;
             font-size: 20px;
             margin: 10px 0;
@@ -540,6 +546,15 @@
     }
     .content-holder{
       .chart-holder{
+        .win-box {
+          width: 270px;
+          .inner-box {
+            padding: 20px 10px;
+            p {
+              font-size: 36px;
+            }
+          }
+        }
         .semafor-wrap{
           .semafor-inner{
             width: 452px;
@@ -599,6 +614,19 @@
         }
       }
     }
+    .content-holder{
+      .chart-holder{
+        .win-box {
+          width: 245px;
+          .inner-box {
+            padding: 16px 5px;
+            p {
+              font-size: 32px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -651,6 +679,22 @@
         }
       }
     }
+    .content-holder{
+      .chart-holder{
+        .win-box {
+          width: 190px;
+          .inner-box {
+            padding: 10px 5px;
+            p {
+              font-size: 24px;
+              &.desc{
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -663,6 +707,14 @@
           &.profile-cont{
             display: flex;
           }
+        }
+      }
+    }
+    .content-holder{
+      .chart-holder{
+        margin-top: 70px;
+        .win-box{
+          top: -5px;
         }
       }
     }
@@ -1184,4 +1236,19 @@
             }
         }
     }
+}
+.control-btn.up[disabled] {
+  background: gray !important;
+}
+.control-btn.down[disabled] {
+  background: gray !important;
+}
+.data-box.bordered{
+  p.colorup {
+    color:rgb(0, 212, 129)!important;
+  }
+
+  p.colordown {
+    color:rgb(254, 23, 63)!important;
+  }
 }
