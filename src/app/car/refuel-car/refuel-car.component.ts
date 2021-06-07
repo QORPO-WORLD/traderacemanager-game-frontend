@@ -241,7 +241,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
     */
     this.myCars = haha;
     this.selectedCarsToRace.push(...this.myCars);
-    console.log(this.myCars);
+
     this.selectCar(this.myCars);
     this.setupCarousel();
   }
@@ -761,8 +761,11 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   generateAutomaticBets() {
     for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
 
-      const nums: Array<any> = this.generateRandomNums(100, 3, 5);
-
+      let nums: Array<any> = this.generateRandomNums(100, 3, 5);
+      if (Math.round(nums[0]) + Math.round(nums[1]) + Math.round(nums[2]) !== 100) {
+        this.generateAutomaticBets();
+        return;
+      }
       this.selectedCarsToRace[xx].selectedBets = [];
       this.activeFuelType = 0;
 
