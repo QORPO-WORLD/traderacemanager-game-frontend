@@ -380,6 +380,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         "long": this.long
       }).subscribe(
         data => {
+          this.convertToHuman(true, 'Placing', 'option');
           //this.optWaiting = 10;
           if (data.next_bet === 0) {
             this.canBet = true;
@@ -734,6 +735,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   sendSockAvatarMsg(msg: any) {
     this.locked = true;
+    this.convertToHuman(true, 'Reaction', 'sent');
     popsock.emit("client_triggered_emit",
       {
         "event": "message",
