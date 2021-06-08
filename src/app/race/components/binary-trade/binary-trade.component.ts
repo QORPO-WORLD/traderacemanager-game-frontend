@@ -189,8 +189,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   @ViewChild('meLoose') meLoose: ElementRef;
   @ViewChild('meWin') meWin: ElementRef;
   @ViewChild('optionsStart') optionsStart: ElementRef;
-  leftMsg: string;
-  rightMsg: string;
+  leftMsgSmall: string;
+  rightMsgSmall: string;
+  leftMsgBig: string;
+  rightMsgBig: string;
+  animatingRmsg = false;
+  animatingLmsg = false;
   initdata = [];
   endVal: number;
   canBet = false;
@@ -662,10 +666,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (this.meWon === false) {
       this.unityEnabled === false;
       this.playSound('meLoose');
-      this.convertToHuman(true, 'You loose');
+      this.convertToHuman(true, 'loose', 'You');
     } else {
       this.playSound('meWin');
-      this.convertToHuman(true, 'You won!!!');
+      this.convertToHuman(true, 'won!!!', 'You');
     }
     this.raceEnded = true;
   }
@@ -888,11 +892,25 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   }
 
-  convertToHuman(lPlayer: boolean, msg: string) {
-    if (lPlayer === true) {
-      this.leftMsg = msg;
-    } else {
-      this.rightMsg = msg;
+  convertToHuman(lPlayer: boolean, msgBig: string, msgSmall?: string) {
+    if (lPlayer === true && this.animatingLmsg === false) {
+      this.leftMsgSmall = msgSmall;
+      this.leftMsgBig = msgBig;
+      this.animatingLmsg = true;
+      setTimeout(() => {
+        this.leftMsgSmall = '';
+        this.leftMsgBig = '';
+        this.animatingLmsg = false;
+      }, 3000);
+    } else if(this.animatingRmsg === false && lPlayer === false) {
+      this.rightMsgSmall = msgSmall;
+      this.rightMsgBig = msgBig;
+      this.animatingRmsg = true;
+      setTimeout(() => {
+        this.rightMsgSmall = '';
+        this.rightMsgBig = '';
+        this.animatingRmsg = false;
+      }, 3000);
     }
   }
 

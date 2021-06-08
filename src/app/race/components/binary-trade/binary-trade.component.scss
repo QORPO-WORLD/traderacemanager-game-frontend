@@ -197,6 +197,50 @@
     }
   }
 
+  .my-msg{
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    opacity: 0;
+    &.left-msg{
+      transform: translate(-100%, -50%);
+      left: 0;
+    }
+    &.right-msg{
+      transform: translate(100%, -50%);
+      right: 0;
+      p{
+        text-align: right;
+        margin: 0 30px 0 0;
+        &.small{
+          margin: 0;
+        }
+      }
+    }
+    &.animating{
+      transition: 3s cubic-bezier(.63,1.32,.76,.56);
+      opacity: 1;
+      &.left-msg{
+        transform: translate(0, -50%);
+        left: 5%;
+      }
+      &.right-msg{
+        transform: translate(0, -50%);
+        right: 5%;
+      }
+    }
+    p{
+      font-size: 80px;
+      font-family: Earth Orbiter;
+      margin: 0 0 0 30px;
+      line-height: 1;
+      &.small{
+        font-size: 40px;
+        margin: 0;
+      }
+    }
+  }
+
   .content-holder {
     position: absolute;
     top: 49%;
@@ -738,7 +782,7 @@
 @media screen and (max-width: 1700px) {
     .main-cont{
         .content-holder{
-            max-width: calc(100% - 500px);
+            max-width: 920px;
             .chart-holder{
               #canvas{
                 width: calc(100% - 90px) !important;
@@ -808,6 +852,20 @@
 
 @media screen and (max-width: 1550px) {
     .main-cont{
+      .my-msg{
+        p{
+          font-size: 65px;
+          margin: 0 0 0 20px;
+          &.small{
+            font-size: 30px;
+          }
+        }
+        &.right-msg{
+          p{
+            margin: 0 20px 0 0;
+          }
+        }
+      }
         .content-holder{
             max-width: 800px;
             .chart-holder{
@@ -892,6 +950,14 @@
 
 @media screen and (max-width: 1300px) {
     .main-cont{
+      .my-msg{
+        p{
+          font-size: 50px;
+          &.small{
+            font-size: 26px;
+          }
+        }
+      }
         .unity-holder{
             position: relative;
             left: 50%;
@@ -999,6 +1065,16 @@
 
 @media screen and (max-width: 800px) {
     .main-cont{
+      .my-msg{
+        top: 28%;
+        z-index: 11;
+        p{
+          font-size: 45px;
+          &.small{
+            font-size: 22px;
+          }
+        }
+      }
         .unity-holder{
             display: none;
         }
@@ -1172,6 +1248,14 @@
 
 @media screen and (max-width: 500px) {
     .main-cont{
+      .my-msg{
+        p{
+          font-size: 35px;
+          &.small{
+            font-size: 17px;
+          }
+        }
+      }
         .content-holder{
             .mobile-avatars{
                 .avatar-box{
