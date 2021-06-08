@@ -321,9 +321,9 @@
     </div>
 
   </div>
-
-<app-binary-winner (fatality)="fatality()" *ngIf="raceEnded === true" [winner]="winner" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> 
-
+<div  *ngIf="raceEnded === true && winner && loser && meWon" >
+<app-binary-winner (fatality)="fatality()" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> 
+</div>
 </div>
 <div style="visibility: hidden;">
   <audio #optionPlaced controls>
