@@ -218,9 +218,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
 
   getMyGames() {
-    const bin = JSON.parse(localStorage.getItem('binary'));
-    if (bin) {
-      if (Date.now() > bin.time) {
+
         this.liveObserver = this.raceApi.liveBinary().subscribe(
           data => {
             console.log(data);
@@ -232,11 +230,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
             }
           }
         )
-      } else {
-        clearInterval(this.getInterval);
-        localStorage.removeItem('binary');
-      }
-    }
+
   }
 
   getMyGamesOnce() {
@@ -287,7 +281,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     console.log(this.nextRace);
     setTimeout(() => {
       this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
- 
+      console.log('removing');
       localStorage.removeItem('binary');
          }, 3000);
 
