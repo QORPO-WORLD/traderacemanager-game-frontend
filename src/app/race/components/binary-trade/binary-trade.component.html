@@ -126,14 +126,14 @@
     </app-unityrace> 
   </div>
   <div class="content-holder">
-    <div class="mobile-avatars" [ngClass]="{'show-gif': animateWinnerAvatars === true}" *ngIf="players?.length > 0 && racers?.length > 0">
+    <div class="mobile-avatars" [ngClass]="{'show-gif': animateWinnerAvatars === true}" *ngIf="players?.length > 1 && racers?.length > 0">
       <div class="avatar-box">
-        <img [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1]?.image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1]?.gif + '.gif'" alt="">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id]?.image + '.png'" alt="">
+        <img *ngIf="players[1]?.user_id > 0" class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id]?.gif + '.gif'" alt="">
       </div>
       <div class="avatar-box rival">
-        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1]?.image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1]?.gif + '.gif'" alt="">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id]?.image + '.png'" alt="">
+        <img *ngIf="players[1]?.user_id > 0" class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id]?.gif + '.gif'" alt="">
       </div>
     </div>
     <div class="chart-holder">
