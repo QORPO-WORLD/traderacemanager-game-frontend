@@ -185,7 +185,10 @@
               <p class="add">+</p>
             </div>
           </div>
-          <div class="overview-item profile-cont" (click)="toggleSettings()">
+          <div
+            [routerLink]="['/profile/my-profile']"
+            class="overview-item profile-cont"
+          >
             <div class="bubble-holder profile">
               <img
                 [src]="
@@ -198,26 +201,6 @@
             </div>
             <div class="value-box">
               <p>{{ myDriverStats?.nickname }}</p>
-            </div>
-            <div
-              [ngClass]="{ active: settingsShown === true }"
-              class="profile-expander"
-            >
-              <div [routerLink]="['/profile/my-profile']" class="btn-item">
-                <p>
-                  <img
-                    src="/assets/base/images/icons/user.svg"
-                    alt="user icon"
-                  />
-                  Profile
-                </p>
-              </div>
-              <div class="btn-item" (click)="logout()">
-                <p>
-                  <img src="/assets/base/images/icons/logout.svg" alt="" />
-                  {{ "profile.log_out" | translate }}
-                </p>
-              </div>
             </div>
           </div>
         </ng-container>
