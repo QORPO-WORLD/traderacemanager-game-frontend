@@ -30,7 +30,7 @@ export class MyProfileComponent implements OnInit {
   selectedType = "racer";
   marketState = 1;
   mobileMenu = true;
-
+  depositFlow = false;
   affiliate: any;
   state = 1;
   constructor(
@@ -119,6 +119,9 @@ export class MyProfileComponent implements OnInit {
     clearTimeout(this.timeoutNext);
     clearTimeout(this.timeoutPrev);
   }
+  logout() {
+    this.identityService.logout();
+  }
   getNewState(state: number) {
     this.state = state;
   }
@@ -137,5 +140,12 @@ export class MyProfileComponent implements OnInit {
   }
   resolveDetailAsset(state: number) {
     this.marketState = state;
+  }
+  toggleDeposit() {
+    this.title = "null";
+    this.title = "mynfts";
+    this.depositFlow = true;
+    this.mobileMenu = false;
+    this.marketState = 1;
   }
 }

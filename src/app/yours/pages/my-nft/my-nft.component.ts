@@ -6,6 +6,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnChanges,
 } from "@angular/core";
 import { CarsService, DriversService } from "../../../api/services";
 import { NotifyService } from "./../../../common/services/notify.service";
@@ -21,7 +22,7 @@ import { Router } from "@angular/router";
   templateUrl: "./my-nft.component.html",
   styleUrls: ["./my-nft.component.scss"],
 })
-export class MyNftComponent implements OnInit {
+export class MyNftComponent implements OnInit, OnChanges {
   timeoutPrev: any;
   timeoutNext: any;
   showDeposit = false;
@@ -705,6 +706,7 @@ export class MyNftComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
+
   title = "All";
   myCar: any;
   ed1Cars = 0;
@@ -764,6 +766,8 @@ export class MyNftComponent implements OnInit {
   ownedItems: any;
   marketState = 1;
 
+  @Input() depositFlow = false;
+
   @Output() data = new EventEmitter<{
     state: number;
     id: number;
@@ -779,6 +783,13 @@ export class MyNftComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.getMyCars();
+  }
+  ngOnChanges(): void {
+    if (this.depositFlow === true) {
+      this.filterAllDep();
+    } else {
+      this.filterAll();
+    }
   }
   ngOnInit(): void {
     const that = this;
@@ -978,7 +989,12 @@ export class MyNftComponent implements OnInit {
         }
         this.calcEditionNum();
         this.selectCar(objs);
-        this.filterAll();
+        if (this.depositFlow === true) {
+          this.filterAllDep();
+        } else {
+          this.filterAll();
+        }
+
         this.sortingDone = true;
         this.allCars = objs.cars.length;
       }
@@ -1326,7 +1342,7 @@ export class MyNftComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.title = "Your Racers";
+    this.title = "Racers";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1346,7 +1362,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Your Cars";
+    this.title = "Cars";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1365,7 +1381,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Your Tracks";
+    this.title = "Tracks";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1373,25 +1389,7 @@ export class MyNftComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.filter = "track";
   }
-  filterTeamsDep() {
-    this.newProducts = this.products;
-    this.newProducts = this.products.filter((item) => item["type"] === "team");
 
-    this.width();
-    this.specialActive = false;
-    this.tracksActive = false;
-    this.carsActive = false;
-    this.racersActive = false;
-    this.teamsActive = true;
-    this.allActive = false;
-    this.title = "Your Teams";
-    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-    this.currentPage = 1;
-    this.isPaged = 0;
-    this.sliceStart = this.inRow * this.isPaged;
-    this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "team";
-  }
   filterSpecialDep() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter(
@@ -1405,7 +1403,7 @@ export class MyNftComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.title = "Your Specials";
+    this.title = "Specials";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1415,6 +1413,9 @@ export class MyNftComponent implements OnInit {
   }
   filterAllDep() {
     this.newProducts = this.products;
+    this.newProducts = this.products.filter(
+      (item) => item["type"] === "car" || item["type"] === "racer"
+    );
     this.width();
     this.specialActive = false;
     this.tracksActive = false;
@@ -1422,7 +1423,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = true;
-    this.title = "Your products";
+    this.title = "All";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1431,33 +1432,6 @@ export class MyNftComponent implements OnInit {
     this.filter = "all";
   }
 
-  reset() {
-    let element;
-    element = document.querySelector(".hamburger");
-    element.classList.remove("hamburgerclick");
-    void element.offsetWidth;
-    element.classList.add("hamburgerclick");
-  }
-  resetPageArrowLeft() {
-    let page;
-    page = document.querySelector(".pagebtn-l");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage > 0) {
-      this.currentPage = this.currentPage - 1;
-    }
-  }
-  resetPageArrowRight() {
-    let page;
-    page = document.querySelector(".pagebtn-r");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage <= this.newProducts.length / 8) {
-      this.currentPage = this.currentPage + 1;
-    }
-  }
   back() {
     this.animation = 1;
     if (this.marketState === 1) {
@@ -1469,5 +1443,11 @@ export class MyNftComponent implements OnInit {
     } else if (this.marketState === 3) {
       this.marketState = 2;
     }
+  }
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 }

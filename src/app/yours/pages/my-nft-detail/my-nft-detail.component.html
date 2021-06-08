@@ -91,53 +91,56 @@
     </p>
     <div class="text-buttons">
       <button
-        *ngIf="
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'track' &&
-          !displayArray[0]['rare']
+        [routerLink]="['/other/deposit-nft']"
+        [queryParams]="
+          displayArray[0]['type'] === 'car'
+            ? {
+                nftId: displayArray[0]['position'] + 1,
+                nftType: displayArray[0]['type']
+              }
+            : {
+                nftId: displayArray[0]['id'],
+                nftType: displayArray[0]['type']
+              }
         "
-        class="buy category-title-third my-cta-btn-back"
+        class="buy category-title-fourth my-cta-btn-back"
       >
-        <img
-          src="/assets/base/images/teams/reward-token.png"
-          alt="buy icon"
-        />{{ displayArray[0]["price"] }}
+        &#43; Deposit
       </button>
       <button
-        *ngIf="
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'track' &&
-          displayArray[0]['rare']
+        [routerLink]="['/other/withdraw-nft']"
+        [queryParams]="
+          displayArray[0]['type'] === 'car'
+            ? {
+                nftId: displayArray[0]['position'] + 1,
+                nftType: displayArray[0]['type']
+              }
+            : {
+                nftId: displayArray[0]['id'],
+                nftType: displayArray[0]['type']
+              }
         "
-        class="buy category-title-third my-cta-btn-back"
+        class="buy category-title-fourth my-cta-btn-back"
       >
-        Locked
+        Withdraw
       </button>
       <button
-        *ngIf="displayArray[0]['type'] === 'track'"
-        class="buy category-title-third my-cta-btn-back"
-      >
-        <img
-          src="/assets/base/images/teams/reward-token.png"
-          alt="buy icon"
-        />Soon
-      </button>
-      <button
-        [routerLink]="['/race/race-selection']"
-        *ngIf="displayArray[0]['type'] === 'special'"
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Play now
-      </button>
-      <button
-        class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] != 'track' &&
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'racer' &&
-          !displayArray[0]['rare']
+        [routerLink]="['/other/transfer-nft']"
+        [queryParams]="
+          displayArray[0]['type'] === 'car'
+            ? {
+                nftId: displayArray[0]['position'] + 1,
+                nftType: displayArray[0]['type']
+              }
+            : {
+                nftId: displayArray[0]['id'],
+                nftType: displayArray[0]['type']
+              }
         "
-      ></button>
+        class="buy category-title-fourth my-cta-btn-back"
+      >
+        Transfer
+      </button>
     </div>
   </div>
   <div class="detail-image">
