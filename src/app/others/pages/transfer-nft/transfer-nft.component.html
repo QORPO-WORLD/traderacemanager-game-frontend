@@ -1,27 +1,21 @@
 <div class="main-holder">
-  <div class="top-info">
-    <div class="back" [routerLink]="['/profile/my-profile']">
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="text-info">
-      <h1>Transfer NFTs</h1>
-      <p>
-        Welcome {{ nickname }}, you can transfer your NFTs from your account in
-        here. All of the transfers are completely free.
-      </p>
-    </div>
-    <div class="info-box">
-      <div class="text-holder">
-        <p class="value">{{ accountValue | number: "1.0-2":"fr" }} &#36;</p>
-        <p class="desc">current account value</p>
-      </div>
-    </div>
+  <div [routerLink]="['/profile/my-profile']" class="content-title">
+    <img
+      class="red-star"
+      src="assets/base/images/icons/icon-back-red.svg"
+      alt="red arrow"
+    />
+    <img
+      class="blue-star"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>RACES</p>
   </div>
 
   <div class="content-holder">
     <div class="left-holder">
-      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
+      <div class="img-holder" [ngClass]="{ racer: this.nftType === 'racer' }">
         <img
           class="car-img"
           *ngIf="this.nftType === 'car'"
@@ -31,7 +25,9 @@
         <img
           class="car-img"
           *ngIf="this.nftType === 'racer'"
-          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
+          [src]="
+            'assets/base/images/nft-racers/' + products[0]['image'] + '.png'
+          "
           alt="Image of selected car"
         />
         <div class="car-stats">
