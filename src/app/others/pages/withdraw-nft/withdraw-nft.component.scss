@@ -1,929 +1,808 @@
 .main-holder {
-    width: calc(100% - 457px);
-    padding-left: 40px;
+  width: calc(100% - 40px);
+  height: calc(100vh - 80px);
+  padding: 40px 0px 40px 40px;
+  display: flex;
+  position: relative;
+}
+.content-holder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10px;
+  .common-heading {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0;
   }
-  
-  .top-info {
-    margin: 30px 0 0;
-    padding-bottom: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  
-    align-items: center;
-    h1 {
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-    }
-    .back {
-      cursor: pointer;
-      transition: 0.2s;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
+  .left-holder {
+    width: 54.8%;
+    .img-holder {
+      width: 100%;
+      position: relative;
       text-align: center;
-      min-height: 132px;
-      background: #222222;
-      border-radius: 20px;
-      p {
-        line-height: 30px;
+      height: 306px;
+      &.racer {
+        text-align: left;
+        .car-img {
+          margin-left: 15%;
+        }
+        .car-stats {
+          flex-direction: column;
+          left: unset;
+          right: 0;
+          transform: none;
+          height: 100%;
+          width: 50%;
+          .name {
+            margin-right: 0;
+            text-align: center;
+          }
+        }
+      }
+      .car-img {
+        max-width: 100%;
+        max-height: 100%;
+        position: relative;
+        top: -20px;
+        transform: scale(1.1);
+      }
+      .car-stats {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        .name {
+          text-align: left;
+          p {
+            font-weight: 600;
+            font-size: 20px;
+            margin: 0;
+            &.desc {
+              opacity: 0.6;
+              font-size: 16px;
+              font-weight: 400;
+            }
+          }
+        }
+        .value {
+          p {
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+            margin: 0;
+            &.desc {
+              opacity: 0.6;
+              font-size: 16px;
+              font-weight: 400;
+            }
+          }
+          img {
+            max-width: 30px;
+          }
+        }
       }
     }
-    .back:hover {
-      transform: scale(1.1);
-    }
-    .text-info {
-      max-width: 785px;
-      margin: 0 20px;
-    }
-    .info-box {
-      margin-left: auto;
-      width: 448px;
-      min-width: 448px;
-      background: #222222;
-      border-radius: 20px;
-      padding: 40px;
-      .text-holder {
-        text-align: center;
-        .value {
-          font-weight: 600;
-          font-size: 24px;
-          margin: 0;
+    .amount-holder {
+      width: 100%;
+      height: 316px;
+      padding: 25px 20px;
+      background: rgba(255, 255, 255, 0.05);
+
+      margin: 30px 0 10px;
+      .common-heading {
+        margin-bottom: 20px;
+        margin-left: 15px;
+      }
+      .amount-input {
+        width: 100%;
+
+        position: relative;
+        margin-bottom: 40px;
+        .inner {
+          background: white;
+
+          width: 100%;
+          position: relative;
+          input {
+            padding: 13px 64px 13px 30px;
+
+            background: transparent;
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #333;
+            font-weight: 600;
+          }
+          .curr-desc {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-weight: 500;
+            font-size: 16px;
+            margin: 0;
+          }
         }
-        .desc {
+        .input-note {
+          position: absolute;
+          bottom: -10px;
+          right: 0;
+          transform: translateY(100%);
           font-size: 16px;
           font-weight: 300;
           opacity: 0.4;
           margin: 0;
         }
+        .correct-input {
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          width: 50px;
+          height: 100%;
+          svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            path {
+              fill: white;
+            }
+          }
+          &.incorrect {
+            background: #ebebeb;
+          }
+        }
+      }
+      .transfer-inputs {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        .input-item {
+          width: calc(50% - 30px);
+          position: relative;
+          .my-input {
+            width: 100%;
+
+            &.bordered {
+              padding: 1px;
+            }
+            input {
+              width: 100%;
+              background: #181818;
+
+              padding: 13px 30px;
+              width: 100%;
+              border: none;
+              outline: none;
+            }
+          }
+          &.left {
+            .transfer-arrows {
+              position: absolute;
+              top: 50%;
+              right: -16px;
+              transform: translate(100%, -50%);
+              cursor: pointer;
+            }
+          }
+          .destination-desc {
+            position: absolute;
+            bottom: -7px;
+            left: 15px;
+            transform: translateY(100%);
+            margin: 0;
+            opacity: 0.8;
+            font-size: 16px;
+            font-weight: 300;
+          }
+        }
       }
     }
   }
-  
-  .content-holder {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 10px;
+  .right-holder {
+    width: 41%;
     .common-heading {
-      font-weight: 600;
-      font-size: 20px;
-      margin: 0;
+      margin-bottom: 20px;
     }
-    .left-holder {
-      width: 54.8%;
-      .img-holder {
-        width: 100%;
-        position: relative;
+    .main-panel {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+
+      height: 602px;
+      margin-bottom: 10px;
+      padding: 40px 40px 10px 40px;
+      text-align: center;
+      .withdraw-info {
         text-align: center;
-        height: 306px;
-        &.racer{
-          text-align: left;
-          .car-img{
-            margin-left: 15%;
-          }
-          .car-stats{
-            flex-direction: column;
-            left: unset;
-            right: 0;
-            transform: none;
-            height: 100%;
-            width: 50%;
-            .name{
-              margin-right: 0;
-              text-align: center;
-            }
-          }
+        .text {
+          font-size: 18px;
+          font-weight: 300;
+          margin: 40px 0;
         }
-        .car-img {
-          max-width: 100%;
-          max-height: 100%;
+        .value {
+          font-weight: 600;
+          font-size: 40px;
+          margin: 0;
+          display: inline-block;
           position: relative;
-          top: -20px;
-          transform: scale(1.1);
+          .value-desc {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(102%, -25%);
+            font-size: 18px;
+            font-weight: 300;
+          }
         }
-        .car-stats {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
+        .desc {
+          font-size: 18px;
+          margin: 0;
+          opacity: 0.4;
+        }
+      }
+      .summary-box {
+        padding-top: 65px;
+        position: relative;
+        margin-top: 65px;
+        .border-maker {
           position: absolute;
-          bottom: 10px;
           left: 50%;
           transform: translateX(-50%);
+          width: 40%;
+          height: 1px;
+          border-radius: 2px;
+          top: 0;
+        }
+        .info-item {
           width: 100%;
-          .name {
-            text-align: left;
+          &.second {
+            margin-top: 30px;
+          }
+          p {
+            font-size: 16px;
+            margin: 0;
+            font-weight: 500;
+            &.desc {
+              font-weight: 400;
+              opacity: 0.4;
+            }
+          }
+          input {
+            background: transparent;
+            padding: 5px 10px;
+            border: none;
+          }
+        }
+      }
+      .confirm-btn {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 11px 40px;
+
+        margin-top: 65px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .main-holder {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
+  }
+  .content-holder {
+    .common-heading {
+      font-size: 18px;
+    }
+    .left-holder {
+      .img-holder {
+        height: 267px;
+        .car-stats {
+          .name,
+          .value {
             p {
-              font-weight: 600;
-              font-size: 20px;
-              margin: 0;
+              font-size: 17px;
               &.desc {
-                opacity: 0.6;
-                font-size: 16px;
-                font-weight: 400;
+                font-size: 13px;
               }
             }
           }
           .value {
             p {
-              text-align: center;
-              font-weight: 600;
-              font-size: 20px;
-              margin: 0;
-              &.desc {
-                opacity: 0.6;
-                font-size: 16px;
-                font-weight: 400;
+              img {
+                width: 23px;
               }
-            }
-            img{
-              max-width: 30px;
-            }
-          }
-        }
-      }
-      .amount-holder {
-        width: 100%;
-        height: 316px;
-        padding: 25px 20px;
-        background: #222222;
-        border-radius: 15px;
-        margin: 30px 0 10px;
-        .common-heading {
-          margin-bottom: 20px;
-          margin-left: 15px;
-        }
-        .amount-input {
-          width: 100%;
-          border-radius: 15px;
-          position: relative;
-          margin-bottom: 40px;
-          .inner {
-            background: white;
-            border-radius: 15px;
-            width: 100%;
-            position: relative;
-            input {
-              padding: 13px 64px 13px 30px;
-              border-radius: 15px;
-              background: transparent;
-              width: 100%;
-              border: none;
-              outline: none;
-              color: #333;
-              font-weight: 600;
-            }
-            .curr-desc {
-              position: absolute;
-              top: 50%;
-              right: 30px;
-              transform: translateY(-50%);
-              font-weight: 500;
-              font-size: 16px;
-              margin: 0;
-            }
-          }
-          .input-note {
-            position: absolute;
-            bottom: -10px;
-            right: 0;
-            transform: translateY(100%);
-            font-size: 16px;
-            font-weight: 300;
-            opacity: 0.4;
-            margin: 0;
-          }
-          .correct-input{
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-radius: 10px;
-            width: 50px;
-            height: 100%;
-            svg{
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              path{
-                fill: white;
-              }
-            }
-            &.incorrect{
-              background: #EBEBEB;
-            }
-          }
-        }
-        .transfer-inputs {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          position: relative;
-          .input-item {
-            width: calc(50% - 30px);
-            position: relative;
-            .my-input {
-              width: 100%;
-              border-radius: 15px;
-              &.bordered {
-                padding: 1px;
-              }
-              input {
-                width: 100%;
-                background: #181818;
-                border-radius: 15px;
-                padding: 13px 30px;
-                width: 100%;
-                border: none;
-                outline: none;
-              }
-            }
-            &.left {
-              .transfer-arrows {
-                position: absolute;
-                top: 50%;
-                right: -16px;
-                transform: translate(100%, -50%);
-                cursor: pointer;
-              }
-            }
-            .destination-desc {
-              position: absolute;
-              bottom: -7px;
-              left: 15px;
-              transform: translateY(100%);
-              margin: 0;
-              opacity: 0.8;
-              font-size: 16px;
-              font-weight: 300;
             }
           }
         }
       }
     }
     .right-holder {
-      width: 41%;
       .common-heading {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
       .main-panel {
-        width: 100%;
-        background: #222222;
-        border-radius: 15px;
-        height: 602px;
-        margin-bottom: 10px;
-        padding: 40px 40px 10px 40px;
-        text-align: center;
-        .withdraw-info {
-          text-align: center;
-          .text {
-            font-size: 18px;
-            font-weight: 300;
-            margin: 40px 0;
+        height: 576px;
+        padding: 25px 30px 10px 30px;
+        .summary-box {
+          .info-item {
+            p {
+              font-size: 15px;
+            }
+            input {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .main-holder {
+    width: calc(100% - 20px);
+    height: calc(100vh - 65px);
+    padding: 20px 0px 20px 20px;
+  }
+  .content-holder {
+    .common-heading {
+      font-size: 17px;
+    }
+    .left-holder {
+      .img-holder {
+        height: 246px;
+        .car-stats {
+          .name,
+          .value {
+            p {
+              font-size: 16px;
+              &.desc {
+                font-size: 12px;
+              }
+            }
           }
           .value {
-            font-weight: 600;
-            font-size: 40px;
-            margin: 0;
-            display: inline-block;
-            position: relative;
+            p {
+              img {
+                width: 20px;
+              }
+            }
+          }
+        }
+      }
+      .amount-holder {
+        padding: 20px 15px;
+        margin: 20px 0 10px;
+        height: 251px;
+        .common-heading {
+          margin-bottom: 15px;
+          margin-left: 11px;
+        }
+        .amount-input {
+          margin-bottom: 27px;
+          .inner {
+            input {
+              padding: 10px 60px 10px 25px;
+              font-size: 15px;
+            }
+            .curr-desc {
+              right: 25px;
+              font-size: 14px;
+            }
+          }
+          .input-note {
+            font-size: 14px;
+            bottom: -4px;
+          }
+          .correct-input {
+            width: 42px;
+          }
+        }
+        .transfer-inputs {
+          .input-item {
+            width: calc(50% - 20px);
+            &.left {
+              .transfer-arrows {
+                right: -8px;
+                width: 26px;
+              }
+            }
+            .my-input {
+              input {
+                padding: 10px 25px;
+                font-size: 15px;
+              }
+            }
+            .destination-desc {
+              font-size: 14px;
+              bottom: -3px;
+              left: 11px;
+            }
+          }
+        }
+      }
+    }
+    .right-holder {
+      .common-heading {
+        margin-bottom: 12px;
+      }
+      .main-panel {
+        height: 480px;
+        padding: 20px 22px 7px 22px;
+        .withdraw-info {
+          .text {
+            font-size: 16px;
+            margin: 22px 0;
+          }
+          .value {
+            font-size: 30px;
             .value-desc {
-              position: absolute;
-              top: 0;
-              right: 0;
-              transform: translate(102%, -25%);
-              font-size: 18px;
-              font-weight: 300;
+              font-size: 15px;
             }
           }
           .desc {
-            font-size: 18px;
-            margin: 0;
-            opacity: 0.4;
+            font-size: 16px;
           }
         }
         .summary-box {
-          padding-top: 65px;
-          position: relative;
-          margin-top: 65px;
-          .border-maker {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40%;
-            height: 1px;
-            border-radius: 2px;
-            top: 0;
-          }
+          padding-top: 50px;
+          margin-top: 50px;
           .info-item {
-            width: 100%;
-            &.second {
-              margin-top: 30px;
-            }
             p {
-              font-size: 16px;
-              margin: 0;
-              font-weight: 500;
+              font-size: 14px;
               &.desc {
-                font-weight: 400;
-                opacity: 0.4;
+                font-size: 13px;
               }
             }
             input {
-              background: transparent;
-              padding: 5px 10px;
-              border: none;
-            }
-          }
-        }
-        .confirm-btn {
-          font-size: 16px;
-          font-weight: 400;
-          padding: 11px 40px;
-          border-radius: 10px;
-          margin-top: 65px;
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1700px) {
-    .content-holder {
-      .common-heading {
-        font-size: 18px;
-      }
-      .left-holder {
-        .img-holder {
-          height: 267px;
-          .car-stats {
-            .name,
-            .value {
-              p {
-                font-size: 17px;
-                &.desc {
-                  font-size: 13px;
-                }
-              }
-            }
-            .value {
-              p {
-                img {
-                  width: 23px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .right-holder {
-        .common-heading {
-          margin-bottom: 15px;
-        }
-        .main-panel {
-          height: 576px;
-          padding: 25px 30px 10px 30px;
-          .summary-box {
-            .info-item {
-              p {
-                font-size: 15px;
-              }
-              input {
-                font-size: 15px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1550px) {
-    .content-holder {
-      .common-heading {
-        font-size: 17px;
-      }
-      .left-holder {
-        .img-holder {
-          height: 246px;
-          .car-stats {
-            .name,
-            .value {
-              p {
-                font-size: 16px;
-                &.desc {
-                  font-size: 12px;
-                }
-              }
-            }
-            .value {
-              p {
-                img {
-                  width: 20px;
-                }
-              }
-            }
-          }
-        }
-        .amount-holder {
-          padding: 20px 15px;
-          margin: 20px 0 10px;
-          height: 251px;
-          .common-heading {
-            margin-bottom: 15px;
-            margin-left: 11px;
-          }
-          .amount-input {
-            margin-bottom: 27px;
-            .inner {
-              input {
-                padding: 10px 60px 10px 25px;
-                font-size: 15px;
-              }
-              .curr-desc {
-                right: 25px;
-                font-size: 14px;
-              }
-            }
-            .input-note {
               font-size: 14px;
-              bottom: -4px;
             }
-            .correct-input{
-              width: 42px;
-            }
-          }
-          .transfer-inputs {
-            .input-item {
-              width: calc(50% - 20px);
-              &.left {
-                .transfer-arrows {
-                  right: -8px;
-                  width: 26px;
-                }
-              }
-              .my-input {
-                input {
-                  padding: 10px 25px;
-                  font-size: 15px;
-                }
-              }
-              .destination-desc {
-                font-size: 14px;
-                bottom: -3px;
-                left: 11px;
-              }
+            &.second {
+              margin-top: 22px;
             }
           }
         }
       }
-      .right-holder {
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .content-holder {
+    .left-holder {
+      width: 56%;
+      .curr-holder {
+        .boxes-holder {
+          .box-item {
+            width: 48%;
+          }
+          .soon-curs {
+            display: none;
+          }
+        }
+      }
+    }
+    .right-holder {
+      width: 42%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+  }
+  .content-holder {
+    .common-heading {
+      font-size: 16px;
+    }
+    .left-holder {
+      width: 54%;
+      .img-holder {
+        height: 239px;
+      }
+      .amount-holder {
+        padding: 16px 13px;
+        margin: 15px 0 7px;
+        height: 228px;
         .common-heading {
           margin-bottom: 12px;
+          margin-left: 9px;
         }
-        .main-panel {
-          height: 480px;
-          padding: 20px 22px 7px 22px;
-          .withdraw-info {
-            .text {
-              font-size: 16px;
-              margin: 22px 0;
+        .amount-input {
+          margin-bottom: 25px;
+
+          .inner {
+            input {
+              padding: 7px 50px 7px 20px;
             }
-            .value {
-              font-size: 30px;
-              .value-desc {
-                font-size: 15px;
-              }
-            }
-            .desc {
-              font-size: 16px;
+            .curr-desc {
+              right: 20px;
+              font-size: 13px;
             }
           }
-          .summary-box {
-            padding-top: 50px;
-            margin-top: 50px;
-            .info-item {
-              p {
-                font-size: 14px;
-                &.desc {
-                  font-size: 13px;
-                }
+          .input-note {
+            font-size: 13px;
+          }
+          .correct-input {
+            width: 36px;
+            svg {
+              width: 15px;
+            }
+          }
+        }
+        .transfer-inputs {
+          .input-item {
+            &.left {
+              .transfer-arrows {
+                right: -9px;
+                width: 22px;
               }
+            }
+            .my-input {
               input {
-                font-size: 14px;
+                padding: 7px 20px;
               }
-              &.second {
-                margin-top: 22px;
-              }
+            }
+            .destination-desc {
+              font-size: 13px;
+              bottom: -2px;
+              left: 9px;
             }
           }
         }
       }
     }
-  }
-  
-  @media screen and (max-width: 1300px) {
-    .content-holder {
-      .left-holder {
-        width: 56%;
-        .curr-holder {
-          .boxes-holder {
-            .box-item {
-              width: 48%;
-            }
-            .soon-curs {
-              display: none;
-            }
-          }
-        }
-      }
-      .right-holder {
-        width: 42%;
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1200px) {
-    .content-holder {
+    .right-holder {
+      width: 44%;
       .common-heading {
-        font-size: 16px;
+        margin-bottom: 10px;
       }
-      .left-holder {
-        width: 54%;
-        .img-holder {
-          height: 239px;
-        }
-        .amount-holder {
-          padding: 16px 13px;
-          margin: 15px 0 7px;
-          height: 228px;
-          .common-heading {
-            margin-bottom: 12px;
-            margin-left: 9px;
-          }
-          .amount-input {
-            margin-bottom: 25px;
-            border-radius: 10px;
-            .inner {
-              border-radius: 10px;
-              input {
-                padding: 7px 50px 7px 20px;
-                border-radius: 10px;
-              }
-              .curr-desc {
-                right: 20px;
-                font-size: 13px;
-              }
-            }
-            .input-note {
+      .main-panel {
+        height: 448px;
+        padding: 16px 18px 5px 18px;
+        .summary-box {
+          .info-item {
+            p {
               font-size: 13px;
-            }
-            .correct-input{
-              width: 36px;
-              svg{
-                width: 15px;
-              }
-            }
-          }
-          .transfer-inputs {
-            .input-item {
-              &.left {
-                .transfer-arrows {
-                  right: -9px;
-                  width: 22px;
-                }
-              }
-              .my-input {
-                input {
-                  padding: 7px 20px;
-                }
-              }
-              .destination-desc {
-                font-size: 13px;
-                bottom: -2px;
-                left: 9px;
-              }
-            }
-          }
-        }
-      }
-      .right-holder {
-        width: 44%;
-        .common-heading {
-          margin-bottom: 10px;
-        }
-        .main-panel {
-          height: 448px;
-          padding: 16px 18px 5px 18px;
-          .summary-box {
-            .info-item {
-              p {
-                font-size: 13px;
-                &.desc {
-                  font-size: 12px;
-                }
-              }
-              input {
-                font-size: 13px;
-              }
-              &.second {
-                margin-top: 20px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 800px) {
-    .content-holder {
-      flex-wrap: wrap;
-      .left-holder,
-      .right-holder {
-        width: 90%;
-        margin: 0 auto;
-      }
-      .left-holder {
-        .img-holder {
-          height: 225px;
-        }
-      }
-      .right-holder {
-        .main-panel {
-          height: unset;
-          padding: 16px 18px;
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 640px) {
-    .content-holder {
-      padding: 0 10px;
-      .left-holder,
-      .right-holder {
-        width: 100%;
-      }
-      .right-holder {
-        .main-panel {
-          .withdraw-info {
-            .text {
-              font-size: 13px;
-              margin: 17px 0;
-            }
-            .value {
-              font-size: 22px;
-              .value-desc {
+              &.desc {
                 font-size: 12px;
               }
             }
-            .desc {
+            input {
               font-size: 13px;
             }
-          }
-          .summary-box {
-            padding-top: 30px;
-            margin-top: 30px;
-            .info-item {
-              p {
-                font-size: 12px;
-                &.desc {
-                  font-size: 11px;
-                }
-              }
-              input {
-                font-size: 12px;
-              }
-              &.second {
-                margin-top: 18px;
-              }
-            }
-          }
-          .confirm-btn {
-            margin-top: 30px;
-            font-size: 14px;
-            padding: 9px 30px;
-          }
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 500px) {
-    .content-holder {
-      .left-holder {
-        .img-holder{
-          &.racer{
-            .car-img{
-              margin-left: 0;
-            }
-          }
-        }
-        .amount-holder {
-          height: unset;
-          padding: 16px 13px 32px;
-          .transfer-inputs {
-            flex-wrap: wrap;
-            .input-item {
-              width: 100%;
-              &.left {
-                margin-bottom: 50px;
-                .transfer-arrows {
-                  right: unset;
-                  width: 30px;
-                  left: 50%;
-                  top: unset;
-                  bottom: 2px;
-                  transform: translate(-50%, 100%);
-                }
-              }
+            &.second {
+              margin-top: 20px;
             }
           }
         }
       }
     }
   }
-  
-  @media screen and (max-width: 1800px) {
-    .top-info {
-      h1 {
-        font-size: 30px;
+}
+@media screen and(max-width: 1024px) {
+  .main-holder {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(100vh - 40px);
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 100vh;
+    height: auto;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: portrait) {
+  .content-holder {
+    flex-wrap: wrap;
+    .left-holder,
+    .right-holder {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .left-holder {
+      .img-holder {
+        height: 225px;
+      }
+    }
+    .right-holder {
+      .main-panel {
+        height: unset;
+        padding: 16px 18px;
       }
     }
   }
-  
-  @media screen and (max-width: 1700px) {
-    .main-holder {
-      width: calc(100% - 430px);
-      padding-left: 30px;
-    }
-    .top-info {
-      padding-bottom: 10px;
-      .text-info {
-        max-width: 695px;
-        margin: 0 15px;
-        h1 {
-          font-size: 26px;
-          line-height: unset;
-          margin: 10px 0;
-        }
-        p {
-          font-size: 15px;
-        }
-      }
-      .info-box {
-        width: 400px;
-        min-width: 400px;
-        padding: 27px 15px;
-        .text-holder {
-          .value {
-            font-size: 21px;
-          }
-          .desc {
-            font-size: 15px;
-          }
-        }
-      }
-    }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 100vh;
+    height: auto;
   }
-  
-  @media screen and (max-width: 1550px) {
-    .main-holder {
-      width: calc(100% - 380px);
-      padding-left: 20px;
-    }
-    .top-info {
-      margin-top: 20px;
-      .text-info {
-        max-width: 665px;
-        margin: 0 10px;
-        h1 {
-          font-size: 24px;
-          margin: 5px 0 7px;
-        }
-        p {
-          font-size: 13px;
-        }
-      }
-      .back {
-        min-height: 105px;
-        padding: 0 14px;
-        p {
-          line-height: unset;
-          font-size: 14px;
-        }
-      }
-      .info-box {
-        width: 352px;
-        min-width: 352px;
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1300px) {
-    .top-info {
-      .text-info {
-        max-width: 665px;
-        h1 {
-          font-size: 20px;
-          margin: 3px 0 5px;
-        }
-        p {
-          font-size: 12px;
-          margin: 0;
-        }
-      }
-      .info-box {
-        width: 322px;
-        min-width: 322px;
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1200px) {
-    .main-holder {
-      width: calc(100% - 340px);
-      padding-left: 13px;
-    }
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .main-holder {
+  .content-holder {
+    padding: 0 10px;
+    .left-holder,
+    .right-holder {
       width: 100%;
-      padding: 0 13px 0px 10px;
     }
-  }
-  
-  @media screen and (max-width: 800px) {
-    .top-info {
-      flex-wrap: wrap;
-      .back {
-        order: 1;
-        p {
-          font-size: 11px;
-          margin-bottom: 7px;
-        }
-      }
-      .info-box {
-        width: calc(100% - 70px);
-        order: 2;
-        padding: 27px 18px;
-        min-width: unset;
-      }
-      .text-info {
-        order: 3;
-        margin: 15px auto;
-        text-align: center;
-      }
-    }
-  }
-  
-  @media screen and (max-width: 640px) {
-    .main-holder {
-      width: 100%;
-      padding: 0 10px 0px 10px;
-    }
-    .top-info {
-      padding-bottom: 0;
-      .back {
-        min-height: 80px;
-        p {
-          font-size: 10px;
-          margin-bottom: 6px;
-        }
-      }
-      .info-box {
-        width: calc(100% - 60px);
-        padding: 20px 18px;
-        .text-holder {
-          .value {
-            font-size: 18px;
+    .right-holder {
+      .main-panel {
+        .withdraw-info {
+          .text {
+            font-size: 13px;
+            margin: 17px 0;
           }
-          .desc {
-            font-size: 14px;
-          }
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 400px) {
-    .top-info {
-      .info-box {
-        padding: 20px 10px;
-        .text-holder {
           .value {
-            font-size: 17px;
+            font-size: 22px;
+            .value-desc {
+              font-size: 12px;
+            }
           }
           .desc {
             font-size: 13px;
           }
         }
+        .summary-box {
+          padding-top: 30px;
+          margin-top: 30px;
+          .info-item {
+            p {
+              font-size: 12px;
+              &.desc {
+                font-size: 11px;
+              }
+            }
+            input {
+              font-size: 12px;
+            }
+            &.second {
+              margin-top: 18px;
+            }
+          }
+        }
+        .confirm-btn {
+          margin-top: 30px;
+          font-size: 14px;
+          padding: 9px 30px;
+        }
       }
     }
   }
-  
+}
+
+@media screen and (max-width: 500px) and (orientation: portrait) {
+  .content-holder {
+    .left-holder {
+      .img-holder {
+        &.racer {
+          .car-img {
+            margin-left: 0;
+          }
+        }
+      }
+      .amount-holder {
+        height: unset;
+        padding: 16px 13px 32px;
+        .transfer-inputs {
+          flex-wrap: wrap;
+          .input-item {
+            width: 100%;
+            &.left {
+              margin-bottom: 50px;
+              .transfer-arrows {
+                right: unset;
+                width: 30px;
+                left: 50%;
+                top: unset;
+                bottom: 2px;
+                transform: translate(-50%, 100%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//CONTENT TO CSS AT THE BOTTOM!
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
+}

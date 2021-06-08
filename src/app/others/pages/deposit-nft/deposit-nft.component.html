@@ -1,20 +1,20 @@
 <div class="main-holder">
-  <div class="top-info">
-    <div class="back" [routerLink]="['/profile/my-profile']">
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="text-info">
-      <h1>Deposit NFTs</h1>
-      <p>
-        Welcome {{ nickname }}, you can deposit your NFTs from other platforms.
-      </p>
-    </div>
+  <div [routerLink]="['/profile/my-profile']" class="content-title">
+    <img
+      class="red-star"
+      src="assets/base/images/icons/icon-back-red.svg"
+      alt="red arrow"
+    />
+    <img
+      class="blue-star"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>DEPOSIT</p>
   </div>
-
   <div class="content-holder">
     <div class="left-holder">
-      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
+      <div class="img-holder" [ngClass]="{ racer: this.nftType === 'racer' }">
         <img
           class="car-img"
           *ngIf="this.nftType === 'car'"
@@ -24,7 +24,9 @@
         <img
           class="car-img"
           *ngIf="this.nftType === 'racer'"
-          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
+          [src]="
+            'assets/base/images/nft-racers/' + products[0]['image'] + '.png'
+          "
           alt="Image of selected car"
         />
         <div class="car-stats">
@@ -35,10 +37,7 @@
           <div class="value">
             <p>
               {{ nftIoiValue }}
-              <img
-                src="assets/base/images/curr-logos/nex/ioi-noshadow.png"
-                alt="ioi logo"
-              />
+              <img src="assets/base/images/icons/ioi-big.svg" alt="ioi logo" />
             </p>
             <p class="desc">IOI value</p>
           </div>
@@ -46,21 +45,30 @@
             <p>
               {{ nftIoiValue * 0.4 }}
               <img
-                src="assets/base/images/curr-logos/nex/dollar-logo.png"
-                alt="ioi logo"
+                src="assets/base/images/icons/dollar-big.svg"
+                alt="dollar logo"
               />
             </p>
             <p class="desc">USD value</p>
+          </div>
+          <div class="value">
+            <p>
+              <img
+                src="assets/base/images/icons/polygon-big.svg"
+                alt="polygonlogo"
+              />
+            </p>
+            <p class="desc">Polygon</p>
           </div>
         </div>
       </div>
 
       <div class="amount-holder">
         <p class="big-text">
-          If you deposited the funds and the transaction has been confirmed on the
-          blockchain, push the claim button. You can claim anytime after a
-          confirmed transaction on the blockchain. Please push the claim button to
-          see your balance in the dashboard.
+          If you deposited the funds and the transaction has been confirmed on
+          the blockchain, push the claim button. You can claim anytime after a
+          confirmed transaction on the blockchain. Please push the claim button
+          to see your balance in the dashboard.
         </p>
       </div>
     </div>

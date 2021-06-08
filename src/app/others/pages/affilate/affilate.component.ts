@@ -1,23 +1,23 @@
-import { AuthService } from 'src/app/user/services/auth.service';
-import { NotifiqService } from './../../../common/services/notifiq.service';
-import { NotifyService } from './../../../common/services/notify.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DriversService } from '../../../api/services';
-import { Subscription } from 'rxjs';
-import { Affiliates } from '../../../api/models/affiliates';
-import { AffiliatesService } from '../../../api/services/affiliates.service';
-import { AffiliateDetails } from 'src/app/api/models';
-
+import { AuthService } from "src/app/user/services/auth.service";
+import { NotifiqService } from "./../../../common/services/notifiq.service";
+import { NotifyService } from "./../../../common/services/notify.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { DriversService } from "../../../api/services";
+import { Subscription } from "rxjs";
+import { Affiliates } from "../../../api/models/affiliates";
+import { AffiliatesService } from "../../../api/services/affiliates.service";
+import { AffiliateDetails } from "src/app/api/models";
 
 @Component({
-  selector: 'app-affilate',
-  templateUrl: './affilate.component.html',
-  styleUrls: ['./affilate.component.scss']
+  selector: "app-affilate",
+  templateUrl: "./affilate.component.html",
+  styleUrls: ["./affilate.component.scss"],
 })
 export class AffilateComponent implements OnInit, OnDestroy {
-  myAfiilate = 'https://traderacemanager.com/user/referral/';
-  myAfiilateShort = '';
+  myAfiilate = "https://traderacemanager.com/user/referral/";
+  title = "common";
+  myAfiilateShort = "";
   affilateForm: FormGroup;
   formReady = false;
   pageOpen = false;
@@ -32,8 +32,14 @@ export class AffilateComponent implements OnInit, OnDestroy {
   rewardLevelMax = 0;
   isLevel = 1;
   dumbreferral: string;
-  constructor(protected api: DriversService, private formBuilder: FormBuilder, private notifyq: NotifiqService,
-    private identityService: AuthService, protected affService: AffiliatesService, private notify: NotifyService) { }
+  constructor(
+    protected api: DriversService,
+    private formBuilder: FormBuilder,
+    private notifyq: NotifiqService,
+    private identityService: AuthService,
+    protected affService: AffiliatesService,
+    private notify: NotifyService
+  ) {}
 
   ngOnInit(): void {
     this.getAffilateLink();
@@ -41,11 +47,8 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getReferralPlayers();
     this.getAffilate();
-    const balance = JSON.parse(localStorage.getItem('user-balance'));
-
+    const balance = JSON.parse(localStorage.getItem("user-balance"));
   }
-
-
 
   ngOnDestroy() {
     this.pageOpen = false;
@@ -58,20 +61,19 @@ export class AffilateComponent implements OnInit, OnDestroy {
   }
 
   copyInputMessage() {
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
+    let selBox = document.createElement("textarea");
+    selBox.style.position = "fixed";
+    selBox.style.left = "0";
+    selBox.style.top = "0";
+    selBox.style.opacity = "0";
     selBox.value = this.myAfiilate;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(selBox);
-    this.notify.error('Link copied to clipboard');
+    this.notify.error("Link copied to clipboard");
   }
-
 
   getAffilateLink() {
     const data = this.identityService.getStorageIdentity();
@@ -79,13 +81,11 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.myAfiilateShort = data.affiliate_slug;
     this.myAfiilate += data.affiliate_slug;
     this.fireAffilateForm();
-
   }
 
   fireAffilateForm() {
-
     this.affilateForm = this.formBuilder.group({
-      affilateLink: [this.myAfiilate]
+      affilateLink: [this.myAfiilate],
     });
     this.formReady = true;
   }
@@ -93,15 +93,18 @@ export class AffilateComponent implements OnInit, OnDestroy {
   getMyLevel() {
     this.Affilate = this.identityService.getStorageAff();
     const driver = this.identityService.getDriverMe();
-    this.dumbreferral = 'https://traderacemanager.com/user/referral/' + driver.nickname;
+    this.dumbreferral =
+      "https://traderacemanager.com/user/referral/" + driver.nickname;
   }
 
   getReferralPlayers() {
-    this.offObserver = this.affService.affiliatesList(this.actualPage).subscribe(data => {
-      const newdata: any = data;
-      this.totalPages = newdata.total_pages;
-      this.affilatesList = newdata.result;
-    });
+    this.offObserver = this.affService
+      .affiliatesList(this.actualPage)
+      .subscribe((data) => {
+        const newdata: any = data;
+        this.totalPages = newdata.total_pages;
+        this.affilatesList = newdata.result;
+      });
   }
 
   nextPage() {
@@ -113,13 +116,9 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.getReferralPlayers();
   }
 
-
   getAffilate() {
-    this.affService.affiliatesMe().subscribe(data => {
+    this.affService.affiliatesMe().subscribe((data) => {
       this.affMe = data;
     });
   }
-
-
-
 }

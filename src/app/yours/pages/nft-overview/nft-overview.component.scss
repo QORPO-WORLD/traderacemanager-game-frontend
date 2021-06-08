@@ -2,11 +2,11 @@
   margin: 0px;
   padding: 0px;
 }
-.title {
-  margin-bottom: 20px;
+
+.font {
+  font-family: "Earth Orbiter";
 }
 h2 {
-  font-family: Poppins;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -14,7 +14,6 @@ h2 {
   color: #ffffff;
 }
 h3 {
-  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -31,29 +30,36 @@ p {
   text-align: center;
   color: #868686;
 }
-
+.token-image {
+  width: 40px;
+  height: auto;
+}
 .overview-content {
+  height: 100%;
+  width: 100%;
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 50px;
 }
 .left-content {
+  height: 100;
   width: 34%;
-
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
-
+  .title {
+    height: 10%;
+  }
   .left-column {
-    height: 680px;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .my-nfts {
+    height: 30%;
     .nfts-box {
-      height: 230px;
-      background: #222222;
-      border-radius: 15px;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.6);
+
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -107,15 +113,20 @@ p {
     }
   }
   .details {
+    height: 65%;
+    .title {
+      height: 10%;
+    }
     .detail-box {
       overflow: hidden;
       position: relative;
-      height: 358px;
-      background: #222222;
-      border-radius: 15px;
+      height: 90%;
+      background: rgba(17, 17, 17, 0.6);
+
       display: flex;
       flex-direction: column;
 
+      justify-content: center;
       align-items: center;
       text-align: center;
       .box {
@@ -138,27 +149,24 @@ p {
           align-items: center;
           justify-content: center;
           .detail-img {
-            width: 350px;
-            max-width: 350px;
+            width: 100%;
           }
         }
         .right-side {
           width: 50%;
           display: flex;
           flex-direction: column;
+          justify-content: center;
           .detail-title {
-            margin-top: 40px;
+            margin-bottom: 5%;
           }
           .values-racers {
-            margin-top: 40px;
             display: flex;
             flex-direction: column;
             position: relative;
             align-items: center;
 
             .left-value {
-              margin-bottom: 10px;
-              margin-right: 0px;
             }
             .middle {
               width: 0px;
@@ -168,18 +176,13 @@ p {
               border: 1px solid #868686;
             }
             .right-value {
-              margin-left: 0px;
-              margin-top: 10px;
             }
           }
         }
       }
-      .detail-title {
-        margin-top: 30px;
-      }
+
       .detail-img {
-        margin-top: 20px;
-        width: 250px;
+        width: 40%;
         position: relative;
         .badge-name {
           top: 45%;
@@ -202,22 +205,22 @@ p {
           }
         }
         &.track {
-          width: 180px;
+          width: 40%;
         }
         &.team {
-          margin-top: -5px;
-          width: 160px;
-          height: 160px;
+          width: 40%;
         }
       }
       .values {
-        margin-top: 20px;
+        width: 90%;
+        margin-top: 5%;
         display: flex;
         position: relative;
         align-items: center;
+        justify-content: center;
 
         .left-value {
-          margin-right: 25px;
+          margin-right: 5%;
         }
         .middle {
           width: 0px;
@@ -226,7 +229,7 @@ p {
           border: 1px solid #868686;
         }
         .right-value {
-          margin-left: 25px;
+          margin-left: 5%;
         }
       }
       .changer {
@@ -235,7 +238,7 @@ p {
 
         justify-content: center;
         position: absolute;
-        bottom: 20px;
+        bottom: 5%;
         .dot {
           cursor: pointer;
           margin: 5px 7px;
@@ -258,11 +261,14 @@ p {
 .right-content {
   width: 64%;
   margin-left: 2%;
+  .title {
+    height: 10%;
+  }
   .complete-details {
     padding: 25px;
-    height: 680px;
-    background: #222222;
-    border-radius: 15px;
+    height: 90%;
+    background: rgba(17, 17, 17, 0.6);
+
     display: flex;
     flex-direction: column;
     .complete-upper {
@@ -375,6 +381,9 @@ p {
     font-size: 14px;
     line-height: 20px;
   }
+  .token-image {
+    width: 30px;
+  }
 }
 @media screen and (max-width: 1350px) {
   h2 {
@@ -390,107 +399,81 @@ p {
     font-size: 13px;
     line-height: 18px;
   }
+  .token-image {
+    width: 20px;
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .token-image {
+    width: 10px;
+  }
+  h2 {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  h3 {
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  p {
+    font-size: 6px;
+    line-height: 8px;
+  }
   .right-content {
     .complete-details {
       .complete-upper {
         .graph {
-          width: 60%;
           .middle-graph {
+            width: 75px;
+            height: 75px;
+          }
+          .pie {
             width: 140px;
             height: 140px;
           }
-          .pie {
-            width: 210px;
-            height: 210px;
-          }
         }
         .legend {
-          width: 40%;
+          width: fit-content;
+          margin: 0 auto;
           .legend-item {
-            width: 150px;
+            width: 100%;
+
+            align-items: center;
+
+            margin-top: 5%;
+
+            .legend-dot {
+              width: 5px;
+              height: 5px;
+
+              margin-right: 5px;
+            }
           }
         }
       }
       .complete-lower {
-        img {
-          width: 30px;
-        }
-      }
-    }
-  }
-  .left-content {
-    width: 34%;
+        height: 50%;
 
-    display: flex;
-    flex-direction: column;
-
-    .left-column {
-      height: 680px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .my-nfts {
-      .nfts-box {
-        height: 230px;
-        background: #222222;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        p {
-          margin-top: 5px;
-        }
-      }
-    }
-    .details {
-      .detail-box {
-        .detail-img {
-          &.team {
-            width: 140px;
-            height: 140px;
-          }
-        }
-
-        .racers {
-          .left-side {
-            .detail-img {
-              width: 350px;
-              max-width: 300px;
-            }
-          }
-        }
-        .values {
-          margin-top: 20px;
+        .stakes {
           display: flex;
-          flex-direction: column;
-          position: relative;
+          justify-content: space-evenly;
           align-items: center;
-          .left-value {
-            margin-bottom: 10px;
-            margin-right: 0px;
-          }
-          .middle {
-            width: 0px;
-
-            height: 0px;
-            width: 80%;
-            border: 1px solid #868686;
-          }
-          .right-value {
-            margin-left: 0px;
-            margin-top: 10px;
-          }
-          &.car-values {
-            margin-top: -10px;
+          .total-stakes,
+          .daily-stakes {
+            .stake-heading {
+              margin: 5px 0;
+            }
+            div {
+              margin: 5px 0;
+            }
           }
         }
       }
     }
   }
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1024px) and (orientation: portrait) {
   .overview-content {
     flex-direction: column;
   }
@@ -513,14 +496,16 @@ p {
           width: 100%;
         }
         .legend {
-          width: 100%;
+          width: fit-content;
+          margin: 0 auto;
           .legend-item {
+            width: 150px;
           }
         }
       }
       .complete-lower {
         height: 40%;
-        margin-top: 20px;
+        margin-top: 50px;
         .stakes {
           display: flex;
           justify-content: space-evenly;

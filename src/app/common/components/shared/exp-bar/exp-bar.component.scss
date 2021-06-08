@@ -1,212 +1,139 @@
-.info-bubble {
-  background: #111111;
-  box-shadow: 0px 0px 50px #000000, 0px 0px 70px #000000;
-  border-radius: 20px;
-  padding: 20px 24px 20px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .img-holder {
-    margin-right: 25px;
-    img {
-      min-width: 30px;
-    }
-  }
-}
-.exp-holder {
-  width: 100%;
-  margin-top: 15px;
-  .desc-holder {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 27px;
-    position: relative;
-    p {
-      font-size: 20px;
-      font-weight: 300;
-      margin: 0;
-      &.heading {
-        font-weight: 600;
-        padding-left: 30px;
-      }
-      &.desc {
-        font-size: 16px;
-        opacity: 0.6;
-      }
-      &.value {
-        font-size: 16px;
-        span {
-          opacity: 0.4;
-        }
-        img {
-          margin-left: 15px;
-        }
-      }
-    }
-  }
-  .info-icon {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index: 5;
-    &:hover {
-      .info-bubble {
-        opacity: 1;
-      }
-    }
-    .info-bubble {
-      width: 427px;
-      position: absolute;
-      top: -10px;
-      right: 0px;
-      transition: 0.2s;
-      transform: translateY(-100%);
-      pointer-events: none;
-      opacity: 0;
-      p {
-        font-size: 16px;
-        font-weight: 400;
-        margin: 0;
-      }
-    }
-  }
-  .exp-bar {
-    width: 100%;
-    box-shadow: -1px -2px 5px rgba(0, 0, 0, 0.2),
-      5px 3px 10px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    height: 10px;
-    position: relative;
-    margin-top: 5px;
-    .inner-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      box-shadow: 0px 0px 20px rgba(254, 23, 63, 0.3);
-    }
-  }
-}
 
-@media screen and (min-width: 2300px) and (min-height: 1300px) {
-  .exp-holder {
-    margin-top: 27px;
-    .desc-holder {
-      p {
-        font-size: 26px;
-        &.desc {
-          font-size: 20px;
-        }
-        &.value {
-          font-size: 20px;
+.cars-holder{
+  width: 100%;
+  .inner-slider{
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 15px;
+    &::-webkit-scrollbar {
+      display: block !important;
+      min-width: 1px;
+      min-height: 5px;
+      max-height: 5px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+    }
+    .car-item{
+      max-width: 200px;
+      min-width: 200px;
+      width: 100%;
+      background: rgba(17, 17, 17, 0.8);
+      margin-right: 30px;
+      height: 200px;
+      position: relative;
+      &.locked{
+        .level,
+        .img-holder .car-img{
+          opacity: .4;
         }
       }
-    }
-    .exp-bar {
-      margin-top: 27px;
-    }
-  }
-}
-@media screen and (min-width: 2100px) and (min-height: 1081px) {
-  .exp-holder {
-    margin-top: 20px;
-    .desc-holder {
-      p {
-        font-size: 23px;
-        &.desc {
-          font-size: 18px;
-        }
-        &.value {
-          font-size: 18px;
+      .level{
+        margin: 16px 0 9px;
+        width: 100%;
+        text-align: center;
+        font-family: Earth Orbiter;
+      }
+      .img-holder{
+        position: relative;
+        .lock-img{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
-    }
-    .exp-bar {
-      margin-top: 20px;
+      .spend-btn{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        font-weight: 400;
+        font-size: 14px;
+        cursor: default;
+        img{
+          width: 22px;
+        }
+      }
     }
   }
 }
 
 @media screen and (max-width: 1700px) {
-  .exp-holder {
-    .desc-holder {
-      p {
-        font-size: 18px;
-        &.desc {
-          font-size: 14px;
+  .cars-holder{
+    .inner-slider{
+      padding-bottom: 10px;
+      .car-item{
+        max-width: 185px;
+        min-width: 185px;
+        margin-right: 20px;
+        height: 180px;
+        .level{
+          margin: 13px 0 7px;
+          font-size: 15px;
         }
-        &.value {
-          font-size: 14px;
+        .spend-btn{
+          height: 40px;
+          font-size: 13px;
+          img{
+            width: 18px;
+          }
         }
       }
-    }
-    .exp-bar {
-      margin-top: 10px;
     }
   }
 }
 
 @media screen and (max-width: 1550px) {
-  .exp-holder {
-    margin-top: 17px;
-    .desc-holder {
-      p {
-        font-size: 16px;
-        &.desc {
-          font-size: 13px;
+  .cars-holder{
+    .inner-slider{
+      padding-bottom: 8px;
+      .car-item{
+        max-width: 175px;
+        min-width: 175px;
+        margin-right: 15px;
+        height: 165px;
+        .level{
+          margin: 10px 0 5px;
+          font-size: 14px;
         }
-        &.value {
-          font-size: 13px;
+        .spend-btn{
+          height: 37px;
+          font-size: 12px;
+          img{
+            width: 15px;
+          }
         }
       }
-    }
-    .exp-bar {
-      margin-top: 8px;
-      height: 8px;
     }
   }
 }
 
-@media screen and (max-width: 640px) {
-  .info-bubble {
-    .img-holder {
-      img {
-        min-width: 20px;
-        max-width: 20px;
-      }
-    }
-    p {
-      font-size: 13px !important;
-    }
-  }
-  .exp-holder {
-    .info-icon {
-      right: 20px;
-    }
-    .desc-holder {
-      flex-wrap: wrap;
-      p {
-        &.heading {
-          width: 100%;
-          margin-bottom: 5px;
-          padding: 0;
-          text-align: center;
+@media screen and (max-width: 1300px) {
+  .cars-holder{
+    .inner-slider{
+      padding-bottom: 5px;
+      .car-item{
+        max-width: 170px;
+        min-width: 170px;
+        margin-right: 12px;
+        height: 160px;
+        .level{
+          margin: 8px 0 5px;
+          font-size: 13px;
         }
-        &.desc {
-          font-size: 12px;
-          max-width: 110px;
-        }
-        &.value {
-          font-size: 12px;
-        }
-      }
-      .info-icon {
-        .info-bubble {
-          width: 300px;
+        .spend-btn{
+          height: 34px;
+          font-size: 11px;
+          img{
+            width: 13px;
+          }
         }
       }
     }

@@ -1,20 +1,21 @@
 <div class="main-holder">
-  <div class="top-info">
-    <div class="back" [routerLink]="['/profile/my-profile']">
-      <p>&lt;</p>
-      <p>{{ "shared.back" | translate }}</p>
-    </div>
-    <div class="text-info">
-      <h1>Withdraw NFTs</h1>
-      <p>
-        Welcome {{ nickname }}, you can withdraw your NFTs from other platforms.
-      </p>
-    </div>
+  <div [routerLink]="['/profile/my-profile']" class="content-title">
+    <img
+      class="red-star"
+      src="assets/base/images/icons/icon-back-red.svg"
+      alt="red arrow"
+    />
+    <img
+      class="blue-star"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>WITHDRAW</p>
   </div>
 
   <div class="content-holder">
     <div class="left-holder">
-      <div class="img-holder" [ngClass]="{'racer': this.nftType === 'racer'}">
+      <div class="img-holder" [ngClass]="{ racer: this.nftType === 'racer' }">
         <img
           class="car-img"
           *ngIf="this.nftType === 'car'"
@@ -24,7 +25,9 @@
         <img
           class="car-img"
           *ngIf="this.nftType === 'racer'"
-          [src]="'assets/base/images/nft-racers/' + products[0]['image'] + '.png'"
+          [src]="
+            'assets/base/images/nft-racers/' + products[0]['image'] + '.png'
+          "
           alt="Image of selected car"
         />
         <div class="car-stats">
@@ -35,10 +38,7 @@
           <div class="value">
             <p>
               {{ nftIoiValue }}
-              <img
-                src="assets/base/images/curr-logos/nex/ioi-noshadow.png"
-                alt="ioi logo"
-              />
+              <img src="assets/base/images/icons/ioi-big.svg" alt="ioi logo" />
             </p>
             <p class="desc">IOI value</p>
           </div>
@@ -46,8 +46,8 @@
             <p>
               {{ nftIoiValue * 0.4 }}
               <img
-                src="assets/base/images/curr-logos/nex/dollar-logo.png"
-                alt="ioi logo"
+                src="assets/base/images/icons/dollar-big.svg"
+                alt="dollar logo"
               />
             </p>
             <p class="desc">USD value</p>
@@ -55,8 +55,8 @@
           <div class="value">
             <p>
               <img
-                src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
-                alt="ioi logo"
+                src="assets/base/images/icons/polygon-big.svg"
+                alt="polygonlogo"
               />
             </p>
             <p class="desc">Polygon</p>
@@ -86,9 +86,24 @@
               [ngModelOptions]="{ standalone: true }"
               placeholder="Enter valid crypto address"
             />
-            <div class="correct-input my-cta-btn-back" [ngClass]="{'incorrect': cryptoMtfrckr.substring(0, 2) !== '0x' || cryptoMtfrckr.length < 26}">
-              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.7747 0.949537C19.4743 0.649145 18.9872 0.649145 18.6868 0.949537L6.21765 13.4187L1.31315 8.5142C1.01279 8.21377 0.525724 8.21377 0.225293 8.5142C-0.0750978 8.81459 -0.0750978 9.30162 0.225293 9.60205L5.67378 15.0505C5.97405 15.3508 6.46128 15.3509 6.76163 15.0505L19.7747 2.03739C20.0751 1.73696 20.0751 1.24993 19.7747 0.949537Z"/>
+            <div
+              class="correct-input my-cta-btn-back"
+              [ngClass]="{
+                incorrect:
+                  cryptoMtfrckr.substring(0, 2) !== '0x' ||
+                  cryptoMtfrckr.length < 26
+              }"
+            >
+              <svg
+                width="20"
+                height="16"
+                viewBox="0 0 20 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.7747 0.949537C19.4743 0.649145 18.9872 0.649145 18.6868 0.949537L6.21765 13.4187L1.31315 8.5142C1.01279 8.21377 0.525724 8.21377 0.225293 8.5142C-0.0750978 8.81459 -0.0750978 9.30162 0.225293 9.60205L5.67378 15.0505C5.97405 15.3508 6.46128 15.3509 6.76163 15.0505L19.7747 2.03739C20.0751 1.73696 20.0751 1.24993 19.7747 0.949537Z"
+                />
               </svg>
             </div>
           </div>
