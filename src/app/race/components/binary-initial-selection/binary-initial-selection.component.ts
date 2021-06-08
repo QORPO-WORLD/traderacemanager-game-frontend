@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CarsService, RacesService } from 'src/app/api/services';
@@ -85,6 +86,9 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   racerPk: number;
   nextRace: any;
   matched = false;
+  initialSubscribtion: Subscription;
+  liveObserver: Subscription;
+  playersObserver: Subscription;
   constructor(private identityService: AuthService, private carService: CarsService, private raceApi: RacesService, private route: Router) { }
 
   ngOnInit() {
@@ -106,6 +110,18 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearInterval(this.getInterval);
+    if (this.gameObserver) {
+      this.gameObserver.unsubscribe();
+    }
+    if (this.initialSubscribtion) {
+      this.initialSubscribtion.unsubscribe();
+    }
+    if (this.liveObserver) {
+      this.liveObserver.unsubscribe();
+    }
+    if (this.playersObserver) {
+      this.playersObserver.unsubscribe();
+    }
   }
 
   getMyDriver() {
@@ -149,7 +165,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   getMyAssets() {
-    this.carService.carsMineList().subscribe(
+    this.initialSubscribtion = this.carService.carsMineList().subscribe(
       data => {
         this.myAssets = data.racers;
 
@@ -202,22 +218,37 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
 
   getMyGames() {
-    this.gameObserver = this.raceApi.liveBinary().subscribe(
+
+        this.liveObserver = this.raceApi.liveBinary().subscribe(
+          data => {
+            console.log(data);
+            if (data.length > 0) {
+              this.automatchLoading = false;
+              this.nextRace = data[0];
+              this.getBinaryPlayers(data);
+
+            }
+          }
+        )
+
+  }
+
+  getMyGamesOnce() {
+    this.liveObserver = this.raceApi.liveBinary().subscribe(
       data => {
         console.log(data);
         if (data.length > 0) {
           this.automatchLoading = false;
           this.nextRace = data[0];
           this.getBinaryPlayers(data);
-
         }
       }
-    )
+    );
   }
 
   getBinaryPlayers(datalan: any) {
     clearInterval(this.getInterval);
-    this.raceApi.binaryPlayers(
+    this.playersObserver = this.raceApi.binaryPlayers(
       datalan[0].versus_hash
     ).subscribe(data => {
       const datax: any = data;
@@ -247,9 +278,10 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     }
 
     this.matched = true;
+    console.log(this.nextRace);
     setTimeout(() => {
       this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
- 
+      console.log('removing');
       localStorage.removeItem('binary');
          }, 3000);
 

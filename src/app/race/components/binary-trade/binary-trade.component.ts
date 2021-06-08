@@ -205,6 +205,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   addedCommon = 0;
   emoji: string;
   emojiCounter = 0;
+  pageOpen = true;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -229,7 +230,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.subscribeToStream();
 
     setTimeout(() => {
-       this.unityEnabled = true;
+      if (this.pageOpen === true) {
+        this.unityEnabled = true;
+      }
     }, 5000);
   }
 
@@ -242,6 +245,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     }
     this.binanceT = null;
     this.chartEnabled === false;
+    this.pageOpen = false;
   }
 
   subscribeToStream() {
@@ -673,6 +677,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.convertToHuman(true, 'won!!!', 'You');
     }
     this.raceEnded = true;
+    console.log(this.winner);
+    console.log(this.loser);
+    console.log(this.meWon);
   }
 
   onScore(data?: any) {
@@ -814,7 +821,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   getWhenStarts() {
     const then: any = this.startsAt * 1000;
     const now: any = DateTime.utc();
-    const diffTime = (then - now.ts) / 1000;
+    const diffTime = Math.abs((then - now.ts) / 1000);
 
     return diffTime;
   }
@@ -829,10 +836,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       ) => {
         this.launchSemafor();
       }, fireSemaforx);
-    } else {
-      this.semaforsVisible = false;
-      this.startsInSecs = null;
-    }
+    } 
   }
 
   launchSemafor() {
