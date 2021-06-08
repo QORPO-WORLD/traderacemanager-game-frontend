@@ -89,10 +89,12 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   initialSubscribtion: Subscription;
   liveObserver: Subscription;
   playersObserver: Subscription;
+  myDriverBalances: any;
   constructor(private identityService: AuthService, private carService: CarsService, private raceApi: RacesService, private route: Router) { }
 
   ngOnInit() {
     this.getMyDriver();
+    this.getCryptoStats();
     if (window.innerWidth < 641) {
       this.sliceBalancer = 2;
     }
@@ -302,6 +304,12 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
 
 
+  }
+
+
+  getCryptoStats() {
+    const data = this.identityService.getBalance();
+    this.myDriverBalances = data;
   }
 
 
