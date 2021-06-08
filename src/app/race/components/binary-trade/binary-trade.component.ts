@@ -215,8 +215,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   emoji: string;
   emojiCounter = 0;
   pageOpen = true;
-  leftScore: number;
-  rightScore: number;
+  leftScore = 0;
+  rightScore = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 

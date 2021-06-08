@@ -2,10 +2,13 @@
 <div class="main-cont">
 
   <div class="race-menu">
-    <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
+    <div class="menu-logo">
+      <img src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
+      <p class="beta-disclaim">Beta <br> <span>version</span></p>
+    </div>
     <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
   
-      <div class="overview">
+      <!-- <div class="overview">
         <div
             class="overview-item"
           >
@@ -69,7 +72,7 @@
           <span class="my-cta-btn-back"></span>
           <span class="my-cta-btn-back"></span>
         </div>
-      </div>
+      </div> -->
 
       <!-- <div class="right-items">
         <div class="switch-btn">
@@ -241,11 +244,19 @@
           
         </div>
 
-        <div class="my-progress">
-          <div class="inner-bar"></div>
+        <div class="stat-item">
+          <p class="desc">Score</p>
+          <div class="value">
+            <p class="negative" [ngClass]="{'negative': leftScore < 0, 'positive': leftScore > 0}">{{ leftScore }}</p>
+          </div>
         </div>
 
-        <p class="percent" *ngIf="roileft">{{roileft | number: "1.2-2":"fr"}}%</p>
+        <div class="stat-item">
+          <p class="desc">ROI</p>
+          <div class="value" *ngIf="roileft">
+            <p>{{roileft | number: "1.2-2":"fr"}}%</p>
+          </div>
+        </div>
 
       </div>
 
@@ -309,11 +320,19 @@
           
         </div>
 
-        <div class="my-progress">
-          <div class="inner-bar"></div>
+        <div class="stat-item">
+          <p class="desc">Score</p>
+          <div class="value">
+            <p class="negative" [ngClass]="{'negative': rightScore < 0, 'positive': rightScore > 0}">{{ rightScore }}</p>
+          </div>
         </div>
 
-        <p class="percent" *ngIf="roiright">{{roiright | number: "1.2-2":"fr"}}%</p>
+        <div class="stat-item">
+          <p class="desc">ROI</p>
+          <div class="value" *ngIf="roiright">
+            <p>{{roiright | number: "1.2-2":"fr"}}%</p>
+          </div>
+        </div>
 
       </div>
 
