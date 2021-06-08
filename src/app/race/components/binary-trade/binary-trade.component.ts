@@ -212,8 +212,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   colorUp = false;
   lastprice: number;
   addedCommon = 0;
-  emoji: string;
-  emojiCounter = 0;
+  emojiLeft: string;
+  emojiRight: string;
+  emojiLeftCounter = 0;
+  emojiRightCounter = 0;
   pageOpen = true;
   leftScore: number;
   rightScore: number;
@@ -718,18 +720,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.raceComp.yo(msg);
   }
 
-  avatarMsg(msg: any) {
-    if (msg.user_hash !== this.myId) {
+  avatarMsg(msg: any,) {
       if (msg.reaction === 2) {
-        this.resolveEmoji('happy');
+        this.resolveEmoji('happy', msg.user_hash !== this.myId);
       }
       if (msg.reaction === 3) {
-        this.resolveEmoji('sad');
+        this.resolveEmoji('sad', msg.user_hash !== this.myId);
       }
       if (msg.reaction === 4) {
-        this.resolveEmoji('brutal');
+        this.resolveEmoji('brutal', msg.user_hash !== this.myId);
       }
-    }
+    //}
     this.raceComp.yo(msg);
   }
 
@@ -968,20 +969,35 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.myDriverBalances = data;
   }
 
-  resolveEmoji(type: string) {
-
-    this.emoji = type;
-    for (let x = 1; x < 20; x++) {
+  resolveEmoji(type: string, lPlayer: boolean) {
+    if (lPlayer === true) {
+      this.emojiLeft = type;
+      for (let x = 1; x < 20; x++) {
+        setTimeout(() => {
+          this.emojiLeftCounter++;
+        },
+          x * 50);
+      }
+  
       setTimeout(() => {
-        this.emojiCounter++;
-      },
-        x * 50);
+        this.emojiLeft = null;
+        this.emojiLeftCounter = 0;
+      }, 3000);
+    } else {
+      this.emojiRight = type;
+      for (let x = 1; x < 20; x++) {
+        setTimeout(() => {
+          this.emojiRightCounter++;
+        },
+          x * 50);
+      }
+  
+      setTimeout(() => {
+        this.emojiRight = null;
+        this.emojiRightCounter = 0;
+      }, 3000);
     }
-
-    setTimeout(() => {
-      this.emoji = null;
-      this.emojiCounter = 0;
-    }, 3000);
+    
   }
 
   calcScore(data: Array<any>) {
