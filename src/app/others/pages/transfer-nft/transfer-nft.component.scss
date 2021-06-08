@@ -1,71 +1,14 @@
 .main-holder {
-  width: calc(100% - 457px);
-  padding-left: 40px;
-}
-
-.top-info {
-  margin: 30px 0 0;
-  padding-bottom: 20px;
-  width: 100%;
+  width: calc(100% - 40px);
+  height: calc(100vh - 80px);
+  padding: 40px 0px 40px 40px;
   display: flex;
-  flex-direction: row;
-
-  align-items: center;
-  h1 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 54px;
-  }
-  .back {
-    cursor: pointer;
-    transition: 0.2s;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    min-height: 132px;
-    background: linear-gradient(0deg, #111111, #111111);
-    box-shadow: 0px 0px 80px #000000;
-    border-radius: 20px;
-    p {
-      line-height: 30px;
-    }
-  }
-  .back:hover {
-    transform: scale(1.1);
-  }
-  .text-info {
-    max-width: 785px;
-    margin: 0 20px;
-  }
-  .info-box {
-    margin-left: auto;
-    width: 448px;
-    min-width: 448px;
-    background: #111111;
-    box-shadow: 0px 0px 80px #000000;
-    border-radius: 20px;
-    padding: 40px;
-    .text-holder {
-      text-align: center;
-      .value {
-        font-weight: 600;
-        font-size: 24px;
-        margin: 0;
-      }
-      .desc {
-        font-size: 16px;
-        font-weight: 300;
-        opacity: 0.4;
-        margin: 0;
-      }
-    }
-  }
+  position: relative;
 }
 
 .content-holder {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -82,19 +25,19 @@
       position: relative;
       text-align: center;
       height: 306px;
-      &.racer{
+      &.racer {
         text-align: left;
-        .car-img{
+        .car-img {
           margin-left: 15%;
         }
-        .car-stats{
+        .car-stats {
           flex-direction: column;
           left: unset;
           right: 0;
           transform: none;
           height: 100%;
           width: 50%;
-          .name{
+          .name {
             margin-right: 0;
             text-align: center;
           }
@@ -255,8 +198,8 @@
     }
     .main-panel {
       width: 100%;
-      background: #111111;
-      box-shadow: 0px 0px 80px #000000;
+      background: rgba(255, 255, 255, 0.05);
+
       border-radius: 15px;
       height: 602px;
       margin-bottom: 10px;
@@ -336,6 +279,10 @@
 }
 
 @media screen and (max-width: 1700px) {
+  .main-holder {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
+  }
   .content-holder {
     .common-heading {
       font-size: 18px;
@@ -386,6 +333,11 @@
 }
 
 @media screen and (max-width: 1550px) {
+  .main-holder {
+    width: calc(100% - 20px);
+    height: calc(100vh - 65px);
+    padding: 20px 0px 20px 20px;
+  }
   .content-holder {
     .common-heading {
       font-size: 17px;
@@ -529,6 +481,12 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+  }
   .content-holder {
     .common-heading {
       font-size: 16px;
@@ -614,8 +572,24 @@
     }
   }
 }
-
-@media screen and (max-width: 800px) {
+@media screen and(max-width: 1024px) {
+  .main-holder {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(100vh - 40px);
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 100vh;
+    height: auto;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: portrait) {
   .content-holder {
     flex-wrap: wrap;
     .left-holder,
@@ -637,7 +611,11 @@
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 100vh;
+    height: auto;
+  }
   .content-holder {
     padding: 0 10px;
     .left-holder,
@@ -692,9 +670,9 @@
 @media screen and (max-width: 500px) {
   .content-holder {
     .left-holder {
-      .img-holder{
-        &.racer{
-          .car-img{
+      .img-holder {
+        &.racer {
+          .car-img {
             margin-left: 0;
           }
         }
@@ -724,181 +702,85 @@
   }
 }
 
-@media screen and (max-width: 1800px) {
-  .top-info {
-    h1 {
-      font-size: 30px;
+//CONTENT TO CSS AT THE BOTTOM!
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
     }
   }
 }
 
-@media screen and (max-width: 1700px) {
-  .main-holder {
-    width: calc(100% - 430px);
-    padding-left: 30px;
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
   }
-  .top-info {
-    padding-bottom: 10px;
-    .text-info {
-      max-width: 695px;
-      margin: 0 15px;
-      h1 {
-        font-size: 26px;
-        line-height: unset;
-        margin: 10px 0;
-      }
-      p {
-        font-size: 15px;
-      }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
     }
-    .info-box {
-      width: 400px;
-      min-width: 400px;
-      padding: 27px 15px;
-      .text-holder {
-        .value {
-          font-size: 21px;
-        }
-        .desc {
-          font-size: 15px;
-        }
-      }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
     }
   }
 }
-
-@media screen and (max-width: 1550px) {
-  .main-holder {
-    width: calc(100% - 380px);
-    padding-left: 20px;
-  }
-  .top-info {
-    margin-top: 20px;
-    .text-info {
-      max-width: 665px;
-      margin: 0 10px;
-      h1 {
-        font-size: 24px;
-        margin: 5px 0 7px;
-      }
-      p {
-        font-size: 13px;
-      }
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
     }
-    .back {
-      min-height: 105px;
-      padding: 0 14px;
-      p {
-        line-height: unset;
-        font-size: 14px;
-      }
-    }
-    .info-box {
-      width: 352px;
-      min-width: 352px;
-    }
-  }
-}
-
-@media screen and (max-width: 1300px) {
-  .top-info {
-    .text-info {
-      max-width: 665px;
-      h1 {
-        font-size: 20px;
-        margin: 3px 0 5px;
-      }
-      p {
-        font-size: 12px;
-        margin: 0;
-      }
-    }
-    .info-box {
-      width: 322px;
-      min-width: 322px;
-    }
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .main-holder {
-    width: calc(100% - 340px);
-    padding-left: 13px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .main-holder {
-    width: 100%;
-    padding: 0 13px 0px 10px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .top-info {
-    flex-wrap: wrap;
-    .back {
-      order: 1;
-      p {
-        font-size: 11px;
-        margin-bottom: 7px;
-      }
-    }
-    .info-box {
-      width: calc(100% - 70px);
-      order: 2;
-      padding: 27px 18px;
-      min-width: unset;
-    }
-    .text-info {
-      order: 3;
-      margin: 15px auto;
-      text-align: center;
-    }
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .main-holder {
-    width: 100%;
-    padding: 0 10px 0px 10px;
-  }
-  .top-info {
-    padding-bottom: 0;
-    .back {
-      min-height: 80px;
-      p {
-        font-size: 10px;
-        margin-bottom: 6px;
-      }
-    }
-    .info-box {
-      width: calc(100% - 60px);
-      padding: 20px 18px;
-      .text-holder {
-        .value {
-          font-size: 18px;
-        }
-        .desc {
-          font-size: 14px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .top-info {
-    .info-box {
-      padding: 20px 10px;
-      .text-holder {
-        .value {
-          font-size: 17px;
-        }
-        .desc {
-          font-size: 13px;
-        }
-      }
+    p {
+      font-size: 17px;
     }
   }
 }
