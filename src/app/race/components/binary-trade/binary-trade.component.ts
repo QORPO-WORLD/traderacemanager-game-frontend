@@ -107,7 +107,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
-  animateWinnerAvatars = false;
+  animateMyWinnerAvatars = false;
+  animateRivalWinnerAvatars = false;
   affiliate: any;
   semaforVal = 6;
   chartTemp: any;
@@ -676,14 +677,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.unityEnabled === false;
       this.playSound('meLoose');
       this.convertToHuman(true, 'loose', 'You');
+      this.animateRivalWinnerAvatars = true;
     } else {
       this.playSound('meWin');
       this.convertToHuman(true, 'won!!!', 'You');
+      this.animateMyWinnerAvatars = true;
     }
     this.raceEnded = true;
-    console.log(this.winner);
-    console.log(this.loser);
-    console.log(this.meWon);
   }
 
   onScore(data?: any) {
@@ -749,7 +749,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     user_nickname: string;
   }>) {
     this.myId = this.identityService.getDriverMe().id;
-    console.log(data);
     for (let x = 0; x < data.length; x++) {
       if (data[x].user_hash === this.myId) {
         console.log(data[x]);
@@ -757,26 +756,20 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.myPlayer = data[x];
       }
     }
-    console.log(data);
-    console.log(this.myPlayer);
     if (this.mePlaying === true) {
       this.players.push(this.myPlayer);
-      console.log(this.players);
       for (let x = 0; x < data.length; x++) {
         if (data[x].user_hash !== this.myId) {
           this.players.push(data[x]);
         }
       }
-      console.log(data);
       if (this.startsInSecs > 5) {
         setTimeout(() => {
           this.notify.error('You can place 1 option before the game will start.');
           this.canBet = true;
         }, 2000);
-        console.log(data);
       }
     } else {
-      console.log(data);
       this.players = data;
     }
   }

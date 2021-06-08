@@ -258,18 +258,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      &.show-gif{
-        .avatar-box{
-          img{
-            opacity: 0;
-            z-index: -2;
-            &.gifko{
-              opacity: 1;
-              z-index: 0;
-            }
-          }
-        }
-      }
       .avatar-box{
           position: absolute;
           top: 0;
@@ -277,6 +265,16 @@
           height: 100%;
           width: 100%;
           transform: translateX(-50%);
+          &.show-gif{
+            img{
+              opacity: 0;
+              z-index: -2;
+              &.gifko{
+                opacity: 1;
+                z-index: 0;
+              }
+            }
+          }
           img{
               width: auto;
               height: 100%;
@@ -299,6 +297,10 @@
                   transform: rotateY(180deg);
                   margin-left: auto;
                   display: block;
+                  &.gifko{
+                    left: unset;
+                    right: 0;
+                  }
               }
           }
         }
