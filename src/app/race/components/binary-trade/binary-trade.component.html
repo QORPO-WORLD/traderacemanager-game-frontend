@@ -7,22 +7,81 @@
     <img class="menu-logo" src="/assets/base/images/binary-race/binary-logo.png" alt="" [routerLink]="['/race/start-race']">
     <div class="mobile-handler" [ngClass]="{'mobile-open': menuOpen === true}">
   
-      <div class="right-items">
-        <div class="name-holder">
-          <div class="avatar">
-            <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
+      <div class="overview">
+        <div
+            class="overview-item"
+          >
+            <div class="bubble-holder">
+              <img
+                src="/assets/base/images/polygon-logo.png"
+                alt=""
+              />
+            </div>
+            <div class="value-box">
+              <p class="number">
+                {{ myDriverBalances?.game_wallet_matic | number: "1.2-2":"fr" }}
+              </p>
+              <p class="add">+</p>
+            </div>
           </div>
-          <p>{{ myDriverStats?.nickname }}</p>
+          <div
+            class="overview-item"
+          >
+            <div class="bubble-holder ioi">
+              <img src="/assets/base/images/ioi-logo-small.png" alt="" />
+            </div>
+            <div class="value-box">
+              <p class="number">
+                {{ myDriverBalances?.game_wallet_ioi | number: "1.2-2":"fr" }}
+              </p>
+              <p class="add">+</p>
+            </div>
+          </div>
+          <div class="overview-item profile-cont">
+            <div class="bubble-holder profile">
+              <img
+                [src]="
+                  'assets/base/images/avatars/avatar' +
+                  affiliate?.affiliate_level +
+                  '-small.png'
+                "
+                alt=""
+              />
+            </div>
+            <div class="value-box">
+              <p>{{ myDriverStats?.nickname }}</p>
+            </div>
+          </div>
+
+          <div class="switch-btn">
+            <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
+          </div>
+          <div class="switch-btn">
+            <img src="/assets/base/images/zavod/info-icon.svg" alt="">
+          </div>
+
+        <div
+          class="my-mobile-button"
+          (click)="menuOpen = !menuOpen"
+          [ngClass]="{ open: menuOpen === true }"
+        >
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
+          <span class="my-cta-btn-back"></span>
         </div>
+      </div>
+
+      <!-- <div class="right-items">
         <div class="switch-btn">
           <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
         </div>
         <div class="switch-btn">
           <img src="/assets/base/images/zavod/info-icon.svg" alt="">
         </div>
-      </div>
+      </div> -->
 
-      <div class="center-items">
+      <!-- <div class="center-items">
         <div class="small-box">
           <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
           <p>Potential win: 1.6 IOI</p>
@@ -32,7 +91,7 @@
           <p>Balance: {{balance}} IOI</p>
         </div>
         <button class="quit-btn"  [routerLink]="['/race/start-race']">Quit game</button>
-      </div>
+      </div> -->
 
     </div>
 
@@ -48,6 +107,16 @@
     </div>
 
   </div>
+
+  <div class="left-msg my-msg" [ngClass]="{'animating': animatingLmsg === true}">
+    <p class="small">{{ leftMsgSmall }}</p>
+    <p>{{ leftMsgBig }}</p>
+  </div>
+  <div class="right-msg my-msg" [ngClass]="{'animating': animatingRmsg === true}">
+    <p class="small">{{ rightMsgSmall }}</p>
+    <p>{{ rightMsgBig }}</p>
+  </div>
+
   <div [hidden]="unityEnabled === false" class="unity-holder">
 
     <app-unityrace [enabled]="unityEnabled" [players]="players" #unityRace style="width: 100%; 
@@ -58,15 +127,26 @@
     </app-unityrace> 
   </div>
   <div class="content-holder">
-    <div class="mobile-avatars">
+    <div class="mobile-avatars" (click)="animateWinnerAvatars = !animateWinnerAvatars" [ngClass]="{'show-gif': animateWinnerAvatars === true}">
       <div class="avatar-box">
-        <img src="/assets/base/images/nft-racers/white-trm.png" alt="">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[0].user_id - 1].image + '.png'" alt="">
+        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0].user_id - 1].gif + '.gif'" alt="">
       </div>
       <div class="avatar-box rival">
-        <img src="/assets/base/images/nft-racers/red-trm.png" alt="">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1].user_id - 1].image + '.png'" alt="">
+        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1].user_id - 1].gif + '.gif'" alt="">
       </div>
     </div>
     <div class="chart-holder">
+
+      <div class="win-box">
+        <div class="inner-box">
+          <img src="/assets/base/images/teams/reward-token.png" alt="" class="reward-badge">
+          <p>1.6 IOI</p>
+          <p class="desc">Potential win</p>
+        </div>
+      </div>
+
       <div class="react-controls" *ngIf="mePlaying === true">
         <p>React!</p>
         <div class="control-btns">
@@ -112,7 +192,7 @@
         <div class="semafor-inner">
           <div class="color-box">
             <p class="desc">Race starts in</p>
-            <p class="time" *ngIf="startsInSecs > 6"><app-timer [value]="startsInSecs"></app-timer></p>
+            <p class="time" *ngIf="startsInSecs > 6 && semaforVal > 5"><app-timer [value]="startsInSecs"></app-timer></p>
             <p class="time" *ngIf="semaforVal > 1 && semaforVal < 6">{{semaforVal - 1}}s</p>
             <p class="time" *ngIf="semaforVal < 2">GO!</p>
           </div>
@@ -242,7 +322,7 @@
 
   </div>
 
-  <app-binary-winner (fatality)="fatality()" *ngIf="raceEnded === true" [winner]="winner" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner>
+  <!-- <app-binary-winner (fatality)="fatality()" *ngIf="raceEnded === true" [winner]="winner" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> -->
 
 </div>
 <div style="visibility: hidden;">
@@ -274,4 +354,26 @@
     <source src='/assets/sound/versus.mp3' type="audio/mp3">
 </audio>
 
+</div>
+<div class="emoticons-box" [hidden]="emojiCounter === 0 || !emoji">
+  <div class="emoti1" [hidden]="emojiCounter < 1" [ngClass]="emojiCounter > 0 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti2" [hidden]="emojiCounter < 2" [ngClass]="emojiCounter > 1 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti3" [hidden]="emojiCounter < 3" [ngClass]="emojiCounter > 2 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti4" [hidden]="emojiCounter < 4" [ngClass]="emojiCounter > 3 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti5" [hidden]="emojiCounter < 5" [ngClass]="emojiCounter > 4 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti6" [hidden]="emojiCounter < 6" [ngClass]="emojiCounter > 5 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti7" [hidden]="emojiCounter < 7" [ngClass]="emojiCounter > 6 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti8" [hidden]="emojiCounter < 8" [ngClass]="emojiCounter > 7 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti9" [hidden]="emojiCounter < 9" [ngClass]="emojiCounter > 8 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti10" [hidden]="emojiCounter < 10" [ngClass]="emojiCounter > 9 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti11" [hidden]="emojiCounter < 11" [ngClass]="emojiCounter > 10 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti12" [hidden]="emojiCounter < 12" [ngClass]="emojiCounter > 11 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti13" [hidden]="emojiCounter < 13" [ngClass]="emojiCounter > 12 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti14" [hidden]="emojiCounter < 14" [ngClass]="emojiCounter > 13 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti15" [hidden]="emojiCounter < 15" [ngClass]="emojiCounter > 14 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti16" [hidden]="emojiCounter < 16" [ngClass]="emojiCounter > 15 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti17" [hidden]="emojiCounter < 17" [ngClass]="emojiCounter > 16 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti18" [hidden]="emojiCounter < 18" [ngClass]="emojiCounter > 17 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti19" [hidden]="emojiCounter < 19" [ngClass]="emojiCounter > 18 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
+  <div class="emoti20" [hidden]="emojiCounter < 20" [ngClass]="emojiCounter > 19 ? 'open' : null"><img [src]="'/assets/base/images/emoticons/' + emoji + '.png'"></div>
 </div>
