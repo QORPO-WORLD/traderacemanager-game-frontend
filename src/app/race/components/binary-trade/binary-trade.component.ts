@@ -396,9 +396,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.chart = new Chart('canvas', this.config);
       this.fillInitData();
       Chart.pluginService.register(new BandsPlugin());
-      Chart.pluginService.register(ChartDataSets);
+      Chart.defaults.global.legend.display = false;
     }, 100)
-    Chart.defaults.global.legend.display = false;
+    
     this.config = {
       type: 'line',
       data: {
@@ -410,11 +410,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           data: [],
           lineTension: 0.1,
           pointStyle: []
-        }],
-        datalabels: {
-          align: 'end',
-          anchor: 'end'
-        }
+        }]
       },
       options: {
         scales: {
@@ -444,24 +440,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             }
           }]
         },
-        interaction: {
-          intersect: false
-        },
         plugins: {
-          datalabels: {
-            backgroundColor: function(context) {
-              return context.dataset.backgroundColor;
-            },
-            borderRadius: 4,
-            color: 'white',
-            font: {
-              weight: 'bold'
-            },
-            formatter: Math.round,
-            padding: 6
-          },
-          tooltip: {
-            enabled: false
+          tooltips: {
+            name: 'janoll',
+            enabled: false,
+            intersect: false
           }
         },
         bands: {
@@ -474,6 +457,19 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             colour: 'rgb(0, 212, 129)',
             type: 'dashed',
           }
+        },
+        tooltips: {
+          name: 'jano',
+          enabled: true,
+          intersect: true,
+          mode: 'index',
+          position: 'nearest',
+          
+        },
+        tooltip: {
+          name: 'janokk',
+          enabled: true,
+          intersect: false
         }
       }
     };
@@ -613,6 +609,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     popsock.on("winners", function (data) {
       const opt = JSON.parse(data);
+      console.log(opt);
       _this.onWinners(opt);
     });
 
@@ -915,7 +912,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.leftMsgBig = '';
         this.animatingLmsg = false;
       }, 3000);
-    } else if(this.animatingRmsg === false && lPlayer === false) {
+    } else if (this.animatingRmsg === false && lPlayer === false) {
       this.rightMsgSmall = msgSmall;
       this.rightMsgBig = msgBig;
       this.animatingRmsg = true;
@@ -956,7 +953,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     for (let x = 1; x < 20; x++) {
       setTimeout(() => {
         this.emojiCounter++;
-       },
+      },
         x * 200);
     }
 
