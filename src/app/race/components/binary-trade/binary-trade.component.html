@@ -245,7 +245,7 @@
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent" *ngIf="roileft">{{roileft}}%</p>
+        <p class="percent" *ngIf="roileft">{{roileft | number: "1.2-2":"fr"}}%</p>
 
       </div>
 
@@ -257,7 +257,7 @@
           <img src="/assets/base/images/binary-race/btc-logo.svg" alt="">
         
           <p *ngIf="currentValue; else loading" [ngClass]="colorUp === true ? 'colorup' : 'colordown'">
-            &#36; {{currentValue}}
+            &#36; {{currentValue | number: "1.2-2":"fr"}}
               </p>
           5
           <ng-template #loading>
@@ -313,7 +313,7 @@
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent" *ngIf="roiright">{{roiright}}%</p>
+        <p class="percent" *ngIf="roiright">{{roiright | number: "1.2-2":"fr"}}%</p>
 
       </div>
 

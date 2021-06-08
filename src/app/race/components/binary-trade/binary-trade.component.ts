@@ -214,6 +214,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   emoji: string;
   emojiCounter = 0;
   pageOpen = true;
+  leftScore: number;
+  rightScore: number;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -691,9 +693,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (opt.uh === this.myId) {
       this.myShots = data.p;
       this.roileft = data.r;
+      this.leftScore = this.calcScore(data.p);
     } else {
       this.oponentShots = data.p;
       this.roiright = data.r;
+      this.rightScore = this.calcScore(data.p);
     }
     this.playSound('action');
   }
@@ -970,7 +974,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   resolveEmoji(type: string) {
-    console.log(type);
+
     this.emoji = type;
     for (let x = 1; x < 20; x++) {
       setTimeout(() => {
@@ -984,6 +988,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.emojiCounter = 0;
     }, 3000);
   }
+
+  calcScore(data: Array<any>) {
+    let tScore = 0;
+    for (let x = 0; x < data.length; x++) {
+      tScore = tScore + Number(x);
+    }
+
+    return tScore;
+  }
+  
 
 
 }
