@@ -163,8 +163,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       datax => {
         const data: any = datax;
         this.myTeam = data;
-        console.log(data);
-        console.log('dsfdfd');
         this.myuser = data.me.user_id;
         this.bestRacer = this.myTeam.top10[0];
 
@@ -182,7 +180,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyTeam() {
     const data = this.identityService.getDriverMe();
     this.myTeamName = data.team;
-    console.log(this.myTeamName);
     this.myTeamData = data;
     const datax = this.identityService.getLeaderboardMe();
     this.teamId = datax.team_id;

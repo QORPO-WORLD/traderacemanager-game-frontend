@@ -925,7 +925,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.leftMsgSmall = '';
         this.leftMsgBig = '';
         this.animatingLmsg = false;
-      }, 10);
+      }, 3000);
     } else if (this.animatingRmsg === false && lPlayer === false) {
       this.rightMsgSmall = msgSmall;
       this.rightMsgBig = msgBig;
@@ -934,7 +934,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.rightMsgSmall = '';
         this.rightMsgBig = '';
         this.animatingRmsg = false;
-      }, 10);
+      }, 3000);
     }
   }
 
