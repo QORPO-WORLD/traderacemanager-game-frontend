@@ -205,6 +205,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   addedCommon = 0;
   emoji: string;
   emojiCounter = 0;
+  pageOpen = true;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -229,7 +230,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.subscribeToStream();
 
     setTimeout(() => {
-       this.unityEnabled = true;
+      if (this.pageOpen === true) {
+        this.unityEnabled = true;
+      }
     }, 5000);
   }
 
@@ -242,6 +245,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     }
     this.binanceT = null;
     this.chartEnabled === false;
+    this.pageOpen = false;
   }
 
   subscribeToStream() {

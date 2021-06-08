@@ -218,6 +218,28 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
 
   getMyGames() {
+    const bin = JSON.parse(localStorage.getItem('binary'));
+    if (bin) {
+      if (Date.now() > bin.time) {
+        this.liveObserver = this.raceApi.liveBinary().subscribe(
+          data => {
+            console.log(data);
+            if (data.length > 0) {
+              this.automatchLoading = false;
+              this.nextRace = data[0];
+              this.getBinaryPlayers(data);
+
+            }
+          }
+        )
+      } else {
+        clearInterval(this.getInterval);
+        localStorage.removeItem('binary');
+      }
+    }
+  }
+
+  getMyGamesOnce() {
     this.liveObserver = this.raceApi.liveBinary().subscribe(
       data => {
         console.log(data);
@@ -225,10 +247,9 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           this.automatchLoading = false;
           this.nextRace = data[0];
           this.getBinaryPlayers(data);
-
         }
       }
-    )
+    );
   }
 
   getBinaryPlayers(datalan: any) {
