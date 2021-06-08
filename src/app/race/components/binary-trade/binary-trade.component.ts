@@ -116,6 +116,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   racers: Array<any> = [
     {
+      id: 0,
+      name: 'Rookie',
+      image: 'rookie-basic',
+      gif: "",
+      sum: 0,
+      pks: []
+    },
+    {
       id: 1,
       name: 'Axle',
       image: 'white-trm',
