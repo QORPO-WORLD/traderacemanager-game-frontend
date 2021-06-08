@@ -60,7 +60,7 @@
         >
           <div class="item-content">
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/flag.svg" alt="flag" />
+            <img src="assets/base/images/icons/car.svg" alt="car" />
             <p class="menu-title">MY NFTs</p>
           </div>
           <div class="bottom-border my-cta-btn-back"></div>
@@ -74,47 +74,41 @@
         >
           <div class="item-content">
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/gamepad.svg" alt="gamepad" />
+            <img src="assets/base/images/icons/overview.svg" alt="graph icon" />
             <p class="menu-title">NFTs Overview</p>
           </div>
           <div class="bottom-border my-cta-btn-back"></div>
         </div>
-
         <div
-          (click)="title = 'affiliate'; mobileMenu = false"
-          [ngClass]="{
-            active: title === 'affiliate'
-          }"
-          class="item"
-        >
-          <div class="item-content">
-            <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/car.svg" alt="car" />
-            <p class="menu-title">Affiliate</p>
-          </div>
-          <div class="bottom-border my-cta-btn-back"></div>
-        </div>
-        <div
-          (click)="title = 'rewards'; mobileMenu = false"
-          [ngClass]="{ active: title === 'rewards' }"
-          class="item"
-        >
-          <div class="item-content">
-            <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/fire.svg" alt="fire" />
-            <p class="menu-title">Rewards</p>
-          </div>
-          <div class="bottom-border my-cta-btn-back"></div>
-        </div>
-        <div
-          (click)="title = 'history'; mobileMenu = false"
+          (click)="
+            title = 'history'; mobileMenu = false; showSecond = 'transactions'
+          "
           [ngClass]="{ active: title === 'history' }"
           class="item"
         >
           <div class="item-content">
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/badge.svg" alt="badge" />
+            <img
+              src="assets/base/images/icons/history.svg"
+              alt="history icon"
+            />
             <p class="menu-title">History</p>
+          </div>
+          <div class="bottom-border my-cta-btn-back"></div>
+        </div>
+        <div class="item">
+          <div class="item-content">
+            <div class="hover-effect"></div>
+            <img src="assets/base/images/icons/badge.svg" alt="badge" />
+            <p class="menu-title">Settings</p>
+          </div>
+          <div class="bottom-border my-cta-btn-back"></div>
+        </div>
+        <div class="item">
+          <div class="item-content">
+            <div class="hover-effect"></div>
+            <img src="assets/base/images/icons/badge.svg" alt="badge" />
+            <p class="menu-title">Log out</p>
           </div>
           <div class="bottom-border my-cta-btn-back"></div>
         </div>
@@ -138,6 +132,7 @@
         *ngIf="title === 'mynfts' && marketState === 1"
       ></app-my-nft>
       <app-my-nft-detail
+        class="detail-content"
         *ngIf="title === 'mynfts' && marketState === 2"
         [assetId]="selectedId"
         [assetType]="selectedType"

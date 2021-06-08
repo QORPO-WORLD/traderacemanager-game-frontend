@@ -1,21 +1,20 @@
-import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Transaction } from 'src/app/api/models';
-import { TransactionsService } from 'src/app/api/services';
+import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Transaction } from "src/app/api/models";
+import { TransactionsService } from "src/app/api/services";
 
 @Component({
-  selector: 'app-transactions',
-  templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  selector: "app-transactions",
+  templateUrl: "./transactions.component.html",
+  styleUrls: ["./transactions.component.scss"],
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
+  content = 1;
   transObserver: Subscription;
   transactions: Transaction[];
   actualPage = 1;
   totalPages: number;
-  constructor(protected api: TransactionsService) {
-
-  }
+  constructor(protected api: TransactionsService) {}
 
   ngOnInit(): void {
     this.getTransactions();
@@ -28,11 +27,11 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   }
 
   getTransactions() {
-    this.transObserver = this.api.transactionsList({
-      page: this.actualPage
-
-    }).
-      subscribe(data => {
+    this.transObserver = this.api
+      .transactionsList({
+        page: this.actualPage,
+      })
+      .subscribe((data) => {
         const newdata: any = data;
         this.transactions = newdata.results;
         this.totalPages = newdata.total_pages;
@@ -47,5 +46,4 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     this.actualPage--;
     this.getTransactions();
   }
-
 }
