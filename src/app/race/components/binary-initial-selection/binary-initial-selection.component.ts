@@ -1,6 +1,5 @@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { CarsService, RacesService } from 'src/app/api/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/user/services/auth.service';
