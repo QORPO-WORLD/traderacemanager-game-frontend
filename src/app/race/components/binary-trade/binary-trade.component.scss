@@ -21,6 +21,23 @@
     }
     .menu-logo{
       cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .beta-disclaim{
+        margin: 0 0px -33px 10px;
+        font-size: 15px;
+        font-family: Earth Orbiter;
+        line-height: 1;
+        font-weight: 700;
+        span{
+          position: relative;
+          right: -7px;
+          font-family: Earth Orbiter;
+          line-height: 1;
+          font-weight: 700;
+        }
+      }
     }
     .overview {
       pointer-events: all;
@@ -268,6 +285,7 @@
           height: 100%;
           width: 100%;
           transform: translateX(-50%);
+          z-index: 0;
           &.show-gif{
             img{
               opacity: 0;
@@ -497,6 +515,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      position: relative;
+      z-index: 11;
       .player-stats {
         width: 40%;
         max-width: 163px;
@@ -504,15 +524,10 @@
           .name {
             color: #00d1ff;
           }
-          .my-progress {
-            .inner-bar {
-              background: #00d1ff;
-            }
-          }
         }
         .name {
           font-size: 24px;
-          font-family: "True-lies";
+          font-family: Earth Orbiter;
           margin: 0 0 20px;
           color: #fe183f;
         }
@@ -521,10 +536,11 @@
           justify-content: space-between;
           align-items: center;
           width: 100%;
+          margin-bottom: 20px;
           .target-item {
             width: 24px;
             height: 24px;
-            background: #b9b9b9;
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             position: relative;
             img {
@@ -558,18 +574,32 @@
             }
           }
         }
-        .my-progress {
+        .stat-item{
           width: 100%;
-          background: white;
-          border-radius: 5px;
-          height: 10px;
-          position: relative;
-          margin: 6px 0;
-          .inner-bar {
-            height: 100%;
-            background: #fe183f;
-            border-radius: 5px;
-            width: 20%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          .desc{
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+          }
+          .value{
+            height: 40px;
+            padding: 6px 10px 0;
+            background: rgba(255,255,255, .15);
+            p{
+              font-weight: 600;
+              font-size: 18px;
+              margin: 0;
+              &.positive{
+                color: #00D581;
+              }
+              &.negative{
+                color: #FE183F;
+              }
+            }
           }
         }
         .percent {
@@ -613,7 +643,7 @@
         }
         .data-box {
           width: 31%;
-          background: white;
+          background: rgba(17,17,17,.6);
           text-align: center;
           &.bordered {
             border-right: 1px solid #ebebeb;
@@ -623,7 +653,6 @@
           }
           p,
           p.bin-trade span {
-            color: #333333;
             font-weight: 500;
             font-size: 20px;
             margin: 10px 0;
@@ -641,7 +670,13 @@
       height: 75px;
       padding: 0 0 0 40px;
       .menu-logo {
-        width: 65px;
+        img{
+          width: 65px;
+        }
+        .beta-disclaim{
+          margin: 0 0px -26px 10px;
+          font-size: 13px;
+        }
       }
     }
     .content-holder{
@@ -689,7 +724,13 @@
       height: 65px;
       padding: 0 0 0 30px;
       .menu-logo {
-        width: 60px;
+        img{
+          width: 60px;
+        }
+        .beta-disclaim{
+          margin: 0 0px -26px 10px;
+          font-size: 12px;
+        }
       }
       .overview {
         .overview-item {
@@ -746,7 +787,13 @@
       height: 50px;
       padding: 0 0 0 22px;
       .menu-logo {
-        width: 40px;
+        img{
+          width: 40px;
+        }
+        .beta-disclaim{
+          margin: 0 0px -14px 7px;
+          font-size: 8px;
+        }
       }
       .overview {
         padding-right: 20px;
@@ -957,6 +1004,7 @@
                         margin: 0 0 12px;
                     }
                     .targets-holder{
+                      margin-bottom: 10px;
                         .target-item{
                             width: 15px;
                             height: 15px;
@@ -967,6 +1015,17 @@
                     }
                     .percent{
                         font-size: 14px;
+                    }
+                    .stat-item{
+                      .desc{
+                        font-size: 14px;
+                      }
+                      .value{
+                        height: 33px;
+                        p{
+                          font-size: 14px;
+                        }
+                      }
                     }
                 }
                 .player-controls{
@@ -1178,15 +1237,28 @@
             }
             .control-panel{
                 justify-content: center;
+                position: unset;
                 .player-stats{
                     position: absolute;
-                    top: 200px;
+                    top: 175px;
                     left: 9%;
                     max-width: 129px;
                     &.rival{
                         left: unset;
                         text-align: right;
                         right: 9%;
+                    }
+                    .stat-item{
+                      margin-bottom: 5px;
+                      .desc{
+                        font-size: 12px;
+                      }
+                      .value{
+                        height: 30px;
+                        p{
+                          font-size: 13px;
+                        }
+                      }
                     }
                     .name{
                         font-size: 20px;
@@ -1335,7 +1407,7 @@
             .control-panel{
                 .player-stats{
                     position: absolute;
-                    top: 200px;
+                    top: 160px;
                     left: 3%;
                     max-width: 105px;
                     &.rival{
@@ -1380,7 +1452,76 @@
   }
 }
 
-.emoticons-box {
+.emoticons-box.leftis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  div {
+    opacity: 0;
+    position: absolute;
+    transition: 0.5s ease-out;
+  }
+  div.open {
+    opacity: 1;
+    z-index: 1;
+  }
+  .emoti1 {
+    top: 5%;
+    left: 75%;
+  }
+  .emoti2 {
+    top: 5%;
+    left: 8%;
+  }
+  .emoti3 {
+    top: 4%;
+    left: 26%;
+  }
+  .emoti4 {
+    top: 10%;
+    left: 3%;
+  }
+  .emoti5 {
+    top: 63%;
+    left: 7%;
+  }
+  .emoti6 {
+    top: 2%;
+    left: 7%;
+  }
+  .emoti7 {
+    top: 20%;
+    left: 20%;
+  }
+  .emoti8 {
+    top: 90%;
+    left: 10%;
+  }
+  .emoti9 {
+    top: 80%;
+    left: 20%;
+  }
+  .emoti10 {
+    top: 50%;
+    left: 10%;
+  }
+  .emoti11 {
+    top: 83%;
+    left: 7%;
+  }
+  .emoti12 {
+    top: 90%;
+    left: 8%;
+  }
+  .emoti13 {
+    top: 42%;
+    left: 9%;
+  }
+}
+
+.emoticons-box.rightis {
   position: absolute;
   top: 0;
   left: 0;
@@ -1401,11 +1542,11 @@
   }
   .emoti2 {
     top: 15%;
-    left: 8%;
+    left: 88%;
   }
   .emoti3 {
     top: 74%;
-    left: 26%;
+    left: 86%;
   }
   .emoti4 {
     top: 10%;
@@ -1417,31 +1558,31 @@
   }
   .emoti6 {
     top: 70%;
-    left: 7%;
+    left: 71%;
   }
   .emoti7 {
     top: 60%;
-    left: 3%;
+    left: 93%;
   }
   .emoti8 {
     top: 90%;
-    left: 20%;
+    left: 80%;
   }
   .emoti9 {
     top: 80%;
-    left: 20%;
+    left: 93%;
   }
   .emoti10 {
     top: 50%;
-    left: 60%;
+    left: 97%;
   }
   .emoti11 {
     top: 83%;
-    left: 70%;
+    left: 97%;
   }
   .emoti12 {
     top: 10%;
-    left: 80%;
+    left: 85%;
   }
   .emoti13 {
     top: 15%;
