@@ -214,9 +214,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
     this.startsInSecs = this.getWhenStarts();
-    console.log(this.startsInSecs);
     setTimeout(() => {
       this.raceStarted = true;
+      const newwhen = this.getWhenStarts();
+      this.endVal = newwhen + 60;
+      console.log(this.endVal);
     }, this.startsInSecs * 1000)
     this.whenStarts();
     this.getBinaryPlayers();
@@ -822,13 +824,15 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const now: any = DateTime.utc();
     const diffTime = Math.abs((then - now.ts) / 1000);
 
-    return diffTime;
+    return Math.round(diffTime);
   }
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
+
     this.startVal = newwhen;
-    this.endVal = newwhen + 60;
+    //this.endVal = newwhen + 60;
+    console.log(this.startVal);
     const fireSemaforx = (newwhen - 5) * 1000;
     if (fireSemaforx > 0) {
       setTimeout((

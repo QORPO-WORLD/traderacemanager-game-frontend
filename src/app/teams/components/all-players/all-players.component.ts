@@ -15,7 +15,7 @@ export class AllPlayersComponent implements OnInit {
   mydrvr: any;
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
-  actualPage = 0;
+  actualPage = 1;
   totalPages: number;
   mydrvrData: any;
   cachedLdrbrd: any;
@@ -48,7 +48,7 @@ export class AllPlayersComponent implements OnInit {
       .subscribe(datax => {
         const data: any = datax;
         this.players = data.results;
-        this.totalPages = data.total_pages - 1;
+        this.totalPages = data.total_pages;
         this.updateTime = data.last_update_at;
 
         this.isMePage();

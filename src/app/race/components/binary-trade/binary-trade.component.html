@@ -266,7 +266,7 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p class="bin-trade" *ngIf="endVal && raceStarted === true">
+          <p class="bin-trade" *ngIf="raceStarted === true">
             <app-timer [value]="endVal"></app-timer> sec
           </p>
           <p class="bin-trade" *ngIf="endVal && raceStarted === false">
@@ -320,7 +320,7 @@
     </div>
 
   </div>
-<div  *ngIf="raceEnded === true && winner && loser && meWon" >
+<div  *ngIf="raceEnded === true && winner && loser" >
 <app-binary-winner (fatality)="fatality()" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> 
 </div>
 </div>
