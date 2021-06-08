@@ -228,7 +228,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.subscribeToStream();
 
     setTimeout(() => {
-      this.unityEnabled = true;
+       this.unityEnabled = true;
     }, 5000);
   }
 
@@ -396,9 +396,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.chart = new Chart('canvas', this.config);
       this.fillInitData();
       Chart.pluginService.register(new BandsPlugin());
-      Chart.defaults.global.legend.display = false;
+      
     }, 100)
-    
+    Chart.defaults.global.legend.display = false;
     this.config = {
       type: 'line',
       data: {
@@ -702,15 +702,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   avatarMsg(msg: any) {
-    console.log(msg);
-    if (msg.reaction === 2) {
-      this.resolveEmoji('happy');
-    }
-    if (msg.reaction === 3) {
-      this.resolveEmoji('sad');
-    }
-    if (msg.reaction === 4) {
-      this.resolveEmoji('brutal');
+    if (msg.user_hash !== this.myId) {
+      if (msg.reaction === 2) {
+        this.resolveEmoji('happy');
+      }
+      if (msg.reaction === 3) {
+        this.resolveEmoji('sad');
+      }
+      if (msg.reaction === 4) {
+        this.resolveEmoji('brutal');
+      }
     }
     this.raceComp.yo(msg);
   }
