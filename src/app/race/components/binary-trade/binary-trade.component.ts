@@ -425,6 +425,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
               duration: 20000,
               refresh: 1000,
               delay: 2000,
+            },
+            ticks: {
+              fontColor: "#868686",
+              reverse: false,
+              stepSize: 5
+
             }
           },
           yAxes: [{
@@ -445,13 +451,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             }
           }]
         },
-        plugins: {
-          tooltips: {
-            name: 'janoll',
-            enabled: false,
-            intersect: false
-          }
-        },
         bands: {
           yValue: this.currentValue,
           baseColorGradientColor: [
@@ -470,11 +469,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           mode: 'index',
           position: 'nearest',
           
-        },
-        tooltip: {
-          name: 'janokk',
-          enabled: true,
-          intersect: false
         }
       }
     };

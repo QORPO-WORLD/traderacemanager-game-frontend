@@ -84,6 +84,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   getInterval: any;
   racerPk: number;
   nextRace: any;
+  gettInterval: any;
   matched = false;
   initialSubscribtion: Subscription;
   liveObserver: Subscription;
@@ -99,16 +100,21 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     const bin = JSON.parse(localStorage.getItem('binary'));
     if (bin) {
       if (Date.now() < bin.time) {
-        this.getInterval = setInterval(() => {
+        this.gettInterval = setInterval(() => {
           this.getMyGames();
-        }, 800);
+        }, 1500);
       }
     }
 
   }
 
   ngOnDestroy() {
-    clearInterval(this.getInterval);
+    if (this.getInterval) {
+      clearInterval(this.getInterval);
+    }
+    if (this.gettInterval) {
+      clearInterval(this.gettInterval);
+    }
     if (this.gameObserver) {
       this.gameObserver.unsubscribe();
     }
@@ -210,7 +216,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
           this.getMyGames();
 
-        }, 800);
+        }, 1500);
       }
     )
   }
@@ -222,6 +228,12 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           data => {
             console.log(data);
             if (data.length > 0) {
+              if (this.getInterval) {
+                clearInterval(this.getInterval);
+              }
+              if (this.gettInterval) {
+                clearInterval(this.gettInterval);
+              }
               this.automatchLoading = false;
               this.nextRace = data[0];
               this.getBinaryPlayers(data);
@@ -246,7 +258,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   getBinaryPlayers(datalan: any) {
-    clearInterval(this.getInterval);
+
     this.playersObserver = this.raceApi.binaryPlayers(
       datalan[0].versus_hash
     ).subscribe(data => {
@@ -261,12 +273,13 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     user_nickname: string;
   }>) {
     const myid = this.identityService.getDriverMe().id;
-
+    console.log(this.nextRace);
     for (const el of data) {
       if (el.user_hash !== myid) {
         const ff = this.racers.filter((item) => {
           return item.id === el.user_id
         });
+        console.log(ff);
         this.opponentPlayer = {
           avatar: {
             image: ff[0].image
@@ -277,7 +290,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     }
 
     this.matched = true;
-    console.log(this.nextRace);
+ 
     setTimeout(() => {
       this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
       console.log('removing');
