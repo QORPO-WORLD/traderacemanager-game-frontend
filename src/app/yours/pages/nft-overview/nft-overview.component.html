@@ -1,6 +1,6 @@
 <div (window:resize)="width()" class="overview-content">
   <div class="left-content">
-    <h2 class="title">My NFTs value</h2>
+    <h2 class="title font">My NFTs value</h2>
     <div class="left-column">
       <div class="my-nfts">
         <div class="nfts-box">
@@ -19,11 +19,11 @@
         </div>
       </div>
       <div class="details">
-        <h2 class="title">NFTs Details</h2>
+        <h2 class="title font">NFTs Details</h2>
         <div class="detail-box">
           <ng-container *ngIf="active === 1">
             <div class="box box-animation">
-              <h2 class="detail-title">Cars</h2>
+              <h2 class="detail-title font">Cars</h2>
               <img
                 class="detail-img"
                 src="assets/base/images/nft-cars/car28.png"
@@ -57,7 +57,7 @@
                 />
               </div>
               <div class="right-side">
-                <h2 class="detail-title">Racers</h2>
+                <h2 class="detail-title font">Racers</h2>
                 <div class="values-racers">
                   <div class="left-value">
                     <h2>{{ myAssets.racers_value * 0.4 }} &#36;</h2>
@@ -74,7 +74,7 @@
           </ng-container>
           <ng-container *ngIf="active === 3">
             <div class="box box-animation">
-              <h2 class="detail-title">Tracks</h2>
+              <h2 class="detail-title font">Tracks</h2>
               <img
                 class="detail-img track"
                 src="assets/base/images/home-page/underground-small.png"
@@ -95,7 +95,7 @@
           </ng-container>
           <ng-container *ngIf="active === 4 && teamsCount > 0">
             <div class="box box-animation">
-              <h2 class="detail-title">
+              <h2 class="detail-title font">
                 Team
                 <span class="my-text-color"> {{ accountInfo.team }}</span>
               </h2>
@@ -183,7 +183,7 @@
     </div>
   </div>
   <div class="right-content">
-    <h2 class="title">NFTs Details</h2>
+    <h2 class="title font">NFTs Details</h2>
     <div class="complete-details">
       <div class="complete-upper">
         <div class="graph">
@@ -235,7 +235,7 @@
         <div class="stakes">
           <div class="daily-stakes">
             <div>
-              <h3 class="stake-heading">DAILY NFTs STAKES</h3>
+              <h3 class="stake-heading font">DAILY NFTs STAKES</h3>
             </div>
             <div>
               <p>Daily USD stakes</p>
@@ -243,7 +243,11 @@
                 {{
                   carAssets?.daily_staking_reward * 0.4 | number: "1.2-2":"fr"
                 }}
-                <img src="assets/base/images/tokens/dollar.svg" alt="" />
+                <img
+                  class="token-image"
+                  src="assets/base/images/icons/dollar.svg"
+                  alt="dollar logo"
+                />
               </h2>
             </div>
 
@@ -251,20 +255,28 @@
               <p>Daily IOI stakes</p>
               <h2>
                 {{ carAssets?.daily_staking_reward | number: "1.2-2":"fr" }}
-                <img src="assets/base/images/tokens/ioi-logo.png" alt="" />
+                <img
+                  class="token-image"
+                  src="assets/base/images/icons/ioi-token.svg"
+                  alt="ioi token logo"
+                />
               </h2>
             </div>
           </div>
 
           <div class="total-stakes">
             <div>
-              <h3 class="stake-heading">TOTAL NFTs STAKES</h3>
+              <h3 class="stake-heading font">TOTAL NFTs STAKES</h3>
             </div>
             <div>
               <p>Total USD stakes</p>
               <h2>
-                {{ totalStaking * 0.4  | number: "1.2-2":"fr" }}
-                <img src="assets/base/images/tokens/dollar.svg" alt="" />
+                {{ totalStaking * 0.4 | number: "1.2-2":"fr" }}
+                <img
+                  class="token-image"
+                  src="assets/base/images/icons/dollar.svg"
+                  alt="dollar logo"
+                />
               </h2>
             </div>
 
@@ -272,7 +284,11 @@
               <p>Total IOI stakes</p>
               <h2>
                 {{ totalStaking | number: "1.2-2":"fr" }}
-                <img src="assets/base/images/tokens/ioi-logo.png" alt="" />
+                <img
+                  class="token-image"
+                  src="assets/base/images/icons/ioi-token.svg"
+                  alt="ioi-token logo"
+                />
               </h2>
             </div>
           </div>

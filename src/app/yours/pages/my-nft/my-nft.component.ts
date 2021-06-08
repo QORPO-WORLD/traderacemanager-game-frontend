@@ -6,6 +6,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnChanges,
 } from "@angular/core";
 import { CarsService, DriversService } from "../../../api/services";
 import { NotifyService } from "./../../../common/services/notify.service";
@@ -21,7 +22,7 @@ import { Router } from "@angular/router";
   templateUrl: "./my-nft.component.html",
   styleUrls: ["./my-nft.component.scss"],
 })
-export class MyNftComponent implements OnInit {
+export class MyNftComponent implements OnInit, OnChanges {
   timeoutPrev: any;
   timeoutNext: any;
   showDeposit = false;
@@ -75,7 +76,7 @@ export class MyNftComponent implements OnInit {
       free: 6000,
       collection: "Common",
       name: "RHINO",
-      price: 600,
+      prize: "600 IOI",
       image: "car1",
       gif: "car1-animation",
       type: "car",
@@ -90,7 +91,7 @@ export class MyNftComponent implements OnInit {
       free: 12000,
       collection: "Common",
       name: "PANTHER",
-      price: "600",
+      prize: "600 IOI",
       image: "car2",
       gif: "car2-animation",
       type: "car",
@@ -106,7 +107,7 @@ export class MyNftComponent implements OnInit {
       free: 24000,
       collection: "Common",
       name: "ONYX",
-      price: "600",
+      prize: "600 IOI",
       image: "car3",
       gif: "car3-animation",
       type: "car",
@@ -121,7 +122,7 @@ export class MyNftComponent implements OnInit {
       free: 48000,
       collection: "Common",
       name: "ZANDER",
-      price: "600",
+      prize: "600 IOI",
       image: "car4",
       gif: "car4-animation",
       type: "car",
@@ -136,7 +137,7 @@ export class MyNftComponent implements OnInit {
       free: 96000,
       collection: "Common",
       name: "CYBORG",
-      price: "600",
+      prize: "600 IOI",
       image: "car5",
       type: "car",
       gif: "car5-animation",
@@ -151,7 +152,7 @@ export class MyNftComponent implements OnInit {
       free: 192000,
       collection: "Common",
       name: "VULCANIC",
-      price: "600",
+      prize: "600 IOI",
       image: "car6",
       gif: "car6-animation",
       type: "car",
@@ -162,9 +163,10 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 15,
+      position: 24,
       collection: "Common rare",
       name: "LUNA",
-      price: "3 600",
+      prize: "3 600 IOI",
       image: "car25",
       gif: "car25-animation",
       type: "car",
@@ -181,7 +183,7 @@ export class MyNftComponent implements OnInit {
       free: 288000,
       collection: "Super",
       name: "DORIAN",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car7",
       gif: "car7-animation",
       type: "car",
@@ -196,7 +198,7 @@ export class MyNftComponent implements OnInit {
       free: 432000,
       collection: "Super",
       name: "PANTHER",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car8",
       gif: "car8-animation",
       type: "car",
@@ -211,7 +213,7 @@ export class MyNftComponent implements OnInit {
       free: 648000,
       collection: "Super",
       name: "ONYX",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car9",
       gif: "car9-animation",
       type: "car",
@@ -226,7 +228,7 @@ export class MyNftComponent implements OnInit {
       free: 972000,
       collection: "Super",
       name: "ZANDER",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car10",
       gif: "car10-animation",
       type: "car",
@@ -241,7 +243,7 @@ export class MyNftComponent implements OnInit {
       free: 1458000,
       collection: "Super",
       name: "PYTHON",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car11",
       gif: "car11-animation",
       type: "car",
@@ -256,7 +258,7 @@ export class MyNftComponent implements OnInit {
       free: 2187000,
       collection: "Super",
       name: "VULCANIC",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "car12",
       gif: "car12-animation",
       type: "car",
@@ -267,9 +269,10 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 22,
+      position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
-      price: "6 000",
+      prize: "6 000 IOI",
       image: "car26",
       gif: "car26-animation",
       type: "car",
@@ -286,7 +289,7 @@ export class MyNftComponent implements OnInit {
       free: 3000000,
       collection: "Epic",
       name: "CYBORG",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car13",
       gif: "car13-animation",
       type: "car",
@@ -301,7 +304,7 @@ export class MyNftComponent implements OnInit {
       free: 3600000,
       collection: "Epic",
       name: "RHINO",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car14",
       gif: "car14-animation",
       type: "car",
@@ -316,7 +319,7 @@ export class MyNftComponent implements OnInit {
       free: 4320000,
       collection: "Epic",
       name: "HYPER",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car15",
       gif: "car15-animation",
       type: "car",
@@ -331,7 +334,7 @@ export class MyNftComponent implements OnInit {
       free: 5184000,
       collection: "Epic",
       name: "BULL",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car16",
       gif: "car16-animation",
       type: "car",
@@ -346,7 +349,7 @@ export class MyNftComponent implements OnInit {
       free: 6220000,
       collection: "Epic",
       name: "PYTHON",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car17",
       gif: "car17-animation",
       type: "car",
@@ -361,7 +364,7 @@ export class MyNftComponent implements OnInit {
       free: 7465000,
       collection: "Epic",
       name: "HITMAN",
-      price: "1 600",
+      prize: "1 600 IOI",
       image: "car18",
       gif: "car18-animation",
       type: "car",
@@ -372,9 +375,10 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 29,
+      position: 26,
       collection: "Epic rare",
       name: "MIDAS",
-      price: "9 600",
+      prize: "9 600 IOI",
       image: "car27",
       gif: "car27-animation",
       type: "car",
@@ -391,7 +395,7 @@ export class MyNftComponent implements OnInit {
       free: 8200000,
       collection: "Legendary",
       name: "HYPER",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car19",
       gif: "car19-animation",
       type: "car",
@@ -406,7 +410,7 @@ export class MyNftComponent implements OnInit {
       free: 9000000,
       collection: "Legendary",
       name: "DORIAN",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car20",
       gif: "car20-animation",
       type: "car",
@@ -421,7 +425,7 @@ export class MyNftComponent implements OnInit {
       free: 9900000,
       collection: "Legendary",
       name: "VULCANIC",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car21",
       gif: "car21-animation",
       type: "car",
@@ -436,7 +440,7 @@ export class MyNftComponent implements OnInit {
       free: 10890000,
       collection: "Legendary",
       name: "BULL",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car22",
       gif: "car22-animation",
       type: "car",
@@ -451,7 +455,7 @@ export class MyNftComponent implements OnInit {
       free: 12000000,
       collection: "Legendary",
       name: "KNOCKOUT",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car23",
       gif: "car23-animation",
       type: "car",
@@ -466,7 +470,7 @@ export class MyNftComponent implements OnInit {
       free: 13200000,
       collection: "Legendary",
       name: "LARA",
-      price: "2 600",
+      prize: "2 600 IOI",
       image: "car24",
       gif: "car24-animation",
       type: "car",
@@ -477,9 +481,10 @@ export class MyNftComponent implements OnInit {
     },
     {
       id: 36,
+      position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
-      price: "15 600",
+      prize: "15 600 IOI",
       image: "car28",
       gif: "car28-animation",
       type: "car",
@@ -493,7 +498,7 @@ export class MyNftComponent implements OnInit {
       id: 1,
       collection: "Super",
       name: "Axle",
-      price: "100",
+      prize: "100 IOI",
       image: "white-trm",
       gif: "white-trm-animation",
       type: "racer",
@@ -508,7 +513,7 @@ export class MyNftComponent implements OnInit {
       id: 2,
       collection: "Super",
       name: "Flash",
-      price: "100",
+      prize: "100 IOI",
       image: "red-trm",
       gif: "red-trm-animation",
       type: "racer",
@@ -522,7 +527,7 @@ export class MyNftComponent implements OnInit {
       id: 3,
       collection: "Super",
       name: "Octane",
-      price: "100",
+      prize: "100 IOI",
       image: "blue-trm",
       gif: "blue-trm-animation",
       type: "racer",
@@ -536,7 +541,7 @@ export class MyNftComponent implements OnInit {
       id: 4,
       collection: "Super",
       name: "Punisher",
-      price: "100",
+      prize: "100 IOI",
       image: "black-trm",
       gif: "black-trm-animation",
       type: "racer",
@@ -550,7 +555,7 @@ export class MyNftComponent implements OnInit {
       id: 5,
       collection: "Epic",
       name: "Lady Rich",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "lady-rich",
       gif: "lady-rich-animation",
       type: "racer",
@@ -564,7 +569,7 @@ export class MyNftComponent implements OnInit {
       id: 6,
       collection: "Epic",
       name: "Rich Jr.",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "bad-boy",
       gif: "bad-boy-animation",
       type: "racer",
@@ -578,7 +583,7 @@ export class MyNftComponent implements OnInit {
       id: 7,
       collection: "Epic",
       name: "Mrs. Rich",
-      price: "1 000",
+      prize: "1 000 IOI",
       image: "mrs-rich",
       gif: "mrs-rich-animation",
       type: "racer",
@@ -592,7 +597,7 @@ export class MyNftComponent implements OnInit {
       id: 8,
       collection: "Legendary",
       name: "Mr. Rich",
-      price: "10 000",
+      prize: "10 000 IOI",
       image: "mr-rich",
       gif: "mr-rich-animation",
       type: "racer",
@@ -607,7 +612,7 @@ export class MyNftComponent implements OnInit {
       id: 37,
       collection: "Race tracks",
       name: "Free track",
-      price: "Soon",
+      prize: "Soon",
       image: "free-track",
       type: "track",
       ability1: "2 minutes",
@@ -619,10 +624,10 @@ export class MyNftComponent implements OnInit {
       id: 38,
       collection: "Race tracks",
       name: "Desert",
-      price: "Soon",
+      prize: "Soon",
       image: "desert",
       type: "track",
-      bet: "1",
+      bet: "1 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -632,10 +637,10 @@ export class MyNftComponent implements OnInit {
       id: 39,
       collection: "Race tracks",
       name: "Dark forest",
-      price: "Soon",
+      prize: "Soon",
       image: "dark-forest",
       type: "track",
-      bet: "5",
+      bet: "5 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -645,10 +650,10 @@ export class MyNftComponent implements OnInit {
       id: 40,
       collection: "Race tracks",
       name: "Night city",
-      price: "Soon",
+      prize: "Soon",
       image: "night-city",
       type: "track",
-      bet: "10",
+      bet: "10 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -658,10 +663,10 @@ export class MyNftComponent implements OnInit {
       id: 41,
       collection: "Race tracks",
       name: "Sea bridge",
-      price: "Soon",
+      prize: "Soon",
       image: "sea-bridge",
       type: "track",
-      bet: "50",
+      bet: "50 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -672,20 +677,63 @@ export class MyNftComponent implements OnInit {
       id: 42,
       collection: "Race tracks",
       name: "Underground",
-      price: "Soon",
+      prize: "Soon",
       image: "underground",
       type: "track",
-      bet: "100",
+      bet: "100 IOI",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
       alt: "nft track underground",
     },
     {
+      id: 43,
+      collection: "",
+      name: "BTC",
+      prize: "Sold out",
+      image: "btc-team",
+      type: "team",
+      amount: [],
+      alt: "nft team btc",
+    },
+
+    {
+      id: 44,
+      collection: "",
+      name: "IOI",
+      prize: "Sold out",
+      image: "ioi-team",
+      type: "team",
+      amount: [],
+      alt: "nft team ioi",
+    },
+    {
+      id: 45,
+      collection: "",
+      name: "ALT",
+      prize: "Sold out",
+      image: "alt-team",
+      type: "team",
+      amount: [],
+      alt: "nft team alt",
+    },
+    {
+      id: 46,
+      collection: "",
+      name: "You",
+      prize: "1 000 IOI",
+      image: "team-you",
+      type: "team",
+      ability1: "50 IOI",
+      ability2: "20%",
+      amount: [],
+      alt: "nft tea you",
+    },
+    {
       id: 47,
       collection: "",
       name: "Trophy",
-      price: "",
+      prize: "",
       image: "trophy",
       type: "special",
       ability2: "Yearly",
@@ -696,7 +744,7 @@ export class MyNftComponent implements OnInit {
       id: 48,
       collection: "",
       name: "Ring",
-      price: "",
+      prize: "",
       image: "ring",
       type: "special",
       ability1: "Entry to yearly tournament",
@@ -705,6 +753,7 @@ export class MyNftComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
+
   title = "All";
   myCar: any;
   ed1Cars = 0;
@@ -764,6 +813,8 @@ export class MyNftComponent implements OnInit {
   ownedItems: any;
   marketState = 1;
 
+  @Input() depositFlow = false;
+
   @Output() data = new EventEmitter<{
     state: number;
     id: number;
@@ -779,6 +830,13 @@ export class MyNftComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.getMyCars();
+  }
+  ngOnChanges(): void {
+    if (this.depositFlow === true) {
+      this.filterAllDep();
+    } else {
+      this.filterAll();
+    }
   }
   ngOnInit(): void {
     const that = this;
@@ -978,7 +1036,12 @@ export class MyNftComponent implements OnInit {
         }
         this.calcEditionNum();
         this.selectCar(objs);
-        this.filterAll();
+        if (this.depositFlow === true) {
+          this.filterAllDep();
+        } else {
+          this.filterAll();
+        }
+
         this.sortingDone = true;
         this.allCars = objs.cars.length;
       }
@@ -1326,7 +1389,7 @@ export class MyNftComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.title = "Your Racers";
+    this.title = "Racers";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1346,7 +1409,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Your Cars";
+    this.title = "Cars";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1365,7 +1428,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Your Tracks";
+    this.title = "Tracks";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1373,25 +1436,7 @@ export class MyNftComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.filter = "track";
   }
-  filterTeamsDep() {
-    this.newProducts = this.products;
-    this.newProducts = this.products.filter((item) => item["type"] === "team");
 
-    this.width();
-    this.specialActive = false;
-    this.tracksActive = false;
-    this.carsActive = false;
-    this.racersActive = false;
-    this.teamsActive = true;
-    this.allActive = false;
-    this.title = "Your Teams";
-    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-    this.currentPage = 1;
-    this.isPaged = 0;
-    this.sliceStart = this.inRow * this.isPaged;
-    this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "team";
-  }
   filterSpecialDep() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter(
@@ -1405,7 +1450,7 @@ export class MyNftComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.title = "Your Specials";
+    this.title = "Specials";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1415,6 +1460,9 @@ export class MyNftComponent implements OnInit {
   }
   filterAllDep() {
     this.newProducts = this.products;
+    this.newProducts = this.products.filter(
+      (item) => item["type"] === "car" || item["type"] === "racer"
+    );
     this.width();
     this.specialActive = false;
     this.tracksActive = false;
@@ -1422,7 +1470,7 @@ export class MyNftComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = true;
-    this.title = "Your products";
+    this.title = "All";
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -1431,33 +1479,6 @@ export class MyNftComponent implements OnInit {
     this.filter = "all";
   }
 
-  reset() {
-    let element;
-    element = document.querySelector(".hamburger");
-    element.classList.remove("hamburgerclick");
-    void element.offsetWidth;
-    element.classList.add("hamburgerclick");
-  }
-  resetPageArrowLeft() {
-    let page;
-    page = document.querySelector(".pagebtn-l");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage > 0) {
-      this.currentPage = this.currentPage - 1;
-    }
-  }
-  resetPageArrowRight() {
-    let page;
-    page = document.querySelector(".pagebtn-r");
-    page.classList.remove("clickPage");
-    void page.offsetWidth;
-    page.classList.add("clickPage");
-    if (this.currentPage <= this.newProducts.length / 8) {
-      this.currentPage = this.currentPage + 1;
-    }
-  }
   back() {
     this.animation = 1;
     if (this.marketState === 1) {
@@ -1469,5 +1490,11 @@ export class MyNftComponent implements OnInit {
     } else if (this.marketState === 3) {
       this.marketState = 2;
     }
+  }
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 }
