@@ -30,6 +30,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   showDayTipModal = false;
   editTips = true;
   mydrvr: any;
+  myDriverData: any;
   teamreward: any;
   myAffilate: any;
   myTeamData: any;
@@ -44,6 +45,10 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   teamId: number;
   managers = [];
   selectedmanager = 0;
+  rateManagerState = 1;
+  rateState = 1;
+  manageWindowOpen = false;
+  manageManagers = true;
   myId: string;
   meManager = false;
   meRated = false;
@@ -158,6 +163,8 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       datax => {
         const data: any = datax;
         this.myTeam = data;
+        console.log(data);
+        console.log('dsfdfd');
         this.myuser = data.me.user_id;
         this.bestRacer = this.myTeam.top10[0];
 
@@ -175,6 +182,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyTeam() {
     const data = this.identityService.getDriverMe();
     this.myTeamName = data.team;
+    console.log(this.myTeamName);
     this.myTeamData = data;
     const datax = this.identityService.getLeaderboardMe();
     this.teamId = datax.team_id;
@@ -213,6 +221,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
+    this.myDriverData = data;
     //this.myRating = data.
   }
 
@@ -265,7 +274,6 @@ export class MyTeamComponent implements OnInit, OnDestroy {
 
   getManagerRequests() {
     this.teamSubscription = this.teams_service.getManagerRequests(this.teamId).subscribe(data => {
-      console.log(data);
       this.managers = data;
     });
   }
@@ -312,6 +320,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       this.teamSubscription = this.teams_service.rateManager({ 'stars': this.activeRate }).subscribe(
         data => {
           this.meRated = true;
+          this.rateState = 1;
           this.identityService.updateDriverMe();
           setTimeout(() => {
             this.getMyDriver();
