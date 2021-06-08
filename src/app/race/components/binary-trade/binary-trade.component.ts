@@ -231,7 +231,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       if (this.pageOpen === true) {
-        this.unityEnabled = true;
+        // this.unityEnabled = true;
       }
     }, 5000);
   }
