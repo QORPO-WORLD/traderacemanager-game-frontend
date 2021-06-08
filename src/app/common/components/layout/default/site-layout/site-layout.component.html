@@ -200,18 +200,18 @@
               [ngClass]="{ active: settingsShown === true }"
               class="profile-expander"
             >
-              <div class="btn-item" (click)="showMySettings = true">
+              <div [routerLink]="['/profile/my-profile']" class="btn-item">
                 <p>
                   <img
-                    src="/assets/base/images/menu/settings-icon.svg"
-                    alt=""
+                    src="/assets/base/images/icons/user.svg"
+                    alt="user icon"
                   />
-                  {{ "profile.acc_settings" | translate }}
+                  Profile
                 </p>
               </div>
               <div class="btn-item" (click)="logout()">
                 <p>
-                  <img src="/assets/base/images/menu/logout-icon.svg" alt="" />
+                  <img src="/assets/base/images/icons/logout.svg" alt="" />
                   {{ "profile.log_out" | translate }}
                 </p>
               </div>

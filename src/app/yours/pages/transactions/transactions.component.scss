@@ -1,39 +1,67 @@
-.main-holder {
-  width: calc(100% - 457px);
-  padding-left: 40px;
+* {
+  margin: 0px;
+}
+.category-title-first {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  font-family: "Earth Orbiter";
+  z-index: 1;
+}
+.font {
+  font-family: "Earth Orbiter";
 }
 
-.my-menu {
-  margin: 70px 0 25px;
-  border-radius: 10px;
-  background: #222222;
-  width: 50%;
+.menu {
+  height: 7.5%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  .menu-item {
-    width: 50%;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 50px;
-    position: relative;
-    &.inactive {
-      background: transparent;
-      p {
-        font-weight: 400;
-      }
-    }
-    p {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      margin: 0;
-      font-size: 16px;
-      font-weight: 600;
+}
+.transactions-content {
+  margin-top: 2%;
+  height: 90.5%;
+}
+.menu-item {
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  width: 18.5%;
+  margin-left: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.first {
+    margin-left: 0%;
+  }
+  .active-border {
+    position: absolute;
+    width: calc(100% + 6px);
+    left: -3px;
+    height: 0px;
+    bottom: -3px;
+  }
+  p {
+    &.first {
+      margin-left: 0px;
     }
   }
+  &.active-item {
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    .active-border {
+      height: 4px;
+    }
+  }
+  .filter-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .arrow {
@@ -76,8 +104,7 @@
   color: white;
   min-height: 500px;
   width: 100%;
-  background: #222222;
-  border-radius: 15px;
+  background: rgba(17, 17, 17, 0.6);
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -91,6 +118,7 @@
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+
     &.header {
       background: transparent;
       margin-bottom: 10px;
@@ -160,7 +188,7 @@
         &.img-item {
           height: 100%;
           img {
-            height: 100%;
+            height: 60%;
             &.ticket {
               height: 70%;
             }
@@ -217,27 +245,20 @@
       }
     }
   }
-  .my-menu {
-    .menu-item {
-      height: 45px;
-      p {
-        font-size: 15px;
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 1550px) {
-  .main-holder {
-    width: calc(100% - 380px);
-    padding-left: 20px;
-  }
-
-  .my-menu {
-    margin: 30px 0 20px;
+  .category-title-first {
+    font-size: 16px;
+    line-height: 18px;
   }
 }
-
+@media screen and (max-width: 1200px) {
+  .category-title-first {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
 @media screen and (max-width: 1200px) {
   .table {
     padding: 20px 3.5%;
@@ -258,38 +279,48 @@
       font-size: 22px;
     }
   }
-  .main-holder {
-    width: calc(100% - 340px);
-    padding-left: 13px;
-  }
+}
 
-  .my-menu {
-    .menu-item {
-      height: 40px;
-      p {
-        font-size: 14px;
-      }
-    }
-  }
-}
-@media screen and (max-width: 1024px) {
-  .main-holder {
-    width: 100%;
-    padding: 30px 10px 0px 10px;
-  }
-}
 //
 
-@media screen and (max-width: 650px) {
-  .my-menu {
-    margin: 20px 0 25px;
-    width: 100%;
-    .menu-item {
-      height: 36px;
-      p {
-        font-size: 13px;
-      }
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .category-title-first {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .category-title-first {
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .category-title-first {
+    font-size: 6px;
+    line-height: 8px;
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .menu-item {
+    margin-left: 1%;
+    width: 48%;
+    height: 45px;
+
+    &.first {
+      margin-right: 1%;
     }
+
+    .filter-icon {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .category-title-first {
+    font-size: 16px;
+    line-height: 18px;
   }
 
   .table {
@@ -329,7 +360,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) and (orientation: portrait) {
   .table {
     .header {
       div:first-child() {
@@ -375,18 +406,6 @@
       .inner-line {
         height: 5px;
       }
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .my-menu {
-    max-width: 420px;
-    margin: 20px auto 25px;
-    flex-wrap: wrap;
-    width: 80%;
-    .menu-item {
-      width: 100%;
     }
   }
 }

@@ -50,20 +50,37 @@
           *ngIf="affiliate.affiliate_level === 4"
         />
       </div>
-      <div class="menu-items">
+      <div
+        [ngClass]="{
+          'show-deposit': title === 'mynfts'
+        }"
+        class="menu-items"
+      >
         <div
-          (click)="title = 'mynfts'; mobileMenu = false"
           [ngClass]="{
             active: title === 'mynfts'
           }"
-          class="item"
+          class="item my-nfts"
         >
-          <div class="item-content">
+          <div
+            (click)="
+              title = 'mynfts';
+              mobileMenu = false;
+              marketState = 1;
+              depositFlow = false
+            "
+            class="item-content"
+          >
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/flag.svg" alt="flag" />
+            <img src="assets/base/images/icons/car.svg" alt="car" />
             <p class="menu-title">MY NFTs</p>
           </div>
-          <div class="bottom-border my-cta-btn-back"></div>
+          <div
+            (click)="toggleDeposit()"
+            class="bottom-border-deposit my-cta-btn-back"
+          >
+            <p class="races-desc">&#43; Deposit NFTs</p>
+          </div>
         </div>
         <div
           (click)="title = 'overview'; mobileMenu = false"
@@ -74,47 +91,47 @@
         >
           <div class="item-content">
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/gamepad.svg" alt="gamepad" />
+            <img src="assets/base/images/icons/overview.svg" alt="graph icon" />
             <p class="menu-title">NFTs Overview</p>
           </div>
           <div class="bottom-border my-cta-btn-back"></div>
         </div>
-
         <div
-          (click)="title = 'affiliate'; mobileMenu = false"
-          [ngClass]="{
-            active: title === 'affiliate'
-          }"
-          class="item"
-        >
-          <div class="item-content">
-            <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/car.svg" alt="car" />
-            <p class="menu-title">Affiliate</p>
-          </div>
-          <div class="bottom-border my-cta-btn-back"></div>
-        </div>
-        <div
-          (click)="title = 'rewards'; mobileMenu = false"
-          [ngClass]="{ active: title === 'rewards' }"
-          class="item"
-        >
-          <div class="item-content">
-            <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/fire.svg" alt="fire" />
-            <p class="menu-title">Rewards</p>
-          </div>
-          <div class="bottom-border my-cta-btn-back"></div>
-        </div>
-        <div
-          (click)="title = 'history'; mobileMenu = false"
+          (click)="
+            title = 'history'; mobileMenu = false; showSecond = 'transactions'
+          "
           [ngClass]="{ active: title === 'history' }"
           class="item"
         >
           <div class="item-content">
             <div class="hover-effect"></div>
-            <img src="assets/base/images/icons/badge.svg" alt="badge" />
+            <img
+              src="assets/base/images/icons/history.svg"
+              alt="history icon"
+            />
             <p class="menu-title">History</p>
+          </div>
+          <div class="bottom-border my-cta-btn-back"></div>
+        </div>
+        <div
+          (click)="title = 'settings'; mobileMenu = false"
+          [ngClass]="{
+            active: title === 'settings'
+          }"
+          class="item"
+        >
+          <div class="item-content">
+            <div class="hover-effect"></div>
+            <img src="assets/base/images/icons/settings.svg" alt="settings" />
+            <p class="menu-title">Settings</p>
+          </div>
+          <div class="bottom-border my-cta-btn-back"></div>
+        </div>
+        <div (click)="logout()" class="item">
+          <div class="item-content">
+            <div class="hover-effect"></div>
+            <img src="assets/base/images/icons/logout.svg" alt="door icon" />
+            <p class="menu-title">Log out</p>
           </div>
           <div class="bottom-border my-cta-btn-back"></div>
         </div>
@@ -135,15 +152,18 @@
 
       <app-my-nft
         (data)="resolveMarketAsset($event)"
+        [depositFlow]="depositFlow"
         *ngIf="title === 'mynfts' && marketState === 1"
       ></app-my-nft>
       <app-my-nft-detail
+        class="detail-content"
         *ngIf="title === 'mynfts' && marketState === 2"
         [assetId]="selectedId"
         [assetType]="selectedType"
         [owned]="ownedItems"
         (marketState)="resolveDetailAsset($event)"
       ></app-my-nft-detail>
+      <app-my-settings *ngIf="title === 'settings'"></app-my-settings>
     </div>
   </div>
 </div>

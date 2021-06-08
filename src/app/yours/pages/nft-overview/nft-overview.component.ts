@@ -108,9 +108,12 @@ export class NftOverviewComponent implements OnInit {
     setTimeout(() => {
       if (this.teamsCount > 0) {
         this.allItemsBalance =
-          this.carAssets.garage_value + this.carAssets.racers_value + this.myTeamAllData.team_value;
+          this.carAssets.garage_value +
+          this.carAssets.racers_value +
+          this.myTeamAllData.team_value;
       } else {
-        this.allItemsBalance = this.carAssets.garage_value + this.carAssets.racers_value;
+        this.allItemsBalance =
+          this.carAssets.garage_value + this.carAssets.racers_value;
       }
     }, 1000);
   }
@@ -159,7 +162,11 @@ export class NftOverviewComponent implements OnInit {
       this.carAssets = data;
       this.isOwner();
       this.teams = { name: "Racers", y: 0, color: "#00f0ff" };
-      this.racers = { name: "Racers", y: this.myAssets.total_racers, color: "#00f0ff" }
+      this.racers = {
+        name: "Racers",
+        y: this.myAssets.total_racers,
+        color: "#00f0ff",
+      };
       this.cars = {
         name: "Cars",
         y: this.myAssets.total_cars,

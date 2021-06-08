@@ -96,6 +96,12 @@
   display: flex;
   position: relative;
   align-items: flex-end;
+  .detail-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
 
 //FONT SETTINGS
@@ -172,6 +178,18 @@
       justify-content: space-between;
       display: flex;
       flex-direction: column;
+      &.show-deposit {
+        .item {
+          height: 13%;
+          &.my-nfts {
+            height: 17%;
+            align-items: unset;
+            .item-content {
+              height: 70%;
+            }
+          }
+        }
+      }
     }
     .item {
       background: transparent;
@@ -227,6 +245,22 @@
         width: calc(100% + 6px);
         height: 0px;
       }
+      .bottom-border-deposit {
+        z-index: 1;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        bottom: -3px;
+        left: -3px;
+        position: absolute;
+        width: calc(100% + 6px);
+        height: 0px;
+        .races-desc {
+          opacity: 1;
+        }
+      }
       &.active {
         background: url("/assets/base/images/all-races/active-back.png");
         background-position: center;
@@ -240,6 +274,13 @@
         border-right: 3px solid rgba(255, 255, 255, 0.6);
         .bottom-border {
           height: 4px;
+        }
+        .bottom-border-deposit {
+          bottom: -10px;
+          left: -3px;
+
+          width: calc(100% + 6px);
+          height: 50%;
         }
       }
     }
@@ -365,8 +406,8 @@
     line-height: 17px;
   }
   .races-desc {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 8px;
+    line-height: 10px;
   }
   .races-content {
     .content-menu {
@@ -423,8 +464,8 @@
     line-height: 15px;
   }
   .races-desc {
-    font-size: 8px;
-    line-height: 10px;
+    font-size: 6px;
+    line-height: 8px;
   }
   .races-content {
     .content-menu {
@@ -473,8 +514,42 @@
 
       height: calc(100vh - 65px);
       align-items: center;
+      .menu-items {
+        &.show-deposit {
+          .item {
+            height: 17%;
+            &.my-nfts {
+              height: 17%;
+              align-items: unset;
+              .item-content {
+                height: 70%;
+              }
+            }
+          }
+        }
+      }
+
       .item {
+        opacity: 1;
         width: 100%;
+        .bottom-border {
+          display: none;
+        }
+        &.my-nfts {
+          height: 17%;
+          align-items: unset;
+          .item-content {
+            height: 70%;
+          }
+        }
+        .bottom-border-deposit {
+          height: 50%;
+          bottom: -10px;
+        }
+        &.active {
+          background: none;
+          border-bottom: 3px solid rgba(255, 255, 255, 0.6);
+        }
       }
       &.mobile-content-menu {
         display: none;
