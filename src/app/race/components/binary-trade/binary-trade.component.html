@@ -260,7 +260,7 @@
       </div>
 
       <div class="player-controls">
-        <button class="control-btn down" (click)="long = false;placeOption();" [disabled]="canBet === false">
+        <button class="control-btn down" (click)="long = false;placeOption();" [disabled]="canBet === false || cantPlaceBetAnymore === true">
           <img src="/assets/base/images/binary-race/down-icon.svg" alt="">
         </button>
         <div class="data-box bordered">
@@ -283,7 +283,7 @@
             60 sec
           </p>
         </div>
-        <button class="control-btn up" (click)="long = true;placeOption();" [disabled]="canBet === false">
+        <button class="control-btn up" (click)="long = true;placeOption();" [disabled]="canBet === false || cantPlaceBetAnymore === true">
           <img src="/assets/base/images/binary-race/up-icon.svg" alt="">
         </button>
       </div>

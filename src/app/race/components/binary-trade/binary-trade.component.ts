@@ -217,6 +217,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   emojiLeftCounter = 0;
   emojiRightCounter = 0;
   pageOpen = true;
+  cantPlaceBetAnymore = false;
   leftScore = 0;
   rightScore = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
@@ -231,7 +232,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.raceStarted = true;
       const newwhen = this.getWhenStarts();
       this.endVal = newwhen + 60;
-      console.log(this.endVal);
     }, this.startsInSecs * 1000)
     this.whenStarts();
     this.getBinaryPlayers();
@@ -847,6 +847,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       ) => {
         this.launchSemafor();
       }, fireSemaforx);
+    }
+    const fireSemafory = (newwhen + 50) * 1000;
+    if (fireSemaforx > 0) {
+      setTimeout((
+      ) => {
+        this.cantPlaceBetAnymore = true;
+      }, fireSemafory);
     } 
   }
 
