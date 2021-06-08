@@ -250,7 +250,54 @@
     max-width: 1018px;
     z-index: 10;
     .mobile-avatars{
-        display: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      &.show-gif{
+        .avatar-box{
+          img{
+            opacity: 0;
+            z-index: -2;
+            &.gifko{
+              opacity: 1;
+              z-index: 0;
+            }
+          }
+        }
+      }
+      .avatar-box{
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          img{
+              transform: translateX(-70%);
+              width: auto;
+              height: 100%;
+              position: relative;
+              z-index: 0;
+              transition: .15s;
+              &.gifko{
+                opacity: 0;
+                z-index: -2;
+                position: absolute;
+                top: 0;
+                left: 0;
+              }
+          }
+          &.rival{
+              left: unset;
+              right: 0;
+              img{
+                  transform: rotateY(180deg) translateX(-70%);
+              }
+          }
+        }
     }
     .chart-holder {
       width: 100%;
@@ -1085,53 +1132,6 @@
             left: 0;
             top: 0;
             margin: 10px auto;
-            .mobile-avatars{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                &.show-gif{
-                  .avatar-box{
-                    img{
-                      opacity: 0;
-                      z-index: -2;
-                      &.gifko{
-                        opacity: 1;
-                        z-index: 0;
-                      }
-                    }
-                  }
-                }
-                .avatar-box{
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    img{
-                        transform: translateX(-15%);
-                        width: 360px;
-                        position: relative;
-                        z-index: 0;
-                        transition: .15s;
-                        &.gifko{
-                          opacity: 0;
-                          z-index: -2;
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                        }
-                    }
-                    &.rival{
-                        left: unset;
-                        right: 0;
-                        img{
-                            transform: rotateY(180deg) translateX(-15%);
-                        }
-                    }
-                }
-            }
             .chart-holder{
                 display: block;
                 position: relative;
@@ -1230,6 +1230,20 @@
                         }
                     }
                 }
+            }
+            .mobile-avatars{
+              .avatar-box{
+                &.rival{
+                  img{
+                    transform: rotateY(180deg) translateX(-15%);
+                  }
+                }
+                img{
+                  width: 360px;
+                  height: unset;
+                  transform: translateX(-15%);
+                }
+              }
             }
         }
     }
