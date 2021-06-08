@@ -199,6 +199,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   colorUp = false;
   lastprice: number;
   addedCommon = 0;
+  emoji: string;
+  emojiCounter = 0;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -620,7 +622,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     });
 
     popsock.on("message", function (data) {
-      _this.avatarMsg(data);
+      const opt = JSON.parse(data);
+      _this.avatarMsg(opt);
     });
 
     popsock.on("cancel", function (data) {
@@ -698,7 +701,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   avatarMsg(msg: any) {
-    this.raceComp.yo(JSON.parse(msg));
+    console.log(msg);
+    if (msg.reaction === 2) {
+      this.resolveEmoji('happy');
+    }
+    if (msg.reaction === 3) {
+      this.resolveEmoji('sad');
+    }
+    if (msg.reaction === 4) {
+      this.resolveEmoji('brutal');
+    }
+    this.raceComp.yo(msg);
   }
 
   sendSockAvatarMsg(msg: any) {
@@ -712,7 +725,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       });
     setTimeout(() => {
       this.locked = false;
-    }, 2000);
+    }, 5000);
   }
 
 
@@ -767,7 +780,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     if (this.binanceT.has['watchTicker']) {
 
-      while (this.chartEnabled === true) {
+      while (this.chartEnabled === true && this.binanceT !== null) {
         try {
           const ticker = await this.binanceT.watchTicker('BTC/USDT', {});
           this.add(ticker.timestamp, ticker.last)
@@ -918,6 +931,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   getCryptoStats() {
     const data = this.identityService.getBalance();
     this.myDriverBalances = data;
+  }
+
+  resolveEmoji(type: string) {
+    this.emoji = type;
+    for (let x = 1; x < 20; x++) {
+      setTimeout(() => {
+        this.emojiCounter++;
+       },
+        x * 200);
+    }
+
+    setTimeout(() => {
+      this.emoji = null;
+      this.emojiCounter = 0;
+    }, 4000);
   }
 
 
