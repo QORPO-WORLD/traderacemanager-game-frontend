@@ -673,6 +673,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.convertToHuman(true, 'won!!!', 'You');
     }
     this.raceEnded = true;
+    console.log(this.winner);
+    console.log(this.loser);
+    console.log(this.meWon);
   }
 
   onScore(data?: any) {
@@ -814,7 +817,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   getWhenStarts() {
     const then: any = this.startsAt * 1000;
     const now: any = DateTime.utc();
-    const diffTime = (then - now.ts) / 1000;
+    const diffTime = Math.abs((then - now.ts) / 1000);
 
     return diffTime;
   }
@@ -829,10 +832,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       ) => {
         this.launchSemafor();
       }, fireSemaforx);
-    } else {
-      this.semaforsVisible = false;
-      this.startsInSecs = null;
-    }
+    } 
   }
 
   launchSemafor() {
