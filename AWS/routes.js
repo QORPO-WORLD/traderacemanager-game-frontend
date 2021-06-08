@@ -59,6 +59,11 @@ exports.handler = (event, context, callback) => {
     "/user/credit-system",
     "/user/terms-conditions",
     "/user/competition",
+    "/race/binary-fuel",
+    "/other/deposit-nft",
+    "/other/transfer",
+    "/other/withdraw",
+    "/race/race-selection"
   ];
 
   if (
@@ -70,7 +75,8 @@ exports.handler = (event, context, callback) => {
     request.uri.match(/\/user\/activation\/.+/) || // '/user/activation/:id/:hash'
     request.uri.match(/\/other\/confirm\/.+/) ||
     request.uri.match(/\/race\/all-races\?raceType=.+/) ||
-    request.uri.match(/\/race\/watch-multiple-races.+/)
+    request.uri.match(/\/race\/watch-multiple-races.+/) ||
+    request.uri.match(/\/race\/race\/binary-trade\/.+/) ///race/binary-trade/:hash/:timestamp
   ) {
     request.uri = "/index.html";
     callback(null, request);
