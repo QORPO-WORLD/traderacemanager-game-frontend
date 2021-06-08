@@ -1,6 +1,4 @@
 
-
-
 <div class="main-cont">
 
   <div class="race-menu">
@@ -20,6 +18,7 @@
             <div class="value-box">
               <p class="number">
                 {{ myDriverBalances?.game_wallet_matic | number: "1.2-2":"fr" }}
+
               </p>
               <p class="add">+</p>
             </div>
@@ -130,11 +129,11 @@
     <div class="mobile-avatars" (click)="animateWinnerAvatars = !animateWinnerAvatars" [ngClass]="{'show-gif': animateWinnerAvatars === true}" *ngIf="players?.length > 0 && racers?.length > 0">
       <div class="avatar-box">
         <img [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1]?.image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1].gif + '.gif'" alt="">
+        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1]?.gif + '.gif'" alt="">
       </div>
       <div class="avatar-box rival">
-        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1].image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1].gif + '.gif'" alt="">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1]?.image + '.png'" alt="">
+        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1]?.gif + '.gif'" alt="">
       </div>
     </div>
     <div class="chart-holder">
@@ -210,7 +209,7 @@
 
     </div>
 
-    <div class="control-panel">
+    <div class="control-panel" *ngIf="players?.length > 0">
       <div class="player-stats mine">
         <p class="name">{{players[0]?.user_nickname}}</p>
 
@@ -321,7 +320,7 @@
     </div>
 
   </div>
-<div  *ngIf="raceEnded === true && winner && loser" >
+<div  *ngIf="raceEnded === true && winner && loser && meWon" >
 <app-binary-winner (fatality)="fatality()" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> 
 </div>
 </div>

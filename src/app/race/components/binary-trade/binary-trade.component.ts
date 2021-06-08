@@ -739,29 +739,34 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     user_nickname: string;
   }>) {
     this.myId = this.identityService.getDriverMe().id;
-
-    for (const el of data) {
-      if (el.user_hash === this.myId) {
+    console.log(data);
+    for (let x = 0; x < data.length; x++) {
+      if (data[x].user_hash === this.myId) {
+        console.log(data[x]);
         this.mePlaying = true;
-        this.myPlayer = el;
+        this.myPlayer = data[x];
       }
     }
-
+    console.log(data);
+    console.log(this.myPlayer);
     if (this.mePlaying === true) {
       this.players.push(this.myPlayer);
-
-      for (const el of data) {
-        if (el.user_hash !== this.myId) {
-          this.players.push(el);
+      console.log(this.players);
+      for (let x = 0; x < data.length; x++) {
+        if (data[x].user_hash !== this.myId) {
+          this.players.push(data[x]);
         }
       }
+      console.log(data);
       if (this.startsInSecs > 5) {
         setTimeout(() => {
           this.notify.error('You can place 1 option before the game will start.');
           this.canBet = true;
         }, 2000);
+        console.log(data);
       }
     } else {
+      console.log(data);
       this.players = data;
     }
   }
