@@ -924,7 +924,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.leftMsgSmall = '';
         this.leftMsgBig = '';
         this.animatingLmsg = false;
-      }, 3000);
+      }, 10);
     } else if (this.animatingRmsg === false && lPlayer === false) {
       this.rightMsgSmall = msgSmall;
       this.rightMsgBig = msgBig;
@@ -933,7 +933,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.rightMsgSmall = '';
         this.rightMsgBig = '';
         this.animatingRmsg = false;
-      }, 3000);
+      }, 10);
     }
   }
 
@@ -962,18 +962,19 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   resolveEmoji(type: string) {
+    console.log(type);
     this.emoji = type;
     for (let x = 1; x < 20; x++) {
       setTimeout(() => {
         this.emojiCounter++;
       },
-        x * 200);
+        x * 50);
     }
 
     setTimeout(() => {
       this.emoji = null;
       this.emojiCounter = 0;
-    }, 4000);
+    }, 3000);
   }
 
 
