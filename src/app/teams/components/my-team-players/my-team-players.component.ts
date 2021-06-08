@@ -22,12 +22,14 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   myLdrbrdObserver: Subscription;
   drSubscription: Subscription;
   actualPage = 1;
+  rewards: any;
   teamId: number;
   slice1: number;
   slice2: number;
   slice3: number;
   slice4: number;
   slice5: number;
+  totalPages = 1;
   position: number = 1;
   sliceNums = {
     0: 3,
@@ -36,68 +38,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
     3: 3,
     4: 3,
   };
-  myLdrbrd: Array<object> = [
-    {
-      position: 1,
-      team_name:  "BTC",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 2,
-      team_name:  "IOI",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 3,
-      team_name:  "ALT",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 4,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 5,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 6,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 7,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 8,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 9,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    },
-    {
-      position: 10,
-      team_name:  "TRX",
-      team_turnover: 10000,
-      team_potentional_win: 100
-    }
-  ];
+  myLdrbrd: any;
   constructor(
     protected ldrbrdSrvc: LeaderboardService,
     private drvrsrvc: DriversService,
@@ -122,14 +63,17 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   }
 
   getMyLeaderboard() {
-    // this.myLdrbrdObserver = this.ldrbrdSrvc
-    //   .leaderboardTeamList({
-    //     page: 1,
-    //     lastMonth: false
-    //   })
-    //   .subscribe((data) => {
-    //     this.myLdrbrd = data;
-    //   });
+    this.myLdrbrdObserver = this.ldrbrdSrvc
+      .leaderboardTeamList({
+        page: this.actualPage,
+        lastMonth: false
+      })
+      .subscribe((data) => {
+        this.myLdrbrd = data['results'];
+        this.rewards = data['applicable_team_bonuses'];
+        console.log(this.myLdrbrd);
+        this.totalPages = 1;
+      });
 
   }
 

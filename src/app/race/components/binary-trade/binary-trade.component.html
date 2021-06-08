@@ -1,6 +1,4 @@
 
-
-
 <div class="main-cont">
 
   <div class="race-menu">
@@ -20,6 +18,7 @@
             <div class="value-box">
               <p class="number">
                 {{ myDriverBalances?.game_wallet_matic | number: "1.2-2":"fr" }}
+
               </p>
               <p class="add">+</p>
             </div>
@@ -127,14 +126,14 @@
     </app-unityrace> 
   </div>
   <div class="content-holder">
-    <div class="mobile-avatars" (click)="animateWinnerAvatars = !animateWinnerAvatars" [ngClass]="{'show-gif': animateWinnerAvatars === true}" *ngIf="players?.length > 0 && racers?.length > 0">
-      <div class="avatar-box">
-        <img [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1]?.image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id - 1].gif + '.gif'" alt="">
+    <div class="mobile-avatars" *ngIf="players?.length > 1 && racers?.length > 0">
+      <div class="avatar-box" [ngClass]="{'show-gif': animateMyWinnerAvatars === true && players[0]?.user_id > 0}">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id]?.image + '.png'" alt="">
+        <img *ngIf="players[0]?.user_id > 0" class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[0]?.user_id]?.gif + '.gif'" alt="">
       </div>
-      <div class="avatar-box rival">
-        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1].image + '.png'" alt="">
-        <img class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id - 1].gif + '.gif'" alt="">
+      <div class="avatar-box rival" [ngClass]="{'show-gif': animateRivalWinnerAvatars === true && players[1]?.user_id > 0}">
+        <img [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id]?.image + '.png'" alt="">
+        <img *ngIf="players[1]?.user_id > 0" class="gifko" [src]="'/assets/base/images/nft-racers/' + racers[players[1]?.user_id]?.gif + '.gif'" alt="">
       </div>
     </div>
     <div class="chart-holder">
@@ -152,19 +151,19 @@
         <div class="control-btns">
           <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 2});avatarMsgLocal({user_hash: myId, reaction: 2})" [disabled]="locked === true">
             <div class="inner">
-              <img src="/assets/base/images/binary-race/react-possitive.svg" alt="">
+              <img src="/assets/base/images/binary-race/react-possitive.png" alt="">
             </div>
           </button>
   
           <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 3});avatarMsgLocal({user_hash: myId, reaction: 3})" [disabled]="locked === true">
             <div class="inner">
-              <img src="/assets/base/images/binary-race/react-negative.svg" alt="">
+              <img src="/assets/base/images/binary-race/react-negative.png" alt="">
             </div>
           </button>
   
           <button class="react-btn" (click)="sendSockAvatarMsg({'user_hash': myId, 'reaction': 4});avatarMsgLocal({user_hash: myId, reaction: 4})" [disabled]="locked === true">
             <div class="inner">
-              <img src="/assets/base/images/binary-race/react-diss.svg" alt="">
+              <img src="/assets/base/images/binary-race/react-diss.png" alt="">
             </div>
           </button>
               </div>
@@ -210,7 +209,7 @@
 
     </div>
 
-    <div class="control-panel">
+    <div class="control-panel" *ngIf="players?.length > 0">
       <div class="player-stats mine">
         <p class="name">{{players[0]?.user_nickname}}</p>
 
@@ -246,7 +245,7 @@
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent" *ngIf="roileft">{{roileft}}%</p>
+        <p class="percent" *ngIf="roileft">{{roileft | number: "1.2-2":"fr"}}%</p>
 
       </div>
 
@@ -258,7 +257,7 @@
           <img src="/assets/base/images/binary-race/btc-logo.svg" alt="">
         
           <p *ngIf="currentValue; else loading" [ngClass]="colorUp === true ? 'colorup' : 'colordown'">
-            &#36; {{currentValue}}
+            &#36; {{currentValue | number: "1.2-2":"fr"}}
               </p>
           5
           <ng-template #loading>
@@ -267,7 +266,7 @@
         </div>
         <div class="data-box">
           <img src="/assets/base/images/binary-race/time-icon.svg" alt="">
-          <p class="bin-trade" *ngIf="endVal && raceStarted === true">
+          <p class="bin-trade" *ngIf="raceStarted === true">
             <app-timer [value]="endVal"></app-timer> sec
           </p>
           <p class="bin-trade" *ngIf="endVal && raceStarted === false">
@@ -314,14 +313,14 @@
           <div class="inner-bar"></div>
         </div>
 
-        <p class="percent" *ngIf="roiright">{{roiright}}%</p>
+        <p class="percent" *ngIf="roiright">{{roiright | number: "1.2-2":"fr"}}%</p>
 
       </div>
 
     </div>
 
   </div>
-<div  *ngIf="raceEnded === true && winner && loser && meWon" >
+<div  *ngIf="raceEnded === true && winner && loser" >
 <app-binary-winner (fatality)="fatality()" [winner]="winner" [loser]="loser" [meWon]="meWon"></app-binary-winner> 
 </div>
 </div>

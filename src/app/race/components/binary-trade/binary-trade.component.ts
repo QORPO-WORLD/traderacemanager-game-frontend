@@ -107,7 +107,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartStream: Subject<any> = new Subject();;
   chartSubscription: Subscription;
   pushing = false;
-  animateWinnerAvatars = false;
+  animateMyWinnerAvatars = false;
+  animateRivalWinnerAvatars = false;
   affiliate: any;
   semaforVal = 6;
   chartTemp: any;
@@ -115,6 +116,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   startVal: number;
 
   racers: Array<any> = [
+    {
+      id: 0,
+      name: 'Rookie',
+      image: 'rookie-basic',
+      gif: "",
+      sum: 0,
+      pks: []
+    },
     {
       id: 1,
       name: 'Axle',
@@ -206,6 +215,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   emoji: string;
   emojiCounter = 0;
   pageOpen = true;
+  leftScore: number;
+  rightScore: number;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -214,9 +225,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
     this.startsInSecs = this.getWhenStarts();
-    console.log(this.startsInSecs);
     setTimeout(() => {
       this.raceStarted = true;
+      const newwhen = this.getWhenStarts();
+      this.endVal = newwhen + 60;
+      console.log(this.endVal);
     }, this.startsInSecs * 1000)
     this.whenStarts();
     this.getBinaryPlayers();
@@ -231,7 +244,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       if (this.pageOpen === true) {
-        this.unityEnabled = true;
+        // this.unityEnabled = true;
       }
     }, 5000);
   }
@@ -367,6 +380,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         "long": this.long
       }).subscribe(
         data => {
+          this.convertToHuman(true, 'Placing', 'option');
           //this.optWaiting = 10;
           if (data.next_bet === 0) {
             this.canBet = true;
@@ -425,6 +439,12 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
               duration: 20000,
               refresh: 1000,
               delay: 2000,
+            },
+            ticks: {
+              fontColor: "#868686",
+              reverse: false,
+              stepSize: 5
+
             }
           },
           yAxes: [{
@@ -445,13 +465,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             }
           }]
         },
-        plugins: {
-          tooltips: {
-            name: 'janoll',
-            enabled: false,
-            intersect: false
-          }
-        },
         bands: {
           yValue: this.currentValue,
           baseColorGradientColor: [
@@ -470,11 +483,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           mode: 'index',
           position: 'nearest',
           
-        },
-        tooltip: {
-          name: 'janokk',
-          enabled: true,
-          intersect: false
         }
       }
     };
@@ -672,14 +680,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.unityEnabled === false;
       this.playSound('meLoose');
       this.convertToHuman(true, 'loose', 'You');
+      this.animateRivalWinnerAvatars = true;
     } else {
       this.playSound('meWin');
       this.convertToHuman(true, 'won!!!', 'You');
+      this.animateMyWinnerAvatars = true;
     }
     this.raceEnded = true;
-    console.log(this.winner);
-    console.log(this.loser);
-    console.log(this.meWon);
   }
 
   onScore(data?: any) {
@@ -687,9 +694,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (opt.uh === this.myId) {
       this.myShots = data.p;
       this.roileft = data.r;
+      this.leftScore = this.calcScore(data.p);
     } else {
       this.oponentShots = data.p;
       this.roiright = data.r;
+      this.rightScore = this.calcScore(data.p);
     }
     this.playSound('action');
   }
@@ -726,6 +735,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   sendSockAvatarMsg(msg: any) {
     this.locked = true;
+    this.convertToHuman(true, 'Reaction', 'sent');
     popsock.emit("client_triggered_emit",
       {
         "event": "message",
@@ -745,20 +755,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     user_nickname: string;
   }>) {
     this.myId = this.identityService.getDriverMe().id;
-
-    for (const el of data) {
-      if (el.user_hash === this.myId) {
+    for (let x = 0; x < data.length; x++) {
+      if (data[x].user_hash === this.myId) {
+        console.log(data[x]);
         this.mePlaying = true;
-        this.myPlayer = el;
+        this.myPlayer = data[x];
       }
     }
-
     if (this.mePlaying === true) {
       this.players.push(this.myPlayer);
-
-      for (const el of data) {
-        if (el.user_hash !== this.myId) {
-          this.players.push(el);
+      for (let x = 0; x < data.length; x++) {
+        if (data[x].user_hash !== this.myId) {
+          this.players.push(data[x]);
         }
       }
       if (this.startsInSecs > 5) {
@@ -823,13 +831,15 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const now: any = DateTime.utc();
     const diffTime = Math.abs((then - now.ts) / 1000);
 
-    return diffTime;
+    return Math.round(diffTime);
   }
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
+
     this.startVal = newwhen;
-    this.endVal = newwhen + 60;
+    //this.endVal = newwhen + 60;
+    console.log(this.startVal);
     const fireSemaforx = (newwhen - 5) * 1000;
     if (fireSemaforx > 0) {
       setTimeout((
@@ -959,19 +969,30 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   resolveEmoji(type: string) {
+
     this.emoji = type;
     for (let x = 1; x < 20; x++) {
       setTimeout(() => {
         this.emojiCounter++;
       },
-        x * 200);
+        x * 50);
     }
 
     setTimeout(() => {
       this.emoji = null;
       this.emojiCounter = 0;
-    }, 4000);
+    }, 3000);
   }
+
+  calcScore(data: Array<any>) {
+    let tScore = 0;
+    for (let x = 0; x < data.length; x++) {
+      tScore = tScore + Number(x);
+    }
+
+    return tScore;
+  }
+  
 
 
 }
