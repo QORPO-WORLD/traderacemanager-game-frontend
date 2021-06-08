@@ -1,4 +1,4 @@
-import { ContactListComponent } from './../other/components/contact-list/contact-list.component';
+import { ContactListComponent } from "./../other/components/contact-list/contact-list.component";
 import { BridgeComponent } from "./../bridge/bridge.component";
 import { ConfirmWithdrawalComponent } from "./confirm-withdrawal/confirm-withdrawal.component";
 import { Routes, RouterModule } from "@angular/router";
@@ -20,7 +20,7 @@ import { JwSocialButtonsModule } from "jw-angular-social-buttons";
 import { TransferNftComponent } from "./pages/transfer-nft/transfer-nft.component";
 import { DepositNftComponent } from "./pages/deposit-nft/deposit-nft.component";
 import { WithdrawNftComponent } from "./pages/withdraw-nft/withdraw-nft.component";
-import { ContactsStaticComponent } from './contacts-static/contacts-static.component';
+import { ContactsStaticComponent } from "./contacts-static/contacts-static.component";
 import { IonicModule } from "@ionic/angular";
 
 const routes: Routes = [
@@ -36,7 +36,7 @@ const routes: Routes = [
         pathMatch: "full",
       },
       {
-        path: "about-tokens/rewards",
+        path: "rewards",
         component: RewardsComponent,
       },
       {
@@ -95,7 +95,7 @@ const routes: Routes = [
     DepositNftComponent,
     WithdrawNftComponent,
     ContactListComponent,
-    ContactsStaticComponent
+    ContactsStaticComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -104,7 +104,7 @@ const routes: Routes = [
     FormsModule,
     AnQrcodeModule,
     JwSocialButtonsModule,
-    IonicModule
+    IonicModule,
   ],
   providers: [SocialSharing],
   exports: [AboutTokensComponent, AffilateComponent, RewardsComponent],
