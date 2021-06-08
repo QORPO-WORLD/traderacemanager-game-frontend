@@ -224,23 +224,23 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
   getMyGames() {
 
-        this.liveObserver = this.raceApi.liveBinary().subscribe(
-          data => {
-            console.log(data);
-            if (data.length > 0) {
-              if (this.getInterval) {
-                clearInterval(this.getInterval);
-              }
-              if (this.gettInterval) {
-                clearInterval(this.gettInterval);
-              }
-              this.automatchLoading = false;
-              this.nextRace = data[0];
-              this.getBinaryPlayers(data);
-
-            }
+    this.liveObserver = this.raceApi.liveBinary().subscribe(
+      data => {
+        console.log(data);
+        if (data.length > 0) {
+          if (this.getInterval) {
+            clearInterval(this.getInterval);
           }
-        )
+          if (this.gettInterval) {
+            clearInterval(this.gettInterval);
+          }
+          this.automatchLoading = false;
+          this.nextRace = data[0];
+          this.getBinaryPlayers(data);
+
+        }
+      }
+    )
 
   }
 
@@ -272,30 +272,35 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     user_hash: string;
     user_nickname: string;
   }>) {
+    setTimeout(() => {
+      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
+      console.log('removing');
+      localStorage.removeItem('binary');
+    }, 3000);
+
+
     const myid = this.identityService.getDriverMe().id;
     console.log(this.nextRace);
-    for (const el of data) {
-      if (el.user_hash !== myid) {
-        const ff = this.racers.filter((item) => {
-          return item.id === el.user_id
+    let ff;
+    for (let x = 0; x < data.length; x++) {
+      if (data[x].user_hash !== myid) {
+        ff = this.racers.filter((item) => {
+          return item.id === data[x].user_id
         });
         console.log(ff);
         this.opponentPlayer = {
           avatar: {
             image: ff[0].image
           },
-          name: el.user_nickname
+          name: data[x].user_nickname
         }
       }
     }
 
+
     this.matched = true;
- 
-    setTimeout(() => {
-      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
-      console.log('removing');
-      localStorage.removeItem('binary');
-         }, 3000);
+
+
 
   }
 
