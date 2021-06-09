@@ -1,115 +1,59 @@
 <div class="content-holder">
   <div class="left-holder">
     <div class="curr-holder">
-      <p class="common-heading">1,Pick a currency</p>
+      <p class="common-heading">Pick a currency</p>
       <div class="boxes-holder">
         <div
-          class="box-item my-cta-btn-back hoverable"
-          [ngClass]="{ inactive: tokenSelected !== 'ioi' }"
+          class="box-item"
+          [ngClass]="{ 'active': tokenSelected === 'ioi' }"
           (click)="tokenSelected = 'ioi'"
         >
-          <div class="inner">
-            <img
-              src="/assets/base/images/logo-blank.png"
-              alt="Logo of ioi token"
-              class="curr-logo"
-            />
-            <div class="text-holder">
-              <p class="curr-type">
-                IOI
-              </p>
-              <ng-container *ngIf="myIoiBalance > 0">
-                <p class="dollars">
-                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
-                </p>
-              </ng-container>
-              <ng-container *ngIf="myIoiBalance === 0">
-                <p class="dollars">&#36; 0</p>
-              </ng-container>
-            </div>
-            <button class="arrow-btn my-text-color">&gt;</button>
-          </div>
+        <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
-          class="box-item my-cta-btn-back hoverable"
-          [ngClass]="{ inactive: tokenSelected !== 'matic' }"
+          class="box-item"
+          [ngClass]="{ 'active': tokenSelected === 'matic' }"
           (click)="tokenSelected = 'matic'"
         >
-          <div class="inner">
-            <img
-              src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
-              alt="Logo of matic token"
-              class="curr-logo"
-            />
-            <div class="text-holder">
-              <p class="curr-type">
-                POLYGON
-              </p>
-              <ng-container>
-                <p class="dollars">
-                  &#36;
-                  {{
-                    myBalance?.game_wallet_matic * myBalance?.matic_usdt
-                      | number: "1.0-2":"fr"
-                  }}
-                </p>
-              </ng-container>
-            </div>
-            <button class="arrow-btn my-text-color">&gt;</button>
-          </div>
+        <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
       </div>
     </div>
 
     <div class="curr-holder chain">
-      <p class="common-heading">2,Pick a blockchain</p>
+      <p class="common-heading">Pick a blockchain</p>
       <div class="boxes-holder">
         <div
-          class="box-item my-cta-btn-back hoverable"
-          [ngClass]="{ inactive: chainSelected !== 'polygon' }"
-          (click)="chainSelected  = 'polygon'"
+          class="box-item"
+          [ngClass]="{ 'active': chainSelected === 'polygon' }"
+          (click)="chainSelected = 'polygon'"
         >
-          <div class="inner">
-            <div class="text-holder">
-              <p class="curr-type">
-                Polygon chain
-              </p>
-            </div>
-            <button class="arrow-btn my-text-color">&gt;</button>
-          </div>
+          <p>Polygon chain</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
         style="opacity: 0.5;cursor: default;"
-          class="box-item my-cta-btn-back hoverable"
+          class="box-item"
           [ngClass]="{ inactive: chainSelected  !== 'ethereum' }"
         >
-          <div class="inner">
-            <div class="text-holder">
-              <p class="curr-type">
-                Coming soon
-              </p>
-            </div>
-            <button class="arrow-btn my-text-color">&gt;</button>
-          </div>
+          <p>Coming soon</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
       </div>
     </div>
 
     <div class="amount-holder">
-      <div class="selected-curr">
-        <div class="desc">
-          <p>Selected currency</p>
-        </div>
-        <div class="value">
-          <p *ngIf="tokenSelected === 'matic'">Plygon</p>
-          <p *ngIf="tokenSelected === 'ioi'">IOI</p>
-        </div>
-      </div>
-      <p class="common-heading">Amount</p>
+      <p class="common-heading">Withdrawal amount</p>
       <div class="amount-input">
         <div class="inner">
           <input
@@ -123,10 +67,10 @@
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
         <p class="input-note" *ngIf="tokenSelected === 'ioi'">
-          Minimal withdrawal amount is 100 IOI
+          Min. 100 IOI
         </p>
         <p class="input-note" *ngIf="tokenSelected === 'matic'">
-          Minimal withdrawal amount is 100 Polygon
+          Min. 100 Polygon
         </p>
       </div>
       <p class="common-heading">Crypto wallet address</p>
@@ -142,17 +86,15 @@
   </div>
   <div class="right-holder">
     <p class="common-heading">Your withdrawal summary</p>
-    <div class="main-panel my-border-grad">
+    <div class="main-panel">
       <div class="inner">
         <div class="withdraw-info">
           <p class="text">You are withdrawing</p>
           <p class="value">
+            <img *ngIf="tokenSelected === 'ioi'" src="/assets/base/images/icons/ioi-big.svg" alt="">
+            <img *ngIf="tokenSelected === 'matic'" src="/assets/base/images/funds-box-back.png" alt="">
             <span *ngIf="amount > 0">{{ amount }}</span>
             <span *ngIf="amount < 1">0</span>
-            <span *ngIf="tokenSelected === 'matic'" class="value-desc"
-              >Polygon</span
-            >
-            <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
           <p *ngIf="tokenSelected === 'matic'" class="desc">
             market value 1 Polygon = {{ maticusdt }} USD

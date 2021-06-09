@@ -4,54 +4,23 @@
       <p class="common-heading">Transfer a currency</p>
       <div class="boxes-holder">
         <div
-          class="box-item my-cta-btn-back hoverable"
-          [ngClass]="{ inactive: tokenSelected !== 'ioi' }"
+          class="box-item"
+          [ngClass]="{ 'active': tokenSelected === 'ioi' }"
           (click)="selectIoi()"
         >
-          <div class="inner">
-            <img
-              src="/assets/base/images/logo-blank.png"
-              alt="Logo of ioi token"
-              class="curr-logo"
-            />
-            <div class="text-holder">
-              <p class="curr-type">
-                IOI <button class="arrow-btn my-text-color">&gt;</button>
-              </p>
-              <ng-container *ngIf="myIoiBalance > 0">
-                <p class="dollars">
-                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
-                </p>
-              </ng-container>
-              <ng-container *ngIf="myIoiBalance === 0">
-                <p class="dollars">&#36; 0</p>
-              </ng-container>
-            </div>
-          </div>
+        <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
-          [ngStyle]="{ cursor: 'pointer' }"
-          class="box-item my-cta-btn-back"
+          class="box-item"
+          [ngClass]="{ 'active': tokenSelected === 'matic' }"
           (click)="selectMatic()"
-          [ngClass]="{ inactive: tokenSelected !== 'matic' }"
         >
-          <div class="inner">
-            <img
-              src="/assets/base/images/curr-logos/MATICUSDT-logo.png"
-              alt="Logo of matic token"
-              class="curr-logo"
-            />
-            <div class="text-holder">
-              <p class="curr-type">
-                POLYGON
-                <button disabled class="arrow-btn my-text-color">&gt;</button>
-              </p>
-              <ng-container>
-                <p class="dollars">&#36; {{(myBalance?.game_wallet_matic * myBalance?.matic_usdt)  | number:'1.0-2':'fr'}}</p>
-              </ng-container>
-            </div>
-          </div>
+        <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
+          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <div class="active-border my-cta-btn-back"></div>
         </div>
 
       </div>
@@ -91,15 +60,6 @@
           </div>
         </div>
       </div>
-      <div class="selected-curr">
-        <div class="desc">
-          <p>Selected currency</p>
-        </div>
-        <div class="value">
-          <p *ngIf="tokenSelected === 'matic'">Polygon</p>
-          <p *ngIf="tokenSelected === 'ioi'">IOI</p>
-        </div>
-      </div>
       <p class="common-heading">Amount</p>
       <div class="amount-input">
         <div class="inner">
@@ -116,6 +76,7 @@
       </div>
       <div class="transfer-inputs">
         <div class="input-item left">
+          <p class="common-heading">Send from</p>
           <div class="my-input bordered">
             <input
               type="text"
@@ -123,9 +84,9 @@
               readonly
             />
           </div>
-          <p class="destination-desc">Send from</p>
         </div>
         <div class="input-item">
+          <p class="common-heading">Send to</p>
           <div class="my-input">
             <input
               type="text"
@@ -133,24 +94,21 @@
               readonly
             />
           </div>
-          <p class="destination-desc">Send to</p>
         </div>
       </div>
     </div>
   </div>
   <div class="right-holder">
     <p class="common-heading">Your transfer summary</p>
-    <div class="main-panel my-border-grad">
+    <div class="main-panel">
       <div class="inner">
         <div class="withdraw-info">
           <p class="text">You are transferring</p>
           <p class="value">
+            <img *ngIf="tokenSelected === 'ioi'" src="/assets/base/images/icons/ioi-big.svg" alt="">
+            <img *ngIf="tokenSelected === 'matic'" src="/assets/base/images/funds-box-back.png" alt="">
             <span *ngIf="amount > 0">{{ amount }}</span>
             <span *ngIf="amount < 1">0</span>
-            <span *ngIf="tokenSelected === 'matic'" class="value-desc"
-              >Polygon</span
-            >
-            <span *ngIf="tokenSelected === 'ioi'" class="value-desc">IOI</span>
           </p>
           <p *ngIf="tokenSelected === 'matic'" class="desc">
             market value 1 Polygon = {{maticusdt}} USD

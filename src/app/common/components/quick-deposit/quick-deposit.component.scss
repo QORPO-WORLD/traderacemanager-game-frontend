@@ -3,19 +3,22 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 10px;
+  height: 100%;
   .common-heading {
-    font-weight: 600;
+    font-family: Earth Orbiter;
+    font-weight: 700;
     font-size: 20px;
     margin: 0;
   }
   .left-holder {
-    width: 49%;
+    width: 46%;
+    height: 100%;
     &.mobile{
       display: none;
     }
     .curr-holder {
       width: 100%;
-      margin-bottom: 20px;
+      height: 20%;
       &.chain{
         .boxes-holder{
           .box-item{
@@ -42,59 +45,52 @@
         align-items: center;
         height: 80px;
         width: 100%;
-        .box-item {
-          border-radius: 10px;
+        .box-item{
           width: 48%;
           height: 100%;
+          border: 3px solid rgba(255, 255, 255, 0.4);
+          position: relative;
+          transition: .2s;
           cursor: pointer;
-          opacity: 1;
-          padding: 0 10px;
-          &.inactive {
-            background: rgba(255,255,255, .05);
+          &:hover{
+            .back-img{
+              opacity: .7;
+            }
           }
-          .inner {
-            border-radius: 15px;
-            padding: 3px 10px 5px 25px;
+          &.active{
+            .back-img{
+              opacity: 1;
+            }
+            .active-border{
+              opacity: 1;
+            }
+          }
+          .back-img{
             width: 100%;
             height: 100%;
-            position: relative;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            .curr-logo {
-              width: 35px;
-              margin-right: 5px;
-            }
-            .text-holder {
-              max-width: 145px;
-              width: 100%;
-              margin-left: 25px;
-              .curr-type {
-                font-weight: 600;
-                font-size: 20px;
-                margin: 0;
-              }
-              .value {
-                font-weight: 600;
-                font-size: 19px;
-                margin: 0 0 8px 0;
-              }
-              .dollars {
-                font-weight: 500;
-                font-size: 16px;
-                margin: 0;
-              }
-            }
-            .arrow-btn {
-              font-size: 16px;
-              border-radius: 5px;
-              margin-left: 7px;
-              width: 25px;
-              height: 25px;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              right: 5%;
+            object-fit: cover;
+            opacity: .4;
+            transition: .2s;
+          }
+          .active-border{
+            position: absolute;
+            bottom: -3px;
+            left: -3px;
+            height: 3px;
+            width: calc(100% + 6px);
+            opacity: 0;
+          }
+          p{
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: 700;
+            img{
+              display: inline-block;
+              margin-right: 30px;
+              width: 40px;
             }
           }
         }
@@ -151,11 +147,9 @@
     }
     .amount-holder {
       width: 100%;
-      height: 352px;
+      height: 60%;
       padding: 25px 20px;
-      background: #222222;
-      border-radius: 15px;
-      margin: 30px 0 10px;
+      background: rgba(17,17,17,.8);
       position: relative;
       .big-text {
         position: absolute;
@@ -164,8 +158,9 @@
         transform: translate(-50%, -50%);
         text-align: center;
         margin: 0;
-        font-size: 20px;
-        width: 90%;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.4);
+        width: 80%;
       }
       .common-heading {
         margin-bottom: 20px;
@@ -237,7 +232,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 352px;
+        height: 100%;
         .info-img {
           padding: 5px;
           position: absolute;
@@ -322,48 +317,49 @@
       }
     }
     .deposit-disclaim{
-      border-radius: 10px;
       width: 100%;
       margin: 23px 0 10px;
       height: 128px;
-      padding: 0 20px;
       position: relative;
-      .inner-holder{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 73%;
-        img{
-          display: inline-block;
-          margin-right: 30px;
-        }
-        p{
-          font-weight: 600;
-          font-size: 14px;
-          width: 100%;
-          margin: 0;
+      padding: 2px;
+      .border-maker{
+        background: #111111;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        .inner-holder{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 73%;
+          img{
+            display: inline-block;
+            margin-right: 30px;
+          }
+          p{
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+            margin: 0;
+          }
         }
       }
     }
   }
   .right-holder {
-    width: 49%;
+    width: 52%;
+    height: 100%;
     .common-heading {
       margin-bottom: 20px;
     }
     .main-panel {
       width: 100%;
-      border-radius: 15px;
-      height: 614px;
-      margin-bottom: 10px;
-      padding: 1px;
+      height: calc(100% - 50px);
+      background: rgba(17,17,17,.8);
       .inner {
-        background: rgba(34, 34, 34, 0.5);
-        border-radius: 15px;
         padding: 40px 40px 10px 40px;
         width: 100%;
         height: 100%;
@@ -400,31 +396,21 @@
           padding: 9px 0;
           margin: 15px 0;
           position: relative;
-          .info-border {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40%;
-            height: 1px;
-            border-radius: 2px;
-            &.top {
-              top: 0;
-            }
-            &.bottom {
-              bottom: 0;
-            }
-          }
           .info-item {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             width: 100%;
+            margin-bottom: 50px;
             &.crypto-adress {
               flex-wrap: wrap;
               justify-content: center;
+              margin-bottom: 60px;
               input {
                 width: 100%;
                 text-align: center;
+                font-weight: 600;
+                font-size: 24px;
               }
             }
             &.second {
@@ -436,7 +422,6 @@
               font-weight: 500;
               &.desc {
                 font-weight: 400;
-                opacity: 0.4;
               }
             }
             input {
@@ -450,7 +435,7 @@
           text-align: center;
           .info-text {
             font-size: 16px;
-            margin: 0;
+            margin: 0 0 25px 0;
             opacity: 0.4;
             line-height: 1.2;
             &.important{
@@ -475,7 +460,6 @@
             font-size: 16px;
             font-weight: 400;
             padding: 11px 40px;
-            border-radius: 10px;
           }
         }
         .not-setup-holder{
@@ -532,7 +516,6 @@
     }
     .left-holder {
       .curr-holder {
-        margin-bottom: 15px;
         .common-heading {
           margin-bottom: 15px;
         }
@@ -543,23 +526,11 @@
         .boxes-holder {
           height: 75px;
           .box-item {
-            .inner {
-              .text-holder {
-                left: 14px;
-                .value {
-                  font-size: 17px;
-                  margin: 0 0 6px 0;
-                }
-                .dollars {
-                  font-size: 14px;
-                }
-                .curr-type {
-                  font-size: 17px;
-                  .arrow-btn {
-                    width: 22px;
-                    height: 22px;
-                  }
-                }
+            p{
+              font-size: 18px;
+              margin: 0;
+              img{
+                width: 37px;
               }
             }
           }
@@ -574,9 +545,7 @@
         }
       }
       .amount-holder {
-        height: 322px;
         .info-box {
-          height: 322px;
           .inner-holder {
             padding: 5px 15px;
             h3 {
@@ -625,7 +594,7 @@
         margin-bottom: 15px;
       }
       .main-panel {
-        height: 560px;
+        height: calc(100% - 42px);
         .inner {
           .depositing-info {
             .text {
@@ -646,6 +615,15 @@
             padding: 12px 0;
             margin: 13px 0;
             .info-item {
+              &.crypto-adress{
+                margin-bottom: 50px;
+                input{
+                  font-size: 22px;
+                }
+              }
+              &.second{
+                margin-bottom: 40px;
+              }
               p {
                 font-size: 15px;
               }
@@ -690,9 +668,6 @@
                   font-size: 16px;
                   margin: 0 0 2px 0;
                 }
-                .dollars {
-                  font-size: 13px;
-                }
               }
             }
           }
@@ -705,8 +680,6 @@
       }
       .amount-holder {
         padding: 20px 15px;
-        margin: 20px 0 10px;
-        height: 267px;
         .big-text {
           font-size: 18px;
         }
@@ -737,7 +710,6 @@
           }
         }
         .info-box {
-          height: 267px;
           .info-img {
             top: 15px;
             right: 20px;
@@ -801,7 +773,7 @@
         margin-bottom: 12px;
       }
       .main-panel {
-        height: 480px;
+        height: calc(100% - 37px);
         .inner {
           .depositing-info {
             .value {
@@ -863,12 +835,45 @@
 @media screen and (max-width: 1300px) {
   .content-holder {
     .left-holder {
-      width: 56%;
+      .curr-holder{
+        .boxes-holder{
+          height: 65px;
+          .box-item{
+            p{
+              font-size: 15px;
+              img{
+                width: 31px;
+                margin-right: 15px;
+              }
+            }
+          }
+        }
+      }
+      .amount-holder{
+        .big-text{
+          font-size: 15px;
+        }
+      }
     }
     .right-holder {
-      width: 42%;
       .main-panel {
         .inner{
+          padding: 30px 20px 10px 20px;
+          .depositing-info{
+            .text{
+              font-size: 12px;
+            }
+          }
+          .my-wallet-info{
+            .info-item{
+              &.crypto-adress{
+                margin-bottom: 45px;
+                input{
+                  font-size: 17px;
+                }
+              }
+            }
+          }
           .qr-code-holder {
             .info-text {
               font-size: 12px;
@@ -880,131 +885,58 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .content-holder {
-    .common-heading {
-      font-size: 16px;
-    }
+@media screen and (max-width: 1024px){
+  .content-holder{
+    height: 500px;
+    margin-top: 0;
     .left-holder {
-      width: 54%;
-      .address-holder{
-        margin-bottom: 15px;
-      }
-      .curr-holder {
-        .common-heading {
-          margin-bottom: 10px;
-        }
-        .desc-text {
-          font-size: 13px;
-          margin: 0 0 10px 0;
-        }
-        .boxes-holder {
-          .box-item {
-            width: 48%;
-          }
-          .soon-curs {
-            display: none;
-          }
-        }
-      }
-      .amount-holder {
-        padding: 16px 13px;
-        margin: 15px 0 7px;
-        .common-heading {
-          margin-bottom: 12px;
-          margin-left: 9px;
-        }
-        .amount-input {
-          margin-bottom: 25px;
-          border-radius: 10px;
-          .inner {
-            border-radius: 10px;
-            input {
-              padding: 7px 50px 7px 20px;
-              border-radius: 10px;
-            }
-            .curr-desc {
-              right: 20px;
+      .curr-holder{
+        .boxes-holder{
+          height: 60px;
+          .box-item{
+            p{
               font-size: 13px;
-            }
-          }
-          .input-note {
-            font-size: 13px;
-          }
-        }
-        .crypto-input {
-          input {
-            padding: 7px 20px;
-            font-size: 15px;
-          }
-        }
-        .info-box {
-          .inner-holder {
-            .btns-holder {
-              a {
-                width: 48%;
-                margin: 0 5px;
+              img{
+                width: 26px;
+                margin-right: 10px;
               }
             }
           }
         }
       }
-      .deposit-disclaim{
-        height: 105px;
+      .amount-holder{
+        .big-text{
+          font-size: 13px;
+        }
       }
     }
     .right-holder {
-      width: 44%;
-      .common-heading {
-        margin-bottom: 10px;
-      }
       .main-panel {
-        height: 470px;
-        .inner {
-          padding: 16px 18px 5px 18px;
-          .depositing-info {
-            .text {
-              font-size: 12px;
-              margin: 0 0 5px 0;
-            }
-            .value {
-              font-size: 22px;
-              .value-desc {
-                font-size: 12px;
-              }
-            }
-            .desc {
-              font-size: 12px;
+        .inner{
+          padding: 15px 15px 10px 15px;
+          .depositing-info{
+            .text{
+              font-size: 11px;
             }
           }
-          .my-wallet-info {
-            padding: 7px 0;
-            margin: 9px 0;
-            .info-item {
-              p {
-                font-size: 13px;
-                &.desc {
-                  font-size: 12px;
+          .my-wallet-info{
+            padding: 3px 0;
+            margin: 4px 0;
+            .info-item{
+              &.crypto-adress{
+                margin-bottom: 35px;
+                input{
+                  font-size: 13px;
                 }
               }
-              input {
-                font-size: 13px;
-              }
-              &.second {
-                margin-top: 8px;
+              &.second{
+                margin-bottom: 30px;
               }
             }
           }
           .qr-code-holder {
-            .qr-code {
-              width: 120px;
-            }
-            .our-code {
-              font-size: 13px;
-            }
-            .confirm-btn {
-              padding: 6px 30px;
-              font-size: 13px;
+            .info-text {
+              font-size: 12px;
             }
           }
         }
@@ -1022,26 +954,14 @@
       margin: 0 auto;
     }
     .left-holder {
+      height: unset;
+      margin-bottom: 15px;
       &.mobile{
         display: block;
       }
-      .curr-holder {
-        .boxes-holder {
-          .box-item {
-            border-radius: 5px;
-            .inner {
-              border-radius: 5px;
-              .text-holder{
-                .dollars{
-                  display: none;
-                }
-              }
-              .arrow-btn{
-                display: none;
-              }
-            }
-          }
-        }
+      .curr-holder{
+        height: unset;
+        margin-bottom: 10px;
       }
       .amount-holder{
         display: none;
@@ -1130,14 +1050,13 @@
 
 @media screen and (max-width: 640px) {
   .content-holder {
-    padding: 0 10px;
     .left-holder,
     .right-holder {
       width: 100%;
     }
     .left-holder {
       .curr-holder {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
       }
     }
   }
