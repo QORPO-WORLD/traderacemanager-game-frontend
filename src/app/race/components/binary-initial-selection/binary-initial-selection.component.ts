@@ -1,3 +1,4 @@
+import { NotifyService } from './../../../common/services/notify.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CarsService, RacesService } from 'src/app/api/services';
@@ -90,7 +91,8 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   liveObserver: Subscription;
   playersObserver: Subscription;
   myDriverBalances: any;
-  constructor(private identityService: AuthService, private carService: CarsService, private raceApi: RacesService, private route: Router) { }
+  constructor(private identityService: AuthService, private carService: CarsService, private raceApi: RacesService, private route: Router,
+  private notify: NotifyService) { }
 
   ngOnInit() {
     this.getMyDriver();
@@ -105,6 +107,9 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         this.gettInterval = setInterval(() => {
           this.getMyGames();
         }, 1500);
+      } else {
+        localStorage.removeItem('binary');
+        this.automatchLoading = false;
       }
     }
 
@@ -149,8 +154,6 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
   getMyChosenAvatar() {
     if (this.chosenRacerId) {
-      console.log(this.chosenRacerId);
-
       const filtered = this.racers.filter(
         (racer) => racer.id === this.chosenRacerId
       );
@@ -200,7 +203,11 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     const bin = JSON.parse(localStorage.getItem('binary'));
     if (bin) {
       if (Date.now() > bin.time) {
+        this.notify.error('You are currently waiting for oponent.')
         return;
+      } else {
+        localStorage.removeItem('binary');
+        this.automatchLoading = false;
       }
     }
 
@@ -249,7 +256,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   getMyGamesOnce() {
     this.liveObserver = this.raceApi.liveBinary().subscribe(
       data => {
-        console.log(data);
+
         if (data.length > 0) {
           this.automatchLoading = false;
           this.nextRace = data[0];
@@ -275,21 +282,23 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     user_nickname: string;
   }>) {
     setTimeout(() => {
-      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
-      console.log('removing');
+
       localStorage.removeItem('binary');
+      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
+      
+
     }, 3000);
 
 
     const myid = this.identityService.getDriverMe().id;
-    console.log(this.nextRace);
+
     let ff;
     for (let x = 0; x < data.length; x++) {
       if (data[x].user_hash !== myid) {
         ff = this.racers.filter((item) => {
           return item.id === data[x].user_id
         });
-        console.log(ff);
+
         this.opponentPlayer = {
           avatar: {
             image: ff[0].image
@@ -301,8 +310,6 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
 
     this.matched = true;
-
-
 
   }
 
