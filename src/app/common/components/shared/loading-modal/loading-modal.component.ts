@@ -13,7 +13,6 @@ export class LoadingModalComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => { this.animateBar = true;}, 200);
-    console.log('janko mrkvicka');
   }
 
 }
