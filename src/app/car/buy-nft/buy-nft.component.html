@@ -177,8 +177,8 @@
           <p class="value">
             {{ displayArray[0]["prize"] }} IOI <span>or</span>
             {{
-              (displayArray[0]["extras"].value * 0.4) /
-                this.myDriverBalances.matic_usdt | number: "1.0-2":"fr"
+              (displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
+                myDriverBalances.matic_usdt | number: "1.0-2":"fr"
             }}
             MTC
           </p>
@@ -205,7 +205,7 @@
             }}
             IOI <span>or</span>
             {{
-              ((displayArray[0]["extras"].value * 0.4) /
+              ((displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
                 this.myDriverBalances.matic_usdt) *
                 amount | number: "1.0-2":"fr"
             }}
@@ -249,7 +249,7 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] && 
-            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) <= myDriverBalances?.game_wallet_matic"
+            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) / myDriverBalances?.matic_usdt * amount) <= myDriverBalances?.game_wallet_matic"
           (click)="
             tokenSelected = 'matic';
             buyCarFromGarage(displayArray[0]['extras'].buy_id)
@@ -263,7 +263,7 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            ((displayArray[0]['extras'].value * 0.4) / myDriverBalances?.matic_usdt * amount) > myDriverBalances?.game_wallet_matic
+            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) / myDriverBalances?.matic_usdt * amount) > myDriverBalances?.game_wallet_matic
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"

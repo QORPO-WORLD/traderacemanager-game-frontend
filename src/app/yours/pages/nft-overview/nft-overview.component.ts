@@ -81,6 +81,8 @@ export class NftOverviewComponent implements OnInit {
     ],
   };
 
+  driverbalances: any;
+
   constructor(
     protected apit: TeamsService,
     protected api: CarsService,
@@ -205,6 +207,7 @@ export class NftOverviewComponent implements OnInit {
 
   getMyTeam() {
     const data = this.identityService.getDriverMe();
+    this.driverbalances = this.identityService.getBalance();
     this.myTeam = data.team;
     this.getTeams();
     this.myTeamData = data;
