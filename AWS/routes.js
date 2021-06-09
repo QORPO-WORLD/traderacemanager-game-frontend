@@ -76,7 +76,7 @@ exports.handler = (event, context, callback) => {
     request.uri.match(/\/other\/confirm\/.+/) ||
     request.uri.match(/\/race\/all-races\?raceType=.+/) ||
     request.uri.match(/\/race\/watch-multiple-races.+/) ||
-    request.uri.match(/\/race\/race\/binary-trade\/.+/) ///race/binary-trade/:hash/:timestamp
+    request.uri.match(/\/race\/binary-trade\/.+\/(\d+)/) ///race/binary-trade/:hash/:timestamp
   ) {
     request.uri = "/index.html";
     callback(null, request);

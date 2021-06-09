@@ -33,6 +33,7 @@ export class MyAffiliateComponent implements OnInit {
       const newdata: any = data;
       this.totalPages = newdata.total_pages;
       this.affilatesList = newdata.results;
+      console.log(newdata);
     });
   }
 

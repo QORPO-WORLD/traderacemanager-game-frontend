@@ -1,6 +1,6 @@
 <div class="main-holder" *ngIf="!myCars"><app-ioiloader></app-ioiloader></div>
 
-<div class="main-holder" id="selectCoinsScroll" *ngIf="myCars?.length > 0">
+<div class="main-holder" [ngClass]="{'main-holder-2': stepIndex===2}" id="selectCoinsScroll" *ngIf="myCars?.length > 0">
   <ng-container *ngIf="stepIndex === 1 && introModal === false">
     <div [routerLink]="['/race/all-races']" class="content-title">
       <img
@@ -225,11 +225,13 @@
 -->
     <div
       class="boxes-holder"
-      [ngClass]="{ 'tutorial-hide': tutorialStep === 1 || tutorialStep === 4 }"
+      [ngClass]="{ 'tutorial-hide': tutorialStep === 1 || tutorialStep === 4, 'step1-timer': stepIndex===1 }"
     >
-      <div *ngIf="stepIndex === 1" class="timer-box my-border-grad">
+      <p *ngIf="stepIndex === 1" class="desc starts-in">Race starts in</p>
+      <div *ngIf="stepIndex === 1" class="timer-box">
+        <div class="overlay my-cta-btn-back"></div>
         <div class="inner">
-          <p class="desc">Race starts in</p>
+
           <p class="time" *ngIf="timerReady === true">
             <app-timer
               [value]="raceStarts"
@@ -240,26 +242,16 @@
       </div>
       <div class="bet-info-box" *ngIf="stepIndex === 1">
         <div class="bet-item bordered">
-          <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
           <p class="value" *ngIf="currency === 'TRX'">
             {{ actualRaceAmount * selectedCarsToRace?.length }}
-            <img
-              class="ioi"
-              src="/assets/base/images/icons/logo-hollow.svg"
-              alt=""
-            />
           </p>
           <p class="value" *ngIf="currency === 'IOI'">
             {{ actualRaceAmount * selectedCarsToRace?.length }}
-            <img
-              class="ioi"
-              src="/assets/base/images/icons/logo-hollow.svg"
-              alt=""
-            />
           </p>
+          <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
         </div>
         <div class="bet-item win-chance">
-          <p class="desc">{{ "fuel_car.chance_to_win" | translate }}</p>
+          
           <p
             class="value my-cta-btn-back"
             *ngIf="selectedCarsToRace?.length > 0"
@@ -276,6 +268,7 @@
           >
             0 : {{ players }}
           </p>
+          <p class="desc">{{ "fuel_car.chance_to_win" | translate }}</p>
         </div>
       </div>
     </div>
@@ -1399,10 +1392,9 @@
         </div>
 
         <div class="graphs-holder">
-          <div class="box-heading">
-            <p class="heading">Race starts in</p>
-          </div>
-          <div class="timer-box my-border-grad">
+          <p class="desc starts-in">Race starts in</p>
+          <div class="timer-box">
+            <div class="overlay my-cta-btn-back"></div>
             <div class="inner-time">
               <p class="time" *ngIf="timerReady === true">
                 <app-timer
@@ -1787,7 +1779,7 @@
     </div>
   </div>
 
-  <div class="bottom-panels">
+  <div class="bottom-panels" [ngClass]="{'bottom-panels-2': stepIndex===2}">
     <ng-container *ngIf="stepIndex === 1 && introModal === false">
       <button class="back-button" [routerLink]="['/race/start-race']">
         <span class="my-gt">&lt;</span> <br />
@@ -1882,7 +1874,7 @@
         </div>
       </div>
       <div
-        class="next-btn my-fuel-btn-back"
+        class="next-btn my-cta-btn-back"
         *ngIf="selectedCarsToRace.length > 0"
         (click)="stepIndex = 2; selectDefaultCoin(0); animateFuelSlider()"
       >
@@ -1890,7 +1882,7 @@
         <p class="text">Continue</p>
       </div>
       <div
-        class="next-btn inactive my-fuel-btn-back"
+        class="next-btn inactive my-cta-btn-back"
         *ngIf="selectedCarsToRace.length === 0"
       >
         <p class="arrow">&gt;</p>
@@ -1952,7 +1944,7 @@
         </div>
       </div>
       <div
-        class="next-btn my-fuel-btn-back"
+        class="next-btn my-cta-btn-back"
         *ngIf="
           selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
           sumFuel / sumlength !== 100 &&
@@ -1965,7 +1957,7 @@
       </div>
 
       <div
-        class="next-btn my-fuel-btn-back"
+        class="next-btn my-cta-btn-back"
         *ngIf="
           selectedCarsToRace[selectedCarIndex]?.fuel === 100 &&
           sumFuel / sumlength === 100
@@ -1977,7 +1969,7 @@
       </div>
 
       <div
-        class="next-btn inactive my-fuel-btn-back"
+        class="next-btn inactive my-cta-btn-back"
         (click)="scrollToView('analysisBox')"
         *ngIf="
           selectedCarsToRace[selectedCarIndex]?.fuel !== 100 &&
@@ -2019,7 +2011,7 @@
         (click)="useTicket = true; signupToRace()"
         *ngIf="tickets > 0 && raceId === 'car_race_ioi_1'"
       >
-        <div class="ticket-btn my-fuel-btn-back">
+        <div class="ticket-btn my-cta-btn-back">
           <p *ngIf="isLoading === false">Use ticket &gt;</p>
           <p *ngIf="isLoading === true">Loading..</p>
         </div>
@@ -2047,7 +2039,7 @@
           </div>
         </div>
       </div> -->
-      <div class="inner-btn my-fuel-btn-back" (click)="signupToRace()">
+      <div class="inner-btn my-cta-btn-back" (click)="signupToRace()">
         <p *ngIf="isLoading === false">Start race &gt;</p>
         <p *ngIf="isLoading === true">Loading..</p>
       </div>
@@ -2075,7 +2067,7 @@
     </div>
 
     <div class="start-race-btn" *ngIf="stepIndex === 6" (click)="stepIndex = 5">
-      <div class="inner-btn my-fuel-btn-back">
+      <div class="inner-btn my-cta-btn-back">
         <p>Continue &gt;</p>
       </div>
     </div>
