@@ -96,11 +96,11 @@
 
           </div>
     
-          <div class="click-dummy" [routerLink]="['/race/watch-race-24hod/' + mainr.race_hash]" 
-          *ngIf="mainr.game_type === 'car_race_24hrs' && mainr.game_type === 'wednesday_party_race_0'"></div>
-    
           <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
-          *ngIf="mainr.new_game_type !== 'car_race_24hrs' && mainr.new_game_type !== 'wednesday_party_race_0'"></div>
+          *ngIf="mainr.new_game_type !== 'binary_vs_race_1'"></div>
+
+          <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
+          *ngIf="mainr.new_game_type === 'binary_vs_race_1'"></div>
 
 
         </div>
