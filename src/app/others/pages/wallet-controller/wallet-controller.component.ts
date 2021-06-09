@@ -13,9 +13,14 @@ export class WalletControllerComponent implements OnInit {
   controlType: string;
   routeObserver: Subscription;
   accountValue: number;
+  myBalance: any;
+  myIoiBalance = 0;
+  myMaticBalance = 0;
+
   constructor(private route: ActivatedRoute, private identityService: AuthService) { }
 
   ngOnInit() {
+    this.getMyBalance();
     this.getControlType();
     this.getAccountValue();
   }
@@ -32,6 +37,13 @@ export class WalletControllerComponent implements OnInit {
   getAccountValue() {
     const data = this.identityService.getBalance();
     this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
+  }
+
+  getMyBalance() {
+    const data = this.identityService.getBalance();
+    this.myBalance = data;
+    this.myIoiBalance = this.myBalance.game_wallet_ioi;
+    this.myBalance.game_wallet_ioi ? this.myMaticBalance = this.myBalance.game_wallet_matic : null;
   }
 
 }

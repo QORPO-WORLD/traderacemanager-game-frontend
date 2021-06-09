@@ -1,104 +1,140 @@
-
-
-<div class="right-panel panel-item">
-  <h1 class="top-heading">{{'profile.acc_settings' | translate}}</h1>
-  
-
-  <div class="settings-item my-cta-btn-back">
-    <div class="inner">
-      <div class="img-holder">
-        <img src="/assets/base/images/icons/username-icon.png" alt="">
-      </div>
-      <div class="text-holder">
-        <p class="desc">{{'login.username' | translate}}:</p>
-        <p>{{myDriver?.nickname}}</p>
-      </div>
+<div class="settings-content">
+  <div class="boxes">
+    <p class="category-title-first">USERNAME</p>
+    <div class="item-box username">
+      <img src="assets/base/images/icons/user.svg" alt="user icon" />
+      <p class="category-title-second">{{ myDriver?.nickname }}</p>
+    </div>
+    <p class="category-title-first">EMAIL</p>
+    <div class="item-box email">
+      <img src="assets/base/images/icons/email.svg" alt="email icon" />
+      <p class="category-title-second">{{ myDriver?.email }}</p>
     </div>
   </div>
-
-  <div class="settings-item email my-cta-btn-back">
-    <div class="inner">
-      <div class="img-holder">
-        <img src="/assets/base/images/icons/mail-icon.png" alt="">
-      </div>
-      <div class="text-holder">
-        <p class="desc">{{'profile.mail' | translate}}:</p>
-        <p>{{myDriver?.email}}</p>
-      </div>
+  <div class="switchers">
+    <div class="switch-holder">
+      <p class="desc category-title-first">Newsletter</p>
+      <p class="value">
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: newsEnabled === true }"
+          >{{ "profile.off" | translate }}</span
+        >
+        <span class="info">
+          <form method="#">
+            <div class="switch">
+              <input
+                id="switch-3"
+                type="checkbox"
+                class="switch-input"
+                [(ngModel)]="newsEnabled"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="setNews($event)"
+              />
+              <label for="switch-3" class="switch-label">Switch</label>
+            </div>
+          </form>
+        </span>
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: newsEnabled === false }"
+          >{{ "profile.on" | translate }}</span
+        >
+      </p>
     </div>
-  </div>
+    <div class="switch-holder">
+      <p class="desc category-title-first">TWO STEP AUTHENTICATION</p>
+      <p class="value">
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: authenabled === true }"
+          >{{ "profile.off" | translate }}</span
+        >
+        <span class="info">
+          <form method="#">
+            <div class="switch">
+              <input
+                id="switch-4"
+                type="checkbox"
+                class="switch-input"
+                [(ngModel)]="authenabled"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="switchAuthenticator($event)"
+              />
+              <label for="switch-4" class="switch-label">Switch</label>
+            </div>
+          </form>
+        </span>
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: authenabled === false }"
+          >{{ "profile.on" | translate }}</span
+        >
+      </p>
+    </div>
 
+    <div class="switch-holder tutorial">
+      <p class="desc category-title-first">
+        {{ "profile.tutorial" | translate }}
+      </p>
+      <p class="value">
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: tutorialStarted === true }"
+          >{{ "profile.off" | translate }}</span
+        >
+        <span class="info">
+          <form method="#">
+            <div class="switch">
+              <input
+                id="switch-5"
+                type="checkbox"
+                class="switch-input"
+                [(ngModel)]="tutorialStarted"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="switchTutorial()"
+              />
+              <label for="switch-5" class="switch-label">Switch</label>
+            </div>
+          </form>
+        </span>
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: tutorialStarted === false }"
+          >{{ "profile.on" | translate }}</span
+        >
+      </p>
+    </div>
 
-  <!-- <div class="settings-item">
-    <p class="desc">{{'profile.crypto' | translate}}:</p>
-    <p class="crypto"><span class="info"
-      *ngIf="editingWallet === false">{{myDriver?.my_crypto_address ? myDriver?.my_crypto_address : '-'}}
-    </span>
-    <input [(ngModel)]="cryptoMtfrckr" *ngIf="editingWallet === true" [ngModelOptions]="{standalone: true}">
-    <img class="edit-icon" src="/assets/base/images/edit-adress.png" alt="" *ngIf="editingWallet === false" (click)="editingWallet = true">
-    <img src="/assets/base/k-24.png" alt="" class="edit-icon" *ngIf="editingWallet === true" (click)="patchWallet()"></p>
-  </div> -->
-
-  <div class="switch-holder">
-    <p class="desc">Newsletter</p>
-    <p class="value">
-      <span class="desc" [ngClass]="{'active': newsEnabled === true}">{{'profile.off' | translate}}</span>
-      <span class="info">
-        <form method="#">
-          <div class="switch">
-            <input id="switch-3" type="checkbox" class="switch-input" [(ngModel)]="newsEnabled"  [ngModelOptions]="{standalone: true}" (change)="setNews($event)"/>
-            <label for="switch-3" class="switch-label">Switch</label>
-          </div>
-        </form>
-      </span>
-      <span class="desc" [ngClass]="{'active': newsEnabled === false}">{{'profile.on' | translate}}</span>
-    </p>
-  </div>
-  <div class="switch-holder">
-    <p class="desc">{{'profile.auth' | translate}}</p>
-    <p class="value">
-      <span class="desc" [ngClass]="{'active': authenabled === true}">{{'profile.off' | translate}}</span>
-      <span class="info">
-        <form method="#">
-          <div class="switch">
-            <input id="switch-4" type="checkbox" class="switch-input" [(ngModel)]="authenabled"  [ngModelOptions]="{standalone: true}" (change)="switchAuthenticator($event)"/>
-            <label for="switch-4" class="switch-label">Switch</label>
-          </div>
-        </form>
-      </span>
-      <span class="desc" [ngClass]="{'active': authenabled === false}">{{'profile.on' | translate}}</span>
-    </p>
-  </div>
-  
-  <div class="switch-holder tutorial">
-    <p class="desc">{{'profile.tutorial' | translate}}</p>
-    <p class="value">
-      <span class="desc" [ngClass]="{'active': tutorialStarted === true}">{{'profile.off' | translate}}</span>
-      <span class="info">
-        <form method="#">
-          <div class="switch">
-            <input id="switch-5" type="checkbox" class="switch-input" [(ngModel)]="tutorialStarted"  [ngModelOptions]="{standalone: true}" (change)="switchTutorial()"/>
-            <label for="switch-5" class="switch-label">Switch</label>
-          </div>
-        </form>
-      </span>
-      <span class="desc" [ngClass]="{'active': tutorialStarted === false}">{{'profile.on' | translate}}</span>
-    </p>
-  </div>
-
-  <div class="switch-holder">
-    <p class="desc">Racer mode</p>
-    <p class="value">
-      <span class="desc" [ngClass]="{'active': isManager === true}">{{'profile.off' | translate}}</span>
-      <span class="info">
-        <form method="#">
-          <div class="switch">
-            <input id="switch-6" type="checkbox" class="switch-input" [(ngModel)]="isManager"  [ngModelOptions]="{standalone: true}" (change)="changeManager()"/>
-            <label for="switch-6" class="switch-label">Switch</label>
-          </div>
-        </form>
-      </span>
-      <span class="desc" [ngClass]="{'active': isManager === false}">{{'profile.on' | translate}}</span>
-    </p>
+    <div class="switch-holder">
+      <p class="desc category-title-first">Racer mode</p>
+      <p class="value">
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: isManager === true }"
+          >{{ "profile.off" | translate }}</span
+        >
+        <span class="info">
+          <form method="#">
+            <div class="switch">
+              <input
+                id="switch-6"
+                type="checkbox"
+                class="switch-input"
+                [(ngModel)]="isManager"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="changeManager()"
+              />
+              <label for="switch-6" class="switch-label">Switch</label>
+            </div>
+          </form>
+        </span>
+        <span
+          class="desc category-title-first"
+          [ngClass]="{ active: isManager === false }"
+          >{{ "profile.on" | translate }}</span
+        >
+      </p>
+    </div>
   </div>
 </div>
