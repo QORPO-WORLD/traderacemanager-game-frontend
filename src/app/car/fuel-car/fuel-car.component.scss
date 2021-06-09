@@ -524,13 +524,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .main-holder {
   width: calc(100% - 40px);
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
   padding: 40px 0px 40px 40px;
   position: relative;
   .main-top-panel {
     width: 100%;
     position: relative;
-    margin-top: 40px;
     .back {
       position: absolute;
       top: 0;
@@ -573,14 +572,35 @@ input[type="number"]::-webkit-outer-spin-button {
       }
     }
     .boxes-holder {
-      width: 380px;
+      width: 30%;
       position: absolute;
       top: 0;
       right: 0;
+      .starts-in{
+        font-size: 24px;
+        line-height: 180%;
+        text-align: right;
+        font-family: 'Earth Orbiter';
+      }
       .timer-box {
-        padding: 1px 0 0 1px;
+        .starts-in{
+          font-size: 24px;
+          line-height: 180%;
+          text-align: right;
+          font-family: 'Earth Orbiter';
+        }
+        position: relative;
+        .overlay{
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          opacity: 0.4;
+        }
+        padding: 0;
         width: 100%;
         text-align: center;
+        background-image: url('/assets/base/images/tankovanie/timer-img.jpg');
+        background-size: cover;
 
         margin-bottom: 20px;
         .inner {
@@ -594,21 +614,30 @@ input[type="number"]::-webkit-outer-spin-button {
             opacity: 0.4;
           }
           .time {
+            position: relative;
+            z-index: 5;
+            font-family: 'Earth Orbiter';
             margin: 0;
             app-timer {
               font-size: 36px;
               margin: 0;
               font-weight: 600;
+              font-family: 'Earth Orbiter';
+            }
+            .app-timer{
+              font-family: 'Earth Orbiter';
             }
           }
         }
       }
       .bet-info-box {
-        width: 100%;
+        width: 60%;
+        min-width: 340px;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 143px;
+        margin-left: auto;
+        height: 120px;
         background: rgba(17, 17, 17, 0.6);
 
         position: relative;
@@ -619,11 +648,12 @@ input[type="number"]::-webkit-outer-spin-button {
           .desc {
             font-size: 16px;
             margin: 0;
-            opacity: 0.4;
             font-weight: 300;
           }
           .value {
             font-size: 36px;
+            line-height: 36px;
+            font-family: 'Earth Orbiter';
             font-weight: 500;
             margin: 0;
             img {
@@ -666,13 +696,23 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: 142px;
+    height: 120px;
     position: fixed;
     bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
     z-index: 10000;
+    &.bottom-panels-2{
+      width: 60%;
+      transform: translateX(0);
+      left: 80px;
+      bottom: 40px;
+      .selected-cars{
+        left: 0;
+        transform: translateX(0);
+      }
+    }
     .hint-holder {
       pointer-events: all;
       position: absolute;
@@ -885,6 +925,7 @@ input[type="number"]::-webkit-outer-spin-button {
       cursor: pointer;
       overflow: hidden;
       &.inactive {
+        opacity: 0.4;
         cursor: default;
       }
       p {
@@ -1160,11 +1201,11 @@ input[type="number"]::-webkit-outer-spin-button {
       justify-content: flex-start;
       align-items: center;
       .switchers-holder {
-        width: 195px;
+        width: 200px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        height: 480px;
+        height: 550px;
         p {
           text-shadow: none;
           font-size: 34px;
@@ -1176,6 +1217,7 @@ input[type="number"]::-webkit-outer-spin-button {
           opacity: 1;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          font-family: 'Earth Orbiter';
           color: rgba(255, 255, 255, 0.2);
           &:hover {
             color: rgba(255, 255, 255, 0.4);
@@ -1247,21 +1289,9 @@ input[type="number"]::-webkit-outer-spin-button {
           }
           &.left {
             left: 0;
-            background: linear-gradient(
-              90deg,
-              rgba(20, 20, 20, 1) 0%,
-              rgba(20, 20, 20, 1) 40%,
-              rgba(20, 20, 20, 0) 100%
-            );
           }
           &.right {
             right: 0;
-            background: linear-gradient(
-              90deg,
-              rgba(20, 20, 20, 0) 0%,
-              rgba(20, 20, 20, 1) 40%,
-              rgba(20, 20, 20, 1) 100%
-            );
           }
         }
         .slider-holder {
@@ -1298,17 +1328,13 @@ input[type="number"]::-webkit-outer-spin-button {
                 min-width: 30%;
               }
               .car-check {
-                background: linear-gradient(
-                  to bottom right,
-                  #84c319 0%,
-                  rgba(254, 24, 63, 0) 60%
-                );
-                padding: 1px 0 0 1px;
+                background: #00D481;
+                padding: 3px 3px 3px 3px;
 
                 position: absolute;
                 top: 10%;
                 right: 0;
-                width: 111px;
+                width: 130px;
                 transform: translateY(-50%);
                 .inner {
                   width: 100%;
@@ -1320,11 +1346,13 @@ input[type="number"]::-webkit-outer-spin-button {
                     font-size: 16px;
                     font-weight: 400;
                     margin: 0;
-                    padding: 10px 0;
+                    padding: 10px 10px 10px 25px;
                     img {
-                      display: inline-block;
-                      margin-right: 10px;
-                      width: 23px;
+                      position: absolute;
+                      left: -25px;
+                      width: 50px;
+                      top: 50%;
+                      transform: translateY(-50%);
                     }
                   }
                 }
@@ -1356,19 +1384,20 @@ input[type="number"]::-webkit-outer-spin-button {
     .content-holder {
       width: 100%;
       margin-top: 10px;
+      height: 100%;
       flex-wrap: wrap;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-left: 80px;
-      padding-bottom: 182px;
+      padding: 0px 40px;
       .content-box {
         .box-heading {
           position: relative;
           p {
-            margin: 0 0 20px 0;
             font-size: 24px;
             font-weight: 600;
+            line-height: 180%;
+            font-family: 'Earth Orbiter';
             color: white;
           }
         }
@@ -1481,19 +1510,37 @@ input[type="number"]::-webkit-outer-spin-button {
           }
         }
         &.box2 {
+          height: 100%;
           width: calc(100% - 538px);
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
           .graphs-holder {
             width: 49%;
-            height: 536px;
+            height: 100%;
+            .timer-box{
+              background-image: url('/assets/base/images/tankovanie/timer-img.jpg');
+              background-size: cover;
+              height: 90px;
+              .overlay{
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                opacity: 0.4;
+              }
+            }
+            .starts-in{
+              font-size: 24px;
+              line-height: 180%;
+              text-align: left;
+              font-weight: 600;
+              font-family: 'Earth Orbiter';
+            }
             .timer-box {
-              padding: 1px 0 0 1px;
+              position: relative;
+              padding: 0;
               width: 100%;
               text-align: center;
-              height: 20%;
-
               .inner-time {
                 height: 100%;
                 width: 100%;
@@ -1509,18 +1556,25 @@ input[type="number"]::-webkit-outer-spin-button {
                   opacity: 0.4;
                 }
                 .time {
+                  position: relative;
+                  z-index: 5;
+                  font-family: 'Earth Orbiter';
                   margin: 0;
                   app-timer {
+                    font-family: 'Earth Orbiter';
                     font-size: 25px;
                     margin: 0;
                     font-weight: 600;
+                    span{
+                      font-family: 'Earth Orbiter';
+                    }
                   }
                 }
               }
             }
             .inner {
               width: 100%;
-              height: 536px;
+              height: 100%;
             }
           }
           .bottom-part {
@@ -2952,7 +3006,6 @@ button.g-button {
     width: calc(100% - 30px);
     padding: 30px 0px 30px 30px;
     .main-top-panel {
-      margin-top: 15px;
       .back {
         width: 73px;
         min-height: 107px;
@@ -2978,6 +3031,12 @@ button.g-button {
         }
       }
       .boxes-holder {
+        .starts-in{
+          font-size: 24px;
+          line-height: 180%;
+          text-align: right;
+          font-family: 'Earth Orbiter';
+        }
         width: 320px;
         .timer-box {
           margin-bottom: 13px;
@@ -3002,6 +3061,7 @@ button.g-button {
             }
             .value {
               font-size: 30px;
+              line-height: 32px;
               img {
                 &.trx {
                   width: 24px;
@@ -3132,7 +3192,6 @@ button.g-button {
     .step2 {
       margin-top: 30px;
       .content-holder {
-        padding-left: 40px;
         padding-bottom: 140px;
         .content-box {
           .box-heading {
@@ -3186,9 +3245,6 @@ button.g-button {
           &.box2 {
             width: calc(100% - 530px);
             .graphs-holder {
-              .inner {
-                height: 460px;
-              }
             }
             .bottom-part {
               .fuel-up-holder {
@@ -3285,7 +3341,7 @@ button.g-button {
     height: calc(100vh - 65px);
     padding: 20px 0px 20px 20px;
     .main-top-panel {
-      margin-top: 15px;
+
       .mid-text {
         p {
           font-size: 30px;
@@ -3351,6 +3407,17 @@ button.g-button {
           font-size: 18px;
         }
       }
+
+      &.bottom-panels-2{
+        width: 100%;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        .selected-cars{
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
       .back-button {
         .my-gt {
           margin-bottom: 3px;
@@ -3367,10 +3434,11 @@ button.g-button {
                 .inner {
                   p {
                     font-size: 14px;
-                    padding: 6px 0;
+                    padding: 10px 0;
+                    padding-left: 10px;
                     img {
-                      margin-right: 5px;
-                      width: 17px;
+                      left: 20px;
+                      width: 42px;
                     }
                   }
                 }
@@ -3389,7 +3457,7 @@ button.g-button {
     .step1 {
       .content-holder {
         .switchers-holder {
-          width: 175px;
+          width: 177px;
           height: 468px;
           p {
             font-size: 30px;
@@ -3409,7 +3477,7 @@ button.g-button {
                       font-size: 14px;
                       padding: 7px 0;
                       img {
-                        width: 18px;
+                        width: 42px;
                       }
                     }
                   }
@@ -3671,6 +3739,9 @@ button.g-button {
       }
     }
   }
+  .main-holder-2{
+    height: calc(100vh + 100px);
+  }
 }
 
 @media screen and (max-width: 1300px) {
@@ -3683,7 +3754,6 @@ button.g-button {
       }
     }
     .main-top-panel {
-      margin-top: 13px;
       .back {
         width: 65px;
         min-height: 94px;
@@ -3726,6 +3796,8 @@ button.g-button {
           }
         }
         .bet-info-box {
+          min-width: unset;
+          width: 100%;
           height: 94px;
           .bet-item {
             .desc {
@@ -3864,7 +3936,7 @@ button.g-button {
       .content-holder {
         .switchers-holder {
           height: 448px;
-          width: 140px;
+          width: 153px;
           p {
             font-size: 26px;
           }
@@ -3881,9 +3953,10 @@ button.g-button {
                     p {
                       font-size: 13px;
                       padding: 5px 0;
+                      padding-left: 14px;
                       img {
-                        width: 16px;
-                        margin-right: 6px;
+                        width: 35px;
+                        left: -14px;
                       }
                     }
                   }
@@ -4033,9 +4106,6 @@ button.g-button {
         left: 7px;
         width: 60px;
       }
-      .boxes-holder {
-        width: 250px;
-      }
     }
     .bottom-panels {
       .start-race-btn {
@@ -4090,9 +4160,10 @@ button.g-button {
 
 @media screen and (max-width: 1024px) {
   .main-holder {
+    
+    min-height: calc(100vh - 40px);
     width: calc(100% - 10px);
     padding: 10px 0px 10px 10px;
-    min-height: 100vh;
     height: auto;
     .main-top-panel {
       .mid-text {
@@ -4107,9 +4178,17 @@ button.g-button {
           }
         }
       }
+      .boxes-holder{
+        top: 100px;
+      }
     }
+    
     .bottom-panels {
+      bottom: 80px;
       height: 110px;
+      &.bottom-panels-2{
+        bottom: 80px;
+      }
       .next-btn {
         width: 125px;
 
@@ -4142,9 +4221,10 @@ button.g-button {
                   p {
                     font-size: 12px;
                     padding: 4px 0;
+                    padding-left: 10px;
                     img {
-                      margin-right: 2px;
-                      width: 11px;
+                      left: -15px;
+                      width: 37px;
                     }
                   }
                 }
@@ -4265,6 +4345,8 @@ button.g-button {
           width: 100%;
           margin: 12px 0;
           flex-direction: row;
+          position: absolute;
+          top: 0;
         }
         .cars-list {
           width: 100%;
@@ -4279,8 +4361,10 @@ button.g-button {
                     p {
                       font-size: 11px;
                       padding: 4px 0;
+                      padding-left: 10px;
                       img {
-                        width: 13px;
+                        width: 30px;
+                        left: -15px;
                         margin-right: 4px;
                       }
                     }
@@ -4381,9 +4465,89 @@ button.g-button {
   }
 }
 
+
+@media screen and (max-width: 1024px) {
+  .main-holder{
+    height: auto;
+    .step1{
+      .content-holder{
+        .cars-list{
+          margin-top: 200px;
+          margin: 260px 0 150px 0;
+        }
+      } 
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .main-holder{
+    height: auto;
+    .step1{
+      .content-holder{
+        .cars-list{
+          margin-top: 200px;
+          margin: 260px 0 150px 0;
+        }
+      } 
+    }
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .main-holder{
+    .main-top-panel{
+      .step1-timer{
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .starts-in{
+          display: none;
+        }
+        .timer-box{
+          width: 45%;
+          margin: 0;
+          height: 70px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .inner{
+            width: 100%;
+            height: 100%
+          }
+        }
+        .bet-info-box{
+          width: 45%;
+          height: 70px;
+        }
+      }
+    }
+    .step1{
+      .content-holder{
+        .cars-list{
+          margin-top: 50px;
+        }
+      }
+    }
+    .bottom-panels{
+      bottom: 0;
+      &.bottom-panels-2{
+        bottom: 0;
+      }
+    }
+
+  }
+  
+}
+
 @media screen and (max-width: 870px) {
   .main-holder {
-    height: calc(100vh - 40px);
+    height: auto;
+    min-height: calc(100vh - 40px);
     .main-top-panel {
       .back {
         height: unset;
@@ -4407,7 +4571,6 @@ button.g-button {
         }
       }
       .boxes-holder {
-        width: 210px;
         .timer-box {
           margin-bottom: 7px;
           .inner {
@@ -4490,17 +4653,21 @@ button.g-button {
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) and (orientation: portrait){
   .main-holder {
     .main-top-panel {
       .back {
         display: none;
       }
       .boxes-holder {
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: relative;
         width: 80%;
         max-width: 320px;
-        margin: 15px auto;
+        margin: 0px auto;
       }
       .mid-text {
         width: 90%;
@@ -4513,11 +4680,9 @@ button.g-button {
       }
       .boxes-holder {
         .timer-box {
-          position: fixed;
           top: 0;
           right: 0;
           z-index: 1000001;
-          max-width: 200px;
           height: 65px;
           margin: 0;
 
@@ -4575,7 +4740,7 @@ button.g-button {
         }
       }
       .back-button {
-        display: block;
+        display: none;
         height: 100%;
         width: 50px;
         margin-left: 15px;
@@ -4636,6 +4801,7 @@ button.g-button {
       margin-top: 0;
       .content-holder {
         padding-left: 0;
+        padding: 20px;
         .content-box {
           .box-heading {
             p {
@@ -4673,6 +4839,9 @@ button.g-button {
               width: 100%;
               .inner {
                 height: unset;
+              }
+              .starts-in{
+                text-align: center;
               }
             }
             .box-heading {
@@ -4846,6 +5015,18 @@ button.g-button {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait){
+  .main-holder{
+    .step1{
+      .content-holder{
+        .cars-list{
+          margin: 50px 0 0 0;
         }
       }
     }
@@ -5082,6 +5263,7 @@ button.g-button {
   .content-title {
     height: 40px;
   }
+
 }
 @media screen and(max-width: 700px) and (orientation: landscape) {
   .content-title {
