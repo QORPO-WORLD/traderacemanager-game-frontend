@@ -775,7 +775,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyRewards();
     this.getRewards();
     this.launchTutorial();
-
     this.getMyLevel();
     this.getMyLeaderboard();
     this.interval = setInterval(() => {
@@ -1536,16 +1535,17 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   setRewardInterval() {
     this.rewardInterval = window.setInterval(() => {
       this.toggleReward();
-      this.clearIntervalReward();
     }, 5000);
   }
   toggleReward() {
     this.clearIntervalReward();
+
     if (this.reward === 1) {
       this.reward = 2;
     } else {
       this.reward = 1;
     }
+    this.setRewardInterval();
   }
   clearIntervalReward() {
     clearInterval(this.rewardInterval);
