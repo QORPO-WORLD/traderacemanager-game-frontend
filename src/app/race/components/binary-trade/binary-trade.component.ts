@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { NotifyService } from './../../../common/services/notify.service';
 import { RacesService } from 'src/app/api/services';
 import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
@@ -220,6 +221,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   cantPlaceBetAnymore = false;
   leftScore = 0;
   rightScore = 0;
+  statusObservable: Subscription;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
     this.raceHash = this.actv.snapshot.paramMap.get('id');
 
@@ -257,6 +259,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     }
     if (this.chartSubscription) {
       this.chartSubscription.unsubscribe();
+    }
+    if (this.statusObservable) {
+      this.statusObservable.unsubscribe();
     }
     this.binanceT = null;
     this.chartEnabled === false;
@@ -956,7 +961,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.raceApi.binaryHistory(50).subscribe(
       data => {
         this.initdata = data;
-
+        this.fillInitData();
       }
     )
   }
@@ -965,6 +970,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     for (let x = 0; x < this.initdata.length; x++) {
       this.add(this.initdata[x].ts * 1000, this.initdata[x].ap);
     }
+    this.getStatus();
   }
 
   getMyLevel() {
@@ -1014,6 +1020,26 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     }
 
     return tScore;
+  }
+
+  getStatus() {
+    this.statusObservable = this.raceApi.binaryStatus(this.raceHash).subscribe(data => {
+      if (data.options.length > 0) {
+        for (let x = 0; x < data.options.length; x++) {
+          this.onOption(data.options[x]);
+        }
+      }
+      if (data.options_closed.length > 0) {
+        for (let x = 0; x < data.options_closed.length; x++) {
+          this.onOptionClosed(data.options_closed[x]);
+        }
+      }
+      if (data.score.length > 0) {
+        for (let x = 0; x < data.score.length; x++) {
+          this.onScore(data.score[x]);
+        }
+      }
+    });
   }
   
 
