@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from "@angular/core";
 import { timeStamp } from "console";
 
@@ -154,6 +155,7 @@ export class HomePageComponent implements OnInit {
     if (token) {
       this.logged = true;
     }
+
   }
 
   width() {
