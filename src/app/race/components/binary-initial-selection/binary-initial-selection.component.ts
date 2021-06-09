@@ -218,7 +218,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         this.automatchLoading = true;
         localStorage.setItem('binary', JSON.stringify({
           hash: data.versus_hash,
-          time: Date.now() + (30000)
+          time: Date.now() + (300000)
         }));
         setTimeout(() => {
           if (bin) {
