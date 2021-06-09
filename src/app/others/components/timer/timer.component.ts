@@ -14,7 +14,7 @@ import { timer } from 'rxjs/observable/timer';
   <span *ngIf="timerValue?.minutes < 2 && timerValue?.hours === 0 && timerValue?.days === 0">
     {{timerValue?.seconds|number :'2.0'}}s</span>
     `,
-    styles: ['span { font-family: "Earth Orbiter"; }']
+    styles: ['span { font-family: inherit; }']
 })
 export class TimerComponent implements OnInit {
   @Input() value: number;
