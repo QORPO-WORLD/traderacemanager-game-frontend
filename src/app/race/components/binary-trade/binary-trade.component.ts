@@ -266,6 +266,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.binanceT = null;
     this.chartEnabled === false;
     this.pageOpen = false;
+
+    popsock.disconnect();
   }
 
   subscribeToStream() {
@@ -610,6 +612,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         room_name: 'vs_' + this.raceHash
       }
     });
+    
 
     popsock.on("option", function (data) {
 
@@ -898,6 +901,10 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   playSound(type: string) {
+    if (this.pageOpen === false) {
+      return;
+    }
+
     if (type === 'optionPlaced') {
       this.optionPlaced.nativeElement.play();
     }
