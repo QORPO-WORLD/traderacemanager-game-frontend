@@ -1010,7 +1010,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   calcScore(data: Array<any>) {
     let tScore = 0;
     for (let x = 0; x < data.length; x++) {
-      tScore = tScore + Number(x);
+      tScore = tScore + data[x];
     }
 
     return tScore;
