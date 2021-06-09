@@ -682,6 +682,7 @@ export class WithdrawNftComponent implements OnInit {
   authcode: string;
   confirmed = false;
   nftType = 'car';
+  driverBalances: any;
   constructor(
     protected notify: NotifiqService,
     private route: ActivatedRoute,
@@ -712,6 +713,7 @@ export class WithdrawNftComponent implements OnInit {
 
   getUser() {
     const data = this.identityService.getStorageIdentity();
+    this.driverBalances = this.identityService.getBalance();
     this.nickname = data.nickname;
   }
   resolveShowAsset() {
@@ -729,7 +731,7 @@ export class WithdrawNftComponent implements OnInit {
 
   getAccountValue() {
     const data = this.identityService.getBalance();
-    this.accountValue = data.game_wallet_ioi * 0.4;
+    this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
   }
 
   resolveCarEdition(id: number) {

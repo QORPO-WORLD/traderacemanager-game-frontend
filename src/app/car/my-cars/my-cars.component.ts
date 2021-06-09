@@ -157,6 +157,7 @@ export class MyCarsComponent implements OnInit, OnDestroy {
   tick: number;
   tickInterval: any;
   myTeam: string;
+  myDriverBalances: any;
   constructor(
     protected api: CarsService,
     private notifiq: NotifiqService,
@@ -175,7 +176,7 @@ export class MyCarsComponent implements OnInit, OnDestroy {
         this.tick = tickn;
       }, 3000);
     }
-
+    this.myDriverBalances = this.identityService.getBalance();
     this.getTeam();
   }
   ngOnDestroy() {

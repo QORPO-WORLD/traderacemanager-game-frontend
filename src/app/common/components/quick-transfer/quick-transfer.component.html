@@ -20,7 +20,7 @@
               </p>
               <ng-container *ngIf="myIoiBalance > 0">
                 <p class="dollars">
-                  &#36; {{ myIoiBalance * 0.4 | number: "1.0-2":"fr" }}
+                  &#36; {{ myIoiBalance * myBalance.ioi_usdt | number: "1.2-2":"fr" }}
                 </p>
               </ng-container>
               <ng-container *ngIf="myIoiBalance === 0">
@@ -156,7 +156,7 @@
             market value 1 Polygon = {{maticusdt}} USD
           </p>
           <p *ngIf="tokenSelected === 'ioi'" class="desc">
-            market value 1 IOI = 0.4$
+            market value 1 IOI = {{myBalance.ioi_usdt | number: "1.2-2":"fr"}}$
           </p>
         </div>
         <div class="summary-box">

@@ -678,6 +678,7 @@ export class DepositNftComponent implements OnInit {
     },
   ];
   nftType = 'car';
+  driverBalance: any;
   constructor(
     protected notify: NotifiqService,
     private route: ActivatedRoute,
@@ -726,7 +727,8 @@ export class DepositNftComponent implements OnInit {
 
   getAccountValue() {
     const data = this.identityService.getBalance();
-    this.accountValue = data.game_wallet_ioi * 0.4;
+    this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
+    this.driverBalance = data;
   }
 
   resolveCarEdition(id: number) {
