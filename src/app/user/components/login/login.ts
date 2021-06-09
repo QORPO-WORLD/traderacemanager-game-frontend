@@ -34,6 +34,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   cap = '';
   gauthfired = false;
   usinggauth = false;
+  showLoadingModal = false;
   gkey: string;
   myDomain: string;
   disCap = false;
@@ -176,7 +177,8 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     setTimeout(() => { this.loading = false }, 2000);
     this.token = null;
     clearInterval(this.dangerInterval);
-    this.getAuthService().login(data.authKey);
+    this.showLoadingModal = true;
+    setTimeout(() => { this.getAuthService().login(data.authKey) }, 3000);
   }
 
 

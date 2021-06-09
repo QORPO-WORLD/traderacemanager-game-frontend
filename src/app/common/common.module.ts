@@ -63,7 +63,8 @@ import { WaitingTransferComponent } from './components/waiting-transfer/waiting-
 import { OrderModule } from 'ngx-order-pipe';
 import { TeamsSelectionComponent } from './components/teams-selection/teams-selection.component';
 import { RaceInfoModalComponent } from './components/race-info-modal/race-info-modal.component';
-import {TeamMembershipComponent} from './components/team-membership/team-membership.component'
+import { TeamMembershipComponent } from './components/team-membership/team-membership.component'
+import { LoadingModalComponent } from './components/shared/loading-modal/loading-modal.component';
 
 @NgModule({
   imports: [
@@ -116,7 +117,8 @@ import {TeamMembershipComponent} from './components/team-membership/team-members
     RaceInfoModalComponent,
     FuelLayoutComponent,
     IoiloaderComponent,
-    TeamMembershipComponent
+    TeamMembershipComponent,
+    LoadingModalComponent
   ],
   providers: [
     CurrencyPipe,
@@ -148,7 +150,8 @@ import {TeamMembershipComponent} from './components/team-membership/team-members
     MySettingsComponent, CreateFastFuelCarComponent,
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
-    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent],
+    DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent,
+  LoadingModalComponent],
   entryComponents: []
 })
 
