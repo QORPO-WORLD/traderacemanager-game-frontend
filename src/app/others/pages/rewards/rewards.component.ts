@@ -11,6 +11,7 @@ import { RewardsService, TickerPricesService } from "src/app/api/services";
   styleUrls: ["./rewards.component.scss"],
 })
 export class RewardsComponent implements OnInit, OnDestroy {
+  title = "teams";
   transObserver: Subscription;
   rewardsObserver: Subscription;
   tickerSubscription: Subscription;
@@ -59,6 +60,7 @@ export class RewardsComponent implements OnInit, OnDestroy {
       const data: any = datax;
       this.rewardsme = data;
       this.myioioreward = Number(data.ioi_reward);
+      console.log(this.rewardsme);
     });
   }
 

@@ -21,6 +21,7 @@ import { TransferNftComponent } from "./pages/transfer-nft/transfer-nft.componen
 import { DepositNftComponent } from "./pages/deposit-nft/deposit-nft.component";
 import { WithdrawNftComponent } from "./pages/withdraw-nft/withdraw-nft.component";
 import { ContactsStaticComponent } from "./contacts-static/contacts-static.component";
+import { MyReferralsComponent } from "./pages/my-referrals/my-referrals.component";
 import { IonicModule } from "@ionic/angular";
 
 const routes: Routes = [
@@ -96,6 +97,7 @@ const routes: Routes = [
     WithdrawNftComponent,
     ContactListComponent,
     ContactsStaticComponent,
+    MyReferralsComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -88,6 +88,7 @@ export class AffilateComponent implements OnInit, OnDestroy {
       affilateLink: [this.myAfiilate],
     });
     this.formReady = true;
+    console.log(this.affilateForm);
   }
 
   getMyLevel() {
@@ -103,7 +104,9 @@ export class AffilateComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         const newdata: any = data;
         this.totalPages = newdata.total_pages;
-        this.affilatesList = newdata.result;
+        this.affilatesList = newdata;
+        console.log(this.affilatesList);
+        console.log(this.totalPages);
       });
   }
 
@@ -120,5 +123,6 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.affService.affiliatesMe().subscribe((data) => {
       this.affMe = data;
     });
+    console.log(this.affMe);
   }
 }
