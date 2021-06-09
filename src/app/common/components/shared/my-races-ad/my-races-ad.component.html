@@ -75,7 +75,7 @@
     
 
     <ng-container *ngIf="raceFilter === 'live'">
-      <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
+      <ng-container *ngFor="let mainr of liveRacesData; let i = index">
         <div class="box-item my-border-grad">
           <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
           <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
@@ -87,7 +87,7 @@
             <p class="race-name">
               <span *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
               <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
-              <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
+              <span *ngIf="mainr.tournament_id !== null && mainr.new_race_type !== 'binary_vs_race'">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
             <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
@@ -97,10 +97,10 @@
           </div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
-          *ngIf="mainr.new_game_type !== 'binary_vs_race_1'"></div>
+          *ngIf="mainr.new_race_type !== 'binary_vs_race'"></div>
 
           <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
-          *ngIf="mainr.new_game_type === 'binary_vs_race_1'"></div>
+          *ngIf="mainr.new_race_type === 'binary_vs_race'"></div>
 
 
         </div>
