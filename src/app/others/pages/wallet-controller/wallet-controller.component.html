@@ -26,13 +26,17 @@
   
         <div class="balance-flex">
           <div class="balance-item bordered">
-            <p class="value"><img src="/assets/base/images/icons/ioi-big.svg" alt=""> 1 000</p>
-            <p class="dollars">	&#36; 1 034</p>
+            <p class="value"><img src="/assets/base/images/icons/ioi-big.svg" alt=""> {{ myIoiBalance | number: "1.0-2":"fr" }}</p>
+            <p class="dollars">	&#36; {{ (myIoiBalance * myBalance.ioi_usdt) | number: "1.0-2":"fr" }}</p>
           </div>
   
           <div class="balance-item">
-            <p class="value"><img src="/assets/base/images/icons/polygon-big.svg" alt=""> 1 000</p>
-            <p class="dollars">	&#36; 1 034</p>
+            <p class="value"><img src="/assets/base/images/icons/polygon-big.svg" alt=""> {{ myMaticBalance | number: "1.0-2":"fr" }}</p>
+            <p class="dollars">	&#36;
+              {{
+                (myBalance?.game_wallet_matic * myBalance?.matic_usdt)
+                  | number: "1.0-2":"fr"
+              }}</p>
           </div>
         </div>
       </div>
