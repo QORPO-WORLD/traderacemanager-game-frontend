@@ -220,7 +220,17 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           hash: data.versus_hash,
           time: Date.now() + (30000)
         }));
-
+        setTimeout(() => {
+          if (bin) {
+            if (bin.versus_hash === data.versus_hash) {
+              localStorage.removeItem('binary');
+              if (this.getInterval) {
+                clearInterval(this.getInterval);
+                this.automatchLoading = false;
+              }
+            }
+          }
+        }, 300000)
         this.getInterval = setInterval(() => {
 
           this.getMyGames();
