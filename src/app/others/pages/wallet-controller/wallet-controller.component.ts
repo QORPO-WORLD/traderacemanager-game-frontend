@@ -31,7 +31,7 @@ export class WalletControllerComponent implements OnInit {
 
   getAccountValue() {
     const data = this.identityService.getBalance();
-    this.accountValue = data.game_wallet_ioi * 0.4;
+    this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
   }
 
 }

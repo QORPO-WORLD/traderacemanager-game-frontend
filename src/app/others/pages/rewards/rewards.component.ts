@@ -4,6 +4,7 @@ import { Headers } from "@angular/http";
 import { Subscription } from "rxjs";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RewardsService, TickerPricesService } from "src/app/api/services";
+import { AuthService } from "src/app/user/services/auth.service";
 
 @Component({
   selector: "app-rewards",
@@ -25,9 +26,11 @@ export class RewardsComponent implements OnInit, OnDestroy {
   myioioreward: number;
   mytrxreward: number;
   remainingDays: number;
+  myBalances: any;
   constructor(
     protected api: RewardsService,
-    private tickerService: TickerPricesService
+    private tickerService: TickerPricesService,
+    private identityService: AuthService
   ) {
     this.getRewards();
     this.getRewardsMe();
@@ -36,6 +39,7 @@ export class RewardsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getRemaining();
+    this.myBalances = this.identityService.getBalance();
   }
 
   ngOnDestroy() {

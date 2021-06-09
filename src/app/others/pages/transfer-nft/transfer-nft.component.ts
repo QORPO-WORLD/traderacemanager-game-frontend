@@ -677,6 +677,7 @@ export class TransferNftComponent implements OnInit {
     },
   ];
   nftType = 'car';
+  driverBalances: any;
   constructor(
     protected notify: NotifiqService,
     private route: ActivatedRoute,
@@ -706,6 +707,7 @@ export class TransferNftComponent implements OnInit {
 
   getUser() {
     this.nickname = this.identityService.getStorageIdentity().nickname;
+    this.driverBalances = this.identityService.getBalance();
   }
   resolveShowAsset() {
     if (this.nftType === 'car') {
@@ -722,7 +724,7 @@ export class TransferNftComponent implements OnInit {
 
   getAccountValue() {
     const data = this.identityService.getBalance();
-    this.accountValue = data.game_wallet_ioi * 0.4;
+    this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
   }
 
   resolveCarEdition(id: number) {
