@@ -99,7 +99,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   meWon: boolean;
   unityEnabled = false;
   chartEnabled = true;
-  semaforsVisible = true;
+  semaforsVisible = false;
   balance: any;
   startsAt: number;
   finishingAt: any;
@@ -223,18 +223,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   rightScore = 0;
   statusObservable: Subscription;
   constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
-    this.raceHash = this.actv.snapshot.paramMap.get('id');
-
+    
   }
 
   ngOnInit() {
+    this.raceHash = this.actv.snapshot.paramMap.get('id');
     this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
-    this.startsInSecs = this.getWhenStarts();
-    setTimeout(() => {
-      this.raceStarted = true;
-      const newwhen = this.getWhenStarts();
-      this.endVal = newwhen + 60;
-    }, this.startsInSecs * 1000)
+    
     this.whenStarts();
     this.getBinaryPlayers();
     this.getCryptoStats();
@@ -766,7 +761,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.myId = this.identityService.getDriverMe().id;
     for (let x = 0; x < data.length; x++) {
       if (data[x].user_hash === this.myId) {
-        console.log(data[x]);
         this.mePlaying = true;
         this.myPlayer = data[x];
       }
@@ -813,7 +807,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           this.add(ticker.timestamp, ticker.last)
         } catch (e) {
           this.chartEnabled = false;
-          console.log(e);
         }
       }
     }
@@ -838,31 +831,49 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   getWhenStarts() {
     const then: any = this.startsAt * 1000;
     const now: any = DateTime.utc();
-    const diffTime = Math.abs((then - now.ts) / 1000);
+    const diffTime = (then - now.ts) / 1000;
 
     return Math.round(diffTime);
   }
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
+    const absWhen = Math.abs(newwhen);
+    if (newwhen < 0) {
+      if (absWhen < 60) {
+        this.raceStarted = true;
+        this.semaforsVisible = false;
+      } else {
+        this.semaforsVisible = false;
+        this.raceStarted = false;
+        this.notify.error('Race already finished.')
+              
+      }
+    } else {
 
-    this.startVal = newwhen;
-    //this.endVal = newwhen + 60;
-    console.log(this.startVal);
-    const fireSemaforx = (newwhen - 5) * 1000;
-    if (fireSemaforx > 0) {
-      setTimeout((
-      ) => {
-        this.launchSemafor();
-      }, fireSemaforx);
+      this.semaforsVisible = true;
+      this.raceStarted = false;
+      this.startVal = newwhen;
+      this.startsInSecs = newwhen;
+      this.endVal = newwhen + 60;
+
+      const fireSemaforx = (newwhen - 5) * 1000;
+      if (fireSemaforx > 0) {
+        setTimeout((
+        ) => {
+          if (this.pageOpen === true) {
+            this.launchSemafor();
+          }
+        }, fireSemaforx);
+      }
+      const fireSemafory = (newwhen + 50) * 1000;
+      if (fireSemaforx > 0) {
+        setTimeout((
+        ) => {
+          this.cantPlaceBetAnymore = true;
+        }, fireSemafory);
+      }
     }
-    const fireSemafory = (newwhen + 50) * 1000;
-    if (fireSemaforx > 0) {
-      setTimeout((
-      ) => {
-        this.cantPlaceBetAnymore = true;
-      }, fireSemafory);
-    } 
   }
 
   launchSemafor() {
@@ -892,6 +903,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
       this.semaforVal = 0;
       this.playSound('optionsStart');
+      this.raceStarted = true;
     }, 5000);
     setTimeout(() => {
 
