@@ -134,19 +134,30 @@
   font-weight: 900;
   font-size: 48px;
   font-family: "Earth Orbiter";
+  letter-spacing: 0.09em;
 }
 .category-title-second {
   font-style: normal;
   font-weight: 900;
   font-size: 40px;
   font-family: "Earth Orbiter";
+  letter-spacing: 0.09em;
 }
 .category-title-third {
   font-style: normal;
   font-weight: 900;
   font-size: 32px;
   font-family: "Earth Orbiter";
+  letter-spacing: 0.09em;
 }
+.category-title-fourth {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 60px;
+  font-family: "Earth Orbiter";
+  letter-spacing: 0.09em;
+}
+
 .races-desc {
   font-style: normal;
   font-weight: 500;
@@ -258,6 +269,145 @@
     width: 75%;
     display: flex;
     justify-content: space-between;
+    &.tips {
+      align-items: center;
+      .tip-content {
+        position: relative;
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .left-premium {
+        height: auto;
+        width: 100%;
+        .boxes {
+          display: flex;
+          margin-top: 2.5%;
+        }
+        .tip-button {
+          transition: 0.3s;
+          margin-top: 5%;
+          padding: 1.5% 10%;
+          opacity: 1;
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+        }
+        .tip-button:hover {
+          transform: scale(1.01);
+          -webkit-transform: scale(1.01);
+          -moz-transform: scale(1.01);
+          -ms-transform: scale(1.01);
+          -o-transform: scale(1.01);
+          box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+        }
+        .item-box {
+          padding: 2.5%;
+          width: 40%;
+          p {
+            &.menu-title {
+              margin-left: 0px;
+            }
+            &.space {
+              margin-top: 10%;
+            }
+            &.hidden {
+              pointer-events: none;
+              opacity: 0;
+            }
+          }
+          &.first {
+            border: 3px solid gold;
+            background: rgba(17, 17, 17, 0.8);
+          }
+          &.second {
+            margin-left: 10%;
+            border: 3px solid transparent;
+          }
+          .item {
+            margin-top: 5%;
+            display: flex;
+            img {
+              width: 7.5%;
+              height: auto;
+            }
+            p {
+              margin-left: 5%;
+            }
+          }
+        }
+        .golden {
+          color: gold;
+        }
+      }
+      .left-content {
+        width: 49%;
+        .category-title-fourth {
+          margin-bottom: 2.5%;
+        }
+        .line {
+          transition: 0.3s;
+          margin-top: 2.5%;
+          &.active {
+            opacity: 1;
+          }
+        }
+        .tip-button {
+          transition: 0.3s;
+          margin-top: 10%;
+          padding: 2.5% 10%;
+          opacity: 1;
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+        }
+        .tip-button:hover {
+          transform: scale(1.01);
+          -webkit-transform: scale(1.01);
+          -moz-transform: scale(1.01);
+          -ms-transform: scale(1.01);
+          -o-transform: scale(1.01);
+          box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+        }
+      }
+      .right-content {
+        width: 49%;
+        min-height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+        .how-to-image {
+          width: 100%;
+          position: absolute;
+          top: 60%;
+          transform: translateY(-50%);
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+        }
+        .switchers {
+          z-index: 1;
+          width: 80%;
+          display: flex;
+          justify-content: space-between;
+          .switcher {
+            cursor: pointer;
+            transition: 0.3s;
+            height: 3px;
+            width: 19%;
+            opacity: 0.15;
+            &.active {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
     .fast-races {
       transition: 0.2s;
       cursor: pointer;
@@ -278,6 +428,7 @@
       flex-direction: column;
       justify-content: flex-end;
     }
+
     .group {
       width: 57.5%;
       display: flex;
@@ -415,6 +566,9 @@
   .category-title-third {
     font-size: 20px;
   }
+  .category-title-fourth {
+    font-size: 50px;
+  }
   .races-desc {
     font-size: 14px;
   }
@@ -431,6 +585,9 @@
   }
   .category-title-third {
     font-size: 18px;
+  }
+  .category-title-fourth {
+    font-size: 40px;
   }
   .races-desc {
     font-size: 12px;
@@ -502,6 +659,10 @@
     font-size: 15px;
     line-height: 17px;
   }
+  .category-title-fourth {
+    font-size: 25px;
+    line-height: 27px;
+  }
   .races-desc {
     font-size: 10px;
     line-height: 12px;
@@ -568,6 +729,10 @@
     font-size: 13px;
     line-height: 15px;
   }
+  .category-title-fourth {
+    font-size: 20px;
+    line-height: 22px;
+  }
   .races-desc {
     font-size: 8px;
     line-height: 10px;
@@ -609,15 +774,19 @@
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
   .main-holder {
+    height: auto;
     align-items: flex-start;
   }
   .races-content {
+    height: auto;
+
     flex-direction: column;
+    justify-content: unset;
     .content-menu {
       width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
-      height: 30%;
+      height: 200px;
       .item {
         width: 30%;
         height: 30%;
@@ -625,8 +794,60 @@
     }
     .content-side {
       width: 100%;
-      height: 65%;
+      height: 500px;
+
       flex-direction: column;
+
+      &.tips {
+        height: auto;
+
+        .tip-content {
+          flex-direction: column-reverse;
+          .left-content {
+            width: 100%;
+            margin-top: 25px;
+            .tip-button {
+              margin-top: 15px;
+            }
+          }
+          .right-content {
+            margin-top: 25px;
+            width: 100%;
+            min-height: unset;
+            display: flex;
+
+            position: relative;
+            height: 200px;
+            .how-to-image {
+              max-height: 100%;
+              height: 100%;
+              width: auto;
+            }
+          }
+        }
+        .left-premium {
+          margin-top: 25px;
+          .boxes {
+          }
+          .tip-button {
+            margin-top: 15px;
+          }
+
+          .item-box {
+            padding: 2.5%;
+            width: 49%;
+            .item {
+              img {
+                width: 10px;
+                height: auto;
+              }
+            }
+            &.second {
+              margin-left: 2.5%;
+            }
+          }
+        }
+      }
       .fast-races {
         width: 100%;
         height: 30%;
@@ -678,6 +899,10 @@
   .category-title-third {
     font-size: 12px;
     line-height: 14px;
+  }
+  .category-title-fourth {
+    font-size: 18px;
+    line-height: 20px;
   }
   .races-desc {
     font-size: 10px;

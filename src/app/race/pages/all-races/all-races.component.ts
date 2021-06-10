@@ -18,7 +18,11 @@ import { throwIfEmpty } from "rxjs/operators";
   styleUrls: ["./all-races.component.scss"],
 })
 export class AllRacesComponent implements OnInit {
+  howToInterval: any;
+  howToStep = 1;
   animation = 0;
+  contentAnimation = 0;
+  content = 1;
   timeoutPrev: any;
   timeoutNext: any;
   title = "ALL RACES";
@@ -51,6 +55,7 @@ export class AllRacesComponent implements OnInit {
   tickets = 0;
   myTeamStats: any;
   myTeamName: any;
+
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -71,6 +76,7 @@ export class AllRacesComponent implements OnInit {
     this.fastFuelEnabled();
     this.getMydriverBalances();
     this.getMyTeam();
+    this.toggleContent(1);
   }
 
   getMyTeam() {
@@ -208,8 +214,37 @@ export class AllRacesComponent implements OnInit {
       this.timeoutReset();
     }, 300);
   }
+  switchContent(contentNumber: number) {
+    this.clearIntervalHowTo();
+    this.toggleContent(1);
+    this.timeoutReset();
+    if (this.content !== contentNumber) {
+      this.contentAnimation = 1;
+      this.timeoutPrev = setTimeout(() => {
+        this.contentAnimation = 2;
+        this.content = contentNumber;
+        this.timeoutReset();
+      }, 300);
+    }
+  }
   timeoutReset() {
     clearTimeout(this.timeoutNext);
     clearTimeout(this.timeoutPrev);
+  }
+
+  toggleContent(contentId: number) {
+    this.clearIntervalHowTo();
+
+    this.howToStep = contentId;
+    this.howToInterval = window.setInterval(() => {
+      if (this.howToStep === 5) {
+        this.howToStep = 1;
+      } else {
+        this.howToStep++;
+      }
+    }, 4000);
+  }
+  clearIntervalHowTo() {
+    clearInterval(this.howToInterval);
   }
 }
