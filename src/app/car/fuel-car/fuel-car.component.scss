@@ -704,12 +704,14 @@ input[type="number"]::-webkit-outer-spin-button {
     pointer-events: none;
     z-index: 10000;
     &.bottom-panels-2{
-      width: 60%;
-      transform: translateX(0);
-      left: 80px;
+      left: unset;
+      right: 0;
+      width: calc(100% - 538px);
       bottom: 40px;
+      transform: translateX(0);
       .selected-cars{
-        left: 0;
+        left: unset;
+        right: calc(51% + 136px);
         transform: translateX(0);
       }
     }
@@ -3414,6 +3416,11 @@ button.g-button {
         left: 50%;
         transform: translateX(-50%);
         .selected-cars{
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          right: unset;
           left: 50%;
           transform: translateX(-50%);
         }
