@@ -24,4 +24,5 @@ export interface RaceDetail {
   total_pages: number;
   applicable_payouts: Array<number>;
   applicable_points: Array<number>;
+  high_score: any;
 }

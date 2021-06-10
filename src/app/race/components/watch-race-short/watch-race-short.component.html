@@ -174,27 +174,66 @@
     <div class="race-top-nav">
 
       <div class="left-align">
-        <img class="ioi-logo-race" src="/assets/base/images/logo.png" alt="" [routerLink]="['/race/start-race']">
+        <div class="content-title" [routerLink]="['/race/start-race']">
+          <img
+            src="assets/base/images/icons/icon-back-blue.svg"
+            alt="blue arrow"
+          />
+          <p>Dashboard</p>
+        </div>
         <div class="small-box prize-box">
-          <div class="inner" *ngIf="raceDataildata?.race_identifier !== 'classic_tournament_0'">
-            <p><img src="/assets/base/images/zavod/prize-trophy.svg" alt=""> {{ raceDataildata?.price_pool }} 
-              <span>{{'shared.ioi' | translate}}</span></p>
+          <div class="img-holder">
+            <img src="/assets/base/images/zavod/prize-trophy.svg" alt="">
           </div>
-          <div class="inner" *ngIf="raceDataildata?.race_identifier === 'classic_tournament_0'">
-            <p><img src="/assets/base/images/zavod/prize-trophy.svg" alt=""> 
-              3 {{'race.tour_tickets' | translate}}</p>
+          <div class="inner-box">
+            <img src="/assets/base/images/icons/ioi-big.svg" alt="" class="token-logo">
+            <p *ngIf="raceDataildata?.race_identifier !== 'classic_tournament_0'">{{ raceDataildata?.price_pool }} </p>
+            <p *ngIf="raceDataildata?.race_identifier === 'classic_tournament_0'">3 {{'race.tour_tickets' | translate}} </p>
           </div>
         </div>
 
-        <div class="dimension-switcher" style="display:none">
-          <div class="inner" *ngIf="raceFinished === false">
-            <button (click)="unitySelected = false" [ngClass]="{'active': unitySelected === false}">2d</button>
-            <button (click)="unitySelected = true;" [ngClass]="{'active': unitySelected === true}">3d</button>
+        <div class="small-box">
+          <div class="img-holder">
+            <img src="/assets/base/images/zavod/high-icon.svg" alt="">
+          </div>
+          <div class="inner-box">
+            <p>{{ raceDataildata?.high_score?.user_nickname }} <span class="high">{{ raceDataildata?.high_score?.score | number:'1.0-2':'fr' }} &#8240;</span></p>
           </div>
         </div>
-      </div>
-      <div class="right-align">
-        <div class="username-holder">
+
+        <div class="small-box position">
+          <div class="img-holder">
+            <img src="/assets/base/images/zavod/position-lead.svg" alt="">
+          </div>
+          <div class="inner-box">
+            <p>{{raceData?.me?.cpr}}{{posEnding}}<span class="shady"> | {{raceDataildata?.players_count}}</span> </p>
+          </div>
+        </div>
+
+        <div class="small-box timer-box">
+          <div class="inner-box">
+            <div class="dots-holder">
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 16}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 33}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 49}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 66}"></div>
+              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 80}"></div>
+              <div class="dot last" [ngClass]="{'active': raceData?.race_progress >= 100}"></div>
+            </div>
+            <p class="timer-value" *ngIf="raceStarted === false">
+              <app-timer [value]="startsIn"></app-timer>
+            </p>
+            <p class="timer-value" *ngIf="raceFinished === false && raceStarted === true && endsIn > 0">
+              <app-timer [value]="endsIn"></app-timer>
+            </p>
+            <p class="timer-value" *ngIf="raceFinished === true && raceDataildata?.tournament_id === null">{{'race.race_ended' | translate}}</p>
+            <p class="timer-value" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">
+              <app-timer [value]="redirectNum"></app-timer>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="username-holder">
           <div class="avatar-box">
             <div class="inner">
               <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
@@ -235,15 +274,17 @@
               <app-timer [value]="redirectNum"></app-timer>
             </p>
           </div>
-        </div>
+        </div> -->
+      </div>
+      <div class="right-align">
         <div class="switch-btn" (click)="changeSound()" [ngClass]="soundEnabled === true ? 'active' : ''" style="display:none">
           <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
         </div>
         <div class="switch-btn" (click)="showChat = !showChat" [ngClass]="showChat === true ? 'active' : ''">
-          <img src="/assets/base/images/zavod/fuel-icon.svg" alt="">
+          <img src="/assets/base/images/zavod/fuel-icon2.svg" alt="">
         </div>
         <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions">
-          <img src="/assets/base/images/zavod/position-icon.svg" alt="">
+          <img src="/assets/base/images/zavod/lead-white.svg" alt="">
         </div>
         <div class="switch-btn" [ngClass]="showTourPos === true ? 'active' : ''" (click)="showTourPos = !showTourPos"
         *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index > 1">
@@ -251,7 +292,7 @@
         </div>
         <div class="switch-btn" [ngClass]="showInfoModal === true ? 'active' : ''"
          (click)="showInfoModal = !showInfoModal">
-          <img src="/assets/base/images/zavod/info-icon.svg" alt="">
+          <img src="/assets/base/images/zavod/info-icon2.svg" alt="">
         </div>
         <div class="winner-close" *ngIf="showFinalModal === true" (click)="showFinalModal = false">
           <p>Close <img src="/assets/base/images/zavod/winner-close.svg" alt="close modal icon"></p>
