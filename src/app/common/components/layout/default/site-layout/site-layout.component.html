@@ -142,12 +142,20 @@
           >
             <div class="bubble-holder profile">
               <img
+                *ngIf="ownedRacers.length <= 0"
+                class="racer"
+                [src]="'assets/base/images/avatars/rookie-basic.png'"
+                alt="nft racer"
+              />
+              <img
+                *ngIf="ownedRacers.length > 0"
+                class="racer"
                 [src]="
-                  'assets/base/images/avatars/avatar' +
-                  Affilate?.affiliate_level +
-                  '-small.png'
+                  'assets/base/images/avatars/' +
+                  ownedRacers[ownedRacers.length - 1]['image'] +
+                  '.png'
                 "
-                alt=""
+                alt="nft racer"
               />
             </div>
             <div class="value-box">

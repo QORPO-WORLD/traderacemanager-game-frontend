@@ -26,28 +26,20 @@
     >
       <div class="avatar">
         <img
+          *ngIf="ownedRacers.length <= 0"
           class="avatar-img"
-          src="assets/base/images/avatars/avatar1-small.png"
-          alt=""
-          *ngIf="affiliate.affiliate_level === 1"
+          [src]="'assets/base/images/avatars/rookie-basic.png'"
+          alt="nft racer"
         />
         <img
+          *ngIf="ownedRacers.length > 0"
           class="avatar-img"
-          src="assets/base/images/avatars/avatar2-small.png"
-          alt=""
-          *ngIf="affiliate.affiliate_level === 2"
-        />
-        <img
-          class="avatar-img"
-          src="assets/base/images/avatars/avatar3-small.png"
-          alt=""
-          *ngIf="affiliate.affiliate_level === 3"
-        />
-        <img
-          class="avatar-img"
-          src="assets/base/images/avatars/avatar4-small.png"
-          alt=""
-          *ngIf="affiliate.affiliate_level === 4"
+          [src]="
+            'assets/base/images/avatars/' +
+            ownedRacers[ownedRacers.length - 1]['image'] +
+            '.png'
+          "
+          alt="nft racer"
         />
       </div>
       <div

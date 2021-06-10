@@ -82,13 +82,12 @@ export class TeamsSelectionComponent implements OnInit {
       for (let i = 0; i < this.teams.length; i++) {
         this.teams[i].statState = 1;
         if (this.teams[i].name === this.myTeam) {
-          if(this.teams[i].memberships[0].date_to!=null)
+          if(this.teams[i].memberships[0].date_to != null)
             this.myMembEnds = this.teams[i].memberships[0].date_to;
-          else
+          else if(this.teams[i].memberships.length > 1 && this.teams[i].memberships[1].date_to != null)
             this.myMembEnds = this.teams[i].memberships[1].date_to;
         }
       }
-
       if (this.myMembEnds !== undefined) {
         this.getMembEnd();
       }
