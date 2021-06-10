@@ -324,6 +324,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
       const retype: any = data;
       this.raceDataildata = retype;
+      console.log(this.raceDataildata);
+      console.log('fjdksl');
       this.endsIn = data.ends_in;
 
       if (data.tournament_id !== null && data.tour_index > 1) {

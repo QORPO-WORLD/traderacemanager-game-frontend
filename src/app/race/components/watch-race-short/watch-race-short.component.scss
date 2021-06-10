@@ -2744,50 +2744,102 @@ button small {
     justify-content: space-between;
     align-items: center;
     padding: 0 0 0 38px;
-    background: #222222;
-    .small-box {
-      border-radius: 10px;
-      height: 46px;
-      background: #111111;
-      .inner {
-        border-radius: 10px;
-        background: #111111;
-        width: 100%;
-        height: 100%;
-        p,
-        app-timer {
-          font-weight: 500;
-          font-size: 16px;
-          margin: 0;
-          text-align: center;
+    background: #111111;
+    .content-title {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      img {
+        width: 21px;
+      }
+      p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        letter-spacing: 0.09em;
+        font-family: Earth Orbiter;
+        font-weight: 900;
+        margin-left: 10px;
+        margin-bottom: 0;
+      }
+      @media screen and(max-width: 1700px) {
+        img {
+          width: 17px;
+        }
+        p {
+          font-size: 26px;
         }
       }
-      &.prize-box {
-        background: #111111;
-        margin-left: 40px;
-        .inner {
-          background: #111111;
-          padding: 10px 35px;
+      @media screen and(max-width: 1550px) {
+        height: 65px;
+          img {
+            width: 15px;
+          }
           p {
-            color: #23ffff;
-            span {
-              color: #23ffff;
-            }
-            img {
-              display: inline-block;
-              margin-right: 7px;
-            }
+            font-size: 22px;
+          }
+      }
+      @media screen and(max-width: 1024px) {
+        img {
+          width: 13px;
+        }
+        p {
+          font-size: 20px;
+        }
+      }
+      
+      @media screen and(max-width: 1024px) and (orientation: landscape) {
+        height: 40px;
+      }
+    }
+    
+    .small-box {
+      border-radius: 10px;
+      background: #111111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &.prize-box{
+        .img-holder{
+          margin-right: 30px;
+        }
+        .inner-box{
+          padding: 8px 32px 8px 40px;
+        }
+      }
+      .img-holder{
+        margin-right: 20px;
+      }
+      .inner-box{
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50px;
+        padding: 8px 32px;
+        position: relative;
+        .token-logo{
+          position: absolute;
+          top: 50%;
+          left: 0;
+          height: 110%;
+          transform: translate(-50%, -50%);
+        }
+        p{
+          margin: 0;
+          font-weight: 700;
+          font-size: 16px;
+          .shady{
+            opacity: 0.6;
+          }
+          .high{
+            color: #24e3fe;
           }
         }
       }
       &.timer-box {
-        margin: 0 18px 0 5px;
-        min-width: 190px;
-        .inner {
+        .inner-box{
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 0 15px;
+          min-width: 190px;
           .dots-holder {
             display: flex;
             justify-content: center;
@@ -2800,33 +2852,8 @@ button small {
               border-radius: 50%;
               background: rgba(255, 255, 255, 0.25);
               &.active {
-                background: linear-gradient(
-                  238.54deg,
-                  #fe173f -1.25%,
-                  #950552 100.91%
-                );
+                background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
               }
-            }
-          }
-        }
-      }
-      &.pos-box {
-        &.progress{
-          margin-right: 5px;
-          .inner{
-            padding: 9px 35px;
-          }
-        }
-        .inner {
-          padding: 12px 35px;
-          p {
-            img {
-              display: inline-block;
-              margin-right: 7px;
-            }
-            span {
-              font-size: 12px;
-              font-weight: 300;
             }
           }
         }
@@ -2834,37 +2861,16 @@ button small {
     }
     .left-align {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       height: 100%;
+      width: calc(90% - 270px);
+      max-width: 1200px;
       .ioi-logo-race {
         position: relative;
         z-index: 3;
         height: 40px;
         cursor: pointer;
-      }
-      .dimension-switcher {
-        margin-left: 20px;
-        .inner {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          button {
-            display: inline-block;
-            width: 50%;
-            padding: 10px;
-            border-radius: 5px;
-            background: transparent;
-            margin: 0 5px;
-            &.active {
-              background: linear-gradient(
-                155.33deg,
-                #24ffff 9.64%,
-                #25ccfe 95.19%
-              );
-            }
-          }
-        }
       }
     }
     .right-align {
@@ -2878,7 +2884,6 @@ button small {
         height: 100%;
         position: relative;
         cursor: pointer;
-        border-left: 1px solid rgba(255, 255, 255, 0.15);
         background: transparent;
         img {
           position: absolute;
@@ -2891,36 +2896,6 @@ button small {
           border-left: 1px solid black;
         }
       }
-      .username-holder {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .avatar-box {
-          padding: 1px 0 0 1px;
-          border-radius: 10px;
-          height: 73px;
-          width: 73px;
-          background: #111111;
-          .inner {
-            border-radius: 10px;
-            background: #111111;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            img {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-            }
-          }
-        }
-        .my-name {
-          font-size: 12px;
-          font-weight: 500;
-          margin: 0 20px 0 12px;
-        }
-      }
       .winner-close {
         height: 100%;
         position: absolute;
@@ -2930,7 +2905,7 @@ button small {
         z-index: 2;
         cursor: pointer;
         border-left: 1px solid rgba(255, 255, 255, 0.15);
-        background: #222222;
+        background: #111111;
         p {
           position: absolute;
           top: 50%;
@@ -4039,6 +4014,61 @@ button small {
     width: 385px;
     height: 130px;
   }
+  .sub-content.zavod_bg{
+    .race-top-nav{
+      .small-box{
+        &.prize-box{
+          .inner-box{
+            padding: 7px 26px 7px 34px;
+          }
+        }
+        .inner-box{
+          padding: 7px 26px;
+          p{
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1550px){
+  .sub-content.zavod_bg{
+    .race-top-nav{
+      .small-box{
+        &.prize-box{
+          .inner-box{
+            padding: 5px 20px 5px 30px;
+          }
+        }
+        &.timer-box{
+          .inner-box{
+            min-width: 150px;
+          }
+        }
+        .img-holder{
+          margin-right: 14px;
+          img{
+            width: 23px;
+          }
+        }
+        .inner-box{
+          padding: 5px 20px;
+          p{
+            font-size: 14px;
+          }
+        }
+      }
+      .right-align{
+        .switch-btn{
+          img{
+            width: 24px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1500px) {
@@ -4176,45 +4206,35 @@ button small {
       height: 65px;
       padding: 0 0 0 20px;
       .left-align {
+        width: calc(90% - 110px);
         .ioi-logo-race {
           height: 33px;
         }
       }
-      .small-box {
-        border-radius: 11px;
-        height: 36px;
-        .inner {
-          border-radius: 11px;
-          p,
-          span,
-          app-timer {
-            font-size: 14px;
+      .small-box{
+        &.prize-box{
+          .inner-box{
+            padding: 4px 18px 4px 24px;
+          }
+          .img-holder{
+            margin-right: 23px;
           }
         }
-        &.prize-box {
-          margin-left: 20px;
-          .inner {
-            padding: 7px 25px;
-            p {
-              img {
-                width: 17px;
-              }
-            }
+        &.timer-box{
+          .inner-box{
+            min-width: 120px;
           }
         }
-        &.pos-box {
-          &.progress{
-            .inner{
-              padding: 7px 20px;
-            }
+        .img-holder{
+          margin-right: 12px;
+          img{
+            width: 20px;
           }
-          .inner {
-            padding: 8px 20px;
-            p{
-              img{
-                width: 22px;
-              }
-            }
+        }
+        .inner-box{
+          padding: 4px 18px;
+          p{
+            font-size: 12px;
           }
         }
       }
@@ -4599,406 +4619,6 @@ button small {
   }
 }
 
-// @media only screen and (max-width: 900px) and (orientation: portrait) {
-//   .tournament {
-//     margin: 0;
-//     .mini-races-holder {
-//       max-width: 320px;
-//       margin: 20px auto;
-//       .tour {
-//         margin-bottom: 10px;
-//         &.not-on-mobile {
-//           width: 60px;
-//           .smx {
-//             display: none;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   .zavod .car_rc .cr_cars_box .car_row {
-//     &.my-car-high {
-//       &::before {
-//         top: -12px;
-//         left: 67px;
-//         width: 216px;
-//         height: 102px;
-//       }
-//       &::after {
-//         top: 28px;
-//         width: 23px;
-//         left: 163px;
-//         height: 20px;
-//       }
-//     }
-//     .car-user-stats {
-//       height: unset;
-//       top: 50%;
-//       left: 0%;
-//       transform: translateY(-50%) rotate(90deg);
-//       flex-wrap: wrap;
-//       text-align: center;
-//       min-width: 110px;
-//       .my-line {
-//         display: none;
-//       }
-//       .place {
-//         width: 100%;
-//         height: 18px;
-//         border-radius: 0 10px 0 0;
-//         p {
-//           font-size: 13px;
-//         }
-//       }
-//       .stats-box {
-//         width: 100%;
-//         border-radius: 0px 0px 10px 10px;
-//         .inner-stats{
-//           .name {
-//             margin: 3px 0;
-//             font-size: 12px;
-//           }
-//           .roi-holder {
-//             flex-wrap: wrap;
-//             justify-content: center;
-//             .my-bar-holder {
-//               width: 100%;
-//               margin: 0 0 3px 0;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   #time-wrapper.mobile {
-//     display: block;
-//   }
-
-//   .main-content.zavod {
-//     .all-positions {
-//       max-height: calc(100vh - 160px);
-//       top: 100px;
-//       right: unset;
-//       left: 50%;
-//       transform: translateX(-50%);
-//     }
-//   }
-
-//   .semafor-inner {
-//     transform: scale(0.5);
-//     top: 50% !important;
-//   }
-//   .mobile-timer {
-//     display: block !important;
-//   }
-
-//   .all-positions,
-//   .chat,
-//   .new-fuel {
-//     width: 100% !important;
-//     max-width: 350px;
-//   }
-//   .chat {
-//     position: absolute;
-//     top: 100px;
-//     width: 290px;
-//     z-index: 1000000;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     background: #111;
-//     border-radius: 0 0 10px 10px;
-//     max-height: calc(100vh - 160px);
-//   }
-//   .winning-back{
-//     height: calc(100% - 95px);
-//   }
-//   .winning-modal {
-//     &.cops-modal {
-//       .inner-item {
-//         height: 300px;
-//         position: relative;
-//         top: 50%;
-//         transform: translateY(-50%);
-//         .cont-holder {
-//           h1 {
-//             font-size: 30px;
-//           }
-//           h2 {
-//             font-size: 30px;
-//           }
-//           .reward-box {
-//             p {
-//               font-size: 31px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   .my-rewards {
-//     font-size: 24px;
-//     margin: 15px 0;
-//   }
-
-//   .mobile-hub {
-//     display: block !important;
-//   }
-
-//   .zavod .final_line {
-//     right: unset;
-//     width: 530px;
-//     height: 530px;
-//     top: 20px;
-//     transform: translateX(-50%) rotate(-90deg);
-//     left: 50%;
-//     background-position: 71% -70px !important;
-//     z-index: 1;
-//   }
-
-//   .zavod .start_line {
-//     right: unset;
-//     width: 180px;
-//     height: 530px;
-//     bottom: -40px;
-//     top: unset;
-//     transform: translateX(-50%) rotate(-90deg);
-//     left: 50%;
-//     background-position: 23% -70px !important;
-//     z-index: 1;
-//   }
-
-//   .zavod {
-//     .car_rc {
-//       .cr_cars_box {
-//         width: 100vh;
-//         .car_row {
-//           .car-currs {
-//             &.position-left {
-//               left: -70px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   .sub-content.zavod_bg .race-bottom-nav .best-position {
-//     display: none;
-//   }
-
-//   .sub-content.zavod_bg .race-top-nav .prize-heading {
-//     h1 {
-//       font-family: "Poppins";
-//       font-weight: 700;
-//       margin: 0;
-//       padding: 0;
-//       font-size: 30px;
-//     }
-//     &.small {
-//       h1 {
-//         &.tour-tickets {
-//           font-size: 20px;
-//         }
-//       }
-//     }
-//   }
-
-//   .sub-content.zavod_bg {
-//     .tour-message {
-//       font-size: 24px;
-//       top: 30%;
-//       left: 50%;
-//       transform: translate(-50%, -50%);
-//       &.speci {
-//         font-size: 20px;
-//         max-width: 400px;
-//         top: 60%;
-//         left: 50%;
-//         width: 90%;
-//       }
-//     }
-//     .race-bottom-nav {
-//       background: none;
-//     }
-//   }
-
-//   .sub-content.zavod_bg .race-top-nav .prize-heading h1 span {
-//     font-family: "Poppins";
-//     font-weight: 700;
-//   }
-
-//   .zavod.cp3 .car_rc .cr_cars_box {
-//     top: -8px !important;
-//   }
-
-//   .main-content.zavod {
-//     height: 100vh;
-//   }
-
-//   .sub-content.zavod_bg {
-//     height: 100vh;
-//   }
-
-//   .still_road {
-//     height: 320px;
-//     background-size: content;
-//     top: auto;
-//     position: relative;
-//     left: auto;
-//     width: auto;
-//   }
-
-//   .zavod .car_rc {
-//     width: 100%;
-//     min-width: 100%;
-//     max-width: 100%;
-//     height: 100vh;
-//     top: 0;
-//     z-index: 1;
-//     left: 0;
-//   }
-
-//   .top-nav-back {
-//     height: 80px;
-//   }
-
-//   .sub-content.zavod_bg .race-bottom-nav .link-btns {
-//     position: absolute;
-//     justify-content: space-between;
-//     display: flex;
-//     top: auto;
-//     left: auto;
-//     transform: none;
-//     width: 320px;
-//     bottom: 11px;
-//     width: 100%;
-//     justify-content: flex-start;
-//     .new_cta-button {
-//       padding: 9px 25px;
-//       font-size: 12px;
-//       width: unset;
-//       &.not-mobile {
-//         display: none;
-//       }
-//     }
-//   }
-
-//   .sub-content.zavod_bg .race-bottom-nav .link-btns,
-//   .sub-content.zavod_bg .race-bottom-nav .link-btns.small {
-//     margin: 0;
-//     bottom: 5px;
-//     left: 50%;
-//     transform: translateX(-50%);
-//   }
-//   .main-content .sub-content {
-//     display: block;
-//   }
-
-//   .still-road,
-//   .moving-road {
-//     position: relative;
-//     background-size: auto 100% !important;
-//     background-position: center;
-//     top: 50% !important;
-//     transform-origin: left top;
-//     left: 34%;
-//     width: 100vh;
-//     height: 153vw;
-//     transform: rotate(-90deg) translate(-50%, -50%);
-//   }
-//   .still-helperix,
-//   .moving-helperix {
-//     display: none;
-//   }
-
-//   .main-content.zavod {
-//     width: 100%;
-//   }
-
-//   .zavod .car_rc .cr_cars_box {
-//     position: absolute;
-//     left: 50%;
-//     width: 100vh !important;
-//     height: 100vw;
-//     top: 50%;
-//     transform: rotate(-90deg) translate(-50%, -50%);
-//     transform-origin: left top;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     padding: 12vw 330px 12vw 0;
-//     z-index: 2;
-//     .car {
-//       width: 250px;
-//       min-width: 250px;
-//       height: 83px;
-//       margin-bottom: -20px;
-//       margin-top: -20px;
-//     }
-//   }
-
-//   .prize-heading {
-//     display: none;
-//   }
-
-//   .sub-content.zavod_bg .race-top-nav .prize-heading img {
-//     display: none;
-//   }
-
-//   .zavod .car_rc .cr_cars_box .car_row > span {
-//     transform: rotate(90deg);
-//     text-align: center;
-//     width: 77px;
-//     min-width: 77px;
-//     font-size: 11px;
-//     padding: 34px 0px 2px 0px;
-//     span {
-//       font-size: 10px;
-//     }
-//   }
-
-//   .car_row b.position {
-//     left: 50%;
-//     top: 0px;
-//     transform: translate(-50%, 0);
-//   }
-
-//   .new_cta-button {
-//     padding: 9px 45px;
-//   }
-
-//   .zavod .final_line.starter {
-//     height: auto;
-//     right: 80px;
-//     top: -40px;
-//     transform: scale(0.5);
-//   }
-
-//   #transparent-bg {
-//     display: none;
-//   }
-
-//   .zavod .car_rc .cr_cars_box.cars4 {
-//     top: -20px;
-//   }
-
-//   .zavod .car_rc .cr_cars_box.cars3 {
-//     top: -7px;
-//   }
-
-//   .zavod .car_rc .cr_cars_box.cars2 {
-//     top: 20px;
-//   }
-
-//   .zavod .car_rc .cr_cars_box.cars1 {
-//     top: 42px;
-//   }
-// }
-
-
 
 @media only screen and (max-width: 900px){
   .billboard-holder{
@@ -5018,30 +4638,66 @@ button small {
       left: 0;
       top: 0;
       overflow: auto;
+      .content-title{
+        img{
+          width: 20px;
+          margin-top: 15px;
+        }
+        p{
+          display: none;
+        }
+      }
       .left-align {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         height: unset;
         flex-direction: column;
+        justify-content: space-between;
         width: 100%;
-        .ioi-logo-race {
-          height: auto;
-          width: 100%;
-          right: -6px;
-          margin-top: 15px;
-        }
+        height: 100%;
       }
       .small-box {
         border-radius: 5px;
         height: unset;
         width: 100%;
-        .inner {
-          border-radius: 9px;
-          padding: 12px 2px;
-          p,
-          span {
-            font-size: 12px;
+        flex-wrap: wrap;
+        &.position{
+          display: none;
+        }
+        &.prize-box{
+          .img-holder{
+            margin-right: 0;
+          }
+          .inner-box{
+            padding: 5px 0;
+            p{
+              font-size: 10px;
+            }
+          }
+        }
+        &.timer-box{
+          .inner-box{
+            min-width: unset;
+            flex-wrap: wrap;
+            .dots-holder{
+              margin: 0 0 5px 0;
+            }
+          }
+        }
+        .img-holder{
+          margin: 0 0 5px 0;
+        }
+        .inner-box{
+          text-align: center;
+          padding: 5px 0;
+          width: 95%;
+          border-radius: 5px;
+          .token-logo{
+            display: none;
+          }
+          p{
+            font-size: 10px;
           }
         }
         &.prize-box {
@@ -5337,7 +4993,6 @@ button small {
   .sub-content.zavod_bg{
     .race-top-nav{
       justify-content: center;
-      padding-top: 40px;
       .left-align{
         .ioi-logo-race{
           width: 64px;
@@ -5425,7 +5080,7 @@ button small {
     .race-top-nav{
       height: 100%;
       justify-content: center;
-      padding-top: 40px;
+      padding-top: 0;
       .left-align{
         .ioi-logo-race{
           width: 64px;
