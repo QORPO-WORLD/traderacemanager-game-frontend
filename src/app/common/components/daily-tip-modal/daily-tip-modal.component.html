@@ -7,12 +7,10 @@
 
     <div class="header-holder" *ngIf="isEditing === false">
       <p class="heading"><img src="/assets/base/images/start-race/flame-icon.png" alt="Image of flame" class="flame-img"> {{'teams.my_team.tip_of_day' | translate}} <img src="assets/base/images/teams/edit-icon.png" alt="Edit tips icon" class="edit-icon" (click)="isEditing = true" *ngIf="meOwner === true"></p>
-      <p class="text">{{'teams.my_team.tip_desc' | translate}}</p>
     </div>
 
     <div class="header-holder" *ngIf="isEditing === true">
-      <p class="heading">{{'teams.my_team.add_tip' | translate}}</p>
-      <p class="text">{{'teams.my_team.choose_tip' | translate}}</p>
+      <p class="heading">Tip of the day</p>
     </div>
     
     <div  *ngIf="isEditing === false"><app-show-tips [teamVersion]="false"></app-show-tips></div>

@@ -288,7 +288,16 @@
       </div>
 
       <div class="tip-holder">
-        <p class="my-heading">Tip of the day</p>
+        <p class="my-heading">
+          Tip of the day
+          <img
+            class="edit-icon"
+            src="assets/base/images/teams/edit-icon.png"
+            alt=""
+            (click)="showDayTipModal = true"
+            *ngIf="meManager === true"
+          />
+        </p>
         <div class="inner-holder">
           <app-show-tips #showTip [teamVersion]="true"></app-show-tips>
         </div>
