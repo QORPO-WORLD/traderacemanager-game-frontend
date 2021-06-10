@@ -21,7 +21,7 @@
   <div class="races-content">
     <div class="content-menu">
       <div
-        (click)="title = 'ALL RACES'"
+        (click)="title = 'ALL RACES'; switchContent(1)"
         [ngClass]="{
           active: title === 'ALL RACES'
         }"
@@ -35,7 +35,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
       <div
-        (click)="title = 'HOW TO PLAY'"
+        (click)="title = 'HOW TO PLAY'; switchContent(2)"
         [ngClass]="{
           active: title === 'HOW TO PLAY'
         }"
@@ -50,7 +50,7 @@
       </div>
 
       <div
-        (click)="title = 'CARS'"
+        (click)="title = 'CARS'; switchContent(3)"
         [ngClass]="{
           active: title === 'CARS'
         }"
@@ -64,7 +64,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
       <div
-        (click)="title = 'FAST FUEL'"
+        (click)="title = 'FAST FUEL'; switchContent(4)"
         [ngClass]="{ active: title === 'FAST FUEL' }"
         class="item"
       >
@@ -76,7 +76,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
       <div
-        (click)="title = 'PREMIUM'"
+        (click)="title = 'PREMIUM'; switchContent(5)"
         [ngClass]="{ active: title === 'PREMIUM' }"
         class="item"
       >
@@ -88,7 +88,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
       <div
-        (click)="title = 'HELPFUL TIPS'"
+        (click)="title = 'HELPFUL TIPS'; switchContent(6)"
         [ngClass]="{ active: title === 'HELPFUL TIPS' }"
         class="item"
       >
@@ -100,7 +100,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
       <div
-        (click)="title = 'TEAMS'"
+        (click)="title = 'TEAMS'; switchContent(7)"
         [ngClass]="{ active: title === 'TEAMS' }"
         class="item"
       >
@@ -112,7 +112,14 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
     </div>
-    <div class="content-side">
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 1"
+      class="content-side"
+    >
       <div
         [routerLink]="['/race/race-type']"
         [queryParams]="{ raceType: 'fast' }"
@@ -148,6 +155,407 @@
             <p class="category-title-third">Special Events</p>
             <p class="races-desc">IOI token holder events</p>
           </div>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 2"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-fourth">HOW TO PLAY</p>
+          <p
+            (click)="toggleContent(1)"
+            [ngClass]="{ active: howToStep === 1 }"
+            class="races-desc line"
+          >
+            1. Choose type of race - Fast race/Tournament/Enduro/Special
+          </p>
+          <p
+            (click)="toggleContent(2)"
+            [ngClass]="{ active: howToStep === 2 }"
+            class="races-desc line"
+          >
+            2. Choose your car
+          </p>
+          <p
+            (click)="toggleContent(3)"
+            [ngClass]="{ active: howToStep === 3 }"
+            class="races-desc line"
+          >
+            3. Pick the right portfolio - You always need to fill up the tank to
+            100% and at least 3 crypto currencies
+          </p>
+          <p
+            (click)="toggleContent(4)"
+            [ngClass]="{ active: howToStep === 4 }"
+            class="races-desc line"
+          >
+            4. Long or short crypto currencies
+          </p>
+          <p
+            (click)="toggleContent(5)"
+            [ngClass]="{ active: howToStep === 5 }"
+            class="races-desc line"
+          >
+            5. Race!
+          </p>
+          <button
+            (click)="switchContent(1)"
+            class="tip-button my-cta-btn-back races-desc"
+          >
+            Race now
+          </button>
+        </div>
+        <div class="right-content">
+          <img
+            *ngIf="howToStep === 1"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-first.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 2"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-second.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 3"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-third.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 4"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-fourth.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 5"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-fifth.png"
+            alt="notebook with image"
+          />
+          <div class="switchers">
+            <div
+              (click)="toggleContent(1)"
+              [ngClass]="{ active: howToStep === 1 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(2)"
+              [ngClass]="{ active: howToStep === 2 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(3)"
+              [ngClass]="{ active: howToStep === 3 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(4)"
+              [ngClass]="{ active: howToStep === 4 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(5)"
+              [ngClass]="{ active: howToStep === 5 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 3"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-fourth">CARS</p>
+          <p class="races-desc line">
+            Each car is unparalleled way of owning IOI tokens, staking and APY.
+            The main benefit is that you can use your NFTs in-game, buy, sell
+            and trade on open markets. The new era of NFTs in your pocket.
+          </p>
+          <button
+            [routerLink]="['/car/nft-market']"
+            class="tip-button my-cta-btn-back races-desc"
+          >
+            Market
+          </button>
+        </div>
+        <div class="right-content">
+          <img
+            class="how-to-image"
+            src="assets/base/images/nft-cars/car28.png"
+            alt="nft car"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 4"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-fourth">FAST FUEl</p>
+          <p class="races-desc line">
+            Get your cars on the track as soon as possible. Set up your fast
+            fuel, and win more faster! <br /><br />
+            This feature is available only for premium members.
+          </p>
+          <button
+            [routerLink]="['/car/favourite-cars']"
+            class="tip-button my-cta-btn-back races-desc"
+          >
+            Set up Fast fuel
+          </button>
+        </div>
+        <div class="right-content">
+          <img
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-fuel.png"
+            alt="notebook image"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 5"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-premium">
+          <p class="category-title-fourth">PREMIUM MEMBERSHIP</p>
+          <div class="boxes">
+            <div class="item-box first">
+              <p class="menu-title golden">SALE NOW</p>
+              <p class="category-title-second">PREMIUM</p>
+              <p class="menu-title space">YOU GET</p>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/tip.png"
+                  alt="tip"
+                />
+                <p class="races-desc">Tip of the day from your team manager</p>
+              </div>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/gift.png"
+                  alt="gift"
+                />
+                <p class="races-desc">5% reward and bonuses</p>
+              </div>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/coin.png"
+                  alt="coins"
+                />
+                <p class="races-desc">Extra bonus for each membership</p>
+              </div>
+            </div>
+            <div class="item-box second">
+              <p class="menu-title hidden">.</p>
+              <p class="category-title-second">FREE</p>
+              <p class="menu-title space">ONLY WITH PREMIUM</p>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/chart.png"
+                  alt="chart"
+                />
+                <p class="races-desc">Learn about trading</p>
+              </div>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/growth.png"
+                  alt="growth"
+                />
+                <p class="races-desc">Make an extra income</p>
+              </div>
+              <div class="item">
+                <img
+                  src="assets/base/images/team-membership/car-icon.png"
+                  alt="car icon"
+                />
+                <p class="races-desc">Join a community</p>
+              </div>
+            </div>
+          </div>
+          <button
+            [routerLink]="['/teams/join-teams']"
+            class="tip-button my-cta-btn-back races-desc"
+          >
+            Get Premium
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 6"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-fourth">HELPFUL TIPS</p>
+          <p
+            (click)="toggleContent(1)"
+            [ngClass]="{ active: howToStep === 1 }"
+            class="races-desc line"
+          >
+            1. When setting up a portfolio, use indicators to your advantage
+            which will help you predict the market
+          </p>
+          <p
+            (click)="toggleContent(2)"
+            [ngClass]="{ active: howToStep === 2 }"
+            class="races-desc line"
+          >
+            2. Premium members can earn on average 10x more than free members
+          </p>
+          <p
+            (click)="toggleContent(3)"
+            [ngClass]="{ active: howToStep === 3 }"
+            class="races-desc line"
+          >
+            3. Fast-fuel helps player use his strategy ASAP and hit the market
+            right away
+          </p>
+          <p
+            (click)="toggleContent(4)"
+            [ngClass]="{ active: howToStep === 4 }"
+            class="races-desc line"
+          >
+            4. When you join team you are able to see team manager tip of the
+            day that you can benefit from in portfolio preparation
+          </p>
+          <p
+            (click)="toggleContent(5)"
+            [ngClass]="{ active: howToStep === 5 }"
+            class="races-desc line"
+          >
+            5. You always have to choose 3 crypto currencies but you can push 1
+            to 90% so you use almost only one crypto currency at the time
+          </p>
+        </div>
+        <div class="right-content">
+          <img
+            *ngIf="howToStep === 1"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-fourth.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 2"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-premium.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 3"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-fourth.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 4"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-team.png"
+            alt="notebook with image"
+          />
+          <img
+            *ngIf="howToStep === 5"
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-indicators.png"
+            alt="notebook with image"
+          />
+          <div class="switchers">
+            <div
+              (click)="toggleContent(1)"
+              [ngClass]="{ active: howToStep === 1 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(2)"
+              [ngClass]="{ active: howToStep === 2 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(3)"
+              [ngClass]="{ active: howToStep === 3 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(4)"
+              [ngClass]="{ active: howToStep === 4 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+            <div
+              (click)="toggleContent(5)"
+              [ngClass]="{ active: howToStep === 5 }"
+              class="switcher my-cta-btn-back"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': contentAnimation === 1,
+        'engage-right-animation': contentAnimation === 2
+      }"
+      *ngIf="content === 7"
+      class="content-side tips"
+    >
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-fourth">CARS</p>
+          <p class="races-desc line">
+            Create your dream team and share profits with family and friends.
+            Help everyone to achieve the top 10 in position in a race to get
+            team points.<br /><br />
+            The top 3 teams split 5% of the total platform turnover as their
+            bonus.To own a team, hold at least a thousand IOI tokens, invite new
+            users to your team and create a real following, real tribe!<br /><br />
+            Team membership is valid automatically from 1st day of month.
+          </p>
+          <button
+            [routerLink]="['/teams/join-teams']"
+            class="tip-button my-cta-btn-back races-desc"
+          >
+            Join Team
+          </button>
+        </div>
+        <div class="right-content">
+          <img
+            class="how-to-image"
+            src="assets/base/images/all-races/how-to-team-badges.png"
+            alt="team badges"
+          />
         </div>
       </div>
     </div>
