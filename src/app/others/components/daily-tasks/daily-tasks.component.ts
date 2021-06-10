@@ -38,7 +38,7 @@ export class DailyTasksComponent implements OnInit, OnDestroy {
     private identityService: AuthService, private social: SocialSharing) { }
 
   ngOnInit() {
-    this.checkTutorial();
+    // this.checkTutorial();
     this.getDailyTasks();
     this.getMyOldDriver();
     this.getMyAffilate();

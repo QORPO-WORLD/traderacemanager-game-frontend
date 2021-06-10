@@ -774,15 +774,15 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyOwner();
     this.getMyRewards();
     this.getRewards();
-    this.launchTutorial();
+    // this.launchTutorial();
     this.getMyLevel();
     this.getMyLeaderboard();
     this.interval = setInterval(() => {
       this.getCryptoStats();
     }, 15000);
-    this.tutorialInterval = setInterval(() => {
-      this.checkTutorial();
-    }, 3000);
+    // this.tutorialInterval = setInterval(() => {
+    //   this.checkTutorial();
+    // }, 3000);
     this.recognizeBanner();
     this.getMydriver();
     this.getDaysToDividens();
@@ -1125,7 +1125,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
       localStorage.removeItem("first-time");
       this.verifyModal = false;
-      this.launchTutorial();
+      // this.launchTutorial();
     });
   }
 
