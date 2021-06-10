@@ -28,7 +28,7 @@
 
   <div class="pagination">
     <button
-      (click)="actualPage = actualPage - 1; getMyLeaderboard()"
+      (click)="actualPage = actualPage - 1; getReferralPlayers()"
       class="pagebtn-l"
       [disabled]="actualPage <= 1"
     >
@@ -52,21 +52,21 @@
 
     <button class="page page-active">{{ actualPage }}</button>
     <button
-      (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+      (click)="actualPage = actualPage + 1; getReferralPlayers()"
       class="page"
       *ngIf="actualPage + 1 < totalPages"
     >
       {{ actualPage + 1 }}
     </button>
     <button
-      (click)="actualPage = actualPage + 2; getMyLeaderboard()"
+      (click)="actualPage = actualPage + 2; getReferralPlayers()"
       class="page"
       *ngIf="actualPage + 2 < totalPages"
     >
       {{ actualPage + 2 }}
     </button>
     <button
-      (click)="actualPage = actualPage + 3; getMyLeaderboard()"
+      (click)="actualPage = actualPage + 3; getReferralPlayers()"
       class="page"
       *ngIf="actualPage + 3 < totalPages"
     >
@@ -76,7 +76,7 @@
       ...
     </button>
     <button
-      (click)="actualPage = totalPages; getMyLeaderboard()"
+      (click)="actualPage = totalPages; getReferralPlayers()"
       class="page"
       *ngIf="actualPage < totalPages"
     >
@@ -84,7 +84,7 @@
     </button>
 
     <button
-      (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+      (click)="actualPage = actualPage + 1; getReferralPlayers()"
       class="pagebtn-r"
       [disabled]="actualPage >= totalPages"
     >
