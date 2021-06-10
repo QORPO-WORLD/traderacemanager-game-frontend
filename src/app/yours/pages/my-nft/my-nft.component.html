@@ -84,6 +84,15 @@
       class="market-center"
       #myScroll
     >
+      <div *ngIf="newProducts.length <= 0" class="no-nft">
+        <p class="races-desc">You currently don't own any NFTs.</p>
+        <button
+          [routerLink]="['/car/nft-market']"
+          class="no-nft-button category-title-third my-cta-btn-back"
+        >
+          Marketplace
+        </button>
+      </div>
       <div
         (click)="
           showAsset(2, item['id'], item['type'], item['amount'].length);

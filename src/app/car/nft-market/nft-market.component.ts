@@ -3,7 +3,6 @@ import { CarsService } from "../../api/services";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
-import { markTimeline } from "console";
 
 @Component({
   selector: "app-nft-market",
@@ -705,7 +704,7 @@ export class NftMarketComponent implements OnInit {
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
-      this.assetType = params["type"];
+      this.assetType = params["assetType"];
       if (!this.assetType) {
         this.assetType = "all";
       }

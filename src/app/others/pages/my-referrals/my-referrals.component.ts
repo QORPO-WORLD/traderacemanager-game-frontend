@@ -13,7 +13,7 @@ export class MyReferralsComponent implements OnInit {
   constructor(protected affService: AffiliatesService) {}
   pageOpen = false;
   affObs: Subscription;
-  affilatesList: Array<Affiliates>;
+  affiliatesList: Array<Affiliates>;
   offObserver: Subscription;
   actualPage = 1;
   totalPages: number;
@@ -29,9 +29,8 @@ export class MyReferralsComponent implements OnInit {
       .subscribe((data) => {
         const newdata: any = data;
         this.totalPages = newdata.total_pages;
-        this.affilatesList = newdata.result;
+        this.affiliatesList = newdata.results;
       });
-    console.log(this.affilatesList);
   }
 
   nextPage() {
@@ -46,6 +45,7 @@ export class MyReferralsComponent implements OnInit {
   getAffilate() {
     this.affService.affiliatesMe().subscribe((data) => {
       this.affMe = data;
+      console.log(this.affMe);
     });
   }
 }
