@@ -30,7 +30,7 @@ export class CreateTipsComponent implements OnInit, OnDestroy {
     { symbol: 'WAVESUSDT', desc: 'WAVES', selected: false, favourite: false, short: false, customIndex: 16 },
     { symbol: 'ZILUSDT', desc: 'ZIL', selected: false, favourite: false, short: false, customIndex: 17 },
     { symbol: 'VETUSDT', desc: 'VET', selected: false, favourite: false, short: false, customIndex: 18 },
-    { symbol: 'USDT', desc: 'USDT', selected: false, favourite: false, short: false, customIndex: 19 }
+    { symbol: 'USDTUSDT', desc: 'USDT', selected: false, favourite: false, short: false, customIndex: 19 }
   ];
   selectedTips: Array<number> = [];
   teamId: number;

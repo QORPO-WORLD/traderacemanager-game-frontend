@@ -27,8 +27,6 @@
             .item-curr{
               width: 100px;
               height: 100px;
-              box-shadow: 3px 0px 12px rgba(0, 0, 0, 0.7);
-              border-radius: 15px;
               margin: 0;
               text-align: center;
               padding: 16px 0 5px 0;
@@ -36,7 +34,7 @@
               cursor: pointer;
               transition: background-color .2s, box-shadow .1s;
               &.not-selected{
-                background: #111111;
+                background: rgba(255, 255, 255, 0.05);
                 .item-symbol{
                   opacity: .2;
                 }
@@ -81,15 +79,14 @@
                 margin-bottom: 0;
             }
             .curr-item{
-                border-radius: 10px;
                 margin: 0 50px;
                 width: 50px;
                 height: 50px;
-                box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
+                &.empty{
+                  background: rgba(255, 255, 255, 0.05);
+                }
                 &.selected{
                     .inner{
-                        background: linear-gradient(180deg, rgba(17,17,17,0.7) 0%, rgba(17,17,17,1) 100%);
-                        border-radius: 10px;
                         position: relative;
                         width: 100%;
                         height: 100%;
@@ -116,7 +113,6 @@
                 .btn-item{
                   width: calc(50% - 5px);
                   box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.04), 5px 5px 15px rgba(0, 0, 0, 0.9);
-                  border-radius: 5px;
                   height: 50px;
                   position: relative;
                   cursor: pointer;
@@ -169,7 +165,6 @@
                   .inner{
                     width: 100%;
                     height: 100%;
-                    border-radius: 5px;
                     background: #111;
                     text-align: center;
                     .active-img{
@@ -196,8 +191,9 @@
       button{
         font-size: 16px;
         font-weight: 400;
-        padding: 14px 34px;
-        border-radius: 15px;
+        padding: 14px 0;
+        width: 30%;
+        min-width: 170px;
       }
     }
 }
@@ -379,11 +375,6 @@
                 }
               }
             }
-          }
-        }
-        .save-btn{
-          button{
-            border-radius: 10px;
           }
         }
     }
