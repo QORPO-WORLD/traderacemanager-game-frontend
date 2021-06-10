@@ -92,7 +92,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   playersObserver: Subscription;
   myDriverBalances: any;
   constructor(private identityService: AuthService, private carService: CarsService, private raceApi: RacesService, private route: Router,
-  private notify: NotifyService) { }
+    private notify: NotifyService) { }
 
   ngOnInit() {
     this.getMyDriver();
@@ -153,13 +153,10 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   getMyChosenAvatar() {
-    if (this.chosenRacerId) {
-      const filtered = this.racers.filter(
-        (racer) => racer.id === this.chosenRacerId
-      );
-      this.myAvatar = filtered[0];
-    }
-
+    const filtered = this.racers.filter(
+      (racer) => racer.id === this.chosenRacerId
+    );
+    this.myAvatar = filtered[0];
   }
 
   automatch() {
@@ -187,7 +184,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         }
 
         const obj = {
-          id: 1000,
+          id: 0,
           sum: 1,
           pks: [0],
           image: 'rookie-basic',
@@ -245,7 +242,6 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
 
     this.liveObserver = this.raceApi.liveBinary().subscribe(
       data => {
-        console.log(data);
         if (data.length > 0) {
           if (this.getInterval) {
             clearInterval(this.getInterval);
@@ -291,18 +287,28 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     user_hash: string;
     user_nickname: string;
   }>) {
-    setTimeout(() => {
 
-      localStorage.removeItem('binary');
-      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
-      
-
-    }, 3000);
 
 
     const myid = this.identityService.getDriverMe().id;
+    const oponFromData = data.filter((item) => {
+      return item.user_hash !== myid
+    });;
+    const oponFromRacers = this.racers.filter((item) => {
+      return item.id === oponFromData[0].user_id
+    });
 
-    let ff;
+
+
+    this.opponentPlayer = {
+      avatar: {
+        image: oponFromRacers[0].image
+      },
+      name: oponFromData[0].user_nickname
+    }
+
+    /*
+
     for (let x = 0; x < data.length; x++) {
       if (data[x].user_hash !== myid) {
         ff = this.racers.filter((item) => {
@@ -317,10 +323,16 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         }
       }
     }
-
+*/
 
     this.matched = true;
+    setTimeout(() => {
 
+      localStorage.removeItem('binary');
+      this.route.navigate(['/race/binary-trade/' + this.nextRace.versus_hash + '/' + this.nextRace.start_at.toString()]);
+
+
+    }, 3000);
   }
 
 

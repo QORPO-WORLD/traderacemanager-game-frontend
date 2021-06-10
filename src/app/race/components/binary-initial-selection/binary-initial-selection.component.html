@@ -226,7 +226,7 @@
                 *ngIf="item.sum > 0"
                 (click)="chosenRacerId = item.id; racerPk = item.pks[0]"
               >
-                Choose
+                Choose {{item|json}}
               </button>
               <button
                 class="choose-btn"
@@ -270,12 +270,12 @@
         <button
           class="continue"
           (click)="getMyChosenAvatar(); fuelStep = 3"
-          *ngIf="chosenRacerId"
+          *ngIf="chosenRacerId > -1"
         >
           Continue
         </button>
-        <button class="continue disabled" *ngIf="!chosenRacerId">
-          Continue
+        <button class="continue disabled" *ngIf="chosenRacerId < 0">
+          Continuedis
         </button>
       </div>
     </div>
