@@ -658,6 +658,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   onCancel(data?: any) {
+    console.log(data);
     const opt = data;
     this.notify.error(data.reason);
     setTimeout(() => {
