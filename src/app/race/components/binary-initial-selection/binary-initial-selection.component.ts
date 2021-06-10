@@ -308,7 +308,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         ff = this.racers.filter((item) => {
           return item.id === data[x].user_id
         });
-
+        console.log(ff);
         this.opponentPlayer = {
           avatar: {
             image: ff[0].image

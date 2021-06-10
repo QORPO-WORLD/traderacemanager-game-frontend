@@ -15,6 +15,7 @@ import { DateTime } from 'luxon';
 import 'chartjs-plugin-streaming';
 import 'chartjs-plugin-datalabels';
 import { BandsPlugin } from './Chart.Bands.js';
+import { environment } from 'src/environments/environment.prod';
 declare let ChartDataSets: any;
 export interface Trade {
   data: {
@@ -599,7 +600,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   initPopSock() {
     let _this = this;
-    popsock = io("https://dev-api.traderacemanager.com", {
+    popsock = io(environment.api_url, {
       path: "/binary-socket/socket.io",
       auth: {
         user_hash: "ado",
@@ -843,6 +844,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       if (absWhen < 60) {
         this.raceStarted = true;
         this.semaforsVisible = false;
+        this.startVal = newwhen;
+        this.startsInSecs = newwhen;
+        this.endVal = newwhen + 60;
       } else {
         this.semaforsVisible = false;
         this.raceStarted = false;
@@ -904,6 +908,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.semaforVal = 0;
       this.playSound('optionsStart');
       this.raceStarted = true;
+      const newwhen = this.getWhenStarts();
+      this.endVal = newwhen + 60;
+
     }, 5000);
     setTimeout(() => {
 
