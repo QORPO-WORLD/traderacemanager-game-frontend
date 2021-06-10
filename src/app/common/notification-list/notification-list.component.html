@@ -176,6 +176,19 @@
         </p>
       </div>
     </div>
+     <div class="notifiq-item" *ngIf="item.event === 'ioi_reward'">
+      <div class="top-info">
+        <p class="heading">Daily reward {{item.data.amount}} IOI</p>
+        <p class="time">{{item.created | date: "short"}}</p>
+      </div>
+      <div class="message">
+        <p>
+          <span class="opacity"> </span>
+          <span class="important my-text-color"> <a [routerLink]="['/race/watch-race-3min/' + item.data.race_hash]">Watch </a> </span>
+          <span class="opacity">now.</span>
+        </p>
+      </div>
+    </div>
   </div>
   <p class="see-all"  (click)="sliceNum === 3 ? sliceNum = 50 : sliceNum = 3">
     See all notifications
