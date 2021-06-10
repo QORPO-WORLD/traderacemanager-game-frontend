@@ -220,7 +220,8 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi * amount >= displayArray[0]['extras'].value
+            myDriverBalances?.game_wallet_ioi * amount >=
+              displayArray[0]['extras'].value
           "
           (click)="
             tokenSelected = 'ioi';
@@ -235,7 +236,8 @@
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi * amount < displayArray[0]['extras'].value
+            myDriverBalances?.game_wallet_ioi * amount <
+              displayArray[0]['extras'].value
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
@@ -245,11 +247,17 @@
         </button>
 
         <button
+          [ngStyle]="{ opacity: '0.5' }"
+          disabled
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
-            !displayArray[0]['rare'] && 
-            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) / myDriverBalances?.matic_usdt * amount) <= myDriverBalances?.game_wallet_matic"
+            !displayArray[0]['rare'] &&
+            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
+              myDriverBalances?.matic_usdt) *
+              amount <=
+              myDriverBalances?.game_wallet_matic
+          "
           (click)="
             tokenSelected = 'matic';
             buyCarFromGarage(displayArray[0]['extras'].buy_id)
@@ -259,11 +267,16 @@
         </button>
 
         <button
+          [ngStyle]="{ opacity: '0.5' }"
+          disabled
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
             (assetType === 'car' || assetType === 'racer') &&
             !displayArray[0]['rare'] &&
-            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) / myDriverBalances?.matic_usdt * amount) > myDriverBalances?.game_wallet_matic
+            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
+              myDriverBalances?.matic_usdt) *
+              amount >
+              myDriverBalances?.game_wallet_matic
           "
           (click)="lowBalance()"
           [routerLink]="['/other/wallet-control']"
