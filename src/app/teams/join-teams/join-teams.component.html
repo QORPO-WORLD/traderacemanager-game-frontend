@@ -14,7 +14,7 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p>TEAM</p>
+    <p>Dashboard</p>
   </div>
 
   <div class="boxes-holder">
@@ -23,6 +23,10 @@
       <div class="time-box">
         <p *ngIf="myDriverStats?.is_paid_membership === 'Premium' && myMembEnd!=null">{{ myMembEnd | date }}</p>
         <p *ngIf="myDriverStats?.is_paid_membership === 'Free'">Become premium</p>
+      </div>
+      <div class="owner-btn" [routerLink]="'/teams/owners-managers'">
+        <p>Owners &amp; managers</p>
+        <div class="bottom-border my-cta-btn-back"></div>
       </div>
     </div>
 
@@ -57,7 +61,6 @@
         <div class="display-item my-cta-btn-back" [ngClass]="{'inactive': offerState !== 1}" (click)="changeOffer();manualOfferChange()"></div>
         <div class="display-item my-cta-btn-back" [ngClass]="{'inactive': offerState !== 2}" (click)="changeOffer();manualOfferChange()"></div>
       </div>
-      <button class="my-cta-btn-back owner-btn" [routerLink]="'/teams/owners-managers'">Owners & managers</button>
     </div>
   </div>
 
