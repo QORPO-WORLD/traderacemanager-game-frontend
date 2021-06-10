@@ -8,6 +8,7 @@ import { Subscription } from "rxjs";
 import { Affiliates } from "../../../api/models/affiliates";
 import { AffiliatesService } from "../../../api/services/affiliates.service";
 import { AffiliateDetails } from "src/app/api/models";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-affilate",
@@ -15,6 +16,10 @@ import { AffiliateDetails } from "src/app/api/models";
   styleUrls: ["./affilate.component.scss"],
 })
 export class AffilateComponent implements OnInit, OnDestroy {
+  timeoutPrev: any;
+  timeoutNext: any;
+  animation = 0;
+  referalsList = false;
   myAfiilate = "https://traderacemanager.com/user/referral/";
   title = "common";
   myAfiilateShort = "";
@@ -38,7 +43,8 @@ export class AffilateComponent implements OnInit, OnDestroy {
     private notifyq: NotifiqService,
     private identityService: AuthService,
     protected affService: AffiliatesService,
-    private notify: NotifyService
+    private notify: NotifyService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +94,6 @@ export class AffilateComponent implements OnInit, OnDestroy {
       affilateLink: [this.myAfiilate],
     });
     this.formReady = true;
-    console.log(this.affilateForm);
   }
 
   getMyLevel() {
@@ -105,8 +110,6 @@ export class AffilateComponent implements OnInit, OnDestroy {
         const newdata: any = data;
         this.totalPages = newdata.total_pages;
         this.affilatesList = newdata;
-        console.log(this.affilatesList);
-        console.log(this.totalPages);
       });
   }
 
@@ -123,6 +126,33 @@ export class AffilateComponent implements OnInit, OnDestroy {
     this.affService.affiliatesMe().subscribe((data) => {
       this.affMe = data;
     });
-    console.log(this.affMe);
+  }
+  back() {
+    if (this.referalsList === false) {
+      this.animation = 3;
+      this.timeoutPrev = setTimeout(() => {
+        this.router.navigate(["/race/start-race"]);
+        this.timeoutReset();
+      }, 290);
+    } else {
+      this.animation = 2;
+      this.timeoutPrev = setTimeout(() => {
+        this.referalsList = false;
+        this.timeoutReset();
+      }, 290);
+    }
+  }
+  timeoutReset() {
+    clearTimeout(this.timeoutPrev);
+    clearTimeout(this.timeoutNext);
+  }
+  scrollTop(elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  toggleReferals() {
+    this.animation = 1;
+    this.timeoutPrev = setTimeout(() => {
+      this.referalsList = true;
+    }, 290);
   }
 }

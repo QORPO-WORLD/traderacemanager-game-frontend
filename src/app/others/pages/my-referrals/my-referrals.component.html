@@ -1,0 +1,193 @@
+<div class="lead-cont-holder">
+  <div class="table-row header">
+    <div class="table-item big">
+      <p>Name</p>
+    </div>
+    <div class="table-item big">
+      <p>Level</p>
+    </div>
+    <div class="table-item big last">
+      <p>Reward</p>
+    </div>
+  </div>
+
+  <div class="table-row" *ngFor="let item of affiliatesList; let i = index">
+    <div class="table-item big">
+      <p>{{ item.nickname }}</p>
+    </div>
+    <div class="table-item big">
+      <p>{{ item.level }}</p>
+    </div>
+    <div class="table-item big bold last">
+      <p>
+        <img src="/assets/base/images/teams/reward-token.png" alt="" />
+        {{ item.total_rewards_ioi | number: "1.1-1":"fr" }}
+      </p>
+    </div>
+  </div>
+  <!--
+  <div
+    class="table-row"
+    *ngIf="
+      isPageWithMe === false &&
+      cachedLdrbrd?.player_position_overall != null &&
+      actualPage < 1
+    "
+  >
+    <div class="table-item big">
+      <p>{{ mydrvr }}</p>
+    </div>
+    <div class="table-item big">
+      <p>{{ cachedLdrbrd?.team_name }}</p>
+    </div>
+    <div class="table-item big bold">
+      <p>
+        <img src="/assets/base/images/teams/reward-token.png" alt="" />
+        {{ cachedLdrbrd?.ioi_turnover | number: "1.1-1":"fr" }}
+      </p>
+    </div>
+    <div class="mine-back my-cta-btn-back"></div>
+  </div>
+-->
+  <div class="pagination">
+    <button
+      (click)="actualPage = actualPage - 1; getMyLeaderboard()"
+      class="pagebtn-l"
+      [disabled]="actualPage <= 1"
+    >
+      <img
+        class="red-box-detail paging-img"
+        [ngClass]="{
+          'page-opacity': actualPage === 1
+        }"
+        src="/assets/base/images/icons/icon-back-red.svg"
+        alt="red back icon"
+      />
+      <img
+        class="blue-box-detail paging-img"
+        [ngClass]="{
+          'page-opacity': actualPage === 1
+        }"
+        src="/assets/base/images/icons/icon-back-blue.svg"
+        alt="blue next icon"
+      />
+    </button>
+
+    <button class="page page-active">{{ actualPage }}</button>
+    <button
+      (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+      class="page"
+      *ngIf="actualPage + 1 < totalPages"
+    >
+      {{ actualPage + 1 }}
+    </button>
+    <button
+      (click)="actualPage = actualPage + 2; getMyLeaderboard()"
+      class="page"
+      *ngIf="actualPage + 2 < totalPages"
+    >
+      {{ actualPage + 2 }}
+    </button>
+    <button
+      (click)="actualPage = actualPage + 3; getMyLeaderboard()"
+      class="page"
+      *ngIf="actualPage + 3 < totalPages"
+    >
+      {{ actualPage + 3 }}
+    </button>
+    <button class="page page-disabled" *ngIf="actualPage + 4 < totalPages">
+      ...
+    </button>
+    <button
+      (click)="actualPage = totalPages; getMyLeaderboard()"
+      class="page"
+      *ngIf="actualPage < totalPages"
+    >
+      {{ totalPages }}
+    </button>
+
+    <button
+      (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+      class="pagebtn-r"
+      [disabled]="actualPage >= totalPages"
+    >
+      <img
+        class="red-box-detail paging-img"
+        [ngClass]="{
+          'page-opacity': actualPage >= totalPages
+        }"
+        src="/assets/base/images/icons/icon-next-red.svg"
+        alt="red back icon"
+      />
+      <img
+        class="blue-box-detail paging-img"
+        [ngClass]="{
+          'page-opacity': actualPage === totalPages
+        }"
+        src="/assets/base/images/icons/icon-next-blue.svg"
+        alt="blue next icon"
+      />
+    </button>
+  </div>
+</div>
+
+<!-- <div class="holder">
+
+  <div class="table">
+
+    <div class="table-row header">
+      <div class="table-item small"><p>Position</p></div>
+      <div class="table-item big"><p>Nickname</p></div>
+      <div class="table-item"><p>Team</p></div>
+      <div class="table-item"><p>Turnover</p></div>
+    </div>
+
+    <div class="table-row" *ngFor="let pl of players; let yy = index" [ngClass]="{'mine': pl.user_nickname === mydrvrData.nickname}">
+      <div class="table-item small my-cta-btn-back"><p>{{pl.player_position}}.</p></div>
+      <div class="table-item big"><p>{{pl.user_nickname}}</p></div>
+      <div class="table-item">
+        <div class="team-badge" [ngClass]="pl.team_name">
+          <p>{{pl.team_name}}</p>
+        </div>
+      </div>
+      <div class="table-item last"><p>{{pl.total_bet_amount  | number:'1.1-1':'fr'}}</p></div>
+    </div>
+
+    <div class="table-row mine" *ngIf="isPageWithMe === false && cachedLdrbrd?.player_position_overall != null && actualPage < 1">
+      <div class="table-item small my-cta-btn-back"><p>{{cachedLdrbrd?.player_position_overall}}.</p></div>
+      <div class="table-item big"><p>{{mydrvr}}</p></div>
+      <div class="table-item" [ngClass]="{'custom-team': cachedLdrbrd?.team_name !== 'IOI' || cachedLdrbrd?.team_name !== 'ALT' || cachedLdrbrd?.team_name !== 'BTC'}"><p>
+        <div class="team-badge" [ngClass]="cachedLdrbrd?.team_name">
+          <p>{{cachedLdrbrd?.team_name}}</p>
+        </div>
+      </div>
+      <div class="table-item last"><p>{{cachedLdrbrd?.ioi_turnover  | number:'1.1-1':'fr'}}</p></div>
+    </div>
+
+    <div class="arrow right" (click)="actualPage = actualPage + 1;getMyLeaderboard()" *ngIf="actualPage < totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left" (click)="actualPage = actualPage - 1;getMyLeaderboard()" *ngIf="actualPage > 0">
+      <p>&lt;</p>
+    </div>
+    <div class="arrow right inactive" *ngIf="actualPage === totalPages">
+      <p>&gt;</p>
+    </div>
+    <div class="arrow left inactive" *ngIf="actualPage === 0">
+      <p>&lt;</p>
+    </div>
+
+    <div class="leaderboard-empty" *ngIf="players.length === 0">
+      <h2>{{"leaderboard.empty" | translate}}</h2>
+    </div>
+
+  </div>
+  
+</div>
+
+
+<span class="updated" style="font-size: 10px;
+text-align: center;
+width: 100%;
+display: block;
+margin: 10px auto;">Updated at {{updateTime | date: "short"}}</span> -->

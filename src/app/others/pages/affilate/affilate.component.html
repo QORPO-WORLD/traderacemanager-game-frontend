@@ -1,5 +1,5 @@
-<div class="main-holder">
-  <div [routerLink]="['/race/start-race']" class="content-title">
+<div class="main-holder" #myScroll>
+  <div (click)="back()" class="content-title">
     <img
       class="red-star"
       src="assets/base/images/icons/icon-back-red.svg"
@@ -12,7 +12,27 @@
     />
     <p>AFFILIATE</p>
   </div>
-  <div class="affiliate-content">
+  <div *ngIf="referalsList === true" class="affiliate-content referrals">
+    <div
+      [ngClass]="{
+        'dissapear-right-animation': animation === 2,
+        'engage-right-animation': animation === 1
+      }"
+      class="referrals-content"
+    >
+      <app-my-referrals></app-my-referrals>
+    </div>
+  </div>
+  <div
+    [ngClass]="{
+      'engage-right-animation': animation === 0,
+      'dissapear-left-animation': animation === 1,
+      'dissapear-right-animation': animation === 3,
+      'engage-left-animation': animation === 2
+    }"
+    *ngIf="referalsList === false"
+    class="affiliate-content"
+  >
     <div class="content-header">
       <div
         (click)="title = 'common'"
@@ -148,9 +168,7 @@
         <div class="active-border my-cta-btn-back"></div>
       </div>
     </div>
-    <div *ngIf="title === 'referrals'" class="referrals-content">
-      <app-my-referrals></app-my-referrals>
-    </div>
+
     <div *ngIf="title === 'common'" class="content-center">
       <div class="content">
         <div class="avatar-image">
@@ -175,6 +193,7 @@
           </div>
           <button
             [routerLink]="['/car/nft-market']"
+            [queryParams]="{ assetType: 'racer' }"
             class="buy my-cta-btn-back category-title-third"
           >
             Buy
@@ -209,20 +228,12 @@
         <div class="content-text">
           <p class="category-title-second">SUPER</p>
           <p class="races-desc">
-            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-            earning you 1% of each affiliate member your link bring. You will
-            also gain 10% of price from each NFT any of your affiliate member
-            buy. What means your investment can be recuperated in a very short
-            time.
+            As NFT avatar you will gain 10% of price from each NFT any of your
+            affiliate member buy. What means your investment can be recuperated
+            in a very short time.
           </p>
           <div class="abilities">
             <div class="ability first">
-              <div class="value my-cta-btn-back category-title-fourth flex-div">
-                1 %
-              </div>
-              <div class="desc category-title-fifth flex-div">Invite</div>
-            </div>
-            <div class="ability">
               <div class="value my-cta-btn-back category-title-fourth flex-div">
                 10 %
               </div>
@@ -231,6 +242,7 @@
           </div>
           <button
             [routerLink]="['/car/nft-market']"
+            [queryParams]="{ assetType: 'racer' }"
             class="buy my-cta-btn-back category-title-third"
           >
             Buy
@@ -260,20 +272,12 @@
         <div class="content-text">
           <p class="category-title-second">EPIC</p>
           <p class="races-desc">
-            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-            earning you 1,5% of each affiliate member your link bring. You will
-            also gain 15% of price from each NFT any of your affiliate member
-            buy. What means your investment can be recuperated in a very short
-            time.
+            As NFT avatar you will gain 15% of price from each NFT any of your
+            affiliate member buy. What means your investment can be recuperated
+            in a very short time.
           </p>
           <div class="abilities">
             <div class="ability first">
-              <div class="value my-cta-btn-back category-title-fourth flex-div">
-                1.5 %
-              </div>
-              <div class="desc category-title-fifth flex-div">Invite</div>
-            </div>
-            <div class="ability">
               <div class="value my-cta-btn-back category-title-fourth flex-div">
                 15 %
               </div>
@@ -282,6 +286,7 @@
           </div>
           <button
             [routerLink]="['/car/nft-market']"
+            [queryParams]="{ assetType: 'racer' }"
             class="buy my-cta-btn-back category-title-third"
           >
             Buy
@@ -300,20 +305,12 @@
         <div class="content-text">
           <p class="category-title-second">LEGENDARY</p>
           <p class="races-desc">
-            Unique feature of NFT avatar is an affiliate bet turnover (ABT)
-            earning you 2% of each affiliate member your link bring. You will
-            also gain 20% of price from each NFT any of your affiliate member
-            buy. What means your investment can be recuperated in a very short
-            time.
+            As NFT avatar you will gain 20% of price from each NFT any of your
+            affiliate member buy. What means your investment can be recuperated
+            in a very short time.
           </p>
           <div class="abilities">
             <div class="ability first">
-              <div class="value my-cta-btn-back category-title-fourth flex-div">
-                2 %
-              </div>
-              <div class="desc category-title-fifth flex-div">Invite</div>
-            </div>
-            <div class="ability">
               <div class="value my-cta-btn-back category-title-fourth flex-div">
                 20 %
               </div>
@@ -328,6 +325,7 @@
           </div>
           <button
             [routerLink]="['/car/nft-market']"
+            [queryParams]="{ assetType: 'racer' }"
             class="buy my-cta-btn-back category-title-third"
           >
             Buy
@@ -420,7 +418,10 @@
           {{ myAfiilate ? myAfiilate : dumbreferral }}
         </p>
       </div>
-      <button class="referrals-button my-cta-btn-back category-title-third">
+      <button
+        (click)="toggleReferals(); scrollTop(myScroll)"
+        class="referrals-button my-cta-btn-back category-title-third"
+      >
         My referrals
       </button>
     </div>
