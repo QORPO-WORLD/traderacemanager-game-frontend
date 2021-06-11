@@ -7,7 +7,7 @@ declare const TradingView: any;
 })
 export class IndicatorComponent implements OnInit, OnDestroy {
   @Input() type: string;
-  @Input() chart: string;
+  @Input() chart = 'chart';
   requestObj: any;
   first = true;
   canAj = true;
