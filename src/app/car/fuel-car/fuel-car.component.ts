@@ -15,6 +15,7 @@ import { TeamsService } from 'src/app/api/services';
   styleUrls: ['./fuel-car.component.scss']
 })
 export class FuelCarComponent implements OnInit, OnDestroy {
+  selectedChart = 'chart';
   myCars: any;
   myCarsInEdition: any;
   myCar: any;

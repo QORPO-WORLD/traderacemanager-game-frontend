@@ -7,6 +7,7 @@ declare const TradingView: any;
 })
 export class IndicatorComponent implements OnInit, OnDestroy {
   @Input() type: string;
+  @Input() chart: string;
   requestObj: any;
   first = true;
   canAj = true;
@@ -50,6 +51,7 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     //this.serializeRequest();
+    console.log(this.chart);
   }
 
   ngOnDestroy() {
