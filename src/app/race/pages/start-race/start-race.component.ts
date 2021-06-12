@@ -59,6 +59,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.accountInfo = this.dapi.getDriverMe();
   }
   reward = 1;
+  tip = 1;
   allTeams: any;
   myTeamAllData: any;
   filter = "all";
@@ -79,6 +80,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   myDriver: any;
   interval: any;
   rewardInterval: any;
+  tipsInterval: any;
   accountInfo: any;
   liveRacesData: any;
   myRewards: any;
@@ -768,6 +770,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     if (dataNick) {
       this.nickname = dataNick.nickname;
     }
+    this.toggleTip(1);
     this.setRewardInterval();
     this.getMyAssets();
     this.getAllRaces();
@@ -1536,6 +1539,20 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.rewardInterval = window.setInterval(() => {
       this.toggleReward();
     }, 5000);
+  }
+  toggleTip(tipId: number) {
+    this.clearIntervalTip();
+    this.tip = tipId;
+    this.tipsInterval = window.setInterval(() => {
+      if (this.tip === 3) {
+        this.tip = 1;
+      } else {
+        this.tip++;
+      }
+    }, 5000);
+  }
+  clearIntervalTip() {
+    clearInterval(this.tipsInterval);
   }
   toggleReward() {
     this.clearIntervalReward();

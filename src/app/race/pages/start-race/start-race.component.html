@@ -11,18 +11,48 @@
     <div class="upper-dashboard">
       <div class="boxes">
         <h2 class="news-title">What's new</h2>
-        <div [routerLink]="['/teams/join-teams']" class="box first">
+        <div
+          [routerLink]="
+            tip === 1 || tip === 2 ? ['/teams/join-teams'] : ['/other/tasks']
+          "
+          class="box first"
+        >
           <img
             class="left"
             src="assets/base/images/start-race/discount.png"
             alt="discount"
           />
           <div class="box-content first">
-            <div class="text">
+            <div *ngIf="tip === 1" class="text">
               <h2>30% OFF</h2>
               <p>yearly premium membership</p>
             </div>
+            <div *ngIf="tip === 2" class="text">
+              <h2>10% OFF</h2>
+              <p>quartal premium membership</p>
+            </div>
+            <div *ngIf="tip === 3" class="text">
+              <h2>Daily task</h2>
+              <p>get special reward</p>
+            </div>
           </div>
+        </div>
+        <div class="reward-switcher news">
+          <div
+            (click)="toggleTip(1)"
+            [ngClass]="{ inactive: tip !== 1 }"
+            class="left-line bar"
+          ></div>
+          <div
+            (click)="toggleTip(2)"
+            [ngClass]="{ inactive: tip !== 2 }"
+            class="right-line bar"
+          ></div>
+          <div
+            (click)="toggleTip(3)"
+            [ngClass]="{ inactive: tip !== 3 }"
+            class="right-line bar"
+          ></div>
         </div>
         <div (click)="navigateToToken()" class="box second my-cta-btn-back">
           <div class="box-content">
