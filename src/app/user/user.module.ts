@@ -45,6 +45,8 @@ import { CompetitionComponent } from './components/competition/competition.compo
 import { CreditSystemComponent } from './components/credit-system/credit-system.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
 //import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
@@ -69,6 +71,7 @@ const routes: Routes = [
     { path: 'competition', component: CompetitionComponent, data: { title: 'Statue of competition' } },
     { path: 'privacy-policy', component: PrivacyPolicyComponent, data: { title: 'Privacy policy' } },
     { path: 'credit-system', component: CreditSystemComponent, data: { title: 'Credit system' } },
+    { path: 'welcome', component: WelcomePageComponent, data: { title: 'Welcome page' } }
 
 ];
 
@@ -107,7 +110,8 @@ const routes: Routes = [
         CompetitionComponent,
         CreditSystemComponent,
         PrivacyPolicyComponent,
-        TermsConditionsComponent
+        TermsConditionsComponent,
+        WelcomePageComponent
     ],
     providers: [
         AutologinGuard,

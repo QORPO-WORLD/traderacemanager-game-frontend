@@ -1,7 +1,7 @@
 .main-holder {
   width: 100%;
   min-height: 100%;
-  background-image: url("/assets/base/images/home-page/banner.jpg");
+  background-image: radial-gradient(69.52% 76.11% at 50% 50%, rgba(17, 17, 17, 0.5) 0%, #111111 100%), url("/assets/base/images/home-page/banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -9,103 +9,80 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  .my-logo {
+  .back-btn{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 40px;
-    left: 5%;
-    cursor: pointer;
-    width: 90px;
-    @media screen and (max-width: 1700px) {
-      top: 35px;
-      width: 95px;
+    left: 40px;
+    img {
+      width: 21px;
     }
-    @media screen and (max-width: 1550px) {
-      top: 30px;
-      left: 4%;
-      width: 92px;
-    }
-    @media screen and (max-width: 1200px) {
-      top: 25px;
-      width: 85px;
-    }
-    @media screen and (max-width: 1024px) {
-      top: 21px;
-      width: 75px;
-      left: 3%;
-    }
-    @media screen and (max-width: 800px) {
-      top: 15px;
-      width: 70px;
-    }
-    @media screen and (max-width: 640px) {
-      top: 10px;
-      width: 60px;
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px;
+      letter-spacing: 0.09em;
+      font-family: Earth Orbiter;
+      font-weight: 900;
+      margin-left: 10px;
+      margin-bottom: 0;
+      opacity: .4;
     }
   }
-  .form-holder {
-    min-height: 570px;
+  .center-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     width: 100%;
     max-width: 600px;
-    background: #111111;
-    box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03),
-      2px 3px 10px rgba(0, 0, 0, 0.6);
-    border-radius: 30px;
-    position: relative;
-    padding: 0 15px 40px 15px;
-    .top-sign {
-      display: block;
-      margin: 55px auto 0;
-      width: 80%;
-    }
-    .top-msg {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-      margin-top: 50px;
-
-      text-align: center;
-
-      color: #ffffff;
-    }
-    .panel {
-      width: 100%;
-      text-align: center;
-
-      .forgot-pass {
-        width: 100%;
-        max-width: 400px;
-        margin: -12px auto 15px;
-        text-align: right;
-        a {
-          text-decoration: none;
-          font-family: Poppins;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 21px;
-          transition: 0.2s;
-          text-align: right;
-          color: #ffffff50;
-          &:hover {
-            color: #ffffff65;
+    .clickers-holder{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      .regular-box{
+        p{
+          display: inline-block;
+          font-size: 16px;
+          opacity: .6;
+          margin: 0;
+          cursor: pointer;
+          transition: .15s;
+          &.register{
+            margin: 0 40px 0 0;
+          }
+          &:hover{
+            opacity: .8;
           }
         }
       }
-
-      .captcha-cont {
-        width: 303px;
-        margin: 0 auto;
+      .cta-button{
+        background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+        padding: 16px 5px;
+        width: 200px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: .2s;
+        &:hover{
+          transform: scale(1.04);
+        }
       }
+    }
+    .or-text{
+      margin: 40px 0;
+      font-size: 16px;
+      opacity: .6;
+      text-align: center;
+      width: 100%;
     }
   }
 }
 
 @media screen and (max-width: 1024px) {
-  :host {
-    //   zoom: 160%;
-  }
   .main-holder {
     .form-holder {
       width: 90%;
@@ -146,72 +123,49 @@
   }
 }
 .social-button {
-  background: #181818;
-  border-radius: 15px;
-  height: 46px;
+  background: rgba(0, 208, 255, 0);
+  height: 50px;
   line-height: 46px;
   width: 100%;
-  max-width: 400px;
   text-align: center;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
   color: #ffffff;
   display: block;
   margin: 10px auto 0;
   position: relative;
-  img {
-    position: absolute;
-    left: 21px;
-    top: 9px;
-    max-height: 30px;
+  border: 2px solid #00D1FF;
+  transition: .2s;
+  &:hover{
+    background: rgba(0, 208, 255, 0.2);
   }
-}
-
-span.or-x {
-  color: #ffffff50;
-  text-transform: lowercase;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-  /* identical to box height */
-  width: 100%;
-  text-align: center;
-  height: 35px;
-  line-height: 35px;
-  display: block;
+  img {
+    display: inline-block;
+    margin-right: 20px;
+    max-height: 22px;
+  }
 }
 
 .my-input {
   width: 100%;
-  max-width: 400px;
   margin: 0 auto 20px;
   background-repeat: no-repeat;
   background-position: -15px 32px;
   background-color: transparent;
-
   position: relative;
-
-  &::before {
-    content: "";
+  .icon{
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%);
-    border-radius: 2px;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .input-placeholder {
     font-weight: 400;
     font-size: 18px;
-    color: #ffffff21;
+    color: rgba(34, 34, 34, .4);
     margin: 0;
     position: absolute;
-    left: 10px;
+    left: 60px;
     top: 50%;
     transform: translateY(-50%);
     transition: 0.2s;
@@ -222,137 +176,358 @@ span.or-x {
   &.filled {
     .input-placeholder {
       font-size: 12px;
-      top: 8%;
+      top: 21%;
     }
   }
   span {
     position: absolute;
-    right: 10px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    &.eyeball{
+      transition: .2s;
+      opacity: 0;
+      z-index: 1;
+      &.show{
+        z-index: 2;
+        opacity: 1;
+      }
+    }
     img {
-      width: 30px;
+      width: 24px;
     }
   }
   input {
-    background-color: transparent !important;
-
+    background-color: white;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border: none;
-    padding: 10px;
+    padding: 19px 10px 13px 60px;
     font-size: 22px;
     width: 100%;
-    color: #ffffff50;
-    font-style: normal;
+    color: #222222;
     font-weight: normal;
     font-size: 18px;
-    line-height: 27px;
     &::placeholder {
       font-family: Poppins;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
       line-height: 27px;
-      color: #ffffff21;
+      color: rgba(34, 34, 34, .4);
     }
     &:focus {
-      background-color: transparent !important;
       & ~ .input-placeholder {
         font-size: 12px;
-        top: 8%;
+        top: 21%;
       }
     }
   }
   input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 50px #111 inset; /* Change the color to your own background color */
-    -webkit-text-fill-color: #ffffff50;
+    -webkit-box-shadow: 0 0 0 50px #fff inset;
+    -webkit-text-fill-color: #222222;
   }
 
   input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 50px #111 inset; /*your box-shadow*/
-    -webkit-text-fill-color: #ffffff50;
+    -webkit-box-shadow: 0 0 0 50px #fff inset;
+    -webkit-text-fill-color: #222222;
   }
 }
 
-.cta-button {
-  max-width: 400px;
-  width: 100%;
-  height: 46px;
-  background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%);
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  border-radius: 15px;
-  text-shadow: none;
-  /* identical to box height */
+.grecaptcha-badge {
+  visibility: visible !important;
+}
 
-  text-align: center;
-  margin-top: 20px;
-  color: #ffffff;
-  cursor: pointer;
-  &::before {
-    display: none;
-  }
-  &.hoverable {
-    &:hover {
-      &::before {
-        //display:none;
+@media screen and (max-width: 1550px){
+  .main-holder{
+    .back-btn{
+      top: 30px;
+      left: 30px;
+      img {
+        width: 15px;
+      }
+      p {
+        font-size: 24px;
+        margin-left: 8px;
       }
     }
-  }
-}
-
-.langswitch {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-}
-
-@media screen and (max-width: 640px) {
-  .langswitch {
-    top: 17px;
-    right: 17px;
-  }
-  .main-holder {
-    align-items: flex-start;
-    padding-top: 80px;
-    .form-holder {
-      min-height: 630px;
-      .top-msg {
-        font-size: 30px;
+    .center-content{
+      max-width: 500px;
+      .clickers-holder{
         margin-top: 20px;
+        .regular-box{
+          p{
+            font-size: 14px;
+            &.register{
+              margin: 0 30px 0 0;
+            }
+          }
+        }
+        .cta-button{
+          padding: 13px 5px;
+          width: 150px;
+          font-size: 14px;
+        }
+      }
+      .or-text{
+        margin: 30px 0;
+        font-size: 14px;
       }
     }
   }
-  .register-text {
-    p {
-      font-size: 16px;
-      span {
-        font-size: 16px;
+  .my-input{
+    margin: 0 auto 15px;
+    &.filled{
+      .input-placeholder{
+        font-size: 10px;
       }
     }
-  }
-  .my-input {
-    &.filled {
-      .input-placeholder {
-        font-size: 11px;
-        top: 6%;
-      }
+    .icon{
+      left: 16px;
+      height: 21px;
     }
-    input {
-      padding: 7px 10px;
+    input{
       font-size: 16px;
+      padding: 16px 8px 10px 50px;
       &:focus {
         & ~ .input-placeholder {
-          font-size: 11px;
-          top: 6%;
+          font-size: 10px;
         }
       }
     }
+    .input-placeholder{
+      left: 50px;
+      font-size: 16px;
+    }
+  }
+  .social-button {
+    height: 46px;
+    line-height: 42px;
+    font-size: 14px;
+    img {
+      margin-right: 15px;
+      max-height: 18px;
+    }
   }
 }
-.grecaptcha-badge {
-  visibility: visible !important;
+
+@media screen and (max-width: 1024px){
+  .main-holder{
+    .back-btn{
+      top: 20px;
+      left: 20px;
+      img {
+        width: 13px;
+      }
+      p {
+        font-size: 21px;
+      }
+    }
+    .center-content{
+      max-width: 500px;
+      .clickers-holder{
+        margin-top: 16px;
+        .regular-box{
+          p{
+            font-size: 13px;
+            &.register{
+              margin: 0 30px 0 0;
+            }
+          }
+        }
+        .cta-button{
+          padding: 11px 5px;
+          width: 130px;
+          font-size: 13px;
+        }
+      }
+      .or-text{
+        margin: 22px 0;
+        font-size: 13px;
+      }
+    }
+  }
+  .my-input{
+    margin: 0 auto 12px;
+    &.filled{
+      .input-placeholder{
+        font-size: 9px;
+      }
+    }
+    .icon{
+      left: 14px;
+      height: 19px;
+    }
+    input{
+      font-size: 15px;
+      padding: 14px 7px 8px 40px;
+      &:focus {
+        & ~ .input-placeholder {
+          font-size: 9px;
+        }
+      }
+    }
+    .input-placeholder{
+      left: 40px;
+      font-size: 15px;
+    }
+  }
+  .social-button {
+    height: 42px;
+    line-height: 37px;
+    font-size: 13px;
+    img {
+      margin-right: 12px;
+      max-height: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .main-holder{
+    .back-btn{
+      top: 15px;
+      left: 15px;
+      img {
+        width: 10px;
+      }
+      p {
+        font-size: 17px;
+      }
+    }
+    .center-content{
+      max-width: 400px;
+      .clickers-holder{
+        margin-top: 12px;
+        .regular-box{
+          p{
+            font-size: 12px;
+            &.register{
+              margin: 0 20px 0 0;
+            }
+          }
+        }
+        .cta-button{
+          padding: 9px 5px;
+          width: 100px;
+          font-size: 11px;
+        }
+      }
+      .or-text{
+        margin: 14px 0;
+        font-size: 11px;
+      }
+    }
+  }
+  .my-input{
+    margin: 0 auto 9px;
+    &.filled{
+      .input-placeholder{
+        font-size: 5px;
+        top: 19%;
+      }
+    }
+    .icon{
+      left: 14px;
+      height: 19px;
+    }
+    input{
+      font-size: 11px;
+      padding: 7px 5px 5px 40px;
+      &:focus {
+        & ~ .input-placeholder {
+          font-size: 5px;
+          top: 19%;
+        }
+      }
+    }
+    .input-placeholder{
+      left: 40px;
+      font-size: 13px;
+    }
+  }
+  .social-button {
+    height: 37px;
+    line-height: 32px;
+    font-size: 12px;
+    border: 1px solid #00D1FF;
+    img {
+      margin-right: 12px;
+      max-height: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait){
+  .main-holder{
+    .back-btn{
+      top: 15px;
+      left: 15px;
+      img {
+        width: 10px;
+      }
+      p {
+        font-size: 17px;
+      }
+    }
+    .center-content{
+      max-width: 90%;
+      .clickers-holder{
+        margin-top: 12px;
+        .regular-box{
+          p{
+            font-size: 12px;
+            &.register{
+              margin: 0 20px 0 0;
+            }
+          }
+        }
+        .cta-button{
+          padding: 9px 5px;
+          width: 100px;
+          font-size: 11px;
+        }
+      }
+      .or-text{
+        margin: 14px 0;
+        font-size: 11px;
+      }
+    }
+  }
+  .my-input{
+    margin: 0 auto 9px;
+    &.filled{
+      .input-placeholder{
+        font-size: 7px;
+      }
+    }
+    .icon{
+      left: 14px;
+      height: 19px;
+    }
+    input{
+      font-size: 13px;
+      padding: 10px 5px 8px 40px;
+      &:focus {
+        & ~ .input-placeholder {
+          font-size: 7px;
+        }
+      }
+    }
+    .input-placeholder{
+      left: 40px;
+      font-size: 13px;
+    }
+  }
+  .social-button {
+    height: 37px;
+    line-height: 32px;
+    font-size: 12px;
+    border: 1px solid #00D1FF;
+    img {
+      margin-right: 12px;
+      max-height: 16px;
+    }
+  }
 }
