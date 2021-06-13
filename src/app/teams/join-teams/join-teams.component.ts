@@ -1,30 +1,44 @@
-import { AuthService } from './../../user/services/auth.service';
-import { RewardsService, LeaderboardService } from 'src/app/api/services';
-import { BalanceService } from './../../common/services/balance.service';
-import { Subscription } from 'rxjs';
-import { NotifiqService } from './../../common/services/notifiq.service';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { TeamsService } from '../../api/services/teams.service';
-import { DriversService } from '../../api/services/drivers.service';
-import { timelineEnd } from 'console';
+import { AuthService } from "./../../user/services/auth.service";
+import { RewardsService, LeaderboardService } from "src/app/api/services";
+import { BalanceService } from "./../../common/services/balance.service";
+import { Subscription } from "rxjs";
+import { NotifiqService } from "./../../common/services/notifiq.service";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import { TeamsService } from "../../api/services/teams.service";
+import { DriversService } from "../../api/services/drivers.service";
+import { timelineEnd } from "console";
 
 @Component({
-  selector: 'app-join-teams',
-  templateUrl: './join-teams.component.html',
-  styleUrls: ['./join-teams.component.scss']
+  selector: "app-join-teams",
+  templateUrl: "./join-teams.component.html",
+  styleUrls: ["./join-teams.component.scss"],
 })
 export class JoinTeamsComponent implements OnInit, OnDestroy {
+  typeObserver: Subscription;
   teams: any;
   myTeam: string;
   myTeamData: any;
   teamSubscription: Subscription;
   transObserver: Subscription;
-  mySettings = { type: 'team', numOfBanners: 2 };
+  mySettings = { type: "team", numOfBanners: 2 };
   joinFree = false;
   teamreward: any;
   currMonth: number;
   showInfoBubble = false;
-  allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  allMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   monthCount = 1;
   teamOption = 1;
   offerState = 1;
@@ -36,13 +50,16 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myDriverStats: any;
   myMembEnd: number;
   myTeamAllData: any;
-  @ViewChild('teamSelection') teamSelection: any;
-  constructor(protected api: TeamsService, protected notify: NotifiqService,
+  @ViewChild("teamSelection") teamSelection: any;
+  constructor(
+    protected api: TeamsService,
+    protected notify: NotifiqService,
     protected driversApi: DriversService,
-    private balanceService: BalanceService, private rapi: RewardsService, private identityService: AuthService,
-    private lapi: LeaderboardService) {
-
-  }
+    private balanceService: BalanceService,
+    private rapi: RewardsService,
+    private identityService: AuthService,
+    private lapi: LeaderboardService
+  ) {}
 
   ngOnInit(): void {
     this.getRewards();
@@ -62,32 +79,27 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     clearInterval(this.offerInterval);
   }
 
-
   getRewards() {
-    this.rapi.rewardsList()
-      .subscribe(data => {
-        this.teamreward = data.team_bonus;
-      });
+    this.rapi.rewardsList().subscribe((data) => {
+      this.teamreward = data.team_bonus;
+    });
   }
 
-
   getMyTeamReward() {
-    this.teamSubscription = this.lapi.leaderboardTeamInternalList().subscribe(
-      data => {
+    this.teamSubscription = this.lapi
+      .leaderboardTeamInternalList()
+      .subscribe((data) => {
         this.myTeamAllData = data;
         this.myTeamReward = data.team_bonus;
-      }
-    );
+      });
   }
 
   getAllRewards() {
-    this.transObserver = this.rapi.rewardsList()
-      .subscribe(data => {
-        this.myRewards = data;
-        this.ioioreward = Number(data.team_bonus);
-      });
+    this.transObserver = this.rapi.rewardsList().subscribe((data) => {
+      this.myRewards = data;
+      this.ioioreward = Number(data.team_bonus);
+    });
   }
-
 
   getMydriver() {
     setTimeout(() => {
@@ -106,21 +118,22 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   setOfferInterval() {
     this.offerInterval = setInterval(() => {
       this.changeOffer();
-    }, 7000); 
+    }, 7000);
   }
 
   manualOfferChange() {
     clearInterval(this.offerInterval);
     this.setOfferInterval();
   }
-  
+
   getPremium() {
-    this.teamSelection.openMembershipModal(1, this.myDriverStats.next_month_team_id);
+    this.teamSelection.openMembershipModal(
+      1,
+      this.myDriverStats.next_month_team_id
+    );
   }
 
   getMembEnd(event: any) {
     this.myMembEnd = event;
   }
-
-
 }
