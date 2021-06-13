@@ -55,7 +55,7 @@ export class SiteLayoutComponent
   isManager = false;
   popupClosed = true;
   verifyModal = false;
-  verifyStep = 1;
+  verifyStep = 2;
   settingsShown = false;
   selectStyling = {
     subHeader: "Select token type",
@@ -89,7 +89,7 @@ export class SiteLayoutComponent
   tickets = 0;
   myDriverBalances: any;
   menuType = "races";
-  selectedMode = "";
+  selectedMode = "owner";
   myAddressClass = "";
   selectedTeam = 0;
   animateState = 0;

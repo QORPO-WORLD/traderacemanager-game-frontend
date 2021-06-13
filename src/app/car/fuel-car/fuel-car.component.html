@@ -225,7 +225,7 @@
 -->
     <div
       class="boxes-holder"
-      [ngClass]="{ 'tutorial-hide': tutorialStep === 1 || tutorialStep === 4, 'step1-timer': stepIndex===1 }"
+      [ngClass]="{ 'step1-timer': stepIndex===1 }"
     >
       <p *ngIf="stepIndex === 1" class="desc starts-in">Race starts in</p>
       <div *ngIf="stepIndex === 1" class="timer-box">
@@ -1405,10 +1405,11 @@
             </div>
           </div>
           <div class="box-heading analysis">
-            <p class="heading">Technical analysis</p>
+            <p class="heading" (click)="selectedChart='chart'" [ngClass]="{'active': selectedChart==='chart'}">Chart</p>
+            <p class="heading" (click)="selectedChart='indicator'" [ngClass]="{'active': selectedChart==='indicator'}">Indicator</p>
           </div>
           <div class="inner" *ngIf="selectedSymbol">
-            <app-indicator [type]="selectedSymbol"></app-indicator>
+            <app-indicator [type]="selectedSymbol" [chart]="selectedChart"></app-indicator>
           </div>
         </div>
       </div>
@@ -1779,7 +1780,7 @@
     </div>
   </div>
 
-  <div class="bottom-panels" [ngClass]="{'bottom-panels-2': stepIndex===2}">
+  <div class="bottom-panels">
     <ng-container *ngIf="stepIndex === 1 && introModal === false">
       <button class="back-button" [routerLink]="['/race/start-race']">
         <span class="my-gt">&lt;</span> <br />
