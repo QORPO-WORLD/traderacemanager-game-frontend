@@ -89,7 +89,7 @@ export class SiteLayoutComponent
   tickets = 0;
   myDriverBalances: any;
   menuType = "races";
-  selectedMode = "racer";
+  selectedMode = "owner";
   myAddressClass = "";
   selectedTeam = 0;
   animateState = 0;
