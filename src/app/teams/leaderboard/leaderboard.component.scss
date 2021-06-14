@@ -1,13 +1,11 @@
 .main-holder {
   width: calc(100% - 40px);
-  height: 100vh;
-  padding: 150px 0px 40px 40px;
+  height: calc(100vh - 80px);
+  padding: 40px 0px 40px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  margin-top: -80px;
-  overflow: hidden;
 }
 
 p {
@@ -33,8 +31,7 @@ h5 {
 }
 
 .my-menu {
-  margin: 0 0 60px;
-  border-radius: 10px;
+  height: 10%;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -47,7 +44,7 @@ h5 {
     border: 3px solid rgba(255, 255, 255, 0.4);
     &.inactive {
       background: rgba(255, 255, 255, 0.05);
-      .bottom-border{
+      .bottom-border {
         opacity: 0;
       }
     }
@@ -61,41 +58,45 @@ h5 {
       margin: 0;
       font-size: 20px;
       font-family: Earth Orbiter;
-      img{
+      img {
         margin-right: 30px;
       }
     }
-    .bottom-border{
+    .bottom-border {
       position: absolute;
       bottom: -3px;
       left: -3px;
       width: calc(100% + 6px);
       height: 4px;
-      transition: .2s;
+      transition: 0.2s;
     }
   }
 }
 
-.lead-content{
+.lead-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
 }
+
 .content {
   width: 100%;
-  height: calc(100% - 110px);
+  height: 85%;
+  max-height: 85%;
 }
 
 @media screen and (max-width: 1700px) {
-  .main-holder{
-    width: calc(100% - 20px);
-    height: 100vh;
-    padding: 110px 0px 30px 20px;
+  .main-holder {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
   }
-  .my-menu{
-    .menu-item{
+  .my-menu {
+    .menu-item {
       height: 45px;
-      p{
+      p {
         font-size: 15px;
-        img{
+        img {
           max-width: 24px;
           max-height: 24px;
         }
@@ -105,15 +106,10 @@ h5 {
 }
 
 @media screen and (max-width: 1550px) {
-  .my-menu {
-    margin: 30px 0 20px;
-  }
-  .main-holder{
-    width: calc(100% - 15px);
-    height: 100vh;
-    padding: 85px 0px 22px 15px;
-    margin-top: -65px;
-    overflow: hidden;
+  .main-holder {
+    height: calc(100vh - 65px);
+    width: calc(100% - 20px);
+    padding: 20px 0px 20px 20px;
   }
   h6 {
     font-size: 14px;
@@ -132,6 +128,10 @@ h5 {
 }
 
 @media screen and (max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+  }
   .my-menu {
     .menu-item {
       height: 40px;
@@ -142,26 +142,25 @@ h5 {
   }
 }
 
-@media screen and (max-width: 1024px){
-  .main-holder{
-    width: calc(100% - 15px);
-    padding: 80px 0px 15px 15px;
+@media screen and (max-width: 1024px) {
+  .main-holder {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
   }
-  .my-menu{
-    margin: 0 0 20px;
-    .menu-item{
+  .my-menu {
+    .menu-item {
       width: 32%;
       height: 35px;
       border: 2px solid rgba(255, 255, 255, 0.4);
-      .bottom-border{
+      .bottom-border {
         bottom: -2px;
         left: -2px;
         width: calc(100% + 4px);
         height: 3px;
       }
-      p{
+      p {
         font-size: 13px;
-        img{
+        img {
           max-width: 20px;
           max-height: 20px;
           margin-right: 10px;
@@ -170,51 +169,67 @@ h5 {
     }
   }
 }
-@media screen and (max-width: 1024px) and (orientation: portrait){
-  .main-holder{
-    width: calc(100% - 15px);
-    padding: 80px 0px 15px 15px;
-    height: calc(100vh - 65px);
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    height: unset;
+    min-height: 100vh;
+  }
+  .content {
+    margin-top: 20px;
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape){
-  .main-holder{
-    padding: 60px 0px 15px 15px;
-    margin-top: -45px;
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(100vh - 40px);
   }
-  .content{
-    height: calc(100% - 55px);
+  .content {
+    height: 87.5%;
+    max-height: 87.5%;
   }
 }
 
-@media screen and (max-width: 850px) and (orientation: landscape){
-  .main-holder{
-    width: calc(100% - 10px);
-    padding: 45px 0px 5px 10px;
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
     .my-menu {
       width: 100%;
       .menu-item {
         height: 30px;
         border: 1px solid rgba(255, 255, 255, 0.4);
-        .bottom-border{
+        .bottom-border {
           bottom: -1px;
           left: -1px;
           width: calc(100% + 2px);
           height: 2px;
         }
         p {
-          img{
+          img {
             max-width: 17px;
-            max-height: 217px;
+            max-height: 17px;
             margin-right: 7px;
           }
         }
       }
     }
   }
-  .content{
-    height: calc(100% - 50px);
+}
+
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .main-holder {
+    padding-top: 2.5px;
+    .my-menu {
+      .menu-item {
+        height: 20px;
+
+        p {
+          img {
+            max-width: 10px;
+            max-height: 10px;
+            margin-right: 7px;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -224,26 +239,20 @@ h5 {
     .menu-item {
       height: 30px;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      .bottom-border{
+      .bottom-border {
         bottom: -1px;
         left: -1px;
         width: calc(100% + 2px);
         height: 2px;
       }
       p {
-        img{
+        img {
           max-width: 17px;
           max-height: 17px;
           margin-right: 7px;
         }
       }
     }
-  }
-  .main-holder {
-    width: 100%;
-    padding: 65px 20px 0px 20px;
-    height: unset;
-    overflow: visible;
   }
   .back {
     box-sizing: border-box;
@@ -259,17 +268,14 @@ h5 {
   }
 }
 
-@media screen and (max-width: 640px) and (orientation: landscape){
-  .main-holder{
-    height: 100vh;
-    padding: 45px 20px 0px 20px;
-    .my-menu{
-      margin: 0 0 5px;
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .main-holder {
+    .my-menu {
       .menu-item {
         height: 25px;
         p {
           font-size: 11px;
-          img{
+          img {
             max-width: 13px;
             max-height: 13px;
             margin-right: 4px;
@@ -278,7 +284,7 @@ h5 {
       }
     }
   }
-  .content{
+  .content {
     height: calc(100% - 30px);
   }
 }
@@ -304,14 +310,15 @@ h5 {
   }
 }
 
-
 //CONTENT TO CSS AT THE BOTTOM!
 .content-title {
+  cursor: pointer;
   display: flex;
   align-items: center;
   height: 80px;
   position: absolute;
   top: 0;
+  transform: translateY(-100%);
   img {
     width: 21px;
   }
@@ -320,15 +327,14 @@ h5 {
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 0.09em;
-    font-family: Earth Orbiter;
+    font-family: "Earth Orbiter";
     font-weight: 900;
     margin-left: 10px;
     margin-bottom: 0;
   }
 }
 
-
-@media screen and (max-width: 1700px) {
+@media screen and(max-width: 1700px) {
   .content-title {
     img {
       width: 17px;
@@ -338,10 +344,9 @@ h5 {
     }
   }
 }
-@media screen and (max-width: 1550px) {
+@media screen and(max-width: 1550px) {
   .content-title {
     height: 65px;
-    transform: none;
     img {
       width: 15px;
     }
@@ -350,8 +355,8 @@ h5 {
     }
   }
 }
-@media screen and (max-width: 1024px) {
- .content-title {
+@media screen and(max-width: 1024px) {
+  .content-title {
     img {
       width: 13px;
     }
@@ -361,12 +366,12 @@ h5 {
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape) {
- .content-title {
-    height: 45px;
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
   }
 }
-@media screen and (max-width: 700px) and (orientation: landscape) {
+@media screen and(max-width: 700px) and (orientation: landscape) {
   .content-title {
     img {
       width: 8.5px;
@@ -377,7 +382,7 @@ h5 {
     }
   }
 }
-@media screen and (max-width: 640px) and (orientation: portrait) {
+@media screen and(max-width: 640px) and (orientation: portrait) {
   .content-title {
     img {
       width: 10px;
