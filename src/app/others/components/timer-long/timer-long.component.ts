@@ -6,41 +6,45 @@ import { timer } from "rxjs/observable/timer";
   styleUrls: ["./timer-long.component.scss"],
   template: `
     <div class="timer-holder" *ngIf="type !== 1">
-      <!-- <div class="day my-cta-btn-back">
-      <p>{{dateX|date:'dd'}}</p>
-      <p class="month">{{dateX|date:'MMM'}}</p>
-    </div>
-    <div class="time-item"  *ngIf="timerValue?.days > 1">
-    <div class="value">
-      <p>{{timerValue?.days|number :'2.0'}}</p>
-    </div>
-    <p class="desc">days</p>
-  </div>
-    <div class="time-item"  *ngIf="timerValue?.days < 2">
-    <div class="value">
-      <p>{{timerValue?.days|number :'2.0'}}</p>
-    </div>
-    <p class="desc">day</p>
-  </div>-->
+      <div class="day my-cta-btn-back">
+        <p>{{ dateX | date: "dd" }}</p>
+        <p class="month">{{ dateX | date: "MMM" }}</p>
+      </div>
+      <div class="time-item" *ngIf="timerValue?.days > 1">
+        <div class="value">
+          <p>{{ timerValue?.days | number: "2.0" }}</p>
+        </div>
+        <p class="desc">days</p>
+      </div>
+      <div class="time-item" *ngIf="timerValue?.days < 2">
+        <div class="value">
+          <p>{{ timerValue?.days | number: "2.0" }}</p>
+        </div>
+        <p class="desc">day</p>
+      </div>
       <div class="time-item">
         <div class="value">
           <p>{{ timerValue?.hours | number: "2.0" }}</p>
         </div>
+        <p class="desc">hrs</p>
       </div>
       <div class="time-item" *ngIf="timerValue?.minutes > 1">
         <div class="value">
           <p>{{ timerValue?.minutes | number: "2.0" }}</p>
         </div>
+        <p class="desc">mins</p>
       </div>
       <div class="time-item" *ngIf="timerValue?.minutes < 2">
         <div class="value">
           <p>{{ timerValue?.minutes | number: "2.0" }}</p>
         </div>
+        <p class="desc">min</p>
       </div>
       <div class="time-item">
         <div class="value">
           <p>{{ timerValue?.seconds | number: "2.0" }}</p>
         </div>
+        <p class="desc">sec</p>
       </div>
     </div>
 

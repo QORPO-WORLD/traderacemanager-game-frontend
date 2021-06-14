@@ -1,20 +1,11 @@
-.tasks-back {
-  top: -80px;
-  position: fixed;
-  background-image: url("/assets/base/images/tasks/newback.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: calc(100vh + 80px);
-  width: 100vw;
-}
 :host {
   width: 100%;
 }
 
 .main-holder {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 122px);
   position: relative;
+  min-height: 800px;
   width: calc(100% - 40px);
   padding: 40px 0px 40px 40px;
 
@@ -61,7 +52,7 @@
     }
   }
   .non-premium-box {
-    background: rgba(17, 17, 17, 0.6);
+    background: rgba(17, 17, 17, 0.8);
 
     padding: 25px 15px;
     width: 300px;
@@ -85,7 +76,7 @@
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(17, 17, 17, 0.6);
+    background: rgba(17, 17, 17, 0.4);
   }
   .task-item {
     position: absolute;
@@ -179,34 +170,24 @@
   .panels-holder {
     position: absolute;
     right: 40px;
-    top: 20px;
+    top: 0;
     width: 377px;
-    .heading {
-      font-family: "Earth Orbiter";
-      text-align: right;
-      font-size: 20px;
-      margin: 0 0 10px 0;
-      font-weight: 600;
-    }
     .time-box {
-      background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.7) 0%,
-          rgba(0, 0, 0, 0.7) 100%
-        ),
-        url("/assets/base/images/all-races/fast-race.png");
-      background-size: cover;
-      background-position: center;
+      box-shadow: 0px 0px 80px #000000;
 
       width: 100%;
       padding: 1px 0 0 1px;
       margin-bottom: 30px;
-
       .inner {
         width: 100%;
         padding: 30px 15px;
         text-align: center;
-
+        background: rgba(17, 17, 17, 1);
+        .heading {
+          font-size: 20px;
+          margin: 0 0 20px 0;
+          font-weight: 600;
+        }
         .time-holder {
           display: flex;
           justify-content: center;
@@ -216,12 +197,18 @@
       }
     }
     .info-panel {
+      box-shadow: 0px 0px 80px #000000;
+
       padding: 1px 0 0 1px;
       width: 100%;
       .inner {
         width: 100%;
         padding: 30px 20px;
-        background: rgba(17, 17, 17, 0.6);
+        background: linear-gradient(
+          180deg,
+          rgba(17, 17, 17, 0.7) 0%,
+          rgba(17, 17, 17, 1) 100%
+        );
 
         .heading {
           font-size: 20px;
@@ -307,7 +294,7 @@
   z-index: 1000002;
   overflow: auto;
   &.step0 {
-    background: rgba(17, 17, 17, 0.6);
+    background: rgba(17, 17, 17, 0.9);
     .box-content.content0 {
       z-index: 1;
       opacity: 1;
@@ -325,7 +312,12 @@
     right: 0;
     height: 100%;
     width: calc(93% - 178px);
-    background: rgba(17, 17, 17, 0.6);
+    background: linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0) 0%,
+      rgba(17, 17, 17, 0.82) 20%,
+      #111111 100%
+    );
     transition: 0.2s;
     &.inactive {
       opacity: 0;
@@ -571,7 +563,8 @@
 
 @media screen and (max-width: 1550px) {
   .main-holder {
-    height: calc(100vh - 65px);
+    height: calc(100vh - 87px);
+    min-height: 676px;
     width: calc(100% - 20px);
     padding: 20px 0px 20px 20px;
     .top-text {
@@ -587,13 +580,13 @@
     .panels-holder {
       right: 25px;
       width: 307px;
-      .heading {
-        font-size: 18px;
-        margin: 0 0 15px 0;
-      }
       .time-box {
         .inner {
           padding: 20px 12px;
+          .heading {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+          }
         }
       }
       .info-panel {
@@ -652,6 +645,7 @@
 
 @media screen and (max-width: 1300px) {
   .main-holder {
+    min-height: 636px;
     .top-text {
       .heading {
         font-size: 24px;
@@ -734,7 +728,8 @@
 @media screen and (max-width: 1200px) {
   .main-holder {
     width: calc(100% - 13px);
-    padding: 13px 0px 13px 13px;
+    padding: 13px 0px 13px 0px;
+    padding-top: 13px;
     .task-item {
       &.item4 {
         z-index: 2;
@@ -764,89 +759,13 @@
 }
 @media screen and (max-width: 1024px) {
   .main-holder {
-    width: calc(100% - 10px);
-    padding: 10px 0px 10px 10px;
-  }
-}
-@media screen and (max-width: 1024px) and (orientation: landscape) {
-  .main-holder {
-    height: calc(100vh - 40px);
-
-    .panels-holder {
-      right: 0px;
-      top: 10px;
-      .heading {
-        font-size: 10px;
-        margin: 0 0 5px 0;
-      }
-    }
-
-    .task-item {
-      &.item1 {
-        left: 0;
-        bottom: -10%;
-      }
-      &.item2 {
-        left: 7%;
-        top: 10%;
-      }
-
-      &.item4 {
-        left: 33%;
-        top: 36%;
-        right: -30%;
-      }
-      &.item5 {
-        right: 35%;
-        bottom: -5%;
-      }
-    }
-  }
-}
-@media screen and (max-width: 640px) and (orientation: landscape) {
-  .main-holder {
-    .panels-holder {
-      right: 0px;
-      width: 140px;
-      top: 10px;
-      .heading {
-        font-size: 10px;
-        margin: 0 0 5px 0;
-      }
-    }
-    .task-item {
-      .task-icon {
-        width: 160px;
-      }
-      &.item1 {
-        left: 0;
-        bottom: -10%;
-      }
-      &.item2 {
-        left: 7%;
-        top: 10%;
-      }
-
-      &.item4 {
-        left: 33%;
-        top: 36%;
-        right: -30%;
-      }
-      &.item5 {
-        right: 35%;
-        bottom: -5%;
-      }
-    }
-  }
-}
-@media screen and (max-width: 1024px) and (orientation: portrait) {
-  .main-holder {
     height: unset;
     min-height: unset;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
     .top-text {
       padding: 10px 0 0 3%;
       margin-bottom: 30px;
@@ -921,7 +840,7 @@
   }
 }
 
-@media screen and (max-width: 900px) and (orientation: portrait) {
+@media screen and (max-width: 900px) {
   .main-holder {
     .non-premium-box {
       top: 300px;
@@ -936,7 +855,7 @@
   }
 }
 
-@media screen and (max-width: 640px) and (orientation: portrait) {
+@media screen and (max-width: 640px) {
   .main-holder {
     .top-text {
       .text {
@@ -958,7 +877,7 @@
       transform: translate(-50%, -50%);
     }
     .com-soon-box {
-      background: rgba(17, 17, 17, 0.6);
+      background: rgba(17, 17, 17, 0.7);
     }
     .task-item {
       margin: 0 auto;
@@ -995,8 +914,10 @@
   }
 }
 
-@media screen and (max-width: 640px) and (orientation: portrait) {
+@media screen and (max-width: 640px) {
   .main-holder {
+    background-size: auto 33.333%;
+    background-repeat: repeat-y;
     .task-item {
       &.item1 {
         bottom: 0;
@@ -1037,7 +958,7 @@
 }
 
 .winning-modal.win-share-modal {
-  background: rgba(17, 17, 17, 0.6);
+  background: #111111de;
   position: fixed;
   top: 0;
   left: 0;
@@ -1047,7 +968,7 @@
   .modal-bg {
     max-width: 745px;
     height: 418px;
-    background: rgba(17, 17, 17, 0.6);
+    background: #111;
     margin: 0 auto;
     position: relative;
     top: 20%;
