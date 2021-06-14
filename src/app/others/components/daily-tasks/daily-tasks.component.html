@@ -1,25 +1,17 @@
+<div class="tasks-back"></div>
 <div class="main-holder" [ngClass]="{ 'non-premium': isPremium === false }">
   <div [routerLink]="['/race/start-race']" class="content-title">
     <img
-      
       class="red-star"
       src="assets/base/images/icons/icon-back-red.svg"
       alt="red arrow"
     />
     <img
-     
       class="blue-star"
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
     <p>Dashboard</p>
-  </div>
-  <div class="top-text">
-    <p class="heading">Daily tasks</p>
-    <p class="text">
-      Finish your daily tasks and earn your bonuses! Become premium member and
-      earn 4x more
-    </p>
   </div>
 
   <div class="non-premium-box my-races-btn-border">
@@ -46,7 +38,7 @@
         <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -66,7 +58,7 @@
         Deposit 100 IOI <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -102,7 +94,7 @@
         <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -117,7 +109,7 @@
         Free race rookie <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -144,7 +136,7 @@
         <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -159,7 +151,7 @@
         Join Tournament "Expert IOI" <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -232,7 +224,7 @@
         Invite two active referrals <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
         />
       </p>
@@ -243,7 +235,7 @@
         <span>for</span> 1
         <img
           class="ioi-icon"
-          src="/assets/base/images/ticket-white.png"
+          src="/assets/base/images/icons/ticket-big.svg"
           alt=""
           [routerLink]="['/other/affilate']"
         />
@@ -277,32 +269,12 @@
   </div>
 
   <div class="panels-holder">
-    <div class="time-box my-border-grad">
+    <p class="heading">Time left</p>
+    <div class="time-box">
       <div class="inner">
-        <p class="heading">Time left</p>
         <div class="time-holder without-day" *ngIf="endofday">
           <!-- <app-timer [value]="endofday" style="color:white"></app-timer> -->
           <app-timer-long [value]="endofday"></app-timer-long>
-        </div>
-      </div>
-    </div>
-
-    <div class="info-panel my-border-grad">
-      <div class="inner">
-        <p class="heading">Your info</p>
-        <div class="item-holder">
-          <p class="desc">Your daily challenge</p>
-          <p class="value">
-            <span>{{ task?.daily_tasks.length }}</span
-            >/4
-          </p>
-        </div>
-        <div class="item-holder rewards">
-          <p class="desc">Your daily rewards</p>
-          <p class="value">
-            {{ task?.daily_tasks.length }}
-            <img src="/assets/base/images/ticket-white.png" alt="" />
-          </p>
         </div>
       </div>
     </div>
