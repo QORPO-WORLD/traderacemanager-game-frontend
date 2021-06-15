@@ -24,7 +24,6 @@ export class TeamsSelectionComponent implements OnInit {
   myMembEnds: string;
   showInfoBubble = false;
   managerDisclaim = false;
-  selectedTeamId: number;
   allMonths = [
     "January",
     "February",
