@@ -444,6 +444,23 @@ export class BuyNftComponent implements OnInit {
       });
   }
 
+  buyPackageNfts(index: number) {
+      this.api
+        .packageBuyList({
+          package_id: index,
+          amount: this.amount,
+          currency: this.tokenSelected,
+        })
+        .subscribe((datax) => {
+          const data: any = datax;
+          setTimeout(() => {
+            this.notifyChangedBalance();
+            this.router.navigate(["/profile/my-profile"]);
+            this.notify.error("You have bought a new package!");
+          }, 1000);
+        });
+  }
+
   notifyChangedBalance() {
     this.identityService.updateBalance();
     this.balanceService.balanceHasbeenChanged();

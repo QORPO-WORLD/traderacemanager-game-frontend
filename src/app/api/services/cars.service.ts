@@ -125,6 +125,37 @@ class CarsService extends __BaseService {
       __map(_r => _r.body as {any})
     );
   }
+  packageBuyResponse(packagem: any): __Observable<__StrictHttpResponse<any>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = packagem;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/races/package/buy`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<any>;
+      })
+    );
+  }
+  /**
+   * API endpoint to buy cars.
+   * @param car_model undefined
+   */
+   packageBuyList(packagem: any): __Observable<any> {
+    return this.packageBuyResponse(packagem).pipe(
+      __map(_r => _r.body as {any})
+    );
+  }
   
   racerBuyListResponse(carModel: any): __Observable<__StrictHttpResponse<any>> {
     let __params = this.newParams();
