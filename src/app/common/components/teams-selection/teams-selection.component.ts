@@ -1,6 +1,6 @@
 import { first } from 'rxjs/operators';
 import { NotifiqService } from "./../../services/notifiq.service";
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { TeamsService } from "../../../api/services/teams.service";
 import { AuthService } from "../../../user/services/auth.service";
 import { BalanceService } from "../../../common/services/balance.service";
@@ -12,7 +12,9 @@ import { BalanceService } from "../../../common/services/balance.service";
 })
 export class TeamsSelectionComponent implements OnInit {
   @Output() endsIn = new EventEmitter<string>();
+  @Input() managerType = false;
   teams: any;
+  myDriverBalances: any;
   myTeam: string;
   myTeamData: any;
   mySettings = { type: "team", numOfBanners: 2 };
@@ -21,6 +23,7 @@ export class TeamsSelectionComponent implements OnInit {
   currMonth: number;
   myMembEnds: string;
   showInfoBubble = false;
+  managerDisclaim = false;
   allMonths = [
     "January",
     "February",
@@ -60,6 +63,7 @@ export class TeamsSelectionComponent implements OnInit {
     this.getMyTeam();
     this.getCurrentMonth();
     this.getMydriver();
+    this.getBalance();
   }
 
   width() {
@@ -88,6 +92,8 @@ export class TeamsSelectionComponent implements OnInit {
             this.myMembEnds = this.teams[i].memberships[1].date_to;
         }
       }
+      console.log(this.teams);
+      console.log('jfskdaljfa;');
       if (this.myMembEnds !== undefined) {
         this.getMembEnd();
       }
@@ -168,7 +174,13 @@ export class TeamsSelectionComponent implements OnInit {
   getMydriver() {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
+      console.log(this.myDriverStats);
+      console.log('jjakjkj');
     }, 500);
+  }
+
+  getBalance(){
+    this.myDriverBalances = this.identityService.getBalance();
   }
 
   getMembEnd() {
@@ -226,4 +238,13 @@ export class TeamsSelectionComponent implements OnInit {
       this.teams[teamIndex].statState = 3;
     }
   }
+
+  becomeManager(id: number) {
+
+    this.api.becomeManager(id, { reason: 'reason is null' }).subscribe
+      (data => {
+        this.getTeams();
+      });
+  }
+
 }

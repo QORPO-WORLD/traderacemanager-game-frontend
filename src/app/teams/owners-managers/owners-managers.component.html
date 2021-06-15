@@ -1,5 +1,7 @@
 <div class="main-holder">
-  <div [routerLink]="['/teams/join-teams']" class="content-title">
+  <div class="content-title">
+    <div class="clickers" *ngIf="OwnerManagerType == 'home'" [routerLink]="['/teams/join-teams']"></div>
+    <div class="clickers" *ngIf="OwnerManagerType != 'home'" (click)="OwnerManagerType = 'home'"></div>
     <img
       
       class="red-star"
@@ -15,34 +17,8 @@
     <p>Join team</p>
   </div>
 
-  <!-- <div class="page-info"> 
-      <div class="back" [routerLink]="['/teams/join-teams']">
-        <p>&lt;</p>
-      <p>{{'shared.back' | translate}}</p>
-      </div>
-      <div class="text-info">
-      <h1>{{'owners_managers.page_heading' | translate}}</h1>
-      <p>{{'owners_managers.page_info' | translate}}</p>
-      </div>
-      <div class="bonus-info">
-      <h5>{{ioioreward | number:'1.2-2':'fr'}} <img src="assets/base/images/tokens/ioi-logo.png" alt=""></h5>
-      <p>{{'teams.shared.current_team_bonus' | translate}}</p>
-      </div>
-  </div> -->
 
-
-  <div class="owners-managers-holder">
-    <!-- <div class="my-menu">
-      <div class="menu-item" [routerLink]="['/teams/join-teams']">
-          <p>{{'teams.shared.join' | translate}}</p>
-      </div>
-      <div class="menu-item my-cta-btn-back active" [routerLink]="['/teams/owners-managers']">
-          <p>{{'teams.shared.owners_managers' | translate}}</p>
-      </div>
-      <div class="menu-item" [routerLink]="['/teams/my-team']">
-          <p>{{'teams.shared.my_team' | translate}}</p>
-      </div>
-    </div> -->
+  <div class="owners-managers-holder" *ngIf="OwnerManagerType == 'home'">
     
     <div class="box-container">
       <div class="box-holder">
@@ -56,8 +32,8 @@
               {{'owners_managers.owner-statement' | translate}}
             </span>
           </div>
-          <div class="button-holder" (click)="scrollToView(myscroll)">
-            <button class="button" (click)="OwnerManagerType!='owner'?OwnerManagerType='owner':OwnerManagerType='home'">
+          <div class="button-holder">
+            <button class="button" (click)="OwnerManagerType = 'owner'">
               {{'owners_managers.owner-button' | translate}}
             </button>
           </div>
@@ -75,25 +51,22 @@
               {{'owners_managers.manager-statement' | translate}}
             </span>
           </div>
-          <div class="button-holder"(click)="scrollToView(myscroll)">
-            <button class="button" (click)="OwnerManagerType!='manager'?OwnerManagerType='manager':OwnerManagerType='home';becomeManager();" >
+          <div class="button-holder">
+            <button class="button" (click)="OwnerManagerType = 'manager';becomeManager();" >
               {{'owners_managers.manager-button' | translate}}
             </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div>
-      <div #myscroll></div> 
-      <div *ngIf="OwnerManagerType=='owner'">
-        <app-owner></app-owner>
-      </div>
+  <div class="owners-managers-holder" *ngIf="OwnerManagerType == 'owner'">
+    <app-owner></app-owner>
+  </div>
 
-      <div *ngIf="OwnerManagerType=='manager'">
-        <app-manager></app-manager>
-      </div>
-    </div>
+  <div class="owners-managers-holder manager" *ngIf="OwnerManagerType == 'manager'">
+    <app-teams-selection [managerType]="true"></app-teams-selection>
   </div>
 
 </div>

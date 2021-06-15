@@ -1,7 +1,8 @@
 
 
 <div class="teams-holder">
-  <div class="inner-slider">
+  <p class="manager-heading" *ngIf="managerType === true">Choose a team</p>
+  <div class="inner-slider" [ngClass]="{'manager-type': managerType === true, 'long': teams.length > 10}">
     <div class="team-item" *ngFor="let tt of teams | sortmain: '!position'; let i = index">
       <div
         class="img-holder"
@@ -80,371 +81,46 @@
           </div>
         </div>
       </div>
-      <button class="join-team my-cta-btn-back" (click)="openMembershipModal(1,tt.id)">Join team</button>
+      <button *ngIf="managerType === false" class="join-team my-cta-btn-back" (click)="openMembershipModal(1,tt.id)">Join team</button>
+
+      <ng-container *ngIf="managerType === true">
+        <ng-container *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
+          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'WAITING'">
+            <img src="/assets/base/images/icons/time.svg" alt=""> Application pending
+          </button>
+          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'DECLINED'">
+            Application rejected
+          </button>
+          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'APPROVED'">
+            Application approved
+          </button>
+          <button class="join-team my-cta-btn-back" (click)="becomeManager(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE'">Apply</button>
+        </ng-container>
+        <button class="join-team my-cta-btn-back" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">Deposit</button>
+      </ng-container>
+      
     </div>
   </div>
 </div>
 
-
-
-<!-- <div
-  class="team-holder"
-  (window:resize)="width()"
-  [ngClass]="{ 'first-modal': modalVersion === true }"
->
-  <div
-    class="team-item"
-    *ngFor="
-      let tt of teams
-        | sortmain: '!position'
-        | slice: startTeamIndex:startTeamIndex + sliceBalancer
-    "
-    [ngClass]="{
-      active:
-        tt?.me_joined === true || tt?.id === myDriverStats?.next_month_team_id,
-      hide: tt?.id != animationState && animationState > 0
-    }"
-  >
-    <div class="anim-helper" [ngClass]="'state' + animationState">
-      <div class="inner-holder" [ngClass]="'team' + tt?.id">
-        <ng-container *ngIf="modalVersion === false">
-          <div
-            class="joined"
-            [ngClass]="tt.name"
-            *ngIf="
-              myDriverStats?.is_paid_membership === 'Free' &&
-              tt?.id === myDriverStats?.next_month_team_id &&
-              myDriverStats?.next_month_membership_type === 'Premium'
-            "
-            [ngStyle]="{
-              background:
-                'linear-gradient(to bottom right, #' +
-                tt.color +
-                ' 0%, rgba(255, 212, 59, 0) 60%)'
-            }"
-          >
-            <span>
-              <p>
-                <strong [ngStyle]="{ color: '#' + tt.color }">✓</strong>
-                Currently waiting as premium
-              </p>
-            </span>
-          </div>
-        </ng-container>
-
-        <div
-          class="img-holder"
-          *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
-        >
-          <img
-            [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'"
-            alt=""
-          />
-        </div>
-        <div
-          class="img-holder"
-          *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
-        >
-          <img
-            [src]="
-              'assets/base/images/custom-teams/custom-team' +
-              (tt.avatar + 1) +
-              '.png'
-            "
-            alt=""
-          />
-          <div class="badge-name">
-            <p class="name">{{ tt?.name }}</p>
-            <p class="team">TEAM</p>
-          </div>
-        </div>
-        <p class="heading">Team {{ tt?.name }}</p>
-        <div class="item-holder">
-          <p class="desc">Total members</p>
-          <p class="value">{{ tt?.active_members }}</p>
-        </div>
-        <div class="item-holder">
-          <p class="desc">Premium members</p>
-          <p class="value">{{ tt?.premium_membership_count }}</p>
-        </div>
-        <div class="item-holder">
-          <p class="desc">Free members</p>
-          <p class="value">{{ tt?.free_membership_count }}</p>
-        </div>
-        <div class="item-holder">
-          <p class="desc">Owner</p>
-          <p class="value" *ngIf="tt?.owners.length === 0">-</p>
-          <p class="value" *ngIf="tt?.owners.length > 0">
-            <span
-              class="arrow left"
-              *ngIf="tt?.owners.length > 1 && ownerIndex !== 0"
-              (click)="ownerIndex = ownerIndex - 1"
-              >&lt;</span
-            >
-            {{ tt?.owners[ownerIndex].user_nickname }}
-            <span
-              class="arrow right"
-              *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length"
-              (click)="ownerIndex = ownerIndex + 1"
-              >&gt;</span
-            >
-          </p>
-        </div>
-        <div class="item-holder">
-          <p class="desc">Manager</p>
-          <p class="value" *ngIf="tt?.manager_user_nickname">
-            {{ tt?.manager_user_nickname }}
-          </p>
-          <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
-        </div>
-
-        <div
-          class="reward-box"
-          [ngClass]="tt.name"
-          [ngStyle]="{
-            background:
-              'linear-gradient(to bottom right, #' +
-              tt.color +
-              ' 0%, rgba(255, 212, 59, 0) 60%)'
-          }"
-        >
-          <div class="inner-box">
-            <p [ngStyle]="{ color: '#' + tt.color }">
-              <i class="fa fa-trophy" [ngStyle]="{ color: '#' + tt.color }"></i>
-              <span [ngStyle]="{ color: '#' + tt.color }">
-                {{ tt.current_team_bonus | number: "1.2-2":"fr" }} IOI</span
-              >
-              actual reward
-            </p>
-          </div>
-        </div>
-
-        <ng-container *ngIf="modalVersion === false">
-          <a
-            class="join-button"
-            data-toggle="modal"
-            data-target="#teamModal"
-            *ngIf="!tt?.me_joined"
-            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
-          >
-            <span class="inner">{{ "teams.join.join_team" | translate }}</span>
-          </a>
-
-          <a
-            class="join-button active"
-            data-toggle="modal"
-            data-target="#teamModal"
-            *ngIf="
-              tt?.me_joined && myDriverStats?.is_paid_membership !== 'Free'
-            "
-            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
-          >
-            <span class="inner">{{
-              "teams.join.extend_memb" | translate
-            }}</span>
-          </a>
-
-          <a
-            class="join-button active"
-            data-toggle="modal"
-            data-target="#teamModal"
-            *ngIf="
-              tt?.me_joined && myDriverStats?.is_paid_membership === 'Free'
-            "
-            (click)="selectedTeamId = tt?.id; openMembershipModal(1)"
-          >
-            <span class="inner">{{
-              "teams.join.upgrade_memb" | translate
-            }}</span>
-          </a>
-        </ng-container>
-      </div>
-    </div>
-    <div
-      class="modal-click"
-      (click)="animateTeam(tt?.id)"
-      *ngIf="modalVersion === true"
-    ></div>
-    <div *ngFor="let mem of tt.memberships">
-      <div *ngIf="mem.date_to" style="text-align: center">
-        <span style="font-size: 12px; margin-right: 10px; font-weight: bold">{{
-          mem.membership_type
-        }}</span>
-        <span style="font-size: 12px; margin-right: 10px"
-          >from: {{ mem.date_from | date: "short" }}</span
-        >
-        <span style="font-size: 12px; margin-right: 10px"
-          >to: {{ mem.date_to | date: "short" }}</span
-        ><br />
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="arrow right"
-    (click)="nextTeam()"
-    *ngIf="modalVersion === false"
-    [ngClass]="{ hidden: teams.length === 3 }"
-  >
-    <p>&gt;</p>
-  </div>
-  <div
-    class="arrow left"
-    (click)="prevTeam()"
-    *ngIf="modalVersion === false"
-    [ngClass]="{ hidden: teams.length === 3 }"
-  >
-    <p>&lt;</p>
-  </div>
-</div> -->
 
 <!-- MODALS -->
 
 <app-team-membership *ngIf="modalOpened===1" (openedModal)="openMembershipModal($event)" [selectedTeamId]="selectedTeamId"></app-team-membership>
 
 
-<!-- <div
-  class="modal fade"
-  id="teamModal"
-  tabindex="-1"
-  role="dialog"
-  *ngIf="myTeamData"
->
-  <div class="modal-dialog my-modal-dialog" role="document">
-    <div class="Mymodal modal-content">
-      <img
-        src="/assets/base/images/icons/close-icon.svg"
-        alt=""
-        class="close-icon"
-        data-dismiss="modal"
-      />
-      <div class="top-text">
-        <p class="heading" *ngIf="!myTeamData?.team">
-          {{ "teams.shared.join" | translate }}
-        </p>
-        <p class="heading" *ngIf="myTeamData?.team">Change membership</p>
-        <p class="desc">{{ "teams.join.choose_memb" | translate }}</p>
-      </div>
-
-      <div class="content-holder">
-        <p class="heading">Pick a membership type</p>
-        <div
-          class="memb-panel premium"
-          [ngClass]="{ 'my-cta-btn-back': joinFree === false }"
-          (click)="joinFree = false"
-        >
-          <div class="amount-holder">
-            <p>
-              <img src="/assets/base/images/icons/ioi-simple.svg" alt="" /> 50
-            </p>
-          </div>
-          <div class="dot-holder">
-            <div class="dot">
-              <div class="inner-dot"></div>
-            </div>
-          </div>
-          <div class="text-holder">
-            <p class="heading">{{ "teams.join.modals.premium" | translate }}</p>
-            <p class="value">
-              {{ "modals.shared.get" | translate }}
-              <span>5% {{ "teams.join.modals.reward" | translate }}</span
-              >, {{ "teams.join.modals.bonuses_text" | translate }}
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="memb-panel"
-          [ngClass]="{ 'my-cta-btn-back': joinFree === true }"
-          (click)="joinFree = true"
-        >
-          <div class="dot-holder">
-            <div class="dot">
-              <div class="inner-dot"></div>
-            </div>
-          </div>
-          <div class="text-holder">
-            <p class="heading">
-              {{ "race.type.car_race_short_0" | translate }}
-            </p>
-            <p class="value">{{ "teams.join.modals.join_free" | translate }}</p>
-          </div>
-        </div>
-        <p class="heading">Pick a lenght</p>
-
-        <div class="time-btns">
-          <div
-            class="time-item"
-            (click)="monthCount = 1"
-            [ngClass]="monthCount === 1 ? 'my-cta-btn-back' : null"
-          >
-            <div class="cost">
-              <p *ngIf="joinFree === false">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" /> 50
-              </p>
-              <p *ngIf="joinFree === true">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" /> 0
-              </p>
-            </div>
-            <p class="desc">Monthly</p>
-          </div>
-          <div
-            class="time-item"
-            (click)="monthCount = 3"
-            [ngClass]="monthCount === 3 ? 'my-cta-btn-back' : null"
-          >
-            <div class="cost">
-              <p *ngIf="joinFree === false">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" />
-                135
-              </p>
-              <p *ngIf="joinFree === true">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" /> 0
-              </p>
-            </div>
-            <p class="discount low" *ngIf="joinFree === false">10% OFF</p>
-            <p class="desc">Quartal</p>
-          </div>
-          <div
-            class="time-item"
-            (click)="monthCount = 12"
-            [ngClass]="monthCount === 12 ? 'my-cta-btn-back' : null"
-          >
-            <div class="cost">
-              <p *ngIf="joinFree === false">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" />
-                420
-              </p>
-              <p *ngIf="joinFree === true">
-                <img src="/assets/base/images/icons/ioi-simple.svg" alt="" /> 0
-              </p>
-            </div>
-            <p class="discount high" *ngIf="joinFree === false">30% OFF</p>
-            <p class="desc">Yearly</p>
-          </div>
-        </div>
-
-        <div
-          class="join-btn my-cta-btn-back"
-          data-dismiss="modal"
-          (click)="resolveJoin(selectedTeamId)"
-        >
-          {{ "teams.join.modals.join_waitlist" | translate }}
-        </div>
-
-        <div class="info-panel">
-          <div class="img-holder">
-            <img src="/assets/base/images/teams/question-icon.png" alt="" />
-          </div>
-          <p>
-            {{ "teams.join.modals.curr_member1" | translate }}
-            {{ allMonths[currMonth - 1] }},
-            {{ "teams.join.modals.new_member2" | translate }}
-            {{ allMonths[currMonth] }}.
-            {{ "teams.join.modals.switch_disclaim" | translate }}
-          </p>
-        </div>
-      </div>
+<!-- <div class="manager-disclaim" *ngIf="managerDisclaim === true">
+  <div class="back-cover"></div>
+  <div class="inner-cont">
+    <p class="close">x</p>
+    <div class="text-holder">
+      <h2>Apply as a manager</h2>
+      <p class="text">If your application for a manager position in this team gets approved, your current manager position will end. Are you sure you want to continue?</p>
     </div>
+
+    <button class="active">Yes, apply</button>
+    <p class="or-text">or</p>
+    <p class="no-text">No, take me back</p>
   </div>
 </div> -->
+

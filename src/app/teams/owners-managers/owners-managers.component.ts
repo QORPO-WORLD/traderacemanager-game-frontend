@@ -35,10 +35,6 @@ export class OwnersManagersComponent implements OnInit, OnDestroy {
     }
   }
 
-  scrollToView(elem: HTMLElement) {
-    elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
   getRewards() {
     this.rsubsciption = this.rapi.leaderboardTeamInternalList()
       .subscribe(data => {

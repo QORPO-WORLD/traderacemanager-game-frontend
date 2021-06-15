@@ -2,6 +2,12 @@
 .teams-holder{
   width: 100%;
 }
+.manager-heading{
+  font-size: 24px;
+  font-family: Earth Orbiter;
+  font-weight: 700;
+  padding-left: 30px;
+}
 
 .inner-slider{
   width: 100%;
@@ -22,6 +28,20 @@
   }
   &::-webkit-scrollbar-thumb {
     background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+  }
+  &.manager-type{
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    max-height: 700px;
+    padding: 30px;
+    &.long{
+      align-content: flex-start;
+    }
+    .team-item{
+      margin-bottom: 35px;
+      margin-top: 35px;
+    }
   }
   .team-item{
     min-width: 290px;
@@ -168,10 +188,47 @@
   }
 }
 
+.manager-disclaim{
+  position: fixed;
+  z-index: 100000000;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  .back-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(17, 17, 17, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .inner-cont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 @media screen and (max-width: 1700px){
+  .manager-heading{
+    font-size: 20px;
+    margin: 0 0 24px;
+    padding-left: 20px;
+  }
   .inner-slider{
     padding-top: 17px;
     padding-bottom: 20px;
+    &.manager-type{
+      max-height: 580px;
+      padding: 0 20px;
+      .team-item{
+        margin-bottom: 25px;
+        margin-top: 25px;
+      }
+    }
     .team-item{
       min-width: 280px;
       max-width: 280px;
@@ -216,9 +273,22 @@
 }
 
 @media screen and (max-width: 1550px){
+  .manager-heading{
+    font-size: 18px;
+    margin: 0 0 18px;
+    padding-left: 13px;
+  }
   .inner-slider{
     padding-top: 13px;
     padding-bottom: 15px;
+    &.manager-type{
+      max-height: 580px;
+      padding: 0 13px;
+      .team-item{
+        margin-bottom: 17px;
+        margin-top: 17px;
+      }
+    }
     .team-item{
       min-width: 250px;
       max-width: 250px;
@@ -311,8 +381,29 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape){
+@media screen and (max-width: 1024px) and (orientation: portrait){
   .inner-slider{
+    &.manager-type{
+      align-content: flex-start;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape){
+  .teams-holder{
+    height: 100%;
+  }
+  .inner-slider{
+    &.manager-type{
+      height: calc(100% - 45px);
+      justify-content: space-around;
+      max-height: 490px;
+      .team-item{
+        margin-bottom: 0;
+        margin-top: 0;
+        height: 44%;
+      }
+    }
     .team-item{
       min-width: 210px;
       max-width: 210px;
@@ -337,6 +428,9 @@
       .join-team{
         height: 40px;
         font-size: 14px;
+        img{
+          width: 18px;
+        }
       }
       &:hover{
         .stats-holder{
@@ -348,8 +442,18 @@
 }
 
 @media screen and (max-width: 850px) and (orientation: landscape){
+  .manager-heading{
+    font-size: 14px;
+    margin: 0 0 7px;
+  }
   .inner-slider{
     padding-bottom: 5px;
+    &.manager-type{
+      height: calc(100% - 28px);
+      .team-item{
+        height: 42%;
+      }
+    }
     &::-webkit-scrollbar {
       min-width: 1px;
       min-height: 3px;
@@ -421,14 +525,28 @@
       .join-team{
         height: 20px;
         font-size: 10px;
+        img{
+          width: 13px;
+        }
       }
     }
   }
 }
 
 @media screen and (max-width: 640px) and (orientation: landscape){
+  .manager-heading{
+    font-size: 11px;
+    margin: 0 0 2px;
+  }
   .inner-slider{
     padding-bottom: 0;
+    &.manager-type{
+      height: calc(100% - 18px);
+      .team-item{
+        height: 43%;
+        margin-top: 10px;
+      }
+    }
     &::-webkit-scrollbar {
       display: none !important;
     }
@@ -496,7 +614,10 @@
       }
       .join-team{
         height: 20px;
-        font-size: 10px;
+        font-size: 8px;
+        img{
+          width: 10px;
+        }
       }
     }
   }
