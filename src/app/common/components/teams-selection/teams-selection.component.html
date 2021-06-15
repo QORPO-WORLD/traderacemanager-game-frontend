@@ -94,7 +94,8 @@
           <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'APPROVED'">
             Application approved
           </button>
-          <button class="join-team my-cta-btn-back" (click)="becomeManager(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE'">Apply</button>
+          <button class="join-team my-cta-btn-back" (click)="becomeManager(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE' && myDriverStats?.is_manager === false">Apply</button>
+          <button class="join-team my-cta-btn-back" (click)="openManagerModal(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE' && myDriverStats?.is_manager === true">Apply</button>
         </ng-container>
         <button class="join-team my-cta-btn-back" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">Deposit</button>
       </ng-container>
@@ -109,18 +110,18 @@
 <app-team-membership *ngIf="modalOpened===1" (openedModal)="openMembershipModal($event)" [selectedTeamId]="selectedTeamId"></app-team-membership>
 
 
-<!-- <div class="manager-disclaim" *ngIf="managerDisclaim === true">
+<div class="manager-disclaim" *ngIf="managerDisclaim === true && selectedTeamId">
   <div class="back-cover"></div>
   <div class="inner-cont">
-    <p class="close">x</p>
+    <p class="close-btn" (click)="closeManagerModal()">+</p>
     <div class="text-holder">
       <h2>Apply as a manager</h2>
       <p class="text">If your application for a manager position in this team gets approved, your current manager position will end. Are you sure you want to continue?</p>
-    </div>
 
-    <button class="active">Yes, apply</button>
-    <p class="or-text">or</p>
-    <p class="no-text">No, take me back</p>
+      <button class="active my-cta-btn-back" (click)="becomeManager(selectedTeamId)">Yes, apply</button>
+      <p class="or-text">or</p>
+      <p class="no-text" (click)="closeManagerModal()">No, take me back</p>
+    </div>
   </div>
-</div> -->
+</div>
 

@@ -24,6 +24,7 @@ export class TeamsSelectionComponent implements OnInit {
   myMembEnds: string;
   showInfoBubble = false;
   managerDisclaim = false;
+  selectedTeamId: number;
   allMonths = [
     "January",
     "February",
@@ -92,8 +93,6 @@ export class TeamsSelectionComponent implements OnInit {
             this.myMembEnds = this.teams[i].memberships[1].date_to;
         }
       }
-      console.log(this.teams);
-      console.log('jfskdaljfa;');
       if (this.myMembEnds !== undefined) {
         this.getMembEnd();
       }
@@ -174,8 +173,6 @@ export class TeamsSelectionComponent implements OnInit {
   getMydriver() {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
-      console.log(this.myDriverStats);
-      console.log('jjakjkj');
     }, 500);
   }
 
@@ -244,7 +241,18 @@ export class TeamsSelectionComponent implements OnInit {
     this.api.becomeManager(id, { reason: 'reason is null' }).subscribe
       (data => {
         this.getTeams();
+        this.managerDisclaim = false;
       });
+  }
+
+  openManagerModal(id: number) {
+    this.selectedTeamId = id;
+    this.managerDisclaim = true;
+  }
+
+  closeManagerModal() {
+    this.selectedTeamId = null;
+    this.managerDisclaim = false;
   }
 
 }
