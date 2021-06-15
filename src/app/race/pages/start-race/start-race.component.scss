@@ -810,7 +810,7 @@ h3 {
   }
   .dashboard-content {
     overflow-y: visible;
-    height: calc(100vh - 45px);
+    height: 100%;
     min-height: unset;
     .dashboard-avatars {
       .upgrade {
@@ -978,6 +978,49 @@ h3 {
     }
   }
 }
+@media screen and(max-width: 850px) and (max-height: 320px) and (orientation: landscape) {
+  .dashboard-content {
+    .dashboard-avatars {
+      img {
+        &.racer {
+          width: 52.5%;
+        }
+      }
+    }
+    .upper-dashboard {
+      .boxes {
+        .box {
+          .box-content {
+            img {
+              &.right {
+                top: 80%;
+                width: 30%;
+                &.avatar {
+                  top: 95%;
+                }
+              }
+            }
+          }
+        }
+        .reward-switcher {
+          height: 2px;
+          width: 22%;
+        }
+      }
+    }
+    .lower-dashboard {
+      .marketplace {
+        height: 95%;
+      }
+      .category-boxes {
+        height: 80%;
+      }
+      .games {
+        height: 95%;
+      }
+    }
+  }
+}
 @media screen and(max-width: 850px) and (orientation: landscape) {
   .ioi-banner {
     height: 40px;
@@ -990,7 +1033,8 @@ h3 {
     }
   }
   .main-wrapper {
-    height: calc(100vh - 40px);
+    height: calc(var(--vh, 1vh) * 100 - 40px);
+    max-height: calc(var(--vh, 1vh) * 100 - 40px);
   }
   .dashboard-content {
     .dashboard-avatars {
