@@ -233,12 +233,8 @@
         </div>
       </div>
     </div>
-    <div
-      [ngClass]="{ 'racers-more-boxes': displayArray[0]['ability3'] }"
-      *ngIf="displayArray[0]['type'] === 'racer'"
-      class="ability-boxes"
-    >
-      <div class="ability-box racers first">
+    <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+      <div class="ability-box cars first">
         <img
           class="red-star"
           src="assets/base/images/market/value-red.svg"
@@ -254,7 +250,24 @@
           <p class="races-desc">IOI value</p>
         </div>
       </div>
-      <div class="ability-box racers">
+      <div class="ability-box cars">
+        <img
+          class="red-star"
+          src="assets/base/images/market/investment-red.svg"
+          alt="ability icon"
+        />
+        <img
+          class="blue-star"
+          src="assets/base/images/market/investment.svg"
+          alt="ability icon"
+        />
+
+        <div class="ability-text">
+          <p class="category-title-third">{{ displayArray[0]["ability2"] }}</p>
+          <p class="races-desc">NFT</p>
+        </div>
+      </div>
+      <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
         <img
           class="red-star"
           src="assets/base/images/market/investment-red.svg"
@@ -270,43 +283,7 @@
           <p class="category-title-third">
             {{ displayArray[0]["ability1"] }}
           </p>
-          <p class="races-desc">daily stake</p>
-        </div>
-      </div>
-      <div class="ability-box racers">
-        <img
-          class="red-star"
-          src="assets/base/images/market/investment-red.svg"
-          alt="ability icon"
-        />
-        <img
-          class="blue-star"
-          src="assets/base/images/market/investment.svg"
-          alt="ability icon"
-        />
-
-        <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["ability2"] }}</p>
-          <p class="races-desc">ROI</p>
-        </div>
-      </div>
-      <div *ngIf="displayArray[0]['ability3']" class="ability-box racers">
-        <img
-          class="red-star"
-          src="assets/base/images/market/investment-red.svg"
-          alt="ability icon"
-        />
-        <img
-          class="blue-star"
-          src="assets/base/images/market/investment.svg"
-          alt="ability icon"
-        />
-
-        <div class="ability-text">
-          <p class="category-title-third">
-            {{ displayArray[0]["ability1"] }} from invites
-          </p>
-          <p class="races-desc">skill</p>
+          <p class="races-desc">APY</p>
         </div>
       </div>
     </div>

@@ -223,7 +223,7 @@
       }
     }
     .overview-item {
-      width: 181px;
+      width: fit-content;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -231,10 +231,12 @@
       position: relative;
       z-index: 1;
       margin-right: 20px;
+
       &.profile-cont {
         margin-right: 0;
         .value-box {
           justify-content: center;
+          padding: 0px 20px 0px 50px;
           p {
             &.value {
               width: 100%;
@@ -245,8 +247,8 @@
       .bubble-holder {
         width: 50px;
         height: 50px;
-
-        position: relative;
+        position: absolute;
+        left: -10px;
         z-index: 1;
 
         &.profile {
@@ -272,9 +274,8 @@
         background: rgba(255, 255, 255, 0.05);
         border-radius: 50px;
         height: 40px;
-        padding: 0 20px 0 50px;
-        width: 100%;
-        position: absolute;
+        padding: 0px 20px 0px 50px;
+
         left: 0;
         p {
           margin: 0;
@@ -2180,7 +2181,7 @@ button.xko {
     width: 417px;
     height: calc(100vh - 140px);
     min-height: calc(100vh - 140px);
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     top: 110px;
     right: 40px;
@@ -2378,7 +2379,7 @@ button.xko {
   line-height: 18px;
 }
 
-@media screen and (min-width: 2100px) and (min-height: 1081px) {
+/*@media screen and (min-width: 2100px) and (min-height: 1081px) {
   .my-nav {
     height: 100px;
     .nav-logo {
@@ -2428,8 +2429,7 @@ button.xko {
     font-size: 15px;
     line-height: 23px;
   }
-}
-
+}*/
 @media screen and (max-width: 1700px) {
   .right-container {
     .right-part-holder {
@@ -2585,7 +2585,6 @@ button.xko {
     }
     .overview {
       .overview-item {
-        width: 165px;
         .bubble-holder {
           width: 40px;
           height: 40px;
@@ -2960,6 +2959,7 @@ button.xko {
     .right-part-holder {
       display: block;
       pointer-events: none;
+      position: fixed;
       top: 65px;
       height: calc(var(--vh, 1vh) * 100 - 90px);
       min-height: calc(var(--vh, 1vh) * 100 - 90px);
@@ -3228,14 +3228,18 @@ button.xko {
     }
     .overview {
       .overview-item {
-        width: 105px;
+        &.profile-cont {
+          .value-box {
+            padding: 0 20px 0 35px;
+          }
+        }
         .bubble-holder {
           width: 30px;
           height: 30px;
         }
         .value-box {
           height: 30px;
-          padding: 0 8px 0 30px;
+          padding: 0 20px 0 35px;
           p {
             font-size: 10px;
             &.number {
@@ -3254,8 +3258,8 @@ button.xko {
       top: 45px;
       right: 10px;
       width: 240px;
-      height: calc(var(--vh, 1vh) * 100 - 25%) !important;
-      min-height: calc(var(--vh, 1vh) * 100 - 25%) !important;
+      height: calc(var(--vh, 1vh) * 100 - 125px) !important;
+      min-height: calc(var(--vh, 1vh) * 100 - 125px) !important;
       padding: 10px;
       .menu-switchers {
         height: 30px;
@@ -3321,14 +3325,18 @@ button.xko {
     }
     .overview {
       .overview-item {
-        width: 88px;
         .bubble-holder {
           width: 25px;
           height: 25px;
         }
+        &.profile-cont {
+          .value-box {
+            padding: 0 15px 0 30px;
+          }
+        }
         .value-box {
           height: 25px;
-          padding: 0 5px 0 25px;
+          padding: 0 15px 0 30px;
           p {
             font-size: 7px;
             &.number {
@@ -3347,8 +3355,8 @@ button.xko {
       top: 40px;
 
       width: 180px;
-      height: calc(var(--vh, 1vh) * 100 - 28%) !important;
-      min-height: calc(var(--vh, 1vh) * 100 - 28%) !important;
+      height: calc(var(--vh, 1vh) * 100 - 100px) !important;
+      min-height: calc(var(--vh, 1vh) * 100 - 100px) !important;
       padding: 7px;
       .menu-switchers {
         height: 23px;
@@ -3376,7 +3384,36 @@ button.xko {
     line-height: 10px;
   }
 }
+@media screen and (max-width: 700px) and (orientation: landscape) {
+  .right-container {
+    .right-part-holder {
+      height: calc(var(--vh, 1vh) * 100 - 95px) !important;
+      min-height: calc(var(--vh, 1vh) * 100 - 95px) !important;
+    }
+  }
+  .my-nav {
+    .nav-logo {
+    }
 
+    .overview {
+      .overview-item {
+        .bubble-holder {
+          width: 20px;
+          height: 20px;
+        }
+        &.profile-cont {
+          .value-box {
+            padding: 0 10px 0 20px;
+          }
+        }
+        .value-box {
+          height: 19px;
+          padding: 0 10px 0 20px;
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .main-content {
     z-index: unset;

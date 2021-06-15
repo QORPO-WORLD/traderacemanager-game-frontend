@@ -87,8 +87,8 @@
                 </div>
               </div>
               <div class="btn-box">
-                <button *ngIf="myTeam?.can_rate_manager === true && meRated === false" class="my-cta-btn-back" (click)="rateState = 2">Rate manager</button>
-                <button *ngIf="myTeam?.can_rate_manager === false || meRated === true" class="my-cta-btn-back inactive">Rated</button>
+                <button *ngIf="myTeam?.can_rate_manager === true && meRated === false" class="my-cta-btn-back" (click)="rateState = 2">Rate</button>
+                <button *ngIf="myTeam?.can_rate_manager === false || meRated === true" class="my-cta-btn-back inactive" (click)="rateState = 2">Rated</button>
               </div>
             </ng-container>
             
@@ -242,7 +242,7 @@
         </ng-container>
         
         
-        <div class="manager-switchers" [hidden]="myDriverData?.is_manager === true">
+        <div class="manager-switchers" [hidden]="myDriverData?.is_manager === true && myDriverData?.is_owner===false">
           <div class="switch-item my-cta-btn-back" (click)="rateManagerState = 1" [ngClass]="{'inactive': rateManagerState !== 1}"></div>
           <div class="switch-item my-cta-btn-back" (click)="rateManagerState = 2" [ngClass]="{'inactive': rateManagerState !== 2}"></div>
         </div>
@@ -261,10 +261,10 @@
               <p>Name</p>
             </div>
             <div class="table-item big">
-              <p>Asset value</p>
+              <p>Turnover</p>
             </div>
             <div class="table-item big last">
-              <p>Daily stakes</p>
+              <p>Potential win</p>
             </div>
           </div>
         
@@ -283,6 +283,7 @@
             </div>
             <div class="mine-back my-cta-btn-back"></div>
           </div>
+
 
         </div>
       </div>

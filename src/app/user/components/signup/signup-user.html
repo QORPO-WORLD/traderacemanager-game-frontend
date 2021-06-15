@@ -1,5 +1,72 @@
 <div class="main-holder">
-  <div class="langswitch"><app-lang-switcher></app-lang-switcher></div>
+
+  <div class="back-btn" [routerLink]="'/user/welcome'">
+    <img
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>Back</p>
+  </div>
+
+  <div class="center-content">
+
+    <ng-container *ngIf="useMail === false">
+      <button (click)="metaSwitch = true;useMail = true" class="social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_signup' | translate}}</button>
+      <p class="or-text">{{'login.or' | translate}}</p>
+      <button class="big-cta" (click)="useMail = true">Sign Up with e-mail</button>
+    </ng-container>
+    
+
+    <form [formGroup]="registerForm" [hidden]="useMail === false">
+
+      <div class="my-input" [ngClass]="{'filled': username !== '' && username !== undefined}">
+        <img src="/assets/base/images/user-icon.svg" alt="" class="icon">
+        <input type="text" required
+          formControlName="nickname" autocomplete="off" minlength="5" maxlength="12" [(ngModel)]="username" />
+        <span class="input-placeholder">{{'login.username' | translate}}</span>
+      </div>
+      <div class="my-input" [ngClass]="{'filled': email !== '' && email !== undefined}">
+        <img src="/assets/base/images/mail-icon.svg" alt="" class="icon">
+        <input type="email" required formControlName="email"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"  autocomplete="off" [(ngModel)]="email" />
+        <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
+      </div>
+      <div class="my-input" [ngClass]="{'filled': password !== '' && password !== undefined}" *ngIf="showMmew === false">
+        <img src="/assets/base/images/lock-icon.svg" alt="" class="icon">
+        <input [type]="show" required
+          formControlName="password"  autocomplete="off" [(ngModel)]="password"  minlength="5" maxlength="20"/>
+        <span class="input-placeholder">{{'login.pass' | translate}}</span>
+        <span class="eyeball" (click)="show = 'text'" [ngClass]="{'show': show === 'password'}"><img src="/assets/base/images/pass-hidden.png"></span>
+        <span class="eyeball" (click)="show = 'password'" [ngClass]="{'show': show === 'text'}"><img src="/assets/base/images/pass-unhidden.png"></span>
+      </div>
+      <div class="my-input" [ngClass]="{'filled': referralId !== '' && referralId !== undefined}" *ngIf="referralId">
+        <input type="text" readonly autocomplete="off" [value]="referralId"/>
+          <span class="input-placeholder">Refferal</span>
+      </div>
+
+
+      <div class="register-text check"><p>
+        <input type="checkbox" [(ngModel)]="agreeChecked"  [ngModelOptions]="{standalone: true}" required id="terms" name="terms">
+        <label for="terms" class="terms">{{'login.agree_to_terms' | translate}} <a [routerLink]="['/user/terms-conditions']"
+                  title="Terms & Conditions of service">{{'login.terms_cond' | translate}}</a></label>
+      </p></div>
+<div class="register-text check" style="margin-top: 10px;"><p>
+        <input type="checkbox" [(ngModel)]="newsChecked"  [ngModelOptions]="{standalone: true}" required id="news" name="news">
+        <label for="news" class="terms">I agree to receive newsletter &amp; special offers</label>
+      </p></div>
+
+    </form>
+
+    <div class="create-box">
+      <p class="login-text">Already have an account? <span [routerLink]="'/user/sign-in'">Log in</span></p>
+      <button class="cta-button" [disabled]="agreeChecked === false" *ngIf="useMail === true && loading === false" (click)="onSubmit()">Create account</button>
+      <button class="cta-button" [disabled]="agreeChecked === false" *ngIf="useMail === true && loading === true" >Loading...</button>
+    </div>
+
+  </div>
+
+
+  <!-- <div class="langswitch"><app-lang-switcher></app-lang-switcher></div>
   <img src="/assets/base/images/logo.png" alt="Logo of traderacemanager" class="my-logo" [routerLink]="['/user/home']">
   <div class="form-holder">
     <h1 class="top-msg">{{'login.sign_up' | translate}}</h1>
@@ -31,9 +98,6 @@
           <span class="input-placeholder">Refferal</span>
       </div>
 
-   <!--   <div class="captcha-cont" *ngIf="disCap === false"> <form class="panel"  [formGroup]="reactiveForm"><re-captcha formControlName="recaptchaReactive" class="speci-captcha"></re-captcha></form></div>
-      <div class="captcha-cont" *ngIf="disCap === true"><re-captcha size="invisible" #invisible (resolved)="response = $event"></re-captcha></div>
-   -->
 
       <div class="register-text check"><p>
         <input type="checkbox" [(ngModel)]="agreeChecked"  [ngModelOptions]="{standalone: true}" required id="terms" name="terms">
@@ -50,12 +114,9 @@
     <button class="cta-button hoverable" [disabled]="agreeChecked === false" *ngIf="useMail === true && loading === false" (click)="onSubmit()">{{'shared.register_free' | translate}}</button>
     <button class="cta-button hoverable" [disabled]="agreeChecked === false" *ngIf="useMail === true && loading === true" >Loading..</button>
     <button class="cta-button hoverable" *ngIf="useMail === false" (click)="useMail = true">{{'login.mail_sign_up' | translate}}</button>
-   <!--   <span  class="or-x" *ngIf=" useMail === false">{{'login.or' | translate}}</span>
-    <button (click)="googleOauth()" class="google-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/google.png">{{'login.google_login' | translate}}</button>
-      <button (click)="facebookOauth()" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/facebook.png">{{'login.fb_login' | translate}}</button>
-
+  <span  class="or-x" *ngIf=" useMail === false">{{'login.or' | translate}}</span>
     <button  (click)="metaSwitch = true;useMail = true" class="fb-login social-button" *ngIf=" useMail === false"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_signup' | translate}}</button>
-    -->   </div>
+   </div> -->
 </div>
 
 <div class="meta-holder">

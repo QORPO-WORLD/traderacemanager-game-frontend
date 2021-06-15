@@ -23,6 +23,7 @@ export class NftOverviewComponent implements OnInit {
   allItemsBalance: number;
   allItems: any;
   allCars: any;
+  allRacers: any;
   racers: any;
   cars: any;
   tracks: any;
@@ -122,7 +123,7 @@ export class NftOverviewComponent implements OnInit {
 
   calcItems() {
     setTimeout(() => {
-      this.allItems = this.allCars + this.teamsCount;
+      this.allItems = this.allCars + this.teamsCount + this.allRacers;
     }, 1000);
   }
   width() {
@@ -161,6 +162,7 @@ export class NftOverviewComponent implements OnInit {
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       this.myAssets = data;
       this.allCars = this.myAssets.total_cars;
+      this.allRacers = this.myAssets.total_racers;
       this.carAssets = data;
       this.isOwner();
       this.teams = { name: "Racers", y: 0, color: "#00f0ff" };
