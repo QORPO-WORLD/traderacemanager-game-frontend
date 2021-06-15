@@ -53,6 +53,10 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.hide();
       this.splashScreen.hide();
+      window.addEventListener('keyboardDidShow', (event: any) => {
+        // Describe your logic which will be run each time when keyboard is about to be shown.
+        console.log(event.keyboardHeight);
+    });
       setInterval(() => {
         this.balanceService.balanceHasbeenChanged();
       }, 5000);
