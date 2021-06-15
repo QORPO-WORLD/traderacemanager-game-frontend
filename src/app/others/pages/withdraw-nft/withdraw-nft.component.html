@@ -141,3 +141,44 @@
     </div>
   </div>
 </div>
+
+<div
+  class="confirm-code-modal"
+  *ngIf="confirmed === false && confirming === true"
+>
+  <div class="inner-modal-content">
+    <div class="modal-close" [routerLink]="['/race/start-race']">
+      <img
+        src="/assets/base/images/garage/red-close-cross.svg"
+        alt="Close modal icon"
+      />
+    </div>
+
+    <div class="deposit-modal-body">
+      <h1 class="main-heading">Enter confirmation code from your email</h1>
+      <div class="input-box modal-box desc-box">
+        <div class="input-holder my-cta-btn-back">
+          <input
+            [(ngModel)]="confirmCode"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <p class="disclaim"></p>
+      </div>
+      <div class="input-box modal-box desc-box" *ngIf="myDriver?.is_using_authenticator === true">
+        <h2 class="main-heading">Enter Google Authenticator code</h2>
+        <div class="input-holder my-cta-btn-back">
+          <input
+            [(ngModel)]="authcode"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <p class="disclaim"></p>
+      </div>
+
+      <button class="confirm-btn my-cta-btn-back" (click)="confirmWithdrawal()">
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>

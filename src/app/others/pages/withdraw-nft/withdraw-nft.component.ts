@@ -1,15 +1,24 @@
+import { environment } from './../../../../environments/environment.prod';
 import { Component, OnInit } from "@angular/core";
 import { NotifiqService } from "./../../../common/services/notifiq.service";
 import { NitroWalletService, BlockchainService } from "src/app/api/services";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/user/services/auth.service";
+import { ErrorService } from "src/app/common/services/error.service";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
+};
 
 @Component({
   selector: 'app-withdraw-nft',
   templateUrl: './withdraw-nft.component.html',
   styleUrls: ['./withdraw-nft.component.scss'],
 })
+
 export class WithdrawNftComponent implements OnInit {
 
   nftId: number;
@@ -20,7 +29,10 @@ export class WithdrawNftComponent implements OnInit {
   nickname: string;
   cryptoMtfrckr = '';
   accountValue: number;
+  myDriver: any;
   amount = 1;
+  confirming = false;
+  confirmCode: string;
   products: Array<object> = [
     //bronze
     {
@@ -688,13 +700,19 @@ export class WithdrawNftComponent implements OnInit {
     private route: ActivatedRoute,
     private identityService: AuthService,
     private ntrsrvc: NitroWalletService,
-    private blcksrvc: BlockchainService
+    private blcksrvc: BlockchainService,
+    private notifyapi: ErrorService,
+    private _http: HttpClient
   ) {}
 
   ngOnInit() {
     this.getNftId();
     this.getUser();
     this.getAccountValue();
+  }
+
+  getMydriver() {
+    this.myDriver = this.identityService.getStorageIdentity();
   }
 
   getNftId() {
@@ -761,6 +779,20 @@ export class WithdrawNftComponent implements OnInit {
       }
     }
   }
+  confirmWithdrawal() {
+    this.getConfirm().subscribe({
+      next: data => this.confirmed = true,
+      error: error => this.notifyapi.apiError(error)
+    });
+  }
+
+  getConfirm() {
+    return this._http.post(environment.api_url + '/blockchain/confirm-withdrawal', {
+      confirmationHash: this.confirmCode,
+      code: this.authcode
+    },
+      httpOptions);
+  }
 
   withdrawCar() {
     this.transferSubscription = this.blcksrvc
@@ -769,12 +801,13 @@ export class WithdrawNftComponent implements OnInit {
         amount: this.amount,
         code: this.authcode,
         targetAddress: this.cryptoMtfrckr,
-        location: 'nitro'
+        location: 'races'
       }
       ).subscribe(data => {
 
         this.amount = 0;
         this.confirmed = false;
+        this.confirming = true;
       });
   }
 
