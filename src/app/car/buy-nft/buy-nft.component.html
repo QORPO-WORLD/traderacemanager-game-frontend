@@ -177,8 +177,8 @@
           <p class="value">
             {{ displayArray[0]["prize"] }} IOI <span>or</span>
             {{
-              (displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
-                myDriverBalances.matic_usdt | number: "1.0-2":"fr"
+              ((displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
+                myDriverBalances.matic_usdt) * maticFee | number: "1.0-2":"fr"
             }}
             MTC
           </p>
@@ -207,7 +207,7 @@
             {{
               ((displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
                 this.myDriverBalances.matic_usdt) *
-                amount | number: "1.0-2":"fr"
+                amount * maticFee | number: "1.0-2":"fr"
             }}
             MTC
           </p>
