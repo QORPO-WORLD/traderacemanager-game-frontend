@@ -1,0 +1,114 @@
+<div
+  #outlet
+  class="navoverlay"
+  (click)="activateMenu()"
+  [class.navoverlay-active]="isMenuActive"
+  [class.nav-active]="isMenuActive"
+></div>
+
+<div class="navigation">
+  <div class="menu">
+    <div
+      [ngClass]="{
+        'black-mode-back':
+          currentRoute === '/user/shop' || currentRoute === '/user/affiliate',
+        'white-mode-back': isMenuActive === true
+      }"
+      class="hamburger"
+      [class.open]="isMenuActive"
+      (click)="activateMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div
+      (click)="isMenuActive = false; updateRoute('/user/home')"
+      data-aos="fade-down"
+      class="logo"
+      [routerLink]="['/user/home']"
+    >
+      <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+      <p>
+        TRADE RACE
+        <span
+          [ngClass]="{
+            'black-mode-color':
+              currentRoute === '/user/shop' ||
+              currentRoute === '/user/affiliate',
+            'white-mode-color': isMenuActive === true
+          }"
+          class="dynamic-color"
+          >MANAGER</span
+        >
+      </p>
+    </div>
+
+    <div class="nav" [ngClass]="{ 'nav-active': isMenuActive === true }">
+      <div>
+        <p
+          [ngClass]="{
+            'black-mode-color':
+              currentRoute === '/user/shop' ||
+              currentRoute === '/user/affiliate'
+          }"
+          (click)="isMenuActive = false; updateRoute('/user/home')"
+          [routerLink]="['/user/home']"
+          [routerLinkActive]="'active'"
+          class="p-small dynamic-color"
+        >
+          Home
+        </p>
+      </div>
+
+      <div>
+        <p
+          [ngClass]="{
+            'black-mode-color':
+              currentRoute === '/user/shop' ||
+              currentRoute === '/user/affiliate'
+          }"
+          (click)="isMenuActive = false; updateRoute('/user/shop')"
+          [routerLink]="['/user/shop']"
+          [routerLinkActive]="'active'"
+          class="p-small dynamic-color"
+        >
+          Marketplace
+        </p>
+      </div>
+      <div>
+        <p
+          [ngClass]="{
+            'black-mode-color':
+              currentRoute === '/user/shop' ||
+              currentRoute === '/user/affiliate'
+          }"
+          (click)="isMenuActive = false; updateRoute('/user/affiliate')"
+          [routerLink]="['/user/affiliate']"
+          [routerLinkActive]="'active'"
+          class="p-small dynamic-color"
+        >
+          Affiliate
+        </p>
+      </div>
+      <div>
+        <p
+          [ngClass]="{
+            'black-mode-color':
+              currentRoute === '/user/shop' ||
+              currentRoute === '/user/affiliate'
+          }"
+          (click)="isMenuActive = false; updateRoute('/user/bundles')"
+          [routerLink]="['/user/bundles']"
+          [routerLinkActive]="'active'"
+          class="p-small dynamic-color"
+        >
+          Bundles
+        </p>
+      </div>
+      <button class="my-cta" [routerLink]="['/user/sign-in']">Play now</button>
+    </div>
+  </div>
+</div>
+<router-outlet (activate)="onActivate(outlet)"></router-outlet>

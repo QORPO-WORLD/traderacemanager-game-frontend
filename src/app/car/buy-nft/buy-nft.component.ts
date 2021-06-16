@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 })
 export class BuyNftComponent implements OnInit {
   myIndex: string;
+  maticFee = 1.05; 
 
   racers: Array<object> = [
     {
