@@ -1,0 +1,418 @@
+.black-mode-color {
+  color: black !important;
+}
+.black-mode-back {
+  span {
+    background: black !important;
+  }
+}
+.white-mode-color {
+  color: white !important;
+}
+.white-mode-back {
+  span {
+    background: white !important;
+  }
+}
+.hamburger {
+  display: none;
+  width: 45px;
+  height: 45px;
+  top: 25px;
+  right: 0px;
+  position: absolute;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2),
+.hamburger span:nth-child(3) {
+  top: 12px;
+}
+
+.hamburger span:nth-child(4) {
+  top: 24px;
+}
+
+.hamburger.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+.hamburger.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.hamburger.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+.menu {
+  z-index: 1;
+  position: absolute;
+  width: 70%;
+  margin-left: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 66px;
+  margin-right: -80px;
+
+  .nav {
+    div {
+      margin-right: 80px;
+    }
+    display: flex;
+    align-items: center;
+    .dynamic-color {
+      outline: none;
+      transition: 0.2s;
+      margin: 0;
+      color: white;
+      cursor: pointer;
+    }
+    .my-cta {
+      transition: 0.2s;
+      cursor: pointer;
+      background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
+        linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
+      border-radius: 12px;
+      border: none;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      padding: 10px 41px;
+
+      p {
+        font-size: 20px;
+        margin: 0;
+        color: white;
+      }
+    }
+    .my-cta:hover {
+      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+    }
+    .active {
+      font-weight: 700;
+    }
+  }
+  .logo {
+    width: 78px;
+    position: relative;
+    cursor: pointer;
+    img {
+      width: 78px;
+    }
+    p {
+      font-family: "True-Lies";
+      font-size: 32px;
+      color: #ff183f;
+      transform: rotate(-5deg) translateY(100%);
+      position: absolute;
+      left: -60%;
+      bottom: 0;
+      width: 200px;
+      text-align: right;
+      margin: 0;
+      -webkit-transform: rotate(-5deg) translateY(100%);
+      -moz-transform: rotate(-5deg) translateY(100%);
+      -ms-transform: rotate(-5deg) translateY(100%);
+      -o-transform: rotate(-5deg) translateY(100%);
+    }
+
+    .dynamic-color {
+      font-family: "True-Lies";
+      color: white;
+      margin-right: -30px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .hamburger {
+    display: block;
+    width: 38.5px;
+  }
+  .hamburger span {
+    height: 4px;
+  }
+  .hamburger span:nth-child(2),
+  .hamburger span:nth-child(3) {
+    top: 8px;
+  }
+
+  .hamburger span:nth-child(4) {
+    top: 16px;
+  }
+
+  .navoverlay {
+    z-index: 1;
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    background: rgb(30, 30, 30, 0.9);
+    transition: 0.2s;
+  }
+  .navoverlay-active {
+    z-index: 1;
+    position: fixed;
+
+    height: 100%;
+    width: 100%;
+  }
+  .close-menu {
+    padding: 0px;
+    margin: 0px;
+    display: block;
+    cursor: pointer;
+    z-index: 0;
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    color: white;
+    font-size: 0px;
+    transition: 0.2s;
+  }
+  .menu {
+    width: 80%;
+    margin-left: 10%;
+    height: 15%;
+    display: flex;
+    justify-content: none;
+    align-items: center;
+    padding-top: 66px;
+
+    .nav {
+      transition: 0.2s;
+      position: absolute;
+      left: 0%;
+      top: -200px;
+      //height: 0px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      div {
+        margin-right: 0;
+      }
+
+      align-items: center;
+      .dynamic-color {
+        transition: 0.2s;
+        margin: 0;
+        color: white;
+        cursor: pointer;
+      }
+      .my-cta {
+        transition: 0.2s;
+        cursor: pointer;
+        background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
+          linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        padding: 10px 41px;
+        p {
+          font-size: 20px;
+          margin: 0;
+        }
+      }
+      .my-cta:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+      }
+      .active {
+        font-weight: 700;
+      }
+      &.nav-active {
+        transition: 0.5s;
+        left: 15%;
+        width: 70%;
+        height: fit-content;
+        top: 200px;
+        z-index: 2;
+        .dynamic-color {
+          transition: 0.2s;
+          margin: 0;
+          color: white !important;
+          cursor: pointer;
+          font-size: 20px;
+        }
+        div {
+          height: 20px;
+          margin-top: 25px;
+        }
+        .my-cta {
+          margin-top: 40px;
+          transition: 0.2s;
+          padding: 10px 36px;
+          border: 0;
+          outline: 0;
+          background: linear-gradient(
+              99.76deg,
+              #fe173f 117.01%,
+              #240b36 187.56%
+            ),
+            linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
+          border-radius: 12px;
+          color: white;
+          cursor: pointer;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .logo {
+      top: 25px;
+      left: 0px;
+      position: absolute;
+      img {
+        width: 45px;
+      }
+      p {
+        width: 150px;
+        font-size: 15px;
+      }
+
+      .dynamic-color {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .hamburger {
+    top: 10px;
+  }
+  .menu {
+    width: 95%;
+    margin-left: 2.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    .logo {
+      top: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and(orientation: landscape) {
+  .hamburger {
+    width: 38.5px;
+  }
+  .hamburger span {
+    height: 4px;
+  }
+  .hamburger span:nth-child(2),
+  .hamburger span:nth-child(3) {
+    top: 8px;
+  }
+
+  .hamburger span:nth-child(4) {
+    top: 16px;
+  }
+
+  .menu {
+    .logo {
+      width: 30px;
+
+      img {
+        width: 30px;
+      }
+      p {
+        font-size: 15px;
+        left: -100%;
+        width: 100px;
+      }
+
+      .dynamic-color {
+        font-size: 15px;
+      }
+    }
+  }
+  .menu {
+    width: 85%;
+    margin-left: 7.5%;
+
+    padding-top: 20px;
+    margin-right: 0px;
+
+    .nav {
+      div {
+        margin-right: 15px;
+      }
+
+      .dynamic-color {
+        font-size: 10px;
+      }
+      .my-cta {
+        padding: 5px 20px;
+        font-size: 12px;
+      }
+      .my-cta:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+      }
+      .active {
+        font-weight: 700;
+      }
+    }
+  }
+}

@@ -8,6 +8,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home-shop.component.scss"],
 })
 export class HomeShopComponent implements OnInit {
+  menuActive = 1;
+  isMenuActive = false;
+  activeMenu = 0;
   products: Array<object> = [
     //bronze
     {
@@ -912,10 +915,6 @@ export class HomeShopComponent implements OnInit {
     this.sliceMiddle = this.inRow * this.currentPage;
     this.filter = "all";
   }
-  //NAVBAR//
-  menuActive = 1;
-  isMenuActive = false;
-  activeMenu = 0;
 
   activateMenu() {
     if (this.activeMenu === 0) {
