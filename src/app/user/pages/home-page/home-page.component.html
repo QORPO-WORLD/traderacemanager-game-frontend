@@ -5,42 +5,64 @@
 >
 
   <div class="top-section-wrapper">
-    <div class="darkerback"></div>
-    <div
-      class="navoverlay"
-      (click)="activateMenu()"
-      [class.navoverlay-active]="isMenuActive"
-      [class.nav-active]="isMenuActive"
-    ></div>
-    <div
-      class="hamburger"
-      [class.hamburgerclick]="isMenuActive"
-      (click)="activateMenu(); reset()"
-    >
-      <i class="fa fa-bars"></i>
-    </div>
+    <p class="sec-arrow right" (click)="nextCarItem()">&gt;</p>
+    <p class="sec-arrow left" (click)="prevCarItem()">&lt;</p>
+    <div class="my-carousel-item item1" [ngClass]="{'hidden': carouselStep !== 1}">
+      <div class="darkerback"></div>
+      <div
+        class="navoverlay"
+        (click)="activateMenu()"
+        [class.navoverlay-active]="isMenuActive"
+        [class.nav-active]="isMenuActive"
+      ></div>
+      <div
+        class="hamburger"
+        [class.hamburgerclick]="isMenuActive"
+        (click)="activateMenu(); reset()"
+      >
+        <i class="fa fa-bars"></i>
+      </div>
 
-    <div class="top-section">
-      <div class="menu">
-        <div class="logo" [routerLink]="['/user/home']">
-          <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
-          <p>TRADE RACE <span>MANAGER</span></p>
+      <div class="top-section">
+        <div class="menu">
+          <div class="logo" [routerLink]="['/user/home']">
+            <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+            <p>TRADE RACE <span>MANAGER</span></p>
+          </div>
+
+          <div class="nav" [class.nav-active]="isMenuActive">
+            <div>
+              <p [routerLink]="['/user/home']" class="p-small active">Home</p>
+            </div>
+
+            <div>
+              <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
+            </div>
+            <button
+              class="my-cta"
+              [routerLink]="['/user/sign-in']"
+              *ngIf="logged === false"
+            >
+              Play now
+            </button>
+            <button
+              [routerLink]="['/race/start-race']"
+              *ngIf="logged === true"
+              class="my-cta"
+            >
+              Back to game
+            </button>
+          </div>
         </div>
-
-        <div class="nav" [class.nav-active]="isMenuActive">
-          <div>
-            <p [routerLink]="['/user/home']" class="p-small active">Home</p>
-          </div>
-
-          <div>
-            <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
-          </div>
+        <div class="top-text">
+          <h4>Collectible #NFT Trading game</h4>
+          <p>Pick your racers and become the richest NFT trader in the world</p>
           <button
             class="my-cta"
-            [routerLink]="['/user/sign-in']"
+            [routerLink]="['/user/sign-up']"
             *ngIf="logged === false"
           >
-            Play now
+            Register for free
           </button>
           <button
             [routerLink]="['/race/start-race']"
@@ -50,33 +72,218 @@
             Back to game
           </button>
         </div>
+
+        <div class="google-play">
+          <a href="https://play.google.com/store/apps/details?id=ioi.game"
+            ><img
+              src="assets/base/images/home-page/google-play.png"
+              alt="google play"
+          /></a>
+        </div>
       </div>
-      <div class="top-text">
-        <h4>Collectible #NFT Trading game</h4>
-        <p>Pick your racers and become the richest NFT trader in the world</p>
-        <button
-          class="my-cta"
-          [routerLink]="['/user/sign-up']"
-          *ngIf="logged === false"
-        >
-          Register for free
-        </button>
-        <button
-          [routerLink]="['/race/start-race']"
-          *ngIf="logged === true"
-          class="my-cta"
-        >
-          Back to game
-        </button>
+    </div>
+
+    <div class="my-carousel-item item2" [ngClass]="{'hidden': carouselStep !== 2}">
+      <div
+        class="navoverlay"
+        (click)="activateMenu()"
+        [class.navoverlay-active]="isMenuActive"
+        [class.nav-active]="isMenuActive"
+      ></div>
+      <div
+        class="hamburger"
+        [class.hamburgerclick]="isMenuActive"
+        (click)="activateMenu(); reset()"
+      >
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="top-section bundle-sec">
+        <div class="menu">
+          <div class="logo" [routerLink]="['/user/home']">
+            <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+            <p>TRADE RACE <span>MANAGER</span></p>
+          </div>
+  
+          <div class="nav" [class.nav-active]="isMenuActive">
+            <div>
+              <p [routerLink]="['/user/home']" class="p-small active">Home</p>
+            </div>
+  
+            <div>
+              <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
+            </div>
+            <button
+              class="my-cta"
+              [routerLink]="['/user/sign-in']"
+              *ngIf="logged === false"
+            >
+              Play now
+            </button>
+            <button
+              [routerLink]="['/race/start-race']"
+              *ngIf="logged === true"
+              class="my-cta"
+            >
+              Back to game
+            </button>
+          </div>
+        </div>
+
+        <div class="bundle-detail">
+          <div class="top-overall">
+            <div class="name-holder back1">
+              <p class="value">Ash WSB</p>
+              <p class="desc">@ashwsbreal</p>
+            </div>
+            <div class="flex-item">
+              <div class="price">
+                <p><img src="/assets/base/images/icons/ioi-token.svg" alt=""> 1 000</p>
+              </div>
+              <button class="buy-btn">BUY</button>
+            </div>
+          </div>
+
+          <div class="stats-holder">
+            <div class="cris-cros">
+              <div></div>
+              <div class="second"></div>
+            </div>
+            <div class="stat-item">
+              <p class="value">121/500</p>
+              <p class="desc">IN STOCK</p>
+            </div>
+            <div class="stat-item">
+              <p class="value">6%</p>
+              <p class="desc">STAKING</p>
+            </div>
+            <div class="stat-item">
+              <p class="value">0,1&#36;IOI</p>
+              <p class="desc">DAILY REWARD</p>
+            </div>
+            <div class="stat-item">
+              <p class="value">PREMIUM <img class="premium-badge" src="/assets/base/images/menu/premium-icon-active.svg" alt=""></p>
+              <p class="desc">MEMBER ONLY</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bundle-carousel">
+          <div class="arrow right" (click)="nextBundleCarItem()"><img src="/assets/base/images/bundles/arrow-right.svg" alt=""></div>
+          <div class="arrow left" (click)="prevBundleCarItem()"><img src="/assets/base/images/bundles/arrow-left.svg" alt=""></div>
+
+          <div class="high-box">
+            <p class="heading">Bundle includes</p>
+          </div>
+          <div class="inner-slider" [ngStyle]="{'left.%': -((bundleCarStep - 1) * 33.333)}">
+            <ng-container *ngFor="let item of bundles; let i = index">
+              <div class="car-item" [ngClass]="{'big-item': bundleCarStep === i, 'medium-item': bundleCarStep === i - 1 || bundleCarStep === i + 1}">
+                <img [src]="'/assets/base/images/bundles/bundle' + (i + 1) + '.png'" alt="">
+                <div class="bubble car-bubble">
+                  <p>NFT CAR</p>
+                </div>
+                <div class="bubble avatar-bubble">
+                  <p>NFT AVATAR</p>
+                </div>
+              </div>
+            </ng-container>
+            
+          </div>
+        </div>
+
       </div>
 
-      <div class="google-play">
-        <a href="https://play.google.com/store/apps/details?id=ioi.game"
-          ><img
-            src="assets/base/images/home-page/google-play.png"
-            alt="google play"
-        /></a>
+    </div>
+
+    <div class="my-carousel-item item3" [ngClass]="{'hidden': carouselStep !== 3}">
+      <div class="darkerback"></div>
+      <div
+        class="navoverlay"
+        (click)="activateMenu()"
+        [class.navoverlay-active]="isMenuActive"
+        [class.nav-active]="isMenuActive"
+      ></div>
+      <div
+        class="hamburger"
+        [class.hamburgerclick]="isMenuActive"
+        (click)="activateMenu(); reset()"
+      >
+        <i class="fa fa-bars"></i>
       </div>
+
+      <div class="top-section bundle-sec">
+        <div class="menu">
+          <div class="logo" [routerLink]="['/user/home']">
+            <img src="assets/base/images/home-page/Logo.svg" alt="IOI Game" />
+            <p>TRADE RACE <span>MANAGER</span></p>
+          </div>
+  
+          <div class="nav" [class.nav-active]="isMenuActive">
+            <div>
+              <p [routerLink]="['/user/home']" class="p-small active">Home</p>
+            </div>
+  
+            <div>
+              <p [routerLink]="['/user/shop']" class="p-small">Marketplace</p>
+            </div>
+            <button
+              class="my-cta"
+              [routerLink]="['/user/sign-in']"
+              *ngIf="logged === false"
+            >
+              Play now
+            </button>
+            <button
+              [routerLink]="['/race/start-race']"
+              *ngIf="logged === true"
+              class="my-cta"
+            >
+              Back to game
+            </button>
+          </div>
+        </div>
+
+        <div class="token-detail">
+          <div class="text-holder up">
+            <p class="desc">Current Token Price:</p>
+            <p class="value">1 &#36;IOI = &#36;2.0<span class="up">15</span></p>
+            <p class="date">as of 15/06/2021  |  3:30 PM CET</p>
+          </div>
+          <div class="flex-item">
+            <div class="exchange" (click)="exSelectorOpened = !exSelectorOpened" [ngClass]="{'opened': exSelectorOpened === true}">
+              <img class="main-img" [src]="'/assets/base/images/home-page/exchange' + selectedExchange + '.png'" alt="">
+              <p class="change-text">CHANGE EXCHANGE <br> 
+                <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z" fill="white"/>
+                </svg>
+              </p>
+              <div class="selector">
+                <div class="ex-item" (click)="selectedExchange = 1" *ngIf="selectedExchange != 1">
+                  <img src="/assets/base/images/home-page/exchange1.png" alt="">
+                </div>
+                <div class="ex-item" (click)="selectedExchange = 2" *ngIf="selectedExchange != 2">
+                  <img src="/assets/base/images/home-page/exchange2.png" alt="">
+                </div>
+                <div class="ex-item" (click)="selectedExchange = 3" *ngIf="selectedExchange != 3">
+                  <img src="/assets/base/images/home-page/exchange3.png" alt="">
+                </div>
+                <div class="ex-item" (click)="selectedExchange = 4" *ngIf="selectedExchange != 4">
+                  <img src="/assets/base/images/home-page/exchange4.png" alt="">
+                </div>
+                <div class="ex-item" (click)="selectedExchange = 5" *ngIf="selectedExchange != 5">
+                  <img src="/assets/base/images/home-page/exchange5.png" alt="">
+                </div>
+              </div>
+            </div>
+            <button class="buy-btn">BUY</button>
+          </div>
+        </div>
+
+        <div class="img-holder">
+          <img src="/assets/base/images/home-page/token-ilustrate.png" alt="">
+        </div>
+
+      </div>
+
     </div>
   </div>
 

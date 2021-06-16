@@ -47,6 +47,51 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
+  bundles: Array<any> = [
+    {
+      id: 1,
+      name: 'Tehmoonwalker',
+      link: '@tehmoonwalker',
+      staking: 6,
+      reward: 0.1,
+    },
+    {
+      id: 2,
+      name: 'Ash WSB',
+      link: '@ashWSBreal',
+      staking: 6,
+      reward: 0.1,
+    },
+    {
+      id: 3,
+      name: 'DAOMaker',
+      link: '@TheDaoMaker',
+      staking: 6,
+      reward: 0.1,
+    },
+    {
+      id: 4,
+      name: 'Tehmoonwalker',
+      link: '@tehmoonwalker',
+      staking: 6,
+      reward: 0.1,
+    },
+    {
+      id: 5,
+      name: 'Tehmoonwalker',
+      link: '@tehmoonwalker',
+      staking: 6,
+      reward: 0.1,
+    },
+    {
+      id: 6,
+      name: 'Paid',
+      link: '@paid',
+      staking: 6,
+      reward: 0.1,
+    },
+  ];
+
   months: Array<object> = [
     {
       id: 1,
@@ -108,6 +153,10 @@ export class HomePageComponent implements OnInit {
   menuActive = 1;
   reviewSlide = 0;
   maxRevSlides = 2;
+  carouselStep = 3;
+  bundleCarStep = 1;
+  selectedExchange = 5;
+  exSelectorOpened = false;
   isMenuActive = false;
   activeMenu = 0;
   sliceStart: number;
@@ -308,6 +357,38 @@ export class HomePageComponent implements OnInit {
     }
     if (n === "btc-blue.png") {
       this.bitcoinName = "btc.png";
+    }
+  }
+
+  nextCarItem() {
+    if (this.carouselStep > 2) {
+      this.carouselStep = 1
+    } else {
+      this.carouselStep++;
+    }
+  }
+
+  prevCarItem() {
+    if (this.carouselStep < 2) {
+      this.carouselStep = 3
+    } else {
+      this.carouselStep--;
+    }
+  }
+
+  nextBundleCarItem() {
+    if (this.bundleCarStep > 4) {
+      this.bundleCarStep = 0
+    } else {
+      this.bundleCarStep++;
+    }
+  }
+
+  prevBundleCarItem() {
+    if (this.bundleCarStep < 1) {
+      this.bundleCarStep = 5
+    } else {
+      this.bundleCarStep--;
     }
   }
 
