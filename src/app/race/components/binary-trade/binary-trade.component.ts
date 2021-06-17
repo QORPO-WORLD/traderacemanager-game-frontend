@@ -116,7 +116,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   chartTemp: any;
   showChart = true;
   startVal: number;
-
+  myRacer: any;
+  oponentRacer: any;
   racers: Array<any> = [
     {
       id: 0,
@@ -189,6 +190,94 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       gif: "mr-rich-animation",
       sum: 0,
       pks: []
+    },
+    {
+      id: 11,
+      name: 'DAO maker',//
+      image: 'dao-maker',
+      gif: "dao-maker-animation",
+      sum: 0,
+      pks: []
+    },
+    // {
+    //   id: 12,
+    //   name: 'POLYGON',
+    //   image: 'polygon',
+    //   gif: "polygon-animation",
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 13,
+    //   name: 'OLI WHITE',
+    //   image: 'oli-white',
+    //   gif: "oli-white-animation",
+    //   sum: 0,
+    //   pks: []
+    // },
+    {
+      id: 14,
+      name: 'KYLE CHASSE',//
+      image: 'paid',
+      gif: "paid-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 15,
+      name: 'ASH WSB',//
+      image: 'ash-wsb',
+      gif: "ash-wsb-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 16,
+      name: 'tehMoonwaLkeR',//
+      image: 'tehmoonwalker',
+      gif: "tehmoonwalker-animation",
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 17,
+      name: "Parabolic Guy",//
+      image: 'parabolic-guy',
+      gif: "parabolic-guy-animation",
+      sum: 0,
+      pks: []
+    },
+    // {
+    //   id: 18,
+    //   name: 'Boxmining',
+    //   image: 'boxmining',
+    //   gif: "boxmining-animation",
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 19,
+    //   name: 'Infinity Gainz',
+    //   image: 'infinity-gainz',
+    //   gif: "infinity-gainz-animation",
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 20,
+    //   name: 'Altcoin Buzz',
+    //   image: 'altcoin-buzz',
+    //   gif: "altcoin-buzz-animation",
+    //   sum: 0,
+    //   pks: []
+    // },
+    {
+      id: 21,
+      name: 'CryptoWizard',//
+      image: 'cryptowizard',
+      gif: "cryptowizzard-animation",
+      sum: 0,
+      pks: []
     }
   ];
   @ViewChild('optionPlaced') optionPlaced: ElementRef;
@@ -241,7 +330,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.balance = this.identityService.getBalance().game_wallet_ioi;
     this.getBinaryHistory();
     this.subscribeToStream();
-
     setTimeout(() => {
       if (this.pageOpen === true) {
         // this.unityEnabled = true;
@@ -492,6 +580,23 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       }
     };
 
+  }
+
+  setAvatarImages(){
+    for(let x = 0; x < this.racers.length; x++){
+      console.log('Debug player: '+ this.players[0]+ this.players[1]);
+      if(this.players[0]?.user_id == this.racers[x].id){
+        console.log("naslo 1");
+        this.myRacer = this.racers[x];
+      }
+      if(this.players[1]?.user_id == this.racers[x].id){
+        console.log("naslo 2");
+        this.oponentRacer = this.racers[x];
+      }
+    }
+    console.log(this.myRacer);
+    console.log("jako");
+    console.log(this.oponentRacer);
   }
 
 
@@ -753,6 +858,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.locked = false;
     }, 5000);
   }
+  
 
 
   resolveAvatars(data: Array<{
@@ -783,6 +889,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     } else {
       this.players = data;
     }
+    this.setAvatarImages();
   }
 
 
