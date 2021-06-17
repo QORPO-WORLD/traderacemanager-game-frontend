@@ -71,22 +71,22 @@ export class HomePageComponent implements OnInit {
     },
     {
       id: 4,
-      name: 'Tehmoonwalker',
-      link: '@tehmoonwalker',
+      name: 'Cryptowizard',
+      link: '@CryptoWizardd',
       staking: 6,
       reward: 0.1,
     },
     {
       id: 5,
-      name: 'Tehmoonwalker',
-      link: '@tehmoonwalker',
+      name: 'Parabolic Guy',
+      link: '@GoingParabolic',
       staking: 6,
       reward: 0.1,
     },
     {
       id: 6,
-      name: 'Paid',
-      link: '@paid',
+      name: 'PAID Network',
+      link: '@paid_network',
       staking: 6,
       reward: 0.1,
     },
@@ -153,7 +153,7 @@ export class HomePageComponent implements OnInit {
   menuActive = 1;
   reviewSlide = 0;
   maxRevSlides = 2;
-  carouselStep = 2;
+  carouselStep = 1;
   bundleCarStep = 1;
   selectedExchange = 5;
   exSelectorOpened = false;

@@ -117,6 +117,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
       const live = nedata.filter(word => word.is_canceled === false);
       this.liveRacesData = live;
     });
+    console.log(this.liveRacesData);
   }
 
   getAllLiveRaces() {
@@ -128,6 +129,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
       const live = nedata.filter(word => word.is_canceled === false);
       this.liveAllRacesData = live;
     });
+    console.log(this.liveAllRacesData);
   }
 
   getAllNextRaces() {
