@@ -87,26 +87,13 @@
               />
             </div>
           </div>
+
           <div
-            [ngClass]="{ 'item-active': teamsActive === true }"
+            [ngClass]="{ 'item-active': bundlesActive === true }"
             class="item"
-            (click)="filterTeams()"
+            (click)="filterBundles()"
           >
-            <p>Teams</p>
-            <div class="checkbox">
-              <img
-                class="red-star"
-                src="assets/base/images/market/check-red.svg"
-                alt="Red check icon"
-              />
-            </div>
-          </div>
-          <div
-            [ngClass]="{ 'item-active': specialActive === true }"
-            class="item"
-            (click)="filterSpecial()"
-          >
-            <p>Special</p>
+            <p>Bundles</p>
             <div class="checkbox">
               <img
                 class="red-star"
@@ -170,25 +157,16 @@
             ></div>
             <p>Tracks</p>
           </div>
+
           <div>
             <div
-              (click)="filterTeams()"
+              (click)="filterBundles()"
               [ngClass]="{
-                'filter-active': teamsActive === true
+                'filter-active': bundlesActive === true
               }"
               class="filter-box"
             ></div>
-            <p>Teams</p>
-          </div>
-          <div>
-            <div
-              (click)="filterSpecial()"
-              [ngClass]="{
-                'filter-active': specialActive === true
-              }"
-              class="filter-box"
-            ></div>
-            <p>Special</p>
+            <p>Bundles</p>
           </div>
           <div>
             <div
@@ -282,18 +260,11 @@
               "
               [alt]="item['alt']"
             />
+
             <img
-              *ngIf="item['type'] === 'team'"
-              class="img team still"
-              [src]="
-                '/assets/base/images/home-page/' + item['image'] + '-small.png'
-              "
-              [alt]="item['alt']"
-            />
-            <img
-              *ngIf="item['type'] === 'special'"
+              *ngIf="item['type'] === 'bundle'"
               class="img special still"
-              [src]="'/assets/base/images/home-page/' + item['image'] + '.png'"
+              [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"
               [alt]="item['alt']"
             />
           </div>
@@ -337,10 +308,17 @@
             <p *ngIf="item['type'] === 'racer'" class="name">
               {{ item["name"] }}
             </p>
-            <p [ngClass]="{ gold: item['rare'] === true }" class="collection">
+            <p
+              *ngIf="item['type'] != 'bundle'"
+              [ngClass]="{ gold: item['rare'] === true }"
+              class="collection"
+            >
               {{ item["collection"] }}
             </p>
-            <p class="prize">{{ item["prize"] }}</p>
+            <p *ngIf="item['type'] === 'bundle'" class="collection">
+              {{ item["link"] }}
+            </p>
+            <p class="prize">{{ item["price"] }} IOI</p>
           </div>
         </button>
       </div>

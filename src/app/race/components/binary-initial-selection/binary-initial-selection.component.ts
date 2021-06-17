@@ -21,7 +21,6 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   opponentPlayer: any;
   automatchLoading = false;
   menuOpen = false;
-
   racers: Array<any> = [
     {
       id: 1,
@@ -76,6 +75,83 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       id: 8,
       name: 'Mr. Rich',
       image: 'mr-rich',
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 11,
+      name: 'DAO maker',//
+      image: 'dao-maker',
+      sum: 0,
+      pks: []
+    },
+    // {
+    //   id: 12,
+    //   name: 'POLYGON',
+    //   image: 'mr-rich',
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 13,
+    //   name: 'OLI WHITE',
+    //   image: 'mr-rich',
+    //   sum: 0,
+    //   pks: []
+    // },
+    {
+      id: 14,
+      name: 'KYLE CHASSE',//
+      image: 'paid',
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 15,
+      name: 'ASH WSB',//
+      image: 'ash-wsb',
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 16,
+      name: 'tehMoonwaLkeR',//
+      image: 'tehmoonwalker',
+      sum: 0,
+      pks: []
+    },
+    {
+      id: 17,
+      name: "Parabolic Guy",//
+      image: 'parabolic-guy',
+      sum: 0,
+      pks: []
+    },
+    // {
+    //   id: 18,
+    //   name: 'Boxmining',
+    //   image: 'mr-rich',
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 19,
+    //   name: 'Infinity Gainz',
+    //   image: 'mr-rich',
+    //   sum: 0,
+    //   pks: []
+    // },
+    // {
+    //   id: 20,
+    //   name: 'Altcoin Buzz',
+    //   image: 'mr-rich',
+    //   sum: 0,
+    //   pks: []
+    // },
+    {
+      id: 21,
+      name: 'CryptoWizard',//
+      image: 'cryptowizard',
       sum: 0,
       pks: []
     }
@@ -175,13 +251,34 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
     this.initialSubscribtion = this.carService.carsMineList().subscribe(
       data => {
         this.myAssets = data.racers;
+        console.log(data.racers);
 
         for (let x = 0; x < data.racers.length; x++) {
-          this.racers[data.racers[x].car_id - 1].sum++;
-          this.racers[data.racers[x].car_id - 1].pks.push(
-            data.racers[x].pk
-          );
+          for(let y = 0; y < this.racers.length; y++){
+            if(this.racers[y].id==data.racers[x].car_id){
+              this.racers[y].sum++;
+              this.racers[y].pks.push(
+              data.racers[x].pk);
+              break;
+            }
+          }
         }
+        console.log(this.racers);
+
+        // for (let x = 0; x < data.racers.length; x++) {
+        //   if(data.racers[x].car_id - 1 <= 8){
+        //     this.racers[data.racers[x].car_id - 1].sum++;
+        //     this.racers[data.racers[x].car_id - 1].pks.push(
+        //       data.racers[x].pk
+        //     );
+        //   }
+        //   else{
+        //     this.racers[data.racers[x].car_id - 3].sum++;
+        //     this.racers[data.racers[x].car_id - 3].pks.push(
+        //       data.racers[x].pk
+        //     );
+        //   }
+        // }
 
         const obj = {
           id: 0,
