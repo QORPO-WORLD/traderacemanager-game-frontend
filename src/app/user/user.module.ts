@@ -52,6 +52,7 @@ import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-poli
 import { TermsConditionsComponent } from "./components/terms-conditions/terms-conditions.component";
 import { WelcomePageComponent } from "./components/welcome-page/welcome-page.component";
 import { HomepageLayoutComponent } from "../common/components/layout/homepage-layout/homepage-layout.component";
+import { HomeBundleDetailComponent } from './pages/home-bundle-detail/home-bundle-detail.component';
 
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
@@ -91,6 +92,11 @@ const routes: Routes = [
         component: HomeBundlesComponent,
         data: { title: "Bundles" },
       },
+      {
+        path: "bundle-detail",
+        component: HomeBundleDetailComponent,
+        data: { title: "Bundle detail" },
+      }
     ],
   },
   {
@@ -212,6 +218,7 @@ const routes: Routes = [
     HomeAffiliateComponent,
     HomeBundlesComponent,
     HomepageLayoutComponent,
+    HomeBundleDetailComponent
   ],
   providers: [
     AutologinGuard,
