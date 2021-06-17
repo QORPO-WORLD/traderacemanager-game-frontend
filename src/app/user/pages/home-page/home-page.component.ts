@@ -153,7 +153,7 @@ export class HomePageComponent implements OnInit {
   menuActive = 1;
   reviewSlide = 0;
   maxRevSlides = 2;
-  carouselStep = 3;
+  carouselStep = 2;
   bundleCarStep = 1;
   selectedExchange = 5;
   exSelectorOpened = false;
@@ -165,6 +165,7 @@ export class HomePageComponent implements OnInit {
   actualMonth: any;
   monthsStart = 0;
   monthsEnd: any;
+  carouselInterval: any;
   logged = false;
   getMonth() {
     var today = new Date();
@@ -204,7 +205,11 @@ export class HomePageComponent implements OnInit {
     if (token) {
       this.logged = true;
     }
+    this.setCarInterval();
+  }
 
+  ngOnDestroy(): void {
+    clearInterval(this.carouselInterval);
   }
 
   width() {
@@ -374,6 +379,18 @@ export class HomePageComponent implements OnInit {
     } else {
       this.carouselStep--;
     }
+  }
+
+  manualCarSwitch(index: number) {
+    this.carouselStep = index;
+    clearInterval(this.carouselInterval);
+    // this.setCarInterval();
+  }
+
+  setCarInterval() {
+    this.carouselInterval = setInterval(() => {
+      this.nextCarItem();
+    }, 7000);
   }
 
   nextBundleCarItem() {

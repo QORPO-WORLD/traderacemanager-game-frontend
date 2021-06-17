@@ -4,8 +4,6 @@
   [class.disable-scroll]="isMenuActive"
 >
   <div class="top-section-wrapper">
-    <p class="sec-arrow right" (click)="nextCarItem()">&gt;</p>
-    <p class="sec-arrow left" (click)="prevCarItem()">&lt;</p>
     <div class="my-carousel-item item1" [ngClass]="{'hidden': carouselStep !== 1}">
       <div class="darkerback"></div>
 
@@ -45,8 +43,8 @@
         <div class="bundle-detail">
           <div class="top-overall">
             <div class="name-holder back1">
-              <p class="value">Ash WSB</p>
-              <p class="desc">@ashwsbreal</p>
+              <p class="value">{{ bundles[bundleCarStep].name }}</p>
+              <p class="desc">{{ bundles[bundleCarStep].link }}</p>
             </div>
             <div class="flex-item">
               <div class="price">
@@ -62,8 +60,8 @@
               <div class="second"></div>
             </div>
             <div class="stat-item">
-              <p class="value">121/500</p>
-              <p class="desc">IN STOCK</p>
+              <p class="value">100pcs</p>
+              <p class="desc">LIMITED AMOUNT</p>
             </div>
             <div class="stat-item">
               <p class="value">6%</p>
@@ -154,6 +152,12 @@
 
       </div>
 
+    </div>
+
+    <div class="car-switchers">
+      <div class="switch-item" [ngClass]="{'active': carouselStep === 1}" (click)="manualCarSwitch(1)"></div>
+      <div class="switch-item" [ngClass]="{'active': carouselStep === 2}" (click)="manualCarSwitch(2)"></div>
+      <div class="switch-item" [ngClass]="{'active': carouselStep === 3}" (click)="manualCarSwitch(3)"></div>
     </div>
   </div>
 
