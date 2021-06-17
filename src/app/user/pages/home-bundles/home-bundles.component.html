@@ -1,2 +1,57 @@
 <div class="bundles-back"></div>
-<div class="bundles-content"></div>
+<div class="bundles-content">
+  <div class="content">
+    <div class="left-content">
+      <p class="category-title-second">Limited</p>
+      <p class="category-title-big">BUNDLES</p>
+      <p class="races-desc">
+        Get a NFT car and an avatar of your favourite influencer in our limited
+        bundles! Increase your daily income thanks to daily stakes today.
+      </p>
+    </div>
+    <div class="right-content">
+      <div class="boxes">
+        <div *ngFor="let item of bundles" class="box">
+          <div class="box-image">
+            <img
+              [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"
+              alt="items in bundle"
+            />
+          </div>
+          <div
+            class="social"
+            [ngStyle]="{
+              background:
+                'url(/assets/base/images/bundles/' + item['back'] + '.png)'
+            }"
+          >
+            <img
+              class="twitter"
+              src="/assets/base/images/icons/twitter-icon.svg"
+              alt="twitter logo"
+            />
+            <img
+              class="avatar"
+              [src]="'/assets/base/images/bundles/' + item['avatar'] + '.png'"
+              alt="influencer avatar"
+            />
+            <div class="text">
+              <p class="category-title-third name">{{ item["name"] }}</p>
+              <p class="races-desc link">{{ item["link"] }}</p>
+            </div>
+          </div>
+          <div class="box-buttons">
+            <button class="price">
+              <img
+                src="/assets/base/images/icons/ioi-big.svg"
+                alt="ioi token"
+              />
+              {{ item["price"] }}
+            </button>
+            <button class="pieces">{{ item["pieces"] }} pcs.</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
