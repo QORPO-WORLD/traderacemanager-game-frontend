@@ -69,7 +69,7 @@ export class HomeBundlesComponent implements OnInit {
     },
     {
       id: 6,
-      name: "PAID Network",
+      name: "Kyle Chasse",
       link: "@kyle_chasse",
       staking: 6,
       reward: 0.1,

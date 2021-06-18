@@ -17,10 +17,12 @@ export class HomepageLayoutComponent implements OnInit {
   isMenuActive = false;
   activeMenu = 0;
   constructor(private router: Router) {
-    this.currentRoute = router.url;
+    this.currentRoute = this.router.url.split("?")[0];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.currentRoute);
+  }
 
   onActivate(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "auto", block: "start" });

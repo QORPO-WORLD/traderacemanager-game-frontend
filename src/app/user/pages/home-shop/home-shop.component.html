@@ -199,19 +199,21 @@
               item['name'] === 'IOI'
           }"
           [routerLink]="
-            item['name'] === 'BTC' ||
-            item['name'] === 'ALT' ||
-            item['name'] === 'IOI'
-              ? null
+            item['type'] === 'bundle'
+              ? ['/user/bundle-detail']
               : ['/nft-detail']
           "
-          [queryParams]="{
-            type: item['type'],
-            id: item['id'],
-            page: currentPage,
-            startPage: isPaged,
-            filter: filter
-          }"
+          [queryParams]="
+            item['type'] === 'bundle'
+              ? { id: item['position'] }
+              : {
+                  type: item['type'],
+                  id: item['id'],
+                  page: currentPage,
+                  startPage: isPaged,
+                  filter: filter
+                }
+          "
           [disabled]="
             item['name'] === 'BTC' ||
             item['name'] === 'ALT' ||
