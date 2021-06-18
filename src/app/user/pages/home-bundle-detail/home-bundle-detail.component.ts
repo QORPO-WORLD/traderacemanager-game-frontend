@@ -1,73 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-home-bundle-detail',
-  templateUrl: './home-bundle-detail.component.html',
-  styleUrls: ['./home-bundle-detail.component.scss'],
+  selector: "app-home-bundle-detail",
+  templateUrl: "./home-bundle-detail.component.html",
+  styleUrls: ["./home-bundle-detail.component.scss"],
 })
 export class HomeBundleDetailComponent implements OnInit {
-
+  bundleBack: string;
+  backTo: string;
   bundles: Array<any> = [
     {
       id: 1,
-      name: 'Tehmoonwalker',
+      name: "Tehmoonwalker",
       carId: 46,
-      avatarName: 'tehmoonwalker'
+      avatarName: "tehmoonwalker",
     },
     {
       id: 2,
-      name: 'Ash WSB',
+      name: "Ash WSB",
       carId: 45,
-      avatarName: 'ash-wsb'
+      avatarName: "ash-wsb",
     },
     {
       id: 3,
-      name: 'DAOMaker',
+      name: "DAOMaker",
       carId: 41,
-      avatarName: 'dao-maker'
+      avatarName: "dao-maker",
     },
     {
       id: 4,
-      name: 'Cryptowizard',
+      name: "Cryptowizard",
       carId: 51,
-      avatarName: 'cryptowizard'
+      avatarName: "cryptowizard",
     },
     {
       id: 5,
-      name: 'Parabolic Guy',
+      name: "Parabolic Guy",
       carId: 47,
-      avatarName: 'parabolic-guy'
+      avatarName: "parabolic-guy",
     },
     {
       id: 6,
-      name: 'Kyle Chasse',
+      name: "Kyle Chasse",
       carId: 44,
-      avatarName: 'paid'
+      avatarName: "paid",
     },
     {
       id: 7,
-      name: 'Shreyansh',
+      name: "Shreyansh",
       carId: 42,
-      avatarName: 'polygon'
-    }
+      avatarName: "polygon",
+    },
   ];
 
   bundleId = 1;
   typeObserver: Subscription;
 
-  constructor(private route: ActivatedRoute,) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.getAssetType();
   }
-  
+
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
       this.bundleId = params["id"];
-      console.log(this.bundleId);
+      this.bundleBack = params["back"];
+      console.log(this.bundleBack);
+      this.backTo = this.bundleBack;
     });
   }
-
 }
