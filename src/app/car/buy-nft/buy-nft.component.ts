@@ -385,57 +385,52 @@ export class BuyNftComponent implements OnInit {
   bundles: Array<object> = [
     {
       id: 43,
-      name: 'Tehmoonwalker',
-      imageId: 1,
-      carId: 46,
+      name: 'DAOMaker',
+      imageId: 3,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 6 },
-      avatarName: 'tehmoonwalker'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 1 }
     },
     {
       id: 44,
-      name: 'Ash WSB',
-      imageId: 2,
-      carId: 45,
+      name: 'Shreyansh Polygon',
+      imageId: 7,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 5 },
-      avatarName: 'ash-wsb'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 2 }
     },
     {
       id: 45,
-      name: 'DAOMaker',
-      imageId: 3,
-      carId: 41,
+      name: 'KYLE CHASSE',
+      imageId: 6,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 1 },
-      avatarName: 'dao-maker'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 4 }
     },
     {
       id: 46,
-      name: 'Cryptowizard',
-      imageId: 4,
-      carId: 51,
+      name: 'Ash WSB',
+      imageId: 2,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 11 },
-      avatarName: 'cryptowizard'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 5 }
     },
     {
       id: 47,
-      name: 'Parabolic Guy',
-      imageId: 5,
-      carId: 47,
+      name: 'Tehmoonwalker',
+      imageId: 1,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 7 },
-      avatarName: 'parabolic-guy'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 6 }
     },
     {
       id: 48,
-      name: 'KYLE CHASSE',
-      imageId: 6,
-      carId: 44,
+      name: 'Parabolic Guy',
+      imageId: 5,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 4 },
-      avatarName: 'paid'
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 7 }
+    },
+    {
+      id: 49,
+      name: 'Cryptowizard',
+      imageId: 4,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 11 }
     }
   ];
 

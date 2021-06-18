@@ -50,7 +50,10 @@
               <div class="price">
                 <p><img src="/assets/base/images/icons/ioi-token.svg" alt=""> 1 000</p>
               </div>
-              <button class="buy-btn" [routerLink]="['/user/bundle-detail']" [queryParams]="{ id: bundles[bundleCarStep].id }">BUY</button>
+              <button class="buy-btn" [routerLink]="['/user/bundle-detail']" [queryParams]="{ id: bundles[bundleCarStep].id }">
+                <span>BUY</span>
+                <div class="hover-overlay"></div>
+              </button>
             </div>
           </div>
 
@@ -88,7 +91,7 @@
           <div class="inner-slider" [ngStyle]="{'left.%': -((bundleCarStep - 1) * 33.333)}">
             <ng-container *ngFor="let item of bundles; let i = index">
               <div class="car-item" [ngClass]="{'big-item': bundleCarStep === i, 'medium-item': bundleCarStep === i - 1 || bundleCarStep === i + 1}">
-                <img [src]="'/assets/base/images/bundles/bundle' + (i + 1) + '.png'" alt="">
+                <img [src]="'/assets/base/images/bundles/bundle' + (i + 1) + '.png'" alt=""  [routerLink]="['/user/bundle-detail']" [queryParams]="{ id: bundles[bundleCarStep].id }">
                 <div class="bubble car-bubble">
                   <p>NFT CAR</p>
                 </div>
@@ -142,7 +145,10 @@
                 </div>
               </div>
             </div>
-            <button class="buy-btn">BUY</button>
+            <button class="buy-btn">
+              <span>BUY</span>
+              <div class="hover-overlay"></div>
+            </button>
           </div>
         </div>
 

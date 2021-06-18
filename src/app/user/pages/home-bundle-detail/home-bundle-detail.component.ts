@@ -42,10 +42,16 @@ export class HomeBundleDetailComponent implements OnInit {
     },
     {
       id: 6,
-      name: 'PAID Network',
+      name: 'Kyle Chasse',
       carId: 44,
       avatarName: 'paid'
     },
+    {
+      id: 7,
+      name: 'Shreyansh',
+      carId: 42,
+      avatarName: 'polygon'
+    }
   ];
 
   bundleId = 1;

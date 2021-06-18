@@ -92,6 +92,13 @@ export class HomePageComponent implements OnInit {
       staking: 6,
       reward: 0.1,
     },
+    {
+      id: 7,
+      name: 'Shreyansh',
+      link: '@shreyansh_27',
+      staking: 6,
+      reward: 0.1,
+    }
   ];
 
   months: Array<object> = [
@@ -405,7 +412,7 @@ export class HomePageComponent implements OnInit {
   }
 
   nextBundleCarItem() {
-    if (this.bundleCarStep > 4) {
+    if (this.bundleCarStep > 5) {
       this.bundleCarStep = 0
     } else {
       this.bundleCarStep++;
@@ -414,7 +421,7 @@ export class HomePageComponent implements OnInit {
 
   prevBundleCarItem() {
     if (this.bundleCarStep < 1) {
-      this.bundleCarStep = 5
+      this.bundleCarStep = 6
     } else {
       this.bundleCarStep--;
     }
