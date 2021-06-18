@@ -63,7 +63,11 @@ exports.handler = (event, context, callback) => {
     "/other/deposit-nft",
     "/other/transfer",
     "/other/withdraw",
-    "/race/race-selection"
+    "/user/welcome/",
+    "/race/race-selection",
+    "/user/bundles",
+    "/user/bundle-detail",
+    "/user/affiliate",
   ];
 
   if (

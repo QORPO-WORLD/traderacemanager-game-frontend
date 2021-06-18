@@ -441,4 +441,9 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  openLink(url: string) {
+    window.open(url, "_blank").focus();
+  }
+
+
 }
