@@ -364,6 +364,79 @@ export class BuyNftComponent implements OnInit {
       image: "track",
       extras: { stake: "0.1", roi: "6" },
     },
+    {
+      id: 41,
+      collection: "Race tracks",
+      name: "Space Race",
+      prize: "1152",
+      image: "track",
+      extras: { stake: "0.1", roi: "6" },
+    },
+    {
+      id: 42,
+      collection: "Race tracks",
+      name: "Space Race",
+      prize: "1152",
+      image: "track",
+      extras: { stake: "0.1", roi: "6" },
+    }
+  ];
+
+  bundles: Array<object> = [
+    {
+      id: 43,
+      name: 'Tehmoonwalker',
+      imageId: 1,
+      carId: 46,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 6 },
+      avatarName: 'tehmoonwalker'
+    },
+    {
+      id: 44,
+      name: 'Ash WSB',
+      imageId: 2,
+      carId: 45,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 5 },
+      avatarName: 'ash-wsb'
+    },
+    {
+      id: 45,
+      name: 'DAOMaker',
+      imageId: 3,
+      carId: 41,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 1 },
+      avatarName: 'dao-maker'
+    },
+    {
+      id: 46,
+      name: 'Cryptowizard',
+      imageId: 4,
+      carId: 51,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 11 },
+      avatarName: 'cryptowizard'
+    },
+    {
+      id: 47,
+      name: 'Parabolic Guy',
+      imageId: 5,
+      carId: 47,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 7 },
+      avatarName: 'parabolic-guy'
+    },
+    {
+      id: 48,
+      name: 'KYLE CHASSE',
+      imageId: 6,
+      carId: 44,
+      prize: '1 000',
+      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 4 },
+      avatarName: 'paid'
+    }
   ];
 
   displayArray = [];
@@ -394,6 +467,9 @@ export class BuyNftComponent implements OnInit {
     }
     if (this.assetType === "track") {
       this.displayArray = this.tracks;
+    }
+    if (this.assetType === "bundle") {
+      this.displayArray = this.bundles;
     }
     this.displayArray = this.displayArray.filter(
       (asset) => asset.id === this.assetId
@@ -427,6 +503,10 @@ export class BuyNftComponent implements OnInit {
           }, 1000);
         });
 
+      return;
+    }
+    if (this.assetType === 'bundle') {
+      this.buyPackageNfts(index);
       return;
     }
     this.api
