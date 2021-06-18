@@ -89,7 +89,10 @@
       Trophy is a special price that you can win every year. If you want to win
       this trophy, you need at least one ring from monthly tournaments.
     </p>
-    <div class="text-buttons">
+    <div
+      *ngIf="displayArray[0]['collection'] != 'Special'"
+      class="text-buttons"
+    >
       <button
         [routerLink]="['/other/deposit-nft']"
         [queryParams]="
@@ -145,9 +148,17 @@
   </div>
   <div class="detail-image">
     <img
-      *ngIf="displayArray[0]['type'] === 'car'"
+      *ngIf="displayArray[0]['type'] === 'car' && displayArray[0]['gif']"
       class="car-gif"
       [src]="'/assets/base/images/nft-cars/' + displayArray[0]['gif'] + '.gif'"
+      [alt]="displayArray[0]['alt']"
+    />
+    <img
+      *ngIf="displayArray[0]['type'] === 'car' && !displayArray[0]['gif']"
+      class="car-gif"
+      [src]="
+        '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
+      "
       [alt]="displayArray[0]['alt']"
     />
     <img

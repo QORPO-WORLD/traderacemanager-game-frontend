@@ -67,8 +67,8 @@
       >
         <img
           class="filter-icon"
-          src="assets/base/images/icons/crown-icon.svg"
-          alt="crown icon"
+          src="assets/base/images/icons/trophy.svg"
+          alt="trophy icon"
         />
         <p class="category-title-first">SPECIALS</p>
         <div class="active-border my-cta-btn-back"></div>
@@ -103,24 +103,28 @@
       >
         <div class="box-content">
           <img
+            [ngClass]="{ 'nogif-special': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'racer'"
             class="img racer"
             [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
           <img
+            [ngClass]="{ 'gif-special': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'racer'"
             class="img gif-racer"
             [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
             [alt]="item['alt']"
           />
           <img
+            [ngClass]="{ 'nogif-special': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
             class="img car"
             [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
           <img
+            [ngClass]="{ 'gif-special': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
             class="img gif-car"
             [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
@@ -279,8 +283,8 @@
       >
         <img
           class="filter-icon"
-          src="assets/base/images/icons/crown-icon.svg"
-          alt="crown icon"
+          src="assets/base/images/icons/trophy.svg"
+          alt="trophy icon"
         />
         <p class="category-title-first">SPECIALS</p>
         <div class="active-border my-cta-btn-back"></div>
