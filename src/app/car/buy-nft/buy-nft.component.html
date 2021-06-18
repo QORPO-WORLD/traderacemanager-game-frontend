@@ -75,7 +75,7 @@
 
     <div
       class="asset-preview car-preview"
-      *ngIf="assetType === 'car' || assetType === 'track'"
+      *ngIf="assetType === 'car' || assetType === 'track' || assetType === 'bundle'"
     >
       <div class="asset-img">
         <img
@@ -92,9 +92,15 @@
           alt=""
           *ngIf="assetType === 'track'"
         />
+        <img
+          class="img"
+          [src]="'/assets/base/images/bundles/bundle' + displayArray[0]['imageId'] + '.png'"
+          alt=""
+          *ngIf="assetType === 'bundle'"
+        />
       </div>
       <div class="car-ability-boxes">
-        <div class="ability-box">
+        <div class="ability-box" *ngIf="assetType !== 'bundle'">
           <p class="heading">IOI value</p>
           <div class="slider-holder">
             <p>{{ displayArray[0]["prize"] }}</p>
@@ -113,6 +119,28 @@
               ></div>
             </div>
             <p>15 600</p>
+          </div>
+        </div>
+
+        <div class="ability-box" *ngIf="assetType === 'bundle'">
+          <p class="heading">NFT</p>
+          <div class="slider-holder">
+            <p>3%</p>
+            <div class="ab-slider">
+              <div
+                class="inner-slider blue-box-shop"
+                [ngStyle]="{
+                  'width.%': (displayArray[0]['extras'].nft * 100) / 20
+                }"
+              ></div>
+              <div
+                class="inner-slider red-box-shop"
+                [ngStyle]="{
+                  'width.%': (displayArray[0]['extras'].nft * 100) / 20
+                }"
+              ></div>
+            </div>
+            <p>20%</p>
           </div>
         </div>
 
@@ -168,7 +196,7 @@
         <p class="racer-name">{{ displayArray[0]["name"] }}</p>
       </div>
       <div class="summary-table">
-        <div class="summary-item">
+        <div class="summary-item" *ngIf="assetType !== 'bundle'">
           <p class="desc">Collection</p>
           <p class="value">{{ displayArray[0]["collection"] }}</p>
         </div>
@@ -218,7 +246,7 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            (assetType === 'car' || assetType === 'racer') &&
+            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
             !displayArray[0]['rare'] &&
             myDriverBalances?.game_wallet_ioi * amount >=
               displayArray[0]['extras'].value
@@ -234,7 +262,7 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            (assetType === 'car' || assetType === 'racer') &&
+            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
             !displayArray[0]['rare'] &&
             myDriverBalances?.game_wallet_ioi * amount <
               displayArray[0]['extras'].value
@@ -249,7 +277,7 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            (assetType === 'car' || assetType === 'racer') &&
+            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
             !displayArray[0]['rare'] &&
             ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
               myDriverBalances?.matic_usdt) *
@@ -267,7 +295,7 @@
         <button
           class="buy-nft my-cta-btn-back hoverable"
           *ngIf="
-            (assetType === 'car' || assetType === 'racer') &&
+            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
             !displayArray[0]['rare'] &&
             ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
               myDriverBalances?.matic_usdt) *
@@ -283,7 +311,7 @@
 
         <button
           class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="assetType !== 'car' && assetType !== 'racer'"
+          *ngIf="assetType !== 'car' && assetType !== 'racer' && assetType !== 'bundle'"
         >
           Buy with IOI
         </button>

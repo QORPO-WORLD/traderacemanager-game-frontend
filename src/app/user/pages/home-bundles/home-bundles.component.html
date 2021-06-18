@@ -11,7 +11,7 @@
     </div>
     <div class="right-content">
       <div class="boxes">
-        <div *ngFor="let item of bundles" class="box">
+        <div *ngFor="let item of bundles; let i = index" class="box"  [routerLink]="['/user/bundle-detail']" [queryParams]="{ id: bundles[i]['id'] }">
           <div class="box-image">
             <img
               [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"

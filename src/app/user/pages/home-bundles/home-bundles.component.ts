@@ -76,7 +76,7 @@ export class HomeBundlesComponent implements OnInit {
       price: 1000,
       pieces: 100,
       image: "bundle6",
-      avatar: "paid-avatar",
+      avatar: "paid_avatar",
       back: "paid-back",
     },
   ];
