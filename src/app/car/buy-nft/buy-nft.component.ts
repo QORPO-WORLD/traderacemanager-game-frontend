@@ -388,49 +388,49 @@ export class BuyNftComponent implements OnInit {
       name: 'DAOMaker',
       imageId: 3,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 1 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 1 }
     },
     {
       id: 44,
       name: 'Shreyansh Polygon',
       imageId: 7,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 2 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 2 }
     },
     {
       id: 45,
       name: 'KYLE CHASSE',
       imageId: 6,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 4 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 4 }
     },
     {
       id: 46,
       name: 'Ash WSB',
       imageId: 2,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 5 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 5 }
     },
     {
       id: 47,
       name: 'Tehmoonwalker',
       imageId: 1,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 6 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 6 }
     },
     {
       id: 48,
       name: 'Parabolic Guy',
       imageId: 5,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 7 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 7 }
     },
     {
       id: 49,
       name: 'Cryptowizard',
       imageId: 4,
       prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "3", value: 1000, buy_id: 11 }
+      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 11 }
     }
   ];
 
