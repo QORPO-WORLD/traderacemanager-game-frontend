@@ -199,14 +199,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: []
     },
-    // {
-    //   id: 12,
-    //   name: 'POLYGON',
-    //   image: 'polygon',
-    //   gif: "polygon-animation",
-    //   sum: 0,
-    //   pks: []
-    // },
+    {
+      id: 12,
+      name: 'POLYGON',
+      image: 'polygon',
+      gif: "polygon-animation",
+      sum: 0,
+      pks: []
+    },
     // {
     //   id: 13,
     //   name: 'OLI WHITE',
