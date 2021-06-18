@@ -446,6 +446,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 1,
+      position: 0,
       collection: "Super",
       name: "Axle",
       price: "100",
@@ -461,6 +462,7 @@ export class NftMarketComponent implements OnInit {
 
     {
       id: 2,
+      position: 1,
       collection: "Super",
       name: "Flash",
       price: "100",
@@ -475,6 +477,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 3,
+      position: 2,
       collection: "Super",
       name: "Octane",
       price: "100",
@@ -489,6 +492,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 4,
+      position: 3,
       collection: "Super",
       name: "Punisher",
       price: "100",
@@ -503,6 +507,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 5,
+      position: 4,
       collection: "Epic",
       name: "Lady Rich",
       price: "1 000",
@@ -517,6 +522,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 6,
+      position: 5,
       collection: "Epic",
       name: "Rich Jr.",
       price: "1 000",
@@ -531,6 +537,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 7,
+      position: 6,
       collection: "Epic",
       name: "Mrs. Rich",
       price: "1 000",
@@ -545,6 +552,7 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 8,
+      position: 7,
       collection: "Legendary",
       name: "Mr. Rich",
       price: "10 000",
@@ -637,27 +645,106 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track underground",
     },
     {
+      id: 43,
+      position: 5,
+      type: "bundle",
+      name: "Tehmoonwalker",
+      link: "@tehMoonwalkeR",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle1",
+      racer: "tehmoonwalker",
+      car: "car46",
+      avatar: "tehmoon-avatar",
+      back: "tehmoon-back",
+    },
+    {
+      id: 44,
+      position: 4,
+      type: "bundle",
+      name: "Ash WSB",
+      link: "@ashWSBreal",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle2",
+      racer: "ash-wsb",
+      car: "car45",
+      avatar: "ash-avatar",
+      back: "ash-back",
+    },
+    {
+      id: 45,
+      position: 0,
+      type: "bundle",
+      name: "DAOMaker",
+      link: "@TheDaoMaker",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle3",
+      racer: "dao-maker",
+      car: "car41",
+      avatar: "dao-avatar",
+      back: "dao-back",
+    },
+    {
+      id: 46,
+      position: 10,
+      type: "bundle",
+      name: "Cryptowizard",
+      link: "@CryptoWizardd",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle4",
+      racer: "cryptowizard",
+      car: "car51",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
+    {
       id: 47,
-      collection: "",
-      name: "Trophy",
-      price: "",
-      image: "trophy",
-      type: "special",
-      ability2: "Yearly",
-      amount: [],
-      alt: "nft yearly trophy",
+      position: 6,
+      type: "bundle",
+      name: "Parabolic Guy",
+      link: "@GoingParabolic",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle5",
+      racer: "parabolic-guy",
+      car: "car47",
+      avatar: "parabolic-avatar",
+      back: "parabolic-back",
     },
     {
       id: 48,
-      collection: "",
-      name: "Ring",
-      price: "",
-      image: "ring",
-      type: "special",
-      ability1: "Entry to yearly tournament",
-      ability2: "Monthly",
-      amount: [],
-      alt: "nft monthly ring",
+      position: 3,
+      type: "bundle",
+      name: "Kyle Chasse",
+      link: "@kyle_chasse",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle6",
+      racer: "paid",
+      car: "car44",
+      avatar: "paid-avatar",
+      back: "paid-back",
     },
   ];
   title = "All";
@@ -667,7 +754,7 @@ export class NftMarketComponent implements OnInit {
   carsActive = false;
   tracksActive = false;
   teamsActive = false;
-  specialActive = false;
+  bundlesActive = false;
   allActive = true;
   sliceStart: number;
   sliceMiddle: number;
@@ -718,8 +805,8 @@ export class NftMarketComponent implements OnInit {
         this.filterTracks();
       }
 
-      if (this.assetType === "special") {
-        this.filterSpecial();
+      if (this.assetType === "bundle") {
+        this.filterBundles();
       }
     });
   }
@@ -766,7 +853,7 @@ export class NftMarketComponent implements OnInit {
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.specialActive = false;
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -785,7 +872,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.specialActive = false;
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -803,7 +890,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.specialActive = false;
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
@@ -812,10 +899,10 @@ export class NftMarketComponent implements OnInit {
     this.title = "Tracks";
   }
 
-  filterSpecial() {
+  filterBundles() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter(
-      (item) => item["type"] === "special"
+      (item) => item["type"] === "bundle"
     );
 
     this.width();
@@ -823,14 +910,14 @@ export class NftMarketComponent implements OnInit {
     this.carsActive = false;
     this.racersActive = false;
     this.teamsActive = false;
-    this.specialActive = true;
+    this.bundlesActive = true;
     this.allActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.title = "Specials";
+    this.title = "Bundles";
   }
   filterAll() {
     this.newProducts = this.products;
@@ -841,7 +928,7 @@ export class NftMarketComponent implements OnInit {
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = true;
-    this.specialActive = false;
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;

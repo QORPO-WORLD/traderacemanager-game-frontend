@@ -15,7 +15,7 @@ export class NftDetailComponent implements OnInit {
       free: 6000,
       collection: "Common",
       name: "RHINO",
-      price: "600",
+      price: 600,
       image: "car1",
       gif: "car1-animation",
       type: "car",
@@ -431,6 +431,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 1,
+      position: 0,
       collection: "Super",
       name: "Axle",
       price: "100",
@@ -446,6 +447,7 @@ export class NftDetailComponent implements OnInit {
 
     {
       id: 2,
+      position: 1,
       collection: "Super",
       name: "Flash",
       price: "100",
@@ -460,6 +462,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 3,
+      position: 2,
       collection: "Super",
       name: "Octane",
       price: "100",
@@ -474,6 +477,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 4,
+      position: 3,
       collection: "Super",
       name: "Punisher",
       price: "100",
@@ -488,6 +492,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 5,
+      position: 4,
       collection: "Epic",
       name: "Lady Rich",
       price: "1 000",
@@ -502,6 +507,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 6,
+      position: 5,
       collection: "Epic",
       name: "Rich Jr.",
       price: "1 000",
@@ -516,6 +522,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 7,
+      position: 6,
       collection: "Epic",
       name: "Mrs. Rich",
       price: "1 000",
@@ -530,6 +537,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 8,
+      position: 7,
       collection: "Legendary",
       name: "Mr. Rich",
       price: "10 000",
@@ -550,7 +558,6 @@ export class NftDetailComponent implements OnInit {
       price: "Soon",
       image: "free-track",
       type: "track",
-      bet: "0",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -623,36 +630,117 @@ export class NftDetailComponent implements OnInit {
       alt: "nft track underground",
     },
     {
+      id: 43,
+      position: 5,
+      type: "bundle",
+      name: "Tehmoonwalker",
+      link: "@tehMoonwalkeR",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle1",
+      racer: "tehmoonwalker",
+      car: "car46",
+      avatar: "tehmoon-avatar",
+      back: "tehmoon-back",
+    },
+    {
+      id: 44,
+      position: 4,
+      type: "bundle",
+      name: "Ash WSB",
+      link: "@ashWSBreal",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle2",
+      racer: "ash-wsb",
+      car: "car45",
+      avatar: "ash-avatar",
+      back: "ash-back",
+    },
+    {
+      id: 45,
+      position: 0,
+      type: "bundle",
+      name: "DAOMaker",
+      link: "@TheDaoMaker",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle3",
+      racer: "dao-maker",
+      car: "car41",
+      avatar: "dao-avatar",
+      back: "dao-back",
+    },
+    {
+      id: 46,
+      position: 10,
+      type: "bundle",
+      name: "Cryptowizard",
+      link: "@CryptoWizardd",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle4",
+      racer: "cryptowizard",
+      car: "car51",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
+    {
       id: 47,
-      collection: "",
-      name: "Trophy",
-      price: "",
-      image: "trophy",
-      type: "special",
-      ability2: "Yearly",
-      amount: [],
-      alt: "nft yearly trophy",
+      position: 6,
+      type: "bundle",
+      name: "Parabolic Guy",
+      link: "@GoingParabolic",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle5",
+      racer: "parabolic-guy",
+      car: "car47",
+      avatar: "parabolic-avatar",
+      back: "parabolic-back",
     },
     {
       id: 48,
-      collection: "",
-      name: "Ring",
-      price: "",
-      image: "ring",
-      type: "special",
-      ability1: "Entry to yearly tournament",
-      ability2: "Monthly",
-      amount: [],
-      alt: "nft monthly ring",
+      position: 3,
+      type: "bundle",
+      name: "Kyle Chasse",
+      link: "@kyle_chasse",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle6",
+      racer: "paid",
+      car: "car44",
+      avatar: "paid-avatar",
+      back: "paid-back",
     },
   ];
   position: number;
   carSum: string;
   availableCars = [];
   remainingCars = [];
+  remainingRacers = [];
+  remainingBundles = [];
 
   displayArray = [];
-  @Input() assetType = "racer";
+  @Input() assetType = "bundle";
   @Input() assetId = 1;
   @Input() assetPosition = 1;
   @Output() modalActive = new EventEmitter<number>();
@@ -676,6 +764,8 @@ export class NftDetailComponent implements OnInit {
     this.api.carsShowroomList().subscribe((data) => {
       const objs: any = data;
       this.remainingCars = objs.remaining_cars_by_tier;
+      this.remainingRacers = objs.remaining_racers_by_tier;
+      this.remainingBundles = objs.remaining_packs_by_tier;
       this.carSum = objs.remaining_cars.toString();
       this.availableCars = objs.cars;
     });

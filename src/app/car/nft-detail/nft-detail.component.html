@@ -68,35 +68,16 @@
       through special event auctions! For more info follow our social media!
       Good luck.
     </p>
-    <p
-      class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'special' &&
-        displayArray[0]['name'] === 'Ring'
-      "
-    >
+    <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
       Ring is a special price that you can win every month by being the best
       racer. It is also a ticket to biggest yearly tournament where you can win
       the trophy.
     </p>
-    <p
-      class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'special' &&
-        displayArray[0]['name'] === 'Trophy'
-      "
-    >
-      Trophy is a special price that you can win every year. If you want to win
-      this trophy, you need at least one ring from monthly tournaments.
-    </p>
+
     <div class="text-buttons">
       <button
         (click)="!displayArray[0]['rare'] ? showBuyModal() : null"
-        *ngIf="
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'track' &&
-          !displayArray[0]['rare']
-        "
+        *ngIf="displayArray[0]['type'] != 'track' && !displayArray[0]['rare']"
         class="buy category-title-third my-cta-btn-back"
       >
         <img
@@ -105,11 +86,7 @@
         />{{ displayArray[0]["price"] }}
       </button>
       <button
-        *ngIf="
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'track' &&
-          displayArray[0]['rare']
-        "
+        *ngIf="displayArray[0]['type'] != 'track' && displayArray[0]['rare']"
         class="buy category-title-third my-cta-btn-back"
       >
         Locked
@@ -123,23 +100,24 @@
           alt="buy icon"
         />Soon
       </button>
+
       <button
-        [routerLink]="['/race/race-selection']"
-        *ngIf="displayArray[0]['type'] === 'special'"
-        class="buy category-title-third my-cta-btn-back"
+        class="left-btn category-title-third"
+        *ngIf="displayArray[0]['type'] === 'car' && !displayArray[0]['rare']"
       >
-        Play now
+        {{ remainingCars[position].count.toLocaleString() }} left
       </button>
       <button
         class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] != 'track' &&
-          displayArray[0]['type'] != 'special' &&
-          displayArray[0]['type'] != 'racer' &&
-          !displayArray[0]['rare']
-        "
+        *ngIf="displayArray[0]['type'] === 'racer'"
       >
-        {{ remainingCars[position].count.toLocaleString() }} left
+        {{ remainingRacers[position].count.toLocaleString() }} left
+      </button>
+      <button
+        class="left-btn category-title-third"
+        *ngIf="displayArray[0]['type'] === 'bundle'"
+      >
+        {{ remainingBundles[position].count.toLocaleString() }} left
       </button>
     </div>
   </div>
@@ -169,15 +147,13 @@
       [alt]="displayArray[0]['alt']"
     />
     <img
-      *ngIf="displayArray[0]['type'] === 'special'"
+      *ngIf="displayArray[0]['type'] === 'bundle'"
       class="special"
-      [src]="
-        'assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
-      "
+      [src]="'assets/base/images/bundles/' + displayArray[0]['image'] + '.png'"
       [alt]="displayArray[0]['alt']"
     />
   </div>
-  <div class="detail-abilities">
+  <div *ngIf="displayArray[0]['type'] != 'bundle'" class="detail-abilities">
     <p class="ability-title category-title-second">Abilities</p>
     <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
       <div class="ability-box cars first">
@@ -361,7 +337,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="displayArray[0]['type'] === 'special'" class="ability-boxes">
+    <div *ngIf="displayArray[0]['type'] === 'bundle'" class="ability-boxes">
       <div class="ability-box special first">
         <img
           class="red-star"
@@ -395,6 +371,99 @@
             {{ displayArray[0]["ability1"] }} IOI
           </p>
           <p class="races-desc">ticket</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="displayArray[0]['type'] === 'bundle'"
+    class="detail-abilities bundles"
+  >
+    <p class="ability-title category-title-second">Bundle includes</p>
+    <div class="abilities-content">
+      <div class="abilities-section abilities-racer">
+        <div class="image">
+          <p class="category-title-second ability-desc">NFT Avatar</p>
+          <img
+            class="ability-racer ability-image"
+            [src]="
+              '/assets/base/images/nft-racers/' +
+              displayArray[0]['racer'] +
+              '.png'
+            "
+            alt="nft racer"
+          />
+        </div>
+        <div class="text">
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">{{ displayArray[0]["nft"] }} %</p>
+              <p class="races-desc">NFT</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="plus">
+        <p class="category-title-third ability-desc">&#43;</p>
+      </div>
+      <div class="abilities-section abilities-car">
+        <div class="image">
+          <p class="category-title-second ability-desc">NFT car</p>
+          <img
+            class="ability-car ability-image"
+            [src]="
+              '/assets/base/images/nft-cars/' + displayArray[0]['car'] + '.png'
+            "
+            alt="nft car"
+          />
+        </div>
+        <div class="text">
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["reward"] }} IOI
+              </p>
+              <p class="races-desc">daily stake</p>
+            </div>
+          </div>
+          <div class="ability-box second">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["staking"] }} %
+              </p>
+              <p class="races-desc">ROI</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -76,8 +76,8 @@
         <div class="active-border my-cta-btn-back"></div>
       </div>
       <div
-        [ngClass]="{ 'active-item': title === 'Specials' }"
-        (click)="filterSpecial()"
+        [ngClass]="{ 'active-item': title === 'Bundles' }"
+        (click)="filterBundles()"
         class="filter-item"
       >
         <img
@@ -85,7 +85,7 @@
           src="assets/base/images/icons/crown-icon.svg"
           alt="crown icon"
         />
-        <p class="category-title-first">SPECIALS</p>
+        <p class="category-title-first">BUNDLES</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
     </div>
@@ -110,7 +110,6 @@
           "
           class="box-content"
         >
-        
           <img
             *ngIf="item['type'] === 'racer'"
             class="img racer"
@@ -151,9 +150,9 @@
             [alt]="item['alt']"
           />
           <img
-            *ngIf="item['type'] === 'special'"
+            *ngIf="item['type'] === 'bundle'"
             class="img special still"
-            [src]="'/assets/base/images/home-page/' + item['image'] + '.png'"
+            [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
           <p class="category-title-second">{{ item["name"] }}</p>
@@ -162,7 +161,6 @@
           </p>
         </div>
         <div
-          *ngIf="item['type'] != 'special'"
           (click)="
             item['type'] != 'track'
               ? showAsset(3, item['id'], item['type'], item['position'])
@@ -176,14 +174,6 @@
             alt="ioi token icon"
           />
           <p class="category-title-third">{{ item["price"] }}</p>
-        </div>
-        <div
-          *ngIf="item['type'] === 'special'"
-          [routerLink]="['/race/race-selection']"
-          (click)="scrollTop(myScroll2)"
-          class="box-button my-cta-btn-back"
-        >
-          <p class="category-title-third">Play now</p>
         </div>
       </div>
     </div>
