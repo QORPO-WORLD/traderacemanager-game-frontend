@@ -2,7 +2,7 @@
   <div class="content-holder">
     <div class="switch-holder">
       <p (click)="raceFilter = 'next';getAllNextRaces();" [ngClass]="{'active': raceFilter === 'next'}">{{'start-race.next' | translate}}</p>
-      <p (click)="raceFilter = 'upcoming';getMine();" [ngClass]="{'active': raceFilter === 'upcoming'}">{{'start-race.my' | translate}}</p>
+      <p (click)="raceFilter = 'upcoming';getMine(); getLiveRaces();" [ngClass]="{'active': raceFilter === 'upcoming'}">{{'start-race.my' | translate}}</p>
       <p (click)="raceFilter = 'live';getLiveRaces();getAllLiveRaces();" [ngClass]="{'active': raceFilter === 'live'}" >{{'start-race.live_races' | translate}}</p>
       <p [ngClass]="{'active': raceFilter === 'favourite'}" (click)="raceFilter = 'favourite';getmyFavRaces();">{{'start-race.favourite_races' | translate}}</p>
     </div>
@@ -101,8 +101,34 @@
 
           <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
           *ngIf="mainr.new_race_type === 'binary_vs_race'"></div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let mainr of liveRacesData; let i = index">
+        <div class="box-item my-border-grad">
+          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
+          <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
+          <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <div class="inner-holder">
 
 
+            <p class="race-name">
+              <span *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
+              <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
+              <span *ngIf="mainr.tournament_id !== null && mainr.new_race_type !== 'binary_vs_race'">{{'race.type.classic_tournament' | translate}}</span>
+              <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
+            </p>
+            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
+
+            <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
+
+          </div>
+    
+          <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
+          *ngIf="mainr.new_race_type !== 'binary_vs_race'"></div>
+
+          <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
+          *ngIf="mainr.new_race_type === 'binary_vs_race'"></div>
         </div>
       </ng-container>
       <div class="no-other">
@@ -127,7 +153,7 @@
             <p class="race-name">
               <span *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
               <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
-              <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
+              <span *ngIf="mainr.tournament_id !== null && mainr.new_race_type !== 'binary_vs_race'">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
             <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
@@ -137,10 +163,10 @@
           </div>
     
           <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
-          *ngIf="mainr.new_game_type !== 'binary_vs_race_1'"></div>
+          *ngIf="mainr.new_race_type !== 'binary_vs_race'"></div>
 
           <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
-          *ngIf="mainr.new_game_type === 'binary_vs_race_1'"></div>
+          *ngIf="mainr.new_race_type === 'binary_vs_race'"></div>
 
 
         </div>
@@ -162,7 +188,11 @@
           <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
         </div>
   
-        <div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]"></div>
+        <<div class="click-dummy" [routerLink]="['/race/watch-race-3min/' + mainr.race_hash]" 
+        *ngIf="mainr.new_race_type !== 'binary_vs_race'"></div>
+
+        <div class="click-dummy" [routerLink]="['/race/binary-trade/' + mainr.race_hash + '/' + mainr.timestamp]" 
+        *ngIf="mainr.new_race_type === 'binary_vs_race'"></div>
       </div>
       <div class="no-other">
         <p class="desc">{{"start-race.no_other_my" | translate}}</p>
