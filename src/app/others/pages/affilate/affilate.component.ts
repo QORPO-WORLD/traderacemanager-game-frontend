@@ -16,6 +16,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./affilate.component.scss"],
 })
 export class AffilateComponent implements OnInit, OnDestroy {
+  totalReward = 0;
   timeoutPrev: any;
   timeoutNext: any;
   animation = 0;
@@ -109,7 +110,12 @@ export class AffilateComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         const newdata: any = data;
         this.totalPages = newdata.total_pages;
-        this.affilatesList = newdata;
+        this.affilatesList = newdata.results;
+        console.log(this.affilatesList);
+        for (let i = 0; i < this.affilatesList.length; i++) {
+          this.totalReward =
+            this.totalReward + +this.affilatesList[i].total_rewards_ioi;
+        }
       });
   }
 
