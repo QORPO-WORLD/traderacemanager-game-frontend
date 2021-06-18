@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home-affiliate",
@@ -7,8 +8,11 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HomeAffiliateComponent implements OnInit {
   title = "common";
-animation = 0;
-  constructor() {}
+  animation = 0;
+  constructor(public router: Router) {}
 
   ngOnInit() {}
+  joinTelegram() {
+    window.open("https://t.me/TradingIOI", "_blank").focus();
+  }
 }
