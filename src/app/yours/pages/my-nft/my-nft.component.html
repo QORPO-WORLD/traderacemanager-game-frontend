@@ -103,28 +103,28 @@
       >
         <div class="box-content">
           <img
-            [ngClass]="{ 'nogif-special': item['collection'] === 'Special' }"
+            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'racer'"
             class="img racer"
             [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'gif-special': item['collection'] === 'Special' }"
+            [ngClass]="{ 'nogif-hover': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'racer'"
             class="img gif-racer"
             [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'nogif-special': item['collection'] === 'Special' }"
+            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
             class="img car"
             [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'gif-special': item['collection'] === 'Special' }"
+            [ngClass]="{ 'nogif-hover': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
             class="img gif-car"
             [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
