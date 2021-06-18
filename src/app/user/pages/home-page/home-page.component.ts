@@ -1,6 +1,8 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from "@angular/core";
 import { timeStamp } from "console";
+import { Tick } from 'highcharts';
+import { TickerPricesService } from '../../../api/services/ticker-prices.service';
 
 @Component({
   selector: "app-home-page",
@@ -164,8 +166,12 @@ export class HomePageComponent implements OnInit {
   display = window.innerWidth;
   actualMonth: any;
   monthsStart = 0;
+  currentIoiPrice: number;
+  oldIoiPrice: number;
+  ioiIncresing = true;
   monthsEnd: any;
   carouselInterval: any;
+  tickerIoiInterval: any;
   logged = false;
   getMonth() {
     var today = new Date();
@@ -185,7 +191,7 @@ export class HomePageComponent implements OnInit {
       this.monthsEnd = this.monthsEnd - 1;
     }
   }
-  constructor() {
+  constructor(protected ticker: TickerPricesService) {
     this.getMonth();
     this.width();
     this.windowWidth = window.innerWidth;
@@ -206,10 +212,15 @@ export class HomePageComponent implements OnInit {
       this.logged = true;
     }
     this.setCarInterval();
+    this.getIoiPrice();
+    this.tickerIoiInterval = setInterval(() => {
+      this.getIoiPrice();
+    }, 20000);
   }
 
   ngOnDestroy(): void {
     clearInterval(this.carouselInterval);
+    clearInterval(this.tickerIoiInterval);
   }
 
   width() {
@@ -407,6 +418,20 @@ export class HomePageComponent implements OnInit {
     } else {
       this.bundleCarStep--;
     }
+  }
+
+  getIoiPrice() {
+    this.ticker.tickerIoiPriceRead().subscribe(data => {
+      if (!this.oldIoiPrice || !this.currentIoiPrice) {
+        this.oldIoiPrice = data;
+        this.currentIoiPrice = data; 
+      }
+      this.currentIoiPrice = data;
+      if (this.oldIoiPrice !== this.currentIoiPrice) {
+        this.ioiIncresing = this.oldIoiPrice > this.currentIoiPrice ? false : true;
+        this.oldIoiPrice = this.currentIoiPrice;
+      }
+    });
   }
 
 }

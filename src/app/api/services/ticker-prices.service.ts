@@ -56,6 +56,42 @@ class TickerPricesService extends __BaseService {
       __map(_r => _r.body as Ticker)
     );
   }
+
+
+
+   /**
+   * API endpoint to retrieve current price of IOI token for not logged in user.
+   */
+    tickerIoiPrice(): __Observable<__StrictHttpResponse<any>> {
+      let __params = this.newParams();
+      let __headers = new HttpHeaders();
+      let __body: any = null;
+  
+      let req = new HttpRequest<any>(
+        'GET',
+        this.rootUrl + `/kucoin-price`,
+        __body,
+        {
+          headers: __headers,
+          params: __params,
+          responseType: 'json'
+        });
+  
+      return this.http.request<any>(req).pipe(
+        __filter(_r => _r instanceof HttpResponse),
+        __map((_r) => {
+          return _r as __StrictHttpResponse<Ticker>;
+        })
+      );
+    }
+    /**
+     * API endpoint to retrieve current price of IOI token for not logged in user.
+     */
+    tickerIoiPriceRead(): __Observable<any> {
+      return this.tickerIoiPrice().pipe(
+        __map(_r => _r.body as any)
+      );
+    }
 }
 
 module TickerPricesService {
