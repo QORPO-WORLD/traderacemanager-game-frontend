@@ -201,8 +201,8 @@ export class AuthService extends AbstractService {
     this.clearToken();
     this.clearIdentity();
     this.logOutApi().subscribe({
-      next: data => this.router.navigate(['/user/sign-in']),
-      error: error => this.router.navigate(['/user/sign-in'])
+      next: data => this.router.navigate(['/user/welcome']),
+      error: error => this.router.navigate(['/user/welcome'])
     });
     
 
