@@ -85,13 +85,13 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: []
     },
-    // {
-    //   id: 12,
-    //   name: 'POLYGON',
-    //   image: 'mr-rich',
-    //   sum: 0,
-    //   pks: []
-    // },
+    {
+      id: 12,
+      name: 'POLYGON',
+      image: 'polygon',
+      sum: 0,
+      pks: []
+    },
     // {
     //   id: 13,
     //   name: 'OLI WHITE',
