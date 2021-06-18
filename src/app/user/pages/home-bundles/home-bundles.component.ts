@@ -79,6 +79,18 @@ export class HomeBundlesComponent implements OnInit {
       avatar: "paid_avatar",
       back: "paid-back",
     },
+    {
+      id: 7,
+      name: "Shreyansh Polygon",
+      link: "@shreyansh_27",
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle7",
+      avatar: "polygon-avatar",
+      back: "polygon-back",
+    },
   ];
   constructor() {}
 
