@@ -94,5 +94,9 @@ export class HomeBundlesComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() { }
+  
+  twitterLink(prefix: string) {
+    window.open("https://twitter.com/" + prefix, "_blank").focus();
+  }
 }
