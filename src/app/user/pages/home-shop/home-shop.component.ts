@@ -628,6 +628,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 43,
+      position: 1,
       type: "bundle",
       name: "Tehmoonwalker",
       link: "@tehMoonwalkeR",
@@ -641,6 +642,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 44,
+      position: 2,
       type: "bundle",
       name: "Ash WSB",
       link: "@ashWSBreal",
@@ -654,6 +656,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 45,
+      position: 3,
       type: "bundle",
       name: "DAOMaker",
       link: "@TheDaoMaker",
@@ -667,6 +670,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 46,
+      position: 4,
       type: "bundle",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
@@ -680,6 +684,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 47,
+      position: 5,
       type: "bundle",
       name: "Parabolic Guy",
       link: "@GoingParabolic",
@@ -693,6 +698,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 48,
+      position: 6,
       type: "bundle",
       name: "PAID Network",
       link: "@kyle_chasse",
@@ -703,6 +709,20 @@ export class HomeShopComponent implements OnInit {
       image: "bundle6",
       avatar: "paid-avatar",
       back: "paid-back",
+    },
+    {
+      id: 49,
+      position: 7,
+      type: "bundle",
+      name: "Shreyansh Polygon",
+      link: "@shreyansh_27",
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle7",
+      avatar: "polygon-avatar",
+      back: "polygon-back",
     },
   ];
   typeObserver: Subscription;
