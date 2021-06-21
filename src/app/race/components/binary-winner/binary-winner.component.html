@@ -2,45 +2,36 @@
 
 <div class="modal-component" [ngClass]="{'small': repeatGame === false}">
 
-  <ng-container *ngIf="repeatGame === false">
-    <div class="cont-holder step1" *ngIf="hasWon === true">
+  <div class="cont-holder step1" *ngIf="hasWon === true">
 
-      <h3>Game won!</h3>
-      <p class="race-desc">Congratulations!</p>
-  
-      <div class="win-item">
-        <div class="inner">
-          <div class="img-holder">
-            <img src="/assets/base/images/binary-race/win-icon.svg" alt="">
-          </div>
-          <p class="desc">Win: 1.6 IOI</p>
-        </div>
-      </div>
-  
-      <div class="btns-holder">
-        <button class="back" [routerLink]="['/race/start-race']">Quit game</button>
-        <button style="display:none" class="back imaged" (click)="fatalityDo()"><img src="/assets/base/images/binary-race/fatality.svg" alt=""> Fatality</button>
-        <button class="continue imaged" (click)="repeat()"><img src="/assets/base/images/binary-race/repeat.svg" alt=""> Start new game</button>
-      </div>
-  
-    </div>
-  
-    <div class="cont-holder step1" *ngIf="hasWon === false">
-  
-      <h3 class="lost-heading">Game over</h3>
-      <p class="race-desc">Don’t worry, repeat the game against the same opponent
-        or invite a new player and win next time!</p>
-  
-      <div class="btns-holder big-margin">
-        <button class="back"  [routerLink]="['/race/start-race']">Quit game</button>
-        <button class="continue imaged" (click)="repeat()"><img src="/assets/base/images/binary-race/repeat.svg" alt=""> New game</button>
-      </div>
-  
-    </div>
-  </ng-container>
+    <!-- <p class="close-btn">+</p> -->
+
+    <h3 class="winner">Game won!</h3>
+    <p class="race-desc">Congratulations, you won:</p>
+
+    <h4 class="winner-amount">1.6 IOI</h4>
+
+    <p class="race-desc">Your prize has been added to your account balance.</p>
+
+    <button class="active-btn my-cta-btn-back" (click)="repeat()">Start new game</button>
+    <p class="or-text">or</p>
+    <p class="quit-text" [routerLink]="['/race/start-race']">Quit game</p>
+
+  </div>
+
+  <div class="cont-holder step1" *ngIf="hasWon === false">
+
+    <h3 class="lost-heading">Game lost</h3>
+    <p class="race-desc">Don’t worry, repeat the game against the same opponent or invite a new player and win next time!</p>
+
+    <button class="active-btn my-cta-btn-back" (click)="repeat()">Start new game</button>
+    <p class="or-text">or</p>
+    <p class="quit-text" [routerLink]="['/race/start-race']">Quit game</p>
+
+  </div>
   
 
-  <div class="cont-holder step2" *ngIf="repeatGame === true">
+  <!-- <div class="cont-holder step2" *ngIf="repeatGame === true">
 
     <div class="heading-holder" *ngIf="requestDenied === false">
       <h3>All ready</h3>
@@ -120,6 +111,6 @@
       <button class="continue loading" *ngIf="loading === true"><img src="/assets/base/images/binary-race/loading-icon.svg" alt=""> Please, wait</button>
     </div>
 
-  </div>
+  </div> -->
 
 </div>
