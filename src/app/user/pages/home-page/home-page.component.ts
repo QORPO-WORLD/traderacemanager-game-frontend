@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { timeStamp } from "console";
 import { Tick } from 'highcharts';
 import { TickerPricesService } from '../../../api/services/ticker-prices.service';
@@ -180,6 +180,9 @@ export class HomePageComponent implements OnInit {
   carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
+  xDown = null;                                                        
+  yDown = null;
+  @ViewChild('carousel') carousel: ElementRef;
   getMonth() {
     var today = new Date();
     var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -223,6 +226,9 @@ export class HomePageComponent implements OnInit {
     this.tickerIoiInterval = setInterval(() => {
       this.getIoiPrice();
     }, 20000);
+    // this.carousel.addEventListener('touchstart', this.handleTouchStart, false);        
+    // document.addEventListener('touchmove', this.handleTouchMove, false);
+    console.log("jako");
   }
 
   ngOnDestroy(): void {
@@ -443,6 +449,58 @@ export class HomePageComponent implements OnInit {
 
   openLink(url: string) {
     window.open(url, "_blank").focus();
+  }
+
+
+  getTouches(evt) {
+    return evt.touches ||            
+          evt.originalEvent.touches; 
+  }                                                     
+
+  handleTouchStart(evt) {
+      const firstTouch = this.getTouches(evt)[0];                                      
+      this.xDown = firstTouch.clientX;                                      
+      this.yDown = firstTouch.clientY;                                      
+  }                                                
+
+  handleTouchMove(evt) {
+      if ( ! this.xDown || ! this.yDown ) {
+          return;
+      }
+
+      var xUp = evt.touches[0].clientX;                                    
+      var yUp = evt.touches[0].clientY;
+
+      var xDiff = this.xDown - xUp;
+      var yDiff = this.yDown - yUp;
+
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+          if ( xDiff > 0) {
+              if(this.carouselStep < 3)
+                this.carouselStep++;
+              else
+                this.carouselStep=1;
+              clearInterval(this.carouselInterval);
+          } 
+          else{
+              if(this.carouselStep > 1){
+                this.carouselStep--;
+              }
+              else{
+                this.carouselStep=3;
+              }
+              clearInterval(this.carouselInterval);
+          }                       
+      } else {
+          if ( yDiff > 0 ) {
+            //up
+          } else { 
+           //down
+          }                                                                 
+      }
+      /* reset values */
+      this.xDown = null;
+      this.yDown = null;                                             
   }
 
 

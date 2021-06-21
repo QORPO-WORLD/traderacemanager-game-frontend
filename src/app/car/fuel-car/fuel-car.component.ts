@@ -200,6 +200,8 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.trDate = Date.now();
     this.trsDate = Date.now();
     this.recognizeGame();
+    this.getTickets();
+    console.log(this.raceId);
   }
 
   ngOnDestroy() {
@@ -1283,6 +1285,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       this.tutorialStep = -1;
     }
 
+  }
+
+  getTickets(){
+    const data = this.identityService.getStorageIdentity(); const datax: any = data;
+    this.tickets = datax.tournament_tickets;
   }
 
 
