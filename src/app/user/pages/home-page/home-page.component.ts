@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { timeStamp } from "console";
 import { Tick } from 'highcharts';
 import { TickerPricesService } from '../../../api/services/ticker-prices.service';
@@ -182,6 +182,7 @@ export class HomePageComponent implements OnInit {
   logged = false;
   xDown = null;                                                        
   yDown = null;
+  @ViewChild('carousel') carousel: ElementRef;
   getMonth() {
     var today = new Date();
     var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -225,8 +226,8 @@ export class HomePageComponent implements OnInit {
     this.tickerIoiInterval = setInterval(() => {
       this.getIoiPrice();
     }, 20000);
-    document.addEventListener('touchstart', this.handleTouchStart, false);        
-    document.addEventListener('touchmove', this.handleTouchMove, false);
+    // this.carousel.addEventListener('touchstart', this.handleTouchStart, false);        
+    // document.addEventListener('touchmove', this.handleTouchMove, false);
     console.log("jako");
   }
 
@@ -452,20 +453,17 @@ export class HomePageComponent implements OnInit {
 
 
   getTouches(evt) {
-    console.log('get touches');
-    return evt.touches ||             // browser API
-          evt.originalEvent.touches; // jQuery
+    return evt.touches ||            
+          evt.originalEvent.touches; 
   }                                                     
 
   handleTouchStart(evt) {
-      console.log('handle start');
       const firstTouch = this.getTouches(evt)[0];                                      
       this.xDown = firstTouch.clientX;                                      
       this.yDown = firstTouch.clientY;                                      
   }                                                
 
   handleTouchMove(evt) {
-      console.log('handle move');
       if ( ! this.xDown || ! this.yDown ) {
           return;
       }
@@ -476,17 +474,28 @@ export class HomePageComponent implements OnInit {
       var xDiff = this.xDown - xUp;
       var yDiff = this.yDown - yUp;
 
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-          if ( xDiff > 0 ) {
-              console.log("right")
-          } else {
-             console.log('left');
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+          if ( xDiff > 0) {
+              if(this.carouselStep < 3)
+                this.carouselStep++;
+              else
+                this.carouselStep=1;
+              clearInterval(this.carouselInterval);
+          } 
+          else{
+              if(this.carouselStep > 1){
+                this.carouselStep--;
+              }
+              else{
+                this.carouselStep=3;
+              }
+              clearInterval(this.carouselInterval);
           }                       
       } else {
           if ( yDiff > 0 ) {
-            console.log('up');
+            //up
           } else { 
-            console.log('down');
+           //down
           }                                                                 
       }
       /* reset values */

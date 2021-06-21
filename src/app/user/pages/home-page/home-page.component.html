@@ -3,7 +3,7 @@
   class="main-holder"
   [class.disable-scroll]="isMenuActive"
 >
-  <div class="top-section-wrapper">
+  <div class="top-section-wrapper" (touchmove)="handleTouchMove($event)" (touchstart)="handleTouchStart($event)">
     <div
       class="my-carousel-item item1"
       [ngClass]="{ hidden: carouselStep !== 1 }"
