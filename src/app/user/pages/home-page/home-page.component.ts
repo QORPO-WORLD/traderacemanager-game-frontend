@@ -180,6 +180,8 @@ export class HomePageComponent implements OnInit {
   carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
+  xDown = null;                                                        
+  yDown = null;
   getMonth() {
     var today = new Date();
     var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -223,6 +225,9 @@ export class HomePageComponent implements OnInit {
     this.tickerIoiInterval = setInterval(() => {
       this.getIoiPrice();
     }, 20000);
+    document.addEventListener('touchstart', this.handleTouchStart, false);        
+    document.addEventListener('touchmove', this.handleTouchMove, false);
+    console.log("jako");
   }
 
   ngOnDestroy(): void {
@@ -443,6 +448,50 @@ export class HomePageComponent implements OnInit {
 
   openLink(url: string) {
     window.open(url, "_blank").focus();
+  }
+
+
+  getTouches(evt) {
+    console.log('get touches');
+    return evt.touches ||             // browser API
+          evt.originalEvent.touches; // jQuery
+  }                                                     
+
+  handleTouchStart(evt) {
+      console.log('handle start');
+      const firstTouch = this.getTouches(evt)[0];                                      
+      this.xDown = firstTouch.clientX;                                      
+      this.yDown = firstTouch.clientY;                                      
+  }                                                
+
+  handleTouchMove(evt) {
+      console.log('handle move');
+      if ( ! this.xDown || ! this.yDown ) {
+          return;
+      }
+
+      var xUp = evt.touches[0].clientX;                                    
+      var yUp = evt.touches[0].clientY;
+
+      var xDiff = this.xDown - xUp;
+      var yDiff = this.yDown - yUp;
+
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+          if ( xDiff > 0 ) {
+              console.log("right")
+          } else {
+             console.log('left');
+          }                       
+      } else {
+          if ( yDiff > 0 ) {
+            console.log('up');
+          } else { 
+            console.log('down');
+          }                                                                 
+      }
+      /* reset values */
+      this.xDown = null;
+      this.yDown = null;                                             
   }
 
 
