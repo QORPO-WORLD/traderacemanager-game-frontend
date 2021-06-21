@@ -1,6 +1,4 @@
-
 <div class="main-holder">
-
   <div class="content-title" [routerLink]="['/race/start-race']">
     <img
       class="red-star"
@@ -12,37 +10,59 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p>Dashboard</p>
+    <p>BACK</p>
   </div>
 
   <div class="lead-content">
     <div class="my-menu">
-      <div class="menu-item" [ngClass]="{'inactive': leaderboardType!=='players'}" (click)="leaderboardType='players'">
-          <p><img src="/assets/base/images/icons/helmet-icon.svg" alt=""> {{'leaderboard.racer_button' | translate}}</p>
-          <div class="bottom-border my-cta-btn-back"></div>
+      <div
+        class="menu-item"
+        [ngClass]="{ inactive: leaderboardType !== 'players' }"
+        (click)="leaderboardType = 'players'"
+      >
+        <p>
+          <img src="/assets/base/images/icons/helmet-icon.svg" alt="" />
+          {{ "leaderboard.racer_button" | translate }}
+        </p>
+        <div class="bottom-border my-cta-btn-back"></div>
       </div>
-      <div class="menu-item" [ngClass]="{'inactive': leaderboardType!=='team'}" (click)="leaderboardType='team'">
-          <p><img src="/assets/base/images/icons/group.svg" alt=""> {{'leaderboard.team_button' | translate}}</p>
-          <div class="bottom-border my-cta-btn-back"></div>
+      <div
+        class="menu-item"
+        [ngClass]="{ inactive: leaderboardType !== 'team' }"
+        (click)="leaderboardType = 'team'"
+      >
+        <p>
+          <img src="/assets/base/images/icons/group.svg" alt="" />
+          {{ "leaderboard.team_button" | translate }}
+        </p>
+        <div class="bottom-border my-cta-btn-back"></div>
       </div>
-      <div class="menu-item" [ngClass]="{'inactive': leaderboardType!=='owners'}" (click)="leaderboardType='owners'">
-          <p><img src="/assets/base/images/market/owner.svg" alt=""> {{'leaderboard.owner_button' | translate}}</p>
-          <div class="bottom-border my-cta-btn-back"></div>
+      <div
+        class="menu-item"
+        [ngClass]="{ inactive: leaderboardType !== 'owners' }"
+        (click)="leaderboardType = 'owners'"
+      >
+        <p>
+          <img src="/assets/base/images/market/owner.svg" alt="" />
+          {{ "leaderboard.owner_button" | translate }}
+        </p>
+        <div class="bottom-border my-cta-btn-back"></div>
       </div>
     </div>
-    
-    
-    <div class="content" *ngIf="leaderboardType=='owners'" >
+
+    <div class="content" *ngIf="leaderboardType == 'owners'">
       <app-owner-leaderboard [players]="myTeam.top10"></app-owner-leaderboard>
     </div>
-    
-    <div class="content" *ngIf="leaderboardType=='team'">
-      <app-my-team-players [players]="myTeam.top10" [payouts]="myTeam.applicable_team_bonuses" ></app-my-team-players>
+
+    <div class="content" *ngIf="leaderboardType == 'team'">
+      <app-my-team-players
+        [players]="myTeam.top10"
+        [payouts]="myTeam.applicable_team_bonuses"
+      ></app-my-team-players>
     </div>
-    
-    <div class="content" *ngIf="leaderboardType=='players'">
-      <app-all-players  ></app-all-players>
+
+    <div class="content" *ngIf="leaderboardType == 'players'">
+      <app-all-players></app-all-players>
     </div>
   </div>
 </div>
-
