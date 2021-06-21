@@ -1123,26 +1123,26 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.emojiLeftCounter++;
         },
-          x * 50);
+          x * 130);
       }
   
       setTimeout(() => {
         this.emojiLeft = null;
         this.emojiLeftCounter = 0;
-      }, 3000);
+      }, 8000);
     } else {
       this.emojiRight = type;
       for (let x = 1; x < 20; x++) {
         setTimeout(() => {
           this.emojiRightCounter++;
         },
-          x * 50);
+          x * 130);
       }
   
       setTimeout(() => {
         this.emojiRight = null;
         this.emojiRightCounter = 0;
-      }, 3000);
+      }, 8000);
     }
     
   }
