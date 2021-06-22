@@ -2,6 +2,8 @@
 
 <div class="modal-component" [ngClass]="{'small': repeatGame === false}">
 
+  <div class="background-maker"></div>
+
   <div class="cont-holder step1" *ngIf="hasWon === true">
 
     <!-- <p class="close-btn">+</p> -->
@@ -112,5 +114,9 @@
     </div>
 
   </div> -->
+
+  <ng-container *ngIf="hasWon === true">
+    <ng-particles [id]="id" [options]="particlesOptions" (particlesInit)="particlesInit($event)"></ng-particles>
+  </ng-container>
 
 </div>

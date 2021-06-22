@@ -24,6 +24,7 @@ import { ChartModule } from 'angular-highcharts';
 import { BinaryWinnerComponent } from './components/binary-winner/binary-winner.component';
 import { BinaryTradeComponent } from './components/binary-trade/binary-trade.component';
 import { RaceSelectionComponent } from './pages/race-selection/race-selection.component';
+import {NgParticlesModule} from "ng-particles";
 
 const routes: Routes = [
   {
@@ -80,7 +81,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     OrderModule,
-    ChartModule
+    ChartModule,
+    NgParticlesModule
   ]
 })
 export class RaceModule { }
