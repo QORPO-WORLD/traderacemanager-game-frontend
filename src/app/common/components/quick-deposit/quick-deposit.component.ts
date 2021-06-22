@@ -113,6 +113,16 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
         this.notify.error('x', 'We found ' + data.outstanding_amount + ' new tokens on your wallet.');
         this.depositing();
         this.claimed = true;
+
+        let gaTokenName = this.tokenSelected === 'ioi' ? 'IOI' : 'Polygon';
+        let depositUsdtAmount = this.tokenSelected === 'ioi' ? data.outstanding_amount * this.myBalance.ioi_usdt : data.outstanding_amount * this.myBalance.matic_usdt;
+        ga('ecommerce:addTransaction', {
+          'id': '0001',
+          'affiliation': gaTokenName + ' token', 
+          'revenue': depositUsdtAmount,
+          'shipping': '0',
+          'tax': '0'
+        });
       });
     });
   }
