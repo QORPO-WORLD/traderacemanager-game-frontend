@@ -332,7 +332,7 @@
           </div>
         </div>
 
-        <div class="racer-item hollow" *ngIf="!opponentPlayer">
+        <div class="racer-item hollow" *ngIf="!opponentPlayer && automatchLoading === false">
           <img
             src="/assets/base/images/binary-race/question-mark.svg"
             alt=""
@@ -358,6 +358,26 @@
             </div>
             <button class="name-sheet">-</button>
           </div>
+        </div>
+
+        <div class="racer-item hollow loading" *ngIf="!opponentPlayer && automatchLoading === true">
+
+          <div class="img-holder">
+            <img
+              class="racer-img"
+              [src]="
+                '/assets/base/images/nft-racers/' + myAvatar.image + '.png'
+              "
+              alt=""
+            />
+          </div>
+
+          <div class="loading-text">
+            <img src="/assets/base/images/binary-race/loading-icon.svg" alt="" />
+            <p class="heading">We are matching you</p>
+            <p class="text">Please, do not leave the screen or you may lose your bet</p>
+          </div>
+
         </div>
 
         <div class="racer-item rival" *ngIf="opponentPlayer">
@@ -401,11 +421,10 @@
           Automatch
         </button>
         <button
-          class="continue loading"
+          class="continue"
           *ngIf="automatchLoading && opponentPlayer === undefined"
         >
-          <img src="/assets/base/images/binary-race/loading-icon.svg" alt="" />
-          Please, wait
+          Automatch
         </button>
         <button class="continue" *ngIf="matched === true">Get ready!</button>
       </div>
