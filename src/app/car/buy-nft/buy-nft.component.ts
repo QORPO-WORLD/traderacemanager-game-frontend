@@ -5,6 +5,8 @@ import { NotifyService } from "./../../common/services/notify.service";
 import { CarsService } from "../../api/services";
 import { Router } from "@angular/router";
 
+declare let ga: any;
+
 @Component({
   selector: "app-buy-nft",
   templateUrl: "./buy-nft.component.html",
@@ -809,6 +811,16 @@ export class BuyNftComponent implements OnInit {
         })
         .subscribe((datax) => {
           const data: any = datax;
+          let currencyPrefix =
+            this.tokenSelected === "ioi"
+              ? "buy_nft_racers_IOI"
+              : "buy_nft_racers_POLYGON";
+
+          ga("event", currencyPrefix, {
+            eventCategory: currencyPrefix,
+            eventAction: this.displayArray[0].collection,
+            eventLabel: this.displayArray[0].name,
+          });
           setTimeout(() => {
             this.notifyChangedBalance();
             this.router.navigate(["/profile/my-profile"]);
@@ -830,6 +842,18 @@ export class BuyNftComponent implements OnInit {
       })
       .subscribe((datax) => {
         const data: any = datax;
+
+        let currencyPrefix =
+          this.tokenSelected === "ioi"
+            ? "buy_nft_car_IOI"
+            : "buy_nft_racers_POLYGON";
+
+        ga("event", currencyPrefix, {
+          eventCategory: currencyPrefix,
+          eventAction: this.displayArray[0].collection,
+          eventLabel: this.displayArray[0].name,
+        });
+
         setTimeout(() => {
           this.notifyChangedBalance();
           this.router.navigate(["/profile/my-profile"]);
@@ -909,6 +933,16 @@ export class BuyNftComponent implements OnInit {
         "https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI",
         "_blank"
       );
+      let currencyPrefix =
+        this.assetType === "car"
+          ? "buy_nft_car_arcana"
+          : "buy_nft_racers_arcane";
+
+      ga("event", currencyPrefix, {
+        eventCategory: currencyPrefix,
+        eventAction: this.displayArray[0].collection,
+        eventLabel: this.displayArray[0].name,
+      });
     }
   }
 }
