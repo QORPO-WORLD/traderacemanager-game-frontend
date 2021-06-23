@@ -1,995 +1,880 @@
-.content-holder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .top-heading {
-    text-align: center;
-    margin: 15px 0 25px;
-    font-weight: bold;
-    font-size: 35px;
+* {
+  margin: 0px;
+}
+.dissapear-right-animation {
+  animation: dissapear-right 0.3s linear;
+  -webkit-animation: dissapear-right 0.3s linear;
+}
+.dissapear-left-animation {
+  animation: dissapear-left 0.3s linear;
+  -webkit-animation: dissapear-left 0.3s linear;
+}
+.engage-right-animation {
+  animation: engage-right 0.3s linear;
+  -webkit-animation: engage-right 0.3s linear;
+}
+.engage-left-animation {
+  animation: engage-left 0.3s linear;
+  -webkit-animation: engage-left 0.3s linear;
+}
+@keyframes dissapear-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
   }
-  .flex-holder {
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+}
+@keyframes dissapear-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+}
+@keyframes engage-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+}
+@keyframes engage-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+}
+
+.main-holder {
+  width: calc(100% - 40px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
+  padding: 40px 0px 40px 40px;
+  display: flex;
+  position: relative;
+}
+.order-detail {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left-content {
+    height: 90%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 530px;
-    .asset-preview {
-      position: relative;
-      width: calc(50% - 1px);
+    flex-direction: column;
+    width: 50%;
+    .order-title {
+      height: 7.5%;
+    }
+    .content {
+      padding: 10% 5%;
       height: 100%;
-      .asset-img {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translateX(-25%);
-        img {
-          width: 100%;
-          max-width: 680px;
-        }
-      }
-      .ability-boxes {
-        width: 50%;
-        margin-left: auto;
-        height: 100%;
+      background: rgba(17, 17, 17, 0.6);
+      display: flex;
+      justify-content: space-between;
+
+      .text {
+        max-height: 650px;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-        > div {
-          margin: 1%;
+        justify-content: space-between;
+        width: 49%;
+        height: 100%;
+        .name {
+          height: 10%;
+        }
+        .ability-boxes {
+          height: 50%;
           display: flex;
-          align-items: center;
-          .ability-image {
-            width: 80px;
-            position: relative;
-
-            button {
-              outline: none;
-              border: 0;
-              width: 80px;
-              height: 80px;
-
-              font-style: normal;
-              font-weight: 300;
-              font-size: 30px;
-              line-height: 45px;
-              color: #ffffff;
-              position: relative;
-              img {
-                width: 35px;
-                min-width: 35px;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                -webkit-transform: translate(-50%, -50%);
-                -moz-transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                -o-transform: translate(-50%, -50%);
-              }
+          flex-direction: column;
+          .ability-box {
+            height: 30%;
+            display: flex;
+            align-items: center;
+            img {
+              max-height: 40px;
+              max-width: 40px;
+              height: 90%;
+              width: auto;
+            }
+            .ability-text {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              margin-left: 5%;
             }
           }
-          .ability-type {
-            position: relative;
-            width: 70%;
-            padding: 0 0px 0px 20px;
-            h4 {
-              font-weight: 600;
-              font-size: 20px;
-              line-height: 30px;
-              margin: 0;
+        }
+        .border-former {
+          height: 1px;
+          width: 100%;
+          opacity: 0.15;
+          border: 1px solid #ffffff;
+        }
+        .amount-holder {
+          padding-top: 50px;
+
+          display: flex;
+          flex-direction: column;
+
+          height: 15%;
+          justify-content: center;
+          .amount {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            img {
+              width: 40px;
+              height: 40px;
             }
             p {
-              margin: 0;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 24px;
-
-              color: #ffffff;
-
-              opacity: 0.6;
+              margin-left: 5%;
             }
           }
         }
       }
-      &.car-preview {
-        .asset-img {
-          margin: 0 auto;
-          max-width: 500px;
-          position: relative;
-          transform: none;
+      .images {
+        width: 49%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          pointer-events: none;
+          min-width: 140%;
+          height: auto;
         }
-        .car-ability-boxes {
+      }
+      &.car {
+        flex-direction: column-reverse;
+        .text {
           width: 100%;
-          .ability-box {
+          height: 50%;
+          .ability-boxes {
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             width: 100%;
-            .heading {
-              text-align: center;
-              font-size: 16px;
-              margin: 10px 0;
-            }
-            .slider-holder {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              p {
-                width: 80px;
-                margin: 0;
-                text-align: center;
-              }
-              .ab-slider {
-                width: calc(100% - 170px);
-                border-radius: 5px;
-                background: rgba(51, 51, 51, 0.5);
-                height: 10px;
-                position: relative;
-                box-shadow: 0px 1px 3px 0px rgb(255 255 255 / 50%);
-                .inner-slider {
-                  position: absolute;
-                  left: 0;
-                  top: 0;
-                  height: 100%;
-                  border-radius: 5px;
-                }
-              }
+            .ability-box {
+              width: 30%;
             }
           }
         }
-      }
-    }
-    .divide-line {
-      height: 100%;
-      width: 1px;
-      border-radius: 2px;
-      background-color: #e0e0e0;
-    }
-    .buy-preview {
-      width: 50%;
-      padding: 0 40px 0 52px;
-      .name {
-        margin-top: 20px;
-        p {
-          font-size: 20px;
-          margin: 0;
-          &.racer-name {
-            font-family: True-Lies;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 56px;
-          }
-        }
-      }
-      .summary-table {
-        margin: 60px 0 20px;
-        .summary-item {
+        .images {
           width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 24px;
-          p {
-            font-size: 19px;
-            margin: 0;
-            color: #e0e0e0;
-            &.value {
-              color: white;
-              font-weight: 600;
-              span {
-                font-size: 12px;
-                font-weight: 400;
-              }
-              &.big {
-                font-size: 28px;
+          height: 45%;
+          img {
+            width: 80%;
+            min-width: 80%;
+          }
+        }
+      }
+    }
+  }
+  .right-content {
+    width: 50%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .payment-title {
+      height: 5%;
+      display: flex;
+      justify-content: center;
+
+      text-align: center;
+    }
+    .payment-methods {
+      height: 65%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 55%;
+      .method {
+        position: relative;
+        cursor: pointer;
+        background: rgba(17, 17, 17, 0.6);
+        height: 20%;
+        margin-top: 15px;
+        align-items: center;
+        display: flex;
+        padding: 5%;
+        .border-former {
+          transition: 0.3s;
+          border: 1px solid transparent;
+          position: absolute;
+          width: calc(100% + 4px);
+          height: calc(100% + 4px);
+          left: -2px;
+          top: -2px;
+          padding: 2px;
+          .inner-border-former {
+            width: 100%;
+            height: 100%;
+            background: black;
+          }
+        }
+        .dot {
+          transition: 0.3s;
+          position: relative;
+          width: 20px;
+          height: 20px;
+          border: 1.4px solid rgba(255, 255, 255, 0.4);
+          border-radius: 50%;
+          .inner-dot {
+            transition: 0.3s;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 3px);
+            height: calc(100% - 3px);
+            border-radius: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            &.active {
+              opacity: 1;
+            }
+          }
+        }
+        .text {
+          margin-left: 5%;
+        }
+        img {
+          max-width: 35px;
+          max-height: 35px;
+          height: 35px;
+          width: auto;
+          &.single {
+            margin-left: auto;
+          }
+        }
+        .payment-images {
+          margin-left: auto;
+        }
+      }
+    }
+    .payment-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+      width: 100%;
+      .buy {
+        transition: 0.3s;
+        height: 100%;
+        width: 30%;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+      }
+      .buy:hover {
+        transform: scale(1.01);
+        -webkit-transform: scale(1.01);
+        -moz-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+        -o-transform: scale(1.01);
+        box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+      }
+    }
+  }
+}
+.category-title-first {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  font-family: "Earth Orbiter";
+  white-space: nowrap;
+}
+.category-title-second {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  font-family: "Earth Orbiter";
+}
+.category-title-third {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+}
+.category-title-fourth {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.races-desc {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0.4;
+}
+@media screen and(max-width: 1700px) {
+  .main-holder {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
+  }
+}
+@media screen and(max-width: 1550px) {
+  .main-holder {
+    width: calc(100% - 20px);
+    height: calc(var(--vh, 1vh) * 100 - 64px);
+    padding: 20px 0px 20px 20px;
+  }
+  .order-detail {
+    .left-content {
+      .content {
+        .text {
+          .ability-boxes {
+            .ability-box {
+              img {
+                height: 26px;
+                width: 26px;
               }
             }
           }
           .amount-holder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .am-btn {
-              border: 1px solid #e0e0e0;
-
-              width: 25px;
-              height: 25px;
-              position: relative;
-              cursor: pointer;
-              &:active {
-                transform: translateY(3px);
-              }
-              &.amount-display {
-                width: 50px;
-                height: 50px;
-                margin: 0 9px;
-                cursor: default;
-
-                &:active {
-                  transform: none;
-                }
-                p {
-                  font-size: 20px;
-                  font-weight: 700;
-                  top: 51%;
-                }
-              }
-              p {
-                position: absolute;
-                top: 55%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                margin: 0;
-                line-height: 1;
-                font-size: 16px;
+            .amount {
+              img {
+                height: 26px;
+                width: 26px;
               }
             }
           }
         }
       }
-      .buy-nft {
-        width: 49%;
-        font-weight: 600;
-        font-size: 20px;
-        margin-top: 10px;
-
-        padding: 15px;
-        display: block;
-        color: white;
-        text-align: center;
-        line-height: 1;
-        text-decoration: none;
-        opacity: 1;
-        img {
-          width: auto;
-          height: 22.5px;
-          margin-left: 20px;
-        }
-      }
-      .ioi {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .arkane {
-        margin-top: 15px;
-        background: rgba(255, 255, 255, 0.6);
-        padding: 15px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        a {
-          text-decoration: none;
-          color: white;
-          margin-left: 5%;
-          width: 90%;
-        }
-        .arkane-paypal {
-          height: 55px;
-          width: 49%;
-          border-right: 1px solid #ebebeb;
-          position: relative;
+    }
+    .right-content {
+      .payment-methods {
+        .method {
+          margin-top: 10px;
           img {
-            width: 50%;
-            max-width: 200px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
+            height: 25px;
+          }
+          .dot {
+            height: 15px;
+            width: 15px;
           }
         }
-        .arkane-bitpay {
-          height: 50px;
-          height: auto;
-          position: relative;
-          width: 49%;
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .category-title-second {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .category-title-third {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-fourth {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .races-desc {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+@media screen and(max-width: 1400px) {
+  .category-title-first {
+    font-size: 27px;
+    line-height: 29px;
+  }
+  .category-title-second {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-third {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-fourth {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+@media screen and(max-width: 1300px) {
+  .order-detail {
+    .left-content {
+      .content {
+        .text {
+          .ability-boxes {
+            .ability-box {
+              img {
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
+          .amount-holder {
+            .amount {
+              img {
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .right-content {
+      .payment-methods {
+        .method {
+          margin-top: 7.5px;
           img {
-            width: 40%;
-            max-width: 200px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
+            height: 17.5px;
+          }
+          .dot {
+            height: 10px;
+            width: 10px;
+            .inner-dot {
+              width: calc(100% - 2px);
+              height: calc(100% - 2px);
+            }
           }
         }
       }
     }
   }
 }
-
-@media screen and (max-width: 1700px) {
-  .content-holder {
-    .top-heading {
-      font-size: 30px;
-    }
-    .flex-holder {
-      height: 480px;
-      .asset-preview {
-        .ability-boxes {
-          width: 53%;
-          & > div {
-            .ability-image {
-              width: 70px;
-              button {
-                width: 70px;
-                height: 70px;
-                font-size: 25px;
-                img {
-                  max-width: 73%;
-                }
-              }
-            }
-            .ability-type {
-              h4 {
-                font-size: 17px;
-              }
-              p {
-                font-size: 15px;
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 20px 25px 0 40px;
-        .name {
-          p {
-            font-size: 18px;
-            &.racer-name {
-              font-size: 47px;
-            }
-          }
-        }
-        .summary-table {
-          margin: 40px 0 18px;
-          .summary-item {
-            margin-bottom: 20px;
-            .amount-item {
-              margin-bottom: 30px;
-            }
-            p {
-              font-size: 18px;
-              &.value.big {
-                font-size: 27px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
-                width: 23px;
-                height: 23px;
-                p {
-                  font-size: 15px;
-                  top: 50%;
-                }
-                &.amount-display {
-                  width: 46px;
-                  height: 46px;
-                  p {
-                    font-size: 18px;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .buy-nft {
-          font-size: 18px;
-        }
-      }
-    }
+@media screen and(max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+  }
+}
+@media screen and(max-width: 1024px) {
+  .main-holder {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
   }
 }
 
-@media screen and (max-width: 1550px) {
-  .content-holder {
-    .top-heading {
-      font-size: 26px;
-      margin: 10px 0 20px;
-    }
-    .flex-holder {
-      height: 410px;
-      .asset-preview {
-        .ability-boxes {
-          & > div {
-            .ability-image {
-              width: 60px;
-              button {
-                width: 60px;
-                height: 60px;
-                font-size: 22px;
-              }
-            }
-            .ability-type {
-              h4 {
-                font-size: 16px;
-                line-height: 1.3;
-              }
-              p {
-                font-size: 14px;
-              }
-            }
+@media screen and (min-width: 2100px) and (min-height: 1081px) {
+}
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .order-detail {
+    .left-content {
+      .content {
+        padding: 5% 5%;
+        .text {
+          .name {
+            height: 20%;
           }
-        }
-        &.car-preview {
-          .asset-img {
-            max-width: 405px;
-          }
-          .car-ability-boxes {
+          .ability-boxes {
             .ability-box {
-              .heading {
-                font-size: 14px;
-                margin: 5px 0;
-              }
-              .slider-holder {
-                p {
-                  font-size: 15px;
-                }
-                .ab-slider {
-                  height: 7px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 20px 20px 0 35px;
-        .name {
-          p {
-            font-size: 17px;
-            &.racer-name {
-              font-size: 41px;
-            }
-          }
-        }
-        .summary-table {
-          margin: 33px 0 10px;
-          .summary-item {
-            margin-bottom: 15px;
-            .amount-item {
-              margin-bottom: 23px;
-            }
-            p {
-              font-size: 17px;
-              &.value.big {
-                font-size: 22px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
-                width: 20px;
+              img {
                 height: 20px;
-                p {
-                  font-size: 14px;
-                }
-                &.amount-display {
-                  width: 40px;
-                  height: 40px;
-                  p {
-                    font-size: 17px;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .buy-nft {
-          font-size: 17px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .content-holder {
-    .top-heading {
-      font-size: 23px;
-    }
-    .flex-holder {
-      height: 400px;
-      .asset-preview {
-        .ability-boxes {
-          & > div {
-            .ability-image {
-              width: 50px;
-              button {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                img {
-                  max-width: 83%;
-                  width: 25px;
-                  min-width: 25px;
-                }
-              }
-            }
-            .ability-type {
-              h4 {
-                font-size: 15px;
-                line-height: 1.3;
-              }
-              p {
-                font-size: 13px;
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 10px 10px 0 25px;
-        .name {
-          p {
-            font-size: 16px;
-            &.racer-name {
-              font-size: 35px;
-            }
-          }
-        }
-        .summary-table {
-          margin: 27px 0 5px;
-          .summary-item {
-            margin-bottom: 13px;
-            .amount-item {
-              margin-bottom: 20px;
-            }
-            p {
-              font-size: 16px;
-              &.value.big {
-                font-size: 20px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
                 width: 20px;
+              }
+            }
+          }
+          .amount-holder {
+            padding-top: 20px;
+            .amount {
+              margin-top: 5px;
+              img {
                 height: 20px;
-                p {
-                  font-size: 14px;
-                }
-                &.amount-display {
-                  width: 33px;
-                  height: 33px;
-
-                  p {
-                    font-size: 16px;
-                  }
-                }
+                width: 20px;
               }
             }
-          }
-        }
-        .buy-nft {
-          font-size: 16px;
-          padding: 13px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 900px) and (orientation: portrait) {
-  .content-holder {
-    height: unset;
-    .flex-holder {
-      height: unset;
-      flex-wrap: wrap;
-      .asset-preview {
-        width: 90%;
-        max-width: 600px;
-        height: 400px;
-        .asset-img {
-          width: 400px;
-          height: unset;
-        }
-        .ability-boxes {
-          & > div {
-            .ability-image {
-              width: 60px;
-              button {
-                width: 60px;
-                height: 60px;
-                font-size: 22px;
-              }
-            }
-            .ability-type {
-              h4 {
-                font-size: 16px;
-              }
-              p {
-                font-size: 14px;
-              }
-            }
-          }
-        }
-        &.car-preview {
-          height: unset;
-          margin-bottom: 30px;
-          .car-ability-boxes {
-            .ability-box {
-              .slider-holder {
-                .ab-slider {
-                  width: calc(100% - 135px);
-                }
-                p {
-                  width: 60px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 0;
-        width: 90%;
-        max-width: 600px;
-        .name {
-          p {
-            font-size: 17px;
-            &.racer-name {
-              font-size: 40px;
-            }
-          }
-        }
-        .summary-table {
-          .summary-item {
-            margin-bottom: 17px;
-            .amount-item {
-              margin-bottom: 25px;
-            }
-            p {
-              font-size: 17px;
-              &.value.big {
-                font-size: 22px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
-                width: 24px;
-                height: 24px;
-                p {
-                  font-size: 15px;
-                }
-                &.amount-display {
-                  width: 43px;
-                  height: 43px;
-
-                  p {
-                    font-size: 17px;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .buy-nft {
-          font-size: 17px;
-          padding: 15px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 850px) and (orientation: landscape) {
-  .content-holder {
-    .top-heading {
-      font-size: 14px;
-      margin: 0 0 10px;
-    }
-    .flex-holder {
-      height: calc(100% - 26px);
-      .asset-preview {
-        .asset-img{
-          width: auto;
-          height: 100%;
-          img{
-            width: auto;
-            max-width: 100%;
-            height: 100%;
-          }
-        }
-        .ability-boxes {
-          & > div {
-            .ability-image {
-              width: 40px;
-              button {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-                img {
-                  max-width: 83%;
-                  width: 25px;
-                  min-width: 25px;
-                }
-              }
-            }
-            .ability-type {
-              h4 {
-                font-size: 15px;
-                line-height: 1.3;
-              }
-              p {
-                font-size: 13px;
-              }
-            }
-          }
-        }
-        &.car-preview{
-          .asset-img{
-            height: calc(100% - 110px);
-            width: auto;
-            text-align: center;
-            max-width: 100%;
-            img{
-              height: 100%;
-              width: auto;
-            }
-          }
-          .car-ability-boxes{
-            .ability-box{
-              .heading{
-                font-size: 10px;
-                margin: 2px 0;
-              }
-              .slider-holder{
-                p{
-                  font-size: 10px;
-                  width: 60px;
-                }
-                .ab-slider{
-                  width: calc(100% - 130px);
-                  height: 4px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 7px 7px 0 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        .name {
-          margin-top: 0;
-          p {
-            font-size: 14px;
-            &.racer-name {
-              font-size: 20px;
-            }
-          }
-        }
-        .summary-table {
-          margin: 10px 0 5px;
-          .summary-item {
-            margin-bottom: 4px;
-            .amount-item {
-              margin-bottom: 12px;
-            }
-            p {
-              font-size: 12px;
-              &.value.big {
-                font-size: 14px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
-                width: 15px;
-                height: 15px;
-                p {
-                  font-size: 12px;
-                }
-                &.amount-display {
-                  width: 26px;
-                  height: 26px;
-                  p {
-                    font-size: 14px;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .buy-nft {
-          font-size: 14px;
-          padding: 9px;
-        }
-        .arkane{
-          margin-top: 7px;
-          padding: 5px;
-          .arkane-paypal{
-            height: 30px;
           }
         }
       }
     }
-  }
-}
-
-@media screen and (max-width: 640px) and (orientation: landscape) {
-  .content-holder {
-    .top-heading {
-      font-size: 12px;
-      margin: 0 0 9px;
-    }
-    .flex-holder {
-      height: calc(100% - 23px);
-      .asset-preview {
-        .ability-boxes {
-          & > div {
-            .ability-image {
-              width: 32px;
-              button {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-                img {
-                  width: 17px;
-                  min-width: 17px;
-                }
-              }
-            }
-            .ability-type {
-              padding: 0 0px 0px 8px;
-              h4 {
-                font-size: 11px;
-              }
-              p {
-                font-size: 9px;
-              }
-            }
-          }
-        }
-        &.car-preview{
-          .asset-img{
-            height: calc(100% - 100px);
-            width: auto;
-            text-align: center;
-            max-width: 100%;
-            img{
-              height: 100%;
-              width: auto;
-            }
-          }
-          .car-ability-boxes{
-            .ability-box{
-              .heading{
-                font-size: 8px;
-              }
-              .slider-holder{
-                p{
-                  font-size: 8px;
-                  width: 50px;
-                }
-                .ab-slider{
-                  width: calc(100% - 110px);
-                }
-              }
-            }
-          }
-        }
-      }
-      .buy-preview {
-        padding: 4px 4px 0 11px;
-        .name {
-          p {
-            font-size: 12px;
-            &.racer-name {
-              font-size: 16px;
-            }
-          }
-        }
-        .summary-table {
-          .summary-item {
-            margin-bottom: 3px;
-            .amount-item {
-              margin-bottom: 12px;
-            }
-            p {
-              font-size: 10px;
-              &.value.big {
-                font-size: 12px;
-              }
-            }
-            .amount-holder {
-              .am-btn {
-                width: 13px;
-                height: 13px;
-                p {
-                  font-size: 10px;
-                }
-                &.amount-display {
-                  width: 20px;
-                  height: 20px;
-                  margin: 0 5px;
-                  p {
-                    font-size: 12px;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .buy-nft {
-          font-size: 11px;
-          padding: 7px;
+    .right-content {
+      .payment-methods {
+        .method {
           margin-top: 5px;
-        }
-        .arkane{
-          margin-top: 4px;
-          .arkane-paypal{
-            height: 21px;
+          img {
+            height: 15px;
+          }
+          .dot {
+            height: 10px;
+            width: 10px;
+            .inner-dot {
+              width: calc(100% - 1px);
+              height: calc(100% - 1px);
+            }
           }
         }
       }
     }
   }
+  .category-title-first {
+    font-size: 25px;
+    line-height: 27px;
+  }
+  .category-title-second {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-third {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .category-title-fourth {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .races-desc {
+    font-size: 8px;
+    line-height: 10px;
+  }
 }
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(var(--vh, 1vh) * 100 - 40px);
+  }
+  .category-title-first {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .category-title-second {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .category-title-third {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-fourth {
+    font-size: 8px;
+    line-height: 6px;
+  }
+  .races-desc {
+    font-size: 6px;
+    line-height: 8px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .order-detail {
+    .left-content {
+      .content {
+        .text {
+          .ability-boxes {
+            .ability-box {
+              img {
+                height: 12.5px;
+                width: 12.5px;
+              }
+            }
+          }
+          .amount-holder {
+            .amount {
+              img {
+                height: 12.5px;
+                width: 12.5px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .right-content {
+      .payment-methods {
+        .method {
+          margin-top: 5px;
+          img {
+            height: 10px;
+          }
+          .dot {
+            height: 7.5px;
+            width: 7.5px;
+          }
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-second {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-third {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .category-title-fourth {
+    font-size: 6px;
+    line-height: 8px;
+  }
+  .races-desc {
+    font-size: 4px;
+    line-height: 6px;
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    height: auto;
+  }
+  .order-detail {
+    justify-content: unset;
+    flex-direction: column;
+    .left-content {
+      width: 100%;
+      height: 500px;
 
-@media screen and (max-width: 500px) {
-  .content-holder {
-    .flex-holder {
-      .asset-preview {
+      .content {
+        .text {
+          .ability-boxes {
+            justify-content: space-evenly;
+            .ability-box {
+              img {
+                height: 25px;
+                width: 25px;
+              }
+            }
+          }
+          .amount-holder {
+            .amount {
+              img {
+                height: 25px;
+                width: 25px;
+              }
+            }
+          }
+        }
+        .images {
+        }
+      }
+    }
+    .right-content {
+      margin-top: 50px;
+      height: 500px;
+      width: 100%;
+      .payment-methods {
         width: 100%;
-        height: 300px;
-        .asset-img {
-          width: 300px;
-          transform: translateX(-15%);
-        }
-        .ability-boxes {
-          width: 54%;
-          & > div {
-            .ability-image {
-              width: 45px;
-              button {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-
-                img {
-                }
-              }
-            }
-            .ability-type {
-              padding: 0 0px 0px 10px;
-              h4 {
-                font-size: 14px;
-              }
-              p {
-                font-size: 12px;
-              }
-            }
+        height: 75%;
+        .method {
+          margin-top: 10px;
+          img {
+            height: 25px;
           }
+          .dot {
+            height: 17.5px;
+            width: 17.5px;
+          }
+        }
+      }
+      .payment-buttons {
+        .buy {
+          width: 40%;
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 400px) {
-  .content-holder {
-    .flex-holder {
-      .asset-preview {
-        .asset-img {
-          transform: translateX(-20%);
-        }
-        .ability-boxes {
-          width: 52%;
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .order-detail {
+    .left-content {
+      height: 250px;
+      &.car {
+        height: 400px;
+      }
+      .content {
+        .text {
+          .ability-boxes {
+            .ability-box {
+              img {
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
+          .amount-holder {
+            .amount {
+              img {
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
         }
       }
+    }
+    .right-content {
+      height: 275px;
+
+      .payment-methods {
+        .method {
+          img {
+            height: 17.5px;
+          }
+          .dot {
+            height: 12.5px;
+            width: 12.5px;
+          }
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .category-title-second {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .category-title-third {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .category-title-fourth {
+    font-size: 11px;
+    line-height: 12px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+    opacity: 0.6;
+  }
+}
+
+//BACK BUTTON
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
     }
   }
 }

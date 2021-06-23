@@ -1,349 +1,318 @@
-<div class="content-holder">
-  <h4 class="top-heading">Order details</h4>
-  <div class="flex-holder">
-    <div class="asset-preview" *ngIf="assetType === 'racer'">
-      <div class="asset-img">
-        <img
-          class="img"
-          [src]="
-            '/assets/base/images/nft-racers/' +
-            displayArray[0]['image'] +
-            '.png'
-          "
-          alt=""
-        />
-      </div>
-      <div class="ability-boxes">
-        <div class="ability-box">
-          <div class="ability-image">
-            <button class="my-cta-btn-back">
-              <img
-                src="assets/base/images/market/buy-icon.svg"
-                alt="buy icon"
-              />
-            </button>
-          </div>
-          <div class="ability-type">
-            <h4>{{ displayArray[0]["prize"] }} IOI</h4>
-            <p>IOI value</p>
-          </div>
-        </div>
-        <div class="ability-box">
-          <div class="ability-image">
-            <button class="my-cta-btn-back">
-              <img
-                src="assets/base/images/market/staking-white.svg"
-                alt="staking icon"
-              />
-            </button>
-          </div>
-          <div class="ability-type">
-            <h4>{{ displayArray[0]["ability1"] }} from invites</h4>
-            <p>skill</p>
-          </div>
-        </div>
-        <div class="ability-box">
-          <div class="ability-image">
-            <button class="my-cta-btn-back">
-              <img
-                src="assets/base/images/market/staking-white.svg"
-                alt="staking icon"
-              />
-            </button>
-          </div>
-          <div class="ability-type">
-            <h4>{{ displayArray[0]["ability2"] }} from NFTs</h4>
-            <p>skill</p>
-          </div>
-        </div>
-        <div *ngIf="displayArray[0]['ability3']" class="ability-box">
-          <div class="ability-image">
-            <button class="my-cta-btn-back">
-              <img
-                src="assets/base/images/market/staking-white.svg"
-                alt="staking icon"
-              />
-            </button>
-          </div>
-          <div class="ability-type">
-            <h4>{{ displayArray[0]["ability3"] }}</h4>
-            <p>legendary skill</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<div class="order-detail">
+  <div
+    [ngClass]="{
+      car:
+        displayArray[0]['type'] === 'car' ||
+        displayArray[0]['type'] === 'bundle'
+    }"
+    class="left-content"
+  >
+    <p class="category-title-second order-title">Order detail</p>
     <div
-      class="asset-preview car-preview"
-      *ngIf="assetType === 'car' || assetType === 'track' || assetType === 'bundle'"
+      [ngClass]="{
+        car:
+          displayArray[0]['type'] === 'car' ||
+          displayArray[0]['type'] === 'bundle'
+      }"
+      class="content"
     >
-      <div class="asset-img">
+      <div class="text">
+        <p class="category-title-first name">{{ displayArray[0]["name"] }}</p>
+        <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
+          <div class="ability-box first">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["price"].toLocaleString() }} IOI
+              </p>
+              <p class="races-desc">IOI value</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability1"] }} IOI
+              </p>
+              <p class="races-desc">daily stake</p>
+            </div>
+          </div>
+          <div class="ability-box cars">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability2"] }}%
+              </p>
+              <p class="races-desc">ROI</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+          <div class="ability-box first">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["price"].toLocaleString() }} IOI
+              </p>
+              <p class="races-desc">IOI value</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability2"] }}
+              </p>
+              <p class="races-desc">Affiliate reward</p>
+            </div>
+          </div>
+          <div *ngIf="displayArray[0]['ability3']" class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability1"] }}
+              </p>
+              <p class="races-desc">APY</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="displayArray[0]['type'] === 'bundle'" class="ability-boxes">
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">{{ displayArray[0]["nft"] }} %</p>
+              <p class="races-desc">Affiliate reward</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["reward"] }} IOI
+              </p>
+              <p class="races-desc">Daily stake</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["staking"] }}%
+              </p>
+              <p class="races-desc">ROI</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-former"></div>
+        <div class="amount-holder">
+          <p class="races-desc">To be paid</p>
+          <div class="amount">
+            <img
+              src="/assets/base/images/icons/ioi-big.svg"
+              alt="ioi token icon"
+            />
+            <p class="category-title-first">{{ price.toLocaleString() }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="images">
         <img
-          class="img"
-          [src]="
-            '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
-          "
-          alt=""
-          *ngIf="assetType === 'car'"
-        />
-        <img
-          class="img"
-          [src]="'/assets/base/images/' + displayArray[0]['image'] + '.png'"
-          alt=""
-          *ngIf="assetType === 'track'"
-        />
-        <img
-          class="img"
-          [src]="'/assets/base/images/bundles/bundle' + displayArray[0]['imageId'] + '.png'"
-          alt=""
-          *ngIf="assetType === 'bundle'"
+          [src]="path + displayArray[0]['image'] + '.png'"
+          [alt]="displayArray[0]['alt']"
         />
       </div>
-      <div class="car-ability-boxes">
-        <div class="ability-box" *ngIf="assetType !== 'bundle'">
-          <p class="heading">IOI value</p>
-          <div class="slider-holder">
-            <p>{{ displayArray[0]["prize"] }}</p>
-            <div class="ab-slider">
-              <div
-                class="inner-slider blue-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].value * 100) / 15600
-                }"
-              ></div>
-              <div
-                class="inner-slider red-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].value * 100) / 15600
-                }"
-              ></div>
-            </div>
-            <p>15 600</p>
-          </div>
+    </div>
+  </div>
+  <div class="right-content">
+    <p class="category-title-second payment-title">Payment method</p>
+    <div class="payment-methods">
+      <div (click)="paymentMethod = 1" class="method first">
+        <div
+          [ngClass]="{ 'my-border-color': paymentMethod === 1 }"
+          class="border-former"
+        ></div>
+        <div [ngClass]="{ 'my-border-color': paymentMethod === 1 }" class="dot">
+          <div
+            [ngClass]="{
+              'my-simple-back': paymentMethod === 1,
+              active: paymentMethod === 1
+            }"
+            class="inner-dot"
+          ></div>
         </div>
-
-        <div class="ability-box" *ngIf="assetType === 'bundle'">
-          <p class="heading">Affiliate reward</p>
-          <div class="slider-holder">
-            <p>10%</p>
-            <div class="ab-slider">
-              <div
-                class="inner-slider blue-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].nft * 100) / 20
-                }"
-              ></div>
-              <div
-                class="inner-slider red-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].nft * 100) / 20
-                }"
-              ></div>
-            </div>
-            <p>20%</p>
-          </div>
+        <p class="category-title-fourth text">Buy with IOI</p>
+        <img
+          class="single"
+          src="/assets/base/images/icons/ioi-big.svg"
+          alt="ioi token icon"
+        />
+      </div>
+      <div (click)="paymentMethod = 2" class="method">
+        <div
+          [ngClass]="{ 'my-border-color': paymentMethod === 2 }"
+          class="border-former"
+        ></div>
+        <div [ngClass]="{ 'my-border-color': paymentMethod === 2 }" class="dot">
+          <div
+            [ngClass]="{
+              'my-simple-back': paymentMethod === 2,
+              active: paymentMethod === 2
+            }"
+            class="inner-dot"
+          ></div>
         </div>
-
-        <div class="ability-box">
-          <p class="heading">IOI daily stake</p>
-          <div class="slider-holder">
-            <p>{{ displayArray[0]["extras"].stake }}</p>
-            <div class="ab-slider">
-              <div
-                class="inner-slider blue-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
-                }"
-              ></div>
-              <div
-                class="inner-slider red-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].stake * 100) / 10.25
-                }"
-              ></div>
-            </div>
-            <p>10.25</p>
-          </div>
+        <p class="category-title-fourth text">Buy with Polygon</p>
+        <img
+          class="single"
+          src="/assets/base/images/icons/polygon-big.svg"
+          alt="polygon icon"
+        />
+      </div>
+      <!--COMMENTED METAMASK-->
+      <!-- <div (click)="paymentMethod = 3" class="method">
+        <div
+          [ngClass]="{ 'my-border-color': paymentMethod === 3 }"
+          class="border-former"
+        ></div>
+        <div [ngClass]="{ 'my-border-color': paymentMethod === 3 }" class="dot">
+          <div
+            [ngClass]="{
+              'my-simple-back': paymentMethod === 3,
+              active: paymentMethod === 3
+            }"
+            class="inner-dot"
+          ></div>
         </div>
-
-        <div class="ability-box">
-          <p class="heading">ROI %</p>
-          <div class="slider-holder">
-            <p>{{ displayArray[0]["extras"].roi }}%</p>
-            <div class="ab-slider">
-              <div
-                class="inner-slider blue-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].roi * 100) / 24
-                }"
-              ></div>
-              <div
-                class="inner-slider red-box-shop"
-                [ngStyle]="{
-                  'width.%': (displayArray[0]['extras'].roi * 100) / 24
-                }"
-              ></div>
-            </div>
-            <p>24%</p>
-          </div>
+        <p class="category-title-fourth text">Buy with Metamask</p>
+        <img
+          class="single"
+          src="/assets/base/images/icons/meta-icon.svg"
+          alt="metamask icon"
+        />
+      </div>-->
+      <div (click)="paymentMethod = 4" class="method">
+        <div
+          [ngClass]="{ 'my-border-color': paymentMethod === 4 }"
+          class="border-former"
+        ></div>
+        <div [ngClass]="{ 'my-border-color': paymentMethod === 4 }" class="dot">
+          <div
+            [ngClass]="{
+              'my-simple-back': paymentMethod === 4,
+              active: paymentMethod === 4
+            }"
+            class="inner-dot"
+          ></div>
+        </div>
+        <p class="category-title-fourth text">Buy on Arkane Market</p>
+        <div class="payment-images">
+          <img
+            src="/assets/base/images/icons/bitpay-icon.svg"
+            alt="bitpay icon"
+          />
+          <img
+            class="paypal"
+            src="/assets/base/images/icons/paypal-icon.svg"
+            alt="paypal icon"
+          />
         </div>
       </div>
     </div>
-
-    <div class="divide-line"></div>
-    <div class="buy-preview">
-      <div class="name">
-        <p class="racer-name">{{ displayArray[0]["name"] }}</p>
-      </div>
-      <div class="summary-table">
-        <div class="summary-item" *ngIf="assetType !== 'bundle'">
-          <p class="desc">Collection</p>
-          <p class="value">{{ displayArray[0]["collection"] }}</p>
-        </div>
-        <div class="summary-item">
-          <p class="desc">Price per piece</p>
-          <p class="value">
-            {{ displayArray[0]["prize"] }} IOI <span>or</span>
-            {{
-              ((displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
-                myDriverBalances.matic_usdt) * maticFee | number: "1.0-2":"fr"
-            }}
-            MTC
-          </p>
-        </div>
-        <div class="summary-item amount-item">
-          <p class="desc">Amount</p>
-          <div class="amount-holder">
-            <div class="am-btn minus" (click)="minusAmount()">
-              <p>-</p>
-            </div>
-            <div class="am-btn amount-display">
-              <p>{{ amount }}</p>
-            </div>
-            <div class="am-btn minus" (click)="plusAmount()">
-              <p>+</p>
-            </div>
-          </div>
-        </div>
-        <div class="summary-item">
-          <p class="desc">Subtotal</p>
-          <p class="value big">
-            {{
-              displayArray[0]["extras"].value * amount | number: "1.0-2":"fr"
-            }}
-            IOI <span>or</span>
-            {{
-              ((displayArray[0]["extras"].value * myDriverBalances.ioi_usdt) /
-                this.myDriverBalances.matic_usdt) *
-                amount * maticFee | number: "1.0-2":"fr"
-            }}
-            MTC
-          </p>
-        </div>
-      </div>
-      <div class="ioi">
-        <!-- CAR BUTTONS -->
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi * amount >=
-              displayArray[0]['extras'].value
-          "
-          (click)="
-            tokenSelected = 'ioi';
-            buyCarFromGarage(displayArray[0]['extras'].buy_id)
-          "
-        >
-          Buy with IOI
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
-            !displayArray[0]['rare'] &&
-            myDriverBalances?.game_wallet_ioi * amount <
-              displayArray[0]['extras'].value
-          "
-          (click)="lowBalance()"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-        >
-          Buy with IOI
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
-            !displayArray[0]['rare'] &&
-            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
-              myDriverBalances?.matic_usdt) *
-              amount <=
-              myDriverBalances?.game_wallet_matic
-          "
-          (click)="
-            tokenSelected = 'matic';
-            buyCarFromGarage(displayArray[0]['extras'].buy_id)
-          "
-        >
-          Buy with Polygon
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="
-            (assetType === 'car' || assetType === 'racer' || assetType === 'bundle') &&
-            !displayArray[0]['rare'] &&
-            ((displayArray[0]['extras'].value * myDriverBalances.ioi_usdt) /
-              myDriverBalances?.matic_usdt) *
-              amount >
-              myDriverBalances?.game_wallet_matic
-          "
-          (click)="lowBalance()"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-        >
-          Buy with Polygon
-        </button>
-
-        <button
-          class="buy-nft my-cta-btn-back hoverable"
-          *ngIf="assetType !== 'car' && assetType !== 'racer' && assetType !== 'bundle'"
-        >
-          Buy with IOI
-        </button>
-        <button
-          class="buy-nft my-cta-btn-back"
-          *ngIf="assetType === 'car' && displayArray[0]['rare']"
-        >
-          Not available
-        </button>
-      </div>
-      <div
-        class="arkane"
-        *ngIf="
-          (assetType === 'car' || assetType === 'racer') &&
-          !displayArray[0]['rare']
-        "
+    <div class="payment-buttons">
+      <button
+        (click)="buyAsset()"
+        class="buy my-cta-btn-back category-title-third"
       >
-        <div class="arkane-paypal">
-          <img src="assets/base/images/paypal.png" alt="paypal logo" />
-        </div>
-        <div class="arkane-bitpay">
-          <img src="assets/base/images/bitpay.png" alt="bitpay logo" />
-        </div>
-
-        <a
-          class="buy-nft my-cta-btn-back hoverable"
-          href="https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI"
-          target="_blank"
-        >
-          Buy on Arkane market
-        </a>
-      </div>
+        Buy
+      </button>
     </div>
   </div>
 </div>

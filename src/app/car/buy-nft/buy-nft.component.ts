@@ -12,428 +12,750 @@ import { Router } from "@angular/router";
 })
 export class BuyNftComponent implements OnInit {
   myIndex: string;
-  maticFee = 1.05; 
-
-  racers: Array<object> = [
-    {
-      id: 1,
-      collection: "Super",
-      name: "Axle",
-      prize: "100",
-      image: "white-trm",
-      extras: { buy_id: 1, value: "100" },
-      ability1: "1%",
-      ability2: "10%",
-    },
-    {
-      id: 2,
-      collection: "Super",
-      name: "Flash",
-      prize: "100",
-      image: "red-trm",
-      extras: { buy_id: 2, value: "100" },
-      ability1: "1%",
-      ability2: "10%",
-    },
-    {
-      id: 3,
-      collection: "Super",
-      name: "Octane",
-      prize: "100",
-      image: "blue-trm",
-      extras: { buy_id: 3, value: "100" },
-      ability1: "1%",
-      ability2: "10%",
-    },
-    {
-      id: 4,
-      collection: "Super",
-      name: "Punisher",
-      prize: "100",
-      image: "black-trm",
-      extras: { buy_id: 4, value: "100" },
-      ability1: "1%",
-      ability2: "10%",
-    },
-    {
-      id: 5,
-      collection: "Epic",
-      name: "Lady Rich",
-      prize: "1 000",
-      image: "lady-rich",
-      extras: { buy_id: 5, value: "1000" },
-      ability1: "1.5%",
-      ability2: "15%",
-    },
-    {
-      id: 6,
-      collection: "Epic",
-      name: "Rich Jr.",
-      prize: "1 000",
-      image: "bad-boy",
-      extras: { buy_id: 6, value: "1000" },
-      ability1: "1.5%",
-      ability2: "15%",
-    },
-    {
-      id: 7,
-      collection: "Epic",
-      name: "Mrs. Rich",
-      prize: "1 000",
-      image: "mrs-rich",
-      extras: { buy_id: 7, value: "1000" },
-      ability1: "1.5%",
-      ability2: "15%",
-    },
-    {
-      id: 8,
-      collection: "Legendary",
-      name: "Mr. Rich",
-      prize: "10 000",
-      image: "mr-rich",
-      extras: { buy_id: 8, value: "10000" },
-      ability1: "2%",
-      ability2: "20%",
-      ability3: "18% APY staking",
-    },
-  ];
-  cars: Array<object> = [
+  //images settings
+  path: string;
+  //
+  price = 0;
+  maticFee = 1.05;
+  paymentMethod = 1;
+  products: Array<object> = [
     //bronze
     {
       id: 9,
+      position: 1,
+      free: 6000,
       collection: "Common",
       name: "RHINO",
-      prize: "600",
+      price: 600,
       image: "car1",
-      extras: { stake: "0.1", roi: "6", buy_id: 1, value: "600" },
+      gif: "car1-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car rhino",
     },
     {
       id: 10,
+      position: 2,
+      free: 12000,
       collection: "Common",
       name: "PANTHER",
-      prize: "600",
+      price: 600,
       image: "car2",
-      extras: { stake: "0.1", roi: "6", buy_id: 2, value: "600" },
+      gif: "car2-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car panther",
     },
     {
       id: 11,
+
+      position: 3,
+      free: 24000,
       collection: "Common",
       name: "ONYX",
-      prize: "600",
+      price: 600,
       image: "car3",
-      extras: { stake: "0.1", roi: "6", buy_id: 3, value: "600" },
+      gif: "car3-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car onyx",
     },
     {
       id: 12,
+      position: 4,
+      free: 48000,
       collection: "Common",
       name: "ZANDER",
-      prize: "600",
+      price: 600,
       image: "car4",
-      extras: { stake: "0.1", roi: "6", buy_id: 4, value: "600" },
+      gif: "car4-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car zander",
     },
     {
       id: 13,
+      position: 5,
+      free: 96000,
       collection: "Common",
       name: "CYBORG",
-      prize: "600",
+      price: 600,
       image: "car5",
-      extras: { stake: "0.1", roi: "6", buy_id: 5, value: "600" },
+      type: "car",
+      gif: "car5-animation",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car cyborg",
     },
     {
       id: 14,
+      position: 6,
+      free: 192000,
       collection: "Common",
       name: "VULCANIC",
-      prize: "600",
+      price: 600,
       image: "car6",
-      extras: { stake: "0.1", roi: "6", buy_id: 6, value: "600" },
+      gif: "car6-animation",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 15,
+      position: 25,
       collection: "Common rare",
       name: "LUNA",
-      prize: "3 600",
+      price: 3600,
       image: "car25",
+      gif: "car25-animation",
+      type: "car",
       rare: true,
-      extras: { stake: "0.6", roi: "6", buy_id: 25, value: "3600" },
+      ability1: 0.6,
+      ability2: 6,
+      amount: [],
+      alt: "nft car luna",
     },
     //silver
     {
       id: 16,
+      position: 7,
+      free: 288000,
       collection: "Super",
       name: "DORIAN",
-      prize: "1 000",
+      price: 1000,
       image: "car7",
-      extras: { stake: "0.33", roi: "12", buy_id: 7, value: "1000" },
+      gif: "car7-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car dorian",
     },
     {
       id: 17,
+      position: 8,
+      free: 432000,
       collection: "Super",
       name: "PANTHER",
-      prize: "1 000",
+      price: 1000,
       image: "car8",
-      extras: { stake: "0.33", roi: "12", buy_id: 8, value: "1000" },
+      gif: "car8-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car panther",
     },
     {
       id: 18,
+      position: 9,
+      free: 648000,
       collection: "Super",
       name: "ONYX",
-      prize: "1 000",
+      price: 1000,
       image: "car9",
-      extras: { stake: "0.33", roi: "12", buy_id: 9, value: "1000" },
+      gif: "car9-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car onyx",
     },
     {
       id: 19,
+      position: 10,
+      free: 972000,
       collection: "Super",
       name: "ZANDER",
-      prize: "1 000",
+      price: 1000,
       image: "car10",
-      extras: { stake: "0.33", roi: "12", buy_id: 10, value: "1000" },
+      gif: "car10-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car zander",
     },
     {
       id: 20,
+      position: 11,
+      free: 1458000,
       collection: "Super",
       name: "PYTHON",
-      prize: "1 000",
+      price: 1000,
       image: "car11",
-      extras: { stake: "0.33", roi: "12", buy_id: 11, value: "1000" },
+      gif: "car11-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car python",
     },
     {
       id: 21,
+      position: 12,
+      free: 2187000,
       collection: "Super",
       name: "VULCANIC",
-      prize: "1 000",
+      price: 1000,
       image: "car12",
-      extras: { stake: "0.33", roi: "12", buy_id: 12, value: "1000" },
+      gif: "car12-animation",
+      type: "car",
+      ability1: 0.33,
+      ability2: 12,
+      amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 22,
+      position: 26,
       collection: "Super rare",
       name: "SILVER KNIGHT",
-      prize: "6 000",
+      price: 6000,
       image: "car26",
+      gif: "car26-animation",
+      type: "car",
       rare: true,
-      extras: { stake: "1.98", roi: "12", buy_id: 26, value: "6000" },
+      ability1: 1.98,
+      ability2: 12,
+      amount: [],
+      alt: "nft car silver knight",
     },
     //gold
     {
       id: 23,
+      position: 13,
+      free: 3000000,
       collection: "Epic",
       name: "CYBORG",
-      prize: "1 600",
+      price: 1600,
       image: "car13",
-      extras: { stake: "0.79", roi: "18", buy_id: 13, value: "1600" },
+      gif: "car13-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car cyborg",
     },
     {
       id: 24,
+      position: 14,
+      free: 3600000,
       collection: "Epic",
       name: "RHINO",
-      prize: "1 600",
+      price: 1600,
       image: "car14",
-      extras: { stake: "0.79", roi: "18", buy_id: 14, value: "1600" },
+      gif: "car14-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car rhino",
     },
     {
       id: 25,
+      position: 15,
+      free: 4320000,
       collection: "Epic",
       name: "HYPER",
-      prize: "1 600",
+      price: 1600,
       image: "car15",
-      extras: { stake: "0.79", roi: "18", buy_id: 15, value: "1600" },
+      gif: "car15-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car hyper",
     },
     {
       id: 26,
+      position: 16,
+      free: 5184000,
       collection: "Epic",
       name: "BULL",
-      prize: "1 600",
+      price: 1600,
       image: "car16",
-      extras: { stake: "0.79", roi: "18", buy_id: 16, value: "1600" },
+      gif: "car16-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car bull",
     },
     {
       id: 27,
+      position: 17,
+      free: 6220000,
       collection: "Epic",
       name: "PYTHON",
-      prize: "1 600",
+      price: 1600,
       image: "car17",
-      extras: { stake: "0.79", roi: "18", buy_id: 17, value: "1600" },
+      gif: "car17-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car python",
     },
     {
       id: 28,
+      position: 18,
+      free: 7465000,
       collection: "Epic",
       name: "HITMAN",
-      prize: "1 600",
+      price: 1600,
       image: "car18",
-      extras: { stake: "0.79", roi: "18", buy_id: 18, value: "1600" },
+      gif: "car18-animation",
+      type: "car",
+      ability1: 0.79,
+      ability2: 18,
+      amount: [],
+      alt: "nft car hitman",
     },
     {
       id: 29,
+      position: 27,
       collection: "Epic rare",
       name: "MIDAS",
-      prize: "9 600",
+      price: 9600,
       image: "car27",
+      gif: "car27-animation",
+      type: "car",
       rare: true,
-      extras: { stake: "4.74", roi: "18", buy_id: 27, value: "9600" },
+      ability1: 4.74,
+      ability2: 18,
+      amount: [],
+      alt: "nft car midas",
     },
     //platinum
     {
       id: 30,
+      position: 19,
+      free: 8200000,
       collection: "Legendary",
       name: "HYPER",
-      prize: "2 600",
+      price: 2600,
       image: "car19",
-      extras: { stake: "1.71", roi: "24", buy_id: 19, value: "2600" },
+      gif: "car19-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car hyper",
     },
     {
       id: 31,
+      position: 20,
+      free: 9000000,
       collection: "Legendary",
       name: "DORIAN",
-      prize: "2 600",
+      price: 2600,
       image: "car20",
-      extras: { stake: "1.71", roi: "24", buy_id: 20, value: "2600" },
+      gif: "car20-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car dorian",
     },
     {
       id: 32,
+      position: 21,
+      free: 9900000,
       collection: "Legendary",
       name: "VULCANIC",
-      prize: "2 600",
+      price: 2600,
       image: "car21",
-      extras: { stake: "1.71", roi: "24", buy_id: 21, value: "2600" },
+      gif: "car21-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car vulcanic",
     },
     {
       id: 33,
+      position: 22,
+      free: 10890000,
       collection: "Legendary",
       name: "BULL",
-      prize: "2 600",
+      price: 2600,
       image: "car22",
-      extras: { stake: "1.71", roi: "24", buy_id: 22, value: "2600" },
+      gif: "car22-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car bull",
     },
     {
       id: 34,
+      position: 23,
+      free: 12000000,
       collection: "Legendary",
       name: "KNOCKOUT",
-      prize: "2 600",
+      price: 2600,
       image: "car23",
-      extras: { stake: "1.71", roi: "24", buy_id: 23, value: "2600" },
+      gif: "car23-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car knockout",
     },
     {
       id: 35,
+      position: 24,
+      free: 13200000,
       collection: "Legendary",
       name: "LARA",
-      prize: "2 600",
+      price: 2600,
       image: "car24",
-      extras: { stake: "1.71", roi: "24", buy_id: 24, value: "2600" },
+      gif: "car24-animation",
+      type: "car",
+      ability1: 1.71,
+      ability2: 24,
+      amount: [],
+      alt: "nft car lara",
     },
     {
       id: 36,
+      position: 28,
       collection: "Legendary rare",
       name: "BLUE STORM",
-      prize: "15 600",
+      price: 15600,
       image: "car28",
+      gif: "car28-animation",
+      type: "car",
       rare: true,
-      extras: { stake: "10.25", roi: "24", buy_id: 28, value: "15600" },
+      ability1: 10.25,
+      ability2: 24,
+      amount: [],
+      alt: "nft car blue storm",
     },
-  ];
-  tracks: Array<object> = [
+    {
+      id: 1,
+      position: 1,
+      collection: "Super",
+      name: "Axle",
+      price: 100,
+      image: "white-trm",
+      gif: "white-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Axle",
+    },
+
+    {
+      id: 2,
+      position: 2,
+      collection: "Super",
+      name: "Flash",
+      price: 100,
+      image: "red-trm",
+      gif: "red-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Flash",
+    },
+    {
+      id: 3,
+      position: 3,
+      collection: "Super",
+      name: "Octane",
+      price: 100,
+      image: "blue-trm",
+      gif: "blue-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Octane",
+    },
+    {
+      id: 4,
+      position: 4,
+      collection: "Super",
+      name: "Punisher",
+      price: 100,
+      image: "black-trm",
+      gif: "black-trm-animation",
+      type: "racer",
+      ability1: "1%",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Punisher",
+    },
+    {
+      id: 5,
+      position: 5,
+      collection: "Epic",
+      name: "Lady Rich",
+      price: 1000,
+      image: "lady-rich",
+      gif: "lady-rich-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Lady Rich",
+    },
+    {
+      id: 6,
+      position: 6,
+      collection: "Epic",
+      name: "Rich Jr.",
+      price: 1000,
+      image: "bad-boy",
+      gif: "bad-boy-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Rich Junior",
+    },
+    {
+      id: 7,
+      position: 7,
+      collection: "Epic",
+      name: "Mrs. Rich",
+      price: 1000,
+      image: "mrs-rich",
+      gif: "mrs-rich-animation",
+      type: "racer",
+      ability1: "1.5%",
+      ability2: "15%",
+      rank: "normal",
+      amount: [],
+      alt: "nft racer Mrs. Rich",
+    },
+    {
+      id: 8,
+      position: 8,
+      collection: "Legendary",
+      name: "Mr. Rich",
+      price: 10000,
+      image: "mr-rich",
+      gif: "mr-rich-animation",
+      type: "racer",
+      ability1: "2%",
+      ability2: "20%",
+      ability3: "18% APY staking",
+      rank: "height",
+      amount: [],
+      alt: "nft racer mr. rich",
+    },
     {
       id: 37,
       collection: "Race tracks",
-      name: "Racer",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
+      name: "Free track",
+      price: "Soon",
+      image: "free-track",
+      type: "track",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track free",
     },
     {
       id: 38,
       collection: "Race tracks",
-      name: "Beach Race",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
+      name: "Desert",
+      price: "Soon",
+      image: "desert",
+      type: "track",
+      bet: "1",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track desert",
     },
     {
       id: 39,
       collection: "Race tracks",
-      name: "Forest Race",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
+      name: "Dark forest",
+      price: "Soon",
+      image: "dark-forest",
+      type: "track",
+      bet: "5",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track dark forest",
     },
     {
       id: 40,
       collection: "Race tracks",
-      name: "Space Race",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
+      name: "Night city",
+      price: "Soon",
+      image: "night-city",
+      type: "track",
+      bet: "10",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track night city",
     },
     {
       id: 41,
       collection: "Race tracks",
-      name: "Space Race",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
+      name: "Sea bridge",
+      price: "Soon",
+      image: "sea-bridge",
+      type: "track",
+      bet: "50",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track sea bridge",
     },
+
     {
       id: 42,
       collection: "Race tracks",
-      name: "Space Race",
-      prize: "1152",
-      image: "track",
-      extras: { stake: "0.1", roi: "6" },
-    }
-  ];
-
-  bundles: Array<object> = [
+      name: "Underground",
+      price: "Soon",
+      image: "underground",
+      type: "track",
+      bet: "100",
+      ability1: "2 minutes",
+      ability2: "Random events",
+      amount: [],
+      alt: "nft track underground",
+    },
     {
       id: 43,
-      name: 'DAOMaker',
-      imageId: 3,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 1 }
+      position: 1,
+      type: "bundle",
+      name: "DAOMaker",
+      link: "@TheDaoMaker",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle3",
+      racer: "dao-maker",
+      car: "car41",
+      avatar: "dao-avatar",
+      back: "dao-back",
     },
     {
       id: 44,
-      name: 'Shreyansh Polygon',
-      imageId: 7,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 2 }
+      position: 2,
+      type: "bundle",
+      name: "Shreyansh Polygon",
+      link: "@shreyansh_27",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle7",
+      racer: "polygon",
+      car: "car42",
     },
     {
       id: 45,
-      name: 'KYLE CHASSE',
-      imageId: 6,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 4 }
+      position: 4,
+      type: "bundle",
+      name: "Kyle Chasse",
+      link: "@kyle_chasse",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle6",
+      racer: "paid",
+      car: "car44",
+      avatar: "paid-avatar",
+      back: "paid-back",
     },
     {
       id: 46,
-      name: 'Ash WSB',
-      imageId: 2,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 5 }
+      position: 5,
+      type: "bundle",
+      name: "Ash WSB",
+      link: "@ashWSBreal",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle2",
+      racer: "ash-wsb",
+      car: "car45",
+      avatar: "ash-avatar",
+      back: "ash-back",
     },
     {
       id: 47,
-      name: 'Tehmoonwalker',
-      imageId: 1,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 6 }
+      position: 6,
+      type: "bundle",
+      name: "Tehmoonwalker",
+      link: "@tehMoonwalkeR",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle1",
+      racer: "tehmoonwalker",
+      car: "car46",
+      avatar: "tehmoon-avatar",
+      back: "tehmoon-back",
     },
+
     {
       id: 48,
-      name: 'Parabolic Guy',
-      imageId: 5,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 7 }
+      position: 7,
+      type: "bundle",
+      name: "Parabolic Guy",
+      link: "@GoingParabolic",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle5",
+      racer: "parabolic-guy",
+      car: "car47",
+      avatar: "parabolic-avatar",
+      back: "parabolic-back",
     },
     {
       id: 49,
-      name: 'Cryptowizard',
-      imageId: 4,
-      prize: '1 000',
-      extras: { stake: "0.1", roi: "6", nft: "10", value: 1000, buy_id: 11 }
-    }
+      position: 11,
+      type: "bundle",
+      name: "Cryptowizard",
+      link: "@CryptoWizardd",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      image: "bundle4",
+      racer: "cryptowizard",
+      car: "car51",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
   ];
-
   displayArray = [];
   @Input() assetType = "racer";
   @Input() assetId = 1;
@@ -454,21 +776,17 @@ export class BuyNftComponent implements OnInit {
   }
 
   resolveBuyAsset() {
-    if (this.assetType === "racer") {
-      this.displayArray = this.racers;
-    }
-    if (this.assetType === "car") {
-      this.displayArray = this.cars;
-    }
-    if (this.assetType === "track") {
-      this.displayArray = this.tracks;
-    }
-    if (this.assetType === "bundle") {
-      this.displayArray = this.bundles;
-    }
-    this.displayArray = this.displayArray.filter(
-      (asset) => asset.id === this.assetId
+    this.displayArray = this.products.filter(
+      (asset) => asset["id"] === this.assetId
     );
+    if (this.displayArray[0]["type"] === "racer") {
+      this.path = "/assets/base/images/nft-racers/";
+    } else if (this.displayArray[0]["type"] === "car") {
+      this.path = "/assets/base/images/nft-cars/";
+    } else if (this.displayArray[0]["type"] === "bundle") {
+      this.path = "/assets/base/images/bundles/";
+    }
+    this.price = +this.displayArray[0]["price"] * this.amount;
   }
 
   plusAmount() {
@@ -500,7 +818,7 @@ export class BuyNftComponent implements OnInit {
 
       return;
     }
-    if (this.assetType === 'bundle') {
+    if (this.assetType === "bundle") {
       this.buyPackageNfts(index);
       return;
     }
@@ -521,20 +839,20 @@ export class BuyNftComponent implements OnInit {
   }
 
   buyPackageNfts(index: number) {
-      this.api
-        .packageBuyList({
-          package_id: index,
-          amount: this.amount,
-          currency: this.tokenSelected,
-        })
-        .subscribe((datax) => {
-          const data: any = datax;
-          setTimeout(() => {
-            this.notifyChangedBalance();
-            this.router.navigate(["/profile/my-profile"]);
-            this.notify.error("You have bought a new package!");
-          }, 1000);
-        });
+    this.api
+      .packageBuyList({
+        package_id: index,
+        amount: this.amount,
+        currency: this.tokenSelected,
+      })
+      .subscribe((datax) => {
+        const data: any = datax;
+        setTimeout(() => {
+          this.notifyChangedBalance();
+          this.router.navigate(["/profile/my-profile"]);
+          this.notify.error("You have bought a new package!");
+        }, 1000);
+      });
   }
 
   notifyChangedBalance() {
@@ -548,5 +866,49 @@ export class BuyNftComponent implements OnInit {
 
   lowBalance() {
     this.notify.error("Insufficient balance");
+  }
+  buyAsset() {
+    if (this.paymentMethod === 1) {
+      (this.displayArray[0]["type"] ||
+        this.displayArray[0]["type"] ||
+        this.displayArray[0]["type"] === "bundle") &&
+      !this.displayArray[0]["rare"] &&
+      this.myDriverBalances?.game_wallet_ioi >= this.price
+        ? (() => {
+            this.tokenSelected = "ioi";
+            this.buyCarFromGarage(this.displayArray[0]["position"]);
+          })()
+        : (() => {
+            this.lowBalance();
+            this.router.navigate(["/other/wallet-control"], {
+              queryParams: { controlType: "deposit" },
+            });
+          })();
+    } else if (this.paymentMethod === 2) {
+      (this.displayArray[0]["type"] === "car" ||
+        this.displayArray[0]["type"] === "racer" ||
+        this.displayArray[0]["type"] === "bundle") &&
+      !this.displayArray[0]["rare"] &&
+      ((this.price * this.myDriverBalances.ioi_usdt) /
+        this.myDriverBalances?.matic_usdt) *
+        this.amount <=
+        this.myDriverBalances?.game_wallet_matic
+        ? (() => {
+            this.tokenSelected = "matic";
+            this.buyCarFromGarage(this.displayArray[0]["position"]);
+          })()
+        : (() => {
+            this.lowBalance();
+            this.router.navigate(["/other/wallet-control"], {
+              queryParams: { controlType: "deposit" },
+            });
+          })();
+    } else if (this.paymentMethod === 3) {
+    } else if (this.paymentMethod === 4) {
+      window.open(
+        "https://arkane.market/search?contractName=Trade%20Race%20Manager%20by%20IOI",
+        "_blank"
+      );
+    }
   }
 }
