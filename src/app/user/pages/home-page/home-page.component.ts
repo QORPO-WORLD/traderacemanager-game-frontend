@@ -1,8 +1,8 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from "@angular/common/http";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { timeStamp } from "console";
-import { Tick } from 'highcharts';
-import { TickerPricesService } from '../../../api/services/ticker-prices.service';
+import { Tick } from "highcharts";
+import { TickerPricesService } from "../../../api/services/ticker-prices.service";
 
 @Component({
   selector: "app-home-page",
@@ -49,56 +49,80 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  bundles: Array<any> = [
+  bundles: Array<object> = [
     {
       id: 1,
-      name: 'Tehmoonwalker',
-      link: '@tehmoonwalker',
+      name: "DAOMaker",
+      link: "@TheDaoMaker",
+      image: "bundle-dao",
+      back: "bundle-back3",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 2,
-      name: 'Ash WSB',
-      link: '@ashWSBreal',
+      name: "Shreyansh",
+      link: "@shreyansh_27",
+      image: "bundle-polygon",
+      back: "bundle-back7",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 3,
-      name: 'DAOMaker',
-      link: '@TheDaoMaker',
+      name: "KYLE CHASSE",
+      link: "@kyle_chasse",
+      image: "bundle-kyle",
+      back: "bundle-back6",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 4,
-      name: 'Cryptowizard',
-      link: '@CryptoWizardd',
+      name: "Ash WSB",
+      link: "@ashWSBreal",
+      image: "bundle-ash",
+      back: "bundle-back2",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 5,
-      name: 'Parabolic Guy',
-      link: '@GoingParabolic',
+      name: "Tehmoonwalker",
+      link: "@tehmoonwalker",
+      image: "bundle-tehmoon",
+      back: "bundle-back1",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 6,
-      name: 'KYLE CHASSE',
-      link: '@kyle_chasse',
+      name: "Parabolic Guy",
+      link: "@GoingParabolic",
+      image: "bundle-parabolic",
+      back: "bundle-back5",
       staking: 6,
       reward: 0.1,
     },
     {
       id: 7,
-      name: 'Shreyansh',
-      link: '@shreyansh_27',
+      name: "Altcoin Buzz",
+      link: "@Altcoinbuzzio",
+      image: "bundle-altcoin",
+      back: "bundle-back8",
       staking: 6,
       reward: 0.1,
-    }
+    },
+
+    {
+      id: 8,
+      name: "Cryptowizard",
+      link: "@CryptoWizardd",
+      image: "bundle-wizard",
+      back: "bundle-back4",
+      staking: 6,
+      reward: 0.1,
+    },
   ];
 
   months: Array<object> = [
@@ -180,9 +204,9 @@ export class HomePageComponent implements OnInit {
   carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
-  xDown = null;                                                        
+  xDown = null;
   yDown = null;
-  @ViewChild('carousel') carousel: ElementRef;
+  @ViewChild("carousel") carousel: ElementRef;
   getMonth() {
     var today = new Date();
     var month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -226,7 +250,7 @@ export class HomePageComponent implements OnInit {
     this.tickerIoiInterval = setInterval(() => {
       this.getIoiPrice();
     }, 20000);
-    // this.carousel.addEventListener('touchstart', this.handleTouchStart, false);        
+    // this.carousel.addEventListener('touchstart', this.handleTouchStart, false);
     // document.addEventListener('touchmove', this.handleTouchMove, false);
     console.log("jako");
   }
@@ -391,7 +415,7 @@ export class HomePageComponent implements OnInit {
 
   nextCarItem() {
     if (this.carouselStep > 2) {
-      this.carouselStep = 1
+      this.carouselStep = 1;
     } else {
       this.carouselStep++;
     }
@@ -399,7 +423,7 @@ export class HomePageComponent implements OnInit {
 
   prevCarItem() {
     if (this.carouselStep < 2) {
-      this.carouselStep = 3
+      this.carouselStep = 3;
     } else {
       this.carouselStep--;
     }
@@ -418,8 +442,8 @@ export class HomePageComponent implements OnInit {
   }
 
   nextBundleCarItem() {
-    if (this.bundleCarStep > 5) {
-      this.bundleCarStep = 0
+    if (this.bundleCarStep >= this.bundles.length - 1) {
+      this.bundleCarStep = 0;
     } else {
       this.bundleCarStep++;
     }
@@ -427,21 +451,22 @@ export class HomePageComponent implements OnInit {
 
   prevBundleCarItem() {
     if (this.bundleCarStep < 1) {
-      this.bundleCarStep = 6
+      this.bundleCarStep = this.bundles.length - 1;
     } else {
       this.bundleCarStep--;
     }
   }
 
   getIoiPrice() {
-    this.ticker.tickerIoiPriceRead().subscribe(data => {
+    this.ticker.tickerIoiPriceRead().subscribe((data) => {
       if (!this.oldIoiPrice || !this.currentIoiPrice) {
         this.oldIoiPrice = data;
-        this.currentIoiPrice = data; 
+        this.currentIoiPrice = data;
       }
       this.currentIoiPrice = data;
       if (this.oldIoiPrice !== this.currentIoiPrice) {
-        this.ioiIncresing = this.oldIoiPrice > this.currentIoiPrice ? false : true;
+        this.ioiIncresing =
+          this.oldIoiPrice > this.currentIoiPrice ? false : true;
         this.oldIoiPrice = this.currentIoiPrice;
       }
     });
@@ -451,57 +476,49 @@ export class HomePageComponent implements OnInit {
     window.open(url, "_blank").focus();
   }
 
-
   getTouches(evt) {
-    return evt.touches ||            
-          evt.originalEvent.touches; 
-  }                                                     
-
-  handleTouchStart(evt) {
-      const firstTouch = this.getTouches(evt)[0];                                      
-      this.xDown = firstTouch.clientX;                                      
-      this.yDown = firstTouch.clientY;                                      
-  }                                                
-
-  handleTouchMove(evt) {
-      if ( ! this.xDown || ! this.yDown ) {
-          return;
-      }
-
-      var xUp = evt.touches[0].clientX;                                    
-      var yUp = evt.touches[0].clientY;
-
-      var xDiff = this.xDown - xUp;
-      var yDiff = this.yDown - yUp;
-
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-          if ( xDiff > 0) {
-              if(this.carouselStep < 3)
-                this.carouselStep++;
-              else
-                this.carouselStep=1;
-              clearInterval(this.carouselInterval);
-          } 
-          else{
-              if(this.carouselStep > 1){
-                this.carouselStep--;
-              }
-              else{
-                this.carouselStep=3;
-              }
-              clearInterval(this.carouselInterval);
-          }                       
-      } else {
-          if ( yDiff > 0 ) {
-            //up
-          } else { 
-           //down
-          }                                                                 
-      }
-      /* reset values */
-      this.xDown = null;
-      this.yDown = null;                                             
+    return evt.touches || evt.originalEvent.touches;
   }
 
+  handleTouchStart(evt) {
+    const firstTouch = this.getTouches(evt)[0];
+    this.xDown = firstTouch.clientX;
+    this.yDown = firstTouch.clientY;
+  }
 
+  handleTouchMove(evt) {
+    if (!this.xDown || !this.yDown) {
+      return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = this.xDown - xUp;
+    var yDiff = this.yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if (xDiff > 0) {
+        if (this.carouselStep < 3) this.carouselStep++;
+        else this.carouselStep = 1;
+        clearInterval(this.carouselInterval);
+      } else {
+        if (this.carouselStep > 1) {
+          this.carouselStep--;
+        } else {
+          this.carouselStep = 3;
+        }
+        clearInterval(this.carouselInterval);
+      }
+    } else {
+      if (yDiff > 0) {
+        //up
+      } else {
+        //down
+      }
+    }
+    /* reset values */
+    this.xDown = null;
+    this.yDown = null;
+  }
 }

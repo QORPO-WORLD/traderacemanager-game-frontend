@@ -25,7 +25,7 @@
   <div class="content-holder">
     <div class="info-holder">
       <p class="desc">Bundle</p>
-      <p class="name">{{ bundles[bundleId - 1].name }}</p>
+      <p class="name">{{ bundles[0]["name"] }}</p>
       <p class="text">
         Get a NFT car and an avatar of your favourite influencer in our limited
         bundles! Increase your daily income thanks to daily stakes today.
@@ -44,7 +44,7 @@
     </div>
     <div class="img-holder">
       <img
-        [src]="'/assets/base/images/bundles/bundle' + bundleId + '.png'"
+        [src]="'/assets/base/images/bundles/' + bundles[0]['image'] + '.png'"
         alt=""
       />
     </div>
@@ -57,7 +57,7 @@
           class="avatar-img"
           [src]="
             '/assets/base/images/nft-racers/' +
-            bundles[bundleId - 1].avatarName +
+            bundles[0]['avatarName'] +
             '.png'
           "
           alt=""
@@ -71,9 +71,7 @@
         <img
           class="car-img"
           [src]="
-            '/assets/base/images/nft-cars/car' +
-            bundles[bundleId - 1].carId +
-            '.png'
+            '/assets/base/images/nft-cars/car' + bundles[0]['carId'] + '.png'
           "
           alt=""
         />
