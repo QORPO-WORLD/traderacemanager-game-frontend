@@ -65,6 +65,7 @@ import { TeamsSelectionComponent } from './components/teams-selection/teams-sele
 import { RaceInfoModalComponent } from './components/race-info-modal/race-info-modal.component';
 import { TeamMembershipComponent } from './components/team-membership/team-membership.component'
 import { LoadingModalComponent } from './components/shared/loading-modal/loading-modal.component';
+import { TutorialModalComponent } from './components/shared/tutorial-modal/tutorial-modal.component';
 
 @NgModule({
   imports: [
@@ -118,7 +119,8 @@ import { LoadingModalComponent } from './components/shared/loading-modal/loading
     FuelLayoutComponent,
     IoiloaderComponent,
     TeamMembershipComponent,
-    LoadingModalComponent
+    LoadingModalComponent,
+    TutorialModalComponent
   ],
   providers: [
     CurrencyPipe,
