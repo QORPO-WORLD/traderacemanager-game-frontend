@@ -161,7 +161,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   bottomPercentBalancer = 25;
   slidePercent = 20;
   rareAdjustNum = 3;
-  multiply = 0;
   myDriverStats: any;
   myAffilate: any;
   players = 0;
@@ -169,6 +168,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   trsDate: number;
   redirecting = false;
   useUnity = false;
+  myCars1 = [];
+  myCars2 = [];
+  myCars3 = [];
+  myCars4 = [];
+  displayArray = [];
+
   constructor(private router: Router, protected api: CarsService,
     protected raceApi: RacesService, protected route: ActivatedRoute,
     protected notify: NotifiqService,
@@ -921,6 +926,9 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         return a.extras.tier - b.extras.tier;
       });
     }
+    
+    this.filterCarArrays(this.myCars);
+
     this.changeEdition(1);  
 
     const mynextrace = this.newCars;
@@ -1174,7 +1182,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const selBets = [];
     let isSituated;
 
-    isSituated = this.selectedCarsToRace.find(i => i.asset_id === this.myCars[index].asset_id);
+    isSituated = this.selectedCarsToRace.find(i => i.asset_id === this.displayArray[index].asset_id);
 
     if (!isSituated) {
       if (this.raceId === 'car_race_short_0' && this.selectedCarsToRace.length > 4) {
@@ -1202,23 +1210,23 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         fake.short = this.myBet[x].short;
         statBet.push(fake);
       }
-      this.myCars[index].selected = true;
-      this.myCars[index].bet = statBet;
-      this.myCars[index].fuel = 0;
-      this.myCars[index].selectedBets = selBets;
+      this.displayArray[index].selected = true;
+      this.displayArray[index].bet = statBet;
+      this.displayArray[index].fuel = 0;
+      this.displayArray[index].selectedBets = selBets;
 
-      this.selectedCarsToRace.push(this.myCars[index]);
+      this.selectedCarsToRace.push(this.displayArray[index]);
 
       this.usedCars.push({
-        asset_id: this.myCars[index].asset_id,
+        asset_id: this.displayArray[index].asset_id,
         amount: this.actualRaceAmount
       });
-      this.myCars[index].selected = true;
+      this.displayArray[index].selected = true;
     } else {
-      this.selectedCarsToRace = this.selectedCarsToRace.filter(j => j.asset_id !== this.myCars[index].asset_id);
-      this.usedCars = this.usedCars.filter(j => j.asset_id !== this.myCars[index].asset_id);
-      this.myCars[index].selected = false;
-      this.myCars[index].short = false;
+      this.selectedCarsToRace = this.selectedCarsToRace.filter(j => j.asset_id !== this.displayArray[index].asset_id);
+      this.usedCars = this.usedCars.filter(j => j.asset_id !== this.displayArray[index].asset_id);
+      this.displayArray[index].selected = false;
+      this.displayArray[index].short = false;
     }
 
     if (this.isIoi === true) {
@@ -1542,30 +1550,30 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.slidePercent = 20;
     this.carSlideIndex = 0;
     const arrIndex = index - 1;
+    
+    this.displayArray = eval('this.myCars' + index);
+
     this.editionIndex = index;
-    const carsBefore = this.myCars.filter(car => car.extras.tier <= (arrIndex * 6));
     this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
-    this.multiply = carsBefore.length;
     if(index === 1){
-      this.multiply = 0;
       this.myCarsInEdition = this.myCars.filter(car => car.extras.tier >= arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 || car.extras.tier === 24 + index);
     }
     if (window.window.innerWidth < 640){
       this.slidePercent = 33.333;
-      this.selectedSlideIndex = 1 + this.multiply;
+      this.selectedSlideIndex = 1;
       this.rareAdjustNum = 2;
       if(this.myCarsInEdition.length === 1 || this.myCarsInEdition.length === 2){
-        this.selectedSlideIndex = 0 + this.multiply;
+        this.selectedSlideIndex = 0;
         this.carSlideIndex = -1;
       }
     } else {
       if(this.myCarsInEdition.length > 4){
-        this.selectedSlideIndex = 2 + this.multiply;
+        this.selectedSlideIndex = 2;
       } else if(this.myCarsInEdition.length === 3 || this.myCarsInEdition.length === 4){
-        this.selectedSlideIndex = 1 + this.multiply;
+        this.selectedSlideIndex = 1;
         this.carSlideIndex = -1;
       } else if(this.myCarsInEdition.length === 1 || this.myCarsInEdition.length === 2){
-        this.selectedSlideIndex = 0 + this.multiply;
+        this.selectedSlideIndex = 0;
         this.carSlideIndex = -2;
       }
     }
@@ -1576,7 +1584,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     if (window.window.innerWidth < 640){
       adjustNum = 3;
     }
-    if(this.carSlideIndex <= this.myCarsInEdition.length - adjustNum){
+    if(this.carSlideIndex <= this.displayArray.length - adjustNum){
       this.carSlideIndex++;
       this.selectedSlideIndex++;
     }
@@ -1598,11 +1606,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       adjustNum = 1;
     }
     this.selectedSlideIndex = index;
-    if(index < this.multiply + this.myCarsInEdition.length  + this.editionIndex){
-      this.carSlideIndex = index - this.multiply - adjustNum;
-    } else {
-      this.carSlideIndex = this.myCarsInEdition.length - (adjustNum + 1);
-    }
+    this.carSlideIndex = index - adjustNum;
   }
 
 
@@ -1708,6 +1712,18 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     } else {
       this.windowFuelCarIndex = this.selectedCarsToRace.length - this.bottomCarsBalancer;
     }
+  }
+
+  filterCarArrays(data: any) {
+    this.myCars1 = data.filter(j => j.extras.tier > 0 && j.extras.tier <= 6 || j.extras.tier == 25 || j.extras.tier >= 41);
+    this.myCars2 = data.filter(j => j.extras.tier > 6 && j.extras.tier <= 12 || j.extras.tier == 26);
+    this.myCars3 = data.filter(j => j.extras.tier > 12 && j.extras.tier <= 18 || j.extras.tier == 27);
+    this.myCars4 = data.filter(j => j.extras.tier > 18 && j.extras.tier <= 24 || j.extras.tier == 28);
+    console.log(this.myCars1);
+    console.log(this.myCars2);
+    console.log(this.myCars3);
+    console.log(this.myCars4);
+    console.log('_________________');
   }
 
 }
