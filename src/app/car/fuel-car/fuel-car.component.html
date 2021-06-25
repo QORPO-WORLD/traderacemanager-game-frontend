@@ -208,21 +208,13 @@
             class="inner-slider"
             [ngStyle]="{ 'left.%': 0 - slidePercent * carSlideIndex }"
           >
-            <ng-container *ngFor="let car of myCars; let i = index">
+            <ng-container *ngFor="let car of displayArray; let i = index">
               <div
                 class="car-item"
                 (click)="selectCarToRace(i); manualCarChange(i)"
-                *ngIf="
-                  (car.extras.tier > editionIndex * 6 - 6 &&
-                    car.extras.tier <= editionIndex * 6) ||
-                  (car.extras.tier === 0 && editionIndex === 1) ||
-                  car.extras.tier === 24 + editionIndex
-                "
                 [ngClass]="{
                   'big-center':
-                    i === selectedSlideIndex ||
-                    (car.extras.tier > 24 &&
-                      carSlideIndex === myCarsInEdition.length - rareAdjustNum),
+                    i === selectedSlideIndex,
                   'mid-sides':
                     i === selectedSlideIndex - 1 ||
                     i === selectedSlideIndex + 1,
@@ -230,7 +222,7 @@
                     i === selectedSlideIndex - 2 || i === selectedSlideIndex + 2
                 }"
               >
-                <div class="car-check" *ngIf="myCars[i]?.selected === true">
+                <div class="car-check" *ngIf="displayArray[i]?.selected === true">
                   <div class="inner">
                     <p>
                       <img
