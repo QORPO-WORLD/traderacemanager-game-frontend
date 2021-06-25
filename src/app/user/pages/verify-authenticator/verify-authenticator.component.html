@@ -1,19 +1,49 @@
 <div class="step-holder">
-
-  <h1 class="top-heading">Please complete your verification by entering verification code from Google Authenticator</h1>
+  <h1 class="top-heading">
+    Please complete your verification by entering verification code from Google
+    Authenticator
+  </h1>
 
   <div class="form-holder">
     <form action="#" autocomplete="off">
-      <div class="input-holder">
-        <div class="dummy"></div>
-        <input data-bn-type="input" [(ngModel)]="myCode"  [ngModelOptions]="{standalone: true}" aria-label="Verify code" type="text" name="verify-code" placeholder="Enter code" value="">
+      <div
+        class="my-input"
+        [ngClass]="{ filled: myCode !== '' && myCode !== undefined }"
+      >
+        <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
+        <input
+          data-bn-type="input"
+          [(ngModel)]="myCode"
+          [ngModelOptions]="{ standalone: true }"
+          aria-label="Verify code"
+          type="text"
+          name="verify-code"
+          placeholder="Enter code"
+          value=""
+        />
       </div>
       <div class="next-btn">
-        <button *ngIf="loading === false" data-bn-type="button" type="submit" (click)="tryActivation()" [disabled]="myCode.length < 5">Confirm</button>
-        <button *ngIf="loading === true" data-bn-type="button" type="submit" disabled>Loading..</button>
+        <button
+          *ngIf="loading === false"
+          data-bn-type="button"
+          type="submit"
+          (click)="tryActivation()"
+          [disabled]="myCode.length < 5"
+        >
+          Confirm
+        </button>
+        <button
+          *ngIf="loading === true"
+          data-bn-type="button"
+          type="submit"
+          disabled
+        >
+          Loading..
+        </button>
       </div>
-      <p class="resend-text"><span (click)="signout()">Or sign out, and do it later.</span></p>
-
+      <p class="resend-text">
+        <span (click)="signout()">Or sign out, and do it later.</span>
+      </p>
     </form>
   </div>
 </div>
