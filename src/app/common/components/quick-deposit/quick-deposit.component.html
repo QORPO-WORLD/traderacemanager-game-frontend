@@ -5,17 +5,24 @@
       <div class="boxes-holder">
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'ioi' }"
+          [ngClass]="{ active: tokenSelected === 'ioi' }"
           (click)="tokenSelected = 'ioi'"
         >
-          <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p><img src="/assets/base/images/icons/ioi-big.svg" alt="" /></p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
-          <div [ngClass]="{ 'my-border-color': tokenSelected === 'ioi' }" class="dot">
+          <div
+            [ngClass]="{ 'my-border-color': tokenSelected === 'ioi' }"
+            class="dot"
+          >
             <div
               [ngClass]="{
                 'my-simple-back': tokenSelected === 'ioi',
-                'active': tokenSelected === 'ioi'
+                active: tokenSelected === 'ioi'
               }"
               class="inner-dot"
             ></div>
@@ -24,23 +31,32 @@
 
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'matic' }"
+          [ngClass]="{ active: tokenSelected === 'matic' }"
           (click)="tokenSelected = 'matic'"
         >
-          <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p>
+            <img src="/assets/base/images/icons/polygon-big.svg" alt="" />
+            Polygon
+          </p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
-          <div [ngClass]="{ 'my-border-color': tokenSelected === 'matic' }" class="dot">
+          <div
+            [ngClass]="{ 'my-border-color': tokenSelected === 'matic' }"
+            class="dot"
+          >
             <div
               [ngClass]="{
                 'my-simple-back': tokenSelected === 'matic',
-                'active': tokenSelected === 'matic'
+                active: tokenSelected === 'matic'
               }"
               class="inner-dot"
             ></div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -49,17 +65,24 @@
       <div class="boxes-holder">
         <div
           class="box-item"
-          [ngClass]="{ 'active': chainSelected === 'polygon' }"
+          [ngClass]="{ active: chainSelected === 'polygon' }"
           (click)="chainSelected = 'polygon'"
         >
           <p>Polygon chain</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
-          <div [ngClass]="{ 'my-border-color': chainSelected === 'polygon' }" class="dot">
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'polygon' }"
+            class="dot"
+          >
             <div
               [ngClass]="{
                 'my-simple-back': chainSelected === 'polygon',
-                'active': chainSelected === 'polygon'
+                active: chainSelected === 'polygon'
               }"
               class="inner-dot"
             ></div>
@@ -67,28 +90,34 @@
         </div>
         <div
           class="box-item"
-          [ngClass]="{ 'active': chainSelected === 'ethereum' }"
+          [ngClass]="{ active: chainSelected === 'ethereum' }"
           (click)="chainSelected = 'ethereum'"
         >
-        <p>Ethereum Chain</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p>Ethereum Chain</p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
-          <div [ngClass]="{ 'my-border-color': chainSelected === 'ethereum' }" class="dot">
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'ethereum' }"
+            class="dot"
+          >
             <div
               [ngClass]="{
                 'my-simple-back': chainSelected === 'ethereum',
-                'active': chainSelected === 'ethereum'
+                active: chainSelected === 'ethereum'
               }"
               class="inner-dot"
             ></div>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="eth-stuff">
-      <div class="address-holder"  *ngIf="chainSelected === 'ethereum'">
+      <div class="address-holder" *ngIf="chainSelected === 'ethereum'">
         <p class="common-heading">Add an address you deposit from</p>
         <div class="input-holder">
           <input
@@ -99,13 +128,33 @@
             [(ngModel)]="ethMtfrckr"
             [ngModelOptions]="{ standalone: true }"
           />
-          <div class="correct-input my-cta-btn-back" [ngClass]="{'incorrect': ethMtfrckr.substring(0, 2) !== '0x' || ethMtfrckr.length < 42}">
-            <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.7747 0.949537C19.4743 0.649145 18.9872 0.649145 18.6868 0.949537L6.21765 13.4187L1.31315 8.5142C1.01279 8.21377 0.525724 8.21377 0.225293 8.5142C-0.0750978 8.81459 -0.0750978 9.30162 0.225293 9.60205L5.67378 15.0505C5.97405 15.3508 6.46128 15.3509 6.76163 15.0505L19.7747 2.03739C20.0751 1.73696 20.0751 1.24993 19.7747 0.949537Z"/>
+          <div
+            class="correct-input my-cta-btn-back"
+            [ngClass]="{
+              incorrect:
+                ethMtfrckr.substring(0, 2) !== '0x' || ethMtfrckr.length < 42
+            }"
+          >
+            <svg
+              width="20"
+              height="16"
+              viewBox="0 0 20 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19.7747 0.949537C19.4743 0.649145 18.9872 0.649145 18.6868 0.949537L6.21765 13.4187L1.31315 8.5142C1.01279 8.21377 0.525724 8.21377 0.225293 8.5142C-0.0750978 8.81459 -0.0750978 9.30162 0.225293 9.60205L5.67378 15.0505C5.97405 15.3508 6.46128 15.3509 6.76163 15.0505L19.7747 2.03739C20.0751 1.73696 20.0751 1.24993 19.7747 0.949537Z"
+              />
             </svg>
           </div>
         </div>
-        <button class="request-btn my-cta-btn-back hoverable" [disabled]="depositRequested === true && ethMtfrckr.length !== 42" (click)="makeDeposit()">Make deposit</button>
+        <button
+          class="request-btn my-cta-btn-back hoverable"
+          [disabled]="depositRequested === true && ethMtfrckr.length !== 42"
+          (click)="makeDeposit()"
+        >
+          Make deposit
+        </button>
       </div>
     </div>
 
@@ -125,7 +174,9 @@
               <p class="desc">No fees for the transaction</p>
             </div>
             <div class="info-item">
-              <p class="value">&#36;{{myBalance.ioi_usdt | number: "1.2-2":"fr"}}</p>
+              <p class="value">
+                &#36;{{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}
+              </p>
               <p class="desc">dollar per IOI Token</p>
             </div>
             <div class="info-item">
@@ -140,7 +191,10 @@
               class="high my-text-color"
               >Read more about token &gt;</a
             >
-            <a class="default" target="_blank" href="https://www.coingecko.com/en/coins/ioi-token"
+            <a
+              class="default"
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/ioi-token"
               >Check Coingecko.com &gt;</a
             >
           </div>
@@ -154,12 +208,16 @@
       </p>
     </div>
 
-    <div class="deposit-disclaim my-border-grad" *ngIf="chainSelected === 'ethereum'">
+    <div
+      class="deposit-disclaim my-border-grad"
+      *ngIf="chainSelected === 'ethereum'"
+    >
       <div class="border-maker">
         <div class="inner-holder">
-          <img src="/assets/base/images/modal/warning.png" alt="">
+          <img src="/assets/base/images/modal/warning.png" alt="" />
           <p>
-            Don’t send funds from exchange, otherwise your transaction will be lost.
+            Don’t send funds from exchange, otherwise your transaction will be
+            lost.
           </p>
         </div>
       </div>
@@ -169,11 +227,16 @@
     <p class="common-heading">Your deposit summary</p>
     <div class="main-panel">
       <div class="inner">
-        <ng-container *ngIf="chainSelected !=='polygon' && chainSelected !== 'ethereum'">
+        <ng-container
+          *ngIf="chainSelected !== 'polygon' && chainSelected !== 'ethereum'"
+        >
           <div class="not-setup-holder">
             <div class="loading"></div>
             <p class="heading">Pick a Blockchain</p>
-            <p class="text">Please select the type of blockchain from which you will deposit from</p>
+            <p class="text">
+              Please select the type of blockchain from which you will deposit
+              from
+            </p>
           </div>
         </ng-container>
         <ng-container *ngIf="chainSelected == 'polygon'">
@@ -201,13 +264,13 @@
               Scan a QR code or paste the code into your external wallet to
               receive your funds, and confirm the transaction afterwards
             </p>
-  
+
             <qrcode
               class="qr-code"
               [level]="1"
               [qrvalue]="cryptoMtfrckr"
             ></qrcode>
-  
+
             <button
               class="confirm-btn my-cta-btn-back hoverable"
               (click)="resolveDeposit()"
@@ -217,16 +280,22 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="cryptoMtfrckr.length > 0 && depositRequested === true && depositSuccessful === true && chainSelected === 'ethereum'">
+        <ng-container
+          *ngIf="
+            cryptoMtfrckr.length > 0 &&
+            depositRequested === true &&
+            depositSuccessful === true &&
+            chainSelected === 'ethereum'
+          "
+        >
           <div class="depositing-info">
             <p class="text">YOU ARE DEPOSITING TO THIS ADDRESS</p>
           </div>
           <div class="my-wallet-info">
             <div class="info-border top my-cta-btn-back"></div>
             <div class="info-item crypto-adress">
-              <p class="desc">Your senders crypto address</p>
               <input
-              *ngIf="ethAddress"
+                *ngIf="ethAddress"
                 type="text"
                 [(ngModel)]="ethAddress"
                 [ngModelOptions]="{ standalone: true }"
@@ -245,25 +314,32 @@
               Scan a QR code or paste the code into your external wallet to
               receive your funds, and confirm the transaction afterwards
             </p>
-  
-            <qrcode
-              class="qr-code"
-              [level]="1"
-              [qrvalue]="ethAddress"
-            ></qrcode>
-  
-          </div>
-        </ng-container>
-  
-        <ng-container *ngIf="cryptoMtfrckr.length === 0 && chainSelected === 'ethereum'">
-          <div class="not-setup-holder">
-            <div class="loading"></div>
-            <p class="heading">Set up your address</p>
-            <p class="text">Fill in all the deposit data correctly to be able to proceed with the transaction</p>
+
+            <qrcode class="qr-code" [level]="1" [qrvalue]="ethAddress"></qrcode>
           </div>
         </ng-container>
 
-        <ng-container *ngIf="cryptoMtfrckr.length > 0 && chainSelected === 'ethereum' && depositRequested === false && depositSuccessful === false">
+        <ng-container
+          *ngIf="cryptoMtfrckr.length === 0 && chainSelected === 'ethereum'"
+        >
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Set up your address</p>
+            <p class="text">
+              Fill in all the deposit data correctly to be able to proceed with
+              the transaction
+            </p>
+          </div>
+        </ng-container>
+
+        <ng-container
+          *ngIf="
+            cryptoMtfrckr.length > 0 &&
+            chainSelected === 'ethereum' &&
+            depositRequested === false &&
+            depositSuccessful === false
+          "
+        >
           <div class="not-setup-holder">
             <div class="loading"></div>
             <p class="heading">Make a deposit request</p>
@@ -271,7 +347,14 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="cryptoMtfrckr.length > 0 && chainSelected === 'ethereum' && depositRequested === true && depositSuccessful === false">
+        <ng-container
+          *ngIf="
+            cryptoMtfrckr.length > 0 &&
+            chainSelected === 'ethereum' &&
+            depositRequested === true &&
+            depositSuccessful === false
+          "
+        >
           <div class="not-setup-holder">
             <div class="loading"></div>
             <p class="heading">Request in progress</p>
@@ -298,7 +381,9 @@
               <p class="desc">No fees for the transaction</p>
             </div>
             <div class="info-item">
-              <p class="value">&#36;{{myBalance.ioi_usdt| number: "1.2-2":"fr"}}</p>
+              <p class="value">
+                &#36;{{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}
+              </p>
               <p class="desc">dollar per IOI Token</p>
             </div>
             <div class="info-item">
@@ -313,7 +398,10 @@
               class="high my-text-color"
               >Read more about token &gt;</a
             >
-            <a class="default" target="_blank" href="https://www.coingecko.com/en/coins/ioi-token"
+            <a
+              class="default"
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/ioi-token"
               >Check Coingecko.com &gt;</a
             >
           </div>
@@ -326,15 +414,18 @@
         see your balance in the dashboard.
       </p>
     </div>
-  
-    <div class="deposit-disclaim my-cta-btn-back mobile" *ngIf="chainSelected === 'ethereum'">
+
+    <div
+      class="deposit-disclaim my-cta-btn-back mobile"
+      *ngIf="chainSelected === 'ethereum'"
+    >
       <div class="inner-holder">
-        <img src="/assets/base/images/modal/warning.png" alt="">
+        <img src="/assets/base/images/modal/warning.png" alt="" />
         <p>
-          Don’t send funds from exchange, otherwise your transaction will be lost.
+          Don’t send funds from exchange, otherwise your transaction will be
+          lost.
         </p>
       </div>
     </div>
   </div>
-
 </div>
