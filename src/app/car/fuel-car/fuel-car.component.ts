@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import {  FavCoins, MultiCanJoinV2, NextRaceV2 } from 'src/app/api/models';
 import { TeamsService } from 'src/app/api/services';
-
+declare let gtag: Function;
 @Component({
   selector: 'app-fuel-car',
   templateUrl: './fuel-car.component.html',
@@ -734,6 +734,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   checkRedirect() {
+    gtag('event', 'conversion', {'send_to': 'AW-580556065/7HYSCPCim8gCEKGq6pQC'});
     if (this.myMultiBetAmounts.length > 0) {
       this.multibet();
     } else {

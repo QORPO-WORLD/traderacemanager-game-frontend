@@ -256,8 +256,8 @@
           alt="polygon icon"
         />
       </div>
-      <!--COMMENTED METAMASK-->
-      <!-- <div (click)="paymentMethod = 3" class="method">
+      
+      <div (click)="paymentMethod = 3" class="method">
         <div
           [ngClass]="{ 'my-border-color': paymentMethod === 3 }"
           class="border-former"
@@ -277,7 +277,7 @@
           src="/assets/base/images/icons/meta-icon.svg"
           alt="metamask icon"
         />
-      </div>-->
+      </div>
       <div (click)="paymentMethod = 4" class="method">
         <div
           [ngClass]="{ 'my-border-color': paymentMethod === 4 }"
@@ -315,4 +315,13 @@
       </button>
     </div>
   </div>
+</div>
+
+<div *ngIf="paymentMethod === 3">
+  <app-meta-buy
+    [amount]="amount"
+    [productIndex]="assetId"
+    [assetType]="assetType"
+    [tokenSelected]="tokenSelected"
+  ></app-meta-buy>
 </div>

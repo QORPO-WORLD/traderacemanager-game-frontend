@@ -1,3 +1,4 @@
+import { MetaBuyComponent } from './components/meta-buy/meta-buy.component';
 import { IoiloaderComponent } from './components/ioiloader/ioiloader.component';
 import { SynergizerComponent } from './../synergizer/synergizer.component';
 import { NotificationListComponent } from './notification-list/notification-list.component';
@@ -118,7 +119,8 @@ import { LoadingModalComponent } from './components/shared/loading-modal/loading
     FuelLayoutComponent,
     IoiloaderComponent,
     TeamMembershipComponent,
-    LoadingModalComponent
+    LoadingModalComponent,
+    MetaBuyComponent
   ],
   providers: [
     CurrencyPipe,
@@ -151,7 +153,7 @@ import { LoadingModalComponent } from './components/shared/loading-modal/loading
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
     DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent,
-  LoadingModalComponent],
+  LoadingModalComponent, MetaBuyComponent],
   entryComponents: []
 })
 
