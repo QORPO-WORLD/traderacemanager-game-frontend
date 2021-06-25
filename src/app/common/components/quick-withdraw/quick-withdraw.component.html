@@ -5,24 +5,34 @@
       <div class="boxes-holder">
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'ioi' }"
+          [ngClass]="{ active: tokenSelected === 'ioi' }"
           (click)="tokenSelected = 'ioi'"
         >
-        <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p><img src="/assets/base/images/icons/ioi-big.svg" alt="" /> IOI</p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'matic' }"
+          [ngClass]="{ active: tokenSelected === 'matic' }"
           (click)="tokenSelected = 'matic'"
         >
-        <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p>
+            <img src="/assets/base/images/icons/polygon-big.svg" alt="" />
+            Polygon
+          </p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
-
       </div>
     </div>
 
@@ -31,24 +41,31 @@
       <div class="boxes-holder">
         <div
           class="box-item"
-          [ngClass]="{ 'active': chainSelected === 'polygon' }"
+          [ngClass]="{ active: chainSelected === 'polygon' }"
           (click)="chainSelected = 'polygon'"
         >
           <p>Polygon chain</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
-        style="opacity: 0.5;cursor: default;"
+          style="opacity: 0.5; cursor: default"
           class="box-item"
-          [ngClass]="{ inactive: chainSelected  !== 'ethereum' }"
+          [ngClass]="{ inactive: chainSelected !== 'ethereum' }"
         >
           <p>Coming soon</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
-
       </div>
     </div>
 
@@ -63,12 +80,10 @@
             [ngModelOptions]="{ standalone: true }"
             placeholder="Enter the ammount you want to withdraw"
           />
-          <p class="curr-desc" *ngIf="tokenSelected === 'matic'">Polygon/p>
+          <p class="curr-desc" *ngIf="tokenSelected === 'matic'">Polygon/p></p>
           <p class="curr-desc" *ngIf="tokenSelected === 'ioi'">IOI</p>
         </div>
-        <p class="input-note" *ngIf="tokenSelected === 'ioi'">
-          Min. 100 IOI
-        </p>
+        <p class="input-note" *ngIf="tokenSelected === 'ioi'">Min. 100 IOI</p>
         <p class="input-note" *ngIf="tokenSelected === 'matic'">
           Min. 100 Polygon
         </p>
@@ -91,8 +106,16 @@
         <div class="withdraw-info">
           <p class="text">You are withdrawing</p>
           <p class="value">
-            <img *ngIf="tokenSelected === 'ioi'" src="/assets/base/images/icons/ioi-big.svg" alt="">
-            <img *ngIf="tokenSelected === 'matic'" src="/assets/base/images/funds-box-back.png" alt="">
+            <img
+              *ngIf="tokenSelected === 'ioi'"
+              src="/assets/base/images/icons/ioi-big.svg"
+              alt=""
+            />
+            <img
+              *ngIf="tokenSelected === 'matic'"
+              src="/assets/base/images/funds-box-back.png"
+              alt=""
+            />
             <span *ngIf="amount > 0">{{ amount }}</span>
             <span *ngIf="amount < 1">0</span>
           </p>
@@ -100,7 +123,8 @@
             market value 1 Polygon = {{ maticusdt }} USD
           </p>
           <p *ngIf="tokenSelected === 'ioi'" class="desc">
-            market value 1 IOI = 0.4$
+            market value 1 IOI =
+            {{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}$
           </p>
         </div>
         <div class="summary-box">
@@ -134,8 +158,8 @@
            *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
 
         <button
-          [disabled]="tokenSelected==='ioi'"
-          [ngClass]="{'disabled': tokenSelected==='ioi'}"
+          [disabled]="tokenSelected === 'ioi'"
+          [ngClass]="{ disabled: tokenSelected === 'ioi' }"
           class="confirm-btn my-cta-btn-back hoverable"
           (click)="withdrawalIoiToken()"
         >
@@ -169,7 +193,10 @@
         </div>
         <p class="disclaim"></p>
       </div>
-      <div class="input-box modal-box desc-box" *ngIf="myDriver?.is_using_authenticator === true">
+      <div
+        class="input-box modal-box desc-box"
+        *ngIf="myDriver?.is_using_authenticator === true"
+      >
         <h2 class="main-heading">Enter Google Authenticator code</h2>
         <div class="input-holder my-cta-btn-back">
           <input
