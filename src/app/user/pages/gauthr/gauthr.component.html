@@ -1,11 +1,15 @@
 <div class="project-back-div">
   <div class="project-back"></div>
 </div>
-<div class="step-holder" *ngIf="curStep === 0">
+<div
+  [ngClass]="isManager === true ? 'manager' : 'racer'"
+  class="step-holder main-app-cont-holder"
+  *ngIf="curStep === 0"
+>
   <div class="nav-btns">
     <p class="back-btn" (click)="cancelKey()"><span>&lt;</span> Back</p>
     <img
-      src="/assets/base/images/icons/close-icon.svg"
+      src="/assets/base/images/icons/close-white.svg"
       alt=""
       (click)="cancelKey()"
     />
@@ -21,7 +25,7 @@
       <p>4.ENABLE</p>
     </div>
     <div class="step-line">
-      <div class="inner-line">&nbsp;</div>
+      <div class="inner-line my-simple-back">&nbsp;</div>
     </div>
   </div>
 
@@ -30,7 +34,7 @@
     <p data-bn-type="text">Download and install the Google Authenticator app</p>
   </div>
 
-  <div class="button-item apple">
+  <div class="button-item apple my-border-color">
     <div class="dummy"></div>
     <a
       id="enableGA_a_appStore"
@@ -49,7 +53,7 @@
     </a>
   </div>
 
-  <div class="button-item apple">
+  <div class="button-item apple my-border-color">
     <div class="dummy"></div>
     <a
       id="enableGA_a_googlePlay"
@@ -69,17 +73,21 @@
   </div>
 
   <div class="next-btn">
-    <button data-bn-type="button" (click)="curStep = 1">
+    <button class="my-cta-btn-back" data-bn-type="button" (click)="curStep = 1">
       Next <span>&gt;</span>
     </button>
   </div>
 </div>
 
-<div class="step-holder" *ngIf="curStep === 1">
+<div
+  [ngClass]="isManager === true ? 'manager' : 'racer'"
+  class="step-holder main-app-cont-holder"
+  *ngIf="curStep === 1"
+>
   <div class="nav-btns">
     <p class="back-btn" (click)="curStep = 0"><span>&lt;</span> Back</p>
     <img
-      src="/assets/base/images/icons/close-icon.svg"
+      src="/assets/base/images/icons/close-white.svg"
       alt=""
       (click)="cancelKey()"
     />
@@ -95,7 +103,7 @@
       <p>4.ENABLE</p>
     </div>
     <div class="step-line">
-      <div class="inner-line state2">&nbsp;</div>
+      <div class="inner-line state2 my-simple-back">&nbsp;</div>
     </div>
   </div>
 
@@ -116,17 +124,21 @@
     <h2>{{ myKey }}</h2>
   </div>
   <div class="next-btn">
-    <button data-bn-type="button" (click)="curStep = 2">
+    <button class="my-cta-btn-back" data-bn-type="button" (click)="curStep = 2">
       Next <span>&gt;</span>
     </button>
   </div>
 </div>
 
-<div class="step-holder" *ngIf="curStep === 2">
+<div
+  [ngClass]="isManager === true ? 'manager' : 'racer'"
+  class="step-holder main-app-cont-holder"
+  *ngIf="curStep === 2"
+>
   <div class="nav-btns">
     <p class="back-btn" (click)="curStep = 1"><span>&lt;</span> Back</p>
     <img
-      src="/assets/base/images/icons/close-icon.svg"
+      src="/assets/base/images/icons/close-white.svg"
       alt=""
       (click)="cancelKey()"
     />
@@ -142,7 +154,7 @@
       <p>4.ENABLE</p>
     </div>
     <div class="step-line">
-      <div class="inner-line state3">&nbsp;</div>
+      <div class="inner-line state3 my-simple-back">&nbsp;</div>
     </div>
   </div>
 
@@ -151,12 +163,21 @@
     <p data-bn-type="text">Please save this Key code on a safe place</p>
   </div>
 
-  <div class="button-item copy-btn">
+  <div class="button-item copy-btn my-border-color">
     <div class="dummy"></div>
     <div class="text-holder">
       <p>{{ myKey }}</p>
       <div class="icon-holder" (click)="copyInputMessage()">
-        <img src="/assets/base/images/start-race/copy-icon.png" alt="" />
+        <img
+          class="red-star"
+          src="/assets/base/images/icons/copy-red.svg"
+          alt="copy icon"
+        />
+        <img
+          class="blue-star"
+          src="/assets/base/images/icons/copy-blue.svg"
+          alt="copy icon"
+        />
       </div>
     </div>
   </div>
@@ -166,17 +187,21 @@
   </p>
 
   <div class="next-btn">
-    <button data-bn-type="button" (click)="curStep = 3">
+    <button class="my-cta-btn-back" data-bn-type="button" (click)="curStep = 3">
       Next <span>&gt;</span>
     </button>
   </div>
 </div>
 
-<div class="step-holder" *ngIf="curStep === 3">
+<div
+  [ngClass]="isManager === true ? 'manager' : 'racer'"
+  class="step-holder main-app-cont-holder"
+  *ngIf="curStep === 3"
+>
   <div class="nav-btns">
     <p class="back-btn" (click)="curStep = 2"><span>&lt;</span> Back</p>
     <img
-      src="/assets/base/images/icons/close-icon.svg"
+      src="/assets/base/images/icons/close-white.svg"
       alt=""
       (click)="cancelKey()"
     />
@@ -192,7 +217,7 @@
       <p class="active">4.ENABLE</p>
     </div>
     <div class="step-line">
-      <div class="inner-line state4">&nbsp;</div>
+      <div class="inner-line state4 my-simple-back">&nbsp;</div>
     </div>
   </div>
 
@@ -216,7 +241,7 @@
           value=""
         />
       </div>
-      <div class="input-holder">
+      <div class="input-holder my-border-color">
         <div class="dummy"></div>
         <input
           [(ngModel)]="testinp"
@@ -225,7 +250,12 @@
         />
       </div>
       <div class="next-btn">
-        <button data-bn-type="button" type="submit" (click)="testKey()">
+        <button
+          class="my-cta-btn-back"
+          data-bn-type="button"
+          type="submit"
+          (click)="testKey()"
+        >
           Enable
         </button>
       </div>
