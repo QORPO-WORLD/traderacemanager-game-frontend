@@ -12,8 +12,8 @@
       [ngClass]="{
         'black-mode-back':
           currentRoute === '/user/shop' || currentRoute === '/user/affiliate',
-        'white-mode-back': isMenuActive === true,
-        'white-mode-back': currentRoute === '/user/bundle-detail'
+        'white-mode-back':
+          isMenuActive === true && currentRoute === '/user/bundle-detail'
       }"
       class="hamburger"
       [class.open]="isMenuActive"
@@ -25,7 +25,7 @@
       <span></span>
     </div>
     <div
-      (click)="isMenuActive = false; updateRoute('/user/home')"
+      (click)="isMenuActive = false"
       data-aos="fade-down"
       class="logo"
       [routerLink]="['/user/home']"
@@ -54,7 +54,7 @@
               currentRoute === '/user/shop' ||
               currentRoute === '/user/affiliate'
           }"
-          (click)="isMenuActive = false; updateRoute('/user/home')"
+          (click)="isMenuActive = false"
           [routerLink]="['/user/home']"
           [routerLinkActive]="'active'"
           class="p-small dynamic-color"
@@ -70,7 +70,7 @@
               currentRoute === '/user/shop' ||
               currentRoute === '/user/affiliate'
           }"
-          (click)="isMenuActive = false; updateRoute('/user/shop')"
+          (click)="isMenuActive = false"
           [routerLink]="['/user/shop']"
           [routerLinkActive]="'active'"
           class="p-small dynamic-color"
@@ -85,7 +85,7 @@
               currentRoute === '/user/shop' ||
               currentRoute === '/user/affiliate'
           }"
-          (click)="isMenuActive = false; updateRoute('/user/affiliate')"
+          (click)="isMenuActive = false"
           [routerLink]="['/user/affiliate']"
           [routerLinkActive]="'active'"
           class="p-small dynamic-color"
@@ -100,7 +100,7 @@
               currentRoute === '/user/shop' ||
               currentRoute === '/user/affiliate'
           }"
-          (click)="isMenuActive = false; updateRoute('/user/bundles')"
+          (click)="isMenuActive = false"
           [routerLink]="['/user/bundles']"
           [routerLinkActive]="'active'"
           class="p-small dynamic-color"
@@ -113,4 +113,4 @@
     </div>
   </div>
 </div>
-<router-outlet (activate)="onActivate(outlet)"></router-outlet>
+<router-outlet (activate)="onActivate(outlet); updateRoute()"></router-outlet>

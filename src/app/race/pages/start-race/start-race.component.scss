@@ -1,4 +1,5 @@
 .image-holder {
+  display: none;
   pointer-events: none;
   top: 0px;
   left: 0px;
@@ -11,6 +12,7 @@
   width: 100vw;
 }
 .image-holder-second {
+  display: none;
   pointer-events: none;
   top: 0px;
   left: 0px;
@@ -125,6 +127,7 @@ h3 {
     width: 100%;
     height: 100%;
     .square {
+      display: none;
       z-index: 2;
       position: absolute;
 
@@ -342,11 +345,10 @@ h3 {
         position: relative;
         cursor: pointer;
         margin-top: 35px;
-
+        padding-bottom: 3px;
+        width: 310px;
+        height: 100px;
         &.first {
-          height: 100px;
-          width: 280px;
-          margin-left: 30px;
           padding: 2px 2px 0px 2px;
           background: linear-gradient(
             180deg,
@@ -354,36 +356,11 @@ h3 {
             rgba(52, 43, 16, 0) 100%
           );
         }
-        &.second {
-          padding-bottom: 3px;
-          width: 310px;
-          height: 100px;
-        }
         &.third {
-          padding-bottom: 3px;
-          height: 100px;
-          width: 280px;
-          margin-left: 30px;
-          img {
-            z-index: 1;
-            top: -5px;
-            width: auto;
-            height: 115px;
-            left: -50px;
-          }
-        }
-        img {
-          position: absolute;
-          &.left {
-            z-index: 1;
-            top: -5px;
-            width: auto;
-            height: 115px;
-            left: -50px;
-          }
+          padding-bottom: 0px;
         }
         .box-content {
-          padding: 20px;
+          padding: 10px;
           display: flex;
           position: relative;
           background: url("/assets/base/images/start-race/arena-back.png");
@@ -394,61 +371,52 @@ h3 {
           height: 100%;
           overflow: hidden;
           align-items: center;
+          justify-content: space-around;
+          .image {
+            position: relative;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              max-width: unset;
+              width: auto;
+              height: 60%;
+              &.smaller {
+                width: 70%;
+                height: auto;
+              }
+            }
+          }
           .text {
+            width: 58%;
             z-index: 1;
-            width: 100%;
           }
           &.first {
             background: linear-gradient(
-                89.26deg,
+                90deg,
                 #ffd342 -70.31%,
                 rgba(0, 0, 0, 0) 80.55%
               ),
               url("/assets/base/images/start-race/arena-back.png"), #333333;
-
-            justify-content: flex-start;
-            .text {
-              width: 80%;
-              margin-left: 20%;
-            }
-          }
-          &.second {
-            .text {
-              width: 80%;
-              margin-left: 20%;
-            }
-          }
-
-          img {
-            position: absolute;
-
-            &.right {
-              width: 45%;
-              height: auto;
-
-              right: -20px;
-              &.avatar {
-                top: 10px;
-              }
-            }
           }
         }
       }
       .reward-switcher {
-        margin-top: 10px;
+        z-index: 3;
+        margin-top: -1px;
         width: 310px;
         height: 3px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
 
         .inactive {
-          background: white;
-          opacity: 0.2;
+          background: #696969 !important;
         }
         .bar {
           transition: 0.3s;
-          width: 48%;
+          width: 50%;
           height: 100%;
           cursor: pointer;
         }
@@ -462,7 +430,7 @@ h3 {
         &.news {
           .bar {
             background: #fbc93e;
-            width: 31.5%;
+            width: 33.33333%;
           }
         }
       }
@@ -655,32 +623,13 @@ h3 {
       .boxes {
         .box {
           margin-top: 15px;
-          img {
-            height: 120px;
-            position: absolute;
-            &.left {
-              left: -55px;
-            }
-          }
-          &.first {
-            margin-left: 30px;
-            width: 220px;
-            height: 100px;
-          }
-          &.second {
-            width: 250px;
-            height: 100px;
-          }
-          &.third {
-            margin-left: 30px;
-            width: 220px;
-            height: 100px;
-          }
+          width: 250px;
+          height: 100px;
+
           .box-content {
-            img {
-              &.right {
-                top: 10px;
-                right: -20px;
+            .image {
+              img {
+                height: 60%;
               }
             }
           }
@@ -737,42 +686,11 @@ h3 {
     .upper-dashboard {
       .boxes {
         .box {
+          width: 230px;
+          height: 80px;
           margin-top: 15px;
-          img {
-            height: 80px;
-            position: absolute;
-            &.left {
-              left: -50px;
-              height: 100px;
-            }
-          }
-          &.first {
-            margin-left: 30px;
-            width: 200px;
-            height: 80px;
-          }
-          &.second {
-            width: 230px;
-            height: 80px;
-          }
-          &.third {
-            margin-left: 30px;
-            width: 200px;
-            height: 80px;
-            img {
-              left: -50px;
-              height: 95px;
-            }
-          }
+
           .box-content {
-            img {
-              &.right {
-                top: 10px;
-                right: -20px;
-                width: 90px;
-                height: auto;
-              }
-            }
           }
         }
         .reward-switcher {
@@ -862,6 +780,15 @@ h3 {
     width: 100%;
     padding: 0 10px;
   }
+  .dashboard-content {
+    .dashboard-avatars {
+      .square {
+        .bubble {
+          display: none;
+        }
+      }
+    }
+  }
 }
 @media screen and(max-width: 1024px) and (orientation: landscape) {
   * {
@@ -902,11 +829,6 @@ h3 {
     min-height: unset;
     .dashboard-avatars {
       .square {
-        .bubble {
-          display: none;
-        }
-        &.second {
-        }
       }
       img {
         &.car {
@@ -951,68 +873,20 @@ h3 {
           position: relative;
           cursor: pointer;
           margin-top: 10px;
-          &.first {
-            height: 17%;
-            width: 20%;
-            margin-left: 2%;
-            padding: 2px 2px 0px 2px;
-            background: linear-gradient(
-              180deg,
-              #ffcd3e 0%,
-              rgba(52, 43, 16, 0) 100%
-            );
-          }
-          &.second {
-            padding-bottom: 2px;
-            width: 22%;
-            height: 20%;
-          }
-          &.third {
-            padding-bottom: 2px;
-            width: 20%;
-            margin-left: 2%;
-            height: 20%;
-            img {
-              top: -5px;
-              width: auto;
-              height: 120%;
-              left: -20%;
-            }
-          }
-          img {
-            position: absolute;
-            &.left {
-              top: -3px;
-              width: auto;
-              height: 120%;
-              left: -17.5%;
-            }
-          }
+          padding-bottom: 2px;
+          width: 22%;
+          height: 20%;
+
           .box-content {
             padding: 2%;
             width: 100%;
             height: 100%;
-
-            img {
-              &.right {
-                width: 40%;
-                height: auto;
-                right: 0%;
-                top: 50%;
-                transform: translateY(-50%);
-                -webkit-transform: translateY(-50%);
-                -moz-transform: translateY(-50%);
-                -ms-transform: translateY(-50%);
-                -o-transform: translateY(-50%);
-                &.avatar {
-                  top: 70%;
+            .image {
+              img {
+                height: 50%;
+                &.smaller {
+                  width: 50%;
                 }
-              }
-            }
-
-            &.second {
-              .text {
-                padding: 2px 2px 0px 0px;
               }
             }
           }
@@ -1065,15 +939,6 @@ h3 {
       .boxes {
         .box {
           .box-content {
-            img {
-              &.right {
-                top: 80%;
-                width: 30%;
-                &.avatar {
-                  top: 95%;
-                }
-              }
-            }
           }
         }
         .reward-switcher {
@@ -1138,6 +1003,12 @@ h3 {
 }
 
 @media screen and(max-width: 1024px) and (orientation: portrait) {
+  .image-holder {
+    display: none;
+  }
+  .image-holder-second {
+    display: none;
+  }
   .ioi-banner {
     .banner {
       width: 100%;
@@ -1164,24 +1035,25 @@ h3 {
     position: relative;
     justify-content: unset;
     .dashboard-avatars {
+      height: 550px;
       .upgrade {
         left: 45%;
         bottom: 280px;
       }
       .team-img {
-        width: 140px;
-        left: 15%;
-        bottom: 150px;
+        width: 100px;
+        bottom: 10%;
+        right: 10%;
         &.team {
           width: 140px;
         }
         .badge-name {
-          top: 30%;
+          top: 50%;
           p {
-            font-size: 16px;
+            font-size: 12px;
             &.name {
-              margin-bottom: 3px;
-              font-size: 25px;
+              margin-bottom: 2px;
+              font-size: 18px;
             }
           }
         }
@@ -1200,11 +1072,15 @@ h3 {
           left: 35%;
           bottom: 230px;
           transform: translateX(-50%);
+          -webkit-transform: translateX(-50%);
+          -moz-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          -o-transform: translateX(-50%);
         }
         &.car {
           width: 480px;
-          left: 42.5%;
-          bottom: 30px;
+          left: 40%;
+          bottom: -10%;
           transform: translateX(-50%);
         }
         &.racer {
@@ -1217,12 +1093,15 @@ h3 {
     }
     .upper-dashboard {
       z-index: 1;
+
       margin-top: 50px;
       .boxes {
         z-index: 1;
         align-items: center;
         flex-direction: column;
-
+        width: 400px;
+        overflow: hidden;
+        margin: 0 auto;
         .news-title {
           display: block;
           width: 400px;
@@ -1230,22 +1109,13 @@ h3 {
         .box {
           z-index: 1;
           margin-top: 25px;
-          &.first {
-            margin-left: 50px;
-            width: 350px;
-          }
-          &.second {
-            width: 400px;
-            overflow: hidden;
-          }
-          &.third {
-            margin-left: 50px;
-            width: 350px;
-          }
+          width: 100%;
           .box-content {
-            img {
-              &.right {
-                right: 20px;
+            .image {
+              img {
+                &.smaller {
+                  width: 40%;
+                }
               }
             }
           }
@@ -1253,6 +1123,7 @@ h3 {
       }
     }
     .lower-dashboard {
+      margin-top: 700px;
       position: relative;
       flex-direction: column;
       align-items: center;
@@ -1305,7 +1176,24 @@ h3 {
   }
   .dashboard-content {
     .dashboard-avatars {
-      height: 400px;
+      height: 500px;
+      .team-img {
+        bottom: 19%;
+        right: 62.5%;
+        &.team {
+          width: 100px;
+          height: 100px;
+        }
+        .badge-name {
+          top: 50%;
+        }
+        .premium {
+          top: 11px;
+          right: 11px;
+          width: 25px;
+        }
+      }
+
       .upgrade {
         left: 50%;
         bottom: 240px;
@@ -1323,7 +1211,6 @@ h3 {
           width: 400px;
           min-width: 400px;
           left: 42.5%;
-          bottom: 30px;
         }
         &.racer {
           left: 80%;
@@ -1332,6 +1219,31 @@ h3 {
           bottom: -100px;
         }
       }
+    }
+    .upper-dashboard {
+      .boxes {
+        width: 100%;
+        .box {
+          width: 100%;
+          .box-content {
+            .image {
+              width: 30%;
+              img {
+                height: 70%;
+              }
+            }
+            .text {
+              width: 60%;
+            }
+          }
+        }
+        .reward-switcher {
+          width: 100%;
+        }
+      }
+    }
+    .lower-dashboard {
+      margin-top: 550px;
     }
   }
 }
@@ -1352,7 +1264,6 @@ h3 {
           width: 350px;
           min-width: 350px;
           left: 45%;
-          bottom: 60px;
         }
       }
     }
@@ -1365,17 +1276,7 @@ h3 {
           width: 100%;
         }
         .box {
-          &.first {
-            margin-left: 15%;
-            width: 85%;
-          }
-          &.second {
-            width: 100%;
-          }
-          &.third {
-            margin-left: 15%;
-            width: 85%;
-          }
+          width: 100%;
         }
       }
     }

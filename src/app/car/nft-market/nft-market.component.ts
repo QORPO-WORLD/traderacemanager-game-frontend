@@ -14,7 +14,7 @@ export class NftMarketComponent implements OnInit {
   timeoutPrev: any;
   timeoutNext: any;
   carSum: string;
-  marketState = 1;
+  marketState = 3;
   selectedId = 1;
   isPaged = 0;
   selectedType = "racers";
