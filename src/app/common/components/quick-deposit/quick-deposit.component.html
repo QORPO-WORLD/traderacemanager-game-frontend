@@ -8,9 +8,18 @@
           [ngClass]="{ 'active': tokenSelected === 'ioi' }"
           (click)="tokenSelected = 'ioi'"
         >
-        <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
+          <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
           <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
           <div class="active-border my-cta-btn-back"></div>
+          <div [ngClass]="{ 'my-border-color': tokenSelected === 'ioi' }" class="dot">
+            <div
+              [ngClass]="{
+                'my-simple-back': tokenSelected === 'ioi',
+                'active': tokenSelected === 'ioi'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
 
         <div
@@ -18,9 +27,18 @@
           [ngClass]="{ 'active': tokenSelected === 'matic' }"
           (click)="tokenSelected = 'matic'"
         >
-        <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
+          <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
           <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
           <div class="active-border my-cta-btn-back"></div>
+          <div [ngClass]="{ 'my-border-color': tokenSelected === 'matic' }" class="dot">
+            <div
+              [ngClass]="{
+                'my-simple-back': tokenSelected === 'matic',
+                'active': tokenSelected === 'matic'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
 
       </div>
@@ -37,6 +55,15 @@
           <p>Polygon chain</p>
           <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
           <div class="active-border my-cta-btn-back"></div>
+          <div [ngClass]="{ 'my-border-color': chainSelected === 'polygon' }" class="dot">
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'polygon',
+                'active': chainSelected === 'polygon'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
         <div
           class="box-item"
@@ -46,6 +73,15 @@
         <p>Ethereum Chain</p>
           <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
           <div class="active-border my-cta-btn-back"></div>
+          <div [ngClass]="{ 'my-border-color': chainSelected === 'ethereum' }" class="dot">
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'ethereum',
+                'active': chainSelected === 'ethereum'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
 
       </div>
@@ -133,7 +169,14 @@
     <p class="common-heading">Your deposit summary</p>
     <div class="main-panel">
       <div class="inner">
-        <ng-container *ngIf="chainSelected !== 'ethereum'">
+        <ng-container *ngIf="chainSelected !=='polygon' && chainSelected !== 'ethereum'">
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Pick a Blockchain</p>
+            <p class="text">Please select the type of blockchain from which you will deposit from</p>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="chainSelected == 'polygon'">
           <div class="depositing-info">
             <p class="text">You are depositing to</p>
           </div>

@@ -40,12 +40,12 @@
           <div class="ability-box">
             <img
               class="red-star"
-              src="assets/base/images/market/investment-red.svg"
+              src="assets/base/images/icons/daily-stake-red.svg"
               alt="ability icon"
             />
             <img
               class="blue-star"
-              src="assets/base/images/market/investment.svg"
+              src="assets/base/images/icons/daily-stake-blue.svg"
               alt="ability icon"
             />
 
@@ -56,7 +56,7 @@
               <p class="races-desc">daily stake</p>
             </div>
           </div>
-          <div class="ability-box cars">
+          <div class="ability-box">
             <img
               class="red-star"
               src="assets/base/images/market/investment-red.svg"
@@ -73,6 +73,25 @@
                 {{ displayArray[0]["ability2"] }}%
               </p>
               <p class="races-desc">ROI</p>
+            </div>
+          </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/icons/yearly-roi-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/icons/yearly-roi-blue.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability3"].toLocaleString() }}%
+              </p>
+              <p class="races-desc">potential yearly ROI</p>
             </div>
           </div>
         </div>
@@ -155,12 +174,12 @@
           <div class="ability-box">
             <img
               class="red-star"
-              src="assets/base/images/market/investment-red.svg"
+              src="assets/base/images/icons/daily-stake-red.svg"
               alt="ability icon"
             />
             <img
               class="blue-star"
-              src="assets/base/images/market/investment.svg"
+              src="assets/base/images/icons/daily-stake-blue.svg"
               alt="ability icon"
             />
 
@@ -190,16 +209,51 @@
               <p class="races-desc">ROI</p>
             </div>
           </div>
+          <div class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/icons/yearly-roi-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/icons/yearly-roi-blue.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["yearly"].toLocaleString() }}%
+              </p>
+              <p class="races-desc">potential yearly ROI</p>
+            </div>
+          </div>
         </div>
         <div class="border-former"></div>
         <div class="amount-holder">
           <p class="races-desc">To be paid</p>
-          <div class="amount">
-            <img
-              src="/assets/base/images/icons/ioi-big.svg"
-              alt="ioi token icon"
-            />
-            <p class="category-title-first">{{ price.toLocaleString() }}</p>
+          <div class="prices">
+            <div class="amount first">
+              <img
+                src="/assets/base/images/icons/ioi-big.svg"
+                alt="ioi token icon"
+              />
+              <p class="category-title-first">{{ price.toLocaleString() }}</p>
+            </div>
+            <div class="amount">
+              <img
+                src="/assets/base/images/icons/polygon-big.svg"
+                alt="ioi token icon"
+              />
+              <p class="category-title-first">
+                {{
+                  (
+                    (price * myDriverBalances.ioi_usdt) /
+                    this.myDriverBalances.matic_usdt
+                  ).toLocaleString()
+                }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
