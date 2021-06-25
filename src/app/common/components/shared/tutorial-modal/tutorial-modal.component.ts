@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialModalComponent implements OnInit {
 
-  tutorialStep = 5;
+  tutorialStep = 1;
 
   constructor() { }
 
