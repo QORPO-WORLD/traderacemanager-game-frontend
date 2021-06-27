@@ -1,36 +1,41 @@
-
-import { NotifyService } from './../../../common/services/notify.service';
-import { RacesService } from 'src/app/api/services';
-import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
-import { Chart } from 'chart.js';
-import { AuthService } from 'src/app/user/services/auth.service';
-import { Subscription, Subject } from 'rxjs';
+import { NotifyService } from "./../../../common/services/notify.service";
+import { RacesService } from "src/app/api/services";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+  ElementRef,
+} from "@angular/core";
+import { Chart } from "chart.js";
+import { AuthService } from "src/app/user/services/auth.service";
+import { Subscription, Subject } from "rxjs";
 declare let ccxt: any;
 
 let popsock = (window as any).kocksock;
-import io from "socket.io-client"
+import io from "socket.io-client";
 //import { webSocket, WebSocketSubject } from "rxjs/webSocket";
-import { ActivatedRoute, Router } from '@angular/router';
-import { DateTime } from 'luxon';
-import 'chartjs-plugin-streaming';
-import 'chartjs-plugin-datalabels';
-import { BandsPlugin } from './Chart.Bands.js';
-import { environment } from 'src/environments/environment.prod';
+import { ActivatedRoute, Router } from "@angular/router";
+import { DateTime } from "luxon";
+import "chartjs-plugin-streaming";
+import "chartjs-plugin-datalabels";
+import { BandsPlugin } from "./Chart.Bands.js";
+import { environment } from "src/environments/environment.prod";
 declare let ChartDataSets: any;
 export interface Trade {
   data: {
-    p: number,
-    s: string,
-    t: number,
-    v: number
-  }[],
-  type: string
+    p: number;
+    s: string;
+    t: number;
+    v: number;
+  }[];
+  type: string;
 }
 
 @Component({
-  selector: 'app-binary-trade',
-  templateUrl: './binary-trade.component.html',
-  styleUrls: ['./binary-trade.component.scss'],
+  selector: "app-binary-trade",
+  templateUrl: "./binary-trade.component.html",
+  styleUrls: ["./binary-trade.component.scss"],
 })
 export class BinaryTradeComponent implements OnInit, OnDestroy {
   btcinterval: any;
@@ -74,13 +79,13 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   long: boolean;
   loadingCont = false;
   chartColors = {
-    red: 'rgb(255,255,255)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
+    red: "rgb(255,255,255)",
+    orange: "rgb(255, 159, 64)",
+    yellow: "rgb(255, 205, 86)",
+    green: "rgb(75, 192, 192)",
+    blue: "rgb(54, 162, 235)",
+    purple: "rgb(153, 102, 255)",
+    grey: "rgb(201, 203, 207)",
   };
   color = Chart.helpers.color;
   config: any;
@@ -106,7 +111,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   finishingAt: any;
   myDriverBalances: any;
   startsInSecs: number;
-  chartStream: Subject<any> = new Subject();;
+  chartStream: Subject<any> = new Subject();
   chartSubscription: Subscription;
   pushing = false;
   animateMyWinnerAvatars = false;
@@ -121,91 +126,91 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   racers: Array<any> = [
     {
       id: 0,
-      name: 'Rookie',
-      image: 'rookie-basic',
+      name: "Rookie",
+      image: "rookie-basic",
       gif: "",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 1,
-      name: 'Axle',
-      image: 'white-trm',
+      name: "Axle",
+      image: "white-trm",
       gif: "white-trm-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 2,
-      name: 'Flash',
-      image: 'red-trm',
+      name: "Flash",
+      image: "red-trm",
       gif: "red-trm-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 3,
-      name: 'Octane',
-      image: 'blue-trm',
+      name: "Octane",
+      image: "blue-trm",
       gif: "blue-trm-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 4,
-      name: 'Punisher',
-      image: 'black-trm',
+      name: "Punisher",
+      image: "black-trm",
       gif: "black-trm-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 5,
-      name: 'Lady Rich',
-      image: 'lady-rich',
+      name: "Lady Rich",
+      image: "lady-rich",
       gif: "lady-rich-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 6,
-      name: 'Rich Jr.',
-      image: 'bad-boy',
+      name: "Rich Jr.",
+      image: "bad-boy",
       gif: "bad-boy-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 7,
-      name: 'Mrs. Rich',
-      image: 'mrs-rich',
+      name: "Mrs. Rich",
+      image: "mrs-rich",
       gif: "mrs-rich-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 8,
-      name: 'Mr. Rich',
-      image: 'mr-rich',
+      name: "Mr. Rich",
+      image: "mr-rich",
       gif: "mr-rich-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 11,
-      name: 'DAO maker',//
-      image: 'dao-maker',
+      name: "DAO maker", //
+      image: "dao-maker",
       gif: "dao-maker-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 12,
-      name: 'POLYGON',
-      image: 'polygon',
+      name: "POLYGON",
+      image: "polygon",
       gif: "polygon-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     // {
     //   id: 13,
@@ -217,35 +222,35 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     // },
     {
       id: 14,
-      name: 'KYLE CHASSE',//
-      image: 'paid',
+      name: "KYLE CHASSE", //
+      image: "paid",
       gif: "paid-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 15,
-      name: 'ASH WSB',//
-      image: 'ash-wsb',
+      name: "ASH WSB", //
+      image: "ash-wsb",
       gif: "ash-wsb-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 16,
-      name: 'tehMoonwaLkeR',//
-      image: 'tehmoonwalker',
+      name: "tehMoonwaLkeR", //
+      image: "tehmoonwalker",
       gif: "tehmoonwalker-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     {
       id: 17,
-      name: "Parabolic Guy",//
-      image: 'parabolic-guy',
+      name: "Parabolic Guy", //
+      image: "parabolic-guy",
       gif: "parabolic-guy-animation",
       sum: 0,
-      pks: []
+      pks: [],
     },
     // {
     //   id: 18,
@@ -263,32 +268,32 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     //   sum: 0,
     //   pks: []
     // },
-    // {
-    //   id: 20,
-    //   name: 'Altcoin Buzz',
-    //   image: 'altcoin-buzz',
-    //   gif: "altcoin-buzz-animation",
-    //   sum: 0,
-    //   pks: []
-    // },
+    {
+      id: 20,
+      name: "Altcoin Buzz",
+      image: "altcoin-buzz",
+      gif: "altcoin-buzz-animation",
+      sum: 0,
+      pks: [],
+    },
     {
       id: 21,
-      name: 'CryptoWizard',//
-      image: 'cryptowizard',
+      name: "CryptoWizard", //
+      image: "cryptowizard",
       gif: "cryptowizzard-animation",
       sum: 0,
-      pks: []
-    }
+      pks: [],
+    },
   ];
-  @ViewChild('optionPlaced') optionPlaced: ElementRef;
-  @ViewChild('oponentOptionPlaced') oponentOptionPlaced: ElementRef;
-  @ViewChild('optionWin') optionWin: ElementRef;
-  @ViewChild('optionWinOponent') optionWinOponent: ElementRef;
-  @ViewChild('optionLoose') optionLoose: ElementRef;
-  @ViewChild('optionLooseOponent') optionLooseOponent: ElementRef;
-  @ViewChild('meLoose') meLoose: ElementRef;
-  @ViewChild('meWin') meWin: ElementRef;
-  @ViewChild('optionsStart') optionsStart: ElementRef;
+  @ViewChild("optionPlaced") optionPlaced: ElementRef;
+  @ViewChild("oponentOptionPlaced") oponentOptionPlaced: ElementRef;
+  @ViewChild("optionWin") optionWin: ElementRef;
+  @ViewChild("optionWinOponent") optionWinOponent: ElementRef;
+  @ViewChild("optionLoose") optionLoose: ElementRef;
+  @ViewChild("optionLooseOponent") optionLooseOponent: ElementRef;
+  @ViewChild("meLoose") meLoose: ElementRef;
+  @ViewChild("meWin") meWin: ElementRef;
+  @ViewChild("optionsStart") optionsStart: ElementRef;
   leftMsgSmall: string;
   rightMsgSmall: string;
   leftMsgBig: string;
@@ -312,14 +317,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   leftScore = 0;
   rightScore = 0;
   statusObservable: Subscription;
-  constructor(private identityService: AuthService, private raceApi: RacesService, private actv: ActivatedRoute, private notify: NotifyService, private route: Router) {
-    
-  }
+  constructor(
+    private identityService: AuthService,
+    private raceApi: RacesService,
+    private actv: ActivatedRoute,
+    private notify: NotifyService,
+    private route: Router
+  ) {}
 
   ngOnInit() {
-    this.raceHash = this.actv.snapshot.paramMap.get('id');
-    this.startsAt = Number(this.actv.snapshot.paramMap.get('starts'));
-    
+    this.raceHash = this.actv.snapshot.paramMap.get("id");
+    this.startsAt = Number(this.actv.snapshot.paramMap.get("starts"));
+
     this.whenStarts();
     this.getBinaryPlayers();
     this.getCryptoStats();
@@ -339,7 +348,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.ccxtInterval) {
-      clearInterval(this.ccxtInterval)
+      clearInterval(this.ccxtInterval);
     }
     if (this.chartSubscription) {
       this.chartSubscription.unsubscribe();
@@ -355,15 +364,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   subscribeToStream() {
-    this.chartSubscription = this.chartStream.subscribe(datax => {
+    this.chartSubscription = this.chartStream.subscribe((datax) => {
       if (datax.value && this.raceEnded === false) {
-
         const dateF = new Date(datax.time).toLocaleTimeString();
         this.chartTemp = {
           value: datax.value,
           time: datax.time,
-          type: datax.type
-        }
+          type: datax.type,
+        };
         this.updateChart();
       }
     });
@@ -373,18 +381,21 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   updateChart() {
-
     if (this.chartTemp.value && this.chart) {
       const tempIndex = this.chart.data.labels.indexOf(this.chartTemp.time);
       let retypedindex: number;
       retypedindex = tempIndex;
-      const isOnChart = this.chart.data.datasets[0].pointStyle[retypedindex] === 'circle';
-      if (this.chart.data.labels.includes(this.chartTemp.time) && this.chartTemp.type !== 'circle') {
+      const isOnChart =
+        this.chart.data.datasets[0].pointStyle[retypedindex] === "circle";
+      if (
+        this.chart.data.labels.includes(this.chartTemp.time) &&
+        this.chartTemp.type !== "circle"
+      ) {
         if (isOnChart) {
           this.chart.data.datasets[0].data[tempIndex] = this.chartTemp.value;
           this.chart.data.datasets[0].pointStyle[tempIndex] = null;
-          this.chart.data.datasets[0].pointStyle[tempIndex] = this.chartTemp.type;
-
+          this.chart.data.datasets[0].pointStyle[tempIndex] =
+            this.chartTemp.type;
 
           //this.chart.data.labels[tempIndex] = this.chartTemp.time;
         } else {
@@ -395,18 +406,16 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           const tempLabel = [];
           tempLabel.push(...this.chart.data.labels);
 
-
-          const preformatTime = new Date(this.chartTemp.time).toLocaleTimeString();
+          const preformatTime = new Date(
+            this.chartTemp.time
+          ).toLocaleTimeString();
           tempData.splice(tempIndex + 1, 0, this.chartTemp.value);
           tempPoint.splice(tempIndex + 1, 0, this.chartTemp.type);
           tempLabel.splice(tempIndex + 1, 0, preformatTime);
 
-
           this.chart.data.datasets[0].data = tempData;
           this.chart.data.datasets[0].pointStyle = tempPoint;
           this.chart.data.labels = tempLabel;
-
-
 
           if (this.chart.data.datasets[0].data.length > 50) {
             this.chart.data.datasets[0].data.shift();
@@ -424,7 +433,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
         this.addToChart();
       }
     }
-
   }
 
   addToChart() {
@@ -438,23 +446,23 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.chart.data.datasets[0].pointStyle.shift();
       this.chart.data.labels.shift();
     }
-    if (this.chartTemp.type !== 'circle') {
+    if (this.chartTemp.type !== "circle") {
       this.pushing = true;
       setTimeout(() => {
         this.pushing = false;
       }, 1000);
     }
-    this.currentValue
+    this.currentValue;
 
-    this.colorUp === true ? this.config.options.bands.bandLine.colour = 'rgb(0, 212, 129)' : this.config.options.bands.bandLine.colour = 'rgb(254, 23, 63)';
+    this.colorUp === true
+      ? (this.config.options.bands.bandLine.colour = "rgb(0, 212, 129)")
+      : (this.config.options.bands.bandLine.colour = "rgb(254, 23, 63)");
     this.config.options.bands.yValue = this.currentValue;
     this.chart.update();
   }
 
   getBinaryPlayers() {
-    this.raceApi.binaryPlayers(
-      this.raceHash
-    ).subscribe(data => {
+    this.raceApi.binaryPlayers(this.raceHash).subscribe((data) => {
       const datax: any = data;
       this.resolveAvatars(datax);
     });
@@ -468,66 +476,68 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     if (this.loadingCont === false) {
       this.loadingCont = true;
       this.canBet = false;
-      this.gameObserver = this.raceApi.binaryOption({
-        "race_hash": this.raceHash,
-        "long": this.long
-      }).subscribe(
-        data => {
-          this.convertToHuman(true, 'Placing', 'option');
+      this.gameObserver = this.raceApi
+        .binaryOption({
+          race_hash: this.raceHash,
+          long: this.long,
+        })
+        .subscribe((data) => {
+          this.convertToHuman(true, "Placing", "option");
           //this.optWaiting = 10;
           if (data.next_bet === 0) {
             this.canBet = true;
             setTimeout(() => {
               this.canBet = true;
-              console.log('now can bet');
+              console.log("now can bet");
             }, 10000);
           } else {
             const x = Date.now();
-            const y = (data.next_bet * 1000) - x;
+            const y = data.next_bet * 1000 - x;
             setTimeout(() => {
               this.canBet = true;
             }, y);
           }
-        }
-      )
+        });
     }
 
     setTimeout(() => {
       this.loadingCont = false;
-    }, 500)
+    }, 500);
   }
 
   initChartConfig() {
-    let ctx, canvas = document.createElement('canvas');
+    let ctx,
+      canvas = document.createElement("canvas");
     ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(130, 130, 130, 1)');
-    gradient.addColorStop(1, 'rgba(34, 34, 34, 0)');
+    gradient.addColorStop(0, "rgba(130, 130, 130, 1)");
+    gradient.addColorStop(1, "rgba(34, 34, 34, 0)");
     let _that = this;
     setTimeout(() => {
-      this.chart = new Chart('canvas', this.config);
+      this.chart = new Chart("canvas", this.config);
       this.fillInitData();
       Chart.pluginService.register(new BandsPlugin());
-      
-    }, 100)
+    }, 100);
     Chart.defaults.global.legend.display = false;
     this.config = {
-      type: 'line',
+      type: "line",
       data: {
-        datasets: [{
-          label: 'BTC/USDT',
-          backgroundColor: gradient,
-          borderColor: this.chartColors.red,
-          fill: true,
-          data: [],
-          lineTension: 0.1,
-          pointStyle: []
-        }]
+        datasets: [
+          {
+            label: "BTC/USDT",
+            backgroundColor: gradient,
+            borderColor: this.chartColors.red,
+            fill: true,
+            data: [],
+            lineTension: 0.1,
+            pointStyle: [],
+          },
+        ],
       },
       options: {
         scales: {
           x: {
-            type: 'realtime',
+            type: "realtime",
             realtime: {
               duration: 20000,
               refresh: 1000,
@@ -536,60 +546,57 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
             ticks: {
               fontColor: "#868686",
               reverse: false,
-              stepSize: 5
-
-            }
+              stepSize: 5,
+            },
           },
-          yAxes: [{
-            display: true,
-            position: 'right',
-            ticks: {
-              fontColor: "#868686",
-
-            }
-          }],
-          xAxes: [{
-            display: true,
-            ticks: {
-              fontColor: "#868686",
-              reverse: false,
-              stepSize: 5
-
-            }
-          }]
+          yAxes: [
+            {
+              display: true,
+              position: "right",
+              ticks: {
+                fontColor: "#868686",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              display: true,
+              ticks: {
+                fontColor: "#868686",
+                reverse: false,
+                stepSize: 5,
+              },
+            },
+          ],
         },
         bands: {
           yValue: this.currentValue,
-          baseColorGradientColor: [
-
-          ],
+          baseColorGradientColor: [],
           bandLine: {
             stroke: 1,
-            colour: 'rgb(0, 212, 129)',
-            type: 'dashed',
-          }
+            colour: "rgb(0, 212, 129)",
+            type: "dashed",
+          },
         },
         tooltips: {
-          name: 'jano',
+          name: "jano",
           enabled: true,
           intersect: true,
-          mode: 'index',
-          position: 'nearest',
-          
-        }
-      }
+          mode: "index",
+          position: "nearest",
+        },
+      },
     };
-
   }
 
-  setAvatarImages(){
-    for(let x = 0; x < this.racers.length; x++){
-      console.log('Debug player: '+ this.players[0]+ this.players[1]);
-      if(this.players[0]?.user_id == this.racers[x].id){
+  setAvatarImages() {
+    for (let x = 0; x < this.racers.length; x++) {
+      console.log("Debug player: " + this.players[0] + this.players[1]);
+      if (this.players[0]?.user_id == this.racers[x].id) {
         console.log("naslo 1");
         this.myRacer = this.racers[x];
       }
-      if(this.players[1]?.user_id == this.racers[x].id){
+      if (this.players[1]?.user_id == this.racers[x].id) {
         console.log("naslo 2");
         this.oponentRacer = this.racers[x];
       }
@@ -599,18 +606,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     console.log(this.oponentRacer);
   }
 
-
   add(timeV: number, valV: number) {
     if (this.pushing === false) {
       const vall = 1000 * Math.floor(timeV / 1000);
 
-      valV > this.currentValue ? this.colorUp = true : this.colorUp = false;
+      valV > this.currentValue ? (this.colorUp = true) : (this.colorUp = false);
       this.currentValue = valV;
 
       const obj = {
         value: valV,
-        type: 'circle',
-        time: vall
+        type: "circle",
+        time: vall,
       };
 
       this.chartStream.next(obj);
@@ -619,87 +625,90 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   // websocket to chart section
 
-
   addFromPlayer(timeV: any, valV: number, long?: boolean, me?: boolean) {
     const pl = timeV * 1000;
     let imag = new Image();
     if (me === false) {
-      long === true ? imag.src = '/assets/base/images/binary/oponent-long.png' : imag.src = '/assets/base/images/binary/oponent-short.png';
+      long === true
+        ? (imag.src = "/assets/base/images/binary/oponent-long.png")
+        : (imag.src = "/assets/base/images/binary/oponent-short.png");
     }
     if (me === true) {
-      long === true ? imag.src = '/assets/base/images/binary/long.png' : imag.src = '/assets/base/images/binary/short.png';
+      long === true
+        ? (imag.src = "/assets/base/images/binary/long.png")
+        : (imag.src = "/assets/base/images/binary/short.png");
     }
 
     const obj = {
       value: valV,
       type: imag,
-      time: pl
+      time: pl,
     };
 
     this.chartStream.next(obj);
     if (me === true) {
       this.optWaiting = 10;
-      this.playSound('optionPlaced');
-      this.convertToHuman(true, 'Placed!');
+      this.playSound("optionPlaced");
+      this.convertToHuman(true, "Placed!");
     } else {
-      this.playSound('oponentOptionPlaced');
-      this.convertToHuman(false, 'Placed!');
+      this.playSound("oponentOptionPlaced");
+      this.convertToHuman(false, "Placed!");
     }
   }
 
   placeLineToChart(obj) {
     let imag = new Image();
-    imag.src = '/assets/base/images/binary/green.png';
-
+    imag.src = "/assets/base/images/binary/green.png";
 
     this.chartStream.next(obj);
-
   }
 
-
-
-  addFromDecision(lplayer: boolean, shot: boolean, timeV: number, valV: number) {
+  addFromDecision(
+    lplayer: boolean,
+    shot: boolean,
+    timeV: number,
+    valV: number
+  ) {
     const imag = new Image();
     const rightdate = timeV * 1000;
 
     if (lplayer === true) {
-      shot === false ? imag.src = '/assets/base/images/binary/bad.png' : imag.src = '/assets/base/images/binary/good.png';
+      shot === false
+        ? (imag.src = "/assets/base/images/binary/bad.png")
+        : (imag.src = "/assets/base/images/binary/good.png");
     }
     if (lplayer === false) {
-      shot === false ? imag.src = '/assets/base/images/binary/oponent-bad.png' : imag.src = '/assets/base/images/binary/oponent-good.png';
+      shot === false
+        ? (imag.src = "/assets/base/images/binary/oponent-bad.png")
+        : (imag.src = "/assets/base/images/binary/oponent-good.png");
     }
     const obj = {
       value: valV,
       type: imag,
-      time: rightdate
+      time: rightdate,
     };
 
     this.chartStream.next(obj);
 
     if (lplayer === true) {
       if (shot === false) {
-        this.playSound('optionLoose');
-        this.convertToHuman(true, 'Ehm..');
-      }
-      else {
-        this.playSound('optionWin');
-        this.convertToHuman(true, 'Great!');
+        this.playSound("optionLoose");
+        this.convertToHuman(true, "Ehm..");
+      } else {
+        this.playSound("optionWin");
+        this.convertToHuman(true, "Great!");
       }
     }
     if (lplayer === false) {
       if (shot === false) {
-        this.playSound('optionLooseOponent')
-        this.convertToHuman(false, 'Loosed');
+        this.playSound("optionLooseOponent");
+        this.convertToHuman(false, "Loosed");
       } else {
-        this.playSound('optionWinOponent');
-        this.convertToHuman(false, '');
+        this.playSound("optionWinOponent");
+        this.convertToHuman(false, "");
       }
     }
   }
-
-
-
-
 
   // websocket section starts here
 
@@ -710,13 +719,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       auth: {
         user_hash: "ado",
         auth_token: "12345",
-        room_name: 'vs_' + this.raceHash
-      }
+        room_name: "vs_" + this.raceHash,
+      },
     });
-    
 
     popsock.on("option", function (data) {
-
       const opt = JSON.parse(data);
       _this.onOption(opt);
     });
@@ -759,7 +766,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
   onOption(data?: any) {
     const opt = data;
-    opt.uh === this.myId ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true) : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
+    opt.uh === this.myId
+      ? this.addFromPlayer(opt.ts, opt.ap, opt.long, true)
+      : this.addFromPlayer(opt.ts, opt.ap, opt.long, false);
   }
 
   onCancel(data?: any) {
@@ -767,35 +776,41 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const opt = data;
     this.notify.error(data.reason);
     setTimeout(() => {
-      this.route.navigate(['/race/binary-trade/' + data.model.versus_hash + '/' + data.model.start_at.toString()]);
+      this.route.navigate([
+        "/race/binary-trade/" +
+          data.model.versus_hash +
+          "/" +
+          data.model.start_at.toString(),
+      ]);
     }, 3000);
   }
 
   onOptionClosed(data?: any) {
     const opt = data;
-    opt.uh === this.myId ? this.addFromDecision(true, opt.result, opt.ts, opt.ap) : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
+    opt.uh === this.myId
+      ? this.addFromDecision(true, opt.result, opt.ts, opt.ap)
+      : this.addFromDecision(false, opt.result, opt.ts, opt.ap);
   }
 
   onWinners(data?: Array<any>) {
-
     const win = data.filter((item) => {
-      return item.win === true
+      return item.win === true;
     });
     const lose = data.filter((item) => {
-      return item.win === false
+      return item.win === false;
     });
 
     this.winner = win[0];
     this.loser = lose[0];
-    this.winner.uh === this.myId ? this.meWon = true : this.meWon = false;
+    this.winner.uh === this.myId ? (this.meWon = true) : (this.meWon = false);
     if (this.meWon === false) {
       this.unityEnabled === false;
-      this.playSound('meLoose');
-      this.convertToHuman(true, 'loose', 'You');
+      this.playSound("meLoose");
+      this.convertToHuman(true, "loose", "You");
       this.animateRivalWinnerAvatars = true;
     } else {
-      this.playSound('meWin');
-      this.convertToHuman(true, 'won!!!', 'You');
+      this.playSound("meWin");
+      this.convertToHuman(true, "won!!!", "You");
       this.animateMyWinnerAvatars = true;
     }
     this.raceEnded = true;
@@ -812,7 +827,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.roiright = data.r;
       this.rightScore = this.calcScore(data.p);
     }
-    this.playSound('action');
+    this.playSound("action");
   }
 
   onStatus(data?: any) {
@@ -825,47 +840,45 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
      */
   }
 
-
   avatarMsgLocal(msg: any) {
     this.raceComp.yo(msg);
   }
 
-  avatarMsg(msg: any,) {
-      if (msg.reaction === 2) {
-        this.resolveEmoji('happy', msg.user_hash !== this.myId);
-      }
-      if (msg.reaction === 3) {
-        this.resolveEmoji('sad', msg.user_hash !== this.myId);
-      }
-      if (msg.reaction === 4) {
-        this.resolveEmoji('brutal', msg.user_hash !== this.myId);
-      }
+  avatarMsg(msg: any) {
+    if (msg.reaction === 2) {
+      this.resolveEmoji("happy", msg.user_hash !== this.myId);
+    }
+    if (msg.reaction === 3) {
+      this.resolveEmoji("sad", msg.user_hash !== this.myId);
+    }
+    if (msg.reaction === 4) {
+      this.resolveEmoji("brutal", msg.user_hash !== this.myId);
+    }
     //}
     this.raceComp.yo(msg);
   }
 
   sendSockAvatarMsg(msg: any) {
     this.locked = true;
-    this.convertToHuman(true, 'Reaction', 'sent');
-    popsock.emit("client_triggered_emit",
-      {
-        "event": "message",
-        "user": this.myId,
-        "room": 'vs_' + this.raceHash,
-        "data": JSON.stringify(msg)
-      });
+    this.convertToHuman(true, "Reaction", "sent");
+    popsock.emit("client_triggered_emit", {
+      event: "message",
+      user: this.myId,
+      room: "vs_" + this.raceHash,
+      data: JSON.stringify(msg),
+    });
     setTimeout(() => {
       this.locked = false;
     }, 5000);
   }
-  
 
-
-  resolveAvatars(data: Array<{
-    user_id: string;
-    user_hash: string;
-    user_nickname: string;
-  }>) {
+  resolveAvatars(
+    data: Array<{
+      user_id: string;
+      user_hash: string;
+      user_nickname: string;
+    }>
+  ) {
     this.myId = this.identityService.getDriverMe().id;
     for (let x = 0; x < data.length; x++) {
       if (data[x].user_hash === this.myId) {
@@ -882,7 +895,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       }
       if (this.startsInSecs > 5) {
         setTimeout(() => {
-          this.notify.error('You can place 1 option before the game will start.');
+          this.notify.error(
+            "You can place 1 option before the game will start."
+          );
           this.canBet = true;
         }, 2000);
       }
@@ -891,7 +906,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     }
     this.setAvatarImages();
   }
-
 
   async fetchTickers(exchange) {
     let tickers;
@@ -908,20 +922,17 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     const enableRateLimit = true;
     this.binanceT = new ccxt.binance({ enableRateLimit, options: {} });
 
-    if (this.binanceT.has['watchTicker']) {
-
+    if (this.binanceT.has["watchTicker"]) {
       while (this.chartEnabled === true && this.binanceT !== null) {
         try {
-          const ticker = await this.binanceT.watchTicker('BTC/USDT', {});
-          this.add(ticker.timestamp, ticker.last)
+          const ticker = await this.binanceT.watchTicker("BTC/USDT", {});
+          this.add(ticker.timestamp, ticker.last);
         } catch (e) {
           this.chartEnabled = false;
         }
       }
     }
-
   }
-
 
   optTimerCompleted(event) {
     setTimeout(() => {
@@ -935,7 +946,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.unityEnabled = false;
     }, 3000);
   }
-
 
   getWhenStarts() {
     const then: any = this.startsAt * 1000;
@@ -958,11 +968,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       } else {
         this.semaforsVisible = false;
         this.raceStarted = false;
-        this.notify.error('Race already finished.')
-              
+        this.notify.error("Race already finished.");
       }
     } else {
-
       this.semaforsVisible = true;
       this.raceStarted = false;
       this.startVal = newwhen;
@@ -971,8 +979,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
 
       const fireSemaforx = (newwhen - 5) * 1000;
       if (fireSemaforx > 0) {
-        setTimeout((
-        ) => {
+        setTimeout(() => {
           if (this.pageOpen === true) {
             this.launchSemafor();
           }
@@ -980,8 +987,7 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       }
       const fireSemafory = (newwhen + 50) * 1000;
       if (fireSemaforx > 0) {
-        setTimeout((
-        ) => {
+        setTimeout(() => {
           this.cantPlaceBetAnymore = true;
         }, fireSemafory);
       }
@@ -992,38 +998,27 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
     this.semaforsVisible = true;
     this.semaforVal = 5;
     setTimeout(() => {
-
       this.semaforVal = 4;
-
     }, 1000);
     setTimeout(() => {
-
       this.semaforVal = 3;
-
     }, 2000);
     setTimeout(() => {
-
       this.semaforVal = 2;
-
     }, 3000);
     setTimeout(() => {
-
       this.semaforVal = 1;
-
     }, 4000);
     setTimeout(() => {
-
       this.semaforVal = 0;
-      this.playSound('optionsStart');
+      this.playSound("optionsStart");
       this.raceStarted = true;
       const newwhen = this.getWhenStarts();
       this.endVal = newwhen + 60;
-
     }, 5000);
     setTimeout(() => {
-
       this.semaforVal = -1;
-      this.semaforsVisible = false
+      this.semaforsVisible = false;
     }, 5100);
   }
 
@@ -1032,41 +1027,40 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (type === 'optionPlaced') {
+    if (type === "optionPlaced") {
       this.optionPlaced.nativeElement.play();
     }
 
-    if (type === 'oponentOptionPlaced') {
+    if (type === "oponentOptionPlaced") {
       this.oponentOptionPlaced.nativeElement.play();
     }
 
-    if (type === 'optionWin') {
+    if (type === "optionWin") {
       this.optionWin.nativeElement.play();
     }
 
-    if (type === 'optionWinOponent') {
+    if (type === "optionWinOponent") {
       this.optionWinOponent.nativeElement.play();
     }
 
-    if (type === 'optionLoose') {
+    if (type === "optionLoose") {
       this.optionLoose.nativeElement.play();
     }
 
-    if (type === 'optionLooseOponent') {
+    if (type === "optionLooseOponent") {
       this.optionLooseOponent.nativeElement.play();
     }
-    if (type === 'meWin') {
+    if (type === "meWin") {
       this.meWin.nativeElement.play();
     }
 
-    if (type === 'meLoose') {
+    if (type === "meLoose") {
       this.meLoose.nativeElement.play();
     }
 
-    if (type === 'optionsStart') {
+    if (type === "optionsStart") {
       this.optionsStart.nativeElement.play();
     }
-
   }
 
   convertToHuman(lPlayer: boolean, msgBig: string, msgSmall?: string) {
@@ -1075,8 +1069,8 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.leftMsgBig = msgBig;
       this.animatingLmsg = true;
       setTimeout(() => {
-        this.leftMsgSmall = '';
-        this.leftMsgBig = '';
+        this.leftMsgSmall = "";
+        this.leftMsgBig = "";
         this.animatingLmsg = false;
       }, 3000);
     } else if (this.animatingRmsg === false && lPlayer === false) {
@@ -1084,20 +1078,18 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       this.rightMsgBig = msgBig;
       this.animatingRmsg = true;
       setTimeout(() => {
-        this.rightMsgSmall = '';
-        this.rightMsgBig = '';
+        this.rightMsgSmall = "";
+        this.rightMsgBig = "";
         this.animatingRmsg = false;
       }, 3000);
     }
   }
 
   getBinaryHistory() {
-    this.raceApi.binaryHistory(50).subscribe(
-      data => {
-        this.initdata = data;
-        this.fillInitData();
-      }
-    )
+    this.raceApi.binaryHistory(50).subscribe((data) => {
+      this.initdata = data;
+      this.fillInitData();
+    });
   }
 
   fillInitData() {
@@ -1122,10 +1114,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       for (let x = 1; x < 20; x++) {
         setTimeout(() => {
           this.emojiLeftCounter++;
-        },
-          x * 130);
+        }, x * 130);
       }
-  
+
       setTimeout(() => {
         this.emojiLeft = null;
         this.emojiLeftCounter = 0;
@@ -1135,16 +1126,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       for (let x = 1; x < 20; x++) {
         setTimeout(() => {
           this.emojiRightCounter++;
-        },
-          x * 130);
+        }, x * 130);
       }
-  
+
       setTimeout(() => {
         this.emojiRight = null;
         this.emojiRightCounter = 0;
       }, 8000);
     }
-    
   }
 
   calcScore(data: Array<any>) {
@@ -1157,26 +1146,24 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   }
 
   getStatus() {
-    this.statusObservable = this.raceApi.binaryStatus(this.raceHash).subscribe(data => {
-      if (data.options.length > 0) {
-        for (let x = 0; x < data.options.length; x++) {
-          this.onOption(data.options[x]);
+    this.statusObservable = this.raceApi
+      .binaryStatus(this.raceHash)
+      .subscribe((data) => {
+        if (data.options.length > 0) {
+          for (let x = 0; x < data.options.length; x++) {
+            this.onOption(data.options[x]);
+          }
         }
-      }
-      if (data.options_closed.length > 0) {
-        for (let x = 0; x < data.options_closed.length; x++) {
-          this.onOptionClosed(data.options_closed[x]);
+        if (data.options_closed.length > 0) {
+          for (let x = 0; x < data.options_closed.length; x++) {
+            this.onOptionClosed(data.options_closed[x]);
+          }
         }
-      }
-      if (data.score.length > 0) {
-        for (let x = 0; x < data.score.length; x++) {
-          this.onScore(data.score[x]);
+        if (data.score.length > 0) {
+          for (let x = 0; x < data.score.length; x++) {
+            this.onScore(data.score[x]);
+          }
         }
-      }
-    });
+      });
   }
-  
-
-
 }
-

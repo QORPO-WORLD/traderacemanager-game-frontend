@@ -1,3 +1,5 @@
+<div class="image-holder"></div>
+<div class="image-holder-second"></div>
 <div class="ioi-banner">
   <img
     class="banner red-star"
@@ -27,12 +29,13 @@
           "
           class="box first"
         >
-          <img
-            class="left"
-            src="assets/base/images/start-race/discount.png"
-            alt="discount"
-          />
           <div class="box-content first">
+            <div class="image">
+              <img
+                src="assets/base/images/start-race/discount.png"
+                alt="discount"
+              />
+            </div>
             <div *ngIf="tip === 1" class="text">
               <h2>30% OFF</h2>
               <p>yearly premium membership</p>
@@ -66,11 +69,12 @@
         </div>
         <div (click)="navigateToToken()" class="box second my-cta-btn-back">
           <div class="box-content">
-            <img
-              class="right"
-              src="assets/base/images/start-race/ioi-token.png"
-              alt="golden ioi token"
-            />
+            <div class="image">
+              <img
+                src="assets/base/images/start-race/ioi-token.png"
+                alt="IOI token"
+              />
+            </div>
             <div class="text">
               <h3>IOI TOKEN</h3>
             </div>
@@ -82,11 +86,13 @@
           class="box second my-cta-btn-back"
         >
           <div class="box-content">
-            <img
-              class="right avatar"
-              src="assets/base/images/nft-racers/blue-trm.png"
-              alt="nft racer"
-            />
+            <div class="image">
+              <img
+                class="smaller"
+                src="assets/base/images/start-race/group.png"
+                alt="Affiliate group"
+              />
+            </div>
             <div class="text">
               <h3>AFFILIATE</h3>
             </div>
@@ -96,12 +102,14 @@
           [routerLink]="['/other/rewards']"
           class="box third my-cta-btn-back"
         >
-          <img
-            class="reward"
-            src="assets/base/images/start-race/reward.png"
-            alt="Golden coin"
-          />
-          <div class="box-content second">
+          <div class="box-content">
+            <div class="image">
+              <img
+                class="smaller"
+                src="assets/base/images/start-race/reward.png"
+                alt="Coins"
+              />
+            </div>
             <div *ngIf="reward === 1" class="text">
               <h3>{{ myTeamAllData.team_value.toLocaleString() }} IOI</h3>
               <p>Team reward</p>
@@ -178,6 +186,36 @@
       </div>
     </div>
     <div class="dashboard-avatars">
+      <div class="square">
+        <div class="bubble">
+          <img
+            class="red-star"
+            src="/assets/base/images/start-race/upgrade-red.png"
+            alt="bubble icon"
+          />
+          <img
+            class="blue-star"
+            src="/assets/base/images/start-race/upgrade-blue.png"
+            alt="bubble icon"
+          />
+          <p class="upgrade-text">Your rings</p>
+        </div>
+      </div>
+      <div class="square second">
+        <div class="bubble trophy">
+          <img
+            class="red-star"
+            src="/assets/base/images/start-race/upgrade-red.png"
+            alt="bubble icon"
+          />
+          <img
+            class="blue-star"
+            src="/assets/base/images/start-race/upgrade-blue.png"
+            alt="bubble icon"
+          />
+          <p class="upgrade-text">Your trophy</p>
+        </div>
+      </div>
       <div
         [routerLink]="
           accountInfo.is_paid_membership === 'Free'

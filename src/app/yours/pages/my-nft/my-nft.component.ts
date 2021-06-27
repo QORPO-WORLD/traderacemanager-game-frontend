@@ -574,6 +574,19 @@ export class MyNftComponent implements OnInit, OnChanges {
     {
       id: 54,
       collection: "Special",
+      name: "Altcoin Buzz",
+      link: "@Altcoinbuzzio",
+      image: "car50",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      rank: "low",
+      amount: [],
+      alt: "nft car Altcoin Buzz",
+    },
+    {
+      id: 55,
+      collection: "Special",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
       image: "car51",
@@ -773,6 +786,18 @@ export class MyNftComponent implements OnInit, OnChanges {
     },
     {
       id: 15,
+      collection: "Special",
+      name: "Altcoin Buzz",
+      link: "@Altcoinbuzzio",
+      image: "altcoin-buzz",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Altcoin Buzz",
+    },
+    {
+      id: 16,
       collection: "Special",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
@@ -1055,56 +1080,62 @@ export class MyNftComponent implements OnInit, OnChanges {
           if (objs.cars[x].car_id === 47) {
             this.products[33]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 51) {
+          if (objs.cars[x].car_id === 50) {
             this.products[34]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 51) {
+            this.products[35]["amount"].push(objs.cars[x]);
           }
         }
 
         for (let x = 0; x < objs.racers.length; x++) {
           if (objs.racers[x].car_id === 1) {
-            this.products[35]["amount"].push(objs.cars[x]);
-          }
-          if (objs.racers[x].car_id === 2) {
             this.products[36]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 3) {
+          if (objs.racers[x].car_id === 2) {
             this.products[37]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 4) {
+          if (objs.racers[x].car_id === 3) {
             this.products[38]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 5) {
+          if (objs.racers[x].car_id === 4) {
             this.products[39]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 6) {
+          if (objs.racers[x].car_id === 5) {
             this.products[40]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 7) {
+          if (objs.racers[x].car_id === 6) {
             this.products[41]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 8) {
+          if (objs.racers[x].car_id === 7) {
             this.products[42]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 11) {
+          if (objs.racers[x].car_id === 8) {
             this.products[43]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 12) {
+          if (objs.racers[x].car_id === 11) {
             this.products[44]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 14) {
+          if (objs.racers[x].car_id === 12) {
             this.products[45]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 15) {
+          if (objs.racers[x].car_id === 14) {
             this.products[46]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 16) {
+          if (objs.racers[x].car_id === 15) {
             this.products[47]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 17) {
+          if (objs.racers[x].car_id === 16) {
             this.products[48]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 21) {
+          if (objs.racers[x].car_id === 17) {
             this.products[49]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 20) {
+            this.products[50]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 21) {
+            this.products[51]["amount"].push(objs.cars[x]);
           }
         }
         this.calcEditionNum();

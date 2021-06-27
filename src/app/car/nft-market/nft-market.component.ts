@@ -14,8 +14,8 @@ export class NftMarketComponent implements OnInit {
   timeoutPrev: any;
   timeoutNext: any;
   carSum: string;
-  marketState = 2;
-  selectedId = 43;
+  marketState = 1;
+  selectedId = 1;
   isPaged = 0;
   selectedType = "racers";
   timeoutPage: any;
@@ -655,7 +655,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle3",
+      image: "bundle-dao",
       racer: "dao-maker",
       car: "car41",
       avatar: "dao-avatar",
@@ -672,7 +672,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle7",
+      image: "bundle-polygon",
       racer: "polygon",
       car: "car42",
     },
@@ -687,7 +687,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle6",
+      image: "bundle-kyle",
       racer: "paid",
       car: "car44",
       avatar: "paid-avatar",
@@ -704,7 +704,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle2",
+      image: "bundle-ash",
       racer: "ash-wsb",
       car: "car45",
       avatar: "ash-avatar",
@@ -721,7 +721,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle1",
+      image: "bundle-tehmoon",
       racer: "tehmoonwalker",
       car: "car46",
       avatar: "tehmoon-avatar",
@@ -739,7 +739,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle5",
+      image: "bundle-parabolic",
       racer: "parabolic-guy",
       car: "car47",
       avatar: "parabolic-avatar",
@@ -747,6 +747,23 @@ export class NftMarketComponent implements OnInit {
     },
     {
       id: 49,
+      position: 9,
+      type: "bundle",
+      name: "Altcoin Buzz",
+      link: "@Altcoinbuzzio",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle-altcoin",
+      racer: "altcoin-buzz",
+      car: "car50",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
+    {
+      id: 50,
       position: 10,
       type: "bundle",
       name: "Cryptowizard",
@@ -756,7 +773,7 @@ export class NftMarketComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle4",
+      image: "bundle-wizard",
       racer: "cryptowizard",
       car: "car51",
       avatar: "cryptowizard-avatar",
