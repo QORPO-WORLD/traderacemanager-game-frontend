@@ -1,25 +1,58 @@
+<div class="project-back-div">
+  <div class="project-back"></div>
+</div>
 
-
-<div class="step-holder" *ngIf="curStep === 0">
-
-  <img class="close-icon" src="/assets/base/images/icons/close-icon.svg" alt="" (click)="cancelKey()">
+<div
+  [ngClass]="isManager === true ? 'manager' : 'racer'"
+  class="step-holder main-app-cont-holder"
+  *ngIf="curStep === 0"
+>
+  <img
+    class="close-icon"
+    src="/assets/base/images/icons/close-white.svg"
+    alt=""
+    (click)="cancelKey()"
+  />
 
   <h1 class="top-heading">Disable Google Authenticator</h1>
 
   <div class="form-holder">
     <form action="#" autocomplete="off">
-      <div class="input-holder" style="display:none">
+      <div class="input-holder" style="display: none">
         <div class="dummy"></div>
-        <input data-bn-type="input" [(ngModel)]="pass"  [ngModelOptions]="{standalone: true}" aria-label="Password" type="password" name="password" placeholder="Enter your IOI Game password" value="">
+        <input
+          data-bn-type="input"
+          [(ngModel)]="pass"
+          [ngModelOptions]="{ standalone: true }"
+          aria-label="Password"
+          type="password"
+          name="password"
+          placeholder="Enter your IOI Game password"
+          value=""
+        />
       </div>
-      <div class="input-holder">
+      <div class="input-holder my-border-color">
         <div class="dummy"></div>
-        <input [(ngModel)]="testinp"  [ngModelOptions]="{standalone: true}" placeholder="Enter Google Authenticator code">
+        <input
+          [(ngModel)]="testinp"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Enter Google Authenticator code"
+        />
       </div>
       <div class="next-btn">
-        <button data-bn-type="button" type="submit" (click)="testKey()">Disable</button>
+        <button
+          class="my-cta-btn-back"
+          data-bn-type="button"
+          type="submit"
+          (click)="testKey()"
+        >
+          Disable
+        </button>
       </div>
-      <p class="log-info"><img src="/assets/base/images/icons/inner-info-icon.png" alt=""> You will be logged out automatically.</p>
+      <p class="log-info">
+        <img src="/assets/base/images/icons/inner-info-icon.png" alt="" /> You
+        will be logged out automatically.
+      </p>
     </form>
   </div>
 </div>
