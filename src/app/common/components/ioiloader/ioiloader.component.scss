@@ -1,5 +1,8 @@
 .loading-holder {
-  height: calc(var(--vh, 1vh) * 100) !important;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: calc(var(--vh, 1vh) * 100 - 80px);
   width: 100%;
 }
 .loading {
@@ -245,6 +248,10 @@
 }
 
 @media screen and (max-width: 1550px) {
+  .loading-holder {
+    height: calc(var(--vh, 1vh) * 100 - 65px);
+  }
+
   .loading {
     max-width: 250px;
     height: 250px;
@@ -265,5 +272,15 @@
   .loading {
     max-width: 190px;
     height: 190px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .loading-holder {
+    height: calc(var(--vh, 1vh) * 100 - 40px);
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .loading-holder {
+    height: calc(var(--vh, 1vh) * 100);
   }
 }
