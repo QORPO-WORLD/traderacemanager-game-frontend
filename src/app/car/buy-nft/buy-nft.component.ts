@@ -796,7 +796,7 @@ export class BuyNftComponent implements OnInit {
   displayArray = [];
   @Input() assetType = "racer";
   @Input() assetId = 1;
-  amount = 1;
+  amount: any = 1;
   myDriverBalances: any;
   tokenSelected = "ioi";
   constructor(
