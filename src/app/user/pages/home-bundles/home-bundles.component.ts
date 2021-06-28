@@ -63,7 +63,7 @@ export class HomeBundlesComponent implements OnInit {
       reward: 0.1,
       price: 1000,
       pieces: 100,
-      image: "bundle1",
+      image: "bundle-tehmoon",
       avatar: "tehmoon-avatar",
       back: "tehmoon-back",
     },
