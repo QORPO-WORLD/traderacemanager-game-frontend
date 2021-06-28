@@ -1,4 +1,4 @@
-import { first } from 'rxjs/operators';
+import { first } from "rxjs/operators";
 import { NotifiqService } from "./../../services/notifiq.service";
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { TeamsService } from "../../../api/services/teams.service";
@@ -86,9 +86,12 @@ export class TeamsSelectionComponent implements OnInit {
       for (let i = 0; i < this.teams.length; i++) {
         this.teams[i].statState = 1;
         if (this.teams[i].name === this.myTeam) {
-          if(this.teams[i].memberships[0].date_to != null)
+          if (this.teams[i].memberships[0].date_to != null)
             this.myMembEnds = this.teams[i].memberships[0].date_to;
-          else if(this.teams[i].memberships.length > 1 && this.teams[i].memberships[1].date_to != null)
+          else if (
+            this.teams[i].memberships.length > 1 &&
+            this.teams[i].memberships[1].date_to != null
+          )
             this.myMembEnds = this.teams[i].memberships[1].date_to;
         }
       }
@@ -104,6 +107,8 @@ export class TeamsSelectionComponent implements OnInit {
     this.myTeam = data.team;
     this.getTeams();
     this.myTeamData = data;
+    console.log(this.myTeamData);
+    console.log(this.myTeam);
   }
 
   joinTeam(teamId: number) {
@@ -175,7 +180,7 @@ export class TeamsSelectionComponent implements OnInit {
     }, 500);
   }
 
-  getBalance(){
+  getBalance() {
     this.myDriverBalances = this.identityService.getBalance();
   }
 
@@ -208,7 +213,7 @@ export class TeamsSelectionComponent implements OnInit {
     if (specificItem !== undefined) {
       let firstTwo = helper.splice(0, 2);
       helper = helper.filter((item) => item.name !== "TRADER");
-      this.teams = [...firstTwo, ...specificItem, ...helper]; 
+      this.teams = [...firstTwo, ...specificItem, ...helper];
     }
   }
 
@@ -236,9 +241,9 @@ export class TeamsSelectionComponent implements OnInit {
   }
 
   becomeManager(id: number) {
-
-    this.api.becomeManager(id, { reason: 'reason is null' }).subscribe
-      (data => {
+    this.api
+      .becomeManager(id, { reason: "reason is null" })
+      .subscribe((data) => {
         this.getTeams();
         this.managerDisclaim = false;
       });
@@ -253,5 +258,4 @@ export class TeamsSelectionComponent implements OnInit {
     this.selectedTeamId = null;
     this.managerDisclaim = false;
   }
-
 }
