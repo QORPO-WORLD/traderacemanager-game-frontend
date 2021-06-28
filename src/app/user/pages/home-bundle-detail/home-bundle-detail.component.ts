@@ -10,48 +10,63 @@ import { ActivatedRoute } from "@angular/router";
 export class HomeBundleDetailComponent implements OnInit {
   bundleBack: string;
   backTo: string;
-  bundles: Array<any> = [
+  bundles: Array<object> = [
     {
       id: 1,
-      name: "Tehmoonwalker",
-      carId: 46,
-      avatarName: "tehmoonwalker",
-    },
-    {
-      id: 2,
-      name: "Ash WSB",
-      carId: 45,
-      avatarName: "ash-wsb",
-    },
-    {
-      id: 3,
       name: "DAOMaker",
       carId: 41,
       avatarName: "dao-maker",
+      image: "bundle-dao",
     },
     {
-      id: 4,
-      name: "Cryptowizard",
-      carId: 51,
-      avatarName: "cryptowizard",
-    },
-    {
-      id: 5,
-      name: "Parabolic Guy",
-      carId: 47,
-      avatarName: "parabolic-guy",
-    },
-    {
-      id: 6,
-      name: "Kyle Chasse",
-      carId: 44,
-      avatarName: "paid",
-    },
-    {
-      id: 7,
+      id: 2,
       name: "Shreyansh",
       carId: 42,
       avatarName: "polygon",
+      image: "bundle-polygon",
+    },
+    {
+      id: 3,
+      name: "Kyle Chasse",
+      carId: 44,
+      avatarName: "paid",
+      image: "bundle-kyle",
+    },
+    {
+      id: 4,
+      name: "Ash WSB",
+      carId: 45,
+      avatarName: "ash-wsb",
+      image: "bundle-ash",
+    },
+    {
+      id: 5,
+      name: "Tehmoonwalker",
+      carId: 46,
+      avatarName: "tehmoonwalker",
+      image: "bundle-tehmoon",
+    },
+    {
+      id: 6,
+      name: "Parabolic Guy",
+      carId: 47,
+      avatarName: "parabolic-guy",
+      image: "bundle-parabolic",
+    },
+
+    {
+      id: 7,
+      name: "Altcoin Buzz",
+      carId: 50,
+      avatarName: "altcoin-buzz",
+      image: "bundle-altcoin",
+    },
+    {
+      id: 8,
+      name: "Cryptowizard",
+      carId: 51,
+      avatarName: "cryptowizard",
+      image: "bundle-wizard",
     },
   ];
 
@@ -66,10 +81,13 @@ export class HomeBundleDetailComponent implements OnInit {
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
-      this.bundleId = params["id"];
+      this.bundleId = +params["id"];
       this.bundleBack = params["back"];
-      console.log(this.bundleBack);
       this.backTo = this.bundleBack;
+
+      this.bundles = this.bundles.filter(
+        (item) => item["id"] === this.bundleId
+      );
     });
   }
 }

@@ -5,24 +5,34 @@
       <div class="boxes-holder">
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'ioi' }"
+          [ngClass]="{ active: tokenSelected === 'ioi' }"
           (click)="selectIoi()"
         >
-        <p><img src="/assets/base/images/icons/ioi-big.svg" alt=""> IOI</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p><img src="/assets/base/images/icons/ioi-big.svg" alt="" /> IOI</p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
 
         <div
           class="box-item"
-          [ngClass]="{ 'active': tokenSelected === 'matic' }"
+          [ngClass]="{ active: tokenSelected === 'matic' }"
           (click)="selectMatic()"
         >
-        <p><img src="/assets/base/images/icons/polygon-big.svg" alt=""> Polygon</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+          <p>
+            <img src="/assets/base/images/icons/polygon-big.svg" alt="" />
+            Polygon
+          </p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
-
       </div>
     </div>
 
@@ -51,10 +61,15 @@
             </div>
           </div>
           <div class="btns-holder">
-            <a target="_blank" href="https://www.ioi-wallet.com/" class="high"
+            <a
+              target="_blank"
+              href="https://www.ioi-wallet.com/"
+              class="high my-text-color"
               >Take me to IOI Wallet &gt;</a
             >
-            <a target="_blank" href="https://www.coingecko.com/en/coins/ioi-token"
+            <a
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/ioi-token"
               >Check Coingecko.com &gt;</a
             >
           </div>
@@ -65,7 +80,7 @@
         <div class="inner">
           <input
             type="number"
-            min="{{minAmount}}"
+            min="{{ minAmount }}"
             [(ngModel)]="amount"
             [ngModelOptions]="{ standalone: true }"
             placeholder="Enter the amount you want to transfer"
@@ -105,16 +120,25 @@
         <div class="withdraw-info">
           <p class="text">You are transferring</p>
           <p class="value">
-            <img *ngIf="tokenSelected === 'ioi'" src="/assets/base/images/icons/ioi-big.svg" alt="">
-            <img *ngIf="tokenSelected === 'matic'" src="/assets/base/images/funds-box-back.png" alt="">
+            <img
+              *ngIf="tokenSelected === 'ioi'"
+              src="/assets/base/images/icons/ioi-big.svg"
+              alt=""
+            />
+            <img
+              *ngIf="tokenSelected === 'matic'"
+              src="/assets/base/images/funds-box-back.png"
+              alt=""
+            />
             <span *ngIf="amount > 0">{{ amount }}</span>
             <span *ngIf="amount < 1">0</span>
           </p>
           <p *ngIf="tokenSelected === 'matic'" class="desc">
-            market value 1 Polygon = {{maticusdt}} USD
+            market value 1 Polygon = {{ maticusdt }} USD
           </p>
           <p *ngIf="tokenSelected === 'ioi'" class="desc">
-            market value 1 IOI = {{myBalance.ioi_usdt | number: "1.2-2":"fr"}}$
+            market value 1 IOI =
+            {{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}$
           </p>
         </div>
         <div class="summary-box">

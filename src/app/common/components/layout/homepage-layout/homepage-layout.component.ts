@@ -36,7 +36,7 @@ export class HomepageLayoutComponent implements OnInit {
       this.activeMenu = 0;
     }
   }
-  updateRoute(route: string) {
-    this.currentRoute = route;
+  updateRoute() {
+    this.currentRoute = this.router.url.split("?")[0];
   }
 }

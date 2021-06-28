@@ -69,9 +69,8 @@
       Good luck.
     </p>
     <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
-      Ring is a special price that you can win every month by being the best
-      racer. It is also a ticket to biggest yearly tournament where you can win
-      the trophy.
+      Get a NFT car and an avatar of your favourite influencer in our limited
+      bundles! Increase your daily income thanks to daily stakes today.
     </p>
 
     <div class="text-buttons">
@@ -196,6 +195,7 @@
       </div>
       <div class="ability-box cars">
         <img
+          [ngClass]="{ active: infoRoi === true }"
           (mouseover)="infoRoi = true"
           (mouseleave)="infoRoi = false"
           class="info-icon"
@@ -236,6 +236,7 @@
       </div>
       <div class="ability-box cars">
         <img
+          [ngClass]="{ active: infoRoiYearly === true }"
           (mouseover)="infoRoiYearly = true"
           (mouseleave)="infoRoiYearly = false"
           class="info-icon"
@@ -332,7 +333,7 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability1"] }}
+              {{ displayArray[0]["ability3"] }}
             </p>
             <p class="races-desc">APY</p>
           </div>
@@ -500,6 +501,7 @@
           </div>
           <div class="ability-box second">
             <img
+              [ngClass]="{ active: infoRoi === true }"
               (mouseover)="infoRoi = true"
               (mouseleave)="infoRoi = false"
               class="info-icon"
@@ -540,6 +542,7 @@
 
           <div class="ability-box second">
             <img
+              [ngClass]="{ active: infoRoiYearly === true }"
               (mouseover)="infoRoiYearly = true"
               (mouseleave)="infoRoiYearly = false"
               class="info-icon"

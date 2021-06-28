@@ -1716,15 +1716,10 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   filterCarArrays(data: any) {
-    this.myCars1 = data.filter(j => j.extras.tier > 0 && j.extras.tier <= 6 || j.extras.tier == 25 || j.extras.tier >= 41);
+    this.myCars1 = data.filter(j => j.extras.tier >= 0 && j.extras.tier <= 6 || j.extras.tier == 25 || j.extras.tier >= 41 && j.extras.tier !== 50);
     this.myCars2 = data.filter(j => j.extras.tier > 6 && j.extras.tier <= 12 || j.extras.tier == 26);
     this.myCars3 = data.filter(j => j.extras.tier > 12 && j.extras.tier <= 18 || j.extras.tier == 27);
     this.myCars4 = data.filter(j => j.extras.tier > 18 && j.extras.tier <= 24 || j.extras.tier == 28);
-    console.log(this.myCars1);
-    console.log(this.myCars2);
-    console.log(this.myCars3);
-    console.log(this.myCars4);
-    console.log('_________________');
   }
 
 }
