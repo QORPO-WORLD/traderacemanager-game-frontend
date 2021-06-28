@@ -90,14 +90,18 @@ export class AuthService extends AbstractService {
         })
           .subscribe(ldata => {
             this.setLeaderboardMe(ldata);
+            /*
             const hasLastRoute =  JSON.parse(localStorage.getItem('last-route'));
    
             if (hasLastRoute) {
               this.router.navigate([hasLastRoute]);
               setTimeout(() => { localStorage.removeItem('last-route'); }, 200);
             } else {
+            */
+            setTimeout(() => {
               this.router.navigate(['/race/start-race']);
-            }
+            }, 300);
+            //}
             ga('event', 'prihlaseni', {
               'eventCategory': 'prihlaseni',
               'eventAction': 'prihlaseni',

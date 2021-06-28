@@ -31,33 +31,34 @@ export class JwtInterceptor implements HttpInterceptor {
             }
         });
 
-            //this.identityService.tokenExpires(token.access);
+        //this.identityService.tokenExpires(token.access);
 
-            //request = this.addTokenToRequest(request, token.access);
+        //request = this.addTokenToRequest(request, token.access);
 
 
-            return next.handle(request)
-                .pipe(
-                    catchError(err => {
-                        if (err.status === 401) {
-                            const lastRoute = this.route.url;
-                            this.identityService.logout();
-                            setTimeout(() => {
-                                localStorage.setItem('last-route', JSON.stringify(lastRoute));
-                            }, 200);
-                            //return this.handle401Error(request, next);
-                        } else if (err.status === 406) {
-                            this.identityService.logout();
-                        } else if (err.status === 403) {
-                            this.route.navigate(['/user/verify-code']);
-                          
-                        } else if (err.status === 456) {
-                            this.route.navigate(['/user/verify-authenticator']);
-                          
-                        } else {
-                            return throwError(err);
-                        }
-                    }));
+        return next.handle(request)
+            .pipe(
+                catchError(err => {
+                    if (err.status === 401) {
+                        // const lastRoute = this.route.url;
+                        this.identityService.logout();
+                        /* setTimeout(() => {
+                             localStorage.setItem('last-route', JSON.stringify(lastRoute));
+                         }, 200);
+                         */
+                        return this.handle401Error(request, next);
+                    } else if (err.status === 406) {
+                        this.identityService.logout();
+                    } else if (err.status === 403) {
+                        this.route.navigate(['/user/verify-code']);
+
+                    } else if (err.status === 456) {
+                        this.route.navigate(['/user/verify-authenticator']);
+
+                    } else {
+                        return throwError(err);
+                    }
+                }));
 
     }
 
