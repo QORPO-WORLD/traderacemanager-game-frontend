@@ -1,9 +1,16 @@
-
-
 <div class="teams-holder">
   <p class="manager-heading" *ngIf="managerType === true">Choose a team</p>
-  <div class="inner-slider" [ngClass]="{'manager-type': managerType === true, 'long': teams.length > 10}">
-    <div class="team-item" *ngFor="let tt of teams | sortmain: '!position'; let i = index">
+  <div
+    class="inner-slider"
+    [ngClass]="{
+      'manager-type': managerType === true,
+      long: teams.length > 10
+    }"
+  >
+    <div
+      class="team-item"
+      *ngFor="let tt of teams | sortmain: '!position'; let i = index"
+    >
       <div
         class="img-holder"
         *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
@@ -14,29 +21,54 @@
         />
       </div>
       <div
-      *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
+        *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
         class="img-holder"
       >
         <img
-          [src]="'assets/base/images/custom-teams/custom-team' + (tt.avatar + 1) + '.png'"
+          [src]="
+            'assets/base/images/custom-teams/custom-team' +
+            (tt.avatar + 1) +
+            '.png'
+          "
           alt=""
         />
         <div class="badge-name">
-          <p class="name">{{ tt?.name }}</p>
+          <p class="name">
+            {{ tt?.name }}
+          </p>
           <p class="team">TEAM</p>
         </div>
       </div>
-      <p class="team-name">{{ tt?.name }}</p>
+      <p [ngClass]="{ 'my-text-color': myTeam === tt?.name }" class="team-name">
+        {{ tt?.name }}
+      </p>
 
       <div class="stats-holder">
-        <img (click)="prevStat(i)" src="/assets/base/images/teams/team-arrow-left.svg" alt="" class="arrow left">
-        <img (click)="nextStat(i)" src="/assets/base/images/teams/team-arrow-right.svg" alt="" class="arrow right">
+        <img
+          (click)="prevStat(i)"
+          src="/assets/base/images/teams/team-arrow-left.svg"
+          alt=""
+          class="arrow left"
+        />
+        <img
+          (click)="nextStat(i)"
+          src="/assets/base/images/teams/team-arrow-right.svg"
+          alt=""
+          class="arrow right"
+        />
         <div class="stat-item" *ngIf="tt.statState === 1">
           <div class="inner-item">
-            <p><img src="/assets/base/images/teams/memb-num.svg" alt=""> {{ tt?.active_members }}</p>
+            <p>
+              <img src="/assets/base/images/teams/memb-num.svg" alt="" />
+              {{ tt?.active_members }}
+            </p>
           </div>
           <div class="inner-item">
-            <p><img src="/assets/base/images/teams/turnover.svg" alt=""> <img src="/assets/base/images/teams/reward-token.png" alt=""> {{ tt.current_team_bonus | number: "1.2-2":"fr" }}</p>
+            <p>
+              <img src="/assets/base/images/teams/turnover.svg" alt="" />
+              <img src="/assets/base/images/teams/reward-token.png" alt="" />
+              {{ tt.current_team_bonus | number: "1.2-2":"fr" }}
+            </p>
           </div>
         </div>
         <div class="stat-item names" *ngIf="tt.statState === 2">
@@ -52,7 +84,9 @@
               {{ tt?.owners[ownerIndex].user_nickname }}
               <span
                 class="arrow right"
-                *ngIf="tt?.owners.length > 1 && ownerIndex !== tt?.owners.length"
+                *ngIf="
+                  tt?.owners.length > 1 && ownerIndex !== tt?.owners.length
+                "
                 (click)="ownerIndex = ownerIndex + 1"
                 >&gt;</span
               >
@@ -69,59 +103,120 @@
         </div>
         <div class="stat-item" *ngIf="tt.statState === 3">
           <div class="inner-item">
-            <p><img src="/assets/base/images/race-type/player.svg" alt=""> {{ tt?.free_membership_count }}</p>
+            <p>
+              <img src="/assets/base/images/race-type/player.svg" alt="" />
+              {{ tt?.free_membership_count }}
+            </p>
           </div>
           <div class="inner-item">
             <p>
               <span class="premium">
-                <img src="/assets/base/images/menu/premium-icon-active.svg" alt="" class="premium-badge"> 
-                <img src="/assets/base/images/race-type/player.svg" alt="">
-              </span> 
-            {{ tt?.premium_membership_count }}</p>
+                <img
+                  src="/assets/base/images/menu/premium-icon-active.svg"
+                  alt=""
+                  class="premium-badge"
+                />
+                <img src="/assets/base/images/race-type/player.svg" alt="" />
+              </span>
+              {{ tt?.premium_membership_count }}
+            </p>
           </div>
         </div>
       </div>
-      <button *ngIf="managerType === false" class="join-team my-cta-btn-back" (click)="openMembershipModal(1,tt.id)">Join team</button>
+      <button
+        *ngIf="managerType === false"
+        class="join-team my-cta-btn-back"
+        (click)="openMembershipModal(1, tt.id)"
+      >
+        Join team
+      </button>
 
       <ng-container *ngIf="managerType === true">
         <ng-container *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
-          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'WAITING'">
-            <img src="/assets/base/images/icons/time.svg" alt=""> Application pending
+          <button
+            class="join-team my-cta-btn-back"
+            *ngIf="tt.me_waiting_as_manager === 'WAITING'"
+          >
+            <img src="/assets/base/images/icons/time.svg" alt="" /> Application
+            pending
           </button>
-          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'DECLINED'">
+          <button
+            class="join-team my-cta-btn-back"
+            *ngIf="tt.me_waiting_as_manager === 'DECLINED'"
+          >
             Application rejected
           </button>
-          <button class="join-team my-cta-btn-back" *ngIf="tt.me_waiting_as_manager === 'APPROVED'">
+          <button
+            class="join-team my-cta-btn-back"
+            *ngIf="tt.me_waiting_as_manager === 'APPROVED'"
+          >
             Application approved
           </button>
-          <button class="join-team my-cta-btn-back" (click)="becomeManager(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE' && myDriverStats?.is_manager === false">Apply</button>
-          <button class="join-team my-cta-btn-back" (click)="openManagerModal(tt.id)" *ngIf="tt.me_waiting_as_manager === 'NONE' && myDriverStats?.is_manager === true">Apply</button>
+          <button
+            class="join-team my-cta-btn-back"
+            (click)="becomeManager(tt.id)"
+            *ngIf="
+              tt.me_waiting_as_manager === 'NONE' &&
+              myDriverStats?.is_manager === false
+            "
+          >
+            Apply
+          </button>
+          <button
+            class="join-team my-cta-btn-back"
+            (click)="openManagerModal(tt.id)"
+            *ngIf="
+              tt.me_waiting_as_manager === 'NONE' &&
+              myDriverStats?.is_manager === true
+            "
+          >
+            Apply
+          </button>
         </ng-container>
-        <button class="join-team my-cta-btn-back" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" *ngIf="myDriverBalances.game_wallet_ioi < 1000">Deposit</button>
+        <button
+          class="join-team my-cta-btn-back"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+          *ngIf="myDriverBalances.game_wallet_ioi < 1000"
+        >
+          Deposit
+        </button>
       </ng-container>
-      
     </div>
   </div>
 </div>
 
-
 <!-- MODALS -->
 
-<app-team-membership *ngIf="modalOpened===1" (openedModal)="openMembershipModal($event)" [selectedTeamId]="selectedTeamId"></app-team-membership>
+<app-team-membership
+  *ngIf="modalOpened === 1"
+  (openedModal)="openMembershipModal($event)"
+  [selectedTeamId]="selectedTeamId"
+></app-team-membership>
 
-
-<div class="manager-disclaim" *ngIf="managerDisclaim === true && selectedTeamId">
+<div
+  class="manager-disclaim"
+  *ngIf="managerDisclaim === true && selectedTeamId"
+>
   <div class="back-cover"></div>
   <div class="inner-cont">
     <p class="close-btn" (click)="closeManagerModal()">+</p>
     <div class="text-holder">
       <h2>Apply as a manager</h2>
-      <p class="text">If your application for a manager position in this team gets approved, your current manager position will end. Are you sure you want to continue?</p>
+      <p class="text">
+        If your application for a manager position in this team gets approved,
+        your current manager position will end. Are you sure you want to
+        continue?
+      </p>
 
-      <button class="active my-cta-btn-back" (click)="becomeManager(selectedTeamId)">Yes, apply</button>
+      <button
+        class="active my-cta-btn-back"
+        (click)="becomeManager(selectedTeamId)"
+      >
+        Yes, apply
+      </button>
       <p class="or-text">or</p>
       <p class="no-text" (click)="closeManagerModal()">No, take me back</p>
     </div>
   </div>
 </div>
-
