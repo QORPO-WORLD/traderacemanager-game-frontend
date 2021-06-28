@@ -48,7 +48,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myRewards: any;
   ioioreward: number;
   myDriverStats: any;
-  myMembEnd: number;
+  myMembEnd: any;
   myTeamAllData: any;
   @ViewChild("teamSelection") teamSelection: any;
   constructor(
@@ -135,5 +135,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
 
   getMembEnd(event: any) {
     this.myMembEnd = event;
+    this.myMembEnd = this.myMembEnd.replace(' ', 'T')
   }
 }
