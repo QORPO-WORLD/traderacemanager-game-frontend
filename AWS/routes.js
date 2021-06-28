@@ -68,6 +68,7 @@ exports.handler = (event, context, callback) => {
     "/user/bundles",
     "/user/bundle-detail",
     "/user/affiliate",
+    'user/password-reset',
   ];
 
   if (
