@@ -257,6 +257,8 @@
       <app-waiting-transfer></app-waiting-transfer>
     </div>
 
+    <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+
     <div class="mobile-nav">
       <div class="items-holder">
         <div
@@ -341,8 +343,6 @@
         </div>
       </div>
     </div>
-
-    <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
 
     <div class="right-container" [ngClass]="{ open: menuOpen === true }">
       <div class="right-part-holder">
