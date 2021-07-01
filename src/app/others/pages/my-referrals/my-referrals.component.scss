@@ -1,9 +1,20 @@
+.page {
+  outline: none;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  min-width: 30px;
+  height: 30px;
+  margin: 10px 0;
+}
 .pagination {
   margin-top: 30px;
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .page-active {
   cursor: default;
@@ -18,7 +29,11 @@
 .pagebtn-l,
 .pagebtn-r {
   background: none;
-  width: 30px;
+  height: 30px;
+  width: auto;
+  img {
+    height: 100%;
+  }
 }
 .no-referrals {
   text-align: center;
@@ -30,9 +45,27 @@
     }
   }
 }
+
+@media screen and(max-width: 1024px){
+  .page{
+    font-size: 10px;
+    height: 25px;
+    min-width: 25px;
+  }
+  .pagebtn-l, .pagebtn-r{
+    height: 20px;
+  }
+}
+
 @media screen and(max-width: 1024px) and (orientation: landscape) {
   .table-row {
-    height: 30px;
+    height: 20px;
+    p{
+      font-size: 10px;
+    }
+  }
+  .pagination{
+    margin-top: 10px;
   }
 }
 @media screen and(max-width: 640px) and (orientation: landscape) {
