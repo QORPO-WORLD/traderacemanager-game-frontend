@@ -170,12 +170,12 @@
   position: relative;
 
   width: 100%;
-  height: 95%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
 
   .content-menu {
-    width: 22.5%;
+    width: 19%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -266,11 +266,15 @@
     }
   }
   .content-side {
-    width: 75%;
+    width: 79%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
     &.tips {
       align-items: center;
+      align-content: center;
       .tip-content {
         position: relative;
         height: auto;
@@ -408,109 +412,327 @@
         }
       }
     }
-    .fast-races {
-      transition: 0.2s;
-      cursor: pointer;
-      cursor: pointer;
-
+    .big-box{
+      border: 2px solid red;
+      width: calc(100% - 373px);
+      height: calc(50% - 43px);
+      position: relative;
+      &.first{
+        border: 4px solid rgba(36, 229, 254, .5);
+        background: url('/assets/base/images/race-type/underground.jpg') center no-repeat;
+        background-size: cover;
+        .info-cont{
+          background: linear-gradient(236.12deg, rgba(0, 240, 255, 0.4) 6%, rgba(0, 152, 217, 0.4) 102.68%, rgba(0, 152, 217, 0.4) 102.68%);
+        }
+        .btns-holder{
+          .active-btn{
+            background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+          }
+        }
+      }
+      &.second{
+        border: 4px solid rgba(254, 24, 62, .5);
+        background: url('/assets/base/images/race-type/begginer.jpg') center no-repeat;
+        background-size: cover;
+        .info-cont{
+          background: linear-gradient(238.54deg, rgba(254, 23, 63, 0.4) -1.25%, rgba(253, 171, 215, 0.4) 100.91%);
+          .text-holder{
+            justify-content: flex-end;
+            .heading{
+              margin: 0 0 20px;
+              max-width: 200px;
+            }
+          }
+        }
+        .btns-holder{
+          .active-btn{
+            background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+          }
+        }
+      }
+      .info-cont{
+        height: 100%;
+        width: 350px;
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+        padding: 10px;
+        .info-flex{
+          width: 100%;
+          height: 17%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .info-box{
+            background: rgba(255, 255, 255, 0.25);
+            width: 49%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p{
+              margin: 0 0 0 10px;
+              font-weight: 600;
+              font-size: 16px;
+              span{
+                opacity: 0.4;
+              }
+            }
+          }
+        }
+        .text-holder{
+          height: 66%;
+          display: flex;
+          justify-content: space-around;
+          flex-direction: column;
+          padding-top: 10px;
+          .heading{
+            font-weight: 800;
+            font-size: 36px;
+            font-family: 'Earth Orbiter';
+            margin: 0 0 10px;
+            line-height: 1;
+          }
+          .text{
+            font-weight: 500;
+            font-size: 16px;
+            margin: 0 0 10px;
+            line-height: 1.2;
+          }
+          .sub-heading{
+            font-weight: 800;
+            font-size: 27px;
+            font-family: 'Earth Orbiter';
+            margin: 0 0 10px;
+            line-height: 1;
+          }
+          .bordered{
+            position: relative;
+            padding-bottom: 20px;
+            &::after{
+              content: '';
+              position: absolute;
+              height: 5px;
+              width: 50px;
+              bottom: 0;
+              left: 0;
+              background: white;
+            }
+          }
+        }
+      }
+      .controls-holder{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .control-item{
+          background: rgba(255, 255, 255, 0.2);
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          position: relative;
+          cursor: pointer;
+          margin-left: 5px;
+          transition: .15s;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          &:hover{
+            background: rgba(255, 255, 255, 0.3);
+            img{
+              transform: scale(1.08);
+            }
+          }
+          img{
+            transition: .15s;
+          }
+        }
+      }
+      .btns-holder{
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        button{
+          width: 195px;
+          height: 50px;
+          font-weight: 600;
+          font-size: 16px;
+          display: block;
+          transition: .15s;
+          &:hover{
+            transform: scale(1.04);
+          }
+          &.inactive{
+            background: rgba(255, 255, 255, 0.25);
+            margin-bottom: 7px;
+          }
+          img{
+            display: inline-block;
+            margin-left: 5px;
+            transition: .17s;
+          }
+        }
+      }
+    }
+    .small-box{
       width: 40%;
-      height: 100%;
-      background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2) 0%,
-          rgba(0, 0, 0, 0.2) 100%
-        ),
-        url(/assets/base/images/all-races/fast-race.png);
-
-      background-position: center;
-      background-size: cover;
+      max-width: 332px;
+      height: calc(50% - 43px);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    .group {
-      width: 57.5%;
-      display: flex;
       justify-content: space-between;
-      flex-direction: column;
+      .inner-box{
+        width: 100%;
+        height: calc(100% - 42px);
+        border: 1px solid #696969;
+        background: #111111;
+        position: relative;
+        padding: 13px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .back-img{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 0;
+        }
+        .info-flex{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .info-box{
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+          }
+        }
+        .info-box{
+          background: rgba(255, 255, 255, 0.2);
+          width: 49%;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          z-index: 1;
+          margin-bottom: 7px;
+          p{
+            margin: 0 0 0 10px;
+            font-weight: 600;
+            font-size: 16px;
+            span{
+              opacity: 0.4;
+            }
+          }
+        }
+        .cont-holder{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          position: relative;
+          z-index: 1;
+          .heading{
+            font-weight: 800;
+            font-size: 32px;
+            width: 100%;
+            margin: 0 0 7px;
+            font-family: 'Earth Orbiter';
+          }
+          .play-btn{
+            position: relative;
+            width: calc(100% - 110px);
+            height: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+            background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+            &:hover{
+              .back-maker{
+                opacity: 0;
+              }
+            }
+            span{
+              position: relative;
+              z-index: 1;
+              img{
+                display: inline-block;
+                margin-left: 5px;
+              }
+            }
+            .back-maker{
+              position: absolute;
+              top: 1px;
+              left: 1px;
+              width: calc(100% - 2px);
+              height: calc(100% - 2px);
+              background: #111111;
+              z-index: 0;
+              opacity: 1;
+              transition: .15s;
+            }
+          }
+          .control-item{
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: .15s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+              background: rgba(255, 255, 255, 0.3);
+              img{
+                transform: scale(1.08);
+              }
+            }
+            img{
+              transition: .15s;
+            }
+          }
+        }
+      }
+      .switcher-holder{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 15px;
+        .switch-item{
+          width: 18.5%;
+          height: 100%;
+          background: #606060;
+          transition: .15s;
+          transform-origin: bottom;
+          &.active{
+            background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+          }
+          &:hover{
+            transform: scaleY(1.09);
+          }
+        }
+      }
     }
-    .tournaments {
-      transition: 0.2s;
-      cursor: pointer;
-
+    .box-heading{
       width: 100%;
-      height: 40%;
-      background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2) 0%,
-          rgba(0, 0, 0, 0.2) 100%
-        ),
-        url(/assets/base/images/all-races/tournaments.png);
-
-      background-position: center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    .category-group {
-      height: 55%;
-      display: flex;
-      justify-content: space-between;
-    }
-    .enduration {
-      transition: 0.2s;
-      cursor: pointer;
-
-      width: 47.5%;
-      height: 100%;
-      background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2) 0%,
-          rgba(0, 0, 0, 0.2) 100%
-        ),
-        url(/assets/base/images/all-races/enduration.png);
-
-      background-position: center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    .special-events {
-      transition: 0.2s;
-      cursor: pointer;
-
-      width: 47.5%;
-      height: 100%;
-      background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2) 0%,
-          rgba(0, 0, 0, 0.2) 100%
-        ),
-        url(/assets/base/images/all-races/special-events.png);
-
-      background-position: center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      -webkit-transition: 0.2s;
-      -moz-transition: 0.2s;
-      -ms-transition: 0.2s;
-      -o-transition: 0.2s;
-    }
-    .hoverable-category {
-      padding: 25px;
-    }
-    .hoverable-category:hover {
-      transform: scale(1.01);
-      -webkit-transform: scale(1.01);
-      -moz-transform: scale(1.01);
-      -ms-transform: scale(1.01);
-      -o-transform: scale(1.01);
-      box-shadow: (6px 8px 35px rgba(255, 255, 255, 0.9));
+      font-weight: 800;
+      font-size: 24px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid white;
+      font-family: 'Earth Orbiter';
+      margin: 0 0 12px;
+      line-height: 1;
+      &.big{
+        margin: 40px 0 16px;
+      }
     }
   }
 }
@@ -528,7 +750,90 @@
       font-size: 26px;
     }
   }
+  .races-content{
+    .content-side{
+      .box-heading{
+        font-size: 21px;
+        margin: 0 0 10px;
+        &.big{
+          margin: 30px 0 13px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 35px);
+        .inner-box{
+          height: calc(100% - 37px);
+          .info-box{
+            height: 46px;
+          }
+          .cont-holder{
+            .heading{
+              font-size: 28px;
+            }
+            .play-btn{
+              height: 46px;
+              font-size: 15px;
+              width: calc(100% - 102px);
+              img{
+                width: 14px;
+              }
+            }
+            .control-item{
+              width: 46px;
+              height: 46px;
+              img{
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+      .big-box{
+        height: calc(50% - 35px);
+        .info-cont{
+          .info-flex{
+            height: 15%;
+          }
+          .text-holder{
+            height: 70%;
+            .bordered{
+              padding-bottom: 15px;
+            }
+            .heading{
+              font-size: 33px;
+            }
+            .text{
+              font-size: 15px;
+            }
+            .sub-heading{
+              font-size: 24px;
+            }
+          }
+        }
+        .controls-holder{
+          .control-item{
+            width: 46px;
+            height: 46px;
+            img{
+              height: 20px;
+            }
+          }
+        }
+        .btns-holder{
+          button{
+            width: 185px;
+            height: 46px;
+            font-size: 15px;
+            img{
+              width: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 @media screen and(max-width: 1550px) {
   .main-holder {
     width: calc(100% - 20px);
@@ -549,6 +854,112 @@
       .item {
         img {
           width: 27.5px;
+        }
+      }
+    }
+    .content-side{
+      .box-heading{
+        font-size: 18px;
+        margin: 0 0 8px;
+        &.big{
+          margin: 24px 0 10px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 29px);
+        max-width: 310px;
+        .inner-box{
+          height: calc(100% - 32px);
+          padding: 10px;
+          .info-box{
+            height: 42px;
+            p{
+              font-size: 14px;
+              margin: 0 0 0 7px;
+            }
+            img{
+              height: 19px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 23px;
+              margin: 0 0 3px;
+            }
+            .play-btn{
+              height: 42px;
+              font-size: 14px;
+              width: calc(100% - 94px);
+              img{
+                width: 12px;
+              }
+            }
+            .control-item{
+              width: 42px;
+              height: 42px;
+              img{
+                height: 18px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 12px;
+        }
+      }
+      .big-box{
+        height: calc(50% - 29px);
+        width: calc(100% - 333px);
+        .info-cont{
+          padding: 7px;
+          width: 280px;
+          .info-flex{
+            height: 16%;
+            .info-box{
+              p{
+                font-size: 14px;
+                margin: 0 0 0 7px;
+              }
+              img{
+                height: 19px;
+              }
+            }
+          }
+          .text-holder{
+            height: 68%;
+            .heading{
+              font-size: 29px;
+            }
+            .text{
+              font-size: 14px;
+            }
+            .sub-heading{
+              font-size: 20px;
+            }
+          }
+        }
+        .controls-holder{
+          top: 10px;
+          right: 10px;
+          .control-item{
+            width: 42px;
+            height: 42px;
+            img{
+              height: 18px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 10px;
+          right: 10px;
+          button{
+            width: 170px;
+            height: 42px;
+            font-size: 14px;
+            img{
+              width: 12px;
+            }
+          }
         }
       }
     }
@@ -573,6 +984,7 @@
     font-size: 14px;
   }
 }
+
 @media screen and(max-width: 1400px) {
   .menu-title {
     font-size: 16px;
@@ -593,6 +1005,111 @@
     font-size: 12px;
   }
 }
+
+@media screen and(max-width: 1300px){
+  .races-content {
+    .content-side{
+      .box-heading{
+        font-size: 16px;
+        margin: 0 0 6px;
+        padding-bottom: 3px;
+        &.big{
+          margin: 20px 0 8px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 24px);
+        max-width: 280px;
+        .inner-box{
+          height: calc(100% - 26px);
+          padding: 8px;
+          .info-box{
+            height: 38px;
+            p{
+              font-size: 13px;
+              margin: 0 0 0 5px;
+            }
+            img{
+              height: 17px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 20px;
+            }
+            .play-btn{
+              height: 38px;
+              font-size: 13px;
+              width: calc(100% - 86px);
+            }
+            .control-item{
+              width: 38px;
+              height: 38px;
+              img{
+                height: 18px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 10px;
+        }
+      }
+      .big-box{
+        height: calc(50% - 24px);
+        width: calc(100% - 300px);
+        .info-cont{
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 13px;
+                margin: 0 0 0 5px;
+              }
+              img{
+                height: 17px;
+              }
+            }
+          }
+          .text-holder{
+            .bordered{
+              padding-bottom: 13px;
+              &::after{
+                height: 3px;
+                width: 40px;
+              }
+            }
+            .heading{
+              font-size: 26px;
+            }
+            .text{
+              font-size: 13px;
+            }
+            .sub-heading{
+              font-size: 18px;
+            }
+          }
+        }
+        .controls-holder{
+          .control-item{
+            width: 38px;
+            height: 38px;
+            img{
+              height: 16px;
+            }
+          }
+        }
+        .btns-holder{
+          button{
+            width: 160px;
+            height: 38px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and(max-width: 1200px) {
   .main-holder {
     width: calc(100% - 13px);
@@ -712,9 +1229,251 @@
       .hoverable-category {
         padding: 15px;
       }
+      .box-heading{
+        font-size: 14px;
+        &.big{
+          margin: 15px 0 8px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 21px);
+        max-width: 240px;
+        .inner-box{
+          height: calc(100% - 24px);
+          padding: 6px;
+          .info-box{
+            height: 32px;
+            p{
+              font-size: 11px;
+            }
+            img{
+              height: 15px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 17px;
+            }
+            .play-btn{
+              height: 32px;
+              font-size: 11px;
+              width: calc(100% - 74px);
+            }
+            .control-item{
+              width: 32px;
+              height: 32px;
+              img{
+                height: 15px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 10px;
+        }
+      }
+      .big-box{
+        height: calc(50% - 21px);
+        width: calc(100% - 255px);
+        &.first{
+          border-width: 2px;
+        }
+        &.second{
+          border-width: 2px;
+          .info-cont{
+            .text-holder{
+              .heading{
+                margin: 0 0 15px;
+                max-width: 130px;
+              }
+            }
+          }
+        }
+        .info-cont{
+          width: 225px;
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 11px;
+              }
+              img{
+                height: 15px;
+              }
+            }
+          }
+          .text-holder{
+            .bordered{
+              padding-bottom: 10px;
+              &::after{
+                width: 35px;
+              }
+            }
+            .heading{
+              font-size: 22px;
+            }
+            .text{
+              font-size: 11px;
+            }
+            .sub-heading{
+              font-size: 16px;
+            }
+          }
+        }
+        .controls-holder{
+          top: 5px;
+          right: 5px;
+          .control-item{
+            width: 32px;
+            height: 32px;
+            img{
+              height: 15px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 5px;
+          right: 5px;
+          button{
+            width: 130px;
+            height: 32px;
+            font-size: 11px;
+          }
+        }
+      }
     }
   }
 }
+
+@media screen and(max-width: 850px) and (orientation: landscape){
+  .main-holder{
+    height: calc(100vh - 40px);
+  }
+  .races-content {
+    .content-side {
+      .box-heading{
+        font-size: 11px;
+        padding-bottom: 2px;
+        margin: 0 0 4px;
+        &.big{
+          margin: 10px 0 4px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 14px);
+        max-width: 180px;
+        .inner-box{
+          height: calc(100% - 18px);
+          padding: 2px;
+          .info-box{
+            height: 22px;
+            p{
+              font-size: 9px;
+            }
+            img{
+              height: 12px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 14px;
+            }
+            .play-btn{
+              height: 22px;
+              font-size: 9px;
+              width: calc(100% - 54px);
+              img{
+                width: 8px;
+              }
+            }
+            .control-item{
+              width: 22px;
+              height: 22px;
+              img{
+                height: 13px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 6px;
+        }
+      }
+      .big-box{
+        height: calc(50% - 14px);
+        width: calc(100% - 190px);
+        &.second{
+          .info-cont{
+            .text-holder{
+              .heading{
+                margin: 0 0 12px;
+                max-width: 90px;
+              }
+            }
+          }
+        }
+        .info-cont{
+          width: 165px;
+          padding: 2px;
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 9px;
+              }
+              img{
+                height: 12px;
+              }
+            }
+          }
+          .text-holder{
+            .bordered{
+              padding-bottom: 7px;
+              &::after{
+                height: 2px;
+                width: 30px;
+              }
+            }
+            .heading{
+              font-size: 16px;
+              margin: 0 0 3px;
+            }
+            .text{
+              font-size: 9px;
+              margin: 0 0 3px;
+            }
+            .sub-heading{
+              font-size: 12px;
+              margin: 0 0 3px;
+            }
+          }
+        }
+        .controls-holder{
+          top: 3px;
+          right: 3px;
+          .control-item{
+            width: 22px;
+            height: 22px;
+            img{
+              height: 13px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 3px;
+          right: 3px;
+          button{
+            width: 110px;
+            height: 22px;
+            font-size: 9px;
+            img{
+              width: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and(max-width: 700px) and (orientation: landscape) {
   .content-title {
     img {
@@ -782,6 +1541,114 @@
       .hoverable-category {
         padding: 10px;
       }
+      .box-heading{
+        font-size: 9px;
+        &.big{
+          margin: 8px 0 4px;
+        }
+      }
+      .small-box{
+        height: calc(50% - 12px);
+        max-width: 143px;
+        .inner-box{
+          height: calc(100% - 16px);
+          overflow: hidden;
+          .info-box{
+            height: 20px;
+            margin-bottom: 3px;
+            p{
+              font-size: 8px;
+            }
+            img{
+              height: 10px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 12px;
+            }
+            .play-btn{
+              height: 20px;
+              font-size: 8px;
+              width: calc(100% - 50px);
+            }
+            .control-item{
+              width: 20px;
+              height: 20px;
+              img{
+                height: 10px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 6px;
+        }
+      }
+      .big-box{
+        height: calc(50% - 12px);
+        width: calc(100% - 148px);
+        &.second{
+          .info-cont{
+            .text-holder{
+              .heading{
+                margin: 0 0 12px;
+                max-width: 90px;
+              }
+            }
+          }
+        }
+        .info-cont{
+          width: 134px;
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 8px;
+              }
+              img{
+                height: 10px;
+              }
+            }
+          }
+          .text-holder{
+            padding-top: 0px;
+            .bordered{
+              padding-bottom: 5px;
+              &::after{
+                height: 1px;
+                width: 25px;
+              }
+            }
+            .heading{
+              font-size: 12px;
+            }
+            .text{
+              font-size: 7px;
+            }
+            .sub-heading{
+              font-size: 9px;
+            }
+          }
+        }
+        .controls-holder{
+          .control-item{
+            width: 20px;
+            height: 20px;
+            img{
+              height: 10px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 3px;
+          right: 3px;
+          button{
+            width: 95px;
+            height: 20px;
+            font-size: 8px;
+          }
+        }
+      }
     }
   }
 }
@@ -807,10 +1674,6 @@
     }
     .content-side {
       width: 100%;
-      height: 500px;
-
-      flex-direction: column;
-
       &.tips {
         height: auto;
 
@@ -884,6 +1747,117 @@
       .hoverable-category {
         padding: 10px;
       }
+      .box-heading{
+        font-size: 14px;
+        &.big{
+          margin: 15px 0 8px;
+        }
+      }
+      .small-box{
+        height: 220px;
+        max-width: 240px;
+        .inner-box{
+          height: calc(100% - 24px);
+          padding: 6px;
+          .info-box{
+            height: 32px;
+            p{
+              font-size: 11px;
+            }
+            img{
+              height: 15px;
+            }
+          }
+          .cont-holder{
+            .heading{
+              font-size: 17px;
+            }
+            .play-btn{
+              height: 32px;
+              font-size: 11px;
+              width: calc(100% - 74px);
+            }
+            .control-item{
+              width: 32px;
+              height: 32px;
+              img{
+                height: 15px;
+              }
+            }
+          }
+        }
+        .switcher-holder{
+          height: 10px;
+        }
+      }
+      .big-box{
+        height: 220px;
+        width: calc(100% - 255px);
+        &.first{
+          border-width: 2px;
+        }
+        &.second{
+          border-width: 2px;
+          .info-cont{
+            .text-holder{
+              .heading{
+                margin: 0 0 15px;
+                max-width: 130px;
+              }
+            }
+          }
+        }
+        .info-cont{
+          width: 225px;
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 11px;
+              }
+              img{
+                height: 15px;
+              }
+            }
+          }
+          .text-holder{
+            .bordered{
+              padding-bottom: 10px;
+              &::after{
+                width: 35px;
+              }
+            }
+            .heading{
+              font-size: 22px;
+            }
+            .text{
+              font-size: 11px;
+            }
+            .sub-heading{
+              font-size: 16px;
+            }
+          }
+        }
+        .controls-holder{
+          top: 5px;
+          right: 5px;
+          .control-item{
+            width: 32px;
+            height: 32px;
+            img{
+              height: 15px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 5px;
+          right: 5px;
+          button{
+            width: 130px;
+            height: 32px;
+            font-size: 11px;
+          }
+        }
+      }
     }
   }
 }
@@ -953,6 +1927,101 @@
       }
       .item-content {
         justify-content: center;
+      }
+    }
+    .content-side{
+      .small-box{
+        max-width: 100%;
+        width: 100%;
+        .inner-box{
+          overflow: hidden;
+        }
+      }
+      .big-box{
+        width: 100%;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 400px) and (orientation: portrait){
+  .races-content{
+    .content-side{
+      .small-box{
+        max-width: 100%;
+        width: 100%;
+        height: 200px;
+        .inner-box{
+          overflow: hidden;
+        }
+      }
+      .big-box{
+        height: 200px;
+        &.second{
+          .info-cont{
+            .text-holder{
+              .heading{
+                margin: 0 0 15px;
+                max-width: 130px;
+              }
+            }
+          }
+        }
+        .info-cont{
+          width: 185px;
+          padding: 3px;
+          .info-flex{
+            .info-box{
+              p{
+                font-size: 10px;
+              }
+              img{
+                height: 13px;
+              }
+            }
+          }
+          .text-holder{
+            .bordered{
+              padding-bottom: 7px;
+              &::after{
+                width: 30px;
+              }
+            }
+            .heading{
+              font-size: 17px;
+            }
+            .text{
+              font-size: 9px;
+            }
+            .sub-heading{
+              font-size: 13px;
+            }
+          }
+        }
+        .controls-holder{
+          top: 3px;
+          right: 3px;
+          .control-item{
+            width: 26px;
+            height: 26px;
+            img{
+              height: 13px;
+            }
+          }
+        }
+        .btns-holder{
+          bottom: 3px;
+          right: 3px;
+          button{
+            width: 105px;
+            height: 26px;
+            font-size: 9px;
+            img{
+              width: 8px;
+            }
+          }
+        }
       }
     }
   }

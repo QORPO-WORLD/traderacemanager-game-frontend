@@ -1,0 +1,197 @@
+
+
+<div class="modal-holder" *ngIf="showRuleModal">
+  <div class="modal-back"></div>
+
+  <div class="modal-cont my-border-grad">
+    <div class="inner-holder">
+      <button class="close-btn" (click)="showRuleModal = false">+</button>
+
+      <div class="modal-step step1" *ngIf="stepIndex === 1">
+        <h2>NEW RULES</h2>
+        <p class="sub-heading">All races are now <span>FREE</span> with a guaranted prizepool of up to <span>30 &#36;IOI</span></p>
+
+        <div class="cont-holder">
+          <div class="flex-item">
+            <div class="heading-holder">
+              <p class="heading">Top 3 racers</p>
+              <div class="desc">
+                <p>Everyone</p>
+                <div class="line"></div>
+              </div>
+            </div>
+
+            <div class="item-holder">
+              <p class="heading heading1">1ST</p>
+              <p class="text"><span>100%</span> of the prize depending on a car</p>
+            </div>
+            <div class="item-holder">
+              <p class="heading heading2">2ND</p>
+              <p class="text"><span>50%</span> of the prize depending on a car</p>
+            </div>
+            <div class="item-holder">
+              <p class="heading heading3">3RD</p>
+              <p class="text"><span>30%</span> of the prize depending on a car</p>
+            </div>
+
+          </div>
+
+          <div class="my-border"></div>
+
+          <div class="flex-item">
+            <div class="heading-holder">
+              <p class="heading">Top 3 racers</p>
+              <div class="desc">
+                <p class="premium">only with premium</p>
+                <div class="line"></div>
+              </div>
+            </div>
+
+            <p class="my-text">Receive placement points for their team leaderboard,
+             top 10 premium players of the best 3 teams split guaranteed team bonus 2000 IOI each month</p>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</li>
+              <li>eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-step step2" *ngIf="stepIndex === 2">
+        <h2>new car reward system</h2>
+        <p class="sub-heading">Win more <span>money</span> in races</p>
+
+        <div class="cont-holder">
+
+          <div class="flex-item bordered">
+            <p class="heading">non-nft car</p>
+            <div class="table-row">
+              <p>0.1 &#36;IOi</p>
+            </div>
+            <div class="table-row">
+              <p>0.1 &#36;IOi</p>
+            </div>
+            <div class="table-row">
+              <p>0.1 &#36;IOi</p>
+            </div>
+          </div>
+
+          <div class="flex-item bordered">
+            <p class="heading">NFT CARS</p>
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">common</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>1 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">super</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>2 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">epic</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>4 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">legendary</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>6 &#36;IOi</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-item rare">
+            <p class="heading">rare nft cars</p>
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">common</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>1 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">super</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>2 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">epic</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>4 &#36;IOi</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item">
+                <p class="desc">legendary</p>
+              </div>
+              <div class="my-border"></div>
+              <div class="table-item">
+                <p>6 &#36;IOi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="switcher-holder">
+        <button class="inactive left-arrow" [ngClass]="{'inactive': stepIndex === 1}" [disabled]="stepIndex === 1" (click)="stepIndex = stepIndex - 1">
+          <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.6603L18 13L3 4.33975L3 21.6603Z" stroke-width="5"/>
+          </svg> 
+        </button>         
+        <div class="dots-holder">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="slider my-cta-btn-back" [ngClass]="'state' + stepIndex"></div>
+        </div>
+        <button class="right-arrow" [ngClass]="{'inactive': stepIndex === 3}" [disabled]="stepIndex === 3" (click)="stepIndex = stepIndex + 1">
+          <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.6603L18 13L3 4.33975L3 21.6603Z" stroke-width="5"/>
+          </svg> 
+        </button>
+      </div>
+
+      <button class="next-btn my-cta-btn-back" (click)="stepIndex = stepIndex + 1" [disabled]="stepIndex === 3">Continue</button>
+
+    </div>
+  </div>
+
+</div>
