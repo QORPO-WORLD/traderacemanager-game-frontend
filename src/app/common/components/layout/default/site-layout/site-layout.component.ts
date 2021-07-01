@@ -767,4 +767,13 @@ export class SiteLayoutComponent
     }
   }
 
+  onboardingClose(event: any) {
+    if (event === true) {
+      this.closeFirstModal(false);
+      this.router.navigate(["/car/nft-market"]);
+    } else {
+      this.closeFirstModal(false);
+    }
+  }
+
 }

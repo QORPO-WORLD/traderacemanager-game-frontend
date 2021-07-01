@@ -447,63 +447,7 @@
     </div>
   </div>
 
-  <div class="verify-modal" *ngIf="verifyModal === true">
-    <!-- <div class="modal-holder" *ngIf="verifyStep === 1">
-      <div class="items-box">
-        <div
-          class="small-box racer bordered"
-          (click)="selectedMode = 'racer'"
-          [ngClass]="{
-            selected: selectedMode === 'racer',
-            'not-selected': selectedMode === 'owner'
-          }"
-        >
-          <div class="my-border"></div>
-          <div class="inner-box">
-            <p class="heading-desc">Red</p>
-            <img
-              src="/assets/base/images/modal/racer-back.png"
-              alt=""
-              class="back-img"
-            />
-          </div>
-        </div>
-        <div
-          class="small-box owner"
-          (click)="selectedMode = 'owner'"
-          [ngClass]="{
-            selected: selectedMode === 'owner',
-            'not-selected': selectedMode === 'racer'
-          }"
-        >
-          <div class="inner-box">
-            <p class="heading-desc">Blue</p>
-            <img
-              src="/assets/base/images/modal/owner-back.png"
-              alt=""
-              class="back-img"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="big-box">
-        <div class="text-holder">
-          <h2>Pick a colour</h2>
-          <p class="antimargin">Choose a colour of your layout</p>
-          <p>This can be changed anytime in settings</p>
-          <button class="next-btn inactive" *ngIf="selectedMode.length === 0">
-            Continue
-          </button>
-          <button
-            class="next-btn"
-            *ngIf="selectedMode.length > 0"
-            (click)="setMode(selectedMode)"
-          >
-            Continue
-          </button>
-        </div>
-      </div>
-    </div> -->
+  <!-- <div class="verify-modal" *ngIf="verifyModal === true">
 
     <div class="modal-holder teams" *ngIf="verifyStep === 2">
       <div class="items-box">
@@ -673,18 +617,7 @@
       </div>
     </div>
 
-    <!-- <section class="teams-sec" *ngIf="verifyStep === 2">
-      <div class="modal-heading">
-        <h2>{{ "site-layout.pick_team1" | translate }}</h2>
-        <p class="desc">{{ "site-layout.pick_team2" | translate }}</p>
-      </div>
-
-      <app-teams-selection
-        [modalVersion]="true"
-        (modalOpen)="closeFirstModal($event)"
-      ></app-teams-selection>
-    </section> -->
-  </div>
+  </div> -->
 </div>
 
-<!-- <app-tutorial-modal></app-tutorial-modal> -->
+<app-tutorial-modal (closeModal)="onboardingClose($event)" *ngIf="verifyModal === true"></app-tutorial-modal>
