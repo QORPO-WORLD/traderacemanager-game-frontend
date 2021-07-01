@@ -107,6 +107,9 @@ export class SiteLayoutComponent
   balanceInterval: any;
   metaEth = { ioi: 0, eth: 0, matic: 0 };
   shaking = false;
+  introModal = false;
+  tutorialStarted = false;
+  tutorialStep = 1;
   ownedRacers: any;
   myCarsObserver: Subscription;
   products: Array<object> = [
@@ -749,4 +752,19 @@ export class SiteLayoutComponent
 
     });
   }
+
+  launchTutorial() {
+    const data = this.identityService.getStorageIdentity();
+    data.is_in_tutorial === true
+      ? (this.tutorialStarted = true)
+      : (this.tutorialStarted = false);
+
+    if (this.tutorialStarted === true) {
+      this.introModal = true;
+    } else {
+      this.tutorialStep = -1;
+      this.introModal = false;
+    }
+  }
+
 }

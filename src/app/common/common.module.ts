@@ -67,6 +67,7 @@ import { RaceInfoModalComponent } from './components/race-info-modal/race-info-m
 import { TeamMembershipComponent } from './components/team-membership/team-membership.component'
 import { LoadingModalComponent } from './components/shared/loading-modal/loading-modal.component';
 import { RulesInfoModalComponent } from './components/shared/rules-info-modal/rules-info-modal.component';
+import { TutorialModalComponent } from './components/shared/tutorial-modal/tutorial-modal.component';
 
 @NgModule({
   imports: [
@@ -122,7 +123,8 @@ import { RulesInfoModalComponent } from './components/shared/rules-info-modal/ru
     TeamMembershipComponent,
     LoadingModalComponent,
     MetaBuyComponent,
-    RulesInfoModalComponent
+    RulesInfoModalComponent,
+    TutorialModalComponent
   ],
   providers: [
     CurrencyPipe,
