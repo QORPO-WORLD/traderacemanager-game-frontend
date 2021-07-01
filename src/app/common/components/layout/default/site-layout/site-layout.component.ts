@@ -746,7 +746,7 @@ export class SiteLayoutComponent
       }
       this.filterMyAssets();
       this.filterHighestValue();
-      console.log(this.ownedRacers);
+
     });
   }
 }

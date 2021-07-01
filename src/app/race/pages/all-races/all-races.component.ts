@@ -55,6 +55,8 @@ export class AllRacesComponent implements OnInit {
   tickets = 0;
   myTeamStats: any;
   myTeamName: any;
+  freeRace: any;
+  fastRaces: any;
 
   constructor(
     public router: Router,
@@ -92,89 +94,17 @@ export class AllRacesComponent implements OnInit {
   }
 
   getAllRaces() {
-    return;
-    this.astart = null;
-    this.bstart = null;
-    this.cstart = null;
-    this.dstart = null;
-    this.estart = null;
-    this.fstart = null;
-    this.gstart = null;
-    this.hstart = null;
-    this.istart = null;
-    this.jstart = null;
-    this.ioistarta = null;
-    this.ioistartb = null;
-    this.ioistartc = null;
 
-    this.raceObserver = this.api.racesNextV2List().subscribe((data) => {
+    this.raceObserver = this.api.racesNextV2List().subscribe(data => {
       const nedata: any = data;
 
-      for (let x = 0; x < nedata.length; x++) {
-        if (nedata[x].race_identifier === "car_race_ioi_1") {
-          this.ioistarta = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_ioi_3") {
-          this.ioistartb = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_ioi_5") {
-          this.ioistartc = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_0") {
-          this.astart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_10") {
-          this.bstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_50") {
-          this.cstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_100") {
-          this.dstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_500") {
-          this.estart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_short_1000") {
-          this.fstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "car_race_24hrs_1000") {
-          this.gstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "wednesday_party_race_0") {
-          this.hstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "classic_tournament_0") {
-          this.jstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "classic_tournament_10") {
-          this.istart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "classic_tournament_100") {
-          this.istart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "classic_tournament_1000") {
-          this.istart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "golden_ticket_0") {
-          this.kstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "golden_ticket_10") {
-          this.kstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "golden_ticket_100") {
-          this.kstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "golden_ticket_1000") {
-          this.kstart = nedata[x];
-        }
-        if (nedata[x].race_identifier === "tournament_for_ticket_0") {
-          this.lstart = nedata[x];
-        }
-        if (nedata[x].my_cars_in_this_race.length > 0) {
-          this.signedIntoRace = true;
-        }
-      }
+      let free = nedata.filter(word => word.race_identifier === 'car_race_portfolio_0');
+      this.freeRace = free[0];
+      this.fastRaces = nedata.filter(word => word.race_type === 'car_race_ioi');
+      console.log(this.fastRaces);
+      console.log(nedata);
+      console.log('joumou');
+
       this.newNextData = nedata;
     });
   }
