@@ -33,7 +33,6 @@ import {
 })
 export class StartRaceComponent implements OnInit, OnDestroy {
   @ViewChild("carousel") carousel: ElementRef;
-  @ViewChild("rulesModal") rulesModal: any;
 
   constructor(
     protected api: RacesService,
@@ -1570,10 +1569,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
   navigateToToken() {
     window.open("https://ioi-token.com", "_blank");
-  }
-
-  openRulesModal() {
-    this.rulesModal.switchModal();
   }
 
 }

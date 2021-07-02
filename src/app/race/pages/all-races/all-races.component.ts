@@ -4,7 +4,7 @@ import {
 } from "src/app/common/services/experience.service";
 import { RacesService } from "../../../api/services/races.service";
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { NextRaceV2 } from "src/app/api/models";
@@ -18,6 +18,9 @@ import { throwIfEmpty } from "rxjs/operators";
   styleUrls: ["./all-races.component.scss"],
 })
 export class AllRacesComponent implements OnInit {
+
+  @ViewChild("rulesModal") rulesModal: any;
+
   howToInterval: any;
   howToStep = 1;
   animation = 0;
@@ -177,4 +180,9 @@ export class AllRacesComponent implements OnInit {
   clearIntervalHowTo() {
     clearInterval(this.howToInterval);
   }
+
+  openRulesModal() {
+    this.rulesModal.switchModal();
+  }
+
 }
