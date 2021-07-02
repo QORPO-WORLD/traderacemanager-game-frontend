@@ -20,6 +20,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myTeamData: any;
   teamSubscription: Subscription;
   transObserver: Subscription;
+  historyObserver: Subscription;
   mySettings = { type: "team", numOfBanners: 2 };
   joinFree = false;
   teamreward: any;
@@ -50,6 +51,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myDriverStats: any;
   myMembEnd: any;
   myTeamAllData: any;
+  historyPoints: any;
   @ViewChild("teamSelection") teamSelection: any;
   constructor(
     protected api: TeamsService,
@@ -66,6 +68,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.getMyTeamReward();
     this.getAllRewards();
     this.getMydriver();
+
     this.setOfferInterval();
   }
 
@@ -75,6 +78,9 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     }
     if (this.transObserver) {
       this.transObserver.unsubscribe();
+    }
+    if (this.historyObserver) {
+      this.historyObserver.unsubscribe();
     }
     clearInterval(this.offerInterval);
   }
@@ -98,6 +104,12 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.transObserver = this.rapi.rewardsList().subscribe((data) => {
       this.myRewards = data;
       this.ioioreward = Number(data.team_bonus);
+    });
+  }
+  getHistoryPoints() {
+    this.historyObserver = this.api.getTeamHistoryPoints().subscribe((data) => {
+      console.log(data);
+      this.historyPoints = data;
     });
   }
 

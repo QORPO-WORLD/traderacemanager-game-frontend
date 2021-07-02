@@ -312,9 +312,18 @@
       </div>
 
       <div class="inner-holder">
-        <p class="soon">Coming soon</p>
+        <p class="soon" style="display:none">Coming soon</p>
         <div class="graph-holder">
-          <img src="/assets/base/images/teams/graph-img.png" alt="">
+          <div class="graph">
+          
+            <div class="chart-cont" [hidden]="graphType !== 'Profit'">    
+               <h2 style="text-align: center;">Coming soon</h2>
+            </div>
+             <div class="chart-cont" [hidden]="graphType !== 'Turnover'">    
+               <canvas id="canvas">
+             </canvas>
+           </div> 
+         </div>
         </div>
       </div>
     </div>
