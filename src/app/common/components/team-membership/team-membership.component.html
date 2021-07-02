@@ -15,71 +15,7 @@
       />
       <p>get a membership</p>
     </div>
-    <div
-      class="free-membership"
-      [ngClass]="{
-        'big-box': selectedMembership == 'free',
-        'small-box': selectedMembership == 'premium'
-      }"
-      (mouseover)="selectedMembership = 'free'"
-    >
-      <div class="my-border my-cta-btn-back"></div>
-      <div class="inner-box">
-        <div class="black-overlay"></div>
-        <div class="box-content">
-          <p class="membership-bonus">Free car skin</p>
-          <h2 class="membership-heading">Free</h2>
-          <div class="big-rollable-part">
-            <p class="bonus-heading">you get</p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/chart.png"
-                alt="blub"
-              />
-              Learn about trading
-            </p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/growth.png"
-                alt="gift"
-              />
-              Make an extra income
-            </p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/car-icon.png"
-                alt="coin"
-              />
-              Join a community
-            </p>
-          </div>
-          <button
-            class="my-cta-btn-back join-btn hoverable"
-            (click)="joinTeamFree(selectedTeamId)"
-          >
-            Join a waitlist
-          </button>
-        </div>
-        <img
-          src="assets/base/images/nft-racers/rookie-basic.png"
-          alt="Avatar"
-          class="rookie-racer"
-        />
-        <img
-          src="assets/base/images/start-race/dash-back.jpg"
-          alt="back-img"
-          class="back-img"
-        />
-      </div>
-    </div>
-    <div
-      class="premium-membership"
-      [ngClass]="{
-        'big-box': selectedMembership == 'premium',
-        'small-box': selectedMembership == 'free'
-      }"
-      (mouseover)="selectedMembership = 'premium'"
-    >
+    <div class="premium-membership">
       <div class="inner-box">
         <div class="black-overlay"></div>
         <div class="box-content">
@@ -87,32 +23,48 @@
           <h2 class="membership-heading">Premium</h2>
           <div class="non-mobile-part">
             <p class="bonus-heading">Only with premium</p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/tip.png"
-                alt="blub"
-              />
-              Tip of the day from your team manager
-            </p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/gift.png"
-                alt="gift"
-              />
-              5% reward and bonuses
-            </p>
-            <p class="bonus">
-              <img
-                src="assets/base/images/team-membership/coin.png"
-                alt="coin"
-              />
-              Extra bonus for each membership
-            </p>
-          </div>
-          <div class="small-part">
-            <button class="my-cta-btn-back join-btn hoverable">
-              Check out premium
-            </button>
+            <div class="bonus-content">
+              <p class="bonus active">
+                <img
+                  src="assets/base/images/team-membership/tip.png"
+                  alt="blub"
+                />
+                Tip of the day from your team manager
+              </p>
+              <p class="bonus active">
+                <img
+                  src="assets/base/images/team-membership/gift.png"
+                  alt="gift"
+                />
+                5% reward and bonuses
+              </p>
+              <p class="bonus active">
+                <img
+                  src="assets/base/images/team-membership/coin.png"
+                  alt="coin"
+                />
+                Earn a points to get a chance to win a special ring
+              </p>
+
+              <p class="bonus quartal" [ngClass]="{'active': monthCount===3 ||  monthCount===12}">
+                <img
+                  src="assets/base/images/team-membership/racer-icon.svg"
+                  alt="coin"
+                />
+                <ng-container *ngIf="monthCount==3">Free NFT Common Avatar for 3 months</ng-container>
+                <ng-container *ngIf="monthCount==12">Free NFT Common Avatar for 1 year</ng-container>
+              </p>
+
+              <p class="bonus yearly"[ngClass]="{'active': monthCount===12}">
+                <img
+                  src="assets/base/images/team-membership/car-icon.svg"
+                  alt="coin"
+                />
+                Free NFT Common Car for 1 year
+              </p>
+            </div>
+
+            
           </div>
 
           <div class="big-part">
@@ -180,15 +132,22 @@
           </div>
         </div>
         <img
-          src="assets/base/images/nft-racers/mr-mrs-rich.png"
-          alt="Avatar"
-          class="mr-mrs-rich"
-        />
-        <img
           src="assets/base/images/team-membership/back-img.jpg"
           alt="back-img"
           class="back-img"
         />
+      </div>
+      <div class="month-benefits"  [ngClass]="{ active: monthCount === 1 }">
+        <img class="racer" src="assets/base/images/nft-racers/rookie-basic.png" alt="racer">
+      </div>
+
+      <div class="month-benefits"  [ngClass]="{ active: monthCount === 3 }">
+        <img class="racer" src="assets/base/images/nft-racers/white-trm.png" alt="racer">
+      </div>
+
+      <div class="month-benefits yearly"  [ngClass]="{ active: monthCount === 12 }">
+        <img class="racer" src="assets/base/images/nft-racers/white-trm.png" alt="racer">
+        <img class="car" src="assets/base/images/nft-cars/car1.png" alt="car">
       </div>
     </div>
   </div>
