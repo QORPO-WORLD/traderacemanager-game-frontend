@@ -38,9 +38,9 @@
 
           <div class="my-border"></div>
 
-          <div class="flex-item">
+          <div class="flex-item bigger">
             <div class="heading-holder">
-              <p class="heading">Top 3 racers</p>
+              <p class="heading">Top 10 racers</p>
               <div class="desc">
                 <p class="premium">only with premium</p>
                 <div class="line"></div>
@@ -122,46 +122,70 @@
             </div>
           </div>
 
-          <div class="flex-item rare">
-            <p class="heading">rare nft cars</p>
+          <div class="flex-item">
+            <p class="heading my-text-color">rare nft cars</p>
             <div class="table-row">
               <div class="table-item">
-                <p class="desc">common</p>
+                <p class="desc my-text-color">common</p>
               </div>
               <div class="my-border"></div>
               <div class="table-item">
-                <p>1 &#36;IOi</p>
+                <p class="my-text-color">1 &#36;IOi</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item">
-                <p class="desc">super</p>
+                <p class="desc my-text-color">super</p>
               </div>
               <div class="my-border"></div>
               <div class="table-item">
-                <p>2 &#36;IOi</p>
+                <p class="my-text-color">2 &#36;IOi</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item">
-                <p class="desc">epic</p>
+                <p class="desc my-text-color">epic</p>
               </div>
               <div class="my-border"></div>
               <div class="table-item">
-                <p>4 &#36;IOi</p>
+                <p class="my-text-color">4 &#36;IOi</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item">
-                <p class="desc">legendary</p>
+                <p class="desc my-text-color">legendary</p>
               </div>
               <div class="my-border"></div>
               <div class="table-item">
-                <p>6 &#36;IOi</p>
+                <p class="my-text-color">6 &#36;IOi</p>
               </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-step step3" *ngIf="stepIndex === 3">
+        <h2>new team bonus</h2>
+        <h2 class="my-text-color">2 000 &#36;IOI</h2>
+        <p class="sub-heading">Split between <span>Top 10 players</span> of Top 3 team every <span>month</span></p>
+
+        <div class="cont-holder">
+          <div class="bonus-holder">
+            <div class="bonus-item bordered">
+              <p class="heading heading1">1ST</p>
+              <p class="value">1 000 &#36;IOI</p>
+            </div>
+            <div class="bonus-item bordered">
+              <p class="heading heading2">2ND</p>
+              <p class="value">700 &#36;IOI</p>
+            </div>
+            <div class="bonus-item">
+              <p class="heading heading3">3RD</p>
+              <p class="value">300 &#36;IOI</p>
             </div>
           </div>
         </div>
@@ -189,7 +213,8 @@
         </button>
       </div>
 
-      <button class="next-btn my-cta-btn-back" (click)="stepIndex = stepIndex + 1" [disabled]="stepIndex === 3">Continue</button>
+      <button class="next-btn my-cta-btn-back" (click)="stepIndex = stepIndex + 1" *ngIf="stepIndex < 3">Continue</button>
+      <button class="next-btn my-cta-btn-back" (click)="showRuleModal = false" *ngIf="stepIndex === 3">Close</button>
 
     </div>
   </div>

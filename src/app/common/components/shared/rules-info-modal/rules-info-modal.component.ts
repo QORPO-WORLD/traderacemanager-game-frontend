@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RulesInfoModalComponent implements OnInit {
 
-  showRuleModal = true;
-  stepIndex = 2;
+  showRuleModal = false;
+  stepIndex = 1;
 
   constructor() { }
 
