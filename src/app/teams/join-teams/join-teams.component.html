@@ -19,7 +19,7 @@
 
   <div class="boxes-holder">
     <div class="memb-box">
-      <p class="desc">Membership in {{ myDriverStats?.team }} ends</p>
+      <p *ngIf="myDriverStats?.is_system_team !== true" class="desc">Membership in {{ myDriverStats?.team }} ends</p>
       <div class="time-box">
         <p *ngIf="myDriverStats?.is_paid_membership === 'Premium' && myMembEnd!=null">{{ myMembEnd | date }}</p>
         <p *ngIf="myDriverStats?.is_paid_membership === 'Free'">Become premium</p>
@@ -72,6 +72,7 @@
         "
         class="team-img team"
         *ngIf="
+          myDriverStats?.is_system_team !== true &&
           myDriverStats.team === 'IOI' ||
           myDriverStats.team === 'BTC' ||
           myDriverStats.team === 'ALT'
@@ -97,6 +98,7 @@
       <div
         class="team-img team"
         *ngIf="
+          myDriverStats?.is_system_team !== true &&
           myDriverStats.team !== 'IOI' &&
           myDriverStats.team !== 'BTC' &&
           myDriverStats.team !== 'ALT'

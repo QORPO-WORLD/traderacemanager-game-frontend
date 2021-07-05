@@ -57,6 +57,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
     this.accountInfo = this.dapi.getDriverMe();
+    console.log(this.accountInfo);
   }
   reward = 1;
   tip = 1;
