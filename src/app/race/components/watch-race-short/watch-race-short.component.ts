@@ -113,6 +113,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   changeFuel = false;
   cFuelOpen = false;
   showTourPos = false;
+  winnerShowPrize = true;
   nextStartsIn: number;
   ldrbrdpn: TournamentLeaderboard[];
   winnerL: any;
