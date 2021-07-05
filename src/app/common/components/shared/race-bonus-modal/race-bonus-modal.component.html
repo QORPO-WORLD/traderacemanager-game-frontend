@@ -1,0 +1,57 @@
+
+
+<div class="modal-holder" *ngIf="showBonusModal">
+  <div class="modal-back"></div>
+
+  <div class="modal-cont my-border-grad">
+    <div class="inner-holder">
+      <button class="close-btn" (click)="showBonusModal = false">+</button>
+
+      <div class="modal-step step1" *ngIf="stepIndex === 1">
+        <img class="modal-img" src="assets/base/images/zavod/premium-banner.png" alt="premium">
+
+        <div class="text-holder">
+          <h2>GET MORE...</h2>
+          <p>you don’t have premium membership <br> you are not eligible for <span class="my-text-color">2000 $ioi prize pool</span></p>
+          <button class="my-cta-btn-back buy-btn" >Buy premium membership</button>
+        </div>
+        
+      </div>
+
+      <div class="modal-step step2" *ngIf="stepIndex === 2">
+        <img class="modal-img" src="assets/base/images/zavod/get-nft-banner.png" alt="premium">
+
+        <div class="text-holder">
+          <h2>GET MORE...</h2>
+          <p>you don’t have NFT car <br> choose one to get maximum of prize pool</p>
+          <button class="my-cta-btn-back buy-btn" >Marketplace</button>
+        </div>
+      </div>
+
+      <div class="switcher-holder" *ngIf="modalPages > 1">
+        <button class="inactive left-arrow" [ngClass]="{'inactive': stepIndex === 1}" [disabled]="stepIndex === 1" (click)="stepIndex = stepIndex - 1">
+          <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.6603L18 13L3 4.33975L3 21.6603Z" stroke-width="5"/>
+          </svg> 
+        </button>         
+        <div class="dots-holder">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="slider my-cta-btn-back" [ngClass]="'state' + stepIndex"></div>
+        </div>
+        <button class="right-arrow" [ngClass]="{'inactive': stepIndex === 2}" [disabled]="stepIndex === 2" (click)="stepIndex = stepIndex + 1">
+          <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.6603L18 13L3 4.33975L3 21.6603Z" stroke-width="5"/>
+          </svg> 
+        </button>
+      </div>
+
+      <button class="next-btn my-cta-btn-back" (click)="modalNext()" *ngIf="stepIndex < 2 && modalPages > 1">Continue</button>
+      <button class="next-btn my-cta-btn-back" (click)="switchModal()" *ngIf="stepIndex >= 2 || modalPages <= 1 ">Continue</button>
+
+    </div>
+  </div>
+
+</div>

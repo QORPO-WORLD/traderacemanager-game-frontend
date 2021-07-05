@@ -7,7 +7,7 @@ import { RaceDetail } from './../../../api/models/race-detail';
 import { NotifiqService } from './../../../common/services/notifiq.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { RacesService, AffiliatesService, DriversService, TickerPricesService, CarsService } from '../../../api/services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -23,6 +23,9 @@ declare let ga: any;
   styleUrls: ['./watch-race-short.component.scss']
 })
 export class WatchRaceShortComponent implements OnInit, OnDestroy {
+  @ViewChild("bonusModal") bonusModal: any;
+  isPremium = false;
+  hasNft = false;
   raceId: string;
   raceData: RaceStat;
   dataReady = false;
@@ -227,7 +230,27 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.getMyAffilate();
 
     this.getMyCars();
+
+    
     const data = this.identityService.getStorageIdentity();
+
+    setTimeout(() => { 
+      if(this.raceDataildata.my_cars.length===1 && this.raceDataildata.my_cars[0]['c']==0){
+        this.hasNft = false;
+      }
+      else{
+        this.hasNft = true;
+      }
+      if(data.is_system_team === true){
+       this.isPremium = false;
+      }
+      else{
+        this.isPremium = true;
+      }
+      this.bonusModal.openModal(this.isPremium, this.hasNft);
+     }, 1000);
+    
+
     // if (data.is_in_tutorial === true && window.innerWidth > 1024) {
     //   localStorage.setItem('first-race', JSON.stringify({
     //     first: true
@@ -238,6 +261,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.recognizeGame();
     //this.recognizeSound();
 
+    
   }
 
 
