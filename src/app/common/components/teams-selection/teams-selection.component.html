@@ -11,6 +11,7 @@
       class="team-item"
       *ngFor="let tt of teams | sortmain: '!position'; let i = index"
     >
+      <ng-container *ngIf="tt?.name !== 'SYSTEM_TEAM'">
       <div
         class="img-holder"
         *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
@@ -182,6 +183,7 @@
           Deposit
         </button>
       </ng-container>
+    </ng-container>
     </div>
   </div>
 </div>

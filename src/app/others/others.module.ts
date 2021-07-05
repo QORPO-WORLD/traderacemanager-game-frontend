@@ -10,7 +10,7 @@ import { CommonModule } from "../common/common.module";
 import { CommonModule as ninja } from "@angular/common";
 import { AuthUserGuard } from "../user/services/guards/auth-user.guard";
 import { SiteLayoutComponent } from "../common/components/layout/default/site-layout/site-layout.component";
-import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
+//import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
 import { FormsModule } from "@angular/forms";
 import { AnQrcodeModule } from "an-qrcode";
 import { AboutTokensComponent } from "./pages/about-tokens/about-tokens.component";
@@ -48,10 +48,10 @@ const routes: Routes = [
         path: "about-tokens",
         component: AboutTokensComponent,
       },
-      {
-        path: "tasks",
-        component: DailyTasksComponent,
-      },
+      // {
+      //   path: "tasks",
+      //   component: DailyTasksComponent,
+      // },
       {
         path: "confirm/:id",
         component: ConfirmWithdrawalComponent,
@@ -88,7 +88,7 @@ const routes: Routes = [
     RewardsComponent,
     AffilateComponent,
     ConfirmWithdrawalComponent,
-    DailyTasksComponent,
+    //DailyTasksComponent,
     BridgeComponent,
     AboutTokensComponent,
     WalletControllerComponent,
