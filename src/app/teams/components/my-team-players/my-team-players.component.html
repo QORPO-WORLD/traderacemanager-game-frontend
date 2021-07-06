@@ -12,7 +12,7 @@
     </div>
     <p class="position">2ND</p>
     <p class="team-name">Team {{myLdrbrd[1]?.team_name}}</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{myLdrbrd[1]?.total_sum | number:'1.0-1':'fr'}}</p>
+    <p class="turnover">{{myLdrbrd[1]?.points | number:'1.0-1':'fr'}}</p>
     <p class="win">Potentional win</p>
     <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{rewards[1]}}</p>
   </div>
@@ -29,7 +29,7 @@
     
     <p class="position">1ST</p>
     <p class="team-name">Team {{myLdrbrd[0]?.team_name}}</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{myLdrbrd[0]?.total_sum | number:'1.0-1':'fr'}}</p>
+    <p class="turnover">{{myLdrbrd[0]?.points | number:'1.0-1':'fr'}}</p>
     <p class="win">Potentional win</p>
     <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{rewards[0]}}</p>
   </div>
@@ -45,7 +45,7 @@
     </div>
     <p class="position">3RD</p>
     <p class="team-name">Team {{myLdrbrd[2]?.team_name}}</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{myLdrbrd[2]?.total_sum | number:'1.0-1':'fr'}}</p>
+    <p class="turnover"> {{myLdrbrd[2]?.points | number:'1.0-1':'fr'}}</p>
     <p class="win">Potentional win</p>
     <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> {{rewards[2]}}</p>
   </div>
@@ -61,7 +61,7 @@
       <p>Team</p>
     </div>
     <div class="table-item big last ">
-      <p>Turnover</p>
+      <p>Points</p>
     </div>
   </div>
 
@@ -74,7 +74,7 @@
         <p>{{team.team_name}}</p>
       </div>
       <div class="table-item big bold last">
-        <p><img src="/assets/base/images/teams/reward-token.png" alt=""> {{team.total_sum | number:'1.0-1':'fr'}}</p>
+        <p><img src="/assets/base/images/teams/reward-token.png" alt=""> {{team.points | number:'1.0-1':'fr'}}</p>
       </div>
       <div class="mine-back my-cta-btn-back"></div>
     </ng-container>
@@ -224,7 +224,7 @@
       <div class="team-info">
         <div class="team-info-text">
           <p>{{ "leaderboard.team_leaderboard.turnover" | translate }}</p>
-          <p>{{ tt.team.total_sum | number: "1.2-2":"fr" }}</p>
+          <p>{{ tt.team.points | number: "1.2-2":"fr" }}</p>
         </div>
         <div class="team-info-text">
           <p>{{ "leaderboard.team_leaderboard.team_manager" | translate }}</p>
