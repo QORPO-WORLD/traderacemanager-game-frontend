@@ -126,7 +126,11 @@
           <div class="info-flex">
             <div class="info-box">
               <img src="/assets/base/images/race-type/clock.svg" alt="">
-              <p>10m 40s</p>
+              <p><app-timer
+                *ngIf="premiumTournament"
+                [value]="premiumTournament?.starts_in_seconds"
+                (onComplete)="getAllRaces()"
+              ></app-timer></p>
             </div>
 
             <div class="info-box">
@@ -144,27 +148,31 @@
           <div class="info-flex">
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="">
-              <p>10 <span>| 100</span></p>
+              <p>{{ premiumTournament?.players_count }} <span>| 100</span></p>
             </div>
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>30</p>
+              <p>0</p>
             </div>
           </div>
         </div>
 
         <div class="controls-holder">
-          <div class="control-item">
+          <div class="control-item" *ngIf="fastEnabled === true"
+          (click)="selRaceType = 'premium_tournament_0'">
             <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
           </div>
-          <div class="control-item">
+          <div class="control-item" 
+          *ngIf="baseFavRaces[2].fav !== undefined" 
+          (click)="baseFavRaces[2].fav = !baseFavRaces[2].fav; updateFavRaces()"
+          [ngClass]="{'active': baseFavRaces[2].fav === true}">
             <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
           </div>
         </div>
 
         <div class="btns-holder">
-          <button class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+          <button [routerLink]="['/car/fuel-car/premium_tournament_0']" class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
         </div>
 
       </div>
@@ -176,16 +184,16 @@
           <div class="info-flex">
             <div class="info-box">
               <img src="/assets/base/images/race-type/clock.svg" alt="">
-              <p>10m 40s</p>
-            </div>
-
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/timer.svg" alt="">
               <p><app-timer
                 *ngIf="freeRace"
                 [value]="freeRace?.starts_in_seconds"
                 (onComplete)="getAllRaces()"
               ></app-timer></p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/timer.svg" alt="">
+              <p>30 sec</p>
             </div>
           </div>
 
@@ -202,16 +210,19 @@
               <p>0</p>
             </div>
 
-            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">
+            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_short_0']">
               <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
               <div class="back-maker"></div>
             </button>
 
-            <div class="control-item">
+            <div class="control-item" *ngIf="fastEnabled === true"
+            (click)="selRaceType = 'car_race_short_0'">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
-            <div class="control-item">
+            <div class="control-item" *ngIf="baseFavRaces[0].fav !== undefined" 
+            (click)="baseFavRaces[0].fav = !baseFavRaces[0].fav; updateFavRaces()"
+            [ngClass]="{'active': baseFavRaces[0].fav === true}">
               <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
             </div>
 
@@ -226,7 +237,11 @@
           <div class="info-flex">
             <div class="info-box">
               <img src="/assets/base/images/race-type/clock.svg" alt="">
-              <p>2m 0s</p>
+              <p><app-timer
+                *ngIf="fastRaces[0]"
+                [value]="fastRaces[0]?.starts_in_seconds"
+                (onComplete)="getAllRaces()"
+              ></app-timer></p>
             </div>
 
             <div class="info-box">
@@ -237,18 +252,18 @@
 
           <div class="text-holder">
             <p class="heading bordered">Starting soon</p>
-            <p class="sub-heading">dark forest</p>
+            <p class="sub-heading">Portfolio race</p>
           </div>
 
           <div class="info-flex">
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="">
-              <p>10 <span>| 100</span></p>
+              <p>{{ fastRaces[0]?.players_count }} <span>| 100</span></p>
             </div>
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>30</p>
+              <p>0</p>
             </div>
           </div>
         </div>
@@ -257,25 +272,31 @@
           <div class="control-item">
             <img src="/assets/base/images/race-type/fast-red.svg" alt="">
           </div>
-          <div class="control-item">
+          <div class="control-item" *ngIf="baseFavRaces[1].fav !== undefined" 
+          (click)="baseFavRaces[1].fav = !baseFavRaces[1].fav; updateFavRaces()"
+          [ngClass]="{'active': baseFavRaces[1].fav === true}">
             <img src="/assets/base/images/race-type/fav-red.svg" alt="">
           </div>
         </div>
 
         <div class="btns-holder">
           <button class="inactive" (click)="openRulesModal()">Win more with NFTs</button>
-          <button class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+          <button class="active-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
         </div>
 
       </div>
       <div class="small-box">
-        <div class="inner-box">
-          <img src="/assets/base/images/race-type/expert-shadow.jpg" alt="" class="back-img">
+        <div class="inner-box" *ngIf="fastRaces">
+          <img [src]="'/assets/base/images/race-type/race' + fastRaces[fastRaceIndex]?.bet_amount + '.jpg'" alt="" class="back-img">
 
-          <div class="info-flex">
+          <div class="info-flex"> 
             <div class="info-box">
               <img src="/assets/base/images/race-type/clock.svg" alt="">
-              <p>10m 40s</p>
+              <p><app-timer
+                *ngIf="fastRaces[fastRaceIndex]"
+                [value]="fastRaces[fastRaceIndex]?.starts_in_seconds"
+                (onComplete)="getAllRaces()"
+              ></app-timer></p>
             </div>
 
             <div class="info-box">
@@ -285,28 +306,31 @@
           </div>
 
           <div class="cont-holder">
-            <p class="heading">Sea bridge</p>
+            <p class="heading">{{ 'race.type.' + fastRaces[fastRaceIndex]?.race_identifier + '_simple' | translate }}</p>
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="">
-              <p>10 <span>| 100</span></p>
+              <p>{{ fastRaces[fastRaceIndex]?.players_count }} <span>| 100</span></p>
             </div>
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>30</p>
+              <p>{{ fastRaces[fastRaceIndex]?.bet_amount }}</p>
             </div>
 
-            <button class="play-btn">
+            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">
               <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
               <div class="back-maker"></div>
             </button>
 
-            <div class="control-item">
+            <div class="control-item" *ngIf="fastEnabled === true"
+            (click)="selRaceType = 'car_race_portfolio_0'">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
-            <div class="control-item">
+            <div class="control-item" *ngIf="baseFavRaces[1].fav !== undefined" 
+            (click)="baseFavRaces[1].fav = !baseFavRaces[1].fav; updateFavRaces()"
+            [ngClass]="{'active': baseFavRaces[1].fav === true}">
               <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
             </div>
 
@@ -314,11 +338,8 @@
         </div>
 
         <div class="switcher-holder">
-          <button class="switch-item active"></button>
-          <button class="switch-item"></button>
-          <button class="switch-item"></button>
-          <button class="switch-item"></button>
-          <button class="switch-item"></button>
+          <button class="switch-item" *ngFor="let item of fastRaces; let i = index"
+           (click)="fastRaceIndex = i" [ngClass]="{'active': i === fastRaceIndex}"></button>
         </div>
 
       </div>
@@ -729,3 +750,7 @@
 </div>
 
 <app-rules-info-modal #rulesModal></app-rules-info-modal>
+
+<div class="intro-modal" *ngIf="selRaceType">
+  <app-fast-fuel [raceId]="selRaceType"></app-fast-fuel>
+</div>

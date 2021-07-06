@@ -14,6 +14,7 @@ export class TeamsSelectionComponent implements OnInit {
   @Output() endsIn = new EventEmitter<string>();
   @Input() managerType = false;
   teams: any;
+  discount: any;
   myDriverBalances: any;
   myTeam: string;
   myTeamData: any;
@@ -77,7 +78,10 @@ export class TeamsSelectionComponent implements OnInit {
 
   getTeams() {
     this.api.teamsList().subscribe((data) => {
+      console.log('kokoti na fe');
       const newdata = data.results;
+      const datax: any = data;
+      this.discount = datax.discount[0];
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
       });
