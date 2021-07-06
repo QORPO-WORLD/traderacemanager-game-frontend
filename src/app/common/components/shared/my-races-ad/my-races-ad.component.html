@@ -29,7 +29,7 @@
 
           </div>
     
-          <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+          <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_hash]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
           <div class="click-dummy" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()"></div>
     
         </div>
@@ -63,7 +63,7 @@
 
         </div>
   
-           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_identifier]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
+           <div class="click-dummy" [routerLink]="['/car/fuel-car/' + mainr.race_hash]" *ngIf="myGameBalance >= mainr.bet_amount || (mainr.bet_amount === 1 && tickets > 0)"></div>
            <div class="click-dummy" *ngIf="(myGameBalance < mainr.bet_amount && mainr.bet_amount !== 1) || (myGameBalance < mainr.bet_amount && mainr.bet_amount === 1 && tickets === 0)" [routerLink]="['/other/wallet-control']" [queryParams]="{ controlType: 'deposit' }" (click)="closeMenu()"></div>
   
       </div>

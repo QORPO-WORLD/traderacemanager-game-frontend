@@ -1064,7 +1064,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   refuel() {
-    this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_identifier]);
+    this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_hash]);
   }
 
   getRandomNum(myNum: number) {

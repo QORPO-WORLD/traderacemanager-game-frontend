@@ -12,7 +12,7 @@ import { RaceDetailV2 } from '../models/race-detail-v2';
   providedIn: 'root',
 })
 class RacesV2Service extends __BaseService {
-  static readonly racesV2DetailListPath = '/races/game/next/{race_identifier}/detail';
+  static readonly racesV2DetailListPath = '/races/game/next/{race_identifier}/info';
 
   constructor(
     config: __Configuration,
@@ -33,7 +33,7 @@ class RacesV2Service extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/game/next/${raceIdentifier}/detail`,
+      this.rootUrl + `/races/game/next/${raceIdentifier}/info`,
       __body,
       {
         headers: __headers,

@@ -185,12 +185,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.raceId = this.route.snapshot.paramMap.get('id');
     
     this.trxneeded = 0;
-
+/*
     if (this.raceId === 'car_race_ioi_1' || this.raceId === 'car_race_ioi_3' || this.raceId === 'car_race_ioi_5') {
       this.isIoi = true;
       this.currency = 'IOI';
     }
-
+*/
   }
 
   ngOnInit(): void {
@@ -255,7 +255,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.canJoinObservable = this.raceApi.racesMultiCanJoinV2List().subscribe(data => {
       const newdata: any = data;
       const mynextrace = newdata.filter(item => {
-        return item.race_identifier === this.raceId;
+        return item.race_hash === this.raceId;
       });
 
       this.carsCanJoin = mynextrace[0].available_cars;
@@ -310,7 +310,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       // this.canJoinIoi3 = uniq8;
 
       this.chosenRace = newdata.filter(item => {
-        return item.race_identifier === this.raceId;
+        return item.race_hash === this.raceId;
       });
       this.getRaceDetails();
 
@@ -943,11 +943,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 
     this.actualRaceAmount = mynextrace[0].bet_amount;
     this.isSpecial = true;
-
+/*
     if (this.raceId === 'wednesday_party_race_0') {
       this.isWnd = true;
     }
-
+*/
     this.validerr = 'To fuel you car you need ' + this.actualRaceAmount + ' IOI, must mix 3 different coins with min. ' +
         ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
 
@@ -1186,6 +1186,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     isSituated = this.selectedCarsToRace.find(i => i.asset_id === this.displayArray[index].asset_id);
 
     if (!isSituated) {
+      /*
       if (this.raceId === 'car_race_short_0' && this.selectedCarsToRace.length > 4) {
         this.notify.error('Error', 'You can fuel max 5 cars on free race');
         return;
@@ -1201,7 +1202,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         this.notify.error('Error', 'You can fuel max 4 cars on free race');
         return;
       }
-
+*/
       for (let x = 0; x < this.myBet.length; x++) {
         const fake: any = {};
         fake.bet = this.myBet[x].bet;
