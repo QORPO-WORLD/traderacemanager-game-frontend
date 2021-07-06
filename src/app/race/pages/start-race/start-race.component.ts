@@ -56,8 +56,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
-    this.accountInfo = this.dapi.getDriverMe();
-    console.log(this.accountInfo);
+    this.accountInfo = this.dapi.getDriverMe();    
   }
   reward = 1;
   tip = 1;

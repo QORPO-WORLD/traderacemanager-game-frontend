@@ -26,6 +26,7 @@ export class TeamMembershipComponent implements OnInit {
   teamOption = 1;
   startNow = false;
   myDriverStats: any;
+  discount: any;
   @Input() selectedTeamId = 1;
   @Output() openedModal = new EventEmitter<number>();
 
@@ -37,8 +38,16 @@ export class TeamMembershipComponent implements OnInit {
     protected notify: NotifiqService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getDiscount();
+  }
 
+  getDiscount() {
+    this.api.teamsList().subscribe((data) => {
+      const datax: any = data;
+      this.discount = datax.discount[0];
+    });
+  }
   back() {
     this.animation = 1;
     this.timeoutPrev = setTimeout(() => {

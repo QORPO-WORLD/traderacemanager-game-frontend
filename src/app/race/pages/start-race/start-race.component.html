@@ -156,7 +156,15 @@
           />
           <h3>MY NFTs</h3>
         </div>
-        <div [routerLink]="['/teams/my-team']" class="lower-box" *ngIf="accountInfo.is_system_team !== true">
+        <div [routerLink]="['/teams/join-teams']" class="lower-box" *ngIf="accountInfo?.is_system_team === true">
+          <img
+            class="right"
+            src="assets/base/images/start-race/my-team.png"
+            alt="team icon"
+          />
+          <h3>JOIN TEAM</h3>
+        </div>
+             <div [routerLink]="['/teams/my-team']" class="lower-box" *ngIf="accountInfo?.is_system_team === false">
           <img
             class="right"
             src="assets/base/images/start-race/my-team.png"
@@ -241,11 +249,21 @@
         "
       >
         <img
+<<<<<<< HEAD
+          *ngIf="accountInfo.is_paid_membership === 'Free'"
+          class="premium non-premium"
+          src="/assets/base/images/menu/premium-icon.svg"
+          alt="Non Premium icon"
+        />
+        <img
+          *ngIf="accountInfo.is_paid_membership === 'Premium'"
+=======
+>>>>>>> 315c619ca95b4b66f1ad0ae8b1a2b811dd5c0720
           class="premium"
           src="/assets/base/images/menu/premium-icon-active.svg"
           alt="Premium icon"
         />
-        <img
+        <img *ngIf="accountInfo.is_system_team !== true "
           [src]="'/assets/base/images/teams/' + accountInfo.team + '-team.png'"
           alt=""
         />
@@ -256,7 +274,8 @@
           accountInfo.is_system_team !== true &&
           accountInfo.team !== 'IOI' &&
           accountInfo.team !== 'BTC' &&
-          accountInfo.team !== 'ALT'
+          accountInfo.team !== 'ALT' &&
+          accountInfo.is_system_team !== true 
         "
       >
         <img

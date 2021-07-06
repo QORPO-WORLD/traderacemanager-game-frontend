@@ -328,7 +328,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getTeamHistory() {
-    this.teamSubscription = this.teams_service.getTeamHistory().subscribe(data => {
+    this.teamSubscription = this.teams_service.getTeamHistoryPoints().subscribe(data => {
       this.teamChart = data;
       this.config = {
         type: 'line',
@@ -366,7 +366,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       };
       this.chart = new Chart('canvas', this.config);
       for (let x = 0; x < data.length; x++) {
-        this.add(data[x].from, data[x].turnover);
+        this.add(data[x].from, data[x].point);
       }
       
     });
