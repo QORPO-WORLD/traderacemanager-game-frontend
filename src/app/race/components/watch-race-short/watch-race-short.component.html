@@ -853,7 +853,7 @@
         <button class="my-cta-btn"  (click)="continueTour()" 
         *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length > 0) && raceDataildata?.tour_index < 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.next_race' | translate}}</button> 
 
-        <button class="my-cta-btn znova azure-btn" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_identifier]"
+        <button class="my-cta-btn znova azure-btn" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_hash]"
         *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.join_next' | translate}}</button>
         <button class="my-cta-btn" [routerLink]="['/race/start-race/']"
         *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.finish' | translate}}</button>
