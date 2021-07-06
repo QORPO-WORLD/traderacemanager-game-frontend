@@ -53,6 +53,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   myTeamAllData: any;
   historyPoints: any;
   @ViewChild("teamSelection") teamSelection: any;
+  discount: any;
   constructor(
     protected api: TeamsService,
     protected notify: NotifiqService,
