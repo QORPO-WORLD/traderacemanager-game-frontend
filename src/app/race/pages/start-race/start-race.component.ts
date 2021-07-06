@@ -1544,7 +1544,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.clearIntervalTip();
     this.tip = tipId;
     this.tipsInterval = window.setInterval(() => {
-      if (this.tip === 3) {
+      if (this.tip === 2) {
         this.tip = 1;
       } else {
         this.tip++;

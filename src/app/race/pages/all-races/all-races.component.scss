@@ -166,6 +166,18 @@
 }
 //CONTENT SETTINGS
 
+.intro-modal {
+  position: fixed;
+  background: #111;
+  z-index: 10000;
+  top: 0;
+  height: calc((var(--vh, 1vh) * 100));
+  width: 100%;
+  left: 0;
+  overflow: auto;
+  padding-top: 80px;
+}
+
 .races-content {
   position: relative;
 
@@ -546,6 +558,9 @@
               transform: scale(1.08);
             }
           }
+          &.active{
+            background: rgba(255, 255, 255, 1)
+          }
           img{
             transition: .15s;
           }
@@ -695,6 +710,9 @@
                 transform: scale(1.08);
               }
             }
+            &.active{
+              background: rgba(255, 255, 255, 1)
+            }
             img{
               transition: .15s;
             }
@@ -707,11 +725,15 @@
         align-items: center;
         height: 15px;
         .switch-item{
-          width: 18.5%;
           height: 100%;
           background: #606060;
           transition: .15s;
           transform-origin: bottom;
+          flex-grow: 1;
+          margin-right: 1%;
+          &:last-child{
+            margin-right: 0;
+          }
           &.active{
             background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
           }

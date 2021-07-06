@@ -21,8 +21,11 @@ export class AllRacesComponent implements OnInit {
 
   @ViewChild("rulesModal") rulesModal: any;
 
+  updateFavCoinsObserver: Subscription;
+  favObserver: Subscription;
   howToInterval: any;
   howToStep = 1;
+  fastRaceIndex = 0;
   animation = 0;
   contentAnimation = 0;
   content = 1;
@@ -35,21 +38,6 @@ export class AllRacesComponent implements OnInit {
   selRaceType: string;
   currentExpLevel: number;
   myDriverBalances: any;
-  astart: any;
-  bstart: any;
-  cstart: any;
-  dstart: any;
-  estart: any;
-  fstart: any;
-  gstart: any;
-  hstart: any;
-  istart: any;
-  jstart: any;
-  kstart: any;
-  lstart: any;
-  ioistarta: any;
-  ioistartb: any;
-  ioistartc: any;
   signedIntoRace = false;
   newNextData: NextRaceV2[];
   fastEnabled = false;
@@ -60,6 +48,13 @@ export class AllRacesComponent implements OnInit {
   myTeamName: any;
   freeRace: any;
   fastRaces: any;
+  premiumTournament: any;
+  myFavRaces = [];
+  baseFavRaces = [
+    { type: 'car_race_short_0', fav: false },
+    { type: 'car_race_portfolio_0', fav: false },
+    { type: 'premium_tournament_0', fav: false }
+  ];
 
   constructor(
     public router: Router,
@@ -80,6 +75,7 @@ export class AllRacesComponent implements OnInit {
     this.getAllRaces();
     this.fastFuelEnabled();
     this.getMydriverBalances();
+    this.getmyFavRaces();
     this.getMyTeam();
     this.toggleContent(1);
   }
@@ -101,12 +97,11 @@ export class AllRacesComponent implements OnInit {
     this.raceObserver = this.api.racesNextV2List().subscribe(data => {
       const nedata: any = data;
 
-      let free = nedata.filter(word => word.race_identifier === 'car_race_portfolio_0');
+      let free = nedata.filter(word => word.race_type === 'car_race_short');
       this.freeRace = free[0];
-      this.fastRaces = nedata.filter(word => word.race_type === 'car_race_ioi');
-      console.log(this.fastRaces);
-      console.log(nedata);
-      console.log('joumou');
+      this.fastRaces = nedata.filter(word => word.race_type === 'car_race_portfolio');
+      let premium = nedata.filter(word => word.race_type === 'premium_tournament');
+      this.premiumTournament = premium[0];
 
       this.newNextData = nedata;
     });
@@ -183,6 +178,43 @@ export class AllRacesComponent implements OnInit {
 
   openRulesModal() {
     this.rulesModal.switchModal();
+  }
+
+  updateFavRaces() {
+
+
+    const data: any = [];
+    for (let y = 0; y < this.baseFavRaces.length; y++) {
+      if (this.baseFavRaces[y].fav === true) {
+        data.push(this.baseFavRaces[y].type);
+      }
+    }
+
+    this.updateFavCoinsObserver = this.dapi.driversFavRacesUpdate(
+      { race_identifiers: data }
+    ).subscribe(datax => {
+      this.getmyFavRaces();
+    });
+  }
+
+  getmyFavRaces() {
+    this.favObserver = this.dapi.driversFavRacesList().subscribe(data => {
+      const nn: any = data;
+      this.myFavRaces = nn;
+      this.resortFavRaces();
+    });
+  }
+
+  resortFavRaces() {
+    for (let x = 0; x < this.myFavRaces.length; x++) {
+
+      for (let y = 0; y < this.baseFavRaces.length; y++) {
+        if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
+          this.baseFavRaces[y].fav = true;
+        }
+      }
+    }
+    console.log(this.baseFavRaces);
   }
 
 }
