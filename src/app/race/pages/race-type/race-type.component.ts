@@ -132,6 +132,9 @@ export class RaceTypeComponent implements OnInit, OnDestroy {
     this.raceObserver = this.api.racesNextV2List().subscribe(data => {
       const nedata: any = data;
 
+      console.log(nedata);
+      console.log('joumou');
+
       for (let x = 0; x < nedata.length; x++) {
         if (nedata[x].race_identifier === 'car_race_ioi_1') { this.ioistarta = nedata[x]; }
         if (nedata[x].race_identifier === 'car_race_ioi_3') { this.ioistartb = nedata[x]; }

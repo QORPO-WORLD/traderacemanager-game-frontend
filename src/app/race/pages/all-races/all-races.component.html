@@ -120,43 +120,209 @@
       *ngIf="content === 1"
       class="content-side"
     >
-      <div
-        [routerLink]="['/race/race-type']"
-        [queryParams]="{ raceType: 'fast' }"
-        class="fast-races hoverable-category"
-      >
-        <p class="category-title-first">FAST RACES</p>
-        <p class="races-desc">30 second duration</p>
-      </div>
-      <div class="group">
-        <div
-          [routerLink]="['/race/race-type/']"
-          [queryParams]="{ raceType: 'tournament' }"
-          class="tournaments hoverable-category"
-        >
-          <p class="category-title-second">TOURNAMENTS</p>
-          <p class="races-desc">19 Fast races in one Tournament</p>
+      
+      <div class="big-box first">
+        <div class="info-cont">
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/clock.svg" alt="">
+              <p>10m 40s</p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/timer.svg" alt="">
+              <p>30 sec</p>
+            </div>
+          </div>
+
+          <div class="text-holder">
+            <p class="heading">only NFT tournament</p>
+            <p class="text bordered">Exclusively for NFT Holders with a guaranteed 100 IOI prizepool</p>
+            <p class="sub-heading">Underground</p>
+          </div>
+
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/player.svg" alt="">
+              <p>10 <span>| 100</span></p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/token-white.svg" alt="">
+              <p>30</p>
+            </div>
+          </div>
         </div>
 
-        <div class="category-group">
-          <div
-            [routerLink]="['/race/race-type/']"
-            [queryParams]="{ raceType: 'enduration' }"
-            class="enduration hoverable-category"
-          >
-            <p class="category-title-third">Enduration Races</p>
-            <p class="races-desc">15 minutes duration</p>
+        <div class="controls-holder">
+          <div class="control-item">
+            <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
           </div>
-          <div
-            [routerLink]="['/race/race-type']"
-            [queryParams]="{ raceType: 'special' }"
-            class="special-events hoverable-category"
-          >
-            <p class="category-title-third">Special Events</p>
-            <p class="races-desc">IOI token holder events</p>
+          <div class="control-item">
+            <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
+          </div>
+        </div>
+
+        <div class="btns-holder">
+          <button class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+        </div>
+
+      </div>
+      <div class="small-box">
+        <p class="box-heading">Free race</p>
+        <div class="inner-box">
+          <img src="/assets/base/images/race-type/rookie-shadow.jpg" alt="" class="back-img">
+
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/clock.svg" alt="">
+              <p>10m 40s</p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/timer.svg" alt="">
+              <p><app-timer
+                *ngIf="freeRace"
+                [value]="freeRace?.starts_in_seconds"
+                (onComplete)="getAllRaces()"
+              ></app-timer></p>
+            </div>
+          </div>
+
+          <div class="cont-holder">
+            <p class="heading">Free track</p>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/player.svg" alt="">
+              <p>{{ freeRace?.players_count }} <span>| 100</span></p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/token-white.svg" alt="">
+              <p>0</p>
+            </div>
+
+            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">
+              <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
+              <div class="back-maker"></div>
+            </button>
+
+            <div class="control-item">
+              <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
+            </div>
+
+            <div class="control-item">
+              <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
+            </div>
+
           </div>
         </div>
       </div>
+
+      <p class="box-heading big">Competition races with guaranteed prizepool</p>
+
+      <div class="big-box second">
+        <div class="info-cont">
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/clock.svg" alt="">
+              <p>2m 0s</p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/timer.svg" alt="">
+              <p>30 sec</p>
+            </div>
+          </div>
+
+          <div class="text-holder">
+            <p class="heading bordered">Starting soon</p>
+            <p class="sub-heading">dark forest</p>
+          </div>
+
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/player.svg" alt="">
+              <p>10 <span>| 100</span></p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/token-white.svg" alt="">
+              <p>30</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-holder">
+          <div class="control-item">
+            <img src="/assets/base/images/race-type/fast-red.svg" alt="">
+          </div>
+          <div class="control-item">
+            <img src="/assets/base/images/race-type/fav-red.svg" alt="">
+          </div>
+        </div>
+
+        <div class="btns-holder">
+          <button class="inactive" (click)="openRulesModal()">Win more with NFTs</button>
+          <button class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+        </div>
+
+      </div>
+      <div class="small-box">
+        <div class="inner-box">
+          <img src="/assets/base/images/race-type/expert-shadow.jpg" alt="" class="back-img">
+
+          <div class="info-flex">
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/clock.svg" alt="">
+              <p>10m 40s</p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/timer.svg" alt="">
+              <p>30 sec</p>
+            </div>
+          </div>
+
+          <div class="cont-holder">
+            <p class="heading">Sea bridge</p>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/player.svg" alt="">
+              <p>10 <span>| 100</span></p>
+            </div>
+
+            <div class="info-box">
+              <img src="/assets/base/images/race-type/token-white.svg" alt="">
+              <p>30</p>
+            </div>
+
+            <button class="play-btn">
+              <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
+              <div class="back-maker"></div>
+            </button>
+
+            <div class="control-item">
+              <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
+            </div>
+
+            <div class="control-item">
+              <img src="/assets/base/images/race-type/fav-blue.svg" alt="">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="switcher-holder">
+          <button class="switch-item active"></button>
+          <button class="switch-item"></button>
+          <button class="switch-item"></button>
+          <button class="switch-item"></button>
+          <button class="switch-item"></button>
+        </div>
+
+      </div>
+
     </div>
     <div
       [ngClass]="{
@@ -561,3 +727,5 @@
     </div>
   </div>
 </div>
+
+<app-rules-info-modal #rulesModal></app-rules-info-modal>

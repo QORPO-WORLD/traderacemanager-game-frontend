@@ -66,6 +66,9 @@ import { TeamsSelectionComponent } from './components/teams-selection/teams-sele
 import { RaceInfoModalComponent } from './components/race-info-modal/race-info-modal.component';
 import { TeamMembershipComponent } from './components/team-membership/team-membership.component'
 import { LoadingModalComponent } from './components/shared/loading-modal/loading-modal.component';
+import { RulesInfoModalComponent } from './components/shared/rules-info-modal/rules-info-modal.component';
+import { RaceBonusModalComponent} from './components/shared/race-bonus-modal/race-bonus-modal.component';
+import { TutorialModalComponent } from './components/shared/tutorial-modal/tutorial-modal.component';
 
 @NgModule({
   imports: [
@@ -120,7 +123,10 @@ import { LoadingModalComponent } from './components/shared/loading-modal/loading
     IoiloaderComponent,
     TeamMembershipComponent,
     LoadingModalComponent,
-    MetaBuyComponent
+    MetaBuyComponent,
+    RulesInfoModalComponent,
+    TutorialModalComponent,
+    RaceBonusModalComponent
   ],
   providers: [
     CurrencyPipe,
@@ -153,7 +159,7 @@ import { LoadingModalComponent } from './components/shared/loading-modal/loading
     MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
     MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
     DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent,
-  LoadingModalComponent, MetaBuyComponent],
+  LoadingModalComponent, MetaBuyComponent, RulesInfoModalComponent, RaceBonusModalComponent],
   entryComponents: []
 })
 

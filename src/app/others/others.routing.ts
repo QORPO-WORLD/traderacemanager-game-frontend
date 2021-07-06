@@ -1,6 +1,6 @@
 import { AffilateComponent } from "./pages/affilate/affilate.component";
 import { RewardsComponent } from "./pages/rewards/rewards.component";
-import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
+//import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
 
 import { AuthUserGuard } from "../user/services/guards/auth-user.guard";
 import { RouterModule, Routes } from "@angular/router";
@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: "", redirectTo: "affilate", pathMatch: "prefix" },
       { path: "rewards", component: RewardsComponent },
       { path: "affilate", component: AffilateComponent },
-      { path: "tasks", component: DailyTasksComponent },
+      //{ path: "tasks", component: DailyTasksComponent },
     ],
   },
 ];

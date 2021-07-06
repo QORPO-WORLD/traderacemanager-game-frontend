@@ -1743,125 +1743,162 @@ ul.fancy {
   position: absolute;
   bottom: 0;
   left: 0;
-  background: url("/assets/base/images/zavod/winning-back.jpg") center no-repeat;
-  background-size: cover;
+  background: rgba(17, 17, 17, 0.8);
   z-index: 100000;
+  overflow: hidden;
   .back-avatar{
     position: absolute;
-    top: 0;
+    bottom: -30%;
     left: 20%;
     transform: translateX(-50%);
+    z-index: 10000001;
+    pointer-events: none;
   }
   .winning-modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 650px;
+    width: 1000px;
     max-width: 95%;
     padding: 50px 34px 34px;
-    background: rgba(17, 17, 17, 0.75);
+    background: #111111;
     border-radius: 0px 0px 15px 15px;
-    z-index: 100000000000;
-    .top-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(248.23deg, #24ffff 36.99%, #25ccfe 101.9%);
-      z-index: 1;
-    }
-    .close-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
-      border-radius: 0px 0px 0px 8px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 2;
-      cursor: pointer;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-    .top-stats {
+    z-index: 10000000;
+    .switch-btns{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      margin-bottom: 29px;
-      .stat-item {
-        width: 32%;
-        .heading {
-          font-size: 16px;
-          margin: 0 0 14px 0;
-        }
-        .stat-box {
-          height: 46px;
+      height: 50px;
+      width: 100%;
+      button{
+        position: relative;
+        height: 100%;
+        width: 192px;
+        background: transparent;
+        border: none;
+        .back{
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
-          text-align: center;
-          border: 1px solid #23ffff;
-          border-radius: 15px;
-          padding-top: 10px;
-          p {
-            color: #23ffff;
-            text-align: center;
-            img {
-              position: relative;
-              top: -2px;
-              display: inline-block;
-              margin-right: 7px;
-            }
+          height: 100%;
+          opacity: .2;
+          z-index: -1;
+          &.active{
+            opacity: 1;
           }
         }
+      }
+    }
+    .prizepool{
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 60px;
+      .value{
+        font-size: 64px;
+        text-shadow: 0px 0px 60px rgba(251, 225, 138, 0.8);
+        font-family: 'Earth Orbiter';
+        margin: 0 0 15px;
+        line-height: 1;
+        font-weight: 800;
+        background: linear-gradient(89.36deg, #D6D3C4 3.06%, #E3D6A6 24.7%, #F0D369 46.86%, #D0AB34 72.83%, #A76B41 102%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+      }
+      .desc{
+        font-size: 16px;
+        opacity: .6;
+        margin: 0;
       }
     }
     .tour-msg {
       text-align: center;
     }
     .table-holder {
+      width: 80%;
+      margin: 0 auto;
+      &.points{
+        margin-top: 40px;
+        .table-header{
+          .my-col {
+            &.position{
+              width: 15%;
+            }
+            &.team{
+              width: 20%;
+            }
+            &.username {
+              width: 37%;
+            }
+            &.win {
+              width: 28%;
+            }
+          }
+        }
+        .table-item {
+          .my-col {
+            &.position {
+              width: 15%;
+            }
+            &.username {
+              width: 37%;
+            }
+            &.team {
+              width: 20%;
+            }
+            &.win {
+              width: 28%;
+            }
+          }
+        }
+      }
       .table-header {
         display: flex;
         justify-content: center;
         align-items: center;
         .my-col {
           p {
-            font-size: 11px;
+            font-size: 16px;
             margin: 0 0 7px 0;
             color: white;
-            text-align: left;
+            text-align: center;
             padding-left: 6px;
             font-weight: 300;
+            opacity: .6;
           }
-          &.position,
-          &.premium {
+          &.position{
             width: 11%;
+            p{
+              text-align: left;
+              padding-left: 0;
+            }
           }
           &.team{
             width: 16%;
           }
           &.username {
-            width: 35%;
+            width: 26%;
             p {
               padding-left: 34px;
+              text-align: left;
             }
           }
+          &.car-tier{
+            width: 25%;
+          }
           &.win {
-            width: 27%;
-            p {
-              padding-left: 34px;
-            }
+            width: 22%;
           }
         }
       }
       .table-item {
         width: 100%;
         background: #111111;
-        border-radius: 8px;
         overflow: hidden;
         height: 40px;
         display: flex;
@@ -1869,38 +1906,12 @@ ul.fancy {
         align-items: center;
         margin-bottom: 1px;
         &.my-item {
-          background: #ffffff;
-          .my-col {
-            p,
-            span {
-              color: #111111;
-            }
-            &.position {
-              background: linear-gradient(
-                238.54deg,
-                #fe173f -1.25%,
-                #950552 100.91%
-              );
-              p {
-                color: white;
-              }
-            }
-            &.premium {
-              img {
-                opacity: 0.5;
-                &.classic {
-                  display: none;
-                }
-                &.black {
-                  display: block;
-                }
-              }
-            }
-          }
+          background: rgba(36, 229, 254, .2);
         }
         .my-col {
           height: 100%;
           position: relative;
+          padding-top: 9px;
           p,
           span {
             font-size: 14px;
@@ -1908,42 +1919,19 @@ ul.fancy {
             margin: 0;
           }
           &.position {
-            background: linear-gradient(236.12deg, #24ffff 6%, #25ccfe 102.68%);
             width: 11%;
-            p {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-            }
+            padding-left: 7px;
           }
-          &.premium {
-            width: 11%;
-            border-right: 1px solid #343434;
-            img {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              opacity: 0.2;
-              transform: translate(-50%, -50%);
-              &.classic {
-                display: block;
-              }
-              &.black {
-                display: none;
-              }
-            }
+          &.car-tier{
+            width: 25%;
+            text-align: center;
           }
           &.username {
             padding-left: 34px;
-            width: 35%;
-            padding-top: 9px;
-            border-right: 1px solid #343434;
+            width: 26%;
           }
           &.team {
             width: 16%;
-            border-right: 1px solid #343434;
-            padding-top: 9px;
             text-align: center;
             .team-circle {
               width: 20px;
@@ -1975,9 +1963,11 @@ ul.fancy {
             }
           }
           &.win {
-            padding-left: 34px;
-            padding-top: 9px;
-            width: 27%;
+            text-align: center;
+            width: 22%;
+            p,span{
+              font-weight: 700;
+            }
           }
         }
       }
@@ -1991,11 +1981,11 @@ ul.fancy {
       .my-cta-btn {
         background: linear-gradient(71.84deg, #fe173f 1.24%, #950552 72.02%);
         box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.6);
-        border-radius: 15px;
         font-size: 16px;
         margin: 0 8px;
-        padding: 10px 20px;
+        padding: 15px 5px;
         min-width: 140px;
+        width: 240px;
         &.azure-btn{
           background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
         }
@@ -2003,6 +1993,24 @@ ul.fancy {
           display: inline-block;
           margin-right: 6px;
         }
+      }
+    }
+    .or-text{
+      font-size: 16px;
+      opacity: 0.6;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .quit-text{
+      font-size: 16px;
+      opacity: 0.8;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: .2s;
+      text-align: center;
+      margin: 0;
+      &:hover{
+        opacity: 1;
       }
     }
   }
@@ -4240,6 +4248,15 @@ button small {
       }
     }
   }
+  .winning-back{
+    .back-avatar{
+      width: 58%;
+      left: 16%;
+    }
+    .winning-modal{
+      width: 930px;
+    }
+  }
 }
 
 @media only screen and (max-width: 1550px){
@@ -4275,6 +4292,66 @@ button small {
             width: 24px;
           }
         }
+      }
+    }
+  }
+  .winning-back{
+    .winning-modal{
+      padding: 25px 20px 20px;
+      width: 800px;
+      border-radius: 0;
+      .switch-btns{
+        height: 40px;
+        button{
+          font-size: 15px;
+          width: 160px;
+        }
+      }
+      .prizepool{
+        margin-bottom: 40px;
+        img{
+          width: 160px;
+        }
+        .value{
+          font-size: 53px;
+          margin: 0 0 10px;
+        }
+        .desc{
+          font-size: 14px;
+        }
+      }
+      .table-holder{
+        .table-header{
+          .my-col{
+            p{
+              font-size: 14px;
+              margin: 0 0 5px 0;
+            }
+          }
+        }
+        .table-item{
+          height: 30px;
+          .my-col{
+            padding-top: 6px;
+            p,span{
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .buttons-holder{
+        .my-cta-btn{
+          font-size: 14px;
+          margin: 0 5px;
+          padding: 13px 5px;
+          width: 210px;
+        }
+      }
+      .or-text{
+        font-size: 14px;
+      }
+      .quit-text{
+        font-size: 14px;
       }
     }
   }
@@ -4968,13 +5045,7 @@ button small {
           display: none;
         }
         .winner-close {
-          width: 135px;
-          p {
-            font-size: 12px;
-            img {
-              width: 9px;
-            }
-          }
+          display: none;
         }
       }
     }
@@ -5114,77 +5185,6 @@ button small {
     position: absolute;
     min-height: 465px;
     top: 0;
-    .winning-modal {
-      padding: 30px 20px 20px;
-      .close-icon {
-        width: 30px;
-        height: 30px;
-        img {
-          width: 11px;
-        }
-      }
-      .top-stats {
-        margin-bottom: 15px;
-        .stat-item {
-          width: 32.5%;
-          .heading {
-            font-size: 14px;
-            margin: 0 0 7px 0;
-          }
-          .stat-box {
-            height: 35px;
-            border-radius: 10px;
-            padding-top: 7px;
-            p {
-              font-size: 14px;
-              margin: 0;
-              img {
-                margin-right: 4px;
-                width: 17px;
-              }
-            }
-          }
-        }
-      }
-      h2.tour-msg {
-        font-size: 20px;
-        margin: 15px 0 10px;
-      }
-      h3.tour-msg {
-        font-size: 17px;
-        margin: 10px 0;
-      }
-      .table-holder {
-        .table-header {
-          .my-col {
-            p {
-              padding-left: 2px;
-              white-space: nowrap;
-            }
-            &.username,
-            &.win {
-              p {
-                padding-left: 24px;
-              }
-            }
-          }
-        }
-        .table-item {
-          height: 32px;
-          .my-col {
-            &.username,
-            &.win {
-              padding-left: 24px;
-              padding-top: 7px;
-            }
-            p,
-            span {
-              font-size: 13px;
-            }
-          }
-        }
-      }
-    }
   }
   .semafor-inner {
     transform: scale(0.55);
@@ -5219,6 +5219,74 @@ button small {
     .all-positions{
       .top-heading{
         margin: 0px 0 7px 0;
+      }
+    }
+  }
+  .winning-back{
+    .winning-modal{
+      padding: 15px 10px;
+      width: 90%;
+      top: 10px;
+      transform: translateX(-50%);
+      .switch-btns{
+        height: 25px;
+        button{
+          font-size: 10px;
+          width: 100px;
+        }
+      }
+      .prizepool{
+        margin-bottom: 15px;
+        img{
+          display: none;
+        }
+        .value{
+          font-size: 34px;
+          margin: 20px 0 7px;
+        }
+        .desc{
+          font-size: 12px;
+        }
+      }
+      .table-holder{
+        &.points{
+          margin-top: 15px;
+        }
+        .table-header{
+          .my-col{
+            p{
+              font-size: 10px;
+            }
+          }
+        }
+        .table-item{
+          height: 20px;
+          .my-col{
+            padding-top: 2px;
+            p,span{
+              font-size: 9px;
+            }
+          }
+        }
+      }
+      .buttons-holder{
+        margin-top: 17px;
+        .my-cta-btn{
+          font-size: 10px;
+          margin: 0 3px;
+          padding: 6px 5px;
+          width: 120px;
+          img{
+            width: 13px;
+          }
+        }
+      }
+      .or-text{
+        font-size: 10px;
+        margin: 7px 0;
+      }
+      .quit-text{
+        font-size: 10px;
       }
     }
   }
@@ -5329,6 +5397,65 @@ button small {
       transform: rotate(0deg);
     }
   }
+  .winning-back{
+    .winning-modal{
+      padding: 15px 10px;
+      width: 90%;
+      .switch-btns{
+        height: 30px;
+        button{
+          font-size: 12px;
+          width: 120px;
+        }
+      }
+      .prizepool{
+        margin-bottom: 20px;
+        img{
+          width: 120px;
+        }
+        .value{
+          font-size: 34px;
+          margin: 0 0 7px;
+        }
+        .desc{
+          font-size: 12px;
+        }
+      }
+      .table-holder{
+        .table-header{
+          .my-col{
+            p{
+              font-size: 11px;
+            }
+          }
+        }
+        .table-item{
+          height: 23px;
+          .my-col{
+            padding-top: 3px;
+            p,span{
+              font-size: 10px;
+            }
+          }
+        }
+      }
+      .buttons-holder{
+        .my-cta-btn{
+          font-size: 12px;
+          margin: 0 3px;
+          padding: 9px 5px;
+          width: 160px;
+        }
+      }
+      .or-text{
+        font-size: 12px;
+        margin: 12px 0;
+      }
+      .quit-text{
+        font-size: 12px;
+      }
+    }
+  }
 }
 
 @media only screen and (max-height: 400px) and (max-width: 900px){
@@ -5369,79 +5496,6 @@ button small {
 }
 
 @media screen and (max-width: 640px) {
-  .winning-back {
-    .winning-modal {
-      padding: 30px 20px 20px;
-      .close-icon {
-        width: 30px;
-        height: 30px;
-        img {
-          width: 11px;
-        }
-      }
-      .top-stats {
-        margin-bottom: 15px;
-        .stat-item {
-          width: 32.5%;
-          .heading {
-            font-size: 14px;
-            margin: 0 0 7px 0;
-          }
-          .stat-box {
-            height: 35px;
-            border-radius: 10px;
-            padding-top: 7px;
-            p {
-              font-size: 14px;
-              margin: 0;
-              img {
-                margin-right: 4px;
-                width: 17px;
-              }
-            }
-          }
-        }
-      }
-      h2.tour-msg {
-        font-size: 20px;
-        margin: 15px 0 10px;
-      }
-      h3.tour-msg {
-        font-size: 17px;
-        margin: 10px 0;
-      }
-      .table-holder {
-        .table-header {
-          .my-col {
-            p {
-              padding-left: 2px;
-              white-space: nowrap;
-            }
-            &.username,
-            &.win {
-              p {
-                padding-left: 24px;
-              }
-            }
-          }
-        }
-        .table-item {
-          height: 32px;
-          .my-col {
-            &.username,
-            &.win {
-              padding-left: 24px;
-              padding-top: 7px;
-            }
-            p,
-            span {
-              font-size: 13px;
-            }
-          }
-        }
-      }
-    }
-  }
   .tour-positions-modal {
     padding: 16px 18px;
     top: 45px;
@@ -5489,6 +5543,72 @@ button small {
       .moving-road,
       .moving-helperix{
         height: 445px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: landscape){
+  .winning-back{
+    .winning-modal{
+      padding: 12px 8px;
+      .switch-btns{
+        height: 20px;
+        button{
+          font-size: 8px;
+          width: 80px;
+        }
+      }
+      .prizepool{
+        margin-bottom: 10px;
+        .value{
+          font-size: 28px;
+          margin: 13px 0 5px;
+        }
+        .desc{
+          font-size: 9px;
+        }
+      }
+      .table-holder{
+        &.points{
+          margin-top: 13px;
+        }
+        .table-header{
+          .my-col{
+            p{
+              font-size: 8px;
+            }
+          }
+        }
+        .table-item{
+          height: 16px;
+          .my-col{
+            padding-top: 2px;
+            p,span{
+              font-size: 8px;
+            }
+          }
+        }
+      }
+      .buttons-holder{
+        margin-top: 13px;
+        .my-cta-btn{
+          font-size: 8px;
+          margin: 0 2px;
+          padding: 5px 3px;
+          width: 100px;
+          min-width: 100px;
+          img{
+            width: 10px;
+          }
+        }
+      }
+      .or-text{
+        font-size: 8px;
+        margin: 5px 0;
+      }
+      .quit-text{
+        font-size: 8px;
       }
     }
   }
@@ -5544,93 +5664,74 @@ button small {
         }
       }
   }
-}
-
-@media screen and (max-width: 500px) {
-  .winning-back {
-    .winning-modal {
-      padding: 35px 17px 17px;
-      .close-icon {
-        width: 27px;
-        height: 27px;
-        img {
-          width: 10px;
+  .winning-back{
+    .winning-modal{
+      padding: 13px 7px;
+      width: 96%;
+      .switch-btns{
+        height: 23px;
+        button{
+          font-size: 10px;
+          width: 105px;
         }
       }
-      .top-stats {
-        margin-bottom: 12px;
-        .stat-item {
-          width: 32.7%;
-          .heading {
-            font-size: 11px;
-            margin: 0 0 4px 0;
-          }
-          .stat-box {
-            height: 31px;
-            border-radius: 7px;
-            padding-top: 5px;
-            p {
-              font-size: 12px;
-              img {
-                width: 14px;
-              }
+      .prizepool{
+        margin-bottom: 15px;
+        img{
+          width: 90px;
+        }
+        .value{
+          font-size: 28px;
+          margin: 0 0 5px;
+        }
+        .desc{
+          font-size: 10px;
+        }
+      }
+      .table-holder{
+        width: 95%;
+        .table-header{
+          .my-col{
+            p{
+              font-size: 9px;
+              white-space: nowrap;
             }
           }
         }
-      }
-      h2.tour-msg {
-        font-size: 17px;
-        margin: 12px 0 7px;
-      }
-      h3.tour-msg {
-        font-size: 15px;
-        margin: 7px 0;
-      }
-      .table-holder {
-        .table-header {
-          .my-col {
-            p {
-              padding-left: 0;
+        .table-item{
+          height: 23px;
+          .my-col{
+            padding-top: 3px;
+            p,span{
               font-size: 8px;
             }
-            &.username,
-            &.win {
-              p {
-                padding-left: 20px;
-              }
-            }
-          }
-        }
-        .table-item {
-          height: 32px;
-          .my-col {
-            &.username,
-            &.win {
-              padding-left: 20px;
-              padding-top: 6px;
-            }
-            p,
-            span {
-              font-size: 12px;
-            }
           }
         }
       }
-      .buttons-holder {
+      .buttons-holder{
         margin-top: 15px;
-        .my-cta-btn {
-          border-radius: 10px;
-          font-size: 14px;
-          margin: 0 4px;
-          padding: 7px 17px;
-          min-width: 123px;
-          img {
-            height: 17px;
+        .my-cta-btn{
+          font-size: 10px;
+          margin: 0 2px;
+          padding: 7px 2px;
+          width: 120px;
+          img{
+            width: 12px;
           }
         }
+      }
+      .or-text{
+        font-size: 10px;
+        margin: 9px 0;
+      }
+      .quit-text{
+        font-size: 10px;
       }
     }
   }
+}
+
+@media screen and (max-width: 500px) {
   .sub-content.zavod_bg{
     .bottom-mobile-nav{
       height: 90%;

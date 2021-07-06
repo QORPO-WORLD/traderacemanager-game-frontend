@@ -1570,4 +1570,5 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   navigateToToken() {
     window.open("https://ioi-token.com", "_blank");
   }
+
 }

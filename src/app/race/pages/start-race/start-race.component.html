@@ -172,6 +172,16 @@
           />
           <h3>MY TEAM</h3>
         </div>
+
+        <div [routerLink]="['/teams/join-teams']" class="lower-box" *ngIf="accountInfo.is_system_team === true">
+          <img
+            class="right"
+            src="assets/base/images/start-race/my-team.png"
+            alt="team icon"
+          />
+          <h3>JOIN TEAM</h3>
+        </div>
+
         <div [routerLink]="['/teams/leaderboard']" class="lower-box">
           <img
             class="right"
@@ -232,12 +242,14 @@
         "
         class="team-img team"
         *ngIf="
+          accountInfo.is_system_team !== true &&
           accountInfo.team === 'IOI' ||
           accountInfo.team === 'BTC' ||
           accountInfo.team === 'ALT'
         "
       >
         <img
+<<<<<<< HEAD
           *ngIf="accountInfo.is_paid_membership === 'Free'"
           class="premium non-premium"
           src="/assets/base/images/menu/premium-icon.svg"
@@ -245,6 +257,8 @@
         />
         <img
           *ngIf="accountInfo.is_paid_membership === 'Premium'"
+=======
+>>>>>>> 315c619ca95b4b66f1ad0ae8b1a2b811dd5c0720
           class="premium"
           src="/assets/base/images/menu/premium-icon-active.svg"
           alt="Premium icon"
@@ -257,6 +271,7 @@
       <div
         class="team-img team"
         *ngIf="
+          accountInfo.is_system_team !== true &&
           accountInfo.team !== 'IOI' &&
           accountInfo.team !== 'BTC' &&
           accountInfo.team !== 'ALT' &&
@@ -616,336 +631,6 @@
             >
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="tournament-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          {{ "modals.heading.tournament" | translate }}
-        </h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.tournament" | translate }}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="ioi-1-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ "modals.heading.ioi1" | translate }}</h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.ioi1_text" | translate }}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="ioi-3-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ "modals.heading.ioi3" | translate }}</h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.ioi3_text" | translate }}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="ioi-5-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ "modals.heading.ioi5" | translate }}</h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.ioi5_text" | translate }}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="free-tournament-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          {{ "modals.heading.free_tournament" | translate }}
-        </h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="bonus-race-text">
-          <p>
-            {{ "modals.text.free_tournament" | translate }}
-          </p>
-          <p class="bonus-info-row mt-4">
-            <span class="left-part"
-              >100 - 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part right-pad"
-              >1 {{ "modals.shared.ticket" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >1 000 - 4 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >2 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >3 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >4 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-          <p class="mt-3">{{ "start-race.minimum_amount" | translate }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="golden-ticket-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          {{ "modals.heading.golden_ticket" | translate }}
-        </h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.golden_ticket" | translate }}
-        </p>
-        <div class="bonus-race-text">
-          <p class="bonus-info-row mt-4">
-            <span class="left-part"
-              >100 - 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part right-pad"
-              >1 {{ "modals.shared.ticket" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >1 000 - 4 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >2 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >5 000 - 9 999 <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >3 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-          <p class="bonus-info-row">
-            <span class="left-part"
-              >10 000+ <img src="/assets/base/images/blue-ioi.png" alt=""
-            /></span>
-            <span class="mid-part">{{ "modals.shared.get" | translate }}</span>
-            <span class="right-part"
-              >4 {{ "modals.shared.tickets" | translate }}</span
-            >
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="golden-race-24"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="bet 1 000 TRX info"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered my-modal-dialog"
-    role="document"
-  >
-    <div class="modal-content my-modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          {{ "modals.heading.golden_race" | translate }}
-        </h5>
-        <button
-          type="button"
-          class="close my-modal-close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true"
-            ><img src="assets/rewards/X-modal.png" alt=""
-          /></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{ "modals.text.golden_race" | translate }}
-        </p>
       </div>
     </div>
   </div>
