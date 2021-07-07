@@ -91,7 +91,6 @@
 }
 .main-holder {
   width: calc(100% - 40px);
-  height: calc(100vh - 80px);
   padding: 40px 0px 40px 40px;
   display: flex;
   position: relative;
@@ -182,16 +181,17 @@
   position: relative;
 
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: space-between;
 
   .content-menu {
     width: 19%;
-    height: 100%;
+    height: calc(100vh - 160px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: sticky;
+    top: 80px;
 
     .item {
       background: transparent;
@@ -278,148 +278,327 @@
     }
   }
   .content-side {
-    width: 79%;
+    width: 76%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    &.tips {
-      align-items: center;
-      align-content: center;
-      .tip-content {
-        position: relative;
-        height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+    .text-holder{
+      p{
+        font-size: 16px;
+        margin: 0 0 16px;
+        span{
+          font-weight: 700;
+        }
       }
-      .left-premium {
-        height: auto;
-        width: 100%;
-        .boxes {
-          display: flex;
-          margin-top: 2.5%;
+    }
+    .tip-content{
+      position: relative;
+      padding-top: 11%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .race-btn{
+        font-size: 16px;
+        padding: 14px 60px;
+        border: none;
+      }
+      .left-content{
+        .text-holder{
+          margin: 30px 0 40px;
         }
-        .tip-button {
-          transition: 0.3s;
-          margin-top: 5%;
-          padding: 1.5% 10%;
-          opacity: 1;
-          -webkit-transition: 0.3s;
-          -moz-transition: 0.3s;
-          -ms-transition: 0.3s;
-          -o-transition: 0.3s;
+      }
+      .right-content{
+        position: relative;
+        img{
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100%;
         }
-        .tip-button:hover {
-          transform: scale(1.01);
-          -webkit-transform: scale(1.01);
-          -moz-transform: scale(1.01);
-          -ms-transform: scale(1.01);
-          -o-transform: scale(1.01);
-          box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+      }
+    }
+    .races-text{
+      position: relative;
+      padding-top: 11%;
+      width: 100%;
+      .text-holder{
+        margin-top: 25px;
+      }
+    }
+    .tables-cont{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 110px 0 0;
+      padding-bottom: 32px;
+      .table-box{
+        width: 39%;
+        &.big{
+          width: 59%;
+          .my-table-holder{
+            .table-row{
+              .table-item{
+                width: 35%;
+                &.desc{
+                  width: 23%;
+                }
+                &.big{
+                  width: 42%;
+                }
+              }
+            }
+          }
         }
-        .item-box {
-          padding: 2.5%;
+        .category-title-first{
+          margin: 0 0 40px;
+          text-align: center;
+        }
+      }
+    }
+    .my-table-holder{
+      .table-row{
+        height: 90px;
+        .table-item{
+          width: 60%;
+          &.desc{
+            width: 40%;
+          }
+          p{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    &.how-to{
+      .tip-content{
+        .left-content{
+          width: 67%;
+        }
+        .right-content{
+          width: 33%;
+          img{
+            position: absolute;
+            top: -9%;
+            right: -15%;
+            width: 155%;
+            max-width: unset;
+            transform: scaleX(-1);
+          }
+        }
+      }
+    }
+    &.cars{
+      .tip-content{
+        padding-top: 15%;
+        &.non-nft{
+          padding-top: 100px;
+          .my-table-holder{
+            width: 100%;
+            .table-row{
+              .table-item{
+                width: 55%;
+                &.desc{
+                  width: 45%;
+                }
+              }
+            }
+          }
+        }
+        .left-content{
+          width: 45%;
+          .text-holder{
+            &.cars-text{
+              p{
+                margin-bottom: 80px;
+              }
+              .list-holder{
+                p{
+                  margin-bottom: 20px;
+                }
+              }
+            }
+          }
+        }
+        .right-content{
+          width: 50%;
+          .nft-car{
+            top: 10%;
+          }
+        }
+      }
+      .my-table-holder{
+        &.nft-cars-table{
+          width: 60%;
+          .table-row{
+            .table-item{
+              width: 32%;
+              &.desc{
+                width: 26%;
+              }
+              &.big{
+                width: 42%;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.fast-fuel{
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      .tip-content{
+        padding-top: 0;
+        .left-content{
           width: 40%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+        }
+        .right-content{
+          width: 55%;
+          img{
+            position: relative;
+            top: 15%;
+          }
+        }
+      }
+    }
+    &.premium{
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      .tip-content{
+        padding-top: 0;
+        display: block;
+        .item-box {
+          width: 100%;
           p {
             &.menu-title {
               margin-left: 0px;
             }
             &.space {
-              margin-top: 10%;
+              margin-top: 4%;
             }
             &.hidden {
               pointer-events: none;
               opacity: 0;
             }
           }
-          &.first {
-            border: 3px solid gold;
-            background: rgba(17, 17, 17, 0.8);
-          }
-          &.second {
-            margin-left: 10%;
-            border: 3px solid transparent;
-          }
           .item {
-            margin-top: 5%;
+            margin-top: 2.5%;
             display: flex;
+            justify-content: flex-start;
+            align-items: center;
             img {
-              width: 7.5%;
               height: auto;
             }
             p {
-              margin-left: 5%;
+              margin-left: 2%;
             }
           }
         }
         .golden {
           color: gold;
         }
-      }
-      .left-content {
-        width: 49%;
-        .category-title-fourth {
-          margin-bottom: 2.5%;
+        .race-btn{
+          margin-top: 5%;
         }
-        .line {
-          transition: 0.3s;
-          margin-top: 2.5%;
-          &.active {
-            opacity: 1;
+      }
+    }
+    &.seasons{
+      .tip-content{
+        padding-top: 8%;
+        &.points-chart{
+          .left-content{
+            width: 30%;
+            .my-table-holder{
+              margin-top: 60px;
+              .table-row{
+                .table-item{
+                  width: 55%;
+                  &.desc{
+                    width: 45%;
+                  }
+                }
+              }
+            }
+          }
+          .right-content{
+            width: 70%;
+            img{
+              position: relative;
+              top: 10%;
+            }
           }
         }
-        .tip-button {
-          transition: 0.3s;
-          margin-top: 10%;
-          padding: 2.5% 10%;
-          opacity: 1;
-          -webkit-transition: 0.3s;
-          -moz-transition: 0.3s;
-          -ms-transition: 0.3s;
-          -o-transition: 0.3s;
-        }
-        .tip-button:hover {
-          transform: scale(1.01);
-          -webkit-transform: scale(1.01);
-          -moz-transform: scale(1.01);
-          -ms-transform: scale(1.01);
-          -o-transform: scale(1.01);
-          box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+        .left-content{
+          width: 95%;
         }
       }
-      .right-content {
-        width: 49%;
-        min-height: 100%;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        position: relative;
-        .how-to-image {
-          width: 100%;
-          position: absolute;
-          top: 60%;
-          transform: translateY(-50%);
-          -webkit-transform: translateY(-50%);
-          -moz-transform: translateY(-50%);
-          -ms-transform: translateY(-50%);
-          -o-transform: translateY(-50%);
-        }
-        .switchers {
-          z-index: 1;
-          width: 80%;
-          display: flex;
-          justify-content: space-between;
-          .switcher {
-            cursor: pointer;
-            transition: 0.3s;
-            height: 3px;
-            width: 19%;
-            opacity: 0.15;
-            &.active {
-              opacity: 1;
+    }
+    &.leaderboard{
+      .tip-content{
+        .left-content{
+          width: 45%;
+          .text-holder{
+            p{
+              margin-bottom: 55px;
             }
+          }
+        }
+        .right-content{
+          width: 50%;
+          img{
+            width: auto;
+          }
+        }
+      }
+      .table-holder{
+        width: 100%;
+        text-align: left;
+        padding-top: 5%;
+        .category-title-first{
+          text-align: center;
+        }
+        .my-table-holder{
+          &.team-bonus{
+            width: 80%;
+            margin: 60px auto 80px;
+            .table-row{
+              .table-item{
+                &.desc{
+                  width: 22%;
+                }
+                width: 26%;
+              }
+            }
+          }
+          &.racers{
+            width: 100%;
+            margin: 60px auto 0;
+            .table-row{
+              .table-item{
+                &.desc{
+                  width: 30%;
+                }
+                width: 7%;
+              }
+            }
+          }
+        }
+        .imaged-text{
+          position: relative;
+          display: inline-block;
+          img{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(100%, -50%);
           }
         }
       }
@@ -852,14 +1031,110 @@
           }
         }
       }
+      .text-holder{
+        p{
+          font-size: 15px;
+          margin: 0 0 13px;
+        }
+      }
+      .races-text{
+        padding-top: 8%;
+      }
+      .my-table-holder{
+        .table-row{
+          height: 84px;
+          .table-item{
+            p{
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      .tables-cont{
+        margin: 90px 0 0;
+        padding-bottom: 25px;
+        .table-box{
+          .category-title-first{
+            margin: 0 0 30px;
+          }
+        }
+      }
+      .tip-content{
+        padding-top: 9%;
+        .left-content{
+          .text-holder{
+            margin: 26px 0 35px;
+          }
+        }
+      }
+      &.cars{
+        .tip-content{
+          padding-top: 13%;
+          .left-content{
+            .text-holder{
+              &.cars-text{
+                p{
+                  margin-bottom: 65px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.seasons{
+        .tip-content{
+          &.points-chart{
+            .left-content{
+              width: 33%;
+              .my-table-holder{
+                margin-top: 45px;
+              }
+            }
+            .right-content{
+              width: 67%;
+            }
+          }
+        }
+      }
+      &.leaderboard{
+        .tip-content{
+          .left-content{
+            .text-holder{
+              p{
+                margin-bottom: 40px;
+              }
+            }
+          }
+        }
+        .table-holder{
+          .my-table-holder{
+            &.team-bonus{
+              margin: 45px auto 60px;
+            }
+            &.racers{
+              margin: 45px auto 0;
+            }
+          }
+          .imaged-text{
+            img{
+              width: 170px;
+            }
+          }
+        }
+      }
     }
+  }
+  .category-title-fourth{
+    font-size: 54px;
+  }
+  .category-title-first{
+    font-size: 44px;
   }
 }
 
 @media screen and(max-width: 1550px) {
   .main-holder {
     width: calc(100% - 20px);
-    height: calc(100vh - 65px);
     padding: 20px 0px 20px 20px;
   }
   .content-title {
@@ -873,6 +1148,7 @@
   }
   .races-content {
     .content-menu {
+      height: calc(100vh - 140px);
       .item {
         img {
           width: 27.5px;
@@ -880,6 +1156,7 @@
       }
     }
     .content-side{
+        width: 78%;
       .box-heading{
         font-size: 18px;
         margin: 0 0 8px;
@@ -980,6 +1257,101 @@
             font-size: 14px;
             img{
               width: 12px;
+            }
+          }
+        }
+      }
+      .text-holder{
+        p{
+          font-size: 13px;
+          margin: 0 0 10px;
+        }
+      }
+      .races-text{
+        padding-top: 6%;
+      }
+      .my-table-holder{
+        .table-row{
+          height: 65px;
+          .table-item{
+            p{
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .tables-cont{
+        margin: 70px 0 0;
+        padding-bottom: 20px;
+        .table-box{
+          .category-title-first{
+            margin: 0 0 20px;
+          }
+        }
+      }
+      .tip-content{
+        padding-top: 7%;
+        .left-content{
+          .text-holder{
+            margin: 20px 0 27px;
+          }
+        }
+        .race-btn{
+          font-size: 14px;
+          padding: 12px 45px;
+        }
+      }
+      &.cars{
+        .tip-content{
+          padding-top: 10%;
+          .left-content{
+            .text-holder{
+              &.cars-text{
+                p{
+                  margin-bottom: 50px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.seasons{
+        .tip-content{
+          &.points-chart{
+            .left-content{
+              width: 33%;
+              .my-table-holder{
+                margin-top: 35px;
+              }
+            }
+            .right-content{
+              width: 67%;
+            }
+          }
+        }
+      }
+      &.leaderboard{
+        .tip-content{
+          .left-content{
+            .text-holder{
+              p{
+                margin-bottom: 30px;
+              }
+            }
+          }
+        }
+        .table-holder{
+          .my-table-holder{
+            &.team-bonus{
+              margin: 35px auto 50px;
+            }
+            &.racers{
+              margin: 35px auto 0;
+            }
+          }
+          .imaged-text{
+            img{
+              width: 150px;
             }
           }
         }
@@ -1143,6 +1515,8 @@
 @media screen and(max-width: 1024px) {
   .races-content {
     .content-menu {
+      height: calc(100vh - 65px);
+      top: 20px;
       .item:hover {
         transform: none;
         .hover-effect {
@@ -1162,14 +1536,123 @@
         -o-transform: unset;
       }
 
-      &.tips {
-        .left-premium {
-          .item-box {
-            .item {
-              img {
-                width: 12.5px;
-                height: 12.5px;
+      .text-holder{
+        p{
+          font-size: 12px;
+        }
+      }
+      .my-table-holder{
+        .table-row{
+          height: 40px;
+          .table-item{
+            p{
+              font-size: 13px;
+            }
+          }
+        }
+      }
+      .tables-cont{
+        margin: 35px 0 0;
+        padding-bottom: 15px;
+        .table-box{
+          .category-title-first{
+            margin: 0 0 15px;
+          }
+        }
+      }
+      .tip-content{
+        padding-top: 5%;
+        .left-content{
+          .text-holder{
+            margin: 15px 0 22px;
+          }
+        }
+        .race-btn{
+          font-size: 13px;
+          padding: 10px 35px;
+        }
+      }
+      .races-text{
+        .text-holder{
+          margin-top: 15px;
+        }
+      }
+      &.how-to{
+        .tip-content{
+          .right-content{
+            img{
+              top: 0;
+            }
+          }
+        }
+      }
+      &.cars{
+        .tip-content{
+          padding-top: 8%;
+          .left-content{
+            width: 55%;
+            .text-holder{
+              &.cars-text{
+                p{
+                  margin-bottom: 30px;
+                }
               }
+            }
+          }
+          .right-content{
+            width: 45%;
+          }
+        }
+      }
+      &.premium{
+        .tip-content{
+          .item-box{
+            .item{
+              img{
+                width: 23px;
+              }
+            }
+          }
+        }
+      }
+      &.seasons{
+        .tip-content{
+          padding-top: 6%;
+          &.points-chart{
+            .left-content{
+              width: 40%;
+              .my-table-holder{
+                margin-top: 27px;
+              }
+            }
+            .right-content{
+              width: 60%;
+            }
+          }
+        }
+      }
+      &.leaderboard{
+        .tip-content{
+          .left-content{
+            .text-holder{
+              p{
+                margin-bottom: 22px;
+              }
+            }
+          }
+        }
+        .table-holder{
+          .my-table-holder{
+            &.team-bonus{
+              margin: 22px auto 35px;
+            }
+            &.racers{
+              margin: 22px auto 0;
+            }
+          }
+          .imaged-text{
+            img{
+              width: 80px;
             }
           }
         }
@@ -1367,10 +1850,10 @@
 }
 
 @media screen and(max-width: 850px) and (orientation: landscape){
-  .main-holder{
-    height: calc(100vh - 40px);
-  }
   .races-content {
+    .content-menu{
+      height: calc(100vh - 60px);
+    }
     .content-side {
       .box-heading{
         font-size: 11px;
@@ -1488,6 +1971,107 @@
             font-size: 9px;
             img{
               width: 8px;
+            }
+          }
+        }
+      }
+      .text-holder{
+        p{
+          font-size: 11px;
+        }
+      }
+      .my-table-holder{
+        .table-row{
+          height: 37px;
+          .table-item{
+            p{
+              font-size: 11px;
+            }
+          }
+        }
+      }
+      .tables-cont{
+        margin: 25px 0 0;
+        padding-bottom: 10px;
+        .table-box{
+          .category-title-first{
+            margin: 0 0 10px;
+          }
+        }
+      }
+      .tip-content{
+        padding-top: 4%;
+        .left-content{
+          .text-holder{
+            margin: 10px 0 17px;
+          }
+        }
+        .race-btn{
+          font-size: 12px;
+          padding: 9px 25px;
+        }
+      }
+      .races-text{
+        .text-holder{
+          margin-top: 10px;
+        }
+      }
+      &.cars{
+        .tip-content{
+          padding-top: 6%;
+          &.non-nft{
+            padding-top: 30px;
+          }
+          .left-content{
+            .text-holder{
+              &.cars-text{
+                p{
+                  margin-bottom: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.seasons{
+        .tip-content{
+          padding-top: 4%;
+          &.points-chart{
+            .left-content{
+              width: 45%;
+              .my-table-holder{
+                margin-top: 20px;
+              }
+            }
+            .right-content{
+              width: 55%;
+            }
+          }
+        }
+      }
+      &.leaderboard{
+        .tip-content{
+          .left-content{
+            .text-holder{
+              p{
+                margin-bottom: 15px;
+              }
+            }
+          }
+        }
+        .table-holder{
+          .my-table-holder{
+            &.team-bonus{
+              margin: 15px auto 35px;
+              width: 90%;
+            }
+            &.racers{
+              margin: 15px auto 0;
+            }
+          }
+          .imaged-text{
+            img{
+              width: 60px;
             }
           }
         }
@@ -1689,6 +2273,8 @@
       flex-direction: row;
       flex-wrap: wrap;
       height: 200px;
+      position: relative;
+      top: 0;
       .item {
         width: 30%;
         height: 30%;
@@ -1696,56 +2282,6 @@
     }
     .content-side {
       width: 100%;
-      &.tips {
-        height: auto;
-
-        .tip-content {
-          flex-direction: column-reverse;
-          .left-content {
-            width: 100%;
-            margin-top: 25px;
-            .tip-button {
-              margin-top: 15px;
-            }
-          }
-          .right-content {
-            margin-top: 25px;
-            width: 100%;
-            min-height: unset;
-            display: flex;
-
-            position: relative;
-            height: 200px;
-            .how-to-image {
-              max-height: 100%;
-              height: 100%;
-              width: auto;
-            }
-          }
-        }
-        .left-premium {
-          margin-top: 25px;
-          .boxes {
-          }
-          .tip-button {
-            margin-top: 15px;
-          }
-
-          .item-box {
-            padding: 2.5%;
-            width: 49%;
-            .item {
-              img {
-                width: 12.5px;
-                height: 12.5px;
-              }
-            }
-            &.second {
-              margin-left: 2.5%;
-            }
-          }
-        }
-      }
       .fast-races {
         width: 100%;
         height: 30%;
@@ -1963,11 +2499,204 @@
         width: 100%;
         margin-bottom: 15px;
       }
+      .text-holder{
+        p{
+          font-size: 11px;
+        }
+      }
+      .my-table-holder{
+        .table-row{
+          height: 37px;
+          .table-item{
+            p{
+              font-size: 11px;
+            }
+          }
+        }
+      }
+      .tables-cont{
+        margin: 25px 0 0;
+        padding-bottom: 10px;
+        flex-wrap: wrap;
+        .table-box{
+          width: 100%;
+          &.big{
+            width: 100%;
+            margin-bottom: 20px;
+          }
+          .category-title-first{
+            margin: 0 0 10px;
+          }
+        }
+      }
+      .tip-content{
+        padding-top: 4%;
+        flex-wrap: wrap;
+        .left-content{
+          width: 100%;
+        }
+        .right-content{
+          width: 90%;
+          max-width: 300px;
+          margin: 0 auto;
+          img{
+            position: relative;
+          }
+        }
+        .race-btn{
+          font-size: 10px;
+          padding: 9px 25px;
+        }
+      }
+      .races-text{
+        .text-holder{
+          margin-top: 10px;
+        }
+      }
+      &.how-to{
+        .tip-content{
+          .left-content{
+            width: 100%;
+          }
+          .right-content{
+            display: none;
+          }
+        }
+      }
+      &.cars{
+        .tip-content{
+          padding-top: 6%;
+          flex-wrap: wrap;
+          &.non-nft{
+            padding-top: 30px;
+          }
+          .left-content{
+            width: 100%;
+            .text-holder{
+              &.cars-text{
+                p{
+                  margin-bottom: 20px;
+                }
+              }
+            }
+          }
+          .right-content{
+            width: 90%;
+          }
+        }
+        .my-table-holder{
+          &.nft-cars-table{
+            width: 100%;
+            margin-top: 20px;
+          }
+        }
+      }
+      &.seasons{
+        .tip-content{
+          padding-top: 4%;
+          &.points-chart{
+            flex-wrap: wrap;
+            .left-content{
+              width: 100%;
+              .my-table-holder{
+                margin-top: 20px;
+              }
+            }
+            .right-content{
+              width: 90%;
+            }
+          }
+        }
+      }
+      &.leaderboard{
+        .tip-content{
+          flex-wrap: wrap;
+          .left-content{
+            width: 100%;
+            .text-holder{
+              p{
+                margin-bottom: 15px;
+              }
+            }
+          }
+          .right-content{
+            width: 90%;
+          }
+        }
+        .table-holder{
+          .my-table-holder{
+            &.team-bonus{
+              margin: 15px auto 35px;
+              width: 100%;
+            }
+            &.racers{
+              margin: 15px auto 0;
+              .table-row{
+                .table-item{
+                  width: 8%;
+                  &.desc{
+                    width: 20%;
+                  }
+                  p{
+                    font-size: 9px;
+                  }
+                }
+              }
+            }
+          }
+          .imaged-text{
+            img{
+              width: 60px;
+            }
+          }
+        }
+      }
     }
   }
 }
 
-@media screen and(max-width: 400px) and (orientation: portrait){
+@media screen and (max-width: 500px) and (orientation: portrait){
+  .races-content{
+    .content-side{
+      .my-table-holder{
+        .table-row{
+          .table-item{
+            p{
+              font-size: 9px;
+            }
+          }
+        }
+      }
+      &.fast-fuel{
+        .tip-content{
+          .left-content{
+            width: 100%;
+          }
+          .right-content{
+            width: 90%;
+          }
+        }
+      }
+      &.leaderboard{
+        .table-holder{
+          .my-table-holder{
+            &.races{
+              .table-row{
+                .table-item{
+                  p{
+                    font-size: 7px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) and (orientation: portrait){
   .races-content{
     .content-side{
       .small-box{

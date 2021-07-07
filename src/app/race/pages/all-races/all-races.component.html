@@ -95,7 +95,7 @@
         <div class="item-content">
           <div class="hover-effect"></div>
           <img src="assets/base/images/icons/idea.svg" alt="idea" />
-          <p class="menu-title">HELPFUL TIPS</p>
+          <p class="menu-title">Seasons and <br> Ranking</p>
         </div>
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
@@ -106,8 +106,8 @@
       >
         <div class="item-content">
           <div class="hover-effect"></div>
-          <img src="assets/base/images/icons/group.svg" alt="group" />
-          <p class="menu-title">TEAMS</p>
+          <img src="assets/base/images/icons/star-group.svg" alt="group" />
+          <p class="menu-title">Leaderboard</p>
         </div>
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
@@ -160,7 +160,7 @@
 
         <div class="controls-holder">
           <div class="control-item" *ngIf="fastEnabled === true"
-          (click)="selRaceType = 'premium_tournament_0'">
+          (click)="selRaceType = premiumTournament?.race_hash">
             <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
           </div>
           <div class="control-item" 
@@ -216,7 +216,7 @@
             </button>
 
             <div class="control-item" *ngIf="fastEnabled === true"
-            (click)="selRaceType = 'car_race_short_0'">
+            (click)="selRaceType = freeRace?.race_hash">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
@@ -269,7 +269,8 @@
         </div>
 
         <div class="controls-holder">
-          <div class="control-item">
+          <div class="control-item" *ngIf="fastEnabled === true"
+          (click)="selRaceType = fastRaces[0]?.race_hash">
             <img src="/assets/base/images/race-type/fast-red.svg" alt="">
           </div>
           <div class="control-item" *ngIf="baseFavRaces[1].fav !== undefined" 
@@ -324,7 +325,7 @@
             </button>
 
             <div class="control-item" *ngIf="fastEnabled === true"
-            (click)="selRaceType = 'car_race_portfolio_0'">
+            (click)="selRaceType = fastRaces[fastRaceIndex]?.race_hash">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
@@ -345,152 +346,299 @@
       </div>
 
     </div>
+
     <div
       [ngClass]="{
         'dissapear-right-animation': contentAnimation === 1,
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 2"
-      class="content-side tips"
+      class="content-side how-to"
     >
+
       <div class="tip-content">
         <div class="left-content">
-          <p class="category-title-fourth">HOW TO PLAY</p>
-          <p
-            (click)="toggleContent(1)"
-            [ngClass]="{ active: howToStep === 1 }"
-            class="races-desc line"
-          >
-            1. Choose type of race - Fast race/Tournament/Enduro/Special
-          </p>
-          <p
-            (click)="toggleContent(2)"
-            [ngClass]="{ active: howToStep === 2 }"
-            class="races-desc line"
-          >
-            2. Choose your car
-          </p>
-          <p
-            (click)="toggleContent(3)"
-            [ngClass]="{ active: howToStep === 3 }"
-            class="races-desc line"
-          >
-            3. Pick the right portfolio - You always need to fill up the tank to
-            100% and at least 3 crypto currencies
-          </p>
-          <p
-            (click)="toggleContent(4)"
-            [ngClass]="{ active: howToStep === 4 }"
-            class="races-desc line"
-          >
-            4. Long or short crypto currencies
-          </p>
-          <p
-            (click)="toggleContent(5)"
-            [ngClass]="{ active: howToStep === 5 }"
-            class="races-desc line"
-          >
-            5. Race!
-          </p>
-          <button
-            (click)="switchContent(1)"
-            class="tip-button my-cta-btn-back races-desc"
-          >
-            Race now
-          </button>
+          <p class="category-title-fourth">Gameplan</p>
+          <div class="text-holder">
+            <p>Get NFT car and race for big rewards forever!</p>
+            <p>Trade Race Manager (TRM) is completely free to play model with possibility to maximize your profits with NFTs.</p>
+            <p>We give to our players <span class="my-text-color">1500 IOI Each day!</span> Become part of IOI Army and play TRM to
+              enjoy unlimited rewards</p>
+            <p>Guaranteed prize pools up to <span class="my-text-color">10 IOI each 10 minutes</span> for NFT Holders and special NFT
+              tournament for 100 IOI each day!</p>
+            <p>Races on free track take place every 2 minutes for Everybody with <span class="my-text-color">guaranteed prize pool of 0,28 IOI</span></p>
+            <p>Free members can race with NON NFT car but receive <span class="my-text-color">only 0,1 IOI per WIN in TOP 3 spots </span>
+              and do not receive any points for their effort - Join premium to get points!</p>
+          </div>
+
+          <button class="race-btn my-cta-btn-back" (click)="title = 'ALL RACES'; switchContent(1)">Race now</button>
         </div>
         <div class="right-content">
-          <img
-            *ngIf="howToStep === 1"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-first.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 2"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-second.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 3"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-third.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 4"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-fourth.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 5"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-fifth.png"
-            alt="notebook with image"
-          />
-          <div class="switchers">
-            <div
-              (click)="toggleContent(1)"
-              [ngClass]="{ active: howToStep === 1 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(2)"
-              [ngClass]="{ active: howToStep === 2 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(3)"
-              [ngClass]="{ active: howToStep === 3 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(4)"
-              [ngClass]="{ active: howToStep === 4 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(5)"
-              [ngClass]="{ active: howToStep === 5 }"
-              class="switcher my-cta-btn-back"
-            ></div>
+          <img src="/assets/base/images/nft-racers/black-trm.png" alt="">
+        </div>
+      </div>
+
+      <div class="races-text">
+        <p class="category-title-fourth">Races</p>
+        <div class="text-holder">
+          <p>Every 10 minutes for <span class="my-text-color">max win 10 IOI</span> - Entry: NFT cars + NON NFT cars</p>
+          <p>Every 2 minutes for <span class="my-text-color">max win 0,28 IOI</span> - Entry: NFT cars + NON NFT cars</p>
+          <p>Every day special <span class="my-text-color">Tournament for guaranteed prize pool of 100 IOI</span> - Entry: NFT cars only</p>
+          <p>Tournament for NFT cars only every day for 100 IOI (7days a week) - top 3: 50, 30, 20</p>
+        </div>
+      </div>
+
+      <div class="tables-cont">
+        <div class="table-box big">
+          <p class="category-title-first">Nft cars</p>
+          <div class="my-table-holder">
+
+            <div class="table-row header">
+              <div class="table-item desc">
+                <p>Races</p>
+              </div>
+              <div class="table-item">
+                <p>Depending on car</p>
+              </div>
+              <div class="table-item big">
+                <p>Possible win in IOI</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>1st position</p>
+              </div>
+              <div class="table-item">
+                <p>100 %</p>
+              </div>
+              <div class="table-item big">
+                <p>0,33 - 5,94</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>2nd position</p>
+              </div>
+              <div class="table-item">
+                <p>50 %</p>
+              </div>
+              <div class="table-item big">
+                <p>0,165 - 2,97</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>3rd position</p>
+              </div>
+              <div class="table-item">
+                <p>20 %</p>
+              </div>
+              <div class="table-item big">
+                <p>0,066 - 1,188</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-box">
+          <p class="category-title-first">Non-Nft cars</p>
+          <div class="my-table-holder">
+
+            <div class="table-row header">
+              <div class="table-item desc">
+                <p>NFT Car Tier</p>
+              </div>
+              <div class="table-item">
+                <p>Win in IOI</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>1st position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>2nd position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>3rd position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
+
     <div
       [ngClass]="{
         'dissapear-right-animation': contentAnimation === 1,
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 3"
-      class="content-side tips"
+      class="content-side cars"
     >
       <div class="tip-content">
         <div class="left-content">
-          <p class="category-title-fourth">CARS</p>
-          <p class="races-desc line">
-            Each car is unparalleled way of owning IOI tokens, staking and APY.
-            The main benefit is that you can use your NFTs in-game, buy, sell
-            and trade on open markets. The new era of NFTs in your pocket.
-          </p>
-          <button
-            [routerLink]="['/car/nft-market']"
-            class="tip-button my-cta-btn-back races-desc"
-          >
-            Market
-          </button>
+          <p class="category-title-fourth">Cars</p>
+          <div class="text-holder">
+            <p>Each car is unparalleled way of owning IOI tokens, staking and APY.
+               The main benefit is that you can use your NFTs in-game, buy,
+                sell and trade on open markets. The new era of NFTs in your pocket.</p>
+          </div>
+
+          <button class="race-btn my-cta-btn-back" [routerLink]="['/car/nft-market']">Market</button>
         </div>
         <div class="right-content">
-          <img
-            class="how-to-image"
-            src="assets/base/images/nft-cars/car28.png"
-            alt="nft car"
-          />
+          <img src="/assets/base/images/nft-cars/car28.png" alt="">
         </div>
       </div>
+
+      <div class="tip-content">
+        <div class="left-content">
+          <p class="category-title-first">NFT Cars</p>
+
+          <div class="text-holder cars-text">
+            <p>Your winning are based on the NFT car tier you own. There are several NFT car tiers
+              ranging from common to legendary. In each tier there is special RARE NFT car that is
+              received when you own every car from the tier for FREE! RARE NFT cars are adding
+              multiplier to possible IOI win from every race.</p>
+            <p>Race takes place every 10 minutes and is completely free to play - Each race in 1 hour
+              happening on a different track.</p>
+            <p>Races are free for NFT cars forever as well as for NON NFT cars but with the max win of
+              0,1 IOI for any of top 3 positions for NON NFT Car.</p>
+            <p>Winnings with each car in NFT races are calculated here:</p>
+          </div>
+
+        </div>
+        <div class="right-content">
+          <img class="nft-car" src="/assets/base/images/nft-cars/car27.png" alt="">
+        </div>
+      </div>
+
+      <div class="my-table-holder nft-cars-table">
+
+        <div class="table-row header">
+          <div class="table-item desc">
+            <p>NFT Car Tier</p>
+          </div>
+          <div class="table-item">
+            <p>Win in IOI</p>
+          </div>
+          <div class="table-item big">
+            <p>Rare NFT multiplier</p>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="table-item desc">
+            <p>Common</p>
+          </div>
+          <div class="table-item">
+            <p>0,33</p>
+          </div>
+          <div class="table-item big">
+            <p class="my-text-color">x 1,5</p>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="table-item desc">
+            <p>Super</p>
+          </div>
+          <div class="table-item">
+            <p>0,66</p>
+          </div>
+          <div class="table-item big">
+            <p class="my-text-color">x 2</p>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="table-item desc">
+            <p>Epic</p>
+          </div>
+          <div class="table-item">
+            <p>1,32</p>
+          </div>
+          <div class="table-item big">
+            <p class="my-text-color">x 2,5</p>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="table-item desc">
+            <p>Legendary</p>
+          </div>
+          <div class="table-item">
+            <p>1,98</p>
+          </div>
+          <div class="table-item big">
+            <p class="my-text-color">x 3</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-content non-nft">
+        <div class="left-content">
+          <p class="category-title-first">NON-NFT Cars</p>
+
+          <div class="text-holder cars-text">
+            <p>Free members can race with NON NFT car but receive only 0,1 IOI
+               per WIN in TOP 3 spots and do not receive any points for their effort - Join premium to get points</p>
+            <div class="list-holder">
+              <p>Free track is playable every 2 minutes with win of 0,28 IOI </p>
+              <p>- Both NON NFT and NFT cars can enter</p>
+              <p>- Win is split between first 5 racers</p>
+            </div>
+          </div>
+
+          <div class="my-table-holder">
+
+            <div class="table-row header">
+              <div class="table-item desc">
+                <p>NFT Car Tier</p>
+              </div>
+              <div class="table-item">
+                <p>Win in IOI</p>
+              </div>
+            </div>
+    
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Non-NFT</p>
+              </div>
+              <div class="table-item">
+                <p>0,1 for every position</p>
+              </div>
+            </div>
+    
+          </div>
+
+        </div>
+        <div class="right-content">
+          <img class="nft-car" src="/assets/base/images/nft-cars/car0.png" alt="">
+        </div>
+      </div>
+
     </div>
     <div
       [ngClass]="{
@@ -498,29 +646,20 @@
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 4"
-      class="content-side tips"
+      class="content-side fast-fuel"
     >
       <div class="tip-content">
         <div class="left-content">
           <p class="category-title-fourth">FAST FUEl</p>
-          <p class="races-desc line">
-            Get your cars on the track as soon as possible. Set up your fast
-            fuel, and win more faster! <br /><br />
-            This feature is available only for premium members.
-          </p>
-          <button
-            [routerLink]="['/car/favourite-cars']"
-            class="tip-button my-cta-btn-back races-desc"
-          >
-            Set up Fast fuel
-          </button>
+          <div class="text-holder">
+            <p>Get your cars on the track as soon as possible. Set up your fast fuel, and win more faster!</p>
+            <p>This feature is available only for premium members.</p>
+          </div>
+
+          <button class="race-btn my-cta-btn-back" [routerLink]="['/car/favourite-cars']">Set up Fast fuel</button>
         </div>
         <div class="right-content">
-          <img
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-fuel.png"
-            alt="notebook image"
-          />
+          <img src="/assets/base/images/all-races/how-to-fuel.png" alt="notebook image">
         </div>
       </div>
     </div>
@@ -530,72 +669,42 @@
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 5"
-      class="content-side tips"
+      class="content-side premium"
     >
       <div class="tip-content">
-        <div class="left-premium">
-          <p class="category-title-fourth">PREMIUM MEMBERSHIP</p>
-          <div class="boxes">
-            <div class="item-box first">
-              <p class="menu-title golden">SALE NOW</p>
-              <p class="category-title-second">PREMIUM</p>
-              <p class="menu-title space">ONLY WITH PREMIUM</p>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/tip.png"
-                  alt="tip"
-                />
-                <p class="races-desc">Tip of the day from your team manager</p>
-              </div>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/gift.png"
-                  alt="gift"
-                />
-                <p class="races-desc">5% reward and bonuses</p>
-              </div>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/coin.png"
-                  alt="coins"
-                />
-                <p class="races-desc">Extra bonus for each membership</p>
-              </div>
-            </div>
-            <div class="item-box second">
-              <p class="menu-title hidden">.</p>
-              <p class="category-title-second">FREE</p>
-              <p class="menu-title space">YOU GET</p>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/chart.png"
-                  alt="chart"
-                />
-                <p class="races-desc">Learn about trading</p>
-              </div>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/growth.png"
-                  alt="growth"
-                />
-                <p class="races-desc">Make an extra income</p>
-              </div>
-              <div class="item">
-                <img
-                  src="assets/base/images/team-membership/car-icon.png"
-                  alt="car icon"
-                />
-                <p class="races-desc">Join a community</p>
-              </div>
-            </div>
+        <p class="category-title-fourth">PREMIUM MEMBERSHIP</p>
+        <div class="item-box">
+          <p class="menu-title golden">SALE NOW</p>
+          <p class="category-title-second">PREMIUM</p>
+          <p class="menu-title space">ONLY WITH PREMIUM</p>
+          <div class="item">
+            <img
+              src="assets/base/images/team-membership/tip.png"
+              alt="tip"
+            />
+            <p class="races-desc">Tip of the day from your team manager</p>
           </div>
-          <button
-            [routerLink]="['/teams/join-teams']"
-            class="tip-button my-cta-btn-back races-desc"
-          >
-            Get Premium
-          </button>
+          <div class="item">
+            <img
+              src="assets/base/images/team-membership/gift.png"
+              alt="gift"
+            />
+            <p class="races-desc">5% reward and bonuses</p>
+          </div>
+          <div class="item">
+            <img
+              src="assets/base/images/team-membership/coin.png"
+              alt="coins"
+            />
+            <p class="races-desc">Extra bonus for each membership</p>
+          </div>
         </div>
+        <button
+          [routerLink]="['/teams/join-teams']"
+          class="my-cta-btn-back race-btn"
+        >
+          Get Premium
+        </button>
       </div>
     </div>
     <div
@@ -604,111 +713,130 @@
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 6"
-      class="content-side tips"
+      class="content-side seasons"
     >
+
       <div class="tip-content">
         <div class="left-content">
-          <p class="category-title-fourth">HELPFUL TIPS</p>
-          <p
-            (click)="toggleContent(1)"
-            [ngClass]="{ active: howToStep === 1 }"
-            class="races-desc line"
-          >
-            1. When setting up a portfolio, use indicators to your advantage
-            which will help you predict the market
-          </p>
-          <p
-            (click)="toggleContent(2)"
-            [ngClass]="{ active: howToStep === 2 }"
-            class="races-desc line"
-          >
-            2. Premium members can earn on average 10x more than free members
-          </p>
-          <p
-            (click)="toggleContent(3)"
-            [ngClass]="{ active: howToStep === 3 }"
-            class="races-desc line"
-          >
-            3. Fast-fuel helps player use his strategy ASAP and hit the market
-            right away
-          </p>
-          <p
-            (click)="toggleContent(4)"
-            [ngClass]="{ active: howToStep === 4 }"
-            class="races-desc line"
-          >
-            4. When you join team you are able to see team manager tip of the
-            day that you can benefit from in portfolio preparation
-          </p>
-          <p
-            (click)="toggleContent(5)"
-            [ngClass]="{ active: howToStep === 5 }"
-            class="races-desc line"
-          >
-            5. You always have to choose 3 crypto currencies but you can push 1
-            to 90% so you use almost only one crypto currency at the time
-          </p>
-        </div>
-        <div class="right-content">
-          <img
-            *ngIf="howToStep === 1"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-fourth.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 2"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-premium.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 3"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-fourth.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 4"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-team.png"
-            alt="notebook with image"
-          />
-          <img
-            *ngIf="howToStep === 5"
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-indicators.png"
-            alt="notebook with image"
-          />
-          <div class="switchers">
-            <div
-              (click)="toggleContent(1)"
-              [ngClass]="{ active: howToStep === 1 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(2)"
-              [ngClass]="{ active: howToStep === 2 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(3)"
-              [ngClass]="{ active: howToStep === 3 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(4)"
-              [ngClass]="{ active: howToStep === 4 }"
-              class="switcher my-cta-btn-back"
-            ></div>
-            <div
-              (click)="toggleContent(5)"
-              [ngClass]="{ active: howToStep === 5 }"
-              class="switcher my-cta-btn-back"
-            ></div>
+          <p class="category-title-fourth">Seasons and Ranking</p>
+
+          <div class="text-holder">
+            <p>Get premium and your place on the leaderboard! </p>
+            <p>Each month premium members are playing for <span class="my-text-color">2000 IOI</span> with their teams (TOP 3 teams)
+               and <span class="my-text-color">1000 IOI</span> for the overall best racers (TOP 10 racers) - <span class="my-text-color">3000 IOI Every month!</span></p>
+            <p>Season takes 1 month (start is always the first day of the month) and resets at the last day of the month</p>
+            <p>You need Premium membership to get points for the season.
+               Sooner you will get premium sooner you are legible for ranking system and IOI prize pool at the end of the season</p>
+            <p>With every race you win as premium member you receive points (check the point chart).
+               By the end of the month first 10 racers form the leaderboard are legible
+                for the <span class="my-text-color">prize pool of 1000 IOI</span> based on their results throughout the season.</p>
           </div>
+
         </div>
       </div>
+
+      <div class="tip-content points-chart">
+        <div class="left-content">
+          <p class="category-title-first">Points chart</p>
+          <div class="my-table-holder">
+
+            <div class="table-row header">
+              <div class="table-item desc">
+                <p>Position</p>
+              </div>
+              <div class="table-item">
+                <p>Points</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>1st position</p>
+              </div>
+              <div class="table-item">
+                <p>25</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>2nd position</p>
+              </div>
+              <div class="table-item">
+                <p>18</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>3rd position</p>
+              </div>
+              <div class="table-item">
+                <p>15</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>4th position</p>
+              </div>
+              <div class="table-item">
+                <p>12</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>5th position</p>
+              </div>
+              <div class="table-item">
+                <p>10</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>6th position</p>
+              </div>
+              <div class="table-item">
+                <p>8</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>7th position</p>
+              </div>
+              <div class="table-item">
+                <p>6</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>8th position</p>
+              </div>
+              <div class="table-item">
+                <p>4</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>9th position</p>
+              </div>
+              <div class="table-item">
+                <p>2</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>10th position</p>
+              </div>
+              <div class="table-item">
+                <p>1</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+
+        <div class="right-content">
+          <img src="/assets/base/images/all-races/big-trophy.png" alt="">
+        </div>
+      </div>
+
     </div>
     <div
       [ngClass]="{
@@ -716,33 +844,270 @@
         'engage-right-animation': contentAnimation === 2
       }"
       *ngIf="content === 7"
-      class="content-side tips"
+      class="content-side leaderboard"
     >
       <div class="tip-content">
         <div class="left-content">
-          <p class="category-title-fourth">TEAMS</p>
-          <p class="races-desc line">
-            Create your dream team and share profits with family and friends.
-            Help everyone to achieve the top 10 in position in a race to get
-            team points.<br /><br />
-            The top 3 teams split 5% of the total platform turnover as their
-            bonus.To own a team, hold at least a thousand IOI tokens, invite new
-            users to your team and create a real following, real tribe!<br /><br />
-            Team membership is valid automatically from 1st day of month.
-          </p>
-          <button
-            [routerLink]="['/teams/join-teams']"
-            class="tip-button my-cta-btn-back races-desc"
-          >
-            Join Team
-          </button>
+          <p class="category-title-fourth">Leaderboard</p>
+
+          <div class="text-holder">
+            <p>Team leaderboard - Top 3 teams with the most points in the season - Winning
+               <span class="my-text-color">prize pool of 2000 IOI</span> at the end of the season</p>
+            <p>Racer leaderboard - Top 10 overall racers with the most points - Winning
+               <span class="my-text-color">prize pool of 1000 IOI</span> at the end of the season</p>
+            <p>Racer of the season receive special NFT rings which is Entry
+               for special end of the YEAR tournament for Ultra Rare NFT cars</p>
+            <button class="race-btn my-cta-btn-back" [routerLink]="['/teams/join-teams']">Join team</button>
+          </div>
+
         </div>
+
         <div class="right-content">
-          <img
-            class="how-to-image"
-            src="assets/base/images/all-races/how-to-team-badges.png"
-            alt="team badges"
-          />
+          <img src="assets/base/images/all-races/how-to-team-badges.png" alt="">
+        </div>
+      </div>
+
+      <div class="table-holder">
+        <p class="category-title-first my-text-color">Team bonus 2 000 IOI</p>
+
+        <div class="my-table-holder team-bonus">
+
+          <div class="table-row header">
+            <div class="table-item desc">
+              <p>Position</p>
+            </div>
+            <div class="table-item">
+              <p>Nr.1 Team - 1 000 IOI</p>
+            </div>
+            <div class="table-item">
+              <p>Nr.2 Team - 700 IOI</p>
+            </div>
+            <div class="table-item">
+              <p>Nr.3 Team - 300 IOI</p>
+            </div>
+          </div>
+  
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>1st position</p>
+            </div>
+            <div class="table-item">
+              <p>300</p>
+            </div>
+            <div class="table-item">
+              <p>200</p>
+            </div>
+            <div class="table-item">
+              <p>100</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>2nd position</p>
+            </div>
+            <div class="table-item">
+              <p>200</p>
+            </div>
+            <div class="table-item">
+              <p>120</p>
+            </div>
+            <div class="table-item">
+              <p>60</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>3rd position</p>
+            </div>
+            <div class="table-item">
+              <p>100</p>
+            </div>
+            <div class="table-item">
+              <p>85</p>
+            </div>
+            <div class="table-item">
+              <p>50</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>4th position</p>
+            </div>
+            <div class="table-item">
+              <p>90</p>
+            </div>
+            <div class="table-item">
+              <p>70</p>
+            </div>
+            <div class="table-item">
+              <p>30</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>5th position</p>
+            </div>
+            <div class="table-item">
+              <p>80</p>
+            </div>
+            <div class="table-item">
+              <p>60</p>
+            </div>
+            <div class="table-item">
+              <p>20</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>6th position</p>
+            </div>
+            <div class="table-item">
+              <p>70</p>
+            </div>
+            <div class="table-item">
+              <p>50</p>
+            </div>
+            <div class="table-item">
+              <p>10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>7th position</p>
+            </div>
+            <div class="table-item">
+              <p>60</p>
+            </div>
+            <div class="table-item">
+              <p>40</p>
+            </div>
+            <div class="table-item">
+              <p>10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>8th position</p>
+            </div>
+            <div class="table-item">
+              <p>50</p>
+            </div>
+            <div class="table-item">
+              <p>30</p>
+            </div>
+            <div class="table-item">
+              <p>10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>9th position</p>
+            </div>
+            <div class="table-item">
+              <p>30</p>
+            </div>
+            <div class="table-item">
+              <p>25</p>
+            </div>
+            <div class="table-item">
+              <p>10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>10th position</p>
+            </div>
+            <div class="table-item">
+              <p>20</p>
+            </div>
+            <div class="table-item">
+              <p>20</p>
+            </div>
+            <div class="table-item">
+              <p>10</p>
+            </div>
+          </div>
+  
+        </div>
+
+        <p class="category-title-first my-text-color imaged-text">Racer leaderboard with 1 000 IOI Win
+          <img src="/assets/base/images/home-page/ring.png" alt="" class="ring-img">
+        </p>
+
+        <div class="my-table-holder racers">
+
+          <div class="table-row header">
+            <div class="table-item desc">
+              <p>Racer position by points</p>
+            </div>
+            <div class="table-item">
+              <p>1st</p>
+            </div>
+            <div class="table-item">
+              <p>2nd</p>
+            </div>
+            <div class="table-item">
+              <p>3rd</p>
+            </div>
+            <div class="table-item">
+              <p>4th</p>
+            </div>
+            <div class="table-item">
+              <p>5th</p>
+            </div>
+            <div class="table-item">
+              <p>6th</p>
+            </div>
+            <div class="table-item">
+              <p>7th</p>
+            </div>
+            <div class="table-item">
+              <p>8th</p>
+            </div>
+            <div class="table-item">
+              <p>9th</p>
+            </div>
+            <div class="table-item">
+              <p>10th</p>
+            </div>
+          </div>
+  
+          <div class="table-row">
+            <div class="table-item desc">
+              <p>WIn in IOI</p>
+            </div>
+            <div class="table-item">
+              <p>300</p>
+            </div>
+            <div class="table-item">
+              <p>200</p>
+            </div>
+            <div class="table-item">
+              <p>130</p>
+            </div>
+            <div class="table-item">
+              <p>100</p>
+            </div>
+            <div class="table-item">
+              <p>70</p>
+            </div>
+            <div class="table-item">
+              <p>60</p>
+            </div>
+            <div class="table-item">
+              <p>50</p>
+            </div>
+            <div class="table-item">
+              <p>40</p>
+            </div>
+            <div class="table-item">
+              <p>30</p>
+            </div>
+            <div class="table-item">
+              <p>20</p>
+            </div>
+          </div>
+  
         </div>
       </div>
     </div>
