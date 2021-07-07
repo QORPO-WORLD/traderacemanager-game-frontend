@@ -160,7 +160,7 @@
 
         <div class="controls-holder">
           <div class="control-item" *ngIf="fastEnabled === true"
-          (click)="selRaceType = 'premium_tournament_0'">
+          (click)="selRaceType = premiumTournament?.race_hash">
             <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
           </div>
           <div class="control-item" 
@@ -216,7 +216,7 @@
             </button>
 
             <div class="control-item" *ngIf="fastEnabled === true"
-            (click)="selRaceType = 'car_race_short_0'">
+            (click)="selRaceType = freeRace?.race_hash">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
@@ -269,7 +269,8 @@
         </div>
 
         <div class="controls-holder">
-          <div class="control-item">
+          <div class="control-item" *ngIf="fastEnabled === true"
+          (click)="selRaceType = fastRaces[0]?.race_hash">
             <img src="/assets/base/images/race-type/fast-red.svg" alt="">
           </div>
           <div class="control-item" *ngIf="baseFavRaces[1].fav !== undefined" 
@@ -324,7 +325,7 @@
             </button>
 
             <div class="control-item" *ngIf="fastEnabled === true"
-            (click)="selRaceType = 'car_race_portfolio_0'">
+            (click)="selRaceType = fastRaces[fastRaceIndex]?.race_hash">
               <img src="/assets/base/images/race-type/fast-blue.svg" alt="">
             </div>
 
