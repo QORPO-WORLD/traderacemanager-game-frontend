@@ -1067,6 +1067,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_hash]);
   }
 
+  refuelNext(){
+    this.router.navigate(['/car/fuel-car/' + this.nextRaceHash]);
+  }
+
+
   getRandomNum(myNum: number) {
     if (myNum > 0) {
       this.scoreOffset = Math.floor(Math.random() * (80 - 50 + 1) + 50);

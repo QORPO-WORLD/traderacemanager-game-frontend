@@ -153,7 +153,7 @@
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>0</p>
+              <p>{{premiumTournament?.prize_pool}}</p>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@
         </div>
 
         <div class="btns-holder">
-          <button [routerLink]="['/car/fuel-car/premium_tournament_0']" class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+          <button [routerLink]="['/car/fuel-car/' + premiumTournament?.race_hash]" class="active-btn">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
         </div>
 
       </div>
@@ -207,10 +207,10 @@
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>0</p>
+              <p>{{ freeRace?.prize_pool }}</p>
             </div>
 
-            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_short_0']">
+            <button class="play-btn" [routerLink]="['/car/fuel-car/' + freeRace?.race_hash]">
               <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
               <div class="back-maker"></div>
             </button>
@@ -263,7 +263,7 @@
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>0</p>
+              <p>{{fastRaces[0]?.prize_pool}}</p>
             </div>
           </div>
         </div>
@@ -281,7 +281,7 @@
 
         <div class="btns-holder">
           <button class="inactive" (click)="openRulesModal()">Win more with NFTs</button>
-          <button class="active-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
+          <button class="active-btn" [routerLink]="['/car/fuel-car/' + fastRaces[0]?.race_hash]">Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></button>
         </div>
 
       </div>
@@ -315,10 +315,10 @@
 
             <div class="info-box">
               <img src="/assets/base/images/race-type/token-white.svg" alt="">
-              <p>{{ fastRaces[fastRaceIndex]?.bet_amount }}</p>
+              <p>{{ fastRaces[fastRaceIndex]?.prize_pool }}</p>
             </div>
 
-            <button class="play-btn" [routerLink]="['/car/fuel-car/car_race_portfolio_0']">
+            <button class="play-btn" [routerLink]="['/car/fuel-car/' + fastRaces[fastRaceIndex]?.race_hash]">
               <span>Join <img src="/assets/base/images/icons/play-icon.svg" alt=""></span>
               <div class="back-maker"></div>
             </button>

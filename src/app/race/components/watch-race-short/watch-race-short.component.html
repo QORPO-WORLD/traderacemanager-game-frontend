@@ -752,7 +752,7 @@
             <p>{{winnersList[0]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[0]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[0]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[0]?.team !== 'SYSTEM_TEAM' ? winnersList[0]?.team : '-' }}</p>
@@ -771,7 +771,7 @@
             <p>{{winnersList[1]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[1]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[1]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[1]?.team !== 'SYSTEM_TEAM' ? winnersList[1]?.team : '-' }}</p>
@@ -790,7 +790,7 @@
             <p>{{winnersList[2]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[2]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[2]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[2]?.team !== 'SYSTEM_TEAM' ? winnersList[2]?.team : '-' }}</p>
@@ -843,7 +843,7 @@
   
     <div class="buttons-holder">
       <ng-container *ngIf="raceDataildata?.tournament_id === null">
-        <button class="my-cta-btn azure-btn"  (click)="refuel()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
+        <button class="my-cta-btn azure-btn"  (click)="refuelNext()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
         <button class="my-cta-btn" (click)="repeatSignup()"  [disabled]="repeatDisabled === true"><span *ngIf="repeatDisabled === false"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.repeat' | translate}}</span><span *ngIf="repeatDisabled === true">{{'fuel_car.loading' | translate}}</span></button>
       </ng-container>
       
