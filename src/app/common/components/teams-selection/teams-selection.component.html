@@ -127,7 +127,7 @@
       <button
         *ngIf="managerType === false"
         class="join-team my-cta-btn-back"
-        (click)="openMembershipModal(1, tt.id)"
+        (click)="openMembershipModal(1, tt.id, tt.monthly, tt.quarterly, tt.yearly)"
       >
         Join team
       </button>
@@ -194,6 +194,9 @@
   *ngIf="modalOpened === 1"
   (openedModal)="openMembershipModal($event)"
   [selectedTeamId]="selectedTeamId"
+  [monthlyPrice]="monthlyPrice"
+  [quarterlyPrice]="quarterlyPrice"
+  [yearlyPrice]="yearlyPrice"
 ></app-team-membership>
 
 <div

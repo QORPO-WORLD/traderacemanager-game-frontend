@@ -861,6 +861,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
           this.totalPagesWinner = x.total_pages;
           this.winnersList = x.winners;
+          console.log("jako");
+          console.log(this.winnersList);
           this.frozenTicket = x.ticker_froze;
           if (this.raceData.me) {
             this.balanceService.balanceHasbeenChanged();

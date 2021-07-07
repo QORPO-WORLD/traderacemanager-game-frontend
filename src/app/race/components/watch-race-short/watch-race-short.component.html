@@ -195,12 +195,21 @@
         </div>
 
         <div class="small-box">
-          <div class="img-holder">
-            <img src="/assets/base/images/zavod/high-icon.svg" alt="">
-          </div>
-          <div class="inner-box">
-            <p>{{ raceDataildata?.high_score?.user_nickname }} <span class="high">{{ raceDataildata?.high_score?.score | number:'1.0-2':'fr' }} &#8240;</span></p>
-          </div>
+          <ng-container *ngIf="raceDataildata?.tour_index==null">
+            <div class="img-holder">
+              <img src="/assets/base/images/zavod/high-icon.svg" alt="">
+            </div>
+            <div class="inner-box">
+              <p>{{ raceDataildata?.high_score?.user_nickname }} <span class="high">{{ raceDataildata?.high_score?.score | number:'1.0-2':'fr' }} &#8240;</span></p>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="raceDataildata?.tour_index!=null">
+            <div class="img-holder">
+            </div>
+            <div class="inner-box">
+              <p>{{ raceDataildata?.tour_index }} / 19</p>
+            </div>
+          </ng-container>
         </div>
 
         <div class="small-box position">
@@ -832,9 +841,7 @@
             <p>{{ player?.team !== 'SYSTEM_TEAM' ? player?.team : '-' }}</p>
           </div>
           <div class="my-col win">
-            <p>{{player?.points ? (player?.points| number:'1.0-2':'fr') : 0}} 
-              <span >{{'shared.ioi' | translate}}</span>
-              </p>
+            <p>{{player?.points ? (player?.points| number:'1.0-2':'fr') : 0}}</p>
           </div>
         </div>
         
