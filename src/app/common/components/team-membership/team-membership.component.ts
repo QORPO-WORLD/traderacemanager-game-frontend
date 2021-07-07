@@ -27,6 +27,9 @@ export class TeamMembershipComponent implements OnInit {
   startNow = false;
   myDriverStats: any;
   discount: any;
+  @Input() monthlyPrice = 50;
+  @Input() quarterlyPrice = 135;
+  @Input() yearlyPrice = 420;
   @Input() selectedTeamId = 1;
   @Output() openedModal = new EventEmitter<number>();
 

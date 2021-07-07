@@ -3,7 +3,7 @@ import { BridgeComponent } from "./../bridge/bridge.component";
 import { ConfirmWithdrawalComponent } from "./confirm-withdrawal/confirm-withdrawal.component";
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { RewardsComponent } from "./pages/rewards/rewards.component";
+//import { RewardsComponent } from "./pages/rewards/rewards.component";
 import { AffilateComponent } from "./pages/affilate/affilate.component";
 import { routing } from "./others.routing";
 import { CommonModule } from "../common/common.module";
@@ -33,13 +33,13 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "rewards",
+        redirectTo: "/race/start-race",
         pathMatch: "full",
       },
-      {
-        path: "rewards",
-        component: RewardsComponent,
-      },
+      // {
+      //   path: "rewards",
+      //   component: RewardsComponent,
+      // },
       {
         path: "affilate",
         component: AffilateComponent,
@@ -85,7 +85,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [
-    RewardsComponent,
+    //RewardsComponent,
     AffilateComponent,
     ConfirmWithdrawalComponent,
     //DailyTasksComponent,
@@ -109,6 +109,6 @@ const routes: Routes = [
     IonicModule,
   ],
   providers: [SocialSharing],
-  exports: [AboutTokensComponent, AffilateComponent, RewardsComponent],
+  exports: [AboutTokensComponent, AffilateComponent],
 })
 export class OthersModule {}

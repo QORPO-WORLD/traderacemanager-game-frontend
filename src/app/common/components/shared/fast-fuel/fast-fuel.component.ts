@@ -248,20 +248,6 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
     private identityService: AuthService,
   private racetwoapi: RacesV2Service) {
 
-    if (this.raceId === 'car_race_24hrs_1000') {
-      this.trxneeded = 1000;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else if (this.raceId === 'wednesday_party_race_0') {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need 1000 TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    } else {
-      this.trxneeded = 0;
-      this.validerr = 'To fuel you car you need ' + this.raceId + ' TRX, must mix 3 different coins with min. ' +
-        ' 5% in each you must have 100% in your  tank to get into the race. (example 5% BTC, 90% TRX, 5% ETH)';
-    }
-
     if (this.raceId === 'car_race_ioi_1' || this.raceId === 'car_race_ioi_3' || this.raceId === 'car_race_ioi_5') {
       this.isIoi = true;
       this.currency = 'IOI';
@@ -361,7 +347,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         const newdata: any = olddata;
         const newFavdata: any = datax;
         const mynextrace = newdata.filter(item => {
-          return item.race_identifier === this.raceId;
+          return item.race_hash === this.raceId;
         });
 
         this.carsCanJoin = mynextrace[0].available_cars;
@@ -422,7 +408,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         this.canJoinIoi3 = uniq8;
 
         this.chosenRace = newdata.filter(item => {
-          return item.race_identifier === this.raceId;
+          return item.race_hash === this.raceId;
         });
 
         for (let x = 0; x < this.chosenRace[0].available_cars.length; x++) {

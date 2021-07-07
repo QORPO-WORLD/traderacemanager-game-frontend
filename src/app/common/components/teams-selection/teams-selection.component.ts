@@ -50,6 +50,9 @@ export class TeamsSelectionComponent implements OnInit {
   myWW = 1920;
   selectedTeamId = 1;
   modalOpened = 0;
+  monthlyPrice = 50;
+  quarterlyPrice = 135;
+  yearlyPrice = 420;
 
   constructor(
     protected api: TeamsService,
@@ -78,10 +81,9 @@ export class TeamsSelectionComponent implements OnInit {
 
   getTeams() {
     this.api.teamsList().subscribe((data) => {
-      console.log('kokoti na fe');
       const newdata = data.results;
       const datax: any = data;
-      this.discount = datax.discount[0];
+      // this.discount = datax.discount[0];
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
       });
@@ -221,10 +223,13 @@ export class TeamsSelectionComponent implements OnInit {
     }
   }
 
-  openMembershipModal(state: number, teamId?: number) {
+  openMembershipModal(state: number, teamId?: number, monthlyPrice?: number, quarterlyPrice?: number, yearlyPrice?: number) {
     this.modalOpened = state;
     if (teamId) {
       this.selectedTeamId = teamId;
+      this.monthlyPrice = monthlyPrice;
+      this.quarterlyPrice = quarterlyPrice;
+      this.yearlyPrice = yearlyPrice;
     }
   }
 
