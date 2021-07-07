@@ -1,3 +1,4 @@
+import { HowToComponent } from "./pages/how-to/how-to.component";
 import { VerifyauthenticatorComponent } from "./pages/verify-authenticator/verify-authenticator.component";
 import { VerifyUserComponent } from "./pages/verify-user/verify-user.component";
 import { MetamaskSignupComponent } from "./../others/components/metamask-signup/metamask-signup.component";
@@ -52,7 +53,7 @@ import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-poli
 import { TermsConditionsComponent } from "./components/terms-conditions/terms-conditions.component";
 import { WelcomePageComponent } from "./components/welcome-page/welcome-page.component";
 import { HomepageLayoutComponent } from "../common/components/layout/homepage-layout/homepage-layout.component";
-import { HomeBundleDetailComponent } from './pages/home-bundle-detail/home-bundle-detail.component';
+import { HomeBundleDetailComponent } from "./pages/home-bundle-detail/home-bundle-detail.component";
 
 //import { NgxCaptchaModule } from 'ngx-captcha';
 //import { RecaptchaService } from './services/recaptcha.service';
@@ -96,7 +97,12 @@ const routes: Routes = [
         path: "bundle-detail",
         component: HomeBundleDetailComponent,
         data: { title: "Bundle detail" },
-      }
+      },
+      {
+        path: "how-to",
+        component: HowToComponent,
+        data: { title: "How to" },
+      },
     ],
   },
   {
@@ -218,7 +224,8 @@ const routes: Routes = [
     HomeAffiliateComponent,
     HomeBundlesComponent,
     HomepageLayoutComponent,
-    HomeBundleDetailComponent
+    HomeBundleDetailComponent,
+    HowToComponent,
   ],
   providers: [
     AutologinGuard,
