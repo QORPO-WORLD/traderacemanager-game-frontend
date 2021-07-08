@@ -33,13 +33,13 @@ export class ErrorService {
 
             
            
-            if (error.error.message) {
+            if (error.error.message && error.error.status !== 500) {
       
                 this.notifyService.error(error.error.message);
                 return;
             }
             
-            if (error.error.description) {
+            if (error.error.description && error.error.status !== 500) {
 
                 this.notifyService.error(error.error.description);
                 return;
