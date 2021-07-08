@@ -161,7 +161,7 @@ export class NftOverviewComponent implements OnInit {
   pushTo() {
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       this.myAssets = data;
-      this.allCars = this.myAssets.total_cars;
+      this.allCars = this.myAssets.total_cars - 1;
       this.allRacers = this.myAssets.total_racers;
       this.carAssets = data;
       this.isOwner();
