@@ -11,14 +11,11 @@
       <ng-container *ngFor="let mainr of nextRaces; let i = index">
 
         <div class="box-item my-border-grad">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '.png'" alt="map">
+          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '-blue.png'" alt="map">
           <div class="inner-holder">
             <p class="race-name">
-              <span *ngIf="mainr.race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
-              <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'start-race.fast_race' | translate}}</span>
+              <span *ngIf="mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
               <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
@@ -77,10 +74,8 @@
     <ng-container *ngIf="raceFilter === 'live'">
       <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
         <div class="box-item my-border-grad">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '.png'" alt="map">
+          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '-blue.png'" alt="map">
           <div class="inner-holder">
 
 
@@ -105,10 +100,8 @@
       </ng-container>
       <ng-container *ngFor="let mainr of liveRacesData; let i = index">
         <div class="box-item my-border-grad">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '.png'" alt="map">
+          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '-blue.png'" alt="map">
           <div class="inner-holder">
 
 
@@ -143,10 +136,8 @@
         <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
       </div>
         <div class="box-item my-border-grad" *ngFor="let mainr of liveRacesData; let i = index">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-          <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '.png'" alt="map">
+          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '-blue.png'" alt="map">
           <div class="inner-holder">
 
 
@@ -172,10 +163,8 @@
         </div>
 
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
-        <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-        <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-        <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-        <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+        <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '.png'" alt="map">
+        <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id-1].image + '-blue.png'" alt="map">
         <div class="inner-holder">
           <p class="race-name">
             <span *ngIf="mainr.new_race_type === 'car_race_enduro'">{{'start-race.enduro' | translate}}</span>
