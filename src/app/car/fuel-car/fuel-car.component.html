@@ -1,6 +1,11 @@
 <div class="main-holder" *ngIf="!myCars"><app-ioiloader></app-ioiloader></div>
 
-<div class="main-holder" [ngClass]="{'main-holder-2': stepIndex===2}" id="selectCoinsScroll" *ngIf="myCars?.length > 0">
+<div
+  class="main-holder"
+  [ngClass]="{ 'main-holder-2': stepIndex === 2 }"
+  id="selectCoinsScroll"
+  *ngIf="myCars?.length > 0"
+>
   <ng-container *ngIf="stepIndex === 1 && introModal === false">
     <div [routerLink]="['/race/all-races']" class="content-title">
       <img
@@ -113,15 +118,11 @@
     </div>
   </ng-container>
   <div class="main-top-panel">
-    <div
-      class="boxes-holder"
-      [ngClass]="{ 'step1-timer': stepIndex===1 }"
-    >
+    <div class="boxes-holder" [ngClass]="{ 'step1-timer': stepIndex === 1 }">
       <p *ngIf="stepIndex === 1" class="desc starts-in">Race starts in</p>
       <div *ngIf="stepIndex === 1" class="timer-box">
         <div class="overlay my-cta-btn-back"></div>
         <div class="inner">
-
           <p class="time" *ngIf="timerReady === true">
             <app-timer
               [value]="raceStarts"
@@ -141,7 +142,6 @@
           <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
         </div>
         <div class="bet-item win-chance">
-          
           <p
             class="value my-cta-btn-back"
             *ngIf="selectedCarsToRace?.length > 0"
@@ -168,28 +168,24 @@
     <div class="content-holder">
       <div class="switchers-holder">
         <p
-     
           (click)="changeEdition(1)"
           [ngClass]="{ inactive: editionIndex !== 1 }"
         >
           Common
         </p>
         <p
-        
           (click)="changeEdition(2)"
           [ngClass]="{ inactive: editionIndex !== 2 }"
         >
           Super
         </p>
         <p
-          
           (click)="changeEdition(3)"
           [ngClass]="{ inactive: editionIndex !== 3 }"
         >
           Epic
         </p>
         <p
-         
           (click)="changeEdition(4)"
           [ngClass]="{ inactive: editionIndex !== 4 }"
         >
@@ -213,8 +209,7 @@
                 class="car-item"
                 (click)="selectCarToRace(i); manualCarChange(i)"
                 [ngClass]="{
-                  'big-center':
-                    i === selectedSlideIndex,
+                  'big-center': i === selectedSlideIndex,
                   'mid-sides':
                     i === selectedSlideIndex - 1 ||
                     i === selectedSlideIndex + 1,
@@ -222,7 +217,10 @@
                     i === selectedSlideIndex - 2 || i === selectedSlideIndex + 2
                 }"
               >
-                <div class="car-check" *ngIf="displayArray[i]?.selected === true">
+                <div
+                  class="car-check"
+                  *ngIf="displayArray[i]?.selected === true"
+                >
                   <div class="inner">
                     <p>
                       <img
@@ -1287,11 +1285,26 @@
             </div>
           </div>
           <div class="box-heading analysis">
-            <p class="heading" (click)="selectedChart='chart'" [ngClass]="{'active': selectedChart==='chart'}">Chart</p>
-            <p class="heading" (click)="selectedChart='indicator'" [ngClass]="{'active': selectedChart==='indicator'}">Indicator</p>
+            <p
+              class="heading"
+              (click)="selectedChart = 'chart'"
+              [ngClass]="{ active: selectedChart === 'chart' }"
+            >
+              Chart
+            </p>
+            <p
+              class="heading"
+              (click)="selectedChart = 'indicator'"
+              [ngClass]="{ active: selectedChart === 'indicator' }"
+            >
+              Indicator
+            </p>
           </div>
           <div class="inner" *ngIf="selectedSymbol">
-            <app-indicator [type]="selectedSymbol" [chart]="selectedChart"></app-indicator>
+            <app-indicator
+              [type]="selectedSymbol"
+              [chart]="selectedChart"
+            ></app-indicator>
           </div>
         </div>
       </div>
@@ -1922,7 +1935,10 @@
           </div>
         </div>
       </div> -->
-      <div class="inner-btn my-cta-btn-back" (click)="signupToRace()">
+      <div
+        class="inner-btn my-cta-btn-back"
+        (click)="isLoading === false ? signupToRace() : null"
+      >
         <p *ngIf="isLoading === false">Start race &gt;</p>
         <p *ngIf="isLoading === true">Loading..</p>
       </div>
