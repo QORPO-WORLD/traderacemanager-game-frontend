@@ -84,4 +84,7 @@ export class HowToComponent implements OnInit {
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+  joinTelegram() {
+    window.open("https://t.me/TradingIOI", "_blank").focus();
+  }
 }

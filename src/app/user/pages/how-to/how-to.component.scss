@@ -1,7 +1,12 @@
 * {
   margin: 0px;
 }
-
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
 .dissapear-right-animation {
   animation: dissapear-right 0.3s linear;
   -webkit-animation: dissapear-right 0.3s linear;
@@ -398,45 +403,58 @@
 .category-title-big {
   font-family: Earth Orbiter;
   font-style: normal;
-  font-weight: 7;
+  font-weight: bold;
   font-size: 85px;
+  z-index: 1;
 }
 .category-title-first {
   font-family: Earth Orbiter;
   font-style: normal;
   font-weight: bold;
   font-size: 60px;
+  z-index: 1;
 }
 .category-title-second {
+  font-family: Earth Orbiter;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
+  z-index: 1;
 }
 .category-title-third {
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
+  z-index: 1;
 }
 .category-title-fourth {
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
+  z-index: 1;
 }
 .category-title-fifth {
   font-style: normal;
   font-weight: bold;
   font-size: 17px;
+  z-index: 1;
 }
 .races-desc {
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   opacity: 0.8;
+  z-index: 1;
 }
 
 .red {
   color: #ff183f !important;
   font-weight: bold !important;
+  &.link {
+    transition: 0.3s;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .action-btn {
@@ -772,6 +790,12 @@
   }
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
+  .desktop {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
   .video-section {
     .video-content {
       width: 90%;
