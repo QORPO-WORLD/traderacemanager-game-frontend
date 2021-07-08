@@ -161,12 +161,27 @@
           </p>
         </div>
         <div
-          (click)="
-            item['type'] != 'track'
-              ? showAsset(3, item['id'], item['type'], item['position'])
-              : null
+          *ngIf="
+            (item['type'] != 'track' && item['type'] != 'car') ||
+            (item['type'] === 'car' && item['rare'] === undefined)
           "
-          (click)="item['type'] != 'track' ? scrollTop(myScroll2) : null"
+          (click)="
+            showAsset(3, item['id'], item['type'], item['position']);
+            scrollTop(myScroll2)
+          "
+          class="box-button my-cta-btn-back"
+        >
+          <img
+            src="assets/base/images/market/ioi-token.png"
+            alt="ioi token icon"
+          />
+          <p class="category-title-third">{{ item["price"] }}</p>
+        </div>
+        <div
+          *ngIf="
+            item['type'] === 'track' ||
+            (item['type'] === 'car' && item['rare'] != undefined)
+          "
           class="box-button my-cta-btn-back"
         >
           <img
