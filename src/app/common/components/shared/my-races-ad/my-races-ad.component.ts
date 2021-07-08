@@ -56,6 +56,14 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
     { type: 'car_race_enduro_100', fav: false },
   ];
   myFavRaces = [];
+  tracks =[
+    {image: 'card-type-basic', name: 'Free track'},
+    {image: 'card-type1', name: 'Desert'},
+    {image: 'card-type5', name: 'Dark forest'},
+    {image: 'card-type10', name: 'Night city'},
+    {image: 'card-type50', name: 'Sea bridge'},
+    {image: 'card-type100', name: 'Underground'},
+  ]
   constructor(private api: RacesService, private actv: Router, private drvrsrvc: DriversService,
     private identityService: AuthService) {
 
