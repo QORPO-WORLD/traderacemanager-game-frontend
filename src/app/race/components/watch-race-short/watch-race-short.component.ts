@@ -349,8 +349,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
       const retype: any = data;
       this.raceDataildata = retype;
-      console.log(this.raceDataildata);
-      console.log('fjdksl');
       this.endsIn = data.ends_in;
 
       if (data.tournament_id !== null && data.tour_index > 1) {
@@ -358,7 +356,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       }
 
       if (this.raceDataildata.is_cancelled === true) {
-        console.log('cancel');
         this.redirectToNextRace();
         clearInterval(this.detailInterval);
         return;
@@ -1155,20 +1152,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   resolveBackType() {
-    if (this.raceDataildata.race_identifier === 'car_race_ioi_100' || this.raceDataildata.race_identifier === 'car_race_enduro_100' || this.raceDataildata.race_identifier === 'classic_tournament_100') {
-      this.backType = 2;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_1' || this.raceDataildata.race_identifier === 'car_race_enduro_1') {
-      this.backType = 3;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5' || this.raceDataildata.race_identifier === 'car_race_enduro_5' || this.raceDataildata.race_identifier === 'classic_tournament_5') {
-      this.backType = 4;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_10' || this.raceDataildata.race_identifier === 'car_race_enduro_10' || this.raceDataildata.race_identifier === 'classic_tournament_10') {
-      this.backType = 5;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_50' || this.raceDataildata.race_identifier === 'car_race_enduro_50') {
-      this.backType = 6;
-    } else {
-      this.backType = 1;
-    }
-    this.billboardType = this.randomInteger(1, 5)
+    this.backType = this.raceDataildata.map_id;
+    this.billboardType = this.randomInteger(1, 5);
   }
 
   getPositionInRace() {

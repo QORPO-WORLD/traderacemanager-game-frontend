@@ -419,6 +419,7 @@ export class HomePageComponent implements OnInit {
     } else {
       this.carouselStep++;
     }
+    this.setCarInterval();
   }
 
   prevCarItem() {
@@ -427,6 +428,7 @@ export class HomePageComponent implements OnInit {
     } else {
       this.carouselStep--;
     }
+    this.setCarInterval();
   }
 
   manualCarSwitch(index: number) {
@@ -436,6 +438,7 @@ export class HomePageComponent implements OnInit {
   }
 
   setCarInterval() {
+    clearInterval(this.carouselInterval);
     this.carouselInterval = setInterval(() => {
       this.nextCarItem();
     }, 7000);

@@ -16,20 +16,15 @@
       </ul>
     </ng-container>
 
-    <ng-container *ngIf="tourId === null && betAmount > 0">
-      <h2>{{ 'race.type.' + raceId + '_simple' | translate}} race</h2>
-      <p>You can participate in this race for a bet of {{betAmount}} IOI to win up to {{betAmount * 100}} IOI which is 100 times more! Your car speed will depend
-        on the performance of chosen crypto to fuel up with. Either give it a go like a pro, predict market and fuel up yourself or use the
-        automatic function to fuel up with just one click. More cars you have in one race, a better chance to win you get. </p>
-      <p *ngIf="isEnduro === false">Duration is 30 seconds.</p>
-      <p *ngIf="isEnduro === true">Duration is 15 minutes.</p>
+    <ng-container *ngIf="tourId === null && raceType === 'car_race_short'">
+      <h2>Free race</h2>
+      <p>Race that runs every 2 minutes with possible win of 0,28 IOI. You can enter this race with both NFT and NON-NFT cars.</p>
+      <p>Duration is 30 seconds.</p>
     </ng-container>
 
-    <ng-container *ngIf="tourId === null && betAmount === 0">
-      <h2>{{ 'race.type.' + raceId + '_simple' | translate}} race</h2>
-      <p>Free race starts every 2 minutes and is considered as an onboarding game and a tutorial. It is limited up to 200 players per one
-        round race.
-        The first 10 players split the price pool and you can join with maximum of 4 cars.</p>
+    <ng-container *ngIf="tourId === null && raceType === 'car_race_portfolio'">
+      <h2>Portfolio race</h2>
+      <p>Race that runs every 10 minutes with possible win of 10 IOI. You can enter this race with both NFT and NON-NFT cars.</p>
       <p>Duration is 30 seconds.</p>
     </ng-container>
     
