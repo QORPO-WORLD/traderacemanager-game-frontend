@@ -81,4 +81,7 @@ export class HowToComponent implements OnInit {
   contentSwitcher(content: number) {
     this.content = content;
   }
+  scrollTop(elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
