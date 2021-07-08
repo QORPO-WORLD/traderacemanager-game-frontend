@@ -16,6 +16,7 @@ export interface RaceDetail {
   race_progress: number;
   my_cars: Array<MyCars>;
   is_cancelled: boolean;
+  map_id: number;
   race: Array<InitialCardsExtra>;
   cards: Array<InitialCardsExtra>;
   starts_in: number;
