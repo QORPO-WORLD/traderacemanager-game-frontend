@@ -57,6 +57,7 @@ export class MyRacesAdComponent implements OnInit, OnDestroy {
   ];
   myFavRaces = [];
   tracks =[
+    { image: 'card-type-basic', name: 'Binary fight' },
     { image: 'card-type-basic', name: 'Free track' },
     {image: 'card-type100', name: 'Underground'},
     { image: 'card-type1', name: 'Desert' },
