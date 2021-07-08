@@ -176,6 +176,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   actualPageWinner = 1;
   totalPagesWinner: number;
   showRotateMsg = true;
+  points = [25,18,15,12,10,8,6,4,2,1];
   carsClone: Array<any>;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
