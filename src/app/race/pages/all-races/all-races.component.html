@@ -129,7 +129,7 @@
               <p><app-timer
                 *ngIf="premiumTournament"
                 [value]="premiumTournament?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -187,7 +187,7 @@
               <p><app-timer
                 *ngIf="freeRace"
                 [value]="freeRace?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -232,7 +232,7 @@
 
       <p class="box-heading big">Competition races with guaranteed prizepool</p>
 
-      <div class="big-box second">
+      <div class="big-box second" [ngClass]="'type' + fastRaces[0]?.map_id">
         <div class="info-cont">
           <div class="info-flex">
             <div class="info-box">
@@ -240,7 +240,7 @@
               <p><app-timer
                 *ngIf="fastRaces[0]"
                 [value]="fastRaces[0]?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -296,7 +296,7 @@
               <p><app-timer
                 *ngIf="fastRaces[fastRaceIndex]"
                 [value]="fastRaces[fastRaceIndex]?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
