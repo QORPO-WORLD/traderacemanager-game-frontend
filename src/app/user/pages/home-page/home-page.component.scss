@@ -107,6 +107,33 @@ h6 {
   height: 100vh;
   min-height: 600px;
   position: relative;
+  .buttons {
+    position: absolute;
+    bottom: 2.5%;
+    transform: translateX(-50%);
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    .change-btn {
+      transition: 0.2s;
+      cursor: pointer;
+
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      margin: 0px 20px;
+      &.disabled {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+    }
+    .change-btn:active {
+      transform: scale(0.92);
+    }
+  }
   .car-switchers {
     position: absolute;
     bottom: 0;
@@ -2184,6 +2211,12 @@ h6 {
     }
   }
   .top-section-wrapper {
+    .buttons {
+      .change-btn {
+        width: 50px;
+        height: 50px;
+      }
+    }
     .my-carousel-item {
       &.item2 {
         .top-section {
@@ -2726,7 +2759,7 @@ h6 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 50px;
+      bottom: 100px;
       width: 90%;
       -webkit-transform: translateX(-50%);
       -moz-transform: translateX(-50%);
@@ -3015,7 +3048,7 @@ h6 {
           }
           .bundle-carousel {
             position: relative;
-            top: 0;
+            top: -50px;
             transform: none;
             height: 56%;
             margin: 10px auto 0;
@@ -4700,7 +4733,9 @@ footer {
         margin: 0 0 20px 0;
         color: #ffffff;
       }
-      p,a,button{
+      p,
+      a,
+      button {
         font-size: 16px;
         font-weight: 300;
         color: rgba(255, 255, 255, 0.7);
@@ -4711,24 +4746,31 @@ footer {
         border: none;
         text-align: left;
         padding: 0;
-        &.mail{
-            margin-bottom: 28px;
-            a{
-                display: inline-block;
-                width: unset;
-                font-weight: 600;
-            }
-        }
-        &.my-btn{
-            width: unset;
+        &.mail {
+          margin-bottom: 28px;
+          a {
             display: inline-block;
-            margin-top: 46px;
-            font-size: 20px;
-            font-weight: 400;
-            padding: 10px 30px;
-            background: radial-gradient(794.78% 147% at 64% 100%, #F3683A 0%, #F9EC32 100%), linear-gradient(104.21deg, #FE173F 106.49%, #240B36 168.64%), linear-gradient(269.79deg, #2B16F7 -89.87%, #23FFFF 99.87%), #111111;
-            box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03), 2px 3px 10px rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
+            width: unset;
+            font-weight: 600;
+          }
+        }
+        &.my-btn {
+          width: unset;
+          display: inline-block;
+          margin-top: 46px;
+          font-size: 20px;
+          font-weight: 400;
+          padding: 10px 30px;
+          background: radial-gradient(
+              794.78% 147% at 64% 100%,
+              #f3683a 0%,
+              #f9ec32 100%
+            ),
+            linear-gradient(104.21deg, #fe173f 106.49%, #240b36 168.64%),
+            linear-gradient(269.79deg, #2b16f7 -89.87%, #23ffff 99.87%), #111111;
+          box-shadow: -3px -3px 10px rgba(255, 255, 255, 0.03),
+            2px 3px 10px rgba(0, 0, 0, 0.6);
+          border-radius: 15px;
         }
       }
       .linked {
