@@ -134,7 +134,7 @@ export class TeamsSelectionComponent implements OnInit {
           this.getMyTeam();
           this.notify.error(
             "sucess",
-            "Thank you for your interest! You will be part of the team from"
+            "You are now part of the team!"
           );
         }, 100);
       });
