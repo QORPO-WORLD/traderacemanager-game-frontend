@@ -217,4 +217,10 @@ export class AllRacesComponent implements OnInit {
     console.log(this.baseFavRaces);
   }
 
+  onTimerComplete() {
+    setTimeout(() => {
+      this.getAllRaces();
+    }, 100);
+  }
+
 }

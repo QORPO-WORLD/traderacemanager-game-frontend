@@ -129,7 +129,7 @@
               <p><app-timer
                 *ngIf="premiumTournament"
                 [value]="premiumTournament?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -187,7 +187,7 @@
               <p><app-timer
                 *ngIf="freeRace"
                 [value]="freeRace?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -232,7 +232,7 @@
 
       <p class="box-heading big">Competition races with guaranteed prizepool</p>
 
-      <div class="big-box second">
+      <div class="big-box second" [ngClass]="'type' + fastRaces[0]?.map_id">
         <div class="info-cont">
           <div class="info-flex">
             <div class="info-box">
@@ -240,7 +240,7 @@
               <p><app-timer
                 *ngIf="fastRaces[0]"
                 [value]="fastRaces[0]?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -296,7 +296,7 @@
               <p><app-timer
                 *ngIf="fastRaces[fastRaceIndex]"
                 [value]="fastRaces[fastRaceIndex]?.starts_in_seconds"
-                (onComplete)="getAllRaces()"
+                (onComplete)="onTimerComplete()"
               ></app-timer></p>
             </div>
 
@@ -360,15 +360,11 @@
         <div class="left-content">
           <p class="category-title-fourth">Gameplan</p>
           <div class="text-holder">
-            <p>Get NFT car and race for big rewards forever!</p>
-            <p>Trade Race Manager (TRM) is completely free to play model with possibility to maximize your profits with NFTs.</p>
-            <p>We give to our players <span class="my-text-color">1500 IOI Each day!</span> Become part of IOI Army and play TRM to
-              enjoy unlimited rewards</p>
-            <p>Guaranteed prize pools up to <span class="my-text-color">10 IOI each 10 minutes</span> for NFT Holders and special NFT
-              tournament for 100 IOI each day!</p>
-            <p>Races on free track take place every 2 minutes for Everybody with <span class="my-text-color">guaranteed prize pool of 0,28 IOI</span></p>
-            <p>Free members can race with NON NFT car but receive <span class="my-text-color">only 0,1 IOI per WIN in TOP 3 spots </span>
-              and do not receive any points for their effort - Join premium to get points!</p>
+            <p>Trade Race Manager (TRM) is a completely <span class="my-text-color">free-to-play model</span> with the possibility to maximize your profits with NFTs.</p>
+            <p>The new game system is based on every-day rewards <span class="my-text-color">up to 1 500 IOI.</span> Become part of IOI Army and play TRM to enjoy unlimited rewards.</p>
+            <p>Guaranteed prize pools <span class="my-text-color">up to 10 IOI</span> in NFT races take place every 10 minutes and special every-day NFT tournament with a <span class="my-text-color">guaranteed prize pool of 100 IOI</span> for NFT holders.</p>
+            <p>Free Fast races take place every 2 minutes for everybody with a <span class="my-text-color">guaranteed prize pool of 0.28 IOI.</span></p>
+            <p>Free members can race with NON-NFT car but receive <span class="my-text-color">only 0.1 IOI per win</span> in TOP 3 spots.</p>
           </div>
 
           <button class="race-btn my-cta-btn-back" (click)="title = 'ALL RACES'; switchContent(1)">Race now</button>
@@ -381,10 +377,10 @@
       <div class="races-text">
         <p class="category-title-fourth">Races</p>
         <div class="text-holder">
-          <p>Every 10 minutes for <span class="my-text-color">max win 10 IOI</span> - Entry: NFT cars + NON NFT cars</p>
-          <p>Every 2 minutes for <span class="my-text-color">max win 0,28 IOI</span> - Entry: NFT cars + NON NFT cars</p>
-          <p>Every day special <span class="my-text-color">Tournament for guaranteed prize pool of 100 IOI</span> - Entry: NFT cars only</p>
-          <p>Tournament for NFT cars only every day for 100 IOI (7days a week) - top 3: 50, 30, 20</p>
+          <p>Every 10 minutes for <span class="my-text-color">max win 10 IOI</span> - Entry: NFT cars and NON NFT cars</p>
+          <p>Every 2 minutes for <span class="my-text-color">max win 0,28 IOI</span> - Entry: NFT cars and NON NFT cars</p>
+          <p>Daily special NFT tournament for <span class="my-text-color">guaranteed prize pool of 100 IOI</span> - Entry: NFT cars only</p>
+          <p>NFT tournament prize pool distribution TOP 3: 50 IOI, 30 IOI, 20 IOI</p>
         </div>
       </div>
 
@@ -501,8 +497,8 @@
           <p class="category-title-fourth">Cars</p>
           <div class="text-holder">
             <p>Each car is unparalleled way of owning IOI tokens, staking and APY.
-               The main benefit is that you can use your NFTs in-game, buy,
-                sell and trade on open markets. The new era of NFTs in your pocket.</p>
+               The main benefit is that you can <span class="my-text-color">use your NFTs in-game, buy,
+                sell and trade</span> on open markets. The new era of NFTs in your pocket.</p>
           </div>
 
           <button class="race-btn my-cta-btn-back" [routerLink]="['/car/nft-market']">Market</button>
@@ -517,14 +513,10 @@
           <p class="category-title-first">NFT Cars</p>
 
           <div class="text-holder cars-text">
-            <p>Your winning are based on the NFT car tier you own. There are several NFT car tiers
-              ranging from common to legendary. In each tier there is special RARE NFT car that is
-              received when you own every car from the tier for FREE! RARE NFT cars are adding
-              multiplier to possible IOI win from every race.</p>
-            <p>Race takes place every 10 minutes and is completely free to play - Each race in 1 hour
-              happening on a different track.</p>
-            <p>Races are free for NFT cars forever as well as for NON NFT cars but with the max win of
-              0,1 IOI for any of top 3 positions for NON NFT Car.</p>
+            <p>Your winnings are <span class="my-text-color">based on the NFT car tier</span> you own. There are several NFT car tiers ranging from common to legendary.</p>
+            <p>There is also a special <span class="my-text-color">RARE NFT</span> car in each tier that is received for FREE when you own every car from the specific tier! RARE NFT cars are <span class="my-text-color">adding multiplier</span> to possible IOI win from every race.</p>
+            <p>A race takes place every 10 minutes and is completely free to play - every race is happening on a different track.</p>
+            <p>Races are free for NFT car holders as well as for NON NFT cars holders. However <span class="my-text-color">NON NFT car holders can win maximum</span> of 0.1 IOI for any of top 3 positions in the race.</p>
             <p>Winnings with each car in NFT races are calculated here:</p>
           </div>
 
@@ -602,12 +594,12 @@
           <p class="category-title-first">NON-NFT Cars</p>
 
           <div class="text-holder cars-text">
-            <p>Free members can race with NON NFT car but receive only 0,1 IOI
-               per WIN in TOP 3 spots and do not receive any points for their effort - Join premium to get points</p>
+            <p>Free members can race with NON NFT car but can <span class="my-text-color">win only 0.1 IOI in TOP 3 positions</span> in a race and do not receive any further points for their effort.</p>
+            <p>Join <span class="my-text-color">premium membership</span> to start get rewards.</p>
             <div class="list-holder">
-              <p>Free track is playable every 2 minutes with win of 0,28 IOI </p>
+              <p>Play FREE races every 2 minutes and compete for a prize pool of 0.28 IOI</p>
               <p>- Both NON NFT and NFT cars can enter</p>
-              <p>- Win is split between first 5 racers</p>
+              <p>- Win is split between first 3 racers</p>
             </div>
           </div>
 
@@ -624,10 +616,26 @@
     
             <div class="table-row">
               <div class="table-item desc">
-                <p>Non-NFT</p>
+                <p>1st position</p>
               </div>
               <div class="table-item">
-                <p>0,1 for every position</p>
+                <p>0,1</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>2nd position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>3rd position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
               </div>
             </div>
     
@@ -721,15 +729,11 @@
           <p class="category-title-fourth">Seasons and Ranking</p>
 
           <div class="text-holder">
-            <p>Get premium and your place on the leaderboard! </p>
-            <p>Each month premium members are playing for <span class="my-text-color">2000 IOI</span> with their teams (TOP 3 teams)
-               and <span class="my-text-color">1000 IOI</span> for the overall best racers (TOP 10 racers) - <span class="my-text-color">3000 IOI Every month!</span></p>
-            <p>Season takes 1 month (start is always the first day of the month) and resets at the last day of the month</p>
-            <p>You need Premium membership to get points for the season.
-               Sooner you will get premium sooner you are legible for ranking system and IOI prize pool at the end of the season</p>
-            <p>With every race you win as premium member you receive points (check the point chart).
-               By the end of the month first 10 racers form the leaderboard are legible
-                for the <span class="my-text-color">prize pool of 1000 IOI</span> based on their results throughout the season.</p>
+            <p>What you need to start the season is the <span class="my-text-color">Premium membership.</span></p>
+            <p>Sooner you get the premium membership, the sooner you start getting points to the ranking system for <span class="my-text-color">sharing IOI prize pool</span> at the end of the season.</p>
+            <p>The season takes 1 month (start is always on the first day of the month) and resets on the last day of the month.</p>
+            <p>The ranking system is simple. You receive points (check the point chart below) for every race you <span class="my-text-color">win as the premium member.</span> At the end of the season (month), the first 10 Leaderboard racers are splitting the <span class="my-text-color">prize pool of 1 000 IOI</span> based on their results by the end of the season.</p>
+            <p>The premium members are playing for 3 000 IOI every month — 2 000 IOI prize pool with their teams (TOP 3 teams) and 1 000 IOI prize pool for the overall best racers (TOP 10 racers).</p>
           </div>
 
         </div>
@@ -851,12 +855,9 @@
           <p class="category-title-fourth">Leaderboard</p>
 
           <div class="text-holder">
-            <p>Team leaderboard - Top 3 teams with the most points in the season - Winning
-               <span class="my-text-color">prize pool of 2000 IOI</span> at the end of the season</p>
-            <p>Racer leaderboard - Top 10 overall racers with the most points - Winning
-               <span class="my-text-color">prize pool of 1000 IOI</span> at the end of the season</p>
-            <p>Racer of the season receive special NFT rings which is Entry
-               for special end of the YEAR tournament for Ultra Rare NFT cars</p>
+            <p>Team leaderboard — Top 3 teams with the most points in the season <span class="my-text-color">win prize pool of 2 000 IOI</span> at the end of the season</p>
+            <p>Racer leaderboard — Top 10 overall racers with the most points <span class="my-text-color">win a prize pool of 1 000 IOI</span> at the end of the season</p>
+            <p>Racer of the season receives a <span class="my-text-color">special NFT ring</span> which is an entry ticket to the special end of the YEAR tournament for <span class="my-text-color">Ultra Rare Custom NFT car</span></p>
             <button class="race-btn my-cta-btn-back" [routerLink]="['/teams/join-teams']">Join team</button>
           </div>
 
