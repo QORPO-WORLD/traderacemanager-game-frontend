@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class RaceInfoModalComponent implements OnInit {
 
   @Input() tourId: number;
-  @Input() betAmount: number;
+  @Input() raceType = '';
   @Input() raceId = '';
   @Output() modalClose = new EventEmitter<boolean>();
   isEnduro = false;
@@ -16,20 +16,10 @@ export class RaceInfoModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.checkEnduro();
   }
 
   closeModal(){
     this.modalClose.emit(false);
   }
 
-  checkEnduro(){
-    if (this.raceId === 'car_race_enduro_1' ||
-    this.raceId === 'car_race_enduro_5' ||
-    this.raceId === 'car_race_enduro_10' ||
-    this.raceId === 'car_race_enduro_50' ||
-    this.raceId === 'car_race_enduro_100' ) {
-      this.isEnduro = true;
-    }
-  }
 }

@@ -79,7 +79,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   modalActive: any;
   myDriver: any;
   interval: any;
-  rewardInterval: any;
   tipsInterval: any;
   accountInfo: any;
   liveRacesData: any;
@@ -771,7 +770,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.nickname = dataNick.nickname;
     }
     this.toggleTip(1);
-    this.setRewardInterval();
     this.getMyAssets();
     this.getAllRaces();
     this.getMyOwner();
@@ -1535,11 +1533,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
         this.myTeamAllData = data;
       });
   }
-  setRewardInterval() {
-    this.rewardInterval = window.setInterval(() => {
-      this.toggleReward();
-    }, 5000);
-  }
   toggleTip(tipId: number) {
     this.clearIntervalTip();
     this.tip = tipId;
@@ -1553,19 +1546,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   }
   clearIntervalTip() {
     clearInterval(this.tipsInterval);
-  }
-  toggleReward() {
-    this.clearIntervalReward();
-
-    if (this.reward === 1) {
-      this.reward = 2;
-    } else {
-      this.reward = 1;
-    }
-    this.setRewardInterval();
-  }
-  clearIntervalReward() {
-    clearInterval(this.rewardInterval);
   }
   navigateToToken() {
     window.open("https://ioi-token.com", "_blank");

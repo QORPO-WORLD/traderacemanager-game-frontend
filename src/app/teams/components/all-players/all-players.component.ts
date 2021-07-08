@@ -22,6 +22,7 @@ export class AllPlayersComponent implements OnInit {
   Affiliate: any;
   isPageWithMe = false;
   updateTime: string;
+  rewards = [300,200,130,100,70,60,50,40,30,20]
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
     private identityService: AuthService) { }
 

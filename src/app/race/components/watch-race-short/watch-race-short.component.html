@@ -195,12 +195,22 @@
         </div>
 
         <div class="small-box">
-          <div class="img-holder">
-            <img src="/assets/base/images/zavod/high-icon.svg" alt="">
-          </div>
-          <div class="inner-box">
-            <p>{{ raceDataildata?.high_score?.user_nickname }} <span class="high">{{ raceDataildata?.high_score?.score | number:'1.0-2':'fr' }} &#8240;</span></p>
-          </div>
+          <ng-container *ngIf="raceDataildata?.tour_index==null">
+            <div class="img-holder">
+              <img src="/assets/base/images/zavod/high-icon.svg" alt="">
+            </div>
+            <div class="inner-box">
+              <p>{{ raceDataildata?.high_score?.user_nickname }} <span class="high">{{ raceDataildata?.high_score?.score | number:'1.0-2':'fr' }} &#8240;</span></p>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="raceDataildata?.tour_index!=null">
+            <div class="img-holder">
+              <p>RACE</p>
+            </div>
+            <div class="inner-box">
+              <p>{{ raceDataildata?.tour_index }} / 19</p>
+            </div>
+          </ng-container>
         </div>
 
         <div class="small-box position">
@@ -593,7 +603,7 @@
     *ngIf="showInfoModal === true" 
     (modalClose)="closeInfoModal($event)" 
     [tourId]="raceDataildata?.tournament_id" 
-    [betAmount]="raceDataildata?.bet_amount" 
+    [raceType]="raceDataildata?.new_race_type" 
     [raceId]="raceDataildata?.race_identifier">
   </app-race-info-modal>
 
@@ -749,10 +759,10 @@
             <p>1.</p>
           </div>
           <div class="my-col username">
-            <p>{{winnersList[0]?.nickname}}</p>
+            <p><img *ngIf="winnersList[0]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[0]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[0]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[0]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[0]?.team !== 'SYSTEM_TEAM' ? winnersList[0]?.team : '-' }}</p>
@@ -768,10 +778,10 @@
             <p>2.</p>
           </div>
           <div class="my-col username">
-            <p>{{winnersList[1]?.nickname}}</p>
+            <p><img *ngIf="winnersList[1]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[1]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[1]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[1]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[1]?.team !== 'SYSTEM_TEAM' ? winnersList[1]?.team : '-' }}</p>
@@ -787,10 +797,10 @@
             <p>3.</p>
           </div>
           <div class="my-col username">
-            <p>{{winnersList[2]?.nickname}}</p>
+            <p><img *ngIf="winnersList[2]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[2]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{ winnersList[2]?.rarity }}</p>
+            <p>{{'race.type.' + winnersList[2]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
             <p>{{ winnersList[2]?.team !== 'SYSTEM_TEAM' ? winnersList[2]?.team : '-' }}</p>
@@ -821,20 +831,19 @@
             <p>Points</p>
           </div>
         </div>
-        <div class="table-item" *ngFor="let player of winnersList; let i = index" [ngClass]="{'my-item': raceData?.me?.n == winnersList[0]?.nickname}">
+        <div class="table-item" *ngFor="let player of winnersList; let i = index" [ngClass]="{'my-item': raceData?.me?.n == winnersList[i]?.nickname}">
           <div class="my-col position">
             <p>{{ i + 1 }}.</p>
           </div>
           <div class="my-col username">
-            <p>{{ player?.nickname }}</p>
+            <p><img *ngIf="winnersList[i]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{ player?.nickname }}</p>
           </div>
           <div class="my-col team">
             <p>{{ player?.team !== 'SYSTEM_TEAM' ? player?.team : '-' }}</p>
           </div>
           <div class="my-col win">
-            <p>{{player?.points ? (player?.points| number:'1.0-2':'fr') : 0}} 
-              <span >{{'shared.ioi' | translate}}</span>
-              </p>
+            <p *ngIf="player?.points > 0">{{player?.points ? (player?.points| number:'1.0-2':'fr') : 0}}</p>
+            <p class="desc" *ngIf="!player?.points || player?.points === 0">{{points[i]}}</p>
           </div>
         </div>
         
@@ -843,7 +852,7 @@
   
     <div class="buttons-holder">
       <ng-container *ngIf="raceDataildata?.tournament_id === null">
-        <button class="my-cta-btn azure-btn"  (click)="refuel()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
+        <button class="my-cta-btn azure-btn"  (click)="refuelNext()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
         <button class="my-cta-btn" (click)="repeatSignup()"  [disabled]="repeatDisabled === true"><span *ngIf="repeatDisabled === false"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.repeat' | translate}}</span><span *ngIf="repeatDisabled === true">{{'fuel_car.loading' | translate}}</span></button>
       </ng-container>
       

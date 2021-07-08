@@ -50,6 +50,9 @@ export class TeamsSelectionComponent implements OnInit {
   myWW = 1920;
   selectedTeamId = 1;
   modalOpened = 0;
+  monthlyPrice = 50;
+  quarterlyPrice = 135;
+  yearlyPrice = 420;
 
   constructor(
     protected api: TeamsService,
@@ -131,7 +134,7 @@ export class TeamsSelectionComponent implements OnInit {
           this.getMyTeam();
           this.notify.error(
             "sucess",
-            "Thank you for your interest! You will be part of the team from"
+            "You are now part of the team!"
           );
         }, 100);
       });
@@ -220,10 +223,13 @@ export class TeamsSelectionComponent implements OnInit {
     }
   }
 
-  openMembershipModal(state: number, teamId?: number) {
+  openMembershipModal(state: number, teamId?: number, monthlyPrice?: number, quarterlyPrice?: number, yearlyPrice?: number) {
     this.modalOpened = state;
     if (teamId) {
       this.selectedTeamId = teamId;
+      this.monthlyPrice = monthlyPrice;
+      this.quarterlyPrice = quarterlyPrice;
+      this.yearlyPrice = yearlyPrice;
     }
   }
 

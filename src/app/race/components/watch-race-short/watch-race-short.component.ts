@@ -176,6 +176,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   actualPageWinner = 1;
   totalPagesWinner: number;
   showRotateMsg = true;
+  points = [25,18,15,12,10,8,6,4,2,1];
   carsClone: Array<any>;
   constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
     private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
@@ -349,8 +350,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
       const retype: any = data;
       this.raceDataildata = retype;
-      console.log(this.raceDataildata);
-      console.log('fjdksl');
       this.endsIn = data.ends_in;
 
       if (data.tournament_id !== null && data.tour_index > 1) {
@@ -358,7 +357,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       }
 
       if (this.raceDataildata.is_cancelled === true) {
-        console.log('cancel');
         this.redirectToNextRace();
         clearInterval(this.detailInterval);
         return;
@@ -861,6 +859,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
           this.totalPagesWinner = x.total_pages;
           this.winnersList = x.winners;
+          console.log("jako");
+          console.log(this.winnersList);
           this.frozenTicket = x.ticker_froze;
           if (this.raceData.me) {
             this.balanceService.balanceHasbeenChanged();
@@ -1067,6 +1067,11 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_hash]);
   }
 
+  refuelNext(){
+    this.router.navigate(['/car/fuel-car/' + this.nextRaceHash]);
+  }
+
+
   getRandomNum(myNum: number) {
     if (myNum > 0) {
       this.scoreOffset = Math.floor(Math.random() * (80 - 50 + 1) + 50);
@@ -1148,20 +1153,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   resolveBackType() {
-    if (this.raceDataildata.race_identifier === 'car_race_ioi_100' || this.raceDataildata.race_identifier === 'car_race_enduro_100' || this.raceDataildata.race_identifier === 'classic_tournament_100') {
-      this.backType = 2;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_1' || this.raceDataildata.race_identifier === 'car_race_enduro_1') {
-      this.backType = 3;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_5' || this.raceDataildata.race_identifier === 'car_race_enduro_5' || this.raceDataildata.race_identifier === 'classic_tournament_5') {
-      this.backType = 4;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_10' || this.raceDataildata.race_identifier === 'car_race_enduro_10' || this.raceDataildata.race_identifier === 'classic_tournament_10') {
-      this.backType = 5;
-    } else if (this.raceDataildata.race_identifier === 'car_race_ioi_50' || this.raceDataildata.race_identifier === 'car_race_enduro_50') {
-      this.backType = 6;
-    } else {
-      this.backType = 1;
-    }
-    this.billboardType = this.randomInteger(1, 5)
+    this.backType = this.raceDataildata.map_id;
+    this.billboardType = this.randomInteger(1, 5);
   }
 
   getPositionInRace() {

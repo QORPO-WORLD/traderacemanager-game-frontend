@@ -69,8 +69,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
     this.getMyTeamReward();
     this.getAllRewards();
     this.getMydriver();
-
-    this.setOfferInterval();
   }
 
   ngOnDestroy() {
@@ -127,18 +125,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
       this.offerState = 1;
     }
   }
-
-  setOfferInterval() {
-    this.offerInterval = setInterval(() => {
-      this.changeOffer();
-    }, 7000);
-  }
-
-  manualOfferChange() {
-    clearInterval(this.offerInterval);
-    this.setOfferInterval();
-  }
-
   getPremium() {
     this.teamSelection.openMembershipModal(
       1,
