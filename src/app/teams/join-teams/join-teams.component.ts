@@ -107,7 +107,6 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   }
   getHistoryPoints() {
     this.historyObserver = this.api.getTeamHistoryPoints().subscribe((data) => {
-      console.log(data);
       this.historyPoints = data;
     });
   }

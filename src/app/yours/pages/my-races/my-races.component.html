@@ -99,7 +99,8 @@
           <p>{{ item.nickname }}</p>
         </div>
         <div class="table-item">
-          <p>{{ item.team ? item.team : "NO" }}</p>
+          <p *ngIf="item.team !== 'SYSTEM_TEAM'">{{ item.team ? item.team : "NO" }}</p>
+          <p *ngIf="item.team === 'SYSTEM_TEAM'">-</p>
         </div>
         <div class="table-item">
           <p>{{ (item.amount ? item.amount : 0) | number: "1.2-2":"fr" }}</p>
