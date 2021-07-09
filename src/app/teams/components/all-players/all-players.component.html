@@ -38,19 +38,15 @@
         <p>{{ pl.team_name }}</p>
       </div>
       <div class="table-item big bold">
-        <p *ngIf="yy < 10">
-          <img src="/assets/base/images/teams/reward-token.png" alt="" />{{
-            rewards[yy]
-          }}
-        </p>
-        <p *ngIf="yy >= 10">
-          <img src="/assets/base/images/teams/reward-token.png" alt="" />0
+        <p>
+          <img src="/assets/base/images/teams/reward-token.png" alt="" />
+           {{ pl.potentional_win | number: "1.2-2":"fr" }} 
         </p>
       </div>
       <div class="table-item bold last">
         <p>
           <img src="/assets/base/images/teams/reward-token.png" alt="" hidden />
-          {{ pl.points | number: "1.1-1":"fr" }}
+          {{ pl.points | number: "1.0-1":"fr" }}
         </p>
       </div>
       <div class="mine-back my-cta-btn-back"></div>
