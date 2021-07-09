@@ -43,11 +43,16 @@
   </div>
   <div class="gameplan-section" #gameplan>
     <div class="menu">
-      <img
-        (click)="contentMinus()"
-        src="/assets/base/images/bundles/arrow-left.svg"
-        alt="Arrow left"
-      />
+      <div
+        (click)="animation === false ? contentMinus() : null"
+        class="arrow-div left"
+      >
+        <span></span>
+        <img
+          src="/assets/base/images/bundles/arrow-left.svg"
+          alt="Arrow left"
+        />
+      </div>
       <div class="menu-items">
         <div id="items" class="items">
           <div [ngClass]="{ unactive: content != 5 }" class="item">
@@ -70,11 +75,16 @@
           </div>
         </div>
       </div>
-      <img
-        (click)="contentPlus()"
-        src="/assets/base/images/bundles/arrow-right.svg"
-        alt="Arrow right"
-      />
+      <div
+        (click)="animation === false ? contentPlus() : null"
+        class="arrow-div right"
+      >
+        <span></span>
+        <img
+          src="/assets/base/images/bundles/arrow-right.svg"
+          alt="Arrow right"
+        />
+      </div>
     </div>
     <div *ngIf="content === 1" class="content">
       <div class="text-holder intro">
