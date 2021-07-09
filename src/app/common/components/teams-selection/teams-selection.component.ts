@@ -234,7 +234,7 @@ export class TeamsSelectionComponent implements OnInit {
   }
 
   nextStat(teamIndex: number) {
-    if (this.teams[teamIndex].statState < 3) {
+    if (this.teams[teamIndex].statState < 2) {
       this.teams[teamIndex].statState++;
     } else {
       this.teams[teamIndex].statState = 1;
@@ -245,7 +245,7 @@ export class TeamsSelectionComponent implements OnInit {
     if (this.teams[teamIndex].statState > 1) {
       this.teams[teamIndex].statState--;
     } else {
-      this.teams[teamIndex].statState = 3;
+      this.teams[teamIndex].statState = 2;
     }
   }
 
