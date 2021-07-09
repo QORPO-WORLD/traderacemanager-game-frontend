@@ -1,0 +1,712 @@
+.main-holder {
+    width: calc(100% - 40px);
+    height: calc(100vh - 80px);
+    padding: 40px 0px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lead-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    .heading-desc{
+        font-size: 20px;
+        font-family: 'Earth Orbiter';
+        margin: 0 0 10px;
+        text-align: center;
+    }
+    .winner-heading{
+        font-size: 48px;
+        margin: 0;
+        font-family: 'Earth Orbiter';
+        display: inline-block;
+        line-height: 1;
+        background: linear-gradient(89.36deg, #D6D3C4 3.06%, #E3D6A6 24.7%, #F0D369 46.86%, #D0AB34 72.83%, #A76B41 102%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        &.shiny{
+          text-shadow: 0px 0px 20px #FBE18A, 0px 0px 40px #FBE18A;
+        }
+    }
+    .month-winners{
+        height: 100%;
+        width: 72%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .winner-box{
+            height: 100%;
+            width: 23%;
+            background: rgba(17, 17, 17, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 74px 0 35px;
+            &.empty{
+              .avatar-img{
+                background: linear-gradient(163.07deg, rgba(255, 255, 255, 0.6) -76.85%, rgba(34, 34, 34, 0.6) 115.82%);
+                img{
+                  opacity: .5; 
+                }
+              } 
+            }
+            .top-holder{
+              height: 55%;
+              .heading-text{
+                text-align: center;
+              }
+            }
+            .info-holder{
+              height: 40%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: center;
+              width: 100%;
+              .avatar-img{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+              }
+              .stats-holder{
+                width: 100%;
+                text-align: center;
+                .question-mark{
+                  margin-bottom: 9%;
+                  opacity: .4;
+                }
+                .racer-name{
+                  font-size: 32px;
+                  font-family: 'Earth Orbiter';
+                  font-weight: 700;
+                  margin: 0 0 15px;
+                }
+                .flex-holder{
+                  display: flex;
+                  justify-content: space-evenly;
+                  align-items: center;
+                  width: 100%;
+                  .stat-item{
+                    text-align: center;
+                    .value{
+                      font-size: 16px;
+                      margin: 0;
+                      img{
+                        width: 22px;
+                        display: inline-block;
+                        margin-right: 10px;
+                      }
+                    }
+                    .desc{
+                      font-size: 12px;
+                      opacity: 0.6;
+                    }
+                  }
+                }
+              }
+            }
+        }
+    }
+    .year-winner-box{
+      border-width: 10px !important;
+      height: 100%;
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 64px 0 25px;
+      background: rgba(17, 17, 17, 0.8);
+      .heading-text{
+        text-align: center;
+      }
+      .img-holder{
+        position: relative;
+        width: 100%;
+        height: 50%;
+        img{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 130%;
+          width: 130%;
+        }
+      }
+      .trophy-desc{
+        font-size: 16px;
+        margin: 0 auto 5%;
+        width: 90%;
+        max-width: 305px;
+        text-align: center;
+        span{
+          font-weight: 700;
+        }
+      }
+    }
+}
+
+@media screen and (max-width: 1700px) {
+  .main-holder {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
+  }
+  .lead-content{
+    .heading-desc{
+      font-size: 18px;
+    }
+    .winner-heading{
+      font-size: 39px;
+    }
+    .month-winners{
+      .winner-box{
+        padding: 50px 0 25px;
+      }
+    }
+    .year-winner-box{
+      padding: 40px 0 15px;
+    }
+  }
+}
+  
+@media screen and (max-width: 1550px) {
+  .main-holder {
+    height: calc(100vh - 65px);
+    width: calc(100% - 20px);
+    padding: 20px 0px 20px 20px;
+  }
+  .lead-content{
+    .heading-desc{
+      font-size: 16px;
+      padding: 0 7px;
+    }
+    .winner-heading{
+      font-size: 33px;
+    }
+    .month-winners{
+      .winner-box{
+        padding: 40px 0 20px;
+        .info-holder{
+          .avatar-img{
+            width: 90px;
+            height: 90px;
+          }
+          .stats-holder{
+            .question-mark{
+              width: 40px;
+            }
+            .racer-name{
+              font-size: 26px;
+            }
+            .flex-holder{
+              .stat-item{
+                .value{
+                  font-size: 15px;
+                  img{
+                    width: 19px;
+                    margin-right: 3px;
+                  }
+                }
+                .desc{
+                  font-size: 11px;
+                  margin: 0 0 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .year-winner-box{
+      padding: 33px 0 20px;
+      border-width: 7px !important;
+      .trophy-desc{
+        font-size: 14px;
+        margin: 0 auto 6%;
+        max-width: 285px;
+      }
+    }
+  }
+}
+  
+@media screen and (max-width: 1200px) {
+  .main-holder {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+  }
+  .lead-content{
+    .heading-desc{
+      font-size: 15px;
+      margin: 0 0 7px;
+    }
+    .winner-heading{
+      font-size: 30px;
+    }
+    .month-winners{
+      .winner-box{
+        padding: 35px 0 20px;
+        width: 24%;
+        .top-holder{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .info-holder{
+          .avatar-img{
+            width: 85px;
+            height: 85px;
+          }
+          .stats-holder{
+            .question-mark{
+              width: 35px;
+            }
+            .racer-name{
+              font-size: 23px;
+            }
+            .flex-holder{
+              .stat-item{
+                .value{
+                  font-size: 14px;
+                  img{
+                    width: 17px;
+                    margin-right: 2px;
+                  }
+                }
+                .desc{
+                  font-size: 10px;
+                  margin: 0 0 8px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .year-winner-box{
+      padding: 30px 0 20px;
+      border-width: 5px !important;
+      .trophy-desc{
+        font-size: 13px;
+        margin: 0 auto 6%;
+        max-width: 275px;
+      }
+    }
+  }
+}
+  
+@media screen and (max-width: 1024px) {
+  .main-holder {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
+    justify-content: center;
+    .lead-content{
+      max-height: 600px;
+      .month-winners{
+        width: 68%;
+        .winner-box{
+          width: 32%;
+          &:first-child{
+            display: none;
+          }
+        }
+      }
+      .year-winner-box{
+        width: 29%;
+      }
+    }
+  }
+}
+  
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(100vh - 45px);
+  }
+}
+
+@media screen and (max-width: 850px) and (orientation: landscape){
+  .lead-content{
+    .heading-desc{
+      font-size: 10px;
+      margin: 0;
+    }
+    .winner-heading{
+      font-size: 19px;
+    }
+    .month-winners{
+      .winner-box{
+        padding: 15px 0 5px;
+        .top-holder{
+          .ring-img{
+            max-height: calc(100% - 39px);
+          }
+        }
+        .info-holder{
+          .avatar-img{
+            width: 50px;
+            height: 50px;
+          }
+          .stats-holder{
+            .question-mark{
+              width: 20px;
+            }
+            .racer-name{
+              font-size: 15px;
+              margin: 0;
+            }
+            .flex-holder{
+              .stat-item{
+                .value{
+                  font-size: 11px;
+                  img{
+                    width: 13px;
+                  }
+                }
+                .desc{
+                  font-size: 7px;
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .year-winner-box{
+      padding: 12px 0 10px;
+      border-width: 3px !important;
+      .img-holder{
+        img{
+          width: 110%;
+        }
+      }
+      .trophy-desc{
+        font-size: 10px;
+        margin: 0 auto 10px;
+        max-width: 275px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) and (orientation: portrait){
+  .main-holder{
+    height: unset;
+    .lead-content{
+      max-height: unset;
+      flex-wrap: wrap;
+      .month-winners{
+        order: 2;
+        height: 550px;
+        width: 100%;
+        .winner-box{
+          width: 24%;
+          &:first-child{
+            display: flex;
+          }
+        }
+      }
+      .year-winner-box{
+        width: 100%;
+        order: 1;
+        flex-direction: row;
+        height: 220px;
+        padding: 15px 5% 15px 2%;
+        margin-bottom: 20px;
+        .heading-text{
+          order: 2;
+          width: 30%;
+        }
+        .img-holder{
+          order: 1;
+          width: 32%;
+        }
+        .trophy-desc{
+          order: 3;
+          width: 30%;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: portrait){
+  .main-holder{
+    .lead-content{
+      .heading-desc{
+        font-size: 13px;
+        margin: 0;
+      }
+      .winner-heading{
+        font-size: 23px;
+      }
+      .month-winners{
+        order: 2;
+        height: auto;
+        width: 100%;
+        flex-wrap: wrap;
+        .winner-box{
+          width: 100%;
+          height: 200px;
+          flex-direction: row;
+          margin-bottom: 15px;
+          padding: 10px;
+          .top-holder{
+            height: 100%;
+            width: 45%;
+            .ring-img{
+              max-height: calc(100% - 45px);
+            }
+          }
+          .info-holder{
+            height: 100%;
+            width: 55%;
+            .avatar-img{
+              width: 70px;
+              height: 70px;
+            }
+            .stats-holder{
+              .racer-name{
+                font-size: 21px;
+                margin: 0 0 5px;
+              }
+            }
+          }
+        }
+      }
+      .year-winner-box{
+        .trophy-desc{
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .main-holder {
+    height: calc(100vh - 45px);
+  }
+}
+
+@media screen and (max-width: 640px) and (orientation: landscape){
+  .lead-content{
+    .heading-desc{
+      font-size: 8px;
+    }
+    .winner-heading{
+      font-size: 15px;
+    }
+    .month-winners{
+      .winner-box{
+        padding: 10px 0 5px;
+        .top-holder{
+          .ring-img{
+            max-height: calc(100% - 36px);
+          }
+        }
+        .info-holder{
+          .avatar-img{
+            width: 40px;
+            height: 40px;
+          }
+          .stats-holder{
+            .question-mark{
+              width: 15px;
+            }
+            .racer-name{
+              font-size: 13px;
+            }
+            .flex-holder{
+              .stat-item{
+                .value{
+                  font-size: 10px;
+                  img{
+                    width: 11px;
+                  }
+                }
+                .desc{
+                  font-size: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .year-winner-box{
+      padding: 12px 0 10px;
+      border-width: 3px !important;
+      .img-holder{
+        img{
+          width: 110%;
+        }
+      }
+      .trophy-desc{
+        font-size: 8px;
+        margin: 0 auto 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) and (orientation: portrait){
+  .main-holder{
+    .lead-content{
+      .heading-desc{
+        font-size: 11px;
+      }
+      .winner-heading{
+        font-size: 19px;
+      }
+      .month-winners{
+        .winner-box{
+          height: 160px;
+          margin-bottom: 10px;
+          padding: 6px;
+          .top-holder{
+            .ring-img{
+              max-height: calc(100% - 45px);
+            }
+          }
+          .info-holder{
+            .avatar-img{
+              width: 60px;
+              height: 60px;
+            }
+            .stats-holder{
+              .question-mark{
+                width: 22px;
+              }
+              .racer-name{
+                font-size: 19px;
+              }
+              .flex-holder{
+                .stat-item{
+                  .value{
+                    font-size: 12px;
+                  }
+                  .desc{
+                    font-size: 9px;
+                    margin: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .year-winner-box{
+        border-width: 2px !important;
+        height: 175px;
+        padding: 10px;
+        margin-bottom: 10px;
+        .img-holder{
+          width: 32%;
+          img{
+            top: 45%;
+            max-width: 140%;
+            width: 140%;
+          }
+        }
+        .trophy-desc{
+          font-size: 9px;
+          width: 38%;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+//CONTENT TO CSS AT THE BOTTOM!
+.content-title {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+    img {
+      width: 21px;
+    }
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px;
+      letter-spacing: 0.09em;
+      font-family: "Earth Orbiter";
+      font-weight: 900;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+}
+  
+@media screen and(max-width: 1700px) {
+    .content-title {
+      img {
+        width: 17px;
+      }
+      p {
+        font-size: 26px;
+      }
+    }
+}
+@media screen and(max-width: 1550px) {
+    .content-title {
+      height: 65px;
+      img {
+        width: 15px;
+      }
+      p {
+        font-size: 22px;
+      }
+    }
+}
+@media screen and(max-width: 1024px) {
+    .content-title {
+      img {
+        width: 13px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+}
+  
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+    .content-title {
+      height: 40px;
+    }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+    .content-title {
+      img {
+        width: 8.5px;
+      }
+      p {
+        font-size: 9px;
+        margin-left: 5px;
+      }
+    }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+    .content-title {
+      img {
+        width: 10px;
+      }
+      p {
+        font-size: 17px;
+      }
+    }
+}

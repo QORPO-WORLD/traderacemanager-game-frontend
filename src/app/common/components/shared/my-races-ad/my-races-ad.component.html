@@ -11,8 +11,7 @@
       <ng-container *ngFor="let mainr of nextRaces; let i = index">
 
         <div class="box-item my-border-grad">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '.png'" alt="map">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '-blue.png'" alt="map">
+          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
           <div class="inner-holder">
             <p class="race-name">
               <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
@@ -42,10 +41,7 @@
         <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.favourite_fuel_button" |translate}}</button>
       </div>
       <div class="box-item my-border-grad" *ngFor="let mainr of favsData; let i = index">
-        <img class="back-img red" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '.png'" alt="" *ngIf="mainr.bet_amount > 0">
-        <img class="back-img red" src="/assets/base/images/nft-tracks/card-type-basic.png" alt="" *ngIf="mainr.bet_amount < 1">
-        <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/card-type' + mainr.bet_amount + '-blue.png'" alt="" *ngIf="mainr.bet_amount > 0">
-        <img class="back-img blue" src="/assets/base/images/nft-tracks/card-type-basic-blue.png" alt="" *ngIf="mainr.bet_amount < 1">
+        <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
         <span class="favis"><img src="/assets/base/images/race-type/star-red.png "></span>
         <div class="inner-holder">
           <p class="race-name">
@@ -72,8 +68,7 @@
     <ng-container *ngIf="raceFilter === 'live'">
       <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
         <div class="box-item my-border-grad"> 
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '.png'" alt="map">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '-blue.png'" alt="map">
+          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
           <div class="inner-holder">
             <p class="race-name">
               <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
@@ -95,8 +90,7 @@
       </ng-container>
       <ng-container *ngFor="let mainr of liveRacesData; let i = index">
         <div class="box-item my-border-grad">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '.png'" alt="map">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '-blue.png'" alt="map">
+          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
           <div class="inner-holder">
 
 
@@ -130,8 +124,7 @@
         <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
       </div>
         <div class="box-item my-border-grad" *ngFor="let mainr of liveRacesData; let i = index">
-          <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '.png'" alt="map">
-          <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '-blue.png'" alt="map">
+          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
           <div class="inner-holder">
 
 
@@ -156,8 +149,7 @@
         </div>
 
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
-        <img class="back-img red" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '.png'" alt="map">
-        <img class="back-img blue" [src]="'/assets/base/images/nft-tracks/' + tracks[mainr?.map_id].image + '-blue.png'" alt="map">
+        <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
         <div class="inner-holder">
           <p class="race-name">
             <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>

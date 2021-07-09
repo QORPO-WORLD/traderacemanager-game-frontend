@@ -1,6 +1,24 @@
 * {
   margin: 0px;
-  color: black;
+}
+.how-to-back-div {
+  position: sticky;
+  height: 0px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+.how-to-back {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  background: url("/assets/base/images/home-page/banner1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
 }
 .dissapear-right-animation {
   animation: dissapear-right 0.3s linear;
@@ -91,10 +109,129 @@
     -o-transform: translateX(0%);
   }
 }
-.affiliate-page {
+.buy {
+  width: fit-content;
+  white-space: nowrap;
+  border-radius: 12px;
+  background: #ff183f;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px 30px;
   display: flex;
-  background: white;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  img {
+    height: 35px;
+    width: 35px;
+    margin-right: 15px;
+  }
+}
+.buy:hover {
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
+  box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+
+  &.colored {
+    box-shadow: (0px 0px 15px rgba(255, 24, 63, 0.9));
+  }
+}
+.affiliate-page {
+  min-height: 100vh;
+}
+.first-section {
+  display: flex;
   height: 100vh;
+  width: 100%;
+  min-height: 650px;
+}
+.second-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: url("/assets/base/images/home-page/banner6.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 650px;
+  align-items: center;
+  justify-content: space-evenly;
+  .image-holder {
+    width: 40%;
+    img {
+      width: 120%;
+      height: auto;
+      max-width: unset;
+    }
+  }
+  .text-holder {
+    width: 35%;
+    .category-title-second {
+      margin-bottom: -20px;
+    }
+    .category-title-big {
+      white-space: nowrap;
+      padding-bottom: 35px;
+      margin-left: -20px;
+    }
+  }
+}
+.third-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  min-height: 650px;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .image-holder {
+    width: 40%;
+    img {
+      width: 120%;
+      height: auto;
+      max-width: 120;
+    }
+  }
+  .text-holder {
+    width: 35%;
+    .buy {
+      margin-top: 40px;
+    }
+    .category-title-second {
+      margin-bottom: -15px;
+      white-space: nowrap;
+    }
+    .category-title-big {
+      white-space: nowrap;
+      padding-bottom: 50px;
+      margin-left: -20px;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+.last-section {
+  display: flex;
+  height: 30vh;
+  min-height: 300px;
+  width: 100%;
+  background: url("/assets/base/images/home-page/banner4.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  justify-content: center;
+  align-items: center;
+  .text-holder {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 .affiliate-content {
   height: 60%;
@@ -116,9 +253,10 @@
     .red {
       color: #ff183f;
     }
-    .black {
+    .white {
       margin-top: -5%;
       text-align: right;
+      color: white;
     }
     .races-desc {
       margin-top: 5%;
@@ -138,7 +276,7 @@
       justify-content: space-between;
       .menu-item {
         transition: 0.3s;
-        opacity: 0.2;
+        opacity: 0.4;
         cursor: pointer;
         align-items: center;
         display: flex;
@@ -244,37 +382,31 @@
               }
             }
           }
-          .buy {
-            width: fit-content;
-            border-radius: 12px;
-            background: #ff183f;
-            cursor: pointer;
-            transition: 0.3s;
-            padding: 10px 30px;
+          .buttons {
+            margin-top: 25px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-          }
-          .buy:hover {
-            transform: scale(1.01);
-            -webkit-transform: scale(1.01);
-            -moz-transform: scale(1.01);
-            -ms-transform: scale(1.01);
-            -o-transform: scale(1.01);
-            box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+            .second {
+              margin-left: 20px;
+            }
           }
         }
       }
     }
   }
 }
-
+.bold {
+  font-weight: bold !important;
+}
+.black {
+  color: black !important;
+}
 .category-title-big {
+  color: #ff183f;
   font-family: True-Lies;
   font-style: normal;
   font-weight: normal;
   font-size: 90px;
+  line-height: 94px;
   transform: rotate(-5deg);
   -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
@@ -285,36 +417,91 @@
   font-style: normal;
   font-weight: 900;
   font-size: 20px;
+  line-height: 24px;
 }
 .category-title-second {
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
+  line-height: 34px;
 }
 .category-title-third {
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
+  line-height: 22px;
 }
 .category-title-fourth {
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
+  line-height: 20px;
 }
 .category-title-fifth {
   font-style: normal;
   font-weight: bold;
   font-size: 17px;
+  line-height: 20px;
 }
 .races-desc {
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 22px;
   opacity: 0.8;
+  position: relative;
+  &.dot-black {
+    margin-left: 10px;
+    &::before {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 4px;
+      top: 7px;
+      background: black;
+      left: -10px;
+      border-radius: 50%;
+    }
+  }
+  &.dot-white {
+    margin-left: 10px;
+    &::before {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 4px;
+      background: white;
+      left: -10px;
+      top: 7px;
+      border-radius: 50%;
+    }
+  }
 }
 @media screen and(max-width: 1700px) {
 }
 @media screen and(max-width: 1550px) {
+  .buy {
+    padding: 8px 20px;
+    img {
+      height: 25px;
+      width: 25px;
+      margin-right: 10px;
+    }
+  }
+  .second-section {
+    .text-holder {
+      .category-title-second {
+        margin-bottom: -10px;
+      }
+    }
+  }
+  .third-section {
+    .text-holder {
+      .category-title-second {
+        margin-bottom: -10px;
+      }
+    }
+  }
   .affiliate-content {
     .right-content {
       .menu {
@@ -322,6 +509,16 @@
           img {
             width: 12px;
             margin-left: 3px;
+          }
+        }
+      }
+      .category-content {
+        .content {
+          .content-text {
+            width: 60%;
+            .button {
+              margin-top: 20px;
+            }
           }
         }
       }
@@ -352,8 +549,8 @@
     line-height: 16px;
   }
   .races-desc {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
   }
 }
 @media screen and(max-width: 1400px) {
@@ -370,8 +567,8 @@
     line-height: 28px;
   }
   .category-title-third {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
   }
   .category-title-fourth {
     font-size: 10px;
@@ -382,8 +579,8 @@
     line-height: 12px;
   }
   .races-desc {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
+    line-height: 14px;
   }
 }
 @media screen and(max-width: 1200px) {
@@ -394,6 +591,39 @@
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
 }
 @media screen and(max-width: 1024px) and (orientation: landscape) {
+  .buy {
+    padding: 5px 15px;
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .first-section {
+    min-height: 100vh;
+  }
+  .second-section {
+    min-height: 100vh;
+    .text-holder {
+      .category-title-big {
+        padding-bottom: 20px;
+      }
+    }
+  }
+  .third-section {
+    min-height: 100vh;
+    .text-holder {
+      .category-title-big {
+        padding-bottom: 20px;
+      }
+      .buy {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .last-section {
+    min-height: 40vh;
+  }
   .affiliate-content {
     .right-content {
       .menu {
@@ -407,7 +637,14 @@
       .category-content {
         .content {
           .content-text {
+            .buttons {
+              margin-top: 10px;
+            }
+            .races-desc {
+              width: 100%;
+            }
             .abilities {
+              margin-top: 10px;
               .ability {
                 .value {
                   padding: 5px 15px;
@@ -416,9 +653,6 @@
                   padding: 5px 15px;
                 }
               }
-            }
-            .buy {
-              padding: 5px 15px;
             }
           }
         }
@@ -430,16 +664,16 @@
     line-height: 42px;
   }
   .category-title-first {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
   }
   .category-title-second {
     font-size: 24px;
     line-height: 26px;
   }
   .category-title-third {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
+    line-height: 14px;
   }
   .category-title-fourth {
     font-size: 9px;
@@ -450,11 +684,74 @@
     line-height: 10px;
   }
   .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+
+    &.dot-black {
+      margin-left: 8px;
+      &::before {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 3px;
+        top: 3.5px;
+        background: black;
+        left: -8px;
+        border-radius: 50%;
+      }
+    }
+    &.dot-white {
+      margin-left: 8px;
+      &::before {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 3px;
+        background: white;
+        left: -8px;
+        top: 3.5px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .category-title-big {
+    font-size: 32px;
+    line-height: 34px;
+  }
+  .category-title-first {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-second {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-third {
+    font-size: 11px;
+    line-height: 11px;
+  }
+  .category-title-fourth {
+    font-size: 9px;
+    line-height: 8px;
+  }
+  .category-title-fifth {
+    font-size: 9px;
+    line-height: 8px;
+  }
+  .races-desc {
     font-size: 8px;
     line-height: 10px;
   }
 }
-@media screen and (max-width: 850px) and (orientation: landscape) {
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .buy {
+    img {
+      width: 10px;
+      height: 10px;
+    }
+  }
   .category-title-big {
     font-size: 30px;
     line-height: 32px;
@@ -484,37 +781,65 @@
     line-height: 8px;
   }
 }
-@media screen and(max-width: 640px) and (orientation: landscape) {
-  .category-title-big {
-    font-size: 20px;
-    line-height: 22px;
-  }
-  .category-title-first {
-    font-size: 6px;
-    line-height: 8px;
-  }
-  .category-title-second {
-    font-size: 12px;
-    line-height: 14px;
-  }
-  .category-title-third {
-    font-size: 7px;
-    line-height: 8px;
-  }
-  .category-title-fourth {
-    font-size: 5px;
-    line-height: 6px;
-  }
-  .category-title-fifth {
-    font-size: 5px;
-    line-height: 6px;
-  }
-  .races-desc {
-    font-size: 4px;
-    line-height: 6px;
-  }
-}
 @media screen and(max-width: 1024px) and (orientation: portrait) {
+  .buy {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .first-section {
+    height: auto;
+    min-height: auto;
+  }
+  .second-section {
+    height: auto;
+    min-height: auto;
+    flex-direction: column-reverse;
+    padding: 30px 0px;
+    .text-holder {
+      width: 90%;
+    }
+    .image-holder {
+      width: 90%;
+      margin-top: 20px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .third-section {
+    padding: 30px 0px;
+    height: auto;
+    min-height: auto;
+    flex-direction: column;
+    .text-holder {
+      width: 90%;
+    }
+    .image-holder {
+      width: 90%;
+      margin-top: 20px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .last-section {
+    padding: 30px 0px;
+    height: auto;
+    min-height: auto;
+    .text-holder {
+      flex-direction: column;
+      width: 90%;
+      .races-desc {
+        margin-top: 25px;
+      }
+      .buy {
+        margin-top: 25px;
+      }
+    }
+  }
   .affiliate-page {
     height: auto;
     min-height: 100vh;
@@ -527,7 +852,7 @@
     .left-content {
       width: 100%;
       .title {
-        width: 150px;
+        width: 200px;
       }
     }
     .right-content {
@@ -572,6 +897,12 @@
           .content-text {
             height: 30%;
             width: 100%;
+            .abilities {
+              margin-top: 10px;
+            }
+            .buttons {
+              margin-top: 10px;
+            }
           }
         }
       }
@@ -580,6 +911,28 @@
 }
 
 @media screen and(max-width: 640px) and (orientation: portrait) {
+  .first-section {
+  }
+  .second-section {
+    .text-holder {
+      .category-title-big {
+        margin-left: -5px;
+      }
+    }
+  }
+  .third-section {
+    .text-holder {
+      .category-title-second {
+        white-space: normal;
+        margin-bottom: -5px;
+      }
+      .category-title-big {
+        margin-left: -5px;
+      }
+    }
+  }
+  .last-section {
+  }
   .category-title-big {
     font-size: 40px;
     line-height: 42px;

@@ -13,6 +13,6 @@ export class HomeAffiliateComponent implements OnInit {
 
   ngOnInit() {}
   joinTelegram() {
-    window.open("https://t.me/TradingIOI", "_blank").focus();
+    window.open("https://t.me/RichArmyIOI", "_blank").focus();
   }
 }
