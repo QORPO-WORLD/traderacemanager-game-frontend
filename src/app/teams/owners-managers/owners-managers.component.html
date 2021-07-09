@@ -1,15 +1,21 @@
 <div class="main-holder">
   <div class="content-title">
-    <div class="clickers" *ngIf="OwnerManagerType == 'home'" [routerLink]="['/teams/join-teams']"></div>
-    <div class="clickers" *ngIf="OwnerManagerType != 'home'" (click)="OwnerManagerType = 'home'"></div>
+    <div
+      class="clickers"
+      *ngIf="OwnerManagerType == 'home'"
+      [routerLink]="['/teams/join-teams']"
+    ></div>
+    <div
+      class="clickers"
+      *ngIf="OwnerManagerType != 'home'"
+      (click)="OwnerManagerType = 'home'"
+    ></div>
     <img
-      
       class="red-star"
       src="assets/base/images/icons/icon-back-red.svg"
       alt="red arrow"
     />
     <img
-     
       class="blue-star"
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
@@ -17,43 +23,86 @@
     <p>Join team</p>
   </div>
 
-
   <div class="owners-managers-holder" *ngIf="OwnerManagerType == 'home'">
-    
     <div class="box-container">
       <div class="box-holder">
         <p class="box-heading">Become an Owner</p>
         <div class="box-owner box">
-          <p><img src="/assets/base/images/owners-managers/owner-icon1.svg" alt="">{{'owners_managers.owner-benefit1' | translate}}</p>
-          <p> <img src="/assets/base/images/owners-managers/owner-icon2.svg" alt="">{{'owners_managers.owner-benefit2' | translate}}</p>
-          <p class="last"><img src="/assets/base/images/owners-managers/owner-icon3.svg" alt="">{{'owners_managers.owner-benefit3' | translate}}</p>
+          <p>
+            <img
+              src="/assets/base/images/owners-managers/owner-icon1.svg"
+              alt=""
+            />{{ "owners_managers.owner-benefit1" | translate }}
+          </p>
+          <p>
+            <img
+              src="/assets/base/images/owners-managers/owner-icon2.svg"
+              alt=""
+            />{{ "owners_managers.owner-benefit2" | translate }}
+          </p>
+          <p>
+            <img
+              src="/assets/base/images/owners-managers/owner-icon3.svg"
+              alt=""
+            />{{ "owners_managers.owner-benefit3" | translate }}
+          </p>
+          <p class="last">
+            <img
+              src="/assets/base/images/icons/gift-red.svg"
+              alt="red gift"
+            />Lifetime Premium membership
+          </p>
           <div class="statement">
             <span>
-              {{'owners_managers.owner-statement' | translate}}
+              {{ "owners_managers.owner-statement" | translate }}
             </span>
           </div>
           <div class="button-holder">
             <button class="button" (click)="OwnerManagerType = 'owner'">
-              {{'owners_managers.owner-button' | translate}}
+              {{ "owners_managers.owner-button" | translate }}
             </button>
           </div>
         </div>
       </div>
-      
+
       <div class="box-holder">
         <p class="box-heading">Become a Manager</p>
         <div class="box-manager box">
-          <p><img src="/assets/base/images/owners-managers/manager-icon1.svg" alt="">{{'owners_managers.manager-benefit1' | translate}}</p>
-          <p> <img src="/assets/base/images/owners-managers/manager-icon2.svg" alt="">{{'owners_managers.manager-benefit2' | translate}}</p>
-          <p class="last"><img src="/assets/base/images/owners-managers/manager-icon3.svg" alt="">{{'owners_managers.manager-benefit3' | translate}}</p>
+          <p>
+            <img
+              src="/assets/base/images/owners-managers/manager-icon1.svg"
+              alt=""
+            />{{ "owners_managers.manager-benefit1" | translate }}
+          </p>
+          <p>
+            <img
+              src="/assets/base/images/owners-managers/manager-icon2.svg"
+              alt=""
+            />{{ "owners_managers.manager-benefit2" | translate }}
+          </p>
+          <p class="last">
+            <img
+              src="/assets/base/images/owners-managers/manager-icon3.svg"
+              alt=""
+            />{{ "owners_managers.manager-benefit3" | translate }}
+          </p>
+          <p class="last hidden">
+            <img
+              src="/assets/base/images/owners-managers/manager-icon3.svg"
+              alt=""
+            />{{ "owners_managers.manager-benefit3" | translate }}
+          </p>
           <div class="statement">
             <span>
-              {{'owners_managers.manager-statement' | translate}}
+              {{ "owners_managers.manager-statement" | translate }}
             </span>
           </div>
           <div class="button-holder">
-            <button class="button" (click)="OwnerManagerType = 'manager';becomeManager();" >
-              {{'owners_managers.manager-button' | translate}}
+            <button
+              class="button"
+              (click)="OwnerManagerType = 'manager'; becomeManager()"
+            >
+              {{ "owners_managers.manager-button" | translate }}
             </button>
           </div>
         </div>
@@ -65,8 +114,10 @@
     <app-owner></app-owner>
   </div>
 
-  <div class="owners-managers-holder manager" *ngIf="OwnerManagerType == 'manager'">
+  <div
+    class="owners-managers-holder manager"
+    *ngIf="OwnerManagerType == 'manager'"
+  >
     <app-teams-selection [managerType]="true"></app-teams-selection>
   </div>
-
 </div>
