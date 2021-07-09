@@ -51,6 +51,7 @@ export class AllPlayersComponent implements OnInit {
         this.players = data.results;
         this.totalPages = data.total_pages;
         this.updateTime = data.last_update_at;
+        this.updateTime = this.updateTime.replace(' ', 'T');
 
         this.isMePage();
       });
