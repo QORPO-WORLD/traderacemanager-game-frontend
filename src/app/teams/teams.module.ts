@@ -14,7 +14,8 @@ import { MyTeamPlayersComponent } from './components/my-team-players/my-team-pla
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { OwnerLeaderboardComponent } from './components/owner-leaderboard/owner-leaderboard.component';
 import { ManagerComponent} from './components/manager/manager.component';
-import { OwnerComponent} from './components/owner/owner.component';
+import { OwnerComponent } from './components/owner/owner.component';
+import { BestRacersComponent } from './best-racers/best-racers.component';
 
 import { Routes, RouterModule } from '@angular/router';
 import { AuthUserGuard } from '../user/services/guards/auth-user.guard';
@@ -44,6 +45,9 @@ const routes: Routes = [
       },
       { 
         path: 'owners-managers', component: OwnersManagersComponent
+      },
+      { 
+        path: 'best-racers', component: BestRacersComponent
       }
     ]
   }
@@ -52,7 +56,7 @@ const routes: Routes = [
   declarations: [JoinTeamsComponent, MyTeamComponent,
   MyTeamPlayersComponent, LeaderboardComponent,
   AllPlayersComponent, OwnersManagersComponent,OwnerComponent, ManagerComponent,
-  OwnerLeaderboardComponent],
+  OwnerLeaderboardComponent, BestRacersComponent],
   imports: [
     CommonModule,
     ninja,

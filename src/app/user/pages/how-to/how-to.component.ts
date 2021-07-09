@@ -8,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
 export class HowToComponent implements OnInit {
   menuItems: any;
   content = 1;
+  animation = false;
   menu: Array<string> = [
     "Leaderboard",
     "Intro",
@@ -63,20 +64,65 @@ export class HowToComponent implements OnInit {
   }
   */
   contentPlus() {
+    this.animation = true;
+    this.menuItems.setAttribute("style", `transform: translateX(-66.66666%);`);
     if (this.content < 6) {
       this.content++;
     } else {
       this.content = 1;
     }
-    this.menuItems.appendChild(this.menuItems.firstElementChild);
+    let timeout1 = window.setTimeout(() => {
+      this.menuItems.setAttribute(
+        "style",
+        `transform: translateX(-66.66666%); transition: 0.3s`
+      );
+      clearTimeout(timeout1);
+    }, 300);
+
+    let timeout3 = window.setTimeout(() => {
+      this.menuItems.setAttribute(
+        "style",
+        `transform: translateX(-33.33333%); transition: 0s`
+      );
+      clearTimeout(timeout3);
+    }, 300);
+
+    let timeout5 = window.setTimeout(() => {
+      this.menuItems.appendChild(this.menuItems.firstElementChild);
+      this.animation = false;
+      clearTimeout(timeout5);
+    }, 300);
   }
+
   contentMinus() {
+    this.animation = true;
+    this.menuItems.setAttribute("style", `transform: translateX(0%);`);
     if (this.content > 1) {
       this.content--;
     } else {
       this.content = 6;
     }
-    this.menuItems.prepend(this.menuItems.lastElementChild);
+    let timeout1 = window.setTimeout(() => {
+      this.menuItems.setAttribute(
+        "style",
+        `transform: translateX(0%); transition: 0.3s`
+      );
+      clearTimeout(timeout1);
+    }, 300);
+
+    let timeout3 = window.setTimeout(() => {
+      this.menuItems.setAttribute(
+        "style",
+        `transform: translateX(-33.33333%); transition: 0s`
+      );
+      clearTimeout(timeout3);
+    }, 300);
+
+    let timeout5 = window.setTimeout(() => {
+      this.menuItems.prepend(this.menuItems.lastElementChild);
+      this.animation = false;
+      clearTimeout(timeout5);
+    }, 300);
   }
   contentSwitcher(content: number) {
     this.content = content;
