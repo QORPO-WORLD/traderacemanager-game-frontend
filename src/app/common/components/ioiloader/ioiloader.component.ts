@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ioiloader',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ioiloader.component.scss'],
 })
 export class IoiloaderComponent implements OnInit {
+
+  @Input() isInRace = false;
 
   constructor() { }
 
