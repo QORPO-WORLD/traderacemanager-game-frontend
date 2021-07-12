@@ -1,148 +1,254 @@
 <div class="lead-cont-holder team">
-
- <div class="top-teams" *ngIf="actualPage===1" >
-  <div class="top-team secound-team" >
-    <img class="team-img" *ngIf=" myLdrbrd[1]?.team_name === 'BTC' || myLdrbrd[1]?.team_name === 'IOI' || myLdrbrd[1]?.team_name === 'ALT'" [src]="'/assets/base/images/teams/' + myLdrbrd[1]?.team_name + '-team.png'" alt="">
-    <div class="team-img" *ngIf="myLdrbrd[1]?.team_name !== 'BTC' && myLdrbrd[1]?.team_name !== 'IOI' && myLdrbrd[1]?.team_name !== 'ALT'">
-      <img [src]=" 'assets/base/images/custom-teams/custom-team' + (myLdrbrd[1]?.avatar + 1) + '.png'" alt="">
-      <div class="team-name">
-        <p class="name">{{myLdrbrd[1]?.team_name}}</p>
-        <p class="team">TEAM</p>
+  <div class="top-teams" *ngIf="actualPage === 1">
+    <div class="top-team secound-team">
+      <img
+        class="team-img"
+        *ngIf="
+          myLdrbrd[1]?.team_name === 'BTC' ||
+          myLdrbrd[1]?.team_name === 'IOI' ||
+          myLdrbrd[1]?.team_name === 'ALT'
+        "
+        [src]="
+          '/assets/base/images/teams/' + myLdrbrd[1]?.team_name + '-team.png'
+        "
+        alt=""
+      />
+      <div
+        class="team-img"
+        *ngIf="
+          myLdrbrd[1]?.team_name !== 'BTC' &&
+          myLdrbrd[1]?.team_name !== 'IOI' &&
+          myLdrbrd[1]?.team_name !== 'ALT'
+        "
+      >
+        <img
+          [src]="
+            'assets/base/images/custom-teams/custom-team' +
+            (myLdrbrd[1]?.avatar + 1) +
+            '.png'
+          "
+          alt=""
+        />
+        <div class="team-name">
+          <p class="name">{{ myLdrbrd[1]?.team_name }}</p>
+          <p class="team">TEAM</p>
+        </div>
       </div>
+      <p class="position">2ND</p>
+      <p class="team-name">Team {{ myLdrbrd[1]?.team_name }}</p>
+      <p class="win">Points</p>
+      <p class="turnover">{{ myLdrbrd[1]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="win">Potentional win</p>
+      <p class="turnover">
+        <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 700
+      </p>
     </div>
-    <p class="position">2ND</p>
-    <p class="team-name">Team {{myLdrbrd[1]?.team_name}}</p>
-    <p class="win">Points</p>
-    <p class="turnover">{{myLdrbrd[1]?.points | number:'1.0-1':'fr'}}</p>
-    <p class="win">Potentional win</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> 700</p>
-  </div>
 
-  <div class="top-team first-team" >
-    <img class="team-img" *ngIf="!myLdrbrd[0] || myLdrbrd[0]?.team_name === 'BTC' || myLdrbrd[0]?.team_name === 'IOI' || myLdrbrd[0]?.team_name === 'ALT'" [src]="'/assets/base/images/teams/' + myLdrbrd[0]?.team_name + '-team.png'" alt="">
-    <div class="team-img" *ngIf="myLdrbrd[0]?.team_name !== 'BTC' && myLdrbrd[0]?.team_name !== 'IOI' && myLdrbrd[0]?.team_name !== 'ALT'">
-      <img [src]=" 'assets/base/images/custom-teams/custom-team' + (myLdrbrd[0]?.avatar + 1) + '.png'" alt="">
-      <div class="team-name">
-        <p class="name">{{myLdrbrd[0]?.team_name}}</p>
-        <p class="team">TEAM</p>
+    <div class="top-team first-team">
+      <img
+        class="team-img"
+        *ngIf="
+          !myLdrbrd[0] ||
+          myLdrbrd[0]?.team_name === 'BTC' ||
+          myLdrbrd[0]?.team_name === 'IOI' ||
+          myLdrbrd[0]?.team_name === 'ALT'
+        "
+        [src]="
+          '/assets/base/images/teams/' + myLdrbrd[0]?.team_name + '-team.png'
+        "
+        alt=""
+      />
+      <div
+        class="team-img"
+        *ngIf="
+          myLdrbrd[0]?.team_name !== 'BTC' &&
+          myLdrbrd[0]?.team_name !== 'IOI' &&
+          myLdrbrd[0]?.team_name !== 'ALT'
+        "
+      >
+        <img
+          [src]="
+            'assets/base/images/custom-teams/custom-team' +
+            (myLdrbrd[0]?.avatar + 1) +
+            '.png'
+          "
+          alt=""
+        />
+        <div class="team-name">
+          <p class="name">{{ myLdrbrd[0]?.team_name }}</p>
+          <p class="team">TEAM</p>
+        </div>
       </div>
-    </div>
-    
-    <p class="position">1ST</p>
-    <p class="team-name">Team {{myLdrbrd[0]?.team_name}}</p>
-    <p class="win">Points</p>
-    <p class="turnover">{{myLdrbrd[0]?.points | number:'1.0-1':'fr'}}</p>
-    <p class="win">Potentional win</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> 1000</p>
-  </div>
 
-  <div class="top-team third-team" >
-    <img class="team-img" *ngIf="myLdrbrd[2]?.team_name === 'BTC' || myLdrbrd[2]?.team_name === 'IOI' || myLdrbrd[2]?.team_name === 'ALT'" [src]="'/assets/base/images/teams/' + myLdrbrd[2]?.team_name + '-team.png'" alt="">
-    <div class="team-img" *ngIf="myLdrbrd[2]?.team_name !== 'BTC' && myLdrbrd[2]?.team_name !== 'IOI' && myLdrbrd[2]?.team_name !== 'ALT'">
-      <img [src]=" 'assets/base/images/custom-teams/custom-team' + (myLdrbrd[2]?.avatar + 1) + '.png'" alt="">
-      <div class="team-name">
-        <p class="name">{{myLdrbrd[2]?.team_name}}</p>
-        <p class="team">TEAM</p>
+      <p class="position">1ST</p>
+      <p class="team-name">Team {{ myLdrbrd[0]?.team_name }}</p>
+      <p class="win">Points</p>
+      <p class="turnover">{{ myLdrbrd[0]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="win">Potentional win</p>
+      <p class="turnover">
+        <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 1000
+      </p>
+    </div>
+
+    <div class="top-team third-team">
+      <img
+        class="team-img"
+        *ngIf="
+          myLdrbrd[2]?.team_name === 'BTC' ||
+          myLdrbrd[2]?.team_name === 'IOI' ||
+          myLdrbrd[2]?.team_name === 'ALT'
+        "
+        [src]="
+          '/assets/base/images/teams/' + myLdrbrd[2]?.team_name + '-team.png'
+        "
+        alt=""
+      />
+      <div
+        class="team-img"
+        *ngIf="
+          myLdrbrd[2]?.team_name !== 'BTC' &&
+          myLdrbrd[2]?.team_name !== 'IOI' &&
+          myLdrbrd[2]?.team_name !== 'ALT'
+        "
+      >
+        <img
+          [src]="
+            'assets/base/images/custom-teams/custom-team' +
+            (myLdrbrd[2]?.avatar + 1) +
+            '.png'
+          "
+          alt=""
+        />
+        <div class="team-name">
+          <p class="name">{{ myLdrbrd[2]?.team_name }}</p>
+          <p class="team">TEAM</p>
+        </div>
       </div>
-    </div>
-    <p class="position">3RD</p>
-    <p class="team-name">Team {{myLdrbrd[2]?.team_name}}</p>
-    <p class="win">Points</p>
-    <p class="turnover"> {{myLdrbrd[2]?.points | number:'1.0-1':'fr'}}</p>
-    <p class="win">Potentional win</p>
-    <p class="turnover"><img src="/assets/base/images/teams/reward-token.png" alt="IOI"> 300</p>
-  </div>
- </div>
-  
-
-
-  <div class="table-row header">
-    <div class="table-item small">
-      <p>Place</p>
-    </div>
-    <div class="table-item big">
-      <p>Team</p>
-    </div>
-    <div class="table-item big last ">
-      <p>Points</p>
+      <p class="position">3RD</p>
+      <p class="team-name">Team {{ myLdrbrd[2]?.team_name }}</p>
+      <p class="win">Points</p>
+      <p class="turnover">{{ myLdrbrd[2]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="win">Potentional win</p>
+      <p class="turnover">
+        <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 300
+      </p>
     </div>
   </div>
 
-  <div class="table-row" *ngFor="let team of myLdrbrd; let yy = index" [ngClass]="{'mine': team.team_name === myTeamName}">
-    <ng-container *ngIf="team.position>3">
+  <div class="table-content">
+    <div class="table-row header">
       <div class="table-item small">
-        <p>{{team.position}}.</p>
+        <p>Place</p>
       </div>
       <div class="table-item big">
-        <p>{{team.team_name}}</p>
+        <p>Team</p>
       </div>
-      <div class="table-item big bold last">
-        <p>{{team.points | number:'1.0-1':'fr'}}</p>
+      <div class="table-item big last">
+        <p>Points</p>
       </div>
-      <div class="mine-back my-cta-btn-back"></div>
-    </ng-container>
-    
-  </div>
+    </div>
 
-
-  <div class="pagination">
-    <button
-      (click)="actualPage = actualPage-1; getMyLeaderboard()"
-      class="pagebtn-l"
-      [disabled]="actualPage<=1"
+    <div
+      class="table-row"
+      *ngFor="let team of myLdrbrd; let yy = index"
+      [ngClass]="{ mine: team.team_name === myTeamName }"
     >
-      <img
-        class="red-box-detail paging-img"
-        [ngClass]="{
-          'page-opacity': actualPage === 1
-        }"
-        src="/assets/base/images/icons/icon-back-red.svg"
-        alt="red back icon"
-      />
-      <img
-        class="blue-box-detail paging-img"
-        [ngClass]="{
-          'page-opacity': actualPage === 1
-        }"
-        src="/assets/base/images/icons/icon-back-blue.svg"
-        alt="blue next icon"
-      />
-    </button>
+      <ng-container *ngIf="team.position > 3">
+        <div class="table-item small">
+          <p>{{ team.position }}.</p>
+        </div>
+        <div class="table-item big">
+          <p>{{ team.team_name }}</p>
+        </div>
+        <div class="table-item big bold last">
+          <p>{{ team.points | number: "1.0-1":"fr" }}</p>
+        </div>
+        <div class="mine-back my-cta-btn-back"></div>
+      </ng-container>
+    </div>
 
-    <button class="page page-active">{{actualPage}}</button>
-    <button (click)="actualPage = actualPage+1; getMyLeaderboard()" class="page" *ngIf="actualPage+1<totalPages">{{actualPage+1}}</button>
-    <button (click)="actualPage = actualPage+2; getMyLeaderboard()" class="page" *ngIf="actualPage+2<totalPages">{{actualPage+2}}</button>
-    <button (click)="actualPage = actualPage+3; getMyLeaderboard()" class="page" *ngIf="actualPage+3<totalPages">{{actualPage+3}}</button>
-    <button class="page page-disabled" *ngIf="actualPage+4<totalPages">...</button>
-    <button (click)="actualPage = totalPages; getMyLeaderboard()" class="page" *ngIf="actualPage<totalPages">{{totalPages}}</button>
+    <div class="pagination">
+      <button
+        (click)="actualPage = actualPage - 1; getMyLeaderboard()"
+        class="pagebtn-l"
+        [disabled]="actualPage <= 1"
+      >
+        <img
+          class="red-box-detail paging-img"
+          [ngClass]="{
+            'page-opacity': actualPage === 1
+          }"
+          src="/assets/base/images/icons/icon-back-red.svg"
+          alt="red back icon"
+        />
+        <img
+          class="blue-box-detail paging-img"
+          [ngClass]="{
+            'page-opacity': actualPage === 1
+          }"
+          src="/assets/base/images/icons/icon-back-blue.svg"
+          alt="blue next icon"
+        />
+      </button>
 
-    <button
-      (click)="actualPage = actualPage+1; getMyLeaderboard()"
-      class="pagebtn-r"
-      [disabled]="actualPage>=totalPages"
-    >
-      <img
-        class="red-box-detail paging-img"
-        [ngClass]="{
-          'page-opacity': actualPage >=totalPages
-        }"
-        src="/assets/base/images/icons/icon-next-red.svg"
-        alt="red back icon"
-      />
-      <img
-        class="blue-box-detail paging-img"
-        [ngClass]="{
-          'page-opacity': actualPage === totalPages
-        }"
-        src="/assets/base/images/icons/icon-next-blue.svg"
-        alt="blue next icon"
-      />
-    </button>
+      <button class="page page-active">{{ actualPage }}</button>
+      <button
+        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        class="page"
+        *ngIf="actualPage + 1 < totalPages"
+      >
+        {{ actualPage + 1 }}
+      </button>
+      <button
+        (click)="actualPage = actualPage + 2; getMyLeaderboard()"
+        class="page"
+        *ngIf="actualPage + 2 < totalPages"
+      >
+        {{ actualPage + 2 }}
+      </button>
+      <button
+        (click)="actualPage = actualPage + 3; getMyLeaderboard()"
+        class="page"
+        *ngIf="actualPage + 3 < totalPages"
+      >
+        {{ actualPage + 3 }}
+      </button>
+      <button class="page page-disabled" *ngIf="actualPage + 4 < totalPages">
+        ...
+      </button>
+      <button
+        (click)="actualPage = totalPages; getMyLeaderboard()"
+        class="page"
+        *ngIf="actualPage < totalPages"
+      >
+        {{ totalPages }}
+      </button>
 
+      <button
+        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        class="pagebtn-r"
+        [disabled]="actualPage >= totalPages"
+      >
+        <img
+          class="red-box-detail paging-img"
+          [ngClass]="{
+            'page-opacity': actualPage >= totalPages
+          }"
+          src="/assets/base/images/icons/icon-next-red.svg"
+          alt="red back icon"
+        />
+        <img
+          class="blue-box-detail paging-img"
+          [ngClass]="{
+            'page-opacity': actualPage === totalPages
+          }"
+          src="/assets/base/images/icons/icon-next-blue.svg"
+          alt="blue next icon"
+        />
+      </button>
+    </div>
   </div>
-
 </div>
-
 
 <!-- <div (window:resize)="width()" class="teams-table">
   <div class="desktop-header">
@@ -313,6 +419,3 @@
     <p>There are incomplete data in this leaderboard so far</p>
   </div>
 </div> -->
-
-
-
