@@ -424,12 +424,14 @@
         </div>
 
         <div class="switcher-holder">
-          <button
-            class="switch-item"
-            *ngFor="let item of fastRaces; let i = index"
-            (click)="fastRaceIndex = i"
-            [ngClass]="{ active: i === fastRaceIndex }"
-          ></button>
+          <ng-container *ngFor="let item of fastRaces; let i = index">
+            <button
+              class="switch-item"
+              (click)="fastRaceIndex = i"
+              [ngClass]="{ active: i === fastRaceIndex }"
+              *ngIf="i !== 0"
+            ></button>
+          </ng-container>
         </div>
       </div>
     </div>
