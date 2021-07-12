@@ -1,5 +1,5 @@
 <div class="main-content zavod" *ngIf="!raceDataildata && !raceData">
-<app-ioiloader></app-ioiloader>
+  <app-ioiloader [isInRace]="true"></app-ioiloader>
 </div>
 
 <app-race-bonus-modal #bonusModal></app-race-bonus-modal>
@@ -687,34 +687,6 @@
   <img src="/assets/base/images/nft-racers/white-trm.png" alt="" class="back-avatar">
 
   <div class="winning-modal">
-
-    <!-- <div class="top-stats">
-      <div class="stat-item">
-        <p class="heading">Overall win</p>
-        <div class="stat-box">
-          <p><img src="/assets/base/images/zavod/prize-trophy.svg" alt=""> 
-            {{raceDataildata?.price_pool | number:'1.0-2':'fr'}} 
-            <span style="color:#23FFFF">{{'shared.ioi' | translate}}</span>
-          </p>
-        </div>
-      </div>
-      <div class="stat-item">
-        <p class="heading">Teams earned</p>
-        <div class="stat-box">
-          <p>{{convertNumber(raceDataildata?.price_pool) | number:'1.0-2':'fr'}} 
-            <span style="color:#23FFFF">{{'shared.ioi' | translate}}</span>
-          </p>
-        </div>
-      </div>
-      <div class="stat-item">
-        <p class="heading">IOI holders earned</p>
-        <div class="stat-box">
-          <p>{{convertNumber(raceDataildata?.price_pool) | number:'1.0-2':'fr'}} 
-            <span style="color:#23FFFF">{{'shared.ioi' | translate}}</span>
-          </p>
-        </div>
-      </div>
-    </div> -->
 
     <div class="switch-btns">
       <button (click)="winnerShowPrize = true">Prizepool<div class="back my-cta-btn-back" [ngClass]="{'active': winnerShowPrize === true}"></div></button>
