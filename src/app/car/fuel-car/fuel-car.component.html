@@ -1768,7 +1768,7 @@
         </div>
         <div
           class="arrow right"
-          (click)="nextFuelCar()"
+          (click)="nextFuelCar(false)"
           *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
         >
           <p>&gt;</p>
@@ -1781,7 +1781,7 @@
           sumFuel / sumlength !== 100 &&
           selectedCarIndex < selectedCarsToRace.length - 1
         "
-        (click)="selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
+        (click)="nextFuelCar(true);selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
       >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
