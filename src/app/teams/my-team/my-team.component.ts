@@ -366,7 +366,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
       };
       this.chart = new Chart('canvas', this.config);
       for (let x = 0; x < data.length; x++) {
-        this.add(data[x].from, data[x].point);
+        this.add(data[x].from, data[x].points);
       }
       
     });
