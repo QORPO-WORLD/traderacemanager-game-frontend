@@ -27,7 +27,7 @@ export class QuickWithdrawComponent implements OnInit {
   myDriverObserver: Subscription;
   nitroObserver: Subscription;
   tokenSelected = 'ioi';
-  chainSelected = 'polygon';
+  chainSelected = '';
   cryptoMtfrckr = '';
   amount = 100;
   myIoiBalance = 0;
@@ -38,6 +38,8 @@ export class QuickWithdrawComponent implements OnInit {
   stepIndex = 1;
   editingWallet = false;
   myDriver: any;
+  currency: any;
+  contractId: any;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
@@ -46,6 +48,44 @@ export class QuickWithdrawComponent implements OnInit {
   confirmed = false;
   confirming = false;
   maticusdt = 1;
+  contracts = [
+    {
+      contractId: 1,
+      token: 'ioi',
+      chain: 'ethereum',
+      currency: null
+    },
+    {
+      contractId: 2,
+      token: 'ioi',
+      chain: 'binance',
+      currency: null
+    },
+    {
+      contractId: 3,
+      token: 'ioi',
+      chain: 'polygon',
+      currency: null
+    },
+    {
+      contractId: 4,
+      token: 'matic',
+      chain: 'ethereum',
+      currency: null
+    },
+    {
+      contractId: 5,
+      token: 'matic',
+      chain: 'binance',
+      currency: null
+    },
+    {
+      contractId: null,
+      token: 'matic',
+      chain: 'polygon',
+      currency: 'matic'
+    }
+  ];
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, private uapi: AuthService, protected translate: TranslateService,
     private identityService: ninja, private _http: HttpClient, private notifyapi: ErrorService) { }
@@ -78,21 +118,47 @@ export class QuickWithdrawComponent implements OnInit {
 
 
   withdrawalIoiToken() {
-    
-    this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
-      {
-        currency: this.tokenSelected,
-        amount:  this.amount,
-        targetAddress: this.cryptoMtfrckr,
-        location: 'races'
+
+    this.contracts.forEach(contract=> {
+      if(this.tokenSelected === contract.token && this.chainSelected === contract.chain){
+        this.currency = contract.currency;
+        this.contractId = contract.contractId;
       }
-    ).subscribe(data => {
-      this.translate.get('nitro_notifiq').subscribe((res) => {
-        this.notify.error('x', res.with_confirm);
-        this.amount = 0;
-        this.confirming = true;
-      });
     });
+
+    if(this.currency === null && this.contractId !== null){
+      this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
+        {
+          contract_id: this.contractId,
+          amount:  this.amount,
+          targetAddress: this.cryptoMtfrckr,
+          location: 'races'
+        }
+      ).subscribe(data => {
+        this.translate.get('nitro_notifiq').subscribe((res) => {
+          this.notify.error('x', res.with_confirm);
+          this.amount = 0;
+          this.confirming = true;
+        });
+      });
+    }
+
+    if(this.currency !== null && this.contractId === null){
+      this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
+        {
+          currency: this.currency,
+          amount:  this.amount,
+          targetAddress: this.cryptoMtfrckr,
+          location: 'races'
+        }
+      ).subscribe(data => {
+        this.translate.get('nitro_notifiq').subscribe((res) => {
+          this.notify.error('x', res.with_confirm);
+          this.amount = 0;
+          this.confirming = true;
+        });
+      });
+    }
   }
 
   patchWallet() {

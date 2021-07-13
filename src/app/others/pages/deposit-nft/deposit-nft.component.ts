@@ -760,14 +760,30 @@ export class DepositNftComponent implements OnInit {
   }
 
   depositCar() {
-    this.transferSubscription = this.blcksrvc
+    if(this.nftType === 'car'){
+      this.transferSubscription = this.blcksrvc
       .blockchainDepositCreate({
         amount: this.amount,
-        currency: this.nftType + '_' + this.nftId,
+        token_id: this.nftId,
+        contract_id: 6
       })
       .subscribe((data) => {
         this.depositing();
       });
+    }
+
+    if(this.nftType === 'racer'){
+      this.transferSubscription = this.blcksrvc
+      .blockchainDepositCreate({
+        amount: this.amount,
+        token_id: this.nftId,
+        contract_id: 7
+      })
+      .subscribe((data) => {
+        this.depositing();
+      });
+    }
+    
   }
 
   depositing() {

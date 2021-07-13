@@ -795,12 +795,14 @@ export class WithdrawNftComponent implements OnInit {
   }
 
   withdrawCar() {
-    this.transferSubscription = this.blcksrvc
+    if(this.nftType === 'car'){
+      this.transferSubscription = this.blcksrvc
       .blockchainWithdrawCreate({
-        currency: "car_" + this.nftId.toString(),
+        token_id: this.nftId,
         amount: this.amount,
         code: this.authcode,
         targetAddress: this.cryptoMtfrckr,
+        contract_id: 6,
         location: 'races'
       }
       ).subscribe(data => {
@@ -809,6 +811,26 @@ export class WithdrawNftComponent implements OnInit {
         this.confirmed = false;
         this.confirming = true;
       });
+    }
+    
+    if(this.nftType === 'racer'){
+      this.transferSubscription = this.blcksrvc
+      .blockchainWithdrawCreate({
+        token_id: this.nftId,
+        amount: this.amount,
+        code: this.authcode,
+        targetAddress: this.cryptoMtfrckr,
+        contract_id: 7,
+        location: 'races'
+      }
+      ).subscribe(data => {
+
+        this.amount = 0;
+        this.confirmed = false;
+        this.confirming = true;
+      });
+    }
+
   }
 
 }
