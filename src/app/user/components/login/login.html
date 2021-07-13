@@ -1,103 +1,110 @@
 <div class="main-holder">
+  <div class="login-back-div">
+    <div class="login-back"></div>
+  </div>
   <div class="back-btn" [routerLink]="'/user/home'">
     <img src="assets/base/images/icons/icon-back-blue.svg" alt="blue arrow" />
     <p>Back</p>
   </div>
+  <div class="login-content">
+    <div class="center-content">
+      <form [formGroup]="reactiveForm">
+        <div
+          (click)="scrollTop(username)"
+          class="my-input"
+          [ngClass]="{'filled': f.username.value !== '' && f.username.value !== undefined}"
+          #username
+        >
+          <img src="/assets/base/images/user-icon.svg" alt="" class="icon" />
+          <input
+            type="text"
+            required
+            formControlName="username"
+            id="cvewssd943"
+            name="vewf43nivwe"
+            autocomplete="false"
+          />
+          <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
+        </div>
 
-  <div class="center-content">
-    <form [formGroup]="reactiveForm">
-      <div
-        (click)="scrollTop(username)"
-        class="my-input"
-        [ngClass]="{'filled': f.username.value !== '' && f.username.value !== undefined}"
-        #username
-      >
-        <img src="/assets/base/images/user-icon.svg" alt="" class="icon" />
-        <input
-          type="text"
-          required
-          formControlName="username"
-          id="cvewssd943"
-          name="vewf43nivwe"
-          autocomplete="false"
-        />
-        <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
+        <div
+          (click)="scrollTop(password)"
+          class="my-input"
+          [ngClass]="{'filled': f.password.value !== '' && f.password.value !== undefined}"
+          #password
+        >
+          <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
+          <input
+            [type]="show"
+            formControlName="password"
+            id="cvew943"
+            name="vewnivwe"
+            autocomplete="false"
+          />
+          <span class="input-placeholder">{{'login.pass' | translate}}</span>
+          <span
+            class="eyeball"
+            (click)="show = 'text'"
+            [ngClass]="{'show': show === 'password'}"
+            ><img src="/assets/base/images/pass-hidden.png"
+          /></span>
+          <span
+            class="eyeball"
+            (click)="show = 'password'"
+            [ngClass]="{'show': show === 'text'}"
+            ><img src="/assets/base/images/pass-unhidden.png"
+          /></span>
+        </div>
+
+        <div
+          class="my-input"
+          *ngIf="gauthfired === true && metaSwitch === false"
+        >
+          <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
+          <input
+            type="text"
+            required
+            [(ngModel)]="gkey"
+            [placeholder]="'login.auth_key' | translate"
+            [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+
+        <div class="my-input" *ngIf="gfbfired === true && metaSwitch === false">
+          <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
+          <input
+            type="text"
+            required
+            [(ngModel)]="gkey"
+            [placeholder]="'login.auth_key' | translate"
+            [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+      </form>
+
+      <div class="clickers-holder">
+        <div class="regular-box">
+          <p [routerLink]="['/user/sign-up']" class="register">Register</p>
+          <p [routerLink]="['/user/forgot-password']">Forgot Password?</p>
+        </div>
+
+        <button class="cta-button" (click)="submit()" *ngIf="loading === false">
+          {{'shared.log_in_btn' | translate}}
+        </button>
+        <button class="cta-button" *ngIf="loading === true" disabled>
+          {{'fuel_car.loading' | translate}}
+        </button>
       </div>
 
-      <div
-        (click)="scrollTop(password)"
-        class="my-input"
-        [ngClass]="{'filled': f.password.value !== '' && f.password.value !== undefined}"
-        #password
-      >
-        <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
-        <input
-          [type]="show"
-          formControlName="password"
-          id="cvew943"
-          name="vewnivwe"
-          autocomplete="false"
-        />
-        <span class="input-placeholder">{{'login.pass' | translate}}</span>
-        <span
-          class="eyeball"
-          (click)="show = 'text'"
-          [ngClass]="{'show': show === 'password'}"
-          ><img src="/assets/base/images/pass-hidden.png"
-        /></span>
-        <span
-          class="eyeball"
-          (click)="show = 'password'"
-          [ngClass]="{'show': show === 'text'}"
-          ><img src="/assets/base/images/pass-unhidden.png"
-        /></span>
-      </div>
+      <p class="or-text">{{'login.or' | translate}}</p>
 
-      <div class="my-input" *ngIf="gauthfired === true && metaSwitch === false">
-        <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
-        <input
-          type="text"
-          required
-          [(ngModel)]="gkey"
-          [placeholder]="'login.auth_key' | translate"
-          [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
-          [ngModelOptions]="{standalone: true}"
-        />
-      </div>
-
-      <div class="my-input" *ngIf="gfbfired === true && metaSwitch === false">
-        <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
-        <input
-          type="text"
-          required
-          [(ngModel)]="gkey"
-          [placeholder]="'login.auth_key' | translate"
-          [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
-          [ngModelOptions]="{standalone: true}"
-        />
-      </div>
-    </form>
-
-    <div class="clickers-holder">
-      <div class="regular-box">
-        <p [routerLink]="['/user/sign-up']" class="register">Register</p>
-        <p [routerLink]="['/user/forgot-password']">Forgot Password?</p>
-      </div>
-
-      <button class="cta-button" (click)="submit()" *ngIf="loading === false">
-        {{'shared.log_in_btn' | translate}}
-      </button>
-      <button class="cta-button" *ngIf="loading === true" disabled>
-        {{'fuel_car.loading' | translate}}
+      <button class="social-button" (click)="metaSwitch = true">
+        <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
+        | translate}}
       </button>
     </div>
-
-    <p class="or-text">{{'login.or' | translate}}</p>
-
-    <button class="social-button" (click)="metaSwitch = true">
-      <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login' |
-      translate}}
-    </button>
   </div>
 
   <!-- <img src="/assets/base/images/logo.png" alt="Logo of traderacemanager" class="my-logo" [routerLink]="['/user/home']"> -->
