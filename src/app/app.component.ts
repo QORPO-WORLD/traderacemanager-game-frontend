@@ -50,6 +50,7 @@ export class AppComponent {
 
   initializeApp() {
     const myDomain = window.location.href;
+    this.calculateCorrectVh();
     this.platform.ready().then(() => {
       this.statusBar.hide();
       this.splashScreen.hide();
@@ -122,4 +123,14 @@ export class AppComponent {
   onActivate(e, elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "auto", block: "start" });
   }
+
+  calculateCorrectVh() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+    window.addEventListener("resize", () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
+  }
+
 }
