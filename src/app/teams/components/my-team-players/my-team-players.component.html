@@ -1,43 +1,44 @@
 <div class="lead-cont-holder team">
-  <div class="top-teams" *ngIf="actualPage === 1">
+  <div class="top-teams">
     <div class="top-team secound-team">
       <img
         class="team-img"
         *ngIf="
-          myLdrbrd[1]?.team_name === 'BTC' ||
-          myLdrbrd[1]?.team_name === 'IOI' ||
-          myLdrbrd[1]?.team_name === 'ALT'
+          !myStatData[1] ||
+          myStatData[1]?.team?.team_name === 'BTC' ||
+          myStatData[1]?.team?.team_name === 'IOI' ||
+          myStatData[1]?.team?.team_name === 'ALT'
         "
         [src]="
-          '/assets/base/images/teams/' + myLdrbrd[1]?.team_name + '-team.png'
+          '/assets/base/images/teams/' + myStatData[1]?.team?.team_name + '-team.png'
         "
         alt=""
       />
       <div
         class="team-img"
         *ngIf="
-          myLdrbrd[1]?.team_name !== 'BTC' &&
-          myLdrbrd[1]?.team_name !== 'IOI' &&
-          myLdrbrd[1]?.team_name !== 'ALT'
+          myStatData[1]?.team?.team_name !== 'BTC' &&
+          myStatData[1]?.team?.team_name !== 'IOI' &&
+          myStatData[1]?.team?.team_name !== 'ALT'
         "
       >
         <img
           [src]="
             'assets/base/images/custom-teams/custom-team' +
-            (myLdrbrd[1]?.avatar + 1) +
+            (myStatData[1]?.team?.avatar + 1) +
             '.png'
           "
           alt=""
         />
         <div class="team-name">
-          <p class="name">{{ myLdrbrd[1]?.team_name }}</p>
+          <p class="name">{{ myStatData[1]?.team?.team_name }}</p>
           <p class="team">TEAM</p>
         </div>
       </div>
       <p class="position">2ND</p>
-      <p class="team-name">Team {{ myLdrbrd[1]?.team_name }}</p>
+      <p class="team-name">Team {{ myStatData[1]?.team?.team_name }}</p>
       <p class="win">Points</p>
-      <p class="turnover">{{ myLdrbrd[1]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="turnover">{{ myStatData[1]?.team?.points | number: "1.0-1":"fr" }}</p>
       <p class="win">Potentional win</p>
       <p class="turnover">
         <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 700
@@ -48,42 +49,42 @@
       <img
         class="team-img"
         *ngIf="
-          !myLdrbrd[0] ||
-          myLdrbrd[0]?.team_name === 'BTC' ||
-          myLdrbrd[0]?.team_name === 'IOI' ||
-          myLdrbrd[0]?.team_name === 'ALT'
+          !myStatData[0] ||
+          myStatData[0]?.team?.team_name === 'BTC' ||
+          myStatData[0]?.team?.team_name === 'IOI' ||
+          myStatData[0]?.team?.team_name === 'ALT'
         "
         [src]="
-          '/assets/base/images/teams/' + myLdrbrd[0]?.team_name + '-team.png'
+          '/assets/base/images/teams/' + myStatData[0]?.team?.team_name+ '-team.png'
         "
         alt=""
       />
       <div
         class="team-img"
         *ngIf="
-          myLdrbrd[0]?.team_name !== 'BTC' &&
-          myLdrbrd[0]?.team_name !== 'IOI' &&
-          myLdrbrd[0]?.team_name !== 'ALT'
+          myStatData[0]?.team?.team_name !== 'BTC' &&
+          myStatData[0]?.team?.team_name !== 'IOI' &&
+          myStatData[0]?.team?.team_name !== 'ALT'
         "
       >
         <img
           [src]="
             'assets/base/images/custom-teams/custom-team' +
-            (myLdrbrd[0]?.avatar + 1) +
+            (myStatData[0]?.team?.avatar + 1) +
             '.png'
           "
           alt=""
         />
         <div class="team-name">
-          <p class="name">{{ myLdrbrd[0]?.team_name }}</p>
+          <p class="name">{{ myStatData[0]?.team?.team_name }}</p>
           <p class="team">TEAM</p>
         </div>
       </div>
 
       <p class="position">1ST</p>
-      <p class="team-name">Team {{ myLdrbrd[0]?.team_name }}</p>
+      <p class="team-name">Team {{ myStatData[0]?.team?.team_name }}</p>
       <p class="win">Points</p>
-      <p class="turnover">{{ myLdrbrd[0]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="turnover">{{ myStatData[0]?.team?.points | number: "1.0-1":"fr" }}</p>
       <p class="win">Potentional win</p>
       <p class="turnover">
         <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 1000
@@ -94,40 +95,40 @@
       <img
         class="team-img"
         *ngIf="
-          myLdrbrd[2]?.team_name === 'BTC' ||
-          myLdrbrd[2]?.team_name === 'IOI' ||
-          myLdrbrd[2]?.team_name === 'ALT'
+          myStatData[2]?.team?.team_name === 'BTC' ||
+          myStatData[2]?.team?.team_name === 'IOI' ||
+          myStatData[2]?.team?.team_name === 'ALT'
         "
         [src]="
-          '/assets/base/images/teams/' + myLdrbrd[2]?.team_name + '-team.png'
+          '/assets/base/images/teams/' + myStatData[2]?.team?.team_name + '-team.png'
         "
         alt=""
       />
       <div
         class="team-img"
         *ngIf="
-          myLdrbrd[2]?.team_name !== 'BTC' &&
-          myLdrbrd[2]?.team_name !== 'IOI' &&
-          myLdrbrd[2]?.team_name !== 'ALT'
+          myStatData[2]?.team?.team_name !== 'BTC' &&
+          myStatData[2]?.team?.team_name !== 'IOI' &&
+          myStatData[2]?.team?.team_name !== 'ALT'
         "
       >
         <img
           [src]="
             'assets/base/images/custom-teams/custom-team' +
-            (myLdrbrd[2]?.avatar + 1) +
+            (myStatData[2]?.team?.avatar + 1) +
             '.png'
           "
           alt=""
         />
         <div class="team-name">
-          <p class="name">{{ myLdrbrd[2]?.team_name }}</p>
+          <p class="name">{{ myStatData[2]?.team?.team_name }}</p>
           <p class="team">TEAM</p>
         </div>
       </div>
       <p class="position">3RD</p>
-      <p class="team-name">Team {{ myLdrbrd[2]?.team_name }}</p>
+      <p class="team-name">Team {{ myStatData[2]?.team?.team_name}}</p>
       <p class="win">Points</p>
-      <p class="turnover">{{ myLdrbrd[2]?.points | number: "1.0-1":"fr" }}</p>
+      <p class="turnover">{{ myStatData[2]?.team?.points | number: "1.0-1":"fr" }}</p>
       <p class="win">Potentional win</p>
       <p class="turnover">
         <img src="/assets/base/images/teams/reward-token.png" alt="IOI" /> 300
@@ -169,7 +170,7 @@
 
     <div class="pagination">
       <button
-        (click)="actualPage = actualPage - 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage - 1; getMyLeaderboard(); getteamStats()"
         class="pagebtn-l"
         [disabled]="actualPage <= 1"
       >
@@ -193,21 +194,21 @@
 
       <button class="page page-active">{{ actualPage }}</button>
       <button
-        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 1; getMyLeaderboard(); getteamStats()"
         class="page"
         *ngIf="actualPage + 1 < totalPages"
       >
         {{ actualPage + 1 }}
       </button>
       <button
-        (click)="actualPage = actualPage + 2; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 2; getMyLeaderboard(); getteamStats()"
         class="page"
         *ngIf="actualPage + 2 < totalPages"
       >
         {{ actualPage + 2 }}
       </button>
       <button
-        (click)="actualPage = actualPage + 3; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 3; getMyLeaderboard(); getteamStats()"
         class="page"
         *ngIf="actualPage + 3 < totalPages"
       >
@@ -217,7 +218,7 @@
         ...
       </button>
       <button
-        (click)="actualPage = totalPages; getMyLeaderboard()"
+        (click)="actualPage = totalPages; getMyLeaderboard(); getteamStats()"
         class="page"
         *ngIf="actualPage < totalPages"
       >
@@ -225,7 +226,7 @@
       </button>
 
       <button
-        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 1; getMyLeaderboard(); getteamStats()"
         class="pagebtn-r"
         [disabled]="actualPage >= totalPages"
       >

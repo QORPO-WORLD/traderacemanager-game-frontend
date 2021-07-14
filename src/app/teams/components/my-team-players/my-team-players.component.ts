@@ -72,9 +72,8 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
         this.myLdrbrd = data['results'];
         this.rewards = data['applicable_team_bonuses'];
         console.log(this.myLdrbrd);
-        this.totalPages = 1;
+        this.totalPages = data['total_pages'];
       });
-
   }
 
   width() {
