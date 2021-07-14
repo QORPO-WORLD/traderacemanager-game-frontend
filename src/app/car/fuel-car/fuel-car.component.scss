@@ -1864,35 +1864,26 @@ input[type="number"]::-webkit-outer-spin-button {
   .step5 {
     padding-bottom: 130px;
     .content-holder {
+      height: 100%;
       .left-part {
         width: 80%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
         margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
         .flex-item {
           text-align: center;
-          .item-heading {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 75px;
-            line-height: 1.2;
-            &.speci2 {
-              margin-bottom: 45px;
-              padding-right: 30px;
-            }
-          }
           &.car {
-            max-width: 250px;
             width: 100%;
             position: relative;
+            order: 2;
             .car-item {
-              width: 250px;
-              height: 426px;
+              width: 80%;
+              max-width: 640px;
               position: relative;
               z-index: 1;
-
+              margin: 0 auto;
               .arrow-left,
               .arrow-right {
                 position: absolute;
@@ -1906,12 +1897,6 @@ input[type="number"]::-webkit-outer-spin-button {
               .arrow-right {
                 left: unset;
                 right: -40px;
-              }
-              .car-img {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%) scale(1.8);
               }
             }
             .car-arrows {
@@ -1957,87 +1942,31 @@ input[type="number"]::-webkit-outer-spin-button {
               }
             }
           }
-          &.multi-bet {
-            max-width: 365px;
-            width: 100%;
-            .buttons-holder {
-              padding: 30px 30px 20px 20px;
-              max-height: 460px;
-              overflow: auto;
-              &::-webkit-scrollbar {
-                display: block !important;
-              }
-              .bet-btn {
-                width: 100%;
-                height: 100px;
-
-                position: relative;
-                cursor: pointer;
-                margin-bottom: 50px;
-                padding: 1px 0 0 1px;
-                &.add-btn {
-                  &.inclickable {
-                    pointer-events: none;
-                  }
-                  .inner {
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(34, 34, 34, 0.7);
-
-                    p {
-                      color: white;
-                      font-size: 18px;
-                      margin: 0;
-                      font-weight: 600;
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%, -50%);
-                      width: 100%;
-                    }
-                  }
-                }
-                .inner-btn {
-                  background: rgba(17, 17, 17, 0.8);
-                  width: 100%;
-                  height: 100%;
-
-                  .bet-btn-text {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 0;
-                    color: white;
-                    font-size: 30px;
-                    padding: 7px 0 7px 20px;
-                    width: 100%;
-                    font-weight: 600;
-                    text-align: left;
-                    margin: 0;
-                    text-shadow: 1px 1px 3px black;
-                  }
-                }
-              }
-            }
-          }
           &.summary {
-            margin: 0 25px;
+            margin: 30px 25px;
             position: relative;
+            width: 100%;
+            order: 1;
             .info-cont {
-              width: 315px;
+              width: 100%;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
               .info-item {
-                width: 100%;
+                width: 30%;
+                max-width: 300px;
                 height: 100px;
                 position: relative;
                 text-align: center;
                 margin-bottom: 50px;
-                background: rgba(17, 17, 17, 0.9);
+                background: rgba(17, 17, 17, 1);
 
                 .desc {
                   font-size: 18px;
                   color: white;
-                  opacity: 0.2;
                   font-weight: 600;
                   position: absolute;
+                  opacity: .6;
                   top: -5px;
                   left: 0;
                   width: 100%;
@@ -2306,23 +2235,6 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 }
-
-// .disabledx {
-//   color:#fd03f5;
-// }
-
-// .disabledx button ,
-// .enabledx button {
-//   border-radius: 100%;
-//   border: 0;
-//   background-color: #fd03f5;
-//   color: black;
-//   font-weight: bold;
-//   margin-left: 5px;
-//   height: 18px;
-//   width: 18px;
-//   line-height: 16px;
-// }
 
 .no-cars {
   min-height: 495px;
@@ -3242,8 +3154,31 @@ button.g-button {
     .step5 {
       .content-holder {
         .left-part {
-          padding-left: 3%;
-          width: calc(100% - 290px);
+          .flex-item{
+            &.summary{
+              height: 30%;
+              max-height: 100px;
+              .info-cont{
+                height: 100%;
+                .info-item{
+                  height: 100%;
+                  margin-bottom: 0;
+                }
+              }
+            }
+            &.car{
+              height: 70%;
+              .car-item{
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                img{
+                  max-height: 100%;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -3563,69 +3498,17 @@ button.g-button {
     .step5 {
       .content-holder {
         .left-part {
-          .flex-item {
-            .item-heading {
-              font-size: 26px;
-              margin-bottom: 50px;
-            }
-            &.car {
-              max-width: 200px;
-              .car-item {
-                width: 100%;
-                height: 336px;
-                .arrow-left {
-                  left: -30px;
-                }
-                .arrow-right {
-                  right: -30px;
-                }
-              }
-            }
-            &.summary {
-              .info-cont {
-                width: 255px;
-                .info-item {
-                  height: 76px;
-                  margin-bottom: 42px;
-                  .desc {
-                    font-size: 16px;
-                  }
-                  .value {
-                    font-size: 26px;
-                    img {
-                      &.ioi-logo {
-                        width: 38px;
+          .flex-item{
+            &.summary{
+              max-height: 80px;
+              .info-cont{
+                .info-item{
+                  .value{
+                    font-size: 23px;
+                    img{
+                      &.ioi-logo{
+                        width: 29px;
                       }
-                      &.trx-logo {
-                        width: 24px;
-                        bottom: -4px;
-                      }
-                    }
-                    &.small {
-                      font-size: 24px;
-                      p {
-                        img {
-                          &.ioi-logo {
-                            width: 31px;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            &.multi-bet {
-              max-width: 305px;
-              .buttons-holder {
-                max-height: 363px;
-                .bet-btn {
-                  height: 76px;
-                  margin-bottom: 42px;
-                  .inner-btn {
-                    .bet-btn-text {
-                      font-size: 26px;
-                      bottom: 0;
                     }
                   }
                 }
@@ -3999,12 +3882,6 @@ button.g-button {
         .left-part {
           width: 90%;
           margin-top: 7px;
-          .flex-item {
-            .item-heading {
-              font-size: 22px;
-              margin-bottom: 45px;
-            }
-          }
         }
       }
     }
@@ -4098,7 +3975,7 @@ button.g-button {
     }
 
     .bottom-panels {
-      bottom: 80px;
+      bottom: 10px;
       height: 110px;
       &.bottom-panels-2 {
         bottom: 80px;
@@ -4291,10 +4168,6 @@ button.g-button {
               margin-bottom: 15px;
               .inner-item-holder {
                 max-width: 540px;
-                .item-holder {
-                  .item-curr {
-                  }
-                }
               }
             }
             .top-btns {
@@ -4326,39 +4199,24 @@ button.g-button {
       }
       .content-holder {
         .left-part {
-          flex-wrap: wrap;
-          justify-content: space-evenly;
-          width: 80%;
-          padding-left: 0;
-          margin: 0 auto;
+          width: 100%;
           .flex-item {
-            &.car {
-              width: 100%;
-              .car-item {
-                margin: 20px 0px;
-              }
-            }
-            &.summary {
-              width: 100%;
-              max-width: 240px;
-              .info-cont {
-                width: 100%;
-                max-width: 240px;
-                margin: 0 auto;
-              }
-            }
-            &.multi-bet {
-              order: 3;
-              max-width: unset;
-              width: 100%;
-              .item-heading {
-                margin-bottom: 10px;
-              }
-              .buttons-holder {
-                .bet-btn {
-                  height: 80px;
-                  margin-bottom: 22px;
+            &.summary{
+              margin: 30px 0;
+              height: 80px;
+              .info-cont{
+                .info-item{
+                  .desc{
+                    font-size: 15px;
+                  }
                 }
+              }
+            }
+            &.car {
+              width: 90%;
+              margin: 0 auto;
+              .car-item {
+                margin: 20px auto;
               }
             }
           }
@@ -4566,39 +4424,18 @@ button.g-button {
               }
             }
             &.summary {
-              margin-bottom: 20px;
+              margin-bottom: 0;
+              height: 50px;
               .info-cont {
                 .info-item {
-                  margin-bottom: 35px;
-                  height: 45px;
-                  &.last {
-                    margin-bottom: 0;
-                  }
                   .desc {
-                    opacity: 1;
+                    font-size: 15px;
                   }
                   .value {
                     font-size: 20px;
                     img {
                       &.ioi-logo {
-                        width: 20px;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            &.multi-bet {
-              .item-heading {
-                margin-bottom: 0;
-              }
-              .buttons-holder {
-                .bet-btn {
-                  &.add-btn {
-                    margin-bottom: 10px;
-                    .inner {
-                      p {
-                        font-size: 14px;
+                        width: 25px;
                       }
                     }
                   }
@@ -4724,10 +4561,12 @@ button.g-button {
 @media screen and (max-width: 900px) and (orientation: landscape) {
   .main-holder {
     padding: 3px 0px 3px 13px;
+    height: calc(100vh - 40px);
     .step-cont.step2.visible {
       min-height: 250px;
     }
     .step1 {
+      height: auto;
       .content-holder {
         .switchers-holder {
           p {
@@ -4888,16 +4727,9 @@ button.g-button {
             .item-heading{
               font-size: 18px;
             }
-            &.car{
-              .car-item{
-                .car-img{
-                  transform: translate(-50%, -50%) scale(1.5);
-                }
-              }
-            }
             &.summary{
+              height: 25%;
               .info-cont{
-                width: 235px;
                 .info-item{
                   .desc{
                     font-size: 14px;
@@ -4908,13 +4740,8 @@ button.g-button {
                 }
               }
             }
-            &.multi-bet{
-              .buttons-holder{
-                max-height: 250px;
-                .bet-btn{
-                  height: 56px;
-                }
-              }
+            &.car{
+              height: 75%;
             }
           }
         }
@@ -4963,6 +4790,7 @@ button.g-button {
 
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .main-holder {
+    min-height: calc(100vh - 175px);
     .main-top-panel {
       .back {
         display: none;
@@ -5281,36 +5109,34 @@ button.g-button {
     }
     .step5 {
       padding-bottom: 60px;
+      &.visible{
+        padding-bottom: 45px;
+      }
       .content-holder {
         .left-part {
           width: 100%;
           .flex-item {
-            .item-heading {
-              font-size: 22px;
-              margin-top: 15px;
-            }
             &.car {
-              max-width: 300px;
+              max-width: 400px;
               .car-item {
-                height: 157px;
-                .car-img {
-                  transform: translate(-50%, -50%) scale(1.2);
-                }
+                width: 100%;
+                margin: 0 auto;
               }
             }
             &.summary {
               max-width: unset;
+              max-height: unset;
+              height: unset;
+              margin: 30px 0 0;
               .info-cont {
                 max-width: 320px;
-              }
-            }
-            &.multi-bet {
-              .buttons-holder {
-                padding: 10px 30px 20px 20px;
-                .bet-btn {
+                width: 100%;
+                flex-wrap: wrap;
+                margin: 0 auto;
+                .info-item{
+                  height: 60px;
                   width: 100%;
-                  max-width: 320px;
-                  margin: 15px auto;
+                  margin-bottom: 45px;
                 }
               }
             }
@@ -5417,53 +5243,12 @@ button.g-button {
       .content-holder {
         .left-part {
           .flex-item {
-            .item-heading {
-              font-size: 15px;
-            }
             &.car {
-              height: 225px;
-              .car-item {
-                height: 216px;
-                .car-img {
-                  top: 50%;
-                  transform: translate(-50%, -50%) scale(1.1);
-                }
-              }
+              height: 72%;
             }
             &.summary {
-              margin: 0 10px;
-              .info-cont {
-                width: 175px;
-                .info-item {
-                  margin-bottom: 30px;
-                  height: 35px;
-                  .desc {
-                    font-size: 12px;
-                  }
-                  .value {
-                    font-size: 14px;
-                    img {
-                      &.ioi-logo {
-                        width: 15px;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            &.multi-bet {
-              .buttons-holder {
-                .bet-btn {
-                  height: 46px;
-                  &.add-btn {
-                    .inner {
-                      p {
-                        font-size: 9px;
-                      }
-                    }
-                  }
-                }
-              }
+              height: 28%;
+              margin: 25px 0 0;
             }
           }
         }
