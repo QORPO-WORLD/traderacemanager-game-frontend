@@ -16,7 +16,7 @@ export class DailyTipModalComponent implements OnInit {
   ngOnInit() {}
 
   tipsSaved(myBool: boolean){
-    this.isEditing = myBool;
+    this.modalClose.emit(false);
   }
 
   closeModal(){
