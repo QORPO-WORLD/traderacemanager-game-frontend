@@ -1316,7 +1316,6 @@
     <div class="content-holder">
       <div class="left-part">
         <div class="flex-item car">
-          <p class="item-heading">{{ "fuel_car.your_cars" | translate }}</p>
           <ng-container *ngFor="let kar of selectedCarsToRace; let i = index">
             <div class="car-item" *ngIf="i === summaryCarIndex">
               <img
@@ -1338,7 +1337,6 @@
           </div>
         </div>
         <div class="flex-item summary">
-          <p class="item-heading">{{ "fuel_car.your_bet" | translate }}</p>
 
           <div class="info-cont">
             <div class="info-item">
@@ -1416,35 +1414,6 @@
               <p class="desc">{{ "start-race.players" | translate }}</p>
               <p class="value chance my-text-color">{{ players }}</p>
             </div>
-          </div>
-        </div>
-
-        <div class="flex-item multi-bet">
-          <p class="item-heading speci2">
-            {{ "fuel_car.multibet" | translate }}
-          </p>
-          <div class="buttons-holder">
-            <div
-              class="bet-btn add-btn my-border-grad"
-              (click)="stepIndex = 6"
-              [ngClass]="{ inclickable: this.introModal === true }"
-            >
-              <div class="inner">
-                <p>+ {{ "fuel_car.add_multibet" | translate }}</p>
-              </div>
-            </div>
-            <ng-container *ngFor="let item of multibetOptions">
-              <div
-                class="bet-btn my-border-grad"
-                *ngIf="item.enabled === false"
-              >
-                <div class="inner-btn">
-                  <p class="bet-btn-text">
-                    {{ "race.type." + item.type + "_simple" | translate }}
-                  </p>
-                </div>
-              </div>
-            </ng-container>
           </div>
         </div>
       </div>
