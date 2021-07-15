@@ -80,11 +80,9 @@
     }
   }
   &.left {
-    border-radius: 0px 4px 4px 0px;
     left: 0;
   }
   &.right {
-    border-radius: 4px 0px 0px 4px;
     right: 0;
   }
   p {
@@ -104,7 +102,6 @@
   color: white;
   min-height: 500px;
   width: 100%;
-  background: rgba(17, 17, 17, 0.6);
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -114,14 +111,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1px;
-    background: #111111;
-    border-radius: 10px;
+    background: rgba(17, 17, 17, 0.85);
+
     overflow: hidden;
     position: relative;
 
     &.header {
-      background: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 1px;
       .table-item {
         &.small {
           p {
@@ -159,11 +155,15 @@
       text-align: center;
       height: 40px;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
       &.big {
         width: 27%;
       }
       &.small {
-        width: 6%;
+        width: 15%;
       }
       &::after {
         content: "";
@@ -173,9 +173,9 @@
         width: 1px;
         height: 100%;
         z-index: 2;
-        background: #222222;
       }
       &.last {
+        border-right: none;
         &::after {
           content: none;
         }
@@ -282,8 +282,22 @@
 }
 
 //
-
-@media screen and(max-width: 1024px) and (orientation: landscape) {
+@media screen and(max-width: 1024px) and (orientation: landscape) and (min-height: 600px) {
+  .table {
+    min-height: 0;
+    padding: 10px 4.5%;
+    .table-row {
+      .table-item {
+        height: 35px;
+        p {
+          font-size: 13px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: landscape) and (max-height: 599px) {
   .category-title-first {
     font-size: 12px;
     line-height: 14px;
@@ -292,9 +306,6 @@
     min-height: 0;
     padding: 10px 4.5%;
     .table-row {
-      &.header{
-        margin-bottom: 5px;
-      }
       .table-item {
         height: 20px;
         p {
@@ -316,7 +327,7 @@
     font-size: 6px;
     line-height: 8px;
   }
-  .table { 
+  .table {
     min-height: 0;
     padding: 5px 2.5%;
     .table-row {
@@ -326,8 +337,8 @@
           font-size: 9px;
           line-height: 18px;
         }
-        &.btn-item{
-          button{
+        &.btn-item {
+          button {
             font-size: 10px;
           }
         }
@@ -365,7 +376,7 @@
         height: 30px;
         width: 17%;
         &.small {
-          width: 7%;
+          width: 10%;
         }
         &.big {
           width: 29.5%;
@@ -385,11 +396,9 @@
     transform: translateX(-50%);
     &.left {
       left: calc(50% - 30px);
-      border-radius: 5px 5px 0 0;
     }
     &.right {
       left: calc(50% + 50px);
-      border-radius: 5px 5px 0 0;
     }
   }
 }

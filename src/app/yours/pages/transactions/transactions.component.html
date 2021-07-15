@@ -5,8 +5,8 @@
         <p class="join-team active"[routerLink]="['/your-races/transactions']">{{'history.transactions' | translate}}</p>
         <p class="my-team" [routerLink]="['/your-races/transactions/my-races']">{{'profile.races' | translate}}</p>
     </div>
-    <div class="menu-line my-cta-btn-back">
-        <div class="inner-line my-cta-btn-back">&nbsp;</div>
+    <div class="menu-line ">
+        <div class="inner-line ">&nbsp;</div>
     </div>
 </div> -->
 <div class="menu">
@@ -16,7 +16,7 @@
     class="menu-item first"
   >
     <p class="category-title-first first">TRANSACTIONS</p>
-    <div class="active-border my-cta-btn-back"></div>
+    <div class="active-border"></div>
   </div>
   <div
     [ngClass]="{ 'active-item': content === 2 }"
@@ -24,24 +24,24 @@
     class="menu-item"
   >
     <p class="category-title-first">MY RACES</p>
-    <div class="active-border my-cta-btn-back"></div>
+    <div class="active-border"></div>
   </div>
 </div>
 <div class="transactions-content">
   <div *ngIf="content === 1" class="table">
     <div class="table-row header">
-      <div class="table-item small"><p class="font">Position</p></div>
+      <div class="table-item small"><p class="font">Place</p></div>
       <div class="table-item big"><p class="font">Date</p></div>
       <div class="table-item big"><p class="font">Action</p></div>
       <div class="table-item"><p class="font">Payment</p></div>
-      <div class="table-item"><p class="font">Amount</p></div>
+      <div class="table-item last"><p class="font">Amount</p></div>
     </div>
 
     <div
       class="table-row"
       *ngFor="let trans of transactions; let indexx = index"
     >
-      <div class="table-item small my-cta-btn-back">
+      <div class="table-item small">
         <p>{{ indexx + 1 + 10 * (actualPage - 1) }}.</p>
       </div>
       <div class="table-item big">
