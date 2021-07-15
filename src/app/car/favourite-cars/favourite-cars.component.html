@@ -1,18 +1,6 @@
 <div class="edit-car-modal open" *ngIf="createFavCar === true">
-  <div class="modal-back" (click)="favCarId = null; showCreateModal = false">
-    &nbsp;
-  </div>
   <div class="modal-holder" *ngIf="createFavCar === true && favCarId">
     <app-create-fast [myCar]="favCarId"></app-create-fast>
-  </div>
-</div>
-
-<div class="edit-car-modal" [ngClass]="{ open: showEditModal === true }">
-  <div class="modal-back" (click)="favEditCarId = null; showEditModal = false">
-    &nbsp;
-  </div>
-  <div class="modal-holder" *ngIf="showEditModal === true && favEditCarId">
-    <app-edit-fast [myCar]="favEditCarId" [magic]="editCar.bet"></app-edit-fast>
   </div>
 </div>
 
@@ -31,7 +19,7 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p>RACES</p>
+    <p>BACK</p>
   </div>
 
   
@@ -170,28 +158,8 @@
               <div class="bottom-info">
                 <div class="play-now">
                   <div class="play-inner">
-                    <div class="edit-icon red-light">
-                      <img
-                        src="assets/base/images/fast-fuel/edit-icon.png"
-                        alt=""
-                        (click)="showEditModal = !showEditModal"
-                      />
-                    </div>
-                    <div class="edit-icon blue-light">
-                      <img
-                        src="assets/base/images/fast-fuel/edit-icon-blue.png"
-                        alt=""
-                        *ngIf="mc.favourite === true"
-                        (click)="
-                          showEditModal = !showEditModal;
-                          favEditCarId = mc.pk;
-                          editFavCar = true;
-                          editCar = mc
-                        "
-                      />
-                    </div>
                     <button
-                      class="my-cta-btn-back"
+                      class="my-cta-btn-back delete-btn"
                       (click)="deleteCar(mc.custom_index)"
                     >
                       Delete

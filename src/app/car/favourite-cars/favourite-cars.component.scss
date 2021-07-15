@@ -82,7 +82,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 480px;
+    height: 100%;
     p {
 
       text-shadow: none;
@@ -135,7 +135,7 @@ h1 {
     transform: scale(1.07);
   }
   .cars-holder {
-    height: 95%;
+    height: 100%;
     overflow: auto;
     padding-top: 50px;
     padding-bottom: 120px;
@@ -164,8 +164,8 @@ h1 {
           height: calc(50% - 15px);
           min-height: 240px;
           box-shadow: 0px 0px 80px #000000;
-          border-radius: 15px;
           position: relative;
+          background: rgba(255, 255, 255, 0.05);
           .buy-nft {
             display: none;
           }
@@ -233,7 +233,6 @@ h1 {
                 width: 33.3%;
                 background: #111111;
                 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
-                border-radius: 5px;
                 p {
                   margin: 0;
                   img {
@@ -257,15 +256,15 @@ h1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
             position: absolute;
             width: 100%;
             left: 0;
-            bottom: 20px;
+            bottom: 0;
             .play-inner {
               width: 100%;
               display: flex;
               justify-content: space-between;
+              height: 50px;
               .red-light {
                 display: block;
               }
@@ -294,8 +293,11 @@ h1 {
               }
               button {
                 transition: 0.2s;
-                width: calc(100% - 70px);
-                border-radius: 10px;
+                width: 100%;
+                margin: 0;
+                font-size: 16px;
+                font-weight: 400;
+                height: 100%;
               }
               button:hover {
                 transform: scale(1.04);
@@ -304,7 +306,6 @@ h1 {
             .buy-now {
               width: 100%;
               padding: 2px;
-              border-radius: 15px;
               cursor: pointer;
               &:hover {
                 .buy-inner {
@@ -314,7 +315,6 @@ h1 {
               .buy-inner {
                 text-align: center;
                 background: rgba(17, 17, 17, 1);
-                border-radius: 15px;
                 transition: 0.2s ease-out;
                 p {
                   margin: 0;
@@ -503,7 +503,7 @@ h1 {
   .main-holder {
     width: calc(100%);
     padding-left: 13px;
-    height: 64vh;
+    height: calc(100vh - 163px);
   }
   .page-info {
     margin-top: 20px;
@@ -601,7 +601,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 16px;
               .prize {
                 font-size: 18px;
               }
@@ -612,6 +611,9 @@ h1 {
                     font-size: 15px;
                   }
                 }
+              }
+              .play-inner{
+                height: 46px;
               }
             }
           }
@@ -647,7 +649,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 14px;
               .prize {
                 font-size: 17px;
               }
@@ -657,6 +658,9 @@ h1 {
                     padding: 8px 16px;
                   }
                 }
+              }
+              .play-inner{
+                height: 44px;
               }
             }
           }
@@ -679,7 +683,6 @@ h1 {
 @media screen and (max-width: 1550px) {
   .content-holder {
     .switchers-holder {
-      height: 460px;
       width: 200px;
       p {
         font-size: 26px;
@@ -733,9 +736,8 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 12px;
-              bottom: 12px;
               .play-inner {
+                height: 40px;
                 .edit-icon {
                   height: 38px;
                   width: 38px;
@@ -748,9 +750,7 @@ h1 {
                 }
               }
               .buy-now {
-                border-radius: 10px;
                 .buy-inner {
-                  border-radius: 10px;
                   p {
                     padding: 8px 16px;
                     font-size: 14px;
@@ -801,9 +801,8 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 10px;
-              bottom: 10px;
               .play-inner {
+                height: 38px;
                 button {
                   font-size: 13px;
                 }
@@ -857,11 +856,31 @@ h1 {
     .cars-holder {
       margin-top: 20px;
       width: 100%;
+      padding: 20px 0 0;
     }
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) and (orientation: landscape){
+  .main-holder{
+    height: calc(100vh - 40px);
+  }
+  .content-holder{
+    .switchers-holder{
+      p{
+        padding: 5px 10px;
+        font-size: 17px;
+      }
+    }
+    .cars-holder{
+      margin-top: 0;
+      padding: 0;
+      height: calc(100% - 34px);
+    }
+  }
+}
+
+@media screen and (max-width: 800px) and (orientation: portrait) {
   .top-info {
     flex-wrap: wrap;
     .back {

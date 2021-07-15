@@ -103,19 +103,23 @@
 //FONT SETTINGS
 
 .category-title-first {
+  z-index: 2;
   font-style: normal;
   font-weight: 900;
   font-size: 48px;
   font-family: "Earth Orbiter";
 }
 .category-title-second {
+  z-index: 2;
+  font-family: "Earth Orbiter";
   text-align: center;
   margin-bottom: 3%;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 40px;
 }
 .races-desc {
+  z-index: 2;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -147,20 +151,44 @@
     justify-content: flex-end;
   }
   .binary {
+    overflow: hidden;
     transition: 0.2s;
     cursor: pointer;
     cursor: pointer;
 
     width: 47.5%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(17, 17, 17, 0) 50%, #111111 90%),
-      url(/assets/base/images/race-type/binary.png);
+    background: url("/assets/base/images/race-type/binary.png");
 
     background-position: center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
+    .overlay {
+      z-index: 1;
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0) 50%, #111111 90%);
+    }
+    img {
+      position: absolute;
+      height: 90%;
+      width: auto;
+      max-width: unset;
+      &.left {
+        left: 0%;
+        bottom: 0%;
+      }
+      &.right {
+        right: 0%;
+        bottom: 0%;
+      }
+    }
   }
   .hoverable-category {
     padding: 25px;
@@ -226,10 +254,7 @@
     justify-content: unset;
   }
 }
-@media screen and(max-width: 800px) {
-  .main-holder {
-  }
-}
+
 @media screen and(max-width: 640px) {
 }
 
@@ -240,13 +265,17 @@
 
 //LANDSCAPE
 @media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content {
+    width: 90%;
+    height: 75%;
+  }
   .category-title-first {
     font-size: 20px;
     line-height: 22px;
   }
   .category-title-second {
-    font-size: 17px;
-    line-height: 19px;
+    font-size: 19px;
+    line-height: 21px;
   }
 
   .races-desc {
@@ -266,8 +295,8 @@
     line-height: 19px;
   }
   .category-title-second {
-    font-size: 15px;
-    line-height: 17px;
+    font-size: 16px;
+    line-height: 18px;
   }
 
   .races-desc {
@@ -282,9 +311,12 @@
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
   .main-holder {
+    height: calc(var(--vh, 1vh) * 100 - 150px);
+
+    padding: 10px 0px 10px 10px;
   }
   .content {
-    height: 70%;
+    height: 95%;
     flex-direction: column;
     .portfolio {
       width: 100%;
@@ -297,6 +329,9 @@
   }
 }
 @media screen and(max-width: 640px) and (orientation: portrait) {
+  .main-holder {
+    height: calc(var(--vh, 1vh) * 100 - 160px);
+  }
   .category-title-first {
     font-size: 20px;
     line-height: 22px;
@@ -313,9 +348,14 @@
   }
 
   .content {
-    height: 70%;
+    height: 92.5%;
     width: 100%;
-    flex-direction: column;
+    .portfolio {
+      padding: 10px;
+    }
+    .binary {
+      padding: 10px;
+    }
   }
 }
 

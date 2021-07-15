@@ -194,15 +194,47 @@
       height: 90%;
       margin-top: 10%;
       width: 100%;
+
       .ability-box {
         background: rgba(17, 17, 17, 0.8);
         width: 100%;
         display: flex;
-        padding: 5%;
+
         align-items: center;
+        position: relative;
         img {
           height: 50%;
           margin-left: 5%;
+        }
+        .info-icon {
+          transition: 0.3s;
+          z-index: 1;
+          cursor: pointer;
+          position: absolute;
+          width: 22.5px;
+          height: 22.5px;
+          top: 7.5%;
+          right: 2.5%;
+        }
+        .ability-content {
+          padding: 3%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          transition: 0.3s;
+          opacity: 1;
+          height: 100%;
+          min-width: 100%;
+          display: flex;
+          align-items: center;
+          .races-desc {
+          }
+          &.active-values {
+            opacity: 0;
+          }
+          &.active-info {
+            opacity: 0;
+          }
         }
         .ability-text {
           margin-left: 10%;
@@ -216,7 +248,7 @@
       }
       .cars {
         margin-top: 5%;
-        height: 30%;
+        height: 22.5%;
       }
       .racers {
         margin-top: 5%;
@@ -307,6 +339,18 @@
     font-size: 12px;
     line-height: 14px;
   }
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 17.5px;
+            height: 17.5px;
+          }
+        }
+      }
+    }
+  }
 }
 @media screen and(max-width: 1400px) {
   .category-title-first {
@@ -328,6 +372,18 @@
   .races-desc {
     font-size: 10px;
     line-height: 12px;
+  }
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+    }
   }
 }
 @media screen and(max-width: 1200px) {
@@ -358,8 +414,23 @@
     font-size: 8px;
     line-height: 10px;
   }
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 12.5px;
+            height: 12.5px;
+          }
+          .ability-content {
+            padding: 2%;
+          }
+        }
+      }
+    }
+  }
 }
-@media screen and (max-width: 850px) and (orientation: landscape) {
+@media screen and (max-width: 900px) and (orientation: landscape) {
   .category-title-first {
     font-size: 22px;
     line-height: 24px;
@@ -403,6 +474,18 @@
     font-size: 4px;
     line-height: 6px;
   }
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
   .detail-content {
@@ -415,6 +498,7 @@
       width: 100%;
       height: auto;
       .text-buttons {
+        width: 100%;
         button {
           height: 30px;
         }
@@ -477,6 +561,9 @@
           img {
             height: 50%;
             margin-left: 5%;
+          }
+          .ability-content {
+            padding: 0px 20px;
           }
           .ability-text {
             margin-left: 10%;

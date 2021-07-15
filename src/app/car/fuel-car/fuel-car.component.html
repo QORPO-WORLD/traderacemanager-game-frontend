@@ -41,7 +41,7 @@
         src="assets/base/images/icons/icon-back-blue.svg"
         alt="blue arrow"
       />
-      <p>RACES</p>
+      <p>BACK</p>
     </div>
     <div
       (click)="resetSelected(); calcSumFuel()"
@@ -1310,19 +1310,12 @@
       </div>
     </div>
 
-    <!-- <button class="back-button" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">GO BACK</button>
-    <button class="back-button" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false">GO BACK</button>
-    <button *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()" class="back-button">GO BACK</button>
-
-    <button *ngIf="introModal === true && tutorialIndex === 3" (click)="skipModal()" class="close-tutorial"><span>3/6</span> Skip</button>
-    <button *ngIf="introModal === true && tutorialIndex === 5" (click)="skipModal()" class="close-tutorial"><span>5/6</span> Skip</button> -->
   </div>
 
   <div class="step-cont visible step5" *ngIf="stepIndex === 5">
     <div class="content-holder">
       <div class="left-part">
         <div class="flex-item car">
-          <p class="item-heading">{{ "fuel_car.your_cars" | translate }}</p>
           <ng-container *ngFor="let kar of selectedCarsToRace; let i = index">
             <div class="car-item" *ngIf="i === summaryCarIndex">
               <img
@@ -1344,7 +1337,6 @@
           </div>
         </div>
         <div class="flex-item summary">
-          <p class="item-heading">{{ "fuel_car.your_bet" | translate }}</p>
 
           <div class="info-cont">
             <div class="info-item">
@@ -1422,35 +1414,6 @@
               <p class="desc">{{ "start-race.players" | translate }}</p>
               <p class="value chance my-text-color">{{ players }}</p>
             </div>
-          </div>
-        </div>
-
-        <div class="flex-item multi-bet">
-          <p class="item-heading speci2">
-            {{ "fuel_car.multibet" | translate }}
-          </p>
-          <div class="buttons-holder">
-            <div
-              class="bet-btn add-btn my-border-grad"
-              (click)="stepIndex = 6"
-              [ngClass]="{ inclickable: this.introModal === true }"
-            >
-              <div class="inner">
-                <p>+ {{ "fuel_car.add_multibet" | translate }}</p>
-              </div>
-            </div>
-            <ng-container *ngFor="let item of multibetOptions">
-              <div
-                class="bet-btn my-border-grad"
-                *ngIf="item.enabled === false"
-              >
-                <div class="inner-btn">
-                  <p class="bet-btn-text">
-                    {{ "race.type." + item.type + "_simple" | translate }}
-                  </p>
-                </div>
-              </div>
-            </ng-container>
           </div>
         </div>
       </div>
@@ -1676,65 +1639,6 @@
   </div>
 
   <div class="bottom-panels">
-    <ng-container *ngIf="stepIndex === 1 && introModal === false">
-      <button class="back-button" [routerLink]="['/race/start-race']">
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 2">
-      <button
-        class="back-button"
-        (click)="stepIndex = 1"
-        *ngIf="
-          firstLogin === false &&
-          (selectedCarIndex < 1 || sumFuel / sumlength === 100) &&
-          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3
-        "
-      >
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-      <button
-        class="back-button"
-        (click)="resetSelected(); calcSumFuel()"
-        *ngIf="
-          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 &&
-          introModal === false
-        "
-      >
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-      <button
-        class="back-button"
-        *ngIf="
-          selectedCarIndex > 0 &&
-          sumFuel / sumlength !== 100 &&
-          selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 &&
-          introModal === false
-        "
-        (click)="selectedCarIndex = selectedCarIndex - 1; calcSumFuel()"
-      >
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 5 && introModal === false">
-      <button class="back-button" (click)="stepIndex = 2">
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 6">
-      <button class="back-button" (click)="stepIndex = 5">
-        <span class="my-gt">&lt;</span> <br />
-        {{ "shared.back" | translate }}
-      </button>
-    </ng-container>
 
     <div class="selected-cars" *ngIf="stepIndex === 1 && introModal === false">
       <div class="inner">
@@ -1796,7 +1700,7 @@
       <img src="/assets/base/images/tankovanie/scroll-hand.svg" alt="" />
     </div>
 
-    <div class="selected-cars" *ngIf="stepIndex === 2">
+    <div class="selected-cars second" *ngIf="stepIndex === 2">
       <div class="inner">
         <div
           class="arrow left"
@@ -1833,7 +1737,7 @@
         </div>
         <div
           class="arrow right"
-          (click)="nextFuelCar()"
+          (click)="nextFuelCar(false)"
           *ngIf="selectedCarsToRace.length > bottomCarsBalancer"
         >
           <p>&gt;</p>
@@ -1846,7 +1750,7 @@
           sumFuel / sumlength !== 100 &&
           selectedCarIndex < selectedCarsToRace.length - 1
         "
-        (click)="selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
+        (click)="nextFuelCar(true);selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
       >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>

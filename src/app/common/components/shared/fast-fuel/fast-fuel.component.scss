@@ -52,7 +52,6 @@ h1 {
     width: 448px;
     background: linear-gradient(0deg, #111111, #111111);
     box-shadow: 0px 0px 80px #000000;
-    border-radius: 20px;
     min-height: 132px;
     display: flex;
     justify-content: center;
@@ -61,7 +60,6 @@ h1 {
     .start-race-btn {
       width: 70%;
       padding: 2px;
-      border-radius: 15px;
       text-align: center;
       &.active {
         cursor: pointer;
@@ -72,7 +70,6 @@ h1 {
       .inner {
         text-align: center;
         background: #111111;
-        border-radius: 15px;
         transition: 0.2s ease-out;
         p {
           margin: 0;
@@ -106,6 +103,7 @@ h1 {
       cursor: pointer;
       padding: 15px 0;
       opacity: 1;
+      font-family: 'Earth Orbiter';
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       color: rgba(255, 255, 255, 0.2);
@@ -171,7 +169,7 @@ h1 {
           width: calc(33.333% - 15px);
           height: calc(50% - 15px);
           box-shadow: 0px 0px 80px #000000;
-          border-radius: 15px;
+          background: rgba(255, 255, 255, 0.05);
           position: relative;
           .buy-nft {
             display: none;
@@ -235,8 +233,6 @@ h1 {
                 padding: 8px 0;
                 width: 33.3%;
                 background: #111111;
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
-                border-radius: 5px;
                 p {
                   margin: 0;
                   img {
@@ -260,11 +256,10 @@ h1 {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
             position: absolute;
             width: 100%;
             left: 0;
-            bottom: 20px;
+            bottom: 0;
             .play-inner {
               width: 100%;
               display: flex;
@@ -298,7 +293,6 @@ h1 {
               button {
                 transition: 0.2s;
                 width: calc(100% - 70px);
-                border-radius: 10px;
               }
               button:hover {
                 transform: scale(1.04);
@@ -307,7 +301,6 @@ h1 {
             .buy-now {
               width: 100%;
               padding: 2px;
-              border-radius: 15px;
               cursor: pointer;
               &.active {
                 .buy-inner {
@@ -317,7 +310,6 @@ h1 {
               .buy-inner {
                 text-align: center;
                 background: rgba(17, 17, 17, 1);
-                border-radius: 15px;
                 transition: 0.2s ease-out;
                 p {
                   margin: 0;
@@ -548,16 +540,25 @@ h1 {
       order: 3;
       margin: 0;
     }
+    .bonus-info {
+      order: 2;
+      width: 100%;
+      min-height: 75px;
+      .start-race-btn{
+        .inner{
+          p{
+            font-size: 13px;
+            padding: 5px;
+          }
+        }
+      }
+    }
   }
   .back {
     box-sizing: border-box;
     padding: 0 10px;
     flex-basis: 23%;
     order: 1;
-  }
-  .bonus-info {
-    flex-basis: 70%;
-    order: 2;
   }
   .team-menu {
     .menu-desc {
@@ -592,7 +593,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 16px;
               .prize {
                 font-size: 18px;
               }
@@ -639,7 +639,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 14px;
               .prize {
                 font-size: 17px;
               }
@@ -691,7 +690,6 @@ h1 {
         height: 520px;
         .regular-cars {
           gap: 10px;
-          width: calc(74% - 5px);
           .car-item {
             width: calc(33.333% - 7px);
             height: calc(50% - 5px);
@@ -727,8 +725,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 12px;
-              bottom: 12px;
               .play-inner {
                 .edit-icon {
                   height: 38px;
@@ -742,9 +738,7 @@ h1 {
                 }
               }
               .buy-now {
-                border-radius: 10px;
                 .buy-inner {
-                  border-radius: 10px;
                   p {
                     padding: 8px 16px;
                     font-size: 14px;
@@ -795,8 +789,6 @@ h1 {
               }
             }
             .bottom-info {
-              padding: 0 10px;
-              bottom: 10px;
               .play-inner {
                 button {
                   font-size: 13px;
@@ -895,7 +887,7 @@ h1 {
         height: unset;
         .regular-cars {
           width: 100%;
-          height: 440px;
+          min-height: 200px;
         }
         .rare-car {
           width: 100%;
@@ -1021,4 +1013,188 @@ h1 {
   background: #151515;
   width: 100%;
   z-index: 100000;
+}
+
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+ .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+ .content-title {
+    height: 40px;
+  }
+}
+
+@media screen and(max-width: 900px) and (orientation: landscape){
+  .main-holder{
+    padding: 10px 10px 0px 10px;
+  }
+  .page-info{
+    padding-bottom: 0;
+    .text-info{
+      margin: 0 5px;
+      h1{
+        font-size: 16px;
+        line-height: 1.2;
+        margin: 3px 0 2px;
+      }
+    }
+    .bonus-info{
+      min-height: 80px;
+      width: 330px;
+      .start-race-btn{
+        .inner{
+          p{
+            font-size: 14px;
+            padding: 6px;
+          }
+        }
+      }
+    }
+  }
+  .content-holder{
+    .switchers-holder{
+      p{
+        padding: 10px;
+        font-size: 17px;
+      }
+    }
+    .cars-holder{
+      margin-top: 0px;
+      .edition-holder{
+        height: unset;
+        .regular-cars{
+          min-height: 200px;
+          .car-item{
+            width: calc(25% - 8px);
+            height: 200px;
+            .car-info{
+              padding: 5px 5px 0 5px;
+              .name{
+                p{
+                  line-height: 1.2;
+                }
+              }
+            }
+            .car-img{
+              width: 90%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
+  .content-holder{
+    .cars-holder{
+      min-height: 200px;
+      .no-cars-box{
+        p{
+          font-size: 13px;
+        }
+        button{
+          border-radius: 5px;
+          font-size: 14px;
+          margin: 10px auto 0;
+          padding: 9px 30px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 640px) and (orientation: landscape){
+  .page-info{
+    .bonus-info{
+      width: 100%;
+    }
+    .text-info{
+      display: none;
+    }
+  }
+  .content-holder{
+    .cars-holder{
+      .edition-holder{
+        .regular-cars{
+          .car-item{
+            width: calc(33.3% - 7px);
+            height: 185px;
+          }
+        }
+      }
+    }
+  }
 }

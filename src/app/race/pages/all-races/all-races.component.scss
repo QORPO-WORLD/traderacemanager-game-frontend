@@ -114,9 +114,8 @@
   display: flex;
   align-items: center;
   height: 80px;
-  position: absolute;
+  position: fixed;
   top: 0;
-  transform: translateY(-100%);
   img {
     width: 21px;
   }
@@ -178,7 +177,7 @@
 
 .intro-modal {
   position: fixed;
-  background: #111;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url("/assets/base/images/start-race/dash-back.png");
   z-index: 10000;
   top: 0;
   height: calc((var(--vh, 1vh) * 100));
@@ -202,7 +201,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: sticky;
-    top: 80px;
+    top: 120px;
 
     .item {
       background: transparent;
@@ -1212,6 +1211,7 @@
   .races-content {
     .content-menu {
       height: calc(100vh - 140px);
+      top: 85px;
       .item {
         img {
           width: 27.5px;
@@ -1577,12 +1577,17 @@
     padding-bottom: 13px;
     padding-top: 13px;
   }
+  .races-content{
+    .content-menu{
+      top: 78px;
+    }
+  }
 }
 @media screen and(max-width: 1024px) {
   .races-content {
     .content-menu {
       height: calc(100vh - 65px);
-      top: 20px;
+      top: 55px;
       .item:hover {
         transform: none;
         .hover-effect {
@@ -1693,6 +1698,7 @@
             }
             .right-content {
               width: 60%;
+              overflow: hidden;
             }
           }
         }
@@ -1771,6 +1777,9 @@
   .races-desc {
     font-size: 10px;
     line-height: 12px;
+  }
+  .intro-modal{
+    padding-top: 40px;
   }
   .races-content {
     .content-menu {
@@ -1936,7 +1945,7 @@
   }
 }
 
-@media screen and(max-width: 850px) and (orientation: landscape) {
+@media screen and(max-width: 900px) and (orientation: landscape) {
   .all-races-back {
     top: -40px;
     height: calc(100% + 40px);
@@ -1944,6 +1953,7 @@
   .races-content {
     .content-menu {
       height: calc(100vh - 60px);
+      top: 50px;
     }
     .content-side {
       .box-heading {
@@ -2512,6 +2522,8 @@
 }
 @media screen and(max-width: 640px) and (orientation: portrait) {
   .content-title {
+    position: absolute;
+    transform: translateY(-100%);
     img {
       width: 10px;
     }

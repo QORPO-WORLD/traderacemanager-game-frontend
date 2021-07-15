@@ -253,7 +253,6 @@ export class SiteLayoutComponent
     private capi: CarsService
   ) {
     super();
-    this.calculateCorrectVh();
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
@@ -277,7 +276,6 @@ export class SiteLayoutComponent
     }, 60000);
     this.getCryptoStats();
 
-    this.calculateCorrectVh();
     if (tick) {
       this.trxUsdt = tick;
       this.tickInterval = setInterval(() => {
@@ -532,15 +530,6 @@ export class SiteLayoutComponent
     } else {
       this.isManager = false;
     }
-  }
-
-  calculateCorrectVh() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-    window.addEventListener("resize", () => {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    });
   }
 
   checkDeposit(checker: string) {

@@ -4,77 +4,18 @@
 
 <div class="main-holder" *ngIf="myCars?.length > 0">
 
-
-
-  <div class="main-top-panel">
-
-    <ng-container *ngIf="stepIndex === 1 && introModal === false">
-      <div class="back" [routerLink]="['/race/start-race']">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 2">
-      <div class="back" [routerLink]="['/race/all-races']" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-      <div class="back" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-      <div class="back" *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 5 && introModal === false">
-      <div class="back" (click)="stepIndex = 2">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 6">
-      <div class="back" (click)="stepIndex = 5">
-        <p>&lt;</p>
-        <p>BACK</p>
-      </div>
-      <button class="back-button" (click)="stepIndex = 5"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 1">
-      <div class="mid-text mb110">
-        <p class="heading">Pick a car</p>
-        <p class="text">Choose a car for the race or multiple cars for higher winning rates</p>
-      </div>
-    </ng-container>
-    
-
-    <ng-container *ngIf="stepIndex === 2">
-      <div class="mid-text mb50">
-        <p class="heading">Set up fuel</p>
-        <p class="text">Pick your favourite crypto combination as a fuel, try your luck or use Premium fuel to increase your chances to win!</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 5">
-      <div class="mid-text mb110 summary">
-        <p class="heading">Summary</p>
-        <p class="text">Check up your car and fuel combination, add a multibet to win more money!</p>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 6">
-      <div class="mid-text mb50">
-        <p class="heading">Multibet</p>
-        <p class="text">Pick multiple races to place your bets on!</p>
-      </div>
-    </ng-container>
-
-   
+  <div [routerLink]="['/race/all-races']" class="content-title">
+    <img
+      class="red-star"
+      src="assets/base/images/icons/icon-back-red.svg"
+      alt="red arrow"
+    />
+    <img
+      class="blue-star"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <p>BACK</p>
   </div>
 
 
@@ -411,13 +352,6 @@
       </div>
 
     </div>
-
-    <!-- <button class="back-button" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3">GO BACK</button>
-    <button class="back-button" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false">GO BACK</button>
-    <button *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()" class="back-button">GO BACK</button>
-
-    <button *ngIf="introModal === true && tutorialIndex === 3" (click)="skipModal()" class="close-tutorial"><span>3/6</span> Skip</button>
-    <button *ngIf="introModal === true && tutorialIndex === 5" (click)="skipModal()" class="close-tutorial"><span>5/6</span> Skip</button> -->
   
   
   </div>
@@ -429,24 +363,6 @@
   
 
   <div class="bottom-panels">
-
-    <ng-container *ngIf="stepIndex === 1">
-      <button class="back-button" [routerLink]="['/race/start-race']"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 2">
-      <button class="back-button" [routerLink]="['/race/all-races']" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-      <button class="back-button" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-      <button class="back-button" *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 5">
-      <button class="back-button" (click)="stepIndex = 2"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-    </ng-container>
-
-    <ng-container *ngIf="stepIndex === 6">
-      <button class="back-button" (click)="stepIndex = 5"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
-    </ng-container>
 
     <div class="selected-cars" *ngIf="stepIndex === 1">
       <div class="inner">

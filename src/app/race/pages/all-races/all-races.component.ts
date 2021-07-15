@@ -25,7 +25,7 @@ export class AllRacesComponent implements OnInit {
   favObserver: Subscription;
   howToInterval: any;
   howToStep = 1;
-  fastRaceIndex = 0;
+  fastRaceIndex = 1;
   animation = 0;
   contentAnimation = 0;
   content = 1;
@@ -214,13 +214,16 @@ export class AllRacesComponent implements OnInit {
         }
       }
     }
-    console.log(this.baseFavRaces);
   }
 
   onTimerComplete() {
     setTimeout(() => {
       this.getAllRaces();
     }, 100);
+  }
+
+  closeModal(e: any) {
+    this.selRaceType = null;
   }
 
 }

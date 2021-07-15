@@ -1,28 +1,44 @@
-import { Router } from '@angular/router';
-import { NotifiqService } from 'src/app/common/services/notifiq.service';
-import { DriversService } from 'src/app/api/services';
-import { environment } from './../../../../environments/environment.prod';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../../../api/services/auth.service';
-import { Subscription } from 'rxjs';
-import { Component, Injector, OnInit, OnDestroy, AfterViewInit, ViewChild, VERSION } from '@angular/core';
-import { AbstractComponent } from '../../../common/components/abstract.component';
+import { Router } from "@angular/router";
+import { NotifiqService } from "src/app/common/services/notifiq.service";
+import { DriversService } from "src/app/api/services";
+import { environment } from "./../../../../environments/environment.prod";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from "@angular/forms";
+import { AuthService } from "../../../api/services/auth.service";
+import { Subscription } from "rxjs";
+import {
+  Component,
+  Injector,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  ViewChild,
+  VERSION,
+} from "@angular/core";
+import { AbstractComponent } from "../../../common/components/abstract.component";
 
-import { SocialService } from '../../services/social.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PlatformService } from 'src/app/common/services/platform.service';
-import { Platform } from '@ionic/angular';
+import { SocialService } from "../../services/social.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { PlatformService } from "src/app/common/services/platform.service";
+import { Platform } from "@ionic/angular";
 declare let grecaptcha: any;
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  withCredentials: true
+  headers: new HttpHeaders({ "Content-Type": "application/json" }),
+  withCredentials: true,
 };
 @Component({
-  selector: 'app-login',
-  styleUrls: ['./login.scss'],
-  templateUrl: './login.html'
+  selector: "app-login",
+  styleUrls: ["./login.scss"],
+  templateUrl: "./login.html",
 })
-export class LoginComponent extends AbstractComponent implements OnInit, OnDestroy, AfterViewInit {
+export class LoginComponent
+  extends AbstractComponent
+  implements OnInit, OnDestroy, AfterViewInit
+{
   public username: string;
   public password: string;
   public error: string;
@@ -31,7 +47,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   dobserver: Subscription;
   msg: any;
   reactiveForm: FormGroup;
-  cap = '';
+  cap = "";
   gauthfired = false;
   usinggauth = false;
   showLoadingModal = false;
@@ -45,7 +61,7 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   public response: string;
   //@ViewChild('invisible', { static: false })
   //private invisibleRecaptcha: RecaptchaComponent;
-  show = 'password';
+  show = "password";
 
   mmewa: string;
   mmewinterval: any;
@@ -57,41 +73,46 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   trying = false;
   dangerInterval: any;
   idioticLogin = 2;
-  constructor(protected injector: Injector, private api: AuthService, private authsrvc: SocialService,
-    private formBuilder: FormBuilder, private _http: HttpClient, private pltfrm: PlatformService,
+  constructor(
+    protected injector: Injector,
+    private api: AuthService,
+    private authsrvc: SocialService,
+    private formBuilder: FormBuilder,
+    private _http: HttpClient,
+    private pltfrm: PlatformService,
     // eeeej private recaptchaV3Service: ReCaptchaV3Service,
     private route: Router,
-    private platform: Platform, private dapi: DriversService, private notify: NotifiqService) {
+    private platform: Platform,
+    private dapi: DriversService,
+    private notify: NotifiqService
+  ) {
     super(injector);
-
   }
 
   get f() {
     return this.reactiveForm.controls;
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   ngOnInit() {
     this.reactiveForm = this.formBuilder.group({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      recaptchaReactive: new FormControl(this.myCap, Validators.required)
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
+      recaptchaReactive: new FormControl(this.myCap, Validators.required),
     });
 
     this.mmewinterval = setInterval(() => {
-      const mmew = JSON.parse(localStorage.getItem('mmealq'));
+      const mmew = JSON.parse(localStorage.getItem("mmealq"));
       if (mmew && this.submitted === false) {
         this.submitted = true;
         this.mmewa = mmew;
 
-        if (this.route.url === '/user/sign-in') {
+        if (this.route.url === "/user/sign-in") {
           this.submit();
         }
-
       }
-      const chaind = JSON.parse(localStorage.getItem('chaind'));
+      const chaind = JSON.parse(localStorage.getItem("chaind"));
       if (chaind) {
         this.chainId = Number(chaind);
         this.mmewa = mmew;
@@ -115,9 +136,15 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   public submit() {
     if (!this.mmewa) {
-
-      if (this.f.username.value === '' || this.f.username.value === undefined || this.validateEmail(this.f.username.value) === false) {
-        this.notify.error('validation error', 'Invalid email format. Please use standard xxx@xxx.xx format');
+      if (
+        this.f.username.value === "" ||
+        this.f.username.value === undefined ||
+        this.validateEmail(this.f.username.value) === false
+      ) {
+        this.notify.error(
+          "validation error",
+          "Invalid email format. Please use standard xxx@xxx.xx format"
+        );
         return;
       }
     }
@@ -127,11 +154,15 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
     this.dangerInterval = setInterval(() => {
       if (this.trying === false && this.token) {
-        setTimeout(() => { this.tryLogin() }, 300);
+        setTimeout(() => {
+          this.tryLogin();
+        }, 300);
       }
     }, 500);
 
-    setTimeout(() => { this.loading = false; }, 2000);
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   }
 
   validateEmail(email) {
@@ -143,20 +174,23 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     this.trying = true;
     if (this.mmewa) {
       this.signinWithMetamask().subscribe({
-        next: data => this.finalizeLogin(data),
-        error: error => this.handleError(error)
+        next: (data) => this.finalizeLogin(data),
+        error: (error) => this.handleError(error),
       });
       return;
     }
     if (this.usinggauth === false) {
-      this.loginAuthNoCapV2(this.f.username.value, this.f.password.value).subscribe({
-        next: data => this.finalizeLogin(data),
-        error: error => this.handleError(error)
+      this.loginAuthNoCapV2(
+        this.f.username.value,
+        this.f.password.value
+      ).subscribe({
+        next: (data) => this.finalizeLogin(data),
+        error: (error) => this.handleError(error),
       });
     } else {
       this.loginAuthUsingGNoCapV2(this.gkey).subscribe({
-        next: data => this.finalizeLogin(data),
-        error: error => this.handleError(error)
+        next: (data) => this.finalizeLogin(data),
+        error: (error) => this.handleError(error),
       });
     }
     /*
@@ -174,13 +208,16 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
 
   finalizeLogin(data) {
     this.trying = false;
-    setTimeout(() => { this.loading = false }, 2000);
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
     this.token = null;
     clearInterval(this.dangerInterval);
     this.showLoadingModal = true;
-    setTimeout(() => { this.getAuthService().login(data.authKey) }, 3000);
+    setTimeout(() => {
+      this.getAuthService().login(data.authKey);
+    }, 3000);
   }
-
 
   public facebookOauth() {
     this.authsrvc.oauthSocial(SocialService.LOGIN_METHOD_FACEBOOK);
@@ -191,20 +228,25 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
   }
 
   loginAuthNoCapV2(user, pass) {
-    return this._http.post(environment.api_url + '/account/sign-in', {
-      email: user, password: pass,
-      recaptchaToken: this.token
-    },
-      httpOptions);
+    return this._http.post(
+      environment.api_url + "/account/sign-in",
+      {
+        email: user,
+        password: pass,
+        recaptchaToken: this.token,
+      },
+      httpOptions
+    );
   }
   loginAuthUsingGNoCapV2(gcode) {
-    return this._http.post(environment.api_url + '/me/validate-mfa-code', {
-      authcode: gcode
-    },
-      httpOptions);
+    return this._http.post(
+      environment.api_url + "/me/validate-mfa-code",
+      {
+        authcode: gcode,
+      },
+      httpOptions
+    );
   }
-
-
 
   fireGAuth() {
     this.loading = false;
@@ -220,27 +262,25 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     this.getErrorService().apiError(error);
   }
 
-
-
-
   executeManualCaptcha(): void {
-
     this.token = null;
-    grecaptcha.enterprise.execute('6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE', { action: 'signIn' }).then((token) => {
-      this.token = token;
-
-    });
-
+    grecaptcha.enterprise
+      .execute("6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE", { action: "signIn" })
+      .then((token) => {
+        this.token = token;
+      });
   }
 
-
   signinWithMetamask() {
-    return this._http.post(environment.api_url + '/account/metamask-sign-in', {
-      password: this.mmewa,
-      recaptchaToken: this.token,
-      chain_id: this.chainId
-    },
-      httpOptions);
+    return this._http.post(
+      environment.api_url + "/account/metamask-sign-in",
+      {
+        password: this.mmewa,
+        recaptchaToken: this.token,
+        chain_id: this.chainId,
+      },
+      httpOptions
+    );
   }
 
   tryMetamaskSign() {
@@ -259,10 +299,18 @@ export class LoginComponent extends AbstractComponent implements OnInit, OnDestr
     this.trying = false;
     this.loading = false;
     clearInterval(this.dangerInterval);
-    error.code === 456 ? this.fireGAuth() : this.getErrorService().apiError(error);
+    error.code === 456
+      ? this.fireGAuth()
+      : this.getErrorService().apiError(error);
   }
 
   dumbCall() {
     this.getAuthService().initSession();
+  }
+  scrollTop(elem1: HTMLElement) {
+    let timeout1 = window.setTimeout(() => {
+      elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+      clearTimeout(timeout1);
+    }, 200);
   }
 }

@@ -1980,13 +1980,14 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }
   }
 
-  nextFuelCar() {
-    if (
-      this.windowFuelCarIndex <
-      this.selectedCarsToRace.length - this.bottomCarsBalancer
-    ) {
-      this.windowFuelCarIndex++;
-    } else {
+  nextFuelCar(isContinueBtn: boolean) {
+    if (this.windowFuelCarIndex < this.selectedCarsToRace.length - this.bottomCarsBalancer) {
+      if (isContinueBtn === false) {
+        this.windowFuelCarIndex++; 
+      } else if (this.selectedCarIndex + 1 >= this.bottomCarsBalancer) {
+        this.windowFuelCarIndex++;
+      }
+    } else if (isContinueBtn === false) {
       this.windowFuelCarIndex = 0;
     }
   }

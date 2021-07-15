@@ -17,7 +17,7 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p>RACES</p>
+    <p>BACK</p>
   </div>
   <div class="races-content">
     <div class="content-menu">
@@ -424,12 +424,14 @@
         </div>
 
         <div class="switcher-holder">
-          <button
-            class="switch-item"
-            *ngFor="let item of fastRaces; let i = index"
-            (click)="fastRaceIndex = i"
-            [ngClass]="{ active: i === fastRaceIndex }"
-          ></button>
+          <ng-container *ngFor="let item of fastRaces; let i = index">
+            <button
+              class="switch-item"
+              (click)="fastRaceIndex = i"
+              [ngClass]="{ active: i === fastRaceIndex }"
+              *ngIf="i !== 0"
+            ></button>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -1349,5 +1351,5 @@
 <app-rules-info-modal #rulesModal></app-rules-info-modal>
 
 <div class="intro-modal" *ngIf="selRaceType">
-  <app-fast-fuel [raceId]="selRaceType"></app-fast-fuel>
+  <app-fast-fuel (closeModal)="closeModal($event)" [raceId]="selRaceType"></app-fast-fuel>
 </div>

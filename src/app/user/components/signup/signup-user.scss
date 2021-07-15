@@ -1,25 +1,39 @@
+.login-back-div {
+  position: sticky;
+  height: 0px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+.login-back {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  background-image: radial-gradient(
+      69.52% 76.11% at 50% 50%,
+      rgba(17, 17, 17, 0.5) 0%,
+      #111111 100%
+    ),
+    url("/assets/base/images/home-page/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  pointer-events: none;
+}
 .main-holder {
   width: 100%;
-  min-height: 100%;
-  background-image: url("/assets/base/images/home-page/banner.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: calc(var(--vh, 1vh) * 100);
   position: relative;
-  width: 100%;
-  min-height: 100%;
-  background-image: radial-gradient(69.52% 76.11% at 50% 50%, rgba(17, 17, 17, 0.5) 0%, #111111 100%), url("/assets/base/images/home-page/banner.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  .back-btn{
+  .login-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .back-btn {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -38,84 +52,95 @@
       font-weight: 900;
       margin-left: 10px;
       margin-bottom: 0;
-      opacity: .4;
+      opacity: 0.4;
     }
   }
-  .center-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .center-content {
     text-align: center;
     width: 100%;
     max-width: 600px;
-    .clickers-holder{
+    .clickers-holder {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 28px;
-      .regular-box{
-        p{
+      .regular-box {
+        p {
           display: inline-block;
           font-size: 16px;
-          opacity: .6;
+          opacity: 0.6;
           margin: 0;
           cursor: pointer;
-          transition: .15s;
-          &.register{
+          transition: 0.15s;
+          &.register {
             margin: 0 40px 0 0;
           }
-          &:hover{
-            opacity: .8;
+          &:hover {
+            opacity: 0.8;
           }
         }
       }
-      .cta-button{
-        background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+      .cta-button {
+        background: linear-gradient(
+          236.12deg,
+          #00f0ff 6%,
+          #0098d9 102.68%,
+          #0098d9 102.68%
+        );
         padding: 16px 5px;
         width: 200px;
         font-weight: 600;
         font-size: 16px;
-        transition: .2s;
-        &:hover{
+        transition: 0.2s;
+        &:hover {
           transform: scale(1.04);
         }
       }
     }
-    .or-text{
+    .or-text {
       margin: 40px 0;
       font-size: 16px;
-      opacity: .6;
+      opacity: 0.6;
       text-align: center;
       width: 100%;
     }
-    .big-cta{
-      background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+    .big-cta {
+      background: linear-gradient(
+        236.12deg,
+        #00f0ff 6%,
+        #0098d9 102.68%,
+        #0098d9 102.68%
+      );
       border: none;
       font-weight: 600;
       font-size: 16px;
       padding: 16px 5px;
       width: 100%;
     }
-    .create-box{
+    .create-box {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 40px 0 0 0;
-      .login-text{
+      .login-text {
         font-size: 16px;
-        opacity: .6;
+        opacity: 0.6;
         margin: 0;
         text-align: left;
-        span{
+        span {
           font-weight: 600;
           text-decoration: underline;
           cursor: pointer;
         }
       }
-      .cta-button{
-        background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+      .cta-button {
+        background: linear-gradient(
+          236.12deg,
+          #00f0ff 6%,
+          #0098d9 102.68%,
+          #0098d9 102.68%
+        );
         border: none;
         font-weight: 600;
         font-size: 16px;
@@ -131,7 +156,7 @@
     background-position: -15px 32px;
     background-color: transparent;
     position: relative;
-    .icon{
+    .icon {
       position: absolute;
       left: 20px;
       top: 50%;
@@ -140,7 +165,7 @@
     .input-placeholder {
       font-weight: 400;
       font-size: 18px;
-      color: rgba(34, 34, 34, .4);
+      color: rgba(34, 34, 34, 0.4);
       margin: 0;
       position: absolute;
       left: 60px;
@@ -163,11 +188,11 @@
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      &.eyeball{
-        transition: .2s;
+      &.eyeball {
+        transition: 0.2s;
         opacity: 0;
         z-index: 1;
-        &.show{
+        &.show {
           z-index: 2;
           opacity: 1;
         }
@@ -193,7 +218,7 @@
         font-weight: normal;
         font-size: 18px;
         line-height: 27px;
-        color: rgba(34, 34, 34, .4);
+        color: rgba(34, 34, 34, 0.4);
       }
       &:focus {
         & ~ .input-placeholder {
@@ -206,7 +231,7 @@
       -webkit-box-shadow: 0 0 0 50px #fff inset;
       -webkit-text-fill-color: #222222;
     }
-  
+
     input:-webkit-autofill:focus {
       -webkit-box-shadow: 0 0 0 50px #fff inset;
       -webkit-text-fill-color: #222222;
@@ -229,8 +254,8 @@
 .register-text {
   margin-top: 38px;
   text-align: left;
-  &.check{
-    p{
+  &.check {
+    p {
       font-size: 18px;
       line-height: 27px;
       text-align: left;
@@ -250,9 +275,9 @@
   display: block;
   margin: 10px auto 0;
   position: relative;
-  border: 2px solid #00D1FF;
-  transition: .2s;
-  &:hover{
+  border: 2px solid #00d1ff;
+  transition: 0.2s;
+  &:hover {
     background: rgba(0, 208, 255, 0.2);
   }
   img {
@@ -273,8 +298,8 @@
   font-size: 16px;
   color: white;
   margin-left: 24px;
-  a{
-    color: #00D1FF;
+  a {
+    color: #00d1ff;
   }
 }
 #terms:checked + label {
@@ -298,9 +323,9 @@
   visibility: visible !important;
 }
 
-@media screen and (max-width: 1550px){
-  .main-holder{
-    .back-btn{
+@media screen and (max-width: 1550px) {
+  .main-holder {
+    .back-btn {
       top: 30px;
       left: 30px;
       img {
@@ -311,38 +336,38 @@
         margin-left: 8px;
       }
     }
-    .center-content{
+    .center-content {
       max-width: 500px;
-      .create-box{
-        .login-text{
+      .create-box {
+        .login-text {
           font-size: 14px;
         }
-        .cta-button{
+        .cta-button {
           padding: 13px 5px;
           width: 150px;
           font-size: 14px;
         }
       }
-      .or-text{
+      .or-text {
         margin: 30px 0;
         font-size: 14px;
       }
-      .big-cta{
+      .big-cta {
         font-size: 14px;
       }
     }
-    .my-input{
+    .my-input {
       margin: 0 auto 15px;
-      &.filled{
-        .input-placeholder{
+      &.filled {
+        .input-placeholder {
           font-size: 10px;
         }
       }
-      .icon{
+      .icon {
         left: 16px;
         height: 21px;
       }
-      input{
+      input {
         font-size: 16px;
         padding: 16px 8px 10px 50px;
         &:focus {
@@ -351,7 +376,7 @@
           }
         }
       }
-      .input-placeholder{
+      .input-placeholder {
         left: 50px;
         font-size: 16px;
       }
@@ -366,10 +391,10 @@
       max-height: 18px;
     }
   }
-  .register-text{
+  .register-text {
     margin-top: 28px;
-    &.check{
-      p{
+    &.check {
+      p {
         font-size: 16px;
         margin-bottom: 10px;
       }
@@ -377,9 +402,10 @@
   }
 }
 
-@media screen and (max-width: 1024px){
-  .main-holder{
-    .back-btn{
+@media screen and (max-width: 1024px) {
+  .main-holder {
+    min-height: 650px;
+    .back-btn {
       top: 20px;
       left: 20px;
       img {
@@ -389,39 +415,39 @@
         font-size: 21px;
       }
     }
-    .center-content{
-      .create-box{
+    .center-content {
+      .create-box {
         margin: 25px 0 0 0;
-        .login-text{
+        .login-text {
           font-size: 13px;
         }
-        .cta-button{
+        .cta-button {
           padding: 11px 5px;
           width: 130px;
           font-size: 13px;
         }
       }
-      .or-text{
+      .or-text {
         margin: 22px 0;
         font-size: 13px;
       }
-      .big-cta{
+      .big-cta {
         padding: 14px 5px;
         font-size: 13px;
       }
     }
-    .my-input{
+    .my-input {
       margin: 0 auto 12px;
-      &.filled{
-        .input-placeholder{
+      &.filled {
+        .input-placeholder {
           font-size: 9px;
         }
       }
-      .icon{
+      .icon {
         left: 14px;
         height: 19px;
       }
-      input{
+      input {
         font-size: 15px;
         padding: 14px 7px 8px 40px;
         &:focus {
@@ -430,7 +456,7 @@
           }
         }
       }
-      .input-placeholder{
+      .input-placeholder {
         left: 40px;
         font-size: 15px;
       }
@@ -445,29 +471,30 @@
       max-height: 16px;
     }
   }
-  .register-text{
+  .register-text {
     margin-top: 20px;
-    &.check{
-      p{
+    &.check {
+      p {
         font-size: 14px;
         margin-bottom: 6px;
       }
     }
   }
-  #terms + label{
+  #terms + label {
     font-size: 14px;
     background-size: contain;
     margin-left: 14px;
   }
-  #news + label{
+  #news + label {
     background-size: contain;
     margin-left: 14px;
   }
 }
 
-@media screen and (max-width: 850px) and (orientation: landscape){
-  .main-holder{
-    .back-btn{
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .main-holder {
+    min-height: 400px;
+    .back-btn {
       top: 15px;
       left: 15px;
       img {
@@ -477,41 +504,41 @@
         font-size: 17px;
       }
     }
-    .center-content{
+    .center-content {
       max-width: 400px;
-      .create-box{
+      .create-box {
         margin: 15px 0 0 0;
-        .login-text{
+        .login-text {
           font-size: 12px;
         }
-        .cta-button{
+        .cta-button {
           padding: 9px 5px;
           width: 100px;
           font-size: 11px;
         }
       }
-      .or-text{
+      .or-text {
         margin: 14px 0;
         font-size: 11px;
       }
-      .big-cta{
+      .big-cta {
         padding: 12px 5px;
         font-size: 12px;
       }
     }
-    .my-input{
+    .my-input {
       margin: 0 auto 9px;
-      &.filled{
-        .input-placeholder{
+      &.filled {
+        .input-placeholder {
           font-size: 5px;
           top: 19%;
         }
       }
-      .icon{
+      .icon {
         left: 14px;
         height: 19px;
       }
-      input{
+      input {
         font-size: 11px;
         padding: 7px 5px 5px 40px;
         &:focus {
@@ -521,12 +548,12 @@
           }
         }
       }
-      .input-placeholder{
+      .input-placeholder {
         left: 40px;
         font-size: 13px;
       }
-      span{
-        img{
+      span {
+        img {
           width: 17px;
         }
       }
@@ -536,31 +563,37 @@
     height: 37px;
     line-height: 32px;
     font-size: 12px;
-    border: 1px solid #00D1FF;
+    border: 1px solid #00d1ff;
     img {
       margin-right: 12px;
       max-height: 16px;
     }
   }
   #terms + label,
-  #news + label{
+  #news + label {
     font-size: 12px;
     margin-left: 10px;
     padding-left: 24px;
   }
-  .register-text{
+  .register-text {
     margin-top: 10px;
-    &.check{
-      p{
+    &.check {
+      p {
         line-height: 18px;
       }
     }
   }
 }
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .main-holder {
+    min-height: 350px;
+  }
+}
 
-@media screen and (max-width: 640px) and (orientation: portrait){
-  .main-holder{
-    .back-btn{
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .main-holder {
+    min-height: 300px;
+    .back-btn {
       top: 15px;
       left: 15px;
       img {
@@ -570,39 +603,39 @@
         font-size: 17px;
       }
     }
-    .center-content{
+    .center-content {
       max-width: 90%;
-      .create-box{
-        .login-text{
+      .create-box {
+        .login-text {
           font-size: 12px;
         }
-        .cta-button{
+        .cta-button {
           padding: 9px 5px;
           width: 100px;
           font-size: 11px;
         }
       }
-      .or-text{
+      .or-text {
         margin: 14px 0;
         font-size: 11px;
       }
-      .big-cta{
+      .big-cta {
         padding: 12px 5px;
         font-size: 12px;
       }
     }
-    .my-input{
+    .my-input {
       margin: 0 auto 9px;
-      &.filled{
-        .input-placeholder{
+      &.filled {
+        .input-placeholder {
           font-size: 7px;
         }
       }
-      .icon{
+      .icon {
         left: 14px;
         height: 19px;
       }
-      input{
+      input {
         font-size: 13px;
         padding: 10px 5px 8px 40px;
         &:focus {
@@ -611,12 +644,12 @@
           }
         }
       }
-      .input-placeholder{
+      .input-placeholder {
         left: 40px;
         font-size: 13px;
       }
-      span{
-        img{
+      span {
+        img {
           width: 19px;
         }
       }
@@ -626,14 +659,14 @@
     height: 37px;
     line-height: 32px;
     font-size: 12px;
-    border: 1px solid #00D1FF;
+    border: 1px solid #00d1ff;
     img {
       margin-right: 12px;
       max-height: 16px;
     }
   }
   #terms + label,
-  #news + label{
+  #news + label {
     font-size: 11px;
     margin-left: 10px;
     padding-left: 24px;

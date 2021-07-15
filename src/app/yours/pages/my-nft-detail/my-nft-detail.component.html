@@ -190,57 +190,126 @@
         *ngIf="displayArray[0]['collection'] != 'Special'"
         class="ability-box cars first"
       >
-        <img
-          class="red-star"
-          src="assets/base/images/market/value-red.svg"
-          alt="buy icon"
-        />
-        <img
-          class="blue-star"
-          src="assets/base/images/market/value.svg"
-          alt="buy icon"
-        />
-        <div class="ability-text">
-          <p class="category-title-third">
-            {{ displayArray[0]["price"].toLocaleString() }} IOI
-          </p>
-          <p class="races-desc">IOI value</p>
+        <div class="ability-content">
+          <img
+            class="red-star"
+            src="assets/base/images/market/value-red.svg"
+            alt="buy icon"
+          />
+          <img
+            class="blue-star"
+            src="assets/base/images/market/value.svg"
+            alt="buy icon"
+          />
+          <div class="ability-text">
+            <p class="category-title-third">
+              {{ displayArray[0]["price"] }} IOI
+            </p>
+            <p class="races-desc">IOI value</p>
+          </div>
         </div>
       </div>
       <div class="ability-box cars cars">
-        <img
-          class="red-star"
-          src="assets/base/images/market/investment-red.svg"
-          alt="ability icon"
-        />
-        <img
-          class="blue-star"
-          src="assets/base/images/market/investment.svg"
-          alt="ability icon"
-        />
+        <div class="ability-content">
+          <img
+            class="red-star"
+            src="assets/base/images/icons/daily-stake-red.svg"
+            alt="ability icon"
+          />
+          <img
+            class="blue-star"
+            src="assets/base/images/icons/daily-stake-blue.svg"
+            alt="ability icon"
+          />
 
-        <div class="ability-text">
-          <p class="category-title-third">
-            {{ displayArray[0]["ability1"] }} IOI
-          </p>
-          <p class="races-desc">daily stake</p>
+          <div class="ability-text">
+            <p class="category-title-third">
+              {{ displayArray[0]["ability1"] }} IOI
+            </p>
+            <p class="races-desc">daily stake</p>
+          </div>
         </div>
       </div>
       <div class="ability-box cars">
         <img
-          class="red-star"
-          src="assets/base/images/market/investment-red.svg"
-          alt="ability icon"
+          [ngClass]="{ active: infoRoi === true }"
+          (mouseover)="infoRoi = true"
+          (mouseleave)="infoRoi = false"
+          class="info-icon"
+          src="/assets/base/images/icons/question-mark.svg"
+          alt="question mark"
         />
-        <img
-          class="blue-star"
-          src="assets/base/images/market/investment.svg"
-          alt="ability icon"
-        />
+        <div
+          [ngClass]="{ 'active-values': infoRoi === true }"
+          class="ability-content"
+        >
+          <img
+            class="red-star"
+            src="assets/base/images/market/investment-red.svg"
+            alt="ability icon"
+          />
+          <img
+            class="blue-star"
+            src="assets/base/images/market/investment.svg"
+            alt="ability icon"
+          />
 
-        <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["ability2"] }}%</p>
-          <p class="races-desc">fixed ROI</p>
+          <div class="ability-text">
+            <p class="category-title-third">
+              {{ displayArray[0]["ability2"] }}%
+            </p>
+            <p class="races-desc">fixed ROI</p>
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'active-info': infoRoi === false }"
+          class="ability-content"
+        >
+          <p class="races-desc">
+            By owning and holding this NFT, you receive fixed ROI thanks to
+            Daily Stakes.
+          </p>
+        </div>
+      </div>
+      <div class="ability-box cars">
+        <img
+          [ngClass]="{ active: infoRoiYearly === true }"
+          (mouseover)="infoRoiYearly = true"
+          (mouseleave)="infoRoiYearly = false"
+          class="info-icon"
+          src="/assets/base/images/icons/question-mark.svg"
+          alt="question mark"
+        />
+        <div
+          [ngClass]="{ 'active-values': infoRoiYearly === true }"
+          class="ability-content"
+        >
+          <img
+            class="red-star"
+            src="assets/base/images/icons/yearly-roi-red.svg"
+            alt="ability icon"
+          />
+          <img
+            class="blue-star"
+            src="assets/base/images/icons/yearly-roi-blue.svg"
+            alt="ability icon"
+          />
+
+          <div class="ability-text">
+            <p class="category-title-third">
+              {{ displayArray[0]["ability3"].toLocaleString() }}%
+            </p>
+            <p class="races-desc">potential ROI</p>
+          </div>
+        </div>
+        <div
+          [ngClass]="{ 'active-info': infoRoiYearly === false }"
+          class="ability-content"
+        >
+          <p class="races-desc">
+            We give away 11 000 IOI in games every day. Play games to reach
+            potential ROI.
+          </p>
         </div>
       </div>
     </div>

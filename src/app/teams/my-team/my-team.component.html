@@ -1,6 +1,4 @@
-
 <div class="main-holder">
-
   <div class="content-title" [routerLink]="['/race/start-race']">
     <img
       class="red-star"
@@ -20,11 +18,36 @@
       <p class="my-heading">Team info</p>
       <div class="info-box">
         <div class="info-item team-name">
-          <div class="img-holder" *ngIf="myTeamName === 'IOI' || myTeamName === 'BTC' || myTeamName === 'ALT'">
-            <img [src]="'/assets/base/images/teams/' + myTeamName + '-team.png'" alt="">
+          <div
+            class="img-holder"
+            *ngIf="
+              myTeamName === 'IOI' ||
+              myTeamName === 'BTC' ||
+              myTeamName === 'ALT'
+            "
+          >
+            <img
+              [src]="'/assets/base/images/teams/' + myTeamName + '-team.png'"
+              alt=""
+            />
           </div>
-          <div class="img-holder" *ngIf="myTeamName !== 'IOI' && myTeamName !== 'BTC' && myTeamName !== 'ALT'">
-            <img class="badge-img" [src]="'assets/base/images/custom-teams/custom-team' + (myTeam?.avatar + 1) + '.png'" alt=""/>
+          <div
+            class="img-holder"
+            *ngIf="
+              myTeamName !== 'IOI' &&
+              myTeamName !== 'BTC' &&
+              myTeamName !== 'ALT'
+            "
+          >
+            <img
+              class="badge-img"
+              [src]="
+                'assets/base/images/custom-teams/custom-team' +
+                (myTeam?.avatar + 1) +
+                '.png'
+              "
+              alt=""
+            />
             <div class="badge-name">
               <p class="name">{{ myTeamName }}</p>
               <p class="team">TEAM</p>
@@ -38,7 +61,7 @@
 
         <div class="info-item">
           <div class="img-holder">
-            <img src="/assets/base/images/market/owner.svg" alt="">
+            <img src="/assets/base/images/market/owner.svg" alt="" />
           </div>
           <div class="text-holder">
             <p class="value">{{ myTeam?.owners[0].nickname }}</p>
@@ -48,7 +71,7 @@
 
         <div class="info-item">
           <div class="img-holder">
-            <img src="/assets/base/images/teams/premium-memb.png" alt="">
+            <img src="/assets/base/images/teams/premium-memb.png" alt="" />
           </div>
           <div class="text-holder">
             <p class="value">{{ myTeam?.premium_members }}</p>
@@ -58,10 +81,13 @@
 
         <div class="info-item">
           <div class="img-holder">
-            <img src="/assets/base/images/teams/turnover.svg" alt="">
+            <img src="/assets/base/images/teams/turnover.svg" alt="" />
           </div>
           <div class="text-holder">
-            <p class="value"><img src="/assets/base/images/teams/reward-token.png" alt=""> {{ myTeam?.team_value }}</p>
+            <p class="value">
+              <img src="/assets/base/images/teams/reward-token.png" alt="" />
+              {{ myTeam?.team_value }}
+            </p>
             <p class="desc">team value</p>
           </div>
         </div>
@@ -71,65 +97,144 @@
     <div class="manager-holder">
       <p class="my-heading">Team manager</p>
       <div class="inner-holder">
-        
         <ng-container *ngIf="myDriverData.is_owner === false">
-          <ng-container *ngIf="rateManagerState === 1 || myDriverData.is_manager === true">
+          <ng-container
+            *ngIf="rateManagerState === 1 || myDriverData.is_manager === true"
+          >
             <ng-container *ngIf="rateState === 1">
               <div class="text-box">
                 <div class="img-holder">
-                  <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                  <img
+                    src="/assets/base/images/teams/manager-icon.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="text-holder">
-                  <p class="value">{{ myTeam?.manager_user_nickname
-                    ? myTeam?.manager_user_nickname
-                    : "-" }}</p>
+                  <p class="value">
+                    {{
+                      myTeam?.manager_user_nickname
+                        ? myTeam?.manager_user_nickname
+                        : "-"
+                    }}
+                  </p>
                   <p class="desc">team manager</p>
                 </div>
               </div>
               <div class="btn-box">
-                <button *ngIf="myTeam?.can_rate_manager === true && meRated === false" class="my-cta-btn-back" (click)="rateState = 2">Rate</button>
-                <button *ngIf="myTeam?.can_rate_manager === false || meRated === true" class="my-cta-btn-back inactive" (click)="rateState = 2">Rated</button>
+                <button
+                  *ngIf="myTeam?.can_rate_manager === true && meRated === false"
+                  class="my-cta-btn-back"
+                  (click)="rateState = 2"
+                >
+                  Rate
+                </button>
+                <button
+                  *ngIf="myTeam?.can_rate_manager === false || meRated === true"
+                  class="my-cta-btn-back inactive"
+                  (click)="rateState = 2"
+                >
+                  Rated
+                </button>
               </div>
             </ng-container>
-            
+
             <ng-container *ngIf="rateState === 2">
               <div class="text-box">
                 <div class="img-holder">
-                  <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                  <img
+                    src="/assets/base/images/teams/manager-icon.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="text-holder stars">
-                  <img (click)="activeRate = 0" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 1" *ngIf="activeRate < 1" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 1" *ngIf="activeRate > 0" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 2" *ngIf="activeRate < 2" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 2" *ngIf="activeRate > 1" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 3" *ngIf="activeRate < 3" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 3" *ngIf="activeRate > 2" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 4" *ngIf="activeRate != 4" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 4" *ngIf="activeRate > 3" src="/assets/base/images/teams/full-star.svg" alt="">
+                  <img
+                    (click)="activeRate = 0"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 1"
+                    *ngIf="activeRate < 1"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 1"
+                    *ngIf="activeRate > 0"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 2"
+                    *ngIf="activeRate < 2"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 2"
+                    *ngIf="activeRate > 1"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 3"
+                    *ngIf="activeRate < 3"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 3"
+                    *ngIf="activeRate > 2"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 4"
+                    *ngIf="activeRate != 4"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 4"
+                    *ngIf="activeRate > 3"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
                 </div>
               </div>
               <div class="btn-box">
-                <button class="my-cta-btn-back inactive" (click)="rateManager()">Confirm</button>
+                <button
+                  class="my-cta-btn-back inactive"
+                  (click)="rateManager()"
+                >
+                  Confirm
+                </button>
               </div>
             </ng-container>
-            
           </ng-container>
 
-          <ng-container *ngIf="rateManagerState === 2 && myDriverData.is_manager === false">
+          <ng-container
+            *ngIf="rateManagerState === 2 && myDriverData.is_manager === false"
+          >
             <div class="text-box">
               <div class="img-holder">
-                <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                <img src="/assets/base/images/teams/manager-icon.svg" alt="" />
               </div>
               <div class="text-holder">
-                <p class="value">{{ myTeam?.manager_user_nickname
-                  ? myTeam?.manager_user_nickname
-                  : "-" }}</p>
+                <p class="value">
+                  {{
+                    myTeam?.manager_user_nickname
+                      ? myTeam?.manager_user_nickname
+                      : "-"
+                  }}
+                </p>
                 <p class="desc">team manager</p>
               </div>
             </div>
             <div class="btn-box">
-              <button class="my-cta-btn-back" (click)="becomeManager(teamId)">Apply</button>
+              <button class="my-cta-btn-back" (click)="becomeManager(teamId)">
+                Apply
+              </button>
             </div>
           </ng-container>
         </ng-container>
@@ -139,49 +244,118 @@
             <ng-container *ngIf="rateState === 1">
               <div class="text-box">
                 <div class="img-holder">
-                  <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                  <img
+                    src="/assets/base/images/teams/manager-icon.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="text-holder">
-                  <p class="value">{{ myTeam?.manager_user_nickname
-                    ? myTeam?.manager_user_nickname
-                    : "-" }}</p>
+                  <p class="value">
+                    {{
+                      myTeam?.manager_user_nickname
+                        ? myTeam?.manager_user_nickname
+                        : "-"
+                    }}
+                  </p>
                   <p class="desc">team manager</p>
                 </div>
               </div>
               <div class="btn-box">
-                <button *ngIf="myTeam?.can_rate_manager === true && meRated === false" class="my-cta-btn-back" (click)="rateState = 2">Rate manager</button>
-                <button *ngIf="myTeam?.can_rate_manager === false || meRated === true" class="my-cta-btn-back inactive">Rated</button>
+                <button
+                  *ngIf="myTeam?.can_rate_manager === true && meRated === false"
+                  class="my-cta-btn-back"
+                  (click)="rateState = 2"
+                >
+                  Rate manager
+                </button>
+                <button
+                  *ngIf="myTeam?.can_rate_manager === false || meRated === true"
+                  class="my-cta-btn-back inactive"
+                >
+                  Rated
+                </button>
               </div>
             </ng-container>
-            
+
             <ng-container *ngIf="rateState === 2">
               <div class="text-box">
                 <div class="img-holder">
-                  <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                  <img
+                    src="/assets/base/images/teams/manager-icon.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="text-holder stars">
-                  <img (click)="activeRate = 0" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 1" *ngIf="activeRate < 1" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 1" *ngIf="activeRate > 0" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 2" *ngIf="activeRate < 2" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 2" *ngIf="activeRate > 1" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 3" *ngIf="activeRate < 3" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 3" *ngIf="activeRate > 2" src="/assets/base/images/teams/full-star.svg" alt="">
-                  <img (click)="activeRate = 4" *ngIf="activeRate != 4" src="/assets/base/images/teams/empty-star.svg" alt="">
-                  <img (click)="activeRate = 4" *ngIf="activeRate > 3" src="/assets/base/images/teams/full-star.svg" alt="">
+                  <img
+                    (click)="activeRate = 0"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 1"
+                    *ngIf="activeRate < 1"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 1"
+                    *ngIf="activeRate > 0"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 2"
+                    *ngIf="activeRate < 2"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 2"
+                    *ngIf="activeRate > 1"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 3"
+                    *ngIf="activeRate < 3"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 3"
+                    *ngIf="activeRate > 2"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 4"
+                    *ngIf="activeRate != 4"
+                    src="/assets/base/images/teams/empty-star.svg"
+                    alt=""
+                  />
+                  <img
+                    (click)="activeRate = 4"
+                    *ngIf="activeRate > 3"
+                    src="/assets/base/images/teams/full-star.svg"
+                    alt=""
+                  />
                 </div>
               </div>
               <div class="btn-box">
-                <button class="my-cta-btn-back inactive" (click)="rateManager()">Confirm</button>
+                <button
+                  class="my-cta-btn-back inactive"
+                  (click)="rateManager()"
+                >
+                  Confirm
+                </button>
               </div>
             </ng-container>
-            
           </ng-container>
 
           <ng-container *ngIf="rateManagerState === 2">
             <div class="text-box">
               <div class="img-holder">
-                <img src="/assets/base/images/teams/manager-icon.svg" alt="">
+                <img src="/assets/base/images/teams/manager-icon.svg" alt="" />
               </div>
               <div class="text-holder">
                 <p class="value">Manage</p>
@@ -189,62 +363,124 @@
               </div>
             </div>
             <div class="btn-box">
-              <button class="my-cta-btn-back" (click)="manageWindowOpen = true">Manage</button>
+              <button class="my-cta-btn-back" (click)="manageWindowOpen = true">
+                Manage
+              </button>
             </div>
 
-            <div class="manage-window" [ngClass]="{'opened': manageWindowOpen === true}">
+            <div
+              class="manage-window"
+              [ngClass]="{ opened: manageWindowOpen === true }"
+            >
               <div class="heading-switcher">
-                <p class="my-heading" [ngClass]="{'inactive': manageManagers === false}" (click)="manageManagers = true">Managers</p>
-                <p class="my-heading" [ngClass]="{'inactive': manageManagers === true}" (click)="manageManagers = false">Applications</p>
+                <p
+                  class="my-heading"
+                  [ngClass]="{ inactive: manageManagers === false }"
+                  (click)="manageManagers = true"
+                >
+                  Managers
+                </p>
+                <p
+                  class="my-heading"
+                  [ngClass]="{ inactive: manageManagers === true }"
+                  (click)="manageManagers = false"
+                >
+                  Applications
+                </p>
                 <p class="close-window" (click)="manageWindowOpen = false">+</p>
               </div>
 
               <ng-container *ngIf="manageManagers === true">
                 <div class="manage-item" *ngIf="myTeam?.manager_user_nickname">
                   <div class="text-holder">
-                    <p class="name">{{ myTeam?.manager_user_nickname
-                      ? myTeam?.manager_user_nickname
-                      : "-" }}</p>
+                    <p class="name">
+                      {{
+                        myTeam?.manager_user_nickname
+                          ? myTeam?.manager_user_nickname
+                          : "-"
+                      }}
+                    </p>
                     <div class="rating-text">
                       <p class="value">{{ myTeam?.current_manager_rating }}%</p>
                       <p class="desc">manager rating</p>
                     </div>
                   </div>
 
-                  <button class="action-btn my-cta-btn-back" (click)="suspendManager()">Fire</button>
+                  <button
+                    class="action-btn my-cta-btn-back"
+                    (click)="suspendManager()"
+                  >
+                    Fire
+                  </button>
                 </div>
 
-                <p class="disclaim" *ngIf="!myTeam?.manager_user_nickname">No manager is hired yet</p>
+                <p class="disclaim" *ngIf="!myTeam?.manager_user_nickname">
+                  No manager is hired yet
+                </p>
               </ng-container>
 
               <ng-container *ngIf="manageManagers === false">
-
-                <p class="disclaim" *ngIf="managers.length === 0">No applications at the moment</p>
+                <p class="disclaim" *ngIf="managers.length === 0">
+                  No applications at the moment
+                </p>
 
                 <ng-container *ngIf="managers.length > 0">
-                  <div class="manage-item applicat" *ngFor="let item of managers; let i = index">
+                  <div
+                    class="manage-item applicat"
+                    *ngFor="let item of managers; let i = index"
+                  >
                     <div class="text-holder">
                       <p class="name">{{ item.user_nickname }}</p>
                     </div>
-  
+
                     <div class="btns-holder">
-                      <button class="my-cta-btn-back" (click)="putManagerRequests(managers[i]?.team_manager_request_id,true)">Hire</button>
-                      <button class="my-cta-btn-back inactive" (click)="putManagerRequests(managers[i]?.team_manager_request_id,false)">Reject</button>
+                      <button
+                        class="my-cta-btn-back"
+                        (click)="
+                          putManagerRequests(
+                            managers[i]?.team_manager_request_id,
+                            true
+                          )
+                        "
+                      >
+                        Hire
+                      </button>
+                      <button
+                        class="my-cta-btn-back inactive"
+                        (click)="
+                          putManagerRequests(
+                            managers[i]?.team_manager_request_id,
+                            false
+                          )
+                        "
+                      >
+                        Reject
+                      </button>
                     </div>
                   </div>
                 </ng-container>
-                
-
               </ng-container>
-              
             </div>
           </ng-container>
         </ng-container>
-        
-        
-        <div class="manager-switchers" [hidden]="myDriverData?.is_manager === true && myDriverData?.is_owner===false">
-          <div class="switch-item my-cta-btn-back" (click)="rateManagerState = 1" [ngClass]="{'inactive': rateManagerState !== 1}"></div>
-          <div class="switch-item my-cta-btn-back" (click)="rateManagerState = 2" [ngClass]="{'inactive': rateManagerState !== 2}"></div>
+
+        <div
+          class="manager-switchers"
+          [hidden]="
+            myDriverData?.is_manager === true &&
+            myDriverData?.is_owner === false
+          "
+        >
+          <div
+            class="switch-item my-cta-btn-back"
+            (click)="rateManagerState = 1"
+            [ngClass]="{ inactive: rateManagerState !== 1 }"
+          ></div>
+          <div
+            class="switch-item my-cta-btn-back"
+            (click)="rateManagerState = 2"
+            [ngClass]="{ inactive: rateManagerState !== 2 }"
+          ></div>
         </div>
       </div>
     </div>
@@ -267,8 +503,12 @@
               <p>Potential win</p>
             </div>
           </div>
-        
-          <div class="table-row"  *ngFor="let pl of myTeam?.top10; let yy = index" [ngClass]="{'mine': pl?.user_id === myuser}">
+
+          <div
+            class="table-row"
+            *ngFor="let pl of myTeam?.top10; let yy = index"
+            [ngClass]="{ mine: pl?.user_id === myuser }"
+          >
             <div class="table-item small">
               <p>{{ yy + 1 }}.</p>
             </div>
@@ -279,12 +519,13 @@
               <p>{{ pl?.points | number: "1.1-1":"fr" }}</p>
             </div>
             <div class="table-item big bold last">
-              <p><img src="/assets/base/images/teams/reward-token.png" alt=""> {{ myTeam?.applicable_team_bonuses[pl.position - 1] | number: "1.1-2":"fr" }}</p>
+              <p>
+                <img src="/assets/base/images/teams/reward-token.png" alt="" />
+                {{ pl.potential_win | number: "1.1-2":"fr" }}
+              </p>
             </div>
             <div class="mine-back my-cta-btn-back"></div>
           </div>
-
-
         </div>
       </div>
 
@@ -312,35 +553,30 @@
       </div>
 
       <div class="inner-holder">
-        <p class="soon" style="display:none">Coming soon</p>
+        <p class="soon" style="display: none">Coming soon</p>
         <div class="graph-holder">
           <div class="graph">
-          
-            <div class="chart-cont" [hidden]="graphType !== 'Profit'">    
-               <h2 style="text-align: center;">Coming soon</h2>
+            <div class="chart-cont" [hidden]="graphType !== 'Profit'">
+              <h2 style="text-align: center">Coming soon</h2>
             </div>
-             <div class="chart-cont" [hidden]="graphType !== 'Turnover'">    
-               <canvas id="canvas">
-             </canvas>
-           </div> 
-         </div>
+            <div class="chart-cont" [hidden]="graphType !== 'Turnover'">
+              <canvas id="canvas"> </canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  
   </div>
 
   <!-- <div class="rewards-holder">
     <p class="my-heading">Rewards</p>
     <app-exp-bar></app-exp-bar>
   </div> -->
-
 </div>
-
 
 <div *ngIf="showDayTipModal === true">
   <app-daily-tip-modal
     [isEditing]="true"
     (modalClose)="tipsSaved($event)"
   ></app-daily-tip-modal>
-</div> 
+</div>

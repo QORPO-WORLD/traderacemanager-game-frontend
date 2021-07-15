@@ -1,18 +1,23 @@
-import { AuthService } from 'src/app/user/services/auth.service';
-import { PlayerLeaderboard } from './../../api/models/player-leaderboard';
-import { InternalTeamLeaderboard } from './../../api/models/internal-team-leaderboard';
-import { AffiliatesService, DriversService, LeaderboardService, RewardsService } from 'src/app/api/services';
-import { NotifiqService } from './../../common/services/notifiq.service';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
-import { TeamsService } from '../../api/services/teams.service';
-import { Chart } from 'chart.js';
-import { DateTime, Settings } from 'luxon';
+import { AuthService } from "src/app/user/services/auth.service";
+import { PlayerLeaderboard } from "./../../api/models/player-leaderboard";
+import { InternalTeamLeaderboard } from "./../../api/models/internal-team-leaderboard";
+import {
+  AffiliatesService,
+  DriversService,
+  LeaderboardService,
+  RewardsService,
+} from "src/app/api/services";
+import { NotifiqService } from "./../../common/services/notifiq.service";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
+import { TeamsService } from "../../api/services/teams.service";
+import { Chart } from "chart.js";
+import { DateTime, Settings } from "luxon";
 @Component({
-  selector: 'app-my-team',
-  templateUrl: './my-team.component.html',
-  styleUrls: ['./my-team.component.scss'],
+  selector: "app-my-team",
+  templateUrl: "./my-team.component.html",
+  styleUrls: ["./my-team.component.scss"],
 })
 export class MyTeamComponent implements OnInit, OnDestroy {
   tickInterval: any;
@@ -22,7 +27,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   ldbrdSubscription: Subscription;
   drSubscription: Subscription;
   afSubscription: Subscription;
-  graphType = 'Turnover';
+  graphType = "Turnover";
   myTeam: any;
   myLdrbrd: any;
   is24race = false;
@@ -41,7 +46,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   teams: any;
   isOwner = true;
   teamColor: string;
-  @ViewChild('showTip') showTip: any;
+  @ViewChild("showTip") showTip: any;
   teamId: number;
   managers = [];
   selectedmanager = 0;
@@ -56,20 +61,29 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   teamChart = [];
   turnoverData = [10, 15, 20, 10, 13, 2, 5];
   chart: any;
+
   chartColors = {
-    red: '#52c0e4',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
+    red: "#52c0e4",
+    orange: "rgb(255, 159, 64)",
+    yellow: "rgb(255, 205, 86)",
+    green: "rgb(75, 192, 192)",
+    blue: "rgb(54, 162, 235)",
+    purple: "rgb(153, 102, 255)",
+    grey: "rgb(201, 203, 207)",
   };
   color = Chart.helpers.color;
   config: any;
   colorNames = Object.keys(this.chartColors);
-  constructor(private api: LeaderboardService, private drvrsrvc: DriversService, protected teams_service: TeamsService, private affisrvc: AffiliatesService,
-    private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService) { }
+  constructor(
+    private api: LeaderboardService,
+    private drvrsrvc: DriversService,
+    protected teams_service: TeamsService,
+    private affisrvc: AffiliatesService,
+    private router: Router,
+    protected notify: NotifiqService,
+    private identityService: AuthService,
+    private rapi: RewardsService
+  ) {}
 
   ngOnInit() {
     this.getMyTeam();
@@ -159,8 +173,9 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getMyTem() {
-    this.teamSubscription = this.api.leaderboardTeamInternalList().subscribe(
-      datax => {
+    this.teamSubscription = this.api
+      .leaderboardTeamInternalList()
+      .subscribe((datax) => {
         const data: any = datax;
         this.myTeam = data;
         this.myuser = data.me.user_id;
@@ -170,12 +185,12 @@ export class MyTeamComponent implements OnInit, OnDestroy {
           this.meManager = true;
         }
         this.teamColor = data.color;
-        data.last_manager_like_value ? this.activeRate = data.last_manager_like_value : null;
+        data.last_manager_like_value
+          ? (this.activeRate = data.last_manager_like_value)
+          : null;
         this.recognizeOwnerMe();
-      }
-    );
+      });
   }
-
 
   getMyTeam() {
     const data = this.identityService.getDriverMe();
@@ -187,32 +202,33 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getTeams() {
-    this.teams_service.teamsList().subscribe(data => {
+    this.teams_service.teamsList().subscribe((data) => {
       const newdata = data.results;
       const resort = newdata.sort((a, b) => {
         return b.dedicated_team_bonus_pool - a.dedicated_team_bonus_pool;
       });
       this.teams = data.results;
-      this.myTeamStats = this.teams.find(x => x.name === this.myTeamName);
+      this.myTeamStats = this.teams.find((x) => x.name === this.myTeamName);
     });
   }
 
   becomeManager(id: number) {
-
-    this.teams_service.becomeManager(id, { reason: 'reason is null' }).subscribe
-      (data => {
+    this.teams_service
+      .becomeManager(id, { reason: "reason is null" })
+      .subscribe((data) => {
         this.getTeams();
       });
   }
 
   getMyLdrbrd() {
-    this.ldbrdSubscription = this.api.leaderboardMe({
-      page: 1, lastMonth: this.isLastMonth
-    }).subscribe(
-      data => {
+    this.ldbrdSubscription = this.api
+      .leaderboardMe({
+        page: 1,
+        lastMonth: this.isLastMonth,
+      })
+      .subscribe((data) => {
         this.myLdrbrd = data;
-      }
-    );
+      });
   }
 
   getMyDriver() {
@@ -225,28 +241,31 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   getMyLevel() {
     const data = this.identityService.getDriverMe();
     this.myAffilate = data;
-
   }
 
   redirectMe() {
     if (this.myTeam === null) {
-      this.router.navigate(['/teams/join-teams']);
-      this.notify.success('', 'first_join', 3000);
+      this.router.navigate(["/teams/join-teams"]);
+      this.notify.success("", "first_join", 3000);
     }
   }
 
   changeSlide() {
     this.tickInterval = setInterval(() => {
       if (this.isOwner === true && this.managers.length > 0) {
-        if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
-        else { this.TeamManagerSlide = 1; }
-      }
-      else if (this.managers.length < 1 && this.isOwner === true) {
+        if (this.TeamManagerSlide === 1) {
+          this.TeamManagerSlide = 2;
+        } else {
+          this.TeamManagerSlide = 1;
+        }
+      } else if (this.managers.length < 1 && this.isOwner === true) {
         this.TeamManagerSlide = 1;
-      }
-      else {
-        if (this.TeamManagerSlide === 1) { this.TeamManagerSlide = 2; }
-        else { this.TeamManagerSlide = 1; }
+      } else {
+        if (this.TeamManagerSlide === 1) {
+          this.TeamManagerSlide = 2;
+        } else {
+          this.TeamManagerSlide = 1;
+        }
       }
     }, 10000);
   }
@@ -256,12 +275,10 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     this.TeamManagerSlide = to_slide;
   }
 
-
   getRewards() {
-    this.rapi.rewardsList()
-      .subscribe(data => {
-        this.teamreward = data.team_bonus;
-      });
+    this.rapi.rewardsList().subscribe((data) => {
+      this.teamreward = data.team_bonus;
+    });
   }
 
   tipsSaved(myBool: boolean) {
@@ -270,34 +287,37 @@ export class MyTeamComponent implements OnInit, OnDestroy {
   }
 
   getManagerRequests() {
-    this.teamSubscription = this.teams_service.getManagerRequests(this.teamId).subscribe(data => {
-      this.managers = data;
-    });
+    this.teamSubscription = this.teams_service
+      .getManagerRequests(this.teamId)
+      .subscribe((data) => {
+        this.managers = data;
+      });
   }
 
-
   putManagerRequests(id: number, accept: boolean) {
-    this.teamSubscription = this.teams_service.putManagerRequests({
-      requestId: id,
-      acceptRequest: accept
-    }).subscribe(data => {
-      this.getManagerRequests();
-      this.getMyTeam();
-      this.getMyTem();
-
-    });
+    this.teamSubscription = this.teams_service
+      .putManagerRequests({
+        requestId: id,
+        acceptRequest: accept,
+      })
+      .subscribe((data) => {
+        this.getManagerRequests();
+        this.getMyTeam();
+        this.getMyTem();
+      });
   }
 
   suspendManager() {
-    this.teamSubscription = this.teams_service.suspendManager(this.teamId).subscribe(data => {
-      this.getMyTem();
-    });
+    this.teamSubscription = this.teams_service
+      .suspendManager(this.teamId)
+      .subscribe((data) => {
+        this.getMyTem();
+      });
   }
 
   recognizeOwnerMe() {
     let sum = 0;
     for (let x = 0; x < this.myTeam.owners.length; x++) {
-
       if (this.myTeamData.id === this.myTeam.owners[x].user_id) {
         sum = sum + 1;
       }
@@ -311,74 +331,76 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     }
   }
 
-
   rateManager() {
     if (this.meRated === false) {
-      this.teamSubscription = this.teams_service.rateManager({ 'stars': this.activeRate }).subscribe(
-        data => {
+      this.teamSubscription = this.teams_service
+        .rateManager({ stars: this.activeRate })
+        .subscribe((data) => {
           this.meRated = true;
           this.rateState = 1;
           this.identityService.updateDriverMe();
           setTimeout(() => {
             this.getMyDriver();
           }, 200);
-        }
-      )
+        });
     }
   }
 
   getTeamHistory() {
-    this.teamSubscription = this.teams_service.getTeamHistoryPoints().subscribe(data => {
-      this.teamChart = data;
-      this.config = {
-        type: 'line',
-        data: {
-          datasets: [{
-            label: 'Team turnover',
-            backgroundColor: this.color(this.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: this.chartColors.red,
-            fill: false,
-            data: []
-          }]
-        },
-        options: {
-          scales: {
-            x: {
-              
+    this.teamSubscription = this.teams_service
+      .getTeamHistoryPoints()
+      .subscribe((data) => {
+        this.teamChart = data;
+        this.config = {
+          type: "line",
+          data: {
+            datasets: [
+              {
+                label: "Team turnover",
+                backgroundColor: this.color(this.chartColors.red)
+                  .alpha(0.5)
+                  .rgbString(),
+                borderColor: this.chartColors.red,
+                fill: false,
+                data: [],
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {},
+              y: {
+                title: {
+                  display: true,
+                  text: "value",
+                },
+              },
             },
-            y: {
+            interaction: {
+              intersect: false,
+            },
+            plugins: {
               title: {
                 display: true,
-                text: 'value'
-              }
-            }
+                text: "Line chart (hotizontal scroll) sample",
+              },
+            },
           },
-          interaction: {
-            intersect: false
-          },
-          plugins: {
-            title: {
-              display: true,
-              text: 'Line chart (hotizontal scroll) sample'
-            }
-          }
+        };
+        this.chart = new Chart("canvas", this.config);
+        for (let x = 0; x < data.length; x++) {
+          this.add(data[x].from, data[x].points);
         }
-      };
-      this.chart = new Chart('canvas', this.config);
-      for (let x = 0; x < data.length; x++) {
-        this.add(data[x].from, data[x].point);
-      }
-      
-    });
+      });
   }
 
   add(curdate, curval) {
     if (this.chart) {
       this.chart.data.datasets[0].data.push(curval);
-      this.chart.data.labels.push(new Date(curdate).toLocaleDateString('en-US'));
+      this.chart.data.labels.push(
+        new Date(curdate).toLocaleDateString("en-US")
+      );
       this.chart.update();
     }
   }
-
-
 }

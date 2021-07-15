@@ -1,33 +1,53 @@
-
-
 <div class="modal-holder">
   <div class="modal-back" (click)="closeModal()"></div>
   <div class="info-modal-body">
-    <img src="/assets/base/images/garage/red-close-cross.svg" class="modal-close" alt="Close modal cross" (click)="closeModal()"/>
-    
+    <img
+      src="/assets/base/images/icons/close-white.svg"
+      class="modal-close"
+      alt="Close modal cross"
+      (click)="closeModal()"
+    />
+
     <ng-container *ngIf="tourId !== null">
       <h2>How the Tournament race system works</h2>
       <ul>
         <li>The race has 19 total rounds.</li>
-        <li>It is divided into 2 types. Round where you collect points and elimination rounds.</li>
-        <li>In the first 10 races, everyone needs to collect points to secure 10th position or above.</li>
-        <li>Elimination rounds will be active after the first 10 races and all players below 10th position will be eliminated instantly.</li>
-        <li>In upcoming rounds there will be always one player - placed last - eliminated. After 10 races there will be only one last remaining player declared the winner.</li>
+        <li>
+          It is divided into 2 types. Round where you collect points and
+          elimination rounds.
+        </li>
+        <li>
+          In the first 10 races, everyone needs to collect points to secure 10th
+          position or above.
+        </li>
+        <li>
+          Elimination rounds will be active after the first 10 races and all
+          players below 10th position will be eliminated instantly.
+        </li>
+        <li>
+          In upcoming rounds there will be always one player - placed last -
+          eliminated. After 10 races there will be only one last remaining
+          player declared the winner.
+        </li>
       </ul>
     </ng-container>
 
     <ng-container *ngIf="tourId === null && raceType === 'car_race_short'">
       <h2>Free race</h2>
-      <p>Race that runs every 2 minutes with possible win of 0,28 IOI. You can enter this race with both NFT and NON-NFT cars.</p>
+      <p>
+        Race that runs every 2 minutes with possible win of 0,28 IOI. You can
+        enter this race with both NFT and NON-NFT cars.
+      </p>
       <p>Duration is 30 seconds.</p>
     </ng-container>
 
     <ng-container *ngIf="tourId === null && raceType === 'car_race_portfolio'">
       <h2>Portfolio race</h2>
-      <p>Race that runs every 10 minutes with possible win of 10 IOI. You can enter this race with both NFT and NON-NFT cars.</p>
+      <p>
+        Race that runs every 10 minutes with possible win of 10 IOI. You can
+        enter this race with both NFT and NON-NFT cars.
+      </p>
       <p>Duration is 30 seconds.</p>
     </ng-container>
-    
-
   </div>
 </div>
