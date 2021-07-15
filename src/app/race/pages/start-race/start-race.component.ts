@@ -59,7 +59,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.accountInfo = this.dapi.getDriverMe();
   }
   reward = 1;
-  tip = 3;
+  tip = 1;
   allTeams: any;
   myTeamAllData: any;
   filter = "all";
@@ -769,7 +769,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     if (dataNick) {
       this.nickname = dataNick.nickname;
     }
-
+    this.toggleTip(1);
     this.getMyAssets();
     this.getAllRaces();
     this.getMyOwner();
