@@ -400,11 +400,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
           //this.chart.data.labels[tempIndex] = this.chartTemp.time;
         } else {
           const tempData = [];
-          tempData.push(...this.chart.data.datasets[0].data);
+          tempData.push(this.chart.data.datasets[0].data);
           const tempPoint = [];
-          tempPoint.push(...this.chart.data.datasets[0].pointStyle);
+          tempPoint.push(this.chart.data.datasets[0].pointStyle);
           const tempLabel = [];
-          tempLabel.push(...this.chart.data.labels);
+          tempLabel.push(this.chart.data.labels);
 
           const preformatTime = new Date(
             this.chartTemp.time
