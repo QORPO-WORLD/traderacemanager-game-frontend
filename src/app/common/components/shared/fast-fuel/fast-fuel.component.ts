@@ -2,7 +2,7 @@ import { AuthService } from '../../../../user/services/auth.service';
 
 import { Subscription } from 'rxjs';
 import { NotifiqService } from '../../../services/notifiq.service';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { CarsService, RacesService, DriversService, RacesV2Service } from '../../../../api/services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
@@ -20,6 +20,7 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
   timerReady = false;
   fuel = 0;
   @Input() raceId: string;
+  @Output() closeModal = new EventEmitter<boolean>();
   pricePool: number;
   raceData: NextRaceV2[];
   raceStarts: any;
@@ -1462,6 +1463,9 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
     this.myCarsInEdition = this.myCars.filter(car => car.extras.tier > arrIndex * 6 && car.extras.tier <= (arrIndex * 6) + 6 && car.favourite === true || car.extras.tier === 24 + index && car.favourite === true);
   }
 
+  closeFastFuel(p) {
+    this.closeModal.emit(p);
+  }
 
 }
 

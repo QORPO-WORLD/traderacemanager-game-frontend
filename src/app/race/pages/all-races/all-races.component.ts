@@ -222,4 +222,8 @@ export class AllRacesComponent implements OnInit {
     }, 100);
   }
 
+  closeModal(e: any) {
+    this.selRaceType = null;
+  }
+
 }
