@@ -103,12 +103,14 @@
 //FONT SETTINGS
 
 .category-title-first {
+  z-index: 2;
   font-style: normal;
   font-weight: 900;
   font-size: 48px;
   font-family: "Earth Orbiter";
 }
 .category-title-second {
+  z-index: 2;
   font-family: "Earth Orbiter";
   text-align: center;
   margin-bottom: 3%;
@@ -117,6 +119,7 @@
   font-size: 40px;
 }
 .races-desc {
+  z-index: 2;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -148,20 +151,44 @@
     justify-content: flex-end;
   }
   .binary {
+    overflow: hidden;
     transition: 0.2s;
     cursor: pointer;
     cursor: pointer;
 
     width: 47.5%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(17, 17, 17, 0) 50%, #111111 90%),
-      url(/assets/base/images/race-type/binary.png);
+    background: url("/assets/base/images/race-type/binary.png");
 
     background-position: center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
+    .overlay {
+      z-index: 1;
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0) 50%, #111111 90%);
+    }
+    img {
+      position: absolute;
+      height: 90%;
+      width: auto;
+      max-width: unset;
+      &.left {
+        left: 0%;
+        bottom: 0%;
+      }
+      &.right {
+        right: 0%;
+        bottom: 0%;
+      }
+    }
   }
   .hoverable-category {
     padding: 25px;
