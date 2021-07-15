@@ -8,7 +8,7 @@ import {
   RewardsService,
 } from "src/app/api/services";
 import { NotifiqService } from "./../../common/services/notifiq.service";
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild, HostListener } from "@angular/core";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { TeamsService } from "../../api/services/teams.service";
@@ -194,7 +194,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
     },
   ];
   chartColors = {
-    red: "#52c0e4",
+    red: "#00f0ff",
     orange: "rgb(255, 159, 64)",
     yellow: "rgb(255, 205, 86)",
     green: "rgb(75, 192, 192)",
@@ -487,7 +487,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
           data: {
             datasets: [
               {
-                label: "Team turnover",
+                label: "Points",
                 backgroundColor: this.color(this.chartColors.red)
                   .alpha(0.5)
                   .rgbString(),
@@ -498,30 +498,54 @@ export class MyTeamComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
+            maintainAspectRatio: false,
             scales: {
-              x: {},
-              y: {
-                title: {
+              yAxes: [
+                {
                   display: true,
-                  text: "value",
+                  ticks: {
+                    fontColor: "#868686",
+                    callback: function(value, index, values) {
+                      return index % 2 === 0 ? value : '';
+                    },
+                    fontSize: 8
+                  },
                 },
-              },
+              ],
+              xAxes: [
+                {
+                  display: true,
+                  ticks: {
+                    fontColor: "#868686",
+                    reverse: false,
+                    callback: function(value, index, values) {
+                      return index % 2 === 0 ? value : '';
+                    },
+                    
+                    fontSize: 10
+                  },
+                },
+              ],
+    
             },
             interaction: {
               intersect: false,
             },
             plugins: {
               title: {
-                display: true,
+                display: false,
                 text: "Line chart (hotizontal scroll) sample",
               },
             },
           },
         };
+        
         this.chart = new Chart("canvas", this.config);
         for (let x = 0; x < data.length; x++) {
-          this.add(data[x].from, data[x].points);
+          this.add(data[x].from.replace(' ', 'T'), data[x].points);
         }
+        console.log("data");
+        console.log(data);
       });
   }
 
