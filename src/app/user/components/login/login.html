@@ -102,6 +102,11 @@
         <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
         | translate}}
       </button>
+      <button class="social-button" (click)="walletSwitch = true">
+        <img src="/assets/base/images/home-page/Logo.svg" />
+        
+        Log in with IOI-Wallet
+      </button>
     </div>
   </div>
 
@@ -152,8 +157,13 @@
   </div> -->
 </div>
 
-<div class="meta-holder">
-  <app-metamask-signup *ngIf="metaSwitch === true"></app-metamask-signup>
+<div class="meta-holder" *ngIf="metaSwitch === true">
+  <app-metamask-signup></app-metamask-signup>
+</div>
+<div class="meta-wallet-holder"  *ngIf="walletSwitch === true">
+  <button (click)="reload()" class="closer">Close</button>
+  <h2 class="metahead">Log in with IOI-Wallet credentials</h2>
+  <app-wallet-login></app-wallet-login>
 </div>
 
 <app-loading-modal *ngIf="showLoadingModal === true"></app-loading-modal>

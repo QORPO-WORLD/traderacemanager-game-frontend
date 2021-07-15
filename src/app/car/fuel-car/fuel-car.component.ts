@@ -1202,7 +1202,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         this.tutorialStep = 2;
         this.stepIndex = 2;
       }
-    }, 800);
+    }, 1500);
     clearInterval(this.animationInterval);
     this.animatingSlider = false;
   }
