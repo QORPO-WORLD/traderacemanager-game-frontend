@@ -536,19 +536,6 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       },
       options: {
         scales: {
-          x: {
-            type: "realtime",
-            realtime: {
-              duration: 20000,
-              refresh: 1000,
-              delay: 2000,
-            },
-            ticks: {
-              fontColor: "#868686",
-              reverse: false,
-              stepSize: 5,
-            },
-          },
           yAxes: [
             {
               display: true,
@@ -565,6 +552,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
                 fontColor: "#868686",
                 reverse: false,
                 stepSize: 5,
+                callback: function(value, index, values) {
+                  return index % 5 === 0 ? value : '';
+                }
               },
             },
           ],
