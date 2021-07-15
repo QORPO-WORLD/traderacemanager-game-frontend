@@ -695,13 +695,11 @@
 
     <ng-container *ngIf="winnerShowPrize === true">
       <div class="prizepool">
-        <img src="/assets/base/images/zavod/prizepool-trophy.png" alt="">
-        <p class="value">{{raceDataildata?.price_pool | number:'1.0-2':'fr'}} IOI</p>
+        <p class="value"><img src="/assets/base/images/zavod/prizepool-trophy.png" alt=""> {{raceDataildata?.price_pool | number:'1.0-2':'fr'}} IOI</p>
         <p class="desc">prizepool</p>
       </div>
   
       <ng-container *ngIf="raceDataildata?.tour_index !== null">
-        <h2 class="tour-msg tour-over" *ngIf="raceDataildata?.tour_index < 19">Race {{raceDataildata?.tour_index}}/19 is over</h2>
         <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index === 10">{{'race.final_round' | translate}}</h3>
         <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index > 10 && raceDataildata?.tour_index < 19">{{'race.racer_out' | translate}} - {{raceData?.cards[loserIndex]?.n}}</h3>
         <h3 class="tour-msg over" *ngIf="raceDataildata?.tour_index === 19">{{'race.tour_end' | translate}} {{winnersList[0]?.nickname}}</h3>
@@ -726,59 +724,21 @@
             <p>Prize</p>
           </div>
         </div>
-        <div class="table-item" [ngClass]="{'my-item': raceData?.me?.n == winnersList[0]?.nickname}">
+        <div class="table-item"  *ngFor="let player of winnersList; let i = index" [ngClass]="{'my-item': raceData?.me?.n == winnersList[i]?.nickname}">
           <div class="my-col position">
-            <p>1.</p>
+            <p>{{ i + 1 }}.</p>
           </div>
           <div class="my-col username">
-            <p><img *ngIf="winnersList[0]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[0]?.nickname}}</p>
+            <p><img *ngIf="winnersList[i]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[i]?.nickname}}</p>
           </div>
           <div class="my-col car-tier">
-            <p>{{'race.type.' + winnersList[0]?.rarity | translate}}</p>
+            <p>{{'race.type.' + winnersList[i]?.rarity | translate}}</p>
           </div>
           <div class="my-col team">
-            <p>{{ winnersList[0]?.team !== 'SYSTEM_TEAM' ? winnersList[0]?.team : '-' }}</p>
+            <p>{{ winnersList[i]?.team !== 'SYSTEM_TEAM' ? winnersList[i]?.team : '-' }}</p>
           </div>
           <div class="my-col win">
-            <p>{{winnersList[0]?.amount ? (winnersList[0]?.amount| number:'1.0-2':'fr') : 0}} 
-              <span >{{'shared.ioi' | translate}}</span>
-              </p>
-          </div>
-        </div>
-        <div class="table-item" [ngClass]="{'my-item': raceData?.me?.n == winnersList[1]?.nickname}">
-          <div class="my-col position">
-            <p>2.</p>
-          </div>
-          <div class="my-col username">
-            <p><img *ngIf="winnersList[1]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[1]?.nickname}}</p>
-          </div>
-          <div class="my-col car-tier">
-            <p>{{'race.type.' + winnersList[1]?.rarity | translate}}</p>
-          </div>
-          <div class="my-col team">
-            <p>{{ winnersList[1]?.team !== 'SYSTEM_TEAM' ? winnersList[1]?.team : '-' }}</p>
-          </div>
-          <div class="my-col win">
-            <p>{{winnersList[1]?.amount ? (winnersList[1]?.amount| number:'1.0-2':'fr') : 0}} 
-              <span >{{'shared.ioi' | translate}}</span>
-              </p>
-          </div>
-        </div>
-        <div class="table-item" *ngIf="winnersList[2]" [ngClass]="{'my-item': raceData?.me?.n == winnersList[2]?.nickname}">
-          <div class="my-col position">
-            <p>3.</p>
-          </div>
-          <div class="my-col username">
-            <p><img *ngIf="winnersList[2]?.team != 'SYSTEM_TEAM'" src="assets/base/images/menu/premium-icon-active.svg" alt="icon"> {{winnersList[2]?.nickname}}</p>
-          </div>
-          <div class="my-col car-tier">
-            <p>{{'race.type.' + winnersList[2]?.rarity | translate}}</p>
-          </div>
-          <div class="my-col team">
-            <p>{{ winnersList[2]?.team !== 'SYSTEM_TEAM' ? winnersList[2]?.team : '-' }}</p>
-          </div>
-          <div class="my-col win">
-            <p>{{winnersList[2]?.amount ? (winnersList[2]?.amount| number:'1.0-2':'fr') : 0}} 
+            <p>{{winnersList[i]?.amount ? (winnersList[i]?.amount| number:'1.0-2':'fr') : 0}} 
               <span >{{'shared.ioi' | translate}}</span>
               </p>
           </div>
@@ -822,27 +782,29 @@
       </div>
     </ng-container>
   
-    <div class="buttons-holder">
-      <ng-container *ngIf="raceDataildata?.tournament_id === null">
-        <button class="my-cta-btn azure-btn"  (click)="refuelNext()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
-        <button class="my-cta-btn" (click)="repeatSignup()"  [disabled]="repeatDisabled === true"><span *ngIf="repeatDisabled === false"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.repeat' | translate}}</span><span *ngIf="repeatDisabled === true">{{'fuel_car.loading' | translate}}</span></button>
-      </ng-container>
-      
-      <ng-container *ngIf="raceDataildata?.tournament_id !== null">
-        <button class="my-cta-btn azure-btn"  (click)="changeFuel = true"
-        *ngIf="raceFinished === true && raceData?.me !== null && raceDataildata?.tournament_id !== null && raceFinished === true && raceDataildata?.tour_index < 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
-        <button class="my-cta-btn"  (click)="continueTour()" 
-        *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length > 0) && raceDataildata?.tour_index < 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.next_race' | translate}}</button> 
-
-        <button class="my-cta-btn znova azure-btn" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_hash]"
-        *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.join_next' | translate}}</button>
-        <button class="my-cta-btn" [routerLink]="['/race/start-race/']"
-        *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.finish' | translate}}</button>
-      </ng-container>
-    </div>
+    <div class="bottom-part">
+      <div class="buttons-holder">
+        <ng-container *ngIf="raceDataildata?.tournament_id === null">
+          <button class="my-cta-btn azure-btn"  (click)="refuelNext()"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
+          <button class="my-cta-btn" (click)="repeatSignup()"  [disabled]="repeatDisabled === true"><span *ngIf="repeatDisabled === false"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.repeat' | translate}}</span><span *ngIf="repeatDisabled === true">{{'fuel_car.loading' | translate}}</span></button>
+        </ng-container>
+        
+        <ng-container *ngIf="raceDataildata?.tournament_id !== null">
+          <button class="my-cta-btn azure-btn"  (click)="changeFuel = true"
+          *ngIf="raceFinished === true && raceData?.me !== null && raceDataildata?.tournament_id !== null && raceFinished === true && raceDataildata?.tour_index < 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.refuel' | translate}}</button>
+          <button class="my-cta-btn"  (click)="continueTour()" 
+          *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length > 0) && raceDataildata?.tour_index < 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.next_race' | translate}}</button> 
   
-    <p class="or-text">or</p>
-    <p class="quit-text" [routerLink]="['/race/start-race/']">Quit game</p>
+          <button class="my-cta-btn znova azure-btn" [routerLink]="['/car/fuel-car/' + raceDataildata?.race_hash]"
+          *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/repeat-icon.svg" alt=""> {{'race.join_next' | translate}}</button>
+          <button class="my-cta-btn" [routerLink]="['/race/start-race/']"
+          *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.finish' | translate}}</button>
+        </ng-container>
+      </div>
+    
+      <p class="or-text">or</p>
+      <p class="quit-text" [routerLink]="['/race/start-race/']">Quit game</p>
+    </div>
     
     
   </div>
