@@ -367,6 +367,9 @@ export class MyTeamComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
+            legend: {
+              display: false
+            },
             maintainAspectRatio: false,
             scales: {
               yAxes: [
