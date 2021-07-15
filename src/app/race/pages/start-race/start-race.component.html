@@ -24,16 +24,26 @@
       <div class="boxes">
         <h2 class="news-title">What's new</h2>
         <div
-          [routerLink]="
-            tip === 1 || tip === 2 ? ['/teams/join-teams'] : ['/other/tasks']
-          "
-          class="box first"
+          [ngClass]="{ first: tip === 1 || tip === 2, 'tip-three': tip === 3 }"
+          [routerLink]="tip === 1 || tip === 2 ? ['/teams/join-teams'] : null"
+          class="box my-cta-btn-back"
         >
-          <div class="box-content first">
+          <div
+            [ngClass]="{ first: tip === 1 || tip === 2 }"
+            class="box-content my-border-grad"
+          >
+            <div *ngIf="tip === 3" class="cont-back"></div>
             <div class="image">
               <img
+                *ngIf="tip === 1 || tip === 2"
                 src="assets/base/images/start-race/discount.png"
                 alt="discount"
+              />
+              <img
+                class="tesla"
+                *ngIf="tip === 3"
+                src="assets/base/images/start-race/tesla.png"
+                alt="tesla"
               />
             </div>
             <div *ngIf="tip === 1" class="text">
@@ -43,6 +53,10 @@
             <div *ngIf="tip === 2" class="text">
               <h2>10% OFF</h2>
               <p>quartal premium membership</p>
+            </div>
+            <div *ngIf="tip === 3" class="text">
+              <h2 class="no-breaking">Win tesla</h2>
+              <p>Coming soon!</p>
             </div>
           </div>
         </div>
@@ -55,11 +69,16 @@
           <div
             (click)="toggleTip(2)"
             [ngClass]="{ inactive: tip !== 2 }"
-            class="right-line bar"
+            class="center-line bar"
+          ></div>
+          <div
+            (click)="toggleTip(3)"
+            [ngClass]="{ inactive: tip !== 3 }"
+            class="right-line bar my-cta-btn-back"
           ></div>
         </div>
         <div (click)="navigateToToken()" class="box second my-cta-btn-back">
-          <div class="box-content">
+          <div class="box-content static">
             <div class="image">
               <img
                 src="assets/base/images/start-race/ioi-token.png"
@@ -76,7 +95,7 @@
           [routerLink]="['/other/affilate']"
           class="box second my-cta-btn-back"
         >
-          <div class="box-content">
+          <div class="box-content static">
             <div class="image">
               <img
                 class="smaller"
@@ -94,7 +113,7 @@
           [routerLink]="['/teams/owners-managers']"
           class="box second my-cta-btn-back"
         >
-          <div class="box-content">
+          <div class="box-content static">
             <div class="image">
               <img
                 class="smaller"
