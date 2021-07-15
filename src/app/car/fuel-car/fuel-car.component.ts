@@ -1202,7 +1202,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         this.tutorialStep = 2;
         this.stepIndex = 2;
       }
-    }, 800);
+    }, 1500);
     clearInterval(this.animationInterval);
     this.animatingSlider = false;
   }
@@ -1402,23 +1402,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     );
 
     if (!isSituated) {
-      /*
-      if (this.raceId === 'car_race_short_0' && this.selectedCarsToRace.length > 4) {
-        this.notify.error('Error', 'You can fuel max 5 cars on free race');
+      
+      if (this.selectedCarsToRace.length > 4) {
+        this.notify.error('Error', 'You can fuel a maximum of 5 cars');
         return;
       }
-      if (this.raceId === 'tournament_for_ticket_0' && this.selectedCarsToRace.length > 3) {
-        this.notify.error('Error', 'You can fuel max 4 car on free tournament');
-        return;
-      }
-      if ((this.raceId === 'golden_ticket_0'
-        || this.raceId === 'golden_ticket_10' || this.raceId === 'golden_ticket_100'
-        || this.raceId === 'golden_ticket_1000' || this.raceId === 'wednesday_party_race_0'
-        || this.raceId === 'classic_tournament_0') && this.selectedCarsToRace.length > 3) {
-        this.notify.error('Error', 'You can fuel max 4 cars on free race');
-        return;
-      }
-*/
+      
       for (let x = 0; x < this.myBet.length; x++) {
         const fake: any = {};
         fake.bet = this.myBet[x].bet;

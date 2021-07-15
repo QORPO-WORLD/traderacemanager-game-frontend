@@ -1,3 +1,4 @@
+import { WalletLoginComponent } from './components/wallet-login/wallet-login.component';
 import { HowToComponent } from "./pages/how-to/how-to.component";
 import { VerifyauthenticatorComponent } from "./pages/verify-authenticator/verify-authenticator.component";
 import { VerifyUserComponent } from "./pages/verify-user/verify-user.component";
@@ -65,7 +66,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "home",
+        redirectTo: "welcome",
         pathMatch: "full",
       },
       {
@@ -226,6 +227,7 @@ const routes: Routes = [
     HomepageLayoutComponent,
     HomeBundleDetailComponent,
     HowToComponent,
+    WalletLoginComponent
   ],
   providers: [
     AutologinGuard,

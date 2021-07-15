@@ -68,14 +68,15 @@
     <ng-container *ngIf="raceFilter === 'live'">
       <ng-container *ngFor="let mainr of liveAllRacesData; let i = index">
         <div class="box-item my-border-grad"> 
-          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id != 0" class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id == 0" class="back-img" [src]="'/assets/base/images/race-type/binary.png'" alt="map">
           <div class="inner-holder">
             <p class="race-name">
               <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
               <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
-            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
+            <p class="time" *ngIf="mainr?.race_identifier != 'binary_vs_race_1'" ><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
 
             <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
 
@@ -90,16 +91,15 @@
       </ng-container>
       <ng-container *ngFor="let mainr of liveRacesData; let i = index">
         <div class="box-item my-border-grad">
-          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id != 0" class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id == 0" class="back-img" [src]="'/assets/base/images/race-type/binary.png'" alt="map">
           <div class="inner-holder">
-
-
             <p class="race-name">
               <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
               <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
-            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
+            <p class="time"  *ngIf="mainr?.race_identifier != 'binary_vs_race_1'"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
 
             <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
 
@@ -124,7 +124,8 @@
         <button [routerLink]="['/race/all-races']" (click)="closeMenu()" class="my-cta-btn-back hoverable">{{"start-race.join_race" |translate}}</button>
       </div>
         <div class="box-item my-border-grad" *ngFor="let mainr of liveRacesData; let i = index">
-          <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id != 0" class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+          <img *ngIf="mainr?.map_id == 0" class="back-img" [src]="'/assets/base/images/race-type/binary.png'" alt="map">
           <div class="inner-holder">
 
 
@@ -133,7 +134,7 @@
               <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
               <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
             </p>
-            <p class="time"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
+            <p class="time" *ngIf="mainr?.race_identifier != 'binary_vs_race_1'"><app-timer class="timer" [value]="mainr?.finishing_in_seconds" (onComplete)="getLiveRaces()"></app-timer> {{'race.remaining' | translate}}</p>
 
             <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
 
@@ -149,14 +150,15 @@
         </div>
 
       <div class="box-item mine" *ngFor="let mainr of mnr; let i = index" [hidden]="mainr?.starts_in_seconds < 0">
-        <img class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+        <img *ngIf="mainr?.map_id != 0" class="back-img" [src]="'/assets/base/images/race-type/race' + mainr?.map_id + '-big.jpg'" alt="map">
+        <img *ngIf="mainr?.map_id == 0" class="back-img" [src]="'/assets/base/images/race-type/binary.png'" alt="map">
         <div class="inner-holder">
           <p class="race-name">
             <span *ngIf="mainr.race_identifier !== 'car_race_short_0' && mainr.tournament_id === null && mainr.race_type !== 'car_race_enduro'">{{'race.type.fast_race' +  mainr.map_id| translate}}</span>
             <span *ngIf="mainr.tournament_id !== null">{{'race.type.classic_tournament' | translate}}</span>
             <span> {{ 'race.type.' + mainr.race_identifier + '_simple' | translate}}</span>
           </p>
-          <p class="time">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
+          <p class="time" *ngIf="mainr?.race_identifier != 'binary_vs_race_1'">{{'start-race.starts_in' | translate}} <app-timer class="timer"[value]="mainr?.starts_in_seconds"(onComplete)="getMine()"></app-timer></p>
 
           <button class="fuel-btn transparent my-races-btn-border"><img src="/assets/base/images/zavod/fuel-icon.svg" alt=""> Watch now <div class="btn-back my-cta-btn-back"></div></button>
         </div>

@@ -1,0 +1,565 @@
+.login-back-div {
+    position: sticky;
+    height: 0px;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+  }
+  .login-back {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    background-image: radial-gradient(
+        69.52% 76.11% at 50% 50%,
+        rgba(17, 17, 17, 0.5) 0%,
+        #111111 100%
+      ),
+      url("/assets/base/images/home-page/banner.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    pointer-events: none;
+  }
+  .main-holder {
+    height: calc(var(--vh, 1vh) * 100);
+    position: relative;
+    .login-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .back-btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      img {
+        width: 21px;
+      }
+      p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        letter-spacing: 0.09em;
+        font-family: Earth Orbiter;
+        font-weight: 900;
+        margin-left: 10px;
+        margin-bottom: 0;
+        opacity: 0.4;
+      }
+    }
+    .center-content {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      .clickers-holder {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 28px;
+        .regular-box {
+          p {
+            display: inline-block;
+            font-size: 16px;
+            opacity: 0.6;
+            margin: 0;
+            cursor: pointer;
+            transition: 0.15s;
+            &.register {
+              margin: 0 40px 0 0;
+            }
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+        .cta-button {
+          background: linear-gradient(
+            236.12deg,
+            #00f0ff 6%,
+            #0098d9 102.68%,
+            #0098d9 102.68%
+          );
+          padding: 16px 5px;
+          width: 200px;
+          font-weight: 600;
+          font-size: 16px;
+          transition: 0.2s;
+          &:hover {
+            transform: scale(1.04);
+          }
+        }
+      }
+      .or-text {
+        margin: 40px 0;
+        font-size: 16px;
+        opacity: 0.6;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .main-holder {
+      .form-holder {
+        width: 90%;
+        height: unset;
+        padding-bottom: 40px;
+      }
+    }
+  }
+  .register-text {
+    margin-top: 30px;
+    padding: 0 10px;
+    text-align: center;
+    p {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      /* identical to box height */
+  
+      text-align: center;
+  
+      color: #ffffff50;
+  
+      span {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 27px;
+        /* identical to box height */
+  
+        text-align: center;
+        text-decoration-line: underline;
+        cursor: pointer;
+        color: #fe173f;
+      }
+    }
+  }
+  .social-button {
+    background: rgba(0, 208, 255, 0);
+    height: 50px;
+    line-height: 46px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    margin: 10px auto 0;
+    position: relative;
+    border: 2px solid #00d1ff;
+    transition: 0.2s;
+    &:hover {
+      background: rgba(0, 208, 255, 0.2);
+    }
+    img {
+      display: inline-block;
+      margin-right: 20px;
+      max-height: 22px;
+    }
+  }
+  
+  .my-input {
+    width: 100%;
+    margin: 0 auto 20px;
+    background-repeat: no-repeat;
+    background-position: -15px 32px;
+    background-color: transparent;
+    position: relative;
+    .icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-placeholder {
+      font-weight: 400;
+      font-size: 18px;
+      color: rgba(34, 34, 34, 0.4);
+      margin: 0;
+      position: absolute;
+      left: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.2s;
+      display: inline-block;
+      text-align: left;
+      pointer-events: none;
+    }
+    &.filled {
+      .input-placeholder {
+        font-size: 12px;
+        top: 21%;
+      }
+    }
+    span {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      &.eyeball {
+        transition: 0.2s;
+        opacity: 0;
+        z-index: 1;
+        &.show {
+          z-index: 2;
+          opacity: 1;
+        }
+      }
+      img {
+        width: 24px;
+      }
+    }
+    input {
+      background-color: white;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      border: none;
+      padding: 19px 10px 13px 60px;
+      font-size: 22px;
+      width: 100%;
+      color: #222222;
+      font-weight: normal;
+      font-size: 18px;
+      &::placeholder {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 27px;
+        color: rgba(34, 34, 34, 0.4);
+      }
+      &:focus {
+        & ~ .input-placeholder {
+          font-size: 12px;
+          top: 21%;
+        }
+      }
+    }
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 50px #fff inset;
+      -webkit-text-fill-color: #222222;
+    }
+  
+    input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 50px #fff inset;
+      -webkit-text-fill-color: #222222;
+    }
+  }
+  
+  .grecaptcha-badge {
+    visibility: visible !important;
+  }
+  
+  @media screen and (max-width: 1550px) {
+    .main-holder {
+      .back-btn {
+        top: 30px;
+        left: 30px;
+        img {
+          width: 15px;
+        }
+        p {
+          font-size: 24px;
+          margin-left: 8px;
+        }
+      }
+      .center-content {
+        max-width: 500px;
+        .clickers-holder {
+          margin-top: 20px;
+          .regular-box {
+            p {
+              font-size: 14px;
+              &.register {
+                margin: 0 30px 0 0;
+              }
+            }
+          }
+          .cta-button {
+            padding: 13px 5px;
+            width: 150px;
+            font-size: 14px;
+          }
+        }
+        .or-text {
+          margin: 30px 0;
+          font-size: 14px;
+        }
+      }
+    }
+    .my-input {
+      margin: 0 auto 15px;
+      &.filled {
+        .input-placeholder {
+          font-size: 10px;
+        }
+      }
+      .icon {
+        left: 16px;
+        height: 21px;
+      }
+      input {
+        font-size: 16px;
+        padding: 16px 8px 10px 50px;
+        &:focus {
+          & ~ .input-placeholder {
+            font-size: 10px;
+          }
+        }
+      }
+      .input-placeholder {
+        left: 50px;
+        font-size: 16px;
+      }
+    }
+    .social-button {
+      height: 46px;
+      line-height: 42px;
+      font-size: 14px;
+      img {
+        margin-right: 15px;
+        max-height: 18px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .main-holder {
+      min-height: 650px;
+      .back-btn {
+        top: 20px;
+        left: 20px;
+        img {
+          width: 13px;
+        }
+        p {
+          font-size: 21px;
+        }
+      }
+      .center-content {
+        max-width: 500px;
+        .clickers-holder {
+          margin-top: 16px;
+          .regular-box {
+            p {
+              font-size: 13px;
+              &.register {
+                margin: 0 30px 0 0;
+              }
+            }
+          }
+          .cta-button {
+            padding: 11px 5px;
+            width: 130px;
+            font-size: 13px;
+          }
+        }
+        .or-text {
+          margin: 22px 0;
+          font-size: 13px;
+        }
+      }
+    }
+    .my-input {
+      margin: 0 auto 12px;
+      &.filled {
+        .input-placeholder {
+          font-size: 9px;
+        }
+      }
+      .icon {
+        left: 14px;
+        height: 19px;
+      }
+      input {
+        font-size: 15px;
+        padding: 14px 7px 8px 40px;
+        &:focus {
+          & ~ .input-placeholder {
+            font-size: 9px;
+          }
+        }
+      }
+      .input-placeholder {
+        left: 40px;
+        font-size: 15px;
+      }
+    }
+    .social-button {
+      height: 42px;
+      line-height: 37px;
+      font-size: 13px;
+      img {
+        margin-right: 12px;
+        max-height: 16px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 900px) and (orientation: landscape) {
+    .main-holder {
+      min-height: 400px;
+      .back-btn {
+        top: 15px;
+        left: 15px;
+        img {
+          width: 10px;
+        }
+        p {
+          font-size: 17px;
+        }
+      }
+      .center-content {
+        max-width: 400px;
+        .clickers-holder {
+          margin-top: 12px;
+          .regular-box {
+            p {
+              font-size: 12px;
+              &.register {
+                margin: 0 20px 0 0;
+              }
+            }
+          }
+          .cta-button {
+            padding: 9px 5px;
+            width: 100px;
+            font-size: 11px;
+          }
+        }
+        .or-text {
+          margin: 14px 0;
+          font-size: 11px;
+        }
+      }
+    }
+    .my-input {
+      margin: 0 auto 9px;
+      &.filled {
+        .input-placeholder {
+          font-size: 5px;
+          top: 19%;
+        }
+      }
+      .icon {
+        left: 14px;
+        height: 19px;
+      }
+      input {
+        font-size: 11px;
+        padding: 7px 5px 5px 40px;
+        &:focus {
+          & ~ .input-placeholder {
+            font-size: 5px;
+            top: 19%;
+          }
+        }
+      }
+      .input-placeholder {
+        left: 40px;
+        font-size: 13px;
+      }
+    }
+    .social-button {
+      height: 37px;
+      line-height: 32px;
+      font-size: 12px;
+      border: 1px solid #00d1ff;
+      img {
+        margin-right: 12px;
+        max-height: 16px;
+      }
+    }
+  }
+  @media screen and (max-width: 850px) and (orientation: landscape) {
+    .main-holder {
+      min-height: 350px;
+    }
+  }
+  
+  @media screen and (max-width: 640px) and (orientation: portrait) {
+    .main-holder {
+      min-height: 300px;
+      .back-btn {
+        top: 15px;
+        left: 15px;
+        img {
+          width: 10px;
+        }
+        p {
+          font-size: 17px;
+        }
+      }
+      .center-content {
+        max-width: 90%;
+        .clickers-holder {
+          margin-top: 12px;
+          .regular-box {
+            p {
+              font-size: 12px;
+              &.register {
+                margin: 0 20px 0 0;
+              }
+            }
+          }
+          .cta-button {
+            padding: 9px 5px;
+            width: 100px;
+            font-size: 11px;
+          }
+        }
+        .or-text {
+          margin: 14px 0;
+          font-size: 11px;
+        }
+      }
+    }
+    .my-input {
+      margin: 0 auto 9px;
+      &.filled {
+        .input-placeholder {
+          font-size: 7px;
+        }
+      }
+      .icon {
+        left: 14px;
+        height: 19px;
+      }
+      input {
+        font-size: 13px;
+        padding: 10px 5px 8px 40px;
+        &:focus {
+          & ~ .input-placeholder {
+            font-size: 7px;
+          }
+        }
+      }
+      .input-placeholder {
+        left: 40px;
+        font-size: 13px;
+      }
+    }
+    .social-button {
+      height: 37px;
+      line-height: 32px;
+      font-size: 12px;
+      border: 1px solid #00d1ff;
+      img {
+        margin-right: 12px;
+        max-height: 16px;
+      }
+    }
+  }

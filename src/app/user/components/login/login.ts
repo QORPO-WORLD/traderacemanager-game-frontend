@@ -69,6 +69,7 @@ export class LoginComponent
   gfbfired = false;
   capInterval: any;
   metaSwitch = false;
+  walletSwitch = false;
   chainId = 137;
   trying = false;
   dangerInterval: any;
@@ -312,5 +313,10 @@ export class LoginComponent
       elem1.scrollIntoView({ behavior: "smooth", block: "start" });
       clearTimeout(timeout1);
     }, 200);
+  }
+
+
+  reload() {
+    window.location.reload();
   }
 }
