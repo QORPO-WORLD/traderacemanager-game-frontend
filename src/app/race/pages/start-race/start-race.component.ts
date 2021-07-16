@@ -56,7 +56,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     experience.load((data: Experience) => {
       this.currentExpLevel = data.getCurrentExpLevel();
     });
-    this.accountInfo = this.dapi.getDriverMe();    
+    this.accountInfo = this.dapi.getDriverMe();
   }
   reward = 1;
   tip = 1;
@@ -1537,7 +1537,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.clearIntervalTip();
     this.tip = tipId;
     this.tipsInterval = window.setInterval(() => {
-      if (this.tip === 2) {
+      if (this.tip === 3) {
         this.tip = 1;
       } else {
         this.tip++;
@@ -1550,5 +1550,4 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   navigateToToken() {
     window.open("https://ioi-token.com", "_blank");
   }
-
 }
