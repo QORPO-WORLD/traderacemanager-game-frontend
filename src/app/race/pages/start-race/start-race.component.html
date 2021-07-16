@@ -25,7 +25,9 @@
         <h2 class="news-title">What's new</h2>
         <div
           [ngClass]="{ first: tip === 1 || tip === 2, 'tip-three': tip === 3 }"
-          [routerLink]="tip === 1 || tip === 2 ? ['/teams/join-teams'] : null"
+          [routerLink]="
+            tip === 1 || tip === 2 || tip === 3 ? ['/teams/join-teams'] : null
+          "
           class="box my-cta-btn-back"
         >
           <div
@@ -56,7 +58,7 @@
             </div>
             <div *ngIf="tip === 3" class="text">
               <h2 class="no-breaking">Win tesla</h2>
-              <p>Coming soon!</p>
+              <p>Join team and own NFT</p>
             </div>
           </div>
         </div>
