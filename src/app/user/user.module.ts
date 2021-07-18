@@ -1,4 +1,5 @@
-import { WalletLoginComponent } from './components/wallet-login/wallet-login.component';
+import { TeslaCompetitionComponent } from "./pages/tesla-competition/tesla-competition.component";
+import { WalletLoginComponent } from "./components/wallet-login/wallet-login.component";
 import { HowToComponent } from "./pages/how-to/how-to.component";
 import { VerifyauthenticatorComponent } from "./pages/verify-authenticator/verify-authenticator.component";
 import { VerifyUserComponent } from "./pages/verify-user/verify-user.component";
@@ -103,6 +104,11 @@ const routes: Routes = [
         path: "how-to",
         component: HowToComponent,
         data: { title: "How to" },
+      },
+      {
+        path: "tesla",
+        component: TeslaCompetitionComponent,
+        data: { title: "Tesla competition" },
       },
     ],
   },
@@ -227,7 +233,8 @@ const routes: Routes = [
     HomepageLayoutComponent,
     HomeBundleDetailComponent,
     HowToComponent,
-    WalletLoginComponent
+    WalletLoginComponent,
+    TeslaCompetitionComponent,
   ],
   providers: [
     AutologinGuard,
