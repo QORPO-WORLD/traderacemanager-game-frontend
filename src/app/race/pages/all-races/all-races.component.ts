@@ -56,6 +56,10 @@ export class AllRacesComponent implements OnInit {
     { type: 'premium_tournament_0', fav: false }
   ];
 
+  tutorialStep = 1;
+  introModal = false;
+  firstLogin = false;
+
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -78,6 +82,7 @@ export class AllRacesComponent implements OnInit {
     this.getmyFavRaces();
     this.getMyTeam();
     this.toggleContent(1);
+    this.launchTutorial();
   }
 
   getMyTeam() {
@@ -224,6 +229,30 @@ export class AllRacesComponent implements OnInit {
 
   closeModal(e: any) {
     this.selRaceType = null;
+  }
+
+  launchTutorial() {
+    const data = this.identityService.getStorageIdentity();
+    const datax: any = data;
+    this.firstLogin = data.is_in_tutorial;
+    this.tickets = datax.tournament_tickets;
+    if (this.firstLogin === true && window.innerWidth > 1024) {
+      this.introModal = true;
+    } else {
+      this.tutorialStep = -1;
+    }
+  }
+
+  skipModal() {
+    this.firstLogin = false;
+    this.introModal = false;
+    this.dapi.driversTutorialPartialUpdate(false).subscribe((data) => {
+      this.identityService.meUpdate();
+    });
+  }
+
+  nextTutorialStep() {
+    this.tutorialStep++;
   }
 
 }

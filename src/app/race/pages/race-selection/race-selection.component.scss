@@ -441,3 +441,345 @@
     }
   }
 }
+
+.tutorial-high {
+  position: relative;
+  z-index: 1000003 !important;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+  }
+  &.disabled{
+    pointer-events: none;
+  }
+}
+
+.tutorial-modal {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000002;
+  overflow: auto;
+  background: rgba(17, 17, 17, 0.9);
+  p{
+    opacity: 1;
+  }
+  .skip-text {
+    text-shadow: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 7px;
+    margin: 0;
+    p {
+      margin: 0;
+    }
+    &.absolute {
+      position: absolute;
+      bottom: 60px;
+      right: 100px;
+    }
+  }
+  &.step0 {
+    .box-content.content0 {
+      z-index: 1;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  &.step1 {
+    .box-content.content1 {
+      z-index: 1;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  &.step2 {
+    .box-content.content2 {
+      z-index: 1;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  .box-content {
+    position: absolute;
+    z-index: -5;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    .racer-boi {
+      width: 200px;
+      position: relative;
+      left: -30px;
+      &.big {
+        width: unset;
+        left: -5px;
+      }
+    }
+    .text-holder {
+      position: relative;
+      &.centered {
+        text-align: center;
+      }
+      .heading {
+        font-weight: 600;
+        font-size: 24px;
+        margin: -15px 0 10px 0;
+      }
+      .text {
+        font-weight: 400;
+        font-size: 16px;
+        margin: 0;
+      }
+      .pointing-line {
+        position: absolute;
+        height: 4px;
+        border-radius: 5px;
+        &.to-right {
+          transform: translateX(100%);
+          right: -20px;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.8) 70%,
+            rgba(255, 255, 255, 0.1) 100%
+          );
+        }
+        &.to-left {
+          transform: translateX(-100%);
+          left: -20px;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.8) 30%,
+            rgba(255, 255, 255, 1) 100%
+          );
+        }
+      }
+    }
+    button {
+      font-weight: 600;
+      font-size: 16px;
+      padding: 11px 60px;
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px;
+    }
+    .btns-holder {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 40px;
+      button {
+        margin-right: 40px;
+      }
+    }
+    &.only-cta {
+      width: 100%;
+      text-align: center;
+      button {
+        margin-top: 40px;
+      }
+    }
+    &.content0 {
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+      .text-holder {
+        .text {
+          max-width: 280px;
+          margin: 0 auto;
+        }
+      }
+    }
+    &.content1 {
+      max-width: 415px;
+      right: 55%;
+      top: 50%;
+      transform: translateY(-50%);
+      .text-holder {
+        .pointing-line {
+          top: 30%;
+          width: 80px;
+        }
+      }
+    }
+    &.content2 {
+      max-width: 420px;
+      left: 56%;
+      top: 50%;
+      transform: translateY(-50%);
+      .text-holder {
+        .pointing-line {
+          top: 50px;
+          width: 80px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1700px) {
+    .box-content {
+      .racer-boi {
+        &.big {
+          width: 300px;
+          left: 0px;
+        }
+      }
+      .text-holder {
+        .heading {
+          font-size: 21px;
+        }
+        .text {
+          font-size: 15px;
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 30px;
+        }
+      }
+      button {
+        font-size: 15px;
+        padding: 10px 50px;
+      }
+      .btns-holder {
+        margin-top: 30px;
+      }
+      &.content2 {
+        max-width: 400px;
+      }
+    }
+    .skip-text {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 1550px) {
+    .box-content {
+      .racer-boi {
+        width: 180px;
+        left: -24px;
+        &.big {
+          width: 270px;
+        }
+      }
+      .text-holder {
+        .heading {
+          margin: -15px 0 6px 0;
+          font-size: 19px;
+        }
+        .text {
+          font-size: 14px;
+        }
+        .pointing-line {
+          height: 3px;
+          &.to-right {
+            right: -10px;
+          }
+          &.to-left {
+            left: -10px;
+          }
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 23px;
+        }
+      }
+      button {
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 9px 45px;
+      }
+      .btns-holder {
+        margin-top: 23px;
+        button {
+          margin-right: 17px;
+        }
+      }
+      &.content2 {
+        max-width: 390px;
+        .text-holder {
+          .pointing-line {
+            width: 65px;
+          }
+        }
+      }
+    }
+    .skip-text {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .box-content {
+      .racer-boi {
+        width: 160px;
+        left: -20px;
+        &.big {
+          width: 240px;
+        }
+      }
+      .text-holder {
+        .heading {
+          margin: -15px 0 4px 0;
+          font-size: 18px;
+        }
+        .text {
+          font-size: 13px;
+        }
+        .pointing-line {
+          height: 2px;
+          &.to-right {
+            right: -7px;
+          }
+          &.to-left {
+            left: -7px;
+          }
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 19px;
+        }
+      }
+      button {
+        border-radius: 8px;
+        font-size: 13px;
+        padding: 8px 32px;
+      }
+      .btns-holder {
+        margin-top: 19px;
+        button {
+          margin-right: 14px;
+        }
+      }
+      &.content2 {
+        max-width: 380px;
+        .text-holder {
+          .pointing-line {
+            width: 55px;
+          }
+        }
+      }
+    }
+    .skip-text {
+      font-size: 13px;
+      &.absolute {
+        bottom: 40px;
+        right: 70px;
+      }
+    }
+  }
+}

@@ -368,7 +368,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getMyDriverStats();
     this.getMyBalance();
     this.fuelBest();
-    // this.launchTutorial();
+    this.launchTutorial();
     this.getMyTeam();
     this.getMyLeaderboard();
     this.trDate = Date.now();

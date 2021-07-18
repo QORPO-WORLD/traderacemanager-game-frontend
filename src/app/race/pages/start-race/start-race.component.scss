@@ -126,6 +126,7 @@ h3 {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: -1;
     .square {
       display: none;
       z-index: 2;
@@ -440,7 +441,6 @@ h3 {
     }
   }
   .lower-dashboard {
-    z-index: 2;
     width: 100%;
     height: 20%;
     align-items: flex-end;
@@ -2031,6 +2031,9 @@ h3 {
     height: 100%;
     z-index: 100;
   }
+  &.disabled{
+    pointer-events: none;
+  }
 }
 
 .tutorial-modal {
@@ -2043,6 +2046,9 @@ h3 {
   z-index: 1000002;
   overflow: auto;
   background: rgba(17, 17, 17, 0.9);
+  p{
+    opacity: 1;
+  }
   .skip-text {
     text-shadow: none;
     -webkit-background-clip: text;
@@ -2077,7 +2083,6 @@ h3 {
     }
   }
   &.step2 {
-    z-index: 1000000;
     .box-content.content2 {
       z-index: 1;
       opacity: 1;
@@ -2196,7 +2201,7 @@ h3 {
     }
     &.content2 {
       max-width: 420px;
-      right: 540px;
+      right: 575px;
       top: 40%;
       transform: translateY(-50%);
       .text-holder {
@@ -2219,13 +2224,13 @@ h3 {
       }
     }
     &.content4 {
-      max-width: 207px;
-      left: calc(100% - 337px);
-      top: 37%;
-      transform: translateY(-50%);
+      max-width: 270px;
+      right: 575px;
+      bottom: 20px;
+      transform: none;
       .text-holder {
         .pointing-line {
-          top: 10px;
+          bottom: 10px;
           width: 80px;
         }
       }
@@ -2268,8 +2273,7 @@ h3 {
         left: 481px;
       }
       &.content4 {
-        max-width: 200px;
-        left: calc(100% - 287px);
+        right: 528px;
       }
     }
     .skip-text {
@@ -2330,7 +2334,7 @@ h3 {
       }
       &.content3 {
         max-width: 435px;
-        left: 403px;
+        left: 370px;
         .text-holder {
           .pointing-line {
             width: 65px;
@@ -2338,6 +2342,8 @@ h3 {
         }
       }
       &.content4 {
+        max-width: 283px;
+        right: 465px;
         .text-holder {
           .pointing-line {
             width: 65px;
@@ -2394,7 +2400,7 @@ h3 {
       }
       &.content2 {
         max-width: 336px;
-        right: 410px;
+        right: 375px;
         .text-holder {
           .pointing-line {
             width: 55px;
@@ -2411,8 +2417,8 @@ h3 {
         }
       }
       &.content4 {
-        max-width: 172px;
-        left: calc(100% - 267px);
+        max-width: 216px;
+        right: 375px;
         .text-holder {
           .pointing-line {
             width: 55px;
@@ -2431,8 +2437,6 @@ h3 {
 }
 
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
-  .dashboard-content {
-  }
   .dash-back {
     height: calc(100vh - 100px);
   }
