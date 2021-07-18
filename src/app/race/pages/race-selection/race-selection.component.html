@@ -21,13 +21,14 @@
   </div>
   <p class="category-title-second">Chooose your favourite race mode</p>
   <div class="content">
-    <div (click)="next()" class="portfolio hoverable-category">
+    <div (click)="next()" class="portfolio hoverable-category" [ngClass]="{'tutorial-high': tutorialStep === 2}">
       <p class="category-title-first">PORTFOLIO RACES</p>
       <p class="races-desc">Different timeframes</p>
     </div>
     <div
       [routerLink]="['/race/binary-fuel/']"
       class="binary hoverable-category"
+      [ngClass]="{'tutorial-high disabled': tutorialStep === 1}"
     >
       <div class="overlay"></div>
       <img
@@ -45,3 +46,68 @@
     </div>
   </div>
 </div>
+
+<div
+    class="tutorial-modal"
+    [ngClass]="'step' + tutorialStep"
+    *ngIf="introModal === true"
+  >
+
+    <div class="box-content only-cta content0">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi big"
+      />
+      <div class="text-holder centered">
+        <p class="heading">{{ "tutorial.skip_tutorial" | translate }}</p>
+        <p class="text">{{ "tutorial.skip_desc" | translate }}</p>
+      </div>
+      <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+        {{ "tutorial.skip_tutorial" | translate }}
+      </button>
+    </div>
+
+    <div class="box-content content1">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi"
+      />
+      <div class="text-holder">
+        <p class="heading">Binary fights</p>
+        <p class="text">Exciting 1v1 fight based on binary options that lasts for 60 seconds and is for free.</p>
+        <div class="pointing-line to-right"></div>
+      </div>
+      <div class="btns-holder">
+        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+          {{ "race.continue" | translate }}
+        </button>
+        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+        </p>
+      </div>
+    </div>
+
+    <div class="box-content content2">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi"
+      />
+      <div class="text-holder">
+        <p class="heading">Portfolio races</p>
+        <p class="text">This option will show you all regular races that you can choose from.</p>
+        <div class="pointing-line to-left"></div>
+      </div>
+      <div class="btns-holder">
+        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+          {{ "race.continue" | translate }}
+        </button>
+        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+        </p>
+      </div>
+    </div>
+
+  </div>

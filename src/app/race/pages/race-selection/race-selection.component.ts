@@ -35,6 +35,11 @@ export class RaceSelectionComponent implements OnInit {
   timeoutNext: any;
   myTeamStats: any;
   myTeamName: any;
+
+  tutorialStep = 1;
+  introModal = false;
+  firstLogin = false;
+
   constructor(
     private route: ActivatedRoute,
     private experience: ExperienceService,
@@ -54,6 +59,7 @@ export class RaceSelectionComponent implements OnInit {
     this.fastFuelEnabled();
     this.getMydriverBalances();
     this.getMyTeam();
+    this.launchTutorial();
   }
 
   getMyTeam() {
@@ -114,4 +120,32 @@ export class RaceSelectionComponent implements OnInit {
     clearTimeout(this.timeoutNext);
     clearTimeout(this.timeoutPrev);
   }
+
+  launchTutorial() {
+    const data = this.identityService.getStorageIdentity();
+    const datax: any = data;
+    this.firstLogin = data.is_in_tutorial;
+    this.tickets = datax.tournament_tickets;
+    if (this.firstLogin === true && window.innerWidth > 1024) {
+      this.introModal = true;
+    } else {
+      this.tutorialStep = -1;
+    }
+  }
+
+  skipModal() {
+    this.firstLogin = false;
+    this.introModal = false;
+    this.dapi.driversTutorialPartialUpdate(false).subscribe((data) => {
+      this.identityService.meUpdate();
+    });
+  }
+
+  nextTutorialStep() {
+    if (this.tutorialStep === 2) {
+      this.router.navigate(["/race/all-races"]);
+    }
+    this.tutorialStep++;
+  }
+
 }

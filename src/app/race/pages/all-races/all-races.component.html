@@ -124,7 +124,7 @@
       *ngIf="content === 1"
       class="content-side"
     >
-      <div class="big-box first">
+      <div class="big-box first" [ngClass]="{'tutorial-high disabled': tutorialStep === 1}">
         <div class="info-cont">
           <div class="info-flex">
             <div class="info-box">
@@ -194,7 +194,7 @@
           </button>
         </div>
       </div>
-      <div class="small-box">
+      <div class="small-box" [ngClass]="{'tutorial-high clickable': tutorialStep === 3}">
         <p class="box-heading">Free race</p>
         <div class="inner-box">
           <img
@@ -340,7 +340,7 @@
           </button>
         </div>
       </div>
-      <div class="small-box">
+      <div class="small-box" [ngClass]="{'tutorial-high disabled': tutorialStep === 2}">
         <div class="inner-box" *ngIf="fastRaces">
           <img
             [src]="
@@ -1353,3 +1353,94 @@
 <div class="intro-modal" *ngIf="selRaceType">
   <app-fast-fuel (closeModal)="closeModal($event)" [raceId]="selRaceType"></app-fast-fuel>
 </div>
+
+<div
+    class="tutorial-modal"
+    [ngClass]="'step' + tutorialStep"
+    *ngIf="introModal === true"
+  >
+
+    <div class="box-content only-cta content0">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi big"
+      />
+      <div class="text-holder centered">
+        <p class="heading">{{ "tutorial.skip_tutorial" | translate }}</p>
+        <p class="text">{{ "tutorial.skip_desc" | translate }}</p>
+      </div>
+      <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+        {{ "tutorial.skip_tutorial" | translate }}
+      </button>
+    </div>
+
+    <div class="box-content content1">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi"
+      />
+      <div class="text-holder">
+        <p class="heading">NFT tournament</p>
+        <p class="text">This tournament is only for holders of NFT car.</p>
+        <div class="pointing-line to-right"></div>
+      </div>
+      <div class="btns-holder">
+        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+          {{ "race.continue" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="box-content content2">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi"
+      />
+      <div class="text-holder">
+        <p class="heading">Competition races</p>
+        <p class="text">Here you can see other races, each of them is free and starts 10 minutes apart. It's benefitial to enter these races with NFT car.</p>
+        <div class="pointing-line to-right"></div>
+      </div>
+      <div class="btns-holder">
+        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+          {{ "race.continue" | translate }}
+        </button>
+        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+        </p>
+      </div>
+    </div>
+
+    <div class="box-content content3">
+      <img
+        src="/assets/base/images/modal/tutorial-racer.png"
+        alt=""
+        class="racer-boi"
+      />
+      <div class="text-holder">
+        <p class="heading">Free fast race</p>
+        <p class="text">Hit join button to enter regular free race.</p>
+        <div class="pointing-line to-right"></div>
+      </div>
+      <div class="btns-holder">
+        <button class="my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/' + freeRace?.race_hash]">
+          {{ "race.continue" | translate }}
+        </button>
+        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="skip-text absolute my-cta-btn-back"
+      *ngIf="tutorialStep === 1"
+      (click)="tutorialStep = 0"
+    >
+      <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
+    </div>
+
+  </div>
