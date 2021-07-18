@@ -1,18 +1,18 @@
 <div class="table">
   <div class="table-row header">
-    <div class="table-item small"><p class="font">Position</p></div>
+    <div class="table-item small"><p class="font">Place</p></div>
     <div class="table-item"><p class="font">Game</p></div>
     <div class="table-item"><p class="font">Type</p></div>
     <div class="table-item"><p class="font">Amount</p></div>
     <div class="table-item big"><p class="font">Date</p></div>
-    <div class="table-item"><p class="font">Winners</p></div>
+    <div class="table-item last"><p class="font">Winners</p></div>
   </div>
 
   <div
     class="table-row"
     *ngFor="let trans of raceTransactions; let indexx = index"
   >
-    <div class="table-item small my-cta-btn-back">
+    <div class="table-item small">
       <p>{{ indexx + 1 + 10 * (actualPage - 1) }}.</p>
     </div>
     <div class="table-item">
@@ -23,7 +23,14 @@
       </p>
     </div>
     <div class="table-item">
-      <p>{{ trans.history_type === "signup_race" || trans.history_type === "create_versus" ? "Signup" : "Win" }}</p>
+      <p>
+        {{
+          trans.history_type === "signup_race" ||
+          trans.history_type === "create_versus"
+            ? "Signup"
+            : "Win"
+        }}
+      </p>
     </div>
     <div class="table-item">
       <p>{{ trans.delta | number: "1.2-2":"fr" }}</p>
@@ -35,7 +42,7 @@
       <button
         class="my-cta-btn-back hoverable"
         (click)="getRaceWinner(trans.extras?.race_hash)"
-        *ngIf="trans.extras?.race_identifier !==  'binary_vs_race_1'"
+        *ngIf="trans.extras?.race_identifier !== 'binary_vs_race_1'"
       >
         <span>Show</span> table
       </button>
@@ -76,7 +83,7 @@
 
   <div class="winner-body">
     <img
-      src="/assets/base/images/garage/red-close-cross.svg"
+      src="/assets/base/images/icons/close-white.svg"
       alt=""
       class="close-modal"
       (click)="showFinalModal = false"
@@ -84,22 +91,24 @@
 
     <div class="table winner-table">
       <div class="table-row header">
-        <div class="table-item small"><p>Position</p></div>
+        <div class="table-item small"><p>Place</p></div>
         <div class="table-item big"><p>Nick</p></div>
         <div class="table-item"><p>Team</p></div>
         <div class="table-item"><p>Prize</p></div>
-        <div class="table-item"><p>Points</p></div>
+        <div class="table-item last"><p>Points</p></div>
       </div>
 
       <div class="table-row" *ngFor="let item of winnersList; let i = index">
-        <div class="table-item small my-cta-btn-back">
+        <div class="table-item small">
           <p>{{ item.car_position_in_the_race }}.</p>
         </div>
         <div class="table-item big">
           <p>{{ item.nickname }}</p>
         </div>
         <div class="table-item">
-          <p *ngIf="item.team !== 'SYSTEM_TEAM'">{{ item.team ? item.team : "NO" }}</p>
+          <p *ngIf="item.team !== 'SYSTEM_TEAM'">
+            {{ item.team ? item.team : "NO" }}
+          </p>
           <p *ngIf="item.team === 'SYSTEM_TEAM'">-</p>
         </div>
         <div class="table-item">

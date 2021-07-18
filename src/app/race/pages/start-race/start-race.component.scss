@@ -349,6 +349,9 @@ h3 {
         padding-bottom: 3px;
         width: 310px;
         height: 100px;
+        &.tip-three {
+          padding: 2px 2px 0px 2px;
+        }
         &.first {
           padding: 2px 2px 0px 2px;
           background: linear-gradient(
@@ -364,7 +367,6 @@ h3 {
           padding: 10px;
           display: flex;
           position: relative;
-          background: url("/assets/base/images/start-race/arena-back.png");
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
@@ -373,6 +375,22 @@ h3 {
           overflow: hidden;
           align-items: center;
           justify-content: space-around;
+          .cont-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: linear-gradient(
+              89.26deg,
+              rgba(17, 17, 17, 0.4) -27.31%,
+              rgba(17, 17, 17, 1) 80%,
+              rgba(17, 17, 17, 1) 100%
+            );
+          }
+          &.static {
+            background: rgba(17, 17, 17, 1);
+          }
           .image {
             position: relative;
             width: 40%;
@@ -384,6 +402,10 @@ h3 {
               max-width: unset;
               width: auto;
               height: 60%;
+              &.tesla {
+                height: 85%;
+                width: auto;
+              }
               &.smaller {
                 width: 70%;
                 height: auto;
@@ -393,6 +415,11 @@ h3 {
           .text {
             width: 58%;
             z-index: 1;
+            h2 {
+              &.no-breaking {
+                white-space: nowrap;
+              }
+            }
           }
           &.first {
             background: linear-gradient(
@@ -400,7 +427,7 @@ h3 {
                 #ffd342 -70.31%,
                 rgba(0, 0, 0, 0) 80.55%
               ),
-              url("/assets/base/images/start-race/arena-back.png"), #333333;
+              rgba(17, 17, 17, 1);
           }
         }
       }
@@ -430,8 +457,13 @@ h3 {
         }
         &.news {
           .bar {
+            width: 34%;
+          }
+          .left-line {
             background: #fbc93e;
-            width: 50%;
+          }
+          .center-line {
+            background: #fbc93e;
           }
         }
       }
@@ -493,11 +525,17 @@ h3 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: rgba(17, 17, 17, 0.8);
+
         border: 1px solid rgba(255, 255, 255, 0.4);
+        &.background {
+          background: rgba(17, 17, 17, 0.8);
+        }
         h3 {
           opacity: 0.4;
           margin: 0px;
+          &.no-opacity {
+            opacity: 1;
+          }
         }
         &.first {
           margin-left: 0px;
@@ -967,6 +1005,21 @@ h3 {
 }
 @media screen and(max-width: 1024px) and (orientation: landscape) and (min-height: 600px) {
   .dashboard-content {
+    .upper-dashboard {
+      .boxes {
+        .box {
+          .box-content {
+            .image {
+              img {
+                &.tesla {
+                  height: 60%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     .dashboard-avatars {
       .upgrade {
         bottom: 50%;
