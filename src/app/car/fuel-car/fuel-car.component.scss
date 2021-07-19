@@ -4360,17 +4360,40 @@ button.g-button {
       }
     }
     .bottom-panels {
-      height: 16%;
+      height: 17%;
       bottom: 0px;
       display: flex;
 
       .selected-cars {
         max-width: 70%;
+        overflow: hidden;
         .inner {
+          .arrow {
+            height: 100%;
+          }
           .cars-holder {
+            overflow: visible;
             .car-item {
+              position: relative;
               max-width: 140px;
               min-width: 140px;
+              img {
+                max-height: 130%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                &.check {
+                  left: unset;
+                  transform: unset;
+                  right: 20px;
+                  top: -5px;
+                  width: 15px;
+                }
+              }
+              .dot-ind {
+                bottom: -2px;
+              }
               @keyframes appear {
                 0% {
                   max-width: 0;
@@ -4381,6 +4404,11 @@ button.g-button {
                   max-width: 140px;
                   min-width: 140px;
                   opacity: 1;
+                }
+              }
+              &.fueled {
+                .check {
+                  width: 15px;
                 }
               }
             }
