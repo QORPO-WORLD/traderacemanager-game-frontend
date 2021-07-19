@@ -20,6 +20,11 @@ export class DepositNftComponent implements OnInit {
   cryptoMtfrckr: string;
   accountValue: number;
   amount = 1;
+  ethMtfrckr = '0x';
+  depositRequested = false;
+  depositSuccessful = false;
+  contractId = 6;
+  ethAddress: string;
   products: Array<object> = [
     //bronze
     {
@@ -711,6 +716,7 @@ export class DepositNftComponent implements OnInit {
     const data = this.identityService.getStorageIdentity();
     this.nickname = data.nickname;
     this.cryptoMtfrckr = data.my_crypto_address;
+    this.ethAddress = data.eth_crypto_address;
   }
   resolveShowAsset() {
     if (this.nftType === 'car') {
@@ -760,33 +766,42 @@ export class DepositNftComponent implements OnInit {
   }
 
   depositCar() {
-    if(this.nftType === 'car'){
-      this.transferSubscription = this.blcksrvc
+    this.transferSubscription = this.blcksrvc
       .blockchainDepositCreate({
         amount: this.amount,
-        token_id: this.nftId,
-        contract_id: 6
+        currency: this.nftType + '_' + this.nftId,
       })
       .subscribe((data) => {
         this.depositing();
       });
-    }
-
-    if(this.nftType === 'racer'){
-      this.transferSubscription = this.blcksrvc
-      .blockchainDepositCreate({
-        amount: this.amount,
-        token_id: this.nftId,
-        contract_id: 7
-      })
-      .subscribe((data) => {
-        this.depositing();
-      });
-    }
-    
   }
 
   depositing() {
     localStorage.setItem("depos", JSON.stringify(Date.now()));
+  }
+  makeDeposit() {
+    if (this.ethMtfrckr.substring(0, 2) !== '0x') {
+      this.notify.error('xx', "Chain crypto wallet address must start with '0x'")
+      return;
+    }
+      
+    if (this.ethMtfrckr.length < 42) {
+      this.notify.error('xx', "Chain crypto wallet address length is too short")
+      return;
+    }
+
+    this.depositRequested = true
+    this.contractId = (this.nftType === 'car') ? 6 : 7 
+    
+
+    if (this.contractId !== null && this.ethMtfrckr.length === 42) {
+      this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', contract_id: this.contractId, token_id: this.nftId}).subscribe(data => {
+        console.log(data);
+      });
+    }
+
+    setTimeout(() => {
+      this.depositSuccessful = true;
+    }, 2000);
   }
 }
