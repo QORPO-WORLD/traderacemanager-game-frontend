@@ -52,118 +52,55 @@
       class="my-carousel-item item2"
       [ngClass]="{ hidden: carouselStep !== 2 }"
     >
-      <div class="top-section bundle-sec">
-        <div class="bundle-detail">
-          <div class="top-overall">
-            <div
-              class="name-holder"
-              [ngStyle]="{
-                'background-image':
-                  'url(/assets/base/images/bundles/' +
-                  bundles[bundleCarStep]['back'] +
-                  '.png)'
-              }"
-            >
-              <p class="value">{{ bundles[bundleCarStep]["name"] }}</p>
-              <p class="desc">{{ bundles[bundleCarStep]["link"] }}</p>
-            </div>
-            <div class="flex-item">
-              <div class="price">
-                <p>
-                  <img src="/assets/base/images/icons/ioi-token.svg" alt="" /> 1
-                  000
-                </p>
+      <div class="top-section tesla">
+        <div class="text-holder">
+          <div class="upper-text">
+            <div class="countdown-row">
+              <h2 class="big">TESLA</h2>
+              <div class="countdown">
+                <div class="days">
+                  <h3 class="big" id="days">day</h3>
+                  <p class="desc">DAYS</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="hours">
+                  <h3 class="big" id="hours">hour</h3>
+                  <p class="desc">HOURS</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="minutes">
+                  <h3 class="big" id="minutes">minute</h3>
+                  <p class="desc">MINUTES</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="seconds">
+                  <h3 class="big" id="seconds">second</h3>
+                  <p class="desc">SECONDS</p>
+                </div>
               </div>
-              <button
-                class="buy-btn"
-                [routerLink]="['/user/bundle-detail']"
-                [queryParams]="{
-                  id: bundles[bundleCarStep]['id'],
-                  back: 'home'
-                }"
-              >
-                <span>BUY</span>
-                <div class="hover-overlay"></div>
+            </div>
+            <div class="bottom-title">
+              <h2 class="big"><span class="left-space">T</span>COMPETITION</h2>
+              <div class="row">
+                <h2 class="big left-space">T</h2>
+                <div class="fill-row">
+                  <h3 class="small letter-spacing">WITH</h3>
+                  <h3 class="small letter-spacing">TRADE</h3>
+                  <h3 class="small letter-spacing">RACE</h3>
+                  <h3 class="small letter-spacing">
+                    MANAGE<span class="no-spacing">R</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="bottom-text">
+              <button [routerLink]="['/user/tesla']" class="action-button">
+                CHECK PRIZES
               </button>
+              <h3 class="smaller letter-spacing">
+                GET FREE NFT TESLA TO WIN A <span class="bold">REAL ONE</span>
+              </h3>
             </div>
-          </div>
-
-          <div class="stats-holder">
-            <div class="cris-cros">
-              <div></div>
-              <div class="second"></div>
-            </div>
-            <div class="stat-item">
-              <p class="value">100pcs</p>
-              <p class="desc">LIMITED AMOUNT</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">6%</p>
-              <p class="desc">STAKING</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">0,1&#36;IOI</p>
-              <p class="desc">DAILY REWARD</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">
-                PREMIUM
-                <img
-                  class="premium-badge"
-                  src="/assets/base/images/menu/premium-icon-active.svg"
-                  alt=""
-                />
-              </p>
-              <p class="desc">MEMBER ONLY</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bundle-carousel">
-          <div class="arrow right" (click)="nextBundleCarItem()">
-            <img src="/assets/base/images/bundles/arrow-right.svg" alt="" />
-          </div>
-          <div class="arrow left" (click)="prevBundleCarItem()">
-            <img src="/assets/base/images/bundles/arrow-left.svg" alt="" />
-          </div>
-
-          <div class="high-box">
-            <p class="heading">Bundle includes</p>
-          </div>
-          <div
-            class="inner-slider"
-            [ngStyle]="{ 'left.%': -((bundleCarStep - 1) * 33.333) }"
-          >
-            <ng-container *ngFor="let item of bundles; let i = index">
-              <div
-                class="car-item"
-                [ngClass]="{
-                  'big-item': bundleCarStep === i,
-                  'medium-item':
-                    bundleCarStep === i - 1 || bundleCarStep === i + 1
-                }"
-              >
-                <img
-                  [src]="
-                    '/assets/base/images/bundles/' +
-                    bundles[i]['image'] +
-                    '.png'
-                  "
-                  alt=""
-                  [routerLink]="['/user/bundle-detail']"
-                  [queryParams]="{
-                    id: bundles[bundleCarStep]['id'],
-                    back: 'home'
-                  }"
-                />
-                <div class="bubble car-bubble">
-                  <p>NFT CAR</p>
-                </div>
-                <div class="bubble avatar-bubble">
-                  <p>NFT AVATAR</p>
-                </div>
-              </div>
-            </ng-container>
           </div>
         </div>
       </div>

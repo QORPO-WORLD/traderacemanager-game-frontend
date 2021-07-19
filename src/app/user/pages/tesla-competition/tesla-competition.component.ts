@@ -6,7 +6,6 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./tesla-competition.component.scss"],
 })
 export class TeslaCompetitionComponent implements OnInit {
-  timeLeft: any;
   constructor() {}
 
   ngOnInit(): void {
