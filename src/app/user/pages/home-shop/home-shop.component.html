@@ -1,8 +1,9 @@
-<div class="market-content">
+<div class="market-content" #top>
   <div class="market-back-div">
     <div class="market-back"></div>
   </div>
-  <div class="content">
+
+  <div class="content" *ngIf="marketState === 1">
     <div class="left-content">
       <p class="category-title-second">Limited</p>
       <p class="category-title-big">NFTs</p>
@@ -31,14 +32,7 @@
         >
           RACERS
         </p>
-        <div class="border-line"></div>
-        <p
-          (click)="filterTracks()"
-          [ngClass]="{ active: title === 'Tracks' }"
-          class="category-title-fourth"
-        >
-          TRACKS
-        </p>
+
         <div class="border-line"></div>
         <p
           (click)="filterBundles()"
@@ -59,6 +53,10 @@
       </div>
       <div class="boxes">
         <div
+          (click)="
+            showAsset(2, item['id'], item['type'], item['position']);
+            scrollTop(top)
+          "
           *ngFor="
             let item of newProducts | slice: sliceStart:sliceMiddle;
             let i = index
@@ -68,6 +66,7 @@
           <div class="box-content">
             <div class="box-image">
               <img
+                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'racer'"
                 class="img racer"
                 [src]="
@@ -76,24 +75,28 @@
                 [alt]="item['alt']"
               />
               <img
+                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'racer'"
                 class="img gif-racer"
                 [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
                 [alt]="item['alt']"
               />
               <img
+                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'car' && item['gif']"
                 class="img car"
                 [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
                 [alt]="item['alt']"
               />
               <img
+                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'car' && item['gif']"
                 class="img gif-car"
                 [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
                 [alt]="item['alt']"
               />
               <img
+                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'car' && !item['gif']"
                 class="img still car"
                 [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
@@ -182,4 +185,12 @@
       </div>
     </div>
   </div>
+  <app-home-nft-detail
+    class="detail-content"
+    *ngIf="marketState === 2"
+    [assetId]="selectedId"
+    [assetType]="selectedType"
+    [assetPosition]="selectedPosition"
+    (marketState)="showAssetBuy($event)"
+  ></app-home-nft-detail>
 </div>

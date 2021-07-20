@@ -843,6 +843,7 @@ export class NftDetailComponent implements OnInit {
   remainingCars = [];
   remainingRacers = [];
   remainingBundles = [];
+  carsRemainingPosition: any;
 
   displayArray = [];
   @Input() assetType = "bundle";

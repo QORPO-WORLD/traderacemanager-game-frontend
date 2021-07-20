@@ -62,19 +62,7 @@
         <p class="category-title-first">RACERS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
-      <div
-        [ngClass]="{ 'active-item': title === 'Tracks' }"
-        (click)="filterTracks()"
-        class="filter-item"
-      >
-        <img
-          class="filter-icon"
-          src="assets/base/images/icons/track-icon.svg"
-          alt="car icon"
-        />
-        <p class="category-title-first">TRACKS</p>
-        <div class="active-border my-cta-btn-back"></div>
-      </div>
+
       <div
         [ngClass]="{ 'active-item': title === 'Bundles' }"
         (click)="filterBundles()"
@@ -146,14 +134,6 @@
             [alt]="item['alt']"
           />
 
-          <img
-            *ngIf="item['type'] === 'track'"
-            class="img still track"
-            [src]="
-              '/assets/base/images/home-page/' + item['image'] + '-small.png'
-            "
-            [alt]="item['alt']"
-          />
           <img
             *ngIf="item['type'] === 'bundle'"
             class="img special still"
