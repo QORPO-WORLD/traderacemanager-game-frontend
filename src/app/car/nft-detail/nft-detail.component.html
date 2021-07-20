@@ -41,7 +41,8 @@
       class="races-desc"
       *ngIf="
         displayArray[0]['type'] === 'car' &&
-        displayArray[0]['rare'] === undefined
+        displayArray[0]['rare'] === undefined &&
+        displayArray[0]['name'] != 'TESLA'
       "
     >
       {{ displayArray[0]["name"] }} is unique limited car. Each car is
@@ -59,6 +60,17 @@
       Each car is unparalleled way of owning IOI tokens, staking and APY. The
       main benefit is that you can use your NFTs in-game, buy, sell and trade on
       open markets. The new era of NFTs in your pocket.
+    </p>
+    <p
+      class="races-desc"
+      *ngIf="
+        displayArray[0]['type'] === 'car' && displayArray[0]['name'] === 'TESLA'
+      "
+    >
+      {{ displayArray[0]["name"] }}, one of a kind special limited edition NFT.
+      With Tesla you are able to join TESLA COMPETITION and NFT Tournament
+      happening everyday for 100 IOI. Tesla does not have APY or Staking
+      function. Win rate in regular races is 0.1 IOI per race.
     </p>
     <p class="races-desc" *ngIf="displayArray[0]['type'] === 'track'">
       Track NFTs are introducing investment model for real hardcore owners. You
@@ -99,7 +111,11 @@
 
       <button
         class="left-btn category-title-third"
-        *ngIf="displayArray[0]['type'] === 'car' && !displayArray[0]['rare']"
+        *ngIf="
+          displayArray[0]['type'] === 'car' &&
+          !displayArray[0]['rare'] &&
+          displayArray[0]['collection'] != 'Special'
+        "
       >
         {{ remainingCars[position].count.toLocaleString() }} left
       </button>
@@ -174,7 +190,7 @@
           </div>
         </div>
       </div>
-      <div class="ability-box cars cars">
+      <div *ngIf="displayArray[0]['ability1']" class="ability-box cars cars">
         <div class="ability-content">
           <img
             class="red-star"
@@ -195,7 +211,7 @@
           </div>
         </div>
       </div>
-      <div class="ability-box cars">
+      <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoi === true }"
           (mouseover)="infoRoi = true"

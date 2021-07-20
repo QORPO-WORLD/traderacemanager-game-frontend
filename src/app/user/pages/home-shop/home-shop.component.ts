@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home-shop",
@@ -8,9 +9,18 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home-shop.component.scss"],
 })
 export class HomeShopComponent implements OnInit {
-  menuActive = 1;
-  isMenuActive = false;
-  activeMenu = 0;
+  animation = 5;
+  timeoutPrev: any;
+  timeoutNext: any;
+  carSum: string;
+  marketState = 1;
+  selectedId = 1;
+  isPaged = 0;
+  selectedType = "racers";
+  timeoutPage: any;
+  animationPaging = 0;
+  animateArrow = false;
+  animateArrowRight = false;
   products: Array<object> = [
     //bronze
     {
@@ -19,7 +29,7 @@ export class HomeShopComponent implements OnInit {
       free: 6000,
       collection: "Common",
       name: "RHINO",
-      price: "600",
+      price: 600,
       image: "car1",
       gif: "car1-animation",
       type: "car",
@@ -435,6 +445,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 1,
+      position: 0,
       collection: "Super",
       name: "Axle",
       price: "100",
@@ -450,6 +461,7 @@ export class HomeShopComponent implements OnInit {
 
     {
       id: 2,
+      position: 1,
       collection: "Super",
       name: "Flash",
       price: "100",
@@ -464,6 +476,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 3,
+      position: 2,
       collection: "Super",
       name: "Octane",
       price: "100",
@@ -478,6 +491,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 4,
+      position: 3,
       collection: "Super",
       name: "Punisher",
       price: "100",
@@ -492,6 +506,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 5,
+      position: 4,
       collection: "Epic",
       name: "Lady Rich",
       price: "1 000",
@@ -506,6 +521,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 6,
+      position: 5,
       collection: "Epic",
       name: "Rich Jr.",
       price: "1 000",
@@ -520,6 +536,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 7,
+      position: 6,
       collection: "Epic",
       name: "Mrs. Rich",
       price: "1 000",
@@ -534,6 +551,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 8,
+      position: 7,
       collection: "Legendary",
       name: "Mr. Rich",
       price: "10 000",
@@ -614,7 +632,6 @@ export class HomeShopComponent implements OnInit {
 
     {
       id: 42,
-
       collection: "Race tracks",
       name: "Underground",
       price: "Soon",
@@ -628,7 +645,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 43,
-      position: 1,
+      position: 0,
       type: "bundle",
       name: "DAOMaker",
       link: "@TheDaoMaker",
@@ -645,7 +662,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 44,
-      position: 2,
+      position: 1,
       type: "bundle",
       name: "Shreyansh Polygon",
       link: "@shreyansh_27",
@@ -729,7 +746,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 49,
-      position: 7,
+      position: 9,
       type: "bundle",
       name: "Altcoin Buzz",
       link: "@Altcoinbuzzio",
@@ -746,7 +763,7 @@ export class HomeShopComponent implements OnInit {
     },
     {
       id: 50,
-      position: 8,
+      position: 10,
       type: "bundle",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
@@ -762,129 +779,86 @@ export class HomeShopComponent implements OnInit {
       back: "cryptowizard-back",
     },
   ];
-  typeObserver: Subscription;
-  assetType: any;
-  assetPage: number;
-  assetStartPage: number;
-  assetFilter: any;
-  timeoutPage: any;
-  animation = 0;
-  animateArrow = false;
-  animateArrowRight = false;
+  title = "All";
+  filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
+  selectedPosition: number;
   racersActive = false;
   carsActive = false;
   tracksActive = false;
   teamsActive = false;
   bundlesActive = false;
   allActive = true;
-  display = window.innerWidth;
-  mobileFilter = false;
-  inRow: number;
   sliceStart: number;
   sliceMiddle: number;
+  display = window.innerWidth;
   newProducts = this.products;
-  assetId: any;
-  title = "All products";
-  currentPage: number;
+  menuActive = 1;
+  isMenuActive = false;
+  activeMenu = 0;
+  assetType: any;
+  mobileFilter = false;
+  inRow: number;
+  currentPage = 1;
   maxPage: number;
   lastPage: number;
-  isPaged: any;
-  filter: any;
-
-  constructor(private route: ActivatedRoute) {
-    this.getAssetType();
+  typeObserver: Subscription;
+  constructor(public router: Router, private route: ActivatedRoute) {
     this.width();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAssetType();
+  }
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
-      this.assetPage = +params["page"];
-      this.assetStartPage = +params["startPage"];
-      this.assetFilter = params["filter"];
-      if (!this.assetFilter) {
-        this.filterAll();
+      this.assetType = params["assetType"];
+      if (!this.assetType) {
+        this.assetType = "all";
       }
-      if (!this.assetPage) {
-        this.assetPage = 1;
-      }
-      if (!this.assetStartPage) {
-        this.assetStartPage = 0;
-      }
-
-      if (this.assetFilter === "racer") {
-        this.filterRacers();
-      }
-      if (this.assetFilter === "car") {
+      if (this.assetType === "car") {
         this.filterCars();
       }
-      if (this.assetFilter === "track") {
+      if (this.assetType === "racer") {
+        this.filterRacers();
+      }
+      if (this.assetType === "track") {
         this.filterTracks();
       }
 
-      if (this.assetFilter === "bundle") {
+      if (this.assetType === "bundle") {
         this.filterBundles();
       }
-      if (this.assetFilter === "all") {
-        this.filterAll();
-      }
-      this.currentPage = this.assetPage;
-      this.isPaged = this.assetStartPage;
     });
   }
-
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  widthFilter() {
-    this.display = window.innerWidth;
-  }
   width() {
     this.display = window.innerWidth;
+    this.inRow = 6;
+    this.maxPage = 6;
 
-    if (this.display > 750 && this.display < 1300) {
-      this.inRow = 9;
-      this.maxPage = 9;
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    } else {
-      this.inRow = 8;
-      this.maxPage = 8;
-      this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
-
-      this.sliceStart = this.inRow * this.isPaged;
-      this.sliceMiddle = this.inRow * this.currentPage;
-    }
+    this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
+    this.sliceStart = this.inRow * this.isPaged;
+    this.sliceMiddle = this.inRow * this.currentPage;
   }
-
-  filterMobile() {
-    if (this.mobileFilter === false) {
-      this.mobileFilter = true;
-    } else {
-      this.mobileFilter = false;
-    }
-  }
-
   filterRacers() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "racer");
-
     this.width();
-    this.bundlesActive = false;
     this.racersActive = true;
     this.tracksActive = false;
     this.carsActive = false;
     this.allActive = false;
     this.teamsActive = false;
-    this.title = "Racers";
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "racer";
+    this.title = "Racers";
   }
 
   filterCars() {
@@ -892,38 +866,36 @@ export class HomeShopComponent implements OnInit {
     this.newProducts = this.products.filter((item) => item["type"] === "car");
 
     this.width();
-    this.bundlesActive = false;
     this.carsActive = true;
     this.tracksActive = false;
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Cars";
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "car";
+    this.title = "Cars";
   }
   filterTracks() {
     this.newProducts = this.products;
     this.newProducts = this.products.filter((item) => item["type"] === "track");
 
     this.width();
-    this.bundlesActive = false;
     this.tracksActive = true;
     this.carsActive = false;
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = false;
-    this.title = "Tracks";
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "track";
+    this.title = "Tracks";
   }
 
   filterBundles() {
@@ -933,55 +905,44 @@ export class HomeShopComponent implements OnInit {
     );
 
     this.width();
-    this.bundlesActive = true;
-    this.racersActive = false;
     this.tracksActive = false;
     this.carsActive = false;
-    this.allActive = false;
+    this.racersActive = false;
     this.teamsActive = false;
-    this.title = "Bundles";
+    this.bundlesActive = true;
+    this.allActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "Bundle";
+    this.title = "Bundles";
   }
   filterAll() {
     this.newProducts = this.products;
 
     this.width();
-    this.bundlesActive = false;
     this.tracksActive = false;
     this.carsActive = false;
     this.racersActive = false;
     this.teamsActive = false;
     this.allActive = true;
-    this.title = "All products";
+    this.bundlesActive = false;
     this.lastPage = Math.ceil(this.newProducts.length / this.maxPage);
     this.currentPage = 1;
     this.isPaged = 0;
     this.sliceStart = this.inRow * this.isPaged;
     this.sliceMiddle = this.inRow * this.currentPage;
-    this.filter = "all";
+    this.title = "All";
   }
 
-  activateMenu() {
-    if (this.activeMenu === 0) {
-      this.isMenuActive = true;
-      this.activeMenu = 1;
-    } else {
-      this.isMenuActive = false;
-      this.activeMenu = 0;
-    }
+  showAsset(state: number, id: number, type: string, position: number) {
+    this.marketState = state;
+    this.selectedPosition = position;
+    this.selectedId = id;
+    this.selectedType = type;
   }
-  reset() {
-    let element;
-    element = document.querySelector(".hamburger");
-    element.classList.remove("hamburgerclick");
-    void element.offsetWidth;
-    element.classList.add("hamburgerclick");
-  }
+
   timeoutReset() {
     clearTimeout(this.timeoutPage);
   }
@@ -992,9 +953,9 @@ export class HomeShopComponent implements OnInit {
       this.timeoutReset();
       this.currentPage--;
       this.isPaged--;
-      this.animation = 3;
+      this.animationPaging = 3;
       this.timeoutPage = setTimeout(() => {
-        this.animation = 2;
+        this.animationPaging = 2;
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;
@@ -1009,9 +970,9 @@ export class HomeShopComponent implements OnInit {
       this.timeoutReset();
       this.currentPage++;
       this.isPaged++;
-      this.animation = 1;
+      this.animationPaging = 1;
       this.timeoutPage = setTimeout(() => {
-        this.animation = 0;
+        this.animationPaging = 0;
         this.sliceStart = this.inRow * this.isPaged;
         this.sliceMiddle = this.inRow * this.currentPage;
         this.timeoutPage = null;

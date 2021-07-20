@@ -23,6 +23,18 @@ export class NftMarketComponent implements OnInit {
   animateArrow = false;
   animateArrowRight = false;
   products: Array<object> = [
+    {
+      id: 37,
+      collection: "Special",
+      name: "TESLA",
+      price: "50",
+      image: "car60",
+      type: "car",
+      ability1: 0,
+      ability2: 0,
+      amount: [],
+      alt: "nft car tesla",
+    },
     //bronze
     {
       id: 9,
@@ -444,6 +456,7 @@ export class NftMarketComponent implements OnInit {
       amount: [],
       alt: "nft car blue storm",
     },
+
     {
       id: 1,
       position: 0,
@@ -567,7 +580,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft racer mr. rich",
     },
     {
-      id: 37,
+      id: 38,
       collection: "Race tracks",
       name: "Free track",
       price: "Soon",
@@ -579,7 +592,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track free",
     },
     {
-      id: 38,
+      id: 39,
       collection: "Race tracks",
       name: "Desert",
       price: "Soon",
@@ -592,7 +605,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track desert",
     },
     {
-      id: 39,
+      id: 40,
       collection: "Race tracks",
       name: "Dark forest",
       price: "Soon",
@@ -605,7 +618,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track dark forest",
     },
     {
-      id: 40,
+      id: 41,
       collection: "Race tracks",
       name: "Night city",
       price: "Soon",
@@ -618,7 +631,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track night city",
     },
     {
-      id: 41,
+      id: 42,
       collection: "Race tracks",
       name: "Sea bridge",
       price: "Soon",
@@ -632,7 +645,7 @@ export class NftMarketComponent implements OnInit {
     },
 
     {
-      id: 42,
+      id: 43,
       collection: "Race tracks",
       name: "Underground",
       price: "Soon",
@@ -645,7 +658,7 @@ export class NftMarketComponent implements OnInit {
       alt: "nft track underground",
     },
     {
-      id: 43,
+      id: 44,
       position: 0,
       type: "bundle",
       name: "DAOMaker",
@@ -662,7 +675,7 @@ export class NftMarketComponent implements OnInit {
       back: "dao-back",
     },
     {
-      id: 44,
+      id: 45,
       position: 1,
       type: "bundle",
       name: "Shreyansh Polygon",
@@ -677,7 +690,7 @@ export class NftMarketComponent implements OnInit {
       car: "car42",
     },
     {
-      id: 45,
+      id: 46,
       position: 3,
       type: "bundle",
       name: "Kyle Chasse",
@@ -694,7 +707,7 @@ export class NftMarketComponent implements OnInit {
       back: "paid-back",
     },
     {
-      id: 46,
+      id: 47,
       position: 4,
       type: "bundle",
       name: "Ash WSB",
@@ -711,7 +724,7 @@ export class NftMarketComponent implements OnInit {
       back: "ash-back",
     },
     {
-      id: 47,
+      id: 48,
       position: 5,
       type: "bundle",
       name: "Tehmoonwalker",
@@ -729,7 +742,7 @@ export class NftMarketComponent implements OnInit {
     },
 
     {
-      id: 48,
+      id: 49,
       position: 6,
       type: "bundle",
       name: "Parabolic Guy",
@@ -746,7 +759,7 @@ export class NftMarketComponent implements OnInit {
       back: "parabolic-back",
     },
     {
-      id: 49,
+      id: 50,
       position: 9,
       type: "bundle",
       name: "Altcoin Buzz",
@@ -763,7 +776,7 @@ export class NftMarketComponent implements OnInit {
       back: "cryptowizard-back",
     },
     {
-      id: 50,
+      id: 51,
       position: 10,
       type: "bundle",
       name: "Cryptowizard",
@@ -776,6 +789,23 @@ export class NftMarketComponent implements OnInit {
       image: "bundle-wizard",
       racer: "cryptowizard",
       car: "car51",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
+    {
+      id: 52,
+      position: 12,
+      type: "bundle",
+      name: "Kucoin",
+      link: "@kucoincom",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle-kucoin",
+      racer: "kucoin",
+      car: "car52",
       avatar: "cryptowizard-avatar",
       back: "cryptowizard-back",
     },
