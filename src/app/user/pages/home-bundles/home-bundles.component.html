@@ -1,8 +1,8 @@
-<div class="bundles-content">
+<div class="bundles-content" #top>
   <div class="bundles-back-div">
     <div class="bundles-back"></div>
   </div>
-  <div class="content">
+  <div *ngIf="marketState === 1" class="content">
     <div class="left-content">
       <p class="category-title-second">Limited</p>
       <p class="category-title-big">BUNDLES</p>
@@ -16,8 +16,10 @@
         <div
           *ngFor="let item of bundles; let i = index"
           class="box"
-          [routerLink]="['/user/bundle-detail']"
-          [queryParams]="{ id: bundles[i]['id'], back: 'bundles' }"
+          (click)="
+            showAsset(2, item['id'], item['type'], item['position']);
+            scrollTop(top)
+          "
         >
           <div class="box-image">
             <img
@@ -64,4 +66,12 @@
       </div>
     </div>
   </div>
+  <app-home-bundle-detail
+    class="detail-content"
+    *ngIf="marketState === 2"
+    [assetId]="selectedId"
+    [assetType]="selectedType"
+    [assetPosition]="selectedPosition"
+    (marketState)="showAssetBuy($event)"
+  ></app-home-bundle-detail>
 </div>

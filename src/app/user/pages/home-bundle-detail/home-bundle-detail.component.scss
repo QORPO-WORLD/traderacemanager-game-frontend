@@ -1,476 +1,889 @@
-.detail-page {
-  min-height: 100vh;
-  background: #111111;
-  overflow-x: hidden;
-  padding: 220px 5% 0 9%;
-  background-image: url("/assets/base/images/home-page/banner1.jpg");
-  background-size: cover;
+* {
+  margin: 0px;
+}
+.dissapear-right-animation {
+  animation: dissapear-right 0.3s linear;
+  -webkit-animation: dissapear-right 0.3s linear;
+}
+.dissapear-left-animation {
+  animation: dissapear-left 0.3s linear;
+  -webkit-animation: dissapear-left 0.3s linear;
+}
+.engage-right-animation {
+  animation: engage-right 0.3s linear;
+  -webkit-animation: engage-right 0.3s linear;
+}
+.engage-left-animation {
+  animation: engage-left 0.3s linear;
+  -webkit-animation: engage-left 0.3s linear;
+}
+@keyframes dissapear-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+}
+@keyframes dissapear-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+}
+@keyframes engage-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+}
+@keyframes engage-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+  }
+}
+.main-holder {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detail-content {
+  margin-top: 10%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  height: 70%;
+  width: 80%;
   .back-btn {
-    font-size: 20px;
-    background: transparent;
-    border: none;
-    padding: 10px 0;
-  }
-  .content-holder {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .info-holder {
-      width: 40%;
-      max-width: 450px;
-      .desc {
-        font-weight: bold;
-        font-size: 40px;
-        opacity: 0.2;
-      }
-      .name {
-        width: 130%;
-        color: #ff183f;
-        font-size: 70px;
-        font-family: "True-Lies";
-        transform: rotate(-5deg);
-        line-height: 65px;
-        position: relative;
-        left: -50px;
-        white-space: nowrap;
-      }
-      .text {
-        font-size: 18px;
-        margin: 75px 0 70px;
-        max-width: 350px;
-      }
-      .btns-holder {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 50px;
-        .price {
-          height: 100%;
-          background: rgba(35, 255, 255, 0.2);
-          border-radius: 12px;
-          padding: 0 22px;
-          margin-right: 20px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          p {
-            color: #20dbdb;
-            font-weight: 600;
-            font-size: 20px;
-            margin: 0;
-            img {
-              width: 32px;
-              display: inline-block;
-              margin-right: 16px;
-            }
-          }
-        }
-        .buy-btn {
-          height: 100%;
-          background: linear-gradient(
-            99.76deg,
-            #fe173f 117.01%,
-            #240b36 187.56%
-          );
-          border-radius: 12px;
-          font-weight: 500;
-          font-size: 20px;
-          border: none;
-          padding: 0 30px;
-          img {
-            width: 20px;
-            display: inline-block;
-            margin-right: 20px;
-          }
-        }
-      }
-    }
-    .img-holder {
-      width: 50%;
-    }
-    .perks-holder {
-      text-align: center;
-      width: 35%;
-      max-width: 337px;
-      .heading {
-        font-weight: 600;
-        font-size: 24px;
-        margin: 0 0 15px 0;
-      }
-      .plus {
-        font-weight: 600;
-        font-size: 24px;
-      }
-      .holder {
-        .my-desc {
-          font-weight: 600;
-          font-size: 18px;
-          margin: 0;
-          opacity: 0.4;
-        }
-        .avatar-img {
-          width: 64%;
-        }
-        .car-img {
-          width: 100%;
-        }
-      }
-      .perk-item {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        width: 100%;
-        max-width: 276px;
-        margin: 0 auto 20px;
-        .value {
-          height: 100%;
-          background: #ff183f;
-          border-radius: 12px 0px 0px 12px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 32%;
-          p {
-            margin: 0;
-            font-size: 16px;
-            font-family: "True-Lies";
-          }
-        }
-        .desc {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding-left: 10%;
-          P {
-            font-weight: 600;
-            font-size: 16px;
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-}
+    transition: 0.3s;
+    height: fit-content;
+    z-index: 1;
+    opacity: 0.7;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 0%;
 
-@media screen and (max-width: 1700px) {
-  .detail-page {
-    padding: 200px 5% 0 9%;
-    .back-btn {
-      font-size: 18px;
-      padding: 8px 0;
-    }
-    .content-holder {
-      .info-holder {
-        max-width: 340px;
-        .desc {
-          font-size: 34px;
-          margin: 0;
-        }
-        .name {
-          font-size: 60px;
-          left: -35px;
-          line-height: 50px;
-        }
-        .text {
-          font-size: 16px;
-          margin: 60px 0 50px;
-          max-width: 310px;
-        }
-        .btns-holder {
-          height: 45px;
-          .price {
-            padding: 0 18px;
-            margin-right: 15px;
-            p {
-              font-size: 18px;
-              img {
-                width: 25px;
-                margin-right: 7px;
-              }
-            }
-          }
-          .buy-btn {
-            font-size: 18px;
-            padding: 0 24px;
-            img {
-              width: 18px;
-              margin-right: 10px;
-            }
-          }
-        }
-      }
-      .perks-holder {
-        max-width: 300px;
-        .heading {
-          font-size: 20px;
-          margin: 0 0 10px 0;
-        }
-        .holder {
-          .my-desc {
-            font-size: 16px;
-          }
-        }
-        .plus {
-          font-size: 20px;
-        }
-        .perk-item {
-          margin: 0 auto 13px;
-          max-width: 246px;
-          .value {
-            p {
-              font-size: 14px;
-            }
-          }
-          .desc {
-            p {
-              font-size: 14px;
-            }
-          }
-        }
-      }
+    &::before {
+      transition: 0.3s;
+      content: "";
+      position: absolute;
+      bottom: -10%;
+      left: 0px;
+      height: 1px;
+      width: 0%;
+
+      background: rgba(255, 255, 255, 0.8);
     }
   }
-}
+  .back-btn:hover {
+    opacity: 1;
 
-@media screen and (max-width: 1550px) {
-  .detail-page {
-    padding: 190px 5% 0 9%;
-    .back-btn {
-      font-size: 16px;
-      padding: 5px 0;
-    }
-    .content-holder {
-      .info-holder {
-        max-width: 300px;
-        .desc {
-          font-size: 28px;
-        }
-        .name {
-          font-size: 50px;
-          left: -28px;
-          line-height: 43px;
-        }
-        .text {
-          font-size: 14px;
-          margin: 45px 0 40px;
-          max-width: 290px;
-        }
-        .btns-holder {
-          height: 40px;
-          .price {
-            padding: 0 13px;
-            margin-right: 12px;
-            p {
-              font-size: 16px;
-              img {
-                width: 20px;
-                margin-right: 5px;
-              }
-            }
-          }
-          .buy-btn {
-            font-size: 16px;
-            padding: 0 20px;
-            img {
-              width: 15px;
-              margin-right: 8px;
-            }
-          }
-        }
-      }
-      .perks-holder {
-        max-width: 240px;
-        .heading {
-          font-size: 17px;
-          margin: 0 0 7px 0;
-        }
-        .holder {
-          .my-desc {
-            font-size: 14px;
-          }
-        }
-        .plus {
-          font-size: 17px;
-        }
-        .perk-item {
-          margin: 0 auto 10px;
-          max-width: 230px;
-          height: 38px;
-          .value {
-            p {
-              font-size: 12px;
-            }
-          }
-          .desc {
-            p {
-              font-size: 12px;
-            }
-          }
-        }
-      }
+    &::before {
+      width: 100%;
     }
   }
-}
 
-@media screen and (max-width: 1300px) {
-  .detail-page {
-    padding: 180px 4% 0 7%;
-    .back-btn {
-      font-size: 14px;
-    }
-    .content-holder {
-      .info-holder {
-        max-width: 250px;
-        .desc {
-          font-size: 23px;
-        }
-        .name {
-          font-size: 45px;
-          left: -23px;
-          line-height: 37px;
-        }
-        .text {
-          font-size: 13px;
-          margin: 40px 0 30px;
-          max-width: 270px;
-        }
-        .btns-holder {
-          height: 33px;
-          .price {
-            padding: 0 10px;
-            margin-right: 10px;
-            border-radius: 7px;
-            p {
-              font-size: 14px;
-              img {
-                width: 15px;
-                margin-right: 3px;
-              }
-            }
-          }
-          .buy-btn {
-            font-size: 14px;
-            padding: 0 16px;
-            border-radius: 7px;
-            img {
-              width: 14px;
-              margin-right: 3px;
-            }
-          }
-        }
-      }
-      .perks-holder {
-        max-width: 210px;
-        .heading {
-          font-size: 15px;
-          margin: 0 0 4px 0;
-        }
-        .holder {
-          .my-desc {
-            font-size: 12px;
-          }
-        }
-        .plus {
-          font-size: 15px;
-        }
-        .perk-item {
-          margin: 0 auto 7px;
-          max-width: 210px;
-          height: 34px;
-          border-radius: 7px;
-          .value {
-            border-radius: 7px 0 0 7px;
-            p {
-              font-size: 11px;
-            }
-          }
-          .desc {
-            p {
-              font-size: 11px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .detail-page {
-    padding: 100px 4% 0 7%;
+  .detail-text {
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  }
-}
+    position: relative;
+    height: 100%;
+    width: 30%;
 
-@media screen and (max-width: 850px) {
-  .detail-page {
-    .back-btn {
-      font-size: 13px;
+    .category-title-second {
+      margin-top: 10%;
     }
-    .content-holder {
-      .info-holder {
-        max-width: 210px;
-        .desc {
-          font-size: 18px;
+    .races-desc {
+      margin-top: 5%;
+    }
+    .text-buttons {
+      height: 25%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 5%;
+
+      .buy {
+        white-space: nowrap;
+        transition: 0.3s;
+        padding: 15px 70px;
+        border-radius: 10px;
+        background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
+          linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
+        img {
+          height: 60%;
+          padding-right: 25%;
+          max-height: unset;
+          max-width: unset;
         }
-        .name {
-          font-size: 30px;
-          left: -15px;
-          line-height: 26px;
+      }
+      .buy:hover {
+        transform: scale(1.01);
+        -webkit-transform: scale(1.01);
+        -moz-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+        -o-transform: scale(1.01);
+        box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+      }
+      .left-btn {
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+  .detail-image {
+    height: 75%;
+    width: 30%;
+    position: relative;
+    img {
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      &.car-gif {
+        top: 70%;
+        max-width: 150%;
+        height: auto;
+      }
+      &.racer {
+        max-width: 150%;
+        height: auto;
+      }
+
+      &.special {
+        max-width: 150%;
+        height: auto;
+      }
+    }
+  }
+  .detail-abilities {
+    height: 75%;
+    width: 25%;
+    .category-title-second {
+      text-align: right;
+    }
+    .ability-boxes {
+      height: 90%;
+      margin-top: 10%;
+      width: 100%;
+
+      .ability-box {
+        background: rgba(17, 17, 17, 0.8);
+        width: 100%;
+        display: flex;
+        border-radius: 10px;
+        align-items: center;
+        position: relative;
+        img {
+          height: 50%;
+          margin-left: 5%;
         }
-        .text {
-          font-size: 11px;
-          line-height: 1.2;
-          margin: 30px 0 25px;
-          max-width: 205px;
+        .info-icon {
+          transition: 0.3s;
+          z-index: 1;
+          cursor: pointer;
+          position: absolute;
+          width: 22.5px;
+          height: 22.5px;
+          top: 7.5%;
+          right: 2.5%;
         }
-        .btns-holder {
-          height: 28px;
-          .price {
-            margin-right: 7px;
-            p {
-              font-size: 12px;
-              img {
-                width: 12px;
+        .ability-content {
+          padding: 3%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          transition: 0.3s;
+          opacity: 1;
+          height: 100%;
+          min-width: 100%;
+          display: flex;
+          align-items: center;
+          .races-desc {
+          }
+          &.active-values {
+            opacity: 0;
+          }
+          &.active-info {
+            opacity: 0;
+          }
+        }
+        .ability-text {
+          margin-left: 10%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .races-desc {
+            opacity: 0.5;
+          }
+        }
+      }
+      .cars {
+        margin-top: 5%;
+        height: 22.5%;
+      }
+      .racers {
+        margin-top: 5%;
+        height: 30%;
+      }
+      .tracks {
+        margin-top: 4%;
+        height: 22%;
+      }
+      .special {
+        margin-top: 5%;
+        height: 30%;
+      }
+      &.racers-more-boxes {
+        .ability-box {
+          img {
+            height: 80%;
+          }
+        }
+
+        .racers {
+          margin-top: 4%;
+          height: 22%;
+        }
+      }
+      &.first {
+        margin-top: 0%;
+      }
+    }
+    &.bundles {
+      height: 100%;
+      width: 30%;
+      .abilities-content {
+        margin-top: 5%;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .abilities-section {
+          width: 100%;
+          height: 42.5%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .image {
+            margin-right: 20px;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .category-title-second {
+              height: 10%;
+              width: 150%;
+            }
+            .ability-image {
+              height: 90%;
+              &.ability-racer {
+                min-width: 110%;
+                max-width: 110%;
+                height: auto;
+              }
+              &.ability-car {
+                min-width: 170%;
+                max-width: 170%;
+                height: auto;
               }
             }
           }
-          .buy-btn {
-            font-size: 12px;
-            padding: 0 12px;
-            img {
-              width: 12px;
+          .text {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .ability-box {
+              border-radius: 10px;
+              background: rgba(17, 17, 17, 0.8);
+              width: 100%;
+              height: 35%;
+              display: flex;
+              align-items: center;
+              position: relative;
+              .ability-content {
+                padding: 3%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                transition: 0.3s;
+                opacity: 1;
+                height: 100%;
+                min-width: 100%;
+                display: flex;
+                align-items: center;
+                .races-desc {
+                }
+                &.active-values {
+                  opacity: 0;
+                }
+                &.active-info {
+                  opacity: 0;
+                }
+              }
+              .info-icon {
+                transition: 0.3s;
+                z-index: 1;
+                cursor: pointer;
+                position: absolute;
+                width: 22.5px;
+                height: 22.5px;
+                top: 7.5%;
+                right: 2.5%;
+              }
+              img {
+                height: 50%;
+                margin-left: 5%;
+              }
+              &.second {
+                margin-top: 5%;
+              }
+              .ability-text {
+                margin-left: 10%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .races-desc {
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+        }
+        .plus {
+          height: 5%;
+          width: 100%;
+
+          display: flex;
+          .category-title-third {
+            width: 35%;
+          }
+        }
+
+        .ability-desc {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.category-title-first {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 64px;
+  font-family: "Earth Orbiter";
+  white-space: nowrap;
+}
+.category-title-second {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  font-family: "Earth Orbiter";
+}
+.category-title-third {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+}
+.races-desc {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+@media screen and(max-width: 1700px) {
+  .paging-img {
+    width: 17px;
+  }
+}
+@media screen and(max-width: 1550px) {
+  .paging-img {
+    width: 15px;
+  }
+  .detail-content {
+    .detail-text {
+      .text-buttons {
+        .buy {
+          padding: 10px 55px;
+        }
+      }
+    }
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 17.5px;
+            height: 17.5px;
+          }
+        }
+      }
+      &.bundles {
+        height: 100%;
+        .abilities-content {
+          .abilities-section {
+            .text {
+              height: 120%;
+              .ability-box {
+                .info-icon {
+                  width: 17px;
+                  height: 17px;
+                }
+              }
             }
           }
         }
       }
-      .perks-holder {
-        max-width: 190px;
-        .heading {
-          font-size: 15px;
-          margin: 0 0 4px 0;
+    }
+  }
+  .category-title-first {
+    font-size: 40px;
+    line-height: 42px;
+  }
+  .category-title-second {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .category-title-third {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .races-desc {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+@media screen and(max-width: 1400px) {
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 15px;
+            height: 15px;
+          }
         }
-        .perk-item {
-          max-width: 176px;
-          height: 31px;
-          .value {
-            p {
-              font-size: 10px;
+      }
+      &.bundles {
+        .abilities-content {
+          .abilities-section {
+            .text {
+              .ability-box {
+                .info-icon {
+                  width: 15px;
+                  height: 15px;
+                }
+              }
             }
           }
-          .desc {
-            padding-left: 7%;
-            p {
-              font-size: 10px;
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 35px;
+    line-height: 37px;
+  }
+  .category-title-second {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-third {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+@media screen and(max-width: 1200px) {
+}
+@media screen and(max-width: 1024px) {
+}
+
+@media screen and (min-width: 2100px) and (min-height: 1081px) {
+}
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .detail-content {
+    .detail-text {
+      .text-buttons {
+        .buy {
+          padding: 8px 40px;
+        }
+      }
+    }
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 12.5px;
+            height: 12.5px;
+          }
+          .ability-content {
+            padding: 2%;
+          }
+        }
+      }
+      &.bundles {
+        .abilities-content {
+          .abilities-section {
+            .text {
+              .ability-box {
+                .info-icon {
+                  width: 12.5px;
+                  height: 12.5px;
+                }
+                .abilities-content {
+                  padding: 2%;
+                }
+              }
             }
+          }
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .category-title-second {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-third {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .races-desc {
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .category-title-first {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .category-title-second {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .category-title-third {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .races-desc {
+    font-size: 6px;
+    line-height: 8px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .paging-img {
+    width: 8.5px;
+  }
+  .detail-content {
+    .detail-abilities {
+      .ability-boxes {
+        .ability-box {
+          .info-icon {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+      &.bundles {
+        .abilities-content {
+          .abilities-section {
+            .text {
+              .ability-box {
+                .info-icon {
+                  width: 10px;
+                  height: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .category-title-first {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-second {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-third {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .races-desc {
+    font-size: 4px;
+    line-height: 6px;
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .main-holder {
+    height: auto;
+    padding: 100px 0px 30px 0px;
+  }
+
+  .detail-content {
+    justify-content: unset;
+    flex-direction: column;
+    padding: 0px;
+    width: 90%;
+    height: auto;
+    .detail-text {
+      order: 2;
+      width: 100%;
+      height: auto;
+    }
+    .detail-image {
+      order: 1;
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        position: relative;
+        margin: 0 auto;
+        left: 0%;
+        top: 0%;
+        transform: translate(0%, 0%);
+        -webkit-transform: translate(0%, 0%);
+        -moz-transform: translate(0%, 0%);
+        -ms-transform: translate(0%, 0%);
+        -o-transform: translate(0%, 0%);
+        &.car-gif {
+          width: auto;
+          max-width: 110%;
+          height: auto;
+          top: 0%;
+        }
+        &.racer {
+          width: auto;
+          max-width: 110%;
+          height: 300px;
+        }
+        &.track {
+          width: auto;
+          max-width: 110%;
+          height: 200px;
+        }
+        &.special {
+          width: auto;
+          max-width: 90%;
+        }
+      }
+    }
+    .detail-abilities {
+      order: 3;
+      margin-top: 30px;
+      height: auto;
+      width: 100%;
+      .category-title-second {
+        text-align: left;
+      }
+      .ability-boxes {
+        height: auto;
+        margin-top: 20px;
+        width: 100%;
+        .ability-box {
+          background: rgba(17, 17, 17, 0.8);
+          width: 100%;
+          display: flex;
+          padding: 0;
+          align-items: center;
+          img {
+            height: 50%;
+            margin-left: 5%;
+          }
+          .ability-text {
+            margin-left: 10%;
+          }
+          .ability-content {
+            padding: 0px;
+          }
+        }
+        .cars {
+          margin-top: 10px;
+          height: 50px;
+        }
+        .racers {
+          margin-top: 10px;
+          height: 50px;
+        }
+        .tracks {
+          margin-top: 10px;
+          height: 50px;
+        }
+        .special {
+          margin-top: 10px;
+          height: 50px;
+        }
+        &.racers-more-boxes {
+          .ability-box {
+            img {
+              height: 60%;
+            }
+          }
+
+          .racers {
+            margin-top: 10px;
+            height: 50px;
+          }
+        }
+      }
+      &.bundles {
+        height: 400px;
+        width: 100%;
+        .abilities-content {
+          margin-top: 5%;
+          height: 85%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          .abilities-section {
+            width: 100%;
+            height: 42.5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .image {
+              width: 35%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .category-title-second {
+                height: 10%;
+              }
+              .ability-image {
+                height: 90%;
+                &.ability-racer {
+                  min-width: 110%;
+                  max-width: 110%;
+                  height: auto;
+                }
+                &.ability-car {
+                  min-width: 170%;
+                  max-width: 170%;
+                  height: auto;
+                }
+              }
+            }
+            .text {
+              width: 60%;
+
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              .ability-box {
+                background: rgba(17, 17, 17, 0.8);
+                width: 100%;
+                height: 35%;
+                display: flex;
+                align-items: center;
+                img {
+                  height: 50%;
+                  margin-left: 5%;
+                }
+                &.second {
+                  margin-top: 5%;
+                }
+                .ability-text {
+                  margin-left: 10%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  .races-desc {
+                    opacity: 0.5;
+                  }
+                }
+              }
+            }
+          }
+          .plus {
+            height: 5%;
+            width: 100%;
+
+            display: flex;
+            .category-title-third {
+              width: 35%;
+            }
+          }
+
+          .ability-desc {
+            text-align: center;
           }
         }
       }
@@ -478,34 +891,108 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  .detail-page {
-    padding: 80px 4%;
-    .content-holder {
-      flex-wrap: wrap;
-      justify-content: center;
-      .info-holder {
-        max-width: 100%;
-        width: 100%;
-        text-align: center;
-        .name {
-          left: 0;
-        }
-        .text {
-          margin: 30px auto 25px;
-          max-width: 205px;
-        }
-        .btns-holder {
-          justify-content: center;
-        }
-      }
-      .img-holder {
-        width: 90%;
-        max-width: 440px;
-      }
-      .perks-holder {
-        width: 90%;
-      }
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .paging-img {
+    width: 15px;
+  }
+  .category-title-first {
+    font-size: 26px;
+    line-height: 28px;
+  }
+  .category-title-second {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .category-title-third {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .races-desc {
+    font-size: 10px;
+    line-height: 12px;
+    opacity: 0.6;
+  }
+}
+
+//BACK BUTTON
+.content-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and(max-width: 1700px) {
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
+    }
+  }
+}
+@media screen and(max-width: 1550px) {
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
     }
   }
 }
