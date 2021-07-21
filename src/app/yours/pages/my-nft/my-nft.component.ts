@@ -506,7 +506,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     {
       id: 48,
       collection: "Special",
-      name: "DAOMaker",
+      name: "DAO Maker",
       link: "@TheDaoMaker",
       image: "car41",
       type: "car",
@@ -739,7 +739,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     {
       id: 9,
       collection: "Special",
-      name: "DAOMaker",
+      name: "DAO Maker",
       link: "@TheDaoMaker",
       image: "dao-maker",
       type: "racer",

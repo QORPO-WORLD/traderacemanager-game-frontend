@@ -70,6 +70,7 @@ export class LoginComponent
   capInterval: any;
   metaSwitch = false;
   walletSwitch = false;
+  animation: number;
   chainId = 137;
   trying = false;
   dangerInterval: any;
@@ -314,9 +315,24 @@ export class LoginComponent
       clearTimeout(timeout1);
     }, 200);
   }
-
-
-  reload() {
-    window.location.reload();
+  switchToWallet() {
+    if (this.walletSwitch === false) {
+      this.animation = 1;
+      const timeout1 = window.setTimeout(() => {
+        this.walletSwitch = true;
+        this.animation = 2;
+        clearTimeout(timeout1);
+      }, 300);
+    } else {
+      this.animation = 3;
+      const timeout2 = window.setTimeout(() => {
+        this.walletSwitch = false;
+        this.animation = 4;
+        clearTimeout(timeout2);
+      }, 300);
+    }
+  }
+  openLink(url: string) {
+    window.open(url, "_blank");
   }
 }

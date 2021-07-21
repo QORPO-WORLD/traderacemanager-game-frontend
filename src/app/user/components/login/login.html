@@ -1,20 +1,41 @@
 <div class="main-holder">
   <div class="login-back-div">
-    <div class="login-back"></div>
+    <div
+      [ngClass]="{wallet: walletSwitch === true || metaSwitch === true}"
+      class="login-back"
+    ></div>
   </div>
   <div class="back-btn" [routerLink]="'/user/home'">
-    <img src="assets/base/images/icons/icon-back-blue.svg" alt="blue arrow" />
+    <img
+      *ngIf="walletSwitch === false"
+      src="assets/base/images/icons/icon-back-blue.svg"
+      alt="blue arrow"
+    />
+    <img
+      *ngIf="walletSwitch === true"
+      src="assets/base/images/icons/icon-back-yellow.svg"
+      alt="yellow arrow"
+    />
     <p>Back</p>
   </div>
   <div class="login-content">
-    <div class="center-content">
+    <div
+      [ngClass]="{'dissapear-top-animation': animation === 1, 'engage-top-animation': animation === 4}"
+      *ngIf="walletSwitch === false"
+      class="center-content"
+    >
       <form [formGroup]="reactiveForm">
         <div
           class="my-input"
           [ngClass]="{'filled': f.username.value !== '' && f.username.value !== undefined}"
           #username
         >
-          <img src="/assets/base/images/user-icon.svg" alt="" class="icon" />
+          <img
+            src="/assets/base/images/user-icon.svg"
+            alt=""
+            class="icon trm"
+          />
+
           <input
             type="text"
             required
@@ -102,11 +123,172 @@
         <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
         | translate}}
       </button>
-      <button class="social-button" (click)="walletSwitch = true">
+      <button class="social-button" (click)="switchToWallet()">
         <img src="/assets/base/images/home-page/Logo.svg" />
-        
+
         Log in with IOI-Wallet
       </button>
+    </div>
+    <div
+      [ngClass]="{'engage-bottom-animation': animation === 2,'dissapear-bottom-animation': animation === 3}"
+      *ngIf="walletSwitch === true"
+      class="center-content"
+    >
+      <form [formGroup]="reactiveForm">
+        <div
+          class="my-input"
+          [ngClass]="{'filled': f.username.value !== '' && f.username.value !== undefined}"
+          #username
+        >
+          <img
+            src="/assets/base/images/icons/user-yellow.svg"
+            alt=""
+            class="icon trm"
+          />
+
+          <input
+            type="text"
+            required
+            formControlName="username"
+            id="cvewssd943"
+            name="vewf43nivwe"
+            autocomplete="false"
+          />
+          <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
+        </div>
+
+        <div
+          class="my-input"
+          [ngClass]="{'filled': f.password.value !== '' && f.password.value !== undefined}"
+          #password
+        >
+          <img
+            src="/assets/base/images/icons/lock-yellow.svg"
+            alt=""
+            class="icon"
+          />
+          <input
+            [type]="show"
+            formControlName="password"
+            id="cvew943"
+            name="vewnivwe"
+            autocomplete="false"
+          />
+          <span class="input-placeholder">{{'login.pass' | translate}}</span>
+          <span
+            class="eyeball"
+            (click)="show = 'text'"
+            [ngClass]="{'show': show === 'password'}"
+            ><img src="/assets/base/images/icons/closed-eye-yellow.svg"
+          /></span>
+          <span
+            class="eyeball"
+            (click)="show = 'password'"
+            [ngClass]="{'show': show === 'text'}"
+            ><img src="/assets/base/images/icons/opened-eye-yellow.svg"
+          /></span>
+        </div>
+
+        <div
+          class="my-input"
+          *ngIf="gauthfired === true && metaSwitch === false"
+        >
+          <img
+            src="/assets/base/images/icons/llock-yellow.svg"
+            alt="lock icon"
+            class="icon"
+          />
+          <input
+            type="text"
+            required
+            [(ngModel)]="gkey"
+            [placeholder]="'login.auth_key' | translate"
+            [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+
+        <div class="my-input" *ngIf="gfbfired === true && metaSwitch === false">
+          <img
+            src="/assets/base/images/icons/lock-yellow.svg"
+            alt="lock icon"
+            class="icon"
+          />
+          <input
+            type="text"
+            required
+            [(ngModel)]="gkey"
+            [placeholder]="'login.auth_key' | translate"
+            [ngClass]="{ 'is-invalid': submitted  && gkey === '' }"
+            [ngModelOptions]="{standalone: true}"
+          />
+        </div>
+      </form>
+
+      <div class="clickers-holder">
+        <div class="regular-box">
+          <p [routerLink]="['/user/sign-up']" class="register">Register</p>
+          <p [routerLink]="['/user/forgot-password']">Forgot Password?</p>
+        </div>
+
+        <button
+          class="cta-button wallet"
+          (click)="submit()"
+          *ngIf="loading === false"
+        >
+          {{'shared.log_in_btn' | translate}}
+        </button>
+        <button class="cta-button wallet" *ngIf="loading === true" disabled>
+          {{'fuel_car.loading' | translate}}
+        </button>
+      </div>
+
+      <p class="or-text">{{'login.or' | translate}}</p>
+
+      <button class="social-button wallet" (click)="metaSwitch = true">
+        <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
+        | translate}}
+      </button>
+      <button class="social-button wallet" (click)="switchToWallet()">
+        <img src="/assets/base/images/home-page/Logo.svg" />
+
+        Log in with E-Mail
+      </button>
+    </div>
+    <div
+      *ngIf="walletSwitch === true"
+      [ngClass]="{'engage-right-animation': animation === 2,'dissapear-right-animation': animation === 3}"
+      class="wallet-info-text"
+    >
+      <p class="category-title-first">What is IOI-Wallet?</p>
+      <p>IOI-Wallet is custom crypto wallet created by IOI Corporation</p>
+      <div class="wallet-images">
+        <span
+          (click)="openLink(' https://play.google.com/store/apps/details?id=ioi.wallet&hl=en&gl=US')"
+          class="google"
+          ><img
+            class="google-logo"
+            src="/assets/base/images/home-page/google-play.png"
+            alt="google-play logo"
+        /></span>
+        <span
+          (click)="openLink('https://ioi-wallet.com/user/home')"
+          class="wallet"
+        >
+          <img
+            class="wallet-logo"
+            src="/assets/base/images/home-page/Logo.svg"
+            alt="IOI Wallet logo"
+        /></span>
+      </div>
+    </div>
+    <div
+      [ngClass]="{'engage-bottom-animation': animation === 2,'dissapear-bottom-animation': animation === 3}"
+      *ngIf="metaSwitch === true"
+      class="center-content"
+      class="content-center"
+    >
+      <app-metamask-signup></app-metamask-signup>
     </div>
   </div>
 
@@ -156,14 +338,4 @@
       <button  class="fb-login social-button" (click)="metaSwitch = true"><img src="/assets/base/images/meta-logo.png">{{'login.metamask_login' | translate}}</button>
   </div> -->
 </div>
-
-<div class="meta-holder" *ngIf="metaSwitch === true">
-  <app-metamask-signup></app-metamask-signup>
-</div>
-<div class="meta-wallet-holder"  *ngIf="walletSwitch === true">
-  <button (click)="reload()" class="closer">Close</button>
-  <h2 class="metahead">Log in with IOI-Wallet credentials</h2>
-  <app-wallet-login></app-wallet-login>
-</div>
-
 <app-loading-modal *ngIf="showLoadingModal === true"></app-loading-modal>
