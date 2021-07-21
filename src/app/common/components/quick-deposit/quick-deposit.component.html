@@ -57,6 +57,7 @@
             ></div>
           </div>
         </div>
+        
       </div>
     </div>
 
@@ -64,7 +65,7 @@
       <p class="common-heading">Pick a blockchain</p>
       <div class="boxes-holder">
         <div
-          class="box-item"
+          class="box-item chain-box"
           [ngClass]="{ active: chainSelected === 'polygon' }"
           (click)="chainSelected = 'polygon'"
         >
@@ -89,7 +90,7 @@
           </div>
         </div>
         <div
-          class="box-item"
+          class="box-item chain-box"
           [ngClass]="{ active: chainSelected === 'ethereum' }"
           (click)="chainSelected = 'ethereum'"
         >
@@ -113,11 +114,36 @@
             ></div>
           </div>
         </div>
+        <div
+        class="box-item chain-box"
+        [ngClass]="{ active: chainSelected === 'binance' }"
+        (click)="chainSelected ='binance'"
+        >
+          <p>Binance Chain</p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
+          <div class="active-border my-cta-btn-back"></div>
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'binance' }"
+            class="dot"
+          >
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'binance',
+                active: chainSelected === 'binance'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="eth-stuff">
-      <div class="address-holder" *ngIf="chainSelected === 'ethereum'">
+      <div class="address-holder" *ngIf="chainSelected === 'ethereum' || chainSelected === 'polygon' || chainSelected === 'binance'">
         <p class="common-heading">Add an address you deposit from</p>
         <div class="input-holder">
           <input
@@ -158,7 +184,7 @@
       </div>
     </div>
 
-    <div class="amount-holder" *ngIf="chainSelected !== 'ethereum'">
+    <!-- <div class="amount-holder" *ngIf="chainSelected !== 'ethereum'">
       <div class="info-box">
         <img
           src="/assets/base/images/menu/info-icon.svg"
@@ -206,11 +232,10 @@
         confirmed transaction on the blockchain. Please push the claim button to
         see your balance in the dashboard.
       </p>
-    </div>
+    </div> -->
 
     <div
       class="deposit-disclaim my-border-grad"
-      *ngIf="chainSelected === 'ethereum'"
     >
       <div class="border-maker">
         <div class="inner-holder">
@@ -228,7 +253,7 @@
     <div class="main-panel">
       <div class="inner">
         <ng-container
-          *ngIf="chainSelected !== 'polygon' && chainSelected !== 'ethereum'"
+          *ngIf="chainSelected !== 'polygon' && chainSelected !== 'ethereum' && chainSelected !=='binance'"
         >
           <div class="not-setup-holder">
             <div class="loading"></div>
@@ -239,7 +264,7 @@
             </p>
           </div>
         </ng-container>
-        <ng-container *ngIf="chainSelected == 'polygon'">
+        <!-- <ng-container *ngIf="chainSelected == 'polygon'">
           <div class="depositing-info">
             <p class="text">You are depositing to</p>
           </div>
@@ -278,14 +303,16 @@
               Claim
             </button>
           </div>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container
           *ngIf="
             cryptoMtfrckr.length > 0 &&
             depositRequested === true &&
-            depositSuccessful === true &&
-            chainSelected === 'ethereum'
+            depositSuccessful === true &&(
+            chainSelected === 'ethereum' ||
+            chainSelected === 'polygon' ||
+            chainSelected === 'binance' )
           "
         >
           <div class="depositing-info">
@@ -320,7 +347,7 @@
         </ng-container>
 
         <ng-container
-          *ngIf="cryptoMtfrckr.length === 0 && chainSelected === 'ethereum'"
+          *ngIf="cryptoMtfrckr.length === 0 && (chainSelected === 'ethereum' || chainSelected === 'binance' || chainSelected === 'polygon')"
         >
           <div class="not-setup-holder">
             <div class="loading"></div>
@@ -335,9 +362,13 @@
         <ng-container
           *ngIf="
             cryptoMtfrckr.length > 0 &&
-            chainSelected === 'ethereum' &&
             depositRequested === false &&
-            depositSuccessful === false
+            depositSuccessful === false &&
+            (
+              chainSelected === 'ethereum' ||
+              chainSelected === 'polygon' ||
+              chainSelected === 'binance'
+            )
           "
         >
           <div class="not-setup-holder">
@@ -350,9 +381,11 @@
         <ng-container
           *ngIf="
             cryptoMtfrckr.length > 0 &&
-            chainSelected === 'ethereum' &&
             depositRequested === true &&
-            depositSuccessful === false
+            depositSuccessful === false &&(
+            chainSelected === 'ethereum' || 
+            chainSelected === 'polygon' ||
+            chainSelected === 'binance')
           "
         >
           <div class="not-setup-holder">
@@ -417,7 +450,7 @@
 
     <div
       class="deposit-disclaim my-cta-btn-back mobile"
-      *ngIf="chainSelected === 'ethereum'"
+      *ngIf="chainSelected === 'ethereum' || chainSelected === 'polygon' || chainSelected === 'binance'"
     >
       <div class="inner-holder">
         <img src="/assets/base/images/modal/warning.png" alt="" />
