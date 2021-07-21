@@ -90,9 +90,9 @@
           </div>
         </div>
         <div
-        class="box-item chain-box"
-        [ngClass]="{ active: chainSelected === 'binance' }"
-        (click)="chainSelected ='binance'"
+          class="box-item chain-box"
+          [ngClass]="{ active: chainSelected === 'binance' }"
+          (click)="chainSelected = 'binance'"
         >
           <p>Binance Chain</p>
           <img
@@ -148,7 +148,11 @@
     <div class="main-panel">
       <div class="inner">
         <ng-container
-          *ngIf="chainSelected !== 'polygon' && chainSelected !== 'ethereum' && chainSelected !=='binance'"
+          *ngIf="
+            chainSelected !== 'polygon' &&
+            chainSelected !== 'ethereum' &&
+            chainSelected !== 'binance'
+          "
         >
           <div class="not-setup-holder">
             <div class="loading"></div>
@@ -158,7 +162,13 @@
             </p>
           </div>
         </ng-container>
-        <ng-container *ngIf="chainSelected === 'polygon' || chainSelected === 'ethereum' || chainSelected ==='binance'">
+        <ng-container
+          *ngIf="
+            chainSelected === 'polygon' ||
+            chainSelected === 'ethereum' ||
+            chainSelected === 'binance'
+          "
+        >
           <div class="withdraw-info">
             <p class="text">You are withdrawing</p>
             <p class="value">
@@ -181,6 +191,91 @@
             <p *ngIf="tokenSelected === 'ioi'" class="desc">
               market value 1 IOI =
               {{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}$
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'polygon'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'ethereum'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'binance'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'polygon'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'ethereum'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'binance'"
+            >
+              1x per day
+            </p>
+
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'polygon'"
+            >
+              1 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'ethereum'"
+            >
+              1 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'binance'"
+            >
+              10 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'polygon'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'ethereum'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'binance'"
+            >
+              1x per day
             </p>
           </div>
           <div class="summary-box">
@@ -206,13 +301,13 @@
               </div>
             </div>
           </div>
-  
+
           <!-- <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
              *ngIf="myDriver?.is_using_authenticator === false">Confirm</button>
     
           <button class="confirm-btn my-cta-btn-back hoverable" (click)="confirming = true" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
              *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
-  
+
           <button
             [disabled]="tokenSelected === 'ioi'"
             [ngClass]="{ disabled: tokenSelected === 'ioi' }"
