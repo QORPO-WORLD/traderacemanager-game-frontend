@@ -43,7 +43,7 @@
           </div>
           <div class="value">
             <p>
-              {{ nftIoiValue *  driverBalance.ioi_usdt | number: "1.2-2":"fr"}}
+              {{ nftIoiValue * driverBalance.ioi_usdt | number: "1.2-2":"fr" }}
               <img
                 src="assets/base/images/icons/dollar-big.svg"
                 alt="dollar logo"
@@ -65,9 +65,8 @@
 
       <div class="amount-holder">
         <p class="big-text">
-          Please deposit NFTs thorugh polygon chain.
-          Don’t send funds from exchange, otherwise your transaction will be
-          lost.
+          Please deposit NFTs thorugh polygon chain. Don’t send funds from
+          exchange, otherwise your transaction will be lost.
         </p>
       </div>
     </div>
@@ -78,9 +77,9 @@
           *ngIf="
             cryptoMtfrckr.length < 0 ||
             depositRequested !== true ||
-            depositSuccessful !== true 
+            depositSuccessful !== true
           "
-        >        
+        >
           <div class="withdraw-info">
             <p class="text">You are depositing</p>
             <p class="value">
@@ -90,6 +89,7 @@
             </p>
             <div class="border-maker my-cta-btn-back"></div>
             <p class="desc">{{ products[0]["name"] }}</p>
+            <p class="desc" style="opacity: 1">*0% Fees</p>
           </div>
           <div class="address-holder">
             <p class="common-heading">Add an address you deposit from</p>
@@ -106,7 +106,8 @@
                 class="correct-input my-cta-btn-back"
                 [ngClass]="{
                   incorrect:
-                    ethMtfrckr.substring(0, 2) !== '0x' || ethMtfrckr.length < 42
+                    ethMtfrckr.substring(0, 2) !== '0x' ||
+                    ethMtfrckr.length < 42
                 }"
               >
                 <svg
@@ -135,7 +136,7 @@
           *ngIf="
             cryptoMtfrckr.length > 0 &&
             depositRequested === true &&
-            depositSuccessful === true 
+            depositSuccessful === true
           "
         >
           <div class="depositing-info">
