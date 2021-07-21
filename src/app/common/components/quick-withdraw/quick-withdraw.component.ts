@@ -129,6 +129,7 @@ export class QuickWithdrawComponent implements OnInit {
     if(this.currency === null && this.contractId !== null){
       this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
         {
+          symbol: this.currency,
           contract_id: this.contractId,
           amount:  this.amount,
           targetAddress: this.cryptoMtfrckr,
@@ -146,6 +147,7 @@ export class QuickWithdrawComponent implements OnInit {
     if(this.currency !== null && this.contractId === null){
       this.transferSubscription = this.blcksrvc.blockchainWithdrawCreate(
         {
+          symbol: this.currency,
           currency: this.currency,
           amount:  this.amount,
           targetAddress: this.cryptoMtfrckr,
