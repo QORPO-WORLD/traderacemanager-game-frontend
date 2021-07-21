@@ -1877,8 +1877,8 @@ ul.fancy {
   left: 0;
   background-color: #141414;
   width: 100%;
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(var(--vh, 1vh) * 100);
   overflow: auto;
   z-index: 10000200000000;
 }
@@ -4955,8 +4955,8 @@ button small {
 .tutorial-modal {
   position: fixed;
   width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
   top: 0;
   left: 0;
   z-index: 1000002;
@@ -5247,7 +5247,7 @@ button small {
 
 @media only screen and (max-width: 900px) {
   .semafor-wrap {
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
   }
   .billboard-holder {
     display: none;
@@ -5682,7 +5682,7 @@ button small {
 @media only screen and (max-width: 900px) and (orientation: portrait) {
   .main-content.zavod {
     background-color: transparent;
-    max-width: 100vh;
+    max-width: calc(var(--vh, 1vh) * 100);
     margin: 0 auto;
     transform: rotate(-90deg) translate(-100%, 0%);
     transform-origin: left top;
@@ -5719,7 +5719,7 @@ button small {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     background: transparent;
     z-index: 100000;
     .rotate-display {
@@ -5878,12 +5878,14 @@ button small {
 @media only screen and (max-height: 400px) and (max-width: 900px) {
   .main-content.zavod {
     .car_rc {
-      margin-top: -40px;
-      height: 365px;
+      margin-top: 0;
+      height: calc(var(--vh, 1vh) * 100);
       .cr_cars_box {
         top: 110px;
+        height: calc(100% - 180px);
         .car_row {
           margin-bottom: 9px;
+          height: 25%;
           .car-user-stats {
             top: 0;
             .place {
@@ -5899,11 +5901,11 @@ button small {
       .still-helperix,
       .moving-road,
       .moving-helperix {
-        height: 365px;
+        height: 100%;
       }
     }
     .final_line {
-      right: -80px;
+      right: calc(320px - 100vh);
     }
     .all-positions {
       padding: 6px;
@@ -5940,7 +5942,7 @@ button small {
   }
   .car {
     width: 255px;
-    height: 87px;
+    height: 150%;
   }
   .chat {
     padding: 5px 8px 10px;
