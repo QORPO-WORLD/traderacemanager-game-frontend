@@ -8,7 +8,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
 }
 .image-holder-second {
@@ -21,7 +21,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
 }
 .ioi-banner {
@@ -49,7 +49,7 @@
 }
 .dash-back {
   position: absolute;
-  height: calc(100vh - 80px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,7 +68,7 @@
 .main-wrapper {
   z-index: 1;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
   overflow-y: hidden;
   padding-left: 40px;
   display: flex;
@@ -126,6 +126,7 @@ h3 {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: -1;
     .square {
       display: none;
       z-index: 2;
@@ -472,7 +473,6 @@ h3 {
     }
   }
   .lower-dashboard {
-    z-index: 2;
     width: 100%;
     height: 20%;
     align-items: flex-end;
@@ -605,10 +605,10 @@ h3 {
     height: 65px;
   }
   .main-wrapper {
-    height: calc(100vh - 65px);
+    height: calc(var(--vh, 1vh) * 100 - 65px);
   }
   .dash-back {
-    height: calc(100vh - 65px);
+    height: calc(var(--vh, 1vh) * 100 - 65px);
   }
   p {
     font-size: 13px;
@@ -831,6 +831,9 @@ h3 {
         .box {
           width: 220px;
         }
+        .reward-switcher {
+          width: 220px;
+        }
       }
     }
     .lower-dashboard {
@@ -893,8 +896,8 @@ h3 {
   }
   .main-wrapper {
     overflow-y: hidden;
-    height: calc(100vh - 45px);
-    max-height: calc(100vh - 45px);
+    height: calc(var(--vh, 1vh) * 100 - 45px);
+    max-height: calc(var(--vh, 1vh) * 100 - 45px);
     min-height: unset;
   }
   .dashboard-content {
@@ -2084,18 +2087,24 @@ h3 {
     height: 100%;
     z-index: 100;
   }
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 .tutorial-modal {
   position: fixed;
   width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
   top: 0;
   left: 0;
   z-index: 1000002;
   overflow: auto;
   background: rgba(17, 17, 17, 0.9);
+  p {
+    opacity: 1;
+  }
   .skip-text {
     text-shadow: none;
     -webkit-background-clip: text;
@@ -2130,7 +2139,6 @@ h3 {
     }
   }
   &.step2 {
-    z-index: 1000000;
     .box-content.content2 {
       z-index: 1;
       opacity: 1;
@@ -2249,7 +2257,7 @@ h3 {
     }
     &.content2 {
       max-width: 420px;
-      right: 540px;
+      right: 575px;
       top: 40%;
       transform: translateY(-50%);
       .text-holder {
@@ -2272,13 +2280,13 @@ h3 {
       }
     }
     &.content4 {
-      max-width: 207px;
-      left: calc(100% - 337px);
-      top: 37%;
-      transform: translateY(-50%);
+      max-width: 270px;
+      right: 575px;
+      bottom: 20px;
+      transform: none;
       .text-holder {
         .pointing-line {
-          top: 10px;
+          bottom: 10px;
           width: 80px;
         }
       }
@@ -2321,8 +2329,7 @@ h3 {
         left: 481px;
       }
       &.content4 {
-        max-width: 200px;
-        left: calc(100% - 287px);
+        right: 528px;
       }
     }
     .skip-text {
@@ -2383,7 +2390,7 @@ h3 {
       }
       &.content3 {
         max-width: 435px;
-        left: 403px;
+        left: 370px;
         .text-holder {
           .pointing-line {
             width: 65px;
@@ -2391,6 +2398,8 @@ h3 {
         }
       }
       &.content4 {
+        max-width: 283px;
+        right: 465px;
         .text-holder {
           .pointing-line {
             width: 65px;
@@ -2447,7 +2456,7 @@ h3 {
       }
       &.content2 {
         max-width: 336px;
-        right: 410px;
+        right: 375px;
         .text-holder {
           .pointing-line {
             width: 55px;
@@ -2464,8 +2473,8 @@ h3 {
         }
       }
       &.content4 {
-        max-width: 172px;
-        left: calc(100% - 267px);
+        max-width: 216px;
+        right: 375px;
         .text-holder {
           .pointing-line {
             width: 55px;
@@ -2484,10 +2493,8 @@ h3 {
 }
 
 @media screen and (min-width: 2100px) and (min-height: 1081px) {
-  .dashboard-content {
-  }
   .dash-back {
-    height: calc(100vh - 100px);
+    height: calc(var(--vh, 1vh) * 100 - 100px);
   }
   .box-heading {
     font-size: 23px;

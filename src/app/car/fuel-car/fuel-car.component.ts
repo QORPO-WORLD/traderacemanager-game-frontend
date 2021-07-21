@@ -368,7 +368,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.getMyDriverStats();
     this.getMyBalance();
     this.fuelBest();
-    // this.launchTutorial();
+    this.launchTutorial();
     this.getMyTeam();
     this.getMyLeaderboard();
     this.trDate = Date.now();
@@ -1402,12 +1402,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     );
 
     if (!isSituated) {
-      
       if (this.selectedCarsToRace.length > 4) {
-        this.notify.error('Error', 'You can fuel a maximum of 5 cars');
+        this.notify.error("Error", "You can fuel a maximum of 5 cars");
         return;
       }
-      
+
       for (let x = 0; x < this.myBet.length; x++) {
         const fake: any = {};
         fake.bet = this.myBet[x].bet;
@@ -1724,12 +1723,22 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     if (window.innerWidth > 870) {
       this.bottomCarsBalancer = 4;
       this.bottomPercentBalancer = 25;
-    } else if (window.innerWidth <= 870 && window.innerWidth > 500) {
+    } else if (
+      window.innerWidth <= 870 &&
+      window.innerWidth > 500 &&
+      window.innerHeight > window.innerWidth
+    ) {
       this.bottomCarsBalancer = 2;
       this.bottomPercentBalancer = 50;
     } else if (window.innerWidth <= 500) {
       this.bottomCarsBalancer = 1;
       this.bottomPercentBalancer = 100;
+    } else if (
+      window.innerWidth <= 600 &&
+      window.innerHeight < window.innerWidth
+    ) {
+      this.bottomCarsBalancer = 2;
+      this.bottomPercentBalancer = 50;
     }
     this.racesObservable = this.racetwoapi
       .racesV2DetailList(this.raceId)
@@ -1970,9 +1979,12 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   nextFuelCar(isContinueBtn: boolean) {
-    if (this.windowFuelCarIndex < this.selectedCarsToRace.length - this.bottomCarsBalancer) {
+    if (
+      this.windowFuelCarIndex <
+      this.selectedCarsToRace.length - this.bottomCarsBalancer
+    ) {
       if (isContinueBtn === false) {
-        this.windowFuelCarIndex++; 
+        this.windowFuelCarIndex++;
       } else if (this.selectedCarIndex + 1 >= this.bottomCarsBalancer) {
         this.windowFuelCarIndex++;
       }

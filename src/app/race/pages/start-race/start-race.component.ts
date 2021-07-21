@@ -775,7 +775,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     this.getMyOwner();
     this.getMyRewards();
     this.getRewards();
-    // this.launchTutorial();
+    this.launchTutorial();
     this.getMyLevel();
     this.getMyLeaderboard();
     this.interval = setInterval(() => {
@@ -1126,7 +1126,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
       localStorage.removeItem("first-time");
       this.verifyModal = false;
-      // this.launchTutorial();
+      this.launchTutorial();
     });
   }
 
@@ -1436,7 +1436,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
 
   nextTutorialStep() {
     if (this.tutorialStep === 4) {
-      this.router.navigate(["/other/tasks"]);
+      this.router.navigate(["/race/race-selection"]);
     }
     this.tutorialStep++;
   }

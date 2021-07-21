@@ -1309,7 +1309,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="step-cont visible step5" *ngIf="stepIndex === 5">
@@ -1337,7 +1336,6 @@
           </div>
         </div>
         <div class="flex-item summary">
-
           <div class="info-cont">
             <div class="info-item">
               <p class="desc">Prize pool</p>
@@ -1639,9 +1637,11 @@
   </div>
 
   <div class="bottom-panels">
-
     <div class="selected-cars" *ngIf="stepIndex === 1 && introModal === false">
       <div class="inner">
+        <p class="select-car" *ngIf="selectedCarsToRace.length === 0">
+          Pick a car
+        </p>
         <div
           class="arrow left"
           (click)="prevSelectedCar()"
@@ -1673,24 +1673,6 @@
           <p>&gt;</p>
         </div>
       </div>
-      <div
-        class="next-btn my-cta-btn-back"
-        *ngIf="selectedCarsToRace.length > 0"
-        (click)="stepIndex = 2; selectDefaultCoin(0); animateFuelSlider()"
-      >
-        <p class="arrow">&gt;</p>
-        <p class="text">Continue</p>
-      </div>
-      <div
-        class="next-btn inactive my-cta-btn-back"
-        *ngIf="selectedCarsToRace.length === 0"
-      >
-        <p class="arrow">&gt;</p>
-        <p class="text">Continue</p>
-      </div>
-      <p class="select-car" *ngIf="selectedCarsToRace.length === 0">
-        Pick a car
-      </p>
     </div>
 
     <div
@@ -1743,6 +1725,25 @@
           <p>&gt;</p>
         </div>
       </div>
+    </div>
+    <ng-container *ngIf="stepIndex === 1 && introModal === false">
+      <div
+        class="next-btn my-cta-btn-back"
+        *ngIf="selectedCarsToRace.length > 0"
+        (click)="stepIndex = 2; selectDefaultCoin(0); animateFuelSlider()"
+      >
+        <p class="arrow">&gt;</p>
+        <p class="text">Continue</p>
+      </div>
+      <div
+        class="next-btn inactive my-cta-btn-back"
+        *ngIf="selectedCarsToRace.length === 0"
+      >
+        <p class="arrow">&gt;</p>
+        <p class="text">Continue</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="stepIndex === 2">
       <div
         class="next-btn my-cta-btn-back"
         *ngIf="
@@ -1750,12 +1751,15 @@
           sumFuel / sumlength !== 100 &&
           selectedCarIndex < selectedCarsToRace.length - 1
         "
-        (click)="nextFuelCar(true);selectedCarIndex = selectedCarIndex + 1; calcSumFuel()"
+        (click)="
+          nextFuelCar(true);
+          selectedCarIndex = selectedCarIndex + 1;
+          calcSumFuel()
+        "
       >
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
-
       <div
         class="next-btn my-cta-btn-back"
         *ngIf="
@@ -1767,7 +1771,6 @@
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
-
       <div
         class="next-btn inactive my-cta-btn-back"
         (click)="scrollToView('analysisBox')"
@@ -1779,8 +1782,7 @@
         <p class="arrow">&gt;</p>
         <p class="text">Continue</p>
       </div>
-    </div>
-
+    </ng-container>
     <div class="hint-holder" *ngIf="stepIndex === 5 && introModal === false">
       <div class="img-holder">
         <img src="/assets/base/images/tankovanie/hint-icon.svg" alt="" />
@@ -2066,8 +2068,7 @@
       <p class="heading">Summary</p>
       <p class="text">
         Check all of your choices before joining the race, see the prize pool,
-        your bet and the ammount of players. Add a multibet and earn even more
-        money.
+        your bet and the ammount of players. Let's continue to actual race whenever you are ready.
       </p>
       <div class="pointing-line to-left"></div>
     </div>

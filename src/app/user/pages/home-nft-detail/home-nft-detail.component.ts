@@ -1,6 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-home-nft-detail",
@@ -8,28 +6,6 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home-nft-detail.component.scss"],
 })
 export class HomeNftDetailComponent implements OnInit {
-  typeObserver: Subscription;
-  assetType: any;
-  assetId: number;
-  assetPage: number;
-  assetStartPage: number;
-  assetFilter: any;
-  displayArray = [];
-  menuActive = 1;
-  isMenuActive = false;
-  activeMenu = 0;
-  abilities = false;
-  actualPage;
-  startPage;
-  filter;
-  display = innerWidth;
-
-  modalActive;
-  noGifActive = true;
-  gifName;
-  timer = null;
-  timer2 = null;
-
   products: Array<object> = [
     //bronze
     {
@@ -485,10 +461,23 @@ export class HomeNftDetailComponent implements OnInit {
       alt: "nft car blue storm",
     },
     {
+      id: 37,
+      position: 60,
+      collection: "Special",
+      name: "TESLA",
+      price: 50,
+      image: "car60",
+      type: "car",
+      ability3: "8760",
+      amount: [],
+      alt: "nft car tesla",
+    },
+    {
       id: 1,
+      position: 0,
       collection: "Super",
       name: "Axle",
-      prize: "100 IOI",
+      price: "100",
       image: "white-trm",
       gif: "white-trm-animation",
       type: "racer",
@@ -501,9 +490,10 @@ export class HomeNftDetailComponent implements OnInit {
 
     {
       id: 2,
+      position: 1,
       collection: "Super",
       name: "Flash",
-      prize: "100 IOI",
+      price: "100",
       image: "red-trm",
       gif: "red-trm-animation",
       type: "racer",
@@ -515,9 +505,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 3,
+      position: 2,
       collection: "Super",
       name: "Octane",
-      prize: "100 IOI",
+      price: "100",
       image: "blue-trm",
       gif: "blue-trm-animation",
       type: "racer",
@@ -529,9 +520,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 4,
+      position: 3,
       collection: "Super",
       name: "Punisher",
-      prize: "100 IOI",
+      price: "100",
       image: "black-trm",
       gif: "black-trm-animation",
       type: "racer",
@@ -543,9 +535,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 5,
+      position: 4,
       collection: "Epic",
       name: "Lady Rich",
-      prize: "1 000 IOI",
+      price: "1 000",
       image: "lady-rich",
       gif: "lady-rich-animation",
       type: "racer",
@@ -557,9 +550,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 6,
+      position: 5,
       collection: "Epic",
       name: "Rich Jr.",
-      prize: "1 000 IOI",
+      price: "1 000",
       image: "bad-boy",
       gif: "bad-boy-animation",
       type: "racer",
@@ -571,9 +565,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 7,
+      position: 6,
       collection: "Epic",
       name: "Mrs. Rich",
-      prize: "1 000 IOI",
+      price: "1 000",
       image: "mrs-rich",
       gif: "mrs-rich-animation",
       type: "racer",
@@ -585,9 +580,10 @@ export class HomeNftDetailComponent implements OnInit {
     },
     {
       id: 8,
+      position: 7,
       collection: "Legendary",
       name: "Mr. Rich",
-      prize: "10 000 IOI",
+      price: "10 000",
       image: "mr-rich",
       gif: "mr-rich-animation",
       type: "racer",
@@ -599,10 +595,10 @@ export class HomeNftDetailComponent implements OnInit {
       alt: "nft racer mr. rich",
     },
     {
-      id: 37,
+      id: 38,
       collection: "Race tracks",
       name: "Free track",
-      prize: "Soon",
+      price: "Soon",
       image: "free-track",
       type: "track",
       ability1: "2 minutes",
@@ -611,52 +607,52 @@ export class HomeNftDetailComponent implements OnInit {
       alt: "nft track free",
     },
     {
-      id: 38,
+      id: 39,
       collection: "Race tracks",
       name: "Desert",
-      prize: "Soon",
+      price: "Soon",
       image: "desert",
       type: "track",
-      bet: "1 IOI",
+      bet: "1",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
       alt: "nft track desert",
     },
     {
-      id: 39,
+      id: 40,
       collection: "Race tracks",
       name: "Dark forest",
-      prize: "Soon",
+      price: "Soon",
       image: "dark-forest",
       type: "track",
-      bet: "5 IOI",
+      bet: "5",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
       alt: "nft track dark forest",
     },
     {
-      id: 40,
+      id: 41,
       collection: "Race tracks",
       name: "Night city",
-      prize: "Soon",
+      price: "Soon",
       image: "night-city",
       type: "track",
-      bet: "10 IOI",
+      bet: "10",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
       alt: "nft track night city",
     },
     {
-      id: 41,
+      id: 42,
       collection: "Race tracks",
       name: "Sea bridge",
-      prize: "Soon",
+      price: "Soon",
       image: "sea-bridge",
       type: "track",
-      bet: "50 IOI",
+      bet: "50",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
@@ -664,196 +660,204 @@ export class HomeNftDetailComponent implements OnInit {
     },
 
     {
-      id: 42,
+      id: 43,
       collection: "Race tracks",
       name: "Underground",
-      prize: "Soon",
+      price: "Soon",
       image: "underground",
       type: "track",
-      bet: "100 IOI",
+      bet: "100",
       ability1: "2 minutes",
       ability2: "Random events",
       amount: [],
       alt: "nft track underground",
     },
     {
-      id: 43,
-      collection: "",
-      name: "BTC",
-      prize: "Sold out",
-      image: "btc-team",
-      type: "team",
-      amount: [],
-      alt: "nft team btc",
-    },
-
-    {
       id: 44,
-      collection: "",
-      name: "IOI",
-      prize: "Sold out",
-      image: "ioi-team",
-      type: "team",
-      amount: [],
-      alt: "nft team ioi",
+      position: 0,
+      type: "bundle",
+      name: "DAOMaker",
+      link: "@TheDaoMaker",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-dao",
+      racer: "dao-maker",
+      car: "car41",
+      avatar: "dao-avatar",
+      back: "dao-back",
     },
     {
       id: 45,
-      collection: "",
-      name: "ALT",
-      prize: "Sold out",
-      image: "alt-team",
-      type: "team",
-      amount: [],
-      alt: "nft team alt",
+      position: 1,
+      type: "bundle",
+      name: "Shreyansh Polygon",
+      link: "@shreyansh_27",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-polygon",
+      racer: "polygon",
+      car: "car42",
     },
     {
       id: 46,
-      collection: "",
-      name: "You",
-      prize: "1 000 IOI",
-      image: "team-you",
-      type: "team",
-      ability1: "50 IOI",
-      ability2: "20%",
-      amount: [],
-      alt: "nft tea you",
+      position: 3,
+      type: "bundle",
+      name: "Kyle Chasse",
+      link: "@kyle_chasse",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-kyle",
+      racer: "paid",
+      car: "car44",
+      avatar: "paid-avatar",
+      back: "paid-back",
     },
     {
       id: 47,
-      collection: "",
-      name: "Trophy",
-      prize: "",
-      image: "trophy",
-      type: "special",
-      ability2: "Yearly",
-      amount: [],
-      alt: "nft yearly trophy",
+      position: 4,
+      type: "bundle",
+      name: "Ash WSB",
+      link: "@ashWSBreal",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-ash",
+      racer: "ash-wsb",
+      car: "car45",
+      avatar: "ash-avatar",
+      back: "ash-back",
     },
     {
       id: 48,
-      collection: "",
-      name: "Ring",
-      prize: "",
-      image: "ring",
-      type: "special",
-      ability1: "Entry to yearly tournament",
-      ability2: "Monthly",
-      amount: [],
-      alt: "nft monthly ring",
+      position: 5,
+      type: "bundle",
+      name: "Tehmoonwalker",
+      link: "@tehMoonwalkeR",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-tehmoon",
+      racer: "tehmoonwalker",
+      car: "car46",
+      avatar: "tehmoon-avatar",
+      back: "tehmoon-back",
+    },
+
+    {
+      id: 49,
+      position: 6,
+      type: "bundle",
+      name: "Parabolic Guy",
+      link: "@GoingParabolic",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-parabolic",
+      racer: "parabolic-guy",
+      car: "car47",
+      avatar: "parabolic-avatar",
+      back: "parabolic-back",
+    },
+    {
+      id: 50,
+      position: 9,
+      type: "bundle",
+      name: "Altcoin Buzz",
+      link: "@Altcoinbuzzio",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-altcoin",
+      racer: "altcoin-buzz",
+      car: "car50",
+      avatar: "altcoin-avatar",
+      back: "altcoin-back",
+    },
+    {
+      id: 51,
+      position: 10,
+      type: "bundle",
+      name: "Cryptowizard",
+      link: "@CryptoWizardd",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-wizard",
+      racer: "cryptowizard",
+      car: "car51",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
+    {
+      id: 52,
+      position: 11,
+      type: "bundle",
+      name: "Kucoin",
+      link: "@kucoincom",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-kucoin",
+      racer: "kucoin",
+      car: "car52",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
     },
   ];
+  infoRoi = false;
+  infoRoiYearly = false;
+  position: number;
 
-  width() {
-    this.display = innerWidth;
-  }
-  constructor(private route: ActivatedRoute) {}
+  displayArray = [];
+  @Input() assetType = "bundle";
+  @Input() assetId = 1;
+  @Input() assetPosition = 1;
+  @Output() modalActive = new EventEmitter<number>();
+  @Output() marketState = new EventEmitter<number>();
+
+  noGifActive = true;
+  gifName = "";
+  animationActive = false;
+  timer = null;
+
+  timer2 = null;
+
+  constructor() {}
 
   ngOnInit() {
-    this.getAssetType();
+    this.resolveShowAsset();
   }
 
-  filterRacers() {
-    this.products = this.products.filter((item) => item["type"] === "racer");
-  }
-  filterCars() {
-    this.products = this.products.filter((item) => item["type"] === "car");
-  }
-  filterTracks() {
-    this.products = this.products.filter((item) => item["type"] === "track");
-  }
-  filterTeams() {
-    this.products = this.products.filter((item) => item["type"] === "team");
-  }
-  filterSpecial() {
-    this.products = this.products.filter((item) => item["type"] === "special");
-  }
-
-  getAssetType() {
-    this.typeObserver = this.route.queryParams.subscribe((params) => {
-      this.assetType = params["type"];
-      this.assetId = +params["id"];
-      this.assetPage = +params["page"];
-      this.assetStartPage = +params["startPage"];
-      this.assetFilter = params["filter"];
-      if (!this.assetFilter) {
-        this.assetType = "all";
-      }
-      if (!this.assetType) {
-        this.assetType = "racer";
-      }
-      if (!this.assetId) {
-        this.assetId = 1;
-      }
-      if (!this.assetPage) {
-        this.assetPage = 1;
-      }
-      if (!this.assetStartPage) {
-        this.assetStartPage = 0;
-      }
-
-      if (this.assetType === "racer") {
-        this.filterRacers();
-        this.displayArray = this.products;
-      }
-      if (this.assetType === "car") {
-        this.filterCars();
-        this.displayArray = this.products;
-      }
-      if (this.assetType === "track") {
-        this.filterTracks();
-        this.displayArray = this.products;
-      }
-      if (this.assetType === "team") {
-        this.filterTeams();
-        this.displayArray = this.products;
-      }
-      if (this.assetType === "special") {
-        this.filterSpecial();
-        this.displayArray = this.products;
-      }
-      this.displayArray = this.displayArray.filter(
-        (asset) => asset.id === this.assetId
-      );
-      this.actualPage = this.assetPage;
-      this.startPage = this.assetStartPage;
-      this.filter = this.assetFilter;
-    });
-  }
-  activateMenu() {
-    if (this.activeMenu === 0) {
-      this.isMenuActive = true;
-      this.activeMenu = 1;
-    } else {
-      this.isMenuActive = false;
-      this.activeMenu = 0;
-    }
-  }
-  closeModal() {
-    this.modalActive = false;
-  }
-  reset() {
-    let element;
-    element = document.querySelector(".hamburger");
-    element.classList.remove("hamburgerclick");
-    void element.offsetWidth;
-    element.classList.add("hamburgerclick");
-  }
-  resetAbilities() {
-    let element;
-    element = document.querySelector(".plus");
-    element.classList.remove("plus-click");
-    void element.offsetWidth;
-    element.classList.add("plus-click");
-  }
-
-  animationActive = false;
-  showAbilities() {
-    this.abilities = !this.abilities;
-  }
-  showModal(p) {
-    this.modalActive = p;
-  }
   showAnimation() {
     this.animationActive = false;
     this.noGifActive = true;
@@ -874,5 +878,25 @@ export class HomeNftDetailComponent implements OnInit {
     clearTimeout(this.timer2);
     clearTimeout(this.timer);
     this.showAnimation();
+  }
+
+  resolveShowAsset() {
+    this.displayArray = this.products.filter(
+      (asset) => asset["id"] === this.assetId
+    );
+    this.position = this.displayArray[0]["position"];
+  }
+
+  showBuyModal() {
+    this.marketState.emit(3);
+  }
+
+  showModal(p) {
+    this.modalActive.emit(p);
+  }
+  back() {
+    {
+      this.marketState.emit(1);
+    }
   }
 }

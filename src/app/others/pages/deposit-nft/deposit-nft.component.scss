@@ -1,6 +1,6 @@
 .main-holder {
   width: calc(100% - 40px);
-  height: calc(100vh - 80px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
   padding: 40px 0px 40px 40px;
   display: flex;
   position: relative;
@@ -58,7 +58,7 @@
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         .name {
           text-align: left;
           margin-right: 10%;
@@ -91,6 +91,7 @@
         }
       }
     }
+    
     .amount-holder {
       width: 100%;
       height: 316px;
@@ -119,7 +120,9 @@
     .main-panel {
       width: 100%;
       background: rgba(255, 255, 255, 0.05);
-
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       height: 602px;
       margin-bottom: 10px;
       padding: 40px 40px 10px 40px;
@@ -150,6 +153,39 @@
           font-size: 18px;
           margin: 0;
           opacity: 0.4;
+        }
+      }
+      .not-setup-holder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        text-align: center;
+        .loading {
+          border: 8px solid rgba(255, 255, 255, 0.4);
+          border-radius: 50%;
+          border-top: 8px solid transparent;
+          width: 50px;
+          border-right: 8px solid transparent;
+          height: 50px;
+          animation-name: rotating;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-duration: 3s;
+          animation-timing-function: linear;
+          margin: 0 auto;
+        }
+        .heading {
+          font-weight: 600;
+          font-size: 20px;
+          margin: 60px 0 40px;
+        }
+        .text {
+          font-size: 20px;
+          opacity: 0.6;
+          font-weight: 400;
+          margin: 0;
         }
       }
       .summary-box {
@@ -192,6 +228,158 @@
         padding: 11px 40px;
 
         margin-top: 65px;
+      }
+    }
+    .depositing-info {
+      text-align: center;
+      .text {
+        font-size: 14px;
+        font-weight: 300;
+        margin: 0 0 10px 0;
+      }
+      .value {
+        font-weight: 600;
+        font-size: 32px;
+        margin: 0;
+        display: inline-block;
+        position: relative;
+        .value-desc {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(102%, -25%);
+          font-size: 16px;
+          font-weight: 300;
+        }
+      }
+      .desc {
+        font-size: 14px;
+        margin: 0;
+        opacity: 0.4;
+      }
+    }
+    .my-wallet-info {
+      padding: 9px 0;
+      margin: 15px 0;
+      position: relative;
+      .info-item {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 50px;
+        &.crypto-adress {
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 60px;
+          input {
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 24px;
+          }
+        }
+        &.second {
+          margin-top: 5px;
+        }
+        p {
+          font-size: 16px;
+          margin: 0;
+          font-weight: 500;
+          &.desc {
+            font-weight: 400;
+          }
+        }
+        input {
+          background: transparent;
+          padding: 5px 10px;
+          border: none;
+        }
+      }
+    }
+    .qr-code-holder {
+      text-align: center;
+      .info-text {
+        font-size: 16px;
+        margin: 0 0 25px 0;
+        opacity: 0.4;
+        line-height: 1.2;
+        &.important {
+          opacity: 1;
+          margin: 17px 0;
+          font-weight: 600;
+        }
+      }
+      .qr-code {
+        width: 154px;
+        display: block;
+        margin: 10px auto 20px;
+      }
+      .our-code {
+        font-weight: 500;
+        font-size: 16px;
+        margin: 0 0 15px 0;
+      }
+      .confirm-btn {
+        width: 180px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 11px 40px;
+      }
+    }
+  }
+  .eth-stuff{
+    padding: 20px;
+    height: 662px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .address-holder {
+    margin-bottom: 69px;
+    position: relative;
+    .common-heading {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 13px 64px 13px 30px;
+
+      background: white;
+      width: 100%;
+      border: none;
+      outline: none;
+      color: #333;
+      font-weight: 600;
+    }
+    button {
+      width: 100%;
+      height: 40px;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 11px 40px;
+
+      margin-top: 25px;
+    }
+    .input-holder {
+      position: relative;
+      .correct-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 50px;
+        height: 100%;
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          path {
+            fill: white;
+          }
+        }
+        &.incorrect {
+          background: #ebebeb;
+        }
       }
     }
   }
@@ -242,6 +430,42 @@
       .main-panel {
         height: 576px;
         padding: 25px 30px 10px 30px;
+        .depositing-info {
+          .text {
+            font-size: 13px;
+            margin: 0 0 7px 0;
+          }
+          .value {
+            font-size: 28px;
+            .value-desc {
+              font-size: 14px;
+            }
+          }
+          .desc {
+            font-size: 13px;
+          }
+        }
+        .my-wallet-info {
+          padding: 12px 0;
+          margin: 13px 0;
+          .info-item {
+            &.crypto-adress {
+              margin-bottom: 50px;
+              input {
+                font-size: 22px;
+              }
+            }
+            &.second {
+              margin-bottom: 40px;
+            }
+            p {
+              font-size: 15px;
+            }
+            input {
+              font-size: 15px;
+            }
+          }
+        }
         .summary-box {
           .info-item {
             p {
@@ -260,7 +484,7 @@
 @media screen and (max-width: 1550px) {
   .main-holder {
     width: calc(100% - 20px);
-    height: calc(100vh - 65px);
+    height: calc(var(--vh, 1vh) * 100 - 65px);
     padding: 20px 0px 20px 20px;
   }
   .content-holder {
@@ -305,6 +529,59 @@
       .main-panel {
         height: 480px;
         padding: 20px 22px 7px 22px;
+        .address-holder {
+          margin-bottom: 19px;
+          input {
+            font-size: 14px;
+            padding: 11px 46px 11px 25px;
+          }
+          .input-holder {
+            .correct-input {
+              width: 43px;
+            }
+          }
+        }
+        .depositing-info {
+          .value {
+            font-size: 25px;
+            .value-desc {
+              font-size: 12px;
+            }
+          }
+        }
+        .my-wallet-info {
+          padding: 6px 0;
+          margin: 11px 0;
+          .info-item {
+            p {
+              font-size: 14px;
+              &.desc {
+                font-size: 13px;
+              }
+            }
+            input {
+              font-size: 14px;
+              padding: 1px 10px;
+            }
+          }
+        }
+        .qr-code-holder {
+          .info-text {
+            font-size: 14px;
+            line-height: 1.2;
+          }
+          .qr-code {
+            width: 130px;
+          }
+          .our-code {
+            font-size: 14px;
+            margin: 0 0 10px 0;
+          }
+          .confirm-btn {
+            padding: 8px 36px;
+            font-size: 14px;
+          }
+        }
         .withdraw-info {
           .text {
             font-size: 16px;
@@ -318,6 +595,16 @@
           }
           .desc {
             font-size: 16px;
+          }
+        }
+        .not-setup-holder {
+          .heading {
+            font-size: 19px;
+            margin: 30px 0 20px;
+          }
+          .text {
+            font-size: 17px;
+            line-height: 1.2;
           }
         }
         .summary-box {
@@ -360,6 +647,28 @@
     }
     .right-holder {
       width: 42%;
+      .main-panel{
+        .depositing-info {
+          .text {
+            font-size: 12px;
+          }
+        }
+        .my-wallet-info {
+          .info-item {
+            &.crypto-adress {
+              margin-bottom: 45px;
+              input {
+                font-size: 17px;
+              }
+            }
+          }
+        }
+        .qr-code-holder {
+          .info-text {
+            font-size: 12px;
+          }
+        }
+      }
     }
   }
 }
@@ -459,10 +768,87 @@
     width: calc(100% - 10px);
     padding: 10px 0px 10px 10px;
   }
+  .content-holder{
+    .right-holder{
+      .main-panel{
+        .depositing-info {
+          .text {
+            font-size: 11px;
+          }
+        }
+        .my-wallet-info {
+          padding: 3px 0;
+          margin: 4px 0;
+          .info-item {
+            &.crypto-adress {
+              margin-bottom: 35px;
+              input {
+                font-size: 13px;
+              }
+            }
+            &.second {
+              margin-bottom: 30px;
+            }
+          }
+        }
+        .qr-code-holder {
+          .info-text {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .content-holder{
+    .right-holder{
+      .main-panel{
+        .address-holder {
+          margin-bottom: 7px;
+          input {
+            font-size: 9px;
+            padding: 4px 30px 4px 14px;
+          }
+          .input-holder {
+            .correct-input {
+              width: 26px;
+              svg {
+                width: 10px;
+              }
+            }
+          }
+          button {
+            height: 20px;
+            font-size: 9px;
+            padding: 4px 15px;
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+  }
+  .not-setup-holder {
+    .loading {
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      border-top: 4px solid transparent;
+      width: 28px;
+      border-right: 4px solid transparent;
+      height: 28px;
+    }
+    .heading {
+      font-size: 10px;
+      margin: 11px 0 8px;
+    }
+    .text {
+      font-size: 9px;
+    }
+  }
+  
 }
 @media screen and (max-width: 1024px) and (orientation: landscape) {
   .main-holder {
-    height: calc(100vh - 40px);
+    height: calc(var(--vh, 1vh) * 100 - 40px);
   }
   .content-holder {
     height: 100%;
@@ -529,8 +915,78 @@
         margin: 0px;
       }
       .main-panel {
-        height: 90%;
+        height: 85%;
         margin-bottom: 0px;
+        .depositing-info {
+          .text {
+            font-size: 9px;
+            margin: 0 0 4px 0;
+          }
+        }
+        .my-wallet-info {
+          padding: 2px 0;
+          margin: 3px 0;
+          .info-item {
+            &.crypto-adress {
+              margin-bottom: 20px;
+              input {
+                font-size: 10px;
+              }
+            }
+            &.second {
+              margin-bottom: 20px;
+            }
+            p {
+              font-size: 11px;
+              &.desc {
+                font-size: 9px;
+              }
+            }
+          }
+        }
+        .qr-code-holder {
+          .info-text {
+            font-size: 9px;
+            margin: 0 0 10px 0;
+          }
+          .qr-code {
+            margin: 5px auto 15px;
+            width: 90px;
+          }
+          .confirm-btn {
+            width: 130px;
+            height: 30px;
+            padding: 5px 31px;
+            font-size: 11px;
+          }
+        }
+        .address-holder {
+          margin-bottom: 11px;
+          .common-heading {
+            margin-bottom: 2px;
+            height: unset;
+          }
+          input {
+            font-size: 11px;
+            padding: 5px 35px 5px 18px;
+          }
+          .input-holder {
+            .correct-input {
+              width: 26px;
+  
+              svg {
+                width: 13px;
+              }
+            }
+          }
+          button {
+            height: 25px;
+            font-size: 11px;
+            padding: 6px 20px;
+  
+            margin-top: 10px;
+          }
+        }
         .summary-box {
           margin: 0px;
           padding: 0px;
@@ -574,7 +1030,7 @@
 }
 @media screen and(max-width: 1024px) and (orientation: portrait) {
   .main-holder {
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     height: auto;
   }
 }
@@ -595,6 +1051,62 @@
       .main-panel {
         height: unset;
         padding: 16px 18px;
+        .address-holder {
+          .input-holder {
+            .correct-input {
+              width: 43px;
+            }
+          }
+        }
+        .depositing-info {
+          display: none;
+        }
+        .my-wallet-info {
+          padding: 12px 0;
+          margin: 13px 0;
+          order: 2;
+          .info-border {
+            display: none;
+          }
+          .info-item {
+            p {
+              font-size: 14px;
+              &.desc {
+                font-size: 13px;
+              }
+            }
+            &.crypto-adress {
+              margin-bottom: 35px;
+              input {
+                font-size: 10px;
+              }
+            }
+            input {
+              font-size: 14px;
+            }
+            &.second {
+              display: none;
+            }
+          }
+        }
+        .qr-code-holder {
+          order: 1;
+          .info-text {
+            display: none;
+          }
+          .qr-code {
+            width: 90%;
+            max-width: 220px;
+          }
+        }
+        .not-setup-holder {
+          position: relative;
+          transform: none;
+          left: 0;
+          top: 0;
+          padding: 50px 0;
+          max-width: 100%;
+        }
       }
     }
   }
@@ -602,7 +1114,7 @@
 
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .main-holder {
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     height: auto;
   }
   .content-holder {

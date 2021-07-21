@@ -52,250 +52,56 @@
       class="my-carousel-item item2"
       [ngClass]="{ hidden: carouselStep !== 2 }"
     >
-      <div class="top-section bundle-sec">
-        <div class="bundle-detail">
-          <div class="top-overall">
-            <div
-              class="name-holder"
-              [ngStyle]="{
-                'background-image':
-                  'url(/assets/base/images/bundles/' +
-                  bundles[bundleCarStep]['back'] +
-                  '.png)'
-              }"
-            >
-              <p class="value">{{ bundles[bundleCarStep]["name"] }}</p>
-              <p class="desc">{{ bundles[bundleCarStep]["link"] }}</p>
-            </div>
-            <div class="flex-item">
-              <div class="price">
-                <p>
-                  <img src="/assets/base/images/icons/ioi-token.svg" alt="" /> 1
-                  000
-                </p>
+      <div class="top-section tesla">
+        <div class="text-holder">
+          <div class="upper-text">
+            <div class="countdown-row">
+              <h2 class="big">TESLA</h2>
+              <div class="countdown">
+                <div class="days">
+                  <h3 class="big" id="days">day</h3>
+                  <p class="desc">DAYS</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="hours">
+                  <h3 class="big" id="hours">hour</h3>
+                  <p class="desc">HOURS</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="minutes">
+                  <h3 class="big" id="minutes">minute</h3>
+                  <p class="desc">MINUTES</p>
+                </div>
+                <div class="right-border"></div>
+                <div class="seconds">
+                  <h3 class="big" id="seconds">second</h3>
+                  <p class="desc">SECONDS</p>
+                </div>
               </div>
-              <button
-                class="buy-btn"
-                [routerLink]="['/user/bundle-detail']"
-                [queryParams]="{
-                  id: bundles[bundleCarStep]['id'],
-                  back: 'home'
-                }"
-              >
-                <span>BUY</span>
-                <div class="hover-overlay"></div>
+            </div>
+            <div class="bottom-title">
+              <h2 class="big"><span class="left-space">T</span>COMPETITION</h2>
+              <div class="row">
+                <h2 class="big left-space">T</h2>
+                <div class="fill-row">
+                  <h3 class="small letter-spacing">WITH</h3>
+                  <h3 class="small letter-spacing">TRADE</h3>
+                  <h3 class="small letter-spacing">RACE</h3>
+                  <h3 class="small letter-spacing">
+                    MANAGE<span class="no-spacing">R</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="bottom-text">
+              <button [routerLink]="['/user/tesla']" class="action-button">
+                CHECK PRIZES
               </button>
+              <h3 class="smaller letter-spacing">
+                GET FREE NFT TESLA TO WIN A <span class="bold">REAL ONE</span>
+              </h3>
             </div>
           </div>
-
-          <div class="stats-holder">
-            <div class="cris-cros">
-              <div></div>
-              <div class="second"></div>
-            </div>
-            <div class="stat-item">
-              <p class="value">100pcs</p>
-              <p class="desc">LIMITED AMOUNT</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">6%</p>
-              <p class="desc">STAKING</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">0,1&#36;IOI</p>
-              <p class="desc">DAILY REWARD</p>
-            </div>
-            <div class="stat-item">
-              <p class="value">
-                PREMIUM
-                <img
-                  class="premium-badge"
-                  src="/assets/base/images/menu/premium-icon-active.svg"
-                  alt=""
-                />
-              </p>
-              <p class="desc">MEMBER ONLY</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bundle-carousel">
-          <div class="arrow right" (click)="nextBundleCarItem()">
-            <img src="/assets/base/images/bundles/arrow-right.svg" alt="" />
-          </div>
-          <div class="arrow left" (click)="prevBundleCarItem()">
-            <img src="/assets/base/images/bundles/arrow-left.svg" alt="" />
-          </div>
-
-          <div class="high-box">
-            <p class="heading">Bundle includes</p>
-          </div>
-          <div
-            class="inner-slider"
-            [ngStyle]="{ 'left.%': -((bundleCarStep - 1) * 33.333) }"
-          >
-            <ng-container *ngFor="let item of bundles; let i = index">
-              <div
-                class="car-item"
-                [ngClass]="{
-                  'big-item': bundleCarStep === i,
-                  'medium-item':
-                    bundleCarStep === i - 1 || bundleCarStep === i + 1
-                }"
-              >
-                <img
-                  [src]="
-                    '/assets/base/images/bundles/' +
-                    bundles[i]['image'] +
-                    '.png'
-                  "
-                  alt=""
-                  [routerLink]="['/user/bundle-detail']"
-                  [queryParams]="{
-                    id: bundles[bundleCarStep]['id'],
-                    back: 'home'
-                  }"
-                />
-                <div class="bubble car-bubble">
-                  <p>NFT CAR</p>
-                </div>
-                <div class="bubble avatar-bubble">
-                  <p>NFT AVATAR</p>
-                </div>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="my-carousel-item item3"
-      [ngClass]="{ hidden: carouselStep !== 3 }"
-    >
-      <div class="darkerback"></div>
-
-      <div class="top-section bundle-sec">
-        <div class="token-detail">
-          <div
-            class="text-holder up"
-            [ngClass]="ioiIncresing === true ? 'up' : 'down'"
-          >
-            <p class="desc">Current Token Price:</p>
-            <p class="value">1 &#36;IOI = &#36;{{ currentIoiPrice }}</p>
-            <p class="date">as of 15/06/2021 | 3:30 PM CET</p>
-          </div>
-          <div class="flex-item">
-            <div
-              class="exchange"
-              (click)="exSelectorOpened = !exSelectorOpened"
-              [ngClass]="{ opened: exSelectorOpened === true }"
-            >
-              <img
-                class="main-img"
-                [src]="
-                  '/assets/base/images/home-page/exchange' +
-                  selectedExchange +
-                  '.png'
-                "
-                alt=""
-              />
-              <p class="change-text">
-                CHANGE EXCHANGE <br />
-                <svg
-                  width="9"
-                  height="7"
-                  viewBox="0 0 9 7"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
-                    fill="white"
-                  />
-                </svg>
-              </p>
-              <div class="selector">
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 1;
-                    openLink(
-                      'https://app.uniswap.org/#/swap?outputCurrency=0x8b3870df408ff4d7c3a26df852d41034eda11d81&use=v2'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange1.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 2;
-                    openLink('https://www.gate.io/en/trade/IOI_USDT')
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange2.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 3;
-                    openLink(
-                      'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x959229D94c9060552daea25AC17193bcA65D7884'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange3.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 4;
-                    openLink(
-                      'https://quickswap.exchange/#/swap?outputCurrency=0xaf24765f631c8830b5528b57002241ee7eef1c14'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange4.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 5;
-                    openLink('https://trade.kucoin.com/IOI-USDT')
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange5.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-            <a
-              href="https://trade.kucoin.com/IOI-USDT"
-              class="buy-btn buy-link"
-            >
-              <span>BUY</span>
-              <div class="hover-overlay"></div>
-            </a>
-          </div>
-        </div>
-
-        <div class="img-holder">
-          <img src="/assets/base/images/home-page/token-ilustrate.png" alt="" />
         </div>
       </div>
     </div>
@@ -311,12 +117,127 @@
         [ngClass]="{ active: carouselStep === 2 }"
         (click)="manualCarSwitch(2)"
       ></div>
-      <div
-        class="switch-item"
-        [ngClass]="{ active: carouselStep === 3 }"
-        (click)="manualCarSwitch(3)"
-      ></div>
     </div>
+
+    <div class="token-detail" [ngClass]="{'closed': closeTokenDetail === true}">
+
+      <div class="close-detail" (click)="closeTokenDetail = !closeTokenDetail">
+        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
+            fill="white"/>
+        </svg>
+      </div>
+
+      <div
+        class="text-holder up"
+        [ngClass]="ioiIncresing === true ? 'up' : 'down'"
+      >
+        <p class="desc">Current Token Price:</p>
+        <p class="value">1 &#36;IOI = &#36;{{ currentIoiPrice }}</p>
+        <p class="date">{{ displayDate }}</p>
+      </div>
+      <div class="flex-item">
+        <a
+          href="https://ioi-corporation.com/assets/docs/Tokenometrics-IOI.pdf"
+          target="_blank"
+          class="buy-btn buy-link"
+        >
+          <span>TOKENOMETRICS</span>
+          <div class="hover-overlay"></div>
+        </a>
+        <div
+          class="exchange"
+          (click)="exSelectorOpened = !exSelectorOpened"
+          [ngClass]="{ opened: exSelectorOpened === true }"
+        >
+          <p class="buy-text">BUY</p>
+          <p class="change-text">
+            SHOW EXCHANGES <br />
+            <svg
+              width="9"
+              height="7"
+              viewBox="0 0 9 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
+                fill="white"
+              />
+            </svg>
+          </p>
+          <div class="selector">
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 1;
+                openLink(
+                  'https://app.uniswap.org/#/swap?outputCurrency=0x8b3870df408ff4d7c3a26df852d41034eda11d81&use=v2'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange1.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 2;
+                openLink('https://www.gate.io/en/trade/IOI_USDT')
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange2.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 3;
+                openLink(
+                  'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x959229D94c9060552daea25AC17193bcA65D7884'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange3.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 4;
+                openLink(
+                  'https://quickswap.exchange/#/swap?outputCurrency=0xaf24765f631c8830b5528b57002241ee7eef1c14'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange4.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 5;
+                openLink('https://trade.kucoin.com/IOI-USDT')
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange5.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="video-holder">

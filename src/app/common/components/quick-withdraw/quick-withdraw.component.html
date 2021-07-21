@@ -40,7 +40,7 @@
       <p class="common-heading">Pick a blockchain</p>
       <div class="boxes-holder">
         <div
-          class="box-item"
+          class="box-item chain-box"
           [ngClass]="{ active: chainSelected === 'polygon' }"
           (click)="chainSelected = 'polygon'"
         >
@@ -51,20 +51,68 @@
             class="back-img"
           />
           <div class="active-border my-cta-btn-back"></div>
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'polygon' }"
+            class="dot"
+          >
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'polygon',
+                active: chainSelected === 'polygon'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
-
         <div
-          style="opacity: 0.5; cursor: default"
-          class="box-item"
-          [ngClass]="{ inactive: chainSelected !== 'ethereum' }"
+          class="box-item chain-box"
+          [ngClass]="{ active: chainSelected === 'ethereum' }"
+          (click)="chainSelected = 'ethereum'"
         >
-          <p>Coming soon</p>
+          <p>Ethereum Chain</p>
           <img
             src="/assets/base/images/funds-box-back.png"
             alt=""
             class="back-img"
           />
           <div class="active-border my-cta-btn-back"></div>
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'ethereum' }"
+            class="dot"
+          >
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'ethereum',
+                active: chainSelected === 'ethereum'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="box-item chain-box"
+          [ngClass]="{ active: chainSelected === 'binance' }"
+          (click)="chainSelected = 'binance'"
+        >
+          <p>Binance Chain</p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
+          <div class="active-border my-cta-btn-back"></div>
+          <div
+            [ngClass]="{ 'my-border-color': chainSelected === 'binance' }"
+            class="dot"
+          >
+            <div
+              [ngClass]="{
+                'my-simple-back': chainSelected === 'binance',
+                active: chainSelected === 'binance'
+              }"
+              class="inner-dot"
+            ></div>
+          </div>
         </div>
       </div>
     </div>
@@ -99,68 +147,176 @@
     <p class="common-heading">Your withdrawal summary</p>
     <div class="main-panel">
       <div class="inner">
-        <div class="withdraw-info">
-          <p class="text">You are withdrawing</p>
-          <p class="value">
-            <img
-              *ngIf="tokenSelected === 'ioi'"
-              src="/assets/base/images/icons/ioi-big.svg"
-              alt=""
-            />
-            <img
-              *ngIf="tokenSelected === 'matic'"
-              src="/assets/base/images/funds-box-back.png"
-              alt=""
-            />
-            <span *ngIf="amount > 0">{{ amount }}</span>
-            <span *ngIf="amount < 1">0</span>
-          </p>
-          <p *ngIf="tokenSelected === 'matic'" class="desc">
-            market value 1 Polygon = {{ maticusdt }} USD
-          </p>
-          <p *ngIf="tokenSelected === 'ioi'" class="desc">
-            market value 1 IOI =
-            {{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}$
-          </p>
-        </div>
-        <div class="summary-box">
-          <div class="info-item crypto-adress">
-            <div class="desc">
-              <p>Crypto wallet address</p>
-            </div>
-            <div class="text">
-              <input
-                [(ngModel)]="cryptoMtfrckr"
-                [ngModelOptions]="{ standalone: true }"
-                readonly
-              />
-            </div>
-          </div>
-          <div class="info-item second">
-            <div class="desc">
-              <p>Currency you will receive</p>
-            </div>
-            <div class="text">
-              <p *ngIf="tokenSelected === 'matic'" class="value">Polygon</p>
-              <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
-           *ngIf="myDriver?.is_using_authenticator === false">Confirm</button>
-  
-        <button class="confirm-btn my-cta-btn-back hoverable" (click)="confirming = true" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
-           *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
-
-        <button
-          [disabled]="tokenSelected === 'ioi'"
-          [ngClass]="{ disabled: tokenSelected === 'ioi' }"
-          class="confirm-btn my-cta-btn-back hoverable"
-          (click)="withdrawalIoiToken()"
+        <ng-container
+          *ngIf="
+            chainSelected !== 'polygon' &&
+            chainSelected !== 'ethereum' &&
+            chainSelected !== 'binance'
+          "
         >
-          Withdraw
-        </button>
+          <div class="not-setup-holder">
+            <div class="loading"></div>
+            <p class="heading">Pick a Blockchain</p>
+            <p class="text">
+              Please select the type of blockchain for withdrawal
+            </p>
+          </div>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            chainSelected === 'polygon' ||
+            chainSelected === 'ethereum' ||
+            chainSelected === 'binance'
+          "
+        >
+          <div class="withdraw-info">
+            <p class="text">You are withdrawing</p>
+            <p class="value">
+              <img
+                *ngIf="tokenSelected === 'ioi'"
+                src="/assets/base/images/icons/ioi-big.svg"
+                alt=""
+              />
+              <img
+                *ngIf="tokenSelected === 'matic'"
+                src="/assets/base/images/icons/polygon-big.svg"
+                alt=""
+              />
+              <span *ngIf="amount > 0">{{ amount }}</span>
+              <span *ngIf="amount < 1">0</span>
+            </p>
+            <p *ngIf="tokenSelected === 'matic'" class="desc">
+              market value 1 Polygon = {{ maticusdt }} USD
+            </p>
+            <p *ngIf="tokenSelected === 'ioi'" class="desc">
+              market value 1 IOI =
+              {{ myBalance.ioi_usdt | number: "1.2-2":"fr" }}$
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'polygon'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'ethereum'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'binance'"
+            >
+              1 IOI Fee, Min 100 IOI
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'polygon'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'ethereum'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'ioi' && chainSelected === 'binance'"
+            >
+              1x per day
+            </p>
+
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'polygon'"
+            >
+              1 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'ethereum'"
+            >
+              1 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'binance'"
+            >
+              10 Polygon Fee, Min 100&#36; in Matic
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'polygon'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'ethereum'"
+            >
+              1x per day
+            </p>
+            <p
+              class="desc"
+              style="opacity: 1"
+              *ngIf="tokenSelected === 'matic' && chainSelected === 'binance'"
+            >
+              1x per day
+            </p>
+          </div>
+          <div class="summary-box">
+            <div class="info-item crypto-adress">
+              <div class="desc">
+                <p>Crypto wallet address</p>
+              </div>
+              <div class="text">
+                <input
+                  [(ngModel)]="cryptoMtfrckr"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="info-item second">
+              <div class="desc">
+                <p>Currency you will receive</p>
+              </div>
+              <div class="text">
+                <p *ngIf="tokenSelected === 'matic'" class="value">Polygon</p>
+                <p *ngIf="tokenSelected === 'ioi'" class="value">IOI</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <button class="confirm-btn my-cta-btn-back hoverable" (click)="resolveWithdrawal()" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
+             *ngIf="myDriver?.is_using_authenticator === false">Confirm</button>
+    
+          <button class="confirm-btn my-cta-btn-back hoverable" (click)="confirming = true" [disabled]="tokenSelected.length < 1 || amount < 100 || cryptoMtfrckr.length === 0"
+             *ngIf="myDriver?.is_using_authenticator === true">Confirm</button> -->
+
+          <button
+            [disabled]="tokenSelected === 'ioi'"
+            [ngClass]="{ disabled: tokenSelected === 'ioi' }"
+            class="confirm-btn my-cta-btn-back hoverable"
+            (click)="withdrawalIoiToken()"
+          >
+            Withdraw
+          </button>
+        </ng-container>
       </div>
     </div>
   </div>

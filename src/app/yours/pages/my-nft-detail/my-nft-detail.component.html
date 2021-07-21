@@ -41,7 +41,8 @@
       class="races-desc"
       *ngIf="
         displayArray[0]['type'] === 'car' &&
-        displayArray[0]['rare'] === undefined
+        displayArray[0]['rare'] === undefined &&
+        displayArray[0]['name'] != 'TESLA'
       "
     >
       {{ displayArray[0]["name"] }} is unique limited car. Each car is
@@ -59,6 +60,17 @@
       Each car is unparalleled way of owning IOI tokens, staking and APY. The
       main benefit is that you can use your NFTs in-game, buy, sell and trade on
       open markets. The new era of NFTs in your pocket.
+    </p>
+    <p
+      class="races-desc"
+      *ngIf="
+        displayArray[0]['type'] === 'car' && displayArray[0]['name'] === 'TESLA'
+      "
+    >
+      {{ displayArray[0]["name"] }}, one of a kind special limited edition NFT.
+      With Tesla you are able to join TESLA COMPETITION and NFT Tournament
+      happening everyday for 100 IOI. Tesla does not have APY or Staking
+      function. Win rate in regular races is 0.1 IOI per race.
     </p>
     <p class="races-desc" *ngIf="displayArray[0]['type'] === 'track'">
       Track NFTs are introducing investment model for real hardcore owners. You
@@ -90,7 +102,10 @@
       this trophy, you need at least one ring from monthly tournaments.
     </p>
     <div
-      *ngIf="displayArray[0]['collection'] != 'Special'"
+      *ngIf="
+        displayArray[0]['collection'] != 'Special' &&
+        displayArray[0]['name'] != 'TESLA'
+      "
       class="text-buttons"
     >
       <button
@@ -98,7 +113,7 @@
         [queryParams]="
           displayArray[0]['type'] === 'car'
             ? {
-                nftId: displayArray[0]['position'] + 1,
+                nftId: displayArray[0]['position'],
                 nftType: displayArray[0]['type']
               }
             : {
@@ -115,7 +130,7 @@
         [queryParams]="
           displayArray[0]['type'] === 'car'
             ? {
-                nftId: displayArray[0]['position'] + 1,
+                nftId: displayArray[0]['position'],
                 nftType: displayArray[0]['type']
               }
             : {
@@ -132,7 +147,7 @@
         [queryParams]="
           displayArray[0]['type'] === 'car'
             ? {
-                nftId: displayArray[0]['position'] + 1,
+                nftId: displayArray[0]['position'],
                 nftType: displayArray[0]['type']
               }
             : {
@@ -209,7 +224,7 @@
           </div>
         </div>
       </div>
-      <div class="ability-box cars cars">
+      <div *ngIf="displayArray[0]['ability1']" class="ability-box cars cars">
         <div class="ability-content">
           <img
             class="red-star"
@@ -230,7 +245,7 @@
           </div>
         </div>
       </div>
-      <div class="ability-box cars">
+      <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoi === true }"
           (mouseover)="infoRoi = true"

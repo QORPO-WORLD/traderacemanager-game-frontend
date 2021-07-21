@@ -69,6 +69,16 @@ export class MyNftComponent implements OnInit, OnChanges {
     car28: [],
   };
   products: Array<object> = [
+    {
+      id: 60,
+      collection: "Special",
+      name: "TESLA",
+      image: "car60",
+      type: "car",
+      rank: "low",
+      amount: [],
+      alt: "nft car Tesla",
+    },
     //bronze
     {
       id: 20,
@@ -496,7 +506,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     {
       id: 48,
       collection: "Special",
-      name: "DAOMaker",
+      name: "DAO Maker",
       link: "@TheDaoMaker",
       image: "car41",
       type: "car",
@@ -597,6 +607,20 @@ export class MyNftComponent implements OnInit, OnChanges {
       amount: [],
       alt: "nft car Cryptowizard",
     },
+    {
+      id: 56,
+      collection: "Special",
+      name: "Kucoin",
+      link: "@kucoincom",
+      image: "car52",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      rank: "low",
+      amount: [],
+      alt: "nft car Kucoin",
+    },
+
     //RACERS
     {
       id: 1,
@@ -715,7 +739,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     {
       id: 9,
       collection: "Special",
-      name: "DAOMaker",
+      name: "DAO Maker",
       link: "@TheDaoMaker",
       image: "dao-maker",
       type: "racer",
@@ -807,6 +831,18 @@ export class MyNftComponent implements OnInit, OnChanges {
       rank: "low",
       amount: [],
       alt: "nft racer Cryptowizard",
+    },
+    {
+      id: 17,
+      collection: "Special",
+      name: "Kucoin",
+      link: "@kucoincom",
+      image: "kucoin",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Kucoin",
     },
   ];
 
@@ -978,164 +1014,173 @@ export class MyNftComponent implements OnInit, OnChanges {
           if (objs.cars[x].car_id === 0) {
             this.myCarsSorted.car0.push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 1) {
+          if (objs.cars[x].car_id === 60) {
             this.products[0]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 2) {
+          if (objs.cars[x].car_id === 1) {
             this.products[1]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 3) {
+          if (objs.cars[x].car_id === 2) {
             this.products[2]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 4) {
+          if (objs.cars[x].car_id === 3) {
             this.products[3]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 5) {
+          if (objs.cars[x].car_id === 4) {
             this.products[4]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 6) {
+          if (objs.cars[x].car_id === 5) {
             this.products[5]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 7) {
-            this.products[7]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 8) {
-            this.products[8]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 9) {
-            this.products[9]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 10) {
-            this.products[10]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 11) {
-            this.products[11]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 12) {
-            this.products[12]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 13) {
-            this.products[14]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 14) {
-            this.products[15]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 15) {
-            this.products[16]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 16) {
-            this.products[17]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 17) {
-            this.products[18]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 18) {
-            this.products[19]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 19) {
-            this.products[21]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 20) {
-            this.products[22]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 21) {
-            this.products[23]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 22) {
-            this.products[24]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 23) {
-            this.products[25]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 24) {
-            this.products[26]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 25) {
+          if (objs.cars[x].car_id === 6) {
             this.products[6]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 26) {
+          if (objs.cars[x].car_id === 7) {
+            this.products[8]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 8) {
+            this.products[9]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 9) {
+            this.products[10]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 10) {
+            this.products[11]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 11) {
+            this.products[12]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 12) {
             this.products[13]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 27) {
+          if (objs.cars[x].car_id === 13) {
+            this.products[15]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 14) {
+            this.products[16]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 15) {
+            this.products[17]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 16) {
+            this.products[18]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 17) {
+            this.products[19]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 18) {
             this.products[20]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 28) {
+          if (objs.cars[x].car_id === 19) {
+            this.products[22]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 20) {
+            this.products[23]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 21) {
+            this.products[24]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 22) {
+            this.products[25]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 23) {
+            this.products[26]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 24) {
             this.products[27]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 41) {
+          if (objs.cars[x].car_id === 25) {
+            this.products[7]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 26) {
+            this.products[14]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 27) {
+            this.products[21]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 28) {
             this.products[28]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 42) {
+          if (objs.cars[x].car_id === 41) {
             this.products[29]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 44) {
+          if (objs.cars[x].car_id === 42) {
             this.products[30]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 45) {
+          if (objs.cars[x].car_id === 44) {
             this.products[31]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 46) {
+          if (objs.cars[x].car_id === 45) {
             this.products[32]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 47) {
+          if (objs.cars[x].car_id === 46) {
             this.products[33]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 50) {
+          if (objs.cars[x].car_id === 47) {
             this.products[34]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 51) {
+          if (objs.cars[x].car_id === 50) {
             this.products[35]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 51) {
+            this.products[36]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 52) {
+            this.products[37]["amount"].push(objs.cars[x]);
           }
         }
 
         for (let x = 0; x < objs.racers.length; x++) {
           if (objs.racers[x].car_id === 1) {
-            this.products[36]["amount"].push(objs.cars[x]);
-          }
-          if (objs.racers[x].car_id === 2) {
-            this.products[37]["amount"].push(objs.cars[x]);
-          }
-          if (objs.racers[x].car_id === 3) {
             this.products[38]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 4) {
+          if (objs.racers[x].car_id === 2) {
             this.products[39]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 5) {
+          if (objs.racers[x].car_id === 3) {
             this.products[40]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 6) {
+          if (objs.racers[x].car_id === 4) {
             this.products[41]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 7) {
+          if (objs.racers[x].car_id === 5) {
             this.products[42]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 8) {
+          if (objs.racers[x].car_id === 6) {
             this.products[43]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 11) {
+          if (objs.racers[x].car_id === 7) {
             this.products[44]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 12) {
+          if (objs.racers[x].car_id === 8) {
             this.products[45]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 14) {
+          if (objs.racers[x].car_id === 11) {
             this.products[46]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 15) {
+          if (objs.racers[x].car_id === 12) {
             this.products[47]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 16) {
+          if (objs.racers[x].car_id === 14) {
             this.products[48]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 17) {
+          if (objs.racers[x].car_id === 15) {
             this.products[49]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 20) {
+          if (objs.racers[x].car_id === 16) {
             this.products[50]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 21) {
+          if (objs.racers[x].car_id === 17) {
             this.products[51]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 20) {
+            this.products[52]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 21) {
+            this.products[53]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 22) {
+            this.products[54]["amount"].push(objs.cars[x]);
           }
         }
         this.calcEditionNum();

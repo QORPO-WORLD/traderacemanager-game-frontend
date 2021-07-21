@@ -6,6 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./home-bundles.component.scss"],
 })
 export class HomeBundlesComponent implements OnInit {
+  marketState = 1;
+  selectedId = 1;
+  selectedPosition: number;
+  selectedType = "racers";
   bundles: Array<object> = [
     {
       id: 1,
@@ -104,6 +108,18 @@ export class HomeBundlesComponent implements OnInit {
       avatar: "cryptowizard-avatar",
       back: "cryptowizard-back",
     },
+    // {
+    //   id: 9,
+    //   name: "Kucoin",
+    //   link: "@kucoincom",
+    //   staking: 6,
+    //   reward: 0.1,
+    //   price: 1000,
+    //   pieces: 100,
+    //   image: "bundle-kucoin",
+    //   avatar: "cryptowizard-avatar",
+    //   back: "cryptowizard-back",
+    // },
   ];
   constructor() {}
 
@@ -111,5 +127,18 @@ export class HomeBundlesComponent implements OnInit {
 
   twitterLink(prefix: string) {
     window.open("https://twitter.com/" + prefix, "_blank").focus();
+  }
+  showAssetBuy(state: number) {
+    this.marketState = state;
+  }
+  scrollTop(elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  showAsset(state: number, id: number, type: string, position: number) {
+    this.marketState = state;
+    this.selectedPosition = position;
+    this.selectedId = id;
+    this.selectedType = type;
   }
 }
