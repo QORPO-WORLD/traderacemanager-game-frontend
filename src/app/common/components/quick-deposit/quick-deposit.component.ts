@@ -31,6 +31,8 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   depositSuccessful = false;
   ethAddress: string;
   myBalance: any;
+  currency: any;
+  contractId: any;
   selectStyling = {
     subHeader: 'Select token type',
     cssClass: 'customSelect profileSelect'
@@ -38,6 +40,44 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
   myMaticBalance = 0;
   claimed: boolean;
   ethMtfrckr = '0x';
+  contracts = [
+    {
+      contractId: 1,
+      token: 'ioi',
+      chain: 'ethereum',
+      currency: null
+    },
+    {
+      contractId: 2,
+      token: 'ioi',
+      chain: 'binance',
+      currency: null
+    },
+    {
+      contractId: 3,
+      token: 'ioi',
+      chain: 'polygon',
+      currency: null
+    },
+    {
+      contractId: 4,
+      token: 'matic',
+      chain: 'ethereum',
+      currency: null
+    },
+    {
+      contractId: 5,
+      token: 'matic',
+      chain: 'binance',
+      currency: null
+    },
+    {
+      contractId: null,
+      token: 'matic',
+      chain: 'polygon',
+      currency: 'matic'
+    }
+  ];
   constructor(protected notify: NotifiqService, private ntrsrvc: NitroWalletService,
     private blcksrvc: BlockchainService, private api: DriversService, protected translate: TranslateService,
     private identityService: AuthService) { }
@@ -141,24 +181,38 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
 
   makeDeposit() {
     if (this.ethMtfrckr.substring(0, 2) !== '0x') {
-      this.notify.error('xx', "Etherem Chain crypto wallet address must start with '0x'")
+      this.notify.error('xx', "Chain crypto wallet address must start with '0x'")
       return;
     }
       
     if (this.ethMtfrckr.length < 42) {
-      this.notify.error('xx', "Etherem Chain crypto wallet address length is too short")
+      this.notify.error('xx', "Chain crypto wallet address length is too short")
       return;
     }
 
     this.depositRequested = true;
-    if (this.chainSelected === 'ethereum' && this.ethMtfrckr.length === 42) {
-      this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races' }).subscribe(data => {
+
+    this.contracts.forEach(contract=> {
+      if(this.tokenSelected === contract.token && this.chainSelected === contract.chain){
+        this.currency = contract.currency;
+        this.contractId = contract.contractId;
+      }
+    });
+
+    if (this.currency === null && this.contractId !== null && this.ethMtfrckr.length === 42) {
+      this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', contract_id: this.contractId }).subscribe(data => {
         console.log(data);
       });
     }
+
+    if (this.currency !== null && this.contractId === null && this.ethMtfrckr.length === 42) {
+      this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', currency: this.currency }).subscribe(data => {
+        console.log(data);
+      });
+    }
+
     setTimeout(() => {
       this.depositSuccessful = true;
     }, 2000);
   }
-
 }
