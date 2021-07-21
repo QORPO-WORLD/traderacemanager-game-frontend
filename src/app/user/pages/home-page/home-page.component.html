@@ -106,137 +106,6 @@
       </div>
     </div>
 
-    <div
-      class="my-carousel-item item3"
-      [ngClass]="{ hidden: carouselStep !== 3 }"
-    >
-      <div class="darkerback"></div>
-
-      <div class="top-section bundle-sec">
-        <div class="token-detail">
-          <div
-            class="text-holder up"
-            [ngClass]="ioiIncresing === true ? 'up' : 'down'"
-          >
-            <p class="desc">Current Token Price:</p>
-            <p class="value">1 &#36;IOI = &#36;{{ currentIoiPrice }}</p>
-            <p class="date">as of 15/06/2021 | 3:30 PM CET</p>
-          </div>
-          <div class="flex-item">
-            <div
-              class="exchange"
-              (click)="exSelectorOpened = !exSelectorOpened"
-              [ngClass]="{ opened: exSelectorOpened === true }"
-            >
-              <img
-                class="main-img"
-                [src]="
-                  '/assets/base/images/home-page/exchange' +
-                  selectedExchange +
-                  '.png'
-                "
-                alt=""
-              />
-              <p class="change-text">
-                CHANGE EXCHANGE <br />
-                <svg
-                  width="9"
-                  height="7"
-                  viewBox="0 0 9 7"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
-                    fill="white"
-                  />
-                </svg>
-              </p>
-              <div class="selector">
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 1;
-                    openLink(
-                      'https://app.uniswap.org/#/swap?outputCurrency=0x8b3870df408ff4d7c3a26df852d41034eda11d81&use=v2'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange1.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 2;
-                    openLink('https://www.gate.io/en/trade/IOI_USDT')
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange2.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 3;
-                    openLink(
-                      'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x959229D94c9060552daea25AC17193bcA65D7884'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange3.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 4;
-                    openLink(
-                      'https://quickswap.exchange/#/swap?outputCurrency=0xaf24765f631c8830b5528b57002241ee7eef1c14'
-                    )
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange4.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="ex-item"
-                  (click)="
-                    selectedExchange = 5;
-                    openLink('https://trade.kucoin.com/IOI-USDT')
-                  "
-                >
-                  <img
-                    src="/assets/base/images/home-page/exchange5.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-            <a
-              href="https://trade.kucoin.com/IOI-USDT"
-              class="buy-btn buy-link"
-            >
-              <span>BUY</span>
-              <div class="hover-overlay"></div>
-            </a>
-          </div>
-        </div>
-
-        <div class="img-holder">
-          <img src="/assets/base/images/home-page/token-ilustrate.png" alt="" />
-        </div>
-      </div>
-    </div>
-
     <div class="car-switchers">
       <div
         class="switch-item"
@@ -248,12 +117,127 @@
         [ngClass]="{ active: carouselStep === 2 }"
         (click)="manualCarSwitch(2)"
       ></div>
-      <div
-        class="switch-item"
-        [ngClass]="{ active: carouselStep === 3 }"
-        (click)="manualCarSwitch(3)"
-      ></div>
     </div>
+
+    <div class="token-detail" [ngClass]="{'closed': closeTokenDetail === true}">
+
+      <div class="close-detail" (click)="closeTokenDetail = !closeTokenDetail">
+        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
+            fill="white"/>
+        </svg>
+      </div>
+
+      <div
+        class="text-holder up"
+        [ngClass]="ioiIncresing === true ? 'up' : 'down'"
+      >
+        <p class="desc">Current Token Price:</p>
+        <p class="value">1 &#36;IOI = &#36;{{ currentIoiPrice }}</p>
+        <p class="date">{{ displayDate }}</p>
+      </div>
+      <div class="flex-item">
+        <a
+          href="https://ioi-corporation.com/assets/docs/Tokenometrics-IOI.pdf"
+          target="_blank"
+          class="buy-btn buy-link"
+        >
+          <span>TOKENOMETRICS</span>
+          <div class="hover-overlay"></div>
+        </a>
+        <div
+          class="exchange"
+          (click)="exSelectorOpened = !exSelectorOpened"
+          [ngClass]="{ opened: exSelectorOpened === true }"
+        >
+          <p class="buy-text">BUY</p>
+          <p class="change-text">
+            SHOW EXCHANGES <br />
+            <svg
+              width="9"
+              height="7"
+              viewBox="0 0 9 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
+                fill="white"
+              />
+            </svg>
+          </p>
+          <div class="selector">
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 1;
+                openLink(
+                  'https://app.uniswap.org/#/swap?outputCurrency=0x8b3870df408ff4d7c3a26df852d41034eda11d81&use=v2'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange1.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 2;
+                openLink('https://www.gate.io/en/trade/IOI_USDT')
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange2.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 3;
+                openLink(
+                  'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x959229D94c9060552daea25AC17193bcA65D7884'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange3.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 4;
+                openLink(
+                  'https://quickswap.exchange/#/swap?outputCurrency=0xaf24765f631c8830b5528b57002241ee7eef1c14'
+                )
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange4.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="ex-item"
+              (click)="
+                selectedExchange = 5;
+                openLink('https://trade.kucoin.com/IOI-USDT')
+              "
+            >
+              <img
+                src="/assets/base/images/home-page/exchange5.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="video-holder">

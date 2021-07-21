@@ -191,6 +191,7 @@ export class HomePageComponent implements OnInit {
   selectedExchange = 5;
   exSelectorOpened = false;
   isMenuActive = false;
+  displayDate: any;
   activeMenu = 0;
   sliceStart: number;
   sliceEnd: number;
@@ -204,6 +205,7 @@ export class HomePageComponent implements OnInit {
   carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
+  closeTokenDetail = false;
   xDown = null;
   yDown = null;
   @ViewChild("carousel") carousel: ElementRef;
@@ -415,7 +417,7 @@ export class HomePageComponent implements OnInit {
   }
 
   nextCarItem() {
-    if (this.carouselStep > 2) {
+    if (this.carouselStep > 1) {
       this.carouselStep = 1;
     } else {
       this.carouselStep++;
@@ -425,7 +427,7 @@ export class HomePageComponent implements OnInit {
 
   prevCarItem() {
     if (this.carouselStep < 2) {
-      this.carouselStep = 3;
+      this.carouselStep = 2;
     } else {
       this.carouselStep--;
     }
@@ -473,6 +475,7 @@ export class HomePageComponent implements OnInit {
           this.oldIoiPrice > this.currentIoiPrice ? false : true;
         this.oldIoiPrice = this.currentIoiPrice;
       }
+      this.getDate();
     });
   }
 
@@ -633,5 +636,20 @@ export class HomePageComponent implements OnInit {
     const date = new Date();
     date.setSeconds(date.getMinutes() + Seconds_Between_Dates);
     countdown.start(date);
+  }
+
+  getDate() {
+    var objToday = new Date(),
+    weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
+    dayOfWeek = weekday[objToday.getDay()],
+    months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+    curMonth = months[objToday.getMonth()],
+    curYear = objToday.getFullYear(),
+    curHour = objToday.getHours() > 12 ? objToday.getHours() - 12 : (objToday.getHours() < 10 ? "0" + objToday.getHours() : objToday.getHours()),
+    curMinute = objToday.getMinutes() < 10 ? "0" + objToday.getMinutes() : objToday.getMinutes(),
+    curSeconds = objToday.getSeconds() < 10 ? "0" + objToday.getSeconds() : objToday.getSeconds(),
+    curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
+    var today = curHour + ":" + curMinute + "." + curSeconds + curMeridiem + " " + dayOfWeek + " of " + curMonth + ", " + curYear;
+    this.displayDate = today;
   }
 }
