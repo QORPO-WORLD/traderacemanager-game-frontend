@@ -1,792 +1,786 @@
 ion-content {
-    --overflow: hidden;
+  --overflow: hidden;
 }
 
-h2{
-    font-size: 48px;
+h2 {
+  font-size: 48px;
 }
 
 .content-title {
-    cursor: pointer;
-    display: flex;
-    z-index: 10;
-    align-items: center;
-    height: 80px;
-    margin-left: 40px;
+  cursor: pointer;
+  display: flex;
+  z-index: 10;
+  align-items: center;
+  height: 80px;
+  margin-left: 40px;
+  position: absolute;
+  top: 0;
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+.modal-body {
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  background: black;
+  z-index: 1000002;
+}
+.modal-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.premium-membership {
+  position: relative;
+  width: 100%;
+  .box-content {
+    padding: 60px;
+    width: 42%;
+    transition: 0.2s;
+    position: absolute;
+    left: 40px;
+    bottom: 80px;
+    z-index: 6;
+  }
+  .membership-bonus {
+    background: -webkit-linear-gradient(315deg, #e0d2b4 0%, #e2ac6b 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 50px;
+    padding-top: 50px;
+    margin-top: -50px;
+    margin-left: -50px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 50px;
+    margin-bottom: -50px;
+    padding-right: 50px;
+    margin-right: -50px;
+  }
+  .month-benefits {
+    right: -100%;
+    z-index: 4;
     position: absolute;
     top: 0;
-    img {
-      width: 21px;
+    width: 50%;
+    height: 100%;
+    transition: 1s ease-in-out;
+    .ring {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 280px;
+      right: 540px;
+      z-index: 2;
     }
-    p {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 30px;
-      letter-spacing: 0.09em;
-      font-family: "Earth Orbiter";
-      font-weight: 900;
-      margin-left: 10px;
-      margin-bottom: 0;
+    .racer {
+      position: absolute;
+      bottom: -77px;
+      right: -125px;
+      transform: scaleX(-1);
+      width: 800px;
+      z-index: 2;
+    }
+    .car {
+      position: absolute;
+      bottom: 0;
+      right: 65px;
+      width: 850px;
+      z-index: 1;
+    }
+    &.active {
+      right: 0;
     }
   }
+}
+.membership-heading {
+  font-family: "Earth Orbiter";
+  font-style: normal;
+  font-weight: bold;
+  line-height: 48px;
+  font-size: 48px;
+  letter-spacing: 0.09em;
+  color: #ffffff;
+}
+.join-btn {
+  font-family: Poppins;
+  width: 250px;
+  padding: 18px 0;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 80px;
+}
+.bonus {
+  margin: 0;
+  max-height: 0;
+  transition: 1s;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 180%;
+  overflow: hidden;
+  img {
+    margin-right: 24px;
+  }
+  &.active {
+    max-height: 40px;
+    margin-top: 20px;
+  }
+}
+.bonus-heading {
+  margin-top: 20px;
+  font-family: "Earth Orbiter";
+  font-style: bold;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 180%;
+}
+.membership-bonus {
+  font-family: "Earth Orbiter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0.09em;
+  margin-bottom: 10px;
+}
+.my-border {
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  right: 0;
+  z-index: 4;
+}
+.black-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 1, 0.8);
+  z-index: 3;
+}
+.inner-box {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  position: relative;
+}
+.back-img {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: unset;
+  z-index: 0;
+  top: 0;
+}
+.box-content {
+  position: relative;
+  z-index: 1;
+  h2 {
+    margin-top: 0;
+  }
+}
+.membership-time-items {
+  display: flex;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+.membership-time:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  .underline {
+    width: calc(100% + 8px);
+    transition: 0.2s ease-in-out;
+  }
+}
 
-.modal-body{
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    background: black;
-    z-index: 1000002;
-}
-.modal-wrapper{
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-.premium-membership{
-    position: relative;
-    width: 100%;
-        .box-content{
-        padding: 60px;
-        width: 42%;
-        transition: .2s;
-        position: absolute;
-        left: 40px;
-        bottom: 80px;
-        z-index: 6;
+.membership-time {
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 30px;
+  width: 200px;
+  font-family: "Earth Orbiter";
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  padding: 20px 0;
+  margin-right: 30px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  &.active {
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    .underline {
+      width: calc(100% + 8px);
+      transition: 0.2s ease-in-out;
     }
-    .membership-bonus{
-        background: -webkit-linear-gradient(315deg, #e0d2b4 0%, #e2ac6b 74%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding-left: 50px;
-        padding-top: 50px;
-        margin-top: -50px;
-        margin-left: -50px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        padding-bottom: 50px;
-        margin-bottom: -50px;
-        padding-right: 50px;
-        margin-right: -50px;
-    }
-    .month-benefits{
-        right: -100%;
-        z-index: 4;
-        position: absolute;
-        top: 0;
-        width: 50%;
-        height: 100%;
-        transition: 1s ease-in-out;
-        .ring{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 280px;
-            right: 540px;
-            z-index: 2;
-        }
-        .racer{
-            position: absolute;
-            bottom: -77px;
-            right: -125px;
-            transform: scaleX(-1);
-            width: 800px;
-            z-index: 2;
-        }
-        .car{
-            position: absolute;
-            bottom: 0;
-            right: 65px;
-            width: 850px;
-            z-index: 1;
-
-        }
-        &.active{
-            right: 0;
-        }
-    }
-
-}
-.membership-heading{
-    font-family: "Earth Orbiter";
-    font-style: normal;
-    font-weight: bold;
-    line-height: 48px;
-    font-size: 48px;
-    letter-spacing: 0.09em;
-    color: #FFFFFF;
-}
-.join-btn{
+  }
+  .sticker-blue,
+  .sticker-gold {
+    position: absolute;
+    top: -20px;
+    width: 100px;
     font-family: Poppins;
-    width: 250px;
-    padding: 18px 0;
+    font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    line-height: 24px;
-    margin-top: 80px;
-}
-.bonus{
-    margin: 0;
-    max-height: 0;
-    transition: 1s;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
     line-height: 180%;
-    overflow: hidden;
-    img{
-        margin-right: 24px;
-    }
-    &.active{
-        max-height: 40px;
-        margin-top: 20px;
-    }
-
-}
-.bonus-heading{
-    margin-top: 20px;
-    font-family: "Earth Orbiter";
-    font-style: bold;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 180%;
-}
-.membership-bonus{
-    font-family: "Earth Orbiter";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 24px;
-    letter-spacing: 0.09em;
-    margin-bottom: 10px;
-}
-.my-border{
-    height: 100%;
-    width: 8px;
-   position: absolute;
-   right: 0;
-   z-index: 4;
-}
-.black-overlay{
+    padding: 2px 0;
+    right: -3px;
+  }
+  .sticker-gold {
+    background-color: #e0d2b4;
+    background-image: linear-gradient(315deg, #e0d2b4 0%, #e2ac6b 74%);
+  }
+  .underline {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(1,1,1,0.8);
-    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    bottom: -12px;
+    width: 0;
+    transition: 0.2s ease-in-out;
+  }
 }
-.inner-box{
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    position: relative;
+.pay-button {
+  width: 250px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  padding: 12px 0;
+  margin-top: 40px;
+  img {
+    margin-right: 15px;
+  }
 }
-.back-img{
-    position: absolute;
-    min-width: 100%;
-    min-height: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    height: calc(var(--vh, 1vh) * 100);
-    max-width: unset;
-    z-index: 0;
-    top: 0;
-}
-.box-content{
-    position: relative;
-    z-index: 1;
-    h2{
-      margin-top: 0;  
-    }
-}
-.membership-time-items{
-    display: flex;
-    padding-bottom: 10px;
-    margin-bottom: -10px;
-}
-.membership-time:hover{
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        .underline{
-            width: calc(100% + 8px);
-            transition: .2s ease-in-out
-        }
-}
-
-.membership-time{
-    cursor: pointer;
-    transition: .2s;
-    margin-top: 30px;
-    width: 200px;
-    font-family: "Earth Orbiter";
-    font-size: 20px;
-    line-height: 20px;
-    text-align: center;
-    padding: 20px 0;
-    margin-right: 30px;
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 3px solid rgba(255, 255, 255, 0.4);
-    box-sizing: border-box;
-    &.active{
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        .underline{
-            width: calc(100% + 8px);
-           transition: .2s ease-in-out;
-        }
-    }
-    .sticker-blue, .sticker-gold{
-        position: absolute;
-        top: -20px;
-        width: 100px;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 180%;
-        padding: 2px 0;
-        right: -3px;
-    }
-    .sticker-gold{
-        background-color: #e0d2b4;
-        background-image: linear-gradient(315deg, #e0d2b4 0%, #e2ac6b 74%);
-    }
-    .underline{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 4px;
-        bottom: -12px;
-        width: 0;
-        transition: .2s ease-in-out;
-    }
-}
-.pay-button{
-    width: 250px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 36px;
-    padding: 12px 0;
-    margin-top: 40px;
-    img{
-        margin-right: 15px;
-    }
-}
-
 
 @media screen and(max-height: 950px) {
-    .premium-membership{
-        .box-content{
-            left: 40px
-        }
+  .premium-membership {
+    .box-content {
+      left: 40px;
     }
+  }
 }
 @media screen and(max-width: 1700px) {
-    .content-title{
-        margin-left: 30px;
+  .content-title {
+    margin-left: 30px;
+  }
+  .premium-membership {
+    .box-content {
+      width: 70%;
     }
-    .premium-membership{
-        .box-content{
-            width: 70%;
-        }
+  }
+  .box-content {
+    width: 70%;
+    .bonus {
+      font-size: 20px;
+      img {
+        margin-right: 10px;
+      }
     }
-    .box-content{
-        width: 70%;
-        .bonus{
-            font-size: 20px;
-            img{
-                margin-right: 10px;
-            }
-        }
-    }
+  }
 }
 
 @media screen and(max-width: 1550px) {
-    .content-title{
-        margin-left: 20px;
+  .content-title {
+    margin-left: 20px;
+  }
+  .premium-membership {
+    .box-content {
+      bottom: 20px;
     }
-    .premium-membership{
-        .box-content{
-            bottom: 20px;
-        }
+  }
+  .box-content {
+    .pay-button,
+    .join-btn {
+      width: 200px;
+      font-size: 18px;
+      padding: 10px 0;
+      line-height: 30px;
+      img {
+        margin-right: 10px;
+        width: 30px;
+      }
+      margin-top: 30px;
     }
-    .box-content{
-        .pay-button, .join-btn{
-            width: 200px;
-            font-size: 18px;
-            padding: 10px 0;
-            line-height: 30px;
-            img{
-                margin-right: 10px;
-                width: 30px;
-            }
-            margin-top: 30px;
-        }
-        .membership-bonus{
-            font-size: 20px;
-        }
-        .membership-heading{
-            font-size: 30px;
-            line-height: 30px;
-        }
-        .bonus-heading{
-            font-size: 18px;
-            margin-bottom: 0;
-            margin-top: 0;
-        }
-        .bonus{
-            font-size: 16px;
-            img{
-                width: 25px;
-                margin-right: 5px;
-            }
-            margin-top: 10px;
-        }
-        .membership-time{
-            width: 150px;
-            margin-top: 13px;
-            padding: 13px 0;
-            margin-right: 15px;
-        }
-        .sticker-blue,.sticker-gold{
-            font-size: 12px;
-            top: -14px;
-            width: 75px;
-        }
+    .membership-bonus {
+      font-size: 20px;
     }
+    .membership-heading {
+      font-size: 30px;
+      line-height: 30px;
+    }
+    .bonus-heading {
+      font-size: 18px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .bonus {
+      font-size: 16px;
+      img {
+        width: 25px;
+        margin-right: 5px;
+      }
+      margin-top: 10px;
+    }
+    .membership-time {
+      width: 150px;
+      margin-top: 13px;
+      padding: 13px 0;
+      margin-right: 15px;
+    }
+    .sticker-blue,
+    .sticker-gold {
+      font-size: 12px;
+      top: -14px;
+      width: 75px;
+    }
+  }
 }
 
 @media screen and(max-width: 1300px) {
-    .content-title{
-        margin-left: 13px;
+  .content-title {
+    margin-left: 13px;
+  }
+  .premium-membership {
+    .box-content {
+      bottom: unset;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    .premium-membership{
-        .box-content{
-            bottom: unset;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+  }
+  .box-content {
+    .pay-button,
+    .join-btn {
+      width: 170px;
+      font-size: 14px;
+      padding: 7px 0;
+      line-height: 25px;
+      img {
+        margin-right: 10px;
+        width: 25px;
+      }
+      margin-top: 30px;
     }
-    .box-content{
-        .pay-button, .join-btn{
-            width: 170px;
-            font-size: 14px;
-            padding: 7px 0;
-            line-height: 25px;
-            img{
-                margin-right: 10px;
-                width: 25px;
-            }
-            margin-top: 30px;
-        }
-        .membership-bonus{
-            font-size: 18px;
-        }
-        .membership-heading{
-            font-size: 30px;
-        }
-        .bonus-heading{
-            font-size: 16px;
-            margin-bottom: 0;
-            margin-top: 0;
-        }
-        .bonus{
-            margin-top: 5px;
-            img{
-                width: 22px;
-            }
-        }
-        .membership-time{
-            width: 140px;
-            margin-top: 20px;
-            padding: 8px 0;
-            margin-right: 10px;
-        }
-        .sticker-blue,.sticker-gold{
-            font-size: 10px;
-            top: -14px;
-            width: 70px;
-        }
-        .bonus{
-            font-size: 16px;
-            img{
-                margin-right: 5px;
-            }
-        }
+    .membership-bonus {
+      font-size: 18px;
     }
-    .premium-membership{
-        .month-benefits{
-            .racer{
-                width: 600px;
-            }
-        }
+    .membership-heading {
+      font-size: 30px;
     }
+    .bonus-heading {
+      font-size: 16px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .bonus {
+      margin-top: 5px;
+      img {
+        width: 22px;
+      }
+    }
+    .membership-time {
+      width: 140px;
+      margin-top: 20px;
+      padding: 8px 0;
+      margin-right: 10px;
+    }
+    .sticker-blue,
+    .sticker-gold {
+      font-size: 10px;
+      top: -14px;
+      width: 70px;
+    }
+    .bonus {
+      font-size: 16px;
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+  .premium-membership {
+    .month-benefits {
+      .racer {
+        width: 600px;
+      }
+    }
+  }
 }
-@media screen and(max-width: 1200px) and (min-height: 800px){
-    
+@media screen and(max-width: 1200px) and (min-height: 800px) {
 }
 
 @media screen and(max-width: 1024px) and (max-height: 800px) {
-    .content-title{
-        margin-left: 10px;
+  .content-title {
+    margin-left: 10px;
+  }
+  .box-content {
+    .membership-heading {
+      font-size: 22px;
+      line-height: 20px;
     }
-    .box-content{
-        .membership-heading{
-            font-size: 22px;
-            line-height: 20px;
-        }
-        .membership-bonus{
-            font-size: 14px;
-        }
-        .bonus-heading{
-            font-size: 13px;
-            list-style: 15px;
-            margin-bottom: 20px;
-        }
-        .bonus{
-            margin-top: 10px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 16px;
-                margin-right: 1px;
-            }
-        }
-        .membership-time{
-            font-size: 14px;
-            line-height: 14px;
-            width: 100px;
-            margin-top: 20px;
-            .sticker-blue,.sticker-gold{
-                font-size: 8px;
-                width: 45px;
-                top: -11px;
-            }
-            .underline{
-                height: 2px;
-            }
-        }
-        .pay-button,.join-btn{
-            margin-top: 25px;
-            width: 150px;
-            line-height: 18px;
-            img{
-                width: 18px;
-            }
-        }
+    .membership-bonus {
+      font-size: 14px;
     }
+    .bonus-heading {
+      font-size: 13px;
+      list-style: 15px;
+      margin-bottom: 20px;
+    }
+    .bonus {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 10px;
+      img {
+        width: 16px;
+        margin-right: 1px;
+      }
+    }
+    .membership-time {
+      font-size: 14px;
+      line-height: 14px;
+      width: 100px;
+      margin-top: 20px;
+      .sticker-blue,
+      .sticker-gold {
+        font-size: 8px;
+        width: 45px;
+        top: -11px;
+      }
+      .underline {
+        height: 2px;
+      }
+    }
+    .pay-button,
+    .join-btn {
+      margin-top: 25px;
+      width: 150px;
+      line-height: 18px;
+      img {
+        width: 18px;
+      }
+    }
+  }
 }
 
 @media screen and(max-width: 1024px) and (orientation: landscape) {
-   
-    .premium-membership{
-        .box-content{
-            padding: 0;
-        }
-        .month-benefits{
-            .racer{
-                bottom: -60px;
-            }
-        }
+  .premium-membership {
+    .box-content {
+      padding: 0;
     }
-    .box-content{
-        .bonus-heading{
-            margin-bottom: 0;
-            font-size: 11px;
-        }
-        .membership-heading{
-            font-size: 20px;
-            margin-bottom: 0;
-        }
-        .membership-bonus{
-            font-size: 12px;
-        }
-        .bonus{
-            margin-top: 6px;
-        }
-        .join-btn,.pay-button{
-            margin-top: 18px;
-        }
+    .month-benefits {
+      .racer {
+        bottom: -60px;
+      }
     }
+  }
+  .box-content {
+    .bonus-heading {
+      margin-bottom: 0;
+      font-size: 11px;
+    }
+    .membership-heading {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+    .membership-bonus {
+      font-size: 12px;
+    }
+    .bonus {
+      margin-top: 6px;
+    }
+    .join-btn,
+    .pay-button {
+      margin-top: 18px;
+    }
+  }
 }
 
 @media screen and(max-width: 700px) and (orientation: landscape) {
-    .box-content{
-        .membership-heading{
-            font-size: 20px;
-            line-height: 18px;
-        }
-        .membership-bonus{
-            font-size: 12px;
-        }
-        .bonus-heading{
-            font-size: 12px;
-            list-style: 12px;
-            margin-bottom: 0px;
-        }
-        .bonus{
-            margin-top: 7px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 13px;
-                margin-right: 1px;
-            }
-        }
+  .box-content {
+    .membership-heading {
+      font-size: 20px;
+      line-height: 18px;
     }
-    .join-btn,.pay-button{
-        margin-top: 0;
+    .membership-bonus {
+      font-size: 12px;
     }
+    .bonus-heading {
+      font-size: 12px;
+      list-style: 12px;
+      margin-bottom: 0px;
+    }
+    .bonus {
+      margin-top: 7px;
+      margin-bottom: 0;
+      font-size: 10px;
+      img {
+        width: 13px;
+        margin-right: 1px;
+      }
+    }
+  }
+  .join-btn,
+  .pay-button {
+    margin-top: 0;
+  }
 }
 
 @media screen and(max-width: 600px) and (orientation: landscape) {
-    .box-content{
-        top: 53%;
-        .bonus{
-            margin-top: 5px;
-        }
-        .membership-time-items{
-            .membership-time{
-                font-size: 10px;
-                padding: 3px 0;
-            }
-        }
-        .membership-time-items{
-            .membership-time{
-                margin-top: 5px;
-            }
-        }
-        .pay-button{
-            margin-top: 5px;
-            padding: 5px 0;
-            font-size: 11px;
-        }
+  .box-content {
+    top: 53%;
+    .bonus {
+      margin-top: 5px;
     }
+    .membership-time-items {
+      .membership-time {
+        font-size: 10px;
+        padding: 3px 0;
+      }
+    }
+    .membership-time-items {
+      .membership-time {
+        margin-top: 5px;
+      }
+    }
+    .pay-button {
+      margin-top: 5px;
+      padding: 5px 0;
+      font-size: 11px;
+    }
+  }
 }
 
 @media screen and(max-width: 640px) and (orientation: portrait) {
-    .modal-wrapper{
-        display: flex;
-        flex-direction: column;
+  .modal-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .premium-membership {
+    position: relative;
+    .join-btn {
+      margin-top: 5px;
     }
-    .premium-membership{
-        position: relative;
-        .join-btn{
-            margin-top: 5px;
-        }
-        .box-content{
-            left: unset;
-            padding: 30px;
-            position: relative;
-            bottom: unset;
-            top: 30%;
-            width: 95%;
-            margin: 0 auto;
-        }
-        .month-benefits{
-            right: -200%;
-            .racer{
-                bottom: -20px;
-            }
-            &.active{  
-                width: 100%;
-                .racer{
-                    bottom: -20px;
-                    left: 0;
-                }
-            }
-            &.yearly{
-                .car{
-                    right: 20px;
-                }
-                .racer{
-                    left: 90px;
-                }
-            }
-        }
+    .box-content {
+      left: unset;
+      padding: 30px;
+      position: relative;
+      bottom: unset;
+      top: 30%;
+      width: 95%;
+      margin: 0 auto;
     }
-    .membership-time{
-        margin-top: 10px;
-    }
-    .bonus{
-        margin-bottom: 10px;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-    .big-box{
+    .month-benefits {
+      right: -200%;
+      .racer {
+        bottom: -20px;
+      }
+      &.active {
         width: 100%;
-        height: calc(var(--vh, 1vh) * 65);
-        min-height: unset;
-        .box-content{
-            left: 20px;
-            bottom: 40px;
+        .racer {
+          bottom: -20px;
+          left: 0;
         }
-        .small-box{
-            bottom: 40px;
+      }
+      &.yearly {
+        .car {
+          right: 20px;
         }
-        .inner-box{
-            height: 100%;
+        .racer {
+          left: 90px;
         }
+      }
     }
-
-    .content-title{
-        margin-left: 10px;
+  }
+  .membership-time {
+    margin-top: 10px;
+  }
+  .bonus {
+    margin-bottom: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .big-box {
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 65);
+    min-height: unset;
+    .box-content {
+      left: 20px;
+      bottom: 40px;
     }
-    .box-content{
-        .membership-heading{
-            font-size: 22px;
-            line-height: 20px;
-        }
-        .membership-bonus{
-            font-size: 14px;
-        }
-        .bonus-heading{
-            font-size: 13px;
-            list-style: 15px;
-            margin-bottom: 20px;
-        }
-        .bonus{
-            margin-top: 10px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 16px;
-                margin-right: 1px;
-            }
-        }
-        .membership-time{
-            font-size: 14px;
-            line-height: 14px;
-            width: 100px;
-            margin-top: 20px;
-            .sticker-blue,.sticker-gold{
-                font-size: 8px;
-                width: 45px;
-                top: -11px;
-            }
-            .underline{
-                height: 2px;
-            }
-        }
-        .pay-button,.join-btn{
-            margin-top: 25px;
-            width: 150px;
-            line-height: 18px;
-            img{
-                width: 18px;
-            }
-        }
+    .small-box {
+      bottom: 40px;
+    }
+    .inner-box {
+      height: 100%;
     }
   }
 
-  @media screen and(max-width: 400px) and (orientation: portrait){
-    .premium-membership{
-        .box-content{
-            top: 40%;
-            padding: 10px;
-            .membership-time-items{
-                .membership-time{
-                    font-size: 10px;
-                    margin-right: 5px;
-                }
-            }
-        }
-        .month-benefits{
-            .car{
-                width: 250px;
-                right: 70px;
-            }
-            .racer{
-                left: 35%;
-                width: 240px;
-            }
-            &.active{
-                .racer{
-                    left: 35%;
-                }
-            }
-            &.yearly{
-                .car{
-                    right: 70px;
-                }
-            }
-        }
+  .content-title {
+    margin-left: 10px;
+  }
+  .box-content {
+    .membership-heading {
+      font-size: 22px;
+      line-height: 20px;
+    }
+    .membership-bonus {
+      font-size: 14px;
+    }
+    .bonus-heading {
+      font-size: 13px;
+      list-style: 15px;
+      margin-bottom: 20px;
+    }
+    .bonus {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 10px;
+      img {
+        width: 16px;
+        margin-right: 1px;
+      }
+    }
+    .membership-time {
+      font-size: 14px;
+      line-height: 14px;
+      width: 100px;
+      margin-top: 20px;
+      .sticker-blue,
+      .sticker-gold {
+        font-size: 8px;
+        width: 45px;
+        top: -11px;
+      }
+      .underline {
+        height: 2px;
+      }
+    }
+    .pay-button,
+    .join-btn {
+      margin-top: 25px;
+      width: 150px;
+      line-height: 18px;
+      img {
+        width: 18px;
+      }
     }
   }
-  
-  
+}
 
-
-
-
+@media screen and(max-width: 400px) and (orientation: portrait) {
+  .premium-membership {
+    .box-content {
+      top: 40%;
+      padding: 10px;
+      .membership-time-items {
+        .membership-time {
+          font-size: 10px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .month-benefits {
+      .car {
+        width: 250px;
+        right: 70px;
+      }
+      .racer {
+        left: 35%;
+        width: 240px;
+      }
+      &.active {
+        .racer {
+          left: 35%;
+        }
+      }
+      &.yearly {
+        .car {
+          right: 70px;
+        }
+      }
+    }
+  }
+}
 
 @media screen and(max-width: 1700px) {
-    .content-title {
-      img {
-        width: 17px;
-      }
-      p {
-        font-size: 26px;
-      }
+  .content-title {
+    img {
+      width: 17px;
+    }
+    p {
+      font-size: 26px;
     }
   }
-  @media screen and(max-width: 1550px) {
-    
-    .content-title {
-      height: 65px;
-      img {
-        width: 15px;
-      }
-      p {
-        font-size: 22px;
-      }
+}
+@media screen and(max-width: 1550px) {
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
+    }
+    p {
+      font-size: 22px;
     }
   }
-  @media screen and(max-width: 1024px) {
-   .content-title {
-      img {
-        width: 13px;
-      }
-      p {
-        font-size: 20px;
-      }
+}
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
+    }
+    p {
+      font-size: 20px;
     }
   }
-  
-  @media screen and(max-width: 1024px) and (orientation: landscape) {
-   .content-title {
-      height: 40px;
-    }
-  }
-  @media screen and(max-width: 700px) and (orientation: landscape) {
-    .content-title {
-      img {
-        width: 8.5px;
-      }
-      p {
-        font-size: 9px;
-        margin-left: 5px;
-      }
-    }
-  }
-  @media screen and(max-width: 640px) and (orientation: portrait) {
-    .content-title {
-      img {
-        width: 10px;
-      }
-      p {
-        font-size: 17px;
-      }
-    }
-  }
+}
 
-
-  
-
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .content-title {
+    height: 40px;
+  }
+}
+@media screen and(max-width: 700px) and (orientation: landscape) {
+  .content-title {
+    img {
+      width: 8.5px;
+    }
+    p {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .content-title {
+    img {
+      width: 10px;
+    }
+    p {
+      font-size: 17px;
+    }
+  }
+}

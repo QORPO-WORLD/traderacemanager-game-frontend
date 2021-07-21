@@ -1,1284 +1,1287 @@
-
-
-.modal-holder{
-    position: fixed;
+.modal-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000002;
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .modal-back {
+    background: rgba(17, 17, 17, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 1000002;
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .modal-back{
-        background: rgba(17,17,17,.5);
-        width: 100%;
-        height: 100%;
+    z-index: 1;
+  }
+  .modal-cont {
+    height: 85%;
+    width: 90%;
+    max-width: 1500px;
+    position: relative;
+    z-index: 2;
+    padding: 1px;
+    .inner-holder {
+      width: 100%;
+      height: 100%;
+      background: url("/assets/base/images/modal/info-modal-back.png"),
+        rgba(17, 17, 17, 0.8);
+      .close-btn {
         position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
-    .modal-cont{
-        height: 85%;
-        width: 90%;
-        max-width: 1500px;
-        position: relative;
-        z-index: 2;
-        padding: 1px;
-        .inner-holder{
-            width: 100%;
-            height: 100%;
-            background: url('/assets/base/images/modal/info-modal-back.png'), rgba(17,17,17,.8);
-            .close-btn{
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                padding: 0 7px;
-                font-size: 50px;
-                transform: rotate(-45deg);
-                cursor: pointer;
-                background: transparent;
-                transition: .2s;
-                &:hover{
-                    transform: rotate(45deg);
-                }
-            }
-            .switcher-holder{
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 100%);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 335px;
-                height: 75px;
-                button{
-                    background: none;
-                    border: none;
-                    &.inactive{
-                        svg{
-                            path{
-                                stroke: #585858;
-                            }
-                        }
-                    }
-                    &.left-arrow{
-                        transform: rotate(180deg);
-                    }
-                }
-                .dots-holder{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                    margin: 0 20px;
-                    .dot{
-                        width: 10px;
-                        height: 10px;
-                        border-radius: 50%;
-                        background: #585858;
-                        margin: 0 5px;
-                    }
-                    .slider{
-                        position: absolute;
-                        height: 10px;
-                        width: 55px;
-                        left: 0;
-                        top: 0;
-                        border-radius: 7px;
-                        transition: .15s;
-                        &.state1{
-                            left: 0;
-                        }
-                        &.state2{
-                            left: 19%;
-                        }
-                        &.state3{
-                            left: 35%;
-                        }
-                        &.state4{
-                            left: 52%;
-                        }
-                    }
-                }
-            }
-            .next-btn{
-                font-size: 33px;
-                font-family: 'Earth Orbiter';
-                padding: 20px 5px;
-                width: 395px;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-            }
-            .modal-step{
-                h2{
-                    font-weight: 800;
-                    font-size: 60px;
-                    font-family: 'Earth Orbiter';
-                    margin: 0;
-                    text-align: center;
-                }
-                .sub-heading{
-                    font-size: 33px;
-                    margin: 0 0 45px;
-                    text-align: center;
-                    span{
-                        font-weight: bold;
-                    }
-                }
-                &.step1{
-                    padding-top: 80px;
-                    .cont-holder{
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: flex-start;
-                        position: relative;
-                        .my-border{
-                            width: 1px;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background: rgba(255, 255, 255, 0.5);
-                        }
-                        .flex-item{
-                            width: 45%;
-                            max-width: 498px;
-                            &.bigger{
-                                max-width: 535px;
-                            }
-                            .heading-holder{
-                                width: 100%;
-                                .heading{
-                                    font-size: 68px;
-                                    font-family: 'Earth Orbiter';
-                                    margin: 0;
-                                    font-weight: 900;
-                                    line-height: 1;
-                                }
-                                .desc{
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: center;
-                                    p{
-                                        white-space: nowrap;
-                                        font-weight: 800;
-                                        font-size: 20px;
-                                        font-family: 'Earth Orbiter';
-                                        margin: 0;
-                                        padding-right: 10px;
-                                        &.premium{
-                                            color: #e1ae48;
-                                        }
-                                    }
-                                    .line{
-                                        width: 100%;
-                                        height: 1px;
-                                        background: rgba(255, 255, 255, 0.5);
-                                    }
-                                }
-                            }
-                            .item-holder{
-                                margin-bottom: 10px;
-                                .heading{
-                                    font-size: 52px;
-                                    font-family: 'Earth Orbiter';
-                                    margin: 0;
-                                    font-weight: 800;
-                                    line-height: 1.3;
-                                    &.heading1{
-                                        color: #e1ae48;
-                                    }
-                                    &.heading2{
-                                        color: #c7c6c7;
-                                    }
-                                    &.heading3{
-                                        color: #bc7532;
-                                    }
-                                }
-                                .text{
-                                    font-size: 24px;
-                                    margin: 0;
-                                    span{
-                                        font-weight: 800;
-                                    }
-                                }
-                            }
-                            .my-text{
-                                font-size: 20px;
-                                margin: 30px 0 15px;
-                                padding-bottom: 15px;
-                            }
-                            ul{
-                                padding-left: 21px;
-                                li{
-                                    font-size: 20px;
-                                    margin: 0 0 5px 0;
-                                }
-                            }
-                        }
-                    }
-                }
-                &.step2{
-                    padding-top: 80px;
-                    .cont-holder{
-                        display: flex;
-                        justify-content: center;
-                        align-content: flex-start;
-                        .flex-item{
-                            width: 32%;
-                            text-align: center;
-                            &.bordered{
-                                border-right: 1px solid rgba(255, 255, 255, 0.5);
-                            }
-                            .heading{
-                                font-size: 44px;
-                                font-family: 'Earth Orbiter';
-                                margin: 0 0 25px;
-                                font-weight: 800;
-                            }
-                            .table-row{
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                margin-bottom: 22px;
-                                p{
-                                    font-weight: bold;
-                                    font-size: 32px;
-                                    font-family: 'Earth Orbiter';
-                                    margin: 0;
-                                    text-align: left;
-                                    &.desc{
-                                        text-align: right;
-                                        font-size: 22px;
-                                    }
-                                }
-                                .my-border{
-                                    width: 1px;
-                                    height: 46px;
-                                    background: rgba(255, 255, 255, 0.5);
-                                    margin: 0 30px;
-                                }
-                                .table-item{
-                                    width: 38%;
-                                }
-                            }
-                        }
-                    }
-                }
-                &.step3{
-                    padding-top: 40px;
-                    .cont-holder{
-                        .bonus-holder{
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            width: 85%;
-                            margin: 11% auto 0;
-                            position: relative;
-                            &::after{
-                                content: '';
-                                position: absolute;
-                                right: 0;
-                                top: 50%;
-                                transform: translateY(-50%);
-                                height: 1px;
-                                width: 100%;
-                                background: rgba(255, 255, 255, 0.5);
-                            }
-                            .bonus-item{
-                                width: 33.333%;
-                                text-align: center;
-                                position: relative;
-                                &.bordered{
-                                    &::after{
-                                        content: '';
-                                        position: absolute;
-                                        right: 0;
-                                        top: 50%;
-                                        transform: translateY(-50%);
-                                        height: 40px;
-                                        width: 1px;
-                                        background: rgba(255, 255, 255, 0.5);
-                                    }
-                                }
-                                .heading{
-                                    font-size: 52px;
-                                    font-family: 'Earth Orbiter';
-                                    margin: 0 0 20px;
-                                    font-weight: 800;
-                                    line-height: 1.3;
-                                    &.heading1{
-                                        color: #e1ae48;
-                                    }
-                                    &.heading2{
-                                        color: #c7c6c7;
-                                    }
-                                    &.heading3{
-                                        color: #bc7532;
-                                    }
-                                }
-                                .value{
-                                    font-weight: bold;
-                                    font-size: 42px;
-                                    font-family: 'Earth Orbiter';
-                                    margin: 0;
-                                }
-                            }
-                        }
-                    }
-                }
-                &.step4{
-                    padding-top: 40px;
-                }
-            }
+        top: 10px;
+        right: 10px;
+        padding: 0 7px;
+        font-size: 50px;
+        transform: rotate(-45deg);
+        cursor: pointer;
+        background: transparent;
+        transition: 0.2s;
+        &:hover {
+          transform: rotate(45deg);
         }
-    }
-}
-
-.my-table{
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    width: 110%;
-    &.racer-bonus{
-        width: 80%;
-        margin: 30px auto 0;
-        .table-row{
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            height: 44px;
-            .table-item{
-                width: 27%;
-                &.desc{
-                    width: 19%;
-                }
-                p{
-                    font-size: 16px;
-                }
-            }
-        }
-    }
-    .table-row{
-        width: 100%;
+      }
+      .switcher-holder {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 37px;
-        &.header{
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            .table-item{
-                p{
-                    font-weight: 700;
-                }
+        width: 335px;
+        height: 75px;
+        button {
+          background: none;
+          border: none;
+          &.inactive {
+            svg {
+              path {
+                stroke: #585858;
+              }
             }
+          }
+          &.left-arrow {
+            transform: rotate(180deg);
+          }
         }
-        .table-item{
-            width: 7%;
-            border-left: 1px solid rgba(255, 255, 255, 0.25);
+        .dots-holder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          margin: 0 20px;
+          .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #585858;
+            margin: 0 5px;
+          }
+          .slider {
+            position: absolute;
+            height: 10px;
+            width: 55px;
+            left: 0;
+            top: 0;
+            border-radius: 7px;
+            transition: 0.15s;
+            &.state1 {
+              left: 0;
+            }
+            &.state2 {
+              left: 19%;
+            }
+            &.state3 {
+              left: 35%;
+            }
+            &.state4 {
+              left: 52%;
+            }
+          }
+        }
+      }
+      .next-btn {
+        font-size: 33px;
+        font-family: "Earth Orbiter";
+        padding: 20px 5px;
+        width: 395px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+      .modal-step {
+        h2 {
+          font-weight: 800;
+          font-size: 60px;
+          font-family: "Earth Orbiter";
+          margin: 0;
+          text-align: center;
+        }
+        .sub-heading {
+          font-size: 33px;
+          margin: 0 0 45px;
+          text-align: center;
+          span {
+            font-weight: bold;
+          }
+        }
+        &.step1 {
+          padding-top: 80px;
+          .cont-holder {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            &.desc{
-                width: 30%;
-                border-left: none;
-                align-items: flex-start;
-                padding-left: 3%;
+            justify-content: space-around;
+            align-items: flex-start;
+            position: relative;
+            .my-border {
+              width: 1px;
+              height: 100%;
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(255, 255, 255, 0.5);
             }
-            p{
-                font-size: 8px;
-                margin: 0;
+            .flex-item {
+              width: 45%;
+              max-width: 498px;
+              &.bigger {
+                max-width: 535px;
+              }
+              .heading-holder {
+                width: 100%;
+                .heading {
+                  font-size: 68px;
+                  font-family: "Earth Orbiter";
+                  margin: 0;
+                  font-weight: 900;
+                  line-height: 1;
+                }
+                .desc {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  p {
+                    white-space: nowrap;
+                    font-weight: 800;
+                    font-size: 20px;
+                    font-family: "Earth Orbiter";
+                    margin: 0;
+                    padding-right: 10px;
+                    &.premium {
+                      color: #e1ae48;
+                    }
+                  }
+                  .line {
+                    width: 100%;
+                    height: 1px;
+                    background: rgba(255, 255, 255, 0.5);
+                  }
+                }
+              }
+              .item-holder {
+                margin-bottom: 10px;
+                .heading {
+                  font-size: 52px;
+                  font-family: "Earth Orbiter";
+                  margin: 0;
+                  font-weight: 800;
+                  line-height: 1.3;
+                  &.heading1 {
+                    color: #e1ae48;
+                  }
+                  &.heading2 {
+                    color: #c7c6c7;
+                  }
+                  &.heading3 {
+                    color: #bc7532;
+                  }
+                }
+                .text {
+                  font-size: 24px;
+                  margin: 0;
+                  span {
+                    font-weight: 800;
+                  }
+                }
+              }
+              .my-text {
+                font-size: 20px;
+                margin: 30px 0 15px;
+                padding-bottom: 15px;
+              }
+              ul {
+                padding-left: 21px;
+                li {
+                  font-size: 20px;
+                  margin: 0 0 5px 0;
+                }
+              }
             }
+          }
         }
+        &.step2 {
+          padding-top: 80px;
+          .cont-holder {
+            display: flex;
+            justify-content: center;
+            align-content: flex-start;
+            .flex-item {
+              width: 32%;
+              text-align: center;
+              &.bordered {
+                border-right: 1px solid rgba(255, 255, 255, 0.5);
+              }
+              .heading {
+                font-size: 44px;
+                font-family: "Earth Orbiter";
+                margin: 0 0 25px;
+                font-weight: 800;
+              }
+              .table-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 22px;
+                p {
+                  font-weight: bold;
+                  font-size: 32px;
+                  font-family: "Earth Orbiter";
+                  margin: 0;
+                  text-align: left;
+                  &.desc {
+                    text-align: right;
+                    font-size: 22px;
+                  }
+                }
+                .my-border {
+                  width: 1px;
+                  height: 46px;
+                  background: rgba(255, 255, 255, 0.5);
+                  margin: 0 30px;
+                }
+                .table-item {
+                  width: 38%;
+                }
+              }
+            }
+          }
+        }
+        &.step3 {
+          padding-top: 40px;
+          .cont-holder {
+            .bonus-holder {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 85%;
+              margin: 11% auto 0;
+              position: relative;
+              &::after {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 1px;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.5);
+              }
+              .bonus-item {
+                width: 33.333%;
+                text-align: center;
+                position: relative;
+                &.bordered {
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 40px;
+                    width: 1px;
+                    background: rgba(255, 255, 255, 0.5);
+                  }
+                }
+                .heading {
+                  font-size: 52px;
+                  font-family: "Earth Orbiter";
+                  margin: 0 0 20px;
+                  font-weight: 800;
+                  line-height: 1.3;
+                  &.heading1 {
+                    color: #e1ae48;
+                  }
+                  &.heading2 {
+                    color: #c7c6c7;
+                  }
+                  &.heading3 {
+                    color: #bc7532;
+                  }
+                }
+                .value {
+                  font-weight: bold;
+                  font-size: 42px;
+                  font-family: "Earth Orbiter";
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+        &.step4 {
+          padding-top: 40px;
+        }
+      }
     }
+  }
+}
+
+.my-table {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  width: 110%;
+  &.racer-bonus {
+    width: 80%;
+    margin: 30px auto 0;
+    .table-row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      height: 44px;
+      .table-item {
+        width: 27%;
+        &.desc {
+          width: 19%;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .table-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37px;
+    &.header {
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      .table-item {
+        p {
+          font-weight: 700;
+        }
+      }
+    }
+    .table-item {
+      width: 7%;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      &.desc {
+        width: 30%;
+        border-left: none;
+        align-items: flex-start;
+        padding-left: 3%;
+      }
+      p {
+        font-size: 8px;
+        margin: 0;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1700px) {
-    .modal-holder{
-        .modal-cont{
-            .inner-holder{
-                .next-btn{
-                    font-size: 26px;
-                    padding: 16px 5px;
-                    width: 340px;
-                }
-                .switcher-holder{
-                    width: 300px;
-                    height: 65px;
-                    button{
-                        svg{
-                            width: 17px;
-                        }
-                    }
-                }
-                .modal-step{
-                    h2{
-                        font-size: 45px;
-                    }
-                    .sub-heading{
-                        font-size: 25px;
-                        margin: 0 0 30px;
-                    }
-                    &.step1{
-                        padding-top: 45px;
-                        .cont-holder{
-                            .flex-item{
-                                max-width: 405px;
-                                &.bigger{
-                                    max-width: 430px;
-                                }
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 55px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 17px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 45px;
-                                    }
-                                    .text{
-                                        font-size: 20px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 18px;
-                                    margin: 25px 0 15px;
-                                }
-                                ul{
-                                    li{
-                                        font-size: 18px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        padding-top: 45px;
-                        .cont-holder{
-                            .flex-item{
-                                .heading{
-                                    font-size: 38px;
-                                }
-                                .table-row{
-                                    margin-bottom: 19px;
-                                    p{
-                                        font-size: 28px;
-                                        &.desc{
-                                            font-size: 19px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 47px;
-                                        margin: 0 0 16px;
-                                    }
-                                    .value{
-                                        font-size: 38px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+  .modal-holder {
+    .modal-cont {
+      .inner-holder {
+        .next-btn {
+          font-size: 26px;
+          padding: 16px 5px;
+          width: 340px;
+        }
+        .switcher-holder {
+          width: 300px;
+          height: 65px;
+          button {
+            svg {
+              width: 17px;
             }
+          }
         }
-    }
-    .my-table{
-        width: 115%;
-        &.racer-bonus{
-            .table-row{
-                height: 42px;
+        .modal-step {
+          h2 {
+            font-size: 45px;
+          }
+          .sub-heading {
+            font-size: 25px;
+            margin: 0 0 30px;
+          }
+          &.step1 {
+            padding-top: 45px;
+            .cont-holder {
+              .flex-item {
+                max-width: 405px;
+                &.bigger {
+                  max-width: 430px;
+                }
+                .heading-holder {
+                  .heading {
+                    font-size: 55px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 17px;
+                    }
+                  }
+                }
+                .item-holder {
+                  .heading {
+                    font-size: 45px;
+                  }
+                  .text {
+                    font-size: 20px;
+                  }
+                }
+                .my-text {
+                  font-size: 18px;
+                  margin: 25px 0 15px;
+                }
+                ul {
+                  li {
+                    font-size: 18px;
+                  }
+                }
+              }
             }
+          }
+          &.step2 {
+            padding-top: 45px;
+            .cont-holder {
+              .flex-item {
+                .heading {
+                  font-size: 38px;
+                }
+                .table-row {
+                  margin-bottom: 19px;
+                  p {
+                    font-size: 28px;
+                    &.desc {
+                      font-size: 19px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                .bonus-item {
+                  .heading {
+                    font-size: 47px;
+                    margin: 0 0 16px;
+                  }
+                  .value {
+                    font-size: 38px;
+                  }
+                }
+              }
+            }
+          }
         }
-        .table-row{
-            height: 34px;
-        }
+      }
     }
+  }
+  .my-table {
+    width: 115%;
+    &.racer-bonus {
+      .table-row {
+        height: 42px;
+      }
+    }
+    .table-row {
+      height: 34px;
+    }
+  }
 }
 
 @media screen and (max-width: 1550px) {
-    .modal-holder{
-        .modal-cont{
-            .inner-holder{
-                .next-btn{
-                    font-size: 23px;
-                    padding: 15px 5px;
-                    width: 315px;
-                }
-                .switcher-holder{
-                    width: 290px;
-                    height: 60px;
-                    .dots-holder{
-                        margin: 0 12px;
-                        .dot{
-                            width: 8px;
-                            height: 8px;
-                        }
-                        .slider{
-                            height: 8px;
-                            width: 52px;
-                        }
-                    }
-                }
-                .modal-step{
-                    h2{
-                        font-size: 41px;
-                    }
-                    .sub-heading{
-                        font-size: 22px;
-                        margin: 0 0 25px;
-                    }
-                    &.step1{
-                        padding-top: 40px;
-                        .cont-holder{
-                            .flex-item{
-                                max-width: 375px;
-                                &.bigger{
-                                    max-width: 397px;
-                                }
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 51px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 15px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 41px;
-                                    }
-                                    .text{
-                                        font-size: 18px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 16px;
-                                    margin: 21px 0 13px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 16px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        padding-top: 40px;
-                        .cont-holder{
-                            .flex-item{
-                                .heading{
-                                    font-size: 36px;
-                                }
-                                .table-row{
-                                    margin-bottom: 17px;
-                                    p{
-                                        font-size: 24px;
-                                        &.desc{
-                                            font-size: 17px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 43px;
-                                        margin: 0 0 14px;
-                                    }
-                                    .value{
-                                        font-size: 34px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+  .modal-holder {
+    .modal-cont {
+      .inner-holder {
+        .next-btn {
+          font-size: 23px;
+          padding: 15px 5px;
+          width: 315px;
         }
-    }
-    .my-table{
-        &.racer-bonus{
-            .table-row{
-                height: 38px;
-                .table-item{
-                    p{
-                        font-size: 14px;
-                    }
-                }
+        .switcher-holder {
+          width: 290px;
+          height: 60px;
+          .dots-holder {
+            margin: 0 12px;
+            .dot {
+              width: 8px;
+              height: 8px;
             }
+            .slider {
+              height: 8px;
+              width: 52px;
+            }
+          }
         }
+        .modal-step {
+          h2 {
+            font-size: 41px;
+          }
+          .sub-heading {
+            font-size: 22px;
+            margin: 0 0 25px;
+          }
+          &.step1 {
+            padding-top: 40px;
+            .cont-holder {
+              .flex-item {
+                max-width: 375px;
+                &.bigger {
+                  max-width: 397px;
+                }
+                .heading-holder {
+                  .heading {
+                    font-size: 51px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 15px;
+                    }
+                  }
+                }
+                .item-holder {
+                  .heading {
+                    font-size: 41px;
+                  }
+                  .text {
+                    font-size: 18px;
+                  }
+                }
+                .my-text {
+                  font-size: 16px;
+                  margin: 21px 0 13px;
+                }
+                ul {
+                  padding-left: 18px;
+                  li {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+          &.step2 {
+            padding-top: 40px;
+            .cont-holder {
+              .flex-item {
+                .heading {
+                  font-size: 36px;
+                }
+                .table-row {
+                  margin-bottom: 17px;
+                  p {
+                    font-size: 24px;
+                    &.desc {
+                      font-size: 17px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                .bonus-item {
+                  .heading {
+                    font-size: 43px;
+                    margin: 0 0 14px;
+                  }
+                  .value {
+                    font-size: 34px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
+  .my-table {
+    &.racer-bonus {
+      .table-row {
+        height: 38px;
+        .table-item {
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
-    .modal-holder{
-        .modal-cont{
-            .inner-holder{
-                .close-btn{
-                    font-size: 40px;
-                }
-                .next-btn{
-                    font-size: 21px;
-                    padding: 14px 5px;
-                    width: 300px;
-                }
-                .switcher-holder{
-                    width: 215px;
-                    height: 49px;
-                }
-                .modal-step{
-                    h2{
-                        font-size: 36px;
-                    }
-                    .sub-heading{
-                        font-size: 19px;
-                        margin: 0 0 20px;
-                    }
-                    &.step1{
-                        .cont-holder{
-                            .flex-item{
-                                max-width: 310px;
-                                &.bigger{
-                                    max-width: 329px;
-                                }
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 42px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 14px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 33px;
-                                    }
-                                    .text{
-                                        font-size: 16px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 15px;
-                                    margin: 18px 0 10px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 15px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        .cont-holder{
-                            .flex-item{
-                                .heading{
-                                    font-size: 31px;
-                                }
-                                .table-row{
-                                    margin-bottom: 15px;
-                                    p{
-                                        font-size: 21px;
-                                        &.desc{
-                                            font-size: 16px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 40px;
-                                    }
-                                    .value{
-                                        font-size: 31px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+  .modal-holder {
+    .modal-cont {
+      .inner-holder {
+        .close-btn {
+          font-size: 40px;
         }
+        .next-btn {
+          font-size: 21px;
+          padding: 14px 5px;
+          width: 300px;
+        }
+        .switcher-holder {
+          width: 215px;
+          height: 49px;
+        }
+        .modal-step {
+          h2 {
+            font-size: 36px;
+          }
+          .sub-heading {
+            font-size: 19px;
+            margin: 0 0 20px;
+          }
+          &.step1 {
+            .cont-holder {
+              .flex-item {
+                max-width: 310px;
+                &.bigger {
+                  max-width: 329px;
+                }
+                .heading-holder {
+                  .heading {
+                    font-size: 42px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 14px;
+                    }
+                  }
+                }
+                .item-holder {
+                  .heading {
+                    font-size: 33px;
+                  }
+                  .text {
+                    font-size: 16px;
+                  }
+                }
+                .my-text {
+                  font-size: 15px;
+                  margin: 18px 0 10px;
+                }
+                ul {
+                  padding-left: 18px;
+                  li {
+                    font-size: 15px;
+                  }
+                }
+              }
+            }
+          }
+          &.step2 {
+            .cont-holder {
+              .flex-item {
+                .heading {
+                  font-size: 31px;
+                }
+                .table-row {
+                  margin-bottom: 15px;
+                  p {
+                    font-size: 21px;
+                    &.desc {
+                      font-size: 16px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                .bonus-item {
+                  .heading {
+                    font-size: 40px;
+                  }
+                  .value {
+                    font-size: 31px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
 @media screen and (max-width: 1024px) {
-    .modal-holder{
-        .modal-cont{
-            height: 90%;
-            width: 95%;
-            .inner-holder{
-                .close-btn{
+  .modal-holder {
+    .modal-cont {
+      height: 90%;
+      width: 95%;
+      .inner-holder {
+        .close-btn {
+          font-size: 33px;
+        }
+        .next-btn {
+          font-size: 20px;
+          padding: 12px 5px;
+          width: 250px;
+        }
+        .switcher-holder {
+          width: 200px;
+          height: 44px;
+        }
+        .modal-step {
+          height: 93%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          h2 {
+            font-size: 31px;
+          }
+          .sub-heading {
+            font-size: 17px;
+            margin: 0 0 25px;
+          }
+          &.step1 {
+            .cont-holder {
+              .flex-item {
+                max-width: 285px;
+                &.bigger {
+                  max-width: 305px;
+                }
+                .heading-holder {
+                  .heading {
                     font-size: 33px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 13px;
+                    }
+                  }
                 }
-                .next-btn{
-                    font-size: 20px;
-                    padding: 12px 5px;
-                    width: 250px;
+                .item-holder {
+                  .heading {
+                    font-size: 28px;
+                  }
+                  .text {
+                    font-size: 15px;
+                  }
                 }
-                .switcher-holder{
-                    width: 200px;
-                    height: 44px;
+                .my-text {
+                  font-size: 14px;
+                  margin: 15px 0 8px;
                 }
-                .modal-step{
-                    height: 93%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    h2{
-                        font-size: 31px;
-                    }
-                    .sub-heading{
-                        font-size: 17px;
-                        margin: 0 0 25px;
-                    }
-                    &.step1{
-                        .cont-holder{
-                            .flex-item{
-                                max-width: 285px;
-                                &.bigger{
-                                    max-width: 305px;
-                                }
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 33px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 13px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 28px;
-                                    }
-                                    .text{
-                                        font-size: 15px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 14px;
-                                    margin: 15px 0 8px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 14px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        .cont-holder{
-                            .flex-item{
-                                .heading{
-                                    font-size: 28px;
-                                }
-                                .table-row{
-                                    margin-bottom: 13px;
-                                    .my-border{
-                                        height: 33px;
-                                        margin: 0 20px;
-                                    }
-                                    p{
-                                        font-size: 19px;
-                                        &.desc{
-                                            font-size: 14px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                width: 90%;
-                                margin: 8% auto 0;
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 32px;
-                                    }
-                                    .value{
-                                        font-size: 26px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step4{
-                        padding-top: 10px;
-                    }
+                ul {
+                  padding-left: 18px;
+                  li {
+                    font-size: 14px;
+                  }
                 }
+              }
             }
+          }
+          &.step2 {
+            .cont-holder {
+              .flex-item {
+                .heading {
+                  font-size: 28px;
+                }
+                .table-row {
+                  margin-bottom: 13px;
+                  .my-border {
+                    height: 33px;
+                    margin: 0 20px;
+                  }
+                  p {
+                    font-size: 19px;
+                    &.desc {
+                      font-size: 14px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                width: 90%;
+                margin: 8% auto 0;
+                .bonus-item {
+                  .heading {
+                    font-size: 32px;
+                  }
+                  .value {
+                    font-size: 26px;
+                  }
+                }
+              }
+            }
+          }
+          &.step4 {
+            padding-top: 10px;
+          }
         }
+      }
     }
-    .my-table{
-        &.racer-bonus{
-            .table-row{
-                height: 33px;
-                .table-item{
-                    p{
-                        font-size: 11px;
-                    }
-                }
-            }
+  }
+  .my-table {
+    &.racer-bonus {
+      .table-row {
+        height: 33px;
+        .table-item {
+          p {
+            font-size: 11px;
+          }
         }
-        .table-row{
-            height: 28px;
-            .table-item{
-                p{
-                    font-size: 6px;
-                }
-            }
-        }
+      }
     }
+    .table-row {
+      height: 28px;
+      .table-item {
+        p {
+          font-size: 6px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
-    .modal-holder{
-        overflow: auto;
-        justify-content: flex-start;
-        padding: 30px 0;
-        height: calc(var(--vh, 1vh) * 100);
-        .modal-back{
-            display: none;
+  .modal-holder {
+    overflow: auto;
+    justify-content: flex-start;
+    padding: 30px 0;
+    height: calc(var(--vh, 1vh) * 100);
+    .modal-back {
+      display: none;
+    }
+    .modal-cont {
+      height: unset;
+      width: 95%;
+      .inner-holder {
+        .close-btn {
+          font-size: 28px;
         }
-        .modal-cont{
-            height: unset;
-            width: 95%;
-            .inner-holder{
-                .close-btn{
+        .next-btn {
+          font-size: 17px;
+          padding: 10px 5px;
+          width: 200px;
+        }
+        .switcher-holder {
+          width: 160px;
+          height: 37px;
+          .dots-holder {
+            margin: 0 5px;
+            .dot {
+              width: 6px;
+              height: 6px;
+            }
+            .slider {
+              height: 6px;
+              width: 46px;
+            }
+          }
+          button {
+            svg {
+              width: 13px;
+            }
+          }
+        }
+        .modal-step {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-bottom: 40px;
+          h2 {
+            font-size: 27px;
+          }
+          .sub-heading {
+            font-size: 16px;
+            margin: 0 0 20px;
+          }
+          &.step1 {
+            .cont-holder {
+              flex-wrap: wrap;
+              .my-border {
+                display: none;
+              }
+              .flex-item {
+                max-width: 85%;
+                width: 85%;
+                &.bigger {
+                  max-width: 85%;
+                  width: 85%;
+                }
+                .heading-holder {
+                  .heading {
+                    font-size: 33px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 13px;
+                    }
+                  }
+                }
+                .item-holder {
+                  .heading {
                     font-size: 28px;
-                }
-                .next-btn{
-                    font-size: 17px;
-                    padding: 10px 5px;
-                    width: 200px;
-                }
-                .switcher-holder{
-                    width: 160px;
-                    height: 37px;
-                    .dots-holder{
-                        margin: 0 5px;
-                        .dot{
-                            width: 6px;
-                            height: 6px;
-                        }
-                        .slider{
-                            height: 6px;
-                            width: 46px;
-                        }
-                    }
-                    button{
-                        svg{
-                            width: 13px;
-                        }
-                    }
-                }
-                .modal-step{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding-bottom: 40px;
-                    h2{
-                        font-size: 27px;
-                    }
-                    .sub-heading{
-                        font-size: 16px;
-                        margin: 0 0 20px;
-                    }
-                    &.step1{
-                        .cont-holder{
-                            flex-wrap: wrap;
-                            .my-border{
-                                display: none;
-                            }
-                            .flex-item{
-                                max-width: 85%;
-                                width: 85%;
-                                &.bigger{
-                                    max-width: 85%;
-                                    width: 85%;
-                                }
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 33px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 13px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 28px;
-                                    }
-                                    .text{
-                                        font-size: 15px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 14px;
-                                    margin: 15px 0 8px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 14px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        .cont-holder{
-                            flex-wrap: wrap;
-                            .flex-item{
-                                width: 85%;
-                                &.bordered{
-                                    border-right: none;
-                                    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-                                }
-                                .heading{
-                                    font-size: 23px;
-                                    margin: 7px 0;
-                                }
-                                .table-row{
-                                    margin-bottom: 5px;
-                                    .my-border{
-                                        height: 20px;
-                                    }
-                                    p{
-                                        font-size: 17px;
-                                        &.desc{
-                                            font-size: 13px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                width: 90%;
-                                margin: 0 auto;
-                                flex-wrap: wrap;
-                                &::after{
-                                    content: none;
-                                }
-                                .bonus-item{
-                                    width: 85%;
-                                    &::after{
-                                        content: '';
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-                                        transform: translateX(-50%);
-                                        height: 1px;
-                                        width: 50px;
-                                        background: rgba(255, 255, 255, 0.5);
-                                    }
-                                    &.bordered{
-                                        &::after{
-                                            top: 50%;
-                                            right: unset;
-                                            left: 50%;
-                                            transform: translateX(-50%);
-                                            height: 1px;
-                                            width: 50px;
-                                        }
-                                    }
-                                    .heading{
-                                        font-size: 32px;
-                                    }
-                                    .value{
-                                        font-size: 26px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step4{
-                        padding-top: 40px;
-                    }
-                }
-            }
-        }
-    }
-    .my-table{
-        width: 100%;
-        &.racer-bonus{
-            width: 90%;
-        }
-        .table-row{
-            .table-item{
-                p{
-                    font-size: 8px;
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 640px){
-    .modal-holder{
-        .modal-cont{
-            .inner-holder{
-                background-size: cover;
-                .switcher-holder{
-                    left: 0;
-                    transform: none;
-                    height: 35px;
-                }
-                .next-btn{
+                  }
+                  .text {
                     font-size: 15px;
-                    width: 160px;
+                  }
                 }
-                .modal-step{
-                    &.step1{
-                        .cont-holder{
-                            .flex-item{
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 26px;
-                                    }
-                                    .desc{
-                                        p{
-                                            font-size: 12px;
-                                        }
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 23px;
-                                    }
-                                    .text{
-                                        font-size: 13px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 13px;
-                                    margin: 12px 0 5px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 13px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 24px;
-                                    }
-                                    .value{
-                                        font-size: 19px;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                .my-text {
+                  font-size: 14px;
+                  margin: 15px 0 8px;
                 }
-            }
-        }
-    }
-    .my-table{
-        &.racer-bonus{
-            .table-row{
-                .table-item{
-                    p{
-                        font-size: 9px;
-                    }
-                }
-            }
-        }
-        .table-row{
-            .table-item{
-                p{
-                    font-size: 6px;
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 500px){
-    .my-table{
-        &.racer-bonus{
-            width: 95%;
-            margin: 15px auto 0;
-            .table-row{
-                .table-item{
-                    width: 26%;
-                    &.desc{
-                        width: 22%;
-                    }
-                    p{
-                        font-size: 7px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 400px){
-    .modal-holder{
-        padding: 10px 0;
-        .modal-cont{
-            .inner-holder{
-                .switcher-holder{
-                    left: 0;
-                    transform: none;
-                    height: 30px;
-                    width: 125px;
-                    .dots-holder{
-                        margin: 0 2px;
-                        .dot{
-                            width: 5px;
-                            height: 5px;
-                            margin: 0 3px;
-                        }
-                        .slider{
-                            height: 5px;
-                            width: 32px;
-                            &.state2{
-                                left: 21%;
-                            }
-                        }
-                    }
-                    button{
-                        svg{
-                            width: 10px;
-                        }
-                    }
-                }
-                .next-btn{
+                ul {
+                  padding-left: 18px;
+                  li {
                     font-size: 14px;
-                    width: 125px;
-                    padding: 8px 5px;
+                  }
                 }
-                .modal-step{
-                    h2{
-                        font-size: 20px;
-                    }
-                    .sub-heading{
-                        font-size: 13px;
-                        margin: 0 0 15px;
-                        padding: 0 10px;
-                    }
-                    &.step1{
-                        .cont-holder{
-                            .flex-item{
-                                .heading-holder{
-                                    .heading{
-                                        font-size: 21px;
-                                    }
-                                }
-                                .item-holder{
-                                    .heading{
-                                        font-size: 19px;
-                                    }
-                                    .text{
-                                        font-size: 11px;
-                                    }
-                                }
-                                .my-text{
-                                    font-size: 11px;
-                                    margin: 10px 0 5px;
-                                }
-                                ul{
-                                    padding-left: 18px;
-                                    li{
-                                        font-size: 11px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step2{
-                        .cont-holder{
-                            .flex-item{
-                                .heading{
-                                    font-size: 19px;
-                                    margin: 5px 0;
-                                }
-                                .table-row{
-                                    margin-bottom: 4px;
-                                    .my-border{
-                                        height: 16px;
-                                    }
-                                    p{
-                                        font-size: 15px;
-                                        &.desc{
-                                            font-size: 11px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    &.step3{
-                        .cont-holder{
-                            .bonus-holder{
-                                .bonus-item{
-                                    .heading{
-                                        font-size: 21px;
-                                    }
-                                    .value{
-                                        font-size: 16px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+              }
             }
+          }
+          &.step2 {
+            .cont-holder {
+              flex-wrap: wrap;
+              .flex-item {
+                width: 85%;
+                &.bordered {
+                  border-right: none;
+                  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                }
+                .heading {
+                  font-size: 23px;
+                  margin: 7px 0;
+                }
+                .table-row {
+                  margin-bottom: 5px;
+                  .my-border {
+                    height: 20px;
+                  }
+                  p {
+                    font-size: 17px;
+                    &.desc {
+                      font-size: 13px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                width: 90%;
+                margin: 0 auto;
+                flex-wrap: wrap;
+                &::after {
+                  content: none;
+                }
+                .bonus-item {
+                  width: 85%;
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 1px;
+                    width: 50px;
+                    background: rgba(255, 255, 255, 0.5);
+                  }
+                  &.bordered {
+                    &::after {
+                      top: 50%;
+                      right: unset;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      height: 1px;
+                      width: 50px;
+                    }
+                  }
+                  .heading {
+                    font-size: 32px;
+                  }
+                  .value {
+                    font-size: 26px;
+                  }
+                }
+              }
+            }
+          }
+          &.step4 {
+            padding-top: 40px;
+          }
         }
+      }
     }
+  }
+  .my-table {
+    width: 100%;
+    &.racer-bonus {
+      width: 90%;
+    }
+    .table-row {
+      .table-item {
+        p {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modal-holder {
+    .modal-cont {
+      .inner-holder {
+        background-size: cover;
+        .switcher-holder {
+          left: 0;
+          transform: none;
+          height: 35px;
+        }
+        .next-btn {
+          font-size: 15px;
+          width: 160px;
+        }
+        .modal-step {
+          &.step1 {
+            .cont-holder {
+              .flex-item {
+                .heading-holder {
+                  .heading {
+                    font-size: 26px;
+                  }
+                  .desc {
+                    p {
+                      font-size: 12px;
+                    }
+                  }
+                }
+                .item-holder {
+                  .heading {
+                    font-size: 23px;
+                  }
+                  .text {
+                    font-size: 13px;
+                  }
+                }
+                .my-text {
+                  font-size: 13px;
+                  margin: 12px 0 5px;
+                }
+                ul {
+                  padding-left: 18px;
+                  li {
+                    font-size: 13px;
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                .bonus-item {
+                  .heading {
+                    font-size: 24px;
+                  }
+                  .value {
+                    font-size: 19px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .my-table {
+    &.racer-bonus {
+      .table-row {
+        .table-item {
+          p {
+            font-size: 9px;
+          }
+        }
+      }
+    }
+    .table-row {
+      .table-item {
+        p {
+          font-size: 6px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .my-table {
+    &.racer-bonus {
+      width: 95%;
+      margin: 15px auto 0;
+      .table-row {
+        .table-item {
+          width: 26%;
+          &.desc {
+            width: 22%;
+          }
+          p {
+            font-size: 7px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-holder {
+    padding: 10px 0;
+    .modal-cont {
+      .inner-holder {
+        .switcher-holder {
+          left: 0;
+          transform: none;
+          height: 30px;
+          width: 125px;
+          .dots-holder {
+            margin: 0 2px;
+            .dot {
+              width: 5px;
+              height: 5px;
+              margin: 0 3px;
+            }
+            .slider {
+              height: 5px;
+              width: 32px;
+              &.state2 {
+                left: 21%;
+              }
+            }
+          }
+          button {
+            svg {
+              width: 10px;
+            }
+          }
+        }
+        .next-btn {
+          font-size: 14px;
+          width: 125px;
+          padding: 8px 5px;
+        }
+        .modal-step {
+          h2 {
+            font-size: 20px;
+          }
+          .sub-heading {
+            font-size: 13px;
+            margin: 0 0 15px;
+            padding: 0 10px;
+          }
+          &.step1 {
+            .cont-holder {
+              .flex-item {
+                .heading-holder {
+                  .heading {
+                    font-size: 21px;
+                  }
+                }
+                .item-holder {
+                  .heading {
+                    font-size: 19px;
+                  }
+                  .text {
+                    font-size: 11px;
+                  }
+                }
+                .my-text {
+                  font-size: 11px;
+                  margin: 10px 0 5px;
+                }
+                ul {
+                  padding-left: 18px;
+                  li {
+                    font-size: 11px;
+                  }
+                }
+              }
+            }
+          }
+          &.step2 {
+            .cont-holder {
+              .flex-item {
+                .heading {
+                  font-size: 19px;
+                  margin: 5px 0;
+                }
+                .table-row {
+                  margin-bottom: 4px;
+                  .my-border {
+                    height: 16px;
+                  }
+                  p {
+                    font-size: 15px;
+                    &.desc {
+                      font-size: 11px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.step3 {
+            .cont-holder {
+              .bonus-holder {
+                .bonus-item {
+                  .heading {
+                    font-size: 21px;
+                  }
+                  .value {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
