@@ -174,6 +174,7 @@
     -o-transform: translateY(0%);
   }
 }
+
 .wallet-info-text {
   position: absolute;
   text-align: right;
@@ -184,7 +185,7 @@
   }
   .wallet-images {
     margin-top: 10px;
-    height: 40px;
+    height: 60px;
     align-items: center;
     justify-content: flex-end;
     display: flex;
@@ -248,19 +249,20 @@
       }
     }
   }
+  .category-title-first {
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: bold;
+    font-style: normal;
+  }
+  .desc-text {
+    font-size: 23px;
+    line-height: 25px;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
-.category-title-first {
-  font-size: 30px;
-  line-height: 45px;
-  font-weight: bold;
-  font-style: normal;
-}
-.desc-text {
-  font-size: 17px;
-  line-height: 19px;
-  font-weight: 300;
-  font-style: normal;
-}
+
 .login-back-div {
   position: sticky;
   height: 0px;
@@ -548,6 +550,26 @@
   visibility: visible !important;
 }
 
+@media screen and (max-width: 1700px) {
+  .wallet-info-text {
+    p {
+      margin: 0px;
+    }
+    .wallet-images {
+      height: 40px;
+    }
+    .category-title-first {
+      font-size: 28px;
+      line-height: 40px;
+      font-weight: bold;
+      font-style: normal;
+    }
+    .desc-text {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
 @media screen and (max-width: 1550px) {
   .main-holder {
     .back-btn {
@@ -621,6 +643,18 @@
   }
 }
 @media screen and (max-width: 1400px) {
+  .wallet-info-text {
+    bottom: 15px;
+    right: 15px;
+    .category-title-first {
+      font-size: 25px;
+      line-height: 35px;
+    }
+    .desc-text {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
 }
 @media screen and (max-width: 1024px) {
   .main-holder {
@@ -695,6 +729,21 @@
   }
 }
 @media screen and (max-width: 1024px) and (orientation: landscape) {
+  .wallet-info-text {
+    bottom: 5px;
+    right: 5px;
+    .wallet-images {
+      height: 30px;
+    }
+    .category-title-first {
+      font-size: 15px;
+      line-height: 19px;
+    }
+    .desc-text {
+      font-size: 8px;
+      line-height: 10px;
+    }
+  }
 }
 @media screen and (max-width: 900px) and (orientation: landscape) {
   .main-holder {
@@ -773,10 +822,37 @@
 }
 @media screen and (max-width: 850px) and (orientation: landscape) {
   .main-holder {
-    min-height: 350px;
+    min-height: 300px;
+  }
+  .wallet-info-text {
+    .wallet-images {
+      height: 25px;
+      span {
+        &.google {
+          margin-right: 7.5px;
+        }
+      }
+    }
   }
 }
-
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .wallet-info-text {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .wallet-images {
+      height: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+    .category-title-first {
+      display: none;
+    }
+    .desc-text {
+      display: none;
+    }
+  }
+}
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .main-holder {
     min-height: 300px;

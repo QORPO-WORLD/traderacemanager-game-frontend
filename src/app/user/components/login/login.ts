@@ -332,6 +332,23 @@ export class LoginComponent
       }, 300);
     }
   }
+  switchToMetaMask() {
+    if (this.metaSwitch === false) {
+      this.animation = 3;
+      const timeout1 = window.setTimeout(() => {
+        this.metaSwitch = true;
+        this.animation = 2;
+        clearTimeout(timeout1);
+      }, 300);
+    } else {
+      this.animation = 3;
+      const timeout2 = window.setTimeout(() => {
+        this.metaSwitch = false;
+        this.animation = 2;
+        clearTimeout(timeout2);
+      }, 300);
+    }
+  }
   openLink(url: string) {
     window.open(url, "_blank");
   }

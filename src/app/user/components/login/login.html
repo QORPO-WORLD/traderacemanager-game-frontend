@@ -20,8 +20,8 @@
   </div>
   <div class="login-content">
     <div
-      [ngClass]="{'dissapear-top-animation': animation === 1, 'engage-top-animation': animation === 4}"
-      *ngIf="walletSwitch === false"
+      [ngClass]="{'dissapear-top-animation': animation === 1, 'engage-top-animation': animation === 4, 'dissapear-bottom-animation': animation === 3, 'engage-bottom-animation': animation === 2}"
+      *ngIf="walletSwitch === false && metaSwitch === false"
       class="center-content"
     >
       <form [formGroup]="reactiveForm">
@@ -119,19 +119,19 @@
 
       <p class="or-text">{{'login.or' | translate}}</p>
 
-      <button class="social-button" (click)="metaSwitch = true">
+      <button class="social-button" (click)=" switchToMetaMask()">
         <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
         | translate}}
       </button>
       <button class="social-button" (click)="switchToWallet()">
-        <img src="/assets/base/images/home-page/Logo.svg" />
+        <img src="/assets/base/images/icons/ioi-wallet.png" />
 
         Log in with IOI-Wallet
       </button>
     </div>
     <div
       [ngClass]="{'engage-bottom-animation': animation === 2,'dissapear-bottom-animation': animation === 3}"
-      *ngIf="walletSwitch === true"
+      *ngIf="walletSwitch === true && metaSwitch === false"
       class="center-content"
     >
       <form [formGroup]="reactiveForm">
@@ -245,30 +245,30 @@
 
       <p class="or-text">{{'login.or' | translate}}</p>
 
-      <button class="social-button wallet" (click)="metaSwitch = true">
+      <button class="social-button wallet" (click)=" switchToMetaMask()">
         <img src="/assets/base/images/meta-logo.png" />{{'login.metamask_login'
         | translate}}
       </button>
       <button class="social-button wallet" (click)="switchToWallet()">
-        <img src="/assets/base/images/home-page/Logo.svg" />
-
         Log in with E-Mail
       </button>
     </div>
     <div
-      *ngIf="walletSwitch === true"
+      *ngIf="walletSwitch === true && metaSwitch === false"
       [ngClass]="{'engage-right-animation': animation === 2,'dissapear-right-animation': animation === 3}"
       class="wallet-info-text"
     >
       <p class="category-title-first">What is IOI-Wallet?</p>
-      <p>IOI-Wallet is custom crypto wallet created by IOI Corporation</p>
+      <p class="desc-text">
+        IOI-Wallet is custom crypto wallet created by IOI Corporation
+      </p>
       <div class="wallet-images">
         <span
           (click)="openLink(' https://play.google.com/store/apps/details?id=ioi.wallet&hl=en&gl=US')"
           class="google"
           ><img
             class="google-logo"
-            src="/assets/base/images/home-page/google-play.png"
+            src="/assets/base/images/icons/google-play.png"
             alt="google-play logo"
         /></span>
         <span
@@ -277,18 +277,18 @@
         >
           <img
             class="wallet-logo"
-            src="/assets/base/images/home-page/Logo.svg"
+            src="/assets/base/images/icons/ioi-wallet.png"
             alt="IOI Wallet logo"
         /></span>
       </div>
     </div>
     <div
-      [ngClass]="{'engage-bottom-animation': animation === 2,'dissapear-bottom-animation': animation === 3}"
+      [ngClass]="{'engage-top-animation': animation === 2,'dissapear-top-animation': animation === 3}"
       *ngIf="metaSwitch === true"
       class="center-content"
-      class="content-center"
     >
-      <app-metamask-signup></app-metamask-signup>
+      <app-metamask-signup (modalActive)="switchToMetaMask()">
+      </app-metamask-signup>
     </div>
   </div>
 
