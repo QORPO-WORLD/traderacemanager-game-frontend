@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./home-shop.component.scss"],
 })
 export class HomeShopComponent implements OnInit {
+  assetId: number;
   animation = 5;
   timeoutPrev: any;
   timeoutNext: any;
@@ -765,22 +766,27 @@ export class HomeShopComponent implements OnInit {
 
   getAssetType() {
     this.typeObserver = this.route.queryParams.subscribe((params) => {
+      this.assetId = +params["assetId"];
       this.assetType = params["assetType"];
-      if (!this.assetType) {
-        this.assetType = "all";
-      }
-      if (this.assetType === "car") {
-        this.filterCars();
-      }
-      if (this.assetType === "racer") {
-        this.filterRacers();
-      }
-      if (this.assetType === "track") {
-        this.filterTracks();
-      }
+      if (!this.assetId) {
+        if (!this.assetType) {
+          this.assetType = "all";
+        }
+        if (this.assetType === "car") {
+          this.filterCars();
+        }
+        if (this.assetType === "racer") {
+          this.filterRacers();
+        }
+        if (this.assetType === "track") {
+          this.filterTracks();
+        }
 
-      if (this.assetType === "bundle") {
-        this.filterBundles();
+        if (this.assetType === "bundle") {
+          this.filterBundles();
+        }
+      } else {
+        this.showAsset(2, this.assetId);
       }
     });
   }
@@ -889,11 +895,9 @@ export class HomeShopComponent implements OnInit {
     this.title = "All";
   }
 
-  showAsset(state: number, id: number, type: string, position: number) {
+  showAsset(state: number, id: number) {
     this.marketState = state;
-    this.selectedPosition = position;
     this.selectedId = id;
-    this.selectedType = type;
   }
 
   timeoutReset() {

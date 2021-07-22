@@ -176,14 +176,23 @@
 //CONTENT SETTINGS
 
 .intro-modal {
-  position: fixed;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url("/assets/base/images/start-race/dash-back.png");
+  position: absolute;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    url("/assets/base/images/start-race/dash-back.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 10000;
   top: 0;
-  height: calc((var(--vh, 1vh) * 100));
+  height: auto;
+  min-height: 100vh;
   width: 100%;
   left: 0;
-  overflow: auto;
+
   padding-top: 80px;
 }
 
@@ -196,7 +205,7 @@
 
   .content-menu {
     width: 19%;
-    height: calc(var(--vh, 1vh) * 100 - 160px);
+    height: calc(100vh - 160px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1210,7 +1219,7 @@
   }
   .races-content {
     .content-menu {
-      height: calc(var(--vh, 1vh) * 100 - 140px);
+      height: calc(100vh - 140px);
       top: 85px;
       .item {
         img {
@@ -1577,8 +1586,8 @@
     padding-bottom: 13px;
     padding-top: 13px;
   }
-  .races-content{
-    .content-menu{
+  .races-content {
+    .content-menu {
       top: 78px;
     }
   }
@@ -1586,7 +1595,7 @@
 @media screen and(max-width: 1024px) {
   .races-content {
     .content-menu {
-      height: calc(var(--vh, 1vh) * 100 - 65px);
+      height: calc(100vh - 65px);
       top: 55px;
       .item:hover {
         transform: none;
@@ -1753,10 +1762,13 @@
   }
   .content-title {
     height: 40px;
+    position: absolute;
+    transform: translateY(-100%);
   }
   .menu-title {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 11px;
+    line-height: 13px;
+    margin-left: 10px;
   }
   .category-title-first {
     font-size: 20px;
@@ -1778,7 +1790,7 @@
     font-size: 10px;
     line-height: 12px;
   }
-  .intro-modal{
+  .intro-modal {
     padding-top: 40px;
   }
   .races-content {
@@ -1813,19 +1825,19 @@
       .hoverable-category {
         padding: 15px;
       }
-      &.premium{
-        .tip-content{
-          .item-box{
-            .item{
+      &.premium {
+        .tip-content {
+          .item-box {
+            .item {
               margin-top: 10px;
             }
-            p{
-              &.space{
+            p {
+              &.space {
                 margin-top: 10px;
               }
             }
           }
-          .race-btn{
+          .race-btn {
             margin-top: 10px;
           }
         }
@@ -1952,7 +1964,7 @@
   }
   .races-content {
     .content-menu {
-      height: calc(var(--vh, 1vh) * 100 - 60px);
+      height: calc(100vh - 60px);
       top: 50px;
     }
     .content-side {
@@ -2193,8 +2205,9 @@
   }
 
   .menu-title {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 9px;
+    line-height: 10px;
+    margin-left: 5px;
   }
   .category-title-first {
     font-size: 17px;
@@ -2221,6 +2234,7 @@
       .item {
         img {
           width: 12.5px;
+          margin-left: 5%;
         }
         border-top: 1px solid rgba(255, 255, 255, 0.4);
         border-left: 1px solid rgba(255, 255, 255, 0.4);
@@ -2893,11 +2907,11 @@
     height: 100%;
     z-index: 100;
   }
-  &.disabled{
+  &.disabled {
     pointer-events: none;
   }
-  &.clickable{
-    &::after{
+  &.clickable {
+    &::after {
       content: none;
     }
   }
@@ -2906,14 +2920,14 @@
 .tutorial-modal {
   position: fixed;
   width: 100%;
-  min-height: calc(var(--vh, 1vh) * 100);
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: calc(100vh);
+  height: calc(100vh);
   top: 0;
   left: 0;
   z-index: 1000002;
   overflow: auto;
   background: rgba(17, 17, 17, 0.9);
-  p{
+  p {
     opacity: 1;
   }
   .skip-text {
@@ -3178,7 +3192,7 @@
           margin-right: 17px;
         }
       }
-      &.content1{
+      &.content1 {
         max-width: 17%;
       }
       &.content2 {

@@ -29,17 +29,9 @@ export class HomePageComponent implements OnInit {
       image: "car28",
       type: "car",
     },
+
     {
       id: 3,
-      shopid: 41,
-      collection: "Tracks",
-      name: "Night City",
-      prize: "Coming soon",
-      image: "night-city-small",
-      type: "track",
-    },
-    {
-      id: 4,
       shopid: 46,
       collection: "Teams",
       name: "IOI",
@@ -640,16 +632,60 @@ export class HomePageComponent implements OnInit {
 
   getDate() {
     var objToday = new Date(),
-    weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
-    dayOfWeek = weekday[objToday.getDay()],
-    months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
-    curMonth = months[objToday.getMonth()],
-    curYear = objToday.getFullYear(),
-    curHour = objToday.getHours() > 12 ? objToday.getHours() - 12 : (objToday.getHours() < 10 ? "0" + objToday.getHours() : objToday.getHours()),
-    curMinute = objToday.getMinutes() < 10 ? "0" + objToday.getMinutes() : objToday.getMinutes(),
-    curSeconds = objToday.getSeconds() < 10 ? "0" + objToday.getSeconds() : objToday.getSeconds(),
-    curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
-    var today = curHour + ":" + curMinute + "." + curSeconds + curMeridiem + " " + dayOfWeek + " of " + curMonth + ", " + curYear;
+      weekday = new Array(
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ),
+      dayOfWeek = weekday[objToday.getDay()],
+      months = new Array(
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ),
+      curMonth = months[objToday.getMonth()],
+      curYear = objToday.getFullYear(),
+      curHour =
+        objToday.getHours() > 12
+          ? objToday.getHours() - 12
+          : objToday.getHours() < 10
+          ? "0" + objToday.getHours()
+          : objToday.getHours(),
+      curMinute =
+        objToday.getMinutes() < 10
+          ? "0" + objToday.getMinutes()
+          : objToday.getMinutes(),
+      curSeconds =
+        objToday.getSeconds() < 10
+          ? "0" + objToday.getSeconds()
+          : objToday.getSeconds(),
+      curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
+    var today =
+      curHour +
+      ":" +
+      curMinute +
+      "." +
+      curSeconds +
+      curMeridiem +
+      " " +
+      dayOfWeek +
+      " of " +
+      curMonth +
+      ", " +
+      curYear;
     this.displayDate = today;
   }
 }

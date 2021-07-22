@@ -119,12 +119,19 @@
       ></div>
     </div>
 
-    <div class="token-detail" [ngClass]="{'closed': closeTokenDetail === true}">
-
+    <div class="token-detail" [ngClass]="{ closed: closeTokenDetail === true }">
       <div class="close-detail" (click)="closeTokenDetail = !closeTokenDetail">
-        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
-            fill="white"/>
+        <svg
+          width="9"
+          height="7"
+          viewBox="0 0 9 7"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.375 2.71357L8.75 0.538574L8.75 4.48857L4.375 6.58858L1.8466e-07 4.48857L1.37557e-07 0.538575L4.375 2.71357Z"
+            fill="white"
+          />
         </svg>
       </div>
 
@@ -176,10 +183,7 @@
                 )
               "
             >
-              <img
-                src="/assets/base/images/home-page/exchange1.png"
-                alt=""
-              />
+              <img src="/assets/base/images/home-page/exchange1.png" alt="" />
             </div>
             <div
               class="ex-item"
@@ -188,10 +192,7 @@
                 openLink('https://www.gate.io/en/trade/IOI_USDT')
               "
             >
-              <img
-                src="/assets/base/images/home-page/exchange2.png"
-                alt=""
-              />
+              <img src="/assets/base/images/home-page/exchange2.png" alt="" />
             </div>
             <div
               class="ex-item"
@@ -202,10 +203,7 @@
                 )
               "
             >
-              <img
-                src="/assets/base/images/home-page/exchange3.png"
-                alt=""
-              />
+              <img src="/assets/base/images/home-page/exchange3.png" alt="" />
             </div>
             <div
               class="ex-item"
@@ -216,10 +214,7 @@
                 )
               "
             >
-              <img
-                src="/assets/base/images/home-page/exchange4.png"
-                alt=""
-              />
+              <img src="/assets/base/images/home-page/exchange4.png" alt="" />
             </div>
             <div
               class="ex-item"
@@ -228,16 +223,12 @@
                 openLink('https://trade.kucoin.com/IOI-USDT')
               "
             >
-              <img
-                src="/assets/base/images/home-page/exchange5.png"
-                alt=""
-              />
+              <img src="/assets/base/images/home-page/exchange5.png" alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="video-holder">
@@ -253,25 +244,25 @@
     <div *ngIf="display <= 450" class="left-mobile">
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'racer' }"
+        [queryParams]="{ assetType: 'racer' }"
         src="assets/base/images/home-page/racers-menu-small.jpg"
         alt="menu racers"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filer: 'car' }"
+        [queryParams]="{ assetType: 'car' }"
         src="assets/base/images/home-page/cars-menu-small.jpg"
         alt="menu cars"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'track' }"
-        src="assets/base/images/home-page/tracks-menu-small.jpg"
+        [queryParams]="{ assetType: 'car' }"
+        src="assets/base/images/home-page/bundles-menu-small.png"
         alt="menu tracks"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'team' }"
+        [queryParams]="{ assetType: 'car' }"
         src="assets/base/images/home-page/teams-menu-small.jpg"
         alt="menu teams"
       />
@@ -279,25 +270,25 @@
     <div *ngIf="display <= 1024 && display > 450" class="left-mobile">
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'racer' }"
+        [queryParams]="{ assetType: 'racer' }"
         src="assets/base/images/home-page/racers-menu.jpg"
         alt="menu racers"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'car' }"
+        [queryParams]="{ assetType: 'car' }"
         src="assets/base/images/home-page/cars-menu.jpg"
         alt="menu cars"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'track' }"
-        src="assets/base/images/home-page/tracks-menu.jpg"
+        [queryParams]="{ assetType: 'car' }"
+        src="assets/base/images/home-page/bundles-menu.png"
         alt="menu tracks"
       />
       <img
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'team' }"
+        [queryParams]="{ assetType: 'car' }"
         src="assets/base/images/home-page/teams-menu.jpg"
         alt="menu teams"
       />
@@ -305,7 +296,7 @@
     <div *ngIf="display > 1024" class="left">
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'racer' }"
+        [queryParams]="{ assetType: 'racer' }"
         class="sec1"
       >
         <h4 class="h4left">Racers</h4>
@@ -321,7 +312,7 @@
       </div>
       <div
         [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'car' }"
+        [queryParams]="{ assetType: 'car' }"
         class="sec2"
       >
         <h4 class="h4right">Cars</h4>
@@ -329,21 +320,13 @@
           <div class="sec2back"></div>
         </div>
       </div>
-      <div
-        [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'track' }"
-        class="sec3"
-      >
-        <h4 class="h4left">Tracks</h4>
+      <div [routerLink]="['/user/bundles']" class="sec3">
+        <h4 class="h4left">Bundles</h4>
         <div class="s3">
           <div class="sec3back"></div>
         </div>
       </div>
-      <div
-        [routerLink]="['/shop']"
-        [queryParams]="{ filter: 'team' }"
-        class="sec4"
-      >
+      <div [routerLink]="['/user/sign-up']" class="sec4">
         <h4 class="h4right">Teams</h4>
         <div class="s4">
           <div class="sec4back"></div>
@@ -391,11 +374,10 @@
             <div class="buy-boxes">
               <div *ngFor="let item of products | slice: sliceStart:sliceEnd">
                 <div
-                  [routerLink]="['/nft-detail']"
+                  [routerLink]="['/shop']"
                   [queryParams]="{
-                    type: item['type'],
-                    filter: item['type'],
-                    id: item['shopid']
+                    assetType: item['type'],
+                    assetId: item['shopid']
                   }"
                   *ngIf="item['type'] === 'racer'"
                   class="racer-box box1"
@@ -420,11 +402,10 @@
                 </div>
 
                 <div
-                  [routerLink]="['/nft-detail']"
+                  [routerLink]="['/shop']"
                   [queryParams]="{
-                    type: item['type'],
-                    filter: item['type'],
-                    id: item['shopid']
+                    assetType: item['type'],
+                    assetId: item['shopid']
                   }"
                   *ngIf="item['type'] === 'car'"
                   class="racer-box box2"
@@ -445,36 +426,7 @@
                 </div>
 
                 <div
-                  [routerLink]="['/nft-detail']"
-                  [queryParams]="{
-                    type: item['type'],
-                    filter: item['type'],
-                    id: item['shopid']
-                  }"
-                  *ngIf="item['type'] === 'track'"
-                  class="racer-box box3"
-                >
-                  <div class="racer-img">
-                    <img
-                      [src]="
-                        'assets/base/images/home-page/' + item['image'] + '.png'
-                      "
-                      alt="white racer"
-                    />
-                  </div>
-                  <div class="racer-info">
-                    <p class="desc">{{ item["collection"] }}</p>
-                    <p class="font">{{ item["name"] }}</p>
-                    <p class="price">{{ item["prize"] }}</p>
-                  </div>
-                </div>
-                <div
-                  [routerLink]="['/nft-detail']"
-                  [queryParams]="{
-                    type: item['type'],
-                    filter: item['type'],
-                    id: item['shopid']
-                  }"
+                  [routerLink]="['/user/sign-up']"
                   *ngIf="item['type'] === 'team'"
                   class="racer-box box4"
                 >
@@ -526,7 +478,7 @@
           </p>
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ filter: 'racer' }"
+            [queryParams]="{ assetType: 'racer' }"
             class="my-cta"
           >
             <p>See all racers</p>
@@ -559,7 +511,7 @@
           </p>
           <button
             [routerLink]="['/shop']"
-            [queryParams]="{ filter: 'car' }"
+            [queryParams]="{ assetType: 'car' }"
             class="my-cta"
           >
             <p>See all Cars</p>
@@ -583,18 +535,15 @@
       <div class="avatar-info">
         <div class="info-text">
           <h2>Category</h2>
-          <h4>Tracks</h4>
+          <h4>Bundles</h4>
 
           <p class="txt-racer">
-            Buy one, or multiple shares in our special Race Tracks and make
-            money passively, simply by Races happening on your track.
+            Get a NFT car and an avatar of your favourite influencer in our
+            limited bundles! Increase your daily income thanks to daily stakes
+            today.
           </p>
-          <button
-            [routerLink]="['/shop']"
-            [queryParams]="{ filter: 'track' }"
-            class="my-cta"
-          >
-            <p>See all Tracks</p>
+          <button [routerLink]="['/user/bundles']" class="my-cta">
+            <p>See all Bundles</p>
           </button>
         </div>
       </div>
@@ -602,7 +551,7 @@
       <div class="avatar-img">
         <div class="image">
           <img
-            src="assets/base/images/home-page/tracks.png"
+            src="assets/base/images/home-page/bundle-avatars.png"
             alt="white avatar"
           />
         </div>
@@ -623,11 +572,7 @@
             managers and enjoy your ownership by receiving even more bonuses.
           </p>
 
-          <button
-            [routerLink]="['/shop']"
-            [queryParams]="{ filter: 'team' }"
-            class="my-cta"
-          >
+          <button [routerLink]="['/user/sign-up']" class="my-cta">
             <p>See all Teams</p>
           </button>
         </div>
