@@ -197,7 +197,7 @@ export class HomePageComponent implements OnInit {
   carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
-  closeTokenDetail = false;
+  closeTokenDetail = true;
   xDown = null;
   yDown = null;
   @ViewChild("carousel") carousel: ElementRef;
