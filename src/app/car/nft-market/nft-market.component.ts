@@ -23,18 +23,18 @@ export class NftMarketComponent implements OnInit {
   animateArrow = false;
   animateArrowRight = false;
   products: Array<object> = [
-    // {
-    //   id: 37,
-    //   collection: "Special",
-    //   name: "TESLA",
-    //   price: "50",
-    //   image: "car60",
-    //   type: "car",
-    //   ability1: 0,
-    //   ability2: 0,
-    //   amount: [],
-    //   alt: "nft car tesla",
-    // },
+    {
+      id: 37,
+      collection: "Special",
+      name: "TESLA",
+      price: "50",
+      image: "car60",
+      type: "car",
+      ability1: 0,
+      ability2: 0,
+      amount: [],
+      alt: "nft car tesla",
+    },
     //bronze
     {
       id: 9,
@@ -715,23 +715,23 @@ export class NftMarketComponent implements OnInit {
       avatar: "cryptowizard-avatar",
       back: "cryptowizard-back",
     },
-    // {
-    //   id: 52,
-    //   position: 12,
-    //   type: "bundle",
-    //   name: "Kucoin",
-    //   link: "@kucoincom",
-    //   nft: 10,
-    //   staking: 6,
-    //   reward: 0.1,
-    //   price: 1000,
-    //   pieces: 100,
-    //   image: "bundle-kucoin",
-    //   racer: "kucoin",
-    //   car: "car52",
-    //   avatar: "cryptowizard-avatar",
-    //   back: "cryptowizard-back",
-    // },
+    {
+      id: 52,
+      position: 12,
+      type: "bundle",
+      name: "Kucoin",
+      link: "@kucoincom",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle-kucoin",
+      racer: "kucoin",
+      car: "car52",
+      avatar: "cryptowizard-avatar",
+      back: "cryptowizard-back",
+    },
   ];
   title = "All";
   filter = 0; // 0 = all // 1 = racers // 2 = cars // 3 = tracks
