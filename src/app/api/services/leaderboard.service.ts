@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { PlayerLeaderboard } from '../models/player-leaderboard';
+import { SpecialLeaderboard } from '../models/special-leaderboard';
 import { PlayerLeaderboardMe } from '../models/player-leaderboard-me';
 import { InternalTeamLeaderboard } from '../models/internal-team-leaderboard';
 @Injectable({
@@ -156,6 +157,56 @@ class LeaderboardService extends __BaseService {
   leaderboardPlayerList(params: LeaderboardService.LeaderboardPlayerListParams): __Observable<Array<PlayerLeaderboard>> {
     return this.leaderboardPlayerListResponse(params).pipe(
       __map(_r => _r.body as Array<PlayerLeaderboard>)
+    );
+  }
+
+  /**
+   * @param params The `LeaderboardService.LeaderboardSpecialListParams` containing the following parameters:
+   *
+   * - `last_month`:
+   *
+   * - `is_race24`:
+   *
+   * - `page`:
+   *
+   * @return Returns special leaderboard
+   */
+   leaderboardSpecialListResponse(params: LeaderboardService.LeaderboardSpecialListParams): __Observable<__StrictHttpResponse<Array<SpecialLeaderboard>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+     if (params.page != null) __params = __params.set('page', params.page.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/leaderboard/special/players`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<SpecialLeaderboard>>;
+      })
+    );
+  }
+  /**
+   * @param params The `LeaderboardService.LeaderboardSpecialListParams` containing the following parameters:
+   *
+   * - `last_month`:
+   *
+   * - `is_race24`:
+   *
+   * - `page`:
+   *
+   * @return Returns special leaderboard
+   */
+  leaderboardSpecialList(params: LeaderboardService.LeaderboardSpecialListParams): __Observable<Array<SpecialLeaderboard>> {
+    return this.leaderboardSpecialListResponse(params).pipe(
+      __map(_r => _r.body as Array<SpecialLeaderboard>)
     );
   }
 
@@ -352,6 +403,15 @@ module LeaderboardService {
    * Parameters for leaderboardPlayerList
    */
   export interface LeaderboardPlayerListParams {
+    lastMonth?: boolean;
+    isRace24?: boolean;
+    page?: number;
+  }
+
+  /**
+   * Parameters for leaderboardSpecialList
+   */
+   export interface LeaderboardSpecialListParams {
     lastMonth?: boolean;
     isRace24?: boolean;
     page?: number;
