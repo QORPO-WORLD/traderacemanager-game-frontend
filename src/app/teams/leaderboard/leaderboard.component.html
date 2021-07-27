@@ -16,6 +16,20 @@
   <div class="lead-content">
     <div class="my-menu">
       <div
+        class="menu-item speci"
+        [ngClass]="{ inactive: leaderboardType !== 'special' }"
+        (click)="leaderboardType = 'special'"
+      >
+        <p>
+          <span>
+            <img src="/assets/base/images/leaderboard/tesla-light.svg" alt="" />
+            Tesla <span class="comp">competition</span>
+            <img class="right" src="/assets/base/images/leaderboard/tesla-light.svg" alt="" />
+          </span>
+        </p>
+        <div class="bottom-border my-cta-btn-back"></div>
+      </div>
+      <div
         class="menu-item"
         [ngClass]="{ inactive: leaderboardType !== 'players' }"
         (click)="leaderboardType = 'players'"
@@ -63,6 +77,10 @@
 
     <div class="content" *ngIf="leaderboardType == 'players'">
       <app-all-players></app-all-players>
+    </div>
+
+    <div class="content" *ngIf="leaderboardType == 'special'">
+      <app-special-leaderboard></app-special-leaderboard>
     </div>
   </div>
 </div>

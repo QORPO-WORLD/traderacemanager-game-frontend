@@ -36,7 +36,7 @@ h5 {
   display: flex;
   justify-content: space-between;
   .menu-item {
-    width: 31%;
+    width: 24%;
     cursor: pointer;
     height: 50px;
     position: relative;
@@ -46,6 +46,27 @@ h5 {
       background: rgba(255, 255, 255, 0.05);
       .bottom-border {
         opacity: 0;
+      }
+    }
+    &.speci{
+      p{
+        span{
+          font-family: inherit;
+          font-size: inherit;
+          position: relative;
+          img{
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translate(-100%, -50%);
+            margin: 0;
+            &.right{
+              left: unset;
+              right: -10px;
+              transform: translate(100%, -50%) scaleX(-1);
+            }
+          }
+        }
       }
     }
     p {
@@ -149,9 +170,22 @@ h5 {
   }
   .my-menu {
     .menu-item {
-      width: 32%;
       height: 35px;
       border: 2px solid rgba(255, 255, 255, 0.4);
+      &.speci{
+        p{
+          font-size: 11px;
+          span{
+            img{
+              left: -5px;
+              &.right{
+                left: unset;
+                right: -5px;
+              }
+            }
+          }
+        }
+      }
       .bottom-border {
         bottom: -2px;
         left: -2px;
@@ -200,6 +234,19 @@ h5 {
       .menu-item {
         height: 20px;
         border: 1px solid rgba(255, 255, 255, 0.4);
+        &.speci{
+          p{
+            span{
+              img{
+                left: -5px;
+                &.right{
+                  left: unset;
+                  right: -5px;
+                }
+              }
+            }
+          }
+        }
         .bottom-border {
           bottom: -1px;
           left: -1px;
@@ -219,13 +266,35 @@ h5 {
   }
 }
 
+@media screen and (max-width: 750px) and (orientation: portrait) {
+  .my-menu {
+    .menu-item {
+      &.speci{
+        p{
+          .comp{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 640px) and (orientation: landscape) {
   .main-holder {
     padding-top: 2.5px;
     .my-menu {
       .menu-item {
         height: 20px;
-
+        &.speci{
+          p{
+            span{
+              .comp{
+                display: none;
+              }
+            }
+          }
+        }
         p {
           img {
             max-width: 10px;
