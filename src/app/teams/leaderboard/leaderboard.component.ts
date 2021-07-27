@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
 
-  leaderboardType = 'players'; teamSubscription: Subscription;
+  leaderboardType = 'special';
+  teamSubscription: Subscription;
   ldbrdSubscription: Subscription;
   drSubscription: Subscription;
   afSubscription: Subscription;

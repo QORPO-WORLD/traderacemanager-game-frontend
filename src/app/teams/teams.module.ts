@@ -1,3 +1,4 @@
+import { SpecialLeaderboard } from './../api/models/special-leaderboard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { LeaderboardComponent} from './leaderboard/leaderboard.component';
 import {OwnersManagersComponent} from './owners-managers/owners-managers.component';
 
 import { MyTeamPlayersComponent } from './components/my-team-players/my-team-players.component';
+import { SpecialLeaderboardComponent } from './components/special-leaderboard/special-leaderboard.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { OwnerLeaderboardComponent } from './components/owner-leaderboard/owner-leaderboard.component';
 import { ManagerComponent} from './components/manager/manager.component';
@@ -56,7 +58,7 @@ const routes: Routes = [
   declarations: [JoinTeamsComponent, MyTeamComponent,
   MyTeamPlayersComponent, LeaderboardComponent,
   AllPlayersComponent, OwnersManagersComponent,OwnerComponent, ManagerComponent,
-  OwnerLeaderboardComponent, BestRacersComponent],
+  OwnerLeaderboardComponent, BestRacersComponent, SpecialLeaderboardComponent],
   imports: [
     CommonModule,
     ninja,

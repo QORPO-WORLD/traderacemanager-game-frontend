@@ -9,16 +9,13 @@
       <div class="table-item small">
         <p>Place</p>
       </div>
-      <div class="table-item">
+      <div class="table-item big">
         <p>Name</p>
       </div>
-      <div class="table-item small">
+      <div class="table-item big">
         <p>Team</p>
       </div>
-      <div class="table-item big">
-        <p>Potentional win</p>
-      </div>
-      <div class="table-item last">
+      <div class="table-item small last">
         <p>Points</p>
       </div>
     </div>
@@ -31,23 +28,14 @@
       <div class="table-item small">
         <p>{{ pl.player_position }}.</p>
       </div>
-      <div class="table-item">
+      <div class="table-item big">
         <p>{{ pl.user_nickname }}</p>
       </div>
-      <div class="table-item small">
+      <div class="table-item big">
         <p>{{ pl.team_name }}</p>
       </div>
-      <div class="table-item big bold">
-        <p>
-          <img src="/assets/base/images/teams/reward-token.png" alt="" />
-           {{ pl.potentional_win | number: "1.2-2":"fr" }} 
-        </p>
-      </div>
-      <div class="table-item bold last">
-        <p>
-          <img src="/assets/base/images/teams/reward-token.png" alt="" hidden />
-          {{ pl.points | number: "1.0-1":"fr" }}
-        </p>
+      <div class="table-item bold small last">
+        <p>{{ pl.points | number: "1.0-1":"fr" }}</p>
       </div>
       <div class="mine-back my-cta-btn-back"></div>
     </div>
@@ -69,18 +57,12 @@
       <div class="table-item">
         <p>{{ cachedLdrbrd?.team_name }}</p>
       </div>
-      <div class="table-item big bold last">
-        <p>
-          <img src="/assets/base/images/teams/reward-token.png" alt="" />
-          {{ cachedLdrbrd?.ioi_turnover | number: "1.1-1":"fr" }}
-        </p>
-      </div>
       <div class="mine-back my-cta-btn-back"></div>
     </div>
 
     <div class="pagination">
       <button
-        (click)="actualPage = actualPage - 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage - 1; getSpecialLeaderboard()"
         class="pagebtn-l"
         [disabled]="actualPage <= 1"
       >
@@ -104,21 +86,21 @@
 
       <button class="page page-active">{{ actualPage }}</button>
       <button
-        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 1; getSpecialLeaderboard()"
         class="page"
         *ngIf="actualPage + 1 < totalPages"
       >
         {{ actualPage + 1 }}
       </button>
       <button
-        (click)="actualPage = actualPage + 2; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 2; getSpecialLeaderboard()"
         class="page"
         *ngIf="actualPage + 2 < totalPages"
       >
         {{ actualPage + 2 }}
       </button>
       <button
-        (click)="actualPage = actualPage + 3; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 3; getSpecialLeaderboard()"
         class="page"
         *ngIf="actualPage + 3 < totalPages"
       >
@@ -128,7 +110,7 @@
         ...
       </button>
       <button
-        (click)="actualPage = totalPages; getMyLeaderboard()"
+        (click)="actualPage = totalPages; getSpecialLeaderboard()"
         class="page"
         *ngIf="actualPage < totalPages"
       >
@@ -136,7 +118,7 @@
       </button>
 
       <button
-        (click)="actualPage = actualPage + 1; getMyLeaderboard()"
+        (click)="actualPage = actualPage + 1; getSpecialLeaderboard()"
         class="pagebtn-r"
         [disabled]="actualPage >= totalPages"
       >
@@ -163,12 +145,28 @@
       <p>Last updated at:  {{updateTime | date:'medium'}}</p>
     </div>
   </div>
-  <div class="ring-banner">
-    <p class="category-title-second">MONTHLY</p>
-    <p class="category-title-first">PRIZE</p>
-    <img class="ring" src="/assets/base/images/home-page/ring.png" alt="Ring" />
-    <p class="desc">for the top player each month until December</p>
-    <button class="action-btn my-cta-btn-back" [routerLink]="['/teams/best-racers']">Prize winners</button>
+  <div class="prize-banner">
+    <p class="prize-heading">PRIZES</p>
+    <div class="prize-item item1">
+      <div class="img-holder">
+        <img src="/assets/base/images/nft-cars/car60.png" alt="">
+      </div>
+      <p class="desc"><span class="colored">1ST PLACE <span>| </span></span> <strong>REAL</strong> TESLA MODEL S</p>
+    </div>
+
+    <div class="prize-item item2">
+      <div class="img-holder">
+        <img src="/assets/base/images/mac-prize.png" alt="">
+      </div>
+      <p class="desc"><span class="colored">2ND PLACE <span>| </span></span>MACBOOK PRO</p>
+    </div>
+
+    <div class="prize-item item3">
+      <div class="img-holder">
+        <img src="/assets/base/images/iphone-prize.png" alt="">
+      </div>
+      <p class="desc"><span class="colored">3RD PLACE <span>| </span></span>IPHONE 12 PRO MAX</p>
+    </div>
+    <button class="action-btn my-cta-btn-back" [routerLink]="['/user/tesla']" routerLinkActive="router-link-active" >TOURNAMENT RULES</button>
   </div>
 </div>
-
