@@ -95,7 +95,20 @@
           Bundles
         </p>
       </div>
-      <button class="my-cta" [routerLink]="['/user/sign-in']">Play now</button>
+      <button
+        *ngIf="logged === false"
+        class="my-cta"
+        [routerLink]="['/user/sign-in']"
+      >
+        Play now
+      </button>
+      <button
+        *ngIf="logged === true"
+        class="my-cta"
+        [routerLink]="['/race/start-race']"
+      >
+        Back to game
+      </button>
     </div>
   </div>
 </div>

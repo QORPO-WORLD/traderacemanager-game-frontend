@@ -16,11 +16,16 @@ export class HomepageLayoutComponent implements OnInit {
   menuActive = 1;
   isMenuActive = false;
   activeMenu = 0;
+  logged = false;
   constructor(private router: Router) {
     this.currentRoute = this.router.url.split("?")[0];
   }
 
   ngOnInit() {
+    const token = JSON.parse(localStorage.getItem("auth-token"));
+    if (token) {
+      this.logged = true;
+    }
     console.log(this.currentRoute);
   }
 
