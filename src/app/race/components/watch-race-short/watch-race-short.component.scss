@@ -2575,7 +2575,7 @@ b.position img {
 
 .chat {
   position: absolute;
-  top: 90px;
+  top: 86px;
   width: 330px;
   z-index: 1000000;
   left: 0;
@@ -3750,10 +3750,10 @@ button small {
 .main-content.zavod {
   .all-positions {
     position: absolute;
-    top: 90px;
+    top: 86px;
     width: 315px;
     z-index: 1000000;
-    right: 0;
+    left: 0;
     background: rgba(17, 17, 17, 0.75);
     border-radius: 10px 0 0 10px;
     padding: 20px 16px;
@@ -3761,7 +3761,7 @@ button small {
       font-size: 16px;
       font-weight: 500;
       width: 100%;
-      margin: 27px 0 18px 0;
+      margin: 18px 0;
       text-align: left;
     }
     .top-line {
@@ -3773,27 +3773,9 @@ button small {
       background: linear-gradient(248.23deg, #24ffff 36.99%, #25ccfe 101.9%);
       z-index: 1;
     }
-    .close-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
-      border-radius: 0px 0px 0px 8px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 2;
-      cursor: pointer;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
     .table-item {
       width: 100%;
       background: #111111;
-      border-radius: 8px;
       overflow: hidden;
       height: 30px;
       display: flex;
@@ -3850,6 +3832,18 @@ button small {
         &.premium {
           width: 30px;
           border-right: 1px solid #343434;
+          &.active{
+            background: linear-gradient(222.61deg, #FFC634 -1.69%, #D37403 100.87%);
+            img{
+              opacity: 1;
+              &.classic {
+                display: block;
+              }
+              &.black {
+                display: none;
+              }
+            }
+          }
           img {
             position: absolute;
             top: 50%;
@@ -3922,6 +3916,12 @@ button small {
         cursor: pointer;
         font-size: 18px;
         font-weight: 600;
+        opacity: 1;
+        transition: .15s;
+        &.hidden{
+          pointer-events: none;
+          opacity: 0;
+        }
       }
       p {
         font-size: 16px;

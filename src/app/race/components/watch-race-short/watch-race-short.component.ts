@@ -32,7 +32,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   takeit = true;
   showBanner = false;
   showBet = false;
-  showPositions = false;
+  showPositions = true;
   interval: any;
   raceFinished = false;
   youWon = false;
@@ -43,7 +43,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   showAllCoins = false;
   showFinalModal = false;
   showAllResults = false;
-  showChat = false;
+  showMyBet = false;
   gotWinner = false;
   soundEnabled = true;
   splitNum: number;
@@ -197,6 +197,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         //const retypeData: any = data; 
 
         this.raceDataildata = data;
+        console.log(this.raceDataildata);
+        console.log('janko');
         this.endsIn = data.ends_in;
         if (data.race_progress > 0) {
           this.startRace();
