@@ -133,6 +133,9 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
 
   getMembEnd(event: any) {
     this.myMembEnd = event;
-    this.myMembEnd = this.myMembEnd.replace(' ', 'T')
+    this.myMembEnd = this.myMembEnd.replace(" ", "T");
+  }
+  openLink(url: string) {
+    window.open(url, "_blank").focus();
   }
 }

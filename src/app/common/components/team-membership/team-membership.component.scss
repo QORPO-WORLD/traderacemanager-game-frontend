@@ -1,804 +1,1118 @@
+.engage-right-animation {
+  animation: engage-right 0.3s linear;
+}
+.dissapear-right-animation {
+  animation: dissapear-right 0.3s linear;
+}
+@keyframes engage-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes dissapear-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
 ion-content {
-    --overflow: hidden;
+  --overflow: hidden;
+}
+* {
+  margin: 0px;
+}
+.blue {
+  color: #24e3fe;
+}
+.red {
+  color: #fc173f;
+}
+.no-font {
+  font-family: Poppins !important;
+}
+.golden-text {
+  text-shadow: 0px 0px 20px #fbe18a, 0px 0px 40px #fbe18a;
+  background-image: linear-gradient(
+    0deg,
+    #ffeab6 8%,
+    #eac172 23%,
+    #c9ab5d 44%,
+    #ecdf9a 62%,
+    #efd577 78%,
+    #c8bc94 100%
+  );
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+}
+.space-big {
+  margin-top: 50px;
+}
+.space {
+  margin-top: 30px;
+}
+.space-small {
+  margin-top: 10px;
+}
+.category-title-first {
+  font-family: TESLA;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 50px;
+}
+.category-title-second {
+  font-family: Earth Orbiter;
+  font-size: 64px;
+  line-height: 66px;
+  font-style: normal;
+  font-weight: bold;
+}
+.category-title-third {
+  font-family: Earth Orbiter;
+  font-size: 25px;
+  line-height: 27px;
+  font-style: normal;
+  font-weight: bold;
+}
+.category-title-fourth {
+  font-size: 25px;
+  line-height: 27px;
+  font-style: normal;
+  font-weight: bold;
+}
+.category-title-fifth {
+  font-family: Earth Orbiter;
+  font-size: 35px;
+  line-height: 37px;
+  font-style: normal;
+  font-weight: bold;
+}
+.classic-text {
+  text-transform: none;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 26px;
+}
+.classic-desc {
+  font-family: Earth Orbiter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+.modal-body {
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+
+  z-index: 1000002;
+}
+.modal-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    url("/assets/base/images/teams/tesla-back.jpg"), rgba(17, 17, 17, 1);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .team-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .text-holder {
+      margin-left: 5%;
+    }
+  }
+
+  .premium-info {
+    overflow: hidden;
+    display: flex;
+    width: 70%;
+    height: 100%;
+    position: absolute;
+    transform: skew(-15deg) translate3d(0, 0, 0);
+    transform-origin: bottom;
+    top: 0px;
+    right: 0px;
+    .colored-border {
+      z-index: 1;
+      width: 10px;
+      height: 100%;
+    }
+    .premium-content {
+      z-index: 1;
+      transform: skew(15deg) translate3d(0, 0, 0);
+      width: 88%;
+      height: 100%;
+      .text-holder {
+        width: 100%;
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 40px;
+        padding-left: 15%;
+        .upper-text {
+          position: absolute;
+          right: 0px;
+          text-align: right;
+          top: 0px;
+        }
+        .bottom-text {
+          .premium-bonus {
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+            height: 70px;
+            &.hidden {
+              overflow: hidden;
+              height: 0px;
+              transition: 0.3s;
+              opacity: 0;
+              &.active {
+                height: 70px;
+                opacity: 1;
+              }
+            }
+
+            img {
+              width: 35px;
+              height: auto;
+            }
+            p {
+              margin-left: 20px;
+            }
+          }
+          .months {
+            display: flex;
+            .month-button {
+              transition: 0.3s;
+              opacity: 0.8;
+              position: relative;
+              padding: 17px 0px;
+              width: 230px;
+              margin-left: 40px;
+              background: rgba(255, 255, 255, 0.2);
+              border: 3px solid rgba(255, 255, 255, 0.4);
+              span {
+                &.bottom-underline {
+                  opacity: 0;
+                  transition: 0.3s;
+                  position: absolute;
+                  bottom: -12px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  height: 5px;
+                  width: 0%;
+                }
+                &.discount {
+                  top: -30%;
+                  right: -10%;
+                  position: absolute;
+                  width: 55%;
+                  height: 50%;
+                  border: 1px solid #24e3fe;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  &.golden {
+                    border: 1px solid gold;
+                    background: linear-gradient(
+                      90deg,
+                      #c8bc94 8%,
+                      #eac172 100%
+                    );
+                  }
+                }
+              }
+              &.first {
+                margin-left: 0px;
+              }
+              &.unactive {
+                opacity: 0.6;
+              }
+              &.active {
+                opacity: 1;
+                span {
+                  &.bottom-underline {
+                    width: calc(100% + 6px);
+                    opacity: 1;
+                  }
+                }
+              }
+            }
+            .month-button:hover {
+              opacity: 0.9;
+              span {
+                &.bottom-underline {
+                  width: calc(100% + 6px);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+          .buy-btn {
+            transition: 0.3s;
+            padding: 15px 0px;
+            width: fit-content;
+            position: relative;
+            width: 250px;
+            img {
+              width: 55px;
+              height: auto;
+              padding-right: 15px;
+            }
+          }
+          .buy-btn:hover {
+            box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
+          }
+        }
+      }
+    }
+    .premium-content-back {
+      background: linear-gradient(
+        270deg,
+        rgba(17, 17, 17, 0) 6.11%,
+        #111111 82.77%
+      );
+
+      left: -20%;
+      top: 0px;
+      position: absolute;
+      transform: skew(15deg) translate3d(0, 0, 0);
+      width: 115%;
+      height: 115%;
+    }
+  }
+}
+@media screen and (max-width: 2000px) {
+  .space-big {
+    margin-top: 35px;
+  }
+  .space {
+    margin-top: 27px;
+  }
+  .space-small {
+    margin-top: 8px;
+  }
+  .category-title-first {
+    font-size: 58px;
+    line-height: 50px;
+  }
+  .category-title-second {
+    font-size: 58px;
+    line-height: 60px;
+  }
+  .category-title-third {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .category-title-fourth {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .category-title-fifth {
+    font-size: 33px;
+    line-height: 35px;
+  }
+  .classic-text {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .classic-desc {
+    font-size: 17px;
+    line-height: 19px;
+  }
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            .premium-bonus {
+              height: 60px;
+              img {
+                width: 30px;
+              }
+              &.hidden {
+                &.active {
+                  height: 60px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1700px) {
+  .space-big {
+    margin-top: 30px;
+  }
+  .space {
+    margin-top: 20px;
+  }
+  .space-small {
+    margin-top: 7px;
+  }
+  .category-title-first {
+    font-size: 50px;
+    line-height: 43px;
+  }
+  .category-title-second {
+    font-size: 50px;
+    line-height: 52px;
+  }
+  .category-title-third {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .category-title-fourth {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .category-title-fifth {
+    font-size: 28px;
+    line-height: 30px;
+  }
+  .classic-text {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .classic-desc {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            .premium-bonus {
+              height: 55px;
+              img {
+                width: 28px;
+              }
+              &.hidden {
+                &.active {
+                  height: 55px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 14px 0px;
+                width: 200px;
+                margin-left: 30px;
+              }
+            }
+            .buy-btn {
+              padding: 11px 0px;
+              width: 220px;
+              img {
+                width: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1550px) {
+  .space-big {
+    margin-top: 18px;
+  }
+  .space {
+    margin-top: 12px;
+  }
+  .space-small {
+    margin-top: 5px;
+  }
+  .category-title-first {
+    font-size: 40px;
+    line-height: 35px;
+  }
+  .category-title-second {
+    font-size: 40px;
+    line-height: 42px;
+  }
+  .category-title-third {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-fourth {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-fifth {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .classic-text {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .classic-desc {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .modal-content {
+    .premium-info {
+      .colored-border {
+        width: 8px;
+      }
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            .premium-bonus {
+              height: 40px;
+              img {
+                width: 21px;
+              }
+              &.hidden {
+                &.active {
+                  height: 40px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 13px 0px;
+                width: 185px;
+                margin-left: 30px;
+                span {
+                  &.bottom-underline {
+                    bottom: -8px;
+                    height: 3px;
+                  }
+                }
+              }
+            }
+            .buy-btn {
+              padding: 10px 0px;
+              width: 210px;
+              img {
+                width: 45px;
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1400px) and (min-width: 1024px) and (min-height: 800px) {
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        width: 83%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1400px) {
+  .space-big {
+    margin-top: 15px;
+  }
+  .space {
+    margin-top: 10px;
+  }
+  .space-small {
+    margin-top: 4px;
+  }
+  .category-title-first {
+    font-size: 37px;
+    line-height: 33px;
+  }
+  .category-title-second {
+    font-size: 37px;
+    line-height: 39px;
+  }
+  .category-title-third {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-fourth {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .category-title-fifth {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .classic-text {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .classic-desc {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .modal-content {
+    .premium-info {
+      .colored-border {
+        width: 6px;
+      }
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            .premium-bonus {
+              height: 35px;
+              img {
+                width: 19px;
+              }
+              &.hidden {
+                &.active {
+                  height: 35px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 10px 0px;
+                width: 160px;
+                margin-left: 25px;
+                span {
+                  &.bottom-underline {
+                    bottom: -6px;
+                    height: 2px;
+                  }
+                }
+              }
+            }
+            .buy-btn {
+              padding: 8px 0px;
+              width: 200px;
+              img {
+                width: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1300px) {
+  .space-big {
+    margin-top: 13px;
+  }
+  .space {
+    margin-top: 9px;
+  }
+
+  .category-title-first {
+    font-size: 35px;
+    line-height: 30px;
+  }
+  .category-title-second {
+    font-size: 35px;
+    line-height: 37px;
+  }
+  .category-title-third {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .category-title-fourth {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .category-title-fifth {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .classic-text {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .classic-desc {
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .modal-content {
+    .premium-info {
+      .colored-border {
+        width: 5px;
+      }
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            .premium-bonus {
+              height: 30px;
+              img {
+                width: 18px;
+              }
+              &.hidden {
+                &.active {
+                  height: 30px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 7px 0px;
+                width: 150px;
+                margin-left: 20px;
+              }
+            }
+            .buy-btn {
+              padding: 7px 0px;
+              width: 180px;
+              img {
+                width: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: landscape) and (min-height: 600px) {
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        width: 83%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .space-big {
+    margin-top: 10px;
+  }
+  .space {
+    margin-top: 8px;
+  }
+  .space-small {
+    margin-top: 3px;
+  }
+  .category-title-first {
+    font-size: 30px;
+    line-height: 26px;
+  }
+  .category-title-second {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .category-title-third {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .category-title-fourth {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .category-title-fifth {
+    font-size: 17px;
+    line-height: 19px;
+  }
+  .classic-text {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .classic-desc {
+    font-size: 11px;
+    line-height: 12px;
+  }
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          padding-bottom: 20px;
+          .bottom-text {
+            .premium-bonus {
+              p {
+                margin-left: 10px;
+              }
+              height: 22px;
+              img {
+                width: 15px;
+              }
+              &.hidden {
+                &.active {
+                  height: 22px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 5px 0px;
+                width: 130px;
+                margin-left: 18px;
+              }
+            }
+            .buy-btn {
+              padding: 6px 0px;
+              width: 160px;
+              img {
+                width: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .category-title-first {
+    font-size: 22px;
+    line-height: 18px;
+  }
+  .category-title-second {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .category-title-third {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .category-title-fourth {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .category-title-fifth {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .classic-text {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .classic-desc {
+    font-size: 8px;
+    line-height: 9px;
+  }
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          padding-bottom: 10px;
+          .bottom-text {
+            .premium-bonus {
+              p {
+              }
+              height: 20px;
+              img {
+                width: 14px;
+              }
+              &.hidden {
+                &.active {
+                  height: 20px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 5px 0px;
+                width: 120px;
+              }
+            }
+            .buy-btn {
+              padding: 5px 0px;
+              width: 150px;
+              img {
+                width: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .space-big {
+    margin-top: 7px;
+  }
+  .space {
+    margin-top: 4px;
+  }
+  .space-small {
+    margin-top: 2px;
+  }
+  .category-title-first {
+    font-size: 17px;
+    line-height: 14px;
+  }
+  .category-title-second {
+    font-size: 17px;
+    line-height: 19px;
+  }
+  .category-title-third {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-fourth {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .category-title-fifth {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .classic-text {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .classic-desc {
+    font-size: 6px;
+    line-height: 8px;
+  }
+  .modal-content {
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          padding-left: 12%;
+          padding-bottom: 8px;
+          .bottom-text {
+            .premium-bonus {
+              height: 18px;
+              img {
+                width: 12px;
+              }
+              &.hidden {
+                &.active {
+                  height: 18px;
+                }
+              }
+            }
+            .months {
+              .month-button {
+                padding: 3px 0px;
+                width: 90px;
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-h2{
-    font-size: 48px;
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .modal-body {
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  .modal-content {
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100);
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+      ),
+      url("/assets/base/images/teams/tesla-back.jpg"), rgba(17, 17, 17, 1);
+    background-position: 70%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    .team-info {
+      height: auto;
+
+      padding: 80px 10px 50px 10px;
+      .text-holder {
+        margin-left: unset;
+      }
+    }
+    .premium-info {
+      height: auto;
+      width: 100%;
+      padding: 10px;
+      transform: unset;
+      flex-direction: column;
+      position: relative;
+      .colored-border {
+        width: 100%;
+        height: 5px;
+      }
+      .premium-content-back {
+        display: none;
+      }
+      .premium-content {
+        transform: unset;
+        width: 100%;
+        .text-holder {
+          padding: 0px;
+          .bottom-text {
+            padding-top: 70px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .space-big {
+    margin-top: 20px;
+  }
+  .space {
+    margin-top: 15px;
+  }
+  .space-small {
+    margin-top: 8px;
+  }
+  .modal-body {
+    position: absolute;
+    top: -60px;
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100 + 20px);
+    overflow-y: scroll;
+    width: calc(100% + 10px);
+  }
+  .modal-content {
+    min-height: calc(var(--vh, 1vh) * 100 + 20px);
+    padding-bottom: 20px;
+    .team-info {
+      height: auto;
+
+      padding: 80px 10px 30px 10px;
+    }
+    .premium-info {
+      .premium-content {
+        .text-holder {
+          .bottom-text {
+            padding-top: 100px;
+            .premium-bonus {
+              height: 35px;
+            }
+            .months {
+              width: 100%;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              .month-button {
+                width: 48%;
+                margin-left: unset;
+                margin-top: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 350px) and (orientation: portrait) {
 }
 
 .content-title {
-    cursor: pointer;
-    display: flex;
-    z-index: 10;
-    align-items: center;
-    height: 80px;
-    margin-left: 40px;
-    position: absolute;
-    top: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  img {
+    width: 21px;
+  }
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0.09em;
+    font-family: "Earth Orbiter";
+    font-weight: 900;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and(max-width: 1700px) {
+  .content-title {
     img {
-      width: 21px;
+      width: 17px;
     }
     p {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 30px;
-      letter-spacing: 0.09em;
-      font-family: "Earth Orbiter";
-      font-weight: 900;
-      margin-left: 10px;
-      margin-bottom: 0;
+      font-size: 26px;
     }
   }
-
-.modal-body{
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    background: black;
-    z-index: 1000002;
 }
-.modal-wrapper{
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-.premium-membership{
-    position: relative;
-    width: 100%;
-        .box-content{
-        padding: 60px;
-        width: 42%;
-        transition: .2s;
-        position: absolute;
-        left: 40px;
-        bottom: 80px;
-        z-index: 6;
-    }
-    .membership-bonus{
-        color:  #e2ac6b;
-        padding-left: 50px;
-        padding-top: 50px;
-        margin-top: -50px;
-        margin-left: -50px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        padding-bottom: 50px;
-        margin-bottom: -50px;
-        padding-right: 50px;
-        margin-right: -50px;
-    }
-    .month-benefits{
-        right: -100%;
-        z-index: 4;
-        position: absolute;
-        top: 0;
-        width: 50%;
-        height: 100%;
-        transition: 1s ease-in-out;
-        .ring{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 280px;
-            right: 540px;
-            z-index: 2;
-        }
-        .racer{
-            position: absolute;
-            bottom: -77px;
-            right: -125px;
-            transform: scaleX(-1);
-            width: 800px;
-            z-index: 2;
-        }
-        .car{
-            position: absolute;
-            bottom: 0;
-            right: 65px;
-            width: 850px;
-            z-index: 1;
-
-        }
-        &.active{
-            right: 0;
-        }
-    }
-
-}
-.membership-heading{
-    font-family: "Earth Orbiter";
-    font-style: normal;
-    font-weight: bold;
-    line-height: 48px;
-    font-size: 48px;
-    letter-spacing: 0.09em;
-    color: #FFFFFF;
-}
-.join-btn{
-    font-family: Poppins;
-    width: 250px;
-    padding: 18px 0;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    margin-top: 80px;
-}
-.bonus{
-    margin: 0;
-    max-height: 0;
-    transition: 1s;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 180%;
-    overflow: hidden;
-    img{
-        margin-right: 24px;
-    }
-    &.active{
-        max-height: 40px;
-        margin-top: 20px;
-    }
-
-}
-.bonus-heading{
-    margin-top: 20px;
-    font-family: "Earth Orbiter";
-    font-style: bold;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 180%;
-}
-.membership-bonus{
-    font-family: "Earth Orbiter";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 24px;
-    letter-spacing: 0.09em;
-    margin-bottom: 10px;
-}
-.my-border{
-    height: 100%;
-    width: 8px;
-   position: absolute;
-   right: 0;
-   z-index: 4;
-}
-.black-overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(1,1,1,0.8);
-    z-index: 3;
-}
-.inner-box{
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    position: relative;
-}
-.back-img{
-    position: absolute;
-    min-width: 100%;
-    min-height: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    height: calc(var(--vh, 1vh) * 100);
-    max-width: unset;
-    z-index: 0;
-    top: 0;
-}
-.box-content{
-    position: relative;
-    z-index: 1;
-    h2{
-      margin-top: 0;  
-    }
-}
-.membership-time-items{
-    display: flex;
-    padding-bottom: 10px;
-    margin-bottom: -10px;
-}
-.membership-time:hover{
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        .underline{
-            width: calc(100% + 8px);
-            transition: .2s ease-in-out
-        }
-}
-
-.membership-time{
-    cursor: pointer;
-    transition: .2s;
-    margin-top: 30px;
-    width: 200px;
-    font-family: "Earth Orbiter";
-    font-size: 20px;
-    line-height: 20px;
-    text-align: center;
-    padding: 20px 0;
-    margin-right: 30px;
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 3px solid rgba(255, 255, 255, 0.4);
-    box-sizing: border-box;
-    &.active{
-        background: rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        .underline{
-            width: calc(100% + 8px);
-           transition: .2s ease-in-out;
-        }
-    }
-    .sticker-blue, .sticker-gold{
-        position: absolute;
-        top: -20px;
-        width: 100px;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 180%;
-        padding: 2px 0;
-        right: -3px;
-    }
-    .sticker-gold{
-        background-color: #e0d2b4;
-        background-image: linear-gradient(315deg, #e0d2b4 0%, #e2ac6b 74%);
-    }
-    .underline{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 4px;
-        bottom: -12px;
-        width: 0;
-        transition: .2s ease-in-out;
-    }
-}
-.pay-button{
-    width: 250px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 36px;
-    padding: 12px 0;
-    margin-top: 40px;
-    img{
-        margin-right: 15px;
-    }
-}
-
-
-@media screen and(max-height: 950px) {
-    .premium-membership{
-        .box-content{
-            left: 40px
-        }
-    }
-}
-@media screen and(max-width: 1700px) {
-    .content-title{
-        margin-left: 30px;
-    }
-    .premium-membership{
-        .box-content{
-            width: 70%;
-        }
-    }
-    .box-content{
-        width: 70%;
-        .bonus{
-            font-size: 20px;
-            img{
-                margin-right: 10px;
-            }
-        }
-    }
-}
-
 @media screen and(max-width: 1550px) {
-    .content-title{
-        margin-left: 20px;
+  .content-title {
+    height: 65px;
+    img {
+      width: 15px;
     }
-    .premium-membership{
-        .box-content{
-            bottom: 20px;
-        }
+    p {
+      font-size: 22px;
     }
-    .box-content{
-        .pay-button, .join-btn{
-            width: 200px;
-            font-size: 18px;
-            padding: 10px 0;
-            line-height: 30px;
-            img{
-                margin-right: 10px;
-                width: 30px;
-            }
-            margin-top: 30px;
-        }
-        .membership-bonus{
-            font-size: 20px;
-        }
-        .membership-heading{
-            font-size: 30px;
-            line-height: 30px;
-        }
-        .bonus-heading{
-            font-size: 18px;
-            margin-bottom: 0;
-            margin-top: 0;
-        }
-        .bonus{
-            font-size: 16px;
-            img{
-                width: 25px;
-                margin-right: 5px;
-            }
-            margin-top: 10px;
-        }
-        .membership-time{
-            width: 150px;
-            margin-top: 13px;
-            padding: 13px 0;
-            margin-right: 15px;
-        }
-        .sticker-blue,.sticker-gold{
-            font-size: 12px;
-            top: -14px;
-            width: 75px;
-        }
-    }
+  }
 }
-
-@media screen and(max-width: 1300px) {
-    .content-title{
-        margin-left: 13px;
+@media screen and(max-width: 1024px) {
+  .content-title {
+    img {
+      width: 13px;
     }
-    .premium-membership{
-        .box-content{
-            bottom: unset;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+    p {
+      font-size: 20px;
     }
-    .box-content{
-        .pay-button, .join-btn{
-            width: 170px;
-            font-size: 14px;
-            padding: 7px 0;
-            line-height: 25px;
-            img{
-                margin-right: 10px;
-                width: 25px;
-            }
-            margin-top: 30px;
-        }
-        .membership-bonus{
-            font-size: 18px;
-        }
-        .membership-heading{
-            font-size: 30px;
-        }
-        .bonus-heading{
-            font-size: 16px;
-            margin-bottom: 0;
-            margin-top: 0;
-        }
-        .bonus{
-            margin-top: 5px;
-            img{
-                width: 22px;
-            }
-        }
-        .membership-time{
-            width: 140px;
-            margin-top: 20px;
-            padding: 8px 0;
-            margin-right: 10px;
-        }
-        .sticker-blue,.sticker-gold{
-            font-size: 10px;
-            top: -14px;
-            width: 70px;
-        }
-        .bonus{
-            font-size: 16px;
-            img{
-                margin-right: 5px;
-            }
-        }
-    }
-    .premium-membership{
-        .month-benefits{
-            .racer{
-                width: 600px;
-            }
-        }
-    }
-}
-@media screen and(max-width: 1200px) and (min-height: 800px){
-    
-}
-
-@media screen and(max-width: 1024px) and (max-height: 800px) {
-    .content-title{
-        margin-left: 10px;
-    }
-    .box-content{
-        .membership-heading{
-            font-size: 22px;
-            line-height: 20px;
-        }
-        .membership-bonus{
-            font-size: 14px;
-        }
-        .bonus-heading{
-            font-size: 13px;
-            list-style: 15px;
-            margin-bottom: 20px;
-        }
-        .bonus{
-            margin-top: 10px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 16px;
-                margin-right: 1px;
-            }
-        }
-        .membership-time{
-            font-size: 14px;
-            line-height: 14px;
-            width: 100px;
-            margin-top: 20px;
-            .sticker-blue,.sticker-gold{
-                font-size: 8px;
-                width: 45px;
-                top: -11px;
-            }
-            .underline{
-                height: 2px;
-            }
-        }
-        .pay-button,.join-btn{
-            margin-top: 25px;
-            width: 150px;
-            line-height: 18px;
-            img{
-                width: 18px;
-            }
-        }
-    }
+  }
 }
 
 @media screen and(max-width: 1024px) and (orientation: landscape) {
-   
-    .premium-membership{
-        .box-content{
-            padding: 0;
-            width: 100%;
-        }
-        .month-benefits{
-            .racer{
-                bottom: -60px;
-            }
-        }
-    }
-    .box-content{
-        .bonus-heading{
-            margin-bottom: 0;
-            font-size: 11px;
-        }
-        .membership-heading{
-            font-size: 20px;
-            margin-bottom: 0;
-        }
-        .membership-bonus{
-            display: none;
-            font-size: 12px;
-        }
-        .bonus{
-            margin-top: 6px;
-        }
-        .join-btn,.pay-button{
-            margin-top: 10px;
-        }
-        .big-part{
-            display: flex;
-            .membership-time-items{
-                margin-right: 20px;
-                .membership-time{
-                    margin-top: 10px;
-                }
-            }
-            .pay-button{
-                width: 130px;
-            }
-        }
-    }
+  .content-title {
+    left: 20px;
+    height: 40px;
+  }
 }
-
 @media screen and(max-width: 700px) and (orientation: landscape) {
-    .box-content{
-        .membership-heading{
-            font-size: 20px;
-            line-height: 18px;
-        }
-        .membership-bonus{
-            font-size: 12px;
-        }
-        .bonus-heading{
-            font-size: 12px;
-            list-style: 12px;
-            margin-bottom: 0px;
-        }
-        .bonus{
-            margin-top: 7px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 13px;
-                margin-right: 1px;
-            }
-        }
+  .content-title {
+    img {
+      width: 8.5px;
     }
-    .join-btn,.pay-button{
-        margin-top: 0;
+    p {
+      font-size: 9px;
+      margin-left: 5px;
     }
+  }
 }
-
-@media screen and(max-width: 600px) and (orientation: landscape) {
-    .box-content{
-        top: 53%;
-        .bonus{
-            margin-top: 5px;
-        }
-        .membership-time-items{
-            .membership-time{
-                font-size: 10px;
-                padding: 3px 0;
-            }
-        }
-        .membership-time-items{
-            .membership-time{
-                margin-top: 5px;
-            }
-        }
-        .pay-button{
-            margin-top: 5px;
-            padding: 5px 0;
-            font-size: 11px;
-        }
-    }
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .content-title {
+    left: 10px;
+  }
 }
-
 @media screen and(max-width: 640px) and (orientation: portrait) {
-    .modal-wrapper{
-        display: flex;
-        flex-direction: column;
+  .content-title {
+    img {
+      width: 10px;
     }
-    .premium-membership{
-        position: relative;
-        .join-btn{
-            margin-top: 5px;
-        }
-        .box-content{
-            left: unset;
-            padding: 30px;
-            position: relative;
-            bottom: unset;
-            top: 30%;
-            width: 95%;
-            margin: 0 auto;
-        }
-        .month-benefits{
-            right: -200%;
-            .racer{
-                bottom: -20px;
-            }
-            &.active{  
-                width: 100%;
-                .racer{
-                    bottom: -20px;
-                    left: 0;
-                }
-            }
-            &.yearly{
-                .car{
-                    right: 20px;
-                }
-                .racer{
-                    left: 90px;
-                }
-            }
-        }
-    }
-    .membership-time{
-        margin-top: 10px;
-    }
-    .bonus{
-        margin-bottom: 10px;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-    .big-box{
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 65);
-        min-height: unset;
-        .box-content{
-            left: 20px;
-            bottom: 40px;
-        }
-        .small-box{
-            bottom: 40px;
-        }
-        .inner-box{
-            height: 100%;
-        }
-    }
-
-    .content-title{
-        margin-left: 10px;
-    }
-    .box-content{
-        .membership-heading{
-            font-size: 22px;
-            line-height: 20px;
-        }
-        .membership-bonus{
-            font-size: 14px;
-        }
-        .bonus-heading{
-            font-size: 13px;
-            list-style: 15px;
-            margin-bottom: 20px;
-        }
-        .bonus{
-            margin-top: 10px;
-            margin-bottom: 0;
-            font-size: 10px;
-            img{
-                width: 16px;
-                margin-right: 1px;
-            }
-        }
-        .membership-time{
-            font-size: 14px;
-            line-height: 14px;
-            width: 100px;
-            margin-top: 20px;
-            .sticker-blue,.sticker-gold{
-                font-size: 8px;
-                width: 45px;
-                top: -11px;
-            }
-            .underline{
-                height: 2px;
-            }
-        }
-        .pay-button,.join-btn{
-            margin-top: 25px;
-            width: 150px;
-            line-height: 18px;
-            img{
-                width: 18px;
-            }
-        }
+    p {
+      font-size: 17px;
     }
   }
-
-  @media screen and(max-width: 400px) and (orientation: portrait){
-    .premium-membership{
-        .box-content{
-            top: 40%;
-            padding: 10px;
-            .membership-time-items{
-                .membership-time{
-                    font-size: 10px;
-                    margin-right: 5px;
-                }
-            }
-        }
-        .month-benefits{
-            .car{
-                width: 250px;
-                right: 70px;
-            }
-            .racer{
-                left: 35%;
-                width: 240px;
-            }
-            &.active{
-                .racer{
-                    left: 35%;
-                }
-            }
-            &.yearly{
-                .car{
-                    right: 70px;
-                }
-            }
-        }
-    }
-  }
-  
-  
-
-
-
-
-
-@media screen and(max-width: 1700px) {
-    .content-title {
-      img {
-        width: 17px;
-      }
-      p {
-        font-size: 26px;
-      }
-    }
-  }
-  @media screen and(max-width: 1550px) {
-    
-    .content-title {
-      height: 65px;
-      img {
-        width: 15px;
-      }
-      p {
-        font-size: 22px;
-      }
-    }
-  }
-  @media screen and(max-width: 1024px) {
-   .content-title {
-      img {
-        width: 13px;
-      }
-      p {
-        font-size: 20px;
-      }
-    }
-  }
-  
-  @media screen and(max-width: 1024px) and (orientation: landscape) {
-   .content-title {
-      height: 40px;
-    }
-  }
-  @media screen and(max-width: 700px) and (orientation: landscape) {
-    .content-title {
-      img {
-        width: 8.5px;
-      }
-      p {
-        font-size: 9px;
-        margin-left: 5px;
-      }
-    }
-  }
-  @media screen and(max-width: 640px) and (orientation: portrait) {
-    .content-title {
-      img {
-        width: 10px;
-      }
-      p {
-        font-size: 17px;
-      }
-    }
-  }
-
-
-  
-
+}

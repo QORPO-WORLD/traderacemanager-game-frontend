@@ -8,166 +8,352 @@
     }"
   >
     <div
+      [ngClass]="{
+        first: i === 0,
+        'normal-back': myTeam !== item?.name,
+        'my-low-gradient': myTeam === item?.name,
+        hidden: item?.name === 'SYSTEM_TEAM'
+      }"
+      *ngFor="let item of teams | sortmain: '!position'; let i = index"
+      class="team-item"
+    >
+      <ng-container *ngIf="item?.name !== 'SYSTEM_TEAM'">
+        <div
+          [ngClass]="{ 'my-team-back': myTeam === item?.name }"
+          class="item-content"
+        >
+          <img
+            *ngIf="myTeam === item?.name"
+            src="/assets/base/images/icons/premium-icon-active.svg"
+            alt="premium badge"
+            class="premium-badge"
+          />
+          <div
+            class="img-holder"
+            *ngIf="
+              item?.name === 'IOI' ||
+              item?.name === 'BTC' ||
+              item?.name === 'ALT'
+            "
+          >
+            <div class="team-img">
+              <img
+                [src]="'/assets/base/images/teams/' + item?.name + '-team.png'"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            *ngIf="
+              item?.name !== 'IOI' &&
+              item?.name !== 'BTC' &&
+              item?.name !== 'ALT'
+            "
+            class="img-holder"
+          >
+            <div class="team-img">
+              <img
+                [src]="
+                  'assets/base/images/custom-teams/custom-team' +
+                  (item.avatar + 1) +
+                  '.png'
+                "
+                alt=""
+              />
+              <div class="badge-name">
+                <p class="name">
+                  {{ item?.name }}
+                </p>
+                <p class="team">TEAM</p>
+              </div>
+            </div>
+          </div>
+          <div class="stats-holder">
+            <div class="stats-item">
+              <p class="category-title-first">{{ item?.name }}</p>
+              <p class="classic-desc">TEAM</p>
+            </div>
+            <div class="stats-item">
+              <p class="classic-text red">TEAM OWNER</p>
+              <p *ngIf="item?.owners.length >= 1" class="category-title-second">
+                {{ item?.owners[ownerIndex].user_nickname }}
+              </p>
+              <p
+                *ngIf="item?.owners.length === 0"
+                class="category-title-second"
+              >
+                --
+              </p>
+            </div>
+            <div class="stats-item">
+              <p class="classic-text blue">TEAM MANAGER</p>
+              <p
+                *ngIf="item?.manager_user_nickname"
+                class="category-title-second"
+              >
+                {{ item?.manager_user_nickname }}
+              </p>
+              <p
+                class="category-title-second"
+                *ngIf="!item?.manager_user_nickname"
+              >
+                --
+              </p>
+            </div>
+          </div>
+          <div class="stats-holder bottom">
+            <div class="stats-item">
+              <p class="category-title-third">
+                MEMBERS:
+                <span class="category-title-third no-font red">{{
+                  item?.active_members
+                }}</span>
+              </p>
+            </div>
+            <div class="stats-item">
+              <p class="category-title-third">
+                POINTS:
+                <span class="category-title-third no-font blue">
+                  {{ item?.points | number: "1.0-2":"fr" }}</span
+                >
+              </p>
+            </div>
+          </div>
+          <button
+            *ngIf="managerType === false"
+            (click)="
+              openMembershipModal(
+                1,
+                item.id,
+                item.monthly,
+                item.quarterly,
+                item.yearly
+              )
+            "
+            class="join-btn category-title-second my-cta-btn-back"
+          >
+            JOIN TEAM
+          </button>
+          <ng-container *ngIf="managerType === true">
+            <ng-container *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
+              <button
+                class="join-btn category-title-second my-cta-btn-back"
+                *ngIf="item.me_waiting_as_manager === 'WAITING'"
+              >
+                <img src="/assets/base/images/icons/time.svg" alt="" />
+                Application pending
+              </button>
+              <button
+                class="join-btn category-title-second my-cta-btn-back"
+                *ngIf="item.me_waiting_as_manager === 'DECLINED'"
+              >
+                Application rejected
+              </button>
+              <button
+                class="join-btn category-title-second my-cta-btn-back"
+                *ngIf="item.me_waiting_as_manager === 'APPROVED'"
+              >
+                Application approved
+              </button>
+              <button
+                class="join-btn category-title-second my-cta-btn-back"
+                (click)="becomeManager(item.id)"
+                *ngIf="
+                  item.me_waiting_as_manager === 'NONE' &&
+                  myDriverStats?.is_manager === false
+                "
+              >
+                Apply
+              </button>
+              <button
+                class="join-btn category-title-second my-cta-btn-back"
+                (click)="openManagerModal(item.id)"
+                *ngIf="
+                  item.me_waiting_as_manager === 'NONE' &&
+                  myDriverStats?.is_manager === true
+                "
+              >
+                Apply
+              </button>
+            </ng-container>
+            <button
+              class="join-btn category-title-second my-cta-btn-back"
+              [routerLink]="['/other/wallet-control']"
+              [queryParams]="{ controlType: 'deposit' }"
+              *ngIf="myDriverBalances.game_wallet_ioi < 1000"
+            >
+              Deposit
+            </button>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <!-- <div
       class="team-item"
       *ngFor="let tt of teams | sortmain: '!position'; let i = index"
     >
       <ng-container *ngIf="tt?.name !== 'SYSTEM_TEAM'">
-      <div
-        class="img-holder"
-        *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
-      >
-        <img
-          [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'"
-          alt=""
-        />
-      </div>
-      <div
-        *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
-        class="img-holder"
-      >
-        <img
-          [src]="
-            'assets/base/images/custom-teams/custom-team' +
-            (tt.avatar + 1) +
-            '.png'
-          "
-          alt=""
-        />
-        <div class="badge-name">
-          <p class="name">
-            {{ tt?.name }}
-          </p>
-          <p class="team">TEAM</p>
+        <div
+          class="img-holder"
+          *ngIf="tt?.name === 'IOI' || tt?.name === 'BTC' || tt?.name === 'ALT'"
+        >
+          <img
+            [src]="'/assets/base/images/teams/' + tt?.name + '-team.png'"
+            alt=""
+          />
         </div>
-      </div>
-      <p [ngClass]="{ 'my-text-color': myTeam === tt?.name }" class="team-name">
-        {{ tt?.name }}
-      </p>
+        <div
+          *ngIf="tt?.name !== 'IOI' && tt?.name !== 'BTC' && tt?.name !== 'ALT'"
+          class="img-holder"
+        >
+          <img
+            [src]="
+              'assets/base/images/custom-teams/custom-team' +
+              (tt.avatar + 1) +
+              '.png'
+            "
+            alt=""
+          />
+          <div class="badge-name">
+            <p class="name">
+              {{ tt?.name }}
+            </p>
+            <p class="team">TEAM</p>
+          </div>
+        </div>
+        <p
+          [ngClass]="{ 'my-text-color': myTeam === tt?.name }"
+          class="team-name"
+        >
+          {{ tt?.name }}
+        </p>
 
-      <div class="stats-holder">
-        <img
-          (click)="prevStat(i)"
-          src="/assets/base/images/teams/team-arrow-left.svg"
-          alt=""
-          class="arrow left"
-        />
-        <img
-          (click)="nextStat(i)"
-          src="/assets/base/images/teams/team-arrow-right.svg"
-          alt=""
-          class="arrow right"
-        />
-        <div class="stat-item" *ngIf="tt.statState === 1">
-          <div class="inner-item">
-            <p class="premium">
-              <img
+        <div class="stats-holder">
+          <img
+            (click)="prevStat(i)"
+            src="/assets/base/images/teams/team-arrow-left.svg"
+            alt=""
+            class="arrow left"
+          />
+          <img
+            (click)="nextStat(i)"
+            src="/assets/base/images/teams/team-arrow-right.svg"
+            alt=""
+            class="arrow right"
+          />
+          <div class="stat-item" *ngIf="tt.statState === 1">
+            <div class="inner-item">
+              <p class="premium">
+                <img
                   src="/assets/base/images/menu/premium-icon-active.svg"
                   alt=""
                   class="premium-badge"
                 />
-              <img src="/assets/base/images/teams/memb-num.svg" alt="" />
-              {{ tt?.active_members }}
-            </p>
+                <img src="/assets/base/images/teams/memb-num.svg" alt="" />
+                {{ tt?.active_members }}
+              </p>
+            </div>
+            <div class="inner-item">
+              <p>
+                <img src="/assets/base/images/teams/turnover.svg" alt="" />
+                {{ tt?.points | number: "1.0-2":"fr" }}
+              </p>
+            </div>
           </div>
-          <div class="inner-item">
-            <p>
-              <img src="/assets/base/images/teams/turnover.svg" alt="" />
-              {{ tt?.points | number: "1.0-2":"fr" }}
-            </p>
+          <div class="stat-item names" *ngIf="tt.statState === 2">
+            <div class="inner-item">
+              <p class="value" *ngIf="tt?.owners.length === 0">-</p>
+              <p class="value" *ngIf="tt?.owners.length > 0">
+                <span
+                  class="arrow left"
+                  *ngIf="tt?.owners.length > 1 && ownerIndex !== 0"
+                  (click)="ownerIndex = ownerIndex - 1"
+                  >&lt;</span
+                >
+                {{ tt?.owners[ownerIndex].user_nickname }}
+                <span
+                  class="arrow right"
+                  *ngIf="
+                    tt?.owners.length > 1 && ownerIndex !== tt?.owners.length
+                  "
+                  (click)="ownerIndex = ownerIndex + 1"
+                  >&gt;</span
+                >
+              </p>
+              <p class="desc">owner</p>
+            </div>
+            <div class="inner-item">
+              <p class="value" *ngIf="tt?.manager_user_nickname">
+                {{ tt?.manager_user_nickname }}
+              </p>
+              <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
+              <p class="desc">manager</p>
+            </div>
           </div>
         </div>
-        <div class="stat-item names" *ngIf="tt.statState === 2">
-          <div class="inner-item">
-            <p class="value" *ngIf="tt?.owners.length === 0">-</p>
-            <p class="value" *ngIf="tt?.owners.length > 0">
-              <span
-                class="arrow left"
-                *ngIf="tt?.owners.length > 1 && ownerIndex !== 0"
-                (click)="ownerIndex = ownerIndex - 1"
-                >&lt;</span
-              >
-              {{ tt?.owners[ownerIndex].user_nickname }}
-              <span
-                class="arrow right"
-                *ngIf="
-                  tt?.owners.length > 1 && ownerIndex !== tt?.owners.length
-                "
-                (click)="ownerIndex = ownerIndex + 1"
-                >&gt;</span
-              >
-            </p>
-            <p class="desc">owner</p>
-          </div>
-          <div class="inner-item">
-            <p class="value" *ngIf="tt?.manager_user_nickname">
-              {{ tt?.manager_user_nickname }}
-            </p>
-            <p class="value" *ngIf="!tt?.manager_user_nickname">-</p>
-            <p class="desc">manager</p>
-          </div>
-        </div>
-      </div>
-      <button
-        *ngIf="managerType === false"
-        class="join-team my-cta-btn-back"
-        (click)="openMembershipModal(1, tt.id, tt.monthly, tt.quarterly, tt.yearly)"
-      >
-        Join team
-      </button>
+        <button
+          *ngIf="managerType === false"
+          class="join-team my-cta-btn-back"
+          (click)="
+            openMembershipModal(1, tt.id, tt.monthly, tt.quarterly, tt.yearly)
+          "
+        >
+          Join team
+        </button>
 
-      <ng-container *ngIf="managerType === true">
-        <ng-container *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
+        <ng-container *ngIf="managerType === true">
+          <ng-container *ngIf="myDriverBalances.game_wallet_ioi >= 1000">
+            <button
+              class="join-team my-cta-btn-back"
+              *ngIf="tt.me_waiting_as_manager === 'WAITING'"
+            >
+              <img src="/assets/base/images/icons/time.svg" alt="" />
+              Application pending
+            </button>
+            <button
+              class="join-team my-cta-btn-back"
+              *ngIf="tt.me_waiting_as_manager === 'DECLINED'"
+            >
+              Application rejected
+            </button>
+            <button
+              class="join-team my-cta-btn-back"
+              *ngIf="tt.me_waiting_as_manager === 'APPROVED'"
+            >
+              Application approved
+            </button>
+            <button
+              class="join-team my-cta-btn-back"
+              (click)="becomeManager(tt.id)"
+              *ngIf="
+                tt.me_waiting_as_manager === 'NONE' &&
+                myDriverStats?.is_manager === false
+              "
+            >
+              Apply
+            </button>
+            <button
+              class="join-team my-cta-btn-back"
+              (click)="openManagerModal(tt.id)"
+              *ngIf="
+                tt.me_waiting_as_manager === 'NONE' &&
+                myDriverStats?.is_manager === true
+              "
+            >
+              Apply
+            </button>
+          </ng-container>
           <button
             class="join-team my-cta-btn-back"
-            *ngIf="tt.me_waiting_as_manager === 'WAITING'"
+            [routerLink]="['/other/wallet-control']"
+            [queryParams]="{ controlType: 'deposit' }"
+            *ngIf="myDriverBalances.game_wallet_ioi < 1000"
           >
-            <img src="/assets/base/images/icons/time.svg" alt="" /> Application
-            pending
-          </button>
-          <button
-            class="join-team my-cta-btn-back"
-            *ngIf="tt.me_waiting_as_manager === 'DECLINED'"
-          >
-            Application rejected
-          </button>
-          <button
-            class="join-team my-cta-btn-back"
-            *ngIf="tt.me_waiting_as_manager === 'APPROVED'"
-          >
-            Application approved
-          </button>
-          <button
-            class="join-team my-cta-btn-back"
-            (click)="becomeManager(tt.id)"
-            *ngIf="
-              tt.me_waiting_as_manager === 'NONE' &&
-              myDriverStats?.is_manager === false
-            "
-          >
-            Apply
-          </button>
-          <button
-            class="join-team my-cta-btn-back"
-            (click)="openManagerModal(tt.id)"
-            *ngIf="
-              tt.me_waiting_as_manager === 'NONE' &&
-              myDriverStats?.is_manager === true
-            "
-          >
-            Apply
+            Deposit
           </button>
         </ng-container>
-        <button
-          class="join-team my-cta-btn-back"
-          [routerLink]="['/other/wallet-control']"
-          [queryParams]="{ controlType: 'deposit' }"
-          *ngIf="myDriverBalances.game_wallet_ioi < 1000"
-        >
-          Deposit
-        </button>
       </ng-container>
-    </ng-container>
-    </div>
+    </div> -->
   </div>
 </div>
 

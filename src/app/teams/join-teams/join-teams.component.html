@@ -1,117 +1,72 @@
-
-
-
 <div class="main-holder">
-
-  <div class="content-title" [routerLink]="['/race/start-race']">
-    <img
-      class="red-star"
-      src="assets/base/images/icons/icon-back-red.svg"
-      alt="red arrow"
-    />
-    <img
-      class="blue-star"
-      src="assets/base/images/icons/icon-back-blue.svg"
-      alt="blue arrow"
-    />
-    <p>BACK</p>
+  <div class="join-teams-back-div">
+    <div class="join-teams-back"></div>
   </div>
-
-  <div class="boxes-holder">
-    <div class="memb-box">
-      <p *ngIf="myDriverStats?.is_system_team !== true" class="desc">Membership in {{ myDriverStats?.team }} ends</p>
-      <div class="time-box">
-        <p *ngIf="myDriverStats?.is_paid_membership === 'Premium' && myMembEnd!=null">{{ myMembEnd | date }}</p>
-        <p *ngIf="myDriverStats?.is_paid_membership === 'Free'">Become premium</p>
-      </div>
-      <button class="my-cta-btn-back owner-btn" [routerLink]="'/teams/owners-managers'">
-        Owners &amp; managers
-      </button>
+  <div class="join-teams">
+    <div class="content-title" [routerLink]="['/race/start-race']">
+      <img
+        class="red-star"
+        src="assets/base/images/icons/icon-back-red.svg"
+        alt="red arrow"
+      />
+      <img
+        class="blue-star"
+        src="assets/base/images/icons/icon-back-blue.svg"
+        alt="blue arrow"
+      />
+      <p>BACK</p>
     </div>
-
-    <div class="reward-box">
-      <p class="desc">Team reward</p>
-      <div class="inner-box">
-        <img src="/assets/base/images/teams/reward-token.png" alt="" class="reward-badge">
-        <p>2000</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="nft-reward-box">
-    <div
-        [routerLink]="
-          myDriverStats.is_paid_membership === 'Free'
-            ? ['/teams/join-teams']
-            : null
-        "
-        class="team-img team"
-        *ngIf="
-          myDriverStats?.is_system_team !== true &&
-          myDriverStats.team === 'IOI' ||
-          myDriverStats.team === 'BTC' ||
-          myDriverStats.team === 'ALT'
-        "
-      >
-        <img
-          *ngIf="myDriverStats.is_paid_membership === 'Free'"
-          class="premium non-premium"
-          src="/assets/base/images/menu/premium-icon.svg"
-          alt="NonPremium icon"
-        />
-        <img
-          *ngIf="myDriverStats.is_paid_membership === 'Premium'"
-          class="premium"
-          src="/assets/base/images/menu/premium-icon-active.svg"
-          alt="Premium icon"
-        />
-        <img
-          [src]="'/assets/base/images/teams/' + myDriverStats.team + '-team.png'"
-          alt=""
-        />
-      </div>
-      <div
-        class="team-img team"
-        *ngIf="
-          myDriverStats?.is_system_team !== true &&
-          myDriverStats.team !== 'IOI' &&
-          myDriverStats.team !== 'BTC' &&
-          myDriverStats.team !== 'ALT'
-        "
-      >
-        <img
-          class="premium"
-          src="/assets/base/images/menu/premium-icon-active.svg"
-          alt="Premium icon"
-        />
-        <img
-          [src]="
-            'assets/base/images/custom-teams/custom-team' +
-            (myTeamAllData.avatar + 1) +
-            '.png'
-          "
-          alt=""
-        />
-        <div class="badge-name">
-          <p class="name">{{ myDriverStats.team }}</p>
-          <p class="team">TEAM</p>
+    <div class="upper-content">
+      <div class="memb-box">
+        <p
+          *ngIf="myDriverStats?.is_system_team !== true"
+          class="classic-text letter-spacing"
+        >
+          Membership in {{ myDriverStats?.team }} ends
+        </p>
+        <div class="time-box space-small">
+          <p
+            class="category-title-second"
+            *ngIf="
+              myDriverStats?.is_paid_membership === 'Premium' &&
+              myMembEnd != null
+            "
+          >
+            {{ myMembEnd | date }}
+          </p>
+          <p *ngIf="myDriverStats?.is_paid_membership === 'Free'">
+            Become premium
+          </p>
         </div>
       </div>
-    <div class="car-img" >
-      <img
-        src="/assets/base/images/menu/lock-icon.svg"
-        alt="Icon of lock - locked"
-        class="lock-icon"
-        *ngIf="offerState == 2"
-      />
-      <img src="/assets/base/images/nft-cars/car1.png" alt="" [ngClass]="{'inactive': offerState === 2}">
+      <div class="text-holder space-big">
+        <p class="category-title-first">
+          TESLA <br />
+          <span class="my-text-color category-title-first">COMPETITION</span>
+        </p>
+        <p class="classic-text space">
+          Win a real tesla model S <br />
+          by playing #1 NFT TRADING GAME
+          <br />
+          <br />
+          Become holder of &#36;ioi to unlock special rewards
+        </p>
+        <p
+          (click)="openLink('https://traderacemanager.com/user/tesla')"
+          class="category-title-third space-small link-to"
+        >
+          See more
+        </p>
+      </div>
     </div>
-    <img src="/assets/base/images/nft-racers/white-trm.png" alt="" class="racer-img">
+    <div class="lower-content">
+      <div class="teams-holder">
+        <p class="category-title-second">Join a team to participate</p>
+        <app-teams-selection
+          (endsIn)="getMembEnd($event)"
+          #teamSelection
+        ></app-teams-selection>
+      </div>
+    </div>
   </div>
-
-  <div class="teams-holder">
-    <p class="desc">Teams</p>
-    <app-teams-selection (endsIn)="getMembEnd($event)" #teamSelection></app-teams-selection>
-  </div>
-
 </div>

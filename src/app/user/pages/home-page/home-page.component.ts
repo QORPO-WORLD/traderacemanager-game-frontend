@@ -196,7 +196,7 @@ export class HomePageComponent implements OnInit {
   monthsEnd: any;
   carouselInterval: any;
   tickerIoiInterval: any;
-
+  logged = false;
   closeTokenDetail = true;
   xDown = null;
   yDown = null;
@@ -235,6 +235,10 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    const token = JSON.parse(localStorage.getItem("auth-token"));
+    if (token) {
+      this.logged = true;
+    }
     this.resolveDate();
     this.setCarInterval();
     this.getIoiPrice();
