@@ -108,18 +108,18 @@ export class HomeBundlesComponent implements OnInit {
       avatar: "cryptowizard-avatar",
       back: "cryptowizard-back",
     },
-    // {
-    //   id: 9,
-    //   name: "Kucoin",
-    //   link: "@kucoincom",
-    //   staking: 6,
-    //   reward: 0.1,
-    //   price: 1000,
-    //   pieces: 100,
-    //   image: "bundle-kucoin",
-    //   avatar: "cryptowizard-avatar",
-    //   back: "",
-    // },
+    {
+      id: 9,
+      name: "Kucoin",
+      link: "@kucoincom",
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle-kucoin",
+      avatar: "cryptowizard-avatar",
+      back: "",
+    },
   ];
   constructor() {}
 
