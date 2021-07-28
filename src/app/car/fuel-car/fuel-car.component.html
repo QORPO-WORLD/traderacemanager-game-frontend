@@ -1347,13 +1347,6 @@
                   alt="IOI logo"
                 />
               </p>
-              <p
-                class="value"
-                *ngIf="raceId === 'tournament_for_ticket_0'"
-                style="font-size: 18px"
-              >
-                3 Tickets<br />(value 3 IOI)
-              </p>
             </div>
             <div class="info-item">
               <p class="desc">{{ "fuel_car.your_bet" | translate }}</p>
@@ -1808,39 +1801,6 @@
       class="start-race-btn with-btns"
       *ngIf="stepIndex === 5 && introModal === false"
     >
-      <div
-        class="race-mode-holder"
-        (click)="useTicket = true; signupToRace()"
-        *ngIf="tickets > 0 && raceId === 'car_race_ioi_1'"
-      >
-        <div class="ticket-btn my-cta-btn-back">
-          <p *ngIf="isLoading === false">Use ticket &gt;</p>
-          <p *ngIf="isLoading === true">Loading..</p>
-        </div>
-      </div>
-      <!-- <div class="race-mode-holder">
-        <div class="mode-btn my-cta-btn-back three-d" [ngClass]="{'picked': useUnity === true}" (click)="useUnity = true;changeGameType()">
-          <div class="car-check">
-            <div class="inner">
-              <p><img src="/assets/base/images/tankovanie/fueled-check.svg" alt="" class="check"> Picked</p>
-            </div>
-          </div>
-          <div class="btn-inner">
-            <p><span>Watch</span> 3D</p>
-          </div>
-        </div>
-
-        <div class="mode-btn my-cta-btn-back two-d" [ngClass]="{'picked': useUnity === false}" (click)="useUnity = false;changeGameType()">
-          <div class="car-check">
-            <div class="inner">
-              <p><img src="/assets/base/images/tankovanie/fueled-check.svg" alt="" class="check"> Picked</p>
-            </div>
-          </div>
-          <div class="btn-inner">
-            <p><span>Watch</span> 2D</p>
-          </div>
-        </div>
-      </div> -->
       <div
         class="inner-btn my-cta-btn-back"
         (click)="isLoading === false ? signupToRace() : null"
