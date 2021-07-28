@@ -111,7 +111,6 @@ export class AllRacesComponent implements OnInit {
       this.premiumTournament = premium[0];
       let special = nedata.filter(word => word.race_type === 'tesla_tournament');
       this.specialTournament = special[0];
-      console.log(nedata);
       this.newNextData = nedata;
     });
   }
