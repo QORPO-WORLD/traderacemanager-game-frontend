@@ -49,11 +49,13 @@ export class AllRacesComponent implements OnInit {
   freeRace: any;
   fastRaces: any;
   premiumTournament: any;
+  specialTournament: any;
   myFavRaces = [];
   baseFavRaces = [
     { type: 'car_race_short_0', fav: false },
     { type: 'car_race_portfolio_0', fav: false },
-    { type: 'premium_tournament_0', fav: false }
+    { type: 'premium_tournament_0', fav: false },
+    { type: 'tesla_tournament_0', fav: false }
   ];
 
   tutorialStep = 1;
@@ -107,7 +109,9 @@ export class AllRacesComponent implements OnInit {
       this.fastRaces = nedata.filter(word => word.race_type === 'car_race_portfolio');
       let premium = nedata.filter(word => word.race_type === 'premium_tournament');
       this.premiumTournament = premium[0];
-
+      let special = nedata.filter(word => word.race_type === 'tesla_tournament');
+      this.specialTournament = special[0];
+      console.log(nedata);
       this.newNextData = nedata;
     });
   }
