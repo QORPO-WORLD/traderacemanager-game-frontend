@@ -55,6 +55,10 @@ export class JwtInterceptor implements HttpInterceptor {
                     } else if (err.status === 456) {
                         this.route.navigate(['/user/verify-authenticator']);
 
+                    }
+                    else if (err.status === 599) {
+                        this.route.navigate(['/other/maintanance']);
+
                     } else {
                         return throwError(err);
                     }
