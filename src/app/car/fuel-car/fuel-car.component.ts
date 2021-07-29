@@ -121,6 +121,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 0,
+      leverage: 0
     },
     {
       symbol: "ETHUSDT",
@@ -130,6 +131,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 1,
+      leverage: 0
     },
     {
       symbol: "XRPUSDT",
@@ -139,6 +141,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 2,
+      leverage: 0
     },
     {
       symbol: "BCHUSDT",
@@ -148,6 +151,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 3,
+      leverage: 0
     },
     {
       symbol: "LTCUSDT",
@@ -157,6 +161,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 4,
+      leverage: 0
     },
     {
       symbol: "EOSUSDT",
@@ -166,6 +171,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 5,
+      leverage: 0
     },
     {
       symbol: "BNBUSDT",
@@ -175,6 +181,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 6,
+      leverage: 0
     },
     {
       symbol: "XMRUSDT",
@@ -184,6 +191,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 7,
+      leverage: 0
     },
     {
       symbol: "ADAUSDT",
@@ -193,6 +201,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 8,
+      leverage: 0
     },
     {
       symbol: "TRXUSDT",
@@ -202,6 +211,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 9,
+      leverage: 0
     },
     {
       symbol: "BATUSDT",
@@ -211,6 +221,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 10,
+      leverage: 0
     },
     {
       symbol: "XLMUSDT",
@@ -220,6 +231,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 11,
+      leverage: 0
     },
     {
       symbol: "XTZUSDT",
@@ -229,6 +241,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 12,
+      leverage: 0
     },
     {
       symbol: "ENJUSDT",
@@ -238,6 +251,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 13,
+      leverage: 0
     },
     {
       symbol: "MATICUSDT",
@@ -247,6 +261,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 14,
+      leverage: 0
     },
     {
       symbol: "LINKUSDT",
@@ -256,6 +271,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 15,
+      leverage: 0
     },
     {
       symbol: "WAVESUSDT",
@@ -265,6 +281,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 16,
+      leverage: 0
     },
     {
       symbol: "ZILUSDT",
@@ -274,6 +291,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 17,
+      leverage: 0
     },
     {
       symbol: "VETUSDT",
@@ -283,6 +301,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 18,
+      leverage: 0
     },
     {
       symbol: "USDTUSDT",
@@ -292,6 +311,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       favourite: false,
       short: false,
       customIndex: 19,
+      leverage: 0
     },
   ];
   selectedBets: Array<number> = [];
@@ -839,13 +859,24 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         fakeSelected[i].newBet = [];
         for (let ix = 0; ix < fakeSelected[i].bet.length; ix++) {
           if (fakeSelected[i].bet[ix].bet > 0) {
-            fakeSelected[i].newBet.push({
-              symbol: fakeSelected[i].bet[ix].symbol,
-              bet:
-                fakeSelected[i].bet[ix].short === false
-                  ? fakeSelected[i].bet[ix].bet
-                  : fakeSelected[i].bet[ix].bet * -1,
-            });
+            if (fakeSelected[i].bet[ix].leverage > 0) {
+              fakeSelected[i].newBet.push({
+                symbol: fakeSelected[i].bet[ix].symbol,
+                bet:
+                  fakeSelected[i].bet[ix].short === false
+                    ? fakeSelected[i].bet[ix].bet
+                      : fakeSelected[i].bet[ix].bet * -1,
+                leverage: fakeSelected[i].bet[ix].leverage
+              });
+            } else {
+              fakeSelected[i].newBet.push({
+                symbol: fakeSelected[i].bet[ix].symbol,
+                bet:
+                  fakeSelected[i].bet[ix].short === false
+                    ? fakeSelected[i].bet[ix].bet
+                      : fakeSelected[i].bet[ix].bet * -1
+              });
+            }
           }
         }
       }
@@ -868,7 +899,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
 */
 
       this.raceApi.racesMultiSignupCreate(serialized).subscribe(
-        (res) => this.checkRedirect(), // response
+        (res) => this.checkRedirect(), 
         (err) => this.resolveSignupError(err), // error
         () => console.log("sending sign to race")
       );
