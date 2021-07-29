@@ -1937,102 +1937,85 @@ ul.fancy {
 
 .winning-back {
   width: 100%;
-  height: calc(100% - 86px);
+  height: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
   background: rgba(17, 17, 17, 0.8);
-  z-index: 100000;
+  z-index: 1000001;
   overflow: hidden;
   .back-avatar {
     position: absolute;
     bottom: -30%;
     left: 20%;
     transform: translateX(-50%);
-    z-index: 10000001;
+    z-index: 1000002;
     pointer-events: none;
   }
   .winning-modal {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 1000px;
+    transform: translate(-50%, -50%);
+    width: 820px;
     max-width: 95%;
-    padding: 25px 34px;
-    background: #111111;
     border-radius: 0px 0px 15px 15px;
-    z-index: 10000000;
-    height: 100%;
+    z-index: 1000003;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    .switch-btns {
+    background: radial-gradient(103.16% 103.16% at -1.9% 0%, rgba(41, 35, 22, .85) 0%, rgba(32, 28, 22, .85) 28.93%, rgba(30, 26, 16, .85) 46.64%, rgba(0, 12, 16, .85) 100%);
+    border-radius: 15px;
+    .prize-holder{
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      height: 50px;
+      height: 60px;
       width: 100%;
-      button {
-        position: relative;
+      margin-bottom: 86px;
+      .prize{
         height: 100%;
-        width: 192px;
-        background: transparent;
-        border: none;
-        .back {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          opacity: 0.2;
-          z-index: -1;
-          &.active {
-            opacity: 1;
-          }
-        }
-      }
-    }
-    .prizepool {
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 15px;
-      position: relative;
-      .value {
-        font-size: 64px;
-        text-shadow: 0px 0px 60px rgba(251, 225, 138, 0.8);
-        font-family: "Earth Orbiter";
-        margin: 25px 0 15px;
-        line-height: 1;
-        font-weight: 800;
-        background: linear-gradient(
-          89.36deg,
-          #d6d3c4 3.06%,
-          #e3d6a6 24.7%,
-          #f0d369 46.86%,
-          #d0ab34 72.83%,
-          #a76b41 102%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
         position: relative;
-        padding-left: 56px;
-        img {
+        p{
           position: absolute;
+          right: 0;
           top: 50%;
-          left: 0;
-          transform: translate(-50%, -50%);
+          transform: translateY(-50%);
+          font-weight: 800;
+          font-size: 134px;
+          text-shadow: 0px 0px 34px rgba(236, 168, 96, 0.5);
+          font-family: 'Earth Orbiter';
+          margin: 0;
+          background: linear-gradient(0deg, rgba(244,221,139,1) 0%, rgba(197,167,90,1) 19%, rgba(240,212,159,1) 32%, rgba(205,161,86,1) 40%, rgba(216,177,126,1) 58%, rgba(254,159,69,1) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          white-space: nowrap;
+          line-height: 1;
+          letter-spacing: -0.065em;
         }
       }
-      .desc {
+      .prize-desc{
+        color: #727272;
+        font-weight: 800;
         font-size: 16px;
-        opacity: 0.6;
-        margin: 0;
+        margin: 0 20px;
+        font-family: 'Earth Orbiter';
+        span{
+          font-size: inherit;
+          color: inherit;
+        }
+      }
+      .quit-btn{
+        background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+        border-radius: 0px 15px;
+        border: none;
+        font-weight: 800;
+        font-size: 26px;
+        height: 100%;
+        width: 28%;
+        font-family: 'Earth Orbiter';
       }
     }
     .tour-msg {
@@ -2058,10 +2041,9 @@ ul.fancy {
       }
     }
     .table-holder {
-      width: 80%;
-      margin: 0 auto;
+      width: 100%;
+      padding: 0 10% 0 5%;
       &.points {
-        margin-top: 40px;
         .table-header {
           .my-col {
             &.position {
@@ -2108,7 +2090,7 @@ ul.fancy {
         .my-col {
           p {
             font-size: 16px;
-            margin: 0 0 7px 0;
+            margin: 0 0 33px 0;
             color: white;
             text-align: center;
             padding-left: 6px;
@@ -2142,15 +2124,21 @@ ul.fancy {
       }
       .table-item {
         width: 100%;
-        background: #111111;
-        overflow: hidden;
+        background: transparent;
         height: 35px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1px;
-        &.my-item {
-          background: rgba(36, 229, 254, 0.2);
+        position: relative;
+        &.first{
+          background: linear-gradient(90deg, rgba(212, 173, 114, .2) 0.03%, rgba(212, 172, 114, 0) 100.07%);
+        }
+        &.second{
+          background: linear-gradient(90deg, rgba(250, 250, 250, .2) 0%, rgba(250, 250, 250, 0) 111.82%);
+        }
+        &.third{
+          background: linear-gradient(90deg, rgba(144, 84, 28, .2) 0%, rgba(144, 84, 28, 0) 112.18%);
         }
         .my-col {
           height: 100%;
@@ -2218,47 +2206,90 @@ ul.fancy {
             }
           }
         }
+        .you-sign{
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 7%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(236.12deg, #00F0FF 6%, #0098D9 102.68%, #0098D9 102.68%);
+          transform: translateX(100%);
+          p{
+            font-weight: 800;
+            font-size: 18px;
+            font-family: 'Earth Orbiter';
+            margin: 0;
+            line-height: 1;
+          }
+        }
       }
+    }
+    .switch-btns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+      margin: 30px 0;
+      .divider{
+        width: 2px;
+        height: 100%;
+        background: rgba(255,255,255,.4);
+        margin: 0 20px;
+      }
+      button {
+        position: relative;
+        height: 100%;
+        background: transparent;
+        border: none;
+        font-weight: 800;
+        font-size: 31px;
+        font-family: 'Earth Orbiter';
+        opacity: .4;
+        transition: .2s;
+        &.active{
+          opacity: 1;
+        }
+      }
+    }
+    .bottom-part{
+      width: 100%;
     }
     .buttons-holder {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin-top: 35px;
+      height: 85px;
       .my-cta-btn {
         background: linear-gradient(71.84deg, #fe173f 1.24%, #950552 72.02%);
-        box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.6);
-        font-size: 16px;
-        margin: 0 8px;
-        padding: 15px 5px;
+        font-weight: 800;
+        font-size: 21px;
+        margin: 0;
+        padding: 5px;
         min-width: 140px;
-        width: 240px;
+        height: 100%;
+        width: 50%;
+        border-radius: 0 0 15px 0;
+        font-family: 'Earth Orbiter';
         &.azure-btn {
           background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
+          border-radius: 0 0 0 15px;
+        }
+        span{
+          font-size: inherit;
+          font-family: inherit;
         }
         img {
           display: inline-block;
           margin-right: 6px;
+          height: 34px;
+          width: auto;
         }
-      }
-    }
-    .or-text {
-      font-size: 16px;
-      opacity: 0.6;
-      margin: 20px 0;
-      text-align: center;
-    }
-    .quit-text {
-      font-size: 16px;
-      opacity: 0.8;
-      text-decoration: underline;
-      cursor: pointer;
-      transition: 0.2s;
-      text-align: center;
-      margin: 0;
-      &:hover {
-        opacity: 1;
       }
     }
   }
@@ -4516,26 +4547,20 @@ button small {
       left: 16%;
     }
     .winning-modal {
-      width: 930px;
-      padding: 21px 25px;
-      .switch-btns {
-        height: 40px;
-        button {
-          font-size: 14px;
-          width: 180px;
-        }
-      }
-      .prizepool {
-        .value {
-          font-size: 50px;
-          padding-left: 46px;
-          margin: 20px 0 8px;
-          img {
-            width: 150px;
+      width: 780px;
+      .prize-holder{
+        margin-bottom: 55px;
+        height: 53px;
+        .prize{
+          p{
+            font-size: 119px;
           }
         }
-        .desc {
+        .prize-desc{
           font-size: 14px;
+        }
+        .quit-btn{
+          font-size: 23px;
         }
       }
       .table-holder {
@@ -4547,22 +4572,25 @@ button small {
             }
           }
         }
-      }
-      .buttons-holder {
-        margin-top: 20px;
-        .my-cta-btn {
-          font-size: 15px;
-          margin: 0 6px;
-          padding: 12px 5px;
-          width: 220px;
+        .table-item{
+          .you-sign{
+            p{
+              font-size: 16px;
+            }
+          }
         }
       }
-      .or-text {
-        font-size: 14px;
-        margin: 13px 0;
+      .switch-btns {
+        height: 35px;
+        button {
+          font-size: 28px;
+        }
       }
-      .quit-text {
-        font-size: 15px;
+      .buttons-holder {
+        height: 80px;
+        .my-cta-btn {
+          font-size: 19px;
+        }
       }
     }
   }
@@ -4617,25 +4645,20 @@ button small {
   }
   .winning-back {
     .winning-modal {
-      padding: 25px 20px 20px;
-      width: 800px;
-      border-radius: 0;
-      .switch-btns {
-        height: 40px;
-        button {
-          font-size: 13px;
-          width: 160px;
-        }
-      }
-      .prizepool {
-        .value {
-          font-size: 45px;
-          img {
-            width: 130px;
+      width: 710px;
+      .prize-holder{
+        margin-bottom: 40px;
+        height: 45px;
+        .prize{
+          p{
+            font-size: 90px;
           }
         }
-        .desc {
+        .prize-desc{
           font-size: 13px;
+        }
+        .quit-btn{
+          font-size: 18px;
         }
       }
       .table-holder {
@@ -4658,19 +4681,18 @@ button small {
           }
         }
       }
-      .buttons-holder {
-        .my-cta-btn {
-          font-size: 14px;
-          margin: 0 5px;
-          padding: 10px 5px;
-          width: 210px;
+      .switch-btns {
+        button {
+          font-size: 25px;
         }
       }
-      .or-text {
-        font-size: 13px;
-      }
-      .quit-text {
-        font-size: 14px;
+      .buttons-holder {
+        height: 65px;
+        .my-cta-btn {
+          img{
+            height: 27px;
+          }
+        }
       }
     }
   }
@@ -4794,23 +4816,19 @@ button small {
   }
   .winning-back {
     .winning-modal {
-      padding: 17px 20px;
-      .switch-btns {
-        height: 35px;
-        button {
-          font-size: 12px;
-          width: 150px;
-        }
-      }
-      .prizepool {
-        .value {
-          font-size: 40px;
-          img {
-            width: 115px;
+      width: 595px;
+      .prize-holder{
+        height: 40px;
+        .prize{
+          p{
+            font-size: 85px;
           }
         }
-        .desc {
+        .prize-desc{
           font-size: 12px;
+        }
+        .quit-btn{
+          font-size: 16px;
         }
       }
       .table-holder {
@@ -4829,23 +4847,27 @@ button small {
               font-size: 11px;
             }
           }
+          .you-sign{
+            p{
+              font-size: 13px;
+            }
+          }
+        }
+      }
+      .switch-btns {
+        height: 27px;
+        margin: 20px 0;
+        button {
+          font-size: 23px;
         }
       }
       .buttons-holder {
         .my-cta-btn {
-          font-size: 13px;
-          width: 200px;
+          font-size: 17px;
           img {
-            height: 17px;
+            height: 23px;
           }
         }
-      }
-      .or-text {
-        font-size: 12px;
-        margin: 10px 0;
-      }
-      .quit-text {
-        font-size: 13px;
       }
     }
   }
@@ -4986,9 +5008,6 @@ button small {
         }
       }
     }
-  }
-  .winning-back {
-    height: calc(100% - 65px);
   }
 }
 
@@ -5272,9 +5291,6 @@ button small {
       right: -150px;
     }
   }
-  .winning-back {
-    height: 100%;
-  }
   .semafor-inner {
     transform: scale(0.55);
   }
@@ -5347,44 +5363,34 @@ button small {
   }
   .winning-back {
     .winning-modal {
-      padding: 15px 10px;
       width: 90%;
-      top: 10px;
+      max-width: 500px;
+      top: 30px;
       transform: translateX(-50%);
-      height: calc(100% - 15px);
-      .switch-btns {
-        height: 25px;
-        button {
-          font-size: 10px;
-          width: 100px;
-        }
-      }
-      .prizepool {
-        margin-bottom: 5px;
-        .value {
-          font-size: 27px;
-          margin: 5px 0 0px;
-          padding-left: 26px;
-          img {
-            width: 65px;
+      .prize-holder{
+        height: 40px;
+        margin-bottom: 30px;
+        .prize{
+          p{
+            font-size: 60px;
           }
         }
-        .desc {
-          font-size: 10px;
+        .prize-desc{
+          font-size: 12px;
+        }
+        .quit-btn{
+          font-size: 16px;
         }
       }
       .tour-msg {
-        font-size: 10px;
-        margin: 0 0 5px 0;
+        font-size: 12px;
+        margin: 0 0 12px 0;
         &::after {
           height: 1px;
           bottom: -1px;
         }
       }
       .table-holder {
-        &.points {
-          margin-top: 15px;
-        }
         .table-header {
           .my-col {
             p {
@@ -5406,31 +5412,25 @@ button small {
               font-size: 7px;
             }
           }
-        }
-      }
-      .bottom-part {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        .buttons-holder {
-          margin: 5px 0 7px;
-          .my-cta-btn {
-            font-size: 10px;
-            margin: 0 3px;
-            padding: 6px 5px;
-            width: 120px;
-            img {
-              height: 13px;
+          .you-sign{
+            p{
+              font-size: 9px;
             }
           }
         }
-        .or-text {
-          font-size: 9px;
-          margin: 0 8px 0 0;
+      }
+      .switch-btns {
+        height: 30px;
+        button {
+          font-size: 18px;
         }
-        .quit-text {
-          font-size: 9px;
+      }
+      .bottom-part {
+        .buttons-holder {
+          height: 50px;
+          .my-cta-btn {
+            font-size: 17px;
+          }
         }
       }
     }
@@ -5446,30 +5446,6 @@ button small {
     transform-origin: left top;
     height: 100vw;
     width: calc(var(--vh, 1vh) * 100);
-  }
-  .winning-back {
-    .winning-modal {
-      max-height: 590px;
-      top: 75px;
-      .table-holder {
-        .table-item {
-          .my-col {
-            &.username {
-              padding-left: 20px;
-            }
-          }
-        }
-        &.points {
-          .table-item {
-            .my-col {
-              &.username {
-                padding-left: 20px;
-              }
-            }
-          }
-        }
-      }
-    }
   }
   .dmg-hider {
     display: block;
@@ -5568,27 +5544,14 @@ button small {
   }
   .winning-back {
     .winning-modal {
-      padding: 15px 10px;
-      width: 90%;
-      .switch-btns {
-        height: 30px;
-        button {
-          font-size: 12px;
-          width: 120px;
-        }
-      }
-      .prizepool {
-        margin-bottom: 20px;
-        .value {
-          font-size: 34px;
-          margin: 0 0 7px;
-          padding-left: 30px;
-          img {
-            width: 90px;
+      top: 75px;
+      transform: translate(-50%, 0);
+      .prize-holder{
+        height: 37px;
+        .prize{
+          p{
+            font-size: 75px;
           }
-        }
-        .desc {
-          font-size: 12px;
         }
       }
       .tour-msg {
@@ -5614,20 +5577,20 @@ button small {
           }
         }
       }
-      .buttons-holder {
-        .my-cta-btn {
-          font-size: 12px;
-          margin: 0 3px;
-          padding: 9px 5px;
-          width: 160px;
+      .switch-btns {
+        height: 23px;
+        button {
+          font-size: 19px;
         }
       }
-      .or-text {
-        font-size: 12px;
-        margin: 12px 0;
-      }
-      .quit-text {
-        font-size: 12px;
+      .buttons-holder {
+        height: 55px;
+        .my-cta-btn {
+          font-size: 16px;
+          img{
+            height: 21px;
+          }
+        }
       }
     }
   }
@@ -5804,69 +5767,73 @@ button small {
 @media screen and (max-width: 640px) and (orientation: landscape) {
   .winning-back {
     .winning-modal {
-      padding: 10px 8px;
-      .switch-btns {
-        height: 20px;
-        button {
-          font-size: 8px;
-          width: 80px;
-        }
-      }
-      .prizepool {
-        margin-bottom: 5px;
-        .value {
-          font-size: 22px;
-          margin: 5px 0;
-          padding-left: 20px;
-          img {
-            width: 55px;
+      max-width: 370px;
+      .prize-holder{
+        height: 30px;
+        margin-bottom: 20px;
+        .prize{
+          p{
+            font-size: 40px;
           }
         }
-        .desc {
-          font-size: 6px;
+        .prize-desc{
+          font-size: 10px;
+        }
+        .quit-btn{
+          font-size: 12px;
         }
       }
       .table-holder {
-        &.points {
-          margin-top: 13px;
-        }
         .table-header {
           .my-col {
+            &.username{
+              p{
+                padding-left: 14px;
+              }
+            }
             p {
-              font-size: 7px;
+              font-size: 9px;
             }
           }
         }
         .table-item {
-          height: 13px;
+          height: 15px;
           .my-col {
             padding-top: 2px;
+            &.username{
+              padding-left: 14px;
+            }
             p,
             span {
-              font-size: 6px;
+              font-size: 8px;
+            }
+          }
+          .you-sign{
+            p{
+              font-size: 7px;
             }
           }
         }
       }
-      .buttons-holder {
-        margin-top: 5px;
-        .my-cta-btn {
-          font-size: 8px;
-          margin: 0 2px;
-          padding: 5px 3px;
-          width: 100px;
-          min-width: 100px;
-          img {
-            height: 10px;
-          }
+      .switch-btns {
+        height: 25px;
+        .divider{
+          width: 1px;
+        }
+        button {
+          font-size: 14px;
         }
       }
-      .or-text {
-        font-size: 7px;
-        margin: 3px 0;
-      }
-      .quit-text {
-        font-size: 7px;
+      .bottom-part{
+        .buttons-holder {
+          height: 40px;
+          .my-cta-btn {
+            font-size: 14px;
+            img {
+              height: 17px;
+            }
+          }
+        }
       }
     }
   }
@@ -5935,31 +5902,39 @@ button small {
   }
   .winning-back {
     .winning-modal {
-      padding: 13px 7px;
       width: 96%;
-      max-height: 520px;
-      .switch-btns {
-        height: 23px;
-        button {
-          font-size: 10px;
-          width: 105px;
-        }
-      }
-      .prizepool {
-        margin-bottom: 15px;
-        .value {
-          font-size: 28px;
-          margin: 0 0 5px;
-          img {
-            width: 80px;
+      .prize-holder{
+        height: unset;
+        text-align: center;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+        .prize{
+          position: relative;
+          width: 100%;
+          order: 2;
+          margin-top: 15px;
+          p{
+            font-size: 62px;
+            position: relative;
+            transform: none;
+            top: 0;
           }
         }
-        .desc {
-          font-size: 10px;
+        .prize-desc{
+          order: 3;
+          width: 100%;
+          text-align: center;
+          span{
+            display: none;
+          }
+        }
+        .quit-btn{
+          order: 1;
+          height: 30px;
         }
       }
       .table-holder {
-        width: 95%;
+        width: 100%;
         .table-header {
           .my-col {
             p {
@@ -5979,24 +5954,16 @@ button small {
           }
         }
       }
-      .buttons-holder {
-        margin-top: 15px;
-        .my-cta-btn {
-          font-size: 10px;
-          margin: 0 2px;
-          padding: 7px 2px;
-          width: 120px;
-          img {
-            width: 12px;
-          }
+      .switch-btns {
+        height: 23px;
+        button {
+          font-size: 17px;
         }
       }
-      .or-text {
-        font-size: 10px;
-        margin: 9px 0;
-      }
-      .quit-text {
-        font-size: 10px;
+      .buttons-holder {
+        .my-cta-btn {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -6007,6 +5974,89 @@ button small {
     .bottom-mobile-nav {
       height: 90%;
       width: 65px;
+    }
+  }
+  .winning-back {
+    .winning-modal {
+      width: 96%;
+      .prize-holder{
+        height: unset;
+        text-align: center;
+        flex-wrap: wrap;
+        .prize{
+          position: relative;
+          width: 100%;
+          order: 2;
+          p{
+            font-size: 62px;
+            position: relative;
+            transform: none;
+            top: 0;
+          }
+        }
+        .prize-desc{
+          order: 3;
+          width: 100%;
+          text-align: center;
+          span{
+            display: none;
+          }
+        }
+        .quit-btn{
+          order: 1;
+          height: 30px;
+          width: 140px;
+        }
+      }
+      .table-holder {
+        width: 100%;
+        .table-header {
+          .my-col {
+            &.username{
+              p{
+                padding-left: 14px;
+              }
+            }
+            p {
+              font-size: 9px;
+              white-space: nowrap;
+            }
+          }
+        }
+        .table-item {
+          height: 23px;
+          .my-col {
+            padding-top: 3px;
+            &.username{
+              padding-left: 14px;
+            }
+            p,
+            span {
+              font-size: 8px;
+            }
+          }
+          .you-sign{
+            width: 9%;
+            p{
+              font-size: 10px;
+            }
+          }
+        }
+      }
+      .switch-btns {
+        height: 23px;
+        .divider{
+          margin: 0 10px;
+        }
+        button {
+          font-size: 17px;
+        }
+      }
+      .buttons-holder {
+        .my-cta-btn {
+          font-size: 16px;
+        }
+      }
     }
   }
 }

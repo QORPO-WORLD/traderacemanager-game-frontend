@@ -657,24 +657,22 @@
 
   <div class="winning-modal">
 
-    <div class="switch-btns">
-      <button (click)="winnerShowPrize = true">Prizepool<div class="back my-cta-btn-back" [ngClass]="{'active': winnerShowPrize === true}"></div></button>
-      <button (click)="winnerShowPrize = false">Points won<div class="back my-cta-btn-back" [ngClass]="{'active': winnerShowPrize === false}"></div></button>
+    <div class="prize-holder">
+      <div class="prize">
+        <p>{{raceDataildata?.price_pool | number:'1.0-2':'fr'}}IOI</p>
+      </div>
+      <p class="prize-desc"><span>&lt; </span> MAX PRIZE POOL</p>
+      <button class="quit-btn" [routerLink]="['/race/start-race/']">QUIT GAME</button>
     </div>
 
+    <ng-container>
+      <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index === 10">{{'race.final_round' | translate}}</h3>
+      <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index > 10 && raceDataildata?.tour_index < 19">{{'race.racer_out' | translate}} - {{raceData?.cards[loserIndex]?.n}}</h3>
+      <h3 class="tour-msg over" *ngIf="raceDataildata?.tour_index === 19">{{'race.tour_end' | translate}} {{winnersList[0]?.nickname}}</h3>
+    </ng-container>
+    
     <ng-container *ngIf="winnerShowPrize === true">
-      <div class="prizepool">
-        <p class="value"><img src="/assets/base/images/zavod/prizepool-trophy.png" alt=""> {{raceDataildata?.price_pool | number:'1.0-2':'fr'}} IOI</p>
-        <p class="desc">prizepool</p>
-      </div>
-  
-      <ng-container *ngIf="raceDataildata?.tour_index !== null">
-        <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index === 10">{{'race.final_round' | translate}}</h3>
-        <h3 class="tour-msg tour-desc" *ngIf="raceDataildata?.tour_index > 10 && raceDataildata?.tour_index < 19">{{'race.racer_out' | translate}} - {{raceData?.cards[loserIndex]?.n}}</h3>
-        <h3 class="tour-msg over" *ngIf="raceDataildata?.tour_index === 19">{{'race.tour_end' | translate}} {{winnersList[0]?.nickname}}</h3>
-      </ng-container>
-  
-       
+     
       <div class="table-holder">
         <div class="table-header">
           <div class="my-col position">
@@ -693,7 +691,8 @@
             <p>Prize</p>
           </div>
         </div>
-        <div class="table-item"  *ngFor="let player of winnersList; let i = index" [ngClass]="{'my-item': raceData?.me?.n == winnersList[i]?.nickname}">
+        <div class="table-item" *ngFor="let player of winnersList; let i = index" 
+        [ngClass]="{'first': i === 0, 'second': i === 1, 'third': i === 2}">
           <div class="my-col position">
             <p>{{ i + 1 }}.</p>
           </div>
@@ -710,6 +709,9 @@
             <p>{{winnersList[i]?.amount ? (winnersList[i]?.amount| number:'1.0-2':'fr') : 0}} 
               <span >{{'shared.ioi' | translate}}</span>
               </p>
+          </div>
+          <div class="you-sign" *ngIf="raceData?.me?.n == winnersList[i]?.nickname">
+            <p>YOU</p>
           </div>
         </div>
         
@@ -732,7 +734,7 @@
             <p>Points</p>
           </div>
         </div>
-        <div class="table-item" *ngFor="let player of winnersList; let i = index" [ngClass]="{'my-item': raceData?.me?.n == winnersList[i]?.nickname}">
+        <div class="table-item" *ngFor="let player of winnersList; let i = index" [ngClass]="{'first': i === 0, 'second': i === 1, 'third': i === 2}">
           <div class="my-col position">
             <p>{{ i + 1 }}.</p>
           </div>
@@ -746,10 +748,19 @@
             <p *ngIf="player?.points > 0">{{player?.points ? (player?.points| number:'1.0-2':'fr') : 0}}</p>
             <p class="desc" *ngIf="!player?.points || player?.points === 0">{{points[i]}}</p>
           </div>
+          <div class="you-sign" *ngIf="raceData?.me?.n == winnersList[i]?.nickname">
+            <p>YOU</p>
+          </div>
         </div>
         
       </div>
     </ng-container>
+
+    <div class="switch-btns">
+      <button [ngClass]="{'active': winnerShowPrize === true}" (click)="winnerShowPrize = true">TOP 10</button>
+      <div class="divider"></div>
+      <button [ngClass]="{'active': winnerShowPrize === false}" (click)="winnerShowPrize = false">Points</button>
+    </div>
   
     <div class="bottom-part">
       <div class="buttons-holder">
@@ -770,9 +781,6 @@
           *ngIf="raceFinished === true && raceDataildata?.tournament_id !== null && (raceDataildata?.my_cars?.length === 0) || raceDataildata?.tour_index === 19"><img src="/assets/base/images/zavod/refuel-icon.svg" alt=""> {{'race.finish' | translate}}</button>
         </ng-container>
       </div>
-    
-      <p class="or-text">or</p>
-      <p class="quit-text" [routerLink]="['/race/start-race/']">Quit game</p>
     </div>
     
     
