@@ -136,6 +136,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   closedModal = false;
   reverse = true;
   loserCar: any;
+  mirek = 'mirek';
   myMotives: Array<any> = [
     { id: 0, name: 'map' },
     { id: 1, name: 'map' },
@@ -197,8 +198,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         //const retypeData: any = data; 
 
         this.raceDataildata = data;
-        console.log(this.raceDataildata);
-        console.log('janko');
         this.endsIn = data.ends_in;
         if (data.race_progress > 0) {
           this.startRace();
@@ -386,7 +385,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
 
     if (this.raceDataildata.is_cancelled === true) {
-      console.log('cancel');
       this.redirectToNextRace();
       clearInterval(this.detailInterval);
       return;
@@ -861,8 +859,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           }
           this.totalPagesWinner = x.total_pages;
           this.winnersList = x.winners;
-          console.log("jako");
-          console.log(this.winnersList);
           this.frozenTicket = x.ticker_froze;
           if (this.raceData.me) {
             this.balanceService.balanceHasbeenChanged();

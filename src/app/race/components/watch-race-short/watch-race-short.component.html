@@ -8,7 +8,6 @@
   <div class="chat" *ngIf="showMyBet === true && raceDataildata?.my_cars[selectedMyIndex]">
 
     <div class="top-line"></div>
-    <div class="close-icon" (click)="showMyBet = false"><img src="/assets/base/images/zavod/white-close.svg" alt=""></div>
     <p class="top-heading">{{'race.live_crypto' | translate}}</p>
 
     <div class="all-cars-holder">
@@ -90,14 +89,25 @@
           <div class="my-col position">
             <p>{{player.cpr}}</p>
           </div>
-          <div class="my-col premium">
-            <img src="/assets/base/images/zavod/crown-icon.svg" alt="">
+          <div class="my-col premium" [ngClass]="{'active': player?.p === true}">
+            <img class="classic" src="/assets/base/images/zavod/crown-icon.svg" alt="">
+            <img class="black" src="/assets/base/images/zavod/crown-icon-black.svg" alt="">
           </div>
           <div class="my-col username">
             <p>{{player.n}}</p>
           </div>
           <div class="my-col team">
-            <div class="team-circle">
+            <div class="team-circle alt" *ngIf="player?.t === 'ALT'">
+              <p>ALT</p>
+            </div>
+            <div class="team-circle ioi" *ngIf="player?.t === 'IOI'">
+              <p>IOI</p>
+            </div>
+            <div class="team-circle btc" *ngIf="player?.t === 'BTC'">
+              <p>BTC</p>
+            </div>
+            <div class="team-circle" *ngIf="player?.t !== 'BTC' || player?.t !== 'IOI' || player?.t !== 'ALT'">
+              <p>{{ player?.t | slice:0:3 }}</p>
             </div>
           </div>
           <div class="my-col win">
@@ -110,7 +120,7 @@
           <div class="my-col position">
             <p>{{player.cpr}}</p>
           </div>
-          <div class="my-col premium" [ngClass]="{'active': i % 3 === 0}">
+          <div class="my-col premium" [ngClass]="{'active': player?.p === true}">
             <img class="classic" src="/assets/base/images/zavod/crown-icon.svg" alt="">
             <img class="black" src="/assets/base/images/zavod/crown-icon-black.svg" alt="">
           </div>
@@ -118,16 +128,17 @@
             <p>{{player.n}}</p>
           </div>
           <div class="my-col team">
-            <div class="team-circle alt" *ngIf="player.t === 'ALT'">
+            <div class="team-circle alt" *ngIf="player?.t === 'ALT'">
               <p>ALT</p>
             </div>
-            <div class="team-circle ioi" *ngIf="player.t === 'IOI'">
+            <div class="team-circle ioi" *ngIf="player?.t === 'IOI'">
               <p>IOI</p>
             </div>
-            <div class="team-circle btc" *ngIf="player.t === 'BTC'">
+            <div class="team-circle btc" *ngIf="player?.t === 'BTC'">
               <p>BTC</p>
             </div>
-            <div class="team-circle" *ngIf="player.t === ''">
+            <div class="team-circle" *ngIf="player?.t !== 'BTC' || player?.t !== 'IOI' || player?.t !== 'ALT'">
+              <p>{{ player?.t | slice:0:3 }}</p>
             </div>
           </div>
           <div class="my-col win">
@@ -290,6 +301,10 @@
 
 
     <div class="car_rc" id="photoMe" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] }">
+
+      <div class="live-box">
+        <p>LIVE</p>
+      </div>
 
       <div class="still-road" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0]"
