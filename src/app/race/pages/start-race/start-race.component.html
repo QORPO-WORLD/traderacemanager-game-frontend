@@ -18,9 +18,16 @@
   />
 </div>
 <div class="dash-back"></div>
-<div (window:resize)="width()" class="main-wrapper" [ngClass]="{'tutorial-high': introModal === true && tutorialStep !== 2}">
+<div
+  (window:resize)="width()"
+  class="main-wrapper"
+  [ngClass]="{ 'tutorial-high': introModal === true && tutorialStep !== 2 }"
+>
   <div class="dashboard-content">
-    <div class="upper-dashboard" [ngClass]="{'tutorial-high disabled': tutorialStep === 3}">
+    <div
+      class="upper-dashboard"
+      [ngClass]="{ 'tutorial-high disabled': tutorialStep === 3 }"
+    >
       <div class="boxes">
         <h2 class="news-title">What's new</h2>
         <div
@@ -134,7 +141,7 @@
       <div
         [routerLink]="['/car/nft-market']"
         class="marketplace my-cta-btn-back"
-        [ngClass]="{'tutorial-high disabled': tutorialStep === 3}"
+        [ngClass]="{ 'tutorial-high disabled': tutorialStep === 3 }"
       >
         <img
           class="right"
@@ -193,7 +200,7 @@
       <div
         [routerLink]="['/race/race-selection']"
         class="games my-cta-btn-back"
-        [ngClass]="{'tutorial-high': tutorialStep === 4}"
+        [ngClass]="{ 'tutorial-high': tutorialStep === 4 }"
       >
         <img
           class="right"
@@ -204,7 +211,7 @@
       </div>
     </div>
     <div class="dashboard-avatars">
-      <div class="square">
+      <div [routerLink]="['/teams/best-racers']" class="square">
         <div class="bubble">
           <img
             class="red-star"
@@ -219,7 +226,7 @@
           <p class="upgrade-text">Your rings</p>
         </div>
       </div>
-      <div class="square second">
+      <div [routerLink]="['/teams/best-racers']" class="square second">
         <div class="bubble trophy">
           <img
             class="red-star"
@@ -450,9 +457,6 @@
       <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
     </div>
   </div>
-
-
 </div>
 
 <!-- MODALS -->
-
