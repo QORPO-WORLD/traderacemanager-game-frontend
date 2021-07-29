@@ -1,939 +1,449 @@
 * {
-  color: white;
+  margin: 0px;
+  text-transform: uppercase;
 }
-
-:host {
-  width: 100%;
+.join-teams-back-div {
+  position: sticky;
+  height: 0px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
 }
-
+.join-teams-back {
+  top: -80px;
+  left: 0px;
+  position: absolute;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    url("/assets/base/images/teams/join-teams-back.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  pointer-events: none;
+}
 .main-holder {
+  position: relative;
+}
+.letter-spacing {
+  letter-spacing: 0.29em;
+}
+.space-big {
+  margin-top: 50px;
+}
+.space {
+  margin-top: 30px;
+}
+.space-small {
+  margin-top: 10px;
+}
+.category-title-first {
+  font-family: TESLA;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 120px;
+  line-height: 100px;
+}
+.category-title-second {
+  font-family: Earth Orbiter;
+  font-size: 50px;
+  line-height: 52px;
+  font-style: normal;
+  font-weight: bold;
+}
+.category-title-third {
+  font-family: Earth Orbiter;
+  font-size: 25px;
+  line-height: 27px;
+  font-style: normal;
+  font-weight: bold;
+}
+.classic-text {
+  font-family: Earth Orbiter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 22px;
+}
+.link-to {
+  width: fit-content;
+  transition: 0.3s;
+  cursor: pointer;
+  position: relative;
+  &::before {
+    transition: 0.3s;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 0%;
+    bottom: -5%;
+    left: 0px;
+    background: rgba(255, 255, 255);
+    opacity: 0;
+  }
+}
+.link-to:hover {
+  &::before {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.join-teams {
   width: calc(100% - 40px);
-  height: calc(100vh - 80px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
   padding: 40px 0px 40px 40px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-}
-
-.desc {
-  font-size: 24px;
-  font-family: "Earth Orbiter";
-  margin: 0 0 10px 0;
-  font-weight: 900;
-}
-.boxes-holder {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  width: 100%;
-  z-index: 1;
-  .memb-box {
-    width: 360px;
-    .time-box {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.15);
-      text-align: center;
-      padding: 25px 10px;
-
-      p {
-        font-size: 40px;
-        font-weight: 900;
-        font-family: "Earth Orbiter";
-        margin: 0;
-        line-height: 1;
-      }
-    }
-    .my-cta-btn-back {
-      margin-top: 10px;
-      width: 100%;
-      font-weight: 400;
-      font-size: 24px;
-      padding: 14px;
-    }
-  }
-  .reward-box {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 300px;
-    .inner-box {
-      background: rgba(255, 255, 255, 0.15);
-      border: 3px solid #ffffff;
-      width: 100%;
-      padding: 25px 10px;
-      position: relative;
-      .reward-badge {
+  .upper-content {
+    position: relative;
+    img {
+      &.tesla {
         position: absolute;
-        top: -3px;
-        left: 0;
-        height: calc(100% + 6px);
-        width: auto;
-        transform: translateX(-50%);
-      }
-      p {
-        font-size: 40px;
-        letter-spacing: 0.09em;
-        font-family: "Earth Orbiter";
-        font-weight: 900;
-        margin: 0;
-        line-height: 1;
+        right: -40px;
+        top: -10%;
+        width: 50%;
+        height: auto;
+        pointer-events: none;
       }
     }
-  }
-  .offers-box {
-    text-align: center;
-    width: 450px;
-    .offers-holder {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      overflow: hidden;
-      &.state1 {
-        .offer-item {
-          left: 0;
-        }
-      }
-      &.state2 {
-        .offer-item {
-          left: -100%;
-        }
-      }
-      .offer-item {
-        min-width: 100%;
-        position: relative;
-        transition: 0.2s;
-        .img-holder {
-          width: 100%;
-          height: 180px;
-          background: url("/assets/base/images/teams/offer-back.jpg") center
-            no-repeat;
-          background-size: cover;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          align-content: center;
-          flex-wrap: wrap;
-          margin-bottom: 10px;
-          .heading {
-            font-size: 40px;
-            letter-spacing: 0.09em;
-            font-weight: 900;
-            margin: 0 0 30px 0;
-            font-family: "Earth Orbiter";
-          }
-          .text {
-            font-size: 16px;
-            max-width: 380px;
-            margin: 0;
-          }
-        }
-        button {
-          width: 100%;
-          font-weight: 400;
-          font-size: 24px;
-          padding: 14px;
-        }
-      }
-    }
-    .offers-switch {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
-      .display-item {
-        width: 48%;
-        height: 2px;
-        cursor: pointer;
-        &.inactive {
-          background: rgba(255, 255, 255, 0.15);
-        }
-      }
-    }
-  }
-}
-
-.nft-reward-box {
-  position: absolute;
-  bottom: 13%;
-  left: 0;
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  .car-img {
-    width: 55%;
-    max-width: 904px;
-    position: relative;
-    right: -7%;
-    transition: 0.2s;
-    .inactive {
-      opacity: 0.6;
-    }
-    .lock-icon {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 15%;
-      opacity: 1;
-      z-index: 5;
-    }
-  }
-  .racer-img {
-    width: 35%;
-    max-width: 540px;
-    position: relative;
-    left: -10%;
-  }
-}
-.team-img {
-  z-index: 2;
-  position: absolute;
-  width: 220px;
-  left: 25%;
-  bottom: 400px;
-  transform: translateX(-50%);
-  .badge-name {
-    top: 45%;
-    left: 49%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    max-width: 100%;
-    width: 100%;
-    z-index: 2;
-    p {
-      margin: 0px;
-      text-transform: uppercase;
-      font-size: 18px;
-      font-weight: 900;
-      opacity: 0.6;
-      color: rgba(255, 255, 255, 0.9);
+    .memb-box {
+      width: fit-content;
       text-align: center;
-      line-height: 1;
-      &.name {
-        font-size: 30px;
-        margin-bottom: 5px;
-      }
-    }
-  }
-  .premium {
-    z-index: 1;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 40px;
-    height: auto;
-    &.non-premium {
-      width: 35px;
-    }
-  }
-}
-
-.teams-holder {
-  width: 100%;
-  position: absolute;
-  bottom: 30px;
-  left: 40px;
-}
-
-@media screen and (max-width: 1700px) {
-  .main-holder {
-    width: calc(100% - 20px);
-    height: calc(100vh - 80px);
-    padding: 30px 0px 30px 20px;
-  }
-  .desc {
-    font-size: 21px;
-    margin: 0 0 8px 0;
-  }
-  .boxes-holder {
-    .memb-box {
-      width: 315px;
+      white-space: nowrap;
       .time-box {
-        padding: 20px 7px;
-        p {
-          font-size: 36px;
-        }
+        width: 100%;
+        padding: 10px 30px;
+        background: rgba(255, 255, 255, 0.15);
       }
-      .my-cta-btn-back {
-        font-size: 22px;
-      }
-    }
-    .reward-box {
-      width: 270px;
-      .inner-box {
-        padding: 20px 10px;
-        p {
-          font-size: 36px;
-        }
-      }
-    }
-    .offers-box {
-      width: 400px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            .heading {
-              margin: 0 0 25px 0;
-              font-size: 36px;
-            }
-            .text {
-              font-size: 14px;
-              max-width: 330px;
-            }
-          }
-          button {
-            font-size: 22px;
-          }
-        }
-      }
-    }
-  }
-  .teams-holder {
-    bottom: 20px;
-    left: 30px;
-  }
-}
-@media screen and (max-width: 1550px) {
-  .main-holder {
-    width: calc(100% - 15px);
-    height: calc(100vh - 65px);
-    padding: 20px 0px 22px 15px;
-  }
-  .desc {
-    font-size: 19px;
-    margin: 0 0 5px 0;
-  }
-  .boxes-holder {
-    .memb-box {
-      width: 285px;
-      .time-box {
-        padding: 16px 5px;
-        p {
-          font-size: 32px;
-        }
-      }
-      .my-cta-btn-back {
-        font-size: 20px;
-      }
-    }
-    .reward-box {
-      width: 245px;
-      .inner-box {
-        padding: 16px 5px;
-        p {
-          font-size: 32px;
-        }
-      }
-    }
-    .offers-box {
-      width: 370px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 188px;
-            .heading {
-              margin: 0 0 18px 0;
-              font-size: 32px;
-            }
-          }
-          button {
-            font-size: 20px;
-          }
-        }
-      }
-    }
-  }
-  .teams-holder {
-    bottom: 15px;
-    left: 15px;
-  }
-  .team-img {
-    bottom: 280px;
-
-    &.team {
-      width: 200px;
-    }
-    .badge-name {
-      top: 42.5%;
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .desc {
+@media screen and (max-width: 2000px) {
+  .space-big {
+    margin-top: 50px;
+  }
+  .space {
+    margin-top: 30px;
+  }
+  .space-small {
+    margin-top: 10px;
+  }
+  .category-title-first {
+    font-size: 90px;
+    line-height: 75px;
+  }
+  .category-title-second {
+    font-size: 40px;
+    line-height: 42px;
+  }
+  .category-title-third {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .classic-text {
     font-size: 16px;
-  }
-  .boxes-holder {
-    .memb-box {
-      width: 245px;
-      .time-box {
-        padding: 14px 5px;
-        p {
-          font-size: 28px;
-        }
-      }
-      .my-cta-btn-back {
-        font-size: 17px;
-      }
-    }
-    .reward-box {
-      width: 230px;
-      .inner-box {
-        padding: 14px 5px;
-        p {
-          font-size: 28px;
-        }
-      }
-    }
-    .offers-box {
-      width: 370px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 158px;
-            margin-bottom: 5px;
-            .heading {
-              margin: 0 0 14px 0;
-              font-size: 28px;
-            }
-          }
-          button {
-            font-size: 17px;
-          }
-        }
-      }
-      .offers-switch {
-        margin-top: 5px;
-      }
-    }
-  }
-  .teams-holder {
-    bottom: 12px;
+    line-height: 18px;
   }
 }
-
-@media screen and (max-width: 1024px) {
-  .main-holder {
-    width: calc(100% - 15px);
-    padding: 15px 0px 15px 15px;
+@media screen and(max-width: 1700px) {
+  .space-big {
+    margin-top: 40px;
   }
-}
-@media screen and (max-width: 1024px) and (orientation: portrait) and (min-width: 599px) {
-  .nft-reward-box {
-    bottom: 30%;
+  .space {
+    margin-top: 25px;
   }
-  .boxes-holder {
-    .reward-box {
-      left: 75%;
-    }
+  .space-small {
+    margin-top: 8px;
   }
-}
-@media screen and (max-width: 1024px) and (orientation: portrait) and (max-width: 599px) {
-  .main-holder {
-    width: calc(100% - 15px);
-    padding: 15px 0px 15px 15px;
-    height: calc(100vh - 130px);
+  .category-title-first {
+    font-size: 70px;
+    line-height: 60px;
   }
-  .desc {
+  .category-title-second {
+    font-size: 35px;
+    line-height: 37px;
+  }
+  .category-title-third {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .classic-text {
     font-size: 15px;
+    line-height: 17px;
   }
-  .boxes-holder {
-    .memb-box {
-      width: 235px;
-      .owner-btn {
-        height: fit-content;
-        padding: 8px 0px;
-        margin-top: 125px;
-      }
-    }
-    .reward-box {
-      width: 220px;
-      top: 145px;
-      left: 15px;
-      transform: none;
-      .desc {
-        text-align: left;
-        position: relative;
-        left: -15px;
-      }
-    }
-    .offers-box {
-      width: 370px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 161px;
-            .heading {
-              margin: 0 0 14px 0;
-              font-size: 28px;
-            }
-          }
-          button {
-            font-size: 17px;
-          }
-        }
-      }
-      .offers-switch {
-        margin-top: 5px;
-      }
-    }
-  }
-  .teams-holder {
-    bottom: 10px;
-  }
-  .nft-reward-box {
-    bottom: 26%;
-    .car-img {
-      width: 65%;
-      right: -12%;
-    }
-    .racer-img {
-      width: 53%;
-      left: -15%;
-    }
-  }
-  .team-img {
-    width: 140px;
-    left: 15%;
-    bottom: 250px;
-    &.team {
-      width: 140px;
-    }
-    .badge-name {
-      top: 40%;
-      p {
-        font-size: 16px;
-        &.name {
-          margin-bottom: 3px;
-          font-size: 25px;
-        }
-      }
-    }
-    .premium {
-      top: 12.5px;
-      right: 17.5px;
-      &.non-premium {
-        width: 30px;
-      }
-    }
+  .join-teams {
+    width: calc(100% - 30px);
+    padding: 30px 0px 30px 30px;
   }
 }
-@media screen and (max-width: 1024px) and (orientation: landscape) and (min-width: 600px) {
-  .nft-reward-box {
-    bottom: 23%;
+@media screen and(max-width: 1550px) {
+  .space-big {
+    margin-top: 25px;
   }
-  .team-img {
-    display: none;
+  .space {
+    margin-top: 15px;
   }
-}
-
-@media screen and (max-width: 1024px) and (orientation: landscape) and (max-width: 599px) {
-  .main-holder {
-    height: calc(100vh - 45px);
-    max-height: calc(100vh - 45px);
+  .space-small {
+    margin-top: 5px;
   }
-  .desc {
-    font-size: 15px;
+  .category-title-first {
+    font-size: 60px;
+    line-height: 50px;
   }
-  .boxes-holder {
-    .memb-box {
-      width: 27%;
-      .time-box {
-        padding: 14px 5px;
-        p {
-          font-size: 23px;
-        }
-      }
-      .owner-btn {
-        font-size: 11px;
-        margin-top: 10px;
-      }
-    }
-    .reward-box {
-      margin-left: 10px;
-      position: relative;
-      left: 0;
-      transform: none;
-      width: 27%;
-      .inner-box {
-        padding: 14px 5px;
-        p {
-          font-size: 23px;
-        }
-      }
-    }
-    .offers-box {
-      width: 40%;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 128px;
-            .heading {
-              font-size: 23px;
-              margin: 0 0 5px 0;
-            }
-            .text {
-              font-size: 13px;
-              max-width: 300px;
-            }
-          }
-        }
-      }
-    }
+  .category-title-second {
+    font-size: 32px;
+    line-height: 34px;
   }
-  .nft-reward-box {
-    bottom: 14%;
-    .car-img {
-      display: none;
-    }
-    .racer-img {
-      display: none;
-    }
+  .category-title-third {
+    font-size: 18px;
+    line-height: 20px;
   }
-  .teams-holder {
-    bottom: 12px;
-  }
-  .team-img {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 900px) and (orientation: landscape) {
-  .main-holder {
-    height: calc(100vh - 40px);
-    width: calc(100% - 10px);
-    padding: 5px 0px 5px 10px;
-  }
-  .desc {
-    font-size: 9px;
-    margin: 0 0 3px 0;
-  }
-  .boxes-holder {
-    .memb-box {
-      width: 150px;
-      .time-box {
-        padding: 7px 4px;
-        p {
-          font-size: 13px;
-        }
-      }
-      .owner-btn {
-        .bottom-border {
-          height: 1px;
-        }
-        p {
-          font-size: 10px;
-        }
-      }
-    }
-    .reward-box {
-      width: 150px;
-      .inner-box {
-        padding: 7px 3px;
-        border: 1px solid #ffffff;
-        p {
-          font-size: 13px;
-        }
-      }
-    }
-    .offers-box {
-      width: 225px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 70px;
-            margin-bottom: 0;
-            .heading {
-              font-size: 15px;
-              width: 100%;
-            }
-            .text {
-              font-size: 9px;
-              max-width: 70%;
-            }
-          }
-          button {
-            font-size: 10px;
-            padding: 6px;
-          }
-        }
-      }
-      .offers-switch {
-        margin-top: 2px;
-        .display-item {
-          height: 1px;
-        }
-      }
-    }
-  }
-  .nft-reward-box {
-    bottom: 19%;
-    .car-img {
-      width: 330px;
-      right: -3%;
-    }
-    .racer-img {
-      width: 235px;
-      left: -14%;
-    }
-  }
-  .teams-holder {
-    bottom: 5px;
-  }
-}
-
-@media screen and (max-width: 640px) and (orientation: portrait) {
-  .main-holder {
-    width: calc(100% - 10px);
-    height: unset;
-    padding: 10px 0px 0px 10px;
-  }
-  .desc {
+  .classic-text {
     font-size: 14px;
+    line-height: 16px;
   }
-  .boxes-holder {
-    flex-wrap: wrap;
-    .memb-box {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      .desc {
-        width: 100%;
-      }
-      .time-box {
-        width: 48%;
-      }
-      .owner-btn {
-        width: 48%;
-        margin-top: 0;
-      }
-    }
-    .reward-box {
-      width: 100%;
-      top: unset;
-      left: unset;
-      position: relative;
-      margin-top: 10px;
-      .desc {
-        text-align: left;
-        position: relative;
-        left: 0;
-      }
-      .inner-box {
-        .reward-badge {
-          transform: translateX(0%);
-        }
-      }
-    }
-    .offers-box {
-      width: 100%;
-      margin-top: 20px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 161px;
-            .heading {
-              margin: 0 0 14px 0;
-              font-size: 28px;
-            }
-          }
-          button {
-            font-size: 17px;
-          }
-        }
-      }
-      .offers-switch {
-        margin-top: 5px;
-      }
-    }
+  .join-teams {
+    width: calc(100% - 20px);
+    height: calc(var(--vh, 1vh) * 100 - 65px);
+    padding: 20px 0px 20px 20px;
   }
-  .teams-holder {
-    bottom: unset;
-    position: relative;
-    left: 0;
-  }
-  .nft-reward-box {
-    bottom: unset;
-    position: relative;
-    .car-img {
-      min-width: 84%;
-      width: 84%;
-      right: -23%;
-    }
-    .racer-img {
-      width: 70%;
-      left: -12%;
-    }
-  }
-  .team-img {
-    bottom: 150px;
-    .premium {
-      width: 35px;
-    }
+  .join-teams-back {
+    top: -65px;
   }
 }
+@media screen and (max-width: 1400px) {
+  .space-big {
+    margin-top: 25px;
+  }
+  .space {
+    margin-top: 15px;
+  }
 
-@media screen and (max-width: 640px) and (orientation: landscape) {
-  .desc {
-    font-size: 7px;
-    margin: 0 0 2px 0;
+  .category-title-first {
+    font-size: 50px;
+    line-height: 40px;
   }
-  .boxes-holder {
-    .memb-box {
-      width: 120px;
-      .time-box {
-        padding: 5px 4px;
-        p {
-          font-size: 11px;
-        }
-      }
-    }
-    .reward-box {
-      width: 120px;
-      .inner-box {
-        padding: 5px 3px;
-        p {
-          font-size: 11px;
-        }
-      }
-    }
-    .team-img {
-      bottom: 0%;
-      .badge-name {
-        top: 15%;
-        p {
-          font-size: 8px;
-          &.name {
-            font-size: 10px;
-            margin-bottom: 3px;
-          }
-        }
-      }
-      .premium {
-        top: 6%;
-      }
-    }
-    .offers-box {
-      width: 170px;
-      .offers-holder {
-        .offer-item {
-          .img-holder {
-            height: 54px;
-            .heading {
-              font-size: 11px;
-            }
-            .text {
-              font-size: 8px;
-              line-height: 1.2;
-            }
-          }
-          button {
-            font-size: 8px;
-            padding: 5px;
-          }
-        }
-      }
-      .offers-switch {
-        margin-top: 2px;
-        .display-item {
-          height: 1px;
-        }
-      }
-    }
+  .category-title-second {
+    font-size: 28px;
+    line-height: 30px;
   }
-  .nft-reward-box {
-    bottom: 19%;
-    .car-img {
-      width: 270px;
-    }
-    .racer-img {
-      width: 190px;
-    }
+  .category-title-third {
+    font-size: 17px;
+    line-height: 29px;
   }
-  .teams-holder {
-    bottom: 5px;
-  }
-}
-@media screen and (max-width: 450px) and (orientation: portrait) {
-  .team-img {
-    bottom: 115px;
-    .badge-name {
-      top: 45%;
-      p {
-        font-size: 12px;
-        &.name {
-          font-size: 14px;
-          margin-bottom: 3px;
-        }
-      }
-    }
-    .premium {
-      top: 6%;
-    }
-    &.team {
-      width: 120px;
-    }
-  }
-}
-
-@media screen and (max-width: 400px) and (orientation: portrait) {
-  .desc {
+  .classic-text {
     font-size: 13px;
-    text-align: center;
+    line-height: 15px;
   }
-  .boxes-holder {
-    .memb-box {
-      width: 100%;
-      .time-box {
-        width: 100%;
-      }
-      .owner-btn {
-        width: 100%;
-        margin-top: 15px;
-      }
-    }
-    .reward-box {
-      width: 100%;
-      margin: 10px 0;
-      .desc {
-        text-align: center;
-        position: relative;
-        left: 0;
-      }
-    }
-    .offers-box {
-      margin-top: 0;
-    }
+}
+@media screen and(max-width: 1300px) and (max-height: 700px) and (min-width: 1024px) {
+  .join-teams-back {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+      ),
+      url("/assets/base/images/teams/join-teams-back.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
-  .nft-reward-box {
-    .car-img {
-      width: 84%;
-      right: -23%;
-    }
-    .racer-img {
-      width: 70%;
-      left: -12%;
-    }
+  .link-to {
+    margin-left: auto;
   }
-  .team-img {
-    bottom: 45%;
-    .premium {
-      width: 25px;
-    }
-    &.team {
-      width: 95px;
+  .upper-content {
+    display: flex;
+    .text-holder {
+      text-align: right;
+      margin-top: 0px;
+      margin-left: auto;
     }
   }
 }
+@media screen and(max-width: 1200px) {
+  .join-teams {
+    width: calc(100% - 13px);
+    padding: 13px 0px 13px 13px;
+  }
+}
+@media screen and(max-width: 1024px) {
+  .join-teams {
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: landscape) {
+  .join-teams-back {
+    top: -45px;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+      ),
+      url("/assets/base/images/teams/join-teams-back.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .space-big {
+    margin-top: 20px;
+  }
+  .space {
+    margin-top: 15px;
+  }
+  .space-small {
+    margin-top: 7px;
+  }
+  .category-title-first {
+    font-size: 35px;
+    line-height: 30px;
+  }
+  .category-title-second {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .category-title-third {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .classic-text {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .join-teams {
+    height: calc(var(--vh, 1vh) * 100 - 40px);
+  }
+  .join-teams-back {
+    top: -40px;
+  }
+  .space-big {
+    margin-top: 15px;
+  }
+  .space {
+    margin-top: 10px;
+  }
+  .space-small {
+    margin-top: 4px;
+  }
+  .category-title-first {
+    font-size: 30px;
+    line-height: 24px;
+  }
+  .category-title-second {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .category-title-third {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .classic-text {
+    font-size: 10px;
+    line-height: 12px;
+  }
 
-//CONTENT TO CSS AT THE BOTTOM!
+  .classic-text {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .link-to {
+    margin-left: auto;
+  }
+  .upper-content {
+    display: flex;
+    .text-holder {
+      text-align: right;
+      margin-top: 0px;
+      margin-left: auto;
+    }
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .space-big {
+    margin-top: 10px;
+  }
+  .space {
+    margin-top: 6px;
+  }
+  .space-small {
+    margin-top: 3px;
+  }
+  .category-title-first {
+    font-size: 25px;
+    line-height: 23px;
+  }
+  .category-title-second {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .category-title-third {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .classic-text {
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+@media screen and(max-width: 1024px) and (orientation: portrait) {
+  .join-teams {
+    height: unset;
+    justify-content: unset;
+  }
+  .join-teams-back {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+      ),
+      url("/assets/base/images/teams/join-teams-back.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .lower-content {
+    margin-top: 40px;
+  }
+}
+@media screen and(max-width: 640px) and (orientation: portrait) {
+  .category-title-first {
+    font-size: 45px;
+  }
+  .join-teams {
+    .upper-content {
+      .memb-box {
+        width: 100%;
+      }
+    }
+  }
+}
+@media screen and(max-width: 400px) and (orientation: portrait) {
+  .category-title-first {
+    font-size: 40px;
+  }
+  .category-title-second {
+    font-size: 26px;
+  }
+}
+@media screen and(max-width: 400px) and (orientation: portrait) {
+  .category-title-first {
+    font-size: 34px;
+  }
+  .category-title-second {
+    font-size: 25px;
+  }
+}
+
 .content-title {
   cursor: pointer;
   display: flex;
@@ -950,7 +460,7 @@
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 0.09em;
-    font-family: Earth Orbiter;
+    font-family: "Earth Orbiter";
     font-weight: 900;
     margin-left: 10px;
     margin-bottom: 0;

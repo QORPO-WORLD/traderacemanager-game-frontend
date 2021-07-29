@@ -1,4 +1,232 @@
-<div class="modal-body">
+<div
+  [ngClass]="{
+    'engage-right-animation': animation === 1,
+    'dissapear-right-animation': animation === 2
+  }"
+  class="modal-body"
+>
+  <div class="modal-content">
+    <div class="content-title" (click)="back()">
+      <img
+        (click)="back()"
+        class="red-star"
+        src="assets/base/images/icons/icon-back-red.svg"
+        alt="red arrow"
+      />
+      <img
+        (click)="back()"
+        class="blue-star"
+        src="assets/base/images/icons/icon-back-blue.svg"
+        alt="blue arrow"
+      />
+      <p>BACK</p>
+    </div>
+    <div class="team-info">
+      <div class="text-holder">
+        <p class="category-title-third golden-text">YOU ARE JOINING</p>
+        <p class="category-title-second">{{ selectedTeam[0]?.name }} TEAM</p>
+        <p class="category-title-third red space-big">TEAM OWNER</p>
+        <p
+          *ngIf="selectedTeam[0].owners.length >= 1"
+          class="category-title-fifth"
+        >
+          {{ selectedTeam[0].owners[0].user_nickname }}
+        </p>
+        <p
+          *ngIf="selectedTeam[0].owners.length === 0"
+          class="category-title-fifth"
+        >
+          --
+        </p>
+        <p class="category-title-third blue space-big">TEAM MANAGER</p>
+        <p
+          *ngIf="selectedTeam[0].manager_user_nickname"
+          class="category-title-fifth"
+        >
+          {{ selectedTeam[0].manager_user_nickname }}
+        </p>
+        <p
+          *ngIf="!selectedTeam[0].manager_user_nickname"
+          class="category-title-fifth"
+        >
+          --
+        </p>
+        <p class="category-title-third space-big">ABOUT TEAM</p>
+        <p class="classic-desc">COMING COON</p>
+      </div>
+    </div>
+
+    <div class="premium-info">
+      <div class="colored-border my-cta-btn-back"></div>
+      <div class="premium-content">
+        <div class="text-holder">
+          <div class="upper-text space-big">
+            <p class="category-title-first">TESLA</p>
+            <p class="category-title-first my-text-color">COMPETITION</p>
+            <p class="category-title-third">1st-31st of August</p>
+          </div>
+          <div class="bottom-text space">
+            <div class="text">
+              <p class="category-title-third golden-text">SALE NOW</p>
+              <p class="category-title-second">PREMIUM</p>
+              <div class="premium-bonus space-big">
+                <img
+                  src="/assets/base/images/icons/leverage.svg"
+                  alt="White fuel"
+                />
+                <p class="classic-text">
+                  Take the advantage of using 2x leverage
+                </p>
+              </div>
+              <div class="premium-bonus">
+                <img
+                  src="/assets/base/images/icons/fuel-white.svg"
+                  alt="White fuel"
+                />
+                <p class="classic-text">No limit for free races</p>
+              </div>
+              <div class="premium-bonus">
+                <img
+                  src="assets/base/images/team-membership/tip.png"
+                  alt="blub"
+                />
+                <p class="classic-text">
+                  Tip of the day from your team manager
+                </p>
+              </div>
+              <div class="premium-bonus">
+                <img
+                  src="assets/base/images/team-membership/gift.png"
+                  alt="gift"
+                />
+                <p class="classic-text">
+                  Guaranteed 2000 IOI prizepool for TOP 3 teams every month
+                </p>
+              </div>
+              <div class="premium-bonus">
+                <img
+                  src="assets/base/images/team-membership/coin.png"
+                  alt="gift"
+                />
+                <p class="classic-text">
+                  Earn a points to get a chance to win a special ring
+                </p>
+              </div>
+              <div class="premium-bonus">
+                <img
+                  src="assets/base/images/start-race/games.png"
+                  alt="race flag"
+                />
+                <p class="classic-text">
+                  Guarenteed 1000 IOI prizepool for TOP 10 racers every month
+                </p>
+              </div>
+              <div
+                [ngClass]="{ active: monthCount === 3 }"
+                class="premium-bonus hidden"
+              >
+                <img
+                  src="assets/base/images/team-membership/racer-icon.svg"
+                  alt="race flag"
+                />
+                <p class="classic-text">Free NFT Common Avatar for 3 months</p>
+              </div>
+
+              <div
+                [ngClass]="{ active: monthCount === 12 }"
+                class="premium-bonus hidden"
+              >
+                <img
+                  src="assets/base/images/team-membership/racer-icon.svg"
+                  alt="racer"
+                />
+                <p class="classic-text">Free NFT Common Avatar for 1 year</p>
+              </div>
+              <div
+                [ngClass]="{ active: monthCount === 12 }"
+                class="premium-bonus hidden"
+              >
+                <img
+                  src="assets/base/images/team-membership/car-icon.svg"
+                  alt="race car"
+                />
+                <p class="classic-text">Free NFT Common Car for 1 year</p>
+              </div>
+            </div>
+            <div class="months space-big">
+              <button
+                [ngClass]="{
+                  active: monthCount === 1,
+                  unactive: monthCount !== 1
+                }"
+                (click)="monthCount = 1"
+                class="month-button first category-title-third"
+              >
+                1 MONTH
+                <span class="bottom-underline my-cta-btn-back"></span>
+              </button>
+              <button
+                [ngClass]="{
+                  active: monthCount === 3,
+                  unactive: monthCount !== 3
+                }"
+                (click)="monthCount = 3"
+                class="month-button category-title-third"
+              >
+                3 MONTHS
+                <span class="bottom-underline my-cta-btn-back"></span>
+                <span class="discount my-cta-btn-back no-font"
+                  ><p class="classic-desc">10% OFF</p></span
+                >
+              </button>
+              <button
+                [ngClass]="{
+                  active: monthCount === 12,
+                  unactive: monthCount !== 12
+                }"
+                (click)="monthCount = 12"
+                class="month-button category-title-third"
+              >
+                1 YEAR
+                <span class="bottom-underline my-cta-btn-back"></span>
+                <span class="discount golden no-font"
+                  ><p class="classic-desc">30% OFF</p></span
+                >
+              </button>
+            </div>
+            <p class="classic-desc space">
+              your membership will start on 1st of august until 31st of august
+            </p>
+            <p class="classic-desc space-small my-text-color">
+              you already have valid membership in alt team until 31st of july
+            </p>
+            <button
+              (click)="joinTeam(selectedTeamId)"
+              class="buy-btn space my-cta-btn-back category-title-fourth"
+            >
+              <img
+                src="/assets/base/images/icons/ioi-big.svg"
+                alt="ioi token"
+              />
+              <ng-container *ngIf="monthCount === 1">
+                {{ monthlyPrice | number: "1.2-2":"fr" }}
+              </ng-container>
+              <ng-container *ngIf="monthCount === 3">
+                {{ quarterlyPrice | number: "1.2-2":"fr" }}
+              </ng-container>
+              <ng-container *ngIf="monthCount === 12">
+                {{ yearlyPrice | number: "1.2-2":"fr" }}
+              </ng-container>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="premium-content-back"></div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal-body">
   <div class="modal-wrapper">
     <div class="content-title" (click)="back()">
       <img
@@ -14,6 +242,9 @@
         alt="blue arrow"
       />
       <p>get a membership</p>
+    </div>
+    <div class="premium-info">
+      <p class="peso">hey</p>
     </div>
     <div class="premium-membership">
       <div class="inner-box">
@@ -35,7 +266,7 @@
                 <img
                   src="assets/base/images/team-membership/gift.png"
                   alt="gift"
-                />      
+                />
                 Guaranteed 2000 IOI prizepool for TOP 3 teams every month
               </p>
               <p class="bonus active">
@@ -46,22 +277,27 @@
                 Earn a points to get a chance to win a special ring
               </p>
               <p class="bonus active">
-                <img
-                  src="assets/base/images/start-race/games.png"
-                />
+                <img src="assets/base/images/start-race/games.png" />
                 Guarenteed 1000 IOI prizepool for TOP 10 racers every month
               </p>
 
-              <p class="bonus quartal" [ngClass]="{'active': monthCount===3 ||  monthCount===12}">
+              <p
+                class="bonus quartal"
+                [ngClass]="{ active: monthCount === 3 || monthCount === 12 }"
+              >
                 <img
                   src="assets/base/images/team-membership/racer-icon.svg"
                   alt="coin"
                 />
-                <ng-container *ngIf="monthCount==3">Free NFT Common Avatar for 3 months</ng-container>
-                <ng-container *ngIf="monthCount==12">Free NFT Common Avatar for 1 year</ng-container>
+                <ng-container *ngIf="monthCount == 3"
+                  >Free NFT Common Avatar for 3 months</ng-container
+                >
+                <ng-container *ngIf="monthCount == 12"
+                  >Free NFT Common Avatar for 1 year</ng-container
+                >
               </p>
 
-              <p class="bonus yearly"[ngClass]="{'active': monthCount===12}">
+              <p class="bonus yearly" [ngClass]="{ active: monthCount === 12 }">
                 <img
                   src="assets/base/images/team-membership/car-icon.svg"
                   alt="coin"
@@ -69,8 +305,6 @@
                 Free NFT Common Car for 1 year
               </p>
             </div>
-
-            
           </div>
 
           <div class="big-part">
@@ -111,7 +345,7 @@
                 src="assets/base/images/team-membership/token-icon.png"
                 alt="token"
               />
-              {{monthlyPrice | number:'1.2-2':'fr'}}
+              {{ monthlyPrice | number: "1.2-2":"fr" }}
             </button>
             <button
               class="my-cta-btn-back pay-button hoverable"
@@ -122,7 +356,7 @@
                 src="assets/base/images/team-membership/token-icon.png"
                 alt="token"
               />
-              {{quarterlyPrice | number:'1.2-2':'fr'}}
+              {{ quarterlyPrice | number: "1.2-2":"fr" }}
             </button>
             <button
               class="my-cta-btn-back pay-button hoverable"
@@ -133,7 +367,7 @@
                 src="assets/base/images/team-membership/token-icon.png"
                 alt="token"
               />
-              {{yearlyPrice | number:'1.2-2':'fr'}}
+              {{ yearlyPrice | number: "1.2-2":"fr" }}
             </button>
           </div>
         </div>
@@ -143,18 +377,33 @@
           class="back-img"
         />
       </div>
-      <div class="month-benefits"  [ngClass]="{ active: monthCount === 1 }">
-        <img class="racer" src="assets/base/images/nft-racers/rookie-basic.png" alt="racer">
+      <div class="month-benefits" [ngClass]="{ active: monthCount === 1 }">
+        <img
+          class="racer"
+          src="assets/base/images/nft-racers/rookie-basic.png"
+          alt="racer"
+        />
       </div>
 
-      <div class="month-benefits"  [ngClass]="{ active: monthCount === 3 }">
-        <img class="racer" src="assets/base/images/nft-racers/white-trm.png" alt="racer">
+      <div class="month-benefits" [ngClass]="{ active: monthCount === 3 }">
+        <img
+          class="racer"
+          src="assets/base/images/nft-racers/white-trm.png"
+          alt="racer"
+        />
       </div>
 
-      <div class="month-benefits yearly"  [ngClass]="{ active: monthCount === 12 }">
-        <img class="racer" src="assets/base/images/nft-racers/white-trm.png" alt="racer">
-        <img class="car" src="assets/base/images/nft-cars/car1.png" alt="car">
+      <div
+        class="month-benefits yearly"
+        [ngClass]="{ active: monthCount === 12 }"
+      >
+        <img
+          class="racer"
+          src="assets/base/images/nft-racers/white-trm.png"
+          alt="racer"
+        />
+        <img class="car" src="assets/base/images/nft-cars/car1.png" alt="car" />
       </div>
     </div>
   </div>
-</div>
+</div> -->

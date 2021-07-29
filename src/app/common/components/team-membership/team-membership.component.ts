@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
 import { NotifiqService } from "./../../services/notifiq.service";
@@ -6,16 +6,17 @@ import { TeamsService } from "../../../api/services/teams.service";
 import { AuthService } from "../../../user/services/auth.service";
 import { BalanceService } from "../../../common/services/balance.service";
 
-
 @Component({
-  selector: 'app-team-membership',
-  templateUrl: './team-membership.component.html',
-  styleUrls: ['./team-membership.component.scss'],
+  selector: "app-team-membership",
+  templateUrl: "./team-membership.component.html",
+  styleUrls: ["./team-membership.component.scss"],
 })
 export class TeamMembershipComponent implements OnInit {
-  selectedMembership = "premium"
+  ň;
+  selectedTeam = [];
+  selectedMembership = "premium";
   teams: any;
-  animation = 0;
+  animation = 1;
   timeoutPrev: any;
   timeoutNext: any;
   myTeam: string;
@@ -39,10 +40,11 @@ export class TeamMembershipComponent implements OnInit {
     private identityService: AuthService,
     private balanceService: BalanceService,
     protected notify: NotifiqService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getDiscount();
+    this.getTeams();
   }
 
   getDiscount() {
@@ -52,7 +54,7 @@ export class TeamMembershipComponent implements OnInit {
     });
   }
   back() {
-    this.animation = 1;
+    this.animation = 2;
     this.timeoutPrev = setTimeout(() => {
       this.openedModal.emit(0);
       this.timeoutReset();
@@ -79,11 +81,8 @@ export class TeamMembershipComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          this.notify.error(
-            "sucess",
-            "You are now part of the team!"
-          );
-          this.back()
+          this.notify.error("sucess", "You are now part of the team!");
+          this.back();
         }, 100);
       });
   }
@@ -102,6 +101,11 @@ export class TeamMembershipComponent implements OnInit {
 
       this.teams = data.results;
       this.reorderTeams();
+      this.selectedTeam = this.teams;
+      this.selectedTeam = this.selectedTeam.filter(
+        (item) => item.id === this.selectedTeamId
+      );
+      console.log(this.selectedTeam);
     });
   }
   reorderTeams() {
@@ -110,7 +114,7 @@ export class TeamMembershipComponent implements OnInit {
     if (specificItem !== undefined) {
       let firstTwo = helper.splice(0, 2);
       helper = helper.filter((item) => item.name !== "TRADER");
-      this.teams = [...firstTwo, ...specificItem, ...helper]; 
+      this.teams = [...firstTwo, ...specificItem, ...helper];
     }
   }
 
@@ -128,7 +132,7 @@ export class TeamMembershipComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          this.back()
+          this.back();
         }, 100);
       });
   }
@@ -160,5 +164,4 @@ export class TeamMembershipComponent implements OnInit {
       this.myDriverStats = this.identityService.getStorageIdentity();
     }, 500);
   }
-
 }
