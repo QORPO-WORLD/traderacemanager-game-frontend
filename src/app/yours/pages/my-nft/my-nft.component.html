@@ -99,11 +99,12 @@
           />
           <img
             [ngClass]="{ 'nogif-hover': item['collection'] === 'Special' }"
-            *ngIf="item['type'] === 'racer'"
+            *ngIf="item['type'] === 'racer' && item['gif']"
             class="img gif-racer"
             [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
             [alt]="item['alt']"
           />
+
           <img
             [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"

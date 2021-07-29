@@ -284,6 +284,30 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: [],
     },
+    {
+      id: 22,
+      name: "Kucoin", //
+      image: "kucoin",
+      gif: "kucoin-animation",
+      sum: 0,
+      pks: [],
+    },
+    {
+      id: 23,
+      name: "QuickSwap", //
+      image: "quickswap",
+      gif: "quickswap-animation",
+      sum: 0,
+      pks: [],
+    },
+    {
+      id: 24,
+      name: "Tech Giants", //
+      image: "techgiants",
+      gif: "techgiants-animation",
+      sum: 0,
+      pks: [],
+    },
   ];
   @ViewChild("optionPlaced") optionPlaced: ElementRef;
   @ViewChild("oponentOptionPlaced") oponentOptionPlaced: ElementRef;
@@ -552,9 +576,9 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
                 fontColor: "#868686",
                 reverse: false,
                 stepSize: 5,
-                callback: function(value, index, values) {
-                  return index % 5 === 0 ? value : '';
-                }
+                callback: function (value, index, values) {
+                  return index % 5 === 0 ? value : "";
+                },
               },
             },
           ],
