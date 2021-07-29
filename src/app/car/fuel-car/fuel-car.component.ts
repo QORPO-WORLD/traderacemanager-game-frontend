@@ -111,7 +111,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   isWnd = false;
   animatingSlider = false;
   tutorialIndex: number;
-  tickets: number;
   selectedSymbol: string;
   myBet: Array<any> = [
     {
@@ -308,7 +307,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   selectedCarIndex = 0;
   stepIndex = 1;
   favFilter = false;
-  useTicket = false;
   selectedCarsToRace = [];
   sumFuel: number;
   sumlength: number;
@@ -374,7 +372,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     this.trDate = Date.now();
     this.trsDate = Date.now();
     this.recognizeGame();
-    this.getTickets();
   }
 
   ngOnDestroy() {
@@ -794,10 +791,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       bet_coins: this.myBet,
     };
 
-    if (this.useTicket === true) {
-      obj.use_ticket = "tournament_ticket";
-    }
-
     return obj;
   }
 
@@ -816,10 +809,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }
     this.fuel = Math.round(num);
     this.numOfBets = hm;
-
-    if (this.useTicket === true) {
-      this.trxneeded = 0;
-    }
 
     if (
       this.fuel === 100 &&
@@ -861,21 +850,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         }
       }
       for (let i = 0; i < fakeSelected.length; i++) {
-        if (this.useTicket === true && this.tickets > 0) {
-          serialized.push({
-            race_hash: this.nextRaceHash,
-            car: fakeSelected[i].asset_id,
-            bet_coins: fakeSelected[i].newBet,
-            use_ticket: "tournament_ticket",
-          });
-          this.tickets = this.tickets - 1;
-        } else {
-          serialized.push({
-            race_hash: this.nextRaceHash,
-            car: fakeSelected[i].asset_id,
-            bet_coins: fakeSelected[i].newBet,
-          });
-        }
+        serialized.push({
+          race_hash: this.nextRaceHash,
+          car: fakeSelected[i].asset_id,
+          bet_coins: fakeSelected[i].newBet,
+        });
       }
 
       /*
@@ -1499,18 +1478,11 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     const data = this.identityService.getStorageIdentity();
     const datax: any = data;
     this.firstLogin = data.is_in_tutorial;
-    this.tickets = datax.tournament_tickets;
     if (this.firstLogin === true && window.innerWidth > 1024) {
       this.introModal = true;
     } else {
       this.tutorialStep = -1;
     }
-  }
-
-  getTickets() {
-    const data = this.identityService.getStorageIdentity();
-    const datax: any = data;
-    this.tickets = datax.tournament_tickets;
   }
 
   skipModal() {

@@ -293,6 +293,58 @@
   max-width: 100%;
   height: 789px;
   margin: 0 auto;
+  .live-box{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 34px;
+    background: transparent;
+    z-index: 10;
+    overflow: hidden;
+    &::before{
+      content: '';
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(238.54deg, #FE173F -1.25%, #950552 100.91%);
+      width: 200%;
+      height: 200%;
+      animation-name: liveAnimation;
+      animation-iteration-count: infinite;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+    }
+    p{
+      font-weight: 800;
+      font-size: 45px;
+      margin: 0;
+      font-family: 'Earth Orbiter';
+      line-height: 1;
+    }
+  }
+}
+
+@keyframes liveAnimation {
+  0% {
+    transform: translate(0,0);
+  }
+  25% {
+    transform: translate(50%,0);
+  }
+  50% {
+    transform: translate(50%,50%);
+  }
+  75% {
+    transform: translate(0,50%);
+  }
+  100% {
+    transform: translate(0,0);
+  }
 }
 
 .zavod .car_rc img {
@@ -2575,13 +2627,12 @@ b.position img {
 
 .chat {
   position: absolute;
-  top: 90px;
+  top: 86px;
   width: 330px;
   z-index: 1000000;
   left: 0;
   background: rgba(17, 17, 17, 0.75);
-  padding: 20px 16px 30px;
-  border-radius: 0 10px 10px 0;
+  padding: 15px;
   .top-heading {
     font-size: 16px;
     font-weight: 500;
@@ -2597,23 +2648,6 @@ b.position img {
     height: 4px;
     background: linear-gradient(248.23deg, #24ffff 36.99%, #25ccfe 101.9%);
     z-index: 1;
-  }
-  .close-icon {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
-    border-radius: 0px 0px 0px 8px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    cursor: pointer;
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
   .all-cars-holder {
     margin-bottom: 16px;
@@ -2640,12 +2674,6 @@ b.position img {
       &.inactive {
         background: #e1e1e1;
       }
-      &.left {
-        border-radius: 8px 0px 0px 8px;
-      }
-      &.right {
-        border-radius: 0px 8px 8px 0px;
-      }
     }
     .my-cars {
       height: 100%;
@@ -2665,7 +2693,6 @@ b.position img {
     .num-ind {
       width: 73px;
       background: #111111;
-      border-radius: 0 8px 8px 0;
       top: 0;
       right: 0;
       position: absolute;
@@ -2689,7 +2716,6 @@ b.position img {
     .table-item {
       width: 100%;
       background: #111111;
-      border-radius: 8px;
       overflow: hidden;
       height: 30px;
       display: flex;
@@ -3750,18 +3776,17 @@ button small {
 .main-content.zavod {
   .all-positions {
     position: absolute;
-    top: 90px;
+    top: 86px;
     width: 315px;
     z-index: 1000000;
-    right: 0;
+    left: 0;
     background: rgba(17, 17, 17, 0.75);
-    border-radius: 10px 0 0 10px;
-    padding: 20px 16px;
+    padding: 5px 15px;
     .top-heading {
       font-size: 16px;
       font-weight: 500;
       width: 100%;
-      margin: 27px 0 18px 0;
+      margin: 18px 0;
       text-align: left;
     }
     .top-line {
@@ -3773,27 +3798,9 @@ button small {
       background: linear-gradient(248.23deg, #24ffff 36.99%, #25ccfe 101.9%);
       z-index: 1;
     }
-    .close-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(155.33deg, #24ffff 9.64%, #25ccfe 95.19%);
-      border-radius: 0px 0px 0px 8px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 2;
-      cursor: pointer;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
     .table-item {
       width: 100%;
       background: #111111;
-      border-radius: 8px;
       overflow: hidden;
       height: 30px;
       display: flex;
@@ -3850,6 +3857,18 @@ button small {
         &.premium {
           width: 30px;
           border-right: 1px solid #343434;
+          &.active{
+            background: linear-gradient(222.61deg, #FFC634 -1.69%, #D37403 100.87%);
+            img{
+              opacity: 1;
+              &.classic {
+                display: block;
+              }
+              &.black {
+                display: none;
+              }
+            }
+          }
           img {
             position: absolute;
             top: 50%;
@@ -3899,6 +3918,7 @@ button small {
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
+              color: white;
             }
           }
         }
@@ -3913,7 +3933,7 @@ button small {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 15px;
+      margin-top: 5px;
       button {
         background-color: transparent;
         padding: 6px 3px;
@@ -3922,6 +3942,15 @@ button small {
         cursor: pointer;
         font-size: 18px;
         font-weight: 600;
+        opacity: 1;
+        transition: .15s;
+        &.hidden{
+          pointer-events: none;
+          opacity: 0;
+        }
+        img{
+          width: 17px;
+        }
       }
       p {
         font-size: 16px;
@@ -4435,6 +4464,12 @@ button small {
   .zavod {
     .car_rc {
       height: 659px;
+      .live-box{
+        padding: 10px 29px;
+        p{
+          font-size: 40px;
+        }
+      }
       .cr_cars_box {
         top: 201px;
         .car_row {
@@ -4534,6 +4569,17 @@ button small {
 }
 
 @media only screen and (max-width: 1550px) {
+  .zavod{
+    .car_rc{
+      .live-box{
+        top: 5px;
+        right: 5px;
+        p{
+          font-size: 30px;
+        }
+      }
+    }
+  }
   .sub-content.zavod_bg {
     .race-top-nav {
       .small-box {
@@ -4952,299 +4998,6 @@ button small {
   }
 }
 
-.tutorial-modal {
-  position: fixed;
-  width: 100%;
-  min-height: calc(var(--vh, 1vh) * 100);
-  height: calc(var(--vh, 1vh) * 100);
-  top: 0;
-  left: 0;
-  z-index: 1000002;
-  overflow: auto;
-  &.step0 {
-    background: rgba(17, 17, 17, 0.9);
-    .box-content.content0 {
-      z-index: 1;
-      opacity: 1;
-    }
-  }
-  &.step1 {
-    .box-content.content1 {
-      z-index: 1;
-      opacity: 1;
-    }
-  }
-  &.step2 {
-    background: rgba(17, 17, 17, 1);
-    .box-content.content2 {
-      z-index: 1;
-      opacity: 1;
-    }
-  }
-  .modal-back {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 40%;
-    background: linear-gradient(
-      90deg,
-      rgba(17, 17, 17, 0) 0%,
-      rgba(17, 17, 17, 0.62) 20%,
-      #111111 100%
-    );
-    transition: 0.2s;
-    &.inactive {
-      opacity: 0;
-    }
-  }
-  .skip-text {
-    text-shadow: none;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px 7px;
-    margin: 0;
-  }
-  .box-content {
-    position: absolute;
-    z-index: -5;
-    opacity: 0;
-    transition: 0.3s;
-    .racer-boi {
-      width: 200px;
-      position: relative;
-      left: -30px;
-      &.big {
-        width: unset;
-        left: -5px;
-      }
-    }
-    .text-holder {
-      position: relative;
-      .heading {
-        font-weight: 600;
-        font-size: 24px;
-        margin: -15px 0 10px 0;
-      }
-      .text {
-        font-weight: 400;
-        font-size: 16px;
-        margin: 0;
-      }
-      .pointing-line {
-        position: absolute;
-        height: 4px;
-        border-radius: 5px;
-        top: 10px;
-        width: 80px;
-        &.to-left {
-          transform: translateX(-100%);
-          left: -20px;
-          background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.8) 30%,
-            rgba(255, 255, 255, 1) 100%
-          );
-        }
-      }
-    }
-    button {
-      font-weight: 600;
-      font-size: 16px;
-      padding: 11px 60px;
-      border-radius: 15px;
-    }
-    .btns-holder {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      margin-top: 40px;
-      button {
-        margin-right: 40px;
-      }
-    }
-    &.only-cta {
-      width: 100%;
-      text-align: center;
-      button {
-        margin-top: 40px;
-      }
-    }
-    &.content0 {
-      left: 50%;
-      top: 47%;
-      transform: translate(-50%, -50%);
-      .text-holder {
-        .text {
-          max-width: 280px;
-          margin: 0 auto;
-        }
-      }
-    }
-    &.content1 {
-      right: 5%;
-      bottom: 7%;
-      max-width: 400px;
-      .text-holder {
-        max-width: 300px;
-      }
-    }
-    &.content2 {
-      left: 50%;
-      top: 47%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  @media screen and (max-width: 1700px) {
-    .box-content {
-      .racer-boi {
-        &.big {
-          width: 300px;
-          left: 0px;
-        }
-      }
-      .text-holder {
-        .heading {
-          font-size: 21px;
-        }
-        .text {
-          font-size: 15px;
-        }
-      }
-      &.only-cta {
-        button {
-          margin-top: 30px;
-        }
-      }
-      button {
-        font-size: 15px;
-        padding: 10px 50px;
-      }
-      .btns-holder {
-        margin-top: 30px;
-      }
-      &.content1 {
-        max-width: 441px;
-      }
-    }
-    .skip-text {
-      font-size: 15px;
-    }
-  }
-  @media screen and (max-width: 1550px) {
-    .modal-back {
-      width: calc(93% - 108px);
-    }
-    .box-content {
-      .racer-boi {
-        width: 180px;
-        left: -24px;
-        &.big {
-          width: 270px;
-        }
-      }
-      .text-holder {
-        .heading {
-          margin: -15px 0 6px 0;
-          font-size: 19px;
-        }
-        .text {
-          font-size: 14px;
-        }
-        .pointing-line {
-          height: 3px;
-          &.to-right {
-            right: -10px;
-          }
-          &.to-left {
-            left: -10px;
-          }
-        }
-      }
-      &.only-cta {
-        button {
-          margin-top: 23px;
-        }
-      }
-      button {
-        border-radius: 10px;
-        font-size: 14px;
-        padding: 9px 45px;
-      }
-      .btns-holder {
-        margin-top: 23px;
-        button {
-          margin-right: 17px;
-        }
-      }
-      &.content1 {
-        max-width: 367px;
-      }
-    }
-    .skip-text {
-      font-size: 14px;
-    }
-  }
-  @media screen and (max-width: 1200px) {
-    .box-content {
-      .racer-boi {
-        width: 160px;
-        left: -20px;
-        &.big {
-          width: 240px;
-        }
-      }
-      .text-holder {
-        .heading {
-          margin: -15px 0 4px 0;
-          font-size: 18px;
-        }
-        .text {
-          font-size: 13px;
-        }
-        .pointing-line {
-          height: 2px;
-          &.to-right {
-            right: -7px;
-          }
-          &.to-left {
-            left: -7px;
-          }
-        }
-      }
-      &.only-cta {
-        button {
-          margin-top: 19px;
-        }
-      }
-      button {
-        border-radius: 8px;
-        font-size: 13px;
-        padding: 8px 32px;
-      }
-      .btns-holder {
-        margin-top: 19px;
-        button {
-          margin-right: 14px;
-        }
-      }
-      &.content1 {
-        .text-holder {
-          max-width: 240px;
-        }
-      }
-    }
-    .skip-text {
-      font-size: 13px;
-    }
-  }
-}
-
 @media only screen and (max-width: 900px) {
   .semafor-wrap {
     height: calc(var(--vh, 1vh) * 100);
@@ -5267,8 +5020,9 @@ button small {
       top: 0;
       overflow: auto;
       .content-title {
+        height: 60px;
         img {
-          width: 20px;
+          width: 40px;
           margin-top: 15px;
         }
         p {
@@ -5291,7 +5045,6 @@ button small {
         width: 100%;
         flex-wrap: wrap;
         &.position {
-          display: none;
         }
         &.prize-box {
           .img-holder {
@@ -5401,7 +5154,6 @@ button small {
       align-items: center;
       flex-direction: column;
       background: #222;
-      border-radius: 10px 0 0 10px;
       overflow: hidden;
       .switch-btn {
         height: 33.333%;
@@ -5447,6 +5199,9 @@ button small {
       min-width: calc(100% - 80px);
       margin-left: auto;
       margin-right: 0;
+      .live-box{
+        display: none;
+      }
       .cr_cars_box {
         top: 150px;
         width: calc(100% - 335px);
@@ -5510,8 +5265,8 @@ button small {
       }
     }
     .all-positions {
-      top: 2.5%;
-      right: 90px;
+      top: 0;
+      left: 80px;
     }
     .final_line {
       right: -150px;
@@ -5524,8 +5279,8 @@ button small {
     transform: scale(0.55);
   }
   .chat {
-    left: 90px;
-    top: 2.5%;
+    left: 80px;
+    top: 0;
     .table-holder {
       max-height: 186px;
     }
@@ -5555,7 +5310,10 @@ button small {
       margin-top: -70px;
     }
     .all-positions {
-      padding: 8px;
+      width: 300px;
+      left: unset;
+      right: 80px;
+      top: 2.5%;
       .top-line {
         height: 2px;
       }
@@ -5925,7 +5683,6 @@ button small {
       }
       .table-item {
         height: 23px;
-        border-radius: 4px;
         .my-col {
           p {
             font-size: 9px;
@@ -6270,4 +6027,296 @@ button small {
 .start_line,
 .final_line {
   opacity: 0.9;
+}
+.tutorial-modal {
+  position: fixed;
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
+  top: 0;
+  left: 0;
+  z-index: 1000002;
+  overflow: auto;
+  &.step0 {
+    background: rgba(17, 17, 17, 0.9);
+    .box-content.content0 {
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+  &.step1 {
+    .box-content.content1 {
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+  &.step2 {
+    background: rgba(17, 17, 17, 1);
+    .box-content.content2 {
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+  .modal-back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0) 0%,
+      rgba(17, 17, 17, 0.62) 20%,
+      #111111 100%
+    );
+    transition: 0.2s;
+    &.inactive {
+      opacity: 0;
+    }
+  }
+  .skip-text {
+    text-shadow: none;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 7px;
+    margin: 0;
+  }
+  .box-content {
+    position: absolute;
+    z-index: -5;
+    opacity: 0;
+    transition: 0.3s;
+    .racer-boi {
+      width: 200px;
+      position: relative;
+      left: -30px;
+      &.big {
+        width: unset;
+        left: -5px;
+      }
+    }
+    .text-holder {
+      position: relative;
+      .heading {
+        font-weight: 600;
+        font-size: 24px;
+        margin: -15px 0 10px 0;
+      }
+      .text {
+        font-weight: 400;
+        font-size: 16px;
+        margin: 0;
+      }
+      .pointing-line {
+        position: absolute;
+        height: 4px;
+        border-radius: 5px;
+        top: 10px;
+        width: 80px;
+        &.to-left {
+          transform: translateX(-100%);
+          left: -20px;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.8) 30%,
+            rgba(255, 255, 255, 1) 100%
+          );
+        }
+      }
+    }
+    button {
+      font-weight: 600;
+      font-size: 16px;
+      padding: 11px 60px;
+      border-radius: 15px;
+    }
+    .btns-holder {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 40px;
+      button {
+        margin-right: 40px;
+      }
+    }
+    &.only-cta {
+      width: 100%;
+      text-align: center;
+      button {
+        margin-top: 40px;
+      }
+    }
+    &.content0 {
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+      .text-holder {
+        .text {
+          max-width: 280px;
+          margin: 0 auto;
+        }
+      }
+    }
+    &.content1 {
+      right: 5%;
+      bottom: 7%;
+      max-width: 400px;
+      .text-holder {
+        max-width: 300px;
+      }
+    }
+    &.content2 {
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  @media screen and (max-width: 1700px) {
+    .box-content {
+      .racer-boi {
+        &.big {
+          width: 300px;
+          left: 0px;
+        }
+      }
+      .text-holder {
+        .heading {
+          font-size: 21px;
+        }
+        .text {
+          font-size: 15px;
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 30px;
+        }
+      }
+      button {
+        font-size: 15px;
+        padding: 10px 50px;
+      }
+      .btns-holder {
+        margin-top: 30px;
+      }
+      &.content1 {
+        max-width: 441px;
+      }
+    }
+    .skip-text {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 1550px) {
+    .modal-back {
+      width: calc(93% - 108px);
+    }
+    .box-content {
+      .racer-boi {
+        width: 180px;
+        left: -24px;
+        &.big {
+          width: 270px;
+        }
+      }
+      .text-holder {
+        .heading {
+          margin: -15px 0 6px 0;
+          font-size: 19px;
+        }
+        .text {
+          font-size: 14px;
+        }
+        .pointing-line {
+          height: 3px;
+          &.to-right {
+            right: -10px;
+          }
+          &.to-left {
+            left: -10px;
+          }
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 23px;
+        }
+      }
+      button {
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 9px 45px;
+      }
+      .btns-holder {
+        margin-top: 23px;
+        button {
+          margin-right: 17px;
+        }
+      }
+      &.content1 {
+        max-width: 367px;
+      }
+    }
+    .skip-text {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .box-content {
+      .racer-boi {
+        width: 160px;
+        left: -20px;
+        &.big {
+          width: 240px;
+        }
+      }
+      .text-holder {
+        .heading {
+          margin: -15px 0 4px 0;
+          font-size: 18px;
+        }
+        .text {
+          font-size: 13px;
+        }
+        .pointing-line {
+          height: 2px;
+          &.to-right {
+            right: -7px;
+          }
+          &.to-left {
+            left: -7px;
+          }
+        }
+      }
+      &.only-cta {
+        button {
+          margin-top: 19px;
+        }
+      }
+      button {
+        border-radius: 8px;
+        font-size: 13px;
+        padding: 8px 32px;
+      }
+      .btns-holder {
+        margin-top: 19px;
+        button {
+          margin-right: 14px;
+        }
+      }
+      &.content1 {
+        .text-holder {
+          max-width: 240px;
+        }
+      }
+    }
+    .skip-text {
+      font-size: 13px;
+    }
+  }
 }

@@ -5,10 +5,9 @@
 <app-race-bonus-modal #bonusModal></app-race-bonus-modal>
 
 <div class="main-content zavod" *ngIf="raceData && raceDataildata" #topRoad>
-  <div class="chat" *ngIf="showChat === true && raceDataildata?.my_cars[selectedMyIndex]">
+  <div class="chat" *ngIf="showMyBet === true && raceDataildata?.my_cars[selectedMyIndex]">
 
     <div class="top-line"></div>
-    <div class="close-icon" (click)="showChat = false"><img src="/assets/base/images/zavod/white-close.svg" alt=""></div>
     <p class="top-heading">{{'race.live_crypto' | translate}}</p>
 
     <div class="all-cars-holder">
@@ -81,7 +80,6 @@
 
   <div class="all-positions" *ngIf="showPositions === true">
     <div class="top-line"></div>
-    <div class="close-icon" (click)="showPositions = false"><img src="/assets/base/images/zavod/white-close.svg" alt=""></div>
     <h1 class="top-heading" *ngIf="raceDataildata?.tournament_id === null">{{'leaderboard.my_position' | translate}}</h1>
     <h1 class="top-heading" *ngIf="raceDataildata?.tournament_id !== null">{{'leaderboard.actual_race_pos' | translate}}</h1>
 
@@ -91,14 +89,25 @@
           <div class="my-col position">
             <p>{{player.cpr}}</p>
           </div>
-          <div class="my-col premium">
-            <img src="/assets/base/images/zavod/crown-icon.svg" alt="">
+          <div class="my-col premium" [ngClass]="{'active': player?.p === true}">
+            <img class="classic" src="/assets/base/images/zavod/crown-icon.svg" alt="">
+            <img class="black" src="/assets/base/images/zavod/crown-icon-black.svg" alt="">
           </div>
           <div class="my-col username">
             <p>{{player.n}}</p>
           </div>
           <div class="my-col team">
-            <div class="team-circle">
+            <div class="team-circle alt" *ngIf="player?.t === 'ALT'">
+              <p>ALT</p>
+            </div>
+            <div class="team-circle ioi" *ngIf="player?.t === 'IOI'">
+              <p>IOI</p>
+            </div>
+            <div class="team-circle btc" *ngIf="player?.t === 'BTC'">
+              <p>BTC</p>
+            </div>
+            <div class="team-circle" *ngIf="player?.t !== 'BTC' || player?.t !== 'IOI' || player?.t !== 'ALT'">
+              <p>{{ player?.t | slice:0:3 }}</p>
             </div>
           </div>
           <div class="my-col win">
@@ -111,7 +120,7 @@
           <div class="my-col position">
             <p>{{player.cpr}}</p>
           </div>
-          <div class="my-col premium">
+          <div class="my-col premium" [ngClass]="{'active': player?.p === true}">
             <img class="classic" src="/assets/base/images/zavod/crown-icon.svg" alt="">
             <img class="black" src="/assets/base/images/zavod/crown-icon-black.svg" alt="">
           </div>
@@ -119,16 +128,17 @@
             <p>{{player.n}}</p>
           </div>
           <div class="my-col team">
-            <div class="team-circle alt" *ngIf="player.t === 'ALT'">
+            <div class="team-circle alt" *ngIf="player?.t === 'ALT'">
               <p>ALT</p>
             </div>
-            <div class="team-circle ioi" *ngIf="player.t === 'IOI'">
+            <div class="team-circle ioi" *ngIf="player?.t === 'IOI'">
               <p>IOI</p>
             </div>
-            <div class="team-circle btc" *ngIf="player.t === 'BTC'">
+            <div class="team-circle btc" *ngIf="player?.t === 'BTC'">
               <p>BTC</p>
             </div>
-            <div class="team-circle" *ngIf="player.t === ''">
+            <div class="team-circle" *ngIf="player?.t !== 'BTC' || player?.t !== 'IOI' || player?.t !== 'ALT'">
+              <p>{{ player?.t | slice:0:3 }}</p>
             </div>
           </div>
           <div class="my-col win">
@@ -140,12 +150,12 @@
     </div>
 
     <div class="my-pagination">
-      <button (click)="prevPage()" *ngIf="actualPage > 0" class="my-text-color">
-        &lt;
+      <button (click)="prevPage()" class="my-text-color" [ngClass]="{'hidden': actualPage === 0}">
+        <img src="/assets/base/images/icons/icon-back-blue.svg" alt="blue back icon"/>
       </button>
       <p><span>{{actualPage + 1}}</span> out of {{raceDataildata?.total_pages}}</p>
-      <button (click)="nextPage()" *ngIf="(actualPage + 1) < raceDataildata?.total_pages" class="right my-text-color">
-        &gt;
+      <button (click)="nextPage()" class="right my-text-color" [ngClass]="{'hidden': (actualPage + 1) === raceDataildata?.total_pages}">
+        <img src="/assets/base/images/icons/icon-next-blue.svg" alt="blue next icon"/>
       </button>
     </div>
 
@@ -245,57 +255,15 @@
           </div>
         </div>
 
-        <!-- <div class="username-holder">
-          <div class="avatar-box">
-            <div class="inner">
-              <img src="/assets/base/images/menu/user-ico-red.svg" alt="">
-            </div>
-          </div>
-          <p class="my-name" *ngIf="myUsername">{{myUsername}}</p>
-        </div>
-        <div class="small-box pos-box progress" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index">
-          <div class="inner">
-            <p><img src="/assets/base/images/zavod/race-progress.svg" alt="">{{raceDataildata?.tour_index}}/19</p>
-          </div>
-        </div>
-        <div class="small-box pos-box">
-          <div class="inner">
-            <p><img src="/assets/base/images/zavod/position-icon-active.svg" alt="">{{raceData?.me?.cpr}}/{{raceDataildata?.players_count}}
-              <span>{{posEnding}}</span>
-            </p>
-          </div>
-        </div>
-        <div class="small-box timer-box">
-          <div class="inner">
-            <div class="dots-holder">
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 16}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 33}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 49}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 66}"></div>
-              <div class="dot" [ngClass]="{'active': raceData?.race_progress > 80}"></div>
-              <div class="dot last" [ngClass]="{'active': raceData?.race_progress >= 100}"></div>
-            </div>
-            <p class="timer-value" *ngIf="raceStarted === false">
-              <app-timer [value]="startsIn"></app-timer>
-            </p>
-            <p class="timer-value" *ngIf="raceFinished === false && raceStarted === true && endsIn > 0">
-              <app-timer [value]="endsIn"></app-timer>
-            </p>
-            <p class="timer-value" *ngIf="raceFinished === true && raceDataildata?.tournament_id === null">{{'race.race_ended' | translate}}</p>
-            <p class="timer-value" *ngIf="raceDataildata?.tournament_id !== null && raceDataildata?.tour_index < 19 && raceFinished === true && newNextStartsIn">
-              <app-timer [value]="redirectNum"></app-timer>
-            </p>
-          </div>
-        </div> -->
       </div>
       <div class="right-align">
         <div class="switch-btn" (click)="changeSound()" [ngClass]="soundEnabled === true ? 'active' : ''" style="display:none">
           <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
         </div>
-        <div class="switch-btn" (click)="showChat = !showChat" [ngClass]="showChat === true ? 'active' : ''">
+        <div class="switch-btn" (click)="showMyBet = !showMyBet; showPositions = false" [ngClass]="showMyBet === true ? 'active' : ''">
           <img src="/assets/base/images/zavod/fuel-icon2.svg" alt="">
         </div>
-        <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions">
+        <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions; showMyBet = false">
           <img src="/assets/base/images/zavod/lead-white.svg" alt="">
         </div>
         <div class="switch-btn" [ngClass]="showTourPos === true ? 'active' : ''" (click)="showTourPos = !showTourPos"
@@ -314,13 +282,10 @@
     </div>
 
     <div class="bottom-mobile-nav">
-      <!-- <div class="switch-btn my-rounded-left" (click)="soundEnabled = !soundEnabled" [ngClass]="soundEnabled === true ? 'active' : ''">
-        <img src="/assets/base/images/zavod/sound-icon.svg" alt="icon of sound">
-      </div> -->
-      <div class="switch-btn" (click)="showChat = !showChat; showPositions = false" [ngClass]="showChat === true ? 'active' : ''">
+      <div class="switch-btn" (click)="showMyBet = !showMyBet; showPositions = false" [ngClass]="showMyBet === true ? 'active' : ''">
         <img src="/assets/base/images/zavod/fuel-icon.svg" alt="">
       </div>
-      <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions; showChat = false">
+      <div class="switch-btn" [ngClass]="showPositions === true ? 'active' : ''" (click)="showPositions = !showPositions; showMyBet = false">
         <img src="/assets/base/images/zavod/position-icon.svg" alt="">
       </div>
       <div class="switch-btn" [ngClass]="showInfoModal === true ? 'active' : ''"
@@ -336,6 +301,10 @@
 
 
     <div class="car_rc" id="photoMe" [ngClass]="{'city-back': backType === 1, 'moving': raceStarted === true  && raceFinished === false && raceData?.race[0] }">
+
+      <div class="live-box">
+        <p>LIVE</p>
+      </div>
 
       <div class="still-road" 
       [hidden]="raceStarted === true  && raceFinished === false && raceData?.race[0]"
