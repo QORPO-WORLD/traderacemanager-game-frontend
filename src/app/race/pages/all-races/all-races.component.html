@@ -116,6 +116,7 @@
         <div class="bottom-border my-cta-btn-back"></div>
       </div>
     </div>
+
     <div
       [ngClass]="{
         'dissapear-right-animation': contentAnimation === 1,
@@ -124,74 +125,80 @@
       *ngIf="content === 1"
       class="content-side"
     >
-      <div class="big-box first" [ngClass]="{'tutorial-high disabled': tutorialStep === 1}">
-        <div class="info-cont">
-          <div class="info-flex">
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/clock.svg" alt="" />
-              <p>
-                <app-timer
-                  *ngIf="premiumTournament"
-                  [value]="premiumTournament?.starts_in_seconds"
-                  (onComplete)="onTimerComplete()"
-                ></app-timer>
+      <div class="big-box" [ngClass]="{'tutorial-high disabled': tutorialStep === 1}">
+        <p class="box-heading">Special race</p>
+        <div class="inner-box tesla">
+          <div class="info-cont">
+            <div class="info-flex">
+              <div class="info-box">
+                <img src="/assets/base/images/race-type/clock.svg" alt="" />
+                <p>
+                  <app-timer
+                    *ngIf="specialTournament"
+                    [value]="specialTournament?.starts_in_seconds"
+                    (onComplete)="onTimerComplete()"
+                  ></app-timer>
+                </p>
+              </div>
+  
+              <div class="info-box">
+                <img src="/assets/base/images/race-type/timer.svg" alt="">
+                <p>37 min</p>
+              </div>
+            </div>
+  
+            <div class="text-holder">
+              <p class="heading">Tesla tournament</p>
+              <p class="text bordered">
+                Win a REAL Tesla car by playing <strong>#1 NFT GAME</strong>
               </p>
+              <p class="sub-heading">Underground</p>
             </div>
-
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/timer.svg" alt="">
-              <p>37 min</p>
-            </div>
-          </div>
-
-          <div class="text-holder">
-            <p class="heading">only NFT tournament</p>
-            <p class="text bordered">
-              Exclusively for NFT Holders with a guaranteed 100 IOI prizepool
-            </p>
-            <p class="sub-heading">Underground</p>
-          </div>
-
-          <div class="info-flex">
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/player.svg" alt="" />
-              <p>{{ premiumTournament?.players_count }} <span>| 100</span></p>
-            </div>
-
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/token-white.svg" alt="" />
-              <p>{{ premiumTournament?.prize_pool }}</p>
+  
+            <div class="info-flex">
+              <div class="info-box">
+                <img src="/assets/base/images/race-type/player.svg" alt="" />
+                <p>{{ specialTournament?.players_count }} <span>| 500</span></p>
+              </div>
+  
+              <div class="info-box">
+                <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                <p>{{ specialTournament?.prize_pool }}</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="controls-holder">
-          <div
-            class="control-item"
-            *ngIf="fastEnabled === true"
-            (click)="selRaceType = premiumTournament?.race_hash"
-          >
-            <img src="/assets/base/images/race-type/fast-blue.svg" alt="" />
+  
+          <div class="controls-holder">
+            <div
+              class="control-item"
+              *ngIf="fastEnabled === true"
+              (click)="selRaceType = specialTournament?.race_hash"
+            >
+              <img src="/assets/base/images/race-type/fast-purple.svg" alt="" />
+            </div>
+            <div
+              class="control-item"
+              *ngIf="baseFavRaces[3].fav !== undefined"
+              (click)="
+                baseFavRaces[3].fav = !baseFavRaces[3].fav; updateFavRaces()
+              "
+              [ngClass]="{ active: baseFavRaces[3].fav === true }"
+            >
+              <img src="/assets/base/images/race-type/fav-purple.svg" alt="" />
+            </div>
           </div>
-          <div
-            class="control-item"
-            *ngIf="baseFavRaces[2].fav !== undefined"
-            (click)="
-              baseFavRaces[2].fav = !baseFavRaces[2].fav; updateFavRaces()
-            "
-            [ngClass]="{ active: baseFavRaces[2].fav === true }"
-          >
-            <img src="/assets/base/images/race-type/fav-blue.svg" alt="" />
+  
+          <div class="btns-holder">
+            <button class="inactive" (click)="openRulesModal()">
+              Tesla rules
+            </button>
+            <button
+              [routerLink]="['/car/fuel-car/' + specialTournament?.race_hash]"
+              class="active-btn"
+            >
+              Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
+            </button>
           </div>
-        </div>
-
-        <div class="btns-holder">
-          <button
-            [routerLink]="['/car/fuel-car/' + premiumTournament?.race_hash]"
-            class="active-btn"
-          >
-            Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
-          </button>
         </div>
       </div>
       <div class="small-box" [ngClass]="{'tutorial-high clickable': tutorialStep === 3}">
@@ -249,7 +256,7 @@
               *ngIf="fastEnabled === true"
               (click)="selRaceType = freeRace?.race_hash"
             >
-              <img src="/assets/base/images/race-type/fast-blue.svg" alt="" />
+              <img src="/assets/base/images/race-type/fast-red.svg" alt="" />
             </div>
 
             <div
@@ -260,87 +267,165 @@
               "
               [ngClass]="{ active: baseFavRaces[0].fav === true }"
             >
-              <img src="/assets/base/images/race-type/fav-blue.svg" alt="" />
+              <img src="/assets/base/images/race-type/fav-red.svg" alt="" />
             </div>
           </div>
         </div>
       </div>
 
-      <p class="box-heading big">Competition races with guaranteed prizepool</p>
-
-      <div class="big-box second" [ngClass]="'type' + fastRaces[0]?.map_id">
-        <div class="info-cont">
-          <div class="info-flex">
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/clock.svg" alt="" />
-              <p>
-                <app-timer
-                  *ngIf="fastRaces[0]"
-                  [value]="fastRaces[0]?.starts_in_seconds"
-                  (onComplete)="onTimerComplete()"
-                ></app-timer>
-              </p>
+      <div class="big-box bottom">
+        <div class="medium-box">
+          <p class="box-heading">RACES ONLY FOR NFT HOLDERS</p>
+          <div class="inner-box first">
+            <div class="info-cont">
+              <div class="info-flex">
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/clock.svg" alt="" />
+                  <p>
+                    <app-timer
+                    *ngIf="premiumTournament"
+                    [value]="premiumTournament?.starts_in_seconds"
+                    (onComplete)="onTimerComplete()"
+                  ></app-timer>
+                  </p>
+                </div>
+    
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/timer.svg" alt="" />
+                  <p>37 min</p>
+                </div>
+              </div>
+    
+              <div class="text-holder">
+                <p class="heading">NFT tournament</p>
+                <p class="text bordered">
+                  Exclusively for NFT Holders with a guaranteed 100 IOI prizepool
+                </p>
+                <p class="sub-heading">Underground</p>
+              </div>
+    
+              <div class="info-flex">
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/player.svg" alt="" />
+                  <p>{{ premiumTournament?.players_count }} <span>| 100</span></p>
+                </div>
+    
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                  <p>{{ premiumTournament?.prize_pool }}</p>
+                </div>
+              </div>
             </div>
-
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/timer.svg" alt="" />
-              <p>30 sec</p>
+    
+            <div class="controls-holder">
+              <div
+                class="control-item"
+                *ngIf="fastEnabled === true"
+                (click)="selRaceType = fastRaces[0]?.race_hash"
+              >
+                <img src="/assets/base/images/race-type/fast-blue.svg" alt="" />
+              </div>
+              <div
+                class="control-item"
+                *ngIf="baseFavRaces[2].fav !== undefined"
+                (click)="
+                  baseFavRaces[2].fav = !baseFavRaces[2].fav; updateFavRaces()
+                "
+                [ngClass]="{ active: baseFavRaces[2].fav === true }"
+              >
+                <img src="/assets/base/images/race-type/fav-blue.svg" alt="" />
+              </div>
             </div>
-          </div>
-
-          <div class="text-holder">
-            <p class="heading bordered">Starting soon</p>
-            <p class="sub-heading">
-              {{ "race.type.fast_race" + fastRaces[0]?.map_id | translate }}
-            </p>
-          </div>
-
-          <div class="info-flex">
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/player.svg" alt="" />
-              <p>{{ fastRaces[0]?.players_count }} <span>| 100</span></p>
-            </div>
-
-            <div class="info-box">
-              <img src="/assets/base/images/race-type/token-white.svg" alt="" />
-              <p>{{ fastRaces[0]?.prize_pool }}</p>
+    
+            <div class="btns-holder">
+              <button
+                class="active-btn"
+                [routerLink]="['/car/fuel-car/' + fastRaces[0]?.race_hash]"
+              >
+                Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
+              </button>
             </div>
           </div>
         </div>
 
-        <div class="controls-holder">
-          <div
-            class="control-item"
-            *ngIf="fastEnabled === true"
-            (click)="selRaceType = fastRaces[0]?.race_hash"
-          >
-            <img src="/assets/base/images/race-type/fast-red.svg" alt="" />
+        <div class="medium-box">
+          <p class="box-heading">RACES WITH GUARANTEED PRIZEPOOL</p>
+          <div class="inner-box second" [ngClass]="'type' + fastRaces[0]?.map_id">
+            <div class="info-cont">
+              <div class="info-flex">
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/clock.svg" alt="" />
+                  <p>
+                    <app-timer
+                      *ngIf="fastRaces[0]"
+                      [value]="fastRaces[0]?.starts_in_seconds"
+                      (onComplete)="onTimerComplete()"
+                    ></app-timer>
+                  </p>
+                </div>
+    
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/timer.svg" alt="" />
+                  <p>30 sec</p>
+                </div>
+              </div>
+    
+              <div class="text-holder">
+                <p class="heading bordered">Starting soon</p>
+                <p class="sub-heading">
+                  {{ "race.type.fast_race" + fastRaces[0]?.map_id | translate }}
+                </p>
+              </div>
+    
+              <div class="info-flex">
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/player.svg" alt="" />
+                  <p>{{ fastRaces[0]?.players_count }} <span>| 100</span></p>
+                </div>
+    
+                <div class="info-box">
+                  <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                  <p>{{ fastRaces[0]?.prize_pool }}</p>
+                </div>
+              </div>
+            </div>
+    
+            <div class="controls-holder">
+              <div
+                class="control-item"
+                *ngIf="fastEnabled === true"
+                (click)="selRaceType = fastRaces[0]?.race_hash"
+              >
+                <img src="/assets/base/images/race-type/fast-red.svg" alt="" />
+              </div>
+              <div
+                class="control-item"
+                *ngIf="baseFavRaces[1].fav !== undefined"
+                (click)="
+                  baseFavRaces[1].fav = !baseFavRaces[1].fav; updateFavRaces()
+                "
+                [ngClass]="{ active: baseFavRaces[1].fav === true }"
+              >
+                <img src="/assets/base/images/race-type/fav-red.svg" alt="" />
+              </div>
+            </div>
+    
+            <div class="btns-holder">
+              <button class="inactive" (click)="openRulesModal()">
+                Win more with NFTs
+              </button>
+              <button
+                class="active-btn"
+                [routerLink]="['/car/fuel-car/' + fastRaces[0]?.race_hash]"
+              >
+                Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
+              </button>
+            </div>
           </div>
-          <div
-            class="control-item"
-            *ngIf="baseFavRaces[1].fav !== undefined"
-            (click)="
-              baseFavRaces[1].fav = !baseFavRaces[1].fav; updateFavRaces()
-            "
-            [ngClass]="{ active: baseFavRaces[1].fav === true }"
-          >
-            <img src="/assets/base/images/race-type/fav-red.svg" alt="" />
-          </div>
-        </div>
-
-        <div class="btns-holder">
-          <button class="inactive" (click)="openRulesModal()">
-            Win more with NFTs
-          </button>
-          <button
-            class="active-btn"
-            [routerLink]="['/car/fuel-car/' + fastRaces[0]?.race_hash]"
-          >
-            Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
-          </button>
         </div>
       </div>
-      <div class="small-box" [ngClass]="{'tutorial-high disabled': tutorialStep === 2}">
+      <div class="small-box second" [ngClass]="{'tutorial-high disabled': tutorialStep === 2}">
+        <p class="box-heading">Upcoming track</p>
         <div class="inner-box" *ngIf="fastRaces">
           <img
             [src]="
@@ -407,7 +492,7 @@
               *ngIf="fastEnabled === true"
               (click)="selRaceType = fastRaces[fastRaceIndex]?.race_hash"
             >
-              <img src="/assets/base/images/race-type/fast-blue.svg" alt="" />
+              <img src="/assets/base/images/race-type/fast-red.svg" alt="" />
             </div>
 
             <div
@@ -418,7 +503,7 @@
               "
               [ngClass]="{ active: baseFavRaces[1].fav === true }"
             >
-              <img src="/assets/base/images/race-type/fav-blue.svg" alt="" />
+              <img src="/assets/base/images/race-type/fav-red.svg" alt="" />
             </div>
           </div>
         </div>
