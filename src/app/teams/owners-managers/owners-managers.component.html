@@ -20,7 +20,7 @@
       src="assets/base/images/icons/icon-back-blue.svg"
       alt="blue arrow"
     />
-    <p>Join team</p>
+    <p>BACK</p>
   </div>
 
   <div class="owners-managers-holder" *ngIf="OwnerManagerType == 'home'">
@@ -120,4 +120,16 @@
   >
     <app-teams-selection [managerType]="true"></app-teams-selection>
   </div>
+  <p *ngIf="OwnerManagerType === 'manager'" class="category-title-first space">
+    to apply as a manager you need to hold at least
+    <span class="bold category-title-first"
+      >1 000 $IOI tokens in your wallet</span
+    >
+  </p>
+  <p
+    *ngIf="OwnerManagerType !== 'manager'"
+    class="category-title-first space bold"
+  >
+    every team is a nft whose value is increased with every new member
+  </p>
 </div>

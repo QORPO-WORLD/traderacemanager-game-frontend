@@ -126,6 +126,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: [],
     },
+
     // {
     //   id: 18,
     //   name: 'Boxmining',
@@ -151,6 +152,27 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       id: 21,
       name: "CryptoWizard", //
       image: "cryptowizard",
+      sum: 0,
+      pks: [],
+    },
+    {
+      id: 22,
+      name: "Kucoin", //
+      image: "kucoin",
+      sum: 0,
+      pks: [],
+    },
+    {
+      id: 23,
+      name: "QuickSwap", //
+      image: "quickswap",
+      sum: 0,
+      pks: [],
+    },
+    {
+      id: 24,
+      name: "Tech Giants", //
+      image: "techgiants",
       sum: 0,
       pks: [],
     },
