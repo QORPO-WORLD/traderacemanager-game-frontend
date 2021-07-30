@@ -569,7 +569,6 @@
     </ng-container>
 
     <ng-container *ngIf="stepIndex === 2">
-      <button class="back-button" (click)="stepIndex = 1" *ngIf="firstLogin === false && (selectedCarIndex < 1 ||  sumFuel / sumlength === 100) && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
       <button class="back-button" (click)="resetSelected();calcSumFuel()" *ngIf="selectedCarsToRace[selectedCarIndex]?.selectedBets?.length === 3 && introModal === false"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
       <button class="back-button" *ngIf="selectedCarIndex > 0 && sumFuel / sumlength !== 100 && selectedCarsToRace[selectedCarIndex]?.selectedBets?.length < 3 && introModal === false" (click)="selectedCarIndex = selectedCarIndex - 1;calcSumFuel()"><span class="my-gt">&lt;</span> <br> {{'shared.back' | translate}}</button>
     </ng-container>

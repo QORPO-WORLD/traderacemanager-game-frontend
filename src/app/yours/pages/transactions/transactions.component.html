@@ -59,9 +59,13 @@
         </p>
       </div>
       <div class="table-item big" *ngIf="trans.history_type === 'reward'">
-        <p>
+        <p *ngIf="trans.extras.reward_subtype === undefined">
           {{ "transactions_desc." + trans.history_type | translate }} -
           {{ "transactions_desc." + trans.extras.reward_type | translate }}
+        </p>
+        <p *ngIf="trans.extras.reward_subtype !== undefined">
+          {{ "transactions_desc." + trans.history_type | translate }} -
+          {{ "transactions_desc." + trans.extras.reward_subtype | translate }}
         </p>
       </div>
       <div class="table-item">
