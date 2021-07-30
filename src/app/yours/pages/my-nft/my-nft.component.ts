@@ -71,7 +71,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   products: Array<object> = [
     {
       id: 60,
-      position: 60,
+      position: 59,
       collection: "Common",
       name: "TESLA",
       image: "car60",

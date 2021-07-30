@@ -23,7 +23,7 @@ export class TransferNftComponent implements OnInit {
     //bronze
     {
       id: 60,
-      position: 60,
+      position: 59,
       collection: "Special",
       name: "TESLA",
       price: 50,

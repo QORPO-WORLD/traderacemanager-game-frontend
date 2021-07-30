@@ -627,7 +627,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     {
       id: 60,
-      position: 61,
+      position: 60,
       price: 50,
       name: "TESLA",
       image: "car60",
