@@ -18,7 +18,6 @@ import { throwIfEmpty } from "rxjs/operators";
   styleUrls: ["./all-races.component.scss"],
 })
 export class AllRacesComponent implements OnInit {
-
   @ViewChild("rulesModal") rulesModal: any;
 
   updateFavCoinsObserver: Subscription;
@@ -52,10 +51,10 @@ export class AllRacesComponent implements OnInit {
   specialTournament: any;
   myFavRaces = [];
   baseFavRaces = [
-    { type: 'car_race_short_0', fav: false },
-    { type: 'car_race_portfolio_0', fav: false },
-    { type: 'premium_tournament_0', fav: false },
-    { type: 'tesla_tournament_0', fav: false }
+    { type: "car_race_short_0", fav: false },
+    { type: "car_race_portfolio_0", fav: false },
+    { type: "premium_tournament_0", fav: false },
+    { type: "tesla_tournament_0", fav: false },
   ];
 
   tutorialStep = 1;
@@ -100,16 +99,21 @@ export class AllRacesComponent implements OnInit {
   }
 
   getAllRaces() {
-
-    this.raceObserver = this.api.racesNextV2List().subscribe(data => {
+    this.raceObserver = this.api.racesNextV2List().subscribe((data) => {
       const nedata: any = data;
 
-      let free = nedata.filter(word => word.race_type === 'car_race_short');
+      let free = nedata.filter((word) => word.race_type === "car_race_short");
       this.freeRace = free[0];
-      this.fastRaces = nedata.filter(word => word.race_type === 'car_race_portfolio');
-      let premium = nedata.filter(word => word.race_type === 'premium_tournament');
+      this.fastRaces = nedata.filter(
+        (word) => word.race_type === "car_race_portfolio"
+      );
+      let premium = nedata.filter(
+        (word) => word.race_type === "premium_tournament"
+      );
       this.premiumTournament = premium[0];
-      let special = nedata.filter(word => word.race_type === 'tesla_tournament');
+      let special = nedata.filter(
+        (word) => word.race_type === "tesla_tournament"
+      );
       this.specialTournament = special[0];
       this.newNextData = nedata;
     });
@@ -189,8 +193,6 @@ export class AllRacesComponent implements OnInit {
   }
 
   updateFavRaces() {
-
-
     const data: any = [];
     for (let y = 0; y < this.baseFavRaces.length; y++) {
       if (this.baseFavRaces[y].fav === true) {
@@ -198,15 +200,15 @@ export class AllRacesComponent implements OnInit {
       }
     }
 
-    this.updateFavCoinsObserver = this.dapi.driversFavRacesUpdate(
-      { race_identifiers: data }
-    ).subscribe(datax => {
-      this.getmyFavRaces();
-    });
+    this.updateFavCoinsObserver = this.dapi
+      .driversFavRacesUpdate({ race_identifiers: data })
+      .subscribe((datax) => {
+        this.getmyFavRaces();
+      });
   }
 
   getmyFavRaces() {
-    this.favObserver = this.dapi.driversFavRacesList().subscribe(data => {
+    this.favObserver = this.dapi.driversFavRacesList().subscribe((data) => {
       const nn: any = data;
       this.myFavRaces = nn;
       this.resortFavRaces();
@@ -215,7 +217,6 @@ export class AllRacesComponent implements OnInit {
 
   resortFavRaces() {
     for (let x = 0; x < this.myFavRaces.length; x++) {
-
       for (let y = 0; y < this.baseFavRaces.length; y++) {
         if (this.baseFavRaces[y].type === this.myFavRaces[x]) {
           this.baseFavRaces[y].fav = true;
@@ -257,5 +258,7 @@ export class AllRacesComponent implements OnInit {
   nextTutorialStep() {
     this.tutorialStep++;
   }
-
+  openLink(url: string) {
+    window.open(url, "_blank").focus();
+  }
 }
