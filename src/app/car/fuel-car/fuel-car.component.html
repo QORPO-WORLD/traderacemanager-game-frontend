@@ -558,39 +558,14 @@
                         <p>Short</p>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div class="curr-item">
-                  <div class="curr-img empty"></div>
-                  <div class="input-holder">
-                    <p class="percent-info">0%</p>
-                    <input
-                      type="range"
-                      min="0"
-                      step="1"
-                      max="90"
-                      disabled
-                      value="0"
-                    />
-                  </div>
-                  <div class="top-btns">
-                    <div class="btn-item long">
+                    <div
+                      class="btn-item leverage">
                       <div class="inner">
                         <img
-                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
                           alt=""
                         />
-                        <p>Long</p>
-                      </div>
-                    </div>
-                    <div class="btn-item short">
-                      <div class="inner">
-                        <img
-                          src="/assets/base/images/tankovanie/short-icon.svg"
-                          alt=""
-                        />
-                        <p>Short</p>
                       </div>
                     </div>
                   </div>
@@ -626,6 +601,61 @@
                           alt=""
                         />
                         <p>Short</p>
+                      </div>
+                    </div>
+                    <div
+                      class="btn-item leverage">
+                      <div class="inner">
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="curr-item">
+                  <div class="curr-img empty"></div>
+                  <div class="input-holder">
+                    <p class="percent-info">0%</p>
+                    <input
+                      type="range"
+                      min="0"
+                      step="1"
+                      max="90"
+                      disabled
+                      value="0"
+                    />
+                  </div>
+                  <div class="top-btns">
+                    <div class="btn-item long">
+                      <div class="inner">
+                        <img
+                          src="/assets/base/images/tankovanie/long-icon.svg"
+                          alt=""
+                        />
+                        <p>Long</p>
+                      </div>
+                    </div>
+                    <div class="btn-item short">
+                      <div class="inner">
+                        <img
+                          src="/assets/base/images/tankovanie/short-icon.svg"
+                          alt=""
+                        />
+                        <p>Short</p>
+                      </div>
+                    </div>
+                    <div
+                      class="btn-item leverage">
+                      <div class="inner">
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </div>
@@ -769,6 +799,41 @@
                         <p>Short</p>
                       </div>
                     </div>
+
+                    <button
+                      class="btn-item leverage"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].leverage = selectedCarsToRace[selectedCarIndex]?.bet[
+                        selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                      ].leverage === 2 ? 0 : 2"
+                      [ngClass]="
+                        (selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
+                        ].leverage === 2
+                          ? 'active'
+                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                      "
+                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                    >
+
+                    <div class="info-bubble">
+                      <p>LEVERAGE: PREMIUM MEMBERS ONLY</p>
+                    </div>
+                      <div class="inner">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/leverage-img-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -907,6 +972,39 @@
                         <p>Short</p>
                       </div>
                     </div>
+                    <button
+                      class="btn-item leverage"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].leverage = selectedCarsToRace[selectedCarIndex]?.bet[
+                        selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                      ].leverage === 2 ? 0 : 2"
+                      [ngClass]="
+                        (selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
+                        ].leverage === 2
+                          ? 'active'
+                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                      "
+                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                    >
+                      <div class="info-bubble">
+                        <p>LEVERAGE: PREMIUM MEMBERS ONLY</p>
+                      </div>
+                      <div class="inner">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/leverage-img-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -1045,6 +1143,39 @@
                         <p>Short</p>
                       </div>
                     </div>
+                    <button
+                      class="btn-item leverage"
+                      (click)="
+                        selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].leverage = selectedCarsToRace[selectedCarIndex]?.bet[
+                        selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                      ].leverage === 2 ? 0 : 2"
+                      [ngClass]="
+                        (selectedCarsToRace[selectedCarIndex]?.bet[
+                          selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
+                        ].leverage === 2
+                          ? 'active'
+                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                      "
+                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                    >
+                      <div class="info-bubble">
+                        <p>LEVERAGE: PREMIUM MEMBERS ONLY</p>
+                      </div>
+                      <div class="inner">
+                        <img
+                          class="active-img"
+                          src="/assets/base/images/tankovanie/leverage-img-active.svg"
+                          alt=""
+                        />
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -1086,6 +1217,16 @@
                         <p>Short</p>
                       </div>
                     </div>
+                    <div
+                      class="btn-item leverage">
+                      <div class="inner">
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1124,6 +1265,16 @@
                           alt=""
                         />
                         <p>Short</p>
+                      </div>
+                    </div>
+                    <div
+                      class="btn-item leverage">
+                      <div class="inner">
+                        <img
+                          class="passive-img"
+                          src="/assets/base/images/tankovanie/leverage-img.svg"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </div>
