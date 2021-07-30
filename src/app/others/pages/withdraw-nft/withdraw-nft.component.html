@@ -19,11 +19,11 @@
         <img
           class="car-img"
           *ngIf="this.nftType === 'car'"
-          [src]="'assets/base/images/nft-cars/car' + nftId + '.png'"
+          [src]="'assets/base/images/nft-cars/' + products[0]['image'] + '.png'"
           alt="Image of selected car"
         />
         <img
-          class="car-img"
+          class="car-img racer-img"
           *ngIf="this.nftType === 'racer'"
           [src]="
             'assets/base/images/nft-racers/' + products[0]['image'] + '.png'
@@ -44,7 +44,7 @@
           </div>
           <div class="value">
             <p>
-              {{ nftIoiValue * driverBalances.ioi_usdt | number: "1.2-2":"fr"}}
+              {{ nftIoiValue * driverBalances.ioi_usdt | number: "1.2-2":"fr" }}
               <img
                 src="assets/base/images/icons/dollar-big.svg"
                 alt="dollar logo"

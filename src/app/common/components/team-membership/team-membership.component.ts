@@ -28,6 +28,8 @@ export class TeamMembershipComponent implements OnInit {
   startNow = false;
   myDriverStats: any;
   discount: any;
+  myMembEnd: any;
+  myBrowser: any;
   @Input() monthlyPrice = 50;
   @Input() quarterlyPrice = 135;
   @Input() yearlyPrice = 420;
@@ -106,6 +108,9 @@ export class TeamMembershipComponent implements OnInit {
         (item) => item.id === this.selectedTeamId
       );
       console.log(this.selectedTeam);
+      this.myMembEnd = this.selectedTeam[0].memberships[0].date_to;
+      this.getMembEndSafari();
+      console.log(this.myMembEnd);
     });
   }
   reorderTeams() {
@@ -163,5 +168,12 @@ export class TeamMembershipComponent implements OnInit {
     setTimeout(() => {
       this.myDriverStats = this.identityService.getStorageIdentity();
     }, 500);
+  }
+
+  getMembEndSafari() {
+    this.myMembEnd = this.selectedTeam[0].memberships[0].date_to.replace(
+      " ",
+      "T"
+    );
   }
 }

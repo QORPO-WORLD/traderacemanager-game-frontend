@@ -1,4 +1,4 @@
-import { MaintananceComponent } from './../common/components/maintanance/maintanance.component';
+import { MaintenanceComponent } from "../common/components/maintenance/maintenance.component";
 import { ContactListComponent } from "./../other/components/contact-list/contact-list.component";
 import { BridgeComponent } from "./../bridge/bridge.component";
 import { ConfirmWithdrawalComponent } from "./confirm-withdrawal/confirm-withdrawal.component";
@@ -28,8 +28,8 @@ import { IonicModule } from "@ionic/angular";
 const routes: Routes = [
   /*{ path: '', redirectTo: 'affilate', pathMatch: 'prefix' },*/
   {
-    path: "maintanance",
-    component: MaintananceComponent,
+    path: "maintenance",
+    component: MaintenanceComponent,
   },
   {
     path: "",
@@ -84,7 +84,7 @@ const routes: Routes = [
       {
         path: "contats",
         component: ContactsStaticComponent,
-      }
+      },
     ],
   },
 ];
@@ -103,7 +103,7 @@ const routes: Routes = [
     ContactListComponent,
     ContactsStaticComponent,
     MyReferralsComponent,
-    MaintananceComponent
+    MaintenanceComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

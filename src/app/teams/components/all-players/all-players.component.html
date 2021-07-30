@@ -40,7 +40,7 @@
       <div class="table-item big bold">
         <p>
           <img src="/assets/base/images/teams/reward-token.png" alt="" />
-           {{ pl.potentional_win | number: "1.2-2":"fr" }} 
+          {{ pl.potentional_win | number: "1.2-2":"fr" }}
         </p>
       </div>
       <div class="table-item bold last">
@@ -77,7 +77,14 @@
       </div>
       <div class="mine-back my-cta-btn-back"></div>
     </div>
-
+    <p class="category-title-second bold link">
+      ONLY FOR PREMIUM MEMBERS.
+      <span
+        [routerLink]="['/teams/join-teams']"
+        class="my-text-color category-title-second bold"
+        >JOIN NOW!</span
+      >
+    </p>
     <div class="pagination">
       <button
         (click)="actualPage = actualPage - 1; getMyLeaderboard()"
@@ -160,7 +167,7 @@
     </div>
 
     <div class="updated_at">
-      <p>Last updated at:  {{updateTime | date:'medium'}}</p>
+      <p>Last updated at: {{ updateTime | date: "medium" }}</p>
     </div>
   </div>
   <div class="ring-banner">
@@ -168,7 +175,11 @@
     <p class="category-title-first">PRIZE</p>
     <img class="ring" src="/assets/base/images/home-page/ring.png" alt="Ring" />
     <p class="desc">for the top player each month until December</p>
-    <button class="action-btn my-cta-btn-back" [routerLink]="['/teams/best-racers']">Prize winners</button>
+    <button
+      class="action-btn my-cta-btn-back"
+      [routerLink]="['/teams/best-racers']"
+    >
+      Prize winners
+    </button>
   </div>
 </div>
-

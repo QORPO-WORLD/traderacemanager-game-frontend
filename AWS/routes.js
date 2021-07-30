@@ -72,6 +72,8 @@ exports.handler = (event, context, callback) => {
     "/user/how-to",
     "/teams/best-racers",
     "/user/tesla",
+    "/maintenance",
+    "/other/maintenance",
   ];
 
   if (
