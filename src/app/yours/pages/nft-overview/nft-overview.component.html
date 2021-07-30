@@ -6,7 +6,9 @@
         <div class="nfts-box">
           <div>
             <h2>
-              {{ allItemsBalance *  driverbalances.ioi_usdt| number: "1.2-2":"fr" }}
+              {{
+                allItemsBalance * driverbalances.ioi_usdt | number: "1.2-2":"fr"
+              }}
               &#36;
             </h2>
             <p>total USD value</p>
@@ -24,15 +26,30 @@
           <ng-container *ngIf="active === 1">
             <div class="box box-animation">
               <h2 class="detail-title font">Cars</h2>
+
               <img
+                *ngIf="ownedCars.length <= 0"
                 class="detail-img"
-                src="assets/base/images/nft-cars/car28.png"
-                alt="Golden Bugatti"
+                [src]="'assets/base/images/nft-cars/car0.png'"
+                alt="nft car"
+              />
+              <img
+                *ngIf="ownedCars.length > 0"
+                class="detail-img"
+                [src]="
+                  'assets/base/images/nft-cars/' +
+                  ownedCars[ownedCars.length - 1]['image'] +
+                  '.png'
+                "
+                alt="nft car"
               />
               <div class="values car-values">
                 <div class="left-value">
                   <h2>
-                    {{ carAssets?.garage_value * driverbalances.ioi_usdt  | number: "1.2-2":"fr" }}
+                    {{
+                      carAssets?.garage_value * driverbalances.ioi_usdt
+                        | number: "1.2-2":"fr"
+                    }}
                     &#36;
                   </h2>
                   <p>total USD value</p>
@@ -51,16 +68,30 @@
             <div class="racers box-animation">
               <div class="left-side">
                 <img
+                  *ngIf="ownedRacers.length <= 0"
                   class="detail-img"
-                  src="assets/base/images/nft-racers/white-trm.png"
-                  alt="white nft racer"
+                  [src]="'assets/base/images/nft-racers/rookie-basic.png'"
+                  alt="nft racer"
+                />
+                <img
+                  *ngIf="ownedRacers.length > 0"
+                  class="detail-img"
+                  [src]="
+                    'assets/base/images/nft-racers/' +
+                    ownedRacers[ownedRacers.length - 1]['image'] +
+                    '.png'
+                  "
+                  alt="nft racer"
                 />
               </div>
               <div class="right-side">
                 <h2 class="detail-title font">Racers</h2>
                 <div class="values-racers">
                   <div class="left-value">
-                    <h2>{{ myAssets.racers_value * driverbalances.ioi_usdt }} &#36;</h2>
+                    <h2>
+                      {{ myAssets.racers_value * driverbalances.ioi_usdt }}
+                      &#36;
+                    </h2>
                     <p>total USD value</p>
                   </div>
                   <div class="middle"></div>
@@ -72,28 +103,8 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="active === 3">
-            <div class="box box-animation">
-              <h2 class="detail-title font">Tracks</h2>
-              <img
-                class="detail-img track"
-                src="assets/base/images/home-page/underground-small.png"
-                alt="underground race"
-              />
-              <div class="values">
-                <div class="left-value">
-                  <h2>0 &#36;</h2>
-                  <p>total USD value</p>
-                </div>
-                <div class="middle"></div>
-                <div class="right-value">
-                  <h2>0 IOI</h2>
-                  <p>total IOI value</p>
-                </div>
-              </div>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="active === 4 && teamsCount > 0">
+
+          <ng-container *ngIf="active === 3 && teamsCount > 0">
             <div class="box box-animation">
               <h2 class="detail-title font">
                 Team
@@ -140,7 +151,10 @@
               <div class="values team-values">
                 <div class="left-value">
                   <h2>
-                    {{ myTeamAllData.team_value * driverbalances.ioi_usdt | number: "1.2-2":"fr" }}
+                    {{
+                      myTeamAllData.team_value * driverbalances.ioi_usdt
+                        | number: "1.2-2":"fr"
+                    }}
                     &#36;
                   </h2>
                   <p>total USD value</p>
@@ -166,15 +180,11 @@
               [ngClass]="{ inactive: active != 2 }"
               class="dot racer my-cta-btn-back"
             ></div>
-            <div
-              (click)="changeActive(3)"
-              [ngClass]="{ inactive: active != 3 }"
-              class="dot track my-cta-btn-back"
-            ></div>
+
             <div
               *ngIf="teamsCount > 0"
-              (click)="changeActive(4)"
-              [ngClass]="{ inactive: active != 4 }"
+              (click)="changeActive(3)"
+              [ngClass]="{ inactive: active != 3 }"
               class="dot team my-cta-btn-back"
             ></div>
           </div>
@@ -208,13 +218,7 @@
             ></div>
             <h3>{{ myAssets.total_racers }} Racers</h3>
           </div>
-          <div class="legend-item">
-            <div
-              [ngStyle]="{ 'background-color': tracks.color }"
-              class="legend-dot"
-            ></div>
-            <h3>0 Tracks</h3>
-          </div>
+
           <div class="legend-item">
             <div
               [ngStyle]="{ 'background-color': teams.color }"
@@ -241,7 +245,8 @@
               <p>Daily USD stakes</p>
               <h2>
                 {{
-                  carAssets?.daily_staking_reward * driverbalances.ioi_usdt | number: "1.2-2":"fr"
+                  carAssets?.daily_staking_reward * driverbalances.ioi_usdt
+                    | number: "1.2-2":"fr"
                 }}
                 <img
                   class="token-image"
@@ -271,7 +276,9 @@
             <div>
               <p>Total USD stakes</p>
               <h2>
-                {{ totalStaking * driverbalances.ioi_usdt | number: "1.2-2":"fr" }}
+                {{
+                  totalStaking * driverbalances.ioi_usdt | number: "1.2-2":"fr"
+                }}
                 <img
                   class="token-image"
                   src="assets/base/images/icons/dollar.svg"

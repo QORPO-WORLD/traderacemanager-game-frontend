@@ -50,6 +50,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     private tsapi: TeamsService,
     private lead: LeaderboardService
   ) {
+    this.getMyAssets();
     this.getTeams();
     this.getMyTem();
     this.getCryptoStats();
@@ -148,9 +149,20 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     { type: "car_race_ioi_5", fav: false },
   ];
   products: Array<object> = [
+    {
+      price: 60,
+      id: 60,
+      collection: "Special",
+      name: "TESLA",
+      image: "car60",
+      type: "car",
+      rank: "low",
+      amount: [],
+      alt: "nft car Tesla",
+    },
     //bronze
     {
-      id: 9,
+      id: 20,
       position: 0,
       free: 6000,
       collection: "Common",
@@ -163,12 +175,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car rhino",
-      likes: "2k",
-
-      ability: "pes je pes",
     },
     {
-      id: 10,
+      id: 21,
       position: 1,
       free: 12000,
       collection: "Common",
@@ -181,10 +190,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car panther",
-      likes: "2k",
     },
     {
-      id: 11,
+      id: 22,
       position: 2,
       free: 24000,
       collection: "Common",
@@ -197,10 +205,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car onyx",
-      likes: "2k",
     },
     {
-      id: 12,
+      id: 23,
       position: 3,
       free: 48000,
       collection: "Common",
@@ -213,10 +220,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car zander",
-      likes: "2k",
     },
     {
-      id: 13,
+      id: 24,
       position: 4,
       free: 96000,
       collection: "Common",
@@ -229,10 +235,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car cyborg",
-      likes: "2k",
     },
     {
-      id: 14,
+      id: 25,
       position: 5,
       free: 192000,
       collection: "Common",
@@ -245,10 +250,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car vulcanic",
-      likes: "2k",
     },
     {
-      id: 15,
+      id: 26,
+      position: 24,
       collection: "Common rare",
       name: "LUNA",
       price: 3600,
@@ -260,11 +265,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 6,
       amount: [],
       alt: "nft car luna",
-      likes: "2k",
     },
     //silver
     {
-      id: 16,
+      id: 27,
       position: 6,
       free: 288000,
       collection: "Super",
@@ -277,10 +281,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car dorian",
-      likes: "2k",
     },
     {
-      id: 17,
+      id: 28,
       position: 7,
       free: 432000,
       collection: "Super",
@@ -293,10 +296,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car panther",
-      likes: "2k",
     },
     {
-      id: 18,
+      id: 29,
       position: 8,
       free: 648000,
       collection: "Super",
@@ -309,10 +311,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car onyx",
-      likes: "2k",
     },
     {
-      id: 19,
+      id: 30,
       position: 9,
       free: 972000,
       collection: "Super",
@@ -325,10 +326,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car zander",
-      likes: "2k",
     },
     {
-      id: 20,
+      id: 31,
       position: 10,
       free: 1458000,
       collection: "Super",
@@ -341,10 +341,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car python",
-      likes: "2k",
     },
     {
-      id: 21,
+      id: 32,
       position: 11,
       free: 2187000,
       collection: "Super",
@@ -357,10 +356,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car vulcanic",
-      likes: "2k",
     },
     {
-      id: 22,
+      id: 33,
+      position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
       price: 6000,
@@ -372,11 +371,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 12,
       amount: [],
       alt: "nft car silver knight",
-      likes: "2k",
     },
     //gold
     {
-      id: 23,
+      id: 34,
       position: 12,
       free: 3000000,
       collection: "Epic",
@@ -389,10 +387,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car cyborg",
-      likes: "2k",
     },
     {
-      id: 24,
+      id: 35,
       position: 13,
       free: 3600000,
       collection: "Epic",
@@ -405,10 +402,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car rhino",
-      likes: "2k",
     },
     {
-      id: 25,
+      id: 36,
       position: 14,
       free: 4320000,
       collection: "Epic",
@@ -421,10 +417,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car hyper",
-      likes: "2k",
     },
     {
-      id: 26,
+      id: 37,
       position: 15,
       free: 5184000,
       collection: "Epic",
@@ -437,10 +432,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car bull",
-      likes: "2k",
     },
     {
-      id: 27,
+      id: 38,
       position: 16,
       free: 6220000,
       collection: "Epic",
@@ -453,10 +447,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car python",
-      likes: "2k",
     },
     {
-      id: 28,
+      id: 39,
       position: 17,
       free: 7465000,
       collection: "Epic",
@@ -469,10 +462,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car hitman",
-      likes: "2k",
     },
     {
-      id: 29,
+      id: 40,
+      position: 26,
       collection: "Epic rare",
       name: "MIDAS",
       price: 9600,
@@ -484,11 +477,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 18,
       amount: [],
       alt: "nft car midas",
-      likes: "2k",
     },
     //platinum
     {
-      id: 30,
+      id: 41,
       position: 18,
       free: 8200000,
       collection: "Legendary",
@@ -501,10 +493,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car hyper",
-      likes: "2k",
     },
     {
-      id: 31,
+      id: 42,
       position: 19,
       free: 9000000,
       collection: "Legendary",
@@ -517,10 +508,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car dorian",
-      likes: "2k",
     },
     {
-      id: 32,
+      id: 43,
       position: 20,
       free: 9900000,
       collection: "Legendary",
@@ -533,10 +523,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car vulcanic",
-      likes: "2k",
     },
     {
-      id: 33,
+      id: 44,
       position: 21,
       free: 10890000,
       collection: "Legendary",
@@ -549,10 +538,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car bull",
-      likes: "2k",
     },
     {
-      id: 34,
+      id: 45,
       position: 22,
       free: 12000000,
       collection: "Legendary",
@@ -565,10 +553,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car knockout",
-      likes: "2k",
     },
     {
-      id: 35,
+      id: 46,
       position: 23,
       free: 13200000,
       collection: "Legendary",
@@ -581,10 +568,10 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car lara",
-      likes: "2k",
     },
     {
-      id: 36,
+      id: 47,
+      position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
       price: 15600,
@@ -596,8 +583,9 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       ability2: 24,
       amount: [],
       alt: "nft car blue storm",
-      likes: "2k",
     },
+
+    //RACERS
     {
       id: 1,
       collection: "Super",
@@ -611,7 +599,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "low",
       amount: [],
       alt: "nft racer Axle",
-      likes: "2k",
     },
 
     {
@@ -627,7 +614,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "low",
       amount: [],
       alt: "nft racer Flash",
-      likes: "2k",
     },
     {
       id: 3,
@@ -642,7 +628,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "low",
       amount: [],
       alt: "nft racer Octane",
-      likes: "2k",
     },
     {
       id: 4,
@@ -657,7 +642,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "low",
       amount: [],
       alt: "nft racer Punisher",
-      likes: "2k",
     },
     {
       id: 5,
@@ -672,7 +656,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "normal",
       amount: [],
       alt: "nft racer Lady Rich",
-      likes: "2k",
     },
     {
       id: 6,
@@ -687,7 +670,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "normal",
       amount: [],
       alt: "nft racer Rich Junior",
-      likes: "2k",
     },
     {
       id: 7,
@@ -702,7 +684,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "normal",
       amount: [],
       alt: "nft racer Mrs. Rich",
-      likes: "2k",
     },
     {
       id: 8,
@@ -718,7 +699,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       rank: "height",
       amount: [],
       alt: "nft racer mr. rich",
-      likes: "2k",
     },
   ];
   myAssets: any;
@@ -770,7 +750,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       this.nickname = dataNick.nickname;
     }
     this.toggleTip(1);
-    this.getMyAssets();
+
     this.getAllRaces();
     this.getMyOwner();
     this.getMyRewards();
@@ -1256,123 +1236,127 @@ export class StartRaceComponent implements OnInit, OnDestroy {
       (item) => item["amount"].length > 0 && item["type"] === "racer"
     );
   }
+
   getMyAssets() {
     this.myCarsObserver = this.capi.carsMineList().subscribe((data) => {
       if (data.length === 0) {
-        this.getFreeCar();
+        null;
       } else {
         const objs: any = data;
         for (let x = 0; x < objs.cars.length; x++) {
-          if (objs.cars[x].car_id === 1) {
+          if (objs.cars[x].car_id === 60) {
             this.products[0]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 2) {
+          if (objs.cars[x].car_id === 1) {
             this.products[1]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 3) {
+          if (objs.cars[x].car_id === 2) {
             this.products[2]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 4) {
+          if (objs.cars[x].car_id === 3) {
             this.products[3]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 5) {
+          if (objs.cars[x].car_id === 4) {
             this.products[4]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 6) {
+          if (objs.cars[x].car_id === 5) {
             this.products[5]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 7) {
-            this.products[7]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 8) {
-            this.products[8]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 9) {
-            this.products[9]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 10) {
-            this.products[10]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 11) {
-            this.products[11]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 12) {
-            this.products[12]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 13) {
-            this.products[14]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 14) {
-            this.products[15]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 15) {
-            this.products[16]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 16) {
-            this.products[17]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 17) {
-            this.products[18]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 18) {
-            this.products[19]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 19) {
-            this.products[21]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 20) {
-            this.products[22]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 21) {
-            this.products[23]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 22) {
-            this.products[24]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 23) {
-            this.products[25]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 24) {
-            this.products[26]["amount"].push(objs.cars[x]);
-          }
-          if (objs.cars[x].car_id === 25) {
+          if (objs.cars[x].car_id === 6) {
             this.products[6]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 26) {
+          if (objs.cars[x].car_id === 7) {
+            this.products[8]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 8) {
+            this.products[9]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 9) {
+            this.products[10]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 10) {
+            this.products[11]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 11) {
+            this.products[12]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 12) {
             this.products[13]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 27) {
+          if (objs.cars[x].car_id === 13) {
+            this.products[15]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 14) {
+            this.products[16]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 15) {
+            this.products[17]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 16) {
+            this.products[18]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 17) {
+            this.products[19]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 18) {
             this.products[20]["amount"].push(objs.cars[x]);
           }
-          if (objs.cars[x].car_id === 28) {
+          if (objs.cars[x].car_id === 19) {
+            this.products[22]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 20) {
+            this.products[23]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 21) {
+            this.products[24]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 22) {
+            this.products[25]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 23) {
+            this.products[26]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 24) {
             this.products[27]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 25) {
+            this.products[7]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 26) {
+            this.products[14]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 27) {
+            this.products[21]["amount"].push(objs.cars[x]);
+          }
+          if (objs.cars[x].car_id === 28) {
+            this.products[28]["amount"].push(objs.cars[x]);
           }
         }
 
         for (let x = 0; x < objs.racers.length; x++) {
           if (objs.racers[x].car_id === 1) {
-            this.products[28]["amount"].push(objs.cars[x]);
-          }
-          if (objs.racers[x].car_id === 2) {
             this.products[29]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 3) {
+          if (objs.racers[x].car_id === 2) {
             this.products[30]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 4) {
+          if (objs.racers[x].car_id === 3) {
             this.products[31]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 5) {
+          if (objs.racers[x].car_id === 4) {
             this.products[32]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 6) {
+          if (objs.racers[x].car_id === 5) {
             this.products[33]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 7) {
+          if (objs.racers[x].car_id === 6) {
             this.products[34]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 8) {
+          if (objs.racers[x].car_id === 7) {
             this.products[35]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 8) {
+            this.products[36]["amount"].push(objs.cars[x]);
           }
         }
       }
