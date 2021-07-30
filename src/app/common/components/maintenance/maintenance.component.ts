@@ -21,10 +21,10 @@ export class MaintenanceComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // this.checkDeployed();
-    // this.mainInterval = setInterval(() => {
-    //   this.checkDeployed();
-    // }, 5000);
+    this.checkDeployed();
+    this.mainInterval = setInterval(() => {
+      this.checkDeployed();
+    }, 5000);
   }
 
   checkDeployed() {
