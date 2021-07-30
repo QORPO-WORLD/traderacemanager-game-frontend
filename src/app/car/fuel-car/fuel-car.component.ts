@@ -1,3 +1,4 @@
+
 import { BalanceService } from "./../../common/services/balance.service";
 import { AuthService } from "./../../user/services/auth.service";
 import { Subscription } from "rxjs";
@@ -28,6 +29,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   timerReady = false;
   fuel = 0;
   raceId: string;
+  raceIdentifier: string;
   pricePool: number;
   betAmount: number;
   raceData: NextRaceV2[];
@@ -440,6 +442,10 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       .racesMultiCanJoinV2List()
       .subscribe((data) => {
         const newdata: any = data;
+        let currentRace = newdata.filter(
+          (j) => this.raceId == j.race_hash
+        );
+        this.raceIdentifier = currentRace[0].race_identifier;
         const mynextrace = newdata.filter((item) => {
           return item.race_hash === this.raceId;
         });
@@ -507,6 +513,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getMyDriverStats() {
     this.myDriverStats = this.identityService.getStorageIdentity();
     this.getMyLevel();
+    console.log(this.myDriverStats);
   }
 
   calcPossibleMultibet() {
@@ -1412,6 +1419,14 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     );
 
     if (!isSituated) {
+
+      if (this.raceIdentifier === 'tesla_tournament_0') {
+        if (this.validateTeslaCarSelect(index) === 0) {
+          this.notify.error("Error", "You can fuel only one car from each edition + one extra tesla car.");
+          return;
+        }
+      }
+
       if (this.selectedCarsToRace.length > 4) {
         this.notify.error("Error", "You can fuel a maximum of 5 cars");
         return;
@@ -2022,4 +2037,49 @@ export class FuelCarComponent implements OnInit, OnDestroy {
       (j) => (j.extras.tier > 18 && j.extras.tier <= 24) || j.extras.tier == 28
     );
   }
+
+  validateTeslaCarSelect(index: number) {
+    let edition1 = [];
+    let teslas = [];
+    let edition2 = [];
+    let edition3 = [];
+    let edition4 = [];
+
+    if (this.editionIndex === 1) {
+      edition1 = this.selectedCarsToRace.filter(
+        (j) =>
+          (j.extras.tier >= 0 && j.extras.tier <= 6) ||
+          j.extras.tier == 25 ||
+          (j.extras.tier >= 41 && j.extras.tier !== 50 && j.extras.tier !== 60)
+      );
+      teslas = this.selectedCarsToRace.filter(
+        (j) => j.extras.tier == 60
+      );
+    } else if (this.editionIndex === 2) {
+      edition2 = this.selectedCarsToRace.filter(
+        (j) => (j.extras.tier > 6 && j.extras.tier <= 12) || j.extras.tier == 26
+      );
+    } else if (this.editionIndex === 3) {
+      edition3 = this.selectedCarsToRace.filter(
+        (j) => (j.extras.tier > 12 && j.extras.tier <= 18) || j.extras.tier == 27
+      );
+    } else if (this.editionIndex === 4) {
+      edition4 = this.selectedCarsToRace.filter(
+        (j) => (j.extras.tier > 18 && j.extras.tier <= 24) || j.extras.tier == 28
+      );
+    }
+
+    if (this.editionIndex === 1) {
+      if ((edition1.length > 0 && this.myCars1[index].extras.tier !== 60) || (edition1.length > 0 && teslas.length > 0)) {
+        return 0;
+      } else {
+        return 1;
+      }
+    } else if (edition2.length > 0 || edition3.length > 0 || edition4.length > 0) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+
 }

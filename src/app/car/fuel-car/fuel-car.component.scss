@@ -1639,14 +1639,38 @@ input[type="number"]::-webkit-outer-spin-button {
                     opacity: 0.4;
                     &.active {
                       opacity: 1;
+                      .btn-item{
+                        &:hover{
+                          &.not-premium{
+                            &.leverage{
+                              &.passive{
+                                opacity: 1;
+                              }
+                              .info-bubble{
+                                opacity: 1;
+                              }
+                              .inner{
+                                img{
+                                  opacity: .2;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                      .btn-item{
+                        &.passive{
+                          opacity: .2;
+                        }
+                      }
                     }
                     .btn-item {
                       width: calc(33.33% - 5px);
-
                       height: 50px;
                       position: relative;
                       cursor: pointer;
                       padding: 2px;
+                      transition: .25s;
                       &:active {
                         transform: translateY(2px);
                       }
@@ -1729,6 +1753,7 @@ input[type="number"]::-webkit-outer-spin-button {
                         text-align: center;
                         img {
                           margin-top: 5px;
+                          transition: .15s;
                         }
                         .active-img {
                           display: none;
@@ -1741,6 +1766,24 @@ input[type="number"]::-webkit-outer-spin-button {
                           text-align: center;
                           font-size: 14px;
                           width: 100%;
+                        }
+                      }
+                      .info-bubble{
+                        position: absolute;
+                        top: -5px;
+                        right: 0;
+                        padding: 5px 8px;
+                        background: #222222;
+                        transform: translateY(-100%);
+                        transition: .2s;
+                        opacity: 0;
+                        z-index: 5;
+                        pointer-events: none;
+                        p{
+                          margin: 0;
+                          font-size: 15px;
+                          font-family: "Earth Orbiter";
+                          white-space: nowrap;
                         }
                       }
                     }
@@ -3464,6 +3507,12 @@ button.g-button {
                           p {
                             font-size: 11px;
                             line-height: 1.2;
+                          }
+                        }
+                        .info-bubble{
+                          padding: 4px 7px;
+                          p{
+                            font-size: 12px;
                           }
                         }
                       }
@@ -5426,9 +5475,6 @@ button.g-button {
       }
     }
   }
-}
-.top-btns.active .passive {
-  opacity: 0.2;
 }
 
 @media screen and (min-width: 2100px) {
