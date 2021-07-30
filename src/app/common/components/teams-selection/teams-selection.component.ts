@@ -12,6 +12,7 @@ import { BalanceService } from "../../../common/services/balance.service";
 })
 export class TeamsSelectionComponent implements OnInit {
   @Output() endsIn = new EventEmitter<string>();
+  @Output() scrollTop = new EventEmitter<any>();
   @Input() managerType = false;
   teams: any;
   discount: any;
@@ -132,10 +133,7 @@ export class TeamsSelectionComponent implements OnInit {
           this.identityService.updateDriverMe();
           this.getMydriver();
           this.getMyTeam();
-          this.notify.error(
-            "sucess",
-            "You are now part of the team!"
-          );
+          this.notify.error("sucess", "You are now part of the team!");
         }, 100);
       });
   }
@@ -223,7 +221,13 @@ export class TeamsSelectionComponent implements OnInit {
     }
   }
 
-  openMembershipModal(state: number, teamId?: number, monthlyPrice?: number, quarterlyPrice?: number, yearlyPrice?: number) {
+  openMembershipModal(
+    state: number,
+    teamId?: number,
+    monthlyPrice?: number,
+    quarterlyPrice?: number,
+    yearlyPrice?: number
+  ) {
     this.modalOpened = state;
     if (teamId) {
       this.selectedTeamId = teamId;
@@ -266,5 +270,8 @@ export class TeamsSelectionComponent implements OnInit {
   closeManagerModal() {
     this.selectedTeamId = null;
     this.managerDisclaim = false;
+  }
+  emitScroll() {
+    this.scrollTop.emit();
   }
 }

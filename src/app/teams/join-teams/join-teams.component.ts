@@ -138,4 +138,7 @@ export class JoinTeamsComponent implements OnInit, OnDestroy {
   openLink(url: string) {
     window.open(url, "_blank").focus();
   }
+  scrollTop(elem1: HTMLElement) {
+    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }

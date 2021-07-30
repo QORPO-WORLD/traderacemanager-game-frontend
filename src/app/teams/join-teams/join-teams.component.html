@@ -1,4 +1,4 @@
-<div class="main-holder">
+<div class="main-holder" #top>
   <div class="join-teams-back-div">
     <div class="join-teams-back"></div>
   </div>
@@ -63,6 +63,7 @@
       <div class="teams-holder">
         <p class="category-title-second">Join a team to participate</p>
         <app-teams-selection
+          (scrollTop)="scrollTop(top)"
           (endsIn)="getMembEnd($event)"
           #teamSelection
         ></app-teams-selection>
