@@ -127,14 +127,6 @@
           />
 
           <img
-            *ngIf="item['type'] === 'track'"
-            class="img still track"
-            [src]="
-              '/assets/base/images/home-page/' + item['image'] + '-small.png'
-            "
-            [alt]="item['alt']"
-          />
-          <img
             *ngIf="item['type'] === 'special'"
             class="img special still"
             [src]="'/assets/base/images/home-page/' + item['image'] + '.png'"
@@ -312,12 +304,13 @@
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'racer'"
+            [ngClass]="{ 'nogif-hover': item['collection'] === 'Special' }"
+            *ngIf="item['type'] === 'racer' && item['gif']"
             class="img gif-racer"
             [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
             [alt]="item['alt']"
           />
+
           <img
             [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
@@ -326,29 +319,19 @@
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
+            [ngClass]="{ 'nogif-hover': item['collection'] === 'Special' }"
             *ngIf="item['type'] === 'car' && item['gif']"
             class="img gif-car"
             [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
             [alt]="item['alt']"
           />
           <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'car' && !item['gif']"
             class="img still car"
             [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
             [alt]="item['alt']"
           />
 
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'track'"
-            class="img still track"
-            [src]="
-              '/assets/base/images/home-page/' + item['image'] + '-small.png'
-            "
-            [alt]="item['alt']"
-          />
           <img
             [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
             *ngIf="item['type'] === 'special'"

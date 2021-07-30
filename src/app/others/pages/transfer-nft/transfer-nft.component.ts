@@ -22,12 +22,24 @@ export class TransferNftComponent implements OnInit {
   products: Array<object> = [
     //bronze
     {
+      id: 60,
+      position: 60,
+      collection: "Special",
+      name: "TESLA",
+      price: 50,
+      image: "car60",
+      type: "car",
+      rank: "low",
+      amount: [],
+      alt: "nft car Tesla",
+    },
+    {
       id: 9,
       position: 0,
       free: 6000,
       collection: "Common",
       name: "RHINO",
-      prize: "600 IOI",
+      price: 600,
       image: "car1",
       type: "car",
       ability1: 0.1,
@@ -41,7 +53,7 @@ export class TransferNftComponent implements OnInit {
       free: 12000,
       collection: "Common",
       name: "PANTHER",
-      prize: "600 IOI",
+      price: 600,
       image: "car2",
       type: "car",
       ability1: 0.1,
@@ -56,7 +68,7 @@ export class TransferNftComponent implements OnInit {
       free: 24000,
       collection: "Common",
       name: "ONYX",
-      prize: "600 IOI",
+      price: 600,
       image: "car3",
       type: "car",
       ability1: 0.1,
@@ -70,7 +82,7 @@ export class TransferNftComponent implements OnInit {
       free: 48000,
       collection: "Common",
       name: "ZANDER",
-      prize: "600 IOI",
+      price: 600,
       image: "car4",
       type: "car",
       ability1: 0.1,
@@ -84,7 +96,7 @@ export class TransferNftComponent implements OnInit {
       free: 96000,
       collection: "Common",
       name: "CYBORG",
-      prize: "600 IOI",
+      price: 600,
       image: "car5",
       type: "car",
       ability1: 0.1,
@@ -98,7 +110,7 @@ export class TransferNftComponent implements OnInit {
       free: 192000,
       collection: "Common",
       name: "VULCANIC",
-      prize: "600 IOI",
+      price: 600,
       image: "car6",
       type: "car",
       ability1: 0.1,
@@ -111,7 +123,7 @@ export class TransferNftComponent implements OnInit {
       position: 24,
       collection: "Common rare",
       name: "LUNA",
-      prize: "3 600 IOI",
+      price: 3600,
       image: "car25",
       type: "car",
       rare: true,
@@ -127,7 +139,7 @@ export class TransferNftComponent implements OnInit {
       free: 288000,
       collection: "Super",
       name: "DORIAN",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car7",
       type: "car",
       ability1: 0.33,
@@ -141,7 +153,7 @@ export class TransferNftComponent implements OnInit {
       free: 432000,
       collection: "Super",
       name: "PANTHER",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car8",
       type: "car",
       ability1: 0.33,
@@ -155,7 +167,7 @@ export class TransferNftComponent implements OnInit {
       free: 648000,
       collection: "Super",
       name: "ONYX",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car9",
       type: "car",
       ability1: 0.33,
@@ -169,7 +181,7 @@ export class TransferNftComponent implements OnInit {
       free: 972000,
       collection: "Super",
       name: "ZANDER",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car10",
       type: "car",
       ability1: 0.33,
@@ -183,7 +195,7 @@ export class TransferNftComponent implements OnInit {
       free: 1458000,
       collection: "Super",
       name: "PYTHON",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car11",
       type: "car",
       ability1: 0.33,
@@ -197,7 +209,7 @@ export class TransferNftComponent implements OnInit {
       free: 2187000,
       collection: "Super",
       name: "VULCANIC",
-      prize: "1 000 IOI",
+      price: 1000,
       image: "car12",
       type: "car",
       ability1: 0.33,
@@ -210,7 +222,7 @@ export class TransferNftComponent implements OnInit {
       position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
-      prize: "6 000 IOI",
+      price: 6000,
       image: "car26",
       type: "car",
       rare: true,
@@ -226,7 +238,7 @@ export class TransferNftComponent implements OnInit {
       free: 3000000,
       collection: "Epic",
       name: "CYBORG",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car13",
       type: "car",
       ability1: 0.79,
@@ -240,7 +252,7 @@ export class TransferNftComponent implements OnInit {
       free: 3600000,
       collection: "Epic",
       name: "RHINO",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car14",
       type: "car",
       ability1: 0.79,
@@ -254,7 +266,7 @@ export class TransferNftComponent implements OnInit {
       free: 4320000,
       collection: "Epic",
       name: "HYPER",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car15",
       type: "car",
       ability1: 0.79,
@@ -268,7 +280,7 @@ export class TransferNftComponent implements OnInit {
       free: 5184000,
       collection: "Epic",
       name: "BULL",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car16",
       type: "car",
       ability1: 0.79,
@@ -282,7 +294,7 @@ export class TransferNftComponent implements OnInit {
       free: 6220000,
       collection: "Epic",
       name: "PYTHON",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car17",
       type: "car",
       ability1: 0.79,
@@ -296,7 +308,7 @@ export class TransferNftComponent implements OnInit {
       free: 7465000,
       collection: "Epic",
       name: "HITMAN",
-      prize: "1 600 IOI",
+      price: 1600,
       image: "car18",
       type: "car",
       ability1: 0.79,
@@ -309,7 +321,7 @@ export class TransferNftComponent implements OnInit {
       position: 26,
       collection: "Epic rare",
       name: "MIDAS",
-      prize: "9 600 IOI",
+      price: 9600,
       image: "car27",
       type: "car",
       rare: true,
@@ -325,7 +337,7 @@ export class TransferNftComponent implements OnInit {
       free: 8200000,
       collection: "Legendary",
       name: "HYPER",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car19",
       type: "car",
       ability1: 1.71,
@@ -339,7 +351,7 @@ export class TransferNftComponent implements OnInit {
       free: 9000000,
       collection: "Legendary",
       name: "DORIAN",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car20",
       type: "car",
       ability1: 1.71,
@@ -353,7 +365,7 @@ export class TransferNftComponent implements OnInit {
       free: 9900000,
       collection: "Legendary",
       name: "VULCANIC",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car21",
       type: "car",
       ability1: 1.71,
@@ -367,7 +379,7 @@ export class TransferNftComponent implements OnInit {
       free: 10890000,
       collection: "Legendary",
       name: "BULL",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car22",
       type: "car",
       ability1: 1.71,
@@ -381,7 +393,7 @@ export class TransferNftComponent implements OnInit {
       free: 12000000,
       collection: "Legendary",
       name: "KNOCKOUT",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car23",
       type: "car",
       ability1: 1.71,
@@ -395,7 +407,7 @@ export class TransferNftComponent implements OnInit {
       free: 13200000,
       collection: "Legendary",
       name: "LARA",
-      prize: "2 600 IOI",
+      price: 2600,
       image: "car24",
       type: "car",
       ability1: 1.71,
@@ -408,7 +420,7 @@ export class TransferNftComponent implements OnInit {
       position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
-      prize: "15 600 IOI",
+      price: 15600,
       image: "car28",
       type: "car",
       rare: true,
@@ -421,7 +433,7 @@ export class TransferNftComponent implements OnInit {
       id: 1,
       collection: "Super",
       name: "Axle",
-      prize: 100,
+      price: 100,
       image: "white-trm",
       gif: "white-trm-animation",
       type: "racer",
@@ -436,7 +448,7 @@ export class TransferNftComponent implements OnInit {
       id: 2,
       collection: "Super",
       name: "Flash",
-      prize: 100,
+      price: 100,
       image: "red-trm",
       gif: "red-trm-animation",
       type: "racer",
@@ -450,7 +462,7 @@ export class TransferNftComponent implements OnInit {
       id: 3,
       collection: "Super",
       name: "Octane",
-      prize: 100,
+      price: 100,
       image: "blue-trm",
       gif: "blue-trm-animation",
       type: "racer",
@@ -464,7 +476,7 @@ export class TransferNftComponent implements OnInit {
       id: 4,
       collection: "Super",
       name: "Punisher",
-      prize: 100,
+      price: 100,
       image: "black-trm",
       gif: "black-trm-animation",
       type: "racer",
@@ -478,7 +490,7 @@ export class TransferNftComponent implements OnInit {
       id: 5,
       collection: "Epic",
       name: "Lady Rich",
-      prize: 1000,
+      price: 1000,
       image: "lady-rich",
       gif: "lady-rich-animation",
       type: "racer",
@@ -492,7 +504,7 @@ export class TransferNftComponent implements OnInit {
       id: 6,
       collection: "Epic",
       name: "Rich Jr.",
-      prize: 1000,
+      price: 1000,
       image: "bad-boy",
       gif: "bad-boy-animation",
       type: "racer",
@@ -506,7 +518,7 @@ export class TransferNftComponent implements OnInit {
       id: 7,
       collection: "Epic",
       name: "Mrs. Rich",
-      prize: 1000,
+      price: 1000,
       image: "mrs-rich",
       gif: "mrs-rich-animation",
       type: "racer",
@@ -520,7 +532,7 @@ export class TransferNftComponent implements OnInit {
       id: 8,
       collection: "Legendary",
       name: "Mr. Rich",
-      prize: 10000,
+      price: 10000,
       image: "mr-rich",
       gif: "mr-rich-animation",
       type: "racer",
@@ -532,131 +544,10 @@ export class TransferNftComponent implements OnInit {
       alt: "nft racer mr. rich",
     },
     {
-      id: 37,
-      collection: "Race tracks",
-      name: "Free track",
-      prize: "Coming soon",
-      image: "free-track",
-      type: "track",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track free",
-    },
-    {
-      id: 38,
-      collection: "Race tracks",
-      name: "Desert",
-      prize: "Coming soon",
-      image: "desert",
-      type: "track",
-      bet: "1 IOI",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track desert",
-    },
-    {
-      id: 39,
-      collection: "Race tracks",
-      name: "Dark forest",
-      prize: "Coming soon",
-      image: "dark-forest",
-      type: "track",
-      bet: "5 IOI",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track dark forest",
-    },
-    {
-      id: 40,
-      collection: "Race tracks",
-      name: "Night city",
-      prize: "Coming soon",
-      image: "night-city",
-      type: "track",
-      bet: "10 IOI",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track night city",
-    },
-    {
-      id: 41,
-      collection: "Race tracks",
-      name: "Sea bridge",
-      prize: "Coming soon",
-      image: "sea-bridge",
-      type: "track",
-      bet: "50 IOI",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track sea bridge",
-    },
-
-    {
-      id: 42,
-      collection: "Race tracks",
-      name: "Underground",
-      prize: "Coming soon",
-      image: "underground",
-      type: "track",
-      bet: "100 IOI",
-      ability1: "2 minutes",
-      ability2: "Random events",
-      amount: [],
-      alt: "nft track underground",
-    },
-    {
-      id: 43,
-      collection: "",
-      name: "BTC",
-      prize: "",
-      image: "btc-team",
-      type: "team",
-      amount: [],
-      alt: "nft team btc",
-    },
-
-    {
-      id: 44,
-      collection: "",
-      name: "IOI",
-      prize: "",
-      image: "ioi-team",
-      type: "team",
-      amount: [],
-      alt: "nft team ioi",
-    },
-    {
-      id: 45,
-      collection: "",
-      name: "ALT",
-      prize: "",
-      image: "alt-team",
-      type: "team",
-      amount: [],
-      alt: "nft team alt",
-    },
-    {
-      id: 46,
-      collection: "",
-      name: "You",
-      prize: "1 000 IOI",
-      image: "team-you",
-      type: "team",
-      ability1: "50 IOI",
-      ability2: "20%",
-      amount: [],
-      alt: "nft tea you",
-    },
-    {
       id: 47,
       collection: "",
       name: "Trophy",
-      prize: "",
+      price: "",
       image: "trophy",
       type: "special",
       ability2: "Yearly",
@@ -667,7 +558,7 @@ export class TransferNftComponent implements OnInit {
       id: 48,
       collection: "",
       name: "Ring",
-      prize: "",
+      price: "",
       image: "ring",
       type: "special",
       ability1: "Entry to yearly tournament",
@@ -676,7 +567,7 @@ export class TransferNftComponent implements OnInit {
       alt: "nft monthly ring",
     },
   ];
-  nftType = 'car';
+  nftType = "car";
   driverBalances: any;
   constructor(
     protected notify: NotifiqService,
@@ -699,9 +590,7 @@ export class TransferNftComponent implements OnInit {
         this.nftId = 1;
       }
     });
-    if (this.nftType === 'car') {
-      this.resolveCarEdition(this.nftId);
-    }
+
     this.resolveShowAsset();
   }
 
@@ -710,15 +599,16 @@ export class TransferNftComponent implements OnInit {
     this.driverBalances = this.identityService.getBalance();
   }
   resolveShowAsset() {
-    if (this.nftType === 'car') {
+    if (this.nftType === "car") {
       this.products = this.products.filter(
         (asset) => asset["position"] === this.nftId - 1
       );
-    } else if (this.nftType === 'racer') {
+      this.nftIoiValue = this.products[0]["price"];
+    } else if (this.nftType === "racer") {
       this.products = this.products.filter(
         (asset) => asset["id"] === this.nftId
       );
-      this.nftIoiValue = this.products[0]["prize"]
+      this.nftIoiValue = this.products[0]["price"];
     }
   }
 
@@ -727,38 +617,10 @@ export class TransferNftComponent implements OnInit {
     this.accountValue = data.game_wallet_ioi * data.ioi_usdt;
   }
 
-  resolveCarEdition(id: number) {
-    if (id < 7 || id == 25) {
-      this.nftEdition = 1;
-      this.nftIoiValue = 600;
-      if (id == 25) {
-        this.nftIoiValue = 3600;
-      }
-    } else if ((id >= 7 && id < 13) || id == 26) {
-      this.nftEdition = 2;
-      this.nftIoiValue = 1000;
-      if (id == 26) {
-        this.nftIoiValue = 6000;
-      }
-    } else if ((id >= 13 && id < 19) || id == 27) {
-      this.nftEdition = 3;
-      this.nftIoiValue = 1600;
-      if (id == 27) {
-        this.nftIoiValue = 9600;
-      }
-    } else if ((id >= 19 && id < 25) || id == 28) {
-      this.nftEdition = 4;
-      this.nftIoiValue = 2600;
-      if (id == 28) {
-        this.nftIoiValue = 15600;
-      }
-    }
-  }
-
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc
       .nitroWalletTransferCreate({
-        currency: this.nftType + '_' + this.nftId.toString(),
+        currency: this.nftType + "_" + this.nftId.toString(),
         amount: this.amount,
         mode: "races2nitro",
       })
