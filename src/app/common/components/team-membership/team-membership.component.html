@@ -194,15 +194,24 @@
                 >
               </button>
             </div>
-            <p class="classic-desc space">
+            <!-- <p class="classic-desc space">
               your membership will start on 1st of august until 31st of august
-            </p>
-            <p class="classic-desc space-small my-text-color">
-              you already have valid membership in alt team until 31st of july
+            </p> -->
+            <p
+              *ngIf="selectedTeam[0].memberships.length > 0"
+              class="classic-desc space my-text-color"
+            >
+              you already have membership in {{ selectedTeam[0]?.name }} team
+              until
+              {{ myMembEnd | date: "longDate" }}
             </p>
             <button
+              [ngClass]="{
+                'space-big': selectedTeam[0].memberships.length === 0,
+                space: selectedTeam[0].memberships.length > 0
+              }"
               (click)="joinTeam(selectedTeamId)"
-              class="buy-btn space my-cta-btn-back category-title-fourth"
+              class="buy-btn my-cta-btn-back category-title-fourth"
             >
               <img
                 src="/assets/base/images/icons/ioi-big.svg"
