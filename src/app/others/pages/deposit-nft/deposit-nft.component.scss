@@ -35,10 +35,26 @@
           right: 0;
           transform: none;
           height: 100%;
-          width: 50%;
+          width: 55%;
+          align-items: flex-start;
+          justify-content: space-evenly;
           .name {
-            margin-right: 0;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            p {
+              &.desc {
+                margin-left: 15px;
+              }
+            }
+          }
+          .value {
+            display: flex;
+            align-items: center;
+            p {
+              &.desc {
+                margin-left: 15px;
+              }
+            }
           }
         }
       }
@@ -48,6 +64,11 @@
         position: relative;
         top: -20px;
         transform: scale(1.1);
+        &.racer-img {
+          transform: scale(1.2);
+          top: 0px;
+          left: -40px;
+        }
       }
       .car-stats {
         display: flex;
@@ -85,7 +106,7 @@
             }
           }
           img {
-            max-width: 40px;
+            max-width: 35px;
           }
         }
       }
@@ -1027,6 +1048,23 @@
     }
   }
 }
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .content-holder {
+    .left-holder {
+      .img-holder {
+        .car-stats {
+          .value {
+            p {
+              img {
+                width: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media screen and(max-width: 1024px) and (orientation: portrait) {
   .main-holder {
     min-height: calc(var(--vh, 1vh) * 100);
@@ -1112,6 +1150,31 @@
 }
 
 @media screen and (max-width: 640px) and (orientation: portrait) {
+  .content-holder {
+    .left-holder {
+      .img-holder {
+        &.racer {
+          .car-stats {
+            width: 60%;
+            .name {
+              p {
+                &.desc {
+                  margin-left: 7px;
+                }
+              }
+            }
+            .value {
+              p {
+                &.desc {
+                  margin-left: 7px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .main-holder {
     min-height: calc(var(--vh, 1vh) * 100);
     height: auto;
