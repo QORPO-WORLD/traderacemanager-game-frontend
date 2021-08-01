@@ -94,6 +94,13 @@ h3 {
   font-weight: normal;
   font-size: 18px;
 }
+.position-text {
+  opacity: 1;
+  font-family: "Earth Orbiter";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
 .dashboard-content {
   width: 100%;
   display: flex;
@@ -244,10 +251,33 @@ h3 {
       }
     }
     .team-img {
+      cursor: pointer;
       z-index: 2;
       position: absolute;
       right: 30%;
-      bottom: 25%;
+      bottom: 32%;
+      .team-position {
+        width: 160px;
+        height: 54px;
+        transition: 0.3s;
+        opacity: 0;
+        position: absolute;
+        bottom: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        .position-text {
+          text-align: center;
+          position: absolute;
+          top: 60%;
+          transform: translate(-50%, -50%);
+          left: 50%;
+        }
+        img {
+          transform: rotate(180deg);
+          width: 100%;
+          height: 100%;
+        }
+      }
       .badge-name {
         top: 45%;
         left: 49%;
@@ -286,6 +316,11 @@ h3 {
         &.non-premium {
           width: 35px;
         }
+      }
+    }
+    .team-img:hover {
+      .team-position {
+        opacity: 1;
       }
     }
     img {
@@ -606,6 +641,9 @@ h3 {
   .upgrade-text {
     font-size: 15px;
   }
+  .position-text {
+    font-size: 15px;
+  }
   .dashboard-content {
     .dashboard-avatars {
       .square {
@@ -617,6 +655,11 @@ h3 {
         }
       }
       .team-img {
+        .team-position {
+          bottom: -55px;
+          height: 40px;
+          width: 140px;
+        }
         .premium {
           top: 17.5px;
           right: 17.5px;
@@ -697,6 +740,11 @@ h3 {
 @media screen and(max-width: 1400px) {
   .dashboard-content {
     .dashboard-avatars {
+      .team-img {
+        .team-position {
+          width: 110px;
+        }
+      }
       .square {
         .bubble {
           height: 40px;
@@ -843,6 +891,11 @@ h3 {
   }
   .dashboard-content {
     .dashboard-avatars {
+      .team-img {
+        .team-position {
+          display: none;
+        }
+      }
       .square {
         .bubble {
           display: none;
@@ -870,6 +923,9 @@ h3 {
     line-height: 14px;
   }
   .upgrade-text {
+    font-size: 9px;
+  }
+  .position-text {
     font-size: 9px;
   }
   .logo {
