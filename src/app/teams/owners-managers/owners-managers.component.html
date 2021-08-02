@@ -3,7 +3,7 @@
     <div
       class="clickers"
       *ngIf="OwnerManagerType == 'home'"
-      [routerLink]="['/teams/join-teams']"
+      [routerLink]="['/race/start-race']"
     ></div>
     <div
       class="clickers"
@@ -22,36 +22,49 @@
     />
     <p>BACK</p>
   </div>
-
+  <div class="side-avatars">
+    <img
+      *ngIf="OwnerManagerType == 'home'"
+      class="left-avatar"
+      src="/assets/base/images/nft-racers/mr-rich.png"
+      alt="Mr. rich avatar"
+    />
+    <img
+      *ngIf="OwnerManagerType == 'home'"
+      class="right-avatar"
+      src="/assets/base/images/nft-racers/black-trm-left.png"
+      alt="Black-trm avatar"
+    />
+  </div>
   <div class="owners-managers-holder" *ngIf="OwnerManagerType == 'home'">
     <div class="box-container">
-      <div class="box-holder">
+      <div class="box-holder owner">
         <p class="box-heading">Become an Owner</p>
         <div class="box-owner box">
-          <p>
-            <img
-              src="/assets/base/images/owners-managers/owner-icon1.svg"
-              alt=""
-            />{{ "owners_managers.owner-benefit1" | translate }}
-          </p>
-          <p>
-            <img
-              src="/assets/base/images/owners-managers/owner-icon2.svg"
-              alt=""
-            />{{ "owners_managers.owner-benefit2" | translate }}
-          </p>
-          <p>
-            <img
-              src="/assets/base/images/owners-managers/owner-icon3.svg"
-              alt=""
-            />{{ "owners_managers.owner-benefit3" | translate }}
-          </p>
-          <p class="last">
-            <img
-              src="/assets/base/images/icons/gift-red.svg"
-              alt="red gift"
-            />Lifetime Premium membership
-          </p>
+          <div class="text-holder">
+            <p>
+              <img src="/assets/base/images/icons/badge-white.svg" alt="" />{{
+                "owners_managers.owner-benefit1" | translate
+              }}
+            </p>
+            <p>
+              <img src="/assets/base/images/icons/coins-white.svg" alt="" />{{
+                "owners_managers.owner-benefit2" | translate
+              }}
+            </p>
+            <p>
+              <img
+                src="/assets/base/images/icons/race-flag-white.svg"
+                alt=""
+              />{{ "owners_managers.owner-benefit3" | translate }}
+            </p>
+            <p class="last">
+              <img
+                src="/assets/base/images/icons/gift-white.svg"
+                alt="red gift"
+              />Lifetime Premium membership
+            </p>
+          </div>
           <div class="statement">
             <span>
               {{ "owners_managers.owner-statement" | translate }}
@@ -65,33 +78,33 @@
         </div>
       </div>
 
-      <div class="box-holder">
+      <div class="box-holder manager">
         <p class="box-heading">Become a Manager</p>
         <div class="box-manager box">
-          <p>
-            <img
-              src="/assets/base/images/owners-managers/manager-icon1.svg"
-              alt=""
-            />{{ "owners_managers.manager-benefit1" | translate }}
-          </p>
-          <p>
-            <img
-              src="/assets/base/images/owners-managers/manager-icon2.svg"
-              alt=""
-            />{{ "owners_managers.manager-benefit2" | translate }}
-          </p>
-          <p class="last">
-            <img
-              src="/assets/base/images/owners-managers/manager-icon3.svg"
-              alt=""
-            />{{ "owners_managers.manager-benefit3" | translate }}
-          </p>
-          <p class="last hidden">
-            <img
-              src="/assets/base/images/owners-managers/manager-icon3.svg"
-              alt=""
-            />{{ "owners_managers.manager-benefit3" | translate }}
-          </p>
+          <div class="text-holder">
+            <p>
+              {{ "owners_managers.manager-benefit1" | translate }}
+              <img
+                src="/assets/base/images/icons/manager-icon-white.svg"
+                alt=""
+              />
+            </p>
+            <p>
+              {{ "owners_managers.manager-benefit2" | translate
+              }}<img src="/assets/base/images/icons/coins-white.svg" alt="" />
+            </p>
+            <p class="last">
+              {{ "owners_managers.manager-benefit3" | translate
+              }}<img src="/assets/base/images/icons/settings.svg" alt="" />
+            </p>
+            <p class="last hidden">
+              {{ "owners_managers.manager-benefit3" | translate }}
+              <img
+                src="/assets/base/images/owners-managers/manager-icon3.svg"
+                alt=""
+              />
+            </p>
+          </div>
           <div class="statement">
             <span>
               {{ "owners_managers.manager-statement" | translate }}
