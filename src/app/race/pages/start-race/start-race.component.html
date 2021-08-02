@@ -264,10 +264,28 @@
             src="/assets/base/images/start-race/upgrade-blue.png"
             alt="bubble icon"
           />
-          <p *ngIf="accountInfo.is_manager === true" class="position-text">
+          <p
+            *ngIf="
+              accountInfo.is_manager === true && accountInfo.is_owner === true
+            "
+            class="position-text"
+          >
+            Owner
+          </p>
+          <p
+            *ngIf="
+              accountInfo.is_manager === true && accountInfo.is_owner === false
+            "
+            class="position-text"
+          >
             Manager
           </p>
-          <p *ngIf="accountInfo.is_owner === true" class="position-text">
+          <p
+            *ngIf="
+              accountInfo.is_owner === true && accountInfo.is_manager === false
+            "
+            class="position-text"
+          >
             Owner
           </p>
           <p
@@ -323,10 +341,20 @@
           >
             Owner
           </p>
-          <p *ngIf="accountInfo.is_manager === true" class="position-text">
+          <p
+            *ngIf="
+              accountInfo.is_manager === true && accountInfo.is_owner === false
+            "
+            class="position-text"
+          >
             Manager
           </p>
-          <p *ngIf="accountInfo.is_owner === true" class="position-text">
+          <p
+            *ngIf="
+              accountInfo.is_owner === true && accountInfo.is_manager === false
+            "
+            class="position-text"
+          >
             Owner
           </p>
           <p
