@@ -125,7 +125,8 @@ class LeaderboardService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-     if (params.page != null) __params = __params.set('page', params.page.toString());
+    if (params.lastMonth != null) __params = __params.set('last_month', params.lastMonth.toString());
+    if (params.page != null) __params = __params.set('page', params.page.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/races/leaderboard/players`,
@@ -247,7 +248,6 @@ class LeaderboardService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (params.lastMonth != null) __params = __params.set('last_month', params.lastMonth.toString());
     if (params.page != null) __params = __params.set('page', params.page.toString());
     let req = new HttpRequest<any>(
       'GET',

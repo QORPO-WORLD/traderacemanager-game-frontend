@@ -21,6 +21,7 @@ export class AllPlayersComponent implements OnInit {
   cachedLdrbrd: any;
   Affiliate: any;
   isPageWithMe = false;
+  isLastMonth = false;
   updateTime: string;
   rewards = [300,200,130,100,70,60,50,40,30,20]
   constructor(protected ldrbrdSrvc: LeaderboardService, private drvrsrvc: DriversService,
@@ -44,7 +45,7 @@ export class AllPlayersComponent implements OnInit {
 
   getMyLeaderboard() {
     this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardPlayerList({
-      page: this.actualPage, lastMonth: false
+      page: this.actualPage, lastMonth: this.isLastMonth
     })
       .subscribe(datax => {
         const data: any = datax;
@@ -92,4 +93,10 @@ export class AllPlayersComponent implements OnInit {
     this.Affiliate = this.identityService.getStorageAff();
     console.log(this.Affiliate);
   }
+
+  setLastMonth(isLast: boolean) {
+    this.isLastMonth = isLast;
+    this.getMyLeaderboard();
+  }
+
 }
