@@ -42,7 +42,7 @@ export class OwnerLeaderboardComponent implements OnInit {
 
   getMyLeaderboard() {
     this.myLdrbrdObserver = this.ldrbrdSrvc.leaderboardOwnersList({
-      page: this.actualPage, lastMonth: false
+      page: this.actualPage
     })
       .subscribe(datax => {
         const data: any = datax;
