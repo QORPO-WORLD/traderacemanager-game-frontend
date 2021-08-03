@@ -201,18 +201,14 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
 
     if (this.currency === null && this.contractId !== null && this.ethMtfrckr.length === 42) {
       this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', contract_id: this.contractId }).subscribe(data => {
-        console.log(data);
+        this.depositSuccessful = true;
       });
     }
 
     if (this.currency !== null && this.contractId === null && this.ethMtfrckr.length === 42) {
       this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', currency: this.currency }).subscribe(data => {
-        console.log(data);
+        this.depositSuccessful = true;
       });
     }
-
-    setTimeout(() => {
-      this.depositSuccessful = true;
-    }, 2000);
   }
 }
