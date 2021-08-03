@@ -698,10 +698,10 @@ export class NftOverviewComponent implements OnInit {
         }
       }
       if (this.teamsCount === 0) {
-        if (this.active <= 3) {
+        if (this.active <= 2) {
           this.active++;
         }
-        if (this.active > 3) {
+        if (this.active > 2) {
           this.active = 1;
         }
       }
