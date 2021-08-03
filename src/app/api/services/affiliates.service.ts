@@ -31,7 +31,7 @@ class AffiliatesService extends __BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    //if (page != null) __params = __params.set('page', page.toString());
+    if (page != null) __params = __params.set('page', page.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/me/list-affiliates`,

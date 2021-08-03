@@ -45,7 +45,6 @@ export class MyReferralsComponent implements OnInit {
   getAffilate() {
     this.affService.affiliatesMe().subscribe((data) => {
       this.affMe = data;
-      console.log(this.affMe);
     });
   }
 }
