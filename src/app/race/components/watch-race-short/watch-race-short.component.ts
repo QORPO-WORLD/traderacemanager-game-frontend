@@ -1,26 +1,39 @@
-import { RewardsService } from 'src/app/api/services';
-import { BalanceService } from './../../../common/services/balance.service';
-import { AuthService } from 'src/app/user/services/auth.service';
-import { RaceSignupV2 } from './../../../api/models/race-signup-v2';
-import { RaceStat } from './../../../api/models/race-stat';
-import { RaceDetail } from './../../../api/models/race-detail';
-import { NotifiqService } from './../../../common/services/notifiq.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
-import { RacesService, AffiliatesService, DriversService, TickerPricesService, CarsService } from '../../../api/services';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { CurrentRace, NextRaceV2, TournamentLeaderboard } from 'src/app/api/models';
-import { Experience, ExperienceService } from 'src/app/common/services/experience.service';
-import { format } from 'url';
-import { DateTime, Settings } from 'luxon';
+import { RewardsService } from "src/app/api/services";
+import { BalanceService } from "./../../../common/services/balance.service";
+import { AuthService } from "src/app/user/services/auth.service";
+import { RaceSignupV2 } from "./../../../api/models/race-signup-v2";
+import { RaceStat } from "./../../../api/models/race-stat";
+import { RaceDetail } from "./../../../api/models/race-detail";
+import { NotifiqService } from "./../../../common/services/notifiq.service";
+import { Subscription } from "rxjs/Subscription";
+import { Observable } from "rxjs/Observable";
+import { Component, OnInit, OnDestroy, Input, ViewChild } from "@angular/core";
+import {
+  RacesService,
+  AffiliatesService,
+  DriversService,
+  TickerPricesService,
+  CarsService,
+} from "../../../api/services";
+import { Router, ActivatedRoute } from "@angular/router";
+import { NgIf } from "@angular/common";
+import {
+  CurrentRace,
+  NextRaceV2,
+  TournamentLeaderboard,
+} from "src/app/api/models";
+import {
+  Experience,
+  ExperienceService,
+} from "src/app/common/services/experience.service";
+import { format } from "url";
+import { DateTime, Settings } from "luxon";
 declare let ga: any;
 /*import * as html2canvas from "html2canvas"; */
 @Component({
-  selector: 'app-watch-race-short',
-  templateUrl: './watch-race-short.component.html',
-  styleUrls: ['./watch-race-short.component.scss']
+  selector: "app-watch-race-short",
+  templateUrl: "./watch-race-short.component.html",
+  styleUrls: ["./watch-race-short.component.scss"],
 })
 export class WatchRaceShortComponent implements OnInit, OnDestroy {
   @ViewChild("bonusModal") bonusModal: any;
@@ -86,8 +99,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   detailInterval: any;
   raceDataildata: RaceDetail;
   detailClone: RaceDetail;
-  myUid = 'not-me';
-  myUsername = '';
+  myUid = "not-me";
+  myUsername = "";
   backType = 1;
   billboardType = 1;
   initialCars: any;
@@ -136,23 +149,23 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   closedModal = false;
   reverse = true;
   loserCar: any;
-  mirek = 'mirek';
+  mirek = "mirek";
   myMotives: Array<any> = [
-    { id: 0, name: 'map' },
-    { id: 1, name: 'map' },
-    { id: 2, name: 'map' },
-    { id: 2, name: 'map' },
-    { id: 4, name: 'map' },
-    { id: 5, name: 'map' },
-    { id: 6, name: 'map' },
-    { id: 7, name: 'map' },
-    { id: 8, name: 'map' },
-    { id: 9, name: 'map' }
+    { id: 0, name: "map" },
+    { id: 1, name: "map" },
+    { id: 2, name: "map" },
+    { id: 2, name: "map" },
+    { id: 4, name: "map" },
+    { id: 5, name: "map" },
+    { id: 6, name: "map" },
+    { id: 7, name: "map" },
+    { id: 8, name: "map" },
+    { id: 9, name: "map" },
   ];
   numbers = [];
   frozenTicket: boolean;
   currentExpLevel: number;
-  progressBarPercentage
+  progressBarPercentage;
   previousLevelExp: number;
   nextLevelExp: number;
   repeatDisabled = false;
@@ -177,54 +190,71 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   actualPageWinner = 1;
   totalPagesWinner: number;
   showRotateMsg = true;
-  points = [25,18,15,12,10,8,6,4,2,1];
+  points = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
   carsClone: Array<any>;
-  constructor(private router: Router, protected api: RacesService, protected route: ActivatedRoute,
-    private notify: NotifiqService, protected drvrsrvc: DriversService, private actv: ActivatedRoute,
-    private tcksrvc: TickerPricesService, private crsrcvc: CarsService, private identityService: AuthService,
-    private experience: ExperienceService, private balanceService: BalanceService, private rwrdsrvc: RewardsService) {
-
-  }
+  constructor(
+    private router: Router,
+    protected api: RacesService,
+    protected route: ActivatedRoute,
+    private notify: NotifiqService,
+    protected drvrsrvc: DriversService,
+    private actv: ActivatedRoute,
+    private tcksrvc: TickerPricesService,
+    private crsrcvc: CarsService,
+    private identityService: AuthService,
+    private experience: ExperienceService,
+    private balanceService: BalanceService,
+    private rwrdsrvc: RewardsService
+  ) {}
 
   ngOnInit() {
     if (this.myRaceid !== undefined) {
       this.raceId = this.myRaceid;
     } else {
-      this.raceId = this.actv.snapshot.paramMap.get('id');
+      this.raceId = this.actv.snapshot.paramMap.get("id");
     }
 
     setTimeout(() => {
-      this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
-        //const retypeData: any = data; 
+      this.firstObservable = this.api
+        .racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage })
+        .subscribe((data) => {
+          //const retypeData: any = data;
 
-        this.raceDataildata = data;
-        this.endsIn = data.ends_in;
-        if (data.race_progress > 0) {
-          this.startRace();
-        } else {
-          if (this.startsInChecked === false) {
-            this.startsInChecked = true;
-            this.startsIn = this.getWhenStarts();
-            this.whenStarts();
+          this.raceDataildata = data;
+          this.endsIn = data.ends_in;
+          if (data.race_progress > 0) {
+            this.startRace();
+          } else {
+            if (this.startsInChecked === false) {
+              this.startsInChecked = true;
+              this.startsIn = this.getWhenStarts();
+              this.whenStarts();
+            }
           }
-        }
 
-        if (data.tournament_id !== null && data.tour_index > 1) {
-          this.getLdrv();
-        }
-        if (data.is_cancelled === true) {
-          this.notify.error('', 'Not enough players to start, you will be redirected.');
-          this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]);
-        }
+          if (data.tournament_id !== null && data.tour_index > 1) {
+            this.getLdrv();
+          }
+          if (data.is_cancelled === true) {
+            this.notify.error(
+              "",
+              "Not enough players to start, you will be redirected."
+            );
+            this.router.navigate([
+              "/race/watch-race-3min/" + this.nextRaceHash,
+            ]);
+          }
 
-        this.resolveBackType();
-        this.getMotive();
-
-
-      });
+          this.resolveBackType();
+          this.getMotive();
+        });
     }, 300);
-    setTimeout(() => { this.getRaceData(); }, 50);
-    setTimeout(() => { this.showRotateMsg = false }, 6000);
+    setTimeout(() => {
+      this.getRaceData();
+    }, 50);
+    setTimeout(() => {
+      this.showRotateMsg = false;
+    }, 6000);
     this.detailInterval = setInterval(() => {
       this.getRaceDetail();
       this.recognizeSound();
@@ -234,40 +264,38 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     this.getMyCars();
 
-    
     const data = this.identityService.getStorageIdentity();
 
-    setTimeout(() => { 
-      if(this.raceDataildata.my_cars.length===1 && this.raceDataildata.my_cars[0]['c']==0){
+    setTimeout(() => {
+      if (
+        this.raceDataildata.my_cars.length === 1 &&
+        this.raceDataildata.my_cars[0]["c"] == 0
+      ) {
         this.hasNft = false;
-      }
-      else{
+      } else {
         this.hasNft = true;
       }
-      if(data.is_system_team === true){
-       this.isPremium = false;
-      }
-      else{
+      if (data.is_system_team === true) {
+        this.isPremium = false;
+      } else {
         this.isPremium = true;
       }
       this.bonusModal.openModal(this.isPremium, this.hasNft);
-     }, 1000);
-    
+    }, 1000);
 
     if (data.is_in_tutorial === true && window.innerWidth > 1024) {
-      localStorage.setItem('first-race', JSON.stringify({
-        first: true
-      }));
+      localStorage.setItem(
+        "first-race",
+        JSON.stringify({
+          first: true,
+        })
+      );
       this.verifyModal = true;
     }
 
     this.recognizeGame();
     //this.recognizeSound();
-
-    
   }
-
-
 
   routerOnDeactivate() {
     clearInterval(this.detailInterval);
@@ -275,16 +303,20 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     clearInterval(this.moveInterval);
     if (this.sound) {
       this.sound.pause();
-    } if (this.raceSound) {
+    }
+    if (this.raceSound) {
       this.raceSound.pause();
       this.raceSound = null;
-    } if (this.endSound) {
+    }
+    if (this.endSound) {
       this.endSound.pause();
       this.endSound = null;
-    } if (this.startSound) {
+    }
+    if (this.startSound) {
       this.startSound.pause();
       this.startSound = null;
-    } if (this.beforeSound) {
+    }
+    if (this.beforeSound) {
       this.beforeSound.pause();
       this.beforeSound = null;
     }
@@ -328,16 +360,20 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     clearInterval(this.detailInterval);
     if (this.sound) {
       this.sound.pause();
-    } if (this.raceSound) {
+    }
+    if (this.raceSound) {
       this.raceSound.pause();
       this.raceSound = null;
-    } if (this.endSound) {
+    }
+    if (this.endSound) {
       this.endSound.pause();
       this.endSound = null;
-    } if (this.startSound) {
+    }
+    if (this.startSound) {
       this.startSound.pause();
       this.startSound = null;
-    } if (this.beforeSound) {
+    }
+    if (this.beforeSound) {
       this.beforeSound.pause();
       this.beforeSound = null;
     }
@@ -347,43 +383,45 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getRaceDetail() {
+    this.firstObservable = this.api
+      .racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage })
+      .subscribe((data) => {
+        const retype: any = data;
+        this.raceDataildata = retype;
+        this.endsIn = data.ends_in;
 
-    this.firstObservable = this.api.racesDetailList({ raceHash: this.raceId, pageNumber: this.actualPage }).subscribe(data => {
-      const retype: any = data;
-      this.raceDataildata = retype;
-      this.endsIn = data.ends_in;
+        if (data.tournament_id !== null && data.tour_index > 1) {
+          this.getLdrv();
+        }
 
-      if (data.tournament_id !== null && data.tour_index > 1) {
-        this.getLdrv();
-      }
-
-      if (this.raceDataildata.is_cancelled === true) {
-        this.redirectToNextRace();
-        clearInterval(this.detailInterval);
-        return;
-      }
-    });
+        if (this.raceDataildata.is_cancelled === true) {
+          this.redirectToNextRace();
+          clearInterval(this.detailInterval);
+          return;
+        }
+      });
   }
 
   redirectToNextRace() {
     setTimeout(() => {
-      this.xxObserver = this.api.racesNextV2List().subscribe(data => {
+      this.xxObserver = this.api.racesNextV2List().subscribe((data) => {
         const nedata: any = data;
-        const xx = nedata.filter(item => {
+        const xx = nedata.filter((item) => {
           return item.race_identifier === this.raceDataildata.race_identifier;
         });
         const mynextrace = xx;
         this.nextRaceHash = mynextrace[0].race_hash;
 
-        this.notify.error('', 'Not enough players to start, you will be redirected.');
-        this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]);
+        this.notify.error(
+          "",
+          "Not enough players to start, you will be redirected."
+        );
+        this.router.navigate(["/race/watch-race-3min/" + this.nextRaceHash]);
       });
     }, 1300);
   }
 
   startRace() {
-
-
     if (this.raceDataildata.is_cancelled === true) {
       this.redirectToNextRace();
       clearInterval(this.detailInterval);
@@ -391,7 +429,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
 
     clearInterval(this.detailInterval);
-
 
     setTimeout(() => {
       this.getRaceData();
@@ -403,7 +440,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.getRaceData();
-
     }, 500);
     setTimeout(() => {
       this.getRaceData(true);
@@ -415,11 +451,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         this.moveWheels();
         setTimeout(() => {
           this.semaforsVisible = false;
-
         }, 1500);
-
       }
-
     }
 
     if (this.beforeSound) {
@@ -427,29 +460,25 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.beforeSound = null;
     }
 
-
     setTimeout(() => {
       this.getUpcoming();
     }, 800);
   }
 
   moveWheels() {
-
     this.moveInterval = setInterval(() => {
       if (this.moveNum < 4) {
-        this.moveNum++
+        this.moveNum++;
       } else {
         this.moveNum = 1;
       }
     }, 200);
   }
 
-
-
   getRaceData(repeat?: boolean) {
-
-    this.api.racesStatsList({ raceHash: this.raceId, pageNumber: this.actualPage })
-      .subscribe(data => {
+    this.api
+      .racesStatsList({ raceHash: this.raceId, pageNumber: this.actualPage })
+      .subscribe((data) => {
         const firstData = data;
 
         if (data.me !== null) {
@@ -482,7 +511,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           clearInterval(this.moveInterval);
           clearInterval(this.detailInterval);
 
-
           /*
                     if (this.willPlayFinishSound === true) {
                       return;
@@ -497,78 +525,81 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           */
           this.moveNum = 0;
 
-
           if (this.raceData.me !== null) {
             this.resolvePosition(this.raceData.me.cpr);
             this.getRandomNum(this.raceData.me.s);
           }
-
-
         }
-        if (firstData.race_progress > 0 && firstData.race_progress < 100 && repeat === true) {
+        if (
+          firstData.race_progress > 0 &&
+          firstData.race_progress < 100 &&
+          repeat === true
+        ) {
           setTimeout(() => {
             this.getRaceData(true);
           }, 1000);
         }
 
-        if (this.raceDataildata.my_cars.length > 0 && firstData.race_progress > 0) {
+        if (
+          this.raceDataildata.my_cars.length > 0 &&
+          firstData.race_progress > 0
+        ) {
           for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
             const betix: any = [];
             if (firstData.coins_performance.length > 0) {
               for (let i = 0; i < 20; i++) {
                 betix.push({
-                  symbol: firstData.coins_performance[i].symbol ? firstData.coins_performance[i].symbol : '',
+                  symbol: firstData.coins_performance[i].symbol
+                    ? firstData.coins_performance[i].symbol
+                    : "",
                   percent: firstData.coins_performance[i].percent,
                   from_price: firstData.coins_performance[i].from_price,
                   to_prices: firstData.coins_performance[i].to_prices,
-                  bet: 0
+                  bet: 0,
                 });
-
               }
             } else {
               for (let i = 0; i < 3; i++) {
                 betix.push({
                   symbol: this.raceDataildata.my_cars[x].b[i].symbol,
-                  bet: this.raceDataildata.my_cars[x].b[i].bet
+                  bet: this.raceDataildata.my_cars[x].b[i].bet,
                 });
-
               }
             }
 
             this.raceDataildata.my_cars[x].betik = betix;
             for (let z = 0; z < 3; z++) {
               for (let y = 0; y < 20; y++) {
-                if (this.raceDataildata.my_cars[x].betik[y].symbol === this.raceDataildata.my_cars[x].b[z].symbol) {
-                  this.raceDataildata.my_cars[x].betik[y].bet = this.raceDataildata.my_cars[x].b[z].bet;
+                if (
+                  this.raceDataildata.my_cars[x].betik[y].symbol ===
+                  this.raceDataildata.my_cars[x].b[z].symbol
+                ) {
+                  this.raceDataildata.my_cars[x].betik[y].bet =
+                    this.raceDataildata.my_cars[x].b[z].bet;
                 }
               }
-
             }
           }
         }
 
-
-
         if (this.raceData.me) {
-          if (this.raceDataildata.race_identifier === 'car_race_short_0') {
-            ga('event', 'fast-race-rookie', {
-              'eventCategory': 'race',
-              'eventAction': 'fast-race-rookie',
-              'value': 'fast-race-rookie'
+          if (this.raceDataildata.race_identifier === "car_race_short_0") {
+            ga("event", "fast-race-rookie", {
+              eventCategory: "race",
+              eventAction: "fast-race-rookie",
+              value: "fast-race-rookie",
             });
           }
-          if (this.raceDataildata.race_identifier !== 'car_race_short_0') {
-            ga('event', this.raceDataildata.race_identifier, {
-              'eventCategory': 'race',
-              'eventAction': this.raceDataildata.race_identifier,
-              'value': this.raceDataildata.race_identifier
+          if (this.raceDataildata.race_identifier !== "car_race_short_0") {
+            ga("event", this.raceDataildata.race_identifier, {
+              eventCategory: "race",
+              eventAction: this.raceDataildata.race_identifier,
+              value: this.raceDataildata.race_identifier,
             });
           }
         }
       });
   }
-
-
 
   whenStarts() {
     const newwhen = this.getWhenStarts();
@@ -581,20 +612,17 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.showHints = true;
       this.showTourMsg = true;
     }
-    setTimeout((
-    ) => {
+    setTimeout(() => {
       if (this.pageOpen === true) {
         this.launchSemafor();
       }
     }, fireSemaforx);
-    setTimeout((
-    ) => {
+    setTimeout(() => {
       if (this.pageOpen === true) {
         this.startRace();
       }
     }, fireStart);
-    setTimeout((
-    ) => {
+    setTimeout(() => {
       if (this.pageOpen === true) {
         this.showHints = false;
         this.showTourMsg = false;
@@ -611,7 +639,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       */
   }
 
-
   changeBanner() {
     if (this.showBanner === true) {
       this.showBanner = false;
@@ -620,13 +647,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
   }
 
-
   getUpcoming() {
     this.upcomingLoaded = false;
-    this.api.racesCurrentV2List().subscribe(data => {
+    this.api.racesCurrentV2List().subscribe((data) => {
       const nedata: any = data;
       const typeNow = this.raceDataildata.race_identifier;
-      const pekac = nedata.filter(item => {
+      const pekac = nedata.filter((item) => {
         return item.race_identifier === typeNow;
       });
       this.upcoming = pekac[0].finishing_in_seconds;
@@ -636,11 +662,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
-
   nextCar() {
-    if ((this.raceDataildata.my_cars.length - 1) === this.selectedMyIndex) {
+    if (this.raceDataildata.my_cars.length - 1 === this.selectedMyIndex) {
       this.selectedMyIndex = 0;
     } else {
       this.selectedMyIndex++;
@@ -649,17 +672,14 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
   prevCar() {
     if (this.selectedMyIndex === 0) {
-      this.selectedMyIndex = (this.raceDataildata.my_cars.length - 1);
+      this.selectedMyIndex = this.raceDataildata.my_cars.length - 1;
     } else {
       this.selectedMyIndex--;
     }
   }
 
   getRaceWinner() {
-
-
     this.getAllv2Races();
-
   }
 
   launchSemafor() {
@@ -668,32 +688,21 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.semaforsLaunched = true;
       this.firstSemafor = true;
       setTimeout(() => {
-
         this.semaforVal = 4;
-
       }, 1000);
       setTimeout(() => {
-
         this.semaforVal = 3;
-
       }, 2000);
       setTimeout(() => {
-
         this.semaforVal = 2;
-
       }, 3000);
       setTimeout(() => {
-
         this.semaforVal = 1;
-
       }, 4000);
       setTimeout(() => {
-
         this.semaforVal = 0;
-
       }, 5000);
       setTimeout(() => {
-
         this.semaforVal = -1;
         /*
                 this.startSound = document.createElement('audio');
@@ -705,20 +714,18 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
   }
 
-
   getMyAffilate() {
     const data = this.identityService.getStorageIdentity();
     const dataDriver = this.identityService.getDriverMe();
     this.myUid = dataDriver.id;
 
     this.myUsername = data.nickname;
-    this.affilateSlug = 'https://play.ioi-game.com/user/referral/' + data.affiliate_slug;
-    this.affilateText = 'I play game on play.ioi-game.com every 10mins, so I can win 10 TRX for free ' + this.affilateSlug;
-
+    this.affilateSlug =
+      "https://play.ioi-game.com/user/referral/" + data.affiliate_slug;
+    this.affilateText =
+      "I play game on play.ioi-game.com every 10mins, so I can win 10 TRX for free " +
+      this.affilateSlug;
   }
-
-
-
 
   nextPage() {
     this.actualPage++;
@@ -735,13 +742,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       //return;
     }
     */
-    this.router.navigate(['/race/start-race']);
+    // this.router.navigate(['/race/start-race']);
   }
 
   launchTutorial() {
     const data = this.identityService.getStorageIdentity();
     this.firstLogin = data.is_in_tutorial;
-
 
     if (this.firstLogin === true && window.innerWidth > 1024) {
       this.verifyModal = true;
@@ -749,44 +755,49 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   skipTutorial() {
-    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
+    this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe((datax) => {
       this.identityService.meUpdate();
-      localStorage.removeItem('first-race');
+      localStorage.removeItem("first-race");
       this.verifyModal = false;
     });
   }
 
-
   getTickerOnce() {
-    this.tickerObservable = this.tcksrvc.tickerPricesRead(1).subscribe(data => {
-      this.firstTicker = data.prices;
-    });
+    this.tickerObservable = this.tcksrvc
+      .tickerPricesRead(1)
+      .subscribe((data) => {
+        this.firstTicker = data.prices;
+      });
   }
 
   repeatSignup() {
     this.repeatDisabled = true;
     const req: RaceSignupV2[] = [];
     for (let i = 0; i < this.raceDataildata.my_cars.length; i++) {
-
       req.push({
         car: this.raceDataildata.my_cars[i].cid,
         bet_coins: this.raceDataildata.my_cars[i].b,
-        race_hash: this.nextRaceHash
+        race_hash: this.nextRaceHash,
       });
     }
 
     this.xxObserver = this.api.racesMultiSignupCreate(req).subscribe(
-      res => this.router.navigate(['/race/watch-race-3min/' + this.nextRaceHash]), // response
-      err => console.log(err.error[0].errors[0].race[0] === 'Too late to sign up for this race!' ? this.refireSignup() : null), // error
-      () => console.log('HTTP request completed.') // finished
+      (res) =>
+        this.router.navigate(["/race/watch-race-3min/" + this.nextRaceHash]), // response
+      (err) =>
+        console.log(
+          err.error[0].errors[0].race[0] ===
+            "Too late to sign up for this race!"
+            ? this.refireSignup()
+            : null
+        ), // error
+      () => console.log("HTTP request completed.") // finished
     );
-
-
   }
   refireSignup() {
-    this.xxObserver = this.api.racesNextV2List().subscribe(data => {
+    this.xxObserver = this.api.racesNextV2List().subscribe((data) => {
       const nedata: any = data;
-      const xx = nedata.filter(item => {
+      const xx = nedata.filter((item) => {
         return item.race_identifier === this.raceDataildata.race_identifier;
       });
       const mynextrace = xx;
@@ -797,11 +808,9 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getMyCars() {
-    this.xObserver = this.crsrcvc.carsMineList().subscribe(data => {
+    this.xObserver = this.crsrcvc.carsMineList().subscribe((data) => {
       const objs: any = data;
-      const haha = objs.sort((a, b) =>
-        b.car_id - a.car_id
-      );
+      const haha = objs.sort((a, b) => b.car_id - a.car_id);
       haha.reverse();
       const best = haha.length - 1;
       this.mycarNext = haha[best].pk;
@@ -828,53 +837,56 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
   getAllv2Races() {
     setTimeout(() => {
-      this.winnerObservable = this.api.racesWinnerList(this.raceId, this.actualPageWinner).subscribe(data => {
-        if (data) {
-          const x: any = data;
-          const dlength = x.length;
-          if (this.raceDataildata.tournament_id !== null) {
-            if (this.raceDataildata.tour_index > 10 && this.raceDataildata.tour_index < 20) {
-              const loser = this.raceDataildata.tour_index - 10;
-              this.loserIndex = 10 - loser;
-              this.loserCar = this.raceData.cards[this.loserIndex].cid;
+      this.winnerObservable = this.api
+        .racesWinnerList(this.raceId, this.actualPageWinner)
+        .subscribe((data) => {
+          if (data) {
+            const x: any = data;
+            const dlength = x.length;
+            if (this.raceDataildata.tournament_id !== null) {
+              if (
+                this.raceDataildata.tour_index > 10 &&
+                this.raceDataildata.tour_index < 20
+              ) {
+                const loser = this.raceDataildata.tour_index - 10;
+                this.loserIndex = 10 - loser;
+                this.loserCar = this.raceData.cards[this.loserIndex].cid;
 
-              let notLost = 0;
-              for (let xx = 0; xx < this.loserIndex; xx++) {
-                if (this.raceData.cards[xx].u === this.myUid) {
-                  notLost = notLost + 1;
+                let notLost = 0;
+                for (let xx = 0; xx < this.loserIndex; xx++) {
+                  if (this.raceData.cards[xx].u === this.myUid) {
+                    notLost = notLost + 1;
+                  }
                 }
-              }
 
-              if (notLost > 0) {
-                this.finishedtour = false;
+                if (notLost > 0) {
+                  this.finishedtour = false;
+                } else {
+                  this.finishedtour = true;
+                }
               } else {
-                this.finishedtour = true;
+                this.finishedtour = false;
               }
-            } else {
-              this.finishedtour = false;
             }
+            this.totalPagesWinner = x.total_pages;
+            this.winnersList = x.winners;
+            this.frozenTicket = x.ticker_froze;
+            if (this.raceData.me) {
+              this.balanceService.balanceHasbeenChanged();
+              this.identityService.updateDriverMe();
+            }
+            this.showFinalModal = true;
+            this.unitySelected = false;
           }
-          this.totalPagesWinner = x.total_pages;
-          this.winnersList = x.winners;
-          this.frozenTicket = x.ticker_froze;
-          if (this.raceData.me) {
-            this.balanceService.balanceHasbeenChanged();
-            this.identityService.updateDriverMe();
-          }
-          this.showFinalModal = true;
-          this.unitySelected = false;
-        }
-      });
-
+        });
     }, 2000);
 
-    this.nextObservable = this.api.racesNextV2List().subscribe(xdata => {
+    this.nextObservable = this.api.racesNextV2List().subscribe((xdata) => {
       const nedata: any = xdata;
       const typeNow = this.raceDataildata.race_identifier;
-      const pekac = nedata.filter(item => {
+      const pekac = nedata.filter((item) => {
         return item.race_identifier === typeNow;
       });
       this.nextRaceHash = pekac[0].race_hash;
@@ -894,74 +906,75 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         });
         */
 
-
-    if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index > 1) {
+    if (
+      this.raceDataildata.tournament_id !== null &&
+      this.raceDataildata.tour_index > 1
+    ) {
       this.getLdrv();
     }
 
-
-    const dataf = JSON.parse(localStorage.getItem('first-race'));
+    const dataf = JSON.parse(localStorage.getItem("first-race"));
     if (dataf) {
-      this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe(datax => {
+      this.drvrsrvc.driversTutorialPartialUpdate(false).subscribe((datax) => {
         this.identityService.meUpdate();
-        localStorage.removeItem('first-race');
+        localStorage.removeItem("first-race");
       });
     }
 
-    if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index !== 19) {
-
+    if (
+      this.raceDataildata.tournament_id !== null &&
+      this.raceDataildata.tour_index !== 19
+    ) {
       setTimeout(() => {
         this.tourModal = true;
         this.getnexttour();
       }, 2000);
     }
 
-    if (this.raceDataildata.tour_index === 19 || this.raceDataildata.tournament_id === null) {
-
+    if (
+      this.raceDataildata.tour_index === 19 ||
+      this.raceDataildata.tournament_id === null
+    ) {
       setTimeout(() => {
         if (this.cFuelOpen === false) {
           //  this.play();
         }
-
       }, 60000);
     }
-
   }
 
   continueTour() {
-
     this.tourModal = false;
-    this.router.navigate(['/race/watch-race-3min/' + this.newNext]);
+    this.router.navigate(["/race/watch-race-3min/" + this.newNext]);
   }
 
-
   getLdrv() {
-    this.ldrbrdObserver = this.api.racesTournamentLeaderboardList(
-      this.raceDataildata.tournament_id.toString()
-    ).subscribe(data => {
-      this.ldrbrdpn = data;
-    });
+    this.ldrbrdObserver = this.api
+      .racesTournamentLeaderboardList(
+        this.raceDataildata.tournament_id.toString()
+      )
+      .subscribe((data) => {
+        this.ldrbrdpn = data;
+      });
   }
 
   getMotive() {
     if (this.raceDataildata.tour_index !== null) {
       const xx = this.raceDataildata.tour_index - 1;
-      const lastone = +xx.toString().split('').pop();
+      const lastone = +xx.toString().split("").pop();
       this.motiveCurrent = lastone;
     } else {
-      if (this.raceDataildata.race_identifier.includes('cops')) {
+      if (this.raceDataildata.race_identifier.includes("cops")) {
         this.motiveCurrent = 10;
       } else {
         this.motiveCurrent = this.randomInteger(0, 9);
       }
-
     }
 
     this.getMiniMotive();
   }
 
   getnexttour() {
-
     let stat = [];
     let stat2 = [];
     for (let x = 0; x < this.raceDataildata.my_cars.length; x++) {
@@ -974,55 +987,52 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       stat.push(fake);
     }
     if (this.loserIndex) {
-
-      stat2 = stat.filter(item => {
+      stat2 = stat.filter((item) => {
         return item.cid !== this.loserCar;
       });
     }
 
     if (stat2.length > 0) {
       for (let x = 0; x < stat2.length; x++) {
-        stat2[x].batman = stat2[x].b.filter(item => {
+        stat2[x].batman = stat2[x].b.filter((item) => {
           return item.bet !== 0;
         });
-
       }
       this.commonCars = stat2;
     } else {
       for (let x = 0; x < stat.length; x++) {
-        stat[x].batman = stat[x].b.filter(item => {
+        stat[x].batman = stat[x].b.filter((item) => {
           return item.bet !== 0;
         });
-
       }
       this.commonCars = stat;
     }
 
-    this.ntoberver = this.api.racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString()).subscribe(
-      data => {
-
+    this.ntoberver = this.api
+      .racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString())
+      .subscribe((data) => {
         this.newNext = data.race_hash;
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;
         const nozacni = (this.newNextStartsIn - 15) * 1000;
-        if (this.raceDataildata.tournament_id !== null && this.raceDataildata.tour_index !== 19) {
+        if (
+          this.raceDataildata.tournament_id !== null &&
+          this.raceDataildata.tour_index !== 19
+        ) {
           setTimeout(() => {
             if (this.cFuelOpen === false) {
               this.continueTour();
             }
           }, nozacni);
         }
-
-      }
-    );
+      });
   }
 
-
   resolvePosition(pos: number) {
-    this.pos1 = '';
-    this.pos2 = '';
-    this.pos3 = '';
-    this.posEnding = '';
+    this.pos1 = "";
+    this.pos2 = "";
+    this.pos3 = "";
+    this.posEnding = "";
     this.positionLength = 0;
     const num = pos.toString();
     let last = this.pos1;
@@ -1042,18 +1052,18 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       this.pos3 = num.slice(2, 3);
       last = this.pos3;
     }
-    if (last === '1') {
-      this.posEnding = 'st';
-    } else if (last === '2') {
-      this.posEnding = 'nd';
-    } else if (last === '3') {
-      this.posEnding = 'rd';
+    if (last === "1") {
+      this.posEnding = "st";
+    } else if (last === "2") {
+      this.posEnding = "nd";
+    } else if (last === "3") {
+      this.posEnding = "rd";
     } else {
-      this.posEnding = 'th';
+      this.posEnding = "th";
     }
 
-    if (num === '11' || num === '12' || num === '13') {
-      this.posEnding = 'th';
+    if (num === "11" || num === "12" || num === "13") {
+      this.posEnding = "th";
     }
   }
 
@@ -1062,13 +1072,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   refuel() {
-    this.router.navigate(['/car/fuel-car/' + this.raceDataildata.race_hash]);
+    this.router.navigate(["/car/fuel-car/" + this.raceDataildata.race_hash]);
   }
 
-  refuelNext(){
-    this.router.navigate(['/car/fuel-car/' + this.nextRaceHash]);
+  refuelNext() {
+    // this.router.navigate(["/car/fuel-car/" + this.nextRaceHash]);
   }
-
 
   getRandomNum(myNum: number) {
     if (myNum > 0) {
@@ -1079,7 +1088,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   closerefuel() {
-
     setTimeout(() => {
       this.changeFuel = false;
       this.getnexttour();
@@ -1087,12 +1095,10 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   getRewards() {
-    this.transObserver = this.rwrdsrvc.rewardsList()
-      .subscribe(data => {
-        this.teamReward = Number(data.team_bonus);;
-        this.ioioreward = Number(data.item_bonus);
-
-      });
+    this.transObserver = this.rwrdsrvc.rewardsList().subscribe((data) => {
+      this.teamReward = Number(data.team_bonus);
+      this.ioioreward = Number(data.item_bonus);
+    });
   }
 
   convertNumber(num) {
@@ -1100,9 +1106,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     return x * 0.05;
   }
 
-
   recognizeGame() {
-    const man = JSON.parse(localStorage.getItem('useUnity'));
+    const man = JSON.parse(localStorage.getItem("useUnity"));
     if (man) {
       this.unitySelected = true;
     } else {
@@ -1110,21 +1115,18 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     }
   }
 
-
   changeSound() {
     this.soundEnabled = !this.soundEnabled;
     if (this.soundEnabled) {
-      localStorage.setItem('useSound', JSON.stringify(this.soundEnabled))
+      localStorage.setItem("useSound", JSON.stringify(this.soundEnabled));
     } else {
-      localStorage.removeItem('useSound');
+      localStorage.removeItem("useSound");
     }
     this.muteSounds(this.soundEnabled);
   }
 
-
-
   recognizeSound(bool?: any) {
-    const man = JSON.parse(localStorage.getItem('useSound'));
+    const man = JSON.parse(localStorage.getItem("useSound"));
     if (man) {
       this.soundEnabled = true;
     } else {
@@ -1159,12 +1161,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     if (this.raceStarted === true) {
       if (this.raceData.race_progress < 60) {
         this.active_area = 0.2;
-        this.active_area = this.active_area * this.raceData.race_progress / 60;
+        this.active_area =
+          (this.active_area * this.raceData.race_progress) / 60;
       } else {
         this.active_area = 0.2;
       }
     }
-
 
     const dummy = [];
 
@@ -1175,15 +1177,14 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
     const find_min = Math.min(...dummy);
     const find_max = Math.max(...dummy);
     let diff = find_max - find_min;
-    diff === 0 ? diff = 1 : null;
-
+    diff === 0 ? (diff = 1) : null;
 
     for (let x = 0; x < this.raceData.race.length; x++) {
       const relative_score = (this.raceData.race[x].s - find_min) / diff;
-      this.raceData.race[x].race_position = 100 * (((this.raceData.race_progress / 100) *
-        (1 - this.active_area)) + (relative_score * this.active_area));
-
-
+      this.raceData.race[x].race_position =
+        100 *
+        ((this.raceData.race_progress / 100) * (1 - this.active_area) +
+          relative_score * this.active_area);
     }
   }
 
@@ -1199,6 +1200,4 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     return diffTime;
   }
-
-
 }
