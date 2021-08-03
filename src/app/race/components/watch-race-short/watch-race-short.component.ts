@@ -742,7 +742,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       //return;
     }
     */
-    // this.router.navigate(['/race/start-race']);
+    this.router.navigate(["/race/start-race"]);
   }
 
   launchTutorial() {
@@ -1076,7 +1076,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   }
 
   refuelNext() {
-    // this.router.navigate(["/car/fuel-car/" + this.nextRaceHash]);
+    this.router.navigate(["/car/fuel-car/" + this.nextRaceHash]);
   }
 
   getRandomNum(myNum: number) {
