@@ -369,6 +369,14 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
 
   }
 
+  generateRandomFuelArray() {
+    let highBetIndex = this.randomInteger(0, 2);
+    let myArray = [5, 5, 5];
+    myArray[highBetIndex] = 90;
+    
+    return myArray;
+  }
+
   generateAutomaticBets() {
     for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
 
@@ -400,7 +408,7 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   }
   generateAutomaticBetsOnce() {
 
-    const nums: Array<any> = this.generateRandomNums(100, 3, 5);
+    const nums: Array<any> = this.generateRandomFuelArray();
 
     this.selectedCarsToRace[this.selectedCarIndex].selectedBets = [];
     this.activeFuelType = 0;

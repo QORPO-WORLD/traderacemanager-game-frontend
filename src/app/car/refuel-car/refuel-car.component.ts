@@ -540,7 +540,17 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
   }
 
+  generateRandomFuelArray() {
+    let highBetIndex = this.randomInteger(0, 2);
+    let myArray = [5, 5, 5];
+    myArray[highBetIndex] = 90;
+    
+    return myArray;
+  }
 
+  randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 
   prepareToSIgn() {
@@ -762,7 +772,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   generateAutomaticBets() {
     for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
 
-      let nums: Array<any> = this.generateRandomNums(100, 3, 5);
+      let nums: Array<any> = this.generateRandomFuelArray();
       if (Math.round(nums[0]) + Math.round(nums[1]) + Math.round(nums[2]) !== 100) {
         this.generateAutomaticBets();
         return;
