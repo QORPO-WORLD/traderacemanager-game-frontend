@@ -358,7 +358,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   myCars3 = [];
   myCars4 = [];
   displayArray = [];
-
+  currentRace: any;
   constructor(
     private router: Router,
     protected api: CarsService,
@@ -455,49 +455,50 @@ export class FuelCarComponent implements OnInit, OnDestroy {
         const step1 = newdata.filter((item) => {
           return item.race_identifier === "car_race_ioi_1";
         });
-        const uniq1 = [...new Set(step1)];
+        const uniq1 = [new Set(step1)];
         this.canJoin1 = uniq1;
 
         const step2 = newdata.filter((item) => {
           return item.race_identifier === "car_race_ioi_5";
         });
-        const uniq2 = [...new Set(step2)];
+        const uniq2 = [new Set(step2)];
         this.canJoin2 = uniq2;
 
         const step3 = newdata.filter((item) => {
           return item.race_identifier === "car_race_ioi_10";
         });
-        const uniq3 = [...new Set(step3)];
+        const uniq3 = [new Set(step3)];
         this.canJoin3 = uniq3;
 
         const step4 = newdata.filter((item) => {
           return item.race_identifier === "car_race_ioi_50";
         });
-        const uniq4 = [...new Set(step4)];
+        const uniq4 = [new Set(step4)];
         this.canJoin4 = uniq4;
 
         const step5 = newdata.filter((item) => {
           return item.race_identifier === "car_race_ioi_100";
         });
 
-        const uniq5 = [...new Set(step5)];
+        const uniq5 = [new Set(step5)];
         this.canJoin5 = uniq5;
 
         // const step7 = newdata.filter(item => {
         //   return item.race_identifier === 'car_race_ioi_3';
         // });
-        // const uniq7 = [...new Set(step7)];
+        // const uniq7 = [new Set(step7)];
         // this.canJoinIoi2 = uniq7;
 
         // const step8 = newdata.filter(item => {
         //   return item.race_identifier === 'car_race_ioi_5';
         // });
-        // const uniq8 = [...new Set(step8)];
+        // const uniq8 = [new Set(step8)];
         // this.canJoinIoi3 = uniq8;
 
         this.chosenRace = newdata.filter((item) => {
           return item.race_hash === this.raceId;
         });
+        this.currentRace = this.chosenRace[0].race_identifier;
         this.getRaceDetails();
       });
   }
@@ -1213,8 +1214,10 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   timerCompleted() {
     this.timerReady = false;
     setTimeout(() => {
-      this.getfirstraces();
-      this.getCanJoin();
+
+      this.resolveNext();
+      // this.getfirstraces();
+      // this.getCanJoin();
       if (this.stepIndex > 1) {
         this.tutorialStep = 2;
         this.stepIndex = 2;
@@ -1222,6 +1225,83 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }, 1500);
     clearInterval(this.animationInterval);
     this.animatingSlider = false;
+  }
+
+  resolveNext() {
+    this.canJoinObservable = this.raceApi
+    .racesMultiCanJoinV2List()
+    .subscribe((data) => {
+      const newdata: any = data;
+      console.log(this.raceId);
+
+      const nextRace = newdata.filter((item) => {
+        return item.race_identifier === this.currentRace;
+      });
+
+      this.router.navigate(['/car/fuel-car/' + nextRace[0].race_hash]);
+
+      return;
+      let currentRace = newdata.filter(
+        (j) => this.raceId == j.race_hash
+      );
+      this.raceIdentifier = currentRace[0].race_identifier;
+      const mynextrace = newdata.filter((item) => {
+        return item.race_identifier === this.currentRace;
+      });
+
+      this.carsCanJoin = mynextrace[0].available_cars;
+      console.log(this.raceId);
+      const step1 = newdata.filter((item) => {
+        return item.race_identifier === "car_race_ioi_1";
+      });
+      const uniq1 = [new Set(step1)];
+      this.canJoin1 = uniq1;
+
+      const step2 = newdata.filter((item) => {
+        return item.race_identifier === "car_race_ioi_5";
+      });
+      const uniq2 = [new Set(step2)];
+      this.canJoin2 = uniq2;
+
+      const step3 = newdata.filter((item) => {
+        return item.race_identifier === "car_race_ioi_10";
+      });
+      const uniq3 = [new Set(step3)];
+      this.canJoin3 = uniq3;
+
+      const step4 = newdata.filter((item) => {
+        return item.race_identifier === "car_race_ioi_50";
+      });
+      const uniq4 = [new Set(step4)];
+      this.canJoin4 = uniq4;
+
+      const step5 = newdata.filter((item) => {
+        return item.race_identifier === "car_race_ioi_100";
+      });
+
+      const uniq5 = [new Set(step5)];
+      this.canJoin5 = uniq5;
+
+      // const step7 = newdata.filter(item => {
+      //   return item.race_identifier === 'car_race_ioi_3';
+      // });
+      // const uniq7 = [new Set(step7)];
+      // this.canJoinIoi2 = uniq7;
+
+      // const step8 = newdata.filter(item => {
+      //   return item.race_identifier === 'car_race_ioi_5';
+      // });
+      // const uniq8 = [new Set(step8)];
+      // this.canJoinIoi3 = uniq8;
+      console.log(this.raceId);
+      this.chosenRace = newdata.filter((item) => {
+        return item.race_identifier === this.currentRace;
+      });
+      this.currentRace = this.chosenRace[0].race_identifier;
+      this.raceId = this.currentRace;
+      console.log(this.raceId);
+      this.getRaceDetails();
+    });
   }
 
   generateRandomNums(numberr, parts, min) {
@@ -1737,6 +1817,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   }
 
   getfirstraces() {
+    console.log('now');
     this.timerReady = false;
     if (window.innerWidth > 870) {
       this.bottomCarsBalancer = 4;
