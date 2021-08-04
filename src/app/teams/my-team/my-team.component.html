@@ -526,6 +526,29 @@
             </div>
             <div class="mine-back my-cta-btn-back"></div>
           </div>
+
+          <div
+            class="table-row mine"
+            *ngIf="myTeam?.me?.points > 0 && myTeam?.me?.player_position > 10"
+          >
+            <div class="table-item small">
+              <p>{{ myTeam?.me?.player_position}}.</p>
+            </div>
+            <div class="table-item">
+              <p>{{ myTeam?.me?.user_nickname }}</p>
+            </div>
+            <div class="table-item big bold">
+              <p>{{ myTeam?.me?.points | number: "1.1-1":"fr" }}</p>
+            </div>
+            <div class="table-item big bold last">
+              <p>
+                <img src="/assets/base/images/teams/reward-token.png" alt="" />
+                0
+              </p>
+            </div>
+            <div class="mine-back my-cta-btn-back"></div>
+          </div>
+
         </div>
       </div>
 

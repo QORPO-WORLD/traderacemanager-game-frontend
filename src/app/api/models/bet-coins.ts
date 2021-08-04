@@ -6,4 +6,5 @@ export interface BetCoins {
   price?: number;
   from_price?: number;
   own?: boolean;
+  leverage?: number;
 }

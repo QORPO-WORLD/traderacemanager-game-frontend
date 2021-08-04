@@ -578,6 +578,12 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                     this.raceDataildata.my_cars[x].b[z].bet;
                 }
               }
+              let leverages = Object.keys(this.raceDataildata.my_cars[x].l);
+              for (let l = 0; l < leverages.length; l++){
+                if (leverages[l] === this.raceDataildata.my_cars[x].b[z].symbol) {
+                  this.raceDataildata.my_cars[x].b[z].leverage = 2;
+                }
+              } 
             }
           }
         }

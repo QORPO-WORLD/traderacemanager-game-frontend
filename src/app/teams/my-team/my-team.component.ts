@@ -180,6 +180,7 @@ export class MyTeamComponent implements OnInit, OnDestroy {
         this.myTeam = data;
         this.myuser = data.me.user_id;
         this.bestRacer = this.myTeam.top10[0];
+        console.log(datax);
 
         if (data.manager_user_id === this.myTeamData.id) {
           this.meManager = true;
