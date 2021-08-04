@@ -221,6 +221,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           //const retypeData: any = data;
 
           this.raceDataildata = data;
+          console.log(this.raceDataildata);
           this.endsIn = data.ends_in;
           if (data.race_progress > 0) {
             this.startRace();
