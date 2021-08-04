@@ -215,6 +215,7 @@
         [ngClass]="{ 'tutorial-high clickable': tutorialStep === 3 }"
       >
         <p class="box-heading">Free race</p>
+
         <div class="inner-box">
           <img
             src="/assets/base/images/race-type/rookie-shadow.jpg"
@@ -242,7 +243,14 @@
 
           <div class="cont-holder">
             <p class="heading">Free fast race</p>
-
+            <p class="races-left">
+              <img src="/assets/base/images/icons/fuel-white.svg" alt="white fuel icon">
+              <span>
+              {{ accountInfo?.free_races_left }}/{{
+                accountInfo?.free_races_limit
+              }}
+            </span>
+            </p>
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="" />
               <p>{{ freeRace?.players_count }} <span>| 500</span></p>
