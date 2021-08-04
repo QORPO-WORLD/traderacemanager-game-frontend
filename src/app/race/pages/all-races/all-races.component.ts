@@ -19,7 +19,7 @@ import { throwIfEmpty } from "rxjs/operators";
 })
 export class AllRacesComponent implements OnInit {
   @ViewChild("rulesModal") rulesModal: any;
-
+  accountInfo: any;
   updateFavCoinsObserver: Subscription;
   favObserver: Subscription;
   howToInterval: any;
@@ -76,6 +76,7 @@ export class AllRacesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.accountInfo = this.identityService.getDriverMe();
     this.getRaceType();
     this.getAllRaces();
     this.fastFuelEnabled();

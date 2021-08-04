@@ -4,6 +4,12 @@
 .desktop {
   display: block;
 }
+.space {
+  margin-top: 50px !important;
+}
+.small-space {
+  margin-top: 20px !important;
+}
 .mobile {
   display: none;
 }
@@ -96,59 +102,7 @@
     -o-transform: translateX(0%);
   }
 }
-.table {
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid white;
-  width: fit-content;
-  height: fit-content;
-  .table-heading {
-    background: rgba(255, 255, 255, 0.1);
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    width: fit-content;
-    display: flex;
-  }
-  .table-row {
-    background: rgba(255, 255, 255, 0.05);
-    width: fit-content;
-    display: flex;
-    height: 90px;
-    border-top: 1px solid white;
-  }
-  .table-item-smallest {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    border-right: 1px solid white;
-    height: 100%;
-  }
-  .table-item-small {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    border-right: 1px solid white;
-    height: 100%;
-  }
-  .table-item-medium {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    height: 100%;
-  }
-  .table-item-big {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 400px;
-    border-left: 1px solid white;
-    height: 100%;
-  }
-}
+
 .how-to-content {
   min-height: 100vh;
 }
@@ -227,7 +181,7 @@
   }
 }
 .gameplan-section {
-  min-height: 650px;
+  min-height: 100vh;
   margin: 0 auto;
   width: 85%;
   padding-bottom: 50px;
@@ -314,127 +268,66 @@
     }
   }
   .content {
+    margin-top: 100px;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    &.reward-system {
+      flex-direction: column;
+    }
     .text-holder {
       position: relative;
-      margin-top: 100px;
+
       z-index: 1;
       .category-title-big {
         margin-top: -5px;
         margin-bottom: 25px;
       }
       &.intro {
-        width: 75%;
+        width: 50%;
       }
     }
-    img {
-      &.intro {
-        position: absolute;
-        top: 70%;
-        transform: translateY(-50%);
-        right: 0px;
-        height: 200%;
-        width: auto;
-      }
-    }
-    .table-content {
-      margin-top: 60px;
+    .image-holder {
+      width: 47%;
       position: relative;
-
-      &.races {
-        display: flex;
-        text-align: center;
-        .table {
-          margin-top: 20px;
-        }
-        .right-table {
-          margin-left: 50px;
-        }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &.ranking {
+        align-items: flex-start;
       }
       &.leaderboard {
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-        .table {
-          margin-top: 20px;
+        align-items: flex-end;
+        .big-table-title {
+          width: 85%;
+          text-align: center;
         }
-        .right-table {
-          margin: 0 auto;
-          margin-top: 50px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-          width: fit-content;
-          p {
-            width: fit-content;
-          }
-          .table {
-            .table-item-big {
-              border-left: none;
-            }
-            .table-item-smallest {
-              border-right: none;
-              border-left: 1px solid white;
-            }
-          }
-        }
-        .left-table {
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: fit-content;
-          p {
-            width: fit-content;
-          }
-          .table {
-            .table-item-medium {
-              border-left: 1px solid white;
-            }
-            .table-item-small {
-              border-right: none;
-            }
-          }
-        }
-      }
-      &.non-nft {
-        margin-top: 150px;
       }
       img {
-        &.intro {
-          position: absolute;
-          right: 0px;
-          height: 80%;
-          width: auto;
-        }
-        &.ring {
-          position: absolute;
-          width: 180px;
-          height: auto;
-          top: -70px;
-          right: -100px;
-        }
         &.nft {
           position: absolute;
-          width: 50%;
+          left: 50%;
+          top: 60%;
+          transform: translate(-50%, -50%);
+          width: 110%;
           height: auto;
-          bottom: -80px;
-          right: 50px;
+          max-width: unset;
         }
-        &.non-nft {
+        &.nft-avatar {
           position: absolute;
-          width: 50%;
+          left: 70%;
+          top: 55%;
+          transform: translate(-50%, -50%);
+          width: 65%;
           height: auto;
-          bottom: -80px;
-          right: 50px;
+          max-width: unset;
         }
         &.trophy {
           position: absolute;
-          height: 110%;
-          width: auto;
-          bottom: -100px;
-          right: 10%;
+          right: -5%;
+          bottom: -5%;
+          width: 40%;
+          height: auto;
         }
       }
     }
@@ -446,6 +339,9 @@
   font-weight: bold;
   font-size: 85px;
   z-index: 1;
+  &.gameplan-titles {
+    white-space: nowrap;
+  }
 }
 .category-title-first {
   font-family: Earth Orbiter;
@@ -527,26 +423,7 @@
   .action-btn {
     font-size: 16px;
   }
-  .table {
-    .table-heading {
-      height: 70px;
-    }
-    .table-row {
-      height: 70px;
-    }
-    .table-item-smallest {
-      width: 80px;
-    }
-    .table-item-small {
-      width: 150px;
-    }
-    .table-item-medium {
-      width: 200px;
-    }
-    .table-item-big {
-      width: 300px;
-    }
-  }
+
   .category-title-big {
     font-size: 70px;
     line-height: 74px;
@@ -591,14 +468,6 @@
         z-index: 1;
         cursor: pointer;
         width: 60px;
-      }
-    }
-    .content {
-      img {
-        &.intro {
-          right: -75px;
-          top: 65%;
-        }
       }
     }
   }
@@ -680,27 +549,9 @@
       }
     }
   }
-  .table {
-    .table-heading {
-      height: 50px;
-    }
-    .table-row {
-      height: 50px;
-    }
-    .table-item-smallest {
-      width: 80px;
-    }
-    .table-item-small {
-      width: 100px;
-    }
-    .table-item-medium {
-      width: 150px;
-    }
-    .table-item-big {
-      width: 200px;
-    }
-  }
+
   .gameplan-section {
+    min-height: 650px;
     .menu {
       width: 100%;
       img {
@@ -708,84 +559,7 @@
       }
     }
     .content {
-      img {
-        &.intro {
-          height: 100%;
-        }
-      }
-      .text-holder {
-        margin-top: 50px;
-      }
-      .table-content {
-        margin-top: 50px;
-        .right-table {
-          .table {
-            &.column {
-              height: auto;
-              display: flex;
-              .table-row {
-                flex-direction: column;
-                height: auto;
-                border: none;
-                border-left: 1px solid white;
-              }
-              .table-heading {
-                flex-direction: column;
-                height: auto;
-                border: none;
-              }
-              .table-item-big {
-                height: 50px;
-                width: 200px;
-              }
-              .table-item-smallest {
-                border: none;
-                border-top: 1px solid white;
-                height: 50px;
-                width: 200px;
-              }
-            }
-          }
-        }
-        &.races {
-          flex-direction: column;
-          align-items: center;
-
-          .right-table {
-            margin-top: 20px;
-            margin-left: unset;
-          }
-        }
-        &.points {
-          flex-direction: unset;
-          align-items: unset;
-        }
-        &.leaderboard {
-          margin-top: 10px;
-        }
-        &.non-nft {
-          margin-top: 50px;
-        }
-        img {
-          &.trophy {
-            height: 70%;
-            bottom: 0px;
-            right: -5%;
-          }
-          &.non-nft {
-            right: 0px;
-          }
-          &.nft {
-            position: relative;
-            width: 60%;
-            left: 20%;
-            bottom: unset;
-            right: unset;
-            margin: 0 auto;
-            margin-top: 10px;
-          }
-        }
-      }
+      margin-top: 50px;
     }
   }
   .paralax-section {
@@ -881,27 +655,10 @@
     font-size: 16px;
     line-height: 18px;
   }
-  .table {
-    .table-heading {
-      height: 50px;
-    }
-    .table-row {
-      height: 50px;
-    }
-    .table-item-smallest {
-      width: 80px;
-    }
-    .table-item-small {
-      width: 100px;
-    }
-    .table-item-medium {
-      width: 150px;
-    }
-    .table-item-big {
-      width: 200px;
-    }
-  }
+
   .gameplan-section {
+    min-height: 650px;
+    width: 95%;
     .menu {
       width: 100%;
       img {
@@ -912,89 +669,7 @@
       }
     }
     .content {
-      img {
-        &.intro {
-          height: 100%;
-        }
-      }
-      .text-holder {
-        margin-top: 50px;
-      }
-      .table-content {
-        margin-top: 50px;
-        .right-table {
-          .table {
-            &.column {
-              height: auto;
-              display: flex;
-              .table-row {
-                flex-direction: column;
-                height: auto;
-                border: none;
-                border-left: 1px solid white;
-              }
-              .table-heading {
-                flex-direction: column;
-                height: auto;
-                border: none;
-              }
-              .table-item-big {
-                height: 50px;
-                width: 200px;
-              }
-              .table-item-smallest {
-                border: none;
-                border-top: 1px solid white;
-                height: 50px;
-                width: 200px;
-              }
-            }
-          }
-        }
-        &.races {
-          flex-direction: column;
-          align-items: center;
-
-          .right-table {
-            margin-top: 20px;
-            margin-left: unset;
-          }
-        }
-        &.points {
-          flex-direction: unset;
-          align-items: unset;
-        }
-        &.leaderboard {
-          margin-top: 10px;
-        }
-        &.non-nft {
-          margin-top: 50px;
-        }
-        img {
-          &.trophy {
-            height: 70%;
-            bottom: 0px;
-            right: -5%;
-          }
-          &.ring {
-            width: 130px;
-            top: -20px;
-            right: -70px;
-          }
-          &.non-nft {
-            right: 0px;
-          }
-          &.nft {
-            position: relative;
-            width: 60%;
-            left: 20%;
-            bottom: unset;
-            right: unset;
-            margin: 0 auto;
-            margin-top: 10px;
-          }
-        }
-      }
+      margin-top: 50px;
     }
   }
   .paralax-section {
@@ -1045,32 +720,8 @@
     font-size: 15px;
     line-height: 17px;
   }
-  .table {
-    width: 100%;
-    max-width: 100%;
-    .table-heading {
-      height: 40px;
-      width: 100%;
-    }
-    .table-row {
-      height: 40px;
-      width: 100%;
-    }
-    .table-item-smallest {
-      width: 40%;
-    }
-    .table-item-small {
-      width: 50%;
-    }
-    .table-item-medium {
-      width: 60%;
-    }
-    .table-item-big {
-      width: 70%;
-    }
-  }
+
   .gameplan-section {
-    width: 90%;
     .menu {
       width: 115%;
       margin-left: -7.5%;
@@ -1087,116 +738,370 @@
       }
     }
     .content {
-      img {
-        &.intro {
-          display: none;
-        }
-      }
+      margin-top: 50px;
+      flex-direction: column;
       .text-holder {
-        margin-top: 50px;
+        width: 100%;
         &.intro {
           width: 100%;
         }
       }
-      .table-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
+      .image-holder {
         width: 100%;
-        .left-table {
-          width: 100%;
-        }
-        .right-table {
-          width: 100%;
-          .table {
-            &.column {
-              height: auto;
-              display: flex;
-              width: 100%;
-              .table-row {
-                flex-direction: column;
-                height: auto;
-                border: none;
-                border-left: 1px solid white;
-                width: 100%;
-              }
-              .table-heading {
-                flex-direction: column;
-                height: auto;
-                border: none;
-                width: 100%;
-              }
-              .table-item-big {
-                height: 40px;
-                width: 100%;
-              }
-              .table-item-smallest {
-                border: none;
-                border-top: 1px solid white;
-                height: 40px;
-                width: 100%;
-              }
-            }
-          }
-        }
-        &.races {
-          flex-direction: column;
-          align-items: center;
-
-          .right-table {
-            margin-top: 20px;
-            margin-left: unset;
-          }
-        }
-        &.points {
-          flex-direction: column;
-          align-items: unset;
-        }
+        margin-top: 25px;
+        min-height: 200px;
         &.leaderboard {
-          margin-top: 10px;
-          .right-table {
-            width: 100%;
-          }
-        }
-        &.non-nft {
-          margin-top: 50px;
+          align-items: center;
         }
         img {
-          &.trophy {
-            left: unset;
-            position: relative;
-            width: 60%;
-            bottom: unset;
-            right: unset;
-            margin: 0 auto;
-            margin-top: 10px;
-          }
-          &.non-nft {
-            left: unset;
-            position: relative;
-            width: 60%;
-            bottom: unset;
-            right: unset;
-            margin: 0 auto;
-            margin-top: 10px;
-          }
-          &.ring {
-            width: 80px;
-            top: 0px;
-            right: -25px;
-          }
           &.nft {
-            left: unset;
-            position: relative;
-            width: 60%;
-            bottom: unset;
-            right: unset;
-            margin: 0 auto;
-            margin-top: 10px;
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: auto;
+            max-width: unset;
+          }
+          &.nft-avatar {
+            position: absolute;
+            left: 70%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            width: 65%;
+            height: auto;
+            max-width: unset;
+          }
+          &.trophy {
+            position: absolute;
+            right: -5%;
+            bottom: -5%;
+            width: 40%;
+            height: auto;
           }
         }
       }
     }
+  }
+}
+
+//NEW FREE RACES TABLE
+.golden-text {
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 234, 182, 1) 8%,
+    rgba(234, 193, 114, 1) 23%,
+    rgba(201, 171, 93, 1) 44%,
+    rgba(236, 223, 154, 1) 62%,
+    rgba(239, 213, 119, 1) 78%,
+    rgba(200, 188, 148, 1) 100%
+  );
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+}
+.text-font {
+  font-family: Earth Orbiter !important;
+  font-weight: normal !important;
+}
+.bold {
+  font-weight: 900 !important;
+}
+.table-title {
+  margin: 0 auto;
+  width: 90%;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-title-text {
+  width: fit-content;
+  font-family: Earth Orbiter;
+  font-style: normal;
+  font-size: 50px;
+  line-height: 52px;
+  font-weight: bold;
+}
+.table-text {
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 16px;
+}
+.free-race-table {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ffffff;
+  width: 100%;
+  height: auto;
+  .table-heading {
+    width: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .table-row {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    &.soon {
+      opacity: 0.4;
+    }
+  }
+  .table-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    padding: 12px 0px;
+    border-right: 1px solid #ffffff;
+    &.last {
+      border: none;
+    }
+  }
+  .table-item-long {
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+  &.nft-tournament {
+    width: 90%;
+    .table-item {
+      width: 50%;
+    }
+  }
+  &.ranking {
+    width: 70%;
+
+    .table-item {
+      width: 50%;
+    }
+  }
+  &.leaderboard-racer {
+    width: 110%;
+    position: relative;
+    img {
+      &.ring {
+        position: absolute;
+        top: -80px;
+        right: -40px;
+        width: 100px;
+      }
+    }
+    .table-item {
+      width: 7.3%;
+      &.first {
+        width: 27%;
+      }
+    }
+  }
+  &.leaderboard-team {
+    width: 86%;
+    .table-item {
+      width: 27%;
+      &.first {
+        width: 19%;
+      }
+
+      .table-text {
+        transform: scale(0.85);
+      }
+    }
+  }
+}
+@media screen and (max-width: 1700px) {
+  .table-title-text {
+    font-size: 45px;
+    line-height: 47px;
+  }
+  .table-text {
+    font-size: 14px;
+    line-height: 15px;
+  }
+}
+@media screen and (max-width: 1550px) {
+  .table-title-text {
+    font-size: 35px;
+    line-height: 37px;
+  }
+  .table-text {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .table-title-text {
+    font-size: 32px;
+    line-height: 35px;
+  }
+  .table-text {
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .table-title-text {
+    font-size: 25px;
+    line-height: 27px;
+  }
+  .table-text {
+    font-size: 11px;
+    line-height: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .table-title-text {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .table-text {
+    font-size: 9px;
+    line-height: 10px;
+  }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .table-title {
+    padding-bottom: 10px;
+  }
+  .table-title-text {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .table-text {
+    font-size: 8px;
+    line-height: 9px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .table-title-text {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .table-text {
+    font-size: 7px;
+    line-height: 8px;
+  }
+}
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .free-race-table {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .table-title-text {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .table-text {
+    font-size: 5px;
+    line-height: 6px;
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .table-title {
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+
+  .table-title-text {
+    text-align: center;
+    font-size: 30px;
+    line-height: 32px;
+    &.center {
+      display: none;
+    }
+  }
+  .table-text {
+    white-space: normal;
+    font-size: 11px;
+    line-height: 12px;
+  }
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .table-title {
+    padding-bottom: 10px;
+  }
+  .table-title-text {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .table-text {
+    font-size: 6px;
+    line-height: 7px;
+  }
+  .free-race-table {
+    &.leaderboard-racer {
+      width: 60%;
+      border: none;
+      border-left: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
+      border-right: 1px solid #ffffff;
+      margin: 0 auto;
+      flex-direction: row;
+      img {
+        &.ring {
+          top: unset;
+          bottom: -30px;
+          right: -40px;
+          width: 60px;
+        }
+      }
+      .table-heading {
+        flex-direction: column;
+        border-right: 1px solid #ffffff;
+      }
+      .table-row {
+        flex-direction: column;
+        border: none;
+      }
+      .table-item {
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid #ffffff;
+        &.first {
+          width: 100%;
+        }
+      }
+    }
+    .table-item {
+      padding: 8px 0px;
+    }
+    .table-item-long {
+      padding: 8px 0px;
+    }
+  }
+}
+@media screen and (max-width: 400px) and (orientation: portrait) {
+  .table-title-text {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .table-text {
+    font-size: 5px;
+    line-height: 6px;
+  }
+}
+@media screen and (max-width: 350px) and (orientation: portrait) {
+  .table-title-text {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .table-text {
+    font-size: 4px;
+    line-height: 5px;
   }
 }

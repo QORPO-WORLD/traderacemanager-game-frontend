@@ -87,26 +87,26 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   myFuels = [0];
   tourClose = false;
   myBet: Array<any> = [
-    { symbol: 'BTCUSDT', desc: 'BTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 0 },
-    { symbol: 'ETHUSDT', desc: 'ETH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 1 },
-    { symbol: 'XRPUSDT', desc: 'XRP', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 2 },
-    { symbol: 'BCHUSDT', desc: 'BCH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 3 },
-    { symbol: 'LTCUSDT', desc: 'LTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 4 },
-    { symbol: 'EOSUSDT', desc: 'EOS', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 5 },
-    { symbol: 'BNBUSDT', desc: 'BNB', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 6 },
-    { symbol: 'XMRUSDT', desc: 'XMR', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 7 },
-    { symbol: 'ADAUSDT', desc: 'ADA', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 8 },
-    { symbol: 'TRXUSDT', desc: 'TRX', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 9 },
-    { symbol: 'BATUSDT', desc: 'BAT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 10 },
-    { symbol: 'XLMUSDT', desc: 'XLM', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 11 },
-    { symbol: 'XTZUSDT', desc: 'XTZ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 12 },
-    { symbol: 'ENJUSDT', desc: 'ENJ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 13 },
-    { symbol: 'MATICUSDT', desc: 'MATIC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 14 },
-    { symbol: 'LINKUSDT', desc: 'LINK', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 15 },
-    { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16 },
-    { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17 },
-    { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18 },
-    { symbol: 'USDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
+    { symbol: 'BTCUSDT', desc: 'BTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 0, leverage: 0 },
+    { symbol: 'ETHUSDT', desc: 'ETH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 1, leverage: 0 },
+    { symbol: 'XRPUSDT', desc: 'XRP', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 2, leverage: 0 },
+    { symbol: 'BCHUSDT', desc: 'BCH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 3, leverage: 0 },
+    { symbol: 'LTCUSDT', desc: 'LTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 4, leverage: 0 },
+    { symbol: 'EOSUSDT', desc: 'EOS', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 5, leverage: 0 },
+    { symbol: 'BNBUSDT', desc: 'BNB', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 6, leverage: 0 },
+    { symbol: 'XMRUSDT', desc: 'XMR', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 7, leverage: 0 },
+    { symbol: 'ADAUSDT', desc: 'ADA', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 8, leverage: 0 },
+    { symbol: 'TRXUSDT', desc: 'TRX', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 9, leverage: 0 },
+    { symbol: 'BATUSDT', desc: 'BAT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 10, leverage: 0 },
+    { symbol: 'XLMUSDT', desc: 'XLM', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 11, leverage: 0 },
+    { symbol: 'XTZUSDT', desc: 'XTZ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 12, leverage: 0 },
+    { symbol: 'ENJUSDT', desc: 'ENJ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 13, leverage: 0 },
+    { symbol: 'MATICUSDT', desc: 'MATIC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 14, leverage: 0 },
+    { symbol: 'LINKUSDT', desc: 'LINK', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 15, leverage: 0 },
+    { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16, leverage: 0 },
+    { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17, leverage: 0 },
+    { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18, leverage: 0 },
+    { symbol: 'USDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19, leverage: 0 }
   ];
   selectedBets: Array<number> = [];
   selectedCarsToRace = [];
@@ -130,6 +130,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   sumFuel: number;
   sumlength: number;
   calced = false;
+  myDriverStats: any;
 
   constructor(private router: Router, protected api: CarsService,
     protected raceApi: RacesService, protected route: ActivatedRoute,
@@ -213,6 +214,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   getMyBalance() {
     const data = this.identityService.getBalance();
     this.myBalance = data.game_wallet_trx;
+    this.myDriverStats = this.identityService.getStorageIdentity();
   }
 
 
@@ -285,7 +287,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
   signupToRace() {
     const valid = this.validateBets();
-    console.log(valid);
     if (this.validateBets() === false) {
       return;
     } else {
@@ -296,10 +297,21 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
         fakeSelected[i].newBet = [];
         for (let ix = 0; ix < fakeSelected[i].bet.length; ix++) {
           if (fakeSelected[i].bet[ix].bet > 0) {
-            fakeSelected[i].newBet.push({
-              symbol: fakeSelected[i].bet[ix].symbol,
-              bet: fakeSelected[i].bet[ix].short === false ? fakeSelected[i].bet[ix].bet : fakeSelected[i].bet[ix].bet * -1
-            });
+            if (fakeSelected[i].bet[ix].leverage > 0) {
+              fakeSelected[i].newBet.push({
+                symbol: fakeSelected[i].bet[ix].symbol,
+                bet: fakeSelected[i].bet[ix].short === false ? fakeSelected[i].bet[ix].bet : fakeSelected[i].bet[ix].bet * -1,
+                leverage: fakeSelected[i].bet[ix].leverage
+              });
+            } else {
+              fakeSelected[i].newBet.push({
+                symbol: fakeSelected[i].bet[ix].symbol,
+                bet:
+                  fakeSelected[i].bet[ix].short === false
+                    ? fakeSelected[i].bet[ix].bet
+                      : fakeSelected[i].bet[ix].bet * -1
+              });
+            }
           }
         }
         serialized.push({
@@ -433,10 +445,10 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
    
           fake.bet = this.myCars[y].b[i].bet;
           fake.symbol = this.myCars[y].b[i].symbol;
-          //fake.favourite = this.myBet[x].favourite;
           fake.customIndex = this.myBet[i].customIndex;
           fake.selected = false;
           fake.short = this.myCars[y].b[i].bet < 0 ? true : false;
+          fake.leverage = this.myBet[i].leverage;
 
 
 
@@ -449,9 +461,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
             if (this.myCars[y].b[i].symbol === 'BNBUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(6); }
             if (this.myCars[y].b[i].symbol === 'XMRUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(7); }
             if (this.myCars[y].b[i].symbol === 'ADAUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(8); }
-        if (this.myCars[y].b[i].symbol === 'TRXUSDT' && this.myCars[y].b[i].bet !== 0) {
-          fake.selected = true; selBets.push(9);
-        }
+            if (this.myCars[y].b[i].symbol === 'TRXUSDT' && this.myCars[y].b[i].bet !== 0) { selBets.push(9); }
             if (this.myCars[y].b[i].symbol === 'BATUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(10); }
             if (this.myCars[y].b[i].symbol === 'XLMUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(11); }
             if (this.myCars[y].b[i].symbol === 'XTZUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(12); }
@@ -462,27 +472,17 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
             if (this.myCars[y].b[i].symbol === 'ZILUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(17); }
             if (this.myCars[y].b[i].symbol === 'VETUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(18); }
             if (this.myCars[y].b[i].symbol === 'USDTUSDT' && this.myCars[y].b[i].bet !==0) { selBets.push(19); }
-          /*
-         
-          */
-          // if (x === selBets[counter]) {
-          //   fake.bet = this.tourcars[y].b[counter].bet;
-          //   fake.selected = true;
-          //   if (fake.bet < 0) {
-          //     fake.short = true; 
-          //   } else {
-          //     fake.short = false;
-          //   }
-          //   console.log(fake.bet);
-          //   counter++;
-          // } else {
-          //   fake.selected = false;
-          //   fake.short = false;
-          //   fake.bet = 0;
-          // }
-          statBet.push(fake);
-
-
+            
+        if (this.myCars[y].l != null) {
+          let leverages = Object.keys(this.myCars[y].l);
+          for (let l = 0; l < leverages.length; l++){
+            if (leverages[l] === this.myCars[y].b[i].symbol) {
+              fake.leverage = 2;
+            }
+          } 
+        }
+        
+        statBet.push(fake);
         
       }
 
@@ -504,6 +504,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
 
 
   getAllV2Races() {
+
     this.getMyCars();
     this.timerReady = false;
 

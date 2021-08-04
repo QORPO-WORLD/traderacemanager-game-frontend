@@ -2390,6 +2390,18 @@ ul.fancy {
   }
 }
 .winning-modal {
+  &.frozen {
+    border-radius: 0px !important;
+    background: #111111 !important;
+    width: 70%;
+    padding: 50px 30px;
+    .close-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+  }
   &.end-race-stats {
     .modal-bg {
       background: url("/assets/base/images/zavod/winner-back.png");
@@ -5847,6 +5859,7 @@ button small {
     }
   }
   .winning-back {
+    overflow: auto;
     .winning-modal {
       max-width: 430px;
       top: 10px;
@@ -5858,10 +5871,10 @@ button small {
             font-size: 50px;
           }
         }
-        .prize-desc{
+        .prize-desc {
           font-size: 11px;
         }
-        .quit-btn{
+        .quit-btn {
           font-size: 12px;
           border-radius: 0px 7px;
         }
@@ -5894,17 +5907,17 @@ button small {
         button {
           font-size: 15px;
         }
-        .divider{
+        .divider {
           margin: 0 13px;
         }
       }
-      .bottom-part{
+      .bottom-part {
         .buttons-holder {
           height: 37px;
           .my-cta-btn {
             font-size: 13px;
             border-radius: 0 0 7px 0;
-            &.azure-btn{
+            &.azure-btn {
               border-radius: 0 0 0 7px;
             }
             img {
@@ -6057,6 +6070,11 @@ button small {
 }
 
 @media screen and (max-width: 640px) and (orientation: portrait) {
+  .winning-modal {
+    &.frozen {
+      width: 90%;
+    }
+  }
   .main-content.zavod {
     .final_line {
       right: calc(50px - 46vw);
