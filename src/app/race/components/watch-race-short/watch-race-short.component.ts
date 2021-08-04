@@ -984,6 +984,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       fake.cid = this.raceDataildata.my_cars[x].cid;
       fake.n = this.raceDataildata.my_cars[x].n;
       fake.u = this.raceDataildata.my_cars[x].u;
+      fake.l = this.raceDataildata.my_cars[x].l;
       stat.push(fake);
     }
     if (this.loserIndex) {
@@ -1021,7 +1022,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         ) {
           setTimeout(() => {
             if (this.cFuelOpen === false) {
-              this.continueTour();
+              // this.continueTour();
             }
           }, nozacni);
         }
