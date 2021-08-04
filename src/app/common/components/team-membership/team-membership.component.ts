@@ -12,7 +12,7 @@ import { BalanceService } from "../../../common/services/balance.service";
   styleUrls: ["./team-membership.component.scss"],
 })
 export class TeamMembershipComponent implements OnInit {
-  ň;
+  accountInfo: any;
   selectedTeam = [];
   selectedMembership = "premium";
   teams: any;
@@ -47,6 +47,9 @@ export class TeamMembershipComponent implements OnInit {
   ngOnInit() {
     this.getDiscount();
     this.getTeams();
+    this.accountInfo = this.identityService.getDriverMe();
+    console.log(this.myDriverStats);
+    console.log(this.accountInfo);
   }
 
   getDiscount() {
@@ -108,7 +111,6 @@ export class TeamMembershipComponent implements OnInit {
         (item) => item.id === this.selectedTeamId
       );
       console.log(this.selectedTeam);
-      this.myMembEnd = this.selectedTeam[0].memberships[0].date_to;
       this.getMembEndSafari();
       console.log(this.myMembEnd);
     });
@@ -171,7 +173,7 @@ export class TeamMembershipComponent implements OnInit {
   }
 
   getMembEndSafari() {
-    this.myMembEnd = this.selectedTeam[0].memberships[0].date_to.replace(
+    this.myMembEnd = this.selectedTeam[0].last_membership_ends_at.replace(
       " ",
       "T"
     );

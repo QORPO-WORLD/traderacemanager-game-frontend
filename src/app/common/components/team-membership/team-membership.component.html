@@ -121,7 +121,7 @@
                   Guarenteed 1000 IOI prizepool for TOP 10 racers every month
                 </p>
               </div>
-              <div
+              <!-- <div
                 [ngClass]="{ active: monthCount === 3 }"
                 class="premium-bonus hidden"
               >
@@ -151,7 +151,7 @@
                   alt="race car"
                 />
                 <p class="classic-text">Free NFT Common Car for 1 year</p>
-              </div>
+              </div> -->
             </div>
             <div class="months space-big">
               <button
@@ -198,11 +198,38 @@
               your membership will start on 1st of august until 31st of august
             </p> -->
             <p
-              *ngIf="selectedTeam[0].memberships.length > 0"
-              class="classic-desc space my-text-color"
+              *ngIf="
+                accountInfo.is_paid_membership === 'Premium' &&
+                myMembEnd != null
+              "
+              class="classic-desc space"
             >
-              you already have membership in {{ selectedTeam[0]?.name }} team
-              until
+              your premium in team {{ selectedTeam[0]?.name }} starts after
+              {{ myMembEnd | date: "longDate" }}
+            </p>
+            <p
+              *ngIf="
+                accountInfo.is_paid_membership === 'Premium' &&
+                myMembEnd === undefined
+              "
+              class="classic-desc space"
+            >
+              You already got lifetime membership!
+            </p>
+            <p
+              *ngIf="
+                accountInfo.is_paid_membership != 'Premium' &&
+                myMembEnd === undefined
+              "
+              class="classic-desc space"
+            >
+              your premium in team {{ selectedTeam[0]?.name }} starts now
+            </p>
+            <p
+              *ngIf="accountInfo.is_paid_membership === 'Premium'"
+              class="classic-desc my-text-color space-small"
+            >
+              you already have membership in {{ accountInfo?.team }} team until
               {{ myMembEnd | date: "longDate" }}
             </p>
             <button

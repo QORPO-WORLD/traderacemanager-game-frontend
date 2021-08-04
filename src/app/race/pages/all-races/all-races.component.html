@@ -243,13 +243,43 @@
 
           <div class="cont-holder">
             <p class="heading">Free fast race</p>
-            <p class="races-left">
-              <img src="/assets/base/images/icons/fuel-white.svg" alt="white fuel icon">
+
+            <p
+              *ngIf="
+                accountInfo.is_paid_membership != 'Premium' &&
+                accountInfo?.free_races_left > 0
+              "
+              class="races-left"
+            >
+              <img
+                src="/assets/base/images/icons/fuel-white.svg"
+                alt="white fuel icon"
+              />
               <span>
-              {{ accountInfo?.free_races_left }}/{{
-                accountInfo?.free_races_limit
-              }}
-            </span>
+                {{ accountInfo?.free_races_left }}/{{
+                  accountInfo?.free_races_limit
+                }}
+                races left
+              </span>
+            </p>
+            <p
+              *ngIf="
+                accountInfo.is_paid_membership != 'Premium' &&
+                accountInfo?.free_races_left === 0
+              "
+              [routerLink]="['/teams/join-teams']"
+              class="races-left non-left"
+            >
+              <img
+                src="/assets/base/images/icons/fuel-red.svg"
+                alt="white fuel icon"
+              />
+              <span>
+                {{ accountInfo?.free_races_left }}/{{
+                  accountInfo?.free_races_limit
+                }}
+                races left
+              </span>
             </p>
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="" />
