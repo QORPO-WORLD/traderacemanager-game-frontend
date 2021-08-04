@@ -55,23 +55,20 @@
       </div>
       <div class="menu-items">
         <div id="items" class="items">
-          <div [ngClass]="{ unactive: content != 5 }" class="item">
+          <div [ngClass]="{ unactive: content != 4 }" class="item">
             <button class="action-btn">Ranking</button>
           </div>
-          <div [ngClass]="{ unactive: content != 6 }" class="item">
+          <div [ngClass]="{ unactive: content != 5 }" class="item">
             <button class="action-btn">Leaderboard</button>
           </div>
           <div [ngClass]="{ unactive: content != 1 }" class="item">
-            <button class="action-btn">Intro</button>
-          </div>
-          <div [ngClass]="{ unactive: content != 2 }" class="item">
             <button class="action-btn">NFT Cars</button>
           </div>
-          <div [ngClass]="{ unactive: content != 3 }" class="item">
-            <button class="action-btn">Non NFT Cars</button>
+          <div [ngClass]="{ unactive: content != 2 }" class="item">
+            <button class="action-btn">Non NFT & Races</button>
           </div>
-          <div [ngClass]="{ unactive: content != 4 }" class="item">
-            <button class="action-btn">Races</button>
+          <div [ngClass]="{ unactive: content != 3 }" class="item">
+            <button class="action-btn">Winning system</button>
           </div>
         </div>
       </div>
@@ -86,459 +83,477 @@
         />
       </div>
     </div>
+
     <div *ngIf="content === 1" class="content">
       <div class="text-holder intro">
-        <p class="category-title-second">Intro</p>
-        <p class="category-title-big red">GAMEPLAN</p>
-        <p class="races-desc">
-          Trade Race Manager (TRM) is a completely
-          <span class="red">free-to-play</span> model with the possibility to
-          maximize your profits with NFTs.
-        </p>
-        <br />
-        <p class="races-desc">
-          The new game system is based on every-day
-          <span class="red">rewards up to 1 500 IOI</span>. Become part of
-          <span (click)="joinTelegram()" class="red link">IOI Army</span> and
-          play TRM to enjoy unlimited rewards.
-        </p>
-        <br />
-        <p class="races-desc">
-          Guaranteed prize pools up to 10 IOI in NFT races take place every 10
-          minutes and special every-day NFT tournament with a guaranteed
-          <span class="red">prize pool of 100 IOI for NFT holders</span>.
-        </p>
-        <br />
-        <p class="races-desc">
-          Free Fast races take place every 2 minutes for everybody with a
-          guaranteed <span class="red">prize pool of 0.28 IOI</span>.
-        </p>
-        <br />
-        <p class="races-desc">
-          Free members can race with NON-NFT car but receive only 0.1 IOI per
-          win in TOP 3 spots.
-        </p>
-      </div>
-      <img
-        class="intro"
-        src="/assets/base/images/how-to/black-trm-left.png"
-        alt="NFT Avatar"
-      />
-    </div>
-    <div *ngIf="content === 2" class="content">
-      <div class="text-holder intro">
         <p class="category-title-second">Gameplan logic</p>
-        <p class="category-title-big red">NFT CARS</p>
+        <p class="category-title-big red gameplan-titles">NFT CARS</p>
         <p class="races-desc">
-          Your winnings are based on the NFT car tier you own. There are several
-          NFT car tiers ranging from common to legendary.
-        </p>
-        <br />
-        <p class="races-desc">
-          There is also a <span class="red">special RARE NFT car</span> in each
-          tier that is received for FREE when you own every car from the
-          specific tier! RARE NFT cars are adding multiplier to possible IOI win
-          from every race.
-        </p>
-        <br />
-        <p class="races-desc">
-          A race takes place every 10 minutes and is completely free to play -
-          every race is happening on a different track.
-        </p>
-        <br />
-        <p class="races-desc">
-          Races are free for NFT car holders as well as for NON NFT cars
-          holders. However NON NFT car holders can win maximum of 0.1 IOI for
-          any of top 3 positions in the race.
-        </p>
-        <br />
-        <p class="races-desc">
-          The winnings for NFT car tiers are calculated here:
+          Get NFT car and race for big rewards forever!
+          <br />
+          <br />
+          Trade Race Manager (TRM) is completely free to play model with
+          possibility to maximize your profits with NFTs. Your winning are based
+          on the NFT car tier you own. There are several NFT car tiers ranging
+          from common to legendary. In each tier there is special RARE NFT car
+          that is received when you own every car from the tier for FREE! RARE
+          NFT cars are adding multiplier to possible IOI win from every race.
+          <br />
+          <br />
+          Race takes place every 10 minutes and is completely free to play.Each
+          race in 1 hour happening on a different track.
+          <br />
+          <br />
+          Races are free for NFT cars forever as well as for NON NFT cars but
+          with the max win of 0,1 IOI for any of top 3 positions for NON NFT
+          Car.
+          <br />
+          <br />
+          Winnings with each car in NFT races are calculated here:
         </p>
       </div>
-      <div class="table-content">
-        <div class="table">
-          <div class="table-heading">
-            <div class="table-item-small">
-              <p class="category-title-third">NFT Car Tier</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-third">Win in IOI</p>
-            </div>
-            <div class="table-item-big">
-              <p class="category-title-third">Rare NFT multiplier</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">Common</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">0,33</p>
-            </div>
-            <div class="table-item-big">
-              <p class="category-title-fourth red">x1,5</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">Super</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">0,66</p>
-            </div>
-            <div class="table-item-big">
-              <p class="category-title-fourth red">x2</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">Epic</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">1,32</p>
-            </div>
-            <div class="table-item-big">
-              <p class="category-title-fourth red">x2,5</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">Legendary</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">1,98</p>
-            </div>
-            <div class="table-item-big">
-              <p class="category-title-fourth red">x3</p>
-            </div>
-          </div>
-        </div>
+      <div class="image-holder">
         <img
           class="nft"
           src="/assets/base/images/how-to/bugatti-left.png"
           alt="bugatti"
         />
+        <img
+          class="nft-avatar"
+          src="/assets/base/images/how-to/black-trm-left.png"
+          alt="NFT Avatar"
+        />
       </div>
     </div>
-    <div *ngIf="content === 3" class="content">
+    <div *ngIf="content === 2" class="content">
       <div class="text-holder intro">
         <p class="category-title-second">Gameplan logic</p>
-        <p class="category-title-big red">NON NFT CARS</p>
+        <p class="category-title-big red gameplan-titles">NON NFT CARS</p>
         <p class="races-desc">
-          Free members can race with NON NFT car but can win only 0.1 IOI in TOP
-          3 positions in a race and do not receive any further points for their
-          effort.
-        </p>
-        <br />
-        <p class="races-desc">
-          Join<span class="red"> premium membership</span> to start get rewards.
-        </p>
-        <br />
-        <p class="races-desc">
-          Play FREE races every 2 minutes and compete for a prize pool of
-          <span class="red">0.28 IOI</span>
+          Free members can race with NON NFT car but
+          <span class="red">receive only 0,1 IOI per WIN in TOP 3 spots</span>
+          and do not receive any points for their effort - Join premium to get
+          points and be able to receive up to 10 spots.
+          <br />
+          <br />
+          Free track is playable every 2 minutes with win of 0,28 IOI
+          <br />
+          - Both NON NFT and NFT cars can enter
+          <br />
+          - Win is split between first 5 racers
         </p>
 
-        <p class="races-desc">- Both NON NFT and NFT cars can enter</p>
+        <p class="category-title-big red space">RACES</p>
         <p class="races-desc">
-          - The prize pool is split between first 5 racers
+          Every 10 minutes - Entry: NFT cars + NON NFT cars
+          <br />
+          <br />
+          Every 2 minutes - Entry: NFT cars + NON NFT cars
+          <br />
+          <br />
+          Every day special
+          <span class="red"
+            >Tournament for guaranteed prize pool of 100 IOI</span
+          >
+          <br />
+          <br />
+          Entry: NFT cars only
+          <br />
+          <br />
+          Tournament for NFT cars only every day for 100 IOI (7-days a week).
         </p>
       </div>
-      <div class="table-content non-nft">
-        <div class="table non-nft">
-          <div class="table-heading">
-            <div class="table-item-small">
-              <p class="category-title-third">NFT Car Tier</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-third">Win in IOI</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">1st position</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">0,1</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">2nd position</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">0,1</p>
-            </div>
-          </div>
-          <div class="table-row">
-            <div class="table-item-small">
-              <p class="category-title-fourth">3rd position</p>
-            </div>
-            <div class="table-item-medium">
-              <p class="category-title-fourth">0,1</p>
-            </div>
-          </div>
-        </div>
+      <div class="image-holder">
         <img
           class="non-nft"
           src="/assets/base/images/how-to/blue-car-left.png"
           alt="bugatti"
         />
+        <p class="category-title-second">Daily NFT Tournament</p>
+        <div class="free-race-table nft-tournament small-space">
+          <div class="table-heading">
+            <div class="table-item">
+              <p class="table-text text-font bold">POSITION</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text text-font bold">REWARD</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">1st</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">50 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">2nd</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">30 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">3rd</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">20 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">4th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">7 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">5th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">6 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">6th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">5 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">7th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">4 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">8th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">3 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">9th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">2 &#36;IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">10th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">1 &#36;IOI</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="content === 3" class="content reward-system">
+      <div class="table-title">
+        <p class="table-title-text">Detailed reward system</p>
+        <p class="table-title-text center">|</p>
+        <p class="table-title-text red bold">Every 10-minute race</p>
+      </div>
+      <div class="free-race-table">
+        <div class="table-heading">
+          <div class="table-item table-text text-font">Position</div>
+          <div class="table-item table-text text-font">NON-NFT</div>
+          <div class="table-item table-text text-font">COMMON</div>
+          <div class="table-item table-text text-font">COMMON RARE</div>
+          <div class="table-item table-text text-font">SUPER</div>
+          <div class="table-item table-text text-font">SUPER RARE</div>
+          <div class="table-item table-text text-font">EPIC</div>
+          <div class="table-item table-text text-font">EPIC RARE</div>
+          <div class="table-item table-text text-font">LEGENDARY</div>
+          <div class="table-item last table-text">LEGENDARY RARE</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">1st</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">1 &#36;IOI</div>
+          <div class="table-item table-text">1,5 &#36;IOI</div>
+          <div class="table-item table-text">2 &#36;IOI</div>
+          <div class="table-item table-text">3 &#36;IOI</div>
+          <div class="table-item table-text">4 &#36;IOI</div>
+          <div class="table-item table-text">6 &#36;IOI</div>
+          <div class="table-item table-text">8 &#36;IOI</div>
+          <div class="table-item last table-text">12 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">2nd</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,75 &#36;IOI</div>
+          <div class="table-item table-text">1 &#36;IOI</div>
+          <div class="table-item table-text">1,5 &#36;IOI</div>
+          <div class="table-item table-text">2 &#36;IOI</div>
+          <div class="table-item table-text">3 &#36;IOI</div>
+          <div class="table-item table-text">4 &#36;IOI</div>
+          <div class="table-item last table-text">6 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">3rd</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,45 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,9 &#36;IOI</div>
+          <div class="table-item table-text">1,2 &#36;IOI</div>
+          <div class="table-item table-text">1,8 &#36;IOI</div>
+          <div class="table-item table-text">2,4 &#36;IOI</div>
+          <div class="table-item last table-text">3,6 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">4th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">5th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">6th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">7th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">8th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">9th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text">10th (Premium)</div>
+          <div class="table-item table-text">0,1 &#36;IOI</div>
+          <div class="table-item table-text">0,2 &#36;IOI</div>
+          <div class="table-item table-text">0,3 &#36;IOI</div>
+          <div class="table-item table-text">0,4 &#36;IOI</div>
+          <div class="table-item table-text">0,5 &#36;IOI</div>
+          <div class="table-item table-text">0,6 &#36;IOI</div>
+          <div class="table-item table-text">0,7 &#36;IOI</div>
+          <div class="table-item table-text">0,8 &#36;IOI</div>
+          <div class="table-item last table-text">0,9 &#36;IOI</div>
+        </div>
+        <div class="table-row">
+          <div class="table-item table-text text-font">Activity Boost</div>
+          <div class="table-item-long table-text text-font">Coming soon!</div>
+        </div>
+        <div class="table-row soon">
+          <div class="table-item table-text">10 Daily Loggins</div>
+          <div class="table-item-long">
+            <span class="red table-text text-font bold">X1.5 BOOST</span>
+          </div>
+        </div>
+        <div class="table-row soon">
+          <div class="table-item table-text">20 Daily Loggins</div>
+          <div class="table-item-long">
+            <span class="red table-text text-font bold">X2.0 BOOST</span>
+          </div>
+        </div>
+        <div class="table-row soon">
+          <div class="table-item table-text">30 Daily Loggins</div>
+          <div class="table-item-long">
+            <span class="red table-text text-font bold">X3.0 BOOST</span>
+            <span class="golden-text table-text text-font bold"
+              >&#43; Premium Membership for 1 month for free</span
+            >
+          </div>
+        </div>
       </div>
     </div>
     <div *ngIf="content === 4" class="content">
       <div class="text-holder intro">
         <p class="category-title-second">Gameplan logic</p>
-        <p class="category-title-big red">RACES</p>
+        <p class="category-title-big red gameplan-titles">Ranking</p>
         <p class="races-desc">
-          Every 10 minutes for <span class="red">max win 10 IOI</span> - Entry:
-          NFT cars and NON NFT cars
-        </p>
-        <br />
-        <p class="races-desc">
-          Every 2 minutes for <span class="red">max win 0,28 IOI</span> - Entry:
-          NFT cars and NON NFT cars
-        </p>
-        <br />
-        <p class="races-desc">
-          Daily special
-          <span class="red"
-            >NFT Tournament for guaranteed prize pool of 100 IOI</span
-          >
-          - Entry: NFT cars only
-        </p>
-        <br />
-        <p class="races-desc">
-          NFT tournament
-          <span class="red"
-            >prize pool distribution TOP 3: 50 IOI, 30 IOI, 20 IOI</span
-          >
+          Get <span class="red">premium</span> and your place on the
+          leaderboard!
+          <br />
+          <br />
+          Each month premium members are playing for
+          <span class="red">2000 IOI</span> with their teams (TOP 3 teams) and
+          1000 IOI for the overall best racers (TOP 10 racers) -
+          <span class="red">3000 IOI Every month!</span>
+          <br />
+          <br />
+          Season takes 1 month (start is always the first day of the month) and
+          resets at the last day of the month
+          <br />
+          <br />
+          You need Premium membership to get points for the season. Sooner you
+          will get premium sooner you are legible for ranking system and IOI
+          prize pool at the end of the season
+          <br />
+          <br />
+          With every race you win as premium member you receive points (check
+          the point chart). By the end of the month first 10 racers form the
+          leaderboard are legible for the
+          <span class="red">prize pool of 1000 IOI</span> based on their results
+          throughout the season.
         </p>
       </div>
-      <div class="table-content races">
-        <div class="left-table">
-          <p class="category-title-second red">NFT Cars</p>
-          <div class="table">
-            <div class="table-heading">
-              <div class="table-item-small">
-                <p class="category-title-third">Races</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Depending on car</p>
-              </div>
-              <div class="table-item-big">
-                <p class="category-title-third">Possible win in IOI</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">1st position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">100 %</p>
-              </div>
-              <div class="table-item-big">
-                <p class="category-title-fourth red">0,33 - 5,94</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">2nd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">50 %</p>
-              </div>
-              <div class="table-item-big">
-                <p class="category-title-fourth red">0,165 - 2,97</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">3rd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">20 %</p>
-              </div>
-              <div class="table-item-big">
-                <p class="category-title-fourth red">0,066 - 1,188</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right-table">
-          <p class="category-title-second red">NON-NFT Cars</p>
+      <div class="image-holder ranking">
+        <p class="category-title-second red">Points Chart</p>
 
-          <div class="table non-nft">
-            <div class="table-heading">
-              <div class="table-item-small">
-                <p class="category-title-third">NFT Car Tier</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Win in IOI</p>
-              </div>
+        <div class="free-race-table ranking small-space">
+          <div class="table-heading">
+            <div class="table-item">
+              <p class="table-text text-font bold">Position</p>
             </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">1st position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">0,1</p>
-              </div>
+            <div class="table-item last">
+              <p class="table-text text-font bold">Points</p>
             </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">2nd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">0,1</p>
-              </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">1st position</p>
             </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">3rd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">0,1</p>
-              </div>
+            <div class="table-item last">
+              <p class="table-text">25</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">2nd position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">18</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">3rd position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">15</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">4th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">12</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">5th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">6th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">8</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">7th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">6</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">8th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">4</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">9th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">2</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item">
+              <p class="table-text">10th position</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">1</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div *ngIf="content === 5" class="content">
-      <div class="text-holder intro">
-        <p class="category-title-second">Seasons &</p>
-        <p class="category-title-big red">Ranking</p>
-        <p class="races-desc">
-          What you need to start the season is the
-          <span class="red">Premium membership.</span>
-        </p>
-        <br />
-        <p class="races-desc">
-          Sooner you get the premium membership, the sooner you start getting
-          points to the ranking system for sharing IOI prize pool at the end of
-          the season.
-        </p>
-        <br />
-        <p class="races-desc">
-          The season takes 1 month (start is always on the first day of the
-          month) and resets on the last day of the month.
-        </p>
-        <br />
-        <p class="races-desc">
-          The ranking system is simple. You receive points (check the point
-          chart below) for every race you win as the premium member. At the end
-          of the season (month),
-          <span class="red"
-            >the first 10 Leaderboard racers are splitting the prize pool of 1
-            000 IOI</span
-          >
-          based on their results by the end of the season.
-        </p>
-        <br />
-        <p class="races-desc">
-          The premium members are playing for
-          <span class="red">3 000 IOI every month — 2 000 IOI prize pool</span>
-          with their teams (TOP 3 teams) and 1 000 IOI prize pool for the
-          overall best racers (TOP 10 racers).
-        </p>
-      </div>
-      <div class="table-content races points">
-        <div class="left-table">
-          <p class="category-title-second red">Points Chart</p>
 
-          <div class="table">
-            <div class="table-heading">
-              <div class="table-item-small">
-                <p class="category-title-third">Position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Points</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">1st position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">25</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">2nd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">18</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">3rd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">15</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">4th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">12</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">5th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">6th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">8</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">7th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">6</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">8th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">4</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">9th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">2</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">10th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">1</p>
-              </div>
-            </div>
-          </div>
-        </div>
         <img
           class="trophy"
           src="/assets/base/images/how-to/trophy-big.png"
@@ -546,273 +561,267 @@
         />
       </div>
     </div>
-    <div *ngIf="content === 6" class="content">
+    <div *ngIf="content === 5" class="content">
       <div class="text-holder intro">
         <p class="category-title-second">Gameplan logic</p>
-        <p class="category-title-big red">LEADERBOARD</p>
+        <p class="category-title-big red gameplan-titles">LEADERBOARD</p>
         <p class="races-desc">
-          1. Team leaderboard — Top 3 teams with the most points in the season
-          win <span class="red">prize pool of 2 000 IOI</span> at the end of the
-          season.
+          1. Team leaderboard — Top 3 teams with the most points in the season -
+          Winning <span class="red">prize pool of 2 000 IOI</span> at the end of
+          the season.
         </p>
         <br />
         <p class="races-desc">
-          2. Racer leaderboard — Top 10 overall racers with the most points win
-          a <span class="red">prize pool of 1 000 IOI</span> at the end of the
-          season.
+          2. Racer leaderboard — Top 10 overall racers with the most points -
+          win a <span class="red">prize pool of 1 000 IOI</span> at the end of
+          the season.
         </p>
         <br />
         <p class="races-desc">
           3. Racer of the season receives a special NFT ring which is an entry
           ticket to the special end of the YEAR tournament for
-          <span class="red">Ultra Rare Custom NFT car.</span>
+          <span class="red">Ultra Rare NFT cars.</span>
         </p>
-      </div>
-      <div class="table-content leaderboard">
-        <div class="left-table">
-          <p class="category-title-second red">TEAM BONUS 2 000 IOI</p>
-          <div class="table">
-            <div class="table-heading">
-              <div class="table-item-small">
-                <p class="category-title-third">Position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Nr.1 Team - 1 000 IOI</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Nr.2 Team - 700 IOI</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-third">Nr.3 Team - 300 IOI</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">1st position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">300</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">200</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">100</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">2nd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">200</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">120</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">60</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">3rd position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">100</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">85</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">50</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">4th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">90</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">70</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">30</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">5th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">80</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">60</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">20</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">6th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">70</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">50</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">7th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">60</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">40</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">8th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">50</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">30</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">9th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">30</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">25</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-small">
-                <p class="category-title-fourth">10th position</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">20</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">20</p>
-              </div>
-              <div class="table-item-medium">
-                <p class="category-title-fourth">10</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right-table">
-          <p class="category-title-second red desktop">
-            RACER LEADERBOARD WITH 1 000 IOI WIN
-          </p>
-          <p class="category-title-second red mobile">
-            RACER LEADERBOARD <br />
-            WITH 1 000 IOI WIN
-          </p>
-          <div class="table non-nft column">
-            <div class="table-heading">
-              <div class="table-item-big">
-                <p class="category-title-third">Racer position by points</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">1st</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">2nd</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">3rd</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">4th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">5th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">6th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">7th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">8th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">9th</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-third">10th</p>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="table-item-big">
-                <p class="category-title-fourth">Win in IOI</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">300</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">200</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">130</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">100</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">70</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">60</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">50</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">40</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">30</p>
-              </div>
-              <div class="table-item-smallest">
-                <p class="category-title-fourth">20</p>
-              </div>
-            </div>
-          </div>
+        <p class="category-title-second space red">
+          Racer leaderboard with 1 000 IOI WIN
+        </p>
+        <div class="free-race-table leaderboard-racer small-space">
           <img
             class="ring"
             src="/assets/base/images/home-page/ring.png"
             alt="ring"
           />
+          <div class="table-heading">
+            <div class="table-item first">
+              <p class="table-text">Racer position by points</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">1st</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">2nd</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">3rd</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">4th</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">5th</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">6th</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">7th</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">8th</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">9th</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text text-font bold">10th</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">Win in IOI</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">300</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">200</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">130</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">100</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">70</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">60</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">50</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">40</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">30</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">20</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="image-holder leaderboard">
+        <p class="category-title-second red big-table-title">
+          TEAM BONUS 2 000 IOI
+        </p>
+        <div class="free-race-table leaderboard-team small-space">
+          <div class="table-heading">
+            <div class="table-item first">
+              <p class="table-text text-font bold">Position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">1. Team - 1 000 IOI</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text text-font bold">2. Team - 700 IOI</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text text-font bold">3. Team - 300 IOI</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">1st position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">300</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">200</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">100</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">2nd position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">200</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">120</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">60</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">3rd position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">100</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">85</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">50</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">4th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">90</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">70</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">30</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">5th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">80</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">60</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">20</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">6th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">70</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">50</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">7th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">60</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">40</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">8th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">50</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">30</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">9th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">30</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">25</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item first">
+              <p class="table-text">10th position</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">20</p>
+            </div>
+            <div class="table-item">
+              <p class="table-text">20</p>
+            </div>
+            <div class="table-item last">
+              <p class="table-text">10</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

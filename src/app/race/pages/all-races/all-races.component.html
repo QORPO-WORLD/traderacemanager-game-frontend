@@ -125,7 +125,10 @@
       *ngIf="content === 1"
       class="content-side"
     >
-      <div class="big-box" [ngClass]="{'tutorial-high disabled': tutorialStep === 1}">
+      <div
+        class="big-box"
+        [ngClass]="{ 'tutorial-high disabled': tutorialStep === 1 }"
+      >
         <p class="box-heading">Special race</p>
         <div class="inner-box tesla">
           <div class="info-cont">
@@ -140,13 +143,13 @@
                   ></app-timer>
                 </p>
               </div>
-  
+
               <div class="info-box">
-                <img src="/assets/base/images/race-type/timer.svg" alt="">
+                <img src="/assets/base/images/race-type/timer.svg" alt="" />
                 <p>37 min</p>
               </div>
             </div>
-  
+
             <div class="text-holder">
               <p class="heading">Tesla tournament</p>
               <p class="text bordered">
@@ -154,20 +157,23 @@
               </p>
               <p class="sub-heading">Underground</p>
             </div>
-  
+
             <div class="info-flex">
               <div class="info-box">
                 <img src="/assets/base/images/race-type/player.svg" alt="" />
                 <p>{{ specialTournament?.players_count }} <span>| 500</span></p>
               </div>
-  
+
               <div class="info-box">
-                <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                <img
+                  src="/assets/base/images/race-type/token-white.svg"
+                  alt=""
+                />
                 <p>{{ specialTournament?.prize_pool }}</p>
               </div>
             </div>
           </div>
-  
+
           <div class="controls-holder">
             <div
               class="control-item"
@@ -187,9 +193,12 @@
               <img src="/assets/base/images/race-type/fav-purple.svg" alt="" />
             </div>
           </div>
-  
+
           <div class="btns-holder">
-            <button class="inactive" (click)="openLink('https://traderacemanager.com/user/tesla')">
+            <button
+              class="inactive"
+              (click)="openLink('https://traderacemanager.com/user/tesla')"
+            >
               Tesla rules
             </button>
             <button
@@ -201,8 +210,12 @@
           </div>
         </div>
       </div>
-      <div class="small-box" [ngClass]="{'tutorial-high clickable': tutorialStep === 3}">
+      <div
+        class="small-box"
+        [ngClass]="{ 'tutorial-high clickable': tutorialStep === 3 }"
+      >
         <p class="box-heading">Free race</p>
+
         <div class="inner-box">
           <img
             src="/assets/base/images/race-type/rookie-shadow.jpg"
@@ -230,7 +243,14 @@
 
           <div class="cont-holder">
             <p class="heading">Free fast race</p>
-
+            <p class="races-left">
+              <img src="/assets/base/images/icons/fuel-white.svg" alt="white fuel icon">
+              <span>
+              {{ accountInfo?.free_races_left }}/{{
+                accountInfo?.free_races_limit
+              }}
+            </span>
+            </p>
             <div class="info-box">
               <img src="/assets/base/images/race-type/player.svg" alt="" />
               <p>{{ freeRace?.players_count }} <span>| 500</span></p>
@@ -283,40 +303,46 @@
                   <img src="/assets/base/images/race-type/clock.svg" alt="" />
                   <p>
                     <app-timer
-                    *ngIf="premiumTournament"
-                    [value]="premiumTournament?.starts_in_seconds"
-                    (onComplete)="onTimerComplete()"
-                  ></app-timer>
+                      *ngIf="premiumTournament"
+                      [value]="premiumTournament?.starts_in_seconds"
+                      (onComplete)="onTimerComplete()"
+                    ></app-timer>
                   </p>
                 </div>
-    
+
                 <div class="info-box">
                   <img src="/assets/base/images/race-type/timer.svg" alt="" />
                   <p>37 min</p>
                 </div>
               </div>
-    
+
               <div class="text-holder">
                 <p class="heading">NFT tournament</p>
                 <p class="text bordered">
-                  Exclusively for NFT Holders with a guaranteed 100 IOI prizepool
+                  Exclusively for NFT Holders with a guaranteed 100 IOI
+                  prizepool
                 </p>
                 <p class="sub-heading">Underground</p>
               </div>
-    
+
               <div class="info-flex">
                 <div class="info-box">
                   <img src="/assets/base/images/race-type/player.svg" alt="" />
-                  <p>{{ premiumTournament?.players_count }} <span>| 500</span></p>
+                  <p>
+                    {{ premiumTournament?.players_count }} <span>| 500</span>
+                  </p>
                 </div>
-    
+
                 <div class="info-box">
-                  <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                  <img
+                    src="/assets/base/images/race-type/token-white.svg"
+                    alt=""
+                  />
                   <p>{{ premiumTournament?.prize_pool }}</p>
                 </div>
               </div>
             </div>
-    
+
             <div class="controls-holder">
               <div
                 class="control-item"
@@ -336,13 +362,14 @@
                 <img src="/assets/base/images/race-type/fav-blue.svg" alt="" />
               </div>
             </div>
-    
+
             <div class="btns-holder">
               <button
                 class="active-btn"
                 [routerLink]="['/car/fuel-car/' + premiumTournament?.race_hash]"
               >
-                Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
+                Join
+                <img src="/assets/base/images/icons/play-icon.svg" alt="" />
               </button>
             </div>
           </div>
@@ -350,7 +377,10 @@
 
         <div class="medium-box">
           <p class="box-heading">RACES WITH GUARANTEED PRIZEPOOL</p>
-          <div class="inner-box second" [ngClass]="'type' + fastRaces[0]?.map_id">
+          <div
+            class="inner-box second"
+            [ngClass]="'type' + fastRaces[0]?.map_id"
+          >
             <div class="info-cont">
               <div class="info-flex">
                 <div class="info-box">
@@ -363,33 +393,36 @@
                     ></app-timer>
                   </p>
                 </div>
-    
+
                 <div class="info-box">
                   <img src="/assets/base/images/race-type/timer.svg" alt="" />
                   <p>30 sec</p>
                 </div>
               </div>
-    
+
               <div class="text-holder">
                 <p class="heading bordered">Starting soon</p>
                 <p class="sub-heading">
                   {{ "race.type.fast_race" + fastRaces[0]?.map_id | translate }}
                 </p>
               </div>
-    
+
               <div class="info-flex">
                 <div class="info-box">
                   <img src="/assets/base/images/race-type/player.svg" alt="" />
                   <p>{{ fastRaces[0]?.players_count }} <span>| 500</span></p>
                 </div>
-    
+
                 <div class="info-box">
-                  <img src="/assets/base/images/race-type/token-white.svg" alt="" />
+                  <img
+                    src="/assets/base/images/race-type/token-white.svg"
+                    alt=""
+                  />
                   <p>{{ fastRaces[0]?.prize_pool }}</p>
                 </div>
               </div>
             </div>
-    
+
             <div class="controls-holder">
               <div
                 class="control-item"
@@ -409,7 +442,7 @@
                 <img src="/assets/base/images/race-type/fav-red.svg" alt="" />
               </div>
             </div>
-    
+
             <div class="btns-holder">
               <button class="inactive" (click)="openRulesModal()">
                 Win more with NFTs
@@ -418,13 +451,17 @@
                 class="active-btn"
                 [routerLink]="['/car/fuel-car/' + fastRaces[0]?.race_hash]"
               >
-                Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
+                Join
+                <img src="/assets/base/images/icons/play-icon.svg" alt="" />
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="small-box second" [ngClass]="{'tutorial-high disabled': tutorialStep === 2}">
+      <div
+        class="small-box second"
+        [ngClass]="{ 'tutorial-high disabled': tutorialStep === 2 }"
+      >
         <p class="box-heading">Upcoming track</p>
         <div class="inner-box" *ngIf="fastRaces">
           <img
@@ -600,97 +637,269 @@
           </p>
         </div>
       </div>
-
-      <div class="tables-cont">
-        <div class="table-box big">
-          <p class="category-title-first">Nft cars</p>
-          <div class="my-table-holder">
-            <div class="table-row header">
-              <div class="table-item desc">
-                <p>Races</p>
-              </div>
-              <div class="table-item">
-                <p>Depending on car</p>
-              </div>
-              <div class="table-item big">
-                <p>Possible win in IOI</p>
-              </div>
+      <div class="table-holder">
+        <div class="table-title">
+          <p class="table-title-text">Detailed reward system</p>
+          <p class="table-title-text center">|</p>
+          <p class="table-title-text red bold my-text-color">
+            Every 10-minute race
+          </p>
+        </div>
+        <div class="free-race-table">
+          <div class="table-heading">
+            <div class="table-item table-text text-font">Position</div>
+            <div class="table-item table-text text-font">NON-NFT</div>
+            <div class="table-item table-text text-font">COMMON</div>
+            <div class="table-item table-text text-font">COMMON RARE</div>
+            <div class="table-item table-text text-font">SUPER</div>
+            <div class="table-item table-text text-font">SUPER RARE</div>
+            <div class="table-item table-text text-font">EPIC</div>
+            <div class="table-item table-text text-font">EPIC RARE</div>
+            <div class="table-item table-text text-font">LEGENDARY</div>
+            <div class="table-item last table-text">LEGENDARY RARE</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">1st</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">1 &#36;IOI</div>
+            <div class="table-item table-text">1,5 &#36;IOI</div>
+            <div class="table-item table-text">2 &#36;IOI</div>
+            <div class="table-item table-text">3 &#36;IOI</div>
+            <div class="table-item table-text">4 &#36;IOI</div>
+            <div class="table-item table-text">6 &#36;IOI</div>
+            <div class="table-item table-text">8 &#36;IOI</div>
+            <div class="table-item last table-text">12 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">2nd</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,75 &#36;IOI</div>
+            <div class="table-item table-text">1 &#36;IOI</div>
+            <div class="table-item table-text">1,5 &#36;IOI</div>
+            <div class="table-item table-text">2 &#36;IOI</div>
+            <div class="table-item table-text">3 &#36;IOI</div>
+            <div class="table-item table-text">4 &#36;IOI</div>
+            <div class="table-item last table-text">6 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">3rd</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,45 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,9 &#36;IOI</div>
+            <div class="table-item table-text">1,2 &#36;IOI</div>
+            <div class="table-item table-text">1,8 &#36;IOI</div>
+            <div class="table-item table-text">2,4 &#36;IOI</div>
+            <div class="table-item last table-text">3,6 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">4th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">5th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">6th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">7th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">8th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">9th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text">10th (Premium)</div>
+            <div class="table-item table-text">0,1 &#36;IOI</div>
+            <div class="table-item table-text">0,2 &#36;IOI</div>
+            <div class="table-item table-text">0,3 &#36;IOI</div>
+            <div class="table-item table-text">0,4 &#36;IOI</div>
+            <div class="table-item table-text">0,5 &#36;IOI</div>
+            <div class="table-item table-text">0,6 &#36;IOI</div>
+            <div class="table-item table-text">0,7 &#36;IOI</div>
+            <div class="table-item table-text">0,8 &#36;IOI</div>
+            <div class="table-item last table-text">0,9 &#36;IOI</div>
+          </div>
+          <div class="table-row">
+            <div class="table-item table-text text-font">Activity Boost</div>
+            <div class="table-item-long table-text text-font">
+              Coming soon !
             </div>
-
-            <div class="table-row">
-              <div class="table-item desc">
-                <p>1st position</p>
-              </div>
-              <div class="table-item">
-                <p>100 %</p>
-              </div>
-              <div class="table-item big">
-                <p>0,33 - 5,94</p>
-              </div>
+          </div>
+          <div class="table-row soon">
+            <div class="table-item table-text">10 Daily Loggins</div>
+            <div class="table-item-long">
+              <span class="red table-text text-font bold">X1.5 BOOST</span>
             </div>
-
-            <div class="table-row">
-              <div class="table-item desc">
-                <p>2nd position</p>
-              </div>
-              <div class="table-item">
-                <p>50 %</p>
-              </div>
-              <div class="table-item big">
-                <p>0,165 - 2,97</p>
-              </div>
+          </div>
+          <div class="table-row soon">
+            <div class="table-item table-text">20 Daily Loggins</div>
+            <div class="table-item-long">
+              <span class="red table-text text-font bold">X2.0 BOOST</span>
             </div>
-
-            <div class="table-row">
-              <div class="table-item desc">
-                <p>3rd position</p>
-              </div>
-              <div class="table-item">
-                <p>20 %</p>
-              </div>
-              <div class="table-item big">
-                <p>0,066 - 1,188</p>
-              </div>
+          </div>
+          <div class="table-row soon">
+            <div class="table-item table-text">30 Daily Loggins</div>
+            <div class="table-item-long">
+              <span class="red table-text text-font bold">X3.0 BOOST</span>
+              <span class="golden-text table-text text-font bold"
+                >&#43; Premium Membership for 1 month for free</span
+              >
             </div>
           </div>
         </div>
-
+      </div>
+      <div class="tables-cont">
         <div class="table-box">
-          <p class="category-title-first">Non-Nft cars</p>
+          <p class="category-title-first">Daily NFT Tournament</p>
           <div class="my-table-holder">
             <div class="table-row header">
               <div class="table-item desc">
-                <p>NFT Car Tier</p>
+                <p>POSITION</p>
               </div>
               <div class="table-item">
-                <p>Win in IOI</p>
+                <p>REWARD</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item desc">
-                <p>1st position</p>
+                <p>1st</p>
               </div>
               <div class="table-item">
-                <p>0,1</p>
+                <p>50 &#36;IOI</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item desc">
-                <p>2nd position</p>
+                <p>2nd</p>
               </div>
               <div class="table-item">
-                <p>0,1</p>
+                <p>30 &#36;IOI</p>
               </div>
             </div>
 
             <div class="table-row">
               <div class="table-item desc">
-                <p>3rd position</p>
+                <p>3rd</p>
               </div>
               <div class="table-item">
-                <p>0,1</p>
+                <p>20 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>4th</p>
+              </div>
+              <div class="table-item">
+                <p>7 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>5th</p>
+              </div>
+              <div class="table-item">
+                <p>6 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>6th</p>
+              </div>
+              <div class="table-item">
+                <p>5 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>7th</p>
+              </div>
+              <div class="table-item">
+                <p>4 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>8th</p>
+              </div>
+              <div class="table-item">
+                <p>3 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>9th</p>
+              </div>
+              <div class="table-item">
+                <p>2 &#36;IOI</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>10th</p>
+              </div>
+              <div class="table-item">
+                <p>1 &#36;IOI</p>
               </div>
             </div>
           </div>
@@ -765,6 +974,81 @@
             </p>
             <p>Winnings with each car in NFT races are calculated here:</p>
           </div>
+          <div class="my-table-holder">
+            <div class="table-row header">
+              <div class="table-item desc">
+                <p>NFT Car Tier</p>
+              </div>
+              <div class="table-item">
+                <p>1st place IOI win</p>
+              </div>
+            </div>
+
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Common</p>
+              </div>
+              <div class="table-item">
+                <p>1</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Common rare</p>
+              </div>
+              <div class="table-item">
+                <p>1,5</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Super</p>
+              </div>
+              <div class="table-item">
+                <p>2</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Super rare</p>
+              </div>
+              <div class="table-item">
+                <p>3</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Epic</p>
+              </div>
+              <div class="table-item">
+                <p>4</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Epic rare</p>
+              </div>
+              <div class="table-item">
+                <p>6</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Legendary</p>
+              </div>
+              <div class="table-item">
+                <p>8</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>Legendary rare</p>
+              </div>
+              <div class="table-item">
+                <p>12</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="right-content">
           <img
@@ -772,68 +1056,6 @@
             src="/assets/base/images/nft-cars/car27.png"
             alt=""
           />
-        </div>
-      </div>
-
-      <div class="my-table-holder nft-cars-table">
-        <div class="table-row header">
-          <div class="table-item desc">
-            <p>NFT Car Tier</p>
-          </div>
-          <div class="table-item">
-            <p>Win in IOI</p>
-          </div>
-          <div class="table-item big">
-            <p>Rare NFT multiplier</p>
-          </div>
-        </div>
-
-        <div class="table-row">
-          <div class="table-item desc">
-            <p>Common</p>
-          </div>
-          <div class="table-item">
-            <p>0,33</p>
-          </div>
-          <div class="table-item big">
-            <p class="my-text-color">x 1,5</p>
-          </div>
-        </div>
-
-        <div class="table-row">
-          <div class="table-item desc">
-            <p>Super</p>
-          </div>
-          <div class="table-item">
-            <p>0,66</p>
-          </div>
-          <div class="table-item big">
-            <p class="my-text-color">x 2</p>
-          </div>
-        </div>
-
-        <div class="table-row">
-          <div class="table-item desc">
-            <p>Epic</p>
-          </div>
-          <div class="table-item">
-            <p>1,32</p>
-          </div>
-          <div class="table-item big">
-            <p class="my-text-color">x 2,5</p>
-          </div>
-        </div>
-
-        <div class="table-row">
-          <div class="table-item desc">
-            <p>Legendary</p>
-          </div>
-          <div class="table-item">
-            <p>1,98</p>
-          </div>
-          <div class="table-item big">
-            <p class="my-text-color">x 3</p>
-          </div>
         </div>
       </div>
 
@@ -892,6 +1114,14 @@
             <div class="table-row">
               <div class="table-item desc">
                 <p>3rd position</p>
+              </div>
+              <div class="table-item">
+                <p>0,1</p>
+              </div>
+            </div>
+            <div class="table-row">
+              <div class="table-item desc">
+                <p>4-10th (Premium)</p>
               </div>
               <div class="table-item">
                 <p>0,1</p>
@@ -967,23 +1197,33 @@
           </div>
           <div class="item">
             <img src="assets/base/images/team-membership/gift.png" alt="gift" />
-            <p class="races-desc">Guaranteed 2000 IOI prizepool every month for TOP 3 teams</p>
+            <p class="races-desc">
+              Guaranteed 2000 IOI prizepool every month for TOP 3 teams
+            </p>
           </div>
           <div class="item">
             <img
               src="assets/base/images/team-membership/coin.png"
               alt="coins"
             />
-            <p class="races-desc">Extra bonus for 3 months and 1 year premium memberships</p>
+            <p class="races-desc">
+              Extra bonus for 3 months and 1 year premium memberships
+            </p>
           </div>
           <div class="item">
             <img src="assets/base/images/team-membership/gift.png" alt="gift" />
-            <p class="races-desc">Guarenteed 1000 IOI prizepool for TOP 10 racers every month</p>
+            <p class="races-desc">
+              Guarenteed 1000 IOI prizepool for TOP 10 racers every month
+            </p>
           </div>
           <div class="item">
             <img src="assets/base/images/start-race/games.png" alt="gift" />
-            <p class="races-desc">Earn points to get a chance to win a special ring and your place <br> in the end of the year competitors tournament for the  custom 
-              Legendary NFT car</p>
+            <p class="races-desc">
+              Earn points to get a chance to win a special ring and your place
+              <br />
+              in the end of the year competitors tournament for the custom
+              Legendary NFT car
+            </p>
           </div>
         </div>
         <button
@@ -1436,96 +1676,103 @@
 <app-rules-info-modal #rulesModal></app-rules-info-modal>
 
 <div class="intro-modal" *ngIf="selRaceType">
-  <app-fast-fuel (closeModal)="closeModal($event)" [raceId]="selRaceType"></app-fast-fuel>
+  <app-fast-fuel
+    (closeModal)="closeModal($event)"
+    [raceId]="selRaceType"
+  ></app-fast-fuel>
 </div>
 
 <div
-    class="tutorial-modal"
-    [ngClass]="'step' + tutorialStep"
-    *ngIf="introModal === true"
-  >
+  class="tutorial-modal"
+  [ngClass]="'step' + tutorialStep"
+  *ngIf="introModal === true"
+>
+  <div class="box-content only-cta content0">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi big"
+    />
+    <div class="text-holder centered">
+      <p class="heading">{{ "tutorial.skip_tutorial" | translate }}</p>
+      <p class="text">{{ "tutorial.skip_desc" | translate }}</p>
+    </div>
+    <button class="my-cta-btn-back hoverable" (click)="skipModal()">
+      {{ "tutorial.skip_tutorial" | translate }}
+    </button>
+  </div>
 
-    <div class="box-content only-cta content0">
-      <img
-        src="/assets/base/images/modal/tutorial-racer.png"
-        alt=""
-        class="racer-boi big"
-      />
-      <div class="text-holder centered">
-        <p class="heading">{{ "tutorial.skip_tutorial" | translate }}</p>
-        <p class="text">{{ "tutorial.skip_desc" | translate }}</p>
-      </div>
-      <button class="my-cta-btn-back hoverable" (click)="skipModal()">
-        {{ "tutorial.skip_tutorial" | translate }}
+  <div class="box-content content1">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
+    <div class="text-holder">
+      <p class="heading">NFT tournament</p>
+      <p class="text">This tournament is only for holders of NFT car.</p>
+      <div class="pointing-line to-right"></div>
+    </div>
+    <div class="btns-holder">
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+        {{ "race.continue" | translate }}
       </button>
     </div>
-
-    <div class="box-content content1">
-      <img
-        src="/assets/base/images/modal/tutorial-racer.png"
-        alt=""
-        class="racer-boi"
-      />
-      <div class="text-holder">
-        <p class="heading">NFT tournament</p>
-        <p class="text">This tournament is only for holders of NFT car.</p>
-        <div class="pointing-line to-right"></div>
-      </div>
-      <div class="btns-holder">
-        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
-          {{ "race.continue" | translate }}
-        </button>
-      </div>
-    </div>
-
-    <div class="box-content content2">
-      <img
-        src="/assets/base/images/modal/tutorial-racer.png"
-        alt=""
-        class="racer-boi"
-      />
-      <div class="text-holder">
-        <p class="heading">Competition races</p>
-        <p class="text">Here you can see other races, each of them is free and starts 10 minutes apart. It's benefitial to enter these races with NFT car.</p>
-        <div class="pointing-line to-right"></div>
-      </div>
-      <div class="btns-holder">
-        <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
-          {{ "race.continue" | translate }}
-        </button>
-        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
-          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
-        </p>
-      </div>
-    </div>
-
-    <div class="box-content content3">
-      <img
-        src="/assets/base/images/modal/tutorial-racer.png"
-        alt=""
-        class="racer-boi"
-      />
-      <div class="text-holder">
-        <p class="heading">Free fast race</p>
-        <p class="text">Hit join button to enter regular free race.</p>
-        <div class="pointing-line to-right"></div>
-      </div>
-      <div class="btns-holder">
-        <button class="my-cta-btn-back hoverable" [routerLink]="['/car/fuel-car/' + freeRace?.race_hash]">
-          {{ "race.continue" | translate }}
-        </button>
-        <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
-          {{ "tutorial.skip_the_tutorial" | translate }} &gt;
-        </p>
-      </div>
-    </div>
-
-    <div
-      class="skip-text absolute my-cta-btn-back"
-      *ngIf="tutorialStep === 1"
-      (click)="tutorialStep = 0"
-    >
-      <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
-    </div>
-
   </div>
+
+  <div class="box-content content2">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
+    <div class="text-holder">
+      <p class="heading">Competition races</p>
+      <p class="text">
+        Here you can see other races, each of them is free and starts 10 minutes
+        apart. It's benefitial to enter these races with NFT car.
+      </p>
+      <div class="pointing-line to-right"></div>
+    </div>
+    <div class="btns-holder">
+      <button class="my-cta-btn-back hoverable" (click)="nextTutorialStep()">
+        {{ "race.continue" | translate }}
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+      </p>
+    </div>
+  </div>
+
+  <div class="box-content content3">
+    <img
+      src="/assets/base/images/modal/tutorial-racer.png"
+      alt=""
+      class="racer-boi"
+    />
+    <div class="text-holder">
+      <p class="heading">Free fast race</p>
+      <p class="text">Hit join button to enter regular free race.</p>
+      <div class="pointing-line to-right"></div>
+    </div>
+    <div class="btns-holder">
+      <button
+        class="my-cta-btn-back hoverable"
+        [routerLink]="['/car/fuel-car/' + freeRace?.race_hash]"
+      >
+        {{ "race.continue" | translate }}
+      </button>
+      <p class="skip-text my-cta-btn-back" (click)="tutorialStep = 0">
+        {{ "tutorial.skip_the_tutorial" | translate }} &gt;
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="skip-text absolute my-cta-btn-back"
+    *ngIf="tutorialStep === 1"
+    (click)="tutorialStep = 0"
+  >
+    <p>{{ "tutorial.skip_the_tutorial" | translate }} &gt;</p>
+  </div>
+</div>
