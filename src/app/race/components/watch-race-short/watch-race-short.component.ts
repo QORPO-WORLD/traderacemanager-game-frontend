@@ -1022,7 +1022,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         ) {
           setTimeout(() => {
             if (this.cFuelOpen === false) {
-              // this.continueTour();
+              this.continueTour();
             }
           }, nozacni);
         }
