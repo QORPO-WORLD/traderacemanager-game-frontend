@@ -66,7 +66,7 @@ export class HowToComponent implements OnInit {
   contentPlus() {
     this.animation = true;
     this.menuItems.setAttribute("style", `transform: translateX(-66.66666%);`);
-    if (this.content < 6) {
+    if (this.content < 5) {
       this.content++;
     } else {
       this.content = 1;
@@ -100,7 +100,7 @@ export class HowToComponent implements OnInit {
     if (this.content > 1) {
       this.content--;
     } else {
-      this.content = 6;
+      this.content = 5;
     }
     let timeout1 = window.setTimeout(() => {
       this.menuItems.setAttribute(

@@ -30,6 +30,37 @@
       height: 100%;
       background: url("/assets/base/images/modal/info-modal-back.png"),
         rgba(17, 17, 17, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .buttons-holder {
+        display: flex;
+        height: fit-content;
+        widows: 100%;
+      }
+      .table-holder {
+        margin: 0 auto;
+
+        padding: 25px 30px;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+          display: block !important;
+          min-width: 1px;
+          min-height: 15px;
+          max-height: 15px;
+          background: rgba(255, 255, 255, 0.15);
+        }
+        &::-webkit-scrollbar-thumb {
+          background: linear-gradient(
+            236.12deg,
+            #00f0ff 6%,
+            #0098d9 102.68%,
+            #0098d9 102.68%
+          );
+        }
+      }
       .close-btn {
         position: absolute;
         top: 10px;
@@ -110,13 +141,15 @@
         }
       }
       .next-btn {
+        transition: 0.3s;
         font-size: 33px;
         font-family: "Earth Orbiter";
         padding: 20px 5px;
         width: 395px;
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        margin-left: auto;
+      }
+      .next-btn:hover {
+        box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
       }
       .modal-step {
         h2 {
@@ -739,13 +772,26 @@
     }
   }
 }
-
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .modal-holder {
+    .modal-cont {
+      .inner-holder {
+        .table-holder {
+          padding: 20px 10px;
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 1024px) {
   .modal-holder {
     .modal-cont {
       height: 90%;
       width: 95%;
       .inner-holder {
+        .table-holder {
+          padding: 20px 15px;
+        }
         .close-btn {
           font-size: 33px;
         }
@@ -1283,5 +1329,318 @@
         }
       }
     }
+  }
+}
+
+//NEW FREE RACES TABLE
+.golden-text {
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 234, 182, 1) 8%,
+    rgba(234, 193, 114, 1) 23%,
+    rgba(201, 171, 93, 1) 44%,
+    rgba(236, 223, 154, 1) 62%,
+    rgba(239, 213, 119, 1) 78%,
+    rgba(200, 188, 148, 1) 100%
+  );
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+}
+.text-font {
+  font-family: Earth Orbiter !important;
+  font-weight: normal !important;
+}
+.bold {
+  font-weight: 900 !important;
+}
+.table-title {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-title-text {
+  width: fit-content;
+  font-family: Earth Orbiter;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 44px;
+  font-weight: bold;
+}
+.table-text {
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 16px;
+}
+.free-race-table {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ffffff;
+  width: 100%;
+  height: auto;
+  .table-heading {
+    width: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .table-row {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    &.soon {
+      opacity: 0.4;
+    }
+  }
+  .table-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    padding: 12px 0px;
+    border-right: 1px solid #ffffff;
+    &.last {
+      border: none;
+    }
+  }
+  .table-item-long {
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+  &.nft-tournament {
+    width: 90%;
+    .table-item {
+      width: 50%;
+    }
+  }
+  &.ranking {
+    width: 70%;
+
+    .table-item {
+      width: 50%;
+    }
+  }
+  &.leaderboard-racer {
+    width: 110%;
+    position: relative;
+    img {
+      &.ring {
+        position: absolute;
+        top: -80px;
+        right: -40px;
+        width: 100px;
+      }
+    }
+    .table-item {
+      width: 7.3%;
+      &.first {
+        width: 27%;
+      }
+    }
+  }
+  &.leaderboard-team {
+    width: 86%;
+    .table-item {
+      width: 27%;
+      &.first {
+        width: 19%;
+      }
+
+      .table-text {
+        transform: scale(0.85);
+      }
+    }
+  }
+}
+@media screen and (max-width: 1700px) {
+  .table-title-text {
+    font-size: 38px;
+    line-height: 36px;
+  }
+  .table-text {
+    font-size: 14px;
+    line-height: 15px;
+  }
+}
+@media screen and (max-width: 1550px) {
+  .table-title-text {
+    font-size: 35px;
+    line-height: 37px;
+  }
+  .table-text {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .table-title-text {
+    font-size: 32px;
+    line-height: 35px;
+  }
+  .table-text {
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .table-title-text {
+    font-size: 25px;
+    line-height: 27px;
+  }
+  .table-text {
+    font-size: 11px;
+    line-height: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .table-title-text {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .table-text {
+    font-size: 9px;
+    line-height: 10px;
+  }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .table-title-text {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .table-text {
+    font-size: 8px;
+    line-height: 9px;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .table-title-text {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .table-text {
+    font-size: 7px;
+    line-height: 8px;
+  }
+}
+@media screen and (max-width: 640px) and (orientation: landscape) {
+  .free-race-table {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .table-title-text {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .table-text {
+    font-size: 5px;
+    line-height: 6px;
+  }
+}
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .table-title {
+    flex-direction: column;
+  }
+
+  .table-title-text {
+    text-align: center;
+    font-size: 30px;
+    line-height: 32px;
+    &.center {
+      display: none;
+    }
+  }
+  .table-text {
+    white-space: normal;
+    font-size: 11px;
+    line-height: 12px;
+  }
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .table-title-text {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .table-text {
+    font-size: 6px;
+    line-height: 7px;
+  }
+  .free-race-table {
+    &.leaderboard-racer {
+      width: 60%;
+      border: none;
+      border-left: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
+      border-right: 1px solid #ffffff;
+      margin: 0 auto;
+      flex-direction: row;
+      img {
+        &.ring {
+          top: unset;
+          bottom: -30px;
+          right: -40px;
+          width: 60px;
+        }
+      }
+      .table-heading {
+        flex-direction: column;
+        border-right: 1px solid #ffffff;
+      }
+      .table-row {
+        flex-direction: column;
+        border: none;
+      }
+      .table-item {
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid #ffffff;
+        &.first {
+          width: 100%;
+        }
+      }
+    }
+    .table-item {
+      padding: 8px 0px;
+    }
+    .table-item-long {
+      padding: 8px 0px;
+    }
+  }
+}
+@media screen and (max-width: 400px) and (orientation: portrait) {
+  .table-title-text {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .table-text {
+    font-size: 5px;
+    line-height: 6px;
+  }
+}
+@media screen and (max-width: 350px) and (orientation: portrait) {
+  .table-title-text {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .table-text {
+    font-size: 4px;
+    line-height: 5px;
   }
 }
