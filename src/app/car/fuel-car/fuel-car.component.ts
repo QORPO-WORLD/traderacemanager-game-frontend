@@ -514,7 +514,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getMyDriverStats() {
     this.myDriverStats = this.identityService.getStorageIdentity();
     this.getMyLevel();
-    console.log(this.myDriverStats);
   }
 
   calcPossibleMultibet() {
