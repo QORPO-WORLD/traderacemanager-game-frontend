@@ -54,7 +54,7 @@
           class="table-item"
           *ngFor="
             let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.betik
-              | orderBy: 'delta':reverse;
+              | orderBy: 'percent':reverse;
             let ixx = index
           "
           [ngClass]="
@@ -122,7 +122,7 @@
           class="table-item"
           *ngFor="
             let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.b
-              | orderBy: 'bet':reverse;
+              | orderBy: 'percent':reverse;
             let ixx = index
           "
           [ngClass]="
@@ -309,66 +309,69 @@
           </div>
         </div>
 
-        <ng-container *ngIf="raceData?.me.cpr < actualPage * 5 || raceData?.me.cpr > (actualPage * 5) + 5">
-          <div
-              class="table-item my-item"
-            >
-              <div class="my-col position">
-                <p>{{ raceData?.me.cpr }}</p>
-              </div>
-              <div
-                class="my-col premium"
-                [ngClass]="{ active: raceData?.me?.p === true }"
+        <ng-container *ngIf="raceData?.me">
+          <ng-container *ngIf="raceData?.me.cpr < actualPage * 5 || raceData?.me.cpr > (actualPage * 5) + 5">
+            <div
+                class="table-item my-item"
               >
-                <img
-                  class="classic"
-                  src="/assets/base/images/zavod/crown-icon.svg"
-                  alt=""
-                />
-                <img
-                  class="black"
-                  src="/assets/base/images/zavod/crown-icon-black.svg"
-                  alt=""
-                />
-              </div>
-              <div class="my-col username">
-                <p>{{ raceData?.me.n }}</p>
-              </div>
-              <div class="my-col team">
-                <div class="team-circle alt" *ngIf="raceData?.me?.t === 'ALT'">
-                  <p>ALT</p>
-                </div>
-                <div class="team-circle ioi" *ngIf="raceData?.me?.t === 'IOI'">
-                  <p>IOI</p>
-                </div>
-                <div class="team-circle btc" *ngIf="raceData?.me?.t === 'BTC'">
-                  <p>BTC</p>
+                <div class="my-col position">
+                  <p>{{ raceData?.me.cpr }}</p>
                 </div>
                 <div
-                  class="team-circle"
-                  *ngIf="
-                    raceData?.me?.t !== 'BTC' &&
-                    raceData?.me?.t !== 'IOI' &&
-                    raceData?.me?.t !== 'ALT' &&
-                    raceData?.me?.t !== 'SYSTEM_TEAM'
-                  "
+                  class="my-col premium"
+                  [ngClass]="{ active: raceData?.me?.p === true }"
                 >
-                  <p>{{ raceData?.me?.t | slice: 0:3 }}</p>
+                  <img
+                    class="classic"
+                    src="/assets/base/images/zavod/crown-icon.svg"
+                    alt=""
+                  />
+                  <img
+                    class="black"
+                    src="/assets/base/images/zavod/crown-icon-black.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="my-col username">
+                  <p>{{ raceData?.me.n }}</p>
+                </div>
+                <div class="my-col team">
+                  <div class="team-circle alt" *ngIf="raceData?.me?.t === 'ALT'">
+                    <p>ALT</p>
+                  </div>
+                  <div class="team-circle ioi" *ngIf="raceData?.me?.t === 'IOI'">
+                    <p>IOI</p>
+                  </div>
+                  <div class="team-circle btc" *ngIf="raceData?.me?.t === 'BTC'">
+                    <p>BTC</p>
+                  </div>
+                  <div
+                    class="team-circle"
+                    *ngIf="
+                      raceData?.me?.t !== 'BTC' &&
+                      raceData?.me?.t !== 'IOI' &&
+                      raceData?.me?.t !== 'ALT' &&
+                      raceData?.me?.t !== 'SYSTEM_TEAM'
+                    "
+                  >
+                    <p>{{ raceData?.me?.t | slice: 0:3 }}</p>
+                  </div>
+                </div>
+                <div class="my-col win">
+                  <p>
+                    {{
+                      raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
+                        ? (raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
+                          | number: "1.2-2")
+                        : "0"
+                    }}
+                    IOI
+                  </p>
                 </div>
               </div>
-              <div class="my-col win">
-                <p>
-                  {{
-                    raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
-                      ? (raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
-                        | number: "1.2-2")
-                      : "0"
-                  }}
-                  IOI
-                </p>
-              </div>
-            </div>
+          </ng-container>
         </ng-container>
+        
         
         
       </ng-container>
