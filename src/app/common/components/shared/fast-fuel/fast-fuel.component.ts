@@ -851,10 +851,18 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
       fakeSelected[i].newBet = [];
       for (let ix = 0; ix < fakeSelected[i].betik.length; ix++) {
         if (fakeSelected[i].betik[ix].bet !== 0) {
-          fakeSelected[i].newBet.push({
-            symbol: fakeSelected[i].betik[ix].symbol,
-            bet: fakeSelected[i].betik[ix].bet
-          });
+          if (fakeSelected[i].betik[ix].leverage > 0) {
+            fakeSelected[i].newBet.push({
+              symbol: fakeSelected[i].bet[ix].symbol,
+              bet: fakeSelected[i].betik[ix].bet,
+              leverage: fakeSelected[i].betik[ix].leverage
+            });
+          } else {
+            fakeSelected[i].newBet.push({
+              symbol: fakeSelected[i].bet[ix].symbol,
+              bet: fakeSelected[i].betik[ix].bet
+            });
+          }
         }
       }
     }
@@ -865,6 +873,10 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         bet_coins: fakeSelected[i].newBet,
       });
     }
+
+    console.log(serialized);
+    console.log(fakeSelected);
+
 
     this.raceApi.racesMultiSignupCreate(serialized).subscribe(data => { });
     this.redirectToRace();
