@@ -77,6 +77,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   transObserver: Subscription;
   ntoberver: Subscription;
   winnersList: any = [];
+  winnerData: any;
   semaforsLaunched = false;
   semaforsVisible = false;
   firstSemafor = false;
@@ -148,7 +149,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   posEnding: string;
   closedModal = false;
   reverse = true;
-  loserCar: any;
   mirek = "mirek";
   myMotives: Array<any> = [
     { id: 0, name: "map" },
@@ -858,16 +858,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
               ) {
                 const loser = this.raceDataildata.tour_index - 10;
                 this.loserIndex = 10 - loser;
-                this.loserCar = this.raceData.cards[this.loserIndex].cid;
 
-                let notLost = 0;
-                for (let xx = 0; xx < this.loserIndex; xx++) {
-                  if (this.raceData.cards[xx].u === this.myUid) {
-                    notLost = notLost + 1;
-                  }
-                }
-
-                if (notLost > 0) {
+                if (this.raceData.me.cpr < this.loserIndex + 1) {
                   this.finishedtour = false;
                 } else {
                   this.finishedtour = true;
@@ -876,6 +868,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                 this.finishedtour = false;
               }
             }
+            this.winnerData = x;
             this.totalPagesWinner = x.total_pages;
             this.winnersList = x.winners;
             this.frozenTicket = x.ticker_froze;
@@ -993,9 +986,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       fake.l = this.raceDataildata.my_cars[x].l;
       stat.push(fake);
     }
-    if (this.loserIndex) {
+    if (
+      this.raceDataildata.tour_index > 10 &&
+      this.raceDataildata.tour_index < 20
+    ) {
+
       stat2 = stat.filter((item) => {
-        return item.cid !== this.loserCar;
+        // return item.cid != this.winnerData.eliminated_car.car_id;
       });
     }
 
