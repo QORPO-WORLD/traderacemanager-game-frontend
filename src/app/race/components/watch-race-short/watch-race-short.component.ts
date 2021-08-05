@@ -149,7 +149,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   posEnding: string;
   closedModal = false;
   reverse = true;
-  mirek = "mirek";
   myMotives: Array<any> = [
     { id: 0, name: "map" },
     { id: 1, name: "map" },
@@ -511,18 +510,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           clearInterval(this.moveInterval);
           clearInterval(this.detailInterval);
 
-          /*
-                    if (this.willPlayFinishSound === true) {
-                      return;
-                      this.endSound = document.createElement('audio');
-                      this.endSound.src = './assets/base/sounds/End.mp3';
-                      this.endSound.volume = 0.5;
-                      if (this.soundEnabled === true) {
-                        console.log('play end');
-                        this.endSound.play();
-                      }
-                    }
-          */
           this.moveNum = 0;
 
           if (this.raceData.me !== null) {
@@ -584,6 +571,23 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                   this.raceDataildata.my_cars[x].b[z].leverage = 2;
                 }
               } 
+            }
+            // console.log(this.raceDataildata);
+          }
+        }
+        if (
+          this.raceData.race.length > 0 &&
+          firstData.race_progress > 0
+        ) {
+          for (let x = 0; x < this.raceData.race.length; x++){
+            if (this.raceData.race[x].l != null) {
+              for (const [key, value] of Object.entries(this.raceData.race[x].l)) {
+                for (let z = 0; z < 3; z++){
+                  if (this.raceData.race[x].b[z].symbol == key) {
+                    this.raceData.race[x].b[z].leverage = value;
+                  }
+                }
+              }
             }
           }
         }
@@ -1204,4 +1208,5 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     return diffTime;
   }
+
 }

@@ -7,6 +7,7 @@ export interface RaceStatEntity {
   c?: number;
   cpr?: number;
   s?: number;
+  l?: number;
   rp?: number;
   b?: BetCoins;
   p?: number;
