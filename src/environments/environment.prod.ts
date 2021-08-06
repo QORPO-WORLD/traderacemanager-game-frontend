@@ -1,7 +1,7 @@
 export const environment = {
   stage: "production",
   hmr: false,
-  api_url: "http://dev-api.traderacemanager.com",
+  api_url: "https://dev-api.traderacemanager.com",
   production: false,
   encryptPassphrase: "ioi-game-cbucrebnu778i37943",
   bugsnag_api: "5e74257114fc41347ff9270518937de",
