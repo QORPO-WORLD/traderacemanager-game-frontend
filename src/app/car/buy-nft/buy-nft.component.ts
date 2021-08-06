@@ -6,6 +6,7 @@ import { CarsService } from "../../api/services";
 import { Router } from "@angular/router";
 
 declare let ga: any;
+declare let gtag: any;
 
 @Component({
   selector: "app-buy-nft",
@@ -864,6 +865,18 @@ export class BuyNftComponent implements OnInit {
             eventAction: this.displayArray[0].collection,
             eventLabel: this.displayArray[0].name,
           });
+
+          let usdtPrice =
+          this.tokenSelected === "ioi"
+            ? datax[0].model.extras.price * this.myDriverBalances.ioi_usdt
+            : datax[0].model.extras.price * this.myDriverBalances.matic_usdt;
+          gtag('event', 'conversion', {
+            'send_to': 'AW-580556065/gKFRCMPdl98CEKGq6pQC',
+            'value': usdtPrice,
+            'currency': 'USD',
+            'transaction_id': ''
+          });
+      
           setTimeout(() => {
             this.notifyChangedBalance();
             this.router.navigate(["/profile/my-profile"]);
@@ -889,13 +902,25 @@ export class BuyNftComponent implements OnInit {
         let currencyPrefix =
           this.tokenSelected === "ioi"
             ? "buy_nft_car_IOI"
-            : "buy_nft_racers_POLYGON";
+            : "buy_nft_car_POLYGON";
 
         ga("event", currencyPrefix, {
           eventCategory: currencyPrefix,
           eventAction: this.displayArray[0].collection,
           eventLabel: this.displayArray[0].name,
         });
+
+        let usdtPrice =
+          this.tokenSelected === "ioi"
+            ? datax[0].model.extras.price * this.myDriverBalances.ioi_usdt
+            : datax[0].model.extras.price * this.myDriverBalances.matic_usdt;
+
+          gtag('event', 'conversion', {
+            'send_to': 'AW-580556065/gKFRCMPdl98CEKGq6pQC',
+            'value': usdtPrice,
+            'currency': 'USD',
+            'transaction_id': ''
+          });
 
         setTimeout(() => {
           this.notifyChangedBalance();
@@ -978,7 +1003,7 @@ export class BuyNftComponent implements OnInit {
       );
       let currencyPrefix =
         this.assetType === "car"
-          ? "buy_nft_car_arcana"
+          ? "buy_nft_car_arcane"
           : "buy_nft_racers_arcane";
 
       ga("event", currencyPrefix, {
