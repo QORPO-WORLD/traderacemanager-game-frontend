@@ -274,10 +274,9 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
 
     this.favCars.push(serialized[0]);
 
+    this.driverSrvc.driversFavFuelUpdate(this.favCars).subscribe(data => {});
 
-    this.driverSrvc.driversFavFuelUpdate(this.favCars).subscribe(data => { });
     this.router.navigate(['/race/all-races']);
-    // window.location.reload();
 
   }
 

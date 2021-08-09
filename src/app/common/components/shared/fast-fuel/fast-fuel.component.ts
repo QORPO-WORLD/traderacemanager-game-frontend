@@ -853,13 +853,13 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         if (fakeSelected[i].betik[ix].bet !== 0) {
           if (fakeSelected[i].betik[ix].leverage > 0) {
             fakeSelected[i].newBet.push({
-              symbol: fakeSelected[i].bet[ix].symbol,
+              symbol: fakeSelected[i].betik[ix].symbol,
               bet: fakeSelected[i].betik[ix].bet,
               leverage: fakeSelected[i].betik[ix].leverage
             });
           } else {
             fakeSelected[i].newBet.push({
-              symbol: fakeSelected[i].bet[ix].symbol,
+              symbol: fakeSelected[i].betik[ix].symbol,
               bet: fakeSelected[i].betik[ix].bet
             });
           }
@@ -874,8 +874,6 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
       });
     }
 
-    console.log(serialized);
-    console.log(fakeSelected);
 
 
     this.raceApi.racesMultiSignupCreate(serialized).subscribe(data => { });
@@ -1177,13 +1175,13 @@ export class FastFuelCarComponent implements OnInit, OnDestroy {
         fake.customIndex = this.myBet[x].customIndex;
         statBet.push(fake);
       }
+      
       this.myCars[index].selected = true;
       this.myCars[index].bet = statBet;
       this.myCars[index].fuel = 0;
       this.myCars[index].selectedBets = selBets;
-
+      
       this.selectedCarsToRace.push(this.myCars[index]);
-
       this.usedCars.push({
         asset_id: this.myCars[index].asset_id,
         amount: this.actualRaceAmount
