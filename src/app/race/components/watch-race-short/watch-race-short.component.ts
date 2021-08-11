@@ -77,6 +77,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   transObserver: Subscription;
   ntoberver: Subscription;
   winnersList: any = [];
+  winnerData: any;
   semaforsLaunched = false;
   semaforsVisible = false;
   firstSemafor = false;
@@ -148,8 +149,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   posEnding: string;
   closedModal = false;
   reverse = true;
-  loserCar: any;
-  mirek = "mirek";
   myMotives: Array<any> = [
     { id: 0, name: "map" },
     { id: 1, name: "map" },
@@ -511,18 +510,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           clearInterval(this.moveInterval);
           clearInterval(this.detailInterval);
 
-          /*
-                    if (this.willPlayFinishSound === true) {
-                      return;
-                      this.endSound = document.createElement('audio');
-                      this.endSound.src = './assets/base/sounds/End.mp3';
-                      this.endSound.volume = 0.5;
-                      if (this.soundEnabled === true) {
-                        console.log('play end');
-                        this.endSound.play();
-                      }
-                    }
-          */
           this.moveNum = 0;
 
           if (this.raceData.me !== null) {
@@ -576,6 +563,29 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                 ) {
                   this.raceDataildata.my_cars[x].betik[y].bet =
                     this.raceDataildata.my_cars[x].b[z].bet;
+                }
+              }
+              let leverages = Object.keys(this.raceDataildata.my_cars[x].l);
+              for (let l = 0; l < leverages.length; l++){
+                if (leverages[l] === this.raceDataildata.my_cars[x].b[z].symbol) {
+                  this.raceDataildata.my_cars[x].b[z].leverage = 2;
+                }
+              } 
+            }
+            // console.log(this.raceDataildata);
+          }
+        }
+        if (
+          this.raceData.race.length > 0 &&
+          firstData.race_progress > 0
+        ) {
+          for (let x = 0; x < this.raceData.race.length; x++){
+            if (this.raceData.race[x].l != null) {
+              for (const [key, value] of Object.entries(this.raceData.race[x].l)) {
+                for (let z = 0; z < 3; z++){
+                  if (this.raceData.race[x].b[z].symbol == key) {
+                    this.raceData.race[x].b[z].leverage = value;
+                  }
                 }
               }
             }
@@ -852,16 +862,8 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
               ) {
                 const loser = this.raceDataildata.tour_index - 10;
                 this.loserIndex = 10 - loser;
-                this.loserCar = this.raceData.cards[this.loserIndex].cid;
 
-                let notLost = 0;
-                for (let xx = 0; xx < this.loserIndex; xx++) {
-                  if (this.raceData.cards[xx].u === this.myUid) {
-                    notLost = notLost + 1;
-                  }
-                }
-
-                if (notLost > 0) {
+                if (this.raceData.me.cpr < this.loserIndex + 1) {
                   this.finishedtour = false;
                 } else {
                   this.finishedtour = true;
@@ -870,6 +872,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
                 this.finishedtour = false;
               }
             }
+            this.winnerData = x;
             this.totalPagesWinner = x.total_pages;
             this.winnersList = x.winners;
             this.frozenTicket = x.ticker_froze;
@@ -987,9 +990,13 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       fake.l = this.raceDataildata.my_cars[x].l;
       stat.push(fake);
     }
-    if (this.loserIndex) {
+    if (
+      this.raceDataildata.tour_index > 10 &&
+      this.raceDataildata.tour_index < 20
+    ) {
+
       stat2 = stat.filter((item) => {
-        return item.cid !== this.loserCar;
+        // return item.cid != this.winnerData.eliminated_car.car_id;
       });
     }
 
@@ -1201,4 +1208,5 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
 
     return diffTime;
   }
+
 }

@@ -54,7 +54,7 @@
           class="table-item"
           *ngFor="
             let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.betik
-              | orderBy: 'delta':reverse;
+              | orderBy: 'percent':reverse;
             let ixx = index
           "
           [ngClass]="
@@ -122,7 +122,7 @@
           class="table-item"
           *ngFor="
             let myfuels of raceDataildata?.my_cars[selectedMyIndex]?.b
-              | orderBy: 'bet':reverse;
+              | orderBy: 'percent':reverse;
             let ixx = index
           "
           [ngClass]="
@@ -308,6 +308,72 @@
             </p>
           </div>
         </div>
+
+        <ng-container *ngIf="raceData?.me">
+          <ng-container *ngIf="raceData?.me.cpr < actualPage * 5 || raceData?.me.cpr > (actualPage * 5) + 5">
+            <div
+                class="table-item my-item"
+              >
+                <div class="my-col position">
+                  <p>{{ raceData?.me.cpr }}</p>
+                </div>
+                <div
+                  class="my-col premium"
+                  [ngClass]="{ active: raceData?.me?.p === true }"
+                >
+                  <img
+                    class="classic"
+                    src="/assets/base/images/zavod/crown-icon.svg"
+                    alt=""
+                  />
+                  <img
+                    class="black"
+                    src="/assets/base/images/zavod/crown-icon-black.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="my-col username">
+                  <p>{{ raceData?.me.n }}</p>
+                </div>
+                <div class="my-col team">
+                  <div class="team-circle alt" *ngIf="raceData?.me?.t === 'ALT'">
+                    <p>ALT</p>
+                  </div>
+                  <div class="team-circle ioi" *ngIf="raceData?.me?.t === 'IOI'">
+                    <p>IOI</p>
+                  </div>
+                  <div class="team-circle btc" *ngIf="raceData?.me?.t === 'BTC'">
+                    <p>BTC</p>
+                  </div>
+                  <div
+                    class="team-circle"
+                    *ngIf="
+                      raceData?.me?.t !== 'BTC' &&
+                      raceData?.me?.t !== 'IOI' &&
+                      raceData?.me?.t !== 'ALT' &&
+                      raceData?.me?.t !== 'SYSTEM_TEAM'
+                    "
+                  >
+                    <p>{{ raceData?.me?.t | slice: 0:3 }}</p>
+                  </div>
+                </div>
+                <div class="my-col win">
+                  <p>
+                    {{
+                      raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
+                        ? (raceDataildata?.applicable_payouts[raceData?.me.cpr - 1]
+                          | number: "1.2-2")
+                        : "0"
+                    }}
+                    IOI
+                  </p>
+                </div>
+              </div>
+          </ng-container>
+        </ng-container>
+        
+        
+        
       </ng-container>
     </div>
 
@@ -825,6 +891,9 @@
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[0]?.b[0]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item">
                   <p class="curr-percent">{{ raceData?.race[0].b[1].bet }}%</p>
@@ -836,6 +905,9 @@
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[0]?.b[1]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item borderless">
                   <p class="curr-percent">{{ raceData?.race[0].b[2].bet }}%</p>
@@ -847,6 +919,9 @@
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[0]?.b[2]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -878,7 +953,7 @@
             </div>
             <div class="stats-box">
               <div class="inner-stats">
-                <p class="name">{{ raceData?.race[1].n }}</p>
+                <p class="name">{{ raceData?.race[1]?.n }}</p>
                 <div class="roi-holder">
                   <div class="my-bar-holder">
                     <div
@@ -894,37 +969,46 @@
 
               <div class="currs-holder">
                 <div class="curr-item">
-                  <p class="curr-percent">{{ raceData?.race[1].b[0].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[1].b[0]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[1].b[0].symbol +
+                      raceData?.race[1]?.b[0]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[1]?.b[0]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item">
-                  <p class="curr-percent">{{ raceData?.race[1].b[1].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[1]?.b[1]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[1].b[1].symbol +
+                      raceData?.race[1]?.b[1]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[1]?.b[1]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item borderless">
-                  <p class="curr-percent">{{ raceData?.race[1].b[2].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[1]?.b[2]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[1].b[2].symbol +
+                      raceData?.race[1]?.b[2]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[1]?.b[2]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -933,11 +1017,11 @@
             class="car started"
             [ngClass]="
               'car' +
-              raceData?.race[1].c +
+              raceData?.race[1]?.c +
               '-moving' +
               moveNum +
               ' car-' +
-              raceData?.race[1].c
+              raceData?.race[1]?.c
             "
           ></div>
         </div>
@@ -946,7 +1030,7 @@
           class="car_row"
           [ngStyle]="{ left: raceData?.race[2].race_position + '%' }"
           *ngIf="raceData?.race[2]"
-          [ngClass]="{ 'my-car-high': raceData?.me?.u === raceData?.race[2].u }"
+          [ngClass]="{ 'my-car-high': raceData?.me?.u === raceData?.race[2]?.u }"
         >
           <div class="car-user-stats">
             <div class="my-line"></div>
@@ -964,44 +1048,53 @@
                     ></div>
                   </div>
                   <p class="percent">
-                    {{ raceData?.race[2].s | number: "1.4-4":"fr" }}%
+                    {{ raceData?.race[2]?.s | number: "1.4-4":"fr" }}%
                   </p>
                 </div>
               </div>
 
               <div class="currs-holder">
                 <div class="curr-item">
-                  <p class="curr-percent">{{ raceData?.race[2].b[0].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[2]?.b[0]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[2].b[0].symbol +
+                      raceData?.race[2]?.b[0]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[2]?.b[0]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item">
-                  <p class="curr-percent">{{ raceData?.race[2].b[1].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[2]?.b[1]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[2].b[1].symbol +
+                      raceData?.race[2]?.b[1]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[2]?.b[1]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item borderless">
-                  <p class="curr-percent">{{ raceData?.race[2].b[2].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[2]?.b[2]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[2].b[2].symbol +
+                      raceData?.race[2]?.b[2]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[2]?.b[2]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1010,19 +1103,19 @@
             class="car started"
             [ngClass]="
               'car' +
-              raceData?.race[2].c +
+              raceData?.race[2]?.c +
               '-moving' +
               moveNum +
               ' car-' +
-              raceData?.race[2].c
+              raceData?.race[2]?.c
             "
           ></div>
         </div>
         <div
           class="car_row"
-          [ngStyle]="{ left: raceData?.race[3].race_position + '%' }"
+          [ngStyle]="{ left: raceData?.race[3]?.race_position + '%' }"
           *ngIf="raceData?.race[3]"
-          [ngClass]="{ 'my-car-high': raceData?.me?.u === raceData?.race[3].u }"
+          [ngClass]="{ 'my-car-high': raceData?.me?.u === raceData?.race[3]?.u }"
         >
           <div class="car-user-stats">
             <div class="my-line"></div>
@@ -1031,7 +1124,7 @@
             </div>
             <div class="stats-box">
               <div class="inner-stats">
-                <p class="name">{{ raceData?.race[3].n }}</p>
+                <p class="name">{{ raceData?.race[3]?.n }}</p>
                 <div class="roi-holder">
                   <div class="my-bar-holder">
                     <div
@@ -1040,44 +1133,53 @@
                     ></div>
                   </div>
                   <p class="percent">
-                    {{ raceData?.race[3].s | number: "1.4-4":"fr" }}%
+                    {{ raceData?.race[3]?.s | number: "1.4-4":"fr" }}%
                   </p>
                 </div>
               </div>
 
               <div class="currs-holder">
                 <div class="curr-item">
-                  <p class="curr-percent">{{ raceData?.race[3].b[0].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[3]?.b[0]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[3].b[0].symbol +
+                      raceData?.race[3]?.b[0]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[3]?.b[0]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item">
                   <p class="curr-percent">{{ raceData?.race[3].b[1].bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[3].b[1].symbol +
+                      raceData?.race[3]?.b[1]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[3]?.b[1]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
                 <div class="curr-item borderless">
-                  <p class="curr-percent">{{ raceData?.race[3].b[2].bet }}%</p>
+                  <p class="curr-percent">{{ raceData?.race[3]?.b[2]?.bet }}%</p>
                   <img
                     [src]="
                       '/assets/base/images/curr-logos/' +
-                      raceData?.race[3].b[2].symbol +
+                      raceData?.race[3]?.b[2]?.symbol +
                       '-logo.png'
                     "
                     alt=""
                   />
+                  <div class="leverage-indicator" *ngIf="raceData?.race[3]?.b[2]?.leverage">
+                    <img class="passive-img" src="/assets/base/images/tankovanie/leverage-img.svg" alt=""/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1086,7 +1188,7 @@
             class="car started"
             [ngClass]="
               'car' +
-              raceData?.race[3].c +
+              raceData?.race[3]?.c +
               '-moving' +
               moveNum +
               ' car-' +
@@ -1259,7 +1361,7 @@
         "
       >
         {{ "race.racer_out" | translate }} -
-        {{ raceData?.cards[loserIndex]?.n }}
+        {{ winnerData?.eliminated_car?.user_nickname }}
       </h3>
       <h3 class="tour-msg over" *ngIf="raceDataildata?.tour_index === 19">
         {{ "race.tour_end" | translate }} {{ winnersList[0]?.nickname }}
@@ -1487,9 +1589,8 @@
     </div>
   </div>
 </div>
-<div class="winning-back" *ngIf="frozenTicket === true">
+<div class="winning-back" *ngIf="frozenTicket === true && showFinalModal === true">
   <div class="winning-modal frozen">
-    <div class="top-line"></div>
     <div class="close-icon" (click)="showFinalModal = false">
       <img src="/assets/base/images/zavod/white-close.svg" alt="" />
     </div>

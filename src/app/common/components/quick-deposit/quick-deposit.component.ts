@@ -5,6 +5,7 @@ import { BlockchainService, DriversService, NitroWalletService } from 'src/app/a
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/user/services/auth.service';
 declare let ga: any;
+declare let gtag: any;
 @Component({
   selector: 'app-quick-deposit',
   templateUrl: './quick-deposit.component.html',
@@ -202,12 +203,58 @@ export class QuickDepositComponent implements OnInit, OnDestroy {
     if (this.currency === null && this.contractId !== null && this.ethMtfrckr.length === 42) {
       this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', contract_id: this.contractId }).subscribe(data => {
         this.depositSuccessful = true;
+
+        const datax: any = data;
+        let gaTokenName = this.tokenSelected === 'ioi' ? 'IOI' : 'Polygon';
+        let depositUsdtAmount = 0;
+        if (data !== null) {
+          this.tokenSelected === 'ioi' ? datax.outstanding_amount * this.myBalance.ioi_usdt : datax.outstanding_amount * this.myBalance.matic_usdt;
+        }
+        
+        ga('ecommerce:addTransaction', {
+          'id': '0001',
+          'affiliation': gaTokenName + ' token', 
+          'revenue': depositUsdtAmount,
+          'shipping': '0',
+          'tax': '0'
+        });
+
+        gtag('event', 'conversion', {
+          'send_to': 'AW-580556065/iqbECLXl7d4CEKGq6pQC',
+          'value': depositUsdtAmount,
+          'currency': 'USD',
+          'transaction_id': ''
+        });
+    
       });
     }
 
     if (this.currency !== null && this.contractId === null && this.ethMtfrckr.length === 42) {
       this.blcksrvc.makeDeposit({ from_address: this.ethMtfrckr, destination: 'races', currency: this.currency }).subscribe(data => {
         this.depositSuccessful = true;
+
+        const datax: any = data;
+        let gaTokenName = this.tokenSelected === 'ioi' ? 'IOI' : 'Polygon';
+        let depositUsdtAmount = 0;
+        if (data !== null) {
+          this.tokenSelected === 'ioi' ? datax.outstanding_amount * this.myBalance.ioi_usdt : datax.outstanding_amount * this.myBalance.matic_usdt;
+        }
+        
+        ga('ecommerce:addTransaction', {
+          'id': '0001',
+          'affiliation': gaTokenName + ' token', 
+          'revenue': depositUsdtAmount,
+          'shipping': '0',
+          'tax': '0'
+        });
+        
+        gtag('event', 'conversion', {
+          'send_to': 'AW-580556065/iqbECLXl7d4CEKGq6pQC',
+          'value': depositUsdtAmount,
+          'currency': 'USD',
+          'transaction_id': ''
+        });
+
       });
     }
   }

@@ -12,4 +12,5 @@ export interface InitialCardsExtra {
   cpr: number;
   p: number;
   race_position?: number;
+  l?: number;
 }

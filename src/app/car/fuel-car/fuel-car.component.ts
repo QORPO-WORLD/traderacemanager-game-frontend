@@ -514,7 +514,6 @@ export class FuelCarComponent implements OnInit, OnDestroy {
   getMyDriverStats() {
     this.myDriverStats = this.identityService.getStorageIdentity();
     this.getMyLevel();
-    console.log(this.myDriverStats);
   }
 
   calcPossibleMultibet() {
@@ -1508,8 +1507,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     );
 
     if (!isSituated) {
-
-      if (this.raceIdentifier === 'tesla_tournament_0') {
+      if (this.raceIdentifier === 'tesla_tournament_0' || this.raceIdentifier === 'premium_tournament_0') {
         if (this.validateTeslaCarSelect(index) === 0) {
           this.notify.error("Error", "You can fuel only one car from each edition + one extra tesla car.");
           return;
@@ -2160,7 +2158,7 @@ export class FuelCarComponent implements OnInit, OnDestroy {
     }
 
     if (this.editionIndex === 1) {
-      if ((edition1.length > 0 && this.myCars1[index].extras.tier !== 60) || (edition1.length > 0 && teslas.length > 0)) {
+      if ((edition1.length > 0 && this.myCars1[index].extras.tier !== 60) || (edition1.length > 0 && teslas.length > 0) || (this.myCars1[index].extras.tier === 60 && teslas.length > 0)) {
         return 0;
       } else {
         return 1;
