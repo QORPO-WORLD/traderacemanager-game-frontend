@@ -870,6 +870,24 @@ export class NftDetailComponent implements OnInit {
       avatar: "",
       back: "",
     },
+    {
+      id: 55,
+      position: 15,
+      type: "bundle",
+      name: "Venly",
+      link: "@Venly_io",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-venly",
+      racer: "venly",
+      car: "car55",
+      avatar: "",
+      back: "",
+    },
   ];
   infoRoi = false;
   infoRoiYearly = false;
