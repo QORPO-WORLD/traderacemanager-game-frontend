@@ -83,14 +83,14 @@
 
     <div class="text-buttons">
       <button
-        (click)="!displayArray[0]['rare'] ? showBuyModal() : null"
-        *ngIf="displayArray[0]['rare']"
+        (click)="showBuyModal()"
+        *ngIf="displayArray[0]['rare'] === undefined"
         class="buy category-title-third my-cta-btn-back"
       >
         Continue
       </button>
       <button
-        *ngIf="displayArray[0]['rare']"
+        *ngIf="displayArray[0]['rare'] === true"
         class="buy category-title-third my-cta-btn-back"
       >
         Locked

@@ -21,7 +21,7 @@ export class MyNftDetailComponent implements OnInit {
   products: Array<object> = [
     //bronze
     {
-      id: 20,
+      id: 25,
       position: 1,
       free: 6000,
       collection: "Common",
@@ -37,7 +37,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car rhino",
     },
     {
-      id: 21,
+      id: 26,
       position: 2,
       free: 12000,
       collection: "Common",
@@ -53,7 +53,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car panther",
     },
     {
-      id: 22,
+      id: 27,
       position: 3,
       free: 24000,
       collection: "Common",
@@ -69,7 +69,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car onyx",
     },
     {
-      id: 23,
+      id: 28,
       position: 4,
       free: 48000,
       collection: "Common",
@@ -85,7 +85,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car zander",
     },
     {
-      id: 24,
+      id: 29,
       position: 5,
       free: 96000,
       collection: "Common",
@@ -101,7 +101,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car cyborg",
     },
     {
-      id: 25,
+      id: 30,
       position: 6,
       free: 192000,
       collection: "Common",
@@ -117,7 +117,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car vulcanic",
     },
     {
-      id: 26,
+      id: 31,
       position: 25,
       collection: "Common rare",
       name: "LUNA",
@@ -134,7 +134,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     //silver
     {
-      id: 27,
+      id: 32,
       position: 7,
       free: 288000,
       collection: "Super",
@@ -150,7 +150,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car dorian",
     },
     {
-      id: 28,
+      id: 33,
       position: 8,
       free: 432000,
       collection: "Super",
@@ -166,7 +166,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car panther",
     },
     {
-      id: 29,
+      id: 34,
       position: 9,
       free: 648000,
       collection: "Super",
@@ -182,7 +182,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car onyx",
     },
     {
-      id: 30,
+      id: 35,
       position: 10,
       free: 972000,
       collection: "Super",
@@ -198,7 +198,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car zander",
     },
     {
-      id: 31,
+      id: 36,
       position: 11,
       free: 1458000,
       collection: "Super",
@@ -214,7 +214,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car python",
     },
     {
-      id: 32,
+      id: 37,
       position: 12,
       free: 2187000,
       collection: "Super",
@@ -230,7 +230,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car vulcanic",
     },
     {
-      id: 33,
+      id: 38,
       position: 26,
       collection: "Super rare",
       name: "SILVER KNIGHT",
@@ -247,7 +247,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     //gold
     {
-      id: 34,
+      id: 39,
       position: 13,
       free: 3000000,
       collection: "Epic",
@@ -263,7 +263,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car cyborg",
     },
     {
-      id: 35,
+      id: 40,
       position: 14,
       free: 3600000,
       collection: "Epic",
@@ -279,7 +279,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car rhino",
     },
     {
-      id: 36,
+      id: 41,
       position: 15,
       free: 4320000,
       collection: "Epic",
@@ -295,7 +295,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car hyper",
     },
     {
-      id: 37,
+      id: 42,
       position: 16,
       free: 5184000,
       collection: "Epic",
@@ -311,7 +311,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car bull",
     },
     {
-      id: 38,
+      id: 43,
       position: 17,
       free: 6220000,
       collection: "Epic",
@@ -327,7 +327,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car python",
     },
     {
-      id: 39,
+      id: 44,
       position: 18,
       free: 7465000,
       collection: "Epic",
@@ -343,7 +343,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car hitman",
     },
     {
-      id: 40,
+      id: 45,
       position: 27,
       collection: "Epic rare",
       name: "MIDAS",
@@ -360,7 +360,7 @@ export class MyNftDetailComponent implements OnInit {
     },
     //platinum
     {
-      id: 41,
+      id: 46,
       position: 19,
       free: 8200000,
       collection: "Legendary",
@@ -376,7 +376,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car hyper",
     },
     {
-      id: 42,
+      id: 47,
       position: 20,
       free: 9000000,
       collection: "Legendary",
@@ -392,7 +392,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car dorian",
     },
     {
-      id: 43,
+      id: 48,
       position: 21,
       free: 9900000,
       collection: "Legendary",
@@ -408,7 +408,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car vulcanic",
     },
     {
-      id: 44,
+      id: 49,
       position: 22,
       free: 10890000,
       collection: "Legendary",
@@ -424,7 +424,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car bull",
     },
     {
-      id: 45,
+      id: 50,
       position: 23,
       free: 12000000,
       collection: "Legendary",
@@ -440,7 +440,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car knockout",
     },
     {
-      id: 46,
+      id: 51,
       position: 24,
       free: 13200000,
       collection: "Legendary",
@@ -456,7 +456,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car lara",
     },
     {
-      id: 47,
+      id: 52,
       position: 28,
       collection: "Legendary rare",
       name: "BLUE STORM",
@@ -472,7 +472,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car blue storm",
     },
     {
-      id: 48,
+      id: 53,
       collection: "Special",
       name: "DAOMaker",
       link: "@TheDaoMaker",
@@ -486,7 +486,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car DAOMaker",
     },
     {
-      id: 49,
+      id: 54,
       collection: "Special",
       name: "Shreyansh Polygon",
       link: "@shreyansh_27",
@@ -500,7 +500,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Cryptowizard",
     },
     {
-      id: 50,
+      id: 55,
       collection: "Special",
       name: "Kyle Chasse",
       link: "@kyle_chasse",
@@ -514,7 +514,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Kyle Chasse",
     },
     {
-      id: 51,
+      id: 56,
       collection: "Special",
       name: "Ash WSB",
       link: "@ashWSBreal",
@@ -528,7 +528,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Ash WSB",
     },
     {
-      id: 52,
+      id: 57,
       collection: "Special",
       name: "Tehmoonwalker",
       link: "@tehMoonwalkeR",
@@ -542,7 +542,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Tehmoonwalker",
     },
     {
-      id: 53,
+      id: 58,
       collection: "Special",
       name: "Parabolic Guy",
       link: "@GoingParabolic",
@@ -556,7 +556,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Parabolic Guy",
     },
     {
-      id: 54,
+      id: 59,
       collection: "Special",
       name: "Altcoin Buzz",
       link: "@Altcoinbuzzio",
@@ -570,7 +570,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Altcoin Buzz",
     },
     {
-      id: 55,
+      id: 60,
       collection: "Special",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
@@ -584,7 +584,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Cryptowizard",
     },
     {
-      id: 56,
+      id: 61,
       collection: "Special",
       name: "Kucoin",
       link: "@kucoincom",
@@ -598,7 +598,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car Kucoin",
     },
     {
-      id: 57,
+      id: 62,
       collection: "Special",
       name: "QuickSwap",
       link: "@QuickswapDEX",
@@ -612,7 +612,7 @@ export class MyNftDetailComponent implements OnInit {
       alt: "nft car QuickSwap",
     },
     {
-      id: 58,
+      id: 63,
       collection: "Special",
       name: "Tech Giants",
       link: "@Crypto_giants",
@@ -624,6 +624,19 @@ export class MyNftDetailComponent implements OnInit {
       rank: "low",
       amount: [],
       alt: "nft car Tech Giants",
+    },
+    {
+      id: 64,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "car55",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      rank: "low",
+      amount: [],
+      alt: "nft car Venly",
     },
     {
       id: 60,
@@ -859,6 +872,42 @@ export class MyNftDetailComponent implements OnInit {
       rank: "low",
       amount: [],
       alt: "nft racer Kucoin",
+    },
+    {
+      id: 18,
+      collection: "Special",
+      name: "QuickSwap",
+      link: "@QuickswapDEX",
+      image: "quickswap",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Quickswap",
+    },
+    {
+      id: 19,
+      collection: "Special",
+      name: "Tech Giants",
+      link: "@Crypto_giants",
+      image: "techgiants",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Tech Giants",
+    },
+    {
+      id: 20,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "venly",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Venly",
     },
   ];
 

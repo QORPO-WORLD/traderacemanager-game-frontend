@@ -82,7 +82,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     },
     //bronze
     {
-      id: 20,
+      id: 25,
       position: 0,
       free: 6000,
       collection: "Common",
@@ -97,7 +97,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car rhino",
     },
     {
-      id: 21,
+      id: 26,
       position: 1,
       free: 12000,
       collection: "Common",
@@ -112,7 +112,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car panther",
     },
     {
-      id: 22,
+      id: 27,
       position: 2,
       free: 24000,
       collection: "Common",
@@ -127,7 +127,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car onyx",
     },
     {
-      id: 23,
+      id: 28,
       position: 3,
       free: 48000,
       collection: "Common",
@@ -142,7 +142,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car zander",
     },
     {
-      id: 24,
+      id: 29,
       position: 4,
       free: 96000,
       collection: "Common",
@@ -157,7 +157,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car cyborg",
     },
     {
-      id: 25,
+      id: 30,
       position: 5,
       free: 192000,
       collection: "Common",
@@ -172,7 +172,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car vulcanic",
     },
     {
-      id: 26,
+      id: 31,
       position: 24,
       collection: "Common rare",
       name: "LUNA",
@@ -188,7 +188,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     },
     //silver
     {
-      id: 27,
+      id: 32,
       position: 6,
       free: 288000,
       collection: "Super",
@@ -203,7 +203,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car dorian",
     },
     {
-      id: 28,
+      id: 33,
       position: 7,
       free: 432000,
       collection: "Super",
@@ -218,7 +218,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car panther",
     },
     {
-      id: 29,
+      id: 34,
       position: 8,
       free: 648000,
       collection: "Super",
@@ -233,7 +233,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car onyx",
     },
     {
-      id: 30,
+      id: 35,
       position: 9,
       free: 972000,
       collection: "Super",
@@ -248,7 +248,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car zander",
     },
     {
-      id: 31,
+      id: 36,
       position: 10,
       free: 1458000,
       collection: "Super",
@@ -263,7 +263,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car python",
     },
     {
-      id: 32,
+      id: 37,
       position: 11,
       free: 2187000,
       collection: "Super",
@@ -278,7 +278,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car vulcanic",
     },
     {
-      id: 33,
+      id: 38,
       position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
@@ -294,7 +294,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     },
     //gold
     {
-      id: 34,
+      id: 39,
       position: 12,
       free: 3000000,
       collection: "Epic",
@@ -309,7 +309,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car cyborg",
     },
     {
-      id: 35,
+      id: 40,
       position: 13,
       free: 3600000,
       collection: "Epic",
@@ -324,7 +324,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car rhino",
     },
     {
-      id: 36,
+      id: 41,
       position: 14,
       free: 4320000,
       collection: "Epic",
@@ -339,7 +339,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car hyper",
     },
     {
-      id: 37,
+      id: 42,
       position: 15,
       free: 5184000,
       collection: "Epic",
@@ -354,7 +354,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car bull",
     },
     {
-      id: 38,
+      id: 43,
       position: 16,
       free: 6220000,
       collection: "Epic",
@@ -369,7 +369,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car python",
     },
     {
-      id: 39,
+      id: 44,
       position: 17,
       free: 7465000,
       collection: "Epic",
@@ -384,7 +384,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car hitman",
     },
     {
-      id: 40,
+      id: 45,
       position: 26,
       collection: "Epic rare",
       name: "MIDAS",
@@ -400,7 +400,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     },
     //platinum
     {
-      id: 41,
+      id: 46,
       position: 18,
       free: 8200000,
       collection: "Legendary",
@@ -415,7 +415,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car hyper",
     },
     {
-      id: 42,
+      id: 47,
       position: 19,
       free: 9000000,
       collection: "Legendary",
@@ -430,7 +430,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car dorian",
     },
     {
-      id: 43,
+      id: 48,
       position: 20,
       free: 9900000,
       collection: "Legendary",
@@ -445,7 +445,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car vulcanic",
     },
     {
-      id: 44,
+      id: 49,
       position: 21,
       free: 10890000,
       collection: "Legendary",
@@ -460,7 +460,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car bull",
     },
     {
-      id: 45,
+      id: 50,
       position: 22,
       free: 12000000,
       collection: "Legendary",
@@ -475,7 +475,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car knockout",
     },
     {
-      id: 46,
+      id: 51,
       position: 23,
       free: 13200000,
       collection: "Legendary",
@@ -490,7 +490,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car lara",
     },
     {
-      id: 47,
+      id: 52,
       position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
@@ -505,7 +505,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car blue storm",
     },
     {
-      id: 48,
+      id: 53,
       collection: "Special",
       name: "DAO Maker",
       link: "@TheDaoMaker",
@@ -518,7 +518,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car DAOMaker",
     },
     {
-      id: 49,
+      id: 54,
       collection: "Special",
       name: "Shreyansh Polygon",
       link: "@shreyansh_27",
@@ -531,7 +531,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Cryptowizard",
     },
     {
-      id: 50,
+      id: 55,
       collection: "Special",
       name: "Kyle Chasse",
       link: "@kyle_chasse",
@@ -544,7 +544,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Kyle Chasse",
     },
     {
-      id: 51,
+      id: 56,
       collection: "Special",
       name: "Ash WSB",
       link: "@ashWSBreal",
@@ -557,7 +557,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Ash WSB",
     },
     {
-      id: 52,
+      id: 57,
       collection: "Special",
       name: "Tehmoonwalker",
       link: "@tehMoonwalkeR",
@@ -570,7 +570,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Tehmoonwalker",
     },
     {
-      id: 53,
+      id: 58,
       collection: "Special",
       name: "Parabolic Guy",
       link: "@GoingParabolic",
@@ -583,7 +583,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Parabolic Guy",
     },
     {
-      id: 54,
+      id: 59,
       collection: "Special",
       name: "Altcoin Buzz",
       link: "@Altcoinbuzzio",
@@ -596,7 +596,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Altcoin Buzz",
     },
     {
-      id: 55,
+      id: 60,
       collection: "Special",
       name: "Cryptowizard",
       link: "@CryptoWizardd",
@@ -609,7 +609,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Cryptowizard",
     },
     {
-      id: 56,
+      id: 61,
       collection: "Special",
       name: "Kucoin",
       link: "@kucoincom",
@@ -622,7 +622,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car Kucoin",
     },
     {
-      id: 57,
+      id: 62,
       collection: "Special",
       name: "QuickSwap",
       link: "@QuickswapDEX",
@@ -635,7 +635,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car QuickSwap",
     },
     {
-      id: 58,
+      id: 63,
       collection: "Special",
       name: "Tech Giants",
       link: "@Crypto_giants",
@@ -646,6 +646,19 @@ export class MyNftComponent implements OnInit, OnChanges {
       rank: "low",
       amount: [],
       alt: "nft car Tech Giants",
+    },
+    {
+      id: 64,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "car55",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      rank: "low",
+      amount: [],
+      alt: "nft car Venly",
     },
 
     //RACERS
@@ -894,6 +907,18 @@ export class MyNftComponent implements OnInit, OnChanges {
       rank: "low",
       amount: [],
       alt: "nft racer Tech Giants",
+    },
+    {
+      id: 20,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "venly",
+      type: "racer",
+      ability2: "10%",
+      rank: "low",
+      amount: [],
+      alt: "nft racer Venly",
     },
   ];
 
@@ -1185,65 +1210,71 @@ export class MyNftComponent implements OnInit, OnChanges {
           if (objs.cars[x].car_id === 54) {
             this.products[39]["amount"].push(objs.cars[x]);
           }
+          if (objs.cars[x].car_id === 55) {
+            this.products[40]["amount"].push(objs.cars[x]);
+          }
         }
 
         for (let x = 0; x < objs.racers.length; x++) {
           if (objs.racers[x].car_id === 1) {
-            this.products[40]["amount"].push(objs.cars[x]);
-          }
-          if (objs.racers[x].car_id === 2) {
             this.products[41]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 3) {
+          if (objs.racers[x].car_id === 2) {
             this.products[42]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 4) {
+          if (objs.racers[x].car_id === 3) {
             this.products[43]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 5) {
+          if (objs.racers[x].car_id === 4) {
             this.products[44]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 6) {
+          if (objs.racers[x].car_id === 5) {
             this.products[45]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 7) {
+          if (objs.racers[x].car_id === 6) {
             this.products[46]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 8) {
+          if (objs.racers[x].car_id === 7) {
             this.products[47]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 11) {
+          if (objs.racers[x].car_id === 8) {
             this.products[48]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 12) {
+          if (objs.racers[x].car_id === 11) {
             this.products[49]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 14) {
+          if (objs.racers[x].car_id === 12) {
             this.products[50]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 15) {
+          if (objs.racers[x].car_id === 14) {
             this.products[51]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 16) {
+          if (objs.racers[x].car_id === 15) {
             this.products[52]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 17) {
+          if (objs.racers[x].car_id === 16) {
             this.products[53]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 20) {
+          if (objs.racers[x].car_id === 17) {
             this.products[54]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 21) {
+          if (objs.racers[x].car_id === 20) {
             this.products[55]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 22) {
+          if (objs.racers[x].car_id === 21) {
             this.products[56]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 23) {
+          if (objs.racers[x].car_id === 22) {
             this.products[57]["amount"].push(objs.cars[x]);
           }
-          if (objs.racers[x].car_id === 24) {
+          if (objs.racers[x].car_id === 23) {
             this.products[58]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 24) {
+            this.products[59]["amount"].push(objs.cars[x]);
+          }
+          if (objs.racers[x].car_id === 25) {
+            this.products[60]["amount"].push(objs.cars[x]);
           }
         }
         this.calcEditionNum();

@@ -836,7 +836,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 53,
-      position: 13,
+      position: 12,
       type: "bundle",
       name: "QuickSwap",
       link: "@QuickswapDEX",
@@ -854,7 +854,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 54,
-      position: 14,
+      position: 13,
       type: "bundle",
       name: "Tech Giants",
       link: "@Crypto_giants",
@@ -872,7 +872,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 55,
-      position: 15,
+      position: 14,
       type: "bundle",
       name: "Venly",
       link: "@Venly_io",

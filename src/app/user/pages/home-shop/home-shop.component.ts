@@ -773,7 +773,7 @@ export class HomeShopComponent implements OnInit {
       position: 15,
       type: "bundle",
       name: "Venly",
-      link: "@Venly_io",
+      collection: "@Venly_io",
       nft: 10,
       staking: 6,
       reward: 0.1,
