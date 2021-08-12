@@ -158,15 +158,13 @@
       <app-my-nft
         (data)="resolveMarketAsset($event)"
         [depositFlow]="depositFlow"
+        (marketState)="resolveDetailAsset($event)"
         *ngIf="title === 'mynfts' && marketState === 1"
       ></app-my-nft>
       <app-my-nft-detail
         class="detail-content"
         *ngIf="title === 'mynfts' && marketState === 2"
-        [assetId]="selectedId"
-        [assetType]="selectedType"
-        [owned]="ownedItems"
-        (marketState)="resolveDetailAsset($event)"
+        [assetInfo]="assetInfo"
       ></app-my-nft-detail>
       <app-my-settings *ngIf="title === 'settings'"></app-my-settings>
     </div>
