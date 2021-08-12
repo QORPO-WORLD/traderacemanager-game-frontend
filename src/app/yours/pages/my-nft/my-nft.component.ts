@@ -675,7 +675,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       alt: "nft car QuickSwap",
     },
     {
-      id: 58,
+      id: 50,
       tier: 54,
       collection: "Special",
       name: "Tech Giants",
@@ -688,6 +688,21 @@ export class MyNftComponent implements OnInit, OnChanges {
       rank: "low",
       amount: 0,
       alt: "nft car Tech Giants",
+    },
+    {
+      id: 51,
+      tier: 55,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "car55",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      ability3: 8760,
+      rank: "low",
+      amount: 0,
+      alt: "nft car Venly",
     },
     //
     //TRM RACERS ID 70,...,89
@@ -952,6 +967,19 @@ export class MyNftComponent implements OnInit, OnChanges {
       amount: 0,
       alt: "nft racer Tech Giants",
     },
+    {
+      id: 101,
+      tier: 25,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "venly",
+      type: "racer",
+      ability2: 10,
+      rank: "low",
+      amount: 0,
+      alt: "nft racer Venly",
+    },
     //
     //BUNDLES ID 120,...,149
     //
@@ -1215,6 +1243,9 @@ export class MyNftComponent implements OnInit, OnChanges {
   ) {
     this.getMyAssets();
   }
+  ngOnInit() {
+    this.filterType(this.products, "all", false, false);
+  }
   ngOnChanges(): void {
     if (this.depositFlow === true) {
       this.filterType(this.products, "all", false, true);
@@ -1222,9 +1253,7 @@ export class MyNftComponent implements OnInit, OnChanges {
       this.filterType(this.products, "all", false, false);
     }
   }
-  ngOnInit(): void {
-    this.filterType(this.products, "all", false, false);
-  }
+
   filterType(
     entry: Array<any>,
     type: string,
@@ -1235,7 +1264,6 @@ export class MyNftComponent implements OnInit, OnChanges {
     this.sliceStart = 0;
     this.sliceMiddle = this.assetsOnPage;
     let sortedProducts = entry;
-
     if (type === "all") {
       if (bundles === false) {
         deposit === false

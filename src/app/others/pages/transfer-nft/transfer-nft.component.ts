@@ -656,7 +656,7 @@ export class TransferNftComponent implements OnInit {
       alt: "nft car QuickSwap",
     },
     {
-      id: 58,
+      id: 50,
       tier: 54,
       collection: "Special",
       name: "Tech Giants",
@@ -669,6 +669,21 @@ export class TransferNftComponent implements OnInit {
       rank: "low",
       amount: 0,
       alt: "nft car Tech Giants",
+    },
+    {
+      id: 51,
+      tier: 55,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "car55",
+      type: "car",
+      ability1: 0.1,
+      ability2: 6,
+      ability3: 8760,
+      rank: "low",
+      amount: 0,
+      alt: "nft car Venly",
     },
     //
     //TRM RACERS ID 70,...,89
@@ -932,6 +947,19 @@ export class TransferNftComponent implements OnInit {
       rank: "low",
       amount: 0,
       alt: "nft racer Tech Giants",
+    },
+    {
+      id: 101,
+      tier: 25,
+      collection: "Special",
+      name: "Venly",
+      link: "@Venly_io",
+      image: "venly",
+      type: "racer",
+      ability2: 10,
+      rank: "low",
+      amount: 0,
+      alt: "nft racer Venly",
     },
     //
     //BUNDLES ID 120,...,149
