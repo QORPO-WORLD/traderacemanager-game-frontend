@@ -42,7 +42,8 @@
       *ngIf="
         displayArray[0]['type'] === 'car' &&
         displayArray[0]['rare'] === undefined &&
-        displayArray[0]['name'] != 'TESLA'
+        displayArray[0]['name'] != 'TESLA' &&
+        displayArray[0]['collection'] != 'Special edition'
       "
     >
       {{ displayArray[0]["name"] }} is unique limited car. Each car is
@@ -75,7 +76,23 @@
       happening everyday for 100 IOI. Tesla does not have APY or Staking
       function. Win rate in regular races is 0.1 IOI per race.
     </p>
-
+    <p
+      class="races-desc"
+      *ngIf="
+        displayArray[0]['type'] === 'car' &&
+        displayArray[0]['collection'] === 'Special edition'
+      "
+    >
+      {{ displayArray[0]["name"] }} is unique limited car. Each car is
+      unparalleled way of owning IOI tokens. The main benefit is that you can
+      use your NFTs in-game, buy, sell and trade on open markets. The new era of
+      NFTs in your pocket.
+      <br />
+      <br />
+      Special edition NFTs are minted once and never again in very limited
+      quantity with attributes as Common tier NFT without staking. You can use
+      your Special edition NFT in all types of races and tournaments.
+    </p>
     <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
       Get a NFT car and an avatar of your favourite influencer in our limited
       bundles! Increase your daily income thanks to daily stakes today.
@@ -107,11 +124,7 @@
 
       <button
         class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'car' &&
-          !displayArray[0]['rare'] &&
-          displayArray[0]['name'] != 'TESLA'
-        "
+        *ngIf="displayArray[0]['type'] === 'car' && !displayArray[0]['rare']"
       >
         {{ remainingCars[position].count.toLocaleString() }} left
       </button>
