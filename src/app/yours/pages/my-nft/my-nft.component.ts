@@ -1243,9 +1243,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   ) {
     this.getMyAssets();
   }
-  ngOnInit() {
-    this.filterType(this.products, "all", false, false);
-  }
+  ngOnInit() {}
   ngOnChanges(): void {
     if (this.depositFlow === true) {
       this.filterType(this.products, "all", false, true);
@@ -1352,6 +1350,7 @@ export class MyNftComponent implements OnInit, OnChanges {
           }
         }
       }
+      this.filterType(this.products, "all", false, false);
     });
   }
   selectCar(data) {
