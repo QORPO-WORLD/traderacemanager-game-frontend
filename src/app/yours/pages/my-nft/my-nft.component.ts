@@ -1239,13 +1239,15 @@ export class MyNftComponent implements OnInit, OnChanges {
     if (type === "all") {
       if (bundles === false) {
         deposit === false
-          ? (sortedProducts = entry.filter((item) => item.type !== "bundle"))
+          ? (sortedProducts = entry.filter(
+              (item) => item.type !== "bundle" && item.amount > 0
+            ))
           : (sortedProducts = entry.filter(
               (item) => item.type !== "bundle" && item.collection !== "Special"
             ));
       } else {
         deposit === false
-          ? (sortedProducts = entry)
+          ? (sortedProducts = entry.filter((item) => item.amount > 0))
           : (sortedProducts = entry.filter(
               (item) => item.collection !== "Special"
             ));
@@ -1254,7 +1256,8 @@ export class MyNftComponent implements OnInit, OnChanges {
       if (bundles === false) {
         deposit === false
           ? (sortedProducts = entry.filter(
-              (item) => item.type === type && item.type !== "bundle"
+              (item) =>
+                item.type === type && item.type !== "bundle" && item.amount > 0
             ))
           : (sortedProducts = entry.filter(
               (item) =>
@@ -1264,7 +1267,9 @@ export class MyNftComponent implements OnInit, OnChanges {
             ));
       } else {
         deposit === false
-          ? (sortedProducts = entry.filter((item) => item.type === type))
+          ? (sortedProducts = entry.filter(
+              (item) => item.type === type && item.amount > 0
+            ))
           : (sortedProducts = entry.filter(
               (item) => item.type === type && item.collection != "Special"
             ));
