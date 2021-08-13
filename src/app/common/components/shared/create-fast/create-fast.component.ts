@@ -99,26 +99,26 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
   trsDate: number;
   selectedSymbol: string;
   myBet: Array<any> = [
-    { symbol: 'BTCUSDT', desc: 'BTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 0 },
-    { symbol: 'ETHUSDT', desc: 'ETH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 1 },
-    { symbol: 'XRPUSDT', desc: 'XRP', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 2 },
-    { symbol: 'BCHUSDT', desc: 'BCH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 3 },
-    { symbol: 'LTCUSDT', desc: 'LTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 4 },
-    { symbol: 'EOSUSDT', desc: 'EOS', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 5 },
-    { symbol: 'BNBUSDT', desc: 'BNB', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 6 },
-    { symbol: 'XMRUSDT', desc: 'XMR', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 7 },
-    { symbol: 'ADAUSDT', desc: 'ADA', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 8 },
-    { symbol: 'TRXUSDT', desc: 'TRX', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 9 },
-    { symbol: 'BATUSDT', desc: 'BAT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 10 },
-    { symbol: 'XLMUSDT', desc: 'XLM', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 11 },
-    { symbol: 'XTZUSDT', desc: 'XTZ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 12 },
-    { symbol: 'ENJUSDT', desc: 'ENJ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 13 },
-    { symbol: 'MATICUSDT', desc: 'MATIC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 14 },
-    { symbol: 'LINKUSDT', desc: 'LINK', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 15 },
-    { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16 },
-    { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17 },
-    { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18 },
-    { symbol: 'USDTUSDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19 }
+    { symbol: 'BTCUSDT', desc: 'BTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 0, leverage: 0 },
+    { symbol: 'ETHUSDT', desc: 'ETH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 1, leverage: 0 },
+    { symbol: 'XRPUSDT', desc: 'XRP', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 2, leverage: 0 },
+    { symbol: 'BCHUSDT', desc: 'BCH', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 3, leverage: 0 },
+    { symbol: 'LTCUSDT', desc: 'LTC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 4, leverage: 0 },
+    { symbol: 'EOSUSDT', desc: 'EOS', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 5, leverage: 0 },
+    { symbol: 'BNBUSDT', desc: 'BNB', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 6, leverage: 0 },
+    { symbol: 'XMRUSDT', desc: 'XMR', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 7, leverage: 0 },
+    { symbol: 'ADAUSDT', desc: 'ADA', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 8, leverage: 0 },
+    { symbol: 'TRXUSDT', desc: 'TRX', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 9, leverage: 0 },
+    { symbol: 'BATUSDT', desc: 'BAT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 10, leverage: 0 },
+    { symbol: 'XLMUSDT', desc: 'XLM', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 11, leverage: 0 },
+    { symbol: 'XTZUSDT', desc: 'XTZ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 12, leverage: 0 },
+    { symbol: 'ENJUSDT', desc: 'ENJ', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 13, leverage: 0 },
+    { symbol: 'MATICUSDT', desc: 'MATIC', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 14, leverage: 0 },
+    { symbol: 'LINKUSDT', desc: 'LINK', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 15, leverage: 0 },
+    { symbol: 'WAVESUSDT', desc: 'WAVES', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 16, leverage: 0 },
+    { symbol: 'ZILUSDT', desc: 'ZIL', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 17, leverage: 0 },
+    { symbol: 'VETUSDT', desc: 'VET', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 18, leverage: 0 },
+    { symbol: 'USDTUSDT', desc: 'USDT', bet: 0.00, selected: false, favourite: false, short: false, customIndex: 19, leverage: 0 }
   ];
   selectedBets: Array<number> = [];
   order = 'favourite';
@@ -164,6 +164,7 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     this.selectDefaultCoin(0);
     this.getFavCars();
     this.getRaceDetails();
+    this.getMyDriverStats();
   }
 
   ngOnDestroy() {
@@ -240,10 +241,26 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     for (let i = 0; i < fakeSelected.length; i++) {
       fakeSelected[i].newBet = [];
       for (let ix = 0; ix < fakeSelected[i].bet.length; ix++) {
-        fakeSelected[i].newBet.push({
-          symbol: fakeSelected[i].bet[ix].symbol,
-          bet: fakeSelected[i].bet[ix].short === false ? fakeSelected[i].bet[ix].bet : fakeSelected[i].bet[ix].bet * -1
-        });
+        if (fakeSelected[i].bet[ix].bet > 0) {
+          if (fakeSelected[i].bet[ix].leverage > 0) {
+            fakeSelected[i].newBet.push({
+              symbol: fakeSelected[i].bet[ix].symbol,
+              bet:
+                fakeSelected[i].bet[ix].short === false
+                  ? fakeSelected[i].bet[ix].bet
+                    : fakeSelected[i].bet[ix].bet * -1,
+              leverage: fakeSelected[i].bet[ix].leverage
+            });
+          } else {
+            fakeSelected[i].newBet.push({
+              symbol: fakeSelected[i].bet[ix].symbol,
+              bet:
+                fakeSelected[i].bet[ix].short === false
+                  ? fakeSelected[i].bet[ix].bet
+                    : fakeSelected[i].bet[ix].bet * -1
+            });
+          }
+        }
       }
     }
     for (let i = 0; i < fakeSelected.length; i++) {
@@ -753,6 +770,10 @@ export class CreateFastFuelCarComponent implements OnInit, OnDestroy {
     } else {
       this.windowFuelCarIndex = this.selectedCarsToRace.length - this.bottomCarsBalancer;
     }
+  }
+
+  getMyDriverStats() {
+    this.myDriverStats = this.identityService.getStorageIdentity();
   }
 
 }

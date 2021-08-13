@@ -6,6 +6,9 @@ import { TeamsService } from "../../../api/services/teams.service";
 import { AuthService } from "../../../user/services/auth.service";
 import { BalanceService } from "../../../common/services/balance.service";
 
+declare let ga: any;
+declare let gtag: any;
+
 @Component({
   selector: "app-team-membership",
   templateUrl: "./team-membership.component.html",
@@ -81,6 +84,37 @@ export class TeamMembershipComponent implements OnInit {
       })
       .subscribe((data) => {
         this.notifyChangedBalance();
+
+        let gaMonthCount = 'one month';
+        if (this.monthCount === 1) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-580556065/7WI1CICqmN8CEKGq6pQC',
+            'value': this.monthlyPrice,
+            'currency': 'USD',
+            'transaction_id': ''
+          });
+        } else if (this.monthCount === 3) {
+          gaMonthCount = 'three month';
+          gtag('event', 'conversion', {
+            'send_to': 'AW-580556065/MlkaCIHbmN8CEKGq6pQC',
+            'value': this.quarterlyPrice,
+            'currency': 'USD',
+            'transaction_id': ''
+          });
+        } else if (this.monthCount === 12) {
+          gaMonthCount = 'one year';
+          gtag('event', 'conversion', {
+            'send_to': 'AW-580556065/KA9sCLjomN8CEKGq6pQC',
+            'value': this.yearlyPrice,
+            'currency': 'USD',
+            'transaction_id': ''
+          });
+        }
+        ga("event", 'buy_premium_account', {
+          eventCategory: 'buy_premium_account',
+          eventAction: gaMonthCount
+        });
+
         setTimeout(() => {
           this.identityService.updateLeaderboardMe();
           this.identityService.updateDriverMe();

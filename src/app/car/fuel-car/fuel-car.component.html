@@ -813,9 +813,9 @@
                           selectedCarsToRace[selectedCarIndex]?.selectedBets[0]
                         ].leverage === 2
                           ? 'active'
-                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                          : 'passive') + ' ' + (myDriverStats?.is_paid_membership === 'Premium' ? '' : 'not-premium')
                       "
-                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                      [disabled]="myDriverStats?.is_paid_membership !== 'Premium'"
                     >
 
                     <div class="info-bubble">
@@ -985,9 +985,9 @@
                           selectedCarsToRace[selectedCarIndex]?.selectedBets[1]
                         ].leverage === 2
                           ? 'active'
-                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                          : 'passive') + ' ' + (myDriverStats?.is_paid_membership === 'Premium' ? '' : 'not-premium')
                       "
-                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                      [disabled]="myDriverStats?.is_paid_membership !== 'Premium'"
                     >
                       <div class="info-bubble">
                         <p>LEVERAGE: PREMIUM MEMBERS ONLY</p>
@@ -1156,9 +1156,9 @@
                           selectedCarsToRace[selectedCarIndex]?.selectedBets[2]
                         ].leverage === 2
                           ? 'active'
-                          : 'passive') + ' ' + (myDriverStats.is_paid_membership === 'Premium' ? '' : 'not-premium')
+                          : 'passive') + ' ' + (myDriverStats?.is_paid_membership === 'Premium' ? '' : 'not-premium')
                       "
-                      [disabled]="myDriverStats.is_paid_membership !== 'Premium'"
+                      [disabled]="myDriverStats?.is_paid_membership !== 'Premium'"
                     >
                       <div class="info-bubble">
                         <p>LEVERAGE: PREMIUM MEMBERS ONLY</p>
@@ -1507,19 +1507,6 @@
                   small: summaryIoiAmount > 0 || summaryTrxAmount > 0
                 }"
               >
-                <p *ngIf="currency === 'TRX'">
-                  <span
-                    >{{
-                      actualRaceAmount * selectedCarsToRace?.length +
-                        summaryTrxAmount
-                    }}
-                  </span>
-                  <img
-                    class="ioi-logo"
-                    src="/assets/base/images/icons/logo-hollow.svg"
-                    alt="IOI logo"
-                  />
-                </p>
                 <p *ngIf="currency === 'IOI'">
                   <span
                     >{{
@@ -1542,20 +1529,34 @@
                     alt="IOI logo"
                   />
                 </p>
-                <p *ngIf="currency === 'TRX' && summaryIoiAmount > 0">
-                  <span>{{ summaryIoiAmount }} </span>
-                  <img
-                    class="ioi-logo"
-                    src="/assets/base/images/icons/logo-hollow.svg"
-                    alt="IOI logo"
-                  />
-                </p>
               </div>
             </div>
-            <div class="info-item last">
+            <div class="info-item">
               <p class="desc">{{ "start-race.players" | translate }}</p>
               <p class="value chance my-text-color">{{ players }}</p>
             </div>
+            <div class="info-item last timer">
+              <div class="overlay my-cta-btn-back"></div>
+              <p class="desc">Race starts in</p>
+              <p class="value chance my-text-color" *ngIf="timerReady === true">
+                <app-timer
+                  [value]="raceStarts"
+                  (onComplete)="timerCompleted()"
+                ></app-timer>
+              </p>
+            </div>
+            <!-- <p class="desc starts-in">Race starts in</p>
+            <div class="timer-box">
+              <div class="overlay my-cta-btn-back"></div>
+              <div class="inner-time">
+                <p class="time" *ngIf="timerReady === true">
+                  <app-timer
+                    [value]="raceStarts"
+                    (onComplete)="timerCompleted()"
+                  ></app-timer>
+                </p>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
