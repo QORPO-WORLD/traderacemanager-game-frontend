@@ -32,16 +32,14 @@ export class ErrorService {
             
 
             
-           
-            if (error.error.message && error.error.status !== 500) {
-      
+            if (error.error.message && error.status === 400) {
                 this.notifyService.error(error.error.message);
                 return;
             }
             
-            if (error.error.description && error.error.status !== 500) {
-
-                this.notifyService.error(error.error.description);
+            if (error.error.message === null) {
+ 
+                this.notifyService.error('Unexpected error');
                 return;
             }
             if (error.status === 401) {

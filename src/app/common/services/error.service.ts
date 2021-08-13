@@ -36,19 +36,19 @@ export class ErrorService extends AbstractService {
             //const errorModel: ApiError = new ApiError(error);
             // Log the error to the console
             // this.notifyService.error('API: (' + errorModel.status + ') ' + errorModel.getUserMessage());
+            if (error.error.message && error.status === 400) {
+                this.notifyService.error(error.error.message);
+                return;
+            }
             
-            if (error.error.description && error.status === 400) {
+            if (error.error.message === null) {
  
-                this.notifyService.error(error.error.description);
+                this.notifyService.error('Unexpected error');
                 return;
             }
             
            
-            if (error.error.message && error.status === 400) {
-
-                this.notifyService.error(error.error.message);
-                return;
-            }
+  
             
            
             if (error.status === 401) {
