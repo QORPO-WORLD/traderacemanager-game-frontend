@@ -934,7 +934,7 @@ export class NftDetailComponent implements OnInit {
   remainingRacers = [];
   remainingBundles = [];
   carsRemainingPosition: any;
-
+  loading = true;
   displayArray = [];
   @Input() assetType = "bundle";
   @Input() assetId = 1;
@@ -964,6 +964,7 @@ export class NftDetailComponent implements OnInit {
       this.remainingBundles = objs.remaining_packs_by_tier;
       this.carSum = objs.remaining_cars.toString();
       this.availableCars = objs.cars;
+      this.loading = false;
     });
   }
   showAnimation() {
