@@ -1,94 +1,89 @@
 <div class="detail-content">
   <div class="detail-text">
-    <p class="category-title-first">{{ displayArray[0]["name"] }}</p>
-    <p class="category-title-second">About {{ displayArray[0]["name"] }}</p>
+    <p class="category-title-first">{{ assetInfo[0].name }}</p>
+    <p class="category-title-second">About {{ assetInfo[0].name }}</p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'racer' && displayArray[0]['rank'] === 'low'
-      "
+      *ngIf="assetInfo[0].type === 'racer' && assetInfo[0].rank === 'low'"
     >
-      {{ displayArray[0]["name"] }} is unique limited rare avatar in form of
+      {{ assetInfo[0].name }} is unique limited rare avatar in form of NFT. Each
+      avatar is unparalleled way of owning IOI tokens. The main benefit is that
+      you can use your NFTs in-game, buy, sell and trade on open markets as well
+      as your NFT vehicles.
+    </p>
+    <p
+      class="races-desc"
+      *ngIf="assetInfo[0].type === 'racer' && assetInfo[0].rank === 'normal'"
+    >
+      {{ assetInfo[0].name }} is unique limited super rare avatar in form of
       NFT. Each avatar is unparalleled way of owning IOI tokens. The main
       benefit is that you can use your NFTs in-game, buy, sell and trade on open
       markets as well as your NFT vehicles.
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'racer' &&
-        displayArray[0]['rank'] === 'normal'
-      "
+      *ngIf="assetInfo[0].type === 'racer' && assetInfo[0].rank === 'height'"
     >
-      {{ displayArray[0]["name"] }} is unique limited super rare avatar in form
-      of NFT. Each avatar is unparalleled way of owning IOI tokens. The main
-      benefit is that you can use your NFTs in-game, buy, sell and trade on open
-      markets as well as your NFT vehicles.
+      {{ assetInfo[0].name }} is unique limited legendary avatar in form of NFT.
+      Each avatar is unparalleled way of owning IOI tokens. The main benefit is
+      that you can use your NFTs in-game, buy, sell and trade on open markets as
+      well as your NFT vehicles.
     </p>
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'racer' &&
-        displayArray[0]['rank'] === 'height'
+        assetInfo[0].type === 'car' &&
+        assetInfo[0].rare === undefined &&
+        assetInfo[0].name != 'TESLA' &&
+        assetInfo[0].collection != 'Special edition'
       "
     >
-      {{ displayArray[0]["name"] }} is unique limited legendary avatar in form
-      of NFT. Each avatar is unparalleled way of owning IOI tokens. The main
-      benefit is that you can use your NFTs in-game, buy, sell and trade on open
-      markets as well as your NFT vehicles.
+      {{ assetInfo[0].name }} is unique limited car. Each car is unparalleled
+      way of owning IOI tokens, staking and APY. The main benefit is that you
+      can use your NFTs in-game, buy, sell and trade on open markets. The new
+      era of NFTs in your pocket.
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' &&
-        displayArray[0]['rare'] === undefined &&
-        displayArray[0]['name'] != 'TESLA'
-      "
+      *ngIf="assetInfo[0].type === 'car' && assetInfo[0].rare === true"
     >
-      {{ displayArray[0]["name"] }} is unique limited car. Each car is
-      unparalleled way of owning IOI tokens, staking and APY. The main benefit
-      is that you can use your NFTs in-game, buy, sell and trade on open
+      {{ assetInfo[0].name }} is highly limited with unique abilities. Each car
+      is unparalleled way of owning IOI tokens, staking and APY. The main
+      benefit is that you can use your NFTs in-game, buy, sell and trade on open
       markets. The new era of NFTs in your pocket.
-    </p>
-    <p
-      class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' && displayArray[0]['rare'] === true
-      "
-    >
-      {{ displayArray[0]["name"] }} is highly limited with unique abilities.
-      Each car is unparalleled way of owning IOI tokens, staking and APY. The
-      main benefit is that you can use your NFTs in-game, buy, sell and trade on
-      open markets. The new era of NFTs in your pocket.
       <br />
       <br />
       - You can unlock this car by buying all cars from its collection.
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' && displayArray[0]['name'] === 'TESLA'
-      "
+      *ngIf="assetInfo[0].type === 'car' && assetInfo[0].name === 'TESLA'"
     >
-      {{ displayArray[0]["name"] }}, one of a kind special limited edition NFT.
-      With Tesla you are able to join TESLA COMPETITION and NFT Tournament
-      happening everyday for 100 IOI. Tesla does not have APY or Staking
-      function. Win rate in regular races is 0.1 IOI per race.
-    </p>
-    <p class="races-desc" *ngIf="displayArray[0]['type'] === 'track'">
-      Track NFTs are introducing investment model for real hardcore owners. You
-      will receive percentage of each game played on your NFT property!<br /><br />
-      Become a track owner - a real NFT whale investor and earn 3% from price
-      pool of each game played on your track. Tracks will be sold exclusively
-      through special event auctions! For more info follow our social media!
-      Good luck.
+      {{ assetInfo[0].name }}, one of a kind special limited edition NFT. With
+      Tesla you are able to join TESLA COMPETITION and NFT Tournament happening
+      everyday for 100 IOI. Tesla does not have APY or Staking function. Win
+      rate in regular races is 0.1 IOI per race.
     </p>
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'special' &&
-        displayArray[0]['name'] === 'Ring'
+        assetInfo[0].type === 'car' &&
+        assetInfo[0].collection === 'Special edition'
       "
+    >
+      {{ assetInfo[0].name }} is unique limited car. Each car is unparalleled
+      way of owning IOI tokens. The main benefit is that you can use your NFTs
+      in-game, buy, sell and trade on open markets. The new era of NFTs in your
+      pocket.
+      <br />
+      <br />
+      Special edition NFTs are minted once and never again in very limited
+      quantity with attributes as Common tier NFT without staking. You can use
+      your Special edition NFT in all types of races and tournaments.
+    </p>
+    <p
+      class="races-desc"
+      *ngIf="assetInfo[0].type === 'special' && assetInfo[0].name === 'Ring'"
     >
       Ring is a special price that you can win every month by being the best
       racer. It is also a ticket to biggest yearly tournament where you can win
@@ -96,65 +91,30 @@
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'special' &&
-        displayArray[0]['name'] === 'Trophy'
-      "
+      *ngIf="assetInfo[0].type === 'special' && assetInfo[0].name === 'Trophy'"
     >
       Trophy is a special price that you can win every year. If you want to win
       this trophy, you need at least one ring from monthly tournaments.
     </p>
-    <div
-      *ngIf="displayArray[0]['collection'] != 'Special'"
-      class="text-buttons"
-    >
+    <div *ngIf="assetInfo[0].collection != 'Special'" class="text-buttons">
       <button
         [routerLink]="['/other/deposit-nft']"
-        [queryParams]="
-          displayArray[0]['type'] === 'car'
-            ? {
-                nftId: displayArray[0]['position'],
-                nftType: displayArray[0]['type']
-              }
-            : {
-                nftId: displayArray[0]['id'],
-                nftType: displayArray[0]['type']
-              }
-        "
+        [queryParams]="{ nftId: assetInfo[0].id, nftType: assetInfo[0].type }"
         class="buy category-title-fourth my-cta-btn-back"
       >
         &#43; Deposit
       </button>
       <button
         [routerLink]="['/other/withdraw-nft']"
-        [queryParams]="
-          displayArray[0]['type'] === 'car'
-            ? {
-                nftId: displayArray[0]['position'],
-                nftType: displayArray[0]['type']
-              }
-            : {
-                nftId: displayArray[0]['id'],
-                nftType: displayArray[0]['type']
-              }
-        "
+        [queryParams]="{ nftId: assetInfo[0].id, nftType: assetInfo[0].type }"
         class="buy category-title-fourth my-cta-btn-back"
       >
         Withdraw
       </button>
       <button
+        *ngIf="assetInfo[0].collection != 'Special edition'"
         [routerLink]="['/other/transfer-nft']"
-        [queryParams]="
-          displayArray[0]['type'] === 'car'
-            ? {
-                nftId: displayArray[0]['position'],
-                nftType: displayArray[0]['type']
-              }
-            : {
-                nftId: displayArray[0]['id'],
-                nftType: displayArray[0]['type']
-              }
-        "
+        [queryParams]="{ nftId: assetInfo[0].id, nftType: assetInfo[0].type }"
         class="buy category-title-fourth my-cta-btn-back"
       >
         Transfer
@@ -163,46 +123,38 @@
   </div>
   <div class="detail-image">
     <img
-      *ngIf="displayArray[0]['type'] === 'car'"
+      *ngIf="assetInfo[0].type === 'car'"
       class="car-gif"
-      [src]="
-        '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
-      "
-      [alt]="displayArray[0]['alt']"
+      [src]="'/assets/base/images/nft-cars/' + assetInfo[0].image + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
 
     <img
-      *ngIf="displayArray[0]['type'] === 'racer'"
+      *ngIf="assetInfo[0].type === 'racer'"
       class="racer"
-      [src]="
-        'assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'
-      "
-      [alt]="displayArray[0]['alt']"
+      [src]="'assets/base/images/nft-racers/' + assetInfo[0].image + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
     <img
-      *ngIf="displayArray[0]['type'] === 'track'"
+      *ngIf="assetInfo[0].type === 'track'"
       class="track"
       [src]="
-        'assets/base/images/home-page/' +
-        displayArray[0]['image'] +
-        '-small.png'
+        'assets/base/images/home-page/' + assetInfo[0].image + '-small.png'
       "
-      [alt]="displayArray[0]['alt']"
+      [alt]="assetInfo[0]['alt']"
     />
     <img
-      *ngIf="displayArray[0]['type'] === 'special'"
+      *ngIf="assetInfo[0].type === 'special'"
       class="special"
-      [src]="
-        'assets/base/images/home-page/' + displayArray[0]['image'] + '.png'
-      "
-      [alt]="displayArray[0]['alt']"
+      [src]="'assets/base/images/home-page/' + assetInfo[0].image + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
   </div>
   <div class="detail-abilities">
     <p class="ability-title category-title-second">Abilities</p>
-    <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
+    <div *ngIf="assetInfo[0].type === 'car'" class="ability-boxes">
       <div
-        *ngIf="displayArray[0]['collection'] != 'Special'"
+        *ngIf="assetInfo[0].collection != 'Special'"
         class="ability-box cars first"
       >
         <div class="ability-content">
@@ -217,14 +169,12 @@
             alt="buy icon"
           />
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["price"] }} IOI
-            </p>
+            <p class="category-title-third">{{ assetInfo[0].price }} IOI</p>
             <p class="races-desc">IOI value</p>
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability1']" class="ability-box cars cars">
+      <div *ngIf="assetInfo[0]['ability1']" class="ability-box cars cars">
         <div class="ability-content">
           <img
             class="red-star"
@@ -238,14 +188,12 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["ability1"] }} IOI
-            </p>
+            <p class="category-title-third">{{ assetInfo[0].ability1 }} IOI</p>
             <p class="races-desc">daily stake</p>
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
+      <div *ngIf="assetInfo[0].ability2" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoi === true }"
           (mouseover)="infoRoi = true"
@@ -270,9 +218,7 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["ability2"] }}%
-            </p>
+            <p class="category-title-third">{{ assetInfo[0].ability2 }}%</p>
             <p class="races-desc">fixed ROI</p>
           </div>
         </div>
@@ -286,7 +232,7 @@
           </p>
         </div>
       </div>
-      <div class="ability-box cars">
+      <div *ngIf="assetInfo[0].ability3" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoiYearly === true }"
           (mouseover)="infoRoiYearly = true"
@@ -312,7 +258,7 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability3"].toLocaleString() }}%
+              {{ assetInfo[0].ability3.toLocaleString() }}%
             </p>
             <p class="races-desc">potential ROI</p>
           </div>
@@ -328,9 +274,9 @@
         </div>
       </div>
     </div>
-    <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+    <div *ngIf="assetInfo[0].type === 'racer'" class="ability-boxes">
       <div
-        *ngIf="displayArray[0]['collection'] != 'Special'"
+        *ngIf="assetInfo[0].collection != 'Special'"
         class="ability-box cars first"
       >
         <img
@@ -345,7 +291,7 @@
         />
         <div class="ability-text">
           <p class="category-title-third">
-            {{ displayArray[0]["price"].toLocaleString() }} IOI
+            {{ assetInfo[0].price.toLocaleString() }} IOI
           </p>
           <p class="races-desc">IOI value</p>
         </div>
@@ -364,11 +310,11 @@
         />
 
         <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["ability2"] }}</p>
+          <p class="category-title-third">{{ assetInfo[0].ability2 }}</p>
           <p class="races-desc">Affiliate reward</p>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
+      <div *ngIf="assetInfo[0].ability3" class="ability-box cars">
         <img
           class="red-star"
           src="assets/base/images/market/investment-red.svg"
@@ -382,14 +328,14 @@
 
         <div class="ability-text">
           <p class="category-title-third">
-            {{ displayArray[0]["ability3"] }}
+            {{ assetInfo[0].ability3 }}
           </p>
           <p class="races-desc">APY</p>
         </div>
       </div>
     </div>
     <div
-      *ngIf="displayArray[0]['type'] === 'track'"
+      *ngIf="assetInfo[0].type === 'track'"
       class="ability-boxes racers-more-boxes"
     >
       <div class="ability-box tracks first">
@@ -405,7 +351,7 @@
         />
         <div class="ability-text">
           <p class="category-title-third">
-            {{ displayArray[0]["price"].toLocaleString() }}
+            {{ assetInfo[0].price.toLocaleString() }}
           </p>
           <p class="races-desc">IOI value</p>
         </div>
@@ -423,7 +369,7 @@
         />
 
         <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["bet"] }} IOI</p>
+          <p class="category-title-third">{{ assetInfo[0].bet }} IOI</p>
           <p class="races-desc">bet</p>
         </div>
       </div>
@@ -440,7 +386,7 @@
         />
 
         <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["ability1"] }}</p>
+          <p class="category-title-third">{{ assetInfo[0].ability1 }}</p>
           <p class="races-desc">race period</p>
         </div>
       </div>
@@ -458,13 +404,13 @@
 
         <div class="ability-text">
           <p class="category-title-third">
-            {{ displayArray[0]["ability2"] }}
+            {{ assetInfo[0].ability2 }}
           </p>
           <p class="races-desc">skill</p>
         </div>
       </div>
     </div>
-    <div *ngIf="displayArray[0]['type'] === 'special'" class="ability-boxes">
+    <div *ngIf="assetInfo[0].type === 'special'" class="ability-boxes">
       <div class="ability-box special first">
         <img
           class="red-star"
@@ -477,11 +423,11 @@
           alt="buy icon"
         />
         <div class="ability-text">
-          <p class="category-title-third">{{ displayArray[0]["ability2"] }}</p>
+          <p class="category-title-third">{{ assetInfo[0].ability2 }}</p>
           <p class="races-desc">time period</p>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability2']" class="ability-box special">
+      <div *ngIf="assetInfo[0].ability2" class="ability-box special">
         <img
           class="red-star"
           src="assets/base/images/market/investment-red.svg"
@@ -494,9 +440,7 @@
         />
 
         <div class="ability-text">
-          <p class="category-title-third">
-            {{ displayArray[0]["ability1"] }} IOI
-          </p>
+          <p class="category-title-third">{{ assetInfo[0].ability1 }} IOI</p>
           <p class="races-desc">ticket</p>
         </div>
       </div>

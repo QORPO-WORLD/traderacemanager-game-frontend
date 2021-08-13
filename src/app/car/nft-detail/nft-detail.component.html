@@ -42,7 +42,8 @@
       *ngIf="
         displayArray[0]['type'] === 'car' &&
         displayArray[0]['rare'] === undefined &&
-        displayArray[0]['name'] != 'TESLA'
+        displayArray[0]['name'] != 'TESLA' &&
+        displayArray[0]['collection'] != 'Special edition'
       "
     >
       {{ displayArray[0]["name"] }} is unique limited car. Each car is
@@ -75,13 +76,22 @@
       happening everyday for 100 IOI. Tesla does not have APY or Staking
       function. Win rate in regular races is 0.1 IOI per race.
     </p>
-    <p class="races-desc" *ngIf="displayArray[0]['type'] === 'track'">
-      Track NFTs are introducing investment model for real hardcore owners. You
-      will receive percentage of each game played on your NFT property!<br /><br />
-      Become a track owner - a real NFT whale investor and earn 3% from price
-      pool of each game played on your track. Tracks will be sold exclusively
-      through special event auctions! For more info follow our social media!
-      Good luck.
+    <p
+      class="races-desc"
+      *ngIf="
+        displayArray[0]['type'] === 'car' &&
+        displayArray[0]['collection'] === 'Special edition'
+      "
+    >
+      {{ displayArray[0]["name"] }} is unique limited car. Each car is
+      unparalleled way of owning IOI tokens. The main benefit is that you can
+      use your NFTs in-game, buy, sell and trade on open markets. The new era of
+      NFTs in your pocket.
+      <br />
+      <br />
+      Special edition NFTs are minted once and never again in very limited
+      quantity with attributes as Common tier NFT without staking. You can use
+      your Special edition NFT in all types of races and tournaments.
     </p>
     <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
       Get a NFT car and an avatar of your favourite influencer in our limited
@@ -90,14 +100,14 @@
 
     <div class="text-buttons">
       <button
-        (click)="!displayArray[0]['rare'] ? showBuyModal() : null"
-        *ngIf="displayArray[0]['type'] != 'track' && !displayArray[0]['rare']"
+        (click)="showBuyModal()"
+        *ngIf="displayArray[0]['rare'] === undefined"
         class="buy category-title-third my-cta-btn-back"
       >
         Continue
       </button>
       <button
-        *ngIf="displayArray[0]['type'] != 'track' && displayArray[0]['rare']"
+        *ngIf="displayArray[0]['rare'] === true"
         class="buy category-title-third my-cta-btn-back"
       >
         Locked
@@ -114,11 +124,7 @@
 
       <button
         class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'car' &&
-          !displayArray[0]['rare'] &&
-          displayArray[0]['name'] != 'TESLA'
-        "
+        *ngIf="displayArray[0]['type'] === 'car' && !displayArray[0]['rare']"
       >
         {{ remainingCars[position].count.toLocaleString() }} left
       </button>
@@ -255,7 +261,7 @@
           </p>
         </div>
       </div>
-      <div class="ability-box cars">
+      <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoiYearly === true }"
           (mouseover)="infoRoiYearly = true"

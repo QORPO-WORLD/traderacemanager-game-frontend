@@ -11,7 +11,7 @@ export class NftDetailComponent implements OnInit {
     //bronze
     {
       id: 9,
-      position: 1,
+      position: 0,
       free: 6000,
       collection: "Common",
       name: "RHINO",
@@ -27,7 +27,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 10,
-      position: 2,
+      position: 1,
       free: 12000,
       collection: "Common",
       name: "PANTHER",
@@ -44,7 +44,7 @@ export class NftDetailComponent implements OnInit {
     {
       id: 11,
 
-      position: 3,
+      position: 2,
       free: 24000,
       collection: "Common",
       name: "ONYX",
@@ -60,7 +60,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 12,
-      position: 4,
+      position: 3,
       free: 48000,
       collection: "Common",
       name: "ZANDER",
@@ -76,7 +76,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 13,
-      position: 5,
+      position: 4,
       free: 96000,
       collection: "Common",
       name: "CYBORG",
@@ -92,7 +92,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 14,
-      position: 6,
+      position: 5,
       free: 192000,
       collection: "Common",
       name: "VULCANIC",
@@ -108,7 +108,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 15,
-      position: 25,
+      position: 24,
       collection: "Common rare",
       name: "LUNA",
       price: 3600,
@@ -125,7 +125,7 @@ export class NftDetailComponent implements OnInit {
     //silver
     {
       id: 16,
-      position: 7,
+      position: 6,
       free: 288000,
       collection: "Super",
       name: "DORIAN",
@@ -141,7 +141,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 17,
-      position: 8,
+      position: 7,
       free: 432000,
       collection: "Super",
       name: "PANTHER",
@@ -157,7 +157,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 18,
-      position: 9,
+      position: 8,
       free: 648000,
       collection: "Super",
       name: "ONYX",
@@ -173,7 +173,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 19,
-      position: 10,
+      position: 9,
       free: 972000,
       collection: "Super",
       name: "ZANDER",
@@ -189,7 +189,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 20,
-      position: 11,
+      position: 10,
       free: 1458000,
       collection: "Super",
       name: "PYTHON",
@@ -205,7 +205,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 21,
-      position: 12,
+      position: 11,
       free: 2187000,
       collection: "Super",
       name: "VULCANIC",
@@ -221,7 +221,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 22,
-      position: 26,
+      position: 25,
       collection: "Super rare",
       name: "SILVER KNIGHT",
       price: 6000,
@@ -238,7 +238,7 @@ export class NftDetailComponent implements OnInit {
     //gold
     {
       id: 23,
-      position: 13,
+      position: 12,
       free: 3000000,
       collection: "Epic",
       name: "CYBORG",
@@ -254,7 +254,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 24,
-      position: 14,
+      position: 13,
       free: 3600000,
       collection: "Epic",
       name: "RHINO",
@@ -270,7 +270,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 25,
-      position: 15,
+      position: 14,
       free: 4320000,
       collection: "Epic",
       name: "HYPER",
@@ -286,7 +286,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 26,
-      position: 16,
+      position: 15,
       free: 5184000,
       collection: "Epic",
       name: "BULL",
@@ -302,7 +302,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 27,
-      position: 17,
+      position: 16,
       free: 6220000,
       collection: "Epic",
       name: "PYTHON",
@@ -318,7 +318,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 28,
-      position: 18,
+      position: 17,
       free: 7465000,
       collection: "Epic",
       name: "HITMAN",
@@ -334,7 +334,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 29,
-      position: 27,
+      position: 26,
       collection: "Epic rare",
       name: "MIDAS",
       price: 9600,
@@ -351,7 +351,7 @@ export class NftDetailComponent implements OnInit {
     //platinum
     {
       id: 30,
-      position: 19,
+      position: 18,
       free: 8200000,
       collection: "Legendary",
       name: "HYPER",
@@ -367,7 +367,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 31,
-      position: 20,
+      position: 19,
       free: 9000000,
       collection: "Legendary",
       name: "DORIAN",
@@ -383,7 +383,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 32,
-      position: 21,
+      position: 20,
       free: 9900000,
       collection: "Legendary",
       name: "VULCANIC",
@@ -399,7 +399,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 33,
-      position: 22,
+      position: 21,
       free: 10890000,
       collection: "Legendary",
       name: "BULL",
@@ -415,7 +415,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 34,
-      position: 23,
+      position: 22,
       free: 12000000,
       collection: "Legendary",
       name: "KNOCKOUT",
@@ -431,7 +431,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 35,
-      position: 24,
+      position: 23,
       free: 13200000,
       collection: "Legendary",
       name: "LARA",
@@ -447,7 +447,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 36,
-      position: 28,
+      position: 27,
       collection: "Legendary rare",
       name: "BLUE STORM",
       price: 15600,
@@ -463,7 +463,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 37,
-      position: 60,
+      position: 43,
       collection: "Special",
       name: "TESLA",
       price: 50,
@@ -472,6 +472,42 @@ export class NftDetailComponent implements OnInit {
       ability3: "8760",
       amount: [],
       alt: "nft car tesla",
+    },
+    {
+      id: 71,
+      position: 44,
+      collection: "Special edition",
+      name: "R8",
+      price: 100,
+      image: "car71",
+      gif: "car71-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car R8",
+    },
+    {
+      id: 72,
+      position: 45,
+      collection: "Special edition",
+      name: "GAZ-13 Caika",
+      price: 100,
+      image: "car72",
+      gif: "car72-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car GAZ-13 Caika",
+    },
+    {
+      id: 73,
+      position: 46,
+      collection: "Special edition",
+      name: "Formation",
+      price: 100,
+      image: "car73",
+      gif: "car73-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car Formation",
     },
     {
       id: 1,
@@ -836,7 +872,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 53,
-      position: 13,
+      position: 12,
       type: "bundle",
       name: "QuickSwap",
       link: "@QuickswapDEX",
@@ -854,7 +890,7 @@ export class NftDetailComponent implements OnInit {
     },
     {
       id: 54,
-      position: 14,
+      position: 13,
       type: "bundle",
       name: "Tech Giants",
       link: "@Crypto_giants",
@@ -867,6 +903,24 @@ export class NftDetailComponent implements OnInit {
       image: "bundle-techgiants",
       racer: "techgiants",
       car: "car54",
+      avatar: "",
+      back: "",
+    },
+    {
+      id: 55,
+      position: 14,
+      type: "bundle",
+      name: "Venly",
+      link: "@Venly_io",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-venly",
+      racer: "venly",
+      car: "car55",
       avatar: "",
       back: "",
     },

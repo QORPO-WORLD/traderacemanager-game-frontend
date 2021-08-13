@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class MyProfileComponent implements OnInit {
   data = { state: 1, id: 1, type: "car", owned: 0 };
+  assetInfo = [];
   ownedItems: number;
   timeoutPrev: any;
   timeoutNext: any;
@@ -28,13 +29,14 @@ export class MyProfileComponent implements OnInit {
   myDriverStats: any;
   selectedId = 1;
   selectedType = "racer";
-  marketState = 1;
+
   mobileMenu = true;
   depositFlow = false;
   affiliate: any;
   state = 1;
   ownedRacers: any;
   myCarsObserver: Subscription;
+  @Input() marketState = 1;
   products: Array<object> = [
     //bronze
 
@@ -255,18 +257,8 @@ export class MyProfileComponent implements OnInit {
   getNewState(state: number) {
     this.state = state;
   }
-  resolveMarketAsset(data) {
-    this.data = data;
-
-    this.marketState = this.data.state;
-    this.selectedId = this.data.id;
-    this.selectedType = this.data.type;
-    this.ownedItems = this.data.owned;
-
-    console.log(this.marketState);
-    console.log(this.selectedId);
-    console.log(this.selectedType);
-    console.log(this.ownedItems);
+  resolveMarketAsset(data: Array<any>) {
+    this.assetInfo = data;
   }
   resolveDetailAsset(state: number) {
     this.marketState = state;
@@ -330,7 +322,6 @@ export class MyProfileComponent implements OnInit {
       }
       this.filterMyAssets();
       this.filterHighestValue();
-      console.log(this.ownedRacers);
     });
   }
 }

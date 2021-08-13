@@ -476,6 +476,42 @@ export class BuyNftComponent implements OnInit {
       alt: "nft car blue storm",
     },
     {
+      id: 71,
+      position: 71,
+      collection: "Special edition",
+      name: "R8",
+      price: 100,
+      image: "car71",
+      gif: "car71-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car R8",
+    },
+    {
+      id: 72,
+      position: 72,
+      collection: "Special edition",
+      name: "GAZ-13 Caika",
+      price: 100,
+      image: "car72",
+      gif: "car72-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car GAZ-13 Caika",
+    },
+    {
+      id: 73,
+      position: 73,
+      collection: "Special edition",
+      name: "Formation",
+      price: 100,
+      image: "car73",
+      gif: "car73-animation",
+      type: "car",
+      amount: 0,
+      alt: "nft car Formation",
+    },
+    {
       id: 37,
       position: 60,
       collection: "Special",
@@ -800,6 +836,24 @@ export class BuyNftComponent implements OnInit {
       avatar: "",
       back: "",
     },
+    {
+      id: 55,
+      position: 15,
+      type: "bundle",
+      name: "Venly",
+      link: "@Venly_io",
+      nft: 10,
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      yearly: 8760,
+      image: "bundle-venly",
+      racer: "venly",
+      car: "car55",
+      avatar: "",
+      back: "",
+    },
   ];
 
   displayArray = [];
@@ -867,16 +921,16 @@ export class BuyNftComponent implements OnInit {
           });
 
           let usdtPrice =
-          this.tokenSelected === "ioi"
-            ? datax[0].model.extras.price * this.myDriverBalances.ioi_usdt
-            : datax[0].model.extras.price * this.myDriverBalances.matic_usdt;
-          gtag('event', 'conversion', {
-            'send_to': 'AW-580556065/gKFRCMPdl98CEKGq6pQC',
-            'value': usdtPrice,
-            'currency': 'USD',
-            'transaction_id': ''
+            this.tokenSelected === "ioi"
+              ? datax[0].model.extras.price * this.myDriverBalances.ioi_usdt
+              : datax[0].model.extras.price * this.myDriverBalances.matic_usdt;
+          gtag("event", "conversion", {
+            send_to: "AW-580556065/gKFRCMPdl98CEKGq6pQC",
+            value: usdtPrice,
+            currency: "USD",
+            transaction_id: "",
           });
-      
+
           setTimeout(() => {
             this.notifyChangedBalance();
             this.router.navigate(["/profile/my-profile"]);
@@ -915,12 +969,12 @@ export class BuyNftComponent implements OnInit {
             ? datax[0].model.extras.price * this.myDriverBalances.ioi_usdt
             : datax[0].model.extras.price * this.myDriverBalances.matic_usdt;
 
-          gtag('event', 'conversion', {
-            'send_to': 'AW-580556065/gKFRCMPdl98CEKGq6pQC',
-            'value': usdtPrice,
-            'currency': 'USD',
-            'transaction_id': ''
-          });
+        gtag("event", "conversion", {
+          send_to: "AW-580556065/gKFRCMPdl98CEKGq6pQC",
+          value: usdtPrice,
+          currency: "USD",
+          transaction_id: "",
+        });
 
         setTimeout(() => {
           this.notifyChangedBalance();

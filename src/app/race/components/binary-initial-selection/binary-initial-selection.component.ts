@@ -176,6 +176,13 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: [],
     },
+    {
+      id: 25,
+      name: "Venly", //
+      image: "venly",
+      sum: 0,
+      pks: [],
+    },
   ];
   gameObserver: Subscription;
   myAssets = [];

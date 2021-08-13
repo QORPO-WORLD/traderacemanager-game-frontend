@@ -308,6 +308,14 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
       sum: 0,
       pks: [],
     },
+    {
+      id: 25,
+      name: "Venly", //
+      image: "venly",
+      gif: "venly-animation",
+      sum: 0,
+      pks: [],
+    },
   ];
   @ViewChild("optionPlaced") optionPlaced: ElementRef;
   @ViewChild("oponentOptionPlaced") oponentOptionPlaced: ElementRef;

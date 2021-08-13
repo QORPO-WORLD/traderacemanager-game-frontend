@@ -144,6 +144,18 @@ export class HomeBundlesComponent implements OnInit {
       avatar: "techgiants-avatar",
       back: "techgiants-back",
     },
+    {
+      id: 12,
+      name: "Venly",
+      link: "@Venly_io",
+      staking: 6,
+      reward: 0.1,
+      price: 1000,
+      pieces: 100,
+      image: "bundle-venly",
+      avatar: "venly-avatar",
+      back: "venly-back",
+    },
   ];
   constructor() {}
 
