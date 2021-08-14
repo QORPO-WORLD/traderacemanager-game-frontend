@@ -183,7 +183,6 @@ export class HomePageComponent implements OnInit {
   selectedExchange = 5;
   exSelectorOpened = false;
   isMenuActive = false;
-  displayDate: any;
   activeMenu = 0;
   sliceStart: number;
   sliceEnd: number;
@@ -239,7 +238,6 @@ export class HomePageComponent implements OnInit {
     if (token) {
       this.logged = true;
     }
-    this.resolveDate();
     this.setCarInterval();
     this.getIoiPrice();
     this.tickerIoiInterval = setInterval(() => {
@@ -247,7 +245,6 @@ export class HomePageComponent implements OnInit {
     }, 20000);
     // this.carousel.addEventListener('touchstart', this.handleTouchStart, false);
     // document.addEventListener('touchmove', this.handleTouchMove, false);
-    console.log("jako");
   }
 
   ngOnDestroy(): void {
@@ -467,7 +464,6 @@ export class HomePageComponent implements OnInit {
           this.oldIoiPrice > this.currentIoiPrice ? false : true;
         this.oldIoiPrice = this.currentIoiPrice;
       }
-      this.getDate();
     });
   }
 
@@ -520,172 +516,5 @@ export class HomePageComponent implements OnInit {
     this.xDown = null;
     this.yDown = null;
   }
-  resolveDate() {
-    var date2 = new Date();
-    var date1 = new Date(2021, 7, 1, 0, 0, 0, 0);
-    var dif = date1.getTime() - date2.getTime();
 
-    var Seconds_from_T1_to_T2 = dif / 1000;
-    var Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
-    interface TickEvent {
-      days: number;
-      hours: number;
-      minutes: number;
-      seconds: number;
-    }
-
-    interface CountdownEvents {
-      tick(values: TickEvent): void;
-      expired(): void;
-      stop(): void;
-    }
-
-    type EventMap<T> = { [K in keyof T]: Function[] };
-
-    class Countdown {
-      public listeners: EventMap<CountdownEvents> = {
-        tick: [],
-        expired: [],
-        stop: [],
-      };
-
-      public timer?: any;
-
-      on<K extends keyof CountdownEvents>(
-        eventName: K,
-        listener: CountdownEvents[K]
-      ): void {
-        this.listeners[eventName].push(listener);
-      }
-
-      off<K extends keyof CountdownEvents>(
-        eventName: K,
-        listener: CountdownEvents[K]
-      ): void {
-        const listeners = this.listeners[eventName];
-        const index = listeners.indexOf(listener);
-        if (index !== -1) {
-          listeners.splice(index, 1);
-        }
-      }
-
-      start(date: Date) {
-        const end = Math.floor(date.getTime() / 1000);
-        const daysValue: any = document.getElementById("days");
-        const hoursValue: any = document.getElementById("hours");
-        const minutesValue: any = document.getElementById("minutes");
-        const secondsValue: any = document.getElementById("seconds");
-
-        const tick = () => {
-          const now = Date.now();
-          const nowSec = Math.floor(now / 1000);
-          const time = end - nowSec;
-
-          if (time <= 0) {
-            delete this.timer;
-            this.listeners.expired.forEach((listener) => listener());
-            return;
-          }
-
-          const minute = 60;
-          const hour = minute * 60;
-          const day = hour * 24;
-
-          const days = Math.floor(time / day);
-          const hours = Math.floor((time % day) / hour);
-          const minutes = Math.floor((time % hour) / minute);
-          const seconds = time % minute;
-
-          this.listeners.tick.forEach((listener) =>
-            listener({ days, hours, minutes, seconds })
-          );
-
-          const timeToNextSecond = (nowSec + 1) * 1000 - now;
-          this.timer = setTimeout(tick, timeToNextSecond);
-          daysValue.innerHTML = days;
-          hoursValue.innerHTML = hours;
-          minutesValue.innerHTML = minutes;
-          secondsValue.innerHTML = seconds;
-        };
-
-        tick();
-      }
-
-      stop() {
-        if (this.timer) {
-          clearTimeout(this.timer);
-          delete this.timer;
-          this.listeners.stop.forEach((listener) => listener());
-        }
-      }
-    }
-
-    const countdown = new Countdown();
-    // countdown.on('tick', (event) => console.log('tick', event));
-    // countdown.on('expired', () => console.log('expired'));
-    // countdown.on('stop', () => console.log('stopped'));
-
-    const date = new Date();
-    date.setSeconds(date.getMinutes() + Seconds_Between_Dates);
-    countdown.start(date);
-  }
-
-  getDate() {
-    var objToday = new Date(),
-      weekday = new Array(
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ),
-      dayOfWeek = weekday[objToday.getDay()],
-      months = new Array(
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-      ),
-      curMonth = months[objToday.getMonth()],
-      curYear = objToday.getFullYear(),
-      curHour =
-        objToday.getHours() > 12
-          ? objToday.getHours() - 12
-          : objToday.getHours() < 10
-          ? "0" + objToday.getHours()
-          : objToday.getHours(),
-      curMinute =
-        objToday.getMinutes() < 10
-          ? "0" + objToday.getMinutes()
-          : objToday.getMinutes(),
-      curSeconds =
-        objToday.getSeconds() < 10
-          ? "0" + objToday.getSeconds()
-          : objToday.getSeconds(),
-      curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
-    var today =
-      curHour +
-      ":" +
-      curMinute +
-      "." +
-      curSeconds +
-      curMeridiem +
-      " " +
-      dayOfWeek +
-      " of " +
-      curMonth +
-      ", " +
-      curYear;
-    this.displayDate = today;
-  }
 }
