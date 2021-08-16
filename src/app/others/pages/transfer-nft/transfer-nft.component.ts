@@ -1197,7 +1197,7 @@ export class TransferNftComponent implements OnInit {
   transferIoiToken() {
     this.transferSubscription = this.ntrsrvc
       .nitroWalletTransferCreate({
-        currency: this.nftType + "_" + this.nftId.toString(),
+        currency: this.nftType + "_" + this.products[0].tier.toString(),
         amount: this.amount,
         mode: "races2nitro",
       })
