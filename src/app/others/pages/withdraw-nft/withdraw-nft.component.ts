@@ -1236,7 +1236,7 @@ export class WithdrawNftComponent implements OnInit {
 
   withdrawCar() {
     if (this.nftType === "car") {
-      let symbol = "car_" + this.nftId;
+      let symbol = "car_" + this.products[0].tier;
       this.transferSubscription = this.blcksrvc
         .blockchainWithdrawCreate({
           symbol: symbol,
