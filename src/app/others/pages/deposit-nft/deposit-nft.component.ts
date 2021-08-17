@@ -1207,7 +1207,7 @@ export class DepositNftComponent implements OnInit {
     this.transferSubscription = this.blcksrvc
       .blockchainDepositCreate({
         amount: this.amount,
-        currency: this.nftType + "_" + this.nftId,
+        currency: this.nftType + "_" + this.products[0].tier,
       })
       .subscribe((data) => {
         this.depositing();
@@ -1243,7 +1243,7 @@ export class DepositNftComponent implements OnInit {
           from_address: this.ethMtfrckr,
           destination: "races",
           contract_id: this.contractId,
-          token_id: this.nftId,
+          token_id: this.products[0].tier,
         })
         .subscribe((data) => {
           console.log(data);

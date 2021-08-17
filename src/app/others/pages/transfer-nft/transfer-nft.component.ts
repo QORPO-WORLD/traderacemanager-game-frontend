@@ -1176,7 +1176,6 @@ export class TransferNftComponent implements OnInit {
         this.nftId = 1;
       }
     });
-
     this.resolveShowAsset();
   }
 

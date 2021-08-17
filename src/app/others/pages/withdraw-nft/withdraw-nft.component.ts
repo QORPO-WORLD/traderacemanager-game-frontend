@@ -1240,7 +1240,7 @@ export class WithdrawNftComponent implements OnInit {
       this.transferSubscription = this.blcksrvc
         .blockchainWithdrawCreate({
           symbol: symbol,
-          token_id: this.nftId,
+          token_id: this.products[0].tier,
           amount: this.amount,
           code: this.authcode,
           targetAddress: this.cryptoMtfrckr,
@@ -1255,11 +1255,11 @@ export class WithdrawNftComponent implements OnInit {
     }
 
     if (this.nftType === "racer") {
-      let symbol = "racer_" + this.nftId;
+      let symbol = "racer_" + this.products[0].tier;
       this.transferSubscription = this.blcksrvc
         .blockchainWithdrawCreate({
           symbol: symbol,
-          token_id: this.nftId,
+          token_id: this.products[0].tier,
           amount: this.amount,
           code: this.authcode,
           targetAddress: this.cryptoMtfrckr,
