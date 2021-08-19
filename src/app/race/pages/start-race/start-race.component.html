@@ -72,20 +72,6 @@
             class="right-line bar my-cta-btn-back"
           ></div>
         </div>
-        <div (click)="navigateToToken()" class="box second my-cta-btn-back">
-          <div class="box-content static">
-            <div class="image">
-              <img
-                src="assets/base/images/start-race/ioi-token.png"
-                alt="IOI token"
-              />
-            </div>
-            <div class="text">
-              <h3>IOI TOKEN</h3>
-            </div>
-          </div>
-        </div>
-
         <div
           [routerLink]="['/other/affilate']"
           class="box second my-cta-btn-back"
@@ -118,6 +104,26 @@
             </div>
             <div class="text">
               <h3>Owners & Managers</h3>
+            </div>
+          </div>
+        </div>
+        <div (click)="showModal()" class="box second my-cta-btn-back activity">
+          <div class="box-content static">
+            <div class="text activity">
+              <div class="upper">
+                <p>Current boost:</p>
+
+                <h3 class="my-text-color">1.5X</h3>
+              </div>
+              <div class="lower">
+                <p>Daily activity:</p>
+                <div class="right">
+                  <img
+                    src="/assets/base/images/icons/checked.svg"
+                    alt="checked icon"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -531,3 +537,127 @@
 </div>
 
 <!-- MODALS -->
+<div *ngIf="modalActive === true" class="activity-modal-back">
+  <div class="modal-content my-border-grad">
+    <div class="inner-modal">
+      <button
+        (click)="showModal()"
+        class="continue button-text my-cta-btn-back"
+      >
+        Continue
+      </button>
+      <img
+        (click)="showModal()"
+        class="modal-close"
+        src="/assets/base/images/icons/close-white.svg"
+        alt="white close"
+      />
+      <div class="text-holder">
+        <p class="category-title-first space">Activity boost explained</p>
+        <div class="row space">
+          <p class="category-title-second">
+            Activity streak:
+            {{ activityData?.activity_level }}
+            <!-- <span class="my-text-color category-title-first"
+              >{{ activityData?.activity_level }} days</span
+            > -->
+          </p>
+          <p class="category-title-second">
+            Daily race:
+            <img
+              *ngIf="
+                activityData?.races[0].timestamp == date &&
+                activityData?.races[0].race_count >= 10
+              "
+              class="checked"
+              src="/assets/base/images/icons/checked.svg"
+              alt="checked icon"
+            />
+            <img
+              *ngIf="
+                activityData?.races[0].timestamp != date ||
+                activityData?.races[0].race_count < 10
+              "
+              class="checked"
+              src="/assets/base/images/icons/unchecked.svg"
+              alt="checked icon"
+            />
+          </p>
+        </div>
+        <div class="row space-small">
+          <p class="category-title-third">1X</p>
+          <p class="category-title-third">1.5X</p>
+          <p class="category-title-third">2X</p>
+          <p class="category-title-third">3X</p>
+        </div>
+        <div class="row">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="activity-progress">
+          <div
+            id="activity-bar"
+            [ngStyle]="{ 'width.%': activityData?.activity_level }"
+            class="inner-progress my-cta-btn-back"
+          ></div>
+        </div>
+        <div class="row">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="row">
+          <p class="classic-text">0 days</p>
+          <p class="classic-text">10 days</p>
+          <p class="classic-text">20 days</p>
+          <p class="classic-text">30 days</p>
+        </div>
+        <div class="activity-table space-small">
+          <div class="table-head">
+            <p class="category-title-fourth">Activity boost</p>
+          </div>
+          <div class="table-row">
+            <div class="table-item-small">
+              <p class="classic-desc">10 Daily loggins</p>
+            </div>
+            <div class="table-item">
+              <p class="category-title-fourth my-text-color">X1.5 BOOST</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item-small">
+              <p class="classic-desc">20 Daily loggins</p>
+            </div>
+            <div class="table-item">
+              <p class="category-title-fourth my-text-color">X2 BOOST</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-item-small">
+              <p class="classic-desc">30 Daily loggins</p>
+            </div>
+            <div class="table-item">
+              <p class="category-title-fourth my-text-color">
+                X3 BOOST
+                <span class="golden-text category-title-fourth"
+                  >&#43; Premium membership for 1 month for free</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <p class="classic-text space-small">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
