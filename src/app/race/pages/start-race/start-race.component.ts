@@ -307,25 +307,19 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   getMyAssets() {
     this.myCarsObserver = this.capi.carsMineList().subscribe((data) => {
       const objsx: any = data;
-      const myCars: any = objsx.cars;
-      const myRacers: any = objsx.racers;
-      for (let x = 0; x < myCars.length; x++) {
+      const myCars: any = objsx.cars_by_tier;
+      const myRacers: any = objsx.racers_by_tier;
+      for (const [key, value] of Object.entries(myCars)) {
         for (let y = 0; y < this.assets.length; y++) {
-          if (
-            myCars[x].car_id === this.assets[y].tier &&
-            this.assets[y].type === "car"
-          ) {
-            this.assets[y].amount++;
+          if (+key === this.assets[y].tier && this.assets[y].type === "car") {
+            this.assets[y].amount = +value;
           }
         }
       }
-      for (let x = 0; x < myRacers.length; x++) {
+      for (const [key, value] of Object.entries(myRacers)) {
         for (let y = 0; y < this.assets.length; y++) {
-          if (
-            myRacers[x].car_id === this.assets[y].tier &&
-            this.assets[y].type === "racer"
-          ) {
-            this.assets[y].amount++;
+          if (+key === this.assets[y].tier && this.assets[y].type === "racer") {
+            this.assets[y].amount = +value;
           }
         }
       }

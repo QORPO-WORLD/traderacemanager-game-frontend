@@ -24,6 +24,7 @@ import { NftsService } from "../../../api/services/nfts.service";
   styleUrls: ["./my-nft.component.scss"],
 })
 export class MyNftComponent implements OnInit, OnChanges {
+  loading = true;
   timeoutPrev: any;
   timeoutNext: any;
   showDeposit = false;
@@ -34,7 +35,6 @@ export class MyNftComponent implements OnInit, OnChanges {
   carsSorted: any;
   allCars: any;
   timeoutPage: any;
-  animation = 0;
   animateArrow = false;
   animateArrowRight = false;
 
@@ -84,7 +84,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   mobileFilter = false;
   assetsOnPage = 8;
   sliceStart: number;
-  sliceMiddle: number;
+  sliceEnd: number;
   newProducts: any;
   assetId: any;
   page: number;
@@ -129,7 +129,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   ) {
     this.page = 1;
     this.sliceStart = 0;
-    this.sliceMiddle = this.assetsOnPage;
+    this.sliceEnd = this.assetsOnPage;
     let sortedProducts = entry;
     if (type === "all") {
       if (bundles === false) {
@@ -187,30 +187,31 @@ export class MyNftComponent implements OnInit, OnChanges {
   getMyAssets() {
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       const objsx: any = data;
-      const myCars: any = objsx.cars;
-      const myRacers: any = objsx.racers;
+      const myCars: any = objsx.cars_by_tier;
+      const myRacers: any = objsx.racers_by_tier;
 
-      for (let x = 0; x < myCars.length; x++) {
+      for (const [key, value] of Object.entries(myCars)) {
         for (let y = 0; y < this.products.length; y++) {
           if (
-            myCars[x].car_id === this.products[y].tier &&
+            +key === this.products[y].tier &&
             this.products[y].type === "car"
           ) {
-            this.products[y].amount++;
+            this.products[y].amount = +value;
           }
         }
       }
-      for (let x = 0; x < myRacers.length; x++) {
+      for (const [key, value] of Object.entries(myRacers)) {
         for (let y = 0; y < this.products.length; y++) {
           if (
-            myRacers[x].car_id === this.products[y].tier &&
+            +key === this.products[y].tier &&
             this.products[y].type === "racer"
           ) {
-            this.products[y].amount++;
+            this.products[y].amount = +value;
           }
         }
       }
       this.filterType(this.products, "all", false, false);
+      this.loading = false;
     });
   }
   selectCar(data) {
@@ -237,53 +238,31 @@ export class MyNftComponent implements OnInit, OnChanges {
     this.myBalance = data;
   }
 
-  resetLucky() {
-    this.luckyCar = null;
-  }
-
   scrollTop(elem1: HTMLElement) {
     elem1.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  filterMobile() {
-    if (this.mobileFilter === false) {
-      this.mobileFilter = true;
-    } else {
-      this.mobileFilter = false;
-    }
-  }
+
   timeoutReset() {
     clearTimeout(this.timeoutPage);
   }
-  prevPageCars() {
-    if (this.page > 0) {
-      this.animateArrow = false;
-      this.animateArrow = true;
-      this.timeoutReset();
-      this.page--;
-
-      this.animationPaging = 3;
-      this.timeoutPage = setTimeout(() => {
-        this.animationPaging = 2;
-        this.sliceStart = this.assetsOnPage * (this.page - 1);
-        this.sliceMiddle = this.assetsOnPage * this.page;
-        this.timeoutPage = null;
-        this.animateArrow = false;
+  pagination(type: string) {
+    if (type === "plus") {
+      this.animationPaging = 2;
+      const timeout = window.setTimeout(() => {
+        this.animationPaging = 3;
+        this.page < this.lastPage ? this.page++ : null;
+        this.sliceStart = (this.page - 1) * this.assetsOnPage;
+        this.sliceEnd = this.page * this.assetsOnPage;
+        clearTimeout(timeout);
       }, 300);
-    }
-  }
-  nextPageCars() {
-    if (this.page < this.newProducts.length / this.assetsOnPage) {
-      this.animateArrowRight = false;
-      this.animateArrowRight = true;
-      this.timeoutReset();
-      this.page++;
-      this.animationPaging = 1;
-      this.timeoutPage = setTimeout(() => {
-        this.animationPaging = 0;
-        this.sliceStart = this.assetsOnPage * (this.page - 1);
-        this.sliceMiddle = this.assetsOnPage * this.page;
-        this.timeoutPage = null;
-        this.animateArrowRight = false;
+    } else if (type === "minus") {
+      this.animationPaging = 4;
+      const timeout = window.setTimeout(() => {
+        this.animationPaging = 1;
+        this.page > 1 ? this.page-- : null;
+        this.sliceStart = (this.page - 1) * this.assetsOnPage;
+        this.sliceEnd = this.page * this.assetsOnPage;
+        clearTimeout(timeout);
       }, 300);
     }
   }
