@@ -179,7 +179,7 @@ export class BuyNftComponent implements OnInit {
         this.assetInfo[0]["type"] ||
         this.assetInfo[0]["type"] === "bundle") &&
       !this.assetInfo[0]["rare"] &&
-      this.myDriverBalances?.game_wallet_ioi >= this.price
+      this.myDriverBalances.game_wallet_ioi >= this.price
         ? (() => {
             this.tokenSelected = "ioi";
             this.buyCarFromGarage(this.assetInfo[0]["tier"]);
@@ -196,9 +196,9 @@ export class BuyNftComponent implements OnInit {
         this.assetInfo[0]["type"] === "bundle") &&
       !this.assetInfo[0]["rare"] &&
       ((this.price * this.myDriverBalances.ioi_usdt) /
-        this.myDriverBalances?.matic_usdt) *
+        this.myDriverBalances.matic_usdt) *
         this.amount <=
-        this.myDriverBalances?.game_wallet_matic
+        this.myDriverBalances.game_wallet_matic
         ? (() => {
             this.tokenSelected = "matic";
             this.buyCarFromGarage(this.assetInfo[0]["tier"]);
