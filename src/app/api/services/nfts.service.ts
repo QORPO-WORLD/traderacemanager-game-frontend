@@ -1,16 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Subscription } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
-import { Router } from "@angular/router";
-import { NftsService } from "../../../api/services/nfts.service";
+import { Observable as __Observable } from "rxjs";
+import { CarsService } from "./cars.service";
 
-@Component({
-  selector: "app-home-shop",
-  templateUrl: "./home-shop.component.html",
-  styleUrls: ["./home-shop.component.scss"],
+@Injectable({
+  providedIn: "root",
 })
-export class HomeShopComponent implements OnInit {
-  assets = [
+export class NftsService {
+  //LIST OF ALL PRODUCTS IN OUR COMPANY
+  products = [
     //
     //TRM CARS ID 1,..,39
     //
@@ -18,7 +16,7 @@ export class HomeShopComponent implements OnInit {
     {
       id: 1,
       tier: 60,
-      price: 50,
+      price: 0,
       name: "TESLA",
       image: "car60",
       type: "car",
@@ -32,7 +30,7 @@ export class HomeShopComponent implements OnInit {
       tier: 71,
       collection: "Special edition",
       name: "R8",
-      price: 150,
+      price: 0,
       image: "car71",
       gif: "car71-animation",
       type: "car",
@@ -44,7 +42,7 @@ export class HomeShopComponent implements OnInit {
       tier: 72,
       collection: "Special edition",
       name: "GAZ-13 Caika",
-      price: 150,
+      price: 0,
       image: "car72",
       gif: "car72-animation",
       type: "car",
@@ -56,7 +54,7 @@ export class HomeShopComponent implements OnInit {
       tier: 73,
       collection: "Special edition",
       name: "Formation",
-      price: 150,
+      price: 0,
       image: "car73",
       gif: "car73-animation",
       type: "car",
@@ -68,7 +66,7 @@ export class HomeShopComponent implements OnInit {
       tier: 1,
       collection: "Common",
       name: "RHINO",
-      price: 600,
+      price: 0,
       image: "car1",
       gif: "car1-animation",
       type: "car",
@@ -83,7 +81,7 @@ export class HomeShopComponent implements OnInit {
       tier: 2,
       collection: "Common",
       name: "PANTHER",
-      price: 600,
+      price: 0,
       image: "car2",
       gif: "car2-animation",
       type: "car",
@@ -98,7 +96,7 @@ export class HomeShopComponent implements OnInit {
       tier: 3,
       collection: "Common",
       name: "ONYX",
-      price: 600,
+      price: 0,
       image: "car3",
       gif: "car3-animation",
       type: "car",
@@ -113,7 +111,7 @@ export class HomeShopComponent implements OnInit {
       tier: 4,
       collection: "Common",
       name: "ZANDER",
-      price: 600,
+      price: 0,
       image: "car4",
       gif: "car4-animation",
       type: "car",
@@ -128,7 +126,7 @@ export class HomeShopComponent implements OnInit {
       tier: 5,
       collection: "Common",
       name: "CYBORG",
-      price: 600,
+      price: 0,
       image: "car5",
       type: "car",
       gif: "car5-animation",
@@ -143,7 +141,7 @@ export class HomeShopComponent implements OnInit {
       tier: 6,
       collection: "Common",
       name: "VULCANIC",
-      price: 600,
+      price: 0,
       image: "car6",
       gif: "car6-animation",
       type: "car",
@@ -158,7 +156,7 @@ export class HomeShopComponent implements OnInit {
       tier: 25,
       collection: "Common rare",
       name: "LUNA",
-      price: 3600,
+      price: 0,
       image: "car25",
       gif: "car25-animation",
       type: "car",
@@ -175,7 +173,7 @@ export class HomeShopComponent implements OnInit {
       tier: 7,
       collection: "Super",
       name: "DORIAN",
-      price: 1000,
+      price: 0,
       image: "car7",
       gif: "car7-animation",
       type: "car",
@@ -190,7 +188,7 @@ export class HomeShopComponent implements OnInit {
       tier: 8,
       collection: "Super",
       name: "PANTHER",
-      price: 1000,
+      price: 0,
       image: "car8",
       gif: "car8-animation",
       type: "car",
@@ -205,7 +203,7 @@ export class HomeShopComponent implements OnInit {
       tier: 9,
       collection: "Super",
       name: "ONYX",
-      price: 1000,
+      price: 0,
       image: "car9",
       gif: "car9-animation",
       type: "car",
@@ -220,7 +218,7 @@ export class HomeShopComponent implements OnInit {
       tier: 10,
       collection: "Super",
       name: "ZANDER",
-      price: 1000,
+      price: 0,
       image: "car10",
       gif: "car10-animation",
       type: "car",
@@ -235,7 +233,7 @@ export class HomeShopComponent implements OnInit {
       tier: 11,
       collection: "Super",
       name: "PYTHON",
-      price: 1000,
+      price: 0,
       image: "car11",
       gif: "car11-animation",
       type: "car",
@@ -250,7 +248,7 @@ export class HomeShopComponent implements OnInit {
       tier: 12,
       collection: "Super",
       name: "VULCANIC",
-      price: 1000,
+      price: 0,
       image: "car12",
       gif: "car12-animation",
       type: "car",
@@ -265,7 +263,7 @@ export class HomeShopComponent implements OnInit {
       tier: 26,
       collection: "Super rare",
       name: "SILVER KNIGHT",
-      price: 6000,
+      price: 0,
       image: "car26",
       gif: "car26-animation",
       type: "car",
@@ -282,7 +280,7 @@ export class HomeShopComponent implements OnInit {
       tier: 13,
       collection: "Epic",
       name: "CYBORG",
-      price: 1600,
+      price: 0,
       image: "car13",
       gif: "car13-animation",
       type: "car",
@@ -297,7 +295,7 @@ export class HomeShopComponent implements OnInit {
       tier: 14,
       collection: "Epic",
       name: "RHINO",
-      price: 1600,
+      price: 0,
       image: "car14",
       gif: "car14-animation",
       type: "car",
@@ -312,7 +310,7 @@ export class HomeShopComponent implements OnInit {
       tier: 15,
       collection: "Epic",
       name: "HYPER",
-      price: 1600,
+      price: 0,
       image: "car15",
       gif: "car15-animation",
       type: "car",
@@ -327,7 +325,7 @@ export class HomeShopComponent implements OnInit {
       tier: 16,
       collection: "Epic",
       name: "BULL",
-      price: 1600,
+      price: 0,
       image: "car16",
       gif: "car16-animation",
       type: "car",
@@ -342,7 +340,7 @@ export class HomeShopComponent implements OnInit {
       tier: 17,
       collection: "Epic",
       name: "PYTHON",
-      price: 1600,
+      price: 0,
       image: "car17",
       gif: "car17-animation",
       type: "car",
@@ -357,7 +355,7 @@ export class HomeShopComponent implements OnInit {
       tier: 18,
       collection: "Epic",
       name: "HITMAN",
-      price: 1600,
+      price: 0,
       image: "car18",
       gif: "car18-animation",
       type: "car",
@@ -372,7 +370,7 @@ export class HomeShopComponent implements OnInit {
       tier: 27,
       collection: "Epic rare",
       name: "MIDAS",
-      price: 9600,
+      price: 0,
       image: "car27",
       gif: "car27-animation",
       type: "car",
@@ -389,7 +387,7 @@ export class HomeShopComponent implements OnInit {
       tier: 19,
       collection: "Legendary",
       name: "HYPER",
-      price: 2600,
+      price: 0,
       image: "car19",
       gif: "car19-animation",
       type: "car",
@@ -404,7 +402,7 @@ export class HomeShopComponent implements OnInit {
       tier: 20,
       collection: "Legendary",
       name: "DORIAN",
-      price: 2600,
+      price: 0,
       image: "car20",
       gif: "car20-animation",
       type: "car",
@@ -419,7 +417,7 @@ export class HomeShopComponent implements OnInit {
       tier: 21,
       collection: "Legendary",
       name: "VULCANIC",
-      price: 2600,
+      price: 0,
       image: "car21",
       gif: "car21-animation",
       type: "car",
@@ -434,7 +432,7 @@ export class HomeShopComponent implements OnInit {
       tier: 22,
       collection: "Legendary",
       name: "BULL",
-      price: 2600,
+      price: 0,
       image: "car22",
       gif: "car22-animation",
       type: "car",
@@ -449,7 +447,7 @@ export class HomeShopComponent implements OnInit {
       tier: 23,
       collection: "Legendary",
       name: "KNOCKOUT",
-      price: 2600,
+      price: 0,
       image: "car23",
       gif: "car23-animation",
       type: "car",
@@ -464,7 +462,7 @@ export class HomeShopComponent implements OnInit {
       tier: 24,
       collection: "Legendary",
       name: "LARA",
-      price: 2600,
+      price: 0,
       image: "car24",
       gif: "car24-animation",
       type: "car",
@@ -479,7 +477,7 @@ export class HomeShopComponent implements OnInit {
       tier: 28,
       collection: "Legendary rare",
       name: "BLUE STORM",
-      price: 15600,
+      price: 0,
       image: "car28",
       gif: "car28-animation",
       type: "car",
@@ -498,7 +496,7 @@ export class HomeShopComponent implements OnInit {
       tier: 41,
       collection: "Special",
       name: "DAOMaker",
-      price: 850,
+      price: 0,
       link: "@TheDaoMaker",
       image: "car41",
       type: "car",
@@ -514,7 +512,7 @@ export class HomeShopComponent implements OnInit {
       tier: 42,
       collection: "Special",
       name: "Shreyansh Polygon",
-      price: 850,
+      price: 0,
       link: "@shreyansh_27",
       image: "car42",
       type: "car",
@@ -530,7 +528,7 @@ export class HomeShopComponent implements OnInit {
       tier: 44,
       collection: "Special",
       name: "Kyle Chasse",
-      price: 850,
+      price: 0,
       link: "@kyle_chasse",
       image: "car44",
       type: "car",
@@ -546,7 +544,7 @@ export class HomeShopComponent implements OnInit {
       tier: 45,
       collection: "Special",
       name: "Ash WSB",
-      price: 850,
+      price: 0,
       link: "@ashWSBreal",
       image: "car45",
       type: "car",
@@ -562,7 +560,7 @@ export class HomeShopComponent implements OnInit {
       tier: 46,
       collection: "Special",
       name: "Tehmoonwalker",
-      price: 850,
+      price: 0,
       link: "@tehMoonwalkeR",
       image: "car46",
       type: "car",
@@ -578,7 +576,7 @@ export class HomeShopComponent implements OnInit {
       tier: 47,
       collection: "Special",
       name: "Parabolic Guy",
-      price: 850,
+      price: 0,
       link: "@GoingParabolic",
       image: "car47",
       type: "car",
@@ -594,7 +592,7 @@ export class HomeShopComponent implements OnInit {
       tier: 50,
       collection: "Special",
       name: "Altcoin Buzz",
-      price: 850,
+      price: 0,
       link: "@Altcoinbuzzio",
       image: "car50",
       type: "car",
@@ -610,7 +608,7 @@ export class HomeShopComponent implements OnInit {
       tier: 51,
       collection: "Special",
       name: "Cryptowizard",
-      price: 850,
+      price: 0,
       link: "@CryptoWizardd",
       image: "car51",
       type: "car",
@@ -626,7 +624,7 @@ export class HomeShopComponent implements OnInit {
       tier: 52,
       collection: "Special",
       name: "Kucoin",
-      price: 850,
+      price: 0,
       link: "@kucoincom",
       image: "car52",
       type: "car",
@@ -642,7 +640,7 @@ export class HomeShopComponent implements OnInit {
       tier: 53,
       collection: "Special",
       name: "QuickSwap",
-      price: 850,
+      price: 0,
       link: "@QuickswapDEX",
       image: "car53",
       type: "car",
@@ -658,7 +656,7 @@ export class HomeShopComponent implements OnInit {
       tier: 54,
       collection: "Special",
       name: "Tech Giants",
-      price: 850,
+      price: 0,
       link: "@Crypto_giants",
       image: "car54",
       type: "car",
@@ -674,7 +672,7 @@ export class HomeShopComponent implements OnInit {
       tier: 55,
       collection: "Special",
       name: "Venly",
-      price: 850,
+      price: 0,
       link: "@Venly_io",
       image: "car55",
       type: "car",
@@ -693,7 +691,7 @@ export class HomeShopComponent implements OnInit {
       tier: 1,
       collection: "Super",
       name: "Axle",
-      price: 100,
+      price: 0,
       image: "white-trm",
       gif: "white-trm-animation",
       type: "racer",
@@ -708,7 +706,7 @@ export class HomeShopComponent implements OnInit {
       tier: 2,
       collection: "Super",
       name: "Flash",
-      price: 100,
+      price: 0,
       image: "red-trm",
       gif: "red-trm-animation",
       type: "racer",
@@ -722,7 +720,7 @@ export class HomeShopComponent implements OnInit {
       tier: 3,
       collection: "Super",
       name: "Octane",
-      price: 100,
+      price: 0,
       image: "blue-trm",
       gif: "blue-trm-animation",
       type: "racer",
@@ -736,7 +734,7 @@ export class HomeShopComponent implements OnInit {
       tier: 4,
       collection: "Super",
       name: "Punisher",
-      price: 100,
+      price: 0,
       image: "black-trm",
       gif: "black-trm-animation",
       type: "racer",
@@ -750,7 +748,7 @@ export class HomeShopComponent implements OnInit {
       tier: 5,
       collection: "Epic",
       name: "Lady Rich",
-      price: 1000,
+      price: 0,
       image: "lady-rich",
       gif: "lady-rich-animation",
       type: "racer",
@@ -764,7 +762,7 @@ export class HomeShopComponent implements OnInit {
       tier: 6,
       collection: "Epic",
       name: "Rich Jr.",
-      price: 1000,
+      price: 0,
       image: "bad-boy",
       gif: "bad-boy-animation",
       type: "racer",
@@ -778,7 +776,7 @@ export class HomeShopComponent implements OnInit {
       tier: 7,
       collection: "Epic",
       name: "Mrs. Rich",
-      price: 1000,
+      price: 0,
       image: "mrs-rich",
       gif: "mrs-rich-animation",
       type: "racer",
@@ -792,7 +790,7 @@ export class HomeShopComponent implements OnInit {
       tier: 8,
       collection: "Legendary",
       name: "Mr. Rich",
-      price: 10000,
+      price: 0,
       image: "mr-rich",
       gif: "mr-rich-animation",
       type: "racer",
@@ -810,7 +808,7 @@ export class HomeShopComponent implements OnInit {
       tier: 11,
       collection: "Special",
       name: "DAO Maker",
-      price: 150,
+      price: 0,
       link: "@TheDaoMaker",
       image: "dao-maker",
       type: "racer",
@@ -824,7 +822,7 @@ export class HomeShopComponent implements OnInit {
       tier: 12,
       collection: "Special",
       name: "Shreyansh Polygon",
-      price: 150,
+      price: 0,
       link: "@shreyansh_27",
       image: "polygon",
       type: "racer",
@@ -838,7 +836,7 @@ export class HomeShopComponent implements OnInit {
       tier: 14,
       collection: "Special",
       name: "Kyle Chasse",
-      price: 150,
+      price: 0,
       link: "@kyle_chasse",
       image: "paid",
       type: "racer",
@@ -852,7 +850,7 @@ export class HomeShopComponent implements OnInit {
       tier: 15,
       collection: "Special",
       name: "Ash WSB",
-      price: 150,
+      price: 0,
       link: "@ashWSBreal",
       image: "ash-wsb",
       type: "racer",
@@ -866,7 +864,7 @@ export class HomeShopComponent implements OnInit {
       tier: 16,
       collection: "Special",
       name: "Tehmoonwalker",
-      price: 150,
+      price: 0,
       link: "@tehMoonwalkeR",
       image: "tehmoonwalker",
       type: "racer",
@@ -880,7 +878,7 @@ export class HomeShopComponent implements OnInit {
       tier: 17,
       collection: "Special",
       name: "Parabolic Guy",
-      price: 150,
+      price: 0,
       link: "@GoingParabolic",
       image: "parabolic-guy",
       type: "racer",
@@ -894,7 +892,7 @@ export class HomeShopComponent implements OnInit {
       tier: 20,
       collection: "Special",
       name: "Altcoin Buzz",
-      price: 150,
+      price: 0,
       link: "@Altcoinbuzzio",
       image: "altcoin-buzz",
       type: "racer",
@@ -908,7 +906,7 @@ export class HomeShopComponent implements OnInit {
       tier: 21,
       collection: "Special",
       name: "Cryptowizard",
-      price: 150,
+      price: 0,
       link: "@CryptoWizardd",
       image: "cryptowizard",
       type: "racer",
@@ -922,7 +920,7 @@ export class HomeShopComponent implements OnInit {
       tier: 22,
       collection: "Special",
       name: "Kucoin",
-      price: 150,
+      price: 0,
       link: "@kucoincom",
       image: "kucoin",
       type: "racer",
@@ -936,7 +934,7 @@ export class HomeShopComponent implements OnInit {
       tier: 23,
       collection: "Special",
       name: "QuickSwap",
-      price: 150,
+      price: 0,
       link: "@QuickswapDEX",
       image: "quickswap",
       type: "racer",
@@ -950,7 +948,7 @@ export class HomeShopComponent implements OnInit {
       tier: 24,
       collection: "Special",
       name: "Tech Giants",
-      price: 150,
+      price: 0,
       link: "@Crypto_giants",
       image: "techgiants",
       type: "racer",
@@ -964,7 +962,7 @@ export class HomeShopComponent implements OnInit {
       tier: 25,
       collection: "Special",
       name: "Venly",
-      price: 150,
+      price: 0,
       link: "@Venly_io",
       image: "venly",
       type: "racer",
@@ -985,7 +983,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-dao",
@@ -1002,7 +1000,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-polygon",
@@ -1019,7 +1017,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-kyle",
@@ -1036,7 +1034,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-ash",
@@ -1053,7 +1051,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-tehmoon",
@@ -1071,7 +1069,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-parabolic",
@@ -1088,7 +1086,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-altcoin",
@@ -1105,7 +1103,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-wizard",
@@ -1122,7 +1120,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-kucoin",
@@ -1139,7 +1137,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-quickswap",
@@ -1156,7 +1154,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-techgiants",
@@ -1173,7 +1171,7 @@ export class HomeShopComponent implements OnInit {
       nft: 10,
       staking: 6,
       reward: 0.1,
-      price: 1000,
+      price: 0,
       pieces: 100,
       yearly: 8760,
       image: "bundle-venly",
@@ -1182,86 +1180,69 @@ export class HomeShopComponent implements OnInit {
       amount: 0,
     },
   ];
-  animation = 0;
-  marketState = 1;
-  selectedId = 1;
-  assetsOnPage = 6;
-  choosedAsset = [];
-  animationPaging = 0;
-  filteredAssets = [];
-  title: string;
-  sliceStart = 0;
-  sliceEnd = this.assetsOnPage;
-  page = 1;
-  lastPage: any;
-  timeoutPage: any;
-  animateArrowLeft = false;
-  animateArrowRight = false;
-  subb: Subscription;
-  constructor(private api: NftsService, private router: Router) {
-    // this.assets = this.api.getAssets();
+  //SORTED PRODUCTS FOR MARKETPLACE
+  sortedProducts = [];
+  //SORTED PRODUCTS FOR MY-NFTS
+  sortedMyProducts = [];
+  pageNum = 0;
+  myAssets = [];
+  myItems: any;
+  assetsSubscribe: Subscription;
+  constructor(private api: CarsService) {}
+  sortAssetsById() {}
+  getAssets() {
+    this.assetsSubscribe = this.api.carsShowroomList().subscribe((data) => {
+      const objs: any = data;
+      const cars: any = objs.cars;
+      const racers: any = objs.racers;
+      const packages: any = objs.packages;
+
+      for (let x = 0; x < this.products.length; x++) {
+        for (let y = 0; y < cars.length; y++) {
+          if (
+            +cars[y].car_model === this.products[x].tier &&
+            this.products[x].type === "car"
+          ) {
+            this.products[x].price = cars[y].car_price;
+          }
+        }
+        for (let y = 0; y < racers.length; y++) {
+          if (
+            +racers[y].racer_model === this.products[x].tier &&
+            this.products[x].type === "racer"
+          ) {
+            this.products[x].price = racers[y].racer_price;
+          }
+        }
+        for (let y = 0; y < packages.length; y++) {
+          if (
+            +packages[y].package_model === this.products[x].tier &&
+            this.products[x].type === "bundle"
+          ) {
+            this.products[x].price = packages[y].package_price;
+          }
+        }
+      }
+    });
+
+    return this.products;
   }
-  ngOnInit() {
-    this.activateFilter("all");
+
+  filterJustOwnedAssets(entry: Array<any>) {
+    let sortedProducts = entry;
+    sortedProducts = entry.filter((item) => item.amount > 0);
+    return sortedProducts;
   }
-  activateFilter(type: string) {
-    this.page = 1;
-    this.sliceStart = 0;
-    this.sliceEnd = this.assetsOnPage;
-    if (type === "all") {
-      this.filteredAssets = this.assets;
-      this.filteredAssets = this.filteredAssets.filter(
-        (item) => item.collection !== "Special"
+
+  filterType(entry: Array<any>, type: string, bundles: boolean) {
+    let sortedProducts = entry;
+    if (bundles === false) {
+      sortedProducts = entry.filter(
+        (item) => item.type === type && item.collection !== "Special"
       );
-      this.title = type;
     } else {
-      this.filteredAssets = this.api.filterType(this.assets, type, false);
-      this.title = type;
+      sortedProducts = entry.filter((item) => item.type === type);
     }
-    this.lastPage = Math.ceil(this.filteredAssets.length / this.assetsOnPage);
-  }
-  showAsset(state: number, id: number) {
-    this.marketState = state;
-    this.selectedId = id;
-  }
-  pagination(type: string) {
-    if (type === "plus") {
-      this.animationPaging = 2;
-      const timeout = window.setTimeout(() => {
-        this.animationPaging = 3;
-        this.page < this.lastPage ? this.page++ : null;
-        this.sliceStart = (this.page - 1) * this.assetsOnPage;
-        this.sliceEnd = this.page * this.assetsOnPage;
-        clearTimeout(timeout);
-      }, 300);
-    } else if (type === "minus") {
-      this.animationPaging = 4;
-      const timeout = window.setTimeout(() => {
-        this.animationPaging = 1;
-        this.page > 1 ? this.page-- : null;
-        this.sliceStart = (this.page - 1) * this.assetsOnPage;
-        this.sliceEnd = this.page * this.assetsOnPage;
-        clearTimeout(timeout);
-      }, 300);
-    }
-  }
-  scrollTop(elem1: HTMLElement) {
-    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  chooseAsset(id: number) {
-    this.choosedAsset = this.filteredAssets.filter((item) => item.id === id);
-    this.showMarketState(2);
-  }
-  showMarketState(id: number) {
-    this.marketState = id;
-  }
-  back() {
-    if (this.marketState === 1) {
-      this.router.navigate(["/race/start-race"]);
-    } else if (this.marketState === 2) {
-      this.marketState = 1;
-    } else if (this.marketState === 3) {
-      this.marketState = 2;
-    }
+    return sortedProducts;
   }
 }

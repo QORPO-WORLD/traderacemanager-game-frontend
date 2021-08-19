@@ -1,17 +1,5 @@
-<div
-  [ngClass]="{ 'filter-overlay-active': mobileFilter === true }"
-  class="filter-overlay"
-></div>
-
-<div
-  [ngClass]="{
-    'dissapear-right-animation': animation === 1,
-    'engage-right-animation': animation === 0
-  }"
-  (window:resize)="width()"
-  class="main-holder"
-  #myScroll2
->
+<app-ioiloader *ngIf="assets.length <= 0"></app-ioiloader>
+<div *ngIf="assets.length > 0" class="main-holder" #myScroll2>
   <div (click)="back()" class="content-title">
     <img
       class="red-star"
@@ -29,16 +17,16 @@
   <div *ngIf="marketState === 1" class="market-content">
     <div class="market-header">
       <div
-        [ngClass]="{ 'active-item': title === 'All' }"
-        (click)="filterAll()"
+        (click)="activateFilter('all')"
+        [ngClass]="{ 'active-item': title === 'all' }"
         class="filter-item first"
       >
         <p class="category-title-first first">ALL NFTS</p>
         <div class="active-border my-cta-btn-back"></div>
       </div>
       <div
-        [ngClass]="{ 'active-item': title === 'Cars' }"
-        (click)="filterCars()"
+        (click)="activateFilter('car')"
+        [ngClass]="{ 'active-item': title === 'car' }"
         class="filter-item"
       >
         <img
@@ -50,8 +38,8 @@
         <div class="active-border my-cta-btn-back"></div>
       </div>
       <div
-        [ngClass]="{ 'active-item': title === 'Racers' }"
-        (click)="filterRacers()"
+        (click)="activateFilter('racer')"
+        [ngClass]="{ 'active-item': title === 'racer' }"
         class="filter-item"
       >
         <img
@@ -64,8 +52,8 @@
       </div>
 
       <div
-        [ngClass]="{ 'active-item': title === 'Bundles' }"
-        (click)="filterBundles()"
+        (click)="activateFilter('bundle')"
+        [ngClass]="{ 'active-item': title === 'bundle' }"
         class="filter-item"
       >
         <img
@@ -77,111 +65,95 @@
         <div class="active-border my-cta-btn-back"></div>
       </div>
     </div>
-    <div
-      [ngClass]="{
-        'engage-next-anim': animationPaging === 0,
-        'disengage-next-anim': animationPaging === 1,
-        'engage-prev-anim': animationPaging === 2,
-        'disengage-prev-anim': animationPaging === 3
-      }"
-      class="market-center"
-      #myScroll
-    >
+    <div class="market-center" #myScroll>
       <div
-        *ngFor="let item of newProducts | slice: sliceStart:sliceMiddle"
-        class="box"
+        [ngClass]="{
+          'engage-right-animation': animationPaging === 3,
+          'disengage-right-animation': animationPaging === 4,
+          'engage-left-animation': animationPaging === 1,
+          'disengage-left-animation': animationPaging === 2
+        }"
+        class="items"
       >
         <div
-          (click)="
-            showAsset(2, item['id'], item['type'], item['position']);
-            scrollTop(myScroll2)
-          "
-          class="box-content"
+          *ngFor="let item of filteredAssets | slice: sliceStart:sliceEnd"
+          class="box"
         >
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'racer'"
-            class="img racer"
-            [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
-            [alt]="item['alt']"
-          />
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'racer'"
-            class="img gif-racer"
-            [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
-            [alt]="item['alt']"
-          />
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'car' && item['gif']"
-            class="img car"
-            [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
-            [alt]="item['alt']"
-          />
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'car' && item['gif']"
-            class="img gif-car"
-            [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
-            [alt]="item['alt']"
-          />
-          <img
-            [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
-            *ngIf="item['type'] === 'car' && !item['gif']"
-            class="img still car"
-            [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
-            [alt]="item['alt']"
-          />
-
-          <img
-            *ngIf="item['type'] === 'bundle'"
-            class="img special still"
-            [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"
-            [alt]="item['alt']"
-          />
-          <p class="category-title-second">{{ item["name"] }}</p>
-          <p class="races-desc">
-            {{ item["collection"] }}
-          </p>
-        </div>
-        <div
-          *ngIf="
-            (item['type'] != 'track' && item['type'] != 'car') ||
-            (item['type'] === 'car' && item['rare'] === undefined)
-          "
-          (click)="
-            showAsset(3, item['id'], item['type'], item['position']);
-            scrollTop(myScroll2)
-          "
-          class="box-button my-cta-btn-back"
-        >
-          <img
-            src="assets/base/images/market/ioi-token.png"
-            alt="ioi token icon"
-          />
-          <p class="category-title-third">{{ item["price"] }}</p>
-        </div>
-        <div
-          *ngIf="
-            item['type'] === 'track' ||
-            (item['type'] === 'car' && item['rare'] != undefined)
-          "
-          class="box-button my-cta-btn-back"
-        >
-          <img
-            src="assets/base/images/market/ioi-token.png"
-            alt="ioi token icon"
-          />
-          <p class="category-title-third">{{ item["price"] }}</p>
+          <div
+            (click)="chooseAsset(item.id, 2); scrollTop(myScroll2)"
+            class="box-content"
+          >
+            <img
+              [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
+              *ngIf="item['type'] === 'racer'"
+              class="img racer"
+              [src]="'/assets/base/images/nft-racers/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <img
+              [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
+              *ngIf="item['type'] === 'racer'"
+              class="img gif-racer"
+              [src]="'/assets/base/images/nft-racers/' + item['gif'] + '.gif'"
+              [alt]="item['alt']"
+            />
+            <img
+              [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
+              *ngIf="item['type'] === 'car' && item['gif']"
+              class="img car"
+              [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <img
+              [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
+              *ngIf="item['type'] === 'car' && item['gif']"
+              class="img gif-car"
+              [src]="'/assets/base/images/nft-cars/' + item['gif'] + '.gif'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'car' && !item['gif']"
+              class="img still car"
+              [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <img
+              *ngIf="item['type'] === 'bundle'"
+              class="img special still"
+              [src]="'/assets/base/images/bundles/' + item['image'] + '.png'"
+              [alt]="item['alt']"
+            />
+            <p class="category-title-second">{{ item["name"] }}</p>
+            <p class="races-desc">
+              {{ item["collection"] }}
+            </p>
+          </div>
+          <div
+            *ngIf="item['rare'] != true"
+            (click)="chooseAsset(item.id, 3); scrollTop(myScroll2)"
+            class="box-button my-cta-btn-back"
+          >
+            <img
+              src="assets/base/images/market/ioi-token.png"
+              alt="ioi token icon"
+            />
+            <p class="category-title-third">{{ item["price"] }}</p>
+          </div>
+          <div *ngIf="item['rare'] === true" class="box-button my-cta-btn-back">
+            <img
+              src="assets/base/images/market/ioi-token.png"
+              alt="ioi token icon"
+            />
+            <p class="category-title-third">{{ item["price"] }}</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="market-paging">
-      <ng-container *ngIf="newProducts.length > inRow"
+      <ng-container *ngIf="filteredAssets.length > assetsOnPage"
         ><div class="page-left">
           <button
-            (click)="prevPageCars()"
+            (click)="pagination('minus'); scrollTop(myScroll)"
             [disabled]="timeoutPage || sliceStart <= 0"
             class="pagebtn-l"
           >
@@ -189,7 +161,7 @@
               class="red-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceStart === 0,
-                'arrow-animation': animateArrow === true
+                'arrow-animation': animateArrowLeft === true
               }"
               src="/assets/base/images/icons/icon-back-red.svg"
               alt="red back icon"
@@ -198,7 +170,7 @@
               class="blue-box-detail paging-img"
               [ngClass]="{
                 'page-opacity': sliceStart === 0,
-                'arrow-animation': animateArrow === true
+                'arrow-animation': animateArrowLeft === true
               }"
               src="/assets/base/images/icons/icon-back-blue.svg"
               alt="blue next icon"
@@ -208,7 +180,7 @@
         <div class="page-middle">
           <p class="category-title-second">
             Page
-            <span class="leftspan">{{ currentPage }} / {{ lastPage }}</span>
+            <span class="leftspan">{{ page }} / {{ lastPage }}</span>
           </p>
         </div>
         <div class="page-right">
@@ -216,16 +188,14 @@
             [ngClass]="{
               'arrow-animation': animateArrowRight === true
             }"
-            (click)="nextPageCars(); scrollTop(myScroll)"
-            [disabled]="
-              timeoutPage || currentPage >= newProducts.length / inRow
-            "
+            (click)="pagination('plus'); scrollTop(myScroll)"
+            [disabled]="timeoutPage || page === lastPage"
             class="pagebtn-r"
           >
             <img
               class="red-box-detail paging-img"
               [ngClass]="{
-                'page-opacity': sliceMiddle >= this.newProducts.length
+                'page-opacity': sliceEnd >= this.filteredAssets.length
               }"
               src="/assets/base/images/icons/icon-next-red.svg"
               alt="red next icon"
@@ -233,7 +203,7 @@
             <img
               class="blue-box-detail paging-img"
               [ngClass]="{
-                'page-opacity': sliceMiddle >= this.newProducts.length,
+                'page-opacity': sliceEnd >= this.filteredAssets.length,
                 'arrow-animation': animateArrowRight === true
               }"
               src="/assets/base/images/icons/icon-next-blue.svg"
@@ -246,17 +216,14 @@
   <app-nft-detail
     class="detail-content"
     *ngIf="marketState === 2"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
-    [assetPosition]="selectedPosition"
-    (marketState)="showAssetBuy($event)"
-    (modalActive)="showModal($event)"
+    [assetInfo]="choosedAsset"
+    (marketState)="showMarketState($event)"
   ></app-nft-detail>
 
   <app-buy-nft
-    class="buy-content"
+    class="detail-content"
     *ngIf="marketState === 3"
-    [assetId]="selectedId"
-    [assetType]="selectedType"
+    [assetInfo]="choosedAsset"
+    (marketState)="showMarketState($event)"
   ></app-buy-nft>
 </div>

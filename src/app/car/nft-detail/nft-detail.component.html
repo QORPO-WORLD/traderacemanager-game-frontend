@@ -1,15 +1,24 @@
 <app-ioiloader *ngIf="loading === true"></app-ioiloader>
 <div *ngIf="loading === false" class="detail-content">
   <div class="detail-text">
-    <p class="category-title-first">{{ displayArray[0]["name"] }}</p>
-    <p class="category-title-second">About {{ displayArray[0]["name"] }}</p>
+    <p class="category-title-first">{{ assetInfo[0]["name"] }}</p>
+    <p class="category-title-second">About {{ assetInfo[0]["name"] }}</p>
+    <p
+      class="races-desc"
+      *ngIf="assetInfo[0]['type'] === 'racer' && assetInfo[0]['rank'] === 'low'"
+    >
+      {{ assetInfo[0]["name"] }} is unique limited rare avatar in form of NFT.
+      Each avatar is unparalleled way of owning IOI tokens. The main benefit is
+      that you can use your NFTs in-game, buy, sell and trade on open markets as
+      well as your NFT vehicles.
+    </p>
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'racer' && displayArray[0]['rank'] === 'low'
+        assetInfo[0]['type'] === 'racer' && assetInfo[0]['rank'] === 'normal'
       "
     >
-      {{ displayArray[0]["name"] }} is unique limited rare avatar in form of
+      {{ assetInfo[0]["name"] }} is unique limited super rare avatar in form of
       NFT. Each avatar is unparalleled way of owning IOI tokens. The main
       benefit is that you can use your NFTs in-game, buy, sell and trade on open
       markets as well as your NFT vehicles.
@@ -17,62 +26,45 @@
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'racer' &&
-        displayArray[0]['rank'] === 'normal'
+        assetInfo[0]['type'] === 'racer' && assetInfo[0]['rank'] === 'height'
       "
     >
-      {{ displayArray[0]["name"] }} is unique limited super rare avatar in form
-      of NFT. Each avatar is unparalleled way of owning IOI tokens. The main
+      {{ assetInfo[0]["name"] }} is unique limited legendary avatar in form of
+      NFT. Each avatar is unparalleled way of owning IOI tokens. The main
       benefit is that you can use your NFTs in-game, buy, sell and trade on open
       markets as well as your NFT vehicles.
     </p>
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'racer' &&
-        displayArray[0]['rank'] === 'height'
+        assetInfo[0]['type'] === 'car' &&
+        assetInfo[0]['rare'] === undefined &&
+        assetInfo[0]['name'] != 'TESLA' &&
+        assetInfo[0]['collection'] != 'Special edition'
       "
     >
-      {{ displayArray[0]["name"] }} is unique limited legendary avatar in form
-      of NFT. Each avatar is unparalleled way of owning IOI tokens. The main
-      benefit is that you can use your NFTs in-game, buy, sell and trade on open
-      markets as well as your NFT vehicles.
+      {{ assetInfo[0]["name"] }} is unique limited car. Each car is unparalleled
+      way of owning IOI tokens, staking and APY. The main benefit is that you
+      can use your NFTs in-game, buy, sell and trade on open markets. The new
+      era of NFTs in your pocket.
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' &&
-        displayArray[0]['rare'] === undefined &&
-        displayArray[0]['name'] != 'TESLA' &&
-        displayArray[0]['collection'] != 'Special edition'
-      "
+      *ngIf="assetInfo[0]['type'] === 'car' && assetInfo[0]['rare'] === true"
     >
-      {{ displayArray[0]["name"] }} is unique limited car. Each car is
-      unparalleled way of owning IOI tokens, staking and APY. The main benefit
-      is that you can use your NFTs in-game, buy, sell and trade on open
+      {{ assetInfo[0]["name"] }} is highly limited with unique abilities. Each
+      car is unparalleled way of owning IOI tokens, staking and APY. The main
+      benefit is that you can use your NFTs in-game, buy, sell and trade on open
       markets. The new era of NFTs in your pocket.
-    </p>
-    <p
-      class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' && displayArray[0]['rare'] === true
-      "
-    >
-      {{ displayArray[0]["name"] }} is highly limited with unique abilities.
-      Each car is unparalleled way of owning IOI tokens, staking and APY. The
-      main benefit is that you can use your NFTs in-game, buy, sell and trade on
-      open markets. The new era of NFTs in your pocket.
       <br />
       <br />
       - You can unlock this car by buying all cars from its collection.
     </p>
     <p
       class="races-desc"
-      *ngIf="
-        displayArray[0]['type'] === 'car' && displayArray[0]['name'] === 'TESLA'
-      "
+      *ngIf="assetInfo[0]['type'] === 'car' && assetInfo[0]['name'] === 'TESLA'"
     >
-      {{ displayArray[0]["name"] }}, one of a kind special limited edition NFT.
+      {{ assetInfo[0]["name"] }}, one of a kind special limited edition NFT.
       With Tesla you are able to join TESLA COMPETITION and NFT Tournament
       happening everyday for 100 IOI. Tesla does not have APY or Staking
       function. Win rate in regular races is 0.1 IOI per race.
@@ -80,91 +72,36 @@
     <p
       class="races-desc"
       *ngIf="
-        displayArray[0]['type'] === 'car' &&
-        displayArray[0]['collection'] === 'Special edition'
+        assetInfo[0]['type'] === 'car' &&
+        assetInfo[0]['collection'] === 'Special edition'
       "
     >
-      {{ displayArray[0]["name"] }} is unique limited car. Each car is
-      unparalleled way of owning IOI tokens. The main benefit is that you can
-      use your NFTs in-game, buy, sell and trade on open markets. The new era of
-      NFTs in your pocket.
+      {{ assetInfo[0]["name"] }} is unique limited car. Each car is unparalleled
+      way of owning IOI tokens. The main benefit is that you can use your NFTs
+      in-game, buy, sell and trade on open markets. The new era of NFTs in your
+      pocket.
       <br />
       <br />
       Special edition NFTs are minted once and never again in very limited
       quantity with attributes as Common tier NFT without staking. You can use
       your Special edition NFT in all types of races and tournaments.
     </p>
-    <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
+    <p class="races-desc" *ngIf="assetInfo[0]['type'] === 'bundle'">
       Get a NFT car and an avatar of your favourite influencer in our limited
       bundles! Increase your daily income thanks to daily stakes today.
     </p>
 
     <div class="text-buttons">
       <button
-        (click)="showBuyModal()"
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'car' &&
-          remainingCars[position]?.count > 0
-        "
+        (click)="changeMarketState(3)"
+        *ngIf="assetInfo[0]['rare'] != true && remainingAssets[0].count > 0"
         class="buy category-title-third my-cta-btn-back"
       >
         Continue
       </button>
+
       <button
-        (click)="showBuyModal()"
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'racer' &&
-          remainingRacers[position]?.count > 0
-        "
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Continue
-      </button>
-      <button
-        (click)="showBuyModal()"
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'bundle' &&
-          remainingBundles[position]?.count > 0
-        "
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Continue
-      </button>
-      <button
-        *ngIf="displayArray[0]['rare'] === true"
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Locked
-      </button>
-      <button
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'car' &&
-          remainingCars[position]?.count <= 0
-        "
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Locked
-      </button>
-      <button
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'racer' &&
-          remainingRacers[position]?.count <= 0
-        "
-        class="buy category-title-third my-cta-btn-back"
-      >
-        Locked
-      </button>
-      <button
-        *ngIf="
-          displayArray[0]['rare'] === undefined &&
-          displayArray[0]['type'] === 'bundle' &&
-          remainingBundles[position]?.count <= 0
-        "
+        *ngIf="assetInfo[0]['rare'] === true || remainingAssets[0].count <= 0"
         class="buy category-title-third my-cta-btn-back"
       >
         Locked
@@ -172,57 +109,14 @@
 
       <button
         class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'car' &&
-          !displayArray[0]['rare'] &&
-          remainingCars[position]?.count > 0
-        "
+        *ngIf="!assetInfo[0]['rare'] && remainingAssets[0].count > 0"
       >
-        {{ remainingCars[position]?.count.toLocaleString() }} left
+        {{ remainingAssets[0].count.toLocaleString() }} left
       </button>
+
       <button
         class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'racer' &&
-          remainingRacers[position]?.count > 0
-        "
-      >
-        {{ remainingRacers[position]?.count.toLocaleString() }} left
-      </button>
-      <button
-        class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'bundle' &&
-          remainingBundles[position]?.count > 0
-        "
-      >
-        {{ remainingBundles[position]?.count.toLocaleString() }} left
-      </button>
-      <button
-        class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'car' &&
-          !displayArray[0]['rare'] &&
-          remainingCars[position]?.count <= 0
-        "
-      >
-        Sold out
-      </button>
-      <button
-        class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'racer' &&
-          remainingRacers[position]?.count <= 0
-        "
-      >
-        Sold out
-      </button>
-      <button
-        class="left-btn category-title-third"
-        *ngIf="
-          displayArray[0]['type'] === 'bundle' &&
-          remainingBundles[position]?.count <= 0
-        "
+        *ngIf="!assetInfo[0]['rare'] && remainingAssets[0].count <= 0"
       >
         Sold out
       </button>
@@ -231,29 +125,9 @@
   <div class="detail-image">
     <img
       *ngIf="
-        displayArray[0]['type'] === 'car' &&
-        displayArray[0]['rare'] === undefined &&
-        remainingCars[position]?.count <= 0
-      "
-      class="sold-out"
-      src="/assets/base/images/market/sold-out.png"
-      alt="sold out icon"
-    />
-    <img
-      *ngIf="
-        displayArray[0]['type'] === 'racer' &&
-        displayArray[0]['rare'] === undefined &&
-        remainingRacers[position]?.count <= 0
-      "
-      class="sold-out"
-      src="/assets/base/images/market/sold-out.png"
-      alt="sold out icon"
-    />
-    <img
-      *ngIf="
-        displayArray[0]['type'] === 'bundle' &&
-        displayArray[0]['rare'] === undefined &&
-        remainingBundles[position]?.count <= 0
+        assetInfo[0]['type'] === 'car' &&
+        assetInfo[0]['rare'] === undefined &&
+        remainingAssets[0].count <= 0
       "
       class="sold-out"
       src="/assets/base/images/market/sold-out.png"
@@ -262,47 +136,43 @@
     <img
       [ngClass]="{
         'sold-out-opacity':
-          displayArray[0]['type'] === 'car' &&
-          displayArray[0]['rare'] === undefined &&
-          remainingCars[position]?.count <= 0
+          assetInfo[0]['type'] === 'car' &&
+          assetInfo[0]['rare'] === undefined &&
+          remainingAssets[0].count <= 0
       }"
-      *ngIf="displayArray[0]['type'] === 'car'"
+      *ngIf="assetInfo[0]['type'] === 'car'"
       class="car-gif"
-      [src]="
-        '/assets/base/images/nft-cars/' + displayArray[0]['image'] + '.png'
-      "
-      [alt]="displayArray[0]['alt']"
+      [src]="'/assets/base/images/nft-cars/' + assetInfo[0]['image'] + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
     <img
       [ngClass]="{
         'sold-out-opacity':
-          displayArray[0]['type'] === 'racer' &&
-          displayArray[0]['rare'] === undefined &&
-          remainingRacers[position]?.count <= 0
+          assetInfo[0]['type'] === 'racer' &&
+          assetInfo[0]['rare'] === undefined &&
+          remainingAssets[0].count <= 0
       }"
-      *ngIf="displayArray[0]['type'] === 'racer'"
+      *ngIf="assetInfo[0]['type'] === 'racer'"
       class="racer"
-      [src]="
-        'assets/base/images/nft-racers/' + displayArray[0]['image'] + '.png'
-      "
-      [alt]="displayArray[0]['alt']"
+      [src]="'assets/base/images/nft-racers/' + assetInfo[0]['image'] + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
     <img
       [ngClass]="{
         'sold-out-opacity':
-          displayArray[0]['type'] === 'bundle' &&
-          displayArray[0]['rare'] === undefined &&
-          remainingBundles[position]?.count <= 0
+          assetInfo[0]['type'] === 'bundle' &&
+          assetInfo[0]['rare'] === undefined &&
+          remainingAssets[0].count <= 0
       }"
-      *ngIf="displayArray[0]['type'] === 'bundle'"
+      *ngIf="assetInfo[0]['type'] === 'bundle'"
       class="special"
-      [src]="'assets/base/images/bundles/' + displayArray[0]['image'] + '.png'"
-      [alt]="displayArray[0]['alt']"
+      [src]="'assets/base/images/bundles/' + assetInfo[0]['image'] + '.png'"
+      [alt]="assetInfo[0]['alt']"
     />
   </div>
-  <div *ngIf="displayArray[0]['type'] != 'bundle'" class="detail-abilities">
+  <div *ngIf="assetInfo[0]['type'] != 'bundle'" class="detail-abilities">
     <p class="ability-title category-title-second">Abilities</p>
-    <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
+    <div *ngIf="assetInfo[0]['type'] === 'car'" class="ability-boxes">
       <div class="ability-box cars first">
         <div class="ability-content">
           <img
@@ -316,14 +186,12 @@
             alt="buy icon"
           />
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["price"] }} IOI
-            </p>
+            <p class="category-title-third">{{ assetInfo[0]["price"] }} IOI</p>
             <p class="races-desc">IOI value</p>
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability1']" class="ability-box cars cars">
+      <div *ngIf="assetInfo[0]['ability1']" class="ability-box cars cars">
         <div class="ability-content">
           <img
             class="red-star"
@@ -338,13 +206,13 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability1"] }} IOI
+              {{ assetInfo[0]["ability1"] }} IOI
             </p>
             <p class="races-desc">daily stake</p>
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
+      <div *ngIf="assetInfo[0]['ability2']" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoi === true }"
           (mouseover)="infoRoi = true"
@@ -369,9 +237,7 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["ability2"] }}%
-            </p>
+            <p class="category-title-third">{{ assetInfo[0]["ability2"] }}%</p>
             <p class="races-desc">fixed ROI</p>
           </div>
         </div>
@@ -385,7 +251,7 @@
           </p>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
+      <div *ngIf="assetInfo[0]['ability3']" class="ability-box cars">
         <img
           [ngClass]="{ active: infoRoiYearly === true }"
           (mouseover)="infoRoiYearly = true"
@@ -411,7 +277,7 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability3"].toLocaleString() }}%
+              {{ assetInfo[0]["ability3"].toLocaleString() }}%
             </p>
             <p class="races-desc">potential ROI</p>
           </div>
@@ -427,7 +293,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+    <div *ngIf="assetInfo[0]['type'] === 'racer'" class="ability-boxes">
       <div class="ability-box cars first">
         <div class="ability-content">
           <img
@@ -441,9 +307,7 @@
             alt="buy icon"
           />
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["price"] }} IOI
-            </p>
+            <p class="category-title-third">{{ assetInfo[0]["price"] }} IOI</p>
             <p class="races-desc">IOI value</p>
           </div>
         </div>
@@ -462,14 +326,12 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["ability2"] }}
-            </p>
+            <p class="category-title-third">{{ assetInfo[0]["ability2"] }} %</p>
             <p class="races-desc">Affiliate reward</p>
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
+      <div *ngIf="assetInfo[0]['ability3']" class="ability-box cars">
         <div class="ability-content">
           <img
             class="red-star"
@@ -483,15 +345,13 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">
-              {{ displayArray[0]["ability3"] }}
-            </p>
+            <p class="category-title-third">{{ assetInfo[0]["ability3"] }} %</p>
             <p class="races-desc">APY</p>
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="displayArray[0]['type'] === 'track'" class="ability-boxes">
+    <div *ngIf="assetInfo[0]['type'] === 'track'" class="ability-boxes">
       <div class="ability-box tracks first">
         <div class="ability-content">
           <img
@@ -505,7 +365,7 @@
             alt="buy icon"
           />
           <div class="ability-text">
-            <p class="category-title-third">{{ displayArray[0]["price"] }}</p>
+            <p class="category-title-third">{{ assetInfo[0]["price"] }}</p>
             <p class="races-desc">IOI value</p>
           </div>
         </div>
@@ -524,7 +384,7 @@
           />
 
           <div class="ability-text">
-            <p class="category-title-third">{{ displayArray[0]["bet"] }} IOI</p>
+            <p class="category-title-third">{{ assetInfo[0]["bet"] }} IOI</p>
             <p class="races-desc">bet</p>
           </div>
         </div>
@@ -544,7 +404,7 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability1"] }}
+              {{ assetInfo[0]["ability1"] }}
             </p>
             <p class="races-desc">race period</p>
           </div>
@@ -565,7 +425,7 @@
 
           <div class="ability-text">
             <p class="category-title-third">
-              {{ displayArray[0]["ability2"] }}
+              {{ assetInfo[0]["ability2"] }}
             </p>
             <p class="races-desc">skill</p>
           </div>
@@ -574,7 +434,7 @@
     </div>
   </div>
   <div
-    *ngIf="displayArray[0]['type'] === 'bundle'"
+    *ngIf="assetInfo[0]['type'] === 'bundle'"
     class="detail-abilities bundles"
   >
     <p class="ability-title category-title-second">Bundle includes</p>
@@ -585,9 +445,7 @@
           <img
             class="ability-racer ability-image"
             [src]="
-              '/assets/base/images/nft-racers/' +
-              displayArray[0]['racer'] +
-              '.png'
+              '/assets/base/images/nft-racers/' + assetInfo[0]['racer'] + '.png'
             "
             alt="nft racer"
           />
@@ -606,9 +464,7 @@
                 alt="ability icon"
               />
               <div class="ability-text">
-                <p class="category-title-third">
-                  {{ displayArray[0]["nft"] }} %
-                </p>
+                <p class="category-title-third">{{ assetInfo[0]["nft"] }} %</p>
                 <p class="races-desc">Affiliate reward</p>
               </div>
             </div>
@@ -624,7 +480,7 @@
           <img
             class="ability-car ability-image"
             [src]="
-              '/assets/base/images/nft-cars/' + displayArray[0]['car'] + '.png'
+              '/assets/base/images/nft-cars/' + assetInfo[0]['car'] + '.png'
             "
             alt="nft car"
           />
@@ -644,7 +500,7 @@
               />
               <div class="ability-text">
                 <p class="category-title-third">
-                  {{ displayArray[0]["reward"] }} IOI
+                  {{ assetInfo[0]["reward"] }} IOI
                 </p>
                 <p class="races-desc">daily stake</p>
               </div>
@@ -675,7 +531,7 @@
               />
               <div class="ability-text">
                 <p class="category-title-third">
-                  {{ displayArray[0]["staking"] }} %
+                  {{ assetInfo[0]["staking"] }} %
                 </p>
                 <p class="races-desc">fixed ROI</p>
               </div>
@@ -716,7 +572,7 @@
               />
               <div class="ability-text">
                 <p class="category-title-third">
-                  {{ displayArray[0]["yearly"].toLocaleString() }} %
+                  {{ assetInfo[0]["yearly"].toLocaleString() }} %
                 </p>
                 <p class="races-desc">potential ROI</p>
               </div>
