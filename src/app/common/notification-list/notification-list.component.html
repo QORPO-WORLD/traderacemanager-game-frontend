@@ -94,7 +94,17 @@
           <span class="opacity">You deposited</span>
           <span
             class="important my-text-color"
-            *ngIf="item.data.currency.slice(0, 3) !== 'car'"
+            *ngIf="
+              item.data.currency.slice(0, 3) !== 'car' &&
+              item.data.currency.slice(0, 5) !== 'racer'
+            "
+          >
+            {{ item.data.amount }}
+            {{ item.data.currency }}
+          </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 5) === 'racer'"
           >
             {{ item.data.amount }}
             {{ "racer_names." + item.data.currency | translate }}
@@ -141,7 +151,17 @@
           <span class="opacity">You withrawed</span>
           <span
             class="important my-text-color"
-            *ngIf="item.data.currency.slice(0, 3) !== 'car'"
+            *ngIf="
+              item.data.currency.slice(0, 3) !== 'car' &&
+              item.data.currency.slice(0, 5) !== 'racer'
+            "
+          >
+            {{ item.data.amount }}
+            {{ item.data.currency }}
+          </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 5) === 'racer'"
           >
             {{ item.data.amount }}
             {{ "racer_names." + item.data.currency | translate }}
