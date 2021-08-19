@@ -40,8 +40,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     private tsapi: TeamsService,
     private lead: LeaderboardService
   ) {
-    this.assets = this.apin.getAssets();
-
     this.getMyAssets();
     this.getTeams();
     this.getMyTem();
@@ -98,6 +96,7 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   nickname: string;
   date: any;
   tutorialStarted = false;
+  products = [];
   assets = [];
   myAssets: any;
   myFavRaces = [];
@@ -305,21 +304,32 @@ export class StartRaceComponent implements OnInit, OnDestroy {
     );
   }
   getMyAssets() {
+    this.assets = this.apin.getAssets();
+    this.products = this.assets;
+    for (let k = 0; k < this.products.length; k++) {
+      this.products[k].amount = 0;
+    }
     this.myCarsObserver = this.capi.carsMineList().subscribe((data) => {
       const objsx: any = data;
       const myCars: any = objsx.cars_by_tier;
       const myRacers: any = objsx.racers_by_tier;
       for (const [key, value] of Object.entries(myCars)) {
-        for (let y = 0; y < this.assets.length; y++) {
-          if (+key === this.assets[y].tier && this.assets[y].type === "car") {
-            this.assets[y].amount = +value;
+        for (let y = 0; y < this.products.length; y++) {
+          if (
+            +key === this.products[y].tier &&
+            this.products[y].type === "car"
+          ) {
+            this.products[y].amount = +value;
           }
         }
       }
       for (const [key, value] of Object.entries(myRacers)) {
-        for (let y = 0; y < this.assets.length; y++) {
-          if (+key === this.assets[y].tier && this.assets[y].type === "racer") {
-            this.assets[y].amount = +value;
+        for (let y = 0; y < this.products.length; y++) {
+          if (
+            +key === this.products[y].tier &&
+            this.products[y].type === "racer"
+          ) {
+            this.products[y].amount = +value;
           }
         }
       }

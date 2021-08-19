@@ -1,32 +1,64 @@
-<p class="main-heading">Notifications
-  <span *ngIf="notifications?.length > 0" (click)="clearNotifications()" style="top:10px;right:10px;position: absolute;font-size: 12px;
-  color: #ffffff7a;cursor: pointer;">Clear</span>
+<p class="main-heading">
+  Notifications
+  <span
+    *ngIf="notifications?.length > 0"
+    (click)="clearNotifications()"
+    style="
+      top: 10px;
+      right: 10px;
+      position: absolute;
+      font-size: 12px;
+      color: #ffffff7a;
+      cursor: pointer;
+    "
+    >Clear</span
+  >
 </p>
 
 <div class="items-holder">
-  <div class="notifiq-item-wrap" *ngFor="let item of notifications | slice: 0:sliceNum">
-    <div class="notifiq-item" *ngIf="item.event === 'race_end' && item.data.amount > 0">
+  <div
+    class="notifiq-item-wrap"
+    *ngFor="let item of notifications | slice: 0:sliceNum"
+  >
+    <div
+      class="notifiq-item"
+      *ngIf="item.event === 'race_end' && item.data.amount > 0"
+    >
       <div class="top-info">
         <p class="heading">Race finished</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-          <span class="opacity">{{ 'race.type.' + item.data.race_identifier | translate}} race has ended. </span>
-          <span class="important my-text-color"> You won {{item.data.amount}} and placed {{item.data.position}}nd.</span>
+          <span class="opacity"
+            >{{ "race.type." + item.data.race_identifier | translate }} race has
+            ended.
+          </span>
+          <span class="important my-text-color">
+            You won {{ item.data.amount }} and placed
+            {{ item.data.position }}nd.</span
+          >
         </p>
       </div>
     </div>
 
-    <div class="notifiq-item" *ngIf="item.event === 'race_end' && item.data.amount === 0">
+    <div
+      class="notifiq-item"
+      *ngIf="item.event === 'race_end' && item.data.amount === 0"
+    >
       <div class="top-info">
         <p class="heading">Race finished</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-          <span class="opacity">{{ 'race.type.' + item.data.race_identifier | translate}} race has ended. </span>
-          <span class="important my-text-color"> You placed {{item.data.position}}th</span>
+          <span class="opacity"
+            >{{ "race.type." + item.data.race_identifier | translate }} race has
+            ended.
+          </span>
+          <span class="important my-text-color">
+            You placed {{ item.data.position }}th</span
+          >
         </p>
       </div>
     </div>
@@ -34,12 +66,20 @@
     <div class="notifiq-item" *ngIf="item.event === 'balance_deposit'">
       <div class="top-info">
         <p class="heading">Depoist succesful</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You deposited</span>
-          <span class="important my-text-color"> {{item.data.amount}} {{item.data.type === 'game_wallet_trx' || item.data.type === 'nitro_wallet_trx' ? 'TRX' : 'IOI'}} </span>
+          <span class="important my-text-color">
+            {{ item.data.amount }}
+            {{
+              item.data.type === "game_wallet_trx" ||
+              item.data.type === "nitro_wallet_trx"
+                ? "TRX"
+                : "IOI"
+            }}
+          </span>
           <span class="opacity">into your wallet.</span>
         </p>
       </div>
@@ -47,13 +87,25 @@
     <div class="notifiq-item" *ngIf="item.event === 'deposit'">
       <div class="top-info">
         <p class="heading">Deposit succesful</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You deposited</span>
-          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) !== 'car'"> {{item.data.amount}} {{item.data.currency}} </span>
-          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) === 'car'"> {{item.data.amount}} {{ "car_names." + item.data.currency | translate }} </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 3) !== 'car'"
+          >
+            {{ item.data.amount }}
+            {{ "racer_names." + item.data.currency | translate }}
+          </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 3) === 'car'"
+          >
+            {{ item.data.amount }}
+            {{ "car_names." + item.data.currency | translate }}
+          </span>
           <span class="opacity">into your wallet.</span>
         </p>
       </div>
@@ -61,12 +113,20 @@
     <div class="notifiq-item" *ngIf="item.event === 'balance_withdrawal'">
       <div class="top-info">
         <p class="heading">Withdrawal succesful</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You withrawed</span>
-          <span class="important my-text-color"> {{item.data.amount}} {{item.data.type === 'game_wallet_trx' || item.data.type === 'nitro_wallet_trx' ? 'TRX' : 'IOI'}} </span>
+          <span class="important my-text-color">
+            {{ item.data.amount }}
+            {{
+              item.data.type === "game_wallet_trx" ||
+              item.data.type === "nitro_wallet_trx"
+                ? "TRX"
+                : "IOI"
+            }}
+          </span>
           <span class="opacity">into your wallet.</span>
         </p>
       </div>
@@ -74,13 +134,25 @@
     <div class="notifiq-item" *ngIf="item.event === 'withdrawal'">
       <div class="top-info">
         <p class="heading">Withdrawal from game wallet</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You withrawed</span>
-          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) !== 'car'"> {{item.data.amount}} {{item.data.currency}} </span>
-          <span class="important my-text-color" *ngIf="item.data.currency.slice(0,3) === 'car'"> {{item.data.amount}} {{ "car_names." + item.data.currency | translate }} </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 3) !== 'car'"
+          >
+            {{ item.data.amount }}
+            {{ "racer_names." + item.data.currency | translate }}
+          </span>
+          <span
+            class="important my-text-color"
+            *ngIf="item.data.currency.slice(0, 3) === 'car'"
+          >
+            {{ item.data.amount }}
+            {{ "car_names." + item.data.currency | translate }}
+          </span>
           <span class="opacity">into your ioi-wallet.</span>
         </p>
       </div>
@@ -88,52 +160,61 @@
     <div class="notifiq-item" *ngIf="item.event === 'game_daily_task'">
       <div class="top-info">
         <p class="heading">You finished</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-
           <span class="important my-text-color"> Daily task</span>
-
         </p>
       </div>
     </div>
     <div class="notifiq-item" *ngIf="item.event === 'new_manager_request'">
       <div class="top-info">
         <p class="heading">You have new manager request</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-
-          <span class="important my-text-color" [routerLink]="['/teams/my-team']">Resolve</span>
-
+          <span
+            class="important my-text-color"
+            [routerLink]="['/teams/my-team']"
+            >Resolve</span
+          >
         </p>
       </div>
     </div>
-     
-     <div class="notifiq-item" *ngIf="item.event === 'manager_request_resolution'">
+
+    <div
+      class="notifiq-item"
+      *ngIf="item.event === 'manager_request_resolution'"
+    >
       <div class="top-info">
         <p class="heading">You have new manager resolution</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-
-          <span class="important my-text-color" [routerLink]="['/teams/my-team']">See</span>
-
+          <span
+            class="important my-text-color"
+            [routerLink]="['/teams/my-team']"
+            >See</span
+          >
         </p>
       </div>
     </div>
     <div class="notifiq-item" *ngIf="item.event === 'game_buy_car'">
       <div class="top-info">
         <p class="heading">Garage updated</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
-          <span class="opacity">You {{item.data.action_type === 'rent_car' ? 'rented' : 'buyed'}} </span>
-          <span class="important my-text-color"> Tier {{item.data.car_model}}  </span>
+          <span class="opacity"
+            >You {{ item.data.action_type === "rent_car" ? "rented" : "buyed" }}
+          </span>
+          <span class="important my-text-color">
+            Tier {{ item.data.car_model }}
+          </span>
           <span class="opacity">into your garage.</span>
         </p>
       </div>
@@ -141,24 +222,29 @@
     <div class="notifiq-item" *ngIf="item.event === 'game_limited_car'">
       <div class="top-info">
         <p class="heading">Garage updated</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You have unlocked </span>
-          <span class="important my-text-color"> {{ "car_names.car_" + item.data.tier | translate }} </span>
+          <span class="important my-text-color">
+            {{ "car_names.car_" + item.data.tier | translate }}
+          </span>
         </p>
       </div>
     </div>
     <div class="notifiq-item" *ngIf="item.event === 'game_team_join'">
       <div class="top-info">
         <p class="heading">Your team join request successful</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity">You asked to join </span>
-          <span class="important my-text-color"> {{item.data.team_name}} as {{item.data.cost === 0 ? 'free' : 'paid' }} </span>
+          <span class="important my-text-color">
+            {{ item.data.team_name }} as
+            {{ item.data.cost === 0 ? "free" : "paid" }}
+          </span>
           <span class="opacity">team member.</span>
         </p>
       </div>
@@ -166,25 +252,33 @@
     <div class="notifiq-item" *ngIf="item.event === 'race_signup'">
       <div class="top-info">
         <p class="heading">You signed to race</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity"> </span>
-          <span class="important my-text-color"> <a [routerLink]="['/race/watch-race-3min/' + item.data.race_hash]">Watch </a> </span>
+          <span class="important my-text-color">
+            <a [routerLink]="['/race/watch-race-3min/' + item.data.race_hash]"
+              >Watch
+            </a>
+          </span>
           <span class="opacity">now.</span>
         </p>
       </div>
     </div>
-     <div class="notifiq-item" *ngIf="item.event === 'ioi_reward'">
+    <div class="notifiq-item" *ngIf="item.event === 'ioi_reward'">
       <div class="top-info">
-        <p class="heading">Daily reward {{item.data.amount}} IOI</p>
-        <p class="time">{{item.created | date: "short"}}</p>
+        <p class="heading">Daily reward {{ item.data.amount }} IOI</p>
+        <p class="time">{{ item.created | date: "short" }}</p>
       </div>
       <div class="message">
         <p>
           <span class="opacity"> </span>
-          <span class="important my-text-color"> <a [routerLink]="['/race/watch-race-3min/' + item.data.race_hash]">Watch </a> </span>
+          <span class="important my-text-color">
+            <a [routerLink]="['/race/watch-race-3min/' + item.data.race_hash]"
+              >Watch
+            </a>
+          </span>
           <span class="opacity">now.</span>
         </p>
       </div>
@@ -200,9 +294,11 @@
         </p>
       </div>
     </div>
-
   </div>
-  <p class="see-all"  (click)="sliceNum === 3 ? sliceNum = 50 : sliceNum = 3">
+  <p
+    class="see-all"
+    (click)="sliceNum === 3 ? (sliceNum = 50) : (sliceNum = 3)"
+  >
     See all notifications
   </p>
 </div>

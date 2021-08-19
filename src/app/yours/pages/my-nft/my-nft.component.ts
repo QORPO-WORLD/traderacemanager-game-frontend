@@ -39,7 +39,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   animateArrowRight = false;
 
   products = [];
-
+  assets = [];
   title = "All";
   myCar: any;
   ed1Cars = 0;
@@ -109,7 +109,6 @@ export class MyNftComponent implements OnInit, OnChanges {
     private identityService: AuthService,
     private route: ActivatedRoute
   ) {
-    this.products = this.apin.getAssets();
     this.getMyAssets();
   }
   ngOnInit() {}
@@ -185,6 +184,11 @@ export class MyNftComponent implements OnInit, OnChanges {
     this.balanceService.balanceHasbeenChanged();
   }
   getMyAssets() {
+    this.assets = this.apin.getAssets();
+    this.products = this.assets;
+    for (let k = 0; k < this.products.length; k++) {
+      this.products[k].amount = 0;
+    }
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       const objsx: any = data;
       const myCars: any = objsx.cars_by_tier;
@@ -210,6 +214,9 @@ export class MyNftComponent implements OnInit, OnChanges {
           }
         }
       }
+
+      console.log(this.assets);
+      console.log("Pridelovanie assetov");
       this.filterType(this.products, "all", false, false);
       this.loading = false;
     });
