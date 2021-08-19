@@ -1,16 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Subscription } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
-import { Router } from "@angular/router";
-import { NftsService } from "../../../api/services/nfts.service";
+import { Observable as __Observable } from "rxjs";
+import { CarsService } from "./cars.service";
 
-@Component({
-  selector: "app-home-shop",
-  templateUrl: "./home-shop.component.html",
-  styleUrls: ["./home-shop.component.scss"],
+@Injectable({
+  providedIn: "root",
 })
-export class HomeShopComponent implements OnInit {
-  assets = [
+export class NftsService {
+  //LIST OF ALL PRODUCTS IN OUR COMPANY
+  products = [
     //
     //TRM CARS ID 1,..,39
     //
@@ -1182,86 +1180,69 @@ export class HomeShopComponent implements OnInit {
       amount: 0,
     },
   ];
-  animation = 0;
-  marketState = 1;
-  selectedId = 1;
-  assetsOnPage = 6;
-  choosedAsset = [];
-  animationPaging = 0;
-  filteredAssets = [];
-  title: string;
-  sliceStart = 0;
-  sliceEnd = this.assetsOnPage;
-  page = 1;
-  lastPage: any;
-  timeoutPage: any;
-  animateArrowLeft = false;
-  animateArrowRight = false;
-  subb: Subscription;
-  constructor(private api: NftsService, private router: Router) {
-    // this.assets = this.api.getAssets();
+  //SORTED PRODUCTS FOR MARKETPLACE
+  sortedProducts = [];
+  //SORTED PRODUCTS FOR MY-NFTS
+  sortedMyProducts = [];
+  pageNum = 0;
+  myAssets = [];
+  myItems: any;
+  assetsSubscribe: Subscription;
+  constructor(private api: CarsService) {}
+  sortAssetsById() {}
+  getAssets() {
+    this.assetsSubscribe = this.api.carsShowroomList().subscribe((data) => {
+      const objs: any = data;
+      const cars: any = objs.cars;
+      const racers: any = objs.racers;
+      const packages: any = objs.packages;
+
+      for (let x = 0; x < this.products.length; x++) {
+        for (let y = 0; y < cars.length; y++) {
+          if (
+            +cars[y].car_model === this.products[x].tier &&
+            this.products[x].type === "car"
+          ) {
+            this.products[x].price = cars[y].car_price;
+          }
+        }
+        for (let y = 0; y < racers.length; y++) {
+          if (
+            +racers[y].racer_model === this.products[x].tier &&
+            this.products[x].type === "racer"
+          ) {
+            this.products[x].price = racers[y].racer_price;
+          }
+        }
+        for (let y = 0; y < packages.length; y++) {
+          if (
+            +packages[y].package_model === this.products[x].tier &&
+            this.products[x].type === "bundle"
+          ) {
+            this.products[x].price = packages[y].package_price;
+          }
+        }
+      }
+    });
+
+    return this.products;
   }
-  ngOnInit() {
-    this.activateFilter("all");
+
+  filterJustOwnedAssets(entry: Array<any>) {
+    let sortedProducts = entry;
+    sortedProducts = entry.filter((item) => item.amount > 0);
+    return sortedProducts;
   }
-  activateFilter(type: string) {
-    this.page = 1;
-    this.sliceStart = 0;
-    this.sliceEnd = this.assetsOnPage;
-    if (type === "all") {
-      this.filteredAssets = this.assets;
-      this.filteredAssets = this.filteredAssets.filter(
-        (item) => item.collection !== "Special"
+
+  filterType(entry: Array<any>, type: string, bundles: boolean) {
+    let sortedProducts = entry;
+    if (bundles === false) {
+      sortedProducts = entry.filter(
+        (item) => item.type === type && item.collection !== "Special"
       );
-      this.title = type;
     } else {
-      this.filteredAssets = this.api.filterType(this.assets, type, false);
-      this.title = type;
+      sortedProducts = entry.filter((item) => item.type === type);
     }
-    this.lastPage = Math.ceil(this.filteredAssets.length / this.assetsOnPage);
-  }
-  showAsset(state: number, id: number) {
-    this.marketState = state;
-    this.selectedId = id;
-  }
-  pagination(type: string) {
-    if (type === "plus") {
-      this.animationPaging = 2;
-      const timeout = window.setTimeout(() => {
-        this.animationPaging = 3;
-        this.page < this.lastPage ? this.page++ : null;
-        this.sliceStart = (this.page - 1) * this.assetsOnPage;
-        this.sliceEnd = this.page * this.assetsOnPage;
-        clearTimeout(timeout);
-      }, 300);
-    } else if (type === "minus") {
-      this.animationPaging = 4;
-      const timeout = window.setTimeout(() => {
-        this.animationPaging = 1;
-        this.page > 1 ? this.page-- : null;
-        this.sliceStart = (this.page - 1) * this.assetsOnPage;
-        this.sliceEnd = this.page * this.assetsOnPage;
-        clearTimeout(timeout);
-      }, 300);
-    }
-  }
-  scrollTop(elem1: HTMLElement) {
-    elem1.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  chooseAsset(id: number) {
-    this.choosedAsset = this.filteredAssets.filter((item) => item.id === id);
-    this.showMarketState(2);
-  }
-  showMarketState(id: number) {
-    this.marketState = id;
-  }
-  back() {
-    if (this.marketState === 1) {
-      this.router.navigate(["/race/start-race"]);
-    } else if (this.marketState === 2) {
-      this.marketState = 1;
-    } else if (this.marketState === 3) {
-      this.marketState = 2;
-    }
+    return sortedProducts;
   }
 }
