@@ -40,7 +40,7 @@ export class WalletControllerComponent implements OnInit {
     const data = this.identityService.getBalance();
     this.accountValue =
       data.game_wallet_ioi * data.ioi_usdt +
-      this.myBalance?.game_wallet_matic * this.myBalance?.matic_usdt;
+      this.myBalance.game_wallet_matic * this.myBalance.matic_usdt;
   }
 
   getMyBalance() {

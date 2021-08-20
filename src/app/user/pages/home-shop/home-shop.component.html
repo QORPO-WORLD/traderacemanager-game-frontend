@@ -18,6 +18,7 @@
     <div class="right-content" #myScroll>
       <div class="filter">
         <p
+          (click)="activateFilter('car')"
           [ngClass]="{ active: title === 'car' }"
           class="category-title-fourth"
         >
@@ -25,6 +26,7 @@
         </p>
         <div class="border-line"></div>
         <p
+          (click)="activateFilter('racer')"
           [ngClass]="{ active: title === 'racer' }"
           class="category-title-fourth"
         >
@@ -33,6 +35,7 @@
 
         <div class="border-line"></div>
         <p
+          (click)="activateFilter('bundle')"
           [ngClass]="{ active: title === 'bundle' }"
           class="category-title-fourth"
         >
@@ -41,6 +44,8 @@
         </p>
         <div class="border-line"></div>
         <p
+          ň
+          (click)="activateFilter('all')"
           [ngClass]="{ active: title === 'all' }"
           class="category-title-fourth"
         >
@@ -97,21 +102,9 @@
                 [alt]="item['alt']"
               />
               <img
-                [ngClass]="{ 'gif-hover': item['collection'] != 'Special' }"
                 *ngIf="item['type'] === 'car' && !item['gif']"
                 class="img still car"
                 [src]="'/assets/base/images/nft-cars/' + item['image'] + '.png'"
-                [alt]="item['alt']"
-              />
-
-              <img
-                *ngIf="item['type'] === 'track'"
-                class="img still track"
-                [src]="
-                  '/assets/base/images/home-page/' +
-                  item['image'] +
-                  '-small.png'
-                "
                 [alt]="item['alt']"
               />
               <img
