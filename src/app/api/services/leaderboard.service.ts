@@ -323,7 +323,7 @@ class LeaderboardService extends __BaseService {
     if (params.page != null) __params = __params.set('page', params.page.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/races/leaderboard/overall-teams/` + params,
+      this.rootUrl + `/races/leaderboard/overall-teams/`,
       __body,
       {
         headers: __headers,

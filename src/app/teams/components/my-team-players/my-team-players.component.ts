@@ -93,7 +93,9 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   }
 
   getteamStats() {
-    this.ldrbrdSrvc.leaderboardTeamOverall(1).subscribe((data) => {
+    this.ldrbrdSrvc.leaderboardTeamOverall({
+      lastMonth: this.isLastMonth
+    }).subscribe((data) => {
       this.myStatData = data;
     });
   }
@@ -101,6 +103,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   setLastMonth(isLast: boolean) {
     this.isLastMonth = isLast;
     this.getMyLeaderboard();
+    this.getteamStats();
   }
 
 }
