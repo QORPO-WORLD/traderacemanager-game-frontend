@@ -31,6 +31,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
   slice5: number;
   totalPages = 1;
   position: number = 1;
+  isLastMonth = false;
   sliceNums = {
     0: 3,
     1: 3,
@@ -66,7 +67,7 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
     this.myLdrbrdObserver = this.ldrbrdSrvc
       .leaderboardTeamList({
         page: this.actualPage,
-        lastMonth: false
+        lastMonth: this.isLastMonth
       })
       .subscribe((data) => {
         this.myLdrbrd = data['results'];
@@ -97,6 +98,9 @@ export class MyTeamPlayersComponent implements OnInit, OnDestroy {
     });
   }
 
-  
+  setLastMonth(isLast: boolean) {
+    this.isLastMonth = isLast;
+    this.getMyLeaderboard();
+  }
 
 }
