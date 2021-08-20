@@ -614,11 +614,11 @@ export class BinaryTradeComponent implements OnInit, OnDestroy {
   setAvatarImages() {
     for (let x = 0; x < this.racers.length; x++) {
       console.log("Debug player: " + this.players[0] + this.players[1]);
-      if (this.players[0]?.user_id == this.racers[x].id) {
+      if (this.players[0].user_id == this.racers[x].id) {
         console.log("naslo 1");
         this.myRacer = this.racers[x];
       }
-      if (this.players[1]?.user_id == this.racers[x].id) {
+      if (this.players[1].user_id == this.racers[x].id) {
         console.log("naslo 2");
         this.oponentRacer = this.racers[x];
       }
