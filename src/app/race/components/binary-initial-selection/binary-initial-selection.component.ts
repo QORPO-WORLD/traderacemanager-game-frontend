@@ -195,6 +195,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   liveObserver: Subscription;
   playersObserver: Subscription;
   myDriverBalances: any;
+  queueTime: number;
   constructor(
     private identityService: AuthService,
     private carService: CarsService,
@@ -318,12 +319,14 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         this.automatchLoading = false;
       }
     }
+    
 
     this.gameObserver = this.raceApi
       .joinBinary({
         avatar_id: this.racerPk,
       })
       .subscribe((data) => {
+        this.queueTime = data.ttl;
         this.automatchLoading = true;
         localStorage.setItem(
           "binary",
@@ -442,6 +445,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   }
 
   timerComplete(event: any) {
-    console.log(event);
+    localStorage.removeItem("binary");
+    this.automatchLoading = false;
   }
 }
