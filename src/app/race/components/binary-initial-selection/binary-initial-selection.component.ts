@@ -195,6 +195,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   liveObserver: Subscription;
   playersObserver: Subscription;
   myDriverBalances: any;
+  queueTime: number;
   constructor(
     private identityService: AuthService,
     private carService: CarsService,
@@ -294,22 +295,6 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
             }
           }
         }
-        console.log(this.racers);
-
-        // for (let x = 0; x < data.racers.length; x++) {
-        //   if(data.racers[x].car_id - 1 <= 8){
-        //     this.racers[data.racers[x].car_id - 1].sum++;
-        //     this.racers[data.racers[x].car_id - 1].pks.push(
-        //       data.racers[x].pk
-        //     );
-        //   }
-        //   else{
-        //     this.racers[data.racers[x].car_id - 3].sum++;
-        //     this.racers[data.racers[x].car_id - 3].pks.push(
-        //       data.racers[x].pk
-        //     );
-        //   }
-        // }
 
         const obj = {
           id: 0,
@@ -334,12 +319,14 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
         this.automatchLoading = false;
       }
     }
+    
 
     this.gameObserver = this.raceApi
       .joinBinary({
         avatar_id: this.racerPk,
       })
       .subscribe((data) => {
+        this.queueTime = data.ttl;
         this.automatchLoading = true;
         localStorage.setItem(
           "binary",
@@ -455,5 +442,10 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
   getCryptoStats() {
     const data = this.identityService.getBalance();
     this.myDriverBalances = data;
+  }
+
+  timerComplete(event: any) {
+    localStorage.removeItem("binary");
+    this.automatchLoading = false;
   }
 }
