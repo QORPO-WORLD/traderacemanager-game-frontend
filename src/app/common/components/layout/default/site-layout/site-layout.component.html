@@ -363,11 +363,6 @@
           </div>
           <div class="item-back my-cta-btn-back" [ngClass]="menuType"></div>
         </div>
-        <div class="profile-cont my-holder" *ngIf="menuType === 'me'">
-          <app-profile-stats
-            (menuClose)="closeMenu($event)"
-          ></app-profile-stats>
-        </div>
 
         <div class="chat-holder" *ngIf="menuType === 'chat'">
           <app-my-chat></app-my-chat>
@@ -380,72 +375,9 @@
         </div>
       </div>
     </div>
-
-    <div class="edit-car-modal small chat" *ngIf="showMySettings === true">
-      <div class="modal-back" (click)="showMySettings = false">&nbsp;</div>
-      <div class="modal-holder">
-        <img
-          src="/assets/base/images/icons/close-icon.svg"
-          alt=""
-          class="close-icon"
-          (click)="showMySettings = false"
-        />
-        <app-my-settings></app-my-settings>
-      </div>
-    </div>
-
-    <div class="edit-car-modal small" *ngIf="showAff === true">
-      <div class="modal-back" (click)="showAff = false">&nbsp;</div>
-      <div class="modal-holder">
-        <img
-          src="/assets/base/images/icons/close-icon.svg"
-          alt=""
-          class="close-icon"
-          (click)="showAff = false"
-        />
-        <app-my-affiliate></app-my-affiliate>
-      </div>
-    </div>
   </div>
 
   <app-notifiq></app-notifiq>
-
-  <div
-    class="modal fade"
-    id="choose-modal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="turn-lux-modal"
-    aria-hidden="true"
-  >
-    <div
-      class="modal-dialog modal-dialog-centered my-modal-dialog choose-modal"
-      role="document"
-    >
-      <div class="modal-content my-modal-content--tokens">
-        <h1>{{ "shared.what_you_do" | translate }}</h1>
-
-        <div class="buttons-holder">
-          <div
-            class="button-item"
-            data-dismiss="modal"
-            [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'withdraw' }"
-          >
-            {{ "shared.withdraw_btn" | translate }}
-          </div>
-          <div
-            class="button-item"
-            data-dismiss="modal"
-            [routerLink]="['/other/wallet-control']"
-            [queryParams]="{ controlType: 'transfer' }"
-          >
-            {{ "shared.transfer_btn" | translate }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- <div class="verify-modal" *ngIf="verifyModal === true">
 

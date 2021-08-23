@@ -48,8 +48,6 @@ export class SiteLayoutComponent
   raceDriverObserver: Subscription;
   showChat = false;
   switchBalance = false;
-  showMySettings = false;
-  showAff = false;
   menuOpen = false;
   openNotifiq = false;
   isManager = false;
