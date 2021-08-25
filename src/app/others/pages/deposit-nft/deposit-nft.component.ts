@@ -21,7 +21,7 @@ export class DepositNftComponent implements OnInit {
   cryptoMtfrckr: string;
   accountValue: number;
   amount = 1;
-  ethMtfrckr = "0x";
+  ethMtfrckr = "";
   depositRequested = false;
   depositSuccessful = false;
   contractId = 6;
