@@ -14,7 +14,6 @@ import { SiteLayoutComponent } from "../common/components/layout/default/site-la
 //import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
 import { FormsModule } from "@angular/forms";
 import { AnQrcodeModule } from "an-qrcode";
-import { AboutTokensComponent } from "./pages/about-tokens/about-tokens.component";
 import { WalletControllerComponent } from "./pages/wallet-controller/wallet-controller.component";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
@@ -48,10 +47,6 @@ const routes: Routes = [
       {
         path: "affilate",
         component: AffilateComponent,
-      },
-      {
-        path: "about-tokens",
-        component: AboutTokensComponent,
       },
       // {
       //   path: "tasks",
@@ -95,7 +90,6 @@ const routes: Routes = [
     ConfirmWithdrawalComponent,
     //DailyTasksComponent,
     BridgeComponent,
-    AboutTokensComponent,
     WalletControllerComponent,
     TransferNftComponent,
     DepositNftComponent,
@@ -115,6 +109,6 @@ const routes: Routes = [
     IonicModule,
   ],
   providers: [SocialSharing],
-  exports: [AboutTokensComponent, AffilateComponent],
+  exports: [ AffilateComponent],
 })
 export class OthersModule {}
