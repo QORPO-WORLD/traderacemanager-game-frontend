@@ -12,7 +12,7 @@ export class HomeBundlesComponent implements OnInit {
   selectedType = "racers";
   bundles: Array<object> = [
     {
-      id: 1,
+      id: 120,
       name: "DAOMaker",
       link: "@TheDaoMaker",
       staking: 6,
@@ -24,7 +24,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "dao-back",
     },
     {
-      id: 2,
+      id: 121,
       name: "Shreyansh Polygon",
       link: "@shreyansh_27",
       staking: 6,
@@ -36,7 +36,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "polygon-back",
     },
     {
-      id: 3,
+      id: 122,
       name: "Kyle Chasse",
       link: "@kyle_chasse",
       staking: 6,
@@ -48,7 +48,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "paid-back",
     },
     {
-      id: 4,
+      id: 123,
       name: "Ash WSB",
       link: "@ashWSBreal",
       staking: 6,
@@ -60,7 +60,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "ash-back",
     },
     {
-      id: 5,
+      id: 124,
       name: "Tehmoonwalker",
       link: "@tehMoonwalkeR",
       staking: 6,
@@ -72,7 +72,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "tehmoon-back",
     },
     {
-      id: 6,
+      id: 125,
       name: "Parabolic Guy",
       link: "@GoingParabolic",
       staking: 6,
@@ -85,7 +85,7 @@ export class HomeBundlesComponent implements OnInit {
     },
 
     {
-      id: 7,
+      id: 126,
       name: "Altcoin Buzz",
       link: "@Altcoinbuzzio",
       staking: 6,
@@ -97,7 +97,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "altcoin-back",
     },
     {
-      id: 8,
+      id: 127,
       name: "Cryptowizard",
       link: "@CryptoWizardd",
       staking: 6,
@@ -109,7 +109,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "cryptowizard-back",
     },
     {
-      id: 9,
+      id: 128,
       name: "Kucoin",
       link: "@kucoincom",
       staking: 6,
@@ -121,7 +121,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "kucoin-back",
     },
     {
-      id: 10,
+      id: 129,
       name: "QuickSwap",
       link: "@QuickswapDEX",
       staking: 6,
@@ -133,7 +133,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "quickswap-back",
     },
     {
-      id: 11,
+      id: 130,
       name: "Tech Giants",
       link: "@Crypto_giants",
       staking: 6,
@@ -145,7 +145,7 @@ export class HomeBundlesComponent implements OnInit {
       back: "techgiants-back",
     },
     {
-      id: 12,
+      id: 131,
       name: "Venly",
       link: "@Venly_io",
       staking: 6,

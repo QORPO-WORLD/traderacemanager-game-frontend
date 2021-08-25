@@ -47,7 +47,8 @@
         *ngIf="
           displayArray[0]['type'] === 'car' &&
           displayArray[0]['rare'] === undefined &&
-          displayArray[0]['name'] != 'TESLA'
+          displayArray[0]['name'] != 'TESLA' &&
+          displayArray[0]['collection'] != 'Special edition'
         "
       >
         {{ displayArray[0]["name"] }} is unique limited car. Each car is
@@ -65,6 +66,9 @@
         Each car is unparalleled way of owning IOI tokens, staking and APY. The
         main benefit is that you can use your NFTs in-game, buy, sell and trade
         on open markets. The new era of NFTs in your pocket.
+        <br />
+        <br />
+        - You can unlock this car by buying all cars from its collection.
       </p>
       <p
         class="races-desc"
@@ -78,13 +82,22 @@
         Tournament happening everyday for 100 IOI. Tesla does not have APY or
         Staking function. Win rate in regular races is 0.1 IOI per race.
       </p>
-      <p class="races-desc" *ngIf="displayArray[0]['type'] === 'track'">
-        Track NFTs are introducing investment model for real hardcore owners.
-        You will receive percentage of each game played on your NFT property!<br /><br />
-        Become a track owner - a real NFT whale investor and earn 3% from price
-        pool of each game played on your track. Tracks will be sold exclusively
-        through special event auctions! For more info follow our social media!
-        Good luck.
+      <p
+        class="races-desc"
+        *ngIf="
+          displayArray[0]['type'] === 'car' &&
+          displayArray[0]['collection'] === 'Special edition'
+        "
+      >
+        {{ displayArray[0]["name"] }} is unique limited car. Each car is
+        unparalleled way of owning IOI tokens. The main benefit is that you can
+        use your NFTs in-game, buy, sell and trade on open markets. The new era
+        of NFTs in your pocket.
+        <br />
+        <br />
+        Special edition NFTs are minted once and never again in very limited
+        quantity with attributes as Common tier NFT without staking. You can use
+        your Special edition NFT in all types of races and tournaments.
       </p>
       <p class="races-desc" *ngIf="displayArray[0]['type'] === 'bundle'">
         Get a NFT car and an avatar of your favourite influencer in our limited
@@ -94,20 +107,40 @@
       <div class="text-buttons">
         <button
           [routerLink]="['/user/sign-up']"
-          class="buy category-title-third my-cta-btn-back"
-        >
-          <img src="/assets/base/images/market/buy-white.svg" alt="Buy image" />
-          Buy
-        </button>
-
-        <button
-          *ngIf="displayArray[0]['type'] === 'track'"
-          class="buy category-title-third my-cta-btn-back"
+          class="buy first category-title-third my-cta-btn-back"
         >
           <img
-            src="/assets/base/images/teams/reward-token.png"
-            alt="buy icon"
-          />Soon
+            class="buy-img"
+            src="/assets/base/images/market/buy-white.svg"
+            alt="Buy image"
+          />
+          Buy
+        </button>
+        <button
+          (click)="
+            openLink('https://opensea.io/collection/ioi-traderacemanager')
+          "
+          class="buy opensea category-title-third my-cta-btn-back"
+        >
+          <img
+            class="market-logos"
+            src="/assets/base/images/icons/opensea.svg"
+            alt="OpenSea logo"
+          />
+        </button>
+        <button
+          (click)="
+            openLink(
+              'https://venly.market/collection/Trade%20Race%20Manager%20by%20IOI'
+            )
+          "
+          class="buy venly category-title-third my-cta-btn-back"
+        >
+          <img
+            class="market-logos"
+            src="/assets/base/images/icons/venly.svg"
+            alt="Venly logo"
+          />
         </button>
       </div>
     </div>
@@ -147,115 +180,9 @@
         [alt]="displayArray[0]['alt']"
       />
     </div>
-    <div *ngIf="displayArray[0]['type'] != 'bundle'" class="detail-abilities">
+    <div *ngIf="displayArray[0]['type'] === 'racer'" class="detail-abilities">
       <p class="ability-title category-title-second">Abilities</p>
-      <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
-        <div class="ability-box cars first">
-          <div class="ability-content">
-            <img
-              class="red-star"
-              src="assets/base/images/market/value-red.svg"
-              alt="buy icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ displayArray[0]["price"] }} IOI
-              </p>
-              <p class="races-desc">IOI value</p>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="displayArray[0]['ability1']" class="ability-box cars cars">
-          <div class="ability-content">
-            <img
-              class="red-star"
-              src="assets/base/images/icons/daily-stake-red.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ displayArray[0]["ability1"] }} IOI
-              </p>
-              <p class="races-desc">daily stake</p>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
-          <img
-            [ngClass]="{ active: infoRoi === true }"
-            (mouseover)="infoRoi = true"
-            (mouseleave)="infoRoi = false"
-            class="info-icon"
-            src="/assets/base/images/icons/question-mark.svg"
-            alt="question mark"
-          />
-          <div
-            [ngClass]="{ 'active-values': infoRoi === true }"
-            class="ability-content"
-          >
-            <img
-              class="red-star"
-              src="assets/base/images/market/investment-red.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ displayArray[0]["ability2"] }}%
-              </p>
-              <p class="races-desc">fixed ROI</p>
-            </div>
-          </div>
-          <div
-            [ngClass]="{ 'active-info': infoRoi === false }"
-            class="ability-content"
-          >
-            <p class="races-desc">
-              By owning and holding this NFT, you receive fixed ROI thanks to
-              Daily Stakes.
-            </p>
-          </div>
-        </div>
-        <div class="ability-box cars">
-          <img
-            [ngClass]="{ active: infoRoiYearly === true }"
-            (mouseover)="infoRoiYearly = true"
-            (mouseleave)="infoRoiYearly = false"
-            class="info-icon"
-            src="/assets/base/images/icons/question-mark.svg"
-            alt="question mark"
-          />
-          <div
-            [ngClass]="{ 'active-values': infoRoiYearly === true }"
-            class="ability-content"
-          >
-            <img
-              class="red-star"
-              src="assets/base/images/icons/yearly-roi-red.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ displayArray[0]["ability3"].toLocaleString() }}%
-              </p>
-              <p class="races-desc">potential ROI</p>
-            </div>
-          </div>
-          <div
-            [ngClass]="{ 'active-info': infoRoiYearly === false }"
-            class="ability-content"
-          >
-            <p class="races-desc">
-              We give away 11 000 IOI in games every day. Play games to reach
-              potential ROI.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+      <div class="ability-boxes">
         <div class="ability-box cars first">
           <div class="ability-content">
             <img
@@ -305,8 +232,16 @@
           </div>
         </div>
       </div>
-      <div *ngIf="displayArray[0]['type'] === 'track'" class="ability-boxes">
-        <div class="ability-box tracks first">
+    </div>
+    <div
+      *ngIf="displayArray[0]['type'] === 'car'"
+      class="detail-abilities cars"
+    >
+      <div class="titles">
+        <p class="ability-title category-title-second">Abilities</p>
+      </div>
+      <div *ngIf="displayArray[0]['type'] === 'car'" class="ability-boxes">
+        <div class="ability-box cars first">
           <div class="ability-content">
             <img
               class="red-star"
@@ -315,56 +250,162 @@
             />
 
             <div class="ability-text">
-              <p class="category-title-third">{{ displayArray[0]["price"] }}</p>
+              <p class="category-title-third">
+                {{ displayArray[0]["price"].toLocaleString() }} IOI
+              </p>
               <p class="races-desc">IOI value</p>
             </div>
           </div>
         </div>
-        <div class="ability-box tracks">
+        <div *ngIf="displayArray[0]['ability1']" class="ability-box cars">
           <div class="ability-content">
             <img
               class="red-star"
-              src="assets/base/images/market/investment-red.svg"
-              alt="ability icon"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
             />
 
             <div class="ability-text">
               <p class="category-title-third">
-                {{ displayArray[0]["bet"] }} IOI
+                {{ displayArray[0]["ability1"] }} IOI
               </p>
-              <p class="races-desc">bet</p>
+              <p class="races-desc">Race winnings</p>
+              <p class="races-desc-smaller">(Average per day)</p>
             </div>
           </div>
         </div>
-        <div class="ability-box tracks">
+        <div *ngIf="displayArray[0]['ability2']" class="ability-box cars">
           <div class="ability-content">
             <img
               class="red-star"
-              src="assets/base/images/market/investment-red.svg"
-              alt="ability icon"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
             />
 
             <div class="ability-text">
               <p class="category-title-third">
-                {{ displayArray[0]["ability1"] }}
+                {{ displayArray[0]["ability2"].toLocaleString() }} IOI
               </p>
-              <p class="races-desc">race period</p>
+              <p class="races-desc">MAX Race winnings</p>
+              <p class="races-desc-smaller">(Per day)</p>
             </div>
           </div>
         </div>
-        <div class="ability-box tracks">
+        <div *ngIf="displayArray[0]['ability3']" class="ability-box cars cars">
+          <div class="ability-content">
+            <img
+              class="red-star"
+              src="assets/base/images/icons/daily-stake-red.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability3"] }} IOI
+              </p>
+              <p class="races-desc">daily stake income</p>
+              <p class="races-desc-smaller">(Available until 31st AUG 2021)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="titles">
+        <p class="category-title-second">Races Access</p>
+      </div>
+      <div class="races-access">
+        <div class="races-box-small my-simple-grad my-border-color">
+          <img
+            class="check-icon"
+            src="/assets/base/images/icons/check-icon.svg"
+            alt="Check icon"
+          />
+          <p class="races-desc">FREE</p>
+        </div>
+        <div class="races-box-small my-simple-grad my-border-color">
+          <img
+            class="check-icon"
+            src="/assets/base/images/icons/check-icon.svg"
+            alt="Check icon"
+          />
+          <p class="races-desc">PRIZEPOOL</p>
+        </div>
+        <div class="races-box-small my-simple-grad my-border-color">
+          <img
+            class="check-icon"
+            src="/assets/base/images/icons/check-icon.svg"
+            alt="Check icon"
+          />
+          <p class="races-desc">TOURNAMENT</p>
+        </div>
+        <div class="races-box my-simple-grad my-border-color">
+          <img
+            class="check-icon"
+            src="/assets/base/images/icons/check-icon.svg"
+            alt="Check icon"
+          />
+          <p class="races-desc">SPECIAL RACES</p>
+        </div>
+      </div>
+      <div *ngIf="displayArray[0]['type'] === 'racer'" class="ability-boxes">
+        <div class="ability-box cars first">
+          <div class="ability-content">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["price"].toLocaleString() }} IOI
+              </p>
+              <p class="races-desc">IOI value</p>
+            </div>
+          </div>
+        </div>
+        <div class="ability-box cars">
           <div class="ability-content">
             <img
               class="red-star"
               src="assets/base/images/market/investment-red.svg"
               alt="ability icon"
             />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
 
             <div class="ability-text">
               <p class="category-title-third">
-                {{ displayArray[0]["ability2"] }}
+                {{ displayArray[0]["ability2"] }} %
               </p>
-              <p class="races-desc">skill</p>
+              <p class="races-desc">Affiliate reward</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="displayArray[0]['ability3']" class="ability-box cars">
+          <div class="ability-content">
+            <img
+              class="red-star"
+              src="assets/base/images/market/investment-red.svg"
+              alt="ability icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/investment.svg"
+              alt="ability icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ displayArray[0]["ability3"] }} %
+              </p>
+              <p class="races-desc">APY</p>
             </div>
           </div>
         </div>
@@ -425,6 +466,41 @@
             />
           </div>
           <div class="text">
+            <div class="ability-box second">
+              <div class="ability-content">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/value-red.svg"
+                  alt="buy icon"
+                />
+
+                <div class="ability-text">
+                  <p class="category-title-third">
+                    {{ displayArray[0]["ability1"].toLocaleString() }} IOI
+                  </p>
+                  <p class="races-desc">Race winnings</p>
+                  <p class="races-desc-smaller">(Average per day)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="ability-box second">
+              <div class="ability-content">
+                <img
+                  class="red-star"
+                  src="assets/base/images/market/value-red.svg"
+                  alt="buy icon"
+                />
+
+                <div class="ability-text">
+                  <p class="category-title-third">
+                    {{ displayArray[0]["ability2"].toLocaleString() }} IOI
+                  </p>
+                  <p class="races-desc">MAX Race winnings</p>
+                  <p class="races-desc-smaller">(Per day)</p>
+                </div>
+              </div>
+            </div>
             <div class="ability-box">
               <div class="ability-content">
                 <img
@@ -435,83 +511,10 @@
 
                 <div class="ability-text">
                   <p class="category-title-third">
-                    {{ displayArray[0]["reward"] }} IOI
+                    {{ displayArray[0]["ability3"] }} IOI
                   </p>
                   <p class="races-desc">daily stake</p>
                 </div>
-              </div>
-            </div>
-            <div class="ability-box second">
-              <img
-                [ngClass]="{ active: infoRoi === true }"
-                (mouseover)="infoRoi = true"
-                (mouseleave)="infoRoi = false"
-                class="info-icon"
-                src="/assets/base/images/icons/question-mark.svg"
-                alt="question mark"
-              />
-              <div
-                [ngClass]="{ 'active-values': infoRoi === true }"
-                class="ability-content"
-              >
-                <img
-                  class="red-star"
-                  src="assets/base/images/market/investment-red.svg"
-                  alt="ability icon"
-                />
-
-                <div class="ability-text">
-                  <p class="category-title-third">
-                    {{ displayArray[0]["staking"] }} %
-                  </p>
-                  <p class="races-desc">fixed ROI</p>
-                </div>
-              </div>
-              <div
-                [ngClass]="{ 'active-info': infoRoi === false }"
-                class="ability-content"
-              >
-                <p class="races-desc">
-                  By owning and holding this NFT, you receive fixed ROI thanks
-                  to Daily Stakes.
-                </p>
-              </div>
-            </div>
-
-            <div class="ability-box second">
-              <img
-                [ngClass]="{ active: infoRoiYearly === true }"
-                (mouseover)="infoRoiYearly = true"
-                (mouseleave)="infoRoiYearly = false"
-                class="info-icon"
-                src="/assets/base/images/icons/question-mark.svg"
-                alt="question mark"
-              />
-              <div
-                [ngClass]="{ 'active-values': infoRoiYearly === true }"
-                class="ability-content"
-              >
-                <img
-                  class="red-star"
-                  src="assets/base/images/icons/yearly-roi-red.svg"
-                  alt="ability icon"
-                />
-
-                <div class="ability-text">
-                  <p class="category-title-third">
-                    {{ displayArray[0]["yearly"].toLocaleString() }} %
-                  </p>
-                  <p class="races-desc">potential ROI</p>
-                </div>
-              </div>
-              <div
-                [ngClass]="{ 'active-info': infoRoiYearly === false }"
-                class="ability-content"
-              >
-                <p class="races-desc">
-                  We give away 11 000 IOI in games every day. Play games to
-                  reach potential ROI.
-                </p>
               </div>
             </div>
           </div>
