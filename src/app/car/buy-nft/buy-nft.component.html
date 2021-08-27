@@ -239,7 +239,9 @@
                 src="/assets/base/images/icons/ioi-big.svg"
                 alt="ioi token icon"
               />
-              <p class="category-title-first">{{ price.toLocaleString() }}</p>
+              <p class="category-title-first">
+                {{ price | number: "1.2-2":"fr" }}
+              </p>
             </div>
             <div class="amount">
               <img
@@ -248,10 +250,9 @@
               />
               <p class="category-title-first">
                 {{
-                  (
-                    (price * myDriverBalances.ioi_usdt) /
-                    this.myDriverBalances.matic_usdt
-                  ).toLocaleString()
+                  ((price * myDriverBalances.ioi_usdt) /
+                    this.myDriverBalances.matic_usdt) *
+                    1.05 | number: "1.2-2":"fr"
                 }}
               </p>
             </div>
