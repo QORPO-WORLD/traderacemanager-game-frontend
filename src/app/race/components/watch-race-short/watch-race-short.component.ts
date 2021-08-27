@@ -76,6 +76,7 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
   xxObserver: Subscription;
   transObserver: Subscription;
   ntoberver: Subscription;
+  refuelObserver: Subscription;
   winnersList: any = [];
   winnerData: any;
   semaforsLaunched = false;
@@ -990,36 +991,20 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       fake.l = this.raceDataildata.my_cars[x].l;
       stat.push(fake);
     }
-    if (
-      this.raceDataildata.tour_index > 10 &&
-      this.raceDataildata.tour_index < 20
-    ) {
 
-      stat2 = stat.filter((item) => {
-        // return item.cid != this.winnerData.eliminated_car.car_id;
+
+    for (let x = 0; x < stat.length; x++) {
+      stat[x].batman = stat[x].b.filter((item) => {
+        return item.bet !== 0;
       });
     }
-
-    if (stat2.length > 0) {
-      for (let x = 0; x < stat2.length; x++) {
-        stat2[x].batman = stat2[x].b.filter((item) => {
-          return item.bet !== 0;
-        });
-      }
-      this.commonCars = stat2;
-    } else {
-      for (let x = 0; x < stat.length; x++) {
-        stat[x].batman = stat[x].b.filter((item) => {
-          return item.bet !== 0;
-        });
-      }
-      this.commonCars = stat;
-    }
+    this.commonCars = stat;
 
     this.ntoberver = this.api
       .racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString())
       .subscribe((data) => {
         this.newNext = data.race_hash;
+        // this.getRefuelCars(this.newNext);
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;
         const nozacni = (this.newNextStartsIn - 15) * 1000;
@@ -1033,6 +1018,14 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
             }
           }, nozacni);
         }
+      });
+  }
+
+  getRefuelCars(nextRace: string) {
+    this.refuelObserver = this.api
+      .racesTournamentRefuelCarsList(nextRace)
+      .subscribe((data) => {
+
       });
   }
 

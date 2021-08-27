@@ -307,6 +307,7 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   selectedSlideIndex = 0;
   favFilter = false;
   coinFilterType = "most";
+  selectedChart = "chart";
   sumFuel: number;
   sumlength: number;
   calced = false;
