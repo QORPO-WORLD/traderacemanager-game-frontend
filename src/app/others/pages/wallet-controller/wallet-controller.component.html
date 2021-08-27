@@ -1,7 +1,4 @@
-
-
 <div class="main-holder">
-
   <div class="content-title" [routerLink]="['/race/start-race']">
     <img
       class="red-star"
@@ -20,70 +17,99 @@
     <div class="menu-holder">
       <div class="balance-holder my-cta-btn-back">
         <div class="acc-value">
-          <p class="value"><img src="/assets/base/images/icons/dollar-coin.png" alt=""> {{accountValue | number:'1.0-2':'fr'}}</p>
+          <p class="value">
+            <img src="/assets/base/images/icons/dollar-coin.png" alt="" />
+            {{ accountValue | number: "1.0-2":"fr" }}
+          </p>
           <p class="desc">account value</p>
         </div>
-  
+
         <div class="balance-flex">
           <div class="balance-item bordered">
-            <p class="value"><img src="/assets/base/images/icons/ioi-big.svg" alt=""> {{ myIoiBalance | number: "1.0-2":"fr" }}</p>
-            <p class="dollars">	&#36; {{ (myIoiBalance * myBalance.ioi_usdt) | number: "1.0-2":"fr" }}</p>
+            <p class="value">
+              <img src="/assets/base/images/icons/ioi-big.svg" alt="" />
+              {{ myIoiBalance | number: "1.0-2":"fr" }}
+            </p>
+            <p class="dollars">
+              &#36;
+              {{ myIoiBalance * myBalance.ioi_usdt | number: "1.0-2":"fr" }}
+            </p>
           </div>
-  
+
           <div class="balance-item">
-            <p class="value"><img src="/assets/base/images/icons/polygon-big.svg" alt=""> {{ myMaticBalance | number: "1.0-2":"fr" }}</p>
-            <p class="dollars">	&#36;
+            <p class="value">
+              <img src="/assets/base/images/icons/polygon-big.svg" alt="" />
+              {{ myMaticBalance | number: "1.0-2":"fr" }}
+            </p>
+            <p class="dollars">
+              &#36;
               {{
-                (myBalance?.game_wallet_matic * myBalance?.matic_usdt)
+                myBalance?.game_wallet_matic * myBalance?.matic_usdt
                   | number: "1.0-2":"fr"
-              }}</p>
+              }}
+            </p>
           </div>
         </div>
       </div>
-  
+
       <div class="menu-btns">
-        <div class="menu-item" 
-        [ngClass]="{'active': controlType === 'deposit'}"
-        [routerLink]="['/other/wallet-control']"
-        [queryParams]="{ controlType: 'deposit' }">
-          <p><img src="/assets/base/images/icons/deposit-icon2.svg" alt=""> Deposit</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+        <div
+          class="menu-item"
+          [ngClass]="{ active: controlType === 'deposit' }"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'deposit' }"
+        >
+          <p>
+            <img src="/assets/base/images/icons/deposit-icon2.svg" alt="" />
+            Deposit
+          </p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
-        <div class="menu-item" 
+        <!-- <div class="menu-item" 
         [ngClass]="{'active': controlType === 'withdraw'}"
         [routerLink]="['/other/wallet-control']"
         [queryParams]="{ controlType: 'withdraw' }">
           <p><img src="/assets/base/images/icons/withdraw-icon.svg" alt=""> Withdraw</p>
           <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
           <div class="active-border my-cta-btn-back"></div>
-        </div>
-        <div class="menu-item" 
-        [ngClass]="{'active': controlType === 'transfer'}"
-        [routerLink]="['/other/wallet-control']"
-        [queryParams]="{ controlType: 'transfer' }">
-          <p><img src="/assets/base/images/icons/transfer-icon.svg" alt=""> Transfer</p>
-          <img src="/assets/base/images/funds-box-back.png" alt="" class="back-img">
+        </div> -->
+        <div
+          class="menu-item"
+          [ngClass]="{ active: controlType === 'transfer' }"
+          [routerLink]="['/other/wallet-control']"
+          [queryParams]="{ controlType: 'transfer' }"
+        >
+          <p>
+            <img src="/assets/base/images/icons/transfer-icon.svg" alt="" />
+            Transfer
+          </p>
+          <img
+            src="/assets/base/images/funds-box-back.png"
+            alt=""
+            class="back-img"
+          />
           <div class="active-border my-cta-btn-back"></div>
         </div>
       </div>
     </div>
-  
+
     <div class="content-holder">
       <ng-container *ngIf="controlType === 'deposit'">
         <app-quick-deposit></app-quick-deposit>
       </ng-container>
-    
+
       <ng-container *ngIf="controlType === 'withdraw'">
         <app-quick-withdraw></app-quick-withdraw>
       </ng-container>
-    
+
       <ng-container *ngIf="controlType === 'transfer'">
         <app-quick-transfer></app-quick-transfer>
       </ng-container>
     </div>
   </div>
-  
-  
-
 </div>
