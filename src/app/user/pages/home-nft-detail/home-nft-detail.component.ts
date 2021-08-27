@@ -18,4 +18,7 @@ export class HomeNftDetailComponent implements OnInit {
   changeMarketState(id: number) {
     this.marketState.emit(id);
   }
+  openLink(url: string) {
+    window.open(url, "_blank").focus();
+  }
 }

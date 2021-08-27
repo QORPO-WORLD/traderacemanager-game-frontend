@@ -9,8 +9,6 @@ import { CarsService } from "../../api/services/cars.service";
 })
 export class NftDetailComponent implements OnInit {
   loading = false;
-  infoRoi = false;
-  infoRoiYearly = false;
   remainingAssets = [];
   assetsSubscribe: Subscription;
   @Input() assetInfo: Array<any>;
@@ -64,5 +62,8 @@ export class NftDetailComponent implements OnInit {
   }
   changeMarketState(id: number) {
     this.marketState.emit(id);
+  }
+  openLink(url: string) {
+    window.open(url, "_blank").focus();
   }
 }

@@ -107,7 +107,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 100%;
+    height: 110%;
     width: 30%;
 
     .category-title-second {
@@ -118,9 +118,8 @@
     }
     .text-buttons {
       width: 120%;
-      height: 25%;
+      height: 35%;
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
       margin-top: 5%;
       .buy {
@@ -133,20 +132,17 @@
         background: rgba(255, 255, 255, 0.05);
       }
       button {
-        width: 31%;
-        height: 35%;
+        z-index: 1;
+        padding: 17px 35px;
         transition: 0.3s;
-        -webkit-transition: 0.3s;
-        -moz-transition: 0.3s;
-        -ms-transition: 0.3s;
-        -o-transition: 0.3s;
+        margin-left: 13px;
+        white-space: nowrap;
+        &.first {
+          margin-left: 0px;
+        }
       }
       button:hover {
         transform: scale(1.01);
-        -webkit-transform: scale(1.01);
-        -moz-transform: scale(1.01);
-        -ms-transform: scale(1.01);
-        -o-transform: scale(1.01);
         box-shadow: (0px 0px 15px rgba(255, 255, 255, 0.9));
       }
     }
@@ -227,8 +223,7 @@
           min-width: 100%;
           display: flex;
           align-items: center;
-          .races-desc {
-          }
+
           &.active-values {
             opacity: 0;
           }
@@ -242,6 +237,9 @@
           flex-direction: column;
           justify-content: center;
           .races-desc {
+            opacity: 0.5;
+          }
+          .races-desc-smaller {
             opacity: 0.5;
           }
         }
@@ -278,6 +276,67 @@
         margin-top: 0%;
       }
     }
+    &.cars {
+      height: 110%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .titles {
+        height: 10%;
+        display: flex;
+        align-items: center;
+      }
+      .category-title-second {
+        text-align: right;
+        width: 100%;
+      }
+      .ability-boxes {
+        margin-top: unset;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .ability-box {
+          margin-top: unset;
+        }
+      }
+      .races-access {
+        height: 20%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        p {
+          font-family: Earth Orbiter;
+          font-weight: bold;
+          opacity: 1;
+        }
+        img {
+          &.check-icon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 15px;
+          }
+        }
+        .races-box-small {
+          width: 32%;
+          height: 55%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+        .races-box {
+          height: 30%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+      }
+    }
   }
 }
 
@@ -309,6 +368,11 @@
   font-weight: 500;
   font-size: 16px;
 }
+.races-desc-smaller {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
 @media screen and(max-width: 1700px) {
   .paging-img {
     width: 17px;
@@ -336,16 +400,38 @@
     line-height: 14px;
   }
   .races-desc {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .races-desc-smaller {
+    font-size: 10px;
+    line-height: 12px;
   }
   .detail-content {
+    .detail-text {
+      .text-buttons {
+        button {
+          padding: 13px 30px;
+        }
+      }
+    }
     .detail-abilities {
       .ability-boxes {
         .ability-box {
           .info-icon {
             width: 17.5px;
             height: 17.5px;
+          }
+        }
+      }
+      &.cars {
+        .races-access {
+          img {
+            &.check-icon {
+              top: 4px;
+              right: 4px;
+              width: 13px;
+            }
           }
         }
       }
@@ -370,10 +456,22 @@
     line-height: 12px;
   }
   .races-desc {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 9px;
+    line-height: 11px;
+  }
+  .races-desc-smaller {
+    font-size: 8px;
+    line-height: 10px;
   }
   .detail-content {
+    .detail-text {
+      .text-buttons {
+        button {
+          margin-left: 8px;
+          padding: 10px 27px;
+        }
+      }
+    }
     .detail-abilities {
       .ability-boxes {
         .ability-box {
@@ -387,6 +485,16 @@
   }
 }
 @media screen and(max-width: 1200px) {
+  .detail-content {
+    .detail-text {
+      .text-buttons {
+        button {
+          padding: 9px 23px;
+          margin-left: 6px;
+        }
+      }
+    }
+  }
 }
 @media screen and(max-width: 1024px) {
 }
@@ -407,14 +515,25 @@
     line-height: 16px;
   }
   .category-title-fourth {
-    font-size: 5px;
-    line-height: 6px;
-  }
-  .races-desc {
     font-size: 8px;
     line-height: 10px;
   }
+  .races-desc {
+    font-size: 7px;
+    line-height: 9px;
+  }
+  .races-desc-smaller {
+    font-size: 6px;
+    line-height: 10px;
+  }
   .detail-content {
+    .detail-text {
+      .text-buttons {
+        button {
+          padding: 9px 27px;
+        }
+      }
+    }
     .detail-abilities {
       .ability-boxes {
         .ability-box {
@@ -424,6 +543,17 @@
           }
           .ability-content {
             padding: 2%;
+          }
+        }
+      }
+      &.cars {
+        .races-access {
+          img {
+            &.check-icon {
+              top: 3px;
+              right: 3px;
+              width: 10px;
+            }
           }
         }
       }
@@ -445,8 +575,27 @@
   }
 
   .races-desc {
-    font-size: 6px;
-    line-height: 8px;
+    font-size: 5px;
+    line-height: 7px;
+  }
+  .races-desc-smaller {
+    font-size: 4px;
+    line-height: 6px;
+  }
+  .detail-content {
+    .detail-abilities {
+      &.cars {
+        .races-access {
+          img {
+            &.check-icon {
+              top: 2px;
+              right: 2px;
+              width: 8px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 @media screen and(max-width: 640px) and (orientation: landscape) {
@@ -474,6 +623,10 @@
     font-size: 4px;
     line-height: 6px;
   }
+  .races-desc-smaller {
+    font-size: 3px;
+    line-height: 5px;
+  }
   .detail-content {
     .detail-abilities {
       .ability-boxes {
@@ -481,6 +634,17 @@
           .info-icon {
             width: 10px;
             height: 10px;
+          }
+        }
+      }
+      &.cars {
+        .races-access {
+          img {
+            &.check-icon {
+              top: 1px;
+              right: 1px;
+              width: 6px;
+            }
           }
         }
       }
@@ -598,6 +762,21 @@
           }
         }
       }
+      &.cars {
+        height: 500px;
+        padding-bottom: 50px;
+        .ability-boxes {
+          .ability-box {
+            height: 23%;
+          }
+        }
+        .races-access {
+          img {
+            &.check-icon {
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -626,6 +805,28 @@
     font-size: 10px;
     line-height: 12px;
     opacity: 0.6;
+  }
+  .races-desc-smaller {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .detail-content {
+    .detail-abilities {
+      &.cars {
+        height: 480px;
+        padding-bottom: 30px;
+        .ability-boxes {
+          height: 55%;
+        }
+        .races-access {
+          height: 25%;
+          img {
+            &.check-icon {
+            }
+          }
+        }
+      }
+    }
   }
 }
 

@@ -66,7 +66,7 @@ export class MetamaskSignupComponent implements OnInit {
   getWalletAddress() {
     ethereum
       .request({ method: "net_version" })
-      .then((data) => this.setChainId(data))
+      .then((data) => this.setChainId(Number(data)))
       .catch((error) => {
         if (error.code === 4001) {
           this.notify.error("Please connect to MetaMask.");

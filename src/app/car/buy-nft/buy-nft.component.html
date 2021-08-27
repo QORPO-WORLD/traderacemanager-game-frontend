@@ -36,6 +36,46 @@
           <div *ngIf="assetInfo[0]['ability1']" class="ability-box">
             <img
               class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ assetInfo[0]["ability1"] }} IOI
+              </p>
+              <p class="races-desc">Race winnings</p>
+              <p class="races-desc-smaller">(Average per day)</p>
+            </div>
+          </div>
+          <div *ngIf="assetInfo[0]['ability2']" class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ assetInfo[0]["ability2"].toLocaleString() }} IOI
+              </p>
+              <p class="races-desc">MAX Race winnings</p>
+              <p class="races-desc-smaller">(Per day)</p>
+            </div>
+          </div>
+          <div *ngIf="assetInfo[0]['ability3']" class="ability-box">
+            <img
+              class="red-star"
               src="assets/base/images/icons/daily-stake-red.svg"
               alt="ability icon"
             />
@@ -47,47 +87,10 @@
 
             <div class="ability-text">
               <p class="category-title-third">
-                {{ assetInfo[0]["ability1"] }} IOI
+                {{ assetInfo[0]["ability3"] }} IOI
               </p>
-              <p class="races-desc">daily stake</p>
-            </div>
-          </div>
-          <div *ngIf="assetInfo[0]['ability2']" class="ability-box">
-            <img
-              class="red-star"
-              src="assets/base/images/market/investment-red.svg"
-              alt="ability icon"
-            />
-            <img
-              class="blue-star"
-              src="assets/base/images/market/investment.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ assetInfo[0]["ability2"] }}%
-              </p>
-              <p class="races-desc">fixed ROI</p>
-            </div>
-          </div>
-          <div *ngIf="assetInfo[0]['ability3']" class="ability-box">
-            <img
-              class="red-star"
-              src="assets/base/images/icons/yearly-roi-red.svg"
-              alt="ability icon"
-            />
-            <img
-              class="blue-star"
-              src="assets/base/images/icons/yearly-roi-blue.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ assetInfo[0]["ability3"].toLocaleString() }}%
-              </p>
-              <p class="races-desc">potential ROI</p>
+              <p class="races-desc">daily stake income</p>
+              <p class="races-desc-smaller">(Available until 31st AUG 2021)</p>
             </div>
           </div>
         </div>
@@ -150,7 +153,7 @@
           </div>
         </div>
         <div *ngIf="assetInfo[0]['type'] === 'bundle'" class="ability-boxes">
-          <div class="ability-box">
+          <div *ngIf="assetInfo[0].nft" class="ability-box">
             <img
               class="red-star"
               src="assets/base/images/market/investment-red.svg"
@@ -167,7 +170,46 @@
               <p class="races-desc">Affiliate reward</p>
             </div>
           </div>
-          <div class="ability-box">
+          <div *ngIf="assetInfo[0].ability1" class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ assetInfo[0]["ability1"] }} IOI
+              </p>
+              <p class="races-desc">Race winnings</p>
+              <p class="races-desc-smaller">(Average per day)</p>
+            </div>
+          </div>
+          <div *ngIf="assetInfo[0].ability2" class="ability-box">
+            <img
+              class="red-star"
+              src="assets/base/images/market/value-red.svg"
+              alt="buy icon"
+            />
+            <img
+              class="blue-star"
+              src="assets/base/images/market/value.svg"
+              alt="buy icon"
+            />
+            <div class="ability-text">
+              <p class="category-title-third">
+                {{ assetInfo[0].ability2.toLocaleString() }} IOI
+              </p>
+              <p class="races-desc">MAX Race winnings</p>
+              <p class="races-desc-smaller">(Per day)</p>
+            </div>
+          </div>
+          <div *ngIf="assetInfo[0].ability3" class="ability-box">
             <img
               class="red-star"
               src="assets/base/images/icons/daily-stake-red.svg"
@@ -181,45 +223,10 @@
 
             <div class="ability-text">
               <p class="category-title-third">
-                {{ assetInfo[0]["reward"] }} IOI
+                {{ assetInfo[0]["ability3"] }} IOI
               </p>
-              <p class="races-desc">Daily stake</p>
-            </div>
-          </div>
-          <div class="ability-box">
-            <img
-              class="red-star"
-              src="assets/base/images/market/investment-red.svg"
-              alt="ability icon"
-            />
-            <img
-              class="blue-star"
-              src="assets/base/images/market/investment.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">{{ assetInfo[0]["staking"] }}%</p>
-              <p class="races-desc">fixed ROI</p>
-            </div>
-          </div>
-          <div class="ability-box">
-            <img
-              class="red-star"
-              src="assets/base/images/icons/yearly-roi-red.svg"
-              alt="ability icon"
-            />
-            <img
-              class="blue-star"
-              src="assets/base/images/icons/yearly-roi-blue.svg"
-              alt="ability icon"
-            />
-
-            <div class="ability-text">
-              <p class="category-title-third">
-                {{ assetInfo[0]["yearly"].toLocaleString() }}%
-              </p>
-              <p class="races-desc">potential ROI</p>
+              <p class="races-desc">daily stake income</p>
+              <p class="races-desc-smaller">(Available until 31st AUG 2021)</p>
             </div>
           </div>
         </div>
@@ -232,7 +239,9 @@
                 src="/assets/base/images/icons/ioi-big.svg"
                 alt="ioi token icon"
               />
-              <p class="category-title-first">{{ price.toLocaleString() }}</p>
+              <p class="category-title-first">
+                {{ price | number: "1.2-2":"fr" }}
+              </p>
             </div>
             <div class="amount">
               <img
@@ -241,10 +250,9 @@
               />
               <p class="category-title-first">
                 {{
-                  (
-                    (price * myDriverBalances.ioi_usdt) /
-                    this.myDriverBalances.matic_usdt
-                  ).toLocaleString()
+                  ((price * myDriverBalances.ioi_usdt) /
+                    this.myDriverBalances.matic_usdt) *
+                    1.05 | number: "1.2-2":"fr"
                 }}
               </p>
             </div>

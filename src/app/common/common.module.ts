@@ -48,14 +48,10 @@ import { CreateTipsComponent } from './components/create-tips/create-tips.compon
 import { MyHammerConfig } from './resources/my-hammer.config';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
-import { ProfileStatsComponent } from './components/shared/profile-stats/profile-stats.component';
 import { FastFuelCarComponent } from './components/shared/fast-fuel/fast-fuel.component';
 import { MySettingsComponent } from './components/shared/my-settings/my-settings.component';
-import { MainTopBannerComponent } from './components/main-top-banner/main-top-banner.component';
-import { MyStatsComponent } from './components/shared/my-stats/my-stats.component';
 import { ExpBarComponent } from './components/shared/exp-bar/exp-bar.component';
 import { LangSwitcherComponent } from './components/shared/lang-switcher/lang-switcher.component';
-import { MyAffiliateComponent } from './components/shared/my-affiliate/my-affiliate.component';
 import { MyChatComponent } from './components/my-chat/my-chat.component';
 import { IndicatorComponent } from './components/indicator/indicator.component';
 import { TechIndicatorComponent } from './components/tech-indicator/tech-indicator.component';
@@ -98,16 +94,12 @@ import { TutorialModalComponent } from './components/shared/tutorial-modal/tutor
     QuickDepositComponent,
     QuickTransferComponent,
     QuickWithdrawComponent,
-    ProfileStatsComponent,
     FastFuelCarComponent,
     CreateFastFuelCarComponent,
     MySettingsComponent,
-    MainTopBannerComponent,
-    MyStatsComponent,
     ExpBarComponent,
     LangSwitcherComponent,
     MyRacesAdComponent,
-    MyAffiliateComponent,
     NotificationListComponent,
     SynergizerComponent,
     MyChatComponent,
@@ -154,10 +146,9 @@ import { TutorialModalComponent } from './components/shared/tutorial-modal/tutor
   exports: [ CustomCurrencyPipe, CustomDatePipe, NoCommaPipe, SoNumberPipe, OrdinalPipe, ArraySortPipe,
     TimerComponent, TimerLongComponent, NotifiqComponent, ArraySortPipe,
      TwoDigitDecimaNumberDirective, SiteLayoutComponent, RaceLayoutComponent, QuickDepositComponent, QuickTransferComponent,
-    QuickWithdrawComponent, TranslateModule, ProfileStatsComponent, FastFuelCarComponent,
-    MySettingsComponent, CreateFastFuelCarComponent,
-    MainTopBannerComponent, MyStatsComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
-    MyAffiliateComponent, SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
+    QuickWithdrawComponent, TranslateModule, FastFuelCarComponent,
+    MySettingsComponent, CreateFastFuelCarComponent, ExpBarComponent, LangSwitcherComponent, MyRacesAdComponent,
+    SynergizerComponent, MyChatComponent, IndicatorComponent, TechIndicatorComponent,
     DailyTipModalComponent, ShowTipsComponent, CreateTipsComponent, TeamsSelectionComponent, RaceInfoModalComponent, IoiloaderComponent,
   LoadingModalComponent, MetaBuyComponent, RulesInfoModalComponent, RaceBonusModalComponent],
   entryComponents: []

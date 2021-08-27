@@ -35,8 +35,7 @@ const httpOptions = {
 })
 export class SiteLayoutComponent
   extends AbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   public identity: Identity;
   public menuVisible = false;
   isUsingMetamask = false;
@@ -48,8 +47,6 @@ export class SiteLayoutComponent
   raceDriverObserver: Subscription;
   showChat = false;
   switchBalance = false;
-  showMySettings = false;
-  showAff = false;
   menuOpen = false;
   openNotifiq = false;
   isManager = false;
@@ -101,6 +98,7 @@ export class SiteLayoutComponent
   tickInterval: any;
   managerInterval: any;
   depositInterval: any;
+  bintInterval: any;
   depos = false;
   Affilate: any;
   deposTime: any;
@@ -112,6 +110,7 @@ export class SiteLayoutComponent
   tutorialStep = 1;
   ownedRacers: any;
   myCarsObserver: Subscription;
+  liveObserver: Subscription;
   products: Array<object> = [
     //bronze
 
@@ -238,6 +237,9 @@ export class SiteLayoutComponent
       likes: "2k",
     },
   ];
+
+  nextRace: any;
+
   constructor(
     public router: Router,
     protected driverSrvc: DriversService,
@@ -250,7 +252,8 @@ export class SiteLayoutComponent
     private rservice: RacesService,
     private _http: HttpClient,
     protected teams: TeamsService,
-    private capi: CarsService
+    private capi: CarsService,
+    private raceApi: RacesService
   ) {
     super();
     experience.load((data: Experience) => {
@@ -264,6 +267,7 @@ export class SiteLayoutComponent
   ngOnInit() {
     const metaBalance = JSON.parse(localStorage.getItem("meta-balance"));
     const mmea = JSON.parse(localStorage.getItem("mmea"));
+    const bin = JSON.parse(localStorage.getItem("binary"));
     const tick = JSON.parse(localStorage.getItem("trxusdt"));
     const data = JSON.parse(localStorage.getItem("first-time"));
     this.getTeams();
@@ -283,6 +287,17 @@ export class SiteLayoutComponent
         const tickn = JSON.parse(localStorage.getItem("trxusdt"));
         this.trxUsdt = tickn;
       }, 3000);
+    }
+    if (bin && this.router.url !== '/race/binary-fuel') {
+      if (Date.now() < bin.time) {
+        this.bintInterval = setInterval(() => {
+          this.getMyGames();
+        },
+          3200);
+        this.getMyGames();
+      } else {
+        localStorage.removeItem("binary");
+      }
     }
     this.getMyAssets();
     this.getMyLevel();
@@ -350,6 +365,9 @@ export class SiteLayoutComponent
     if (this.raceDriverObserver) {
       this.raceDriverObserver.unsubscribe();
     }
+    if (this.liveObserver) {
+      this.liveObserver.unsubscribe();
+    }
     clearInterval(this.interval);
 
     clearInterval(this.nxInterval);
@@ -358,6 +376,7 @@ export class SiteLayoutComponent
     clearInterval(this.managerInterval);
     clearInterval(this.depositInterval);
     clearInterval(this.balanceInterval);
+    clearInterval(this.bintInterval);
   }
 
   routerOnDeactivate() {
@@ -763,6 +782,25 @@ export class SiteLayoutComponent
     } else {
       this.closeFirstModal(false);
     }
+  }
+
+  getMyGames() {
+    this.liveObserver = this.raceApi.liveBinary().subscribe((data) => {
+      if (data.length > 0) {
+        this.notify.error('', 'Binary fight oponent found, you will be redirected');
+        this.nextRace = data[0];
+        if (this.bintInterval) {
+          clearInterval(this.bintInterval);
+        }
+        this.router.navigate([
+          "/race/binary-trade/" +
+          this.nextRace.versus_hash +
+          "/" +
+          this.nextRace.start_at.toString()
+        ]
+        );
+      }
+    });
   }
 
 }

@@ -332,7 +332,7 @@ export class BinaryInitialSelectionComponent implements OnInit, OnDestroy {
           "binary",
           JSON.stringify({
             hash: data.versus_hash,
-            time: Date.now() + 300000,
+            time: Date.now() + 90000,
           })
         );
         setTimeout(() => {
