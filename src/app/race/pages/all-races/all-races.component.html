@@ -137,8 +137,8 @@
                 <img src="/assets/base/images/race-type/clock.svg" alt="" />
                 <p>
                   <app-timer
-                    *ngIf="specialTournament"
-                    [value]="specialTournament?.starts_in_seconds"
+                    *ngIf="premiumTeamTournament"
+                    [value]="premiumTeamTournament?.starts_in_seconds"
                     (onComplete)="onTimerComplete()"
                   ></app-timer>
                 </p>
@@ -169,7 +169,7 @@
                   src="/assets/base/images/race-type/token-white.svg"
                   alt=""
                 />
-                <p>{{ premiumTournament?.prize_pool}}</p>
+                <p>{{ premiumTournament?.prize_pool }}</p>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@
             <div
               class="control-item"
               *ngIf="fastEnabled === true"
-              (click)="selRaceType = specialTournament?.race_hash"
+              (click)="selRaceType = premiumTeamTournament?.race_hash"
             >
               <img src="/assets/base/images/race-type/fast-green.svg" alt="" />
             </div>
@@ -195,14 +195,13 @@
           </div>
 
           <div class="btns-holder">
-            <button
-              class="inactive"
-              (click)="openLink('https://traderacemanager.com/user/tesla')"
-            >
-              Tesla rules
+            <button class="inactive" (click)="openRulesModal()">
+              Win more with NFTs
             </button>
             <button
-              [routerLink]="['/car/fuel-car/' + specialTournament?.race_hash]"
+              [routerLink]="[
+                '/car/fuel-car/' + premiumTeamTournament?.race_hash
+              ]"
               class="active-btn"
             >
               Join <img src="/assets/base/images/icons/play-icon.svg" alt="" />
@@ -394,6 +393,9 @@
             </div>
 
             <div class="btns-holder">
+              <button class="inactive" (click)="openRulesModal()">
+                Win more with NFTs
+              </button>
               <button
                 class="active-btn"
                 [routerLink]="['/car/fuel-car/' + premiumTournament?.race_hash]"
