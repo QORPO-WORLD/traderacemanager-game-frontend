@@ -105,11 +105,6 @@ const routes: Routes = [
         component: HowToComponent,
         data: { title: "How to" },
       },
-      {
-        path: "tesla",
-        component: TeslaCompetitionComponent,
-        data: { title: "Tesla competition" },
-      },
     ],
   },
   {
