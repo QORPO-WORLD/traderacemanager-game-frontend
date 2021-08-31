@@ -325,6 +325,40 @@ class RacesService extends __BaseService {
   }
 
   /**
+   * @param race_hash undefined
+   */
+   racesTournamentRefuelCarsListResponse(raceHash: string): __Observable<__StrictHttpResponse<string>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/races/game/${raceHash}/my-cars`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<string>;
+      })
+    );
+  }
+  /**
+   * @param race_hash undefined
+   */
+  racesTournamentRefuelCarsList(raceHash: string): __Observable<string> {
+    return this.racesTournamentRefuelCarsListResponse(raceHash).pipe(
+      __map(_r => _r.body as string)
+    );
+  }
+
+  /**
    * API endpoint /race/{hash}/detail
    * @param params The `RacesService.RacesDetailListParams` containing the following parameters:
    *
