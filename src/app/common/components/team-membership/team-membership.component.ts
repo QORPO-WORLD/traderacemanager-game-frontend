@@ -22,7 +22,7 @@ export class TeamMembershipComponent implements OnInit {
   animation = 1;
   timeoutPrev: any;
   timeoutNext: any;
-  myTeam: string;
+  myTeam = [];
   myTeamData: any;
   joinFree = false;
   currMonth: number;
@@ -32,6 +32,7 @@ export class TeamMembershipComponent implements OnInit {
   myDriverStats: any;
   discount: any;
   myMembEnd: any;
+  teamMembEnd: any;
   myBrowser: any;
   @Input() monthlyPrice = 50;
   @Input() quarterlyPrice = 135;
@@ -49,10 +50,9 @@ export class TeamMembershipComponent implements OnInit {
 
   ngOnInit() {
     this.getDiscount();
-    this.getTeams();
+
     this.accountInfo = this.identityService.getDriverMe();
-    console.log(this.myDriverStats);
-    console.log(this.accountInfo);
+    this.getTeams();
   }
 
   getDiscount() {
@@ -85,34 +85,34 @@ export class TeamMembershipComponent implements OnInit {
       .subscribe((data) => {
         this.notifyChangedBalance();
 
-        let gaMonthCount = 'one month';
+        let gaMonthCount = "one month";
         if (this.monthCount === 1) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-580556065/7WI1CICqmN8CEKGq6pQC',
-            'value': this.monthlyPrice,
-            'currency': 'USD',
-            'transaction_id': ''
+          gtag("event", "conversion", {
+            send_to: "AW-580556065/7WI1CICqmN8CEKGq6pQC",
+            value: this.monthlyPrice,
+            currency: "USD",
+            transaction_id: "",
           });
         } else if (this.monthCount === 3) {
-          gaMonthCount = 'three month';
-          gtag('event', 'conversion', {
-            'send_to': 'AW-580556065/MlkaCIHbmN8CEKGq6pQC',
-            'value': this.quarterlyPrice,
-            'currency': 'USD',
-            'transaction_id': ''
+          gaMonthCount = "three month";
+          gtag("event", "conversion", {
+            send_to: "AW-580556065/MlkaCIHbmN8CEKGq6pQC",
+            value: this.quarterlyPrice,
+            currency: "USD",
+            transaction_id: "",
           });
         } else if (this.monthCount === 12) {
-          gaMonthCount = 'one year';
-          gtag('event', 'conversion', {
-            'send_to': 'AW-580556065/KA9sCLjomN8CEKGq6pQC',
-            'value': this.yearlyPrice,
-            'currency': 'USD',
-            'transaction_id': ''
+          gaMonthCount = "one year";
+          gtag("event", "conversion", {
+            send_to: "AW-580556065/KA9sCLjomN8CEKGq6pQC",
+            value: this.yearlyPrice,
+            currency: "USD",
+            transaction_id: "",
           });
         }
-        ga("event", 'buy_premium_account', {
-          eventCategory: 'buy_premium_account',
-          eventAction: gaMonthCount
+        ga("event", "buy_premium_account", {
+          eventCategory: "buy_premium_account",
+          eventAction: gaMonthCount,
         });
 
         setTimeout(() => {
@@ -139,14 +139,14 @@ export class TeamMembershipComponent implements OnInit {
       });
 
       this.teams = data.results;
-      this.reorderTeams();
-      this.selectedTeam = this.teams;
-      this.selectedTeam = this.selectedTeam.filter(
+      this.myTeam = this.teams.filter(
+        (item) => item.name === this.accountInfo.team
+      );
+      this.selectedTeam = this.teams.filter(
         (item) => item.id === this.selectedTeamId
       );
-      console.log(this.selectedTeam);
       this.getMembEndSafari();
-      console.log(this.myMembEnd);
+      this.reorderTeams();
     });
   }
   reorderTeams() {
@@ -211,5 +211,6 @@ export class TeamMembershipComponent implements OnInit {
       " ",
       "T"
     );
+    this.teamMembEnd = this.myTeam[0].memberships[0].date_to.replace(" ", "T");
   }
 }

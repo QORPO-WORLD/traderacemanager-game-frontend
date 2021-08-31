@@ -126,7 +126,6 @@ export class StartRaceComponent implements OnInit, OnDestroy {
   ownedRacers: any;
   ppes: any;
   ngOnInit() {
-    console.log(this.assets);
     const data = JSON.parse(localStorage.getItem("first-time"));
     const notFinishedrace = JSON.parse(localStorage.getItem("first-race"));
     const dataNick = this.identityService.getStorageIdentity();
