@@ -193,7 +193,6 @@ export class HomePageComponent implements OnInit {
   oldIoiPrice: number;
   ioiIncresing = true;
   monthsEnd: any;
-  carouselInterval: any;
   tickerIoiInterval: any;
   logged = false;
   closeTokenDetail = true;
@@ -238,7 +237,6 @@ export class HomePageComponent implements OnInit {
     if (token) {
       this.logged = true;
     }
-    this.setCarInterval();
     this.getIoiPrice();
     this.tickerIoiInterval = setInterval(() => {
       this.getIoiPrice();
@@ -248,7 +246,6 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.carouselInterval);
     clearInterval(this.tickerIoiInterval);
   }
 
@@ -411,7 +408,6 @@ export class HomePageComponent implements OnInit {
     } else {
       this.carouselStep++;
     }
-    this.setCarInterval();
   }
 
   prevCarItem() {
@@ -420,20 +416,11 @@ export class HomePageComponent implements OnInit {
     } else {
       this.carouselStep--;
     }
-    this.setCarInterval();
   }
 
   manualCarSwitch(index: number) {
     this.carouselStep = index;
-    clearInterval(this.carouselInterval);
     // this.setCarInterval();
-  }
-
-  setCarInterval() {
-    clearInterval(this.carouselInterval);
-    this.carouselInterval = setInterval(() => {
-      this.nextCarItem();
-    }, 7000);
   }
 
   nextBundleCarItem() {
@@ -496,14 +483,12 @@ export class HomePageComponent implements OnInit {
       if (xDiff > 0) {
         if (this.carouselStep < 3) this.carouselStep++;
         else this.carouselStep = 1;
-        clearInterval(this.carouselInterval);
       } else {
         if (this.carouselStep > 1) {
           this.carouselStep--;
         } else {
           this.carouselStep = 3;
         }
-        clearInterval(this.carouselInterval);
       }
     } else {
       if (yDiff > 0) {
