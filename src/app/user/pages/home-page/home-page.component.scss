@@ -199,7 +199,49 @@ h6 {
       z-index: -2;
     }
     &.item1 {
-      background-image: url("/assets/base/images/home-page/banner.jpg");
+      background-image: url("/assets/base/images/home-page/top-sec-back.jpg");
+      .twitch-box{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 60%;
+        .heading{
+          color: #1CFFFF;
+          font-size: 29px;
+          margin: 0 0 15px;
+          font-weight: 900;
+          font-style: italic;
+        }
+        .box-holder{
+          position: relative;
+          cursor: pointer;
+          .bottom-border{
+            background: #9146FF;
+            height: 45px;
+            width: 100%;
+            padding-right: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            .watch-text{
+              font-size: 20px;
+              color: white;
+              margin: 0;
+              font-weight: 900;
+              font-style: italic;
+            }
+            .twitch-text{
+              position: absolute;
+              top: 50%;
+              right: -5px;
+              transform: translateY(-50%);
+            }
+          }
+        }
+      }
     }
     &.item2 {
       background-image: url("/assets/base/images/home-page/banner1.jpg");
@@ -765,48 +807,55 @@ h6 {
 
 .top-section {
   position: relative;
-  width: 70%;
+  width: 85%;
   margin: 0 auto;
   height: 100vh;
-  min-height: 600px;
+  min-height: 800px;
 
   .top-text {
     position: absolute;
     bottom: 15%;
     left: 0;
-    width: 452px;
+    width: 480px;
     color: white;
     h1 {
       font-weight: 800;
       line-height: 60px;
     }
   }
-  .google-play {
-    position: absolute;
-    right: 0;
-    bottom: 15%;
-    a {
-      padding: 0;
-      margin: 0;
+
+  .btns-holder{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .my-cta {
+      transition: 0.2s;
+      padding: 19px 29px;
+      font-size: 20px;
+      font-weight: 900;
+      white-space: nowrap;
+      border: 0;
+      outline: 0;
+      background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
+        linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
     }
-  }
-  .my-cta {
-    transition: 0.2s;
-    padding: 10px 36px;
-    border: 0;
-    outline: 0;
-    background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
-      linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
-    border-radius: 12px;
-    color: white;
-    cursor: pointer;
-  }
-  .my-cta:hover {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);
+    .my-cta:hover {
+      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+    }
+    .google-play {
+      margin-left: 30px;
+      a {
+        padding: 0;
+        margin: 0;
+      }
+    }
   }
 }
 
@@ -2173,6 +2222,26 @@ h6 {
       }
     }
     .my-carousel-item {
+      &.item1{
+        .twitch-box{
+          max-width: 50%;
+          .heading{
+            font-size: 26px;
+            margin: 0px 0 10px;
+          }
+          .box-holder{
+            .bottom-border{
+              padding-right: 32%;
+              .watch-text{
+                font-size: 19px;
+              }
+              .twitch-text{
+                width: 31%;
+              }
+            }
+          }
+        }
+      }
       &.item2 {
         .top-section {
           .bundle-detail {
@@ -2223,6 +2292,29 @@ h6 {
             }
           }
         }
+      }
+    }
+  }
+  .top-section{
+    min-height: 700px;
+    .top-text{
+      h1{
+        margin: 0 0 20px;
+        font-size: 44px;
+        line-height: 1.3;
+      }
+      p{
+        font-size: 19px;
+        margin-bottom: 25px;
+      }
+    }
+    .btns-holder{
+      .my-cta{
+        padding: 16px 29px;
+      }
+      .google-play{
+        margin-left: 20px;
+        width: 200px;
       }
     }
   }
@@ -2310,6 +2402,24 @@ h6 {
       }
     }
     .my-carousel-item {
+      &.item1{
+        .twitch-box{
+          .heading{
+            font-size: 23px;
+          }
+          .box-holder{
+            .bottom-border{
+              height: 35px;
+              .watch-text{
+                font-size: 17px;
+              }
+              .twitch-text{
+                width: 30%;
+              }
+            }
+          }
+        }
+      }
       &.item2 {
         .top-section {
           .bundle-detail {
@@ -2376,6 +2486,30 @@ h6 {
       }
     }
   }
+  .top-section{
+    min-height: 700px;
+    .top-text{
+      width: 390px;
+      h1{
+        margin: 0 0 17px;
+        font-size: 38px;
+      }
+      p{
+        font-size: 17px;
+        margin-bottom: 22px;
+      }
+    }
+    .btns-holder{
+      .my-cta{
+        padding: 14px 23px;
+        font-size: 18px;
+      }
+      .google-play{
+        margin-left: 15px;
+        width: 170px;
+      }
+    }
+  }
 }
 @media screen and (max-width: 1300px) {
   .review-position {
@@ -2409,43 +2543,19 @@ h6 {
   .buy-racers-section {
     .center {
       .buy-racers-content {
-        .title {
-          h2 {
-          }
-        }
 
         .content {
           .racer-items {
             .arrow-left {
               height: 80%;
-              img {
-              }
             }
             .arrow-right {
               height: 80%;
-              img {
-              }
-            }
-            .hover {
             }
             .buy-boxes {
               > div {
                 .racer-box {
                   height: 80%;
-                  .racer-img {
-                    img {
-                    }
-                  }
-                }
-                .racer-info {
-                  .desc {
-                  }
-                  .racer {
-                  }
-                  .price {
-                  }
-                  .name {
-                  }
                 }
               }
             }
@@ -2647,9 +2757,42 @@ h6 {
   }
   .top-section {
     position: relative;
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
-
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 80px 0 60px;
+    .top-text{
+      width: 390px;
+      bottom: unset;
+      left: unset;
+      transform: none;
+      position: relative;
+      text-align: center;
+      order: 2;
+      h1{
+        margin: 0 0 10px;
+        font-size: 33px;
+      }
+      p{
+        font-size: 15px;
+        margin-bottom: 18px;
+      }
+      .btns-holder{
+        justify-content: space-between;
+        .my-cta{
+          padding: 14px 23px;
+          font-size: 17px;
+        }
+        .google-play{
+          margin-left: 15px;
+          width: 170px;
+        }
+      }
+    }
     .menu {
       width: 100%;
       height: 100%;
@@ -2773,59 +2916,8 @@ h6 {
         }
       }
     }
-    .top-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      color: white;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      h1 {
-        font-size: 20px;
-        font-weight: 800;
-        line-height: 30px;
-      }
-    }
-    .google-play {
-      text-align: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 23%;
-      width: 90%;
-      -webkit-transform: translateX(-50%);
-      -moz-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      -o-transform: translateX(-50%);
-      a {
-        padding: 0;
-        margin: 0;
-      }
-    }
-    .my-cta {
-      transition: 0.2s;
-      padding: 10px 36px;
-      border: 0;
-      outline: 0;
-      background: linear-gradient(99.76deg, #fe173f 117.01%, #240b36 187.56%),
-        linear-gradient(250.32deg, #eb2163 22.61%, #950552 85.16%);
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-    }
-    .my-cta:hover {
-      transform: scale(1.05);
-      -webkit-transform: scale(1.05);
-      -moz-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-      -o-transform: scale(1.05);
-    }
   }
+
   .top-section-wrapper {
     width: 100%;
 
@@ -2879,8 +2971,6 @@ h6 {
         margin-left: 20%;
         .sec5text {
           color: white;
-          h4 {
-          }
           p {
             text-align: center;
           }
@@ -2927,24 +3017,13 @@ h6 {
   .buy-racers-section {
     .center {
       .buy-racers-content {
-        .title {
-          h2 {
-          }
-        }
-
         .content {
           .racer-items {
             .arrow-left {
               height: 100%;
-              img {
-              }
             }
             .arrow-right {
               height: 100%;
-              img {
-              }
-            }
-            .hover {
             }
             .buy-boxes {
               > div {
@@ -2958,16 +3037,6 @@ h6 {
 
                       width: 80%;
                     }
-                  }
-                }
-                .racer-info {
-                  .desc {
-                  }
-                  .racer {
-                  }
-                  .price {
-                  }
-                  .name {
                   }
                 }
               }
@@ -3028,12 +3097,33 @@ h6 {
       margin-top: 100px;
       margin-bottom: 100px;
       height: 100px;
-      button {
-      }
     }
   }
   .top-section-wrapper {
     .my-carousel-item {
+      &.item1{
+        .twitch-box{
+          width: 460px;
+          max-width: 80%;
+          right: unset;
+          left: unset;
+          top: unset;
+          transform: none;
+          position: relative;
+          order: 1;
+          .heading{
+            font-size: 18px;
+            margin: 0px 0 4px;
+          }
+          .box-holder{
+            .bottom-border{
+              position: absolute;
+              bottom: 0;
+              left: 0;
+            }
+          }
+        }
+      }
       &.item2 {
         .top-section {
           padding-top: 85px;
@@ -3101,6 +3191,7 @@ h6 {
     }
   }
 }
+
 @media screen and (max-width: 900px) {
   .review-position {
     .reviews-sec {
@@ -3259,25 +3350,14 @@ h6 {
   .buy-racers-section {
     .center {
       .buy-racers-content {
-        .title {
-          h2 {
-          }
-        }
-
         .content {
           height: 55%;
           .racer-items {
             .arrow-left {
               height: 100%;
-              img {
-              }
             }
             .arrow-right {
               height: 100%;
-              img {
-              }
-            }
-            .hover {
             }
             .buy-boxes {
               > div {
@@ -3758,30 +3838,46 @@ h6 {
     }
   }
   .top-section {
-    position: relative;
-    width: 70%;
-    margin: 0 auto;
-
-    .top-text {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      color: white;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      h1 {
-        font-size: 20px;
-        font-weight: 800;
-        line-height: 30px;
+    padding: 94px 0 60px;
+    .top-text{
+      width: 330px;
+      h1{
+        font-size: 26px;
+      }
+      p{
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+      .btns-holder{
+        .my-cta{
+          padding: 12px 20px;
+          font-size: 15px;
+        }
+        .google-play{
+          margin-left: 0;
+          width: 162px;
+        }
       }
     }
   }
   .top-section-wrapper {
     .my-carousel-item {
+      &.item1{
+        .twitch-box{
+          max-width: 85%;
+          .heading{
+            font-size: 15px;
+          }
+          .box-holder{
+            .bottom-border{
+              height: 30px;
+              .watch-text{
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
       &.item2 {
         .top-section {
           .bundle-detail {
@@ -3815,15 +3911,6 @@ h6 {
           }
         }
       }
-    }
-  }
-}
-@media screen and (max-width: 1024px) and (orientation: landscape) {
-  .top-section {
-    .top-text {
-      transform: unset;
-      top: 20%;
-      left: 0%;
     }
   }
 }
@@ -4567,8 +4654,34 @@ h6 {
       }
     }
   }
+  .top-section{
+    padding: 94px 0 44px;
+    min-height: 620px;
+    .top-text{
+      width: 250px;
+      h1{
+        font-size: 24px;
+      }
+      p{
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+      .btns-holder{
+        flex-wrap: wrap;
+        justify-content: center;
+        .my-cta{
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
   .top-section-wrapper {
     .my-carousel-item {
+      &.item1{
+        .twitch-box{
+          max-width: 95%;
+        }
+      }
       &.item2 {
         .top-section {
           display: flex;
@@ -5778,8 +5891,51 @@ footer {
     }
   }
 }
-@media screen and (max-width: 850px) and (orientation: landscape) {
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .top-section-wrapper{
+    min-height: unset;
+    .darkerback{
+      min-height: unset;
+    }
+    .my-carousel-item{
+      &.item1{
+        .twitch-box{
+          order: 2;
+          width: 48%;
+          .heading{
+            font-size: 16px;
+          }
+          .box-holder{
+            .bottom-border{
+              height: 30px;
+              .watch-text{
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .top-section {
+    min-height: unset;
+    flex-direction: row;
+    padding: 72px 0 50px;
+    .top-text{
+      order: 1;
+      max-width: 48%;
+      width: 270px;
+      h1{
+        font-size: 26px;
+      }
+      .btns-holder{
+        justify-content: center;
+        flex-wrap: wrap;
+        .my-cta{
+          font-size: 15px;
+        }
+      }
+    }
     &.tesla {
       h2 {
         &.biggest {
@@ -5865,7 +6021,45 @@ footer {
   }
 }
 @media screen and (max-width: 640px) and (orientation: landscape) {
+  .top-section-wrapper{
+    .my-carousel-item{
+      &.item1{
+        .twitch-box{
+          width: 55%;
+          .heading{
+            font-size: 14px;
+          }
+          .box-holder{
+            .bottom-border{
+              height: 25px;
+              .watch-text{
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .top-section {
+    padding: 62px 0 50px;
+    .top-text{
+      max-width: 43%;
+      h1{
+        font-size: 22px;
+        margin: 0 0 5px;
+      }
+      p{
+        font-size: 12px;
+        margin-bottom: 13px;
+      }
+      .btns-holder{
+        .my-cta{
+          padding: 11px 19px;
+          font-size: 13px;
+        }
+      }
+    }
     &.tesla {
       h2 {
         &.biggest {

@@ -18,29 +18,43 @@
         <div class="top-text">
           <h1>First Crypto NFT Trading Game</h1>
           <p>Earn Crypto with Gaming</p>
-          <button
-            class="my-cta"
-            [routerLink]="['/user/sign-up']"
-            *ngIf="logged === false"
-          >
-            Register for free
-          </button>
-          <button
-            [routerLink]="['/race/start-race']"
-            *ngIf="logged === true"
-            class="my-cta"
-          >
-            Back to game
-          </button>
+          <div class="btns-holder">
+            <button
+              class="my-cta"
+              [routerLink]="['/user/sign-up']"
+              *ngIf="logged === false"
+            >
+              Register for free
+            </button>
+            <button
+              [routerLink]="['/race/start-race']"
+              *ngIf="logged === true"
+              class="my-cta"
+            >
+              Back to game
+            </button>
+
+            <div class="google-play">
+              <a target="_blank" href="https://play.google.com/store/apps/details?id=ioi.game"
+                ><img
+                  src="assets/base/images/home-page/google-play.png"
+                  alt="google play"
+              /></a>
+            </div>
+          </div>
         </div>
 
-        <div class="google-play">
-          <a target="_blank" href="https://play.google.com/store/apps/details?id=ioi.game"
-            ><img
-              src="assets/base/images/home-page/google-play.png"
-              alt="google play"
-          /></a>
+        <div class="twitch-box">
+          <p class="heading">STREAMING NOW</p>
+          <div class="box-holder" (click)="openLink('https://www.twitch.tv/traderacemanager')">
+            <img src="/assets/base/images/home-page/twitch-box.png" alt="Twitch stream">
+            <div class="bottom-border">
+              <p class="watch-text">WATCH NOW ON</p>
+              <img src="/assets/base/images/home-page/twitch-text.png" alt="Twitch logo" class="twitch-text">
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
