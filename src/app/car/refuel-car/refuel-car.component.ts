@@ -795,6 +795,8 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   }
 
   getAllV2Races() {
+    console.log(this.tourcars);
+    console.log('vnutro');
     this.getMyCars();
     this.timerReady = false;
 
