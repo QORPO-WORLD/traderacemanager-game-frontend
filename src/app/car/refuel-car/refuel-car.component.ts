@@ -795,6 +795,8 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   }
 
   getAllV2Races() {
+    // console.log(this.tourcars);
+    // console.log('vnutro');
     this.getMyCars();
     this.timerReady = false;
 
@@ -1104,7 +1106,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
   setInitFuels() {
     for (let xx = 0; xx < this.selectedCarsToRace.length; xx++) {
       const nums: Array<any> = [];
-      console.log(this.selectedCarsToRace[xx].batman);
 
       nums.push(this.selectedCarsToRace[xx].batman[0].bet);
       nums.push(this.selectedCarsToRace[xx].batman[1].bet);
@@ -1143,7 +1144,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
           this.selectedCarsToRace[xx].selectedBets[x]
         ].selected = true;
         if (nums[x] < 0) {
-          console.log("nefalsujem");
           this.selectedCarsToRace[xx].bet[
             this.selectedCarsToRace[xx].selectedBets[x]
           ].short = true;
@@ -1151,7 +1151,6 @@ export class RefuelCarComponent implements OnInit, OnDestroy {
             this.selectedCarsToRace[xx].selectedBets[x]
           ].bet = Math.abs(nums[x]);
         } else {
-          console.log("falsujem");
           this.selectedCarsToRace[xx].bet[
             this.selectedCarsToRace[xx].selectedBets[x]
           ].short = false;
