@@ -998,17 +998,18 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         return item.bet !== 0;
       });
     }
-    if (this.raceDataildata.tour_index < 10) {
-      this.commonCars = stat;
-    }
+    // if (this.raceDataildata.tour_index < 10) {
+      
+    // }
+    this.commonCars = stat;
 
     this.ntoberver = this.api
       .racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString())
       .subscribe((data) => {
         this.newNext = data.race_hash;
-        if (this.raceDataildata.tour_index >= 10 && this.raceDataildata.tour_index < 19) {
-          this.getRefuelCars(this.newNext, stat); 
-        }
+        // if (this.raceDataildata.tour_index >= 10 && this.raceDataildata.tour_index < 19) {
+        //   this.getRefuelCars(this.newNext, stat); 
+        // }
 
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;
@@ -1037,8 +1038,6 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
           });
         }
         this.commonCars = currentCars;
-        console.log(this.commonCars);
-        console.log('init');
       });
   }
 
