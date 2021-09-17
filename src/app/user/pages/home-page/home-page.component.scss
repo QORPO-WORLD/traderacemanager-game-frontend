@@ -205,7 +205,7 @@ h6 {
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        max-width: 60%;
+        width: 45%;
         .heading{
           color: #1CFFFF;
           font-size: 29px;
@@ -216,6 +216,9 @@ h6 {
         .box-holder{
           position: relative;
           cursor: pointer;
+          .stream{
+            height: 350px;
+          }
           .bottom-border{
             background: #9146FF;
             height: 45px;
@@ -861,17 +864,43 @@ h6 {
 
 .video-holder {
   position: relative;
-  padding-bottom: 55.8vw;
+  height: 100vh;
   width: 100%;
   left: 0;
   z-index: 1;
-  .back-video {
+  background: url('/assets/base/images/home-page/video-back.jpg') center no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .monitor-holder{
+    position: relative;
+    width: 1300px;
+    margin: 0 auto;
+    .macbook{
+      width: 100%;
+    }
+    .back-video{
+      width: 70%;
+      position: absolute;
+      top: 21px;
+      height: 88%;
+      border-radius: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .avatar{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    bottom: 0;
+    max-width: 33%;
+    &.left{
+      left: 0;
+    }
+    &.right{
+      right: 0;
+    }
   }
 }
 
@@ -2230,6 +2259,9 @@ h6 {
             margin: 0px 0 10px;
           }
           .box-holder{
+            .stream{
+              height: 300px;
+            }
             .bottom-border{
               padding-right: 32%;
               .watch-text{
@@ -2315,6 +2347,15 @@ h6 {
       .google-play{
         margin-left: 20px;
         width: 200px;
+      }
+    }
+  }
+  .video-holder {
+    .monitor-holder{
+      width: 1100px;
+      .back-video{
+        top: 18px;
+        height: 87.5%;
       }
     }
   }
@@ -2404,6 +2445,7 @@ h6 {
     .my-carousel-item {
       &.item1{
         .twitch-box{
+          width: 50%;
           .heading{
             font-size: 23px;
           }
@@ -2670,6 +2712,25 @@ h6 {
             }
           }
         }
+      }
+    }
+  }
+  .video-holder {
+    .monitor-holder{
+      width: 900px;
+      .back-video{
+        top: 14px;
+        height: 88%;
+      }
+    }
+    .avatar{
+      max-width: 37%;
+      max-height: 100%;
+      &.left{
+        left: -5%;
+      }
+      &.right{
+        right: -5%;
       }
     }
   }
@@ -2981,6 +3042,21 @@ h6 {
       }
     }
   }
+  .video-holder {
+    .monitor-holder{
+      width: 640px;
+      z-index: 3;
+      .back-video{
+        top: 14px;
+        height: 88%;
+      }
+    }
+    .avatar{
+      max-width: 48%;
+      max-height: 100%;
+      z-index: 2;
+    }
+  }
   .review-position {
     .reviews-sec {
       .my-score {
@@ -3116,6 +3192,9 @@ h6 {
             margin: 0px 0 4px;
           }
           .box-holder{
+            .stream{
+              height: 250px;
+            }
             .bottom-border{
               position: absolute;
               bottom: 0;
@@ -3301,6 +3380,24 @@ h6 {
   }
 }
 @media screen and (max-width: 640px) {
+  .video-holder {
+    align-items: flex-start;
+    .monitor-holder{
+      width: 500px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      .back-video{
+        top: 7px;
+        border-radius: 4px;
+        height: 89%;
+        width: 71%;
+      }
+    }
+    .avatar{
+      max-width: 55%;
+    }
+  }
   .review-position {
     .reviews-sec {
       flex-wrap: wrap;
@@ -3869,6 +3966,9 @@ h6 {
             font-size: 15px;
           }
           .box-holder{
+            .stream{
+              height: 210px;
+            }
             .bottom-border{
               height: 30px;
               .watch-text{
@@ -4714,6 +4814,12 @@ h6 {
           }
         }
       }
+    }
+  }
+  .video-holder {
+    height: 400px;
+    .monitor-holder{
+      width: 120%;
     }
   }
 }
@@ -5906,6 +6012,9 @@ footer {
             font-size: 16px;
           }
           .box-holder{
+            .stream{
+              height: 210px;
+            }
             .bottom-border{
               height: 30px;
               .watch-text{
@@ -6030,6 +6139,9 @@ footer {
             font-size: 14px;
           }
           .box-holder{
+            .stream{
+              height: 160px;
+            }
             .bottom-border{
               height: 25px;
               .watch-text{

@@ -998,13 +998,19 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
         return item.bet !== 0;
       });
     }
+    // if (this.raceDataildata.tour_index < 10) {
+      
+    // }
     this.commonCars = stat;
 
     this.ntoberver = this.api
       .racesTournamentNextRaceList(this.raceDataildata.tournament_id.toString())
       .subscribe((data) => {
         this.newNext = data.race_hash;
-        // this.getRefuelCars(this.newNext);
+        // if (this.raceDataildata.tour_index >= 10 && this.raceDataildata.tour_index < 19) {
+        //   this.getRefuelCars(this.newNext, stat); 
+        // }
+
         this.newNextStartsIn = data.starts_in;
         this.redirectNum = this.newNextStartsIn - 15;
         const nozacni = (this.newNextStartsIn - 15) * 1000;
@@ -1021,11 +1027,17 @@ export class WatchRaceShortComponent implements OnInit, OnDestroy {
       });
   }
 
-  getRefuelCars(nextRace: string) {
+  getRefuelCars(nextRace: string, currentCars: any) {
     this.refuelObserver = this.api
       .racesTournamentRefuelCarsList(nextRace)
       .subscribe((data) => {
-
+        let datax: any = data;
+        for (let j = 0; j < currentCars.length; j++) {
+          currentCars.filter((item) => {
+            return item.cid === datax[j].pk;
+          });
+        }
+        this.commonCars = currentCars;
       });
   }
 
