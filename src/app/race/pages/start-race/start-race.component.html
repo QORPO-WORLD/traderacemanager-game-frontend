@@ -17,10 +17,8 @@
       <div class="boxes">
         <h2 class="news-title">What's new</h2>
         <div
-          [ngClass]="{ first: tip === 1 || tip === 2, 'tip-three': tip === 3 }"
-          [routerLink]="
-            tip === 1 || tip === 2 || tip === 3 ? ['/teams/join-teams'] : null
-          "
+          [ngClass]="{ first: tip === 1 || tip === 2 }"
+          [routerLink]="tip === 1 || tip === 2 ? ['/teams/join-teams'] : null"
           class="box my-cta-btn-back"
         >
           <div
@@ -49,10 +47,6 @@
               <h2>10% OFF</h2>
               <p>quartal premium membership</p>
             </div>
-            <div *ngIf="tip === 3" class="text">
-              <h2 class="no-breaking">Win tesla</h2>
-              <p>Join team and own NFT</p>
-            </div>
           </div>
         </div>
         <div class="reward-switcher news">
@@ -65,11 +59,6 @@
             (click)="toggleTip(2)"
             [ngClass]="{ inactive: tip !== 2 }"
             class="center-line bar"
-          ></div>
-          <div
-            (click)="toggleTip(3)"
-            [ngClass]="{ inactive: tip !== 3 }"
-            class="right-line bar my-cta-btn-back"
           ></div>
         </div>
         <div (click)="navigateToToken()" class="box second my-cta-btn-back">
