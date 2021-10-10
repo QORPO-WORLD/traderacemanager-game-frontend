@@ -1,21 +1,24 @@
-
-import { AuthService } from 'src/app/user/services/auth.service';
-import { PlayerLeaderboard } from './../../api/models/player-leaderboard';
-import { InternalTeamLeaderboard } from './../../api/models/internal-team-leaderboard';
-import { AffiliatesService, DriversService, LeaderboardService, RewardsService } from 'src/app/api/services';
-import { NotifiqService } from './../../common/services/notifiq.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { AuthService } from "src/app/user/services/auth.service";
+import { PlayerLeaderboard } from "./../../api/models/player-leaderboard";
+import { InternalTeamLeaderboard } from "./../../api/models/internal-team-leaderboard";
+import {
+  AffiliatesService,
+  DriversService,
+  LeaderboardService,
+  RewardsService,
+} from "src/app/api/services";
+import { NotifiqService } from "./../../common/services/notifiq.service";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-leaderboard',
-  templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.scss'],
+  selector: "app-leaderboard",
+  templateUrl: "./leaderboard.component.html",
+  styleUrls: ["./leaderboard.component.scss"],
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
-
-  leaderboardType = 'special';
+  leaderboardType = "players";
   teamSubscription: Subscription;
   ldbrdSubscription: Subscription;
   drSubscription: Subscription;
@@ -29,9 +32,16 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   teamreward: any;
   myAffilate: any;
   myTeamReward: number;
-  constructor(private api: LeaderboardService, private drvrsrvc: DriversService, private affisrvc: AffiliatesService,
-    private router: Router, protected notify: NotifiqService, private identityService: AuthService, private rapi: RewardsService,
-  private lapi: LeaderboardService) { }
+  constructor(
+    private api: LeaderboardService,
+    private drvrsrvc: DriversService,
+    private affisrvc: AffiliatesService,
+    private router: Router,
+    protected notify: NotifiqService,
+    private identityService: AuthService,
+    private rapi: RewardsService,
+    private lapi: LeaderboardService
+  ) {}
 
   ngOnInit() {
     this.getMyTem();
@@ -40,14 +50,12 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
     this.getMyLevel();
     this.getRewards();
     this.getAllRewards();
-
   }
 
   getAllRewards() {
-    this.transObserver = this.rapi.rewardsList()
-      .subscribe(data => {
-        this.myTeamReward = Number(data.team_bonus);
-      });
+    this.transObserver = this.rapi.rewardsList().subscribe((data) => {
+      this.myTeamReward = Number(data.team_bonus);
+    });
   }
 
   ngOnDestroy() {
@@ -69,52 +77,46 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   getMyTem() {
-    this.teamSubscription = this.api.leaderboardTeamInternalList().subscribe(
-      data => {
+    this.teamSubscription = this.api
+      .leaderboardTeamInternalList()
+      .subscribe((data) => {
         this.myTeam = data;
         console.log(data);
         this.redirectMe();
-      }
-    );
+      });
   }
 
   getMyLdrbrd() {
-    this.ldbrdSubscription = this.api.leaderboardMe({
-      page: 1, lastMonth: this.isLastMonth
-    }).subscribe(
-      data => {
+    this.ldbrdSubscription = this.api
+      .leaderboardMe({
+        page: 1,
+        lastMonth: this.isLastMonth,
+      })
+      .subscribe((data) => {
         this.myLdrbrd = data;
-      }
-    );
+      });
   }
 
   getMyDriver() {
     const data = this.identityService.getStorageIdentity();
     this.mydrvr = data.nickname;
-
   }
 
   getMyLevel() {
     const data = this.identityService.getDriverMe();
     this.myAffilate = data;
-
   }
 
   redirectMe() {
     if (this.myTeam === null) {
-      this.router.navigate(['/teams/join-teams']);
-      this.notify.success('', 'first_join', 3000);
+      this.router.navigate(["/teams/join-teams"]);
+      this.notify.success("", "first_join", 3000);
     }
   }
 
-
   getRewards() {
-    this.rapi.rewardsList()
-      .subscribe(data => {
-        this.teamreward = data.team_bonus;
-      });
+    this.rapi.rewardsList().subscribe((data) => {
+      this.teamreward = data.team_bonus;
+    });
   }
-
-
-
 }
