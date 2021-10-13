@@ -14,7 +14,7 @@
     <div class="market-header">
       <div
         [ngClass]="{ 'active-item': title === 'all' }"
-        (click)="filterType(products, 'all', false, false)"
+        (click)="filterType(customArray, 'all', false, false)"
         class="filter-item first"
       >
         <p class="category-title-first first">ALL NFTS</p>
@@ -22,7 +22,7 @@
       </div>
       <div
         [ngClass]="{ 'active-item': title === 'car' }"
-        (click)="filterType(products, 'car', false, false)"
+        (click)="filterType(customArray, 'car', false, false)"
         class="filter-item"
       >
         <img
@@ -35,7 +35,7 @@
       </div>
       <div
         [ngClass]="{ 'active-item': title === 'racer' }"
-        (click)="filterType(products, 'racer', false, false)"
+        (click)="filterType(customArray, 'racer', false, false)"
         class="filter-item"
       >
         <img
@@ -85,6 +85,9 @@
           class="box"
         >
           <div class="box-content">
+            <div *ngIf="item.extras.daily_reward" class="staking">
+              <p>Active staking</p>
+            </div>
             <img
               [ngClass]="{ 'gif-hover': item.collection != 'Special' }"
               *ngIf="item.type === 'racer'"
@@ -133,7 +136,7 @@
             </p>
           </div>
           <div class="box-button my-cta-btn-back">
-            <p class="category-title-third">Owned {{ item.amount }}</p>
+            <p class="category-title-third">Owned {{ item.count }}</p>
           </div>
         </div>
       </div>

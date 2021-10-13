@@ -26,7 +26,6 @@ export class HomepageLayoutComponent implements OnInit {
     if (token) {
       this.logged = true;
     }
-    console.log(this.currentRoute);
   }
 
   onActivate(elem1: HTMLElement) {

@@ -37,7 +37,6 @@ export class MyNftComponent implements OnInit, OnChanges {
   timeoutPage: any;
   animateArrow = false;
   animateArrowRight = false;
-
   products = [];
   assets = [];
   title = "All";
@@ -51,6 +50,7 @@ export class MyNftComponent implements OnInit, OnChanges {
   bestIndex = 0;
   availableCars = [];
   remainingCars = [];
+  customArray = [];
   pageOpen = true;
   animationPaging = 5;
   myCarsObserver: Subscription;
@@ -116,7 +116,7 @@ export class MyNftComponent implements OnInit, OnChanges {
     if (this.depositFlow === true) {
       this.filterType(this.products, "all", false, true);
     } else {
-      this.filterType(this.products, "all", false, false);
+      this.filterType(this.customArray, "all", false, false);
     }
   }
 
@@ -134,12 +134,12 @@ export class MyNftComponent implements OnInit, OnChanges {
       if (bundles === false) {
         deposit === false
           ? (sortedProducts = entry.filter(
-              (item) => item.type !== "bundle" && item.amount > 0
+              (item) => item.type !== "bundle" && item.count > 0
             ))
           : (sortedProducts = entry.filter((item) => item.type !== "bundle"));
       } else {
         deposit === false
-          ? (sortedProducts = entry.filter((item) => item.amount > 0))
+          ? (sortedProducts = entry.filter((item) => item.count > 0))
           : (sortedProducts = entry);
       }
     } else {
@@ -147,7 +147,7 @@ export class MyNftComponent implements OnInit, OnChanges {
         deposit === false
           ? (sortedProducts = entry.filter(
               (item) =>
-                item.type === type && item.type !== "bundle" && item.amount > 0
+                item.type === type && item.type !== "bundle" && item.count > 0
             ))
           : (sortedProducts = entry.filter(
               (item) => item.type === type && item.type !== "bundle"
@@ -155,12 +155,11 @@ export class MyNftComponent implements OnInit, OnChanges {
       } else {
         deposit === false
           ? (sortedProducts = entry.filter(
-              (item) => item.type === type && item.amount > 0
+              (item) => item.type === type && item.count > 0
             ))
           : (sortedProducts = entry.filter((item) => item.type === type));
       }
     }
-
     this.title = type;
     this.newProducts = sortedProducts;
     this.lastPage = Math.ceil(this.newProducts.length / this.assetsOnPage);
@@ -187,37 +186,48 @@ export class MyNftComponent implements OnInit, OnChanges {
     this.assets = this.apin.getAssets();
     this.products = this.assets;
     for (let k = 0; k < this.products.length; k++) {
-      this.products[k].amount = 0;
+      this.products[k].count = 0;
     }
     this.myCarsObserver = this.api.carsMineList().subscribe((data) => {
       const objsx: any = data;
-      const myCars: any = objsx.cars_by_tier;
-      const myRacers: any = objsx.racers_by_tier;
+      const myCars: any = objsx.cars_by_tier_and_type;
+      const myRacers: any = objsx.racers_by_tier_and_type;
 
-      for (const [key, value] of Object.entries(myCars)) {
-        for (let y = 0; y < this.products.length; y++) {
+      for (let x = 0; x < myCars.length; x++) {
+        for (let y = 0; y < this.assets.length; y++) {
           if (
-            +key === this.products[y].tier &&
-            this.products[y].type === "car"
+            myCars[x].tier === this.assets[y].tier &&
+            this.assets[y].type === "car"
           ) {
-            this.products[y].amount = +value;
-          }
-        }
-      }
-      for (const [key, value] of Object.entries(myRacers)) {
-        for (let y = 0; y < this.products.length; y++) {
-          if (
-            +key === this.products[y].tier &&
-            this.products[y].type === "racer"
-          ) {
-            this.products[y].amount = +value;
+            myCars[x].id = this.assets[y].id;
+            myCars[x].type = this.assets[y].type;
+            myCars[x].name = this.assets[y].name;
+            myCars[x].gif = this.assets[y].gif;
+            myCars[x].price = myCars[x].extras.price;
+            myCars[x].collection = this.assets[y].collection;
+            myCars[x].image = this.assets[y].image;
           }
         }
       }
 
-      console.log(this.assets);
-      console.log("Pridelovanie assetov");
-      this.filterType(this.products, "all", false, false);
+      for (let a = 0; a < myRacers.length; a++) {
+        for (let b = 0; b < this.assets.length; b++) {
+          if (
+            myRacers[a].tier === this.assets[b].tier &&
+            this.assets[b].type === "racer"
+          ) {
+            myRacers[a].id = this.assets[b].id;
+            myRacers[a].type = this.assets[b].type;
+            myRacers[a].name = this.assets[b].name;
+            myRacers[a].gif = this.assets[b].gif;
+            myRacers[a].price = myRacers[a].extras.price;
+            myRacers[a].collection = this.assets[b].collection;
+            myRacers[a].image = this.assets[b].image;
+          }
+        }
+      }
+      this.customArray = [...myCars, ...myRacers];
+      this.filterType(this.customArray, "all", false, false);
       this.loading = false;
     });
   }

@@ -656,7 +656,6 @@ export class NftOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.products);
     this.changeActive(1);
     this.width();
   }

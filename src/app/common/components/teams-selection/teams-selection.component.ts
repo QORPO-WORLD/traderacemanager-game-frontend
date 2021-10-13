@@ -114,8 +114,6 @@ export class TeamsSelectionComponent implements OnInit {
     this.myTeam = data.team;
     this.getTeams();
     this.myTeamData = data;
-    console.log(this.myTeamData);
-    console.log(this.myTeam);
   }
 
   joinTeam(teamId: number) {

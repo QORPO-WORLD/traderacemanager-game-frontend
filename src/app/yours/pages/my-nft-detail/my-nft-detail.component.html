@@ -113,7 +113,11 @@
       </button> -->
       <button
         [routerLink]="['/other/transfer-nft']"
-        [queryParams]="{ nftId: assetInfo[0].id, nftType: assetInfo[0].type }"
+        [queryParams]="{
+          nftId: assetInfo[0].id,
+          nftType: assetInfo[0].type,
+          hash: assetInfo[0].extras_hash
+        }"
         class="buy category-title-fourth my-cta-btn-back"
       >
         Transfer
