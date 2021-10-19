@@ -126,7 +126,6 @@ export class AllRacesComponent implements OnInit {
       );
       this.specialTournament = special[0];
       this.newNextData = nedata;
-      console.log(nedata);
     });
   }
 

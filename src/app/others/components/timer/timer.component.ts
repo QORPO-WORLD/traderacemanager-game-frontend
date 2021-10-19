@@ -11,7 +11,7 @@ import { timer } from 'rxjs/observable/timer';
     {{timerValue?.minutes|number :'2.0'}}mins</span>
     <span *ngIf="timerValue?.minutes === 1 && timerValue?.hours === 0 && timerValue?.days === 0">
     {{timerValue?.minutes|number :'2.0'}}min</span>
-  <span *ngIf="timerValue?.minutes < 2 && timerValue?.hours === 0 && timerValue?.days === 0">
+  <span *ngIf="timerValue?.minutes < 3 && timerValue?.hours === 0 && timerValue?.days === 0">
     {{timerValue?.seconds|number :'2.0'}}s</span>
     `,
     styles: ['span { font-family: inherit;font-size: inherit;color: inherit;font-weight: inherit }']

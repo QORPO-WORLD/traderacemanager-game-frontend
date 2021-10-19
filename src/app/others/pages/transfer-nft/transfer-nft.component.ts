@@ -19,6 +19,7 @@ export class TransferNftComponent implements OnInit {
   nickname: string;
   accountValue: number;
   amount = 1;
+  hash: string;
   products = [];
   nftType = "car";
   driverBalances: any;
@@ -42,13 +43,16 @@ export class TransferNftComponent implements OnInit {
     this.routeObserver = this.route.queryParams.subscribe((params) => {
       this.nftId = +params["nftId"];
       this.nftType = params["nftType"];
-      if (params["nftId"].length <= 0) {
+      this.hash = params["hash"];
+      if (!params["nftId"]) {
         this.nftId = 1;
+      }
+      if (!params["hash"]) {
+        this.hash = "";
       }
     });
     this.resolveShowAsset();
   }
-
   getUser() {
     this.nickname = this.identityService.getStorageIdentity().nickname;
     this.driverBalances = this.identityService.getBalance();
@@ -69,6 +73,7 @@ export class TransferNftComponent implements OnInit {
         currency: this.nftType + "_" + this.products[0].tier.toString(),
         amount: this.amount,
         mode: "races2nitro",
+        extras_hash: this.hash,
       })
       .subscribe((data) => {
         this.identityService.updateBalance();

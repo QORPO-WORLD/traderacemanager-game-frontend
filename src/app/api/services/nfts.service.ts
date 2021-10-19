@@ -22,7 +22,7 @@ export class NftsService {
       type: "car",
       rank: "low",
       ability2: 72,
-      amount: 0,
+      count: 0,
       alt: "nft car Tesla",
     },
     {
@@ -36,7 +36,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car R8",
     },
     {
@@ -50,7 +50,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car GAZ-13 Caika",
     },
     {
@@ -64,7 +64,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car Formation",
     },
     {
@@ -78,7 +78,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car rhino",
     },
     {
@@ -92,7 +92,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car panther",
     },
     {
@@ -106,7 +106,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car onyx",
     },
     {
@@ -120,7 +120,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car zander",
     },
     {
@@ -134,7 +134,7 @@ export class NftsService {
       gif: "car5-animation",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car cyborg",
     },
     {
@@ -148,7 +148,7 @@ export class NftsService {
       type: "car",
       ability1: 28.8,
       ability2: 144,
-      amount: 0,
+      count: 0,
       alt: "nft car vulcanic",
     },
     {
@@ -164,7 +164,7 @@ export class NftsService {
       ability1: 43.2,
       ability2: 216,
 
-      amount: 0,
+      count: 0,
       alt: "nft car luna",
     },
     //super
@@ -179,7 +179,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car dorian",
     },
     {
@@ -193,7 +193,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car panther",
     },
     {
@@ -207,7 +207,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car onyx",
     },
     {
@@ -221,7 +221,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car zander",
     },
     {
@@ -235,7 +235,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car python",
     },
     {
@@ -249,7 +249,7 @@ export class NftsService {
       type: "car",
       ability1: 57.6,
       ability2: 288,
-      amount: 0,
+      count: 0,
       alt: "nft car vulcanic",
     },
     {
@@ -264,7 +264,7 @@ export class NftsService {
       rare: true,
       ability1: 86.4,
       ability2: 432,
-      amount: 0,
+      count: 0,
       alt: "nft car silver knight",
     },
     //epic
@@ -279,7 +279,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car cyborg",
     },
     {
@@ -293,7 +293,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car rhino",
     },
     {
@@ -307,7 +307,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car hyper",
     },
     {
@@ -321,7 +321,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car bull",
     },
     {
@@ -335,7 +335,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car python",
     },
     {
@@ -349,7 +349,7 @@ export class NftsService {
       type: "car",
       ability1: 115.2,
       ability2: 576,
-      amount: 0,
+      count: 0,
       alt: "nft car hitman",
     },
     {
@@ -364,7 +364,7 @@ export class NftsService {
       rare: true,
       ability1: 172.8,
       ability2: 864,
-      amount: 0,
+      count: 0,
       alt: "nft car midas",
     },
     //Legendary
@@ -379,7 +379,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car hyper",
     },
     {
@@ -393,7 +393,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car dorian",
     },
     {
@@ -407,7 +407,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car vulcanic",
     },
     {
@@ -421,7 +421,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car bull",
     },
     {
@@ -435,7 +435,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car knockout",
     },
     {
@@ -449,7 +449,7 @@ export class NftsService {
       type: "car",
       ability1: 230.4,
       ability2: 1152,
-      amount: 0,
+      count: 0,
       alt: "nft car lara",
     },
     {
@@ -464,7 +464,7 @@ export class NftsService {
       rare: true,
       ability1: 374.4,
       ability2: 1872,
-      amount: 0,
+      count: 0,
       alt: "nft car blue storm",
     },
     //
@@ -482,7 +482,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car DAOMaker",
     },
     {
@@ -497,7 +497,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Cryptowizard",
     },
     {
@@ -512,7 +512,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Kyle Chasse",
     },
     {
@@ -527,7 +527,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Ash WSB",
     },
     {
@@ -542,7 +542,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Tehmoonwalker",
     },
     {
@@ -557,7 +557,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Parabolic Guy",
     },
     {
@@ -572,7 +572,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Altcoin Buzz",
     },
     {
@@ -587,7 +587,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Cryptowizard",
     },
     {
@@ -602,7 +602,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Kucoin",
     },
     {
@@ -617,7 +617,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car QuickSwap",
     },
     {
@@ -632,7 +632,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Tech Giants",
     },
     {
@@ -647,7 +647,7 @@ export class NftsService {
       ability1: 28.8,
       ability2: 144,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft car Venly",
     },
     //
@@ -664,7 +664,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Axle",
     },
 
@@ -679,7 +679,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Flash",
     },
     {
@@ -693,7 +693,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Octane",
     },
     {
@@ -707,7 +707,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Punisher",
     },
     {
@@ -721,7 +721,7 @@ export class NftsService {
       type: "racer",
       ability2: 15,
       rank: "normal",
-      amount: 0,
+      count: 0,
       alt: "nft racer Lady Rich",
     },
     {
@@ -735,7 +735,7 @@ export class NftsService {
       type: "racer",
       ability2: 15,
       rank: "normal",
-      amount: 0,
+      count: 0,
       alt: "nft racer Rich Junior",
     },
     {
@@ -749,7 +749,7 @@ export class NftsService {
       type: "racer",
       ability2: 15,
       rank: "normal",
-      amount: 0,
+      count: 0,
       alt: "nft racer Mrs. Rich",
     },
     {
@@ -764,7 +764,7 @@ export class NftsService {
       ability2: 20,
       ability3: 18,
       rank: "height",
-      amount: 0,
+      count: 0,
       alt: "nft racer mr. rich",
     },
     //
@@ -781,7 +781,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer DAOMaker",
     },
     {
@@ -795,7 +795,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Polygon",
     },
     {
@@ -809,7 +809,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Kyle Chasse",
     },
     {
@@ -823,7 +823,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Ash WSB",
     },
     {
@@ -837,7 +837,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Tehmoonwalker",
     },
     {
@@ -851,7 +851,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Parabolic Guy",
     },
     {
@@ -865,7 +865,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Altcoin Buzz",
     },
     {
@@ -879,7 +879,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Cryptowizard",
     },
     {
@@ -893,7 +893,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Kucoin",
     },
     {
@@ -907,7 +907,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Quickswap",
     },
     {
@@ -921,7 +921,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Tech Giants",
     },
     {
@@ -935,7 +935,7 @@ export class NftsService {
       type: "racer",
       ability2: 10,
       rank: "low",
-      amount: 0,
+      count: 0,
       alt: "nft racer Venly",
     },
     //
@@ -955,7 +955,7 @@ export class NftsService {
       image: "bundle-dao",
       racer: "dao-maker",
       car: "car41",
-      amount: 0,
+      count: 0,
     },
     {
       id: 121,
@@ -971,7 +971,7 @@ export class NftsService {
       image: "bundle-polygon",
       racer: "polygon",
       car: "car42",
-      amount: 0,
+      count: 0,
     },
     {
       id: 122,
@@ -987,7 +987,7 @@ export class NftsService {
       image: "bundle-kyle",
       racer: "paid",
       car: "car44",
-      amount: 0,
+      count: 0,
     },
     {
       id: 123,
@@ -1003,7 +1003,7 @@ export class NftsService {
       image: "bundle-ash",
       racer: "ash-wsb",
       car: "car45",
-      amount: 0,
+      count: 0,
     },
     {
       id: 124,
@@ -1019,7 +1019,7 @@ export class NftsService {
       image: "bundle-tehmoon",
       racer: "tehmoonwalker",
       car: "car46",
-      amount: 0,
+      count: 0,
     },
 
     {
@@ -1036,7 +1036,7 @@ export class NftsService {
       image: "bundle-parabolic",
       racer: "parabolic-guy",
       car: "car47",
-      amount: 0,
+      count: 0,
     },
     {
       id: 126,
@@ -1052,7 +1052,7 @@ export class NftsService {
       image: "bundle-altcoin",
       racer: "altcoin-buzz",
       car: "car50",
-      amount: 0,
+      count: 0,
     },
     {
       id: 127,
@@ -1068,7 +1068,7 @@ export class NftsService {
       image: "bundle-wizard",
       racer: "cryptowizard",
       car: "car51",
-      amount: 0,
+      count: 0,
     },
     {
       id: 128,
@@ -1084,7 +1084,7 @@ export class NftsService {
       image: "bundle-kucoin",
       racer: "kucoin",
       car: "car52",
-      amount: 0,
+      count: 0,
     },
     {
       id: 129,
@@ -1100,7 +1100,7 @@ export class NftsService {
       image: "bundle-quickswap",
       racer: "quickswap",
       car: "car53",
-      amount: 0,
+      count: 0,
     },
     {
       id: 130,
@@ -1116,7 +1116,7 @@ export class NftsService {
       image: "bundle-techgiants",
       racer: "techgiants",
       car: "car54",
-      amount: 0,
+      count: 0,
     },
     {
       id: 131,
@@ -1132,7 +1132,7 @@ export class NftsService {
       image: "bundle-venly",
       racer: "venly",
       car: "car55",
-      amount: 0,
+      count: 0,
     },
   ];
   //SORTED PRODUCTS FOR MARKETPLACE
@@ -1185,7 +1185,7 @@ export class NftsService {
 
   filterJustOwnedAssets(entry: Array<any>) {
     let sortedProducts = entry;
-    sortedProducts = entry.filter((item) => item.amount > 0);
+    sortedProducts = entry.filter((item) => item.count > 0);
     return sortedProducts;
   }
 
