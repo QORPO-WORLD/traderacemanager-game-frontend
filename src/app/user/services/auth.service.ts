@@ -205,8 +205,8 @@ export class AuthService extends AbstractService {
     this.clearToken();
     this.clearIdentity();
     this.logOutApi().subscribe({
-      next: data => this.router.navigate(['/user/home']),
-      error: error => this.router.navigate(['/user/home'])
+      next: data => this.afterLogout(),
+      error: error => this.afterLogout()
     });
     
 
@@ -216,6 +216,15 @@ export class AuthService extends AbstractService {
     });
  
   }
+
+  
+
+  afterLogout() {
+    if (this.router.url !== '/user/sign-in' && this.router.url !== '/user/sign-up' && this.router.url !== '/user/home' && this.router.url !== '/user/welcome') {
+      this.router.navigate(['/user/sign-in'])
+    }  
+  }
+
 
   initSession() {
 

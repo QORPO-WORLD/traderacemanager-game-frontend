@@ -60,7 +60,7 @@ export class GauthrComponent implements OnInit, OnDestroy {
       const oldata: any = data;
       this.myKey = oldata.secret;
       this.imgurl =
-        "https://dev-api.traderacemanager.com" + oldata.qr_url.toString();
+        "https://api.traderacemanager.com" + oldata.qr_url.toString();
     });
   }
 

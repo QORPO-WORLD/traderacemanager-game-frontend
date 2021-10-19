@@ -50,6 +50,7 @@ export class MetaBuyComponent implements OnInit, OnDestroy {
     protected api: CarsService) { }
 
   ngOnInit() {
+    console.log('lkjhg');
     if (window.ethereum) {
       this.enableMetamask()
       this.detectEth()
