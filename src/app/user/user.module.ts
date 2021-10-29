@@ -50,7 +50,6 @@ import { IonicSelectableModule } from "ionic-selectable";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { WloginComponent } from "./components/wlogin/wlogin";
 import { CompetitionComponent } from "./components/competition/competition.component";
-import { CreditSystemComponent } from "./components/credit-system/credit-system.component";
 import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-policy.component";
 import { TermsConditionsComponent } from "./components/terms-conditions/terms-conditions.component";
 import { WelcomePageComponent } from "./components/welcome-page/welcome-page.component";
@@ -175,11 +174,6 @@ const routes: Routes = [
     data: { title: "Privacy policy" },
   },
   {
-    path: "credit-system",
-    component: CreditSystemComponent,
-    data: { title: "Credit system" },
-  },
-  {
     path: "welcome",
     component: WelcomePageComponent,
     data: { title: "Welcome page" },
@@ -219,7 +213,6 @@ const routes: Routes = [
     HomeShopComponent,
     HomeNftDetailComponent,
     CompetitionComponent,
-    CreditSystemComponent,
     PrivacyPolicyComponent,
     TermsConditionsComponent,
     WelcomePageComponent,
