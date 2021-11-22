@@ -1,30 +1,12 @@
 <div class="main-holder">
-  <div class="login-back-div">
-    <div class="login-back"></div>
-  </div>
-  <div class="back-btn" [routerLink]="'/user/home'">
-    <img src="assets/base/images/icons/icon-back-blue.svg" alt="blue arrow" />
-    <p>Back</p>
-  </div>
   <div class="login-content">
     <div class="center-content">
-      <ng-container *ngIf="useMail === false">
-         <button
-          (click)="metaSwitch = true;useMail = true"
-          class="social-button"
-          *ngIf=" useMail === false"
-        >
-          <img
-            src="/assets/base/images/meta-logo.png"
-          />{{'login.metamask_signup' | translate}}
-        </button>
-        <p class="or-text">{{'login.or' | translate}}</p>
-        <button class="big-cta" (click)="useMail = true">
-          Sign Up with e-mail
-        </button>
-      </ng-container>
 
-      <form [formGroup]="registerForm" [hidden]="useMail === false">
+      <div class="form-logo-holder">
+        <img src="/assets/base/images/trm2-logo.svg" alt="TradeRaceManager2 logo">
+      </div>
+
+      <form [formGroup]="registerForm">
         <div
           class="my-input"
           [ngClass]="{'filled': username !== '' && username !== undefined}"
@@ -90,6 +72,38 @@
             ><img src="/assets/base/images/pass-unhidden.png"
           /></span>
         </div>
+
+        <div
+          class="my-input"
+          [ngClass]="{'filled': repeatPassword !== '' && repeatPassword !== undefined}"
+          *ngIf="showMmew === false"
+          #repeatpass
+        >
+          <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
+          <input
+            [type]="repeatShow"
+            required
+            formControlName="repeatPassword"
+            autocomplete="off"
+            [(ngModel)]="repeatPassword"
+            minlength="5"
+            maxlength="20"
+          />
+          <span class="input-placeholder">{{'login.repeat_pass' | translate}}</span>
+          <span
+            class="eyeball"
+            (click)="repeatShow = 'text'"
+            [ngClass]="{'show': repeatShow === 'password'}"
+            ><img src="/assets/base/images/pass-hidden.png"
+          /></span>
+          <span
+            class="eyeball"
+            (click)="repeatShow = 'password'"
+            [ngClass]="{'show': repeatShow === 'text'}"
+            ><img src="/assets/base/images/pass-unhidden.png"
+          /></span>
+        </div>
+
         <div
           class="my-input"
           [ngClass]="{'filled': referralId !== '' && referralId !== undefined}"
@@ -120,21 +134,6 @@
             >
           </p>
         </div>
-        <div class="register-text check" style="margin-top: 10px">
-          <p>
-            <input
-              type="checkbox"
-              [(ngModel)]="newsChecked"
-              [ngModelOptions]="{standalone: true}"
-              required
-              id="news"
-              name="news"
-            />
-            <label for="news" class="terms"
-              >I agree to receive newsletter &amp; special offers</label
-            >
-          </p>
-        </div>
       </form>
 
       <div class="create-box">
@@ -145,7 +144,7 @@
         <button
           class="cta-button"
           [disabled]="agreeChecked === false"
-          *ngIf="useMail === true && loading === false"
+          *ngIf="loading === false"
           (click)="onSubmit()"
         >
           Create account
@@ -153,7 +152,7 @@
         <button
           class="cta-button"
           [disabled]="agreeChecked === false"
-          *ngIf="useMail === true && loading === true"
+          *ngIf="loading === true"
         >
           Loading...
         </button>

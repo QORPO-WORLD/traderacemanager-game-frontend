@@ -63,6 +63,7 @@ export class SignupUserComponent
   username: string;
   email: string;
   password: string;
+  repeatPassword: string;
   refferal: string;
   myDomain: string;
   disCap = false;
@@ -79,6 +80,7 @@ export class SignupUserComponent
   routeObserver: Subscription;
   useMail = false;
   show = "password";
+  repeatShow = "password";
   token: string;
   mmewa: string;
   mmewinterval: any;
@@ -86,7 +88,7 @@ export class SignupUserComponent
   showMmew = false;
   trying = false;
   chainId = 137;
-  newsChecked = true;
+  newsChecked = false;
   constructor(
     protected injector: Injector,
     private formBuilder: FormBuilder,
@@ -126,6 +128,12 @@ export class SignupUserComponent
         Validators.maxLength(20),
         this.isStrong,
       ]),
+      repeatPassword: new FormControl("", [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        this.isStrong,
+      ]),
       nickname: new FormControl("", [
         Validators.required,
         Validators.minLength(5),
@@ -144,11 +152,6 @@ export class SignupUserComponent
         this.mmewa = mmew;
       }
     }, 2000);
-    // const cook = JSON.parse(localStorage.getItem('afilate'));
-    //if (cook) {
-    //    this.referralId = cook;
-    //}
-    //const aff_set = JSON.parse(localStorage.getItem('affilate_set'));
     if (this.referralId) {
       this.resolvemeAffilate();
     }
@@ -191,6 +194,13 @@ export class SignupUserComponent
       this.notify.error(
         "validation error",
         "Invalid password format. Min 8 characters, 1 number, 1 small, 1 capital letter are required. (example: ioiGame123)"
+      );
+      return;
+    }
+    if (this.f.password.value !== this.f.repeatPassword.value && !this.mmewa) {
+      this.notify.error(
+        "validation error",
+        "Passwords do not match"
       );
       return;
     }

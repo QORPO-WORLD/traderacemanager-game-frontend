@@ -43,8 +43,6 @@ import { HomeAffiliateComponent } from "./pages/home-affiliate/home-affiliate.co
 import { Routes, RouterModule } from "@angular/router";
 import { CommonModule as ninja } from "../common/common.module";
 import { AuthUserGuard } from "./services/guards/auth-user.guard";
-//import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
-//import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { IonicModule } from "@ionic/angular";
 import { IonicSelectableModule } from "ionic-selectable";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
@@ -57,133 +55,46 @@ import { WelcomePageComponent } from "./components/welcome-page/welcome-page.com
 import { HomepageLayoutComponent } from "../common/components/layout/homepage-layout/homepage-layout.component";
 import { HomeBundleDetailComponent } from "./pages/home-bundle-detail/home-bundle-detail.component";
 
-//import { NgxCaptchaModule } from 'ngx-captcha';
-//import { RecaptchaService } from './services/recaptcha.service';
-//import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 const routes: Routes = [
   {
     path: "",
     component: HomepageLayoutComponent,
     children: [
       {
-        path: "",
-        redirectTo: "welcome",
-        pathMatch: "full",
+        path: '', redirectTo: 'sign-up', pathMatch: 'full'
       },
       {
-        path: "home",
-        component: HomePageComponent,
-        data: { title: "Home page" },
+        path: "sign-up",
+        component: SignupUserComponent,
+        data: { title: "Team Sign Up" },
+      },
+      { path: "sign-in", component: LoginComponent, data: { title: "Sign In" } },
+      { path: "wsign-in", component: WloginComponent, data: { title: "Sign In" } },
+      {
+        path: "activation/:id/:hash",
+        component: ActivationComponent,
+        data: { title: "Privacy Policy" },
       },
       {
-        path: "shop",
-        component: HomeShopComponent,
-        data: { title: "Nft shop" },
+        path: "user-verify",
+        component: UserVerifiedComponent,
+        data: { title: "Privacy Policy" },
       },
       {
-        path: "nft-detail",
-        component: HomeNftDetailComponent,
-        data: { title: "Nft detail" },
+        path: "verify-code",
+        component: VerifyUserComponent,
+        data: { title: "Verify user" },
       },
       {
-        path: "affiliate",
-        component: HomeAffiliateComponent,
-        data: { title: "Affiliate" },
-      },
-      {
-        path: "bundles",
-        component: HomeBundlesComponent,
-        data: { title: "Bundles" },
-      },
-      {
-        path: "bundle-detail",
-        component: HomeBundleDetailComponent,
-        data: { title: "Bundle detail" },
-      },
-      {
-        path: "how-to",
-        component: HowToComponent,
-        data: { title: "How to" },
-      },
+        path: "verify-authenticator",
+        component: VerifyauthenticatorComponent,
+        data: { title: "Verify user" },
+      }
     ],
   },
   {
-    path: "sign-up",
-    component: SignupUserComponent,
-    data: { title: "Team Sign Up" },
-  },
-  {
-    path: "sign-up-campaign2020a",
-    component: SignupUserComponent,
-    data: { title: "Team Sign Up", type: "demo" },
-  },
-  { path: "sign-in", component: LoginComponent, data: { title: "Sign In" } },
-  { path: "wsign-in", component: WloginComponent, data: { title: "Sign In" } },
-  {
-    path: "forgot-password",
-    component: ForgotPasswordComponent,
-    data: { title: "Forgot Password" },
-  },
-  {
-    path: "password-reset",
-    component: ResetPasswordComponent,
-    data: { title: "Reset Password" },
-  },
-  {
-    path: "referral/:id",
-    component: SignupUserComponent,
-    data: { title: "Privacy Policy" },
-  },
-  {
-    path: "activation/:id/:hash",
-    component: ActivationComponent,
-    data: { title: "Privacy Policy" },
-  },
-  {
-    path: "email-created",
-    component: EmailCreatedComponent,
-    data: { title: "Privacy Policy" },
-  },
-  {
-    path: "user-verify",
-    component: UserVerifiedComponent,
-    data: { title: "Privacy Policy" },
-  },
-  {
-    path: "verify-code",
-    component: VerifyUserComponent,
-    data: { title: "Verify user" },
-  },
-  {
-    path: "verify-authenticator",
-    component: VerifyauthenticatorComponent,
-    data: { title: "Verify user" },
-  },
-  {
-    path: "terms-conditions",
-    component: TermsConditionsComponent,
-    data: { title: "Terms and conditions" },
-  },
-  {
-    path: "competition",
-    component: CompetitionComponent,
-    data: { title: "Statue of competition" },
-  },
-  {
-    path: "privacy-policy",
-    component: PrivacyPolicyComponent,
-    data: { title: "Privacy policy" },
-  },
-  {
-    path: "credit-system",
-    component: CreditSystemComponent,
-    data: { title: "Credit system" },
-  },
-  {
-    path: "welcome",
-    component: WelcomePageComponent,
-    data: { title: "Welcome page" },
-  },
+    path: '', redirectTo: 'sign-up', pathMatch: 'full'
+  }
 ];
 
 @NgModule({
@@ -194,12 +105,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     OthersModule,
-    //RecaptchaModule,
     ninja,
-    //RecaptchaFormsModule,
     IonicModule,
     IonicSelectableModule,
-    //ecaptchaV3Module
   ],
   declarations: [
     LoginComponent,
@@ -240,8 +148,6 @@ const routes: Routes = [
     Facebook,
     SocialService,
     GoogleService,
-    //RecaptchaService,
-    //{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdgmbUaAAAAAEqxCqDgS3MbmPN_Y18URkBaTpNE' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     /* {
             provide: RECAPTCHA_SETTINGS,
@@ -254,9 +160,7 @@ const routes: Routes = [
     // {provide: HTTP_INTERCEPTORS, useClass: ForbiddenInterceptor, multi: true}
   ],
   exports: [
-    ReactiveFormsModule,
-    //RecaptchaModule,
-    //RecaptchaFormsModule
+    ReactiveFormsModule
   ],
 })
 export class UserModule {}
