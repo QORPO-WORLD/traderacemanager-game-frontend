@@ -14,7 +14,7 @@ export class BridgeComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/race/start-race']);
+      this.router.navigate(['/other/download']);
      }, 200);
   }
 

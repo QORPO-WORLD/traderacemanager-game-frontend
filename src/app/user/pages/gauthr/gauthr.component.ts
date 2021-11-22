@@ -102,7 +102,7 @@ export class GauthrComponent implements OnInit, OnDestroy {
 
   cancelKey() {
     this.xObserver = this.mfsrvc.mfaSecretCreate().subscribe((data) => {
-      this.route.navigate(["/race/start-race"]);
+      this.route.navigate(["/other/download"]);
     });
   }
 

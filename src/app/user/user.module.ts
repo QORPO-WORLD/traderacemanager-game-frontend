@@ -89,6 +89,16 @@ const routes: Routes = [
         path: "verify-authenticator",
         component: VerifyauthenticatorComponent,
         data: { title: "Verify user" },
+      },
+      {
+        path: "forgot-password",
+        component: ForgotPasswordComponent,
+        data: { title: "Forgot Password" },
+      },
+      {
+        path: "password-reset",
+        component: ResetPasswordComponent,
+        data: { title: "Reset Password" },
       }
     ],
   },

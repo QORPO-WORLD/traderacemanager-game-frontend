@@ -1,27 +1,3 @@
-.login-back-div {
-  position: sticky;
-  height: 0px;
-  top: 0px;
-  left: 0px;
-  z-index: -1;
-}
-.login-back {
-  top: 0px;
-  left: 0px;
-  position: absolute;
-  background-image: radial-gradient(
-      69.52% 76.11% at 50% 50%,
-      rgba(17, 17, 17, 0.5) 0%,
-      #111111 100%
-    ),
-    url("/assets/base/images/home-page/banner.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  pointer-events: none;
-}
 .modal-holder {
   height: calc(var(--vh, 1vh) * 100);
   width: 100%;
@@ -43,6 +19,10 @@
   width: 100%;
   max-width: 600px;
   position: relative;
+  text-align: center;
+  .form-logo-holder {
+    margin-bottom: 55px;
+  }
   .close-icon {
     position: absolute;
     right: 30px;
@@ -210,11 +190,43 @@
     }
   }
 }
+
+@media screen and (max-width: 1550px) {
+  .step-holder{
+    .form-logo-holder{
+      margin-bottom: 40px;
+      img{
+        width: 150px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .modal-holder {
     min-height: 650px;
   }
+  .step-holder{
+    .form-logo-holder{
+      margin-bottom: 40px;
+      img{
+        width: 150px;
+      }
+    }
+  }
 }
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .step-holder{
+    .form-logo-holder{
+      margin-bottom: 15px;
+      img{
+        width: 90px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 900px) {
   .modal-holder {
     min-height: 400px;
@@ -225,6 +237,18 @@
     min-height: 350px;
   }
 }
+
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .step-holder{
+    .form-logo-holder{
+      margin-bottom: 15px;
+      img{
+        width: 100px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 640px) {
   .modal-holder {
     min-height: 300px;

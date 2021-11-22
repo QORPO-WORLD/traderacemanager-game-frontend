@@ -13,7 +13,7 @@ export class UserVerifiedComponent implements OnInit {
   ngOnInit(): void {
     const that = this;
     setTimeout(() => {
-      that.route.navigate(['/race/start-race']);
+      that.route.navigate(['/other/download']);
     }, 5000);
   }
 

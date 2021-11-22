@@ -99,7 +99,7 @@ export class AuthService extends AbstractService {
             } else {
             */
             setTimeout(() => {
-              this.router.navigate(['/race/start-race']);
+              this.router.navigate(['/other/download']);
             }, 300);
             //}
             ga('event', 'prihlaseni', {
@@ -205,8 +205,8 @@ export class AuthService extends AbstractService {
     this.clearToken();
     this.clearIdentity();
     this.logOutApi().subscribe({
-      next: data => this.router.navigate(['/user/home']),
-      error: error => this.router.navigate(['/user/home'])
+      next: data => this.router.navigate(['/user/sign-up']),
+      error: error => this.router.navigate(['/user/sign-up'])
     });
     
 

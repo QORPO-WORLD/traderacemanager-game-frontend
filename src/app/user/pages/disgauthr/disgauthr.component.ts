@@ -81,7 +81,7 @@ export class DisGauthrComponent implements OnInit, OnDestroy {
   }
 
   cancelKey() {
-    this.route.navigate(["/race/start-race"]);
+    this.route.navigate(["/other/download"]);
   }
 
   createImageFromBlob(image: Blob) {

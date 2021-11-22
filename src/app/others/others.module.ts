@@ -11,6 +11,7 @@ import { CommonModule } from "../common/common.module";
 import { CommonModule as ninja } from "@angular/common";
 import { AuthUserGuard } from "../user/services/guards/auth-user.guard";
 import { SiteLayoutComponent } from "../common/components/layout/default/site-layout/site-layout.component";
+import { HomepageLayoutComponent } from "../common/components/layout/homepage-layout/homepage-layout.component";
 //import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
 import { FormsModule } from "@angular/forms";
 import { AnQrcodeModule } from "an-qrcode";
@@ -23,6 +24,7 @@ import { WithdrawNftComponent } from "./pages/withdraw-nft/withdraw-nft.componen
 import { ContactsStaticComponent } from "./contacts-static/contacts-static.component";
 import { MyReferralsComponent } from "./pages/my-referrals/my-referrals.component";
 import { IonicModule } from "@ionic/angular";
+import { DownloadGameComponent } from "./pages/download-game/download-game.component";
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'affilate', pathMatch: 'prefix' },*/
@@ -32,54 +34,18 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: SiteLayoutComponent,
+    component: HomepageLayoutComponent,
     canActivate: [AuthUserGuard],
     children: [
       {
         path: "",
-        redirectTo: "/race/start-race",
+        redirectTo: "/other/download",
         pathMatch: "full",
       },
-      // {
-      //   path: "rewards",
-      //   component: RewardsComponent,
-      // },
       {
-        path: "affilate",
-        component: AffilateComponent,
-      },
-      // {
-      //   path: "tasks",
-      //   component: DailyTasksComponent,
-      // },
-      {
-        path: "confirm/:id",
-        component: ConfirmWithdrawalComponent,
-      },
-      {
-        path: "loading",
-        component: BridgeComponent,
-      },
-      {
-        path: "wallet-control",
-        component: WalletControllerComponent,
-      },
-      {
-        path: "transfer-nft",
-        component: TransferNftComponent,
-      },
-      {
-        path: "deposit-nft",
-        component: DepositNftComponent,
-      },
-      {
-        path: "withdraw-nft",
-        component: WithdrawNftComponent,
-      },
-      {
-        path: "contats",
-        component: ContactsStaticComponent,
-      },
+        path: "download",
+        component: DownloadGameComponent,
+      }
     ],
   },
 ];
@@ -98,6 +64,7 @@ const routes: Routes = [
     ContactsStaticComponent,
     MyReferralsComponent,
     MaintenanceComponent,
+    DownloadGameComponent
   ],
   imports: [
     RouterModule.forChild(routes),
