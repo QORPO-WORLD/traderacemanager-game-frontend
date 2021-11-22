@@ -1,4 +1,3 @@
-import { AffilateComponent } from "./pages/affilate/affilate.component";
 //import { RewardsComponent } from "./pages/rewards/rewards.component";
 //import { DailyTasksComponent } from "./components/daily-tasks/daily-tasks.component";
 
@@ -13,10 +12,7 @@ const routes: Routes = [
     component: SiteLayoutComponent,
     path: "other",
     children: [
-      { path: "", redirectTo: "affilate", pathMatch: "prefix" },
-      //{ path: "rewards", component: RewardsComponent },
-      { path: "affilate", component: AffilateComponent },
-      //{ path: "tasks", component: DailyTasksComponent },
+      { path: "", redirectTo: "affilate", pathMatch: "prefix" }
     ],
   },
 ];

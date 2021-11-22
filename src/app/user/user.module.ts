@@ -1,6 +1,4 @@
-import { TeslaCompetitionComponent } from "./pages/tesla-competition/tesla-competition.component";
 import { WalletLoginComponent } from "./components/wallet-login/wallet-login.component";
-import { HowToComponent } from "./pages/how-to/how-to.component";
 import { VerifyauthenticatorComponent } from "./pages/verify-authenticator/verify-authenticator.component";
 import { VerifyUserComponent } from "./pages/verify-user/verify-user.component";
 import { MetamaskSignupComponent } from "./../others/components/metamask-signup/metamask-signup.component";
@@ -30,22 +28,16 @@ import { CommonModule } from "@angular/common";
 import { GooglePlus } from "@ionic-native/google-plus/ngx";
 import { Facebook } from "@ionic-native/facebook/ngx";
 
-import { HomeNftDetailComponent } from "./pages/home-nft-detail/home-nft-detail.component";
-import { HomeShopComponent } from "./pages/home-shop/home-shop.component";
 import { ResetPasswordComponent } from "./components/forgot-password/reset-password";
 import { SignupUserComponent } from "./components/signup/signup-user";
-import { ReferralLoginComponent } from "./pages/referral/referral.component";
 import { ActivationComponent } from "./components/activation/activation.component";
 import { EmailCreatedComponent } from "./pages/email-created/email-created.component";
 import { UserVerifiedComponent } from "./pages/user-verified/user-verified.component";
-import { HomeBundlesComponent } from "./pages/home-bundles/home-bundles.component";
-import { HomeAffiliateComponent } from "./pages/home-affiliate/home-affiliate.component";
 import { Routes, RouterModule } from "@angular/router";
 import { CommonModule as ninja } from "../common/common.module";
 import { AuthUserGuard } from "./services/guards/auth-user.guard";
 import { IonicModule } from "@ionic/angular";
 import { IonicSelectableModule } from "ionic-selectable";
-import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { WloginComponent } from "./components/wlogin/wlogin";
 import { CompetitionComponent } from "./components/competition/competition.component";
 import { CreditSystemComponent } from "./components/credit-system/credit-system.component";
@@ -53,7 +45,6 @@ import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-poli
 import { TermsConditionsComponent } from "./components/terms-conditions/terms-conditions.component";
 import { WelcomePageComponent } from "./components/welcome-page/welcome-page.component";
 import { HomepageLayoutComponent } from "../common/components/layout/homepage-layout/homepage-layout.component";
-import { HomeBundleDetailComponent } from "./pages/home-bundle-detail/home-bundle-detail.component";
 
 const routes: Routes = [
   {
@@ -124,30 +115,21 @@ const routes: Routes = [
     SignupUserComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    ReferralLoginComponent,
     ActivationComponent,
     FilterPipe,
     EmailCreatedComponent,
     UserVerifiedComponent,
-    HomePageComponent,
     WloginComponent,
     MetamaskSignupComponent,
     VerifyUserComponent,
     VerifyauthenticatorComponent,
-    HomeShopComponent,
-    HomeNftDetailComponent,
     CompetitionComponent,
     CreditSystemComponent,
     PrivacyPolicyComponent,
     TermsConditionsComponent,
     WelcomePageComponent,
-    HomeAffiliateComponent,
-    HomeBundlesComponent,
     HomepageLayoutComponent,
-    HomeBundleDetailComponent,
-    HowToComponent,
     WalletLoginComponent,
-    TeslaCompetitionComponent,
   ],
   providers: [
     AutologinGuard,

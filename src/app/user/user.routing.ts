@@ -8,7 +8,6 @@ import { LoginComponent } from './components/login/login';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password';
 import { ResetPasswordComponent } from './components/forgot-password/reset-password';
 import { SignupUserComponent } from './components/signup/signup-user';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
     {

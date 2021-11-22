@@ -47,7 +47,6 @@
           <img class="blue-bell" src="/assets/base/images/start-race/notifiq-bell-blue.svg" alt="" (click)="openNotifiq = !openNotifiq" >
           <span *ngIf="numOfNotifications > 0" class="noti-count my-cta-btn-back">{{numOfNotifications}}</span>
           <div class="notifiq-list" *ngIf="openNotifiq === true">
-            <app-notification-list></app-notification-list>
           </div>
           <div class="notifiq-back" *ngIf="openNotifiq === true" (click)="openNotifiq = !openNotifiq"></div>
         </div>
@@ -105,9 +104,6 @@
       </div>
     </nav>
 
-    <div class="waiting-popup-holder" *ngIf="depos === true">
-      <app-waiting-transfer></app-waiting-transfer>
-    </div>
     
     <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
 
