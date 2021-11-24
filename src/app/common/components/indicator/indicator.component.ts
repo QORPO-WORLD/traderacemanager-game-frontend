@@ -21,32 +21,32 @@ export class IndicatorComponent implements OnInit, OnDestroy {
   fire() {
 
 
-    setTimeout(() => {
-      if (this.type) {
-        // tslint:disable-next-line: no-unused-expression
-        this.more = new TradingView.widget({
-          container_id: 'technical-analysis',
-          autosize: true,
-          symbol: this.type,
-          interval: '3',
-          timezone: 'exchange',
-          theme: 'Dark',
-          style: '1',
-          toolbar_bg: '#f1f3f6',
-          withdateranges: true,
-          hide_side_toolbar: true,
-          allow_symbol_change: true,
-          save_image: false,
-          hideideas: true,
-          width: 300,
-          height: 300,
-          studies: [
-            'MASimple@tv-basicstudies'],
-          show_popup_button: false
-        });
-      }
+    // setTimeout(() => {
+    //   if (this.type) {
+    //     // tslint:disable-next-line: no-unused-expression
+    //     this.more = new TradingView.widget({
+    //       container_id: 'technical-analysis',
+    //       autosize: true,
+    //       symbol: this.type,
+    //       interval: '3',
+    //       timezone: 'exchange',
+    //       theme: 'Dark',
+    //       style: '1',
+    //       toolbar_bg: '#f1f3f6',
+    //       withdateranges: true,
+    //       hide_side_toolbar: true,
+    //       allow_symbol_change: true,
+    //       save_image: false,
+    //       hideideas: true,
+    //       width: 300,
+    //       height: 300,
+    //       studies: [
+    //         'MASimple@tv-basicstudies'],
+    //       show_popup_button: false
+    //     });
+    //   }
 
-    }, 200);
+    // }, 200);
 
   }
   ngOnInit() {
