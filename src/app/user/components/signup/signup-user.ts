@@ -47,6 +47,7 @@ export class SignupUserComponent
   extends AbstractComponent
   implements OnInit, OnDestroy
 {
+  countDownActive: boolean;
   registerForm: FormGroup;
   loading = false;
   submitted = false;
@@ -119,7 +120,7 @@ export class SignupUserComponent
 
   ngOnInit() {
     this.recognizeDemo();
-
+    this.resolveDate();
     this.registerForm = this.formBuilder.group({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [
@@ -198,10 +199,7 @@ export class SignupUserComponent
       return;
     }
     if (this.f.password.value !== this.f.repeatPassword.value && !this.mmewa) {
-      this.notify.error(
-        "validation error",
-        "Passwords do not match"
-      );
+      this.notify.error("validation error", "Passwords do not match");
       return;
     }
     this.submitted = true;
@@ -370,5 +368,130 @@ export class SignupUserComponent
       elem1.scrollIntoView({ behavior: "smooth", block: "start" });
       clearTimeout(timeout1);
     }, 200);
+  }
+  //countdown event
+  resolveDate() {
+    var date2 = new Date();
+    var date1 = new Date(2021, 10, 24, 17, 0, 0, 0);
+    var date2value = date2.getTime();
+    var date1value = date1.getTime();
+    var dif = date1value - date2value;
+    if (date2value < date1value) {
+      this.countDownActive = true;
+    } else {
+      this.countDownActive = false;
+    }
+    var Seconds_from_T1_to_T2 = dif / 1000;
+    var Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
+    interface TickEvent {
+      days: number;
+      hours: number;
+      minutes: number;
+      seconds: number;
+    }
+
+    interface CountdownEvents {
+      tick(values: TickEvent): void;
+      expired(): void;
+      stop(): void;
+    }
+
+    type EventMap<T> = { [K in keyof T]: Function[] };
+
+    class Countdown {
+      public listeners: EventMap<CountdownEvents> = {
+        tick: [],
+        expired: [],
+        stop: [],
+      };
+
+      public timer?: any;
+
+      on<K extends keyof CountdownEvents>(
+        eventName: K,
+        listener: CountdownEvents[K]
+      ): void {
+        this.listeners[eventName].push(listener);
+      }
+
+      off<K extends keyof CountdownEvents>(
+        eventName: K,
+        listener: CountdownEvents[K]
+      ): void {
+        const listeners = this.listeners[eventName];
+        const index = listeners.indexOf(listener);
+        if (index !== -1) {
+          listeners.splice(index, 1);
+        }
+      }
+
+      start(date: Date) {
+        const end = Math.floor(date.getTime() / 1000);
+        const daysValue: any = document.getElementById("days");
+        const hoursValue: any = document.getElementById("hours");
+        const minutesValue: any = document.getElementById("minutes");
+        const secondsValue: any = document.getElementById("seconds");
+
+        const tick = () => {
+          const now = Date.now();
+          const nowSec = Math.floor(now / 1000);
+          const time = end - nowSec;
+
+          if (time <= 0) {
+            delete this.timer;
+            this.listeners.expired.forEach((listener) => listener());
+            return;
+          }
+
+          const minute = 60;
+          const hour = minute * 60;
+          const day = hour * 24;
+
+          const days = Math.floor(time / day);
+          const hours = Math.floor((time % day) / hour);
+          const minutes = Math.floor((time % hour) / minute);
+          const seconds = time % minute;
+
+          this.listeners.tick.forEach((listener) =>
+            listener({ days, hours, minutes, seconds })
+          );
+
+          const timeToNextSecond = (nowSec + 1) * 1000 - now;
+          this.timer = setTimeout(tick, timeToNextSecond);
+          daysValue.innerHTML = days;
+          hoursValue.innerHTML = hours;
+          minutesValue.innerHTML = minutes;
+          secondsValue.innerHTML = seconds;
+        };
+
+        tick();
+      }
+
+      stop() {
+        if (this.timer) {
+          clearTimeout(this.timer);
+          delete this.timer;
+          this.listeners.stop.forEach((listener) => listener());
+        }
+      }
+    }
+
+    const countdown = new Countdown();
+    // countdown.on("tick", (event) => console.log("tick", event));
+    countdown.on("expired", () => {
+      // console.log("expired");
+      this.countDownActive = false;
+    });
+    // countdown.on('stop', () => console.log('stopped'));
+
+    const date = new Date();
+
+    if (date2value < date1value) {
+      this.countDownActive = true;
+      date.setSeconds(date.getMinutes() + Seconds_Between_Dates);
+      countdown.start(date);
+    } else {
+      this.countDownActive = false;
+    }
   }
 }

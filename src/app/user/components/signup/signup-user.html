@@ -1,9 +1,34 @@
 <div class="main-holder">
   <div class="login-content">
-    <div class="center-content">
-
+    <div [ngClass]="{hidden: countDownActive === false}" class="countdown">
+      <div class="countdown-title">
+        <p>TRM2 Alpha starts in:</p>
+      </div>
+      <div class="items">
+        <div class="item days">
+          <p class="time" id="days">1</p>
+          <p class="desc">D</p>
+        </div>
+        <div class="item">
+          <p class="time" id="hours">2</p>
+          <p class="desc">H</p>
+        </div>
+        <div class="item">
+          <p class="time" id="minutes">3</p>
+          <p class="desc">M</p>
+        </div>
+        <div class="item">
+          <p class="time" id="seconds">4</p>
+          <p class="desc">S</p>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="{hidden: countDownActive === true}" class="center-content">
       <div class="form-logo-holder">
-        <img src="/assets/base/images/trm2-logo.svg" alt="TradeRaceManager2 logo">
+        <img
+          src="/assets/base/images/trm2-logo.svg"
+          alt="TradeRaceManager2 logo"
+        />
       </div>
 
       <form [formGroup]="registerForm">
@@ -89,7 +114,9 @@
             minlength="5"
             maxlength="20"
           />
-          <span class="input-placeholder">{{'login.repeat_pass' | translate}}</span>
+          <span class="input-placeholder"
+            >{{'login.repeat_pass' | translate}}</span
+          >
           <span
             class="eyeball"
             (click)="repeatShow = 'text'"
@@ -159,7 +186,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div
