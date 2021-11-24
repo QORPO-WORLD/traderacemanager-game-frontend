@@ -50,7 +50,6 @@ export class LoginComponent
   cap = "";
   gauthfired = false;
   usinggauth = false;
-  showLoadingModal = false;
   gkey: string;
   myDomain: string;
   disCap = false;
@@ -215,10 +214,7 @@ export class LoginComponent
     }, 2000);
     this.token = null;
     clearInterval(this.dangerInterval);
-    this.showLoadingModal = true;
-    setTimeout(() => {
-      this.getAuthService().login(data.authKey);
-    }, 3000);
+    this.getAuthService().login(data.authKey);
   }
 
   public facebookOauth() {
