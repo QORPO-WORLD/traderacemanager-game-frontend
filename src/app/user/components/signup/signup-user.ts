@@ -254,6 +254,8 @@ export class SignupUserComponent
             eventAction: "nedokoncena",
             value: "registrace dokoncena",
           });
+        }, error => {
+          this.notify.error('Error', error.error.message);
         });
     }
   }
@@ -372,7 +374,7 @@ export class SignupUserComponent
   //countdown event
   resolveDate() {
     var date2 = new Date();
-    var date1 = new Date(2021, 10, 25, 10, 0, 0, 0);
+    var date1 = new Date(2021, 10, 25, 8, 0, 0, 0);
     var date2value = date2.getTime();
     var date1value = date1.getTime();
     var dif = date1value - date2value;

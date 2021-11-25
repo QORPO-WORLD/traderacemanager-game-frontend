@@ -9,6 +9,10 @@ export class DownloadGameComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+  
+  openLink(url: string) {
+    window.open(url, "_blank");
+  }
 
 }
