@@ -194,7 +194,7 @@ export class SignupUserComponent
     if (this.f.password.status === "INVALID" && !this.mmewa) {
       this.notify.error(
         "validation error",
-        "Invalid password format. Min 8 characters, 1 number, 1 small, 1 capital letter are required. (example: ioiGame123)"
+        "Invalid password format. Min 8 characters, 1 number, 1 small, 1 capital letter and 1 special character are required. (example: ioiGame123*)"
       );
       return;
     }
@@ -343,8 +343,8 @@ export class SignupUserComponent
     let hasNumber = /\d/.test(control.value);
     let hasUpper = /[A-Z]/.test(control.value);
     let hasLower = /[a-z]/.test(control.value);
-    // console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
-    const valid = hasNumber && hasUpper && hasLower;
+    let hasSpecial = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(control.value);
+    const valid = hasNumber && hasUpper && hasLower && hasSpecial;
     if (!valid) {
       // return what´s not valid
       return { strong: true };
