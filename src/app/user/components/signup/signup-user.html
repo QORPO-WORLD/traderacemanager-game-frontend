@@ -1,6 +1,6 @@
 <div class="main-holder">
   <div class="login-content">
-    <div [ngClass]="{hidden: countDownActive === false}" class="countdown">
+    <!-- <div [ngClass]="{hidden: countDownActive === false}" class="countdown">
       <div class="countdown-title">
         <p>TRM2 Alpha starts in:</p>
       </div>
@@ -22,8 +22,8 @@
           <p class="desc">S</p>
         </div>
       </div>
-    </div>
-    <div [ngClass]="{hidden: countDownActive === true}" class="center-content">
+    </div> -->
+    <div class="center-content">
       <div class="form-logo-holder">
         <img
           src="/assets/base/images/trm2-logo.svg"
@@ -39,6 +39,7 @@
         >
           <img src="/assets/base/images/user-icon.svg" alt="" class="icon" />
           <input
+            (click)="this.passwordClicked = false"
             type="text"
             required
             formControlName="nickname"
@@ -58,6 +59,7 @@
         >
           <img src="/assets/base/images/mail-icon.svg" alt="" class="icon" />
           <input
+            (click)="this.passwordClicked = false"
             type="email"
             required
             formControlName="email"
@@ -68,30 +70,125 @@
           <span class="input-placeholder">{{'login.e_mail' | translate}}</span>
         </div>
         <div
-          class="my-input"
+          class="my-input password"
           [ngClass]="{'filled': password !== '' && password !== undefined}"
           *ngIf="showMmew === false"
           #pass
         >
+          <div
+            [ngClass]="{showed: passwordClicked === true}"
+            class="requirements"
+          >
+            <img
+              class="background"
+              src="/assets/base/images/requirements-back.png"
+              alt="background"
+            />
+            <img
+              class="background mobile"
+              src="/assets/base/images/requirements-back-mobile.png"
+              alt="background"
+            />
+            <p class="req-title">
+              Password <span class="bold">must</span> contain:
+            </p>
+            <div class="req-row first">
+              <div class="req-check">
+                <img
+                  *ngIf="minLength === true"
+                  class="check"
+                  src="/assets/base/images/check-white.svg"
+                  alt="White check icon"
+                />
+
+                <p *ngIf="minLength === false" class="check">-</p>
+              </div>
+              <p class="req-text">
+                At least <span class="bold">8 characters</span>
+              </p>
+            </div>
+            <div class="req-row">
+              <div class="req-check">
+                <img
+                  *ngIf="capitalLetter === true"
+                  class="check"
+                  src="/assets/base/images/check-white.svg"
+                  alt="White check icon"
+                />
+
+                <p *ngIf="capitalLetter === false" class="check">-</p>
+              </div>
+              <p class="req-text">
+                At least one <span class="bold">capital letter</span>
+              </p>
+            </div>
+            <div class="req-row">
+              <div class="req-check">
+                <img
+                  *ngIf="smallLetter === true"
+                  class="check"
+                  src="/assets/base/images/check-white.svg"
+                  alt="White check icon"
+                />
+
+                <p *ngIf="smallLetter === false" class="check">-</p>
+              </div>
+              <p class="req-text">
+                At least one <span class="bold">small letter</span>
+              </p>
+            </div>
+            <div class="req-row">
+              <div class="req-check">
+                <img
+                  *ngIf="oneNumber === true"
+                  class="check"
+                  src="/assets/base/images/check-white.svg"
+                  alt="White check icon"
+                />
+
+                <p *ngIf="oneNumber === false" class="check">-</p>
+              </div>
+              <p class="req-text">
+                At least one <span class="bold">number</span>
+              </p>
+            </div>
+            <div class="req-row">
+              <div class="req-check">
+                <img
+                  *ngIf="specialCharacter === true"
+                  class="check"
+                  src="/assets/base/images/check-white.svg"
+                  alt="White check icon"
+                />
+
+                <p *ngIf="specialCharacter === false" class="check">-</p>
+              </div>
+              <p class="req-text">
+                At least one <span class="bold">special character</span>
+              </p>
+            </div>
+          </div>
           <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
           <input
+            (click)="this.passwordClicked = true"
             [type]="show"
             required
             formControlName="password"
             autocomplete="off"
             [(ngModel)]="password"
-            minlength="5"
+            (ngModelChange)="checkPasswordRequirements()"
+            minlength="8"
             maxlength="20"
           />
           <span class="input-placeholder">{{'login.pass' | translate}}</span>
           <span
-            class="eyeball"
+            class="eyeball show-span"
             (click)="show = 'text'"
             [ngClass]="{'show': show === 'password'}"
             ><img src="/assets/base/images/pass-hidden.png"
           /></span>
           <span
-            class="eyeball"
+            class="eyeball show-span"
             (click)="show = 'password'"
             [ngClass]="{'show': show === 'text'}"
             ><img src="/assets/base/images/pass-unhidden.png"
@@ -106,25 +203,26 @@
         >
           <img src="/assets/base/images/lock-icon.svg" alt="" class="icon" />
           <input
+            (click)="this.passwordClicked = false"
             [type]="repeatShow"
             required
             formControlName="repeatPassword"
             autocomplete="off"
             [(ngModel)]="repeatPassword"
-            minlength="5"
+            minlength="8"
             maxlength="20"
           />
           <span class="input-placeholder"
             >{{'login.repeat_pass' | translate}}</span
           >
           <span
-            class="eyeball"
+            class="eyeball show-span"
             (click)="repeatShow = 'text'"
             [ngClass]="{'show': repeatShow === 'password'}"
             ><img src="/assets/base/images/pass-hidden.png"
           /></span>
           <span
-            class="eyeball"
+            class="eyeball show-span"
             (click)="repeatShow = 'password'"
             [ngClass]="{'show': repeatShow === 'text'}"
             ><img src="/assets/base/images/pass-unhidden.png"
@@ -140,7 +238,27 @@
           <input type="text" readonly autocomplete="off" [value]="referralId" />
           <span class="input-placeholder">Refferal</span>
         </div>
-
+        <div class="create-box disclaimer">
+          <div class="left-holder">
+            <p class="login-text"><span>NOTE:</span></p>
+            <p class="login-text">
+              Alpha tesing is only available for users that hold at least
+              <span>100 &#36;IOI</span> in QORPO Wallet or Trade Race Manager
+              game wallet.
+            </p>
+          </div>
+          <div class="right-holder">
+            <button
+              class="cta-button"
+              (click)="openLink('https://qorpo.finance/')"
+            >
+              <img
+                src="/assets/base/images/icons/qorpo-wallet.svg"
+                alt="Qorpo wallet logo"
+              />
+            </button>
+          </div>
+        </div>
         <div class="register-text check">
           <p>
             <input

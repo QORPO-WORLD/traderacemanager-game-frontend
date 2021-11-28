@@ -90,6 +90,15 @@ export class SignupUserComponent
   trying = false;
   chainId = 137;
   newsChecked = false;
+
+  //password requirements
+  passwordClicked = false;
+  capitalLetter = false;
+  smallLetter = false;
+  oneNumber = false;
+  specialCharacter = false;
+  minLength = false;
+
   constructor(
     protected injector: Injector,
     private formBuilder: FormBuilder,
@@ -120,7 +129,6 @@ export class SignupUserComponent
 
   ngOnInit() {
     this.recognizeDemo();
-    this.resolveDate();
     this.registerForm = this.formBuilder.group({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [
@@ -176,7 +184,7 @@ export class SignupUserComponent
     if (this.f.nickname.status === "INVALID") {
       this.notify.error(
         "validation error",
-        "Invalid nickname format. Only letters and numbers, min 5 - max 20 characters."
+        "Invalid nickname format. min 8 - max 20 characters. Follow requirements!"
       );
       return;
     }
@@ -237,26 +245,29 @@ export class SignupUserComponent
           recaptchaToken: this.token,
           news_agree: this.newsChecked,
         })
-        .subscribe((datax) => {
-          const data: any = datax;
-          this.trying = false;
-          this.loading = false;
-          this.token = null;
-          clearInterval(this.dangerInterval);
+        .subscribe(
+          (datax) => {
+            const data: any = datax;
+            this.trying = false;
+            this.loading = false;
+            this.token = null;
+            clearInterval(this.dangerInterval);
 
-          localStorage.setItem("first-time", JSON.stringify("yes"));
-          fbq("track", "CompleteRegistration");
+            localStorage.setItem("first-time", JSON.stringify("yes"));
+            fbq("track", "CompleteRegistration");
 
-          this.ioiapi.setToken(data.authKey);
-          this.router.navigate(["/user/verify-code"]);
-          ga("event", "nedokoncena", {
-            eventCategory: "registrace",
-            eventAction: "nedokoncena",
-            value: "registrace dokoncena",
-          });
-        }, error => {
-          this.notify.error('Error', error.error.message);
-        });
+            this.ioiapi.setToken(data.authKey);
+            this.router.navigate(["/user/verify-code"]);
+            ga("event", "nedokoncena", {
+              eventCategory: "registrace",
+              eventAction: "nedokoncena",
+              value: "registrace dokoncena",
+            });
+          },
+          (error) => {
+            this.notify.error("Error", error.error.message);
+          }
+        );
     }
   }
 
@@ -495,5 +506,42 @@ export class SignupUserComponent
     } else {
       this.countDownActive = false;
     }
+  }
+  checkPasswordRequirements() {
+    if (/[A-Z]/.test(this.password) === true) {
+      this.capitalLetter = true;
+    } else {
+      this.capitalLetter = false;
+    }
+    if (/[a-z]/.test(this.password) === true && this.password != undefined) {
+      this.smallLetter = true;
+    } else {
+      this.smallLetter = false;
+    }
+    if (/[1-9]/.test(this.password) === true) {
+      this.oneNumber = true;
+    } else {
+      this.oneNumber = false;
+    }
+    if (
+      /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(this.password) === true
+    ) {
+      this.specialCharacter = true;
+    } else {
+      this.specialCharacter = false;
+    }
+    if (this.password.length >= 8) {
+      this.minLength = true;
+    } else {
+      this.minLength = false;
+    }
+    console.log(this.capitalLetter);
+    console.log(this.smallLetter);
+    console.log(this.oneNumber);
+    console.log(this.specialCharacter);
+    console.log(this.password.length);
+  }
+  openLink(url: string) {
+    window.open(url, "_blank");
   }
 }
