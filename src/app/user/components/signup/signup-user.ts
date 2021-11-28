@@ -354,7 +354,9 @@ export class SignupUserComponent
     let hasNumber = /\d/.test(control.value);
     let hasUpper = /[A-Z]/.test(control.value);
     let hasLower = /[a-z]/.test(control.value);
-    let hasSpecial = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(control.value);
+    let hasSpecial = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(
+      control.value
+    );
     const valid = hasNumber && hasUpper && hasLower && hasSpecial;
     if (!valid) {
       // return what´s not valid
@@ -535,11 +537,6 @@ export class SignupUserComponent
     } else {
       this.minLength = false;
     }
-    console.log(this.capitalLetter);
-    console.log(this.smallLetter);
-    console.log(this.oneNumber);
-    console.log(this.specialCharacter);
-    console.log(this.password.length);
   }
   openLink(url: string) {
     window.open(url, "_blank");

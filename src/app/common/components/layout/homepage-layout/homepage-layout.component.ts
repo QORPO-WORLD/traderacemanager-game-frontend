@@ -6,11 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./homepage-layout.component.scss"],
 })
 export class HomepageLayoutComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-
+  ngOnInit() {}
+  openLink(url: string) {
+    window.open(url, "_blank");
   }
-
 }
