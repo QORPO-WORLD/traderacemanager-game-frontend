@@ -6,9 +6,12 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./footer.component.scss"],
 })
 export class FooterComponent implements OnInit {
+  actualYear: number;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.actualYear = new Date().getFullYear();
+  }
   openLink(url: string) {
     window.open(url, "_blank").focus();
   }
