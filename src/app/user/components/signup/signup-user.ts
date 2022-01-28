@@ -34,6 +34,7 @@ import { Subscription } from "rxjs";
 import { ThrowStmt } from "@angular/compiler";
 declare let grecaptcha: any;
 declare let ga: any;
+declare let gtag: any;
 declare let fbq: Function;
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -258,6 +259,9 @@ export class SignupUserComponent
 
             this.ioiapi.setToken(data.authKey);
             this.router.navigate(["/user/verify-code"]);
+            gtag("event", "conversion", {
+              send_to: "AW-580556065/-8hjCKaOmJQDEKGq6pQC",
+            });
             ga("event", "nedokoncena", {
               eventCategory: "registrace",
               eventAction: "nedokoncena",
